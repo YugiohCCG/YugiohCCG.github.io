@@ -1,0 +1,1 @@
+# YugiohCCG.github.io
