@@ -86,16 +86,6 @@ const inRange = (n: number | undefined | null, lo?: number, hi?: number) => {
   return true;
 };
 
-const normalizeArrow = (v: string | number): string => {
-  const s = String(v).toUpperCase().trim();
-  const map: Record<string, string> = {
-    "1": "TL", "2": "T", "3": "TR",
-    "4": "L",             "6": "R",
-    "7": "BL", "8": "B", "9": "BR",
-  };
-  return map[s] || s;
-};
-
 const setCodeFrom = (val: unknown): string | null => {
   if (!val) return null;
   const s = String(val).toUpperCase().trim();
@@ -215,4 +205,33 @@ export function cardMatches(card: Card, q: Query): boolean {
   if (!dateInRange(added, q.dateStart, q.dateEnd)) return false;
 
   return true;
+}
+
+// ---- sorting (exported for Cards.tsx) ----
+export type SortKey = "name" | "atk" | "def" | "level" | "rank" | "link" | "date";
+export type SortDir = "asc" | "desc";
+
+export function sortCards(items: Card[], key: SortKey, dir: SortDir): Card[] {
+  const mul = dir === "desc" ? -1 : 1;
+  const cmp = <T>(a: T, b: T) => (a === b ? 0 : a > b ? 1 : -1);
+  const by = <T>(sel: (c: Card) => T) =>
+    [...items].sort((a, b) => {
+      const va = sel(a) as any, vb = sel(b) as any;
+      const na = va == null, nb = vb == null;
+      if (na && nb) return 0;
+      if (na) return 1;
+      if (nb) return -1;
+      return mul * cmp(va, vb);
+    });
+
+  switch (key) {
+    case "atk":   return by((c: any) => c.atk ?? null);
+    case "def":   return by((c: any) => c.def ?? null);
+    case "level": return by((c: any) => c.level ?? null);
+    case "rank":  return by((c: any) => c.rank ?? null);
+    case "link":  return by((c: any) => (c.linkRating ?? c.link ?? c.linkval ?? null));
+    case "date":  return by((c: any) => (c.timestamps?.added ?? ""));
+    case "name":
+    default:      return by((c: any) => (c.name || "").toLowerCase());
+  }
 }

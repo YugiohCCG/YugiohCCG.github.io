@@ -87,7 +87,7 @@ const putListNum = (p: URLSearchParams, k: string, vals: number[]) => {
 
 export default function FiltersPanel() {
   // NOTE: we still exclude TCG cards from the /cards database
-  const { cards, indexes } = useCards({ includeTCG: false, includeCustom: true, includeTest: false });
+  const { indexes } = useCards({ includeTCG: false, includeCustom: true, includeTest: false });
   const [params, setParams] = useSearchParams();
 
   const [collapsed, setCollapsed] = useState(params.get("filters") === "0");
