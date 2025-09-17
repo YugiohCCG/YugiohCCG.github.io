@@ -1,5 +1,3 @@
-// src/types/card.ts
-
 // ---------- Banlist / legality ----------
 export type Legal = {
   semiLimited?: boolean; // true if semi-limited
@@ -18,7 +16,7 @@ export type CardCategory = "Monster" | "Spell" | "Trap";
 // Attributes used in your data
 export type Attribute = "DARK" | "LIGHT" | "FIRE" | "WATER" | "WIND" | "EARTH" | "DIVINE";
 
-// Common Spell/Trap icons (keep string fallback flexible if you import others)
+// Common Spell/Trap icons
 export type SpellTrapIcon =
   | "Normal"
   | "Continuous"

@@ -10,17 +10,15 @@ const CARD_TYPES = [
   "Spirit","Union","Gemini","Tuner","Flip","Pendulum","Link",
 ];
 const LEVELS = Array.from({ length: 14 }, (_, i) => i);      // 0..13
-const SCALES = Array.from({ length: 13 }, (_, i) => i + 1);   // 1..13
+const SCALES = Array.from({ length: 14 }, (_, i) => i);       // 0..13
 const LINK_RATINGS = [1, 2, 3, 4, 5, 6];
 
-// 3×3 keypad with a blank center
 const ARROWS_GRID: (string | null)[] = [
   "TL", "T",  "TR",
   "L",  null, "R",
   "BL", "B",  "BR",
 ];
 
-// compact chip
 function Chip({
   active,
   onClick,
@@ -43,7 +41,6 @@ function Chip({
   );
 }
 
-// uniform section (title + optional clear)
 function Section({
   title,
   onClear,
@@ -53,7 +50,6 @@ function Section({
   title: string;
   onClear?: () => void;
   children: React.ReactNode;
-  /** when true, body gets fixed height with scroll for symmetry */
   fixedHeight?: boolean;
 }) {
   return (
@@ -75,50 +71,48 @@ function Section({
   );
 }
 
-// url helpers
 const getAll = (p: URLSearchParams, k: string) => p.getAll(k);
+const getAllNum = (p: URLSearchParams, k: string) =>
+  p.getAll(k).map((v) => Number(v)).filter((n) => !Number.isNaN(n));
 const getOne = (p: URLSearchParams, k: string) => p.get(k) ?? "";
 const getNum = (p: URLSearchParams, k: string) => (p.get(k) ? Number(p.get(k)) : undefined);
 const putList = (p: URLSearchParams, k: string, vals: string[]) => {
   p.delete(k);
   for (const v of vals) p.append(k, v);
 };
+const putListNum = (p: URLSearchParams, k: string, vals: number[]) => {
+  p.delete(k);
+  for (const v of vals) p.append(k, String(v));
+};
 
 export default function FiltersPanel() {
-  // /cards: only custom cards
+  // NOTE: we still exclude TCG cards from the /cards database
   const { cards, indexes } = useCards({ includeTCG: false, includeCustom: true, includeTest: false });
   const [params, setParams] = useSearchParams();
 
-  // collapsed state
   const [collapsed, setCollapsed] = useState(params.get("filters") === "0");
 
-  // header row
   const [q, setQ] = useState(getOne(params, "q"));
   const [setCode, setSetCode] = useState(getOne(params, "set"));
   const [archetypeSel, setArchetypeSel] = useState(getOne(params, "archetype"));
 
-  // multi-select chips
   const [attributes, setAttributes] = useState<string[]>(getAll(params, "attribute"));
   const [icons, setIcons] = useState<string[]>(getAll(params, "icon"));
   const [monsterTypes, setMonsterTypes] = useState<string[]>(getAll(params, "monsterType"));
   const [cardTypes, setCardTypes] = useState<string[]>(getAll(params, "cardTypes"));
 
-  // single-value pickers (click toggles on/off)
-  const [levelVal, setLevelVal] = useState<number | undefined>(getNum(params, "levelMin"));
-  const [rankVal,  setRankVal]  = useState<number | undefined>(getNum(params, "rankMin"));
-  const [scaleVal, setScaleVal] = useState<number | undefined>(getNum(params, "scaleMin"));
-  const [linkVal,  setLinkVal]  = useState<number | undefined>(getNum(params, "linkMin"));
+  const [levelSet, setLevelSet] = useState<number[]>(getAllNum(params, "levelIn"));
+  const [rankSet,  setRankSet]  = useState<number[]>(getAllNum(params, "rankIn"));
+  const [scaleSet, setScaleSet] = useState<number[]>(getAllNum(params, "scaleIn"));
+  const [linkSet,  setLinkSet]  = useState<number[]>(getAllNum(params, "linkIn"));
 
-  // link arrows (multi)
   const [arrows, setArrows] = useState<string[]>(getAll(params, "linkArrows"));
 
-  // atk/def numeric
   const [atkMin, setAtkMin] = useState<number | undefined>(getNum(params, "atkMin"));
   const [atkMax, setAtkMax] = useState<number | undefined>(getNum(params, "atkMax"));
   const [defMin, setDefMin] = useState<number | undefined>(getNum(params, "defMin"));
   const [defMax, setDefMax] = useState<number | undefined>(getNum(params, "defMax"));
 
-  // legality + date
   const [legal, setLegal] = useState<string[]>(getAll(params, "legal"));
   const [dateStart, setDateStart] = useState<string>(getOne(params, "dateStart"));
   const [dateEnd, setDateEnd] = useState<string>(getOne(params, "dateEnd"));
@@ -130,17 +124,19 @@ export default function FiltersPanel() {
     () => [...new Set(indexes.archetypes ?? [])].sort((a, b) => a.localeCompare(b)),
     [indexes.archetypes]
   );
+
+  // ⬇️ IMPORTANT: build Monster Type options from the UNFILTERED index,
+  // so choices never disappear when you click one.
   const monsterTypeOptions = useMemo(
-    () => [...new Set(cards.flatMap((c: any) => c?.monsterType ?? []))].map(String).sort(),
-    [cards]
+    () => indexes.monsterTypes ?? [],
+    [indexes.monsterTypes]
   );
 
-  // togglers
   const toggle = (list: string[], setList: (v: string[]) => void, value: string) => {
     setList(list.includes(value) ? list.filter((x) => x !== value) : [...list, value]);
   };
-  const toggleSingle = (current: number | undefined, set: (v?: number) => void, value: number) => {
-    set(current === value ? undefined : value);
+  const toggleNum = (list: number[], setList: (v: number[]) => void, value: number) => {
+    setList(list.includes(value) ? list.filter((x) => x !== value) : [...list, value].sort((a,b)=>a-b));
   };
 
   const apply = () => {
@@ -157,15 +153,13 @@ export default function FiltersPanel() {
     putList(p, "monsterType", monsterTypes);
     putList(p, "cardTypes", cardTypes);
 
-    // single value -> set both min & max to same, or clear both
-    if (levelVal != null) { setNum("levelMin", levelVal); setNum("levelMax", levelVal); }
-    else { p.delete("levelMin"); p.delete("levelMax"); }
-    if (rankVal != null) { setNum("rankMin", rankVal); setNum("rankMax", rankVal); }
-    else { p.delete("rankMin"); p.delete("rankMax"); }
-    if (scaleVal != null) { setNum("scaleMin", scaleVal); setNum("scaleMax", scaleVal); }
-    else { p.delete("scaleMin"); p.delete("scaleMax"); }
-    if (linkVal != null) { setNum("linkMin", linkVal); setNum("linkMax", linkVal); }
-    else { p.delete("linkMin"); p.delete("linkMax"); }
+    putListNum(p, "levelIn", levelSet);
+    putListNum(p, "rankIn", rankSet);
+    putListNum(p, "scaleIn", scaleSet);
+    putListNum(p, "linkIn", linkSet);
+
+    ["levelMin","levelMax","rankMin","rankMax","scaleMin","scaleMax","linkMin","linkMax"]
+      .forEach((k) => p.delete(k));
 
     putList(p, "linkArrows", arrows);
 
@@ -187,14 +181,15 @@ export default function FiltersPanel() {
 
     setQ(""); setSetCode(""); setArchetypeSel("");
     setAttributes([]); setIcons([]); setMonsterTypes([]); setCardTypes([]);
-    setLevelVal(undefined); setRankVal(undefined); setScaleVal(undefined); setLinkVal(undefined);
+
+    setLevelSet([]); setRankSet([]); setScaleSet([]); setLinkSet([]);
+
     setArrows([]); setAtkMin(undefined); setAtkMax(undefined); setDefMin(undefined); setDefMax(undefined);
     setLegal([]); setDateStart(""); setDateEnd("");
   };
 
   return (
     <div className="mb-4 rounded-2xl bg-neutral-950 border border-neutral-800 p-3 md:p-4">
-      {/* Header row: Search + Set + Archetype + Actions */}
       <form
         className="grid gap-2 md:grid-cols-[1fr,12rem,12rem,auto] md:items-center"
         onSubmit={(e) => { e.preventDefault(); apply(); }}
@@ -246,11 +241,7 @@ export default function FiltersPanel() {
 
       {!collapsed && (
         <div className="mt-4 grid gap-3 md:gap-4 md:grid-cols-2">
-          {/* Row 1: Attribute | Icon */}
-          <Section
-            title="Attribute"
-            onClear={attributes.length ? () => setAttributes([]) : undefined}
-          >
+          <Section title="Attribute" onClear={attributes.length ? () => setAttributes([]) : undefined}>
             <div className="flex flex-wrap gap-1.5">
               {ATTRS.map((a) => (
                 <Chip key={a} active={attributes.includes(a)} onClick={() => toggle(attributes, setAttributes, a)}>
@@ -260,10 +251,7 @@ export default function FiltersPanel() {
             </div>
           </Section>
 
-          <Section
-            title="Icon"
-            onClear={icons.length ? () => setIcons([]) : undefined}
-          >
+          <Section title="Icon" onClear={icons.length ? () => setIcons([]) : undefined}>
             <div className="flex flex-wrap gap-1.5">
               {ICONS.map((i) => (
                 <Chip key={i} active={icons.includes(i)} onClick={() => toggle(icons, setIcons, i)}>
@@ -273,7 +261,6 @@ export default function FiltersPanel() {
             </div>
           </Section>
 
-          {/* Row 2: Monster Type | Card Type */}
           <Section
             title="Monster Type"
             onClear={monsterTypes.length ? () => setMonsterTypes([]) : undefined}
@@ -306,53 +293,47 @@ export default function FiltersPanel() {
             </div>
           </Section>
 
-          {/* Row 3: Level | Rank */}
-          <Section title="Level">
+          <Section title="Level" onClear={levelSet.length ? () => setLevelSet([]) : undefined}>
             <div className="flex flex-wrap gap-1">
               {LEVELS.map((n) => (
-                <Chip key={`L${n}`} active={levelVal === n} onClick={() => toggleSingle(levelVal, setLevelVal, n)}>
+                <Chip key={`L${n}`} active={levelSet.includes(n)} onClick={() => toggleNum(levelSet, setLevelSet, n)}>
                   {n}
                 </Chip>
               ))}
             </div>
           </Section>
 
-          <Section title="Rank">
+          <Section title="Rank" onClear={rankSet.length ? () => setRankSet([]) : undefined}>
             <div className="flex flex-wrap gap-1">
               {LEVELS.map((n) => (
-                <Chip key={`R${n}`} active={rankVal === n} onClick={() => toggleSingle(rankVal, setRankVal, n)}>
+                <Chip key={`R${n}`} active={rankSet.includes(n)} onClick={() => toggleNum(rankSet, setRankSet, n)}>
                   {n}
                 </Chip>
               ))}
             </div>
           </Section>
 
-          {/* Row 4: Pendulum | Link Rating */}
-          <Section title="Pendulum">
+          <Section title="Pendulum" onClear={scaleSet.length ? () => setScaleSet([]) : undefined}>
             <div className="flex flex-wrap gap-1">
               {SCALES.map((n) => (
-                <Chip key={`S${n}`} active={scaleVal === n} onClick={() => toggleSingle(scaleVal, setScaleVal, n)}>
+                <Chip key={`S${n}`} active={scaleSet.includes(n)} onClick={() => toggleNum(scaleSet, setScaleSet, n)}>
                   {n}
                 </Chip>
               ))}
             </div>
           </Section>
 
-          <Section title="Link Rating">
+          <Section title="Link Rating" onClear={linkSet.length ? () => setLinkSet([]) : undefined}>
             <div className="flex flex-wrap gap-1">
               {LINK_RATINGS.map((n) => (
-                <Chip key={`LR${n}`} active={linkVal === n} onClick={() => toggleSingle(linkVal, setLinkVal, n)}>
+                <Chip key={`LR${n}`} active={linkSet.includes(n)} onClick={() => toggleNum(linkSet, setLinkSet, n)}>
                   {n}
                 </Chip>
               ))}
             </div>
           </Section>
 
-          {/* Row 5: Link Arrows | Legality */}
-          <Section
-            title="Link Arrows"
-            onClear={arrows.length ? () => setArrows([]) : undefined}
-          >
+          <Section title="Link Arrows" onClear={arrows.length ? () => setArrows([]) : undefined}>
             <div className="grid grid-cols-3 gap-1 w-[180px]">
               {ARROWS_GRID.map((a, i) =>
                 a ? (
@@ -375,10 +356,7 @@ export default function FiltersPanel() {
             </div>
           </Section>
 
-          <Section
-            title="Legality"
-            onClear={legal.length ? () => setLegal([]) : undefined}
-          >
+          <Section title="Legality" onClear={legal.length ? () => setLegal([]) : undefined}>
             <div className="flex flex-wrap gap-1.5">
               {["Banned", "Limited", "Semi-Limited", "Legal"].map((v) => (
                 <Chip key={v} active={legal.includes(v)} onClick={() => toggle(legal, setLegal, v)}>
@@ -388,7 +366,6 @@ export default function FiltersPanel() {
             </div>
           </Section>
 
-          {/* Row 6: ATK/DEF | Dates */}
           <Section title="ATK / DEF">
             <div className="flex flex-wrap items-center gap-2">
               <label className="text-xs text-neutral-300">ATK</label>
