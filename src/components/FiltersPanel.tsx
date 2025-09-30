@@ -90,7 +90,7 @@ export default function FiltersPanel() {
   const { indexes } = useCards({ includeTCG: false, includeCustom: true, includeTest: false });
   const [params, setParams] = useSearchParams();
 
-  const [collapsed, setCollapsed] = useState(params.get("filters") === "0");
+  const [collapsed, setCollapsed] = useState(true);
 
   const [q, setQ] = useState(getOne(params, "q"));
   const [setCode, setSetCode] = useState(getOne(params, "set"));

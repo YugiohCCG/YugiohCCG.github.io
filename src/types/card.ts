@@ -1,3 +1,4 @@
+// src/types/card.ts
 // ---------- Banlist / legality ----------
 export type Legal = {
   semiLimited?: boolean; // true if semi-limited
@@ -67,6 +68,10 @@ export interface Card {
   // identity
   id: string; // e.g., "CARD-0001", "TCG-AGIDO-THE-ANCIENT-SENTINEL"
   name: string; // display name, usually uppercase in your data
+  // visibility flags (keep card in data but hide in UI)
+  hidden?: boolean | null;
+  hiddenReason?: string | null;
+
 
   // media
   image: string; // e.g., "/assets/cards/XYZ.jpg" or "/assets/tcg/XYZ.jpg"

@@ -4,6 +4,22 @@ import { useSearchParams } from "react-router-dom";
 import type { Card, SetInfo } from "../types/card";
 import { cardMatches, type Query } from "../utils/filters";
 
+
+// Out-of-scope attributes that should be hidden temporarily
+const OUT_OF_SCOPE = new Set(["ELECTRIC", "METAL", "NATURE"]);
+
+function isVisible(c: Card): boolean {
+  // Respect explicit hidden flag if present
+  if (c.hidden === true) return false;
+
+  // Monster-only attribute check
+  const isMonster = String(c.category || "").trim().toLowerCase() === "monster";
+  if (isMonster) {
+    const attr = String(c.attribute || "").trim().toUpperCase();
+    if (OUT_OF_SCOPE.has(attr)) return false;
+  }
+  return true;
+}
 // Bundled data
 import customCards from "../data/cards.json";
 import tcgCards from "../data/tcg-cards.json";
@@ -137,7 +153,7 @@ export default function useCards(
   // FILTERED results to display
   const cards: Card[] = useMemo(() => {
     if (!sourceCards?.length) return [];
-    return sourceCards.filter((c) => cardMatches(c, query));
+    return sourceCards.filter((c) => isVisible(c) && cardMatches(c, query));
   }, [sourceCards, query]);
 
   // INDEXES from the UNFILTERED source (so UI options never disappear)
