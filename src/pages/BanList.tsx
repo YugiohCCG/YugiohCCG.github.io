@@ -3,6 +3,7 @@ import useBanlistCards from "../hooks/useBanlistCards";
 import useCards from "../hooks/useCards";
 import CardTile from "../components/CardTile";
 import type { Card } from "../types/card";
+import { useMemo, useState } from "react";
 
 /** Final display order for Banlist groups */
 const BANLIST_GROUP_ORDER = [
@@ -85,6 +86,7 @@ function Section({ title, items }: { title: string; items: Card[] }) {
 export default function BanList() {
   const { cards, loading: loadingCards, error: errorCards } = useCards();
   const { withLegal, loading: loadingBan, error: errorBan } = useBanlistCards("TCG");
+  const [view, setView] = useState<"grid" | "list">("grid");
 
   if (loadingCards || loadingBan) return <div>Loading…</div>;
   if (errorCards || errorBan) return <div className="text-red-500">Failed to load ban list.</div>;
@@ -97,11 +99,70 @@ export default function BanList() {
     (c: any) => c.legal?.semiLimited && !c.legal?.limited && !c.legal?.banned
   );
 
+  const flatList = useMemo(() => {
+    const add = (arr: Card[], status: "Forbidden" | "Limited" | "Semi-Limited") =>
+      arr.map((c) => ({ card: c, status }));
+    const rows = [
+      ...add(banned as Card[], "Forbidden"),
+      ...add(limited as Card[], "Limited"),
+      ...add(semi as Card[], "Semi-Limited"),
+    ];
+    const statusOrder: Record<string, number> = { Forbidden: 0, Limited: 1, "Semi-Limited": 2 };
+    return rows.sort((a, b) => {
+      const sa = statusOrder[a.status] ?? 99;
+      const sb = statusOrder[b.status] ?? 99;
+      if (sa !== sb) return sa - sb;
+      return banlistComparator(a.card, b.card);
+    });
+  }, [banned, limited, semi]);
+
   return (
-    <div className="grid gap-6">
-      <Section title="Banned" items={banned as Card[]} />
-      <Section title="Limited" items={limited as Card[]} />
-      <Section title="Semi-Limited" items={semi as Card[]} />
+    <div className="grid gap-4">
+      <div className="flex gap-2">
+        <button
+          type="button"
+          className={`btn ${view === "grid" ? "btn-primary" : ""}`}
+          onClick={() => setView("grid")}
+        >
+          Grid View
+        </button>
+        <button
+          type="button"
+          className={`btn ${view === "list" ? "btn-primary" : ""}`}
+          onClick={() => setView("list")}
+        >
+          List View
+        </button>
+      </div>
+
+      {view === "grid" ? (
+        <div className="grid gap-6">
+          <Section title="Banned" items={banned as Card[]} />
+          <Section title="Limited" items={limited as Card[]} />
+          <Section title="Semi-Limited" items={semi as Card[]} />
+        </div>
+      ) : (
+        <div className="banlist-table">
+          <div className="banlist-header">
+            <span>Type</span>
+            <span>Name</span>
+            <span>Status</span>
+          </div>
+          {flatList.map(({ card, status }) => (
+            <div
+              key={String((card as any).id ?? card.name) + status}
+              className={`banlist-row status-${status.replace(/[^a-z0-9]+/gi, "").toLowerCase()} type-${banlistGroup(card)
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-|-$/g, "")}`}
+            >
+              <span className="truncate">{banlistGroup(card)}</span>
+              <span className="truncate">{card.name}</span>
+              <span className="font-semibold">{status}</span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

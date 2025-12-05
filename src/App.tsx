@@ -45,6 +45,14 @@ export default function App() {
               >
                 Ban List
               </NavLink>
+              <NavLink
+                to="/downloads"
+                className={({ isActive }) =>
+                  `${link} ${isActive ? active : ""}`
+                }
+              >
+                Downloads
+              </NavLink>
             </nav>
           </div>
         </header>

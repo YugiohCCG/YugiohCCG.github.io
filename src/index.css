@@ -6,6 +6,10 @@
 :root {
   color-scheme: dark;
 }
+html {
+  overflow-y: scroll; /* keep vertical scrollbar space reserved on every route */
+  scrollbar-gutter: stable;
+}
 html,
 body,
 #root {
@@ -15,12 +19,22 @@ body {
   @apply bg-neutral-950 text-neutral-100;
 }
 
+.ygo-bg {
+  background:
+    radial-gradient(circle at top, rgba(125, 81, 255, 0.28), transparent 60%),
+    radial-gradient(circle at bottom, rgba(32, 178, 170, 0.18), transparent 55%),
+    #020509;
+}
+
 /* Buttons / cards / badges */
 .btn {
   @apply inline-flex items-center gap-2 rounded-2xl px-4 py-2 shadow-soft hover:opacity-90 transition;
 }
 .btn-primary {
   @apply bg-accent text-white;
+}
+.btn-primary:hover {
+  filter: brightness(0.92);
 }
 .card {
   @apply bg-neutral-900 rounded-2xl p-4 shadow-soft;
@@ -60,6 +74,11 @@ body {
   z-index: 12;
   position: relative;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+}
+
+/* Ensure scrollbars reserve space in card grids */
+.cards-grid {
+  scrollbar-gutter: stable;
 }
 
 /* LIST view — gentle image-only zoom */
@@ -128,4 +147,137 @@ body {
     top: -36px;
     right: 0;
   }
+}
+
+/* Legality badges (banned/limited/semi) */
+.legality-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+.legality-badge svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Filters panel (pill-style) */
+.filters-shell {
+  background: rgba(14, 14, 14, 0.95);
+  border: 1px solid #2f2f2f;
+  border-radius: 12px;
+  padding: 8px;
+}
+.filter-section {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #242424;
+  border-radius: 10px;
+  padding: 6px 8px;
+}
+.filter-title {
+  font-size: 12px;
+  color: #dcdcdc;
+  margin: 0 0 4px;
+  font-weight: 600;
+}
+.filter-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 6px;
+}
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  min-height: 30px;
+  border-radius: 10px;
+  border: 1px solid #444;
+  background: #0b0b0b;
+  color: #f2f2f2;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease;
+}
+.filter-pill img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+.filter-pill:hover {
+  border-color: #666;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+}
+.filter-pill.active {
+  border-color: #bfbfbf;
+  background: #e6e6e6;
+  color: #0b0b0b;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.22);
+}
+
+/* Banlist list-view */
+.banlist-table {
+  display: grid;
+  gap: 6px;
+}
+.banlist-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr 0.8fr;
+  gap: 8px;
+  padding: 8px 10px;
+  background: #111;
+  border: 1px solid #2f2f2f;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13px;
+}
+.banlist-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 0.8fr;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #2c2c2c;
+  font-size: 13px;
+}
+.banlist-row.statusforbidden,
+.banlist-row.statuslimited,
+.banlist-row.statussemilimited {
+  color: #f8f9fb;
+}
+
+/* Type-based coloring */
+.banlist-row.type-monster-effect {
+  background: linear-gradient(90deg, #9a572f, #b76a3d);
+}
+.banlist-row.type-monster-fusion {
+  background: linear-gradient(90deg, #6e4b9e, #7f5cb3);
+}
+.banlist-row.type-monster-link {
+  background: linear-gradient(90deg, #2d6c9e, #3a82b6);
+}
+.banlist-row.type-monster-ritual {
+  background: linear-gradient(90deg, #2d7c75, #329c8f);
+}
+.banlist-row.type-monster-synchro {
+  background: linear-gradient(90deg, #1f395c, #264a78);
+}
+.banlist-row.type-monster-xyz {
+  background: linear-gradient(90deg, #2c2c2c, #3b3b3b);
+}
+.banlist-row.type-spell {
+  background: linear-gradient(90deg, #2f7a5d, #37946f);
+}
+.banlist-row.type-trap {
+  background: linear-gradient(90deg, #7b2d49, #99345a);
 }

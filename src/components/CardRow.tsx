@@ -2,6 +2,7 @@ import type { Card } from "../types/card";
 import clsx from "clsx";
 import { useImageViewer } from "./ImageViewer";
 import { asset } from "../utils/assets";
+import LegalityBadge, { legalStatus } from "./LegalityBadge";
 
 const RATIO = 1.45965417867;
 
@@ -18,18 +19,19 @@ export default function CardRow({ card }: { card: Card }) {
   const imgW = 96;
   const imgH = Math.round(imgW * RATIO);
   const { open } = useImageViewer();
+  const status = legalStatus((card as any).legal);
 
   const imgSrc = asset(card.image);
 
   return (
-    <div className="list-row rounded-2xl bg-neutral-900 shadow-soft p-3 transition">
+    <div className="list-row rounded-2xl bg-neutral-900 shadow-soft p-3 transition relative">
       <div className="grid grid-cols-[auto,1fr,auto] gap-3 items-start">
         {/* Left: image (click to enlarge) */}
         <button
           type="button"
-          className="card-image rounded-xl cursor-zoom-in"
+          className="card-image rounded-xl cursor-zoom-in relative overflow-hidden"
           style={{ width: imgW, height: imgH }}
-          onClick={() => open(imgSrc, card.name)}
+          onClick={() => open(imgSrc, card.name, status)}
           title="Click to enlarge"
         >
           <img
@@ -97,6 +99,14 @@ export default function CardRow({ card }: { card: Card }) {
 
         {/* Right: quick stats / legality */}
         <div className="flex flex-col items-end gap-2 pl-2">
+          {status && (
+            <LegalityBadge
+              status={status}
+              className="absolute pointer-events-none z-10"
+              size={38}
+              style={{ top: -10, left: -10 }}
+            />
+          )}
           {isMonster ? (
             <div className="text-xs text-neutral-200">
               <span className="inline-block min-w-[120px] text-right">

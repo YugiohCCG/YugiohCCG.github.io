@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import useCards from "../hooks/useCards";
+import useBanlistCards from "../hooks/useBanlistCards";
 import { makeFuse } from "../utils/search";
 import {
   cardMatches,
@@ -13,11 +14,12 @@ import {
 
 import FiltersPanel from "../components/FiltersPanel";
 import CardsToolbar from "../components/CardsToolbar";
-import VirtualizedCards from "../components/VirtualizedCards";
 import VirtualizedCardList from "../components/VirtualizedCardList";
+import CardTile from "../components/CardTile";
 
 export default function Cards() {
   const { cards, loading, error } = useCards({ includeTCG: false, includeCustom: true, includeTest: false });
+  const { withLegal, loading: loadingBan, error: errorBan } = useBanlistCards("TCG");
   const [params] = useSearchParams();
 
   const getAll = (k: string) => params.getAll(k);
@@ -89,28 +91,31 @@ export default function Cards() {
   }, [params]);
 
   const results = useMemo(() => {
-    if (loading || error) return [] as typeof cards;
+    if (loading || error || loadingBan || errorBan) return [] as typeof cards;
     let pool = cards;
     if (qStr) {
       const fuse = makeFuse(cards);
       pool = fuse.search(qStr).map((r) => r.item);
     }
-    const filtered = pool.filter((c) => cardMatches(c, filterQuery));
+    const withL = withLegal(pool as any);
+    const filtered = withL.filter((c) => cardMatches(c, filterQuery));
     return sortCards(filtered, sort, sortDir);
-  }, [cards, loading, error, qStr, filterQuery, sort, sortDir]);
+  }, [cards, loading, error, loadingBan, errorBan, qStr, filterQuery, sort, sortDir, withLegal]);
 
-  if (loading) return <div className="p-6">Loading…</div>;
-  if (error) return <div className="p-6 text-red-600">Failed to load cards.</div>;
+  if (loading || loadingBan) return <div className="p-6">Loading…</div>;
+  if (error || errorBan) return <div className="p-6 text-red-600">Failed to load cards.</div>;
 
   return (
-    <div>
+    <div className="grid gap-4">
       <FiltersPanel />
       <CardsToolbar total={results.length} />
       {view === "list" ? (
         <VirtualizedCardList items={results} />
       ) : (
-        <div className="h-[calc(100vh-12rem)]">
-          <VirtualizedCards items={results} />
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 cards-grid">
+          {results.map((card) => (
+            <CardTile key={(card as any).id ?? card.name} card={card} />
+          ))}
         </div>
       )}
     </div>

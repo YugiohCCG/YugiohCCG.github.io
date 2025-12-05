@@ -1,7 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import LegalityBadge, { type LegalityStatus } from "./LegalityBadge";
 
-type Ctx = { open: (src: string, alt?: string) => void; close: () => void };
+type Ctx = {
+  open: (src: string, alt?: string, status?: LegalityStatus | null) => void;
+  close: () => void;
+};
 const ImageViewerContext = createContext<Ctx | null>(null);
 
 export function useImageViewer() {
@@ -11,9 +15,14 @@ export function useImageViewer() {
 }
 
 export function ImageViewerProvider({ children }: { children: React.ReactNode }) {
-  const [openState, setOpenState] = useState<{ src: string; alt?: string } | null>(null);
+  const [openState, setOpenState] = useState<{
+    src: string;
+    alt?: string;
+    status?: LegalityStatus | null;
+  } | null>(null);
 
-  const open = (src: string, alt?: string) => setOpenState({ src, alt });
+  const open = (src: string, alt?: string, status?: LegalityStatus | null) =>
+    setOpenState({ src, alt, status });
   const close = () => setOpenState(null);
 
   // ESC to close
@@ -39,6 +48,14 @@ export function ImageViewerProvider({ children }: { children: React.ReactNode })
               className="relative max-w-[90vw] max-h-[90vh]"
               onClick={(e) => e.stopPropagation()}
             >
+              {openState.status && (
+                <LegalityBadge
+                  status={openState.status}
+                  className="absolute pointer-events-none drop-shadow-[0_10px_24px_rgba(0,0,0,0.6)]"
+                  size={54}
+                  style={{ top: -14, left: -14 }}
+                />
+              )}
               <button
                 className="absolute -top-3 -right-3 rounded-full w-9 h-9 bg-neutral-900 text-white text-xl leading-none grid place-items-center border border-white/20"
                 onClick={close}

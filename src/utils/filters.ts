@@ -112,6 +112,8 @@ const dateInRange = (iso?: string, start?: string, end?: string) => {
 // ---- predicate ----
 export function cardMatches(card: Card, q: Query): boolean {
   const C: any = card;
+  const baseCategory = asStr(C, ["category", "frameType"]);
+  const isMonster = up(baseCategory) === "MONSTER";
 
   // text term
   if (q.q) {
@@ -132,8 +134,7 @@ export function cardMatches(card: Card, q: Query): boolean {
 
   // category (Monster/Spell/Trap)
   if (q.category) {
-    const cat = asStr(C, ["category", "frameType"]);
-    if (up(cat) !== up(q.category)) return false;
+    if (up(baseCategory) !== up(q.category)) return false;
   }
 
   // icon
@@ -148,16 +149,39 @@ export function cardMatches(card: Card, q: Query): boolean {
     if (!q.attribute.map(up).includes(up(attr))) return false;
   }
 
-  // monster type (race)
+  // monster type (race) – only applies to Monster cards
   if (q.monsterType?.length) {
+    if (!isMonster) return false;
     const species = asStrList(C, ["monsterType", "race"]);
     if (!hasAny(species, q.monsterType)) return false;
   }
 
   // card type(s)
   if (q.cardTypes?.length) {
+    // If any requested type is a monster-only subtype, require Monster category
+    const monsterOnly = new Set([
+      "EFFECT","RITUAL","FUSION","SYNCHRO","XYZ","PENDULUM","LINK",
+      "TOON","SPIRIT","UNION","GEMINI","TUNER","FLIP",
+    ]);
+    const wantsMonsterSubtype = q.cardTypes.some((t) => monsterOnly.has(up(t)));
+    if (wantsMonsterSubtype && !isMonster) return false;
+
     const kinds = asStrList(C, ["cardTypes", "type"]);
     if (!hasAny(kinds, q.cardTypes)) return false;
+  }
+
+  // legality (banned/limited/semi/Legal)
+  if (q.legal?.length) {
+    const l = (C.legal || {}) as any;
+    const match = (s: string) => {
+      const v = up(s);
+      if (v === "BANNED" || v === "FORBIDDEN") return !!l.banned;
+      if (v === "LIMITED" || v === "LIMIT") return !!l.limited;
+      if (v === "SEMI" || v === "SEMILIMITED" || v === "SEMI-LIMITED") return !!l.semiLimited;
+      if (v === "LEGAL" || v === "UNLIMITED") return !l.banned && !l.limited && !l.semiLimited;
+      return false;
+    };
+    if (!q.legal.some(match)) return false;
   }
 
   // numeric categories (exclusionary with the rest)
