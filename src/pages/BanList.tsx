@@ -7,6 +7,7 @@ import { useMemo, useState } from "react";
 
 /** Final display order for Banlist groups */
 const BANLIST_GROUP_ORDER = [
+  "Monster",
   "Monster/Effect",
   "Monster/Fusion",
   "Monster/Link",
@@ -50,8 +51,8 @@ function banlistGroup(card: Card): string {
   if (has("effect"))  return "Monster/Effect";
 
   // Not in your requested buckets (e.g., Normal, Pendulum-only, Token)
-  // Push these after your groups (won’t show before Spell/Trap).
-  return "zzz__Other";
+  // Push these as generic monsters
+  return "Monster";
 }
 
 /** Strict comparator: group order above, then alphabetical by name */
@@ -157,7 +158,7 @@ export default function BanList() {
                 .replace(/^-|-$/g, "")}`}
             >
               <span className="truncate">{banlistGroup(card)}</span>
-              <span className="truncate">{card.name}</span>
+              <span className="truncate">{String(card.name ?? "").toUpperCase()}</span>
               <span className="font-semibold">{status}</span>
             </div>
           ))}
