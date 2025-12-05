@@ -8,11 +8,6 @@ const ASSET = (name: string) => `/assets/misc/${name}`;
 
 const ATTRS = ["DARK", "LIGHT", "EARTH", "WATER", "FIRE", "WIND", "DIVINE"];
 const ICONS = ["Equip", "Field", "Quick-Play", "Ritual", "Continuous", "Counter", "Normal"];
-const CARD_TYPES = [
-  "Normal","Effect","Ritual","Fusion","Synchro","Xyz","Pendulum","Link",
-  "Toon","Spirit","Union","Gemini","Tuner","Flip",
-];
-
 const ATTR_ICON: Record<string, string> = {
   DARK: ASSET("DARK.svg"),
   LIGHT: ASSET("LIGHT.svg"),
@@ -99,12 +94,6 @@ const LEGALITY_ICON: Record<string, string> = {
 const LEVELS = Array.from({ length: 14 }, (_, i) => i); // 0..13
 const SCALES = Array.from({ length: 14 }, (_, i) => i); // 0..13
 const LINK_RATINGS = [1, 2, 3, 4, 5, 6];
-
-const ARROWS_GRID: (string | null)[] = [
-  "TL", "T",  "TR",
-  "L",  null, "R",
-  "BL", "B",  "BR",
-];
 
 const CATEGORY = [
   { key: "Monster", label: "Monster" },
