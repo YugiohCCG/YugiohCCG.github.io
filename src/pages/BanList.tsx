@@ -1,9 +1,9 @@
 // src/pages/BanList.tsx
+import { useMemo, useState } from "react";
+import CardTile from "../components/CardTile";
 import useBanlistCards from "../hooks/useBanlistCards";
 import useCards from "../hooks/useCards";
-import CardTile from "../components/CardTile";
 import type { Card } from "../types/card";
-import { useMemo, useState } from "react";
 
 /** Final display order for Banlist groups */
 const BANLIST_GROUP_ORDER = [
@@ -42,15 +42,15 @@ function banlistGroup(card: Card): string {
   if (category === "spell") return "Spell";
   if (category === "trap") return "Trap";
 
-  // Monster buckets — specific types first, then generic Effect
-  if (has("fusion"))  return "Monster/Fusion";
-  if (has("link"))    return "Monster/Link";
-  if (has("ritual"))  return "Monster/Ritual";
+  // Monster buckets – specific types first, then generic Effect
+  if (has("fusion")) return "Monster/Fusion";
+  if (has("link")) return "Monster/Link";
+  if (has("ritual")) return "Monster/Ritual";
   if (has("synchro")) return "Monster/Synchro";
-  if (has("xyz"))     return "Monster/Xyz";
-  if (has("effect"))  return "Monster/Effect";
+  if (has("xyz")) return "Monster/Xyz";
+  if (has("effect")) return "Monster/Effect";
 
-  // Not in your requested buckets (e.g., Normal, Pendulum-only, Token)
+  // Not in the specific buckets (e.g., Normal, Pendulum‑only, Token)
   // Push these as generic monsters
   return "Monster";
 }
@@ -68,7 +68,7 @@ function banlistComparator(a: Card, b: Card): number {
 }
 
 function Section({ title, items }: { title: string; items: Card[] }) {
-  // Apply ONLY this sort right before render — avoids any “date” or upstream order effects.
+  // Apply ONLY this sort right before render – avoids any “date” or upstream order effects.
   const ordered = items.slice().sort(banlistComparator);
   return (
     <section className="mb-8">
@@ -88,9 +88,6 @@ export default function BanList() {
   const { cards, loading: loadingCards, error: errorCards } = useCards();
   const { withLegal, loading: loadingBan, error: errorBan } = useBanlistCards("TCG");
   const [view, setView] = useState<"grid" | "list">("grid");
-
-  if (loadingCards || loadingBan) return <div>Loading…</div>;
-  if (errorCards || errorBan) return <div className="text-red-500">Failed to load ban list.</div>;
 
   const withL = withLegal(cards);
 
@@ -116,6 +113,10 @@ export default function BanList() {
       return banlistComparator(a.card, b.card);
     });
   }, [banned, limited, semi]);
+
+  if (loadingCards || loadingBan) return <div>Loading…</div>;
+  if (errorCards || errorBan)
+    return <div className="text-red-500">Failed to load ban list.</div>;
 
   return (
     <div className="grid gap-4">
@@ -152,7 +153,9 @@ export default function BanList() {
           {flatList.map(({ card, status }) => (
             <div
               key={String((card as any).id ?? card.name) + status}
-              className={`banlist-row status-${status.replace(/[^a-z0-9]+/gi, "").toLowerCase()} type-${banlistGroup(card)
+              className={`banlist-row status-${status
+                .replace(/[^a-z0-9]+/gi, "")
+                .toLowerCase()} type-${banlistGroup(card)
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, "-")
                 .replace(/^-|-$/g, "")}`}
@@ -167,3 +170,4 @@ export default function BanList() {
     </div>
   );
 }
+
