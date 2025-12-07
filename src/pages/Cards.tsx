@@ -114,7 +114,10 @@ export default function Cards() {
       ) : (
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 cards-grid">
           {results.map((card) => (
-            <CardTile key={(card as any).id ?? card.name} card={card} />
+            <CardTile
+              key={`${(card as any).id ?? card.name}-${card.name}`}
+              card={card}
+            />
           ))}
         </div>
       )}
