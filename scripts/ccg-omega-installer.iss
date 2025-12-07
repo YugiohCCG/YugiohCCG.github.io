@@ -34,6 +34,9 @@ const
   DB_NAME = 'CCG_v1.db';
   SCRIPTS_FOLDER = 'CCG_Scripts_v1';
 
+function URLDownloadToFile(Caller: Integer; URL, FileName: string; Reserved: Integer; Bind: Integer): Integer;
+  external 'URLDownloadToFileW@urlmon.dll stdcall';
+
 function DownloadFile(const URL, DestFile: string): Boolean;
 var
   HTTP, Stream: Variant;
@@ -41,11 +44,20 @@ begin
   Result := False;
   try
     HTTP := CreateOleObject('WinHttp.WinHttpRequest.5.1');
+    // Force modern TLS (TLS1.1 | TLS1.2)
+    HTTP.Option(9) := $00000A00;
     HTTP.Open('GET', URL, False);
+    HTTP.SetRequestHeader('User-Agent', 'Mozilla/5.0 (InnoSetup)');
     HTTP.Send;
     if (HTTP.status <> 200) then
     begin
       Log(Format('HTTP %d while downloading %s', [HTTP.status, URL]));
+      // fallback to URLMon if WinHTTP fails or returns non-200
+      if URLDownloadToFile(0, URL, DestFile, 0, 0) = 0 then
+      begin
+        Result := True;
+        Exit;
+      end;
       Exit;
     end;
 
@@ -57,7 +69,11 @@ begin
     Stream.Close;
     Result := True;
   except
-    Log(Format('Download failed: %s', [URL]));
+    Log(Format('Download failed via WinHTTP: %s', [URL]));
+    if URLDownloadToFile(0, URL, DestFile, 0, 0) = 0 then
+      Result := True
+    else
+      Log('URLDownloadToFile also failed.');
   end;
 end;
 
@@ -86,6 +102,7 @@ function InstallPayload: Boolean;
 var
   TempDB, TempZip: string;
   DestDB, DestScripts: string;
+  lastError: string;
 begin
   Result := False;
   TempDB := GetTempDir + DB_NAME;
@@ -100,7 +117,9 @@ begin
     Log('Primary DB download failed, trying fallback...');
     if not DownloadFile(DB_URL_FALLBACK, TempDB) then
     begin
-      MsgBox('Failed to download the database from GitHub.', mbError, MB_OK);
+      lastError := 'Database download failed. Tried:' + #13#10 +
+        DB_URL_PRIMARY + #13#10 + DB_URL_FALLBACK;
+      MsgBox(lastError, mbError, MB_OK);
       Exit;
     end;
   end;
@@ -111,7 +130,9 @@ begin
     Log('Primary scripts download failed, trying fallback...');
     if not DownloadFile(SCRIPTS_URL_FALLBACK, TempZip) then
     begin
-      MsgBox('Failed to download the scripts from GitHub.', mbError, MB_OK);
+      lastError := 'Scripts download failed. Tried:' + #13#10 +
+        SCRIPTS_URL_PRIMARY + #13#10 + SCRIPTS_URL_FALLBACK;
+      MsgBox(lastError, mbError, MB_OK);
       Exit;
     end;
   end;
