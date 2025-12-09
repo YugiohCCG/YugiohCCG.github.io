@@ -90,10 +90,11 @@ export default function Downloads() {
           </li>
           <li>
             Extract all image parts (<code>YGO_Omega_Images_v1.zip</code>, <code>v2</code>, <code>v3</code>, ...)
-            into
+            directly into
             <div>
-              <code>C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Pics\YGO_Omega_Images</code>
+              <code>C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Arts</code>
             </div>
+            (no extra subfolder)
           </li>
           <li>Restart YGO Omega. Select the CCG database if prompted.</li>
         </ol>
