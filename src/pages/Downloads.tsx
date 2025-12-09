@@ -4,6 +4,12 @@ import cardsData from "../data/cards.json";
 const INSTALLER_URL = "https://yugiohccg.github.io/CCG%20Downloads/CCG_Omega_Addon_Setup.exe";
 const DB_URL = "https://yugiohccg.github.io/CCG%20Downloads/CCG_v1.db";
 const SCRIPTS_ZIP_URL = "https://yugiohccg.github.io/CCG%20Downloads/CCG_Scripts_v1.zip";
+const IMAGES_BASE = "https://yugiohccg.github.io/CCG%20Downloads";
+const IMAGE_PARTS = [
+  `${IMAGES_BASE}/YGO_Omega_Images_v1.zip`,
+  `${IMAGES_BASE}/YGO_Omega_Images_v2.zip`,
+  `${IMAGES_BASE}/YGO_Omega_Images_v3.zip`,
+];
 
 export default function Downloads() {
   const [saved, setSaved] = useState(false);
@@ -55,6 +61,11 @@ export default function Downloads() {
           <a className="btn" href={SCRIPTS_ZIP_URL}>
             Download Scripts (.zip)
           </a>
+          {IMAGE_PARTS.map((u, idx) => (
+            <a key={u} className="btn" href={u}>
+              Download Images v{idx + 1} (.zip)
+            </a>
+          ))}
           <button type="button" className="btn" onClick={handleDownloadJson}>
             Download JSON (export)
           </button>
@@ -75,6 +86,13 @@ export default function Downloads() {
             Extract <code>CCG_Scripts_v1.zip</code> into
             <div>
               <code>C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts\CCG_Scripts_v1</code>
+            </div>
+          </li>
+          <li>
+            Extract all image parts (<code>YGO_Omega_Images_v1.zip</code>, <code>v2</code>, <code>v3</code>, ...)
+            into
+            <div>
+              <code>C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Pics\YGO_Omega_Images</code>
             </div>
           </li>
           <li>Restart YGO Omega. Select the CCG database if prompted.</li>

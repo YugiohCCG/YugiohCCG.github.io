@@ -31,8 +31,11 @@ const
   DB_URL_FALLBACK = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%20Downloads/CCG_v1.db';
   SCRIPTS_URL_PRIMARY = 'https://yugiohccg.github.io/CCG%20Downloads/CCG_Scripts_v1.zip';
   SCRIPTS_URL_FALLBACK = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%20Downloads/CCG_Scripts_v1.zip';
+  IMAGES_URL_PRIMARY_FMT = 'https://yugiohccg.github.io/CCG%20Downloads/YGO_Omega_Images_v%d.zip';
+  IMAGES_URL_FALLBACK_FMT = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%20Downloads/YGO_Omega_Images_v%d.zip';
   DB_NAME = 'CCG_v1.db';
   SCRIPTS_FOLDER = 'CCG_Scripts_v1';
+  IMAGES_FOLDER = 'YGO_Omega_Images';
 
 function URLDownloadToFile(Caller: Integer; URL, FileName: string; Reserved: Integer; Bind: Integer): Integer;
   external 'URLDownloadToFileW@urlmon.dll stdcall';
@@ -100,16 +103,20 @@ end;
 
 function InstallPayload: Boolean;
 var
-  TempDB, TempZip: string;
-  DestDB, DestScripts: string;
+  TempDB, TempScriptsZip, TempImagesZip: string;
+  DestDB, DestScripts, DestImages: string;
   lastError: string;
+  imageParts: TStringList;
+  i: Integer;
 begin
   Result := False;
   TempDB := GetTempDir + DB_NAME;
-  TempZip := GetTempDir + 'ccg_scripts.zip';
+  TempScriptsZip := GetTempDir + 'ccg_scripts.zip';
+  TempImagesZip := GetTempDir + 'ccg_images.zip';
 
   DestDB := ExpandConstant('{app}\YGO Omega_Data\Files\Databases\' + DB_NAME);
   DestScripts := ExpandConstant('{app}\YGO Omega_Data\Files\Scripts\' + SCRIPTS_FOLDER);
+  DestImages := ExpandConstant('{app}\YGO Omega_Data\Files\Pics\' + IMAGES_FOLDER);
 
   WizardForm.StatusLabel.Caption := 'Downloading database...';
   if not DownloadFile(DB_URL_PRIMARY, TempDB) then
@@ -125,16 +132,52 @@ begin
   end;
 
   WizardForm.StatusLabel.Caption := 'Downloading scripts...';
-  if not DownloadFile(SCRIPTS_URL_PRIMARY, TempZip) then
+  if not DownloadFile(SCRIPTS_URL_PRIMARY, TempScriptsZip) then
   begin
     Log('Primary scripts download failed, trying fallback...');
-    if not DownloadFile(SCRIPTS_URL_FALLBACK, TempZip) then
+    if not DownloadFile(SCRIPTS_URL_FALLBACK, TempScriptsZip) then
     begin
       lastError := 'Scripts download failed. Tried:' + #13#10 +
         SCRIPTS_URL_PRIMARY + #13#10 + SCRIPTS_URL_FALLBACK;
       MsgBox(lastError, mbError, MB_OK);
       Exit;
     end;
+  end;
+
+  WizardForm.StatusLabel.Caption := 'Downloading images... (large downloads)';
+  imageParts := TStringList.Create;
+  try
+    for i := 1 to 10 do
+    begin
+      TempImagesZip := GetTempDir + Format('ccg_images_%d.zip', [i]);
+      if not DownloadFile(Format(IMAGES_URL_PRIMARY_FMT, [i]), TempImagesZip) then
+      begin
+        Log(Format('Primary image part %d failed, trying fallback...', [i]));
+        if not DownloadFile(Format(IMAGES_URL_FALLBACK_FMT, [i]), TempImagesZip) then
+        begin
+          if i = 1 then
+          begin
+            lastError := 'Images download failed (part 1). Tried:' + #13#10 +
+              Format(IMAGES_URL_PRIMARY_FMT, [i]) + #13#10 +
+              Format(IMAGES_URL_FALLBACK_FMT, [i]);
+            MsgBox(lastError, mbError, MB_OK);
+            imageParts.Free;
+            Exit;
+          end
+          else
+          begin
+            // No more parts available
+            DeleteFile(TempImagesZip);
+            Break;
+          end;
+        end;
+      end;
+      imageParts.Add(TempImagesZip);
+    end;
+  except
+    imageParts.Free;
+    MsgBox('Images download failed due to an unexpected error.', mbError, MB_OK);
+    Exit;
   end;
 
   WizardForm.StatusLabel.Caption := 'Installing...';
@@ -149,11 +192,24 @@ begin
 
   CleanDir(DestScripts);
   ForceDirectories(DestScripts);
-  if not UnzipFile(TempZip, DestScripts) then
+  if not UnzipFile(TempScriptsZip, DestScripts) then
   begin
     MsgBox('Failed to extract scripts into YGO Omega.', mbError, MB_OK);
     Exit;
   end;
+
+  CleanDir(DestImages);
+  ForceDirectories(DestImages);
+  for i := 0 to imageParts.Count - 1 do
+  begin
+    if not UnzipFile(imageParts[i], DestImages) then
+    begin
+      MsgBox(Format('Failed to extract images part %d into YGO Omega.', [i + 1]), mbError, MB_OK);
+      imageParts.Free;
+      Exit;
+    end;
+  end;
+  imageParts.Free;
 
   Log('Install completed.');
   Result := True;
