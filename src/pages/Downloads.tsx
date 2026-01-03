@@ -4,6 +4,7 @@ import cardsData from "../data/cards.json";
 const INSTALLER_URL = "https://yugiohccg.github.io/CCG%20Downloads/CCG_Omega_Addon_Setup.exe";
 const DB_URL = "https://yugiohccg.github.io/CCG%20Downloads/CCG_v1.db";
 const SCRIPTS_ZIP_URL = "https://yugiohccg.github.io/CCG%20Downloads/CCG_Scripts_v1.zip";
+const BANLIST_URL = "https://yugiohccg.github.io/CCG%20Downloads/Untitled%20Banlist.lflist.conf";
 const IMAGES_BASE = "https://yugiohccg.github.io/CCG%20Downloads";
 const IMAGE_PARTS = [
   `${IMAGES_BASE}/YGO_Omega_Images_v1.zip`,
@@ -61,6 +62,9 @@ export default function Downloads() {
           <a className="btn" href={SCRIPTS_ZIP_URL}>
             Download Scripts (.zip)
           </a>
+          <a className="btn" href={BANLIST_URL}>
+            Download Banlist (.lflist.conf)
+          </a>
           {IMAGE_PARTS.map((u, idx) => (
             <a key={u} className="btn" href={u}>
               Download Images v{idx + 1} (.zip)
@@ -95,6 +99,12 @@ export default function Downloads() {
               <code>C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Arts</code>
             </div>
             (no extra subfolder)
+          </li>
+          <li>
+            Place <code>Untitled Banlist.lflist.conf</code> into
+            <div>
+              <code>C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Banlists</code>
+            </div>
           </li>
           <li>Restart YGO Omega. Select the CCG database if prompted.</li>
         </ol>

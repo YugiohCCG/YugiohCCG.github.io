@@ -31,10 +31,13 @@ const
   DB_URL_FALLBACK = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%20Downloads/CCG_v1.db';
   SCRIPTS_URL_PRIMARY = 'https://yugiohccg.github.io/CCG%20Downloads/CCG_Scripts_v1.zip';
   SCRIPTS_URL_FALLBACK = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%20Downloads/CCG_Scripts_v1.zip';
+  BANLIST_URL_PRIMARY = 'https://yugiohccg.github.io/CCG%20Downloads/Untitled%20Banlist.lflist.conf';
+  BANLIST_URL_FALLBACK = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%20Downloads/Untitled%20Banlist.lflist.conf';
   IMAGES_URL_PRIMARY_FMT = 'https://yugiohccg.github.io/CCG%%20Downloads/YGO_Omega_Images_v%d.zip';
   IMAGES_URL_FALLBACK_FMT = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%%20Downloads/YGO_Omega_Images_v%d.zip';
   DB_NAME = 'CCG_v1.db';
   SCRIPTS_FOLDER = 'CCG_Scripts_v1';
+  BANLIST_NAME = 'Untitled Banlist.lflist.conf';
   IMAGES_FOLDER = 'YGO_Omega_Images';
 
 function URLDownloadToFile(Caller: Integer; URL, FileName: string; Reserved: Integer; Bind: Integer): Integer;
@@ -103,8 +106,8 @@ end;
 
 function InstallPayload: Boolean;
 var
-  TempDB, TempScriptsZip, TempImagesZip: string;
-  DestDB, DestScripts, DestImages: string;
+  TempDB, TempScriptsZip, TempImagesZip, TempBanlist: string;
+  DestDB, DestScripts, DestImages, DestBanlist: string;
   lastError: string;
   imageParts: TStringList;
   i: Integer;
@@ -113,9 +116,11 @@ begin
   TempDB := GetTempDir + DB_NAME;
   TempScriptsZip := GetTempDir + 'ccg_scripts.zip';
   TempImagesZip := GetTempDir + 'ccg_images.zip';
+  TempBanlist := GetTempDir + 'ccg_banlist.lflist';
 
   DestDB := ExpandConstant('{app}\YGO Omega_Data\Files\Databases\' + DB_NAME);
   DestScripts := ExpandConstant('{app}\YGO Omega_Data\Files\Scripts\' + SCRIPTS_FOLDER);
+  DestBanlist := ExpandConstant('{app}\YGO Omega_Data\Files\Banlists\' + BANLIST_NAME);
   // Omega expects images directly under Files\Arts (no subfolder)
   DestImages := ExpandConstant('{app}\YGO Omega_Data\Files\Arts');
 
@@ -140,6 +145,19 @@ begin
     begin
       lastError := 'Scripts download failed. Tried:' + #13#10 +
         SCRIPTS_URL_PRIMARY + #13#10 + SCRIPTS_URL_FALLBACK;
+      MsgBox(lastError, mbError, MB_OK);
+      Exit;
+    end;
+  end;
+
+  WizardForm.StatusLabel.Caption := 'Downloading banlist...';
+  if not DownloadFile(BANLIST_URL_PRIMARY, TempBanlist) then
+  begin
+    Log('Primary banlist download failed, trying fallback...');
+    if not DownloadFile(BANLIST_URL_FALLBACK, TempBanlist) then
+    begin
+      lastError := 'Banlist download failed. Tried:' + #13#10 +
+        BANLIST_URL_PRIMARY + #13#10 + BANLIST_URL_FALLBACK;
       MsgBox(lastError, mbError, MB_OK);
       Exit;
     end;
@@ -190,6 +208,15 @@ begin
   if not UnzipFile(TempScriptsZip, DestScripts) then
   begin
     MsgBox('Failed to extract scripts into YGO Omega.', mbError, MB_OK);
+    Exit;
+  end;
+
+  ForceDirectories(ExtractFileDir(DestBanlist));
+  if FileExists(DestBanlist) then
+    DeleteFile(DestBanlist);
+  if not FileCopy(TempBanlist, DestBanlist, False) then
+  begin
+    MsgBox('Failed to copy the banlist into YGO Omega.', mbError, MB_OK);
     Exit;
   end;
 
