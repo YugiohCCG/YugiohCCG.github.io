@@ -31,20 +31,20 @@ export default function Home() {
     includeTest: false,
   });
 
-  // Official TCG cards with banlist applied
-  const { cards: tcgSource } = useCards({
+  // Current banlist totals (custom + official TCG)
+  const { cards: allSource } = useCards({
     includeTCG: true,
-    includeCustom: false,
+    includeCustom: true,
     includeTest: false,
   });
   const { withLegal } = useBanlistCards("TCG");
-  const tcgWithLegal = withLegal(tcgSource as any);
+  const allWithLegal = withLegal(allSource as any);
 
-  const bannedCount = tcgWithLegal.filter((c: any) => c.legal?.banned).length;
-  const limitedCount = tcgWithLegal.filter(
+  const bannedCount = allWithLegal.filter((c: any) => c.legal?.banned).length;
+  const limitedCount = allWithLegal.filter(
     (c: any) => c.legal?.limited && !c.legal?.banned
   ).length;
-  const semiCount = tcgWithLegal.filter(
+  const semiCount = allWithLegal.filter(
     (c: any) => c.legal?.semiLimited && !c.legal?.limited && !c.legal?.banned
   ).length;
 
