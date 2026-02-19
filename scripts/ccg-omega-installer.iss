@@ -27,14 +27,15 @@ DirEditLabel=Select the YGO Omega folder (defaults to "C:\Program Files (x86)\YG
 
 [Code]
 const
-  DB_URL_PRIMARY = 'https://yugiohccg.github.io/CCG%20Downloads/CCG_v1.db';
-  DB_URL_FALLBACK = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%20Downloads/CCG_v1.db';
+  DB_ZIP_URL_PRIMARY = 'https://yugiohccg.github.io/CCG%20Downloads/CCG_Database_v1.zip';
+  DB_ZIP_URL_FALLBACK = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%20Downloads/CCG_Database_v1.zip';
   SCRIPTS_URL_PRIMARY = 'https://yugiohccg.github.io/CCG%20Downloads/CCG_Scripts_v1.zip';
   SCRIPTS_URL_FALLBACK = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%20Downloads/CCG_Scripts_v1.zip';
   BANLIST_URL_PRIMARY = 'https://yugiohccg.github.io/CCG%20Downloads/Untitled%20Banlist.lflist.conf';
   BANLIST_URL_FALLBACK = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%20Downloads/Untitled%20Banlist.lflist.conf';
   IMAGES_URL_PRIMARY_FMT = 'https://yugiohccg.github.io/CCG%%20Downloads/YGO_Omega_Images_v%d.zip';
   IMAGES_URL_FALLBACK_FMT = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%%20Downloads/YGO_Omega_Images_v%d.zip';
+  DB_ZIP_NAME = 'CCG_Database_v1.zip';
   DB_NAME = 'CCG_v1.db';
   SCRIPTS_FOLDER = 'CCG_Scripts_v1';
   BANLIST_NAME = 'Untitled Banlist.lflist.conf';
@@ -106,14 +107,14 @@ end;
 
 function InstallPayload: Boolean;
 var
-  TempDB, TempScriptsZip, TempImagesZip, TempBanlist: string;
+  TempDbZip, TempScriptsZip, TempImagesZip, TempBanlist: string;
   DestDB, DestScripts, DestImages, DestBanlist: string;
   lastError: string;
   imageParts: TStringList;
   i: Integer;
 begin
   Result := False;
-  TempDB := GetTempDir + DB_NAME;
+  TempDbZip := GetTempDir + DB_ZIP_NAME;
   TempScriptsZip := GetTempDir + 'ccg_scripts.zip';
   TempImagesZip := GetTempDir + 'ccg_images.zip';
   TempBanlist := GetTempDir + 'ccg_banlist.lflist';
@@ -124,14 +125,14 @@ begin
   // Omega expects images directly under Files\Arts (no subfolder)
   DestImages := ExpandConstant('{app}\YGO Omega_Data\Files\Arts');
 
-  WizardForm.StatusLabel.Caption := 'Downloading database...';
-  if not DownloadFile(DB_URL_PRIMARY, TempDB) then
+  WizardForm.StatusLabel.Caption := 'Downloading database payload...';
+  if not DownloadFile(DB_ZIP_URL_PRIMARY, TempDbZip) then
   begin
     Log('Primary DB download failed, trying fallback...');
-    if not DownloadFile(DB_URL_FALLBACK, TempDB) then
+    if not DownloadFile(DB_ZIP_URL_FALLBACK, TempDbZip) then
     begin
       lastError := 'Database download failed. Tried:' + #13#10 +
-        DB_URL_PRIMARY + #13#10 + DB_URL_FALLBACK;
+        DB_ZIP_URL_PRIMARY + #13#10 + DB_ZIP_URL_FALLBACK;
       MsgBox(lastError, mbError, MB_OK);
       Exit;
     end;
@@ -195,11 +196,14 @@ begin
 
   WizardForm.StatusLabel.Caption := 'Installing...';
   ForceDirectories(ExtractFileDir(DestDB));
-  if FileExists(DestDB) then
-    DeleteFile(DestDB);
-  if not FileCopy(TempDB, DestDB, False) then
+  if not UnzipFile(TempDbZip, ExtractFileDir(DestDB)) then
   begin
-    MsgBox('Failed to copy the database into YGO Omega.', mbError, MB_OK);
+    MsgBox('Failed to extract the database payload into YGO Omega.', mbError, MB_OK);
+    Exit;
+  end;
+  if not FileExists(DestDB) then
+  begin
+    MsgBox('Database payload is missing CCG_v1.db.', mbError, MB_OK);
     Exit;
   end;
 
