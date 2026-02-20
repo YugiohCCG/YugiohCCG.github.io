@@ -1,45 +1,62 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import sets from "../data/sets.json";
 import { asset } from "../utils/assets";
 
+const RELEASE_TONE_ROTATION = ["story-tone-blue", "story-tone-mint", "story-tone-orange", "story-tone-violet", "story-tone-red", "story-tone-slate"];
+
+const RELEASE_TONES_BY_CODE: Record<string, string> = {
+  CHST: "story-tone-blue",
+  PHPA: "story-tone-violet",
+  DAEL: "story-tone-orange",
+  COOR: "story-tone-red",
+  TATA: "story-tone-slate",
+};
+
 export default function Releases() {
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {sets.map((s) => {
-        const to = `/cards?set=${encodeURIComponent(s.code)}`;
-        const cover = asset(s.coverImage || ""); // base-safe in dev & Pages
-        return (
-          <Link
-            key={s.code}
-            to={to}
-            className="card group block focus:outline-none focus-visible:ring-2 focus-visible:ring-accent transition-transform duration-150 will-change-transform hover:scale-[1.03] active:scale-[0.99]"
-            title={`Open ${s.code} ${s.name}`}
-          >
-            <div className="w-full aspect-[818/1288] overflow-hidden rounded-xl mb-3 bg-neutral-900">
-              <img
-                src={cover}
-                alt={`${s.name} cover`}
-                className="w-full h-full object-cover object-center transition-transform duration-200 group-hover:scale-[1.02]"
-                loading="lazy"
-              />
-            </div>
+    <div className="space-y-5">
+      <section className="card anim-rise">
+        <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-slate-500">Set Library</p>
+        <h2 className="font-display text-4xl leading-none">Release Archive</h2>
+      </section>
 
-            <div className="font-semibold text-lg">
-              {s.code} {s.name}
-            </div>
-            {s.releaseDate && (
-              <div className="text-sm text-neutral-400">{s.releaseDate}</div>
-            )}
-            {s.description && (
-              <p className="text-sm mt-2 text-neutral-200">{s.description}</p>
-            )}
+      <section className="release-grid grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {sets.map((s, i) => {
+          const to = `/cards?set=${encodeURIComponent(s.code)}`;
+          const cover = asset(s.coverImage || "");
+          const toneClass = RELEASE_TONES_BY_CODE[s.code] ?? RELEASE_TONE_ROTATION[i % RELEASE_TONE_ROTATION.length];
 
-            <span className="btn btn-primary mt-3 inline-block" aria-hidden="true">
-              View Set
-            </span>
-          </Link>
-        );
-      })}
+          return (
+            <Link
+              key={s.code}
+              to={to}
+              className="story-tile release-card anim-rise block h-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              style={{ animationDelay: `${Math.min(i, 6) * 55}ms` }}
+              title={`Open ${s.code} ${s.name}`}
+            >
+              <div className="story-tile-media aspect-[818/1288]">
+                <img
+                  src={cover}
+                  alt={`${s.name} cover`}
+                  className="h-full w-full object-cover object-center"
+                  loading="lazy"
+                />
+              </div>
+
+              <div className={`story-tile-body release-tile-body ${toneClass}`}>
+                <div className="release-tile-copy">
+                  <p className="story-meta">{s.code}</p>
+                  <h3 className="story-title-small release-tile-title line-clamp-2">{s.name}</h3>
+                  {s.releaseDate && <p className="release-tile-date text-sm opacity-90">{s.releaseDate}</p>}
+                </div>
+                <span className="btn release-tile-cta bg-white/95" aria-hidden="true">
+                  View Set
+                </span>
+              </div>
+            </Link>
+          );
+        })}
+      </section>
     </div>
   );
 }

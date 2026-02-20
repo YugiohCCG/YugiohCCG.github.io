@@ -6,7 +6,7 @@ export default {
     extend: {
       colors: {
         accent: {
-          DEFAULT: "#7c3aed",
+          DEFAULT: "#2961c2",
         },
       },
       boxShadow: {

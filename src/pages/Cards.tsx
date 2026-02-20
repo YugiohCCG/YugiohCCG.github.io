@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+﻿import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import useCards from "../hooks/useCards";
@@ -18,7 +18,11 @@ import VirtualizedCardList from "../components/VirtualizedCardList";
 import CardTile from "../components/CardTile";
 
 export default function Cards() {
-  const { cards, loading, error } = useCards({ includeTCG: false, includeCustom: true, includeTest: false });
+  const { cards, loading, error } = useCards({
+    includeTCG: false,
+    includeCustom: true,
+    includeTest: false,
+  });
   const { withLegal, loading: loadingBan, error: errorBan } = useBanlistCards("TCG");
   const [params] = useSearchParams();
 
@@ -30,7 +34,6 @@ export default function Cards() {
     return Number.isFinite(n) ? n : undefined;
   };
 
-  // search & sorting params
   const qStr = params.get("q") || "";
 
   const allowedSort: SortKey[] = ["name", "atk", "def", "level", "rank", "link", "date"];
@@ -102,22 +105,28 @@ export default function Cards() {
     return sortCards(filtered, sort, sortDir);
   }, [cards, loading, error, loadingBan, errorBan, qStr, filterQuery, sort, sortDir, withLegal]);
 
-  if (loading || loadingBan) return <div className="p-6">Loading…</div>;
-  if (error || errorBan) return <div className="p-6 text-red-600">Failed to load cards.</div>;
+  if (loading || loadingBan) return <div className="card">Loading cards...</div>;
+  if (error || errorBan) return <div className="card text-red-700">Failed to load cards.</div>;
 
   return (
     <div className="grid gap-4">
+      <section className="card anim-rise">
+        <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-slate-500">Collection Browser</p>
+        <h2 className="font-display text-4xl leading-none">Card Database</h2>
+        <p className="mt-2 text-sm text-slate-600">
+          Filter by set, type, archetype, stats, and legality. Current results: {results.length.toLocaleString()} cards.
+        </p>
+      </section>
+
       <FiltersPanel />
       <CardsToolbar total={results.length} />
+
       {view === "list" ? (
         <VirtualizedCardList items={results} />
       ) : (
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 cards-grid">
+        <div className="cards-grid grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {results.map((card) => (
-            <CardTile
-              key={`${(card as any).id ?? card.name}-${card.name}`}
-              card={card}
-            />
+            <CardTile key={`${(card as any).id ?? card.name}-${card.name}`} card={card} />
           ))}
         </div>
       )}

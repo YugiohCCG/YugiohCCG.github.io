@@ -32,11 +32,11 @@ export default function VirtualizedCardList({ items }: { items: Card[] }) {
     [items]
   );
 
-  const listHeight = Math.max(240, height || 800);
+  const listHeight = Math.max(300, height || 720);
   const listWidth = Math.max(320, width || 1200);
 
   return (
-    <div ref={containerRef} className="w-full h-full">
+    <div ref={containerRef} className="w-full min-h-[26rem]">
       <List
         height={listHeight}
         itemCount={items.length}

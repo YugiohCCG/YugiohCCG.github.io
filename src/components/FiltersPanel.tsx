@@ -1,10 +1,11 @@
-// Compact Filters Panel with asset icons and category chips
+﻿// Compact Filters Panel with asset icons and category chips
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { useSearchParams } from "react-router-dom";
 import useCards from "../hooks/useCards";
 import LegalityBadge from "./LegalityBadge";
+import { asset } from "../utils/assets";
 
-const ASSET = (name: string) => `/assets/misc/${name}`;
+const ASSET = (name: string) => asset(`assets/misc/${name}`);
 
 const ATTRS = ["DARK", "LIGHT", "EARTH", "WATER", "FIRE", "WIND", "DIVINE"];
 const ICONS = ["Equip", "Field", "Quick-Play", "Ritual", "Continuous", "Counter", "Normal"];
@@ -152,7 +153,7 @@ function Section({
           {title && <h3 className="filter-title">{title}</h3>}
           {onClear && (
             <button
-              className="text-[11px] text-neutral-400 hover:underline"
+              className="text-[11px] text-slate-500 hover:underline"
               onClick={onClear}
               type="button"
             >
@@ -184,7 +185,7 @@ export default function FiltersPanel() {
   const { indexes } = useCards({ includeTCG: false, includeCustom: true, includeTest: false });
   const [params, setParams] = useSearchParams();
 
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(params.get("filters") !== "1");
 
   const [q, setQ] = useState(getOne(params, "q"));
   const [setCode, setSetCode] = useState(getOne(params, "set"));
@@ -212,7 +213,10 @@ export default function FiltersPanel() {
   const [dateStart, setDateStart] = useState<string>(getOne(params, "dateStart"));
   const [dateEnd, setDateEnd] = useState<string>(getOne(params, "dateEnd"));
 
-  useEffect(() => { setQ(getOne(params, "q")); }, [params]);
+  useEffect(() => {
+    setQ(getOne(params, "q"));
+    setCollapsed(params.get("filters") !== "1");
+  }, [params]);
 
   const setsOptions = useMemo(() => indexes.setsList ?? [], [indexes.setsList]);
   const archetypeOptions = useMemo(
@@ -282,7 +286,12 @@ export default function FiltersPanel() {
   };
 
   return (
-    <div className="mb-4 filters-shell shadow-sm">
+    <div className="mb-4 filters-shell">
+      <div className="mb-2">
+        <p className="text-[12px] font-bold uppercase tracking-[0.12em] text-slate-500">
+          Filter Controls
+        </p>
+      </div>
       <form
         className="grid gap-2 md:grid-cols-[1fr,11rem,11rem,auto] md:items-center"
         onSubmit={(e) => { e.preventDefault(); apply(); }}
@@ -291,10 +300,10 @@ export default function FiltersPanel() {
           placeholder="Search keyword/name/text..."
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          className="bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-2 text-sm"
+          className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700"
         />
         <select
-          className="bg-neutral-900 border border-neutral-700 rounded-lg px-2.5 py-2 text-sm min-w-[10rem]"
+          className="min-w-[10rem] rounded-lg border border-slate-300 bg-white px-2.5 py-2 text-sm text-slate-700"
           value={setCode}
           onChange={(e) => setSetCode(e.target.value)}
         >
@@ -304,7 +313,7 @@ export default function FiltersPanel() {
           ))}
         </select>
         <select
-          className="bg-neutral-900 border border-neutral-700 rounded-lg px-2.5 py-2 text-sm min-w-[10rem]"
+          className="min-w-[10rem] rounded-lg border border-slate-300 bg-white px-2.5 py-2 text-sm text-slate-700"
           value={archetypeSel}
           onChange={(e) => setArchetypeSel(e.target.value)}
         >
@@ -321,8 +330,9 @@ export default function FiltersPanel() {
             onClick={() => {
               const n = !collapsed;
               setCollapsed(n);
-              params.set("filters", n ? "0" : "1");
-              setParams(params, { replace: true });
+              const p = new URLSearchParams(params);
+              p.set("filters", n ? "0" : "1");
+              setParams(p, { replace: true });
             }}
           >
             {collapsed ? "Show Filters" : "Hide Filters"}
@@ -459,35 +469,35 @@ export default function FiltersPanel() {
           <div className="grid gap-2 md:grid-cols-2">
             <Section title="ATK / DEF">
               <div className="flex flex-wrap items-center gap-2">
-                <label className="text-xs text-neutral-300">ATK</label>
+                <label className="text-xs text-slate-600">ATK</label>
                 <input
                   type="number"
-                  className="bg-neutral-900 border border-neutral-700 rounded-lg px-2 py-1.5 text-sm w-24"
+                  className="w-24 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm text-slate-700"
                   placeholder="min"
                   value={atkMin ?? ""}
                   onChange={(e) => setAtkMin(e.target.value ? Number(e.target.value) : undefined)}
                 />
-                <span className="text-neutral-500">–</span>
+                <span className="text-slate-500">-</span>
                 <input
                   type="number"
-                  className="bg-neutral-900 border border-neutral-700 rounded-lg px-2 py-1.5 text-sm w-24"
+                  className="w-24 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm text-slate-700"
                   placeholder="max"
                   value={atkMax ?? ""}
                   onChange={(e) => setAtkMax(e.target.value ? Number(e.target.value) : undefined)}
                 />
 
-                <label className="ml-3 text-xs text-neutral-300">DEF</label>
+                <label className="ml-3 text-xs text-slate-600">DEF</label>
                 <input
                   type="number"
-                  className="bg-neutral-900 border border-neutral-700 rounded-lg px-2 py-1.5 text-sm w-24"
+                  className="w-24 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm text-slate-700"
                   placeholder="min"
                   value={defMin ?? ""}
                   onChange={(e) => setDefMin(e.target.value ? Number(e.target.value) : undefined)}
                 />
-                <span className="text-neutral-500">–</span>
+                <span className="text-slate-500">-</span>
                 <input
                   type="number"
-                  className="bg-neutral-900 border border-neutral-700 rounded-lg px-2 py-1.5 text-sm w-24"
+                  className="w-24 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm text-slate-700"
                   placeholder="max"
                   value={defMax ?? ""}
                   onChange={(e) => setDefMax(e.target.value ? Number(e.target.value) : undefined)}
@@ -517,3 +527,4 @@ export default function FiltersPanel() {
     </div>
   );
 }
+

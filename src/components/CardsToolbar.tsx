@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+﻿import { useSearchParams } from "react-router-dom";
 
 type Dir = "asc" | "desc";
 const SORTS = [
@@ -22,7 +22,6 @@ export default function CardsToolbar({ total }: { total: number }) {
   const setSort = (key: string) => {
     const p = new URLSearchParams(params);
     if (key === sort) {
-      // toggle direction on repeated click
       p.set("dir", dir === "asc" ? "desc" : "asc");
     } else {
       p.set("sort", key);
@@ -40,50 +39,51 @@ export default function CardsToolbar({ total }: { total: number }) {
 
   const arrow = (k: string) => {
     if (k !== sort) return null;
-    return <span className="ml-1">{dir === "asc" ? "↑" : "↓"}</span>;
+    return <span className="ml-1">{dir === "asc" ? "^" : "v"}</span>;
   };
 
   return (
-    <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between mb-4">
-      <div className="text-sm text-neutral-400">
-        {total.toLocaleString()} cards
-      </div>
+    <div className="card">
+      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        <div className="text-sm text-slate-600">{total.toLocaleString()} cards</div>
 
-      <div className="flex flex-wrap items-center gap-2">
-        {/* Sort segmented control */}
-        <div className="flex flex-wrap gap-1 bg-neutral-900 border border-neutral-700 rounded-xl p-1">
-          {SORTS.map((s) => (
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap gap-1 rounded-lg border border-slate-300 bg-white p-1">
+            {SORTS.map((s) => (
+              <button
+                key={s.key}
+                type="button"
+                onClick={() => setSort(s.key)}
+                className={
+                  `rounded-md px-3 py-1.5 text-xs font-bold uppercase tracking-wide transition ` +
+                  (sort === s.key
+                    ? "bg-accent text-white"
+                    : "bg-transparent text-slate-600 hover:bg-slate-100")
+                }
+                title={`Sort by ${s.label}`}
+              >
+                {s.label}
+                {arrow(s.key)}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex gap-1 rounded-lg border border-slate-300 bg-white p-1">
             <button
-              key={s.key}
-              onClick={() => setSort(s.key)}
-              className={
-                `px-3 py-1.5 rounded-lg text-sm transition ` +
-                (sort === s.key
-                  ? "bg-accent text-white"
-                  : "bg-transparent text-neutral-300 hover:bg-neutral-800")
-              }
-              title={`Sort by ${s.label}`}
+              type="button"
+              className={`rounded-md px-3 py-1.5 text-xs font-bold uppercase tracking-wide ${view === "grid" ? "bg-accent text-white" : "text-slate-600 hover:bg-slate-100"}`}
+              onClick={() => setView("grid")}
             >
-              {s.label}
-              {arrow(s.key)}
+              Grid
             </button>
-          ))}
-        </div>
-
-        {/* View toggle */}
-        <div className="flex gap-1 bg-neutral-900 border border-neutral-700 rounded-xl p-1">
-          <button
-            className={`px-3 py-1.5 rounded-lg text-sm ${view === "grid" ? "bg-accent text-white" : "text-neutral-300 hover:bg-neutral-800"}`}
-            onClick={() => setView("grid")}
-          >
-            Grid
-          </button>
-          <button
-            className={`px-3 py-1.5 rounded-lg text-sm ${view === "list" ? "bg-accent text-white" : "text-neutral-300 hover:bg-neutral-800"}`}
-            onClick={() => setView("list")}
-          >
-            List
-          </button>
+            <button
+              type="button"
+              className={`rounded-md px-3 py-1.5 text-xs font-bold uppercase tracking-wide ${view === "list" ? "bg-accent text-white" : "text-slate-600 hover:bg-slate-100"}`}
+              onClick={() => setView("list")}
+            >
+              List
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import cardsData from "../data/cards.json";
 
 const INSTALLER_URL = "https://yugiohccg.github.io/CCG%20Downloads/CCG_Omega_Addon_Setup.exe";
@@ -30,83 +30,92 @@ export default function Downloads() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold">Downloads</h1>
-          <p className="text-neutral-400 text-sm">
-            Get the latest custom database and scripts for YGO Omega.
-          </p>
-        </div>
-      </div>
-
-      <section className="card space-y-3">
-        <h2 className="text-lg font-semibold">Option 1: One-click Installer (Recommended)</h2>
-        <p className="text-sm text-neutral-300">
-          Installs both the database and scripts into YGO Omega automatically. Default path:
-          <code className="ml-1">C:\Program Files (x86)\YGO Omega</code>. If Omega is elsewhere, browse to its root.
-        </p>
-        <a className="btn btn-primary w-fit" href={INSTALLER_URL}>
-          Download Installer (.exe)
-        </a>
-        <p className="text-xs text-neutral-400">
-          Re-run this installer anytime to pull the latest files from GitHub.
+      <section className="card anim-rise">
+        <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-slate-500">Omega Distribution</p>
+        <h2 className="font-display text-4xl leading-none">Downloads</h2>
+        <p className="mt-2 text-sm text-slate-600">
+          Install the custom package in one click, or pull each file manually.
         </p>
       </section>
 
-      <section className="card space-y-3">
-        <h2 className="text-lg font-semibold">Option 2: Manual Install</h2>
-        <div className="flex flex-wrap gap-2">
-          <a className="btn" href={DB_URL}>
-            Download Database (.db)
-          </a>
-          <a className="btn" href={SCRIPTS_ZIP_URL}>
-            Download Scripts (.zip)
-          </a>
-          <a className="btn" href={BANLIST_URL}>
-            Download Banlist (.lflist.conf)
-          </a>
-          {IMAGE_PARTS.map((u, idx) => (
-            <a key={u} className="btn" href={u}>
-              Download Images v{idx + 1} (.zip)
+      <div className="grid gap-4 lg:grid-cols-2">
+        <section className="story-tile anim-rise anim-delay-1">
+          <div className="story-tile-body story-tone-blue">
+            <div className="story-meta">Recommended</div>
+            <h3 className="story-title-small mt-2">One-click Installer</h3>
+            <p className="mt-2 text-sm opacity-95">
+              Installs both database and scripts automatically. Default path:
+              <code className="ml-1 rounded bg-black/20 px-1.5 py-0.5">C:\Program Files (x86)\YGO Omega</code>
+            </p>
+            <a className="btn mt-4 bg-white/95" href={INSTALLER_URL}>
+              Download Installer (.exe)
             </a>
-          ))}
-          <button type="button" className="btn" onClick={handleDownloadJson}>
-            Download JSON (export)
-          </button>
-        </div>
-        {saved && (
-          <div className="text-sm text-green-300">
-            JSON export started. Save the file as <code>CCG-Custom-Database.json</code>.
           </div>
-        )}
-        <ol className="list-decimal list-inside space-y-1 text-sm text-neutral-200">
-          <li>
-            Place <code>CCG_v1.db</code> into
-            <div>
-              <code>C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Databases</code>
+        </section>
+
+        <section className="story-tile anim-rise anim-delay-2">
+          <div className="story-tile-body story-tone-orange">
+            <div className="story-meta">Manual Package</div>
+            <h3 className="story-title-small mt-2">Individual Files</h3>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <a className="btn bg-white/95" href={DB_URL}>
+                Database (.db)
+              </a>
+              <a className="btn bg-white/95" href={SCRIPTS_ZIP_URL}>
+                Scripts (.zip)
+              </a>
+              <a className="btn bg-white/95" href={BANLIST_URL}>
+                Banlist (.conf)
+              </a>
+              {IMAGE_PARTS.map((u, idx) => (
+                <a key={u} className="btn bg-white/95" href={u}>
+                  Images v{idx + 1}
+                </a>
+              ))}
+              <button type="button" className="btn bg-white/95" onClick={handleDownloadJson}>
+                JSON Export
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {saved && (
+        <div className="card border-emerald-300 bg-emerald-50 text-emerald-800">
+          JSON export started as <code>CCG-Custom-Database.json</code>.
+        </div>
+      )}
+
+      <section className="card">
+        <h3 className="font-display text-3xl leading-none">Manual Install Steps</h3>
+        <ol className="mt-3 space-y-2 text-sm text-slate-700">
+          <li className="rounded-lg border border-slate-300/70 bg-white px-3 py-2">
+            Place <code>CCG_v1.db</code> in
+            <div className="mt-1 text-xs text-slate-500">
+              C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Databases
             </div>
           </li>
-          <li>
-            Extract <code>CCG_Scripts_v1.zip</code> into
-            <div>
-              <code>C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts\CCG_Scripts_v1</code>
+          <li className="rounded-lg border border-slate-300/70 bg-white px-3 py-2">
+            Extract <code>CCG_Scripts_v1.zip</code> to
+            <div className="mt-1 text-xs text-slate-500">
+              C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts\CCG_Scripts_v1
             </div>
           </li>
-          <li>
-            Extract all image parts (<code>YGO_Omega_Images_v1.zip</code>, <code>v2</code>, <code>v3</code>, ...)
-            directly into
-            <div>
-              <code>C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Arts</code>
-            </div>
-            (no extra subfolder)
-          </li>
-          <li>
-            Place <code>Untitled Banlist.lflist.conf</code> into
-            <div>
-              <code>C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Banlists</code>
+          <li className="rounded-lg border border-slate-300/70 bg-white px-3 py-2">
+            Extract all image parts directly into
+            <div className="mt-1 text-xs text-slate-500">
+              C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Arts
             </div>
           </li>
-          <li>Restart YGO Omega. Select the CCG database if prompted.</li>
+          <li className="rounded-lg border border-slate-300/70 bg-white px-3 py-2">
+            Place <code>Untitled Banlist.lflist.conf</code> in
+            <div className="mt-1 text-xs text-slate-500">
+              C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Banlists
+            </div>
+          </li>
+          <li className="rounded-lg border border-slate-300/70 bg-white px-3 py-2">
+            Restart YGO Omega and select the CCG database if prompted.
+          </li>
         </ol>
       </section>
     </div>

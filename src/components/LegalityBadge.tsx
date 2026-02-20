@@ -84,7 +84,7 @@ function renderIcon(status: LegalityStatus) {
         fontSize="30"
         fontWeight="800"
         fill="#f7d300"
-        fontFamily="'Segoe UI', 'Inter', 'Montserrat', sans-serif"
+        fontFamily="'Barlow Condensed', 'Trebuchet MS', 'Segoe UI', sans-serif"
       >
         {number}
       </text>

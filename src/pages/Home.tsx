@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 import news from "../data/news.json";
 import sets from "../data/sets.json";
+import { useMemo, useState } from "react";
 import useCards from "../hooks/useCards";
 import useBanlistCards from "../hooks/useBanlistCards";
+import { useImageViewer } from "../components/ImageViewer";
+import { legalStatus } from "../components/LegalityBadge";
+import type { Card } from "../types/card";
+import { asset } from "../utils/assets";
 
-// tiny util: safe date -> "01 May 2025"
 const fmt = (iso: string) => {
   const d = new Date(iso);
-  return isNaN(d.valueOf())
+  return Number.isNaN(d.valueOf())
     ? iso
     : d.toLocaleDateString(undefined, {
         day: "2-digit",
@@ -16,27 +20,54 @@ const fmt = (iso: string) => {
       });
 };
 
-// sort newest first (expects ISO "YYYY-MM-DD")
 const sortedNews = [...news].sort((a, b) => String(b.date).localeCompare(String(a.date)));
-const latestNews = sortedNews.slice(0, 4);
+const NEWS_BATCH_SIZE = 3;
 
-// assume sets.json is newest-first; fall back gracefully
-const featuredSet = (sets as any[])[0] ?? null;
+const sortedSets = [...(sets as any[])].sort((a, b) =>
+  String(b.releaseDate ?? "").localeCompare(String(a.releaseDate ?? ""))
+);
+const OMEGA_HOME_IMAGE = "/assets/misc/Yugioh_Omega_Main.jpg";
+
+const addedAt = (card: Card) => {
+  const time = Date.parse(card.timestamps?.added ?? "");
+  return Number.isNaN(time) ? -1 : time;
+};
+
+function sortByLatestAdded(cards: Card[]) {
+  return [...cards].sort((a, b) => {
+    const byAdded = addedAt(b) - addedAt(a);
+    if (byAdded !== 0) return byAdded;
+    return String(b.id ?? "").localeCompare(String(a.id ?? ""), undefined, { numeric: true });
+  });
+}
+
+const modIndex = (value: number, total: number) => ((value % total) + total) % total;
+
+function buildCarouselOffsets(total: number) {
+  const span = Math.min(5, total);
+  const leftCount = Math.floor((span - 1) / 2);
+  const rightCount = span - leftCount - 1;
+  const offsets: number[] = [];
+  for (let offset = -leftCount; offset <= rightCount; offset += 1) {
+    offsets.push(offset);
+  }
+  return offsets;
+}
 
 export default function Home() {
-  // Visible custom cards (same visibility rules as Card Database)
+  const { open } = useImageViewer();
   const { cards: customVisible } = useCards({
     includeTCG: false,
     includeCustom: true,
     includeTest: false,
   });
 
-  // Current banlist totals (custom + official TCG)
   const { cards: allSource } = useCards({
     includeTCG: true,
     includeCustom: true,
     includeTest: false,
   });
+
   const { withLegal } = useBanlistCards("TCG");
   const allWithLegal = withLegal(allSource as any);
 
@@ -48,182 +79,308 @@ export default function Home() {
     (c: any) => c.legal?.semiLimited && !c.legal?.limited && !c.legal?.banned
   ).length;
 
+  const [hero, sideA, sideB, rowA, rowB] = sortedSets;
+  const latestCards = useMemo(
+    () =>
+      sortByLatestAdded(customVisible as Card[])
+        .filter((card) => Boolean(card.image))
+        .slice(0, 14),
+    [customVisible]
+  );
+  const [activeLatest, setActiveLatest] = useState(0);
+  const [visibleNewsCount, setVisibleNewsCount] = useState(
+    Math.min(NEWS_BATCH_SIZE, sortedNews.length)
+  );
+
+  const latestWindow = useMemo(() => {
+    if (latestCards.length === 0) return [];
+    const offsets = buildCarouselOffsets(latestCards.length);
+    return offsets.map((offset) => {
+      const index = modIndex(activeLatest + offset, latestCards.length);
+      return { card: latestCards[index], offset, index };
+    });
+  }, [activeLatest, latestCards]);
+
+  const canCycleLatest = latestCards.length > 1;
+  const visibleNews = sortedNews.slice(0, visibleNewsCount);
+  const canShowMoreNews = visibleNewsCount < sortedNews.length;
+  const canShowLessNews = visibleNewsCount > NEWS_BATCH_SIZE;
+
+  const cycleLatest = (step: number) => {
+    if (!canCycleLatest) return;
+    setActiveLatest((current) => modIndex(current + step, latestCards.length));
+  };
+
+  const toggleNewsList = () => {
+    if (canShowMoreNews) {
+      setVisibleNewsCount((count) => Math.min(count + NEWS_BATCH_SIZE, sortedNews.length));
+      return;
+    }
+    setVisibleNewsCount(Math.min(NEWS_BATCH_SIZE, sortedNews.length));
+  };
+
   return (
-    <div className="ygo-bg">
-      <div className="max-w-6xl mx-auto px-3 py-6 space-y-8">
-        {/* Hero */}
-        <section className="card relative overflow-hidden border border-purple-500/40 bg-gradient-to-br from-neutral-900/90 via-neutral-900/80 to-neutral-950/95">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(147,51,234,0.22),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(59,130,246,0.14),_transparent_55%)]" />
+    <div className="space-y-6">
+      <section className="card anim-rise">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-slate-500">
+              Editorial Hub
+            </p>
+            <h2 className="font-display text-4xl leading-none">Latest CCG Stories and Releases</h2>
+            <p className="mt-2 max-w-2xl text-sm text-slate-600">
+            </p>
+          </div>
 
-          <div className="relative grid gap-6 md:grid-cols-[2fr,1.3fr] items-center">
-            <div>
-              <h1 className="text-3xl md:text-4xl font-semibold tracking-wide mb-3">
-                CCG Yugioh Community
-              </h1>
-              <p className="text-neutral-200 text-sm md:text-base mb-4 max-w-xl">
-                A curated hub for custom Yu-Gi-Oh! cards, banlists, and set releases built for
-                serious duelists, playgroups, and creators. Browse the full database, explore
-                themed sets, and sync the latest ban list directly into YGO Omega.
-              </p>
-
-              <div className="flex flex-wrap gap-3">
-                <Link to="/cards" className="btn btn-primary">
-                  Open Card Database
-                </Link>
-                <Link to="/banlist" className="btn">
-                  View Ban List
-                </Link>
-                <Link to="/downloads" className="btn">
-                  Install in YGO Omega
-                </Link>
-              </div>
+          <div className="home-metrics">
+            <div className="home-metric home-metric-cards">
+              <div className="home-metric-label">Cards</div>
+              <div className="home-metric-value">{customVisible.length}</div>
             </div>
-
-            <div className="relative">
-                <div className="grid grid-cols-3 gap-3 text-center text-xs">
-                <div className="rounded-xl bg-neutral-900/90 border border-purple-500/40 px-3 py-3 shadow-soft">
-                  <div className="text-neutral-300 mb-1">Custom Cards</div>
-                  <div className="text-2xl font-semibold text-accent">
-                    {customVisible.length}
-                  </div>
-                </div>
-                <div className="rounded-xl bg-neutral-900/90 border border-amber-400/40 px-3 py-3 shadow-soft">
-                  <div className="text-neutral-300 mb-1">Sets</div>
-                  <div className="text-2xl font-semibold text-amber-300">
-                    {(sets as any[]).length}
-                  </div>
-                </div>
-                <div className="rounded-xl bg-neutral-900/90 border border-red-500/40 px-3 py-3 shadow-soft">
-                  <div className="text-neutral-300 mb-1">Banlist</div>
-                  <div className="text-[11px] leading-relaxed">
-                    <span className="font-semibold text-red-300">{bannedCount}</span> Banned
-                    <br />
-                    <span className="font-semibold text-amber-300">{limitedCount}</span> Limited
-                    <br />
-                    <span className="font-semibold text-blue-300">{semiCount}</span> Semi-Limited
-                  </div>
-                </div>
-              </div>
+            <div className="home-metric home-metric-sets">
+              <div className="home-metric-label">Sets</div>
+              <div className="home-metric-value">{sortedSets.length}</div>
+            </div>
+            <div className="home-metric home-metric-banned">
+              <div className="home-metric-label">Banned</div>
+              <div className="home-metric-value home-metric-value-status">{bannedCount}</div>
+            </div>
+            <div className="home-metric home-metric-limited">
+              <div className="home-metric-label">Limited</div>
+              <div className="home-metric-value home-metric-value-status">{limitedCount}</div>
+            </div>
+            <div className="home-metric home-metric-semi">
+              <div className="home-metric-label">Semi-Limited</div>
+              <div className="home-metric-value home-metric-value-status">{semiCount}</div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Featured row */}
-        <section className="grid gap-5 md:grid-cols-[1.6fr,1.4fr]">
-          {/* Featured set */}
-          <div className="card border border-neutral-800/80 bg-neutral-900/90">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="text-lg font-semibold">Featured Set</h2>
-              <Link to="/releases" className="text-xs text-accent hover:underline">
-                View all releases
-              </Link>
-            </div>
-            {featuredSet ? (
-              <div className="grid gap-4 md:grid-cols-[1.3fr,1.7fr] items-center">
-                <div className="rounded-xl overflow-hidden bg-neutral-950">
+      {(hero || sideA) && (
+        <section className="home-set-grid grid items-start gap-4 lg:grid-cols-3">
+          {hero && (
+            <Link
+              to={`/cards?set=${encodeURIComponent(hero.code)}`}
+              className="story-tile home-set-tile-link anim-rise lg:col-span-2"
+              aria-label={`Open ${hero.name} set`}
+            >
+              <div className="story-tile-media home-story-media home-story-media-hero">
+                <img
+                  src={asset(hero.homeImage || hero.coverImage || "")}
+                  alt={`${hero.name} cover`}
+                  loading="lazy"
+                />
+              </div>
+              <div className="story-tile-body story-tone-mint">
+                <div className="story-meta">Featured Latest Release</div>
+                <h3 className="story-title mt-2">
+                  CHRONICLES OF THE STARBORN
+                </h3>
+                {hero.description && <p className="mt-2 text-base opacity-95">{hero.description}</p>}
+              </div>
+            </Link>
+          )}
+
+          <div className="grid gap-4 lg:col-span-1">
+            {sideA && (
+              <Link
+                to="/downloads"
+                className="story-tile home-set-tile-link anim-rise anim-delay-1"
+                aria-label="Open downloads"
+              >
+                <div className="story-tile-media home-story-media">
                   <img
-                    src={featuredSet.coverImage}
-                    alt={`${featuredSet.name} cover`}
-                    className="w-full h-full object-cover object-center"
+                    src={asset(OMEGA_HOME_IMAGE)}
+                    alt="YGO Omega setup"
                     loading="lazy"
                   />
                 </div>
-                <div className="space-y-2 text-sm">
-                  <div className="text-xs uppercase tracking-wide text-neutral-400">
-                    Latest Release
-                  </div>
-                  <div className="text-base font-semibold">
-                    {featuredSet.code} {featuredSet.name}
-                  </div>
-                  {featuredSet.releaseDate && (
-                    <div className="text-xs text-neutral-400">
-                      Release date: {featuredSet.releaseDate}
-                    </div>
-                  )}
-                  {featuredSet.description && (
-                    <p className="text-neutral-200 text-xs md:text-sm line-clamp-3">
-                      {featuredSet.description}
-                    </p>
-                  )}
-                  <Link
-                    to={`/cards?set=${encodeURIComponent(featuredSet.code)}`}
-                    className="btn btn-primary mt-2 inline-flex"
-                  >
-                    Browse Set
-                  </Link>
+                <div className="story-tile-body story-tone-violet">
+                  <div className="story-meta">Omega Setup</div>
+                  <h3 className="story-title-small mt-1">INSTALL CCG ON OMEGA</h3>
+                  <p className="mt-0.5 text-sm opacity-95">Autamtic & Manual Instillation</p>
                 </div>
-              </div>
-            ) : (
-              <p className="text-neutral-300 text-sm">No sets configured yet.</p>
+              </Link>
+            )}
+
+            {sideA && (
+              <Link
+                to={`/cards?set=${encodeURIComponent(sideA.code)}`}
+                className="story-tile home-set-tile-link anim-rise anim-delay-2"
+                aria-label={`Open ${sideA.name} set`}
+              >
+                <div className="story-tile-media home-story-media">
+                  <img
+                    src={asset(sideA.homeImage || sideA.coverImage || "")}
+                    alt={`${sideA.name} cover`}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="story-tile-body story-tone-blue">
+                  <div className="story-meta">Set Release</div>
+                  <h3 className="story-title-small mt-1">PHANTOM PARADE</h3>
+                  <p className="mt-0.5 text-sm opacity-95">Release Date: {sideA.releaseDate || "TBA"}</p>
+                </div>
+              </Link>
             )}
           </div>
-
-          {/* Quick links / flows */}
-          <div className="card border border-neutral-800/80 bg-neutral-900/90">
-            <h2 className="text-lg font-semibold mb-3">Get Started</h2>
-            <ol className="space-y-2 text-sm text-neutral-200 list-decimal list-inside">
-              <li>
-                <span className="font-semibold">Browse the Card Database</span> to explore all
-                custom monsters, spells, and traps with advanced filtering.
-              </li>
-              <li>
-                <span className="font-semibold">Check the Ban List</span> to see which cards are
-                legal, limited, semi-limited, or banned for the current format.
-              </li>
-              <li>
-                <span className="font-semibold">Download the Database for YGO Omega</span> from the{" "}
-                <Link to="/downloads" className="text-accent hover:underline">
-                  Downloads
-                </Link>{" "}
-                tab and follow the install steps.
-              </li>
-              <li>
-                <span className="font-semibold">Host duels or events</span> using this shared card
-                pool and banlist so everyone plays by the same rules.
-              </li>
-            </ol>
-          </div>
         </section>
+      )}
 
-        {/* News / updates */}
-        <section className="card border border-neutral-800/80 bg-neutral-900/95">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-semibold">Latest News</h2>
-            <span className="text-xs text-neutral-400">
-              Pulled from the most recent community updates
-            </span>
+      {(sideB || rowA || rowB) && (
+        <section className="home-set-grid grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {sideB && (
+            <Link
+              to={`/cards?set=${encodeURIComponent(sideB.code)}`}
+              className="story-tile home-set-tile-link anim-rise anim-delay-1"
+              aria-label={`Open ${sideB.name} set`}
+            >
+              <div className="story-tile-media home-story-media">
+                <img
+                  src={asset(sideB.homeImage || sideB.coverImage || "")}
+                  alt={`${sideB.name} cover`}
+                  loading="lazy"
+                />
+              </div>
+              <div className="story-tile-body story-tone-orange">
+                <div className="story-meta">Set Release</div>
+                <h3 className="story-title-small mt-1">DAWN OF THE ELEMENTS</h3>
+                <p className="mt-0.5 text-sm opacity-95">Release Date: {sideB.releaseDate || "TBA"}</p>
+              </div>
+            </Link>
+          )}
+
+          {rowA && (
+            <Link
+              to={`/cards?set=${encodeURIComponent(rowA.code)}`}
+              className="story-tile home-set-tile-link anim-rise anim-delay-2"
+              aria-label={`Open ${rowA.name} set`}
+            >
+              <div className="story-tile-media home-story-media">
+                <img
+                  src={asset(rowA.homeImage || rowA.coverImage || "")}
+                  alt={`${rowA.name} cover`}
+                  loading="lazy"
+                />
+              </div>
+              <div className="story-tile-body story-tone-red">
+                <div className="story-meta">Set Release</div>
+                <h3 className="story-title-small mt-1">COSMIC ORIGINS</h3>
+                <p className="mt-0.5 text-sm opacity-95">Release Date: {rowA.releaseDate || "TBA"}</p>
+              </div>
+            </Link>
+          )}
+
+          {rowB && (
+            <Link
+              to={`/cards?set=${encodeURIComponent(rowB.code)}`}
+              className="story-tile home-set-tile-link anim-rise anim-delay-3"
+              aria-label={`Open ${rowB.name} set`}
+            >
+              <div className="story-tile-media home-story-media">
+                <img
+                  src={asset(rowB.homeImage || rowB.coverImage || "")}
+                  alt={`${rowB.name} cover`}
+                  loading="lazy"
+                />
+              </div>
+              <div className="story-tile-body story-tone-slate">
+                <div className="story-meta">Set Release</div>
+                <h3 className="story-title-small mt-1">TAINTED TALES</h3>
+                <p className="mt-0.5 text-sm opacity-95">Release Date: {rowB.releaseDate || "TBA"}</p>
+              </div>
+            </Link>
+          )}
+        </section>
+      )}
+
+      {latestCards.length > 0 && (
+        <section className="latest-carousel anim-rise" aria-label="Latest releases carousel">
+          <h3 className="latest-carousel-title">Latest Releases</h3>
+          <button
+            type="button"
+            className="latest-carousel-nav is-prev"
+            onClick={() => cycleLatest(-1)}
+            disabled={!canCycleLatest}
+            aria-label="Previous latest cards"
+          >
+            <span aria-hidden="true">&lt;</span>
+          </button>
+
+          <div className="latest-carousel-track">
+            {latestWindow.map(({ card, offset, index }) => (
+              <button
+                key={`${card.id}-${index}-${offset}`}
+                type="button"
+                className="latest-carousel-card"
+                data-offset={offset}
+                onClick={() => open(asset(card.image || ""), card.name, legalStatus((card as any).legal))}
+                title={card.name}
+                aria-label={`Open ${card.name} image`}
+              >
+                <img src={asset(card.image || "")} alt={card.name} loading="lazy" />
+              </button>
+            ))}
           </div>
-          {latestNews.length === 0 ? (
-            <p className="text-sm text-neutral-300">No news posts yet.</p>
-          ) : (
-            <ul className="space-y-2 text-sm">
-              {latestNews.map((n, i) => {
-                const isExternal = /^https?:\/\//i.test(n.link);
+
+          <button
+            type="button"
+            className="latest-carousel-nav is-next"
+            onClick={() => cycleLatest(1)}
+            disabled={!canCycleLatest}
+            aria-label="Next latest cards"
+          >
+            <span aria-hidden="true">&gt;</span>
+          </button>
+        </section>
+      )}
+
+      <section className="card">
+        <div className="mb-3">
+          <h3 className="font-display text-3xl leading-none">Latest News</h3>
+        </div>
+
+        {sortedNews.length === 0 ? (
+          <p className="text-sm text-slate-600">No news posts yet.</p>
+        ) : (
+          <>
+            <ul className="space-y-2">
+              {visibleNews.map((item, index) => {
+                const isExternal = /^https?:\/\//i.test(item.link);
                 return (
                   <li
-                    key={i}
-                    className="flex items-center justify-between bg-neutral-950/40 rounded-xl px-3 py-2"
+                    key={`${item.title}-${index}`}
+                    className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-slate-300/70 bg-white px-3 py-2"
                   >
                     <div>
-                      <div className="font-medium">{n.title}</div>
-                      <div className="text-[11px] text-neutral-400">{fmt(n.date)}</div>
+                      <p className="font-bold text-slate-800">{item.title}</p>
+                      <p className="text-xs text-slate-500">{fmt(item.date)}</p>
                     </div>
+
                     {isExternal ? (
-                      <a href={n.link} className="btn text-xs" target="_blank" rel="noreferrer">
-                        View
+                      <a href={item.link} className="btn" target="_blank" rel="noreferrer">
+                        Open
                       </a>
                     ) : (
-                      <Link to={n.link} className="btn text-xs">
-                        View
+                      <Link to={item.link} className="btn">
+                        Open
                       </Link>
                     )}
                   </li>
                 );
               })}
             </ul>
-          )}
-        </section>
-      </div>
+
+            {(canShowMoreNews || canShowLessNews) && (
+              <button type="button" className="btn mt-3" onClick={toggleNewsList}>
+                {canShowMoreNews ? `Show More (${visibleNewsCount}/${sortedNews.length}) v` : "Show Less ^"}
+              </button>
+            )}
+          </>
+        )}
+      </section>
+
     </div>
   );
 }
