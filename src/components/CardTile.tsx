@@ -30,7 +30,7 @@ export default function CardTile({ card, imageHeight }: Props) {
 
         <div className="mt-3 space-y-1">
           <h3 className="line-clamp-2 text-sm font-bold uppercase tracking-wide text-slate-800">{card.name}</h3>
-          <p className="text-xs text-slate-500">{card.set || card.category}</p>
+          <p className="text-xs text-slate-700">{card.set || card.category}</p>
         </div>
       </div>
 

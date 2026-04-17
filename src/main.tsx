@@ -9,6 +9,7 @@ import Releases from "./pages/Releases";
 import Cards from "./pages/Cards";
 import BanList from "./pages/BanList";
 import Downloads from "./pages/Downloads";
+import Draft from "./pages/Draft";
 
 const router = createBrowserRouter(
   [
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
         { path: "cards", element: <Cards /> },
         { path: "banlist", element: <BanList /> },
         { path: "downloads", element: <Downloads /> },
+        { path: "draft", element: <Draft /> },
       ],
     },
   ],

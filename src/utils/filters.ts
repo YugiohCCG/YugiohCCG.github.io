@@ -118,7 +118,12 @@ export function cardMatches(card: Card, q: Query): boolean {
   // text term
   if (q.q) {
     const term = q.q.toLowerCase();
-    const hay = `${card.name ?? ""} ${(C.text ?? C.desc ?? "")}`.toLowerCase();
+    const keywords = Array.isArray(C.keywords)
+      ? C.keywords.join(" ")
+      : typeof C.keywords === "string"
+        ? C.keywords
+        : "";
+    const hay = `${card.name ?? ""} ${(C.text ?? C.desc ?? "")} ${keywords}`.toLowerCase();
     if (!hay.includes(term)) return false;
   }
 

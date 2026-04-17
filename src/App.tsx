@@ -2,12 +2,18 @@
 import { Outlet, NavLink } from "react-router-dom";
 import { ImageViewerProvider } from "./components/ImageViewer";
 
-const NAV_ITEMS: Array<{ to: string; label: string; end?: boolean }> = [
+type NavItem =
+  | { to: string; label: string; end?: boolean }
+  | { href: string; label: string };
+
+const NAV_ITEMS: NavItem[] = [
   { to: "/", label: "Home", end: true },
   { to: "/releases", label: "Set Releases" },
   { to: "/cards", label: "Card Database" },
   { to: "/banlist", label: "Ban List" },
   { to: "/downloads", label: "Downloads" },
+  { to: "/draft", label: "Draft" },
+  { href: "https://kabon-a.github.io/ccg-interspace/", label: "Interspace" },
 ];
 
 type ThemeMode = "day" | "night";
@@ -48,18 +54,30 @@ export default function App() {
 
               <div className="flex items-center gap-2">
                 <nav className="flex flex-wrap gap-2">
-                  {NAV_ITEMS.map((item) => (
-                    <NavLink
-                      key={item.to}
-                      to={item.to}
-                      end={item.end}
-                      className={({ isActive }) =>
-                        `site-nav-link ${isActive ? "site-nav-link-active" : ""}`
-                      }
-                    >
-                      {item.label}
-                    </NavLink>
-                  ))}
+                  {NAV_ITEMS.map((item) =>
+                    "href" in item ? (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="site-nav-link"
+                      >
+                        {item.label}
+                      </a>
+                    ) : (
+                      <NavLink
+                        key={item.to}
+                        to={item.to}
+                        end={item.end}
+                        className={({ isActive }) =>
+                          `site-nav-link ${isActive ? "site-nav-link-active" : ""}`
+                        }
+                      >
+                        {item.label}
+                      </NavLink>
+                    )
+                  )}
                 </nav>
 
                 <button
