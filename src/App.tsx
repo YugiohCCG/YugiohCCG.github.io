@@ -13,7 +13,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/banlist", label: "Ban List" },
   { to: "/downloads", label: "Downloads" },
   { to: "/draft", label: "Draft" },
-  { href: "https://kabon-a.github.io/ccg-interspace/", label: "Interspace" },
+  { href: "https://yu-gi-oh-custom-card-game.github.io/ccg-interspace/", label: "Interspace" },
 ];
 
 type ThemeMode = "day" | "night";
