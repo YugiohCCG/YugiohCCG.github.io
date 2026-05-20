@@ -71,8 +71,9 @@ export default function App() {
                         to={item.to}
                         end={item.end}
                         className={({ isActive }) =>
-                          `site-nav-link ${isActive ? "site-nav-link-active" : ""}`
+                          `site-nav-link ${isActive ? "site-nav-link-active" : ""}` 
                         }
+                        data-theme={theme}
                       >
                         {item.label}
                       </NavLink>
