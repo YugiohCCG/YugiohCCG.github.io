@@ -22,8 +22,8 @@ ASSETS_DIR = REPO_ROOT / "public" / "assets" / "cards"
 OUTPUT_DIR = REPO_ROOT / "scripts" / "output"
 PUBLIC_ROOT = REPO_ROOT / "public"
 
-SET_CODE = "UPST"
-SET_NAME = "Upcoming Set"
+SET_CODE = "VEIL"
+SET_NAME = "Veil of Eternity"
 ADDED_DATE = "2026-04-26"
 RECENT_CUTOFF = datetime(2026, 4, 24, 0, 0, 0).timestamp()
 
