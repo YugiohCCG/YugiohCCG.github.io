@@ -129,18 +129,6 @@ OMEGA_SET_CODES = {
     "redeyes": 0x3B,
 }
 
-SCRIPT_HELPERS = [
-    (98090001, "CCG Script Helper"),
-    (98090002, "CCG Nemleria Script Helper"),
-    (98090003, "CCG Gladiator Beast Script Helper"),
-    (98090301, "CCG Prompt Helper - Red-Eyes Gearfried the Iron Knight"),
-    (98090302, "CCG Prompt Helper - Red-Eyes Moon Dragon"),
-    (98090303, "CCG Prompt Helper - Red-Eyes Meteor Metal Dragon"),
-    (98090304, "CCG Prompt Helper - Red-Eyes Roar"),
-    (98090305, "CCG Prompt Helper - Red-Eyes Turbo Dragon"),
-    (98090306, "CCG Prompt Helper - Red-Eyes Booster Dragon"),
-]
-
 # Rows kept by older Omega DBs but not shipped with the current release assets.
 RELEASE_EXCLUDED_LEGACY_IDS = {
     210678856: "Aquamarine Reef Hapalochlena",
@@ -170,39 +158,6 @@ EXTRA_TOKEN_CARDS = [
 ]
 
 CARD_STRING_OVERRIDES = {
-    "ccgscripthelper": [
-        "Special Summon this card as an Effect Monster",
-        "Banish 2 Extra Deck cards; destroy 1 opponent card",
-        'Excavate cards, then Special Summon excavated "Nemleria" monsters',
-        'Banish 2 Extra Deck cards; add 1 "Nemleria" card from GY',
-        'Special Summon excavated "Nemleria" monsters',
-        'Discard 1 "Nemleria"; place "Dreaming Nemleria" in Extra Deck; Special Summon this card',
-        'Banish 2 Extra Deck cards; make 1 "Nemleria" card unaffected by earlier Chain effects',
-        "Return 1 card your opponent controls to the hand",
-        "Banish 3 Extra Deck cards; Special Summon this card",
-        'Send 1 Level 10 Beast; Special Summon 1 "Nemleria" monster from Deck',
-        'Banish 2 Extra Deck cards; add 1 "Nemleria" monster',
-        "Banish 1 card your opponent controls",
-        'Place "Dreaming Nemleria" in Extra Deck; Set 1 "Nemleria" Spell/Trap',
-        'Shuffle banished cards; Special Summon "Nemleria" monsters',
-        "Banish this card; opponent banishes 3 Extra Deck cards; negate 1 opponent card",
-        'Special Summon "Nemleria" monsters',
-    ],
-    "ccgnemleriascripthelper": [
-        'Banish 3 Extra Deck cards; add 1 "Nemleria" Spell',
-        'Add "Dreaming Nemleria" to your hand',
-        'Shuffle "Dreaming Nemleria" into the Deck',
-        'Recover "Dreaming Nemleria" from Extra Deck',
-        "Destroy 1 card your opponent controls",
-    ],
-    "ccggladiatorbeastscripthelper": [
-        'Special Summon 1 Beast "Test" monster from your Deck',
-        'Shuffle this card into the Deck; Special Summon 1 "Gladiator Beast" monster',
-        'Shuffle monsters you control; Special Summon "Gladiator Beast" monsters',
-        'Special Summon 1 Level 4 or lower "Gladiator Beast" monster',
-        'Return this card to the Extra Deck; Special Summon 1 "Gladiator Beast" monster',
-        'Special Summon "Gladiator Beast Satyrius" by shuffling 2 materials',
-    ],
     "nemleriasnightmare": [
         "Special Summon this card as an Effect Monster",
         "Banish 2 Extra Deck cards; destroy 1 opponent card",
@@ -405,34 +360,6 @@ CARD_STRING_OVERRIDES = {
         "Main Phase: send 1 Equip Card; destroy 1 opponent card",
     ],
     "redeyesboosterdragon": [
-        'If Fusion Summoned: add 1 "Red-Eyes" monster during this End Phase',
-        'End Phase: add 1 "Red-Eyes" monster from Deck/GY',
-        "Main Phase: send 1 Equip Card; negate 1 opponent monster",
-    ],
-    "ccgprompthelperredeyesgearfriedtheironknight": [
-        'If Summoned: add 1 "Red-Eyes" Spell/Trap, then lock Link Summons',
-        'GY: banish this; shuffle 5 other "Red-Eyes" cards, then maybe draw',
-        'Draw 1 card because "Red-Eyes Black Dragon" was shuffled?',
-    ],
-    "ccgprompthelperredeyesmoondragon": [
-        "Equip this card from hand/GY to a monster you control",
-        'Equipped: destroy another Dragon/Warrior/Fiend Monster Card; add a "Red-Eyes" monster',
-    ],
-    "ccgprompthelperredeyesmeteormetaldragon": [
-        'If Summoned: equip 1 "Red-Eyes" monster from hand/GY',
-        "Main Phase: Fusion Summon a Dragon/Warrior/Fiend Fusion Monster",
-        'Fusion Material: equip this card to a "Red-Eyes" monster',
-    ],
-    "ccgprompthelperredeyesroar": [
-        'Add 1 "Red-Eyes" monster from Deck to hand',
-        'Equip 1 Level 4 or lower "Red-Eyes" monster to a face-up monster',
-        "GY: banish this; Fusion Summon a Dragon/Warrior/Fiend Fusion Monster",
-    ],
-    "ccgprompthelperredeyesturbodragon": [
-        'If Fusion Summoned: add 1 "Red-Eyes" Spell/Trap from Deck',
-        "Main Phase: send 1 Equip Card; destroy 1 opponent card",
-    ],
-    "ccgprompthelperredeyesboosterdragon": [
         'If Fusion Summoned: add 1 "Red-Eyes" monster during this End Phase',
         'End Phase: add 1 "Red-Eyes" monster from Deck/GY',
         "Main Phase: send 1 Equip Card; negate 1 opponent monster",
@@ -708,8 +635,9 @@ def build_def(card: dict[str, Any]) -> int:
     return arrows
 
 
-def infer_primary_ot(existing_ot: int | None) -> int:
-    return int(existing_ot) if existing_ot is not None else 4
+def infer_primary_ot(_existing_ot: int | None) -> int:
+    # Keep CCG cards visible under the CCG deck/card-pool workflow in Omega.
+    return 0
 
 
 def extract_treated_as_names(text: str | None) -> list[str]:
@@ -811,6 +739,26 @@ def prune_release_excluded_rows(conn: sqlite3.Connection) -> int:
     return int(existing_count)
 
 
+def prune_helper_rows(conn: sqlite3.Connection) -> int:
+    ids = tuple(
+        int(row[0])
+        for row in conn.execute(
+            """
+            select id
+            from texts
+            where name like 'CCG %Helper%'
+            """
+        )
+    )
+    if not ids:
+        return 0
+
+    placeholders = ", ".join("?" for _ in ids)
+    conn.execute(f"delete from texts where id in ({placeholders})", ids)
+    conn.execute(f"delete from datas where id in ({placeholders})", ids)
+    return len(ids)
+
+
 def build_existing_setcode_map(cards: list[dict[str, Any]], rows: list[sqlite3.Row]) -> tuple[dict[str, int], set[int]]:
     source_by_norm = {normalize_name(canonical_display_name(card.get("name"))): card for card in cards}
     candidates: dict[str, Counter[int]] = defaultdict(Counter)
@@ -849,15 +797,6 @@ def build_text_row(card_id: int, card: dict[str, Any]) -> dict[str, Any]:
     for idx in range(1, 17):
         row[f"str{idx}"] = None
     for idx, value in enumerate(CARD_STRING_OVERRIDES.get(normalize_name(row["name"]), []), start=1):
-        row[f"str{idx}"] = value
-    return row
-
-
-def build_script_helper_text_row(card_id: int, name: str) -> dict[str, Any]:
-    row = {"id": card_id, "name": name, "desc": ""}
-    for idx in range(1, 17):
-        row[f"str{idx}"] = None
-    for idx, value in enumerate(CARD_STRING_OVERRIDES.get(normalize_name(name), []), start=1):
         row[f"str{idx}"] = value
     return row
 
@@ -1024,68 +963,6 @@ def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) 
                 text_row,
             )
 
-        for helper_id, helper_name in SCRIPT_HELPERS:
-            helper_text_row = build_script_helper_text_row(helper_id, helper_name)
-            conn.execute(
-                """
-                insert into datas (
-                    id, ot, alias, setcode, type, atk, def, level, race, attribute,
-                    category, genre, script, support
-                ) values (
-                    :id, 0, 0, null, 0, 0, 0, 0, 0, 0,
-                    0, 0, null, x'00'
-                )
-                on conflict(id) do update set
-                    ot=excluded.ot,
-                    alias=excluded.alias,
-                    setcode=excluded.setcode,
-                    type=excluded.type,
-                    atk=excluded.atk,
-                    def=excluded.def,
-                    level=excluded.level,
-                    race=excluded.race,
-                    attribute=excluded.attribute,
-                    category=excluded.category,
-                    genre=excluded.genre,
-                    script=excluded.script,
-                    support=excluded.support
-                """,
-                {"id": helper_id},
-            )
-            conn.execute(
-                """
-                insert into texts (
-                    id, name, desc,
-                    str1, str2, str3, str4, str5, str6, str7, str8,
-                    str9, str10, str11, str12, str13, str14, str15, str16
-                ) values (
-                    :id, :name, :desc,
-                    :str1, :str2, :str3, :str4, :str5, :str6, :str7, :str8,
-                    :str9, :str10, :str11, :str12, :str13, :str14, :str15, :str16
-                )
-                on conflict(id) do update set
-                    name=excluded.name,
-                    desc=excluded.desc,
-                    str1=excluded.str1,
-                    str2=excluded.str2,
-                    str3=excluded.str3,
-                    str4=excluded.str4,
-                    str5=excluded.str5,
-                    str6=excluded.str6,
-                    str7=excluded.str7,
-                    str8=excluded.str8,
-                    str9=excluded.str9,
-                    str10=excluded.str10,
-                    str11=excluded.str11,
-                    str12=excluded.str12,
-                    str13=excluded.str13,
-                    str14=excluded.str14,
-                    str15=excluded.str15,
-                    str16=excluded.str16
-                """,
-                helper_text_row,
-            )
-
         for token in EXTRA_TOKEN_CARDS:
             conn.execute(
                 """
@@ -1151,6 +1028,10 @@ def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) 
             )
 
         pruned_legacy_rows = prune_release_excluded_rows(conn)
+        pruned_helper_rows = prune_helper_rows(conn)
+        # The CCG database uses one Omega card-pool behavior for all of its rows,
+        # including retained legacy rows that are not in the current card source.
+        conn.execute("update datas set ot=0 where ot<>0")
         conn.commit()
         if pruned_legacy_rows:
             conn.execute("vacuum")
@@ -1166,6 +1047,7 @@ def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) 
             "updated": updated,
             "preserved": preserved,
             "pruned_legacy_rows": pruned_legacy_rows,
+            "pruned_helper_rows": pruned_helper_rows,
             "datas_count": final_counts[0],
             "texts_count": final_counts[1],
             "setcode_map_size": len(setcode_map),

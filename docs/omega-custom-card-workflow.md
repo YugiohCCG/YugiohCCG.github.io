@@ -60,6 +60,20 @@ This updates the installed Omega database by default and refreshes `scripts/outp
 
 After a DB sync intended for release, copy the resulting DB into `public/CCG Downloads/CCG_Database/CCG_v1.db` and rebuild `CCG_Database.zip` with `CCG_v1.db` at the archive root.
 
+## Banlist Workflow
+
+The website card data is the CCG banlist source of truth. Regenerate the Omega banlist after changing legality flags in `src/data/cards.json` or `src/data/tcg-cards.json`:
+
+```powershell
+npm run sync:omega:banlist
+```
+
+Use the check mode to verify the distributable Omega banlist is still aligned:
+
+```powershell
+node scripts\sync-omega-ccg-banlist.mjs --check
+```
+
 ## Validation Checks
 
 Basic Lua syntax parse for the distributable custom scripts:
