@@ -2,14 +2,30 @@
 import cardsData from "../data/cards.json";
 
 const INSTALLER_URL = "https://yugiohccg.github.io/CCG%20Downloads/CCG_Omega_Addon_Setup.exe";
-const DB_URL = "https://yugiohccg.github.io/CCG%20Downloads/CCG_v1.db";
-const SCRIPTS_ZIP_URL = "https://yugiohccg.github.io/CCG%20Downloads/CCG_Scripts_v1.zip";
-const BANLIST_URL = "https://yugiohccg.github.io/CCG%20Downloads/Untitled%20Banlist.lflist.conf";
 const IMAGES_BASE = "https://yugiohccg.github.io/CCG%20Downloads";
+const DB_URL = `${IMAGES_BASE}/CCG_Database/CCG_v1.db`;
+const SCRIPTS_ZIP_URL = `${IMAGES_BASE}/CCG_Scripts/CCG_Scripts.zip`;
+const BANLIST_URL = `${IMAGES_BASE}/CCG_Banlist/CCG_Banlist.lflist.conf`;
+const IMAGE_ASSETS_BASE = `${IMAGES_BASE}/YGO_Omega_Images`;
 const IMAGE_PARTS = [
   `${IMAGES_BASE}/YGO_Omega_Images_v1.zip`,
   `${IMAGES_BASE}/YGO_Omega_Images_v2.zip`,
   `${IMAGES_BASE}/YGO_Omega_Images_v3.zip`,
+];
+const PIC_PARTS = [
+  `${IMAGE_ASSETS_BASE}/YGO_Omega_Pics_v1.zip`,
+  `${IMAGE_ASSETS_BASE}/YGO_Omega_Pics_v2.zip`,
+  `${IMAGE_ASSETS_BASE}/YGO_Omega_Pics_v3.zip`,
+  `${IMAGE_ASSETS_BASE}/YGO_Omega_Pics_v4.zip`,
+];
+const HOLOGRAM_PARTS = [
+  `${IMAGE_ASSETS_BASE}/YGO_Omega_Holograms_v1.zip`,
+  `${IMAGE_ASSETS_BASE}/YGO_Omega_Holograms_v2.zip`,
+  `${IMAGE_ASSETS_BASE}/YGO_Omega_Holograms_v3.zip`,
+  `${IMAGE_ASSETS_BASE}/YGO_Omega_Holograms_v4.zip`,
+  `${IMAGE_ASSETS_BASE}/YGO_Omega_Holograms_v5.zip`,
+  `${IMAGE_ASSETS_BASE}/YGO_Omega_Holograms_v6.zip`,
+  `${IMAGE_ASSETS_BASE}/YGO_Omega_Holograms_v7.zip`,
 ];
 
 export default function Downloads() {
@@ -44,7 +60,7 @@ export default function Downloads() {
             <div className="story-meta">Recommended</div>
             <h3 className="story-title-small mt-2">One-click Installer</h3>
             <p className="mt-2 text-sm opacity-95">
-              Installs both database and scripts automatically. Default path:
+              Installs the database, scripts, banlist, card art, full-card images, and holograms automatically. Default path:
               <code className="ml-1 rounded bg-black/20 px-1.5 py-0.5">C:\Program Files (x86)\YGO Omega</code>
             </p>
             <a className="btn mt-4 bg-white/95" href={INSTALLER_URL}>
@@ -72,6 +88,16 @@ export default function Downloads() {
                   Images v{idx + 1}
                 </a>
               ))}
+              {PIC_PARTS.map((u, idx) => (
+                <a key={u} className="btn bg-white/95" href={u}>
+                  Pics v{idx + 1}
+                </a>
+              ))}
+              {HOLOGRAM_PARTS.map((u, idx) => (
+                <a key={u} className="btn bg-white/95" href={u}>
+                  Holograms v{idx + 1}
+                </a>
+              ))}
               <button type="button" className="btn bg-white/95" onClick={handleDownloadJson}>
                 JSON Export
               </button>
@@ -96,9 +122,9 @@ export default function Downloads() {
             </div>
           </li>
           <li className="rounded-lg border border-slate-300/70 bg-white px-3 py-2">
-            Extract <code>CCG_Scripts_v1.zip</code> to
+            Extract <code>CCG_Scripts.zip</code> to
             <div className="mt-1 text-xs text-slate-500">
-              C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts\CCG_Scripts_v1
+              C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts\CCG_Scripts
             </div>
           </li>
           <li className="rounded-lg border border-slate-300/70 bg-white px-3 py-2">
@@ -108,7 +134,19 @@ export default function Downloads() {
             </div>
           </li>
           <li className="rounded-lg border border-slate-300/70 bg-white px-3 py-2">
-            Place <code>Untitled Banlist.lflist.conf</code> in
+            Extract all pic parts directly into
+            <div className="mt-1 text-xs text-slate-500">
+              C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Pics
+            </div>
+          </li>
+          <li className="rounded-lg border border-slate-300/70 bg-white px-3 py-2">
+            Extract all hologram parts directly into
+            <div className="mt-1 text-xs text-slate-500">
+              C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Holograms
+            </div>
+          </li>
+          <li className="rounded-lg border border-slate-300/70 bg-white px-3 py-2">
+            Place <code>CCG_Banlist.lflist.conf</code> in
             <div className="mt-1 text-xs text-slate-500">
               C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Banlists
             </div>

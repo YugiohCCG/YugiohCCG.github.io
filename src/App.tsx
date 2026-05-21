@@ -92,10 +92,12 @@ export default function App() {
                     {theme === "day" ? "Switch to night mode" : "Switch to day mode"}
                   </span>
                   <span className="theme-toggle-track" aria-hidden="true">
-                    <span className="theme-toggle-thumb">
-                      <span className="theme-toggle-crater theme-toggle-crater-a" />
-                      <span className="theme-toggle-crater theme-toggle-crater-b" />
-                      <span className="theme-toggle-crater theme-toggle-crater-c" />
+                    <span className="theme-toggle-thumb" />
+                    <span className="theme-toggle-attribute theme-toggle-attribute-dark">
+                      <img src="/assets/misc/DARK.svg" alt="" />
+                    </span>
+                    <span className="theme-toggle-attribute theme-toggle-attribute-light">
+                      <img src="/assets/misc/LIGHT.svg" alt="" />
                     </span>
                   </span>
                 </button>

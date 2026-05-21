@@ -6,12 +6,14 @@ export type DraftDeckSection = "main" | "extra" | "side";
 export type DraftTags = {
   handTrap: boolean;
   boardBreaker: boolean;
+  spellTrapNonEngine: boolean;
 };
 
 export type DraftPoolCard = Card & {
   source: DraftSource;
   isExtraDeck: boolean;
   draftTags: DraftTags;
+  omegaId?: string | number | null;
 };
 
 export type DraftPick = {

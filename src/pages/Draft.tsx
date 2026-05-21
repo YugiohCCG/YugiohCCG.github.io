@@ -87,7 +87,7 @@ export default function Draft() {
                 three-card offers. CCG cards target a 33% share of the pool, TCG cards target 67%,
                 extra-deck rounds mix into the first 55 picks starting slow and ramping up,
                 extra-deck offers lean harder toward your existing archetypes, side-deck picks
-                lean toward board breakers, and cards cannot appear after being chosen three times.
+                lean toward interaction, and cards cannot appear after being chosen three times.
               </p>
             </div>
 
@@ -139,9 +139,10 @@ export default function Draft() {
                   <h3 className="font-display text-3xl leading-none">How This Build Works</h3>
                   <p className="mt-2 text-sm text-slate-700">
                     The first iteration uses the full imported TCG metadata when available, merges it
-                    with the local CCG card pool, and applies a starter hand-trap and board-breaker tag
-                    overlay. That gives us a real end-to-end draft now while leaving room to tune tags,
-                    image hosting, and pack validation later.
+                    with the local CCG card pool, and applies a starter non-engine overlay for hand
+                    traps, board breakers, and generic Spell/Trap interaction. That gives us a real
+                    end-to-end draft now while leaving room to tune tags, image hosting, and pack
+                    validation later.
                   </p>
                 </div>
 
@@ -206,7 +207,7 @@ export default function Draft() {
                         </span>
                         {session.meta.specialRound && (
                           <span className="rounded-full border border-rose-300/80 bg-rose-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-rose-800">
-                            Hand Trap / Board Breaker Round
+                            Non-Engine Round
                           </span>
                         )}
                       </>
@@ -233,7 +234,7 @@ export default function Draft() {
                       className="btn btn-primary"
                       onClick={() => downloadDecklist(session.picks)}
                     >
-                      Download .txt
+                      Download Omega .ydk
                     </button>
                   )}
                 </div>
@@ -267,6 +268,11 @@ export default function Draft() {
                       {card.draftTags.boardBreaker && (
                         <span className="rounded-full border border-amber-300/80 bg-amber-100 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-amber-800">
                           Board Breaker
+                        </span>
+                      )}
+                      {card.draftTags.spellTrapNonEngine && (
+                        <span className="rounded-full border border-emerald-300/80 bg-emerald-100 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-emerald-800">
+                          Spell/Trap Non-Engine
                         </span>
                       )}
                       {card.isExtraDeck && (

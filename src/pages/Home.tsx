@@ -27,6 +27,7 @@ const sortedSets = [...(sets as any[])].sort((a, b) =>
   String(b.releaseDate ?? "").localeCompare(String(a.releaseDate ?? ""))
 );
 const OMEGA_HOME_IMAGE = "/assets/misc/Yugioh_Omega_Main.jpg";
+const setHeading = (name?: string) => String(name ?? "").toUpperCase();
 
 const addedAt = (card: Card) => {
   const time = Date.parse(card.timestamps?.added ?? "");
@@ -175,7 +176,7 @@ export default function Home() {
               <div className="story-tile-body story-tone-mint">
                 <div className="story-meta">Featured Latest Release</div>
                 <h3 className="story-title mt-2">
-                  CHRONICLES OF THE STARBORN
+                  {setHeading(hero.name)}
                 </h3>
                 {hero.description && <p className="mt-2 text-base opacity-95">{hero.description}</p>}
               </div>
@@ -219,7 +220,7 @@ export default function Home() {
                 </div>
                 <div className="story-tile-body story-tone-blue">
                   <div className="story-meta">Set Release</div>
-                  <h3 className="story-title-small mt-1">PHANTOM PARADE</h3>
+                  <h3 className="story-title-small mt-1">{setHeading(sideA.name)}</h3>
                   <p className="mt-0.5 text-sm opacity-95">Release Date: {sideA.releaseDate || "TBA"}</p>
                 </div>
               </Link>
@@ -245,7 +246,7 @@ export default function Home() {
               </div>
               <div className="story-tile-body story-tone-orange">
                 <div className="story-meta">Set Release</div>
-                <h3 className="story-title-small mt-1">DAWN OF THE ELEMENTS</h3>
+                <h3 className="story-title-small mt-1">{setHeading(sideB.name)}</h3>
                 <p className="mt-0.5 text-sm opacity-95">Release Date: {sideB.releaseDate || "TBA"}</p>
               </div>
             </Link>
@@ -266,7 +267,7 @@ export default function Home() {
               </div>
               <div className="story-tile-body story-tone-red">
                 <div className="story-meta">Set Release</div>
-                <h3 className="story-title-small mt-1">COSMIC ORIGINS</h3>
+                <h3 className="story-title-small mt-1">{setHeading(rowA.name)}</h3>
                 <p className="mt-0.5 text-sm opacity-95">Release Date: {rowA.releaseDate || "TBA"}</p>
               </div>
             </Link>
@@ -287,7 +288,7 @@ export default function Home() {
               </div>
               <div className="story-tile-body story-tone-slate">
                 <div className="story-meta">Set Release</div>
-                <h3 className="story-title-small mt-1">TAINTED TALES</h3>
+                <h3 className="story-title-small mt-1">{setHeading(rowB.name)}</h3>
                 <p className="mt-0.5 text-sm opacity-95">Release Date: {rowB.releaseDate || "TBA"}</p>
               </div>
             </Link>

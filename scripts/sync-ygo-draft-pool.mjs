@@ -42,11 +42,12 @@ function mapCardTypes(raw) {
   );
 }
 
-function draftTagsFor(name, handTrapSet, boardBreakerSet) {
+function draftTagsFor(name, handTrapSet, boardBreakerSet, spellTrapNonEngineSet) {
   const normalized = normalizeName(name);
   return {
     handTrap: handTrapSet.has(normalized),
-    boardBreaker: boardBreakerSet.has(normalized)
+    boardBreaker: boardBreakerSet.has(normalized),
+    spellTrapNonEngine: spellTrapNonEngineSet.has(normalized)
   };
 }
 
@@ -66,7 +67,7 @@ function isTcgCard(card) {
   );
 }
 
-function normalizeCard(card, handTrapSet, boardBreakerSet) {
+function normalizeCard(card, handTrapSet, boardBreakerSet, spellTrapNonEngineSet) {
   const category = mapCategory(card);
   const cardTypes = category === "Monster" ? mapCardTypes(card) : null;
   const monsterType = category === "Monster" && card?.race ? [String(card.race)] : null;
@@ -97,7 +98,7 @@ function normalizeCard(card, handTrapSet, boardBreakerSet) {
     isExtraDeck: Array.isArray(cardTypes)
       ? cardTypes.some((entry) => EXTRA_TYPES.includes(entry))
       : false,
-    draftTags: draftTagsFor(card.name, handTrapSet, boardBreakerSet),
+    draftTags: draftTagsFor(card.name, handTrapSet, boardBreakerSet, spellTrapNonEngineSet),
     timestamps: misc?.tcg_date ? { added: misc.tcg_date } : undefined
   };
 }
@@ -106,6 +107,9 @@ async function main() {
   const overrides = JSON.parse(await fs.readFile(overridesPath, "utf8"));
   const handTrapSet = new Set(overrides.handTrapNames.map(normalizeName));
   const boardBreakerSet = new Set(overrides.boardBreakerNames.map(normalizeName));
+  const spellTrapNonEngineSet = new Set(
+    overrides.spellTrapNonEngineNames.map(normalizeName)
+  );
   const excludeFragments = overrides.excludeNameFragments.map(normalizeName);
 
   const [dbVersionResponse, cardResponse] = await Promise.all([
@@ -129,7 +133,9 @@ async function main() {
 
   const normalized = cards
     .filter((card) => isTcgCard(card) && !shouldExclude(card, excludeFragments))
-    .map((card) => normalizeCard(card, handTrapSet, boardBreakerSet));
+    .map((card) =>
+      normalizeCard(card, handTrapSet, boardBreakerSet, spellTrapNonEngineSet)
+    );
 
   const output = {
     meta: {

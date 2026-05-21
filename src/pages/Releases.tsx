@@ -5,6 +5,7 @@ import { asset } from "../utils/assets";
 const RELEASE_TONE_ROTATION = ["story-tone-blue", "story-tone-mint", "story-tone-orange", "story-tone-violet", "story-tone-red", "story-tone-slate"];
 
 const RELEASE_TONES_BY_CODE: Record<string, string> = {
+  VEIL: "story-tone-mint",
   CHST: "story-tone-blue",
   PHPA: "story-tone-violet",
   DAEL: "story-tone-orange",
