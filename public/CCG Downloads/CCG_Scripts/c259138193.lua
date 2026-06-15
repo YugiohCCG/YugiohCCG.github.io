@@ -51,8 +51,11 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
 	if not c:IsRelateToEffect(e) then return end
-	local should_banish=tc and tc:IsRelateToEffect(e) and tc:IsFaceup() and s.haspositiveatkdef(tc)
-	if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 and should_banish and tc:IsRelateToEffect(e) and tc:IsAbleToRemove() then
+	local should_banish=tc and tc:IsRelateToEffect(e) and tc:IsControler(tp)
+		and tc:IsLocation(LOCATION_MZONE) and tc:IsFaceup() and s.haspositiveatkdef(tc)
+	if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 and should_banish
+		and tc:IsRelateToEffect(e) and tc:IsControler(tp)
+		and tc:IsLocation(LOCATION_MZONE) and tc:IsAbleToRemove() then
 		Duel.BreakEffect()
 		Duel.Remove(tc,POS_FACEUP,REASON_EFFECT)
 	end

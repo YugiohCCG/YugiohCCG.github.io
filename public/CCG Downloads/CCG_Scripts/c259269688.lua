@@ -45,7 +45,8 @@ function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	Duel.SetOperationInfo(0,CATEGORY_DISABLE,g,#g,0,0)
 end
 function s.relfilter(c,e)
-	return c:IsRelateToEffect(e) and c:IsFaceup()
+	return c:IsRelateToEffect(e) and c:IsControler(1-e:GetHandlerPlayer())
+		and c:IsLocation(LOCATION_MZONE) and c:IsFaceup()
 end
 function s.xyzgray(c)
 	return c:IsFaceup() and c:IsSetCard(SET_GRAYSCALE) and c:IsType(TYPE_XYZ)
@@ -101,7 +102,9 @@ function s.gytg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.gyop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0) then return end
+	if not (tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter()(tc)
+		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+		and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)) then return end
 	if Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 then
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)

@@ -3,9 +3,6 @@ local SET_GRAYSCALE=SET_GRAYSCALE or 0x575d
 local TOKEN_GRAYSCALE=98090004
 local STRING_ID=id
 function s.initial_effect(c)
-	if Duel.AddCustomActivityCounter then
-		Duel.AddCustomActivityCounter(id,ACTIVITY_SPSUMMON,s.lightfiend)
-	end
 	--Reveal 1 "Grayscale" monster; add 1 different "Grayscale" monster, then discard
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -13,6 +10,7 @@ function s.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetCountLimit(1,id)
+	e1:SetCost(s.thcost)
 	e1:SetTarget(s.thtg)
 	e1:SetOperation(s.thop)
 	c:RegisterEffect(e1)
@@ -41,23 +39,24 @@ end
 function s.thfilter(c,code)
 	return s.graymonster(c) and not c:IsCode(code) and c:IsAbleToHand()
 end
+function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.revfilter,tp,LOCATION_HAND,0,1,nil,tp) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
+	local rg=Duel.SelectMatchingCard(tp,s.revfilter,tp,LOCATION_HAND,0,1,1,nil,tp)
+	local rc=rg:GetFirst()
+	Duel.ConfirmCards(1-tp,rg)
+	Duel.ShuffleHand(tp)
+	e:SetLabel(rc:GetCode())
+end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then
-		return s.splockcheck(tp)
-			and Duel.IsExistingMatchingCard(s.revfilter,tp,LOCATION_HAND,0,1,nil,tp)
-	end
+	if chk==0 then return true end
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
 end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	s.lightfiendlock(e,tp)
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
-	local rg=Duel.SelectMatchingCard(tp,s.revfilter,tp,LOCATION_HAND,0,1,1,nil,tp)
-	local rc=rg:GetFirst()
-	if not rc then return end
-	Duel.ConfirmCards(1-tp,rg)
-	Duel.ShuffleHand(tp)
+	local code=e:GetLabel()
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
-	local sg=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil,rc:GetCode())
+	local sg=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil,code)
 	if #sg>0 and Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then
 		Duel.ConfirmCards(1-tp,sg)
 		if Duel.GetFieldGroupCount(tp,LOCATION_HAND,0)>0 then
@@ -78,8 +77,7 @@ function s.tkcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Remove(c,POS_FACEUP,REASON_COST)
 end
 function s.tktg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return s.splockcheck(tp)
-		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_GRAYSCALE,SET_GRAYSCALE,TYPE_MONSTER+TYPE_NORMAL+TYPE_TOKEN,800,800,4,RACE_FIEND,ATTRIBUTE_LIGHT) end
 	Duel.SetOperationInfo(0,CATEGORY_TOKEN,nil,1,tp,0)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,0)
@@ -108,9 +106,6 @@ function s.tokenmatlimit(e,c,sumtype)
 end
 function s.lightfiend(c)
 	return c:IsAttribute(ATTRIBUTE_LIGHT) and c:IsRace(RACE_FIEND)
-end
-function s.splockcheck(tp)
-	return not Duel.GetCustomActivityCount or Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0
 end
 function s.splimit(e,c,sump,sumtype,sumpos,targetp,se)
 	return not s.lightfiend(c)

@@ -72,26 +72,36 @@ function s.handspop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 	end
 end
-function s.l8mat(c)
-	return c:IsFaceup() and c:IsLevel(8)
+function s.xyzmatfilter(c)
+	return c:IsFaceup() and c:IsCanOverlay()
 end
-function s.l8lightfiend(c)
-	return s.l8mat(c) and c:IsAttribute(ATTRIBUTE_LIGHT) and c:IsRace(RACE_FIEND)
+function s.graymat(c)
+	return c:IsSetCard(SET_GRAYSCALE)
 end
-function s.xyzfilter(c)
-	return c:IsSetCard(SET_GRAYSCALE) and c:IsType(TYPE_XYZ) and c:IsRank(8)
+function s.xyzselect(sg,xc)
+	return sg:IsExists(s.graymat,1,nil) and xc:IsXyzSummonable(sg,#sg,#sg)
+end
+function s.xyzfilter(c,mg)
+	return c:IsSetCard(SET_GRAYSCALE) and c:IsType(TYPE_XYZ)
+		and mg:CheckSubGroup(s.xyzselect,1,#mg,c)
 end
 function s.xyztg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetMatchingGroupCount(s.l8mat,tp,LOCATION_MZONE,0,nil)>=2
-		and Duel.IsExistingMatchingCard(s.l8lightfiend,tp,LOCATION_MZONE,0,1,nil)
-		and Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_EXTRA,0,1,nil) end
+	local mg=Duel.GetMatchingGroup(s.xyzmatfilter,tp,LOCATION_MZONE,0,nil)
+	if chk==0 then return #mg>0 and Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_EXTRA,0,1,nil,mg) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 end
 function s.xyzop(e,tp,eg,ep,ev,re,r,rp)
+	local mg=Duel.GetMatchingGroup(s.xyzmatfilter,tp,LOCATION_MZONE,0,nil)
+	local exg=Duel.GetMatchingGroup(s.xyzfilter,tp,LOCATION_EXTRA,0,nil,mg)
+	if #exg==0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local tc=Duel.SelectMatchingCard(tp,s.xyzfilter,tp,LOCATION_EXTRA,0,1,1,nil):GetFirst()
+	local tc=exg:Select(tp,1,1,nil):GetFirst()
 	if tc then
-		Duel.XyzSummon(tp,tc,nil)
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
+		local mat=mg:SelectSubGroup(tp,s.xyzselect,false,1,#mg,tc)
+		if mat then
+			Duel.XyzSummon(tp,tc,mat,#mat,#mat)
+		end
 	end
 end
 function s.linkspfilter(c,tp)

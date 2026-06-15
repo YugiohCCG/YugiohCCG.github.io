@@ -37,6 +37,7 @@ function s.initial_effect(c)
 	e2:SetCountLimit(1,id+100)
 	e2:SetCondition(s.chcon)
 	e2:SetCost(s.detach1)
+	e2:SetTarget(s.chtg)
 	e2:SetOperation(s.chop)
 	c:RegisterEffect(e2)
 end
@@ -79,6 +80,15 @@ function s.chcon(e,tp,eg,ep,ev,re,r,rp)
 	local loc=re:GetActivateLocation()
 	return rp==1-tp and (loc==LOCATION_GRAVE or loc==LOCATION_REMOVED)
 end
+function s.repfilter(c,p,e)
+	local zone=c:GetLinkedZone(p)&ZONES_MMZ
+	return s.linkfilter(c,p,e)
+		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),p,LOCATION_GRAVE,0,1,nil,e,p,zone)
+end
+function s.chtg(e,tp,eg,ep,ev,re,r,rp,chk)
+	local p=1-tp
+	if chk==0 then return Duel.IsExistingMatchingCard(s.repfilter,p,LOCATION_MZONE,0,1,nil,p,e) end
+end
 function s.chop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ChangeTargetCard(ev,Group.CreateGroup())
 	Duel.ChangeChainOperation(ev,s.repop)
@@ -90,9 +100,9 @@ function s.linkfilter(c,p,e)
 end
 function s.repop(e,tp,eg,ep,ev,re,r,rp)
 	local p=1-tp
-	if not Duel.IsExistingMatchingCard(s.linkfilter,p,LOCATION_MZONE,0,1,nil,p,e) then return end
+	if not Duel.IsExistingMatchingCard(s.repfilter,p,LOCATION_MZONE,0,1,nil,p,e) then return end
 	Duel.Hint(HINT_SELECTMSG,p,HINTMSG_FACEUP)
-	local lc=Duel.SelectMatchingCard(p,s.linkfilter,p,LOCATION_MZONE,0,1,1,nil,p,e):GetFirst()
+	local lc=Duel.SelectMatchingCard(p,s.repfilter,p,LOCATION_MZONE,0,1,1,nil,p,e):GetFirst()
 	if not lc then return end
 	local zone=lc:GetLinkedZone(p)&ZONES_MMZ
 	if zone==0 then return end

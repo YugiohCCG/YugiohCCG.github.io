@@ -27,10 +27,14 @@
     "vite": "^7.1.1"
   },
   "scripts": {
+    "predev": "node scripts/sync-public-cards.cjs",
     "dev": "vite",
+    "prebuild": "node scripts/sync-public-cards.cjs",
     "build": "tsc --noEmit && vite build",
     "postbuild": "node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
     "preview": "vite preview",
+    "sync:public-cards": "node scripts/sync-public-cards.cjs",
+    "verify:public-cards": "node scripts/sync-public-cards.cjs --check",
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",

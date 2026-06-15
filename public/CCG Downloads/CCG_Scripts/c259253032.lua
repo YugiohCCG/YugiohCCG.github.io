@@ -40,7 +40,7 @@ function s.initial_effect(c)
 	--Remove counters, destroy your card, negate, gain ATK
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(id,1))
-	e4:SetCategory(CATEGORY_DESTROY+CATEGORY_ATKCHANGE)
+	e4:SetCategory(CATEGORY_DESTROY+CATEGORY_DISABLE+CATEGORY_ATKCHANGE)
 	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetCode(EVENT_FREE_CHAIN)
 	e4:SetRange(LOCATION_MZONE)
@@ -116,13 +116,17 @@ function s.cttg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local g2=Duel.SelectTarget(tp,s.ownfilter,tp,LOCATION_ONFIELD,0,1,1,nil)
 	g1:Merge(g2)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g2,1,0,0)
+	Duel.SetOperationInfo(0,CATEGORY_DISABLE,g1,1,0,0)
 end
 function s.ctop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
 	if not g then return end
 	local oc=g:Filter(Card.IsControler,nil,1-tp):GetFirst()
 	local mc=g:Filter(Card.IsControler,nil,tp):GetFirst()
-	if not (oc and oc:IsRelateToEffect(e) and oc:IsFaceup() and mc and mc:IsRelateToEffect(e)) then return end
+	if not (oc and oc:IsRelateToEffect(e) and oc:IsControler(1-tp)
+		and oc:IsLocation(LOCATION_MZONE) and s.oppctfilter(oc)
+		and mc and mc:IsRelateToEffect(e) and mc:IsControler(tp)
+		and mc:IsOnField() and s.ownfilter(mc)) then return end
 	local ct=oc:GetCounter(COUNTER_CORRUPTION)
 	if ct<=0 then return end
 	oc:RemoveCounter(tp,COUNTER_CORRUPTION,ct,REASON_EFFECT)

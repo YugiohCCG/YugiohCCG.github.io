@@ -46,7 +46,8 @@ function s.registerlimit(e,tc,code)
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and tc:IsFaceup()) then return end
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsControler(1-tp)
+		and tc:IsLocation(LOCATION_MZONE) and tc:IsFaceup()) then return end
 	s.registerlimit(e,tc,EFFECT_UNRELEASABLE_SUM)
 	s.registerlimit(e,tc,EFFECT_UNRELEASABLE_NONSUM)
 	s.registerlimit(e,tc,EFFECT_CANNOT_BE_FUSION_MATERIAL)

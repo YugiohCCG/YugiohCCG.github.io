@@ -41,7 +41,8 @@ function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and tc:IsFaceup()) then return end
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsControler(tp)
+		and tc:IsLocation(LOCATION_MZONE) and tc:IsFaceup()) then return end
 	local code=tc:GetCode()
 	local atk=tc:GetAttack()
 	local def=s.defvalue(tc)
@@ -53,7 +54,8 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.SendtoHand(sc,nil,REASON_EFFECT)
 	if sc:IsLocation(LOCATION_HAND) then
 		Duel.ConfirmCards(1-tp,sc)
-		if should_banish and tc:IsRelateToEffect(e) and tc:IsAbleToRemove() then
+		if should_banish and tc:IsRelateToEffect(e) and tc:IsControler(tp)
+			and tc:IsLocation(LOCATION_MZONE) and tc:IsAbleToRemove() then
 			Duel.BreakEffect()
 			Duel.Remove(tc,POS_FACEUP,REASON_EFFECT)
 		end

@@ -27,7 +27,7 @@ function s.initial_effect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_CHAINING)
-	e2:SetRange(LOCATION_SZONE)
+	e2:SetRange(LOCATION_FZONE)
 	e2:SetCountLimit(1,id)
 	e2:SetCondition(s.atkcon)
 	e2:SetOperation(s.atkop)
@@ -38,7 +38,7 @@ function s.initial_effect(c)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
-	e3:SetRange(LOCATION_SZONE)
+	e3:SetRange(LOCATION_FZONE)
 	e3:SetCountLimit(1,id+100)
 	e3:SetCondition(s.lvcon)
 	e3:SetTarget(s.lvtg)
@@ -105,7 +105,8 @@ function s.lvtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.lvop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and tc:IsFaceup()) then return end
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsControler(tp)
+		and tc:IsLocation(LOCATION_MZONE) and s.tgfilter(tc,e)) then return end
 	local canup=true
 	local candown=tc:GetLevel()>3
 	local opt=0

@@ -52,7 +52,9 @@ function s.attachtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.attachop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and not tc:IsType(TYPE_TOKEN)) then return end
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsControler(1-tp)
+		and tc:IsLocation(LOCATION_MZONE) and not tc:IsType(TYPE_TOKEN)) then return end
+	if not Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_MZONE,0,1,nil) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local xc=Duel.SelectMatchingCard(tp,s.xyzfilter,tp,LOCATION_MZONE,0,1,1,nil):GetFirst()
 	if xc then

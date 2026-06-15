@@ -105,10 +105,10 @@ end
 function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsReason(REASON_BATTLE+REASON_EFFECT)
 		and not e:GetHandler():IsReason(REASON_REPLACE)
-		and Duel.IsExistingMatchingCard(s.repfilter,tp,LOCATION_GRAVE,0,1,nil) end
+		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.repfilter),tp,LOCATION_GRAVE,0,1,nil) end
 	if Duel.SelectEffectYesNo(tp,e:GetHandler(),aux.Stringid(STRING_ID,2)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-		local g=Duel.SelectMatchingCard(tp,s.repfilter,tp,LOCATION_GRAVE,0,1,1,nil)
+		local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.repfilter),tp,LOCATION_GRAVE,0,1,1,nil)
 		if #g>0 then
 			e:SetLabelObject(g:GetFirst())
 			return true
@@ -118,7 +118,7 @@ function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.repop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=e:GetLabelObject()
-	if tc and tc:IsAbleToRemove() then
+	if tc and tc:IsAbleToRemove() and aux.NecroValleyFilter()(tc) then
 		Duel.Remove(tc,POS_FACEUP,REASON_EFFECT+REASON_REPLACE)
 	end
 end

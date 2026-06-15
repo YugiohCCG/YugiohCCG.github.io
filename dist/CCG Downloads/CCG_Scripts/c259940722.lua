@@ -138,7 +138,8 @@ function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD,0,1)
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) then
+	if tc and tc:IsRelateToEffect(e) and tc:IsControler(1-tp)
+		and tc:IsOnField() and tc:IsDestructable() then
 		Duel.Destroy(tc,REASON_EFFECT)
 	end
 end

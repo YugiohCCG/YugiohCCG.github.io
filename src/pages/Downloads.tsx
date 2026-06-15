@@ -124,7 +124,7 @@ export default function Downloads() {
           <li className="rounded-lg border border-slate-300/70 bg-white px-3 py-2">
             Extract <code>CCG_Scripts.zip</code> to
             <div className="mt-1 text-xs text-slate-500">
-              C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts\CCG_Scripts
+              C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts
             </div>
           </li>
           <li className="rounded-lg border border-slate-300/70 bg-white px-3 py-2">

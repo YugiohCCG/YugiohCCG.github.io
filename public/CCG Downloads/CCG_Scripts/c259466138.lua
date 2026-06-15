@@ -21,8 +21,12 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--A monster equipped with this card can attack all opponent's monsters once each
 	local e3=Effect.CreateEffect(c)
-	e3:SetType(EFFECT_TYPE_EQUIP)
+	e3:SetType(EFFECT_TYPE_FIELD)
 	e3:SetCode(EFFECT_ATTACK_ALL)
+	e3:SetRange(LOCATION_SZONE)
+	e3:SetTargetRange(LOCATION_MZONE,0)
+	e3:SetCondition(s.eqcon)
+	e3:SetTarget(s.atktg)
 	e3:SetValue(1)
 	c:RegisterEffect(e3)
 	--Register the turn this card was sent to the GY
@@ -53,6 +57,12 @@ function s.isredeyes(c)
 end
 function s.stfilter(c)
 	return s.isredeyes(c) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsAbleToHand()
+end
+function s.eqcon(e)
+	return e:GetHandler():GetEquipTarget()~=nil
+end
+function s.atktg(e,c)
+	return c==e:GetHandler():GetEquipTarget()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.stfilter,tp,LOCATION_DECK,0,1,nil) end
@@ -102,7 +112,7 @@ end
 function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
 	if not g then return end
-	g=g:Filter(Card.IsRelateToEffect,nil,e)
+	g=g:Filter(function(c) return c:IsRelateToEffect(e) and s.tdfilter(c,e) end,nil)
 	if #g==0 then return end
 	local rg=g:Filter(Card.IsCode,nil,RED_EYES_BLACK_DRAGON)
 	local ct=Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
