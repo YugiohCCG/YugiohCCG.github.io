@@ -34,7 +34,8 @@ function s.tgfilter(c,tp)
 	if s.owner(c)==tp then
 		return Duel.IsPlayerCanDraw(tp,1)
 	end
-	return Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_EXTRA,0,1,nil,tp)
+	local mg=s.xyzmatgroup(tp)
+	return Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_EXTRA,0,1,nil,mg)
 end
 function s.tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter(s.tgfilter)(chkc,tp) end
@@ -49,36 +50,33 @@ function s.tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 		Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 	end
 end
-function s.xyzfilter(c,tp)
-	if not (c:IsSetCard(SET_AIP) and c:IsType(TYPE_XYZ)) then return false end
-	if c:IsCode(CALLER) then
-		return Duel.GetMatchingGroupCount(s.l6filter,tp,LOCATION_MZONE,0,nil,tp)>=2
-	elseif c:IsCode(ZERO_MOTHER) then
-		return Duel.GetMatchingGroupCount(s.l9filter,tp,LOCATION_MZONE,0,nil)>=2
-	end
-	return false
+function s.xyzmatfilter(c)
+	return c:IsFaceup() and c:IsType(TYPE_MONSTER)
 end
-function s.l6filter(c,tp)
-	return c:IsFaceup() and c:IsType(TYPE_MONSTER) and (c:IsLevel(6) or s.owner(c)~=tp)
+function s.xyzmatgroup(tp)
+	return Duel.GetMatchingGroup(s.xyzmatfilter,tp,LOCATION_MZONE,0,nil)
 end
-function s.l9filter(c)
-	return c:IsFaceup() and c:IsLevel(9)
+function s.xyzfilter(c,mg)
+	return c:IsSetCard(SET_AIP) and c:IsType(TYPE_XYZ)
+		and c:IsCode(CALLER,ZERO_MOTHER) and c:IsXyzSummonable(mg)
 end
 function s.op(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e)) then return end
+	if not (tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter()(tc) and tc:IsAbleToDeck()) then return end
 	local owner=s.owner(tc)
 	if Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==0 then return end
 	if owner==tp then
 		if Duel.IsPlayerCanDraw(tp,1) then
 			Duel.Draw(tp,1,REASON_EFFECT)
 		end
-	elseif Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_EXTRA,0,1,nil,tp) then
+	else
+		local mg=s.xyzmatgroup(tp)
+		if not Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_EXTRA,0,1,nil,mg) then return end
 		Duel.BreakEffect()
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-		local xc=Duel.SelectMatchingCard(tp,s.xyzfilter,tp,LOCATION_EXTRA,0,1,1,nil,tp):GetFirst()
+		local xc=Duel.SelectMatchingCard(tp,s.xyzfilter,tp,LOCATION_EXTRA,0,1,1,nil,mg):GetFirst()
 		if xc then
-			Duel.XyzSummon(tp,xc,nil)
+			Duel.XyzSummon(tp,xc,mg)
 		end
 	end
 end

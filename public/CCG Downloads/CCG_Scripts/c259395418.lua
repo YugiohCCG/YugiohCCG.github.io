@@ -47,7 +47,8 @@ function s.massspfilter(c,e,tp)
 	return s.isgb(c) and not c:IsCode(id) and c:IsCanBeSpecialSummoned(e,100,tp,false,false)
 end
 function s.relfilter(c,e)
-	return c:IsRelateToEffect(e)
+	return c:IsRelateToEffect(e) and c:IsControler(e:GetHandlerPlayer())
+		and c:IsLocation(LOCATION_MZONE) and s.tdfilter(c,e)
 end
 function s.masssptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local tg=Duel.GetMatchingGroup(s.tdfilter,tp,LOCATION_MZONE,0,nil,e)

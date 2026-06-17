@@ -23,6 +23,7 @@ function s.initial_effect(c)
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetRange(LOCATION_SZONE)
 	e3:SetCountLimit(1,id)
+	e3:SetCost(s.effcost)
 	e3:SetTarget(s.efftg)
 	e3:SetOperation(s.effop)
 	c:RegisterEffect(e3)
@@ -34,16 +35,22 @@ end
 function s.graymonster(c)
 	return c:IsSetCard(SET_GRAYSCALE) and c:IsType(TYPE_MONSTER)
 end
+function s.graycostfilter(c)
+	return s.graymonster(c) and c:IsDiscardable()
+end
 function s.setfilter(c)
 	return c:IsSetCard(SET_GRAYSCALE) and not c:IsCode(id)
 		and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) and c:IsSSetable()
 end
-function s.efftg(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.setcostfilter(c)
+	return c:IsDiscardable() and s.setfilter(c)
+end
+function s.effcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local can1=Duel.IsPlayerCanDraw(tp,1)
-		and Duel.IsExistingMatchingCard(s.graymonster,tp,LOCATION_HAND,0,1,nil)
+		and Duel.IsExistingMatchingCard(s.graycostfilter,tp,LOCATION_HAND,0,1,nil)
 	local can2=Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and Duel.GetFieldGroupCount(tp,LOCATION_HAND,0)>0
-		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil)
+		and (Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil)
+			or Duel.IsExistingMatchingCard(s.setcostfilter,tp,LOCATION_HAND,0,1,nil))
 	if chk==0 then return can1 or can2 end
 	local opt=0
 	if can1 and can2 then
@@ -53,22 +60,43 @@ function s.efftg(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 	e:SetLabel(opt)
 	if opt==0 then
-		Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD)
+		Duel.DiscardHand(tp,s.graycostfilter,1,1,REASON_COST+REASON_DISCARD)
+	else
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD)
+		local discard_filter=Card.IsDiscardable
+		if not Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil) then
+			discard_filter=s.setcostfilter
+		end
+		Duel.DiscardHand(tp,discard_filter,1,1,REASON_COST+REASON_DISCARD)
 	end
+end
+function s.efftg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+	local opt=e:GetLabel()
+	if chkc then return opt==1 and chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE)
+		and aux.NecroValleyFilter(s.setfilter)(chkc) end
+	if opt==0 then
+		if chk==0 then return true end
+		Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
+		return
+	end
+	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0
+		and Duel.IsExistingTarget(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
+	local g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,1,nil)
+	Duel.SetOperationInfo(0,CATEGORY_LEAVE_GRAVE,g,1,tp,LOCATION_GRAVE)
 end
 function s.effop(e,tp,eg,ep,ev,re,r,rp)
 	local opt=e:GetLabel()
 	if opt==0 then
-		if Duel.DiscardHand(tp,s.graymonster,1,1,REASON_EFFECT+REASON_DISCARD)>0 then
+		if Duel.IsPlayerCanDraw(tp,1) then
 			Duel.Draw(tp,1,REASON_EFFECT)
 		end
 	else
-		if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end
-		if Duel.DiscardHand(tp,aux.TRUE,1,1,REASON_EFFECT+REASON_DISCARD)<=0 then return end
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
-		local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,1,nil)
-		if #g>0 then
-			Duel.SSet(tp,g)
+		local tc=Duel.GetFirstTarget()
+		if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter()(tc)
+			and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 then
+			Duel.SSet(tp,tc)
 		end
 	end
 end

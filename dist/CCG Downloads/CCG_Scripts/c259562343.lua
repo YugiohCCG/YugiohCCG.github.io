@@ -93,7 +93,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 		end
 	elseif e:GetLabel()==2 then
 		local tc=Duel.GetFirstTarget()
-		if not tc or not tc:IsRelateToEffect(e) or not tc:IsFaceup() then return end
+		if not (tc and tc:IsRelateToEffect(e) and tc:IsLocation(LOCATION_MZONE) and tc:IsFaceup()) then return end
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_EQUIP)
 		local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.eqfilter),tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil)
 		local ec=g:GetFirst()
@@ -156,13 +156,15 @@ function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 			tc:SetMaterial(mat1)
 			Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
 			Duel.BreakEffect()
-			Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)
+			if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then
+				tc:CompleteProcedure()
+			end
 		elseif ce then
 			local mat2=Duel.SelectFusionMaterial(tp,tc,mg2,nil,chkf)
 			if not mat2 or #mat2==0 then goto cancel end
 			local fop=ce:GetOperation()
 			fop(ce,e,tp,tc,mat2)
+			tc:CompleteProcedure()
 		end
-		tc:CompleteProcedure()
 	end
 end

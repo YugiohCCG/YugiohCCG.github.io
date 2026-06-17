@@ -32,6 +32,7 @@ function s.initial_effect(c)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetCountLimit(1,id)
 	e2:SetCondition(s.spcon)
+	e2:SetCost(s.spcost)
 	e2:SetTarget(s.sptg)
 	e2:SetOperation(s.spop)
 	c:RegisterEffect(e2)
@@ -65,7 +66,8 @@ end
 function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
 	if not g then return end
-	local dg=g:Filter(Card.IsRelateToEffect,nil,e):Filter(Card.IsOnField,nil)
+	local dg=g:Filter(function(c) return c:IsRelateToEffect(e) and c:IsOnField()
+		and c:IsFaceup() and c:IsDestructable() end,nil)
 	if #dg>0 and Duel.Destroy(dg,REASON_EFFECT)>0 then
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_FIELD)
@@ -83,25 +85,31 @@ end
 function s.spfilter(c,e,tp)
 	return s.isharpielady(c) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
-function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	local ct=c:GetMaterialCount()
-	if chkc then return false end
-	if chk==0 then return ct>0 and Duel.GetMZoneCount(tp,c)>=ct
+	if chk==0 then return ct>0 and c:IsReleasable()
+		and Duel.GetMZoneCount(tp,c)>=ct
 		and Duel.IsExistingTarget(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE,0,ct,nil,e,tp) end
+	e:SetLabel(ct)
+	Duel.Release(c,REASON_COST)
+end
+function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+	local ct=e:GetLabel()
+	if chkc then return false end
+	if chk==0 then return true end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE,0,ct,ct,nil,e,tp)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,g,#g,tp,LOCATION_GRAVE)
 	e:SetLabel(#g)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
 	local ct=e:GetLabel()
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
 	if not g or #g==0 then return end
-	local sg=g:Filter(Card.IsRelateToEffect,nil,e)
+	local sg=g:Filter(function(c) return c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)
+		and s.spfilter(c,e,tp) end,nil)
 	if #sg==0 or Duel.GetLocationCount(tp,LOCATION_MZONE)<#sg then return end
-	if c:IsRelateToEffect(e) and Duel.Release(c,REASON_EFFECT)==0 then return end
 	local sc=Duel.SpecialSummon(sg,0,tp,tp,false,false,POS_FACEUP)
 	if sc>0 then
 		local fg=Duel.GetMatchingGroup(Card.IsAbleToHand,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,nil)

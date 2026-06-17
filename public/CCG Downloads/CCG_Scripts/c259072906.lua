@@ -124,8 +124,9 @@ function s.pzritop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ReleaseRitualMaterial(mat)
 	Duel.BreakEffect()
 	for tc in aux.Next(sg) do
-		Duel.SpecialSummonStep(tc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)
-		tc:CompleteProcedure()
+		if Duel.SpecialSummonStep(tc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP) then
+			tc:CompleteProcedure()
+		end
 	end
 	Duel.SpecialSummonComplete()
 end
@@ -161,6 +162,7 @@ end
 function s.ritfilter(c,e,tp)
 	return c:IsRace(RACE_CYBERSE) and c:IsType(TYPE_RITUAL)
 		and (not c:IsLocation(LOCATION_EXTRA) or c:IsFaceup())
+		and (not c:IsLocation(LOCATION_EXTRA) or Duel.GetLocationCountFromEx(tp,tp,nil,c)>0)
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true)
 end
 function s.ritmatfilter(c,rc)
@@ -195,6 +197,7 @@ function s.ritop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 	local mat=mg:SelectSubGroup(tp,s.ritcheck,true,1,#mg,rc:GetLevel())
 	if not mat then goto cancel end
+	if rc:IsLocation(LOCATION_EXTRA) and Duel.GetLocationCountFromEx(tp,tp,nil,rc)<=0 then return end
 	rc:SetMaterial(mat)
 	local handmat=mat:Filter(Card.IsLocation,nil,LOCATION_HAND)
 	local deckmat=mat:Filter(Card.IsLocation,nil,LOCATION_DECK)

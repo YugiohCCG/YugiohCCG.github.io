@@ -102,26 +102,32 @@ function s.sendcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil) end
 	Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_COST+REASON_DISCARD,nil)
 end
-function s.stfilter(c)
-	return c:IsSetCard(SET_GLITCHLING) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsAbleToGrave()
+function s.stfilter(c,e,tp)
+	if not (c:IsSetCard(SET_GLITCHLING) and c:IsType(TYPE_SPELL+TYPE_TRAP)
+		and c:IsAbleToGrave()) then return false end
+	if c:IsCode(CARD_DATA_TRANSFERT) then
+		return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.ritfilter),tp,s.ritloc(tp),0,1,nil,e,tp)
+	end
+	return c:IsCode(CARD_CORRUPTION)
 end
 function s.sendtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.stfilter,tp,LOCATION_DECK,0,1,nil) end
+	if chk==0 then return Duel.IsExistingMatchingCard(s.stfilter,tp,LOCATION_DECK,0,1,nil,e,tp) end
 	s.register_lock(e,tp)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_DECK)
 end
 function s.sendop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
-	local g=Duel.SelectMatchingCard(tp,s.stfilter,tp,LOCATION_DECK,0,1,1,nil)
+	local g=Duel.SelectMatchingCard(tp,s.stfilter,tp,LOCATION_DECK,0,1,1,nil,e,tp)
 	local tc=g:GetFirst()
-	if not tc or Duel.SendtoGrave(tc,REASON_EFFECT)==0 or not tc:IsLocation(LOCATION_GRAVE) then return end
+	if not tc or Duel.SendtoGrave(g,REASON_EFFECT)==0 or not tc:IsLocation(LOCATION_GRAVE) then return end
+	Duel.BreakEffect()
+	local applied=false
 	if tc:IsCode(CARD_DATA_TRANSFERT) then
-		Duel.BreakEffect()
-		s.dataop(e,tp)
+		applied=s.dataop(e,tp)
 	elseif tc:IsCode(CARD_CORRUPTION) then
-		Duel.BreakEffect()
-		s.corruptionop(e,tp)
+		applied=s.corruptionop(e,tp)
 	end
+	if not applied then return end
 	if Duel.IsExistingMatchingCard(Card.IsCanAddCounter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil,COUNTER_CORRUPTION,1)
 		and Duel.SelectYesNo(tp,aux.Stringid(id,2)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
@@ -136,13 +142,18 @@ function s.corruptionthfilter(c)
 end
 function s.corruptionop(e,tp)
 	if Duel.IsExistingMatchingCard(s.corruptionthfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,nil) then
+		if not Duel.SelectYesNo(tp,aux.Stringid(CARD_CORRUPTION,0)) then return true end
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local g=Duel.SelectMatchingCard(tp,s.corruptionthfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,1,nil)
 		if #g>0 then
-			Duel.SendtoHand(g,nil,REASON_EFFECT)
-			Duel.ConfirmCards(1-tp,g)
+			if Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
+				Duel.ConfirmCards(1-tp,g)
+				return true
+			end
+			return false
 		end
 	end
+	return true
 end
 function s.normalfilter(c)
 	return c:IsFaceup() and c:IsCode(CARD_BITRON,CARD_PROTRON,CARD_DIGITRON)
@@ -193,12 +204,12 @@ function s.ritfilter(c,e,tp)
 	return mg:CheckSubGroup(s.matcheck,1,#mg,lv,s.countercap(tp,lv))
 end
 function s.dataop(e,tp)
-	if not Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.ritfilter),tp,s.ritloc(tp),0,1,nil,e,tp) then return end
+	if not Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.ritfilter),tp,s.ritloc(tp),0,1,nil,e,tp) then return false end
 	::cancel::
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local tg=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.ritfilter),tp,s.ritloc(tp),0,1,1,nil,e,tp)
 	local rc=tg:GetFirst()
-	if not rc then return end
+	if not rc then return false end
 	local lv=rc:GetLevel()
 	local mg=s.matgroup(tp,rc)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
@@ -215,5 +226,7 @@ function s.dataop(e,tp)
 	Duel.BreakEffect()
 	if Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
 		rc:CompleteProcedure()
+		return true
 	end
+	return false
 end

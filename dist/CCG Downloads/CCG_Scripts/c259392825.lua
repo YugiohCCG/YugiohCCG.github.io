@@ -27,7 +27,7 @@ function s.initial_effect(c)
 	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetHintTiming(0,TIMINGS_CHECK_MONSTER+TIMING_END_PHASE)
-	e2:SetCountLimit(3,98091016)
+	e2:SetCountLimit(3)
 	e2:SetCondition(s.immcon)
 	e2:SetCost(s.immcost)
 	e2:SetTarget(s.immtg)
@@ -117,7 +117,7 @@ function s.immval(e,re)
 end
 function s.immop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not tc or not tc:IsRelateToEffect(e) then return end
+	if not (tc and tc:IsRelateToEffect(e) and s.tgfilter(tc,e,tp)) then return end
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_IMMUNE_EFFECT)

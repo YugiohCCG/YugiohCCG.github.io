@@ -135,14 +135,16 @@ function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 			tc:SetMaterial(mat1)
 			Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
 			Duel.BreakEffect()
-			Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)
+			if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then
+				tc:CompleteProcedure()
+			end
 		elseif ce then
 			local mat2=Duel.SelectFusionMaterial(tp,tc,mg2,nil,chkf)
 			if not mat2 or #mat2==0 then goto cancel end
 			local fop=ce:GetOperation()
 			fop(ce,e,tp,tc,mat2)
+			tc:CompleteProcedure()
 		end
-		tc:CompleteProcedure()
 	end
 end
 function s.fmeqcon(e,tp,eg,ep,ev,re,r,rp)
@@ -163,7 +165,9 @@ end
 function s.fmeqop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c) and tc and tc:IsRelateToEffect(e) and tc:IsFaceup() then
+	if c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)
+		and tc and tc:IsRelateToEffect(e) and tc:IsControler(tp)
+		and tc:IsLocation(LOCATION_MZONE) and s.fmeqfilter(tc,e) then
 		s.equipcard(e,tp,c,tc)
 	end
 end

@@ -32,7 +32,7 @@ function s.initial_effect(c)
 	e4:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e4:SetRange(LOCATION_MZONE)
 	e4:SetHintTiming(0,TIMINGS_CHECK_MONSTER+TIMING_END_PHASE)
-	e4:SetCountLimit(1,98091006)
+	e4:SetCountLimit(1)
 	e4:SetCost(s.descost)
 	e4:SetTarget(s.destg)
 	e4:SetOperation(s.desop)
@@ -50,7 +50,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	if not c:IsRelateToEffect(e) then return end
 	if not Duel.IsPlayerCanSpecialSummonMonster(tp,id,0,TYPE_EFFECT_TRAP_MONSTER,0,0,10,RACE_BEAST,ATTRIBUTE_DARK) then return end
 	c:AddMonsterAttribute(TYPE_EFFECT+TYPE_TRAP,ATTRIBUTE_DARK,RACE_BEAST,10,0,0)
-	Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)
+	Duel.SpecialSummon(c,SUMMON_VALUE_SELF,tp,tp,true,false,POS_FACEUP)
 end
 function s.val(e,c)
 	return Duel.GetMatchingGroupCount(Card.IsFacedown,e:GetHandlerPlayer(),LOCATION_REMOVED,LOCATION_REMOVED,nil)*500
@@ -77,7 +77,7 @@ function s.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) then
+	if tc and tc:IsRelateToEffect(e) and s.desfilter(tc,tp) then
 		Duel.Destroy(tc,REASON_EFFECT)
 	end
 end

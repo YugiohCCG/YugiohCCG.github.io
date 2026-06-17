@@ -63,7 +63,7 @@ function s.detach2(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:GetHandler():RemoveOverlayCard(tp,2,2,REASON_COST)
 end
 function s.chcon(e,tp,eg,ep,ev,re,r,rp)
-	return rp==1-tp and re:IsActiveType(TYPE_SPELL+TYPE_TRAP)
+	return rp==1-tp and re:IsActiveType(TYPE_SPELL+TYPE_TRAP) and re:IsHasType(EFFECT_TYPE_ACTIVATE)
 end
 function s.spellfilter(c,e)
 	return c:IsType(TYPE_SPELL) and c:IsCanBeEffectTarget(e)
@@ -81,7 +81,8 @@ function s.chtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.chop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not tc then return end
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsLocation(LOCATION_GRAVE)
+		and aux.NecroValleyFilter()(tc)) then return end
 	re:SetLabelObject(tc)
 	Duel.ChangeTargetCard(ev,Group.FromCards(tc))
 	Duel.ChangeChainOperation(ev,s.repop)
@@ -89,7 +90,7 @@ end
 function s.repop(e,tp,eg,ep,ev,re,r,rp)
 	local p=1-tp
 	local tc=e:GetLabelObject()
-	if not (tc and tc:IsLocation(LOCATION_GRAVE)) then return end
+	if not (tc and tc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter()(tc)) then return end
 	if not Duel.IsExistingMatchingCard(s.xyzgray,p,LOCATION_MZONE,0,1,nil) then return end
 	Duel.Hint(HINT_SELECTMSG,p,HINTMSG_FACEUP)
 	local xc=Duel.SelectMatchingCard(p,s.xyzgray,p,LOCATION_MZONE,0,1,1,nil):GetFirst()
@@ -110,7 +111,7 @@ function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) then
+	if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter()(tc) and tc:IsAbleToHand() then
 		Duel.SendtoHand(tc,nil,REASON_EFFECT)
 	end
 end

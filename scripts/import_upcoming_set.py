@@ -139,9 +139,16 @@ NAME_OVERRIDES = {
 }
 
 SPELL_TRAP_ICON_OVERRIDES = {
+    "A.I.P Ex Hive Mind": "Continuous",
+    "A.I.P Lab": "Field",
+    "Charmelia Pray": "Ritual",
     "Glitchling Data-Transfert": "Ritual",
     "Heart of the Cards": "Normal",
+    "Nemleria's Dream Bedroom": "Field",
+    "Nemleria's Nightmare": "Continuous",
     "Spellbook of Eclipse": "Quick-Play",
+    "Stellaer's Pain": "Counter",
+    "Wyvernal Sanctuary": "Field",
 }
 
 CARD_TYPE_OVERRIDES = {

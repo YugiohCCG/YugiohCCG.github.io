@@ -96,7 +96,9 @@ function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) and tc:IsFaceup() then
+	if tc and tc:IsRelateToEffect(e) and tc:IsControler(1-tp)
+		and tc:IsLocation(LOCATION_MZONE) and tc:IsFaceup() and not tc:IsDisabled() then
+		Duel.NegateRelatedChain(tc,RESET_TURN_SET)
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetCode(EFFECT_DISABLE)

@@ -15,6 +15,11 @@ PUBLIC_ROOT = REPO_ROOT / "public"
 # Level stars sit on fixed slots in the custom card renders after resizing.
 LEVEL_SLOT_CENTERS = [186 + 92 * index for index in range(12)]
 
+# Full-art/imported layouts can put artwork circles inside the normal star ROI.
+IMAGE_LEVEL_OVERRIDES = {
+    "Ether Mademoiselle": 10,
+}
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -118,6 +123,8 @@ def main() -> int:
         if detected_level is None:
             unreadable.append((card, str(image_path)))
             continue
+
+        detected_level = IMAGE_LEVEL_OVERRIDES.get(card["name"], detected_level)
 
         if detected_level != card.get("level"):
             mismatches.append((card, detected_level, slots))

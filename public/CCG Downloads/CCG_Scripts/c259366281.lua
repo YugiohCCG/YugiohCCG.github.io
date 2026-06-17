@@ -84,7 +84,8 @@ function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 or not c:IsRelateToEffect(e) then return end
+	if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 or not c:IsRelateToEffect(e)
+		or not aux.NecroValleyFilter()(c) then return end
 	if Duel.SSet(tp,c)>0 then
 		local e1=Effect.CreateEffect(c)
 		e1:SetType(EFFECT_TYPE_SINGLE)

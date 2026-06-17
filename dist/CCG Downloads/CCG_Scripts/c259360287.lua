@@ -50,7 +50,9 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.tdfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,2,nil)
 	if #g==0 or Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==0 then return end
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsRelateToEffect(e) then
+	if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsRelateToEffect(e)
+		and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
+		and c:IsCanBeSpecialSummoned(e,0,tp,false,false) then
 		Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 	end
 end

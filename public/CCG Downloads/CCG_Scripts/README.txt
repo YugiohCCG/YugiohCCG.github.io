@@ -1,2 +1,2 @@
 Place your custom YGO Omega script files in this folder before building the installer.
-They will be copied to YGO Omega_Data\Files\Scripts\CCG_Scripts on install.
+The installer extracts them to YGO Omega_Data\Files\Scripts.

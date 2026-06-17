@@ -16,7 +16,7 @@ This project maintains custom YGO Omega cards for the CCG card pool. The repo is
 - `public/CCG Downloads/YGO_Omega_Images/YGO_Omega_Holograms_v*.zip`: split hologram PNG payloads for `YGO Omega_Data\Files\Holograms`.
 - `tmp/omega_scripts`: local copy of official Omega scripts. Treat this as the primary scripting reference.
 - `C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Databases\CCG_v1.db`: installed local test database.
-- `C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts\CCG_Scripts`: installed local test scripts.
+- `C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts`: installed local test scripts loaded by Omega.
 
 ## Role
 
@@ -45,7 +45,7 @@ Priorities:
 6. For unusual mechanics, copy the smallest proven official pattern and adapt it conservatively.
 7. Write only the custom script and any required prompt text/database update.
 8. Parse the Lua for syntax errors before handing it off.
-9. Copy the finished script into the installed Omega script folder for local testing.
+9. Copy the finished script into the installed Omega root script folder for local testing.
 10. Rebuild the scripts zip after any release-script change.
 
 ## Database Workflow
@@ -104,7 +104,7 @@ Compare release scripts to installed local test scripts:
 
 ```powershell
 $public = Get-ChildItem -File 'public\CCG Downloads\CCG_Scripts' -Filter '*.lua' | Select-Object -ExpandProperty Name
-$installed = Get-ChildItem -File 'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts\CCG_Scripts' -Filter '*.lua' | Select-Object -ExpandProperty Name
+$installed = Get-ChildItem -File 'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts' -Filter '*.lua' | Select-Object -ExpandProperty Name
 Compare-Object $public $installed
 ```
 
@@ -130,6 +130,6 @@ $zip.Dispose()
 - `public/CCG Downloads/YGO_Omega_Images_v*.zip` contains the current cropped-art JPGs at archive root.
 - `public/CCG Downloads/YGO_Omega_Images/YGO_Omega_Pics_v*.zip` contains the current full-card JPGs at archive root.
 - `public/CCG Downloads/YGO_Omega_Images/YGO_Omega_Holograms_v*.zip` contains the current hologram PNGs at archive root.
-- The installed Omega `CCG_Scripts` folder contains the scripts being tested.
+- The installed Omega root `Files\Scripts` folder contains the scripts being tested.
 - Lua syntax parse passes.
 - User confirms behavior in Omega for non-trivial card effects.

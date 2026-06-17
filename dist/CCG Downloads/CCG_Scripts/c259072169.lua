@@ -21,6 +21,7 @@ function s.initial_effect(c)
 	e1:SetRange(LOCATION_EXTRA)
 	e1:SetCountLimit(1,id)
 	e1:SetCondition(s.igncon)
+	e1:SetCost(s.excost)
 	e1:SetTarget(s.extg)
 	e1:SetOperation(s.exop)
 	c:RegisterEffect(e1)
@@ -67,6 +68,19 @@ end
 function s.egfilter(c)
 	return c:IsCode(CARD_ELEGANT_EGOTIST) and c:IsCanOverlay()
 end
+function s.excost(e,tp,eg,ep,ev,re,r,rp,chk)
+	local c=e:GetHandler()
+	if chk==0 then return not c:IsPublic()
+		and Duel.IsExistingMatchingCard(s.egfilter,tp,LOCATION_HAND,0,1,nil) end
+	Duel.ConfirmCards(1-tp,c)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
+	local g=Duel.SelectMatchingCard(tp,s.egfilter,tp,LOCATION_HAND,0,1,1,nil)
+	local ec=g:GetFirst()
+	Duel.ConfirmCards(1-tp,g)
+	Duel.ShuffleHand(tp)
+	ec:CreateEffectRelation(e)
+	e:SetLabelObject(ec)
+end
 function s.extg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return Duel.GetLocationCountFromEx(tp,tp,nil,c)>0
@@ -77,14 +91,11 @@ end
 function s.exop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if Duel.GetLocationCountFromEx(tp,tp,nil,c)<=0 or not c:IsRelateToEffect(e) then return end
-	Duel.ConfirmCards(1-tp,c)
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
-	local g=Duel.SelectMatchingCard(tp,s.egfilter,tp,LOCATION_HAND,0,1,1,nil)
-	if #g==0 then return end
-	Duel.ConfirmCards(1-tp,g)
+	local ec=e:GetLabelObject()
+	if not (ec and ec:IsRelateToEffect(e) and ec:IsLocation(LOCATION_HAND) and s.egfilter(ec)) then return end
 	if Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)>0 then
 		c:CompleteProcedure()
-		Duel.Overlay(c,g)
+		Duel.Overlay(c,Group.FromCards(ec))
 		local e1=Effect.CreateEffect(c)
 		e1:SetType(EFFECT_TYPE_FIELD)
 		e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
@@ -164,7 +175,9 @@ function s.bop(e,tp,eg,ep,ev,re,r,rp)
 	if not g or #g<2 then return end
 	local tc1=g:Filter(Card.IsControler,nil,tp):GetFirst()
 	local tc2=g:Filter(Card.IsControler,nil,1-tp):GetFirst()
-	if not (tc1 and tc1:IsRelateToEffect(e) and tc2 and tc2:IsRelateToEffect(e) and tc2:IsFaceup()) then return end
+	if not (tc1 and tc1:IsRelateToEffect(e) and tc1:IsOnField() and s.myfilter(tc1)
+		and tc2 and tc2:IsRelateToEffect(e) and tc2:IsControler(1-tp)
+		and tc2:IsOnField() and s.oppcardfilter(tc2)) then return end
 	local b1=tc1:IsAbleToHand() and tc2:IsAbleToHand()
 	local b2=tc1:IsDestructable() and tc2:IsDestructable()
 	if not (b1 or b2) then return end

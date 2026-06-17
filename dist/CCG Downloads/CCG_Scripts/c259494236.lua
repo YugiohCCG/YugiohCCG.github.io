@@ -114,7 +114,8 @@ function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,eg,1,0,0)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.NegateActivation(ev) and re:GetHandler():IsRelateToEffect(re) then
+	if not Duel.NegateActivation(ev) then return end
+	if re:GetHandler():IsRelateToEffect(re) then
 		Duel.Destroy(eg,REASON_EFFECT)
 	end
 	if Duel.IsExistingMatchingCard(Card.IsCanAddCounter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil,COUNTER_CORRUPTION,1)

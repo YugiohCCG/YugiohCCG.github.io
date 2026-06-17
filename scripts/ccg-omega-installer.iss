@@ -3,7 +3,7 @@
 ; Re-run this installer any time to update to the newest files on GitHub.
 
 #define MyAppName "CCG Add-on for YGO Omega"
-#define MyAppVersion "1.2.1"
+#define MyAppVersion "1.2.3"
 
 [Setup]
 AppName={#MyAppName}
@@ -41,7 +41,6 @@ const
   HOLOGRAMS_URL_FALLBACK_FMT = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%%20Downloads/YGO_Omega_Images/YGO_Omega_Holograms_v%d.zip';
   DB_ZIP_NAME = 'CCG_Database.zip';
   DB_NAME = 'CCG_v1.db';
-  SCRIPTS_FOLDER = 'CCG_Scripts';
   BANLIST_NAME = 'CCG_Banlist.lflist.conf';
   IMAGE_PART_COUNT = 1;
   PICS_PART_COUNT = 4;
@@ -126,7 +125,7 @@ end;
 function InstallPayload: Boolean;
 var
   TempDbZip, TempScriptsZip, TempImagesZip, TempPicsZip, TempHologramsZip, TempBanlist: string;
-  DestDB, DestScripts, DestImages, DestPics, DestHolograms, DestBanlist: string;
+  DestDB, DestScriptsRoot, DestImages, DestPics, DestHolograms, DestBanlist: string;
   lastError: string;
   imageParts, picsParts, hologramParts: TStringList;
   i: Integer;
@@ -139,7 +138,7 @@ begin
   TempBanlist := GetTempDir + 'ccg_banlist.lflist';
 
   DestDB := ExpandConstant('{app}\YGO Omega_Data\Files\Databases\' + DB_NAME);
-  DestScripts := ExpandConstant('{app}\YGO Omega_Data\Files\Scripts\' + SCRIPTS_FOLDER);
+  DestScriptsRoot := ExpandConstant('{app}\YGO Omega_Data\Files\Scripts');
   DestBanlist := ExpandConstant('{app}\YGO Omega_Data\Files\Banlists\' + BANLIST_NAME);
   // Omega expects images directly under Files\Arts (no subfolder)
   DestImages := ExpandConstant('{app}\YGO Omega_Data\Files\Arts');
@@ -272,8 +271,9 @@ begin
     Exit;
   end;
 
-  ForceDirectories(DestScripts);
-  if not UnzipFile(TempScriptsZip, DestScripts) then
+  // Omega resolves c<ID>.lua directly from Files\Scripts.
+  ForceDirectories(DestScriptsRoot);
+  if not UnzipFile(TempScriptsZip, DestScriptsRoot) then
   begin
     MsgBox('Failed to extract scripts into YGO Omega.', mbError, MB_OK);
     hologramParts.Free;

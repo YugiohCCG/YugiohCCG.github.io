@@ -127,6 +127,11 @@ OMEGA_SET_CODES = {
     "thunderdragon": 0x335E,
     "nemleria": 0x191,
     "redeyes": 0x3B,
+    "orcust": 0x11B,
+    "aldrez": 0xC1C,
+    "frute": 0x813,
+    "niuhao": 0xB69,
+    "toproto": 0xE80D,
 }
 
 # Rows kept by older Omega DBs but not shipped with the current release assets.
@@ -155,9 +160,797 @@ EXTRA_TOKEN_CARDS = [
         "race": RACE_BITS["Fiend"],
         "attribute": ATTRIBUTE_BITS["LIGHT"],
     },
+    {
+        "id": 217700539,
+        "name": "Aldrez Token",
+        "desc": 'Special Summoned by the effect of "Aldrez Blitz".',
+        "setcode": OMEGA_SET_CODES["aldrez"],
+        "type": TYPE_BITS["Monster"] | TYPE_BITS["Normal"] | TYPE_BITS["Token"],
+        "atk": 1000,
+        "def": 1000,
+        "level": 4,
+        "race": RACE_BITS["Spellcaster"],
+        "attribute": ATTRIBUTE_BITS["DARK"],
+    },
+    {
+        "id": 222257686,
+        "name": "Guidance Token",
+        "desc": 'Special Summoned by the effect of "Branching to Guidance".',
+        "setcode": 0,
+        "type": TYPE_BITS["Monster"] | TYPE_BITS["Normal"] | TYPE_BITS["Token"],
+        "atk": 0,
+        "def": 0,
+        "level": 1,
+        "race": RACE_BITS["Spellcaster"],
+        "attribute": ATTRIBUTE_BITS["LIGHT"],
+    },
+    {
+        "id": 240299293,
+        "name": "Protogenic Essence Token",
+        "desc": 'Special Summoned by the effect of "To Proto" cards.',
+        "setcode": OMEGA_SET_CODES["toproto"],
+        "type": TYPE_BITS["Monster"] | TYPE_BITS["Normal"] | TYPE_BITS["Token"],
+        "atk": 0,
+        "def": 0,
+        "level": 1,
+        "race": RACE_BITS["Galaxy"],
+        "attribute": ATTRIBUTE_BITS["LIGHT"],
+    },
 ]
 
 CARD_STRING_OVERRIDES = {
+    "toprotoousia": [
+        "Special Summon 1 Protogenic Essence Token",
+        "Banish this card; add 1 face-up banished monster",
+        "Draw 1 card",
+    ],
+    "toprotoarchegoni": [
+        "Discard 1 card; add 1 listed Spell/Trap",
+        "Banish this card; protect 1 Galaxy monster",
+    ],
+    "protogenesis": [
+        'Reveal 1 "To Proto" monster',
+        "Special Summon it",
+        "Banish it",
+    ],
+    "thebeginning": [
+        'Banish 1 monster; add 1 "To Proto" monster',
+        "Special Summon 1 Protogenic Essence Token",
+    ],
+    "protogenicastralcycle": [
+        "Special Summon 1 Protogenic Essence Token",
+        'Banish 1 Effect Monster; Special Summon 1 "To Proto" monster',
+    ],
+    "toprotochrono": [
+        "Special Summon this card from your hand",
+    ],
+    "toprototaxis": [
+        "Special Summon this card from your hand",
+        "Tribute 1 Token; double 1 monster's ATK/DEF",
+        'Add 1 banished "To Proto" monster',
+    ],
+    "stellaeroftheplants": [
+        "Special Summon this card from your hand",
+        'Attach this card to 1 "Stellaer" Xyz Monster',
+    ],
+    "toprotoataxia": [
+        "Special Summon this card from your hand",
+        "Tribute 1 Token; shift 1 monster's ATK/DEF",
+        'Add 1 banished "To Proto" monster',
+    ],
+    "toprotopsychi": [
+        "Special Summon this card from your hand",
+        "Gain LP equal to battle damage inflicted",
+        "Tribute 1 Token; pay LP and gain ATK/DEF",
+        'Add 1 banished "To Proto" monster',
+    ],
+    "toprotoeisodos": [
+        "Special Summon 2 Protogenic Essence Tokens",
+        'Banish 1 monster and 1 "To Proto" monster',
+        "Special Summon this card",
+        "Return this card to the Extra Deck",
+    ],
+    "polemistisgiaataxia": [
+        "Special Summon this card from your Extra Deck",
+        'Add or send 1 "Ataxia" Spell/Trap',
+        "Add it to your hand",
+        "Send it to the GY",
+    ],
+    "ektelestisgiataxis": [
+        "Special Summon this card from your Extra Deck",
+        'Add or send 1 "Taxis" Spell/Trap',
+        "Add it to your hand",
+        "Send it to the GY",
+    ],
+    "stellaerofthecold": [
+        "Special Summon this card from your hand",
+        'Special Summon 1 "Stellaer" monster from your hand',
+    ],
+    "stellaerofthenight": [
+        "Special Summon this card from your hand",
+        'Add 1 "Stellaer" monster',
+    ],
+    "stellaerofthesea": [
+        "Special Summon this card from your hand",
+        'Special Summon 1 non-Xyz "Stellaer" monster',
+    ],
+    "stellaerofthegems": [
+        "Special Summon this card from your hand",
+        "Make 2 monsters become Level 8-10",
+    ],
+    "stellaerofthebreeze": [
+        "Special Summon this card from your hand",
+        'Special Summon this card and 1 "Stellaer" monster',
+        'Xyz Summon 1 "Stellaer" Xyz Monster',
+    ],
+    "stellaerofthevolcanos": [
+        "Special Summon this card from your hand",
+        "Inflict damage equal to total Rank x100",
+    ],
+    "armorednovamechascaledxyrion": [
+        "Xyz Summon using 1 Rank 8 Dragon Xyz Monster",
+        "Detach 1 material; negate the activation",
+        "Destroy this card; Special Summon 1 Rank 8 Dragon Xyz Monster",
+    ],
+    "solemnrebirth": [
+        "Banish this card; Set destroyed Spell/Trap Cards",
+    ],
+    "talismandrakespark": [
+        "Inflict 500 damage to your opponent",
+        'Add 1 "Talismandrake" monster',
+        "Place this card in your Pendulum Zone",
+    ],
+    "talismandrakeembers": [
+        'Special Summon 1 "Talismandrake" Fusion Monster',
+        "Draw 1 card",
+        "Place this card in your Pendulum Zone",
+    ],
+    "talismandrakeheat": [
+        "Return 1 DARK Pyro Fusion Monster; return this card to the hand",
+        "Special Summon this card from your hand",
+        "Fusion Summon 1 DARK Pyro Fusion Monster",
+    ],
+    "talismandrakesear": [
+        'Fusion Summon 1 "Talismandrake" Fusion Monster',
+        'Special Summon/place "Talismandrake" Pendulum cards',
+    ],
+    "talismandrakearmsunited": [
+        'Place up to 2 "Talismandrake" Pendulum Monsters',
+        'Equip 1 "Talismandrake Arms" Spell/Trap',
+    ],
+    "lefttalismandrakearmsblazesuppressor": [
+        "Destroy 1 face-up card",
+        "Equip this card from your GY",
+    ],
+    "righttalismandrakearmsblazehalberd": [
+        "Set 1 face-up monster",
+        "Equip this card from your GY",
+    ],
+    "righttalismandrakearmsblazesabre": [
+        "Negate 1 face-up opponent card",
+        "Equip this card from your GY",
+    ],
+    "lefttalismandrakearmsblazeshield": [
+        'Special Summon 1 "Talismandrake" monster',
+        "Equip this card from your GY",
+    ],
+    "talismandrakepyre": [
+        "Add or send 1 card from your Deck",
+        "Destroy 1 Pendulum Zone card; place another",
+        'Add 1 "Talismandrake" card',
+        "Add 1 DARK Pyro monster",
+        'Send 1 "Talismandrake Arms" Spell/Trap to the GY',
+    ],
+    "talismandrakecremation": [
+        'Add or equip 1 "Talismandrake Arms" Spell/Trap',
+        "Shuffle up to 3 cards from GYs/banishment into the Deck",
+        "Add it to your hand",
+        "Equip it to a DARK Pyro monster",
+    ],
+    "talismandrakeenkindle": [
+        'Add or equip 1 "Talismandrake Arms" Spell/Trap',
+        "Banish the activated card",
+        "Add it to your hand",
+        "Equip it to a DARK Pyro monster",
+    ],
+    "maidenoftalismandrakesseraphina": [
+        'Shuffle 3 "Talismandrake" monsters; Special Summon this card',
+        'Add or equip 1 "Talismandrake Arms" Spell/Trap',
+        "Place this card in your Pendulum Zone",
+        "Pay 1000 LP; destroy all opponent cards",
+        "Add it to your hand",
+        "Equip it to this card",
+    ],
+    "bishopofaldrez": [
+        'Add 1 "Aldrez" Spell/Trap',
+        "Special Summon this card; draw 1",
+    ],
+    "pawnofaldrez": [
+        "Draw 1 card",
+        "Special Summon this card",
+    ],
+    "queenofaldrez": [
+        "Special Summon this card",
+        'Add 1 "Aldrez" card',
+    ],
+    "aldrezbattery": [
+        'Add 1 "Aldrez" monster',
+        "Banish this card; make ATK 0",
+        'Have 1 "Aldrez" monster gain the lost ATK',
+    ],
+    "aldrezblitz": [
+        'Special Summon 1 "Aldrez" monster',
+        "Set this card from the GY",
+        "Special Summon 1 Aldrez Token",
+    ],
+    "aldrezopening": [
+        'Shuffle up to 3 "Aldrez" cards; draw 1',
+    ],
+    "checkedinaldrez": [
+        'Send 1 "Aldrez" monster; send 1 opponent monster',
+        'Banish this card; add 1 "Aldrez" card',
+    ],
+    "checkmateinaldrez": [
+        "Negate 1 face-up monster",
+        'Banish this card; Special Summon 1 "Aldrez" monster',
+        "Destroy all other opponent monsters",
+    ],
+    "knightofaldrez": [
+        'Discard 1 card; take 1 "Aldrez" card',
+        'Special Summon sent "Aldrez" Xyz Monster',
+        "Add it to your hand",
+        "Special Summon it",
+    ],
+    "rookofaldrez": [
+        'Add or Special Summon 1 "Aldrez" card',
+        'Special Summon sent "Aldrez" Xyz Monster',
+        "Add it to your hand",
+        "Special Summon it",
+    ],
+    "kingofaldrez": [
+        'Detach 1 material; Special Summon 1 "Aldrez" monster',
+        'Add 1 "Aldrez" Trap',
+        'Special Summon 1 "Aldrez" Link Monster',
+    ],
+    "thebluefrute": [
+        'Special Summon 1 "Frute" monster face-down',
+        "Make ATK/DEF 0",
+    ],
+    "theyellowfrute": [
+        'Send this card; Special Summon 1 "Frute" monster',
+        "Draw 1 or draw 2 then discard 1",
+        "Special Summon face-up",
+        "Special Summon face-down",
+        "Draw 1 card",
+        "Draw 2 cards, then discard 1",
+    ],
+    "theredfrute": [
+        "Special Summon this card",
+        'Add "Fruteonia" or Set 1 "Frute" Spell/Trap',
+        'Add "Fruteonia"',
+        'Set 1 "Frute" Spell/Trap',
+    ],
+    "thegreenfrute": [
+        "Tribute 1 WATER monster; Special Summon this card",
+        'Send 1 "Frute" card to the GY',
+        'Send 1 "Frute" monster',
+        'Send 1 "Frute" Spell/Trap',
+    ],
+    "thewhitefrute": [
+        "Tribute 1 WATER monster; Special Summon this card",
+        'Add 1 "Frute" monster',
+        "Add it to your hand",
+        "Special Summon it face-up",
+        "Special Summon it face-down",
+    ],
+    "fruteonia": [
+        "Tribute 1 WATER monster; add 1 card",
+        'Return 1 banished "Frute" card to the GY',
+    ],
+    "fruteopia": [
+        'Add 1 "Frute" monster or "Fruteification"',
+        "Send this card; Special Summon that monster",
+        "Banish this card; WATER monsters gain ATK",
+    ],
+    "fruteaching": [
+        'Special Summon 1 "Frute" monster',
+        "Change 1 monster's battle position",
+        "Special Summon face-up",
+        "Special Summon face-down",
+        "Change it face-up",
+        "Change it face-down",
+    ],
+    "fruteification": [
+        "Target/revive, then Ritual Summon",
+        "Banish this card; send 1 WATER Ritual Monster",
+    ],
+    "theflyingfrute": [
+        'Send or Set 1 "Frute" card',
+        "Tribute 1 WATER monster; banish 1 GY card",
+        'Send 1 "Frute" card',
+        'Set 1 "Frute" Spell/Trap',
+    ],
+    "thehangingfrute": [
+        'Special Summon 1 "Frute" monster',
+        "Tribute 1 WATER monster; protect your monsters",
+    ],
+    "thefrutefulmoon": [
+        'Set 1 "Frute" Spell/Trap',
+        "Tribute 1 WATER monster; set 1 monster",
+    ],
+    "thefrutedwarrior": [
+        "Set 1 opponent monster",
+        "Tribute 1 WATER monster; gain ATK",
+    ],
+    "sacredtreasurebojin": [
+        'Apply 1 "Sacred Treasure" effect',
+        "Destroy 1 monster",
+        'Special Summon 1 "NiuHao" monster',
+    ],
+    "sacredtreasurechunyin": [
+        'Apply 1 "Sacred Treasure" effect',
+        "Set 1 monster",
+        'Banish 2 "NiuHao" monsters',
+        "Add 1 banished card",
+    ],
+    "sacredtreasurehuangjin": [
+        'Apply 1 "Sacred Treasure" effect',
+        "Destroy 1 Spell/Trap",
+        "Banish 1 GY card",
+    ],
+    "niuhaobauba": [
+        'Special Summon 1 "NiuHao" monster',
+        'Banish this card; add 1 "Sacred Treasure" Spell',
+        "Special Summon this card",
+    ],
+    "niuhaohikam": [
+        'Banish 1 "NiuHao" monster from your Deck',
+        'Banish this card; Set 1 "Sacred Treasure" Spell',
+        "Special Summon this card",
+    ],
+    "niuhaooro": [
+        'Add 1 "Sacred Treasure" Spell',
+        'Banish this card; send 1 "Sacred Treasure" Spell',
+        "Special Summon this card",
+    ],
+    "niuhaolokaeo": [
+        'Xyz Summon 1 "NiuHao" Xyz Monster',
+        'Banish this card; shuffle 1 "Sacred Treasure" Spell',
+        "Special Summon this card",
+    ],
+    "niuhaozaoka": [
+        'Add 1 "NiuHao" or "Sacred Treasure" card',
+        "Banish this card; excavate 3 cards",
+        "Special Summon this card",
+    ],
+    "niuhaokoai": [
+        'Shuffle up to 2 "NiuHao" monsters',
+        'Banish "Sacred Treasure" Spells',
+    ],
+    "niuhaozao": [
+        'Apply 2 "Sacred Treasure" activation effects',
+    ],
+    "pipthedomesticated": [
+        'Add 1 "Domestica" Fairy monster',
+        "Shuffle this card; Fairy monsters gain ATK",
+    ],
+    "tovethedomesticated": [
+        "Draw 1 card; send up to 2 cards",
+        "Shuffle this card; send 1 monster",
+        "Send up to 2 cards from your hand",
+    ],
+    "domesticapraerie": [
+        'Tribute this card; add 1 "Domestica" monster',
+    ],
+    "domesticaanjelie": [
+        'Tribute this card; add 1 "Domestica" Spell/Trap',
+    ],
+    "domesticalunalie": [
+        'Tribute this card; add 1 "Domestica" card',
+        "Send 1 card from your hand to the GY",
+    ],
+    "domestication": [
+        "Reveal a Fusion Monster and material",
+        "Shuffle this card into the Deck instead",
+    ],
+    "domesticunderworld": [
+        "Shuffle that card; add 1 monster",
+        'Special Summon "Domestica" Fairy monsters',
+        "Send that monster to the GY",
+    ],
+    "domesticaintheunderworld": [
+        "Set this card from your GY",
+        "Draw cards, then send cards",
+    ],
+    "domesticainthewild": [
+        "Set this card from your GY",
+        "Reveal a Fusion Monster",
+        "Tribute 1 monster",
+        "Fusion Summon that monster",
+    ],
+    "domesticakyrie": [
+        "Special Summon this card",
+        'Activate 1 "Domestic Underworld"',
+        'Send 1 "Domestica" monster',
+    ],
+    "pipinthewild": [
+        "Tribute this card; send all monsters",
+        'Return this card; add "Pip, the Domesticated"',
+    ],
+    "branchingtoguidance": [
+        "Reveal 1 monster; Special Summon 1 Guidance Token",
+        "Banish this card; Special Summon 1 Guidance Token",
+    ],
+    "rigelthethousandarmed": [
+        "Gain ATK and attack all monsters",
+    ],
+    "prophecyofinfernos": [
+        "Return 1 FIRE Extra Deck monster; Special Summon this card",
+    ],
+    "prophecyofwaterfalls": [
+        "Return 1 WATER Extra Deck monster; Special Summon this card",
+    ],
+    "prophecyofboulders": [
+        "Return 1 EARTH Extra Deck monster; Special Summon this card",
+    ],
+    "prophecyofstorms": [
+        "Return 1 WIND Extra Deck monster; Special Summon this card",
+    ],
+    "prophecyofrays": [
+        "Return 1 LIGHT Extra Deck monster; Special Summon this card",
+    ],
+    "prophecyofshadows": [
+        "Return 1 DARK Extra Deck monster; Special Summon this card",
+    ],
+    "stellaeroftheswamp": [
+        'Xyz Summon using 1 "Stellaer" monster',
+        "Detach 2 materials; destroy 1 face-up monster",
+        "Destroy this card; draw 1 card",
+    ],
+    "sustainedsuccubussaria": [
+        'Add 1 "Stain" card',
+        "Shuffle cards into the Deck",
+        'Shuffle 1 "Stain" card from your GY',
+        "Make this card's ATK become 0",
+    ],
+    "astainlessstory": [
+        'Send 1 "Stain" monster; apply its Summon effect',
+        "Banish this card; each player draws 1 card",
+        "Add it to the hand",
+        "Place it on the bottom of the Deck",
+        "Set it",
+    ],
+    "mylothedomesticated": [
+        'Add 1 "Domestica" Fairy monster',
+        "Shuffle this card; protect Fairy monsters",
+    ],
+    "nuwathedomesticated": [
+        'Add 1 "Domestica" Fairy monster',
+        "Shuffle this card; prevent activations",
+    ],
+    "mylointhewild": [
+        "Tribute this card; Set all monsters",
+        'Return this card; add "Mylo, the Domesticated"',
+    ],
+    "nuwainthewild": [
+        "Tribute this card; negate all other monsters",
+        'Return this card; add "Nuwa, the Domesticated"',
+    ],
+    "onibi": [
+        "Normal Summon 1 Spirit monster",
+        "Tribute this card from your hand",
+        'Add 1 Spirit monster except "Onibi"',
+    ],
+    "enra": [
+        "Normal Summon this card from your hand",
+        "Normal Summon 1 Spirit monster",
+        "Make 1 Spirit monster indestructible by battle",
+    ],
+    "kokeshisa": [
+        "Tribute 1 Spirit monster; Normal Summon this card",
+        "Return 1 monster to the hand",
+        "Make 1 Spirit monster untargetable",
+    ],
+    "shishi": [
+        "Tribute 1 other Spirit monster; draw 2 cards",
+        "Return 1 face-up card to the hand when it leaves",
+    ],
+    "muramasa": [
+        "Tribute Summon using an opponent's Special Summoned monster",
+        "Add or equip 1 Spirit Equip Spell",
+        "Add it to the hand",
+        "Equip it to this card",
+    ],
+    "kanmuriyama": [
+        "Add 1 Spirit monster with a different Attribute",
+        "Add this card to the hand",
+        "Return the battling monster to the hand",
+    ],
+    "takamanohara": [
+        "Discard 2 cards; add up to 2 Spirit monsters",
+        "Banish this card; stop a Spirit monster returning to hand",
+    ],
+    "reitachigakitahi": [
+        "Shuffle up to 3 Spirit monsters into the Deck; draw 1",
+    ],
+    "otakemarutheaccuser": [
+        "Prevent other Spirit monsters returning during the End Phase",
+        "Return 1 opponent's card to the hand",
+        "Return this card to the Extra Deck; Special Summon 2 Spirit monsters",
+    ],
+    "championofthegrandblue": [
+        'Add or Special Summon 1 "Grand Blue" card',
+        "Add it to the hand",
+        "Special Summon it",
+        'Special Summon this card and equip 1 "Grand Blue" monster',
+    ],
+    "divingdaughtersofthegrandblue": [
+        'Send 1 "Grand Blue" monster from your Deck to the GY',
+        'Target 1 other "Grand Blue" card; Special Summon this card',
+    ],
+    "serenemermaidofthegrandblue": [
+        "Special Summon this card from your hand",
+        'Fusion Summon 1 "Grand Blue" Fusion Monster',
+    ],
+    "jellylassofthegrandblue": [
+        'Special Summon this card if you control "Umi"',
+        'Fusion Summon 1 "Grand Blue" Fusion Monster',
+        'Special Summon 1 other "Grand Blue" monster from your GY',
+    ],
+    "jellymissofthegrandblue": [
+        'Special Summon this card if you control a "Grand Blue" monster',
+        "Negate 1 face-up opponent card and gain 800 ATK/DEF",
+        'Fusion Summon 1 "Grand Blue" Fusion Monster from your GY materials',
+    ],
+    "brillianceofthegrandblue": [
+        'Add 1 "Grand Blue" card',
+        "Add this card to your hand",
+        'Send 1 "Grand Blue" card to the GY',
+        "Discard 1 card",
+    ],
+    "citywithinthegrandblue": [
+        'Add 1 "Grand Blue" monster',
+    ],
+    "grandblueprincess": [
+        'Add or send 1 "Grand Blue" card',
+        'Special Summon 1 "Grand Blue" monster, then send the target',
+        "Shuffle 1 banished card; gain 300 DEF",
+        "Add it to the hand",
+        "Send it to the GY",
+    ],
+    "oracleofthegrandblue": [
+        "Negate 1 face-up monster, then destroy",
+        'Set or add 1 "Grand Blue" Spell',
+        "Destroy 1 face-up opponent card",
+        "Set it",
+        "Add it to the hand",
+    ],
+    "grandbluematriarch": [
+        "Tribute 1 WATER monster; negate the activation",
+        "Special Summon that WATER monster",
+    ],
+    "grandblueprince": [
+        "Special Summon 1 WATER monster from your GY",
+        "Shuffle 1 card from the GY into the Deck",
+        'Send 1 "Grand Blue" card to the GY',
+    ],
+    "stellaerofthelightningrunes": [
+        "Special Summon this card from your hand",
+        'Special Summon 1 "Stellaer" Xyz Monster from your GY',
+    ],
+    "priestessofnephthys": [
+        'Destroy 1 "Nephthys" monster in your Deck',
+        'Shuffle this card into the Deck; add 1 "Nephthys" Spell/Trap',
+    ],
+    "sacredfeatherofnephthys": [
+        'Ritual Summon 1 "Nephthys" Ritual Monster',
+        'Destroy 1 card you control; place 1 "Nephthys" Continuous Trap',
+        "Use hand/field monsters",
+        "Use 1 monster from the Deck",
+    ],
+    "stellaerofthefrozen": [
+        'Xyz Summon using 1 "Stellaer" monster',
+        "Detach 2 materials; Set 1 face-up card",
+        "Destroy this card; draw 1 card",
+    ],
+    "rageofnephthys": [
+        "Make opponent's monsters lose ATK",
+        "Shuffle 4 cards; change the activated effect",
+    ],
+    "toveinthewild": [
+        "Tribute this card; return Spell/Trap Zone cards",
+        'Return this card; add "Tove, the Domesticated"',
+    ],
+    "remembranceofthemelody": [
+        "Return up to 3 banished Spells/Traps to the GY",
+        "Banish this card; add 1 banished Spell/Trap",
+    ],
+    "chaosfusion": [
+        "Fusion Summon 1 LIGHT or DARK Fusion Monster",
+        "Banish this card; return LIGHT and DARK monsters",
+    ],
+    "ursarcticmikailus": [
+        "Tribute 1 other Level 7+ monster; Special Summon this card",
+        'Set 1 "Ursarctic" Spell/Trap from your Deck',
+        "Draw 1 card",
+        "This Set card can be activated this turn",
+    ],
+    "ursarcticmegailus": [
+        "Tribute 1 other Level 7+ monster; Special Summon this card",
+        "Destroy 1 monster your opponent controls",
+        "Draw 1 card",
+    ],
+    "ursarcticleoship": [
+        'Add 1 "Ursarctic" card',
+        'Special Summon 1 "Ursarctic" monster from your hand',
+    ],
+    "ursarcticoctantis": [
+        'Special Summon 1 Level 7 "Ursarctic" Synchro Monster',
+        'Banish this card; Special Summon 1 "Ursarctic" monster',
+    ],
+    "ursarctichextanius": [
+        "Special Summon 1 WATER monster with 700 ATK or DEF",
+        'Shuffle up to 3 other "Ursarctic" cards; draw 1',
+    ],
+    "ursarcticnordbar": [
+        'Special Summon 1 "Ursarctic" monster from your GY',
+        'Add 1 "Ursarctic" monster',
+        "Negate activation and destroy",
+    ],
+    "stardrakeofgraviticcoils": [
+        "Xyz Summon this card using 1 lowest-ATK/DEF monster",
+    ],
+    "reactorshocker": [
+        "Negate all other activated effects in this Chain",
+    ],
+    "thecondescender": [
+        "Send this card to the GY; reduce Level/Rank",
+        "Special Summon this card from your GY",
+    ],
+    "stainedbirdbria": [
+        'Discard 1; shuffle this into opponent\'s Deck and add 1 "Stain" card',
+        "Place a GY/banished card on the bottom of the Deck or add it",
+        "Place it on the bottom of the Deck",
+        "Add it to the hand",
+    ],
+    "staineddeerdante": [
+        "Destroy 1 card your opponent controls",
+        'Show a face-up "Stain" card; shuffle this into opponent\'s Deck',
+    ],
+    "stainedfoxfeness": [
+        "Special Summon this card from your hand",
+        "Negate 1 other face-up card",
+        'Send 1 Level 4 or lower "Stain" monster; shuffle this into opponent\'s Deck',
+    ],
+    "stainedraptorrollo": [
+        "Special Summon 1 monster from the GY",
+        "Shuffle this into opponent's Deck; place that monster on top of the Deck",
+    ],
+    "stainedsolitaire": [
+        'Reveal 1 "Stain" Fusion Monster; Special Summon this card',
+        'Shuffle a "Stain" monster into opponent\'s Deck; add 1 "Stain" card',
+    ],
+    "stargazerofthestained": [
+        'Tribute this card; add 1 "Stain" card',
+        'Banish this card; Special Summon 1 face-up "Stain" monster from opponent\'s Deck',
+    ],
+    "stainedscionesssilia": [
+        'Fusion Summon 1 "Stain" Fusion Monster',
+        'Discard 1; send and add 1 "Stain" card',
+    ],
+    "stainedsovereignsilas": [
+        'Add or Set 1 "Stain" card',
+        "Prevent a face-up card's effects from being activated",
+        'Shuffle this into opponent\'s Deck; Special Summon 1 "Stain" monster',
+        "Add to hand",
+        "Set it",
+    ],
+    "stainedsilhouette": [
+        "Special Summon this card from your hand",
+        'Reveal 1 "Stain" card; activate 1 effect',
+        'Special Summon 1 low-Level "Stain" monster',
+        "Copy an opponent monster's name and effects",
+    ],
+    "abstainfromlight": [
+        'Fusion Summon 1 "Stain" Fusion Monster',
+    ],
+    "shatteringsustained": [
+        'Tribute 1 "Stain" monster; Special Summon 1 low-Level "Stain" monster',
+        'Banish 1 "Stain" monster; Set this card',
+        'Tribute 1 face-up "Stain" monster in opponent\'s Deck',
+    ],
+    "stainedavatar": [
+        'Banish a face-up "Stain" monster instead',
+        "Destroy 1 other card on the field",
+        'Apply a "Stain" Spell/Trap\'s activation effect',
+    ],
+    "stainedsorceresssilphia": [
+        'Shuffle 1 "Stain" monster into opponent\'s Deck next Standby Phase',
+        "This card gains 300 ATK",
+        "Lose 2000 ATK; banish 2 monsters until the End Phase",
+    ],
+    "distaineddruiddragar": [
+        "Tribute 1 monster; gain LP and Set opponent monsters",
+    ],
+    "stainlesskaleidragon": [
+        "Negate the Summon or effect and destroy",
+        "Look at opponent's hand and Set cards",
+    ],
+    "aetherstormzenithwiretailedsypharion": [
+        "Xyz Summon using 1 Rank 8 Dragon Xyz Monster",
+        "Detach 1 material; destroy 1 opponent card",
+        "Attach 1 Dragon monster you control as material",
+    ],
+    "heartofthecards": [
+        "Declare 1 card name",
+    ],
+    "theorcustograph": [
+        'Special Summon 1 banished "Orcust" monster',
+        "Banish this card; negate 1 face-up opponent card",
+    ],
+    "galatea2theorcustdivider": [
+        'Return 1 banished "Orcust" card to the GY',
+    ],
+    "tomeofeclipse": [
+        "Banish all other Spell/Trap Cards on the field",
+    ],
+    "eclipseobserverbaleygr": [
+        'Banish 1 "Eclipse" Quick-Play Spell; copy its activation effect',
+    ],
+    "eclipseobserverchandra": [
+        "Detach 1 material; excavate and add 2 cards",
+        "Shuffle up to 3 banished cards into your Deck",
+        "Send opponent cards to the GY, then opponent draws",
+    ],
+    "eclipseobserverseara": [
+        "Return all opponent Spell/Trap Cards to the hand",
+        "Negate a Spell/Trap activation, destroy it, then opponent draws 2",
+        'Set up to 2 "Eclipse" Quick-Play Spells',
+    ],
+    "ethermademoiselle": [
+        "Special Summon 1 LIGHT or DARK monster from your GY",
+        "Negate and destroy an opponent card/effect on the field",
+    ],
+    "eclipseobserveraaliyah": [
+        "Special Summon this card from your hand",
+        "Destroy 1 opponent Spell/Trap",
+        "Place 1 card in a GY on the bottom of the Deck",
+    ],
+    "eclipseobserverriley": [
+        'Take 1 "Eclipse Observer" card from your Deck',
+        'Add 1 "Eclipse" Quick-Play Spell from your GY',
+        "Add the selected card to your hand",
+        "Special Summon the selected monster",
+    ],
+    "eclipseobservernora": [
+        'Send 1 "Eclipse" Quick-Play Spell or "Eclipse Observer" card to the GY',
+        "Draw 1 card",
+    ],
+    "eclipseobserverella": [
+        "Special Summon this card, then opponent draws 2",
+        'Set 1 "Eclipse" Quick-Play Spell',
+        'Special Summon 1 "Eclipse Observer" monster from your GY',
+    ],
+    "eclipseobservermaya": [
+        'Discard this card; Set 1 "Eclipse" Quick-Play Spell from your hand',
+        "Special Summon this card from your GY",
+    ],
+    "eclipseobservatory": [
+        'Add 1 "Eclipse Observer" monster and 1 "Eclipse" Quick-Play Spell',
+        "Negate and banish the Special Summoned monster",
+    ],
+    "grimoireofeclipse": [
+        'Fusion Summon 1 "Eclipse Observer" monster',
+    ],
+    "encyclopediaofeclipse": [
+        "Negate all face-up monsters, then opponent draws",
+    ],
+    "manualofeclipse": [
+        "Banish up to 5 opponent GY monsters",
+    ],
+    "spellbookofeclipse": [
+        "Xyz Summon 1 Spellcaster Xyz Monster",
+    ],
     "nemleriasnightmare": [
         "Special Summon this card as an Effect Monster",
         "Banish 2 Extra Deck cards; destroy 1 opponent card",
@@ -404,6 +1197,44 @@ CARD_STRING_OVERRIDES = {
         'Reveal this card and another monster; add 1 "Glitchling" Spell/Trap',
         "Ritual Summon 1 Cyberse Ritual Monster using hand/Deck materials",
     ],
+    "charmeliakiana": [
+        'Activate 1 "Charmelia" Continuous Spell/Trap',
+        "If Tributed for a Ritual Summon: draw 1 card",
+    ],
+    "charmeliahanabi": [
+        'Discard 1 other "Charmelia" monster; Special Summon this card and 1 different-name monster',
+        'If Tributed for a Ritual Summon: activate 1 "Charmelia" Continuous Spell/Trap',
+    ],
+    "charmeliaelysia": [
+        "Discard this card; Ritual Summon 1 \"Charmelia\" Ritual Monster",
+        'If Tributed for a Ritual Summon: place this on the bottom of the Deck, then Special Summon 1 "Charmelia" monster',
+    ],
+    "charmeliarobin": [
+        'Discard this card, or banish it from GY; Special Summon 1 "Charmelia" monster',
+        'If Tributed for a Ritual Summon: add 1 "Charmelia" card',
+    ],
+    "charmeliapray": [
+        'Ritual Summon 1 "Charmelia" Ritual Monster',
+    ],
+    "charmeliadeal": [
+        'Add 1 "Charmelia" Ritual Monster and/or Ritual Spell',
+        'Place this card face-up in your Spell & Trap Zone',
+    ],
+    "charmeliabeast": [
+        'Add this card to your hand, then draw for your "Charmelia" Ritual Monsters',
+    ],
+    "magicalgirlexplosion": [
+        'Tribute 1 "Charmelia" monster; negate and banish 1 opponent monster',
+        'Special Summon 1 "Charmelia" Ritual Monster',
+    ],
+    "charmeliafairykyubey": [
+        'Reveal and shuffle this card; Special Summon 1 "Charmelia" monster from Deck',
+        "Target 1 opponent monster; place it in your Spell & Trap Zone",
+    ],
+    "charmeliafairymorningstar": [
+        "Send 1 Continuous Spell/Trap; negate and destroy up to 2 opponent cards",
+        'If sent to GY: add up to 2 "Charmelia" cards',
+    ],
     "glitchlingleotron": [
         'Destroy this card; Ritual Summon 1 "Glitchling" Ritual Monster',
         'Special Summon "Bitron", "Protron", or "Digitron"',
@@ -482,6 +1313,44 @@ CARD_STRING_OVERRIDES = {
         "Detach 1; target 1 card you control and 1 opponent face-up card",
         "Return both targeted cards to the hand",
         "Destroy both targeted cards",
+    ],
+    "wyvernalluna": [
+        "Target 1 WIND Insect monster in your GY; add it to your hand",
+        'Special Summon this card, then maybe send 1 "Wyvernal" monster from Deck to GY',
+    ],
+    "wyvernalcaudina": [
+        'Reveal this card; Special Summon 1 other "Wyvernal" monster, then discard this card',
+        'Send 2 "Wyvernal" monsters with the same name from Deck to GY',
+    ],
+    "wyvernalmyops": [
+        "Banish 1 Insect monster from your GY; Special Summon this card",
+        "Special Summon 1 WIND Insect monster from your hand",
+        "Banish this card; target 1 opponent card; negate its effects",
+    ],
+    "wyvernalcrenata": [
+        "Special Summon this card by sending 1 Insect monster from hand or field to GY",
+        'Set 1 "Wyvernal" Spell/Trap from Deck',
+        "If sent to GY as Fusion Material: draw 1 card",
+    ],
+    "wyvernalsphinx": [
+        'Reveal this card; Fusion Summon 1 "Wyvernal" Fusion Monster',
+        "Banish 1 other card from your GY; add this card to your hand",
+    ],
+    "wyvernallymantria": [
+        "If Fusion Summoned: add 1 WIND Insect monster from Deck",
+        "Target 1 Insect monster in your GY; Special Summon it",
+    ],
+    "wyvernalmegalopyge": [
+        'If Fusion Summoned: add 1 "Wyvernal" card, then maybe destroy 1 other card',
+        "Destroy 1 WIND Insect monster you control; destroy all opponent monsters",
+    ],
+    "wyvernalsanctuary": [
+        'Send 1 Insect monster you control to GY; Special Summon 1 "Wyvernal" monster from Deck',
+        "Fusion Summon by shuffling Insect materials from hand, GY, or banishment into Deck",
+    ],
+    "wyvernalgathering": [
+        'Add 1 "Wyvernal" monster from Deck and send another to GY',
+        "Banish this card; shuffle up to 4 Insect monsters from GY into Deck, then draw",
     ],
 }
 
