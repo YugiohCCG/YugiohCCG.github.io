@@ -708,10 +708,11 @@ def infer_archetype(name: str, effect_text: str | None) -> str | None:
     return None
 
 
-def build_card_payload(index: int, start_id: int, extracted: ExtractedCard) -> dict[str, Any]:
+def build_card_payload(index: int, start_id: int, extracted: ExtractedCard, passcode: int) -> dict[str, Any]:
     card_number = index + 1
     return {
         "id": f"CARD-{start_id + index:05d}",
+        "passcode": passcode,
         "name": extracted.name,
         "image": f"/assets/cards/{extracted.filename}",
         "set": f"{SET_CODE}-{card_number:03d} {SET_NAME}",
@@ -730,6 +731,7 @@ def build_card_payload(index: int, start_id: int, extracted: ExtractedCard) -> d
         "def": extracted.def_,
         "text": extracted.text,
         "keywords": None,
+        "genre": 0,
         "legal": {
             "semiLimited": False,
             "limited": False,
@@ -888,7 +890,15 @@ async def main() -> int:
     start_id = next_card_id(cards)
     images = recent_images()
     extracted_cards = [await extract_card(image_path) for image_path in images]
-    payload = [build_card_payload(index, start_id, extracted) for index, extracted in enumerate(extracted_cards)]
+
+    from sync_omega_ccg_db import allocate_passcode
+
+    used_ids: set[int] = {int(c["passcode"]) for c in cards if isinstance(c.get("passcode"), int)}
+    payload: list[dict[str, Any]] = []
+    for index, extracted in enumerate(extracted_cards):
+        source_id = f"CARD-{start_id + index:05d}"
+        passcode = allocate_passcode(source_id, used_ids)
+        payload.append(build_card_payload(index, start_id, extracted, passcode))
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     draft_path = OUTPUT_DIR / "upst-draft.json"

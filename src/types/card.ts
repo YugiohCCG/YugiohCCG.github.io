@@ -67,6 +67,7 @@ export type LinkArrow =
 export interface Card {
   // identity
   id: string; // e.g., "CARD-0001", "TCG-AGIDO-THE-ANCIENT-SENTINEL"
+  passcode?: number | null; // YGO Omega card ID (CCG cards)
   name: string; // display name, usually uppercase in your data
   // visibility flags (keep card in data but hide in UI)
   hidden?: boolean | null;
