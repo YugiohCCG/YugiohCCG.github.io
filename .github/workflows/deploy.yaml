@@ -3,6 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - src/data/cards.json
+      - public/assets/cards
+      - public/CCG Downloads/**
+      - scripts/**
   workflow_dispatch:
 
 permissions:

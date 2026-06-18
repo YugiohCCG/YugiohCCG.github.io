@@ -1670,6 +1670,17 @@ def build_text_row(card_id: int, card: dict[str, Any]) -> dict[str, Any]:
     return row
 
 
+def _resolve_genre(card: dict[str, Any], existing_row: sqlite3.Row | None) -> int:
+    # cards.json is the source of truth when the field is present (even if 0).
+    # When absent (e.g. a card added by import_upcoming_set.py before backfill),
+    # carry over whatever Omega has so we don't clobber tags set in-app.
+    if "genre" in card and card.get("genre") is not None:
+        return int(card["genre"])
+    if existing_row is not None and existing_row["genre"] is not None:
+        return int(existing_row["genre"])
+    return 0
+
+
 def build_data_row(
     card_id: int,
     card: dict[str, Any],
@@ -1706,7 +1717,7 @@ def build_data_row(
         "race": build_race(card),
         "attribute": build_attribute(card),
         "category": int(existing_row["category"]) if existing_row else 0,
-        "genre": int(existing_row["genre"]) if existing_row else 0,
+        "genre": _resolve_genre(card, existing_row),
         "script": bytes(existing_row["script"]) if existing_row and existing_row["script"] is not None else b"",
         "support": bytes(existing_row["support"]) if existing_row and existing_row["support"] is not None else b"\x00",
     }
@@ -1724,8 +1735,7 @@ def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) 
     conn = sqlite3.connect(db_path)
     try:
         rows = load_existing_rows(conn)
-        existing_by_norm = {normalize_name(row["name"]): row for row in rows}
-        used_ids = {int(row["id"]) for row in rows}
+        existing_by_id = {int(row["id"]): row for row in rows}
         setcode_map, used_setcodes = build_existing_setcode_map(cards, rows)
 
         inserted = 0
@@ -1733,13 +1743,17 @@ def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) 
         preserved = 0
         unresolved_type_counts: Counter[str] = Counter()
         mapping_output: list[dict[str, Any]] = []
+        missing_passcodes: list[str] = []
 
         for card in cards:
             name = canonical_display_name(card.get("name"))
-            norm_name = normalize_name(name)
-            existing_row = existing_by_norm.get(norm_name)
+            passcode_value = card.get("passcode")
+            if passcode_value is None:
+                missing_passcodes.append(f"{card.get('id') or '?'} ({name})")
+                continue
+            card_id = int(passcode_value)
+            existing_row = existing_by_id.get(card_id)
             if existing_row is not None:
-                card_id = int(existing_row["id"])
                 action = "preserved"
                 if not insert_only:
                     updated += 1
@@ -1747,7 +1761,6 @@ def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) 
                 else:
                     preserved += 1
             else:
-                card_id = allocate_passcode(str(card.get("id")), used_ids)
                 inserted += 1
                 action = "inserted"
 
@@ -1830,6 +1843,14 @@ def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) 
                     str16=excluded.str16
                 """,
                 text_row,
+            )
+
+        if missing_passcodes:
+            preview = ", ".join(missing_passcodes[:5])
+            extra = "" if len(missing_passcodes) <= 5 else f", ... (+{len(missing_passcodes) - 5} more)"
+            raise SystemExit(
+                f"cards.json has {len(missing_passcodes)} cards without a passcode field: {preview}{extra}\n"
+                "Add a 'passcode' integer to each new card before syncing."
             )
 
         for token in EXTRA_TOKEN_CARDS:

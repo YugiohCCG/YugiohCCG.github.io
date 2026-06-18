@@ -11,7 +11,6 @@ import type {
   DraftTags,
 } from "../types/draft";
 import draftTagOverrides from "../data/draft-tag-overrides.json";
-import ccgOmegaIds from "../data/ccg-omega-ids.json";
 import tcgOmegaIds from "../data/tcg-omega-ids.json";
 
 const EXTRA_TYPES = new Set(["Fusion", "Synchro", "Xyz", "Link"]);
@@ -65,7 +64,6 @@ const SPELL_TRAP_NON_ENGINE = new Set(
 const EXCLUDE_FRAGMENTS = draftTagOverrides.excludeNameFragments.map((name) =>
   normalizeName(name)
 );
-const CCG_OMEGA_IDS: Record<string, number> = ccgOmegaIds;
 const TCG_OMEGA_IDS: Record<string, string> = tcgOmegaIds;
 
 export const DRAFT_TARGETS: Record<DraftDeckSection, number> = {
@@ -184,8 +182,9 @@ function isNumericPasscode(value: unknown): value is string | number {
 
 function resolveOmegaPasscode(card: Card, source: DraftSource): string | number | null {
   if (source === "CCG") {
-    const mappedId = CCG_OMEGA_IDS[String(card.id ?? "")];
-    if (isNumericPasscode(mappedId)) return mappedId;
+    if (typeof card.passcode === "number" && isNumericPasscode(card.passcode)) {
+      return card.passcode;
+    }
   }
 
   if (source === "TCG") {

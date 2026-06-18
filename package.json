@@ -40,7 +40,15 @@
     "format:fix": "prettier --write .",
     "label:tcg": "node scripts/label-tcg-cards.js",
     "sync:omega:banlist": "node scripts/sync-omega-ccg-banlist.mjs",
-    "sync:ygo:draft": "node scripts/sync-ygo-draft-pool.mjs"
+    "sync:ygo:draft": "node scripts/sync-ygo-draft-pool.mjs",
+    "release:omega": "python scripts/release_omega_assets.py",
+    "release:omega:with-omega-install": "python scripts/release_omega_assets.py --use-omega-install",
+    "release:omega:publish": "python scripts/release_omega_assets.py --recompile-installer --push",
+    "release:omega:stage": "python scripts/release_omega_assets.py --push --commit-message \"Update Omega CCG add-on assets (installer recompile pending)\"",
+    "release:omega:installer": "python scripts/release_omega_assets.py --skip-db --skip-images --recompile-installer --push --commit-message \"Recompile Omega CCG installer EXE\"",
+    "test:omega": "python scripts/release_omega_assets.py --use-omega-install --export-only --overwrite",
+    "release:omega:db-only": "python scripts/release_omega_assets.py --skip-images",
+    "release:omega:images-only": "python scripts/release_omega_assets.py --skip-db"
   },
   "engines": {
     "node": ">=18.18"

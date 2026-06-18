@@ -42,9 +42,9 @@ const
   DB_ZIP_NAME = 'CCG_Database.zip';
   DB_NAME = 'CCG_v1.db';
   BANLIST_NAME = 'CCG_Banlist.lflist.conf';
-  IMAGE_PART_COUNT = 3;
+  IMAGE_PART_COUNT = 1;
   PICS_PART_COUNT = 4;
-  HOLOGRAM_PART_COUNT = 7;
+  HOLOGRAM_PART_COUNT = 3;
 
 function URLDownloadToFile(Caller: Integer; URL, FileName: string; Reserved: Integer; Bind: Integer): Integer;
   external 'URLDownloadToFileW@urlmon.dll stdcall';
