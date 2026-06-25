@@ -1,5 +1,5 @@
 --Eclipse Observer Nora
-local s,id=GetID()
+local s,id,o=GetID()
 local SET_ECLIPSE=0xf2f4
 local SET_ECLIPSE_OBSERVER=0xeb17
 local CARD_OBSERVATORY=259721372
@@ -36,7 +36,7 @@ function s.initial_effect(c)
 	e3:SetCode(EVENT_DRAW)
 	e3:SetRange(LOCATION_MZONE)
 	e3:SetProperty(EFFECT_FLAG_DELAY)
-	e3:SetCountLimit(1,id+100)
+	e3:SetCountLimit(1,id+o)
 	e3:SetCondition(s.drcon)
 	e3:SetTarget(s.drtg)
 	e3:SetOperation(s.drop)

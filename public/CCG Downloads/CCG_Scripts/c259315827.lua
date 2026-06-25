@@ -33,7 +33,6 @@ function s.initial_effect(c)
 	e3:SetRange(LOCATION_MZONE)
 	e3:SetTarget(s.reptg2)
 	e3:SetValue(s.repval2)
-	e3:SetOperation(s.repop)
 	c:RegisterEffect(e3)
 end
 function s.eqcost(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -92,7 +91,15 @@ end
 function s.reptg2(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return eg:IsExists(s.repfilter2,1,nil,tp)
 		and Duel.IsExistingMatchingCard(s.repfilter,tp,LOCATION_SZONE,0,1,nil,e) end
-	return Duel.SelectEffectYesNo(tp,e:GetHandler(),aux.Stringid(id,1))
+	if Duel.SelectEffectYesNo(tp,e:GetHandler(),aux.Stringid(id,1)) then
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
+		local g=Duel.SelectMatchingCard(tp,s.repfilter,tp,LOCATION_SZONE,0,1,1,nil,e)
+		if #g>0 then
+			Duel.Destroy(g,REASON_EFFECT+REASON_REPLACE)
+		end
+		return true
+	end
+	return false
 end
 function s.repval2(e,c)
 	return c==e:GetHandler()

@@ -42,6 +42,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local ct=Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
 	ct=ct or #g
 	local maxct=math.min(math.floor(ct/10),Duel.GetLocationCount(tp,LOCATION_MZONE))
+	if Duel.IsPlayerAffectedByEffect(tp,59822133) then maxct=math.min(maxct,1) end
 	if maxct<=0 then return end
 	local sg=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,nil,e,tp)
 	if #sg==0 or not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then return end

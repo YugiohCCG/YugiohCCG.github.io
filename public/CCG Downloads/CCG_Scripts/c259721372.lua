@@ -80,7 +80,7 @@ function s.negcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return eg:IsContains(chkc) and s.negfilter(chkc,e,tp) end
-	if chk==0 then return true end
+	if chk==0 then return eg:IsExists(s.negfilter,1,nil,e,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_NEGATE)
 	local g=eg:Filter(s.negfilter,nil,e,tp)
 	local tc=g:Select(tp,1,1,nil):GetFirst()

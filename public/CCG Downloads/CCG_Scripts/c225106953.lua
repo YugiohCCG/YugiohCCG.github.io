@@ -36,7 +36,7 @@ function s.spcon(e,c)
 			or Duel.IsExistingMatchingCard(s.xyzctrl,tp,LOCATION_MZONE,0,1,nil))
 end
 function s.splimit(e,c,sump,sumtype,sumpos,targetp,se)
-	return c:IsAttribute(ATTRIBUTE_EARTH)
+	return not c:IsAttribute(ATTRIBUTE_EARTH)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local e1=Effect.CreateEffect(c)
@@ -61,7 +61,7 @@ function s.lvtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then return Duel.IsExistingTarget(s.lvfilter,tp,LOCATION_MZONE,0,2,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local g=Duel.SelectTarget(tp,s.lvfilter,tp,LOCATION_MZONE,0,2,2,nil)
-	Duel.Hint(HINT_SELECTMSG,tp,HINGMSG_LVRANK)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_LVRANK)
 	e:SetLabel(Duel.AnnounceLevel(tp,8,10))
 end
 function s.lvop(e,tp,eg,ep,ev,re,r,rp)

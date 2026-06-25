@@ -129,8 +129,8 @@ function s.countercap(tp,lv)
 	if not Duel.IsExistingMatchingCard(s.corruptionfilter,tp,LOCATION_SZONE,0,1,nil) then return 0 end
 	return math.min(lv,Duel.GetCounter(tp,1,1,COUNTER_CORRUPTION))
 end
-function s.matcheck(g,lv,ct)
-	return g:GetSum(Card.GetLevel)+ct>=lv
+function s.matcheck(g,lv,ct,tp,rc)
+	return g:GetSum(Card.GetLevel)+ct>=lv and s.zonecheck(tp,rc,g)
 end
 function s.hasfieldmat(c)
 	return c:IsLocation(LOCATION_MZONE)
@@ -154,8 +154,7 @@ function s.ritfilter(c,e,tp)
 	if lv<=0 then return false end
 	local mg=s.matgroup(tp,c)
 	if #mg==0 then return false end
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 and not mg:IsExists(s.hasfieldmat,1,nil) then return false end
-	return mg:CheckSubGroup(s.matcheck,1,#mg,lv,s.countercap(tp,lv))
+	return mg:CheckSubGroup(s.matcheck,1,#mg,lv,s.countercap(tp,lv),tp,c)
 end
 function s.rittg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.ritfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,nil,e,tp) end
@@ -171,9 +170,8 @@ function s.ritop(e,tp,eg,ep,ev,re,r,rp)
 	local lv=rc:GetLevel()
 	local mg=s.matgroup(tp,rc)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
-	local mat=mg:SelectSubGroup(tp,s.matcheck,true,1,#mg,lv,s.countercap(tp,lv))
+	local mat=mg:SelectSubGroup(tp,s.matcheck,true,1,#mg,lv,s.countercap(tp,lv),tp,rc)
 	if not mat then goto cancel end
-	if not s.zonecheck(tp,rc,mat) then goto cancel end
 	local deficit=lv-mat:GetSum(Card.GetLevel)
 	if deficit<0 then deficit=0 end
 	if deficit>0 then

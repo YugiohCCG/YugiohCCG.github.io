@@ -11,7 +11,7 @@ function s.initial_effect(c)
 	--This card in your hand can be used as Tribute for a NATURE monster
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
-	e1:SetCode(EFFECT_EXTRA_RELEASE)
+	e1:SetCode(EFFECT_EXTRA_RELEASE_SUM)
 	e1:SetRange(LOCATION_HAND)
 	e1:SetValue(s.relval)
 	c:RegisterEffect(e1)

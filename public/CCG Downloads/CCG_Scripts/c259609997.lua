@@ -20,7 +20,7 @@ function s.initial_effect(c)
 	e0:SetProperty(EFFECT_FLAG_UNCOPYABLE)
 	e0:SetCode(EFFECT_SPSUMMON_PROC)
 	e0:SetRange(LOCATION_HAND)
-	e0:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e0:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e0:SetCondition(s.spcon)
 	c:RegisterEffect(e0)
 	--Draw 1, reveal it, then Special Summon it if it is a Beast

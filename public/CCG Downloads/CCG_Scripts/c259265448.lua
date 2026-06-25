@@ -122,7 +122,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.tgop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if c:IsRelateToEffect(e) and c:IsAbleToGrave() then
+	if c:IsAbleToGrave() then
 		Duel.SendtoGrave(c,REASON_EFFECT)
 	end
 end

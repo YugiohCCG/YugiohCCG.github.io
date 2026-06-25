@@ -192,6 +192,9 @@ function s.zonecheck(tp,rc,mat)
 	end
 	return Duel.GetMZoneCount(tp,mat)>0
 end
+function s.ritcheck(g,lv,ct,tp,rc)
+	return s.matcheck(g,lv,ct) and s.zonecheck(tp,rc,g)
+end
 function s.ritfilter(c,e,tp)
 	if c:IsLocation(LOCATION_EXTRA) and not c:IsFaceup() then return false end
 	if not (c:IsRace(RACE_CYBERSE) and c:IsType(TYPE_RITUAL)
@@ -200,8 +203,7 @@ function s.ritfilter(c,e,tp)
 	if lv<=0 then return false end
 	local mg=s.matgroup(tp,c)
 	if #mg==0 then return false end
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 and not mg:IsExists(s.hasfieldmat,1,nil) then return false end
-	return mg:CheckSubGroup(s.matcheck,1,#mg,lv,s.countercap(tp,lv))
+	return mg:CheckSubGroup(s.ritcheck,1,#mg,lv,s.countercap(tp,lv),tp,c)
 end
 function s.dataop(e,tp)
 	if not Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.ritfilter),tp,s.ritloc(tp),0,1,nil,e,tp) then return false end
@@ -213,9 +215,8 @@ function s.dataop(e,tp)
 	local lv=rc:GetLevel()
 	local mg=s.matgroup(tp,rc)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
-	local mat=mg:SelectSubGroup(tp,s.matcheck,true,1,#mg,lv,s.countercap(tp,lv))
-	if not mat then goto cancel end
-	if not s.zonecheck(tp,rc,mat) then goto cancel end
+	local mat=mg:SelectSubGroup(tp,s.ritcheck,true,1,#mg,lv,s.countercap(tp,lv),tp,rc)
+	if not mat then return false end
 	local deficit=lv-mat:GetSum(Card.GetLevel)
 	if deficit<0 then deficit=0 end
 	if deficit>0 then

@@ -55,6 +55,7 @@ function s.initial_effect(c)
 	e6:SetType(EFFECT_TYPE_IGNITION)
 	e6:SetRange(LOCATION_MZONE)
 	e6:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e6:SetCountLimit(1)
 	e6:SetCondition(s.descon)
 	e6:SetCost(s.descost)
 	e6:SetTarget(s.destg)
@@ -112,7 +113,7 @@ function s.lockop(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.descon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	return s.matcount(c)>=5 and c:GetFlagEffect(id)==0
+	return s.matcount(c)>=5
 end
 function s.rmfilter(c)
 	return c:IsRace(RACE_CYBERSE) and c:IsAbleToRemoveAsCost()
@@ -131,12 +132,9 @@ function s.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then return Duel.IsExistingTarget(s.destfilter,tp,0,LOCATION_ONFIELD,1,nil,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g=Duel.SelectTarget(tp,s.destfilter,tp,0,LOCATION_ONFIELD,1,1,nil,e)
-	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,tp,LOCATION_GRAVE)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
 end
 function s.desop(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD,0,1)
 	local tc=Duel.GetFirstTarget()
 	if tc and tc:IsRelateToEffect(e) and tc:IsControler(1-tp)
 		and tc:IsOnField() and tc:IsDestructable() then

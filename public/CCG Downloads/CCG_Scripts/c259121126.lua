@@ -49,24 +49,17 @@ end
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(Card.IsRace,tp,LOCATION_MZONE,0,1,nil,RACE_BEAST)
 end
-function s.costfilter(c,tp,own_only)
-	return c:IsRace(RACE_BEAST) and c:IsReleasable()
-		and (not own_only or c:IsControler(tp))
+function s.costfilter(c,tp)
+	return c:IsRace(RACE_BEAST) and Duel.GetMZoneCount(tp,c)>0
 end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	local own_only=Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
-	local oloc=own_only and 0 or LOCATION_MZONE
-	if chk==0 then return Duel.IsExistingMatchingCard(s.costfilter,tp,LOCATION_MZONE,oloc,1,nil,tp,own_only) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
-	local g=Duel.SelectMatchingCard(tp,s.costfilter,tp,LOCATION_MZONE,oloc,1,1,nil,tp,own_only)
+	if chk==0 then return Duel.CheckReleaseGroup(tp,s.costfilter,1,nil,tp) end
+	local g=Duel.SelectReleaseGroup(tp,s.costfilter,1,1,nil,tp)
 	Duel.Release(g,REASON_COST)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	local has_space=Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		or Duel.IsExistingMatchingCard(s.costfilter,tp,LOCATION_MZONE,0,1,nil,tp,true)
-	if chk==0 then return has_space
-		and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
+	if chk==0 then return (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,tp,c:GetLocation())
 end

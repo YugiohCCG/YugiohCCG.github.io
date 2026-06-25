@@ -106,7 +106,20 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	if not tc then return end
 	if sg1:IsContains(tc) and (not sg2 or not sg2:IsContains(tc) or not Duel.SelectYesNo(tp,ce:GetDescription())) then
 		local mat=nil
-		if tc:IsCode(CARD_BALEYGR) and mg1:CheckSubGroup(s.baleygrmatcheck,2,2) then
+		local b1=false
+		aux.FCheckAdditional=s.fcheck
+		if tc:CheckFusionMaterial(mg1,nil,chkf) then b1=true end
+		aux.FCheckAdditional=nil
+		local b2=(tc:IsCode(CARD_BALEYGR) and mg1:CheckSubGroup(s.baleygrmatcheck,2,2))
+		if b1 and b2 then
+			if Duel.SelectYesNo(tp,aux.Stringid(id,1)) then
+				mat=mg1:SelectSubGroup(tp,s.baleygrmatcheck,false,2,2)
+			else
+				aux.FCheckAdditional=s.fcheck
+				mat=Duel.SelectFusionMaterial(tp,tc,mg1,nil,chkf)
+				aux.FCheckAdditional=nil
+			end
+		elseif b2 then
 			mat=mg1:SelectSubGroup(tp,s.baleygrmatcheck,false,2,2)
 		else
 			aux.FCheckAdditional=s.fcheck

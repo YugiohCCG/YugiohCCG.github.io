@@ -40,21 +40,14 @@ function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then return ct>0 and Duel.IsExistingTarget(s.negfilter,tp,0,LOCATION_MZONE,1,nil,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local g=Duel.SelectTarget(tp,s.negfilter,tp,0,LOCATION_MZONE,1,ct,nil,e)
-	g:KeepAlive()
-	e:SetLabelObject(g)
 	Duel.SetOperationInfo(0,CATEGORY_DISABLE,g,#g,0,0)
-end
-function s.relfilter(c,e)
-	return c:IsRelateToEffect(e) and c:IsControler(1-e:GetHandlerPlayer())
-		and c:IsLocation(LOCATION_MZONE) and c:IsFaceup()
 end
 function s.xyzgray(c)
 	return c:IsFaceup() and c:IsSetCard(SET_GRAYSCALE) and c:IsType(TYPE_XYZ)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
-	local g=e:GetLabelObject()
-	if not g then return end
-	local rg=g:Filter(s.relfilter,nil,e)
+	local rg=Duel.GetTargetCards(e):Filter(Card.IsFaceup,nil)
+	if #rg==0 then return end
 	local og=Group.CreateGroup()
 	local tc=rg:GetFirst()
 	while tc do
@@ -66,7 +59,7 @@ function s.negop(e,tp,eg,ep,ev,re,r,rp)
 		local e2=e1:Clone()
 		e2:SetCode(EFFECT_DISABLE_EFFECT)
 		tc:RegisterEffect(e2)
-		if not tc:IsAttribute(ATTRIBUTE_LIGHT) then
+		if not tc:IsAttribute(ATTRIBUTE_LIGHT) and not tc:IsType(TYPE_TOKEN) then
 			og:AddCard(tc)
 		end
 		tc=rg:GetNext()
@@ -79,7 +72,6 @@ function s.negop(e,tp,eg,ep,ev,re,r,rp)
 			Duel.Overlay(xc,og)
 		end
 	end
-	g:DeleteGroup()
 end
 function s.gycost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

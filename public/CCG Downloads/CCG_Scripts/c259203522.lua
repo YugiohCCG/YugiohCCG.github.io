@@ -49,8 +49,8 @@ function s.effcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local can1=Duel.IsPlayerCanDraw(tp,1)
 		and Duel.IsExistingMatchingCard(s.graycostfilter,tp,LOCATION_HAND,0,1,nil)
 	local can2=Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and (Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil)
-			or Duel.IsExistingMatchingCard(s.setcostfilter,tp,LOCATION_HAND,0,1,nil))
+		and Duel.IsExistingTarget(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil)
+		and Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil)
 	if chk==0 then return can1 or can2 end
 	local opt=0
 	if can1 and can2 then
@@ -64,27 +64,25 @@ function s.effcost(e,tp,eg,ep,ev,re,r,rp,chk)
 		Duel.DiscardHand(tp,s.graycostfilter,1,1,REASON_COST+REASON_DISCARD)
 	else
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD)
-		local discard_filter=Card.IsDiscardable
-		if not Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil) then
-			discard_filter=s.setcostfilter
-		end
-		Duel.DiscardHand(tp,discard_filter,1,1,REASON_COST+REASON_DISCARD)
+		Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_COST+REASON_DISCARD)
 	end
 end
 function s.efftg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local opt=e:GetLabel()
 	if chkc then return opt==1 and chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE)
 		and aux.NecroValleyFilter(s.setfilter)(chkc) end
-	if opt==0 then
-		if chk==0 then return true end
-		Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
-		return
+	if chk==0 then 
+		local can1=Duel.IsPlayerCanDraw(tp,1) and Duel.IsExistingMatchingCard(s.graycostfilter,tp,LOCATION_HAND,0,1,nil)
+		local can2=Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingTarget(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil) and Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil)
+		return can1 or can2
 	end
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and Duel.IsExistingTarget(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
-	local g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,1,nil)
-	Duel.SetOperationInfo(0,CATEGORY_LEAVE_GRAVE,g,1,tp,LOCATION_GRAVE)
+	if opt==0 then
+		Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
+	else
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
+		local g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,1,nil)
+		Duel.SetOperationInfo(0,CATEGORY_LEAVE_GRAVE,g,1,tp,LOCATION_GRAVE)
+	end
 end
 function s.effop(e,tp,eg,ep,ev,re,r,rp)
 	local opt=e:GetLabel()

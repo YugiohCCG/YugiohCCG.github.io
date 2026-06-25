@@ -46,7 +46,7 @@ function s.handcon(e)
 	return Duel.IsExistingMatchingCard(s.xyzfilter,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil)
 end
 function s.negfilter(c,e)
-	return c:IsFaceup() and aux.NegateAnyFilter(c) and c:IsCanBeDisabledByEffect(e,false)
+	return aux.NegateAnyFilter(c)
 end
 function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and s.negfilter(chkc,e) end
@@ -67,7 +67,7 @@ end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and tc:IsFaceup() and tc:IsCanBeDisabledByEffect(e,false)) then return end
+	if not (tc and tc:IsRelateToEffect(e) and aux.NegateAnyFilter(tc)) then return end
 	Duel.NegateRelatedChain(tc,RESET_TURN_SET)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)

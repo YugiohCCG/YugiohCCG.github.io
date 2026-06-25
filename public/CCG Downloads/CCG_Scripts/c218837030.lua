@@ -54,8 +54,8 @@ function s.relfilter(c,ec,tp)
 		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 end
 function s.repfilter(c,tp,ec)
-	return c~=ec and c:IsSetCard(SET_URSARCTIC) and c:IsLevelAbove(7) and c:IsAbleToRemoveAsCost()
-		and s.repeffect(c,tp) and (Duel.GetLocationCount(tp,LOCATION_MZONE)>0 or c:IsLocation(LOCATION_MZONE))
+	return c~=ec and c:IsAbleToRemoveAsCost() and s.repeffect(c,tp)
+		and (Duel.GetLocationCount(tp,LOCATION_MZONE)>0 or c:IsLocation(LOCATION_MZONE))
 end
 function s.repeffect(c,tp)
 	return c:IsHasEffect(CARD_URSARCTIC_DEPARTURE,tp) or c:IsHasEffect(CARD_URSARCTIC_BIG_DIPPER,tp)

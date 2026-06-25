@@ -33,7 +33,6 @@ function s.revcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return not c:IsPublic() end
 	Duel.ConfirmCards(1-tp,c)
-	Duel.ShuffleHand(tp)
 end
 function s.spfilter(c,e,tp)
 	return c:IsSetCard(SET_WYVERNAL) and c:IsType(TYPE_MONSTER) and not c:IsCode(id)

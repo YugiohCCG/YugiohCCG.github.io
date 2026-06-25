@@ -55,7 +55,7 @@ function s.initial_effect(c)
 	e5:SetOperation(s.tgop)
 	c:RegisterEffect(e5)
 end
-function s.fusfilter(c,fc,sumtype,tp)
+function s.fusfilter(c,fc,sub,mg,sg)
 	return c:IsFusionSetCard(SET_DOMESTICA) and c:IsType(TYPE_MONSTER) and not c:IsCode(id)
 end
 function s.matfilter(c,fc)

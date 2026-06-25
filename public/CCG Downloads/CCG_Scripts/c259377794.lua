@@ -76,12 +76,13 @@ function s.atkcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.atktg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsAbleToDeck() end
+	if chk==0 then return c:IsAbleToDeck() and aux.NecroValleyFilter(Card.IsAbleToDeck)(c) end
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,c,1,0,0)
 end
 function s.atkop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not (c:IsRelateToEffect(e) and Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and c:IsLocation(LOCATION_DECK)) then return end
+	if not (c:IsRelateToEffect(e) and aux.NecroValleyFilter(Card.IsAbleToDeck)(c)
+		and Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and c:IsLocation(LOCATION_DECK)) then return end
 	local g=Duel.GetMatchingGroup(s.fairyfilter,tp,LOCATION_MZONE,0,nil)
 	for tc in aux.Next(g) do
 		local e1=Effect.CreateEffect(c)

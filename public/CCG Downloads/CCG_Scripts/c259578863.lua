@@ -106,6 +106,9 @@ function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 		and Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil)
 	if chk==0 then return (Duel.GetLocationCount(tp,LOCATION_SZONE)>0
 		and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil)) or canadd end
+	if canadd then
+		Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
+	end
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local canadd=Duel.GetFieldGroupCount(tp,0,LOCATION_ONFIELD)>0

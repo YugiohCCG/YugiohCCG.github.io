@@ -91,14 +91,11 @@ function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsAbleToRemove()
 		and aux.NecroValleyFilter()(e:GetHandler())
 		and eg:IsExists(s.repfilter,1,nil,tp) end
-	if Duel.SelectEffectYesNo(tp,e:GetHandler(),aux.Stringid(STRING_ID,1)) then
-		Duel.Remove(e:GetHandler(),POS_FACEUP,REASON_EFFECT+REASON_REPLACE)
-		return true
-	end
-	return false
+	return Duel.SelectEffectYesNo(tp,e:GetHandler(),aux.Stringid(STRING_ID,1))
 end
 function s.repval(e,c)
 	return s.repfilter(c,e:GetHandlerPlayer())
 end
 function s.repop(e,tp,eg,ep,ev,re,r,rp)
+	Duel.Remove(e:GetHandler(),POS_FACEUP,REASON_EFFECT+REASON_REPLACE)
 end

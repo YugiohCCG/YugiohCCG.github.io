@@ -43,7 +43,7 @@ function s.charmritual(c,e,tp)
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true)
 end
 function s.monmatfilter(c,rc)
-	return c:IsType(TYPE_MONSTER) and c:GetLevel()>0 and c:IsAbleToGrave()
+	return c:IsType(TYPE_MONSTER) and c:GetLevel()>0 and (not c:IsLocation(LOCATION_DECK) or c:IsAbleToGrave())
 		and c:IsCanBeRitualMaterial(rc)
 end
 function s.stmatfilter(c)
@@ -98,7 +98,7 @@ function s.ritop(e,tp,eg,ep,ev,re,r,rp)
 	rc:SetMaterial(monmat)
 	if #handfieldmat>0 then Duel.ReleaseRitualMaterial(handfieldmat) end
 	if #deckmat>0 then Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end
-	if #stmat>0 then Duel.SendtoGrave(stmat,REASON_EFFECT+REASON_RITUAL) end
+	if #stmat>0 then Duel.SendtoGrave(stmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end
 	Duel.BreakEffect()
 	if Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
 		rc:CompleteProcedure()

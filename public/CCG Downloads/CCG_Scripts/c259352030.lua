@@ -44,7 +44,6 @@ function s.initial_effect(c)
 	e3:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
 	e3:SetRange(LOCATION_MZONE)
 	e3:SetTarget(s.reptg)
-	e3:SetOperation(s.repop)
 	c:RegisterEffect(e3)
 end
 s.listed_names={CARD_THUNDER_DRAGON}
@@ -105,20 +104,14 @@ end
 function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsReason(REASON_BATTLE+REASON_EFFECT)
 		and not e:GetHandler():IsReason(REASON_REPLACE)
-		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.repfilter),tp,LOCATION_GRAVE,0,1,nil) end
+		and Duel.IsExistingMatchingCard(s.repfilter,tp,LOCATION_GRAVE,0,1,nil) end
 	if Duel.SelectEffectYesNo(tp,e:GetHandler(),aux.Stringid(STRING_ID,2)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-		local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.repfilter),tp,LOCATION_GRAVE,0,1,1,nil)
+		local g=Duel.SelectMatchingCard(tp,s.repfilter,tp,LOCATION_GRAVE,0,1,1,nil)
 		if #g>0 then
-			e:SetLabelObject(g:GetFirst())
+			Duel.Remove(g,POS_FACEUP,REASON_EFFECT+REASON_REPLACE)
 			return true
 		end
 	end
 	return false
-end
-function s.repop(e,tp,eg,ep,ev,re,r,rp)
-	local tc=e:GetLabelObject()
-	if tc and tc:IsAbleToRemove() and aux.NecroValleyFilter()(tc) then
-		Duel.Remove(tc,POS_FACEUP,REASON_EFFECT+REASON_REPLACE)
-	end
 end

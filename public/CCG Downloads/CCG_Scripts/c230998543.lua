@@ -37,7 +37,7 @@ function s.spcon(e,c)
 			or Duel.IsExistingMatchingCard(s.xyzctrl,tp,LOCATION_MZONE,0,1,nil))
 end
 function s.splimit(e,c,sump,sumtype,sumpos,targetp,se)
-	return c:IsAttribute(ATTRIBUTE_WIND)
+	return not c:IsAttribute(ATTRIBUTE_WIND)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local e1=Effect.CreateEffect(c)

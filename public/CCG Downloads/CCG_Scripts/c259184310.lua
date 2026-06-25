@@ -152,7 +152,7 @@ function s.fmeqcon(e,tp,eg,ep,ev,re,r,rp)
 	return c:IsReason(REASON_MATERIAL) and c:IsReason(REASON_FUSION)
 end
 function s.fmeqfilter(c,e)
-	return c:IsFaceup() and s.isredeyes(c) and c:IsType(TYPE_MONSTER) and c:IsCanBeEffectTarget(e)
+	return c:IsFaceup() and s.isredeyes(c) and c:IsType(TYPE_MONSTER)
 end
 function s.fmeqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and s.fmeqfilter(chkc,e) end

@@ -1,5 +1,5 @@
 --Eclipse Observer Maya
-local s,id=GetID()
+local s,id,o=GetID()
 local SET_ECLIPSE=0xf2f4
 function s.initial_effect(c)
 	--Gains ATK/DEF for each card in your opponent's hand
@@ -34,7 +34,7 @@ function s.initial_effect(c)
 	e4:SetCode(EVENT_DRAW)
 	e4:SetRange(LOCATION_GRAVE)
 	e4:SetProperty(EFFECT_FLAG_DELAY)
-	e4:SetCountLimit(1,id+100)
+	e4:SetCountLimit(1,id+o)
 	e4:SetCondition(s.spcon)
 	e4:SetTarget(s.sptg)
 	e4:SetOperation(s.spop)

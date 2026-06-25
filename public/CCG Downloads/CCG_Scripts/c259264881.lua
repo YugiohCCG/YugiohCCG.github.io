@@ -23,7 +23,7 @@ function s.bp()
 	return ph>=PHASE_BATTLE_START and ph<=PHASE_BATTLE
 end
 function s.sumcon(e)
-	return not s.bp() and Duel.GetFieldGroupCount(e:GetHandlerPlayer(),LOCATION_MZONE,0)>1
+	return not s.bp() and Duel.GetFieldGroupCount(e:GetHandlerPlayer(),LOCATION_MZONE,0)>0
 end
 function s.splimit(e,se,sp,st,pos,tp)
 	return s.bp() or not Duel.IsExistingMatchingCard(aux.TRUE,sp,LOCATION_MZONE,0,1,nil)

@@ -57,5 +57,5 @@ function s.nwfilter(c)
 end
 function s.attrcon(e)
 	local tp=e:GetHandlerPlayer()
-	return not Duel.IsExistingMatchingCard(s.nwfilter,tp,LOCATION_MZONE,0,1,nil)
+	return Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)>0 and not Duel.IsExistingMatchingCard(s.nwfilter,tp,LOCATION_MZONE,0,1,nil)
 end

@@ -23,7 +23,12 @@ function s.rtfilter(c,e,tp)
 		and c:IsAbleToExtra() and c:IsCanBeEffectTarget(e) and Duel.GetMZoneCount(tp,c)>0
 end
 function s.thfilter(c)
-	return s.search_codes[c:GetCode()] and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsAbleToHand()
+	if not (c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsAbleToHand()) then return false end
+	local codes={c:GetCode()}
+	for _,code in ipairs(codes) do
+		if s.search_codes[code] then return true end
+	end
+	return false
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local c=e:GetHandler()

@@ -107,8 +107,7 @@ function s.rfilter(c,tp)
 		and (c:IsControler(tp) or c:IsFaceup())
 end
 function s.excostfilter(c,tp)
-	return c:IsSetCard(SET_URSARCTIC) and c:IsLevelAbove(7) and c:IsAbleToRemoveAsCost()
-		and s.repeffect(c,tp)
+	return c:IsAbleToRemoveAsCost() and s.repeffect(c,tp)
 end
 function s.repeffect(c,tp)
 	return c:IsHasEffect(CARD_URSARCTIC_DEPARTURE,tp) or c:IsHasEffect(CARD_URSARCTIC_BIG_DIPPER,tp)

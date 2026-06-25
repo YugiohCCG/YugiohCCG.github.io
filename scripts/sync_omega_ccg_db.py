@@ -132,6 +132,23 @@ OMEGA_SET_CODES = {
     "frute": 0x813,
     "niuhao": 0xB69,
     "toproto": 0xE80D,
+    "stellaer": 0x0DE4,
+    "ataxia": 0x7398,
+    "taxis": 0x27E9,
+    "dysmandr": 0x0A6B,
+    "stellar": 0x257C,
+    "eldora": 0x0738,
+    "phantasmspiral": 0x00FA,
+    "wickedpuppeteer": 0xE0A9,
+    "virpedicaemortis": 0x39E2,
+    "nautica": 0x08F0,
+    "bob": 0x92B1,
+    "cryingchaos": 0x6F4,
+    "shiningbrigade": 0x7a34,
+    "chronosaur": 0xdae7,
+    "aquamarine": 0xf3c,
+    "ohmen": 0x8de0,
+    "ohmechanic": 0x8de1,
 }
 
 # Rows kept by older Omega DBs but not shipped with the current release assets.
@@ -195,6 +212,18 @@ EXTRA_TOKEN_CARDS = [
         "level": 1,
         "race": RACE_BITS["Galaxy"],
         "attribute": ATTRIBUTE_BITS["LIGHT"],
+    },
+    {
+        "id": 234178974,
+        "name": "Puppet Token",
+        "desc": 'Special Summoned by the effect of "Wicked Puppeteer" cards.',
+        "setcode": OMEGA_SET_CODES["wickedpuppeteer"],
+        "type": TYPE_BITS["Monster"] | TYPE_BITS["Normal"] | TYPE_BITS["Token"],
+        "atk": 1500,
+        "def": 200,
+        "level": 4,
+        "race": RACE_BITS["Warrior"],
+        "attribute": ATTRIBUTE_BITS["DARK"],
     },
 ]
 
@@ -286,6 +315,270 @@ CARD_STRING_OVERRIDES = {
     "stellaerofthevolcanos": [
         "Special Summon this card from your hand",
         "Inflict damage equal to total Rank x100",
+    ],
+    "prideofthestellaers": [
+        'Add 1 "Stellaer" monster',
+        'Special Summon 1 "Stellaer" monster from your hand',
+        'Xyz Summon 1 "Stellaer" monster',
+    ],
+    "astellaerisreborn": [
+        'Special Summon 1 "Stellaer" monster',
+        "Banish this card instead",
+    ],
+    "stellaerspain": [
+        "Negate the activation",
+    ],
+    "stellaeroflighting": [
+        'Xyz Summon using 1 "Stellaer" monster',
+        'Add 1 "Stellaer" monster from GY/banishment',
+        "Destroy this card; draw 1 card",
+    ],
+    "stellaeroftheflames": [
+        'Xyz Summon using 1 "Stellaer" monster',
+        "Detach 1 material; destroy 1 card",
+        "Destroy this card; draw 1 card",
+    ],
+    "stellaerofthewaters": [
+        'Xyz Summon using 1 "Stellaer" monster',
+        'Add 1 "Stellaer" Spell/Trap from your GY',
+        "Destroy this card; draw 1 card",
+    ],
+    "stellaeroftheair": [
+        'Xyz Summon using 1 "Stellaer" monster',
+        "Detach 1 material; send 1 monster to the GY",
+        "Destroy this card; draw 1 card",
+    ],
+    "stellaerofthedarkness": [
+        'Xyz Summon using 1 "Stellaer" monster',
+        "Detach 1 material; send 1 monster to the GY",
+        "Destroy this card; draw 1 card",
+    ],
+    "stellaerofpurity": [
+        "Attach 1 Xyz Monster and its materials",
+        "Detach materials; negate the activation",
+        "Destroy this card; Special Summon 1 Xyz Monster",
+    ],
+    "stellaeroftheground": [
+        'Xyz Summon using 1 "Stellaer" monster',
+        "Special Summon 1 opponent's GY monster",
+        "Destroy this card; draw 1 card",
+    ],
+    "birthofazrynior": [
+        "Special Summon 1 Protogenic Essence Token",
+        "Add this card to your hand",
+        "Shuffle 1 LIGHT or DARK Dragon into the Deck",
+    ],
+    "fallofazrynior": [
+        "Special Summon 1 DARK Protogenic Essence Token",
+        "Add this card to your hand",
+    ],
+    "restorationofazrynior": [
+        "Tribute 1 Token; Special Summon destroyed monsters",
+    ],
+    "azryniortheabundaenceofpurity": [
+        'Place 1 "Azrynior" Continuous Spell/Trap',
+        "Special Summon 1 Protogenic Essence Token",
+    ],
+    "dysmandrthedepraevityofworlds": [
+        'Place 1 "Dysmandr" Continuous Spell/Trap',
+        "Special Summon 1 DARK Protogenic Essence Token",
+    ],
+    "extinctionofdysmandr": [
+        "Tribute 1 Token; destroy matching Effect Monsters",
+    ],
+    "eldoratheintergalacticempire": [
+        "Destroy this card; negate that effect",
+        'Destroy monsters; Set "Eldora in Depraevity"',
+    ],
+    "eldoraindepraevity": [
+        "Tribute 1 Token; destroy matching Effect Monsters",
+    ],
+    "frozengirlbloodmoon": [
+        "Discard this card; negate that effect",
+    ],
+    "ghostdollmidnightmanor": [
+        "Discard this card; negate the activation",
+    ],
+    "dominussentinel": [
+        "Negate the targeted effect",
+    ],
+    "clockofaldrez": [
+        'Send 1 "Aldrez" card to the GY',
+        "Rewrite the activated effect",
+    ],
+    "aldrezgrandmaster": [
+        'Special Summon 1 "Aldrez" monster',
+    ],
+    "phantasmspiralresurgence": [
+        "Halve ATK/DEF and negate",
+        'Add 1 "Phantasm Spiral" card',
+    ],
+    "phantasmspiralshrine": [
+        'Place 1 "Umi" face-up',
+        "Shuffle cards into the Deck; draw 1",
+    ],
+    "phantasmspiralensnarement": [
+        "Change 1 monster face-down",
+        'Equip 1 "Phantasm Spiral" Equip Spell',
+    ],
+    "grandpuppetofwickedpuppeteer": [
+        "Tribute 1 monster; Special Summon this card",
+        "Destroy 1 opponent's card",
+    ],
+    "knightpuppetofwickedpuppeteer": [
+        "Tribute 1 monster; Special Summon this card",
+        "Protect your monsters",
+    ],
+    "minionpuppetsofwickedpuppeteer": [
+        "Tribute 1 monster; Special Summon this card",
+        "Take control of 1 opponent's monster",
+    ],
+    "guardianofwickedpuppeteer": [
+        'Discard this card; send 1 "Wicked Puppeteer" card',
+        'Banish this card; Ritual Summon "Orchis"',
+    ],
+    "thetruewickedpuppeteerorchis": [
+        "Discard 1 card; add 2 cards",
+        "Special Summon this card",
+        "Special Summon 1 Puppet Token",
+    ],
+    "wickedpuppeteerorchis": [
+        "Banish Extra Deck cards; Special Summon Tokens",
+        "Tribute 1 monster; take control",
+        "Banish 3 cards",
+        "Banish 6 cards",
+    ],
+    "wickedpuppeteertragedy": [
+        'Ritual Summon "Orchis"',
+        'Banish this card; send 1 "Wicked Puppeteer" monster',
+    ],
+    "wickedpuppeteery": [
+        'Add 1 "Wicked Puppeteer" monster',
+        'Add "Tragedy" and 1 monster',
+    ],
+    "divinephoenixofnephthys": [
+        'Destroy 1 "Nephthys" monster; Special Summon',
+        "Special Summon this card",
+        "Destroy 1 card",
+        'Ritual Summon 1 "Nephthys" monster',
+    ],
+    "pedicaespapa": [
+        'Add "Bear Trap" or 1 "Mine" Field Spell',
+        'Send 1 "Recollection"; gain 500 ATK',
+    ],
+    "virpedicaemortisentityshappyservant": [
+        "Pay cost; add 2 cards",
+        "Discard 1 card",
+        'Send 1 "Recollection" card',
+    ],
+    "virpedicaemortisfearlesshunter": [
+        "Destroy 1 Spell/Trap",
+    ],
+    "virpedicaemortistheunhallowedwarden": [
+        "Tribute 1 other monster; shuffle",
+        "Tribute 1 monster; Special Summon this card",
+    ],
+    "virpedicaemortistruenightmare": [
+        'Target 1 "Vir Pedicae Mortis" monster',
+        "Destroy up to 2 opponent cards",
+    ],
+    "entitysrealmpedicaeestate": [
+        'Add 1 "Vir Pedicae Mortis" monster',
+        "Double ATK and attack all monsters",
+        "Banish 1 card from opponent's GY",
+    ],
+    "recollectionstaticleadandnerve": [
+        "Add 1 monster; discard 1 card",
+    ],
+    "recollectionalessoniniron": [
+        "Pay 1000 LP; protect 1 monster",
+    ],
+    "recollectionthemine": [
+        'Special Summon 1 monster; add "Kaboom Papa"',
+    ],
+    "recollectionkaboompapa": [
+        "Destroy Mine and Papa; destroy all cards",
+    ],
+    "beartrap": [
+        "Negate the Summon or attack",
+        "Set this card",
+    ],
+    "securitakeagent": [
+        "Special Summon 1 monster from opponent's GY",
+    ],
+    "harmonypearlwoodthenauticaldeepwaters": [
+        "Special Summon this card",
+        "Search 1 Level 1 Aqua monster",
+        "Added monster cannot activate effects",
+    ],
+    "melodymerheartthenauticalcoralreef": [
+        "Special Summon this card",
+        'Add 1 "Nautica" card from your GY',
+    ],
+    "emmaoceannusthenauticalcoastlines": [
+        "Special Summon this card",
+        'Xyz Summon 1 "Nautica" Xyz Monster',
+    ],
+    "bobbiebluefinthenauticalnocturnes": [
+        "Special Summon this card",
+        "Opponent summons 1 monster from their hand",
+    ],
+    "scarletseareefthenauticalcreatures": [
+        'Add "Exploring the Nautical Waters"',
+        "Draw 1 card; opponent summons",
+    ],
+    "evandercoldwaterthenauticalabyss": [
+        "Detach 1 material; return 1 monster",
+    ],
+    "nauticalbackwashingoceanicwaves": [
+        'Return 1 "Nautica" monster',
+        "Banish this card; recycle 3 Aqua monsters",
+    ],
+    "melissaoceanheartthenauticalseabed": [
+        "Detach 2 materials; Set or add",
+        'Set 1 "Nautica" Spell/Trap',
+        'Add 1 "Nautica" monster',
+    ],
+    "exploringthenauticalwaters": [
+        'Add 1 "Nautica" monster',
+    ],
+    "nauticaladventurestorrentialseas": [
+        "Return 2 monsters to the hand",
+        "Attach this card as material",
+    ],
+    "bookkeeperofcryingchaos": [
+        "Special Summon 1 Zombie",
+        "Special Summon 1 Level 3 Zombie",
+    ],
+    "plaguedoctorofcryingchaos": [
+        "Special Summon this card",
+        "Become a Tuner",
+    ],
+    "scarecrowofcryingchaos": [
+        "Send 1 \"Crying Chaos\" monster",
+        "Special Summon 1 Link-2 Zombie",
+    ],
+    "slugofcryingchaos": [
+        "Special Summon 1 Level 3 Zombie Tuner",
+        "Special Summon this card",
+    ],
+    "witchofcryingchaos": [
+        "Add 1 \"Crying Chaos\" Spell/Trap",
+        "Place on bottom of Deck and draw",
+    ],
+    "hunterofcryingchaos": [
+        "Add or Set 1 \"Crying Chaos\" card",
+        "Add it to your hand",
+        "Set it to your field",
+    ],
+    "guardianofcryingchaos": [
+        "Special Summon this card",
+        "Increase Level by 2",
+        "Decrease Level by 2",
+    ],
+    "goatofcryingchaos": [
+        "Add 1 Level 3 Tuner",
+        "Special Summon 1 Level 4 or lower Zombie",
     ],
     "armorednovamechascaledxyrion": [
         "Xyz Summon using 1 Rank 8 Dragon Xyz Monster",
@@ -1693,6 +1986,8 @@ def build_data_row(
     if archetype:
         tags.append(archetype)
     tags.extend(extract_treated_as_names(card.get("text")))
+    if "Ohmechanic" in (card.get("name") or ""):
+        tags.append("Ohmechanic")
     setcodes: list[int] = []
     seen_codes: set[int] = set()
     for tag in tags:

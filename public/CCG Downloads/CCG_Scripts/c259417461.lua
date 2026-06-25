@@ -67,7 +67,7 @@ function s.gycon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.gytg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return aux.NecroValleyFilter()(c) and c:IsAbleToHand() end
+	if chk==0 then return c:IsAbleToHand() end
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,c,1,0,0)
 end
 function s.gyop(e,tp,eg,ep,ev,re,r,rp)

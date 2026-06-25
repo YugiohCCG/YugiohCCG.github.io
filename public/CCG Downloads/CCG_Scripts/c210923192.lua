@@ -59,7 +59,7 @@ function s.limcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.limop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not c:IsRelateToEffect(e) or c:IsFacedown() then return end
+	if not c:IsOnField() or c:IsFacedown() then return end
 	if Duel.GetCurrentChain()==0 then
 		Duel.SetChainLimitTillChainEnd(s.chainlm)
 	elseif Duel.GetCurrentChain()==1 then
@@ -81,7 +81,7 @@ function s.limreset(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.limop2(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if c:IsRelateToEffect(e) and c:IsFaceup() and c:GetFlagEffect(id+100)~=0 then
+	if c:IsOnField() and c:IsFaceup() and c:GetFlagEffect(id+100)~=0 then
 		Duel.SetChainLimitTillChainEnd(s.chainlm)
 	end
 	c:ResetFlagEffect(id+100)

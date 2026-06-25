@@ -62,7 +62,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.SelectMatchingCard(tp,s.spfilter,tp,LOCATION_MZONE,0,1,1,c)
 	if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 then return end
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsRelateToEffect(e)
-		and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c)) then
+		and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter(aux.TRUE)(c)) then
 		Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 	end
 end

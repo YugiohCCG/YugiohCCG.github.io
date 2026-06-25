@@ -53,7 +53,6 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local c=e:GetHandler()
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_ONFIELD+LOCATION_GRAVE) and s.otherfilter(chkc,c) end
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and aux.NecroValleyFilter()(c)
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENSE)
 		and Duel.IsExistingTarget(s.otherfilter,tp,LOCATION_ONFIELD+LOCATION_GRAVE,0,1,c,c) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)

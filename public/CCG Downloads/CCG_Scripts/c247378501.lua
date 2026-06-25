@@ -40,8 +40,7 @@ function s.ntcon(e,c,minc)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	local mg=Duel.GetMatchingGroup(s.relfilter,tp,0,LOCATION_MZONE,nil)
-	return c:IsLevelAbove(5) and minc<=1 and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and Duel.CheckTribute(c,1,1,mg)
+	return c:IsLevelAbove(5) and minc<=1 and Duel.CheckTribute(c,1,1,mg)
 end
 function s.ntop(e,tp,eg,ep,ev,re,r,rp,c)
 	local mg=Duel.GetMatchingGroup(s.relfilter,tp,0,LOCATION_MZONE,nil)
@@ -51,7 +50,7 @@ function s.ntop(e,tp,eg,ep,ev,re,r,rp,c)
 	Duel.Release(g,REASON_SUMMON+REASON_MATERIAL)
 end
 function s.eqfilter(c,tp,ec)
-	return c:IsType(TYPE_EQUIP) and (c.has_text_type==TYPE_SPIRIT or c:IsCode(CARD_KANMURIYAMA))
+	return c:IsType(TYPE_EQUIP) and (aux.IsTypeInText(c,TYPE_SPIRIT) or c:IsCode(CARD_KANMURIYAMA))
 		and (c:IsAbleToHand() or (Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and not c:IsForbidden()))
 end
 function s.eqtg(e,tp,eg,ep,ev,re,r,rp,chk)

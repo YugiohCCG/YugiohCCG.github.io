@@ -60,7 +60,7 @@ end
 function s.cttg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local ct=Duel.GetMatchingGroupCount(s.ctcountfilter,tp,LOCATION_MZONE,0,nil)
 	if chk==0 then return ct>0 and Duel.IsExistingMatchingCard(s.ctfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
-	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,math.min(ct,Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,LOCATION_ONFIELD)),0,0)
+	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,math.min(ct,Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,LOCATION_ONFIELD)),0,COUNTER_CORRUPTION)
 end
 function s.ctop(e,tp,eg,ep,ev,re,r,rp)
 	local ct=Duel.GetMatchingGroupCount(s.ctcountfilter,tp,LOCATION_MZONE,0,nil)

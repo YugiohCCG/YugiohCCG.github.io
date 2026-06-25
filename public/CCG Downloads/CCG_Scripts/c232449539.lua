@@ -19,7 +19,7 @@ function s.initial_effect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetTarget(s.fustg)
 	e1:SetOperation(s.fusop)
 	c:RegisterEffect(e1)
@@ -69,7 +69,7 @@ function s.retop(e,tp,eg,ep,ev,re,r,rp)
 	local g=e:GetLabelObject()
 	if g then
 		local rg=g:Filter(Card.IsLocation,nil,LOCATION_REMOVED)
-		if #rg>0 then Duel.SendtoGrave(rg,REASON_EFFECT) end
+		if #rg>0 then Duel.SendtoGrave(rg,REASON_EFFECT+REASON_RETURN) end
 		g:DeleteGroup()
 	end
 end

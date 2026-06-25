@@ -42,6 +42,7 @@ function s.initial_effect(c)
 	e2:SetCountLimit(1,id+100)
 	e2:SetCondition(s.chcon)
 	e2:SetCost(s.detach2)
+	e2:SetTarget(s.chtg)
 	e2:SetOperation(s.chop)
 	c:RegisterEffect(e2)
 end
@@ -116,24 +117,28 @@ function s.detach2(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,2,REASON_COST) end
 	e:GetHandler():RemoveOverlayCard(tp,2,2,REASON_COST)
 end
-function s.chop(e,tp,eg,ep,ev,re,r,rp)
-	re:SetLabel(tp)
-	Duel.ChangeChainOperation(ev,s.repop)
-end
 function s.xyzgray(c)
 	return c:IsFaceup() and c:IsSetCard(SET_GRAYSCALE) and c:IsType(TYPE_XYZ)
 end
 function s.fieldmat(c,xc)
 	return c~=xc and c:IsType(TYPE_MONSTER) and not c:IsType(TYPE_TOKEN)
 end
+function s.xyzwithmat(c,tp)
+	return s.xyzgray(c) and Duel.IsExistingMatchingCard(s.fieldmat,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil,c)
+end
+function s.chtg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.xyzwithmat,tp,LOCATION_MZONE,0,1,nil,tp) end
+end
+function s.chop(e,tp,eg,ep,ev,re,r,rp)
+	Duel.ChangeTargetCard(ev,Group.CreateGroup())
+	Duel.ChangeChainOperation(ev,s.repop)
+end
 function s.repop(e,tp,eg,ep,ev,re,r,rp)
-	local p=e:GetLabel()
-	if p~=0 and p~=1 then p=1-tp end
-	if not Duel.IsExistingMatchingCard(s.xyzgray,p,LOCATION_MZONE,0,1,nil) then return end
+	local p=tp
+	if not Duel.IsExistingMatchingCard(s.xyzwithmat,p,LOCATION_MZONE,0,1,nil,p) then return end
 	Duel.Hint(HINT_SELECTMSG,p,HINTMSG_FACEUP)
-	local xc=Duel.SelectMatchingCard(p,s.xyzgray,p,LOCATION_MZONE,0,1,1,nil):GetFirst()
+	local xc=Duel.SelectMatchingCard(p,s.xyzwithmat,p,LOCATION_MZONE,0,1,1,nil,p):GetFirst()
 	if not xc then return end
-	if not Duel.IsExistingMatchingCard(s.fieldmat,p,LOCATION_MZONE,LOCATION_MZONE,1,nil,xc) then return end
 	Duel.Hint(HINT_SELECTMSG,p,HINTMSG_XMATERIAL)
 	local mg=Duel.SelectMatchingCard(p,s.fieldmat,p,LOCATION_MZONE,LOCATION_MZONE,1,1,nil,xc)
 	if xc and #mg>0 then

@@ -166,7 +166,7 @@ function s.ritfilter(c,e,tp)
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true)
 end
 function s.ritmatfilter(c,rc)
-	return c:IsRace(RACE_CYBERSE) and c:GetLevel()>0 and c:IsAbleToGrave() and c:IsCanBeRitualMaterial(rc)
+	return c:IsRace(RACE_CYBERSE) and c:GetLevel()>0 and (not c:IsLocation(LOCATION_DECK) or c:IsAbleToGrave()) and c:IsCanBeRitualMaterial(rc)
 end
 function s.ritcheck(g,lv)
 	return g:GetSum(Card.GetLevel)>=lv

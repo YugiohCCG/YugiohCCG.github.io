@@ -43,7 +43,10 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 			ct=3
 		end
 	end
-	e:SetLabel(ac1,ac2,ac3,ct)
+	e:SetLabel(ct)
+	Duel.RegisterFlagEffect(tp,id,RESET_CHAIN,0,1,ac1)
+	if ct>1 then Duel.RegisterFlagEffect(tp,id,RESET_CHAIN,0,1,ac2) end
+	if ct>2 then Duel.RegisterFlagEffect(tp,id,RESET_CHAIN,0,1,ac3) end
 	Duel.SetOperationInfo(0,CATEGORY_ANNOUNCE,nil,0,tp,0)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,tp,LOCATION_HAND)
 end
@@ -64,7 +67,8 @@ end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)<3 then return end
-	local ac1,ac2,ac3=e:GetLabel()
+	local labels={Duel.GetFlagEffectLabel(tp,id)}
+	local ac1,ac2,ac3=labels[1],labels[2] or 0,labels[3] or 0
 	local g=s.getbottomgroup(tp,3)
 	if #g<3 then return end
 	Duel.ConfirmCards(1-tp,g)

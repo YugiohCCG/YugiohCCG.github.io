@@ -50,6 +50,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	end
 	local ct=Duel.GetMatchingGroupCount(s.filter,tp,0,LOCATION_MZONE,nil)
 	if ct>0 then
+		Duel.BreakEffect()
 		Duel.Draw(1-tp,ct,REASON_EFFECT)
 	end
 end

@@ -27,10 +27,10 @@ function s.epcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetTurnPlayer()==1-tp
 end
 function s.namefilter(c,code)
-	return c:IsCode(code) and c:IsAbleToDeck()
+	return c:IsCode(code)
 end
 function s.otherfilter(c,tc)
-	return c~=tc and c:IsAbleToDeck()
+	return c~=tc
 end
 function s.epop(e,tp,eg,ep,ev,re,r,rp)
 	local code=e:GetLabel()

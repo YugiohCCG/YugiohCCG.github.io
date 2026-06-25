@@ -33,8 +33,7 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_AIP}
 function s.xyzfilter(c)
-	return c:IsFaceup() and c:IsSetCard(SET_AIP) and c:IsType(TYPE_XYZ)
-		and not c:IsCode(259275822)
+	return c:IsFaceup() and AIP_EX_XYZ[c:GetCode()]
 end
 function s.actcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_MZONE,0,1,nil)

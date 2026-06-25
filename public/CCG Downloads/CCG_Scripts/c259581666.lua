@@ -69,7 +69,7 @@ end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if not (c:IsRelateToEffect(e) and tc and tc:IsRelateToEffect(e) and s.setfilter(tc)) then return end
+	if not (tc and tc:IsRelateToEffect(e) and s.setfilter(tc)) then return end
 	if tc:IsType(TYPE_MONSTER) then
 		Duel.ChangePosition(tc,POS_FACEDOWN_DEFENSE)
 	else

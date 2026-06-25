@@ -111,12 +111,7 @@ end
 function s.selfspcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local ct=c:GetFlagEffectLabel(id)
-	local tn=Duel.GetTurnCount()
-	if not ct or tn==ct then
-		c:ResetFlagEffect(id)
-		return false
-	end
-	return tn==ct+1
+	return ct and Duel.GetTurnCount()==ct+1
 end
 function s.selfsptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

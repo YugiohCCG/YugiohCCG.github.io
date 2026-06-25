@@ -44,7 +44,7 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_SCARSTECH}
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetCurrentChain()>=2
+	return Duel.GetCurrentChain()>=1
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -76,7 +76,7 @@ function s.scarmon(c)
 	return c:IsFaceup() and c:IsSetCard(SET_SCARSTECH) and c:IsType(TYPE_MONSTER)
 end
 function s.boostcon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetCurrentChain()>=2
+	return Duel.GetCurrentChain()>=1
 end
 function s.boosttg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.scarmon,tp,LOCATION_MZONE,0,1,nil) end

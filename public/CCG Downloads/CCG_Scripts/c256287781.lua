@@ -88,7 +88,6 @@ function s.chcost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.chop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ChangeTargetCard(ev,Group.CreateGroup())
-	re:SetLabel(tp)
 	Duel.ChangeChainOperation(ev,s.repop)
 end
 function s.desfilter(c)
@@ -99,12 +98,10 @@ function s.chtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.desfilter,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_ONFIELD,0,1,nil) end
 end
 function s.repop(e,tp,eg,ep,ev,re,r,rp)
-	local p=e:GetLabel()
-	if p~=0 and p~=1 then p=1-tp end
-	local g=Duel.GetMatchingGroup(s.desfilter,p,LOCATION_HAND+LOCATION_DECK+LOCATION_ONFIELD,0,nil)
-	if #g==0 then return end
+	local p=1-tp
+	if not Duel.IsExistingMatchingCard(s.desfilter,p,LOCATION_HAND+LOCATION_DECK+LOCATION_ONFIELD,0,1,nil) then return end
 	Duel.Hint(HINT_SELECTMSG,p,HINTMSG_DESTROY)
-	local sg=g:Select(p,1,1,nil)
+	local sg=Duel.SelectMatchingCard(p,s.desfilter,p,LOCATION_HAND+LOCATION_DECK+LOCATION_ONFIELD,0,1,1,nil)
 	if #sg>0 then
 		Duel.Destroy(sg,REASON_EFFECT)
 	end

@@ -37,7 +37,7 @@ function s.spcon(e,c)
 			or Duel.IsExistingMatchingCard(s.xyzctrl,tp,LOCATION_MZONE,0,1,nil))
 end
 function s.splimit(e,c,sump,sumtype,sumpos,targetp,se)
-	return c:IsAttribute(ATTRIBUTE_FIRE)
+	return not c:IsAttribute(ATTRIBUTE_FIRE)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local e1=Effect.CreateEffect(c)
@@ -65,7 +65,7 @@ function s.damage(tp)
 end
 function s.damtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local dam=s.damage(tp)
-	if chk==0 then return dam>0 and Duel.IsPlayerCanEffectDamage(1-tp) end
+	if chk==0 then return dam>0 end
 	Duel.SetOperationInfo(0,CATEGORY_DAMAGE,nil,0,1-tp,dam)
 end
 function s.damop(e,tp,eg,ep,ev,re,r,rp)

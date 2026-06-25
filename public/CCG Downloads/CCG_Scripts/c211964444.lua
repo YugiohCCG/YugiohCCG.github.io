@@ -40,18 +40,7 @@ function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.SelectMatchingCard(tp,s.desfilter,tp,LOCATION_DECK,0,1,1,nil,e):GetFirst()
 	if not tc then return end
 	Duel.ConfirmCards(1-tp,tc)
-	if Duel.Destroy(tc,REASON_EFFECT,LOCATION_GRAVE)==0 then return end
-	Duel.BreakEffect()
-	local te,ceg,cep,cev,cre,cr,crp=tc:CheckActivateEffect(true,true,true)
-	if not te then return end
-	local tg=te:GetTarget()
-	local op=te:GetOperation()
-	if tg then
-		tg(te,tp,ceg,cep,cev,cre,cr,crp,1)
-	end
-	if op then
-		op(te,tp,ceg,cep,cev,cre,cr,crp)
-	end
+	Duel.Destroy(tc,REASON_EFFECT,LOCATION_GRAVE)
 end
 function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
