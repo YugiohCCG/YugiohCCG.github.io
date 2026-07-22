@@ -1,7 +1,7 @@
 --A.I.P Ex Claw
 local s,id=GetID()
 local SET_AIP=0xa979
-local STRING_ID=id
+local STRING_ID=133137697
 local AIP_EX_MONSTERS={
 	[259609997]=true,
 	[259664027]=true,
@@ -19,7 +19,7 @@ function s.initial_effect(c)
 	e0:SetProperty(EFFECT_FLAG_UNCOPYABLE)
 	e0:SetCode(EFFECT_SPSUMMON_PROC)
 	e0:SetRange(LOCATION_HAND)
-	e0:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e0:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e0:SetCondition(s.spcon)
 	c:RegisterEffect(e0)
 	--Send 1 Beast monster from Deck to GY
@@ -101,6 +101,7 @@ function s.gyspop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=g:GetFirst()
 	if tc and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0
 		and tc:IsType(TYPE_XYZ) and c:IsLocation(LOCATION_GRAVE)
+		and aux.NecroValleyFilter(Card.IsCanOverlay)(c)
 		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then
 		Duel.Overlay(tc,Group.FromCards(c))
 	end

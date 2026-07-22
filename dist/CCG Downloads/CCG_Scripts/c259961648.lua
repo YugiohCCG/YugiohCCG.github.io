@@ -1,4 +1,5 @@
 local s,id=GetID()
+local STRING_ID=133961648
 local SET_GLITCHLING=0x9894
 local COUNTER_CORRUPTION=0x1994
 local CARD_BITRON=36211150
@@ -17,7 +18,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Pendulum Summon
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)

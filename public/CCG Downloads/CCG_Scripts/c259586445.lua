@@ -1,14 +1,15 @@
 --Stellaer of the Swamp
 local s,id=GetID()
+local STRING_ID=133586445
 local SET_STELLAER=0xe40d
 s.listed_series={SET_STELLAER}
 function s.initial_effect(c)
 	--Xyz Summon
-	aux.AddXyzProcedure(c,aux.FilterBoolFunction(Card.IsRace,RACE_DRAGON),9,2,s.xyzalt,aux.Stringid(id,0))
+	aux.AddXyzProcedure(c,aux.FilterBoolFunction(Card.IsRace,RACE_DRAGON),9,2,s.xyzalt,aux.Stringid(STRING_ID,0))
 	c:EnableReviveLimit()
 	--During the Main Phase: destroy 1 face-up monster
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,1))
+	e1:SetDescription(aux.Stringid(STRING_ID,1))
 	e1:SetCategory(CATEGORY_DESTROY)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -22,18 +23,19 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If this card is Xyz Summoned: destroy 1 face-up monster
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_DESTROY)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e2:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
 	e2:SetCondition(s.sumcon)
+	e2:SetCost(s.descost)
 	e2:SetTarget(s.destg)
 	e2:SetOperation(s.desop)
 	c:RegisterEffect(e2)
 	--Destroy this card, then draw 1 card
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,2))
+	e3:SetDescription(aux.Stringid(STRING_ID,2))
 	e3:SetCategory(CATEGORY_DESTROY+CATEGORY_DRAW)
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetRange(LOCATION_MZONE)
@@ -70,9 +72,8 @@ function s.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
 end
 function s.desop(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if not (c:IsRelateToEffect(e) and tc and tc:IsRelateToEffect(e) and s.desfilter(tc,e)) then return end
+	if not (tc and tc:IsRelateToEffect(e) and s.desfilter(tc,e)) then return end
 	Duel.Destroy(tc,REASON_EFFECT)
 end
 function s.drcon(e,tp,eg,ep,ev,re,r,rp)

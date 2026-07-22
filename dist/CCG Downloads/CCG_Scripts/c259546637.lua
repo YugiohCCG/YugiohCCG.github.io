@@ -1,4 +1,5 @@
 local s,id=GetID()
+local STRING_ID=133546637
 local SET_GLITCHLING=0x9894
 local COUNTER_CORRUPTION=0x1994
 function s.initial_effect(c)
@@ -20,7 +21,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If a Cyberse Ritual Monster is Tributed
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_COUNTER)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_RELEASE)
@@ -51,7 +52,7 @@ function s.acttg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.actop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,nil)
-		and Duel.SelectYesNo(tp,aux.Stringid(id,0)) then
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,1,nil)
 		if #g>0 then
@@ -123,7 +124,7 @@ function s.trigop(e,tp,eg,ep,ev,re,r,rp)
 	if not (b1 or b2) then return end
 	local op=0
 	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(id,1),aux.Stringid(id,2))
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,1),aux.Stringid(STRING_ID,2))
 	elseif b2 then
 		op=1
 	end
@@ -132,8 +133,12 @@ function s.trigop(e,tp,eg,ep,ev,re,r,rp)
 	else
 		local c=e:GetHandler()
 		local ct=Duel.GetMatchingGroupCount(Card.IsRace,tp,LOCATION_MZONE,0,nil,RACE_CYBERSE)
-		if ct>0 and c:IsRelateToEffect(e) and c:IsFaceup() and c:IsCanAddCounter(COUNTER_CORRUPTION,ct) then
-			c:AddCounter(COUNTER_CORRUPTION,ct)
+		if ct>0 and c:IsRelateToEffect(e) and c:IsFaceup() and c:IsCanAddCounter(COUNTER_CORRUPTION,1) then
+			local opts={}
+			for i=1,ct do
+				if c:IsCanAddCounter(COUNTER_CORRUPTION,i) then opts[#opts+1]=i end
+			end
+			if #opts>0 then c:AddCounter(COUNTER_CORRUPTION,Duel.AnnounceNumber(tp,table.unpack(opts))) end
 		end
 	end
 end

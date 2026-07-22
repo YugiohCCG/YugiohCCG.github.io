@@ -1,5 +1,6 @@
 --Pip, the Domesticated
 local s,id=GetID()
+local STRING_ID=133377794
 local SET_DOMESTICA=0xe302
 function s.initial_effect(c)
 	--Cannot be Summoned while you control a monster
@@ -20,9 +21,10 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If Normal Summoned: add 1 "Domestica" Fairy monster
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e3:SetProperty(EFFECT_FLAG_DELAY)
 	e3:SetCode(EVENT_SUMMON_SUCCESS)
 	e3:SetCountLimit(1,id)
 	e3:SetTarget(s.thtg)
@@ -30,7 +32,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--Shuffle this card into the Deck; Fairy monsters gain ATK
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,1))
+	e4:SetDescription(aux.Stringid(STRING_ID,1))
 	e4:SetCategory(CATEGORY_TODECK+CATEGORY_ATKCHANGE)
 	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetCode(EVENT_FREE_CHAIN)
@@ -76,12 +78,13 @@ function s.atkcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.atktg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsAbleToDeck() end
+	if chk==0 then return c:IsAbleToDeck() and aux.NecroValleyFilter(Card.IsAbleToDeck)(c) end
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,c,1,0,0)
 end
 function s.atkop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not (c:IsRelateToEffect(e) and Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and c:IsLocation(LOCATION_DECK)) then return end
+	if not (c:IsRelateToEffect(e) and aux.NecroValleyFilter(Card.IsAbleToDeck)(c)
+		and Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and c:IsLocation(LOCATION_DECK)) then return end
 	local g=Duel.GetMatchingGroup(s.fairyfilter,tp,LOCATION_MZONE,0,nil)
 	for tc in aux.Next(g) do
 		local e1=Effect.CreateEffect(c)

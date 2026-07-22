@@ -1,5 +1,6 @@
 --Ganan, the Scarstech City
 local s,id=GetID()
+local STRING_ID=133459462
 local SET_SCARSTECH=0x52f8
 function s.initial_effect(c)
 	if c.SetUniqueOnField then
@@ -17,7 +18,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Gain ATK when a card or effect resolves
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e2:SetCode(EVENT_CHAIN_SOLVED)
 	e2:SetRange(LOCATION_MZONE)

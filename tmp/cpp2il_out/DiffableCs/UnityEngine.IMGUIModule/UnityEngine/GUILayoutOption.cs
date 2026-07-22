@@ -1,0 +1,33 @@
+namespace UnityEngine;
+
+public sealed class GUILayoutOption
+{
+	public enum Type
+	{
+		fixedWidth = 0,
+		fixedHeight = 1,
+		minWidth = 2,
+		maxWidth = 3,
+		minHeight = 4,
+		maxHeight = 5,
+		stretchWidth = 6,
+		stretchHeight = 7,
+		alignStart = 8,
+		alignMiddle = 9,
+		alignEnd = 10,
+		alignJustify = 11,
+		equalSize = 12,
+		spacing = 13,
+	}
+
+	internal Type type; //Field offset: 0x10
+	internal object value; //Field offset: 0x18
+
+	[CallerCount(Count = 157)]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 1)]
+	[DeduplicatedMethod]
+	internal GUILayoutOption(Type type, object value) { }
+
+}
+

@@ -1,14 +1,10 @@
 local s,id=GetID()
 local SET_GRAYSCALE=SET_GRAYSCALE or 0x575d
-local STRING_ID=id
+local STRING_ID=133624110
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--Link Summon procedure
-	if Link and Link.AddProcedure then
-		Link.AddProcedure(c,s.matfilter,2,4,s.lcheck)
-	elseif aux.AddLinkProcedure then
-		aux.AddLinkProcedure(c,s.matfilter,2,4,s.lcheck)
-	end
+	aux.AddLinkProcedure(c,s.matfilter,2,4,s.lcheck)
 	--Cannot be used as Link Material, except for a "Grayscale" monster
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_SINGLE)
@@ -34,6 +30,7 @@ function s.initial_effect(c)
 	e2:SetCountLimit(1,id)
 	e2:SetCondition(s.chcon)
 	e2:SetCost(s.chcost)
+	e2:SetTarget(s.chtg)
 	e2:SetOperation(s.chop)
 	c:RegisterEffect(e2)
 end
@@ -66,6 +63,18 @@ function s.chcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 	local g=Duel.SelectMatchingCard(tp,s.relfilter,tp,LOCATION_MZONE,0,1,1,nil,lg)
 	Duel.Release(g,REASON_COST)
+end
+function s.relspfilter(c,e,tp,lg)
+	return s.relfilter(c,lg) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+end
+function s.chtg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then
+		local lg=e:GetHandler():GetLinkedGroup()
+		local haszone=Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+			or Duel.IsExistingMatchingCard(s.relfilter,tp,LOCATION_MZONE,0,1,nil,lg)
+		return haszone and (Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil,e,tp)
+			or Duel.IsExistingMatchingCard(s.relspfilter,tp,LOCATION_MZONE,0,1,nil,e,tp,lg))
+	end
 end
 function s.chop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ChangeTargetCard(ev,Group.CreateGroup())

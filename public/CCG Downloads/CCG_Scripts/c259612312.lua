@@ -1,12 +1,13 @@
 --Eclipse Observer Seara
 local s,id=GetID()
+local STRING_ID=133612312
 local SET_ECLIPSE=0xf2f4
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),1)
 	--If Synchro Summoned: return all opponent Spell/Trap Cards
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Negate a Spell/Trap activation
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_NEGATE+CATEGORY_DESTROY+CATEGORY_DRAW)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_CHAINING)
@@ -30,7 +31,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If sent to the GY: Set up to 2 "Eclipse" Quick-Play Spells
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,2))
+	e3:SetDescription(aux.Stringid(STRING_ID,2))
 	e3:SetCategory(CATEGORY_SSET)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_TO_GRAVE)
@@ -79,6 +80,7 @@ end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.NegateActivation(ev) and re:GetHandler():IsRelateToEffect(re)
 		and Duel.Destroy(eg,REASON_EFFECT)>0 then
+		Duel.BreakEffect()
 		Duel.Draw(1-tp,2,REASON_EFFECT)
 	end
 end

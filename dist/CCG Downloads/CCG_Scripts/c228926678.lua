@@ -1,5 +1,6 @@
 --Bishop of Aldrez
 local s,id=GetID()
+local STRING_ID=132926678
 local SET_ALDREZ=0xc1c
 function s.initial_effect(c)
 	--Xyz and Link Monsters you control cannot be destroyed
@@ -16,12 +17,12 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Add 1 "Aldrez" Spell/Trap
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetProperty(EFFECT_FLAG_DELAY)
 	e3:SetCode(EVENT_SUMMON_SUCCESS)
-	e3:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e3:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e3:SetTarget(s.thtg)
 	e3:SetOperation(s.thop)
 	c:RegisterEffect(e3)
@@ -30,13 +31,13 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 	--Special Summon this card, and if you do, draw 1
 	local e5=Effect.CreateEffect(c)
-	e5:SetDescription(aux.Stringid(id,1))
+	e5:SetDescription(aux.Stringid(STRING_ID,1))
 	e5:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_DRAW)
 	e5:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e5:SetProperty(EFFECT_FLAG_DELAY)
 	e5:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e5:SetRange(LOCATION_GRAVE)
-	e5:SetCountLimit(1,id+100,EFFECT_COUNT_CODE_OATH)
+	e5:SetCountLimit(1,id+100+EFFECT_COUNT_CODE_OATH)
 	e5:SetCondition(s.spcon)
 	e5:SetTarget(s.sptg)
 	e5:SetOperation(s.spop)

@@ -1,13 +1,13 @@
 --Charmelia Kiana
 local s,id=GetID()
+local STRING_ID=133614449
 local SET_CHARMELIA=0x12b1
 function s.initial_effect(c)
 	--Activate a "Charmelia" Continuous Spell/Trap
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SUMMON_SUCCESS)
-	e1:SetProperty(EFFECT_FLAG_DELAY)
 	e1:SetCountLimit(1,id)
 	e1:SetTarget(s.acttg)
 	e1:SetOperation(s.actop)
@@ -17,7 +17,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If Tributed for a Ritual Summon: draw
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_DRAW)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_RELEASE)

@@ -1,9 +1,10 @@
 --Spellbook of Eclipse
 local s,id=GetID()
+local STRING_ID=133264449
 function s.initial_effect(c)
 	--Xyz Summon 1 Spellcaster Xyz Monster
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_DRAW)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)

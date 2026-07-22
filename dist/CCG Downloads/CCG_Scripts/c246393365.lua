@@ -1,5 +1,6 @@
 --Rei-Tachi Ga Kita Hi
 local s,id=GetID()
+local STRING_ID=132393365
 function s.initial_effect(c)
 	c:SetUniqueOnField(1,0,id)
 	--Activate
@@ -9,7 +10,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	--Shuffle up to 3 Spirit monsters from your GY into the Deck, then draw 1 card
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TODECK+CATEGORY_DRAW)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
@@ -53,7 +54,7 @@ function s.atcon(e)
 	return Duel.IsBattlePhase()
 end
 function s.attg(e,c)
-	return c:IsFaceup() and c:IsType(TYPE_SPIRIT) and c:IsSummonType(SUMMON_TYPE_TRIBUTE)
+	return c:IsFaceup() and c:IsType(TYPE_SPIRIT) and c:IsSummonType(SUMMON_TYPE_ADVANCE)
 end
 function s.spiritfilter(c)
 	return c:IsFaceup() and c:IsType(TYPE_SPIRIT)

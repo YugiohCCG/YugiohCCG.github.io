@@ -1,5 +1,6 @@
 --Sacred Treasure - Chunyin
 local s,id=GetID()
+local STRING_ID=133499914
 local SET_NIUHAO=0xb69
 local SACRED_TREASURE_CODES={
 	[236542835]=true,
@@ -9,18 +10,18 @@ local SACRED_TREASURE_CODES={
 function s.initial_effect(c)
 	--Activate 1 effect
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_POSITION+CATEGORY_REMOVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetCondition(s.condition)
 	e1:SetTarget(s.target)
 	e1:SetOperation(s.activate)
 	c:RegisterEffect(e1)
 	--If this card and another "Sacred Treasure" card is banished
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,3))
+	e2:SetDescription(aux.Stringid(STRING_ID,3))
 	e2:SetCategory(CATEGORY_TOHAND)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_REMOVE)
@@ -49,7 +50,7 @@ function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	local b2=g:GetClassCount(Card.GetCode)>=2
 	if chk==0 then return b1 or b2 end
 	if b1 and b2 then
-		e:SetLabel(Duel.SelectOption(tp,aux.Stringid(id,1),aux.Stringid(id,2)))
+		e:SetLabel(Duel.SelectOption(tp,aux.Stringid(STRING_ID,1),aux.Stringid(STRING_ID,2)))
 	elseif b2 then
 		e:SetLabel(1)
 	else
@@ -89,7 +90,7 @@ function s.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsContains(e:GetHandler()) and eg:IsExists(s.stfilter,1,e:GetHandler())
 end
 function s.thfilter(c)
-	return c:IsAbleToHand()
+	return c:IsFaceup() and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_REMOVED) and s.thfilter(chkc) end

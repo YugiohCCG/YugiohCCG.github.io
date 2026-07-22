@@ -1,7 +1,7 @@
 --Digita Leet
 local s,id=GetID()
 local SET_LEET=0xfe88
-local STRING_ID=id
+local STRING_ID=133138193
 function s.initial_effect(c)
 	--Target a Cyberse monster; Special Summon this card, then maybe banish that target
 	local e1=Effect.CreateEffect(c)

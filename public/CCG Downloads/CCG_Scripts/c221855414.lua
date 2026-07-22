@@ -1,12 +1,14 @@
 --OTAKEMARU THE ACCUSER
 local s,id=GetID()
+local STRING_ID=133855414
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	aux.AddSynchroProcedure(c,s.tunerfilter,aux.NonTuner(nil),1)
 	--Other Spirit monsters cannot return to the hand or Extra Deck by card effect during the End Phase
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e1:SetProperty(EFFECT_FLAG_DELAY)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e1:SetOperation(s.retop)
 	c:RegisterEffect(e1)
@@ -22,7 +24,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If a Spirit monster is Normal Summoned: return 1 opponent's card to the hand
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_TOHAND)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_SUMMON_SUCCESS)
@@ -34,7 +36,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--During the End Phase, return this card to the Extra Deck, then Special Summon Spirit monsters
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,2))
+	e4:SetDescription(aux.Stringid(STRING_ID,2))
 	e4:SetCategory(CATEGORY_TOEXTRA+CATEGORY_SPECIAL_SUMMON)
 	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
 	e4:SetCode(EVENT_PHASE+PHASE_END)

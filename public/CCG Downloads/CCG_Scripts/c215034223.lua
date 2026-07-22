@@ -1,5 +1,6 @@
 --Talismandrake Arms United
 local s,id=GetID()
+local STRING_ID=133034223
 local SET_TALISMANDRAKE=0xb47
 local CARD_SUPPRESSOR=238136421
 local CARD_HALBERD=215921734
@@ -8,7 +9,7 @@ local CARD_SHIELD=255832330
 function s.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Equip an Arms card from the Deck
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_EQUIP)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)

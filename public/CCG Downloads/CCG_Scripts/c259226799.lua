@@ -1,5 +1,6 @@
 --Charmelia Beast
 local s,id=GetID()
+local STRING_ID=133226799
 local SET_CHARMELIA=0x12b1
 function s.initial_effect(c)
 	--Activate
@@ -29,7 +30,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--If sent by a "Charmelia" card effect: add this card, then draw
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,0))
+	e4:SetDescription(aux.Stringid(STRING_ID,0))
 	e4:SetCategory(CATEGORY_TOHAND+CATEGORY_DRAW)
 	e4:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e4:SetCode(EVENT_TO_GRAVE)

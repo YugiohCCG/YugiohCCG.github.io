@@ -1,17 +1,12 @@
 --Caller of the A.I.P Ex
 local s,id=GetID()
 local SET_AIP=0xa979
-local STRING_ID=id
-local XYZ_INFINITE_MATS=(Xyz and Xyz.InfiniteMats) or 99
+local STRING_ID=133465391
 local EFFECT_FLAG_SET_AVAILABLE=EFFECT_FLAG_SET_AVAILABLE or 0
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--2+ Level 6 monsters
-	if Xyz and Xyz.AddProcedure then
-		Xyz.AddProcedure(c,nil,6,2,nil,nil,XYZ_INFINITE_MATS)
-	elseif aux.AddXyzProcedure then
-		aux.AddXyzProcedure(c,nil,6,2,nil,nil,99)
-	end
+	aux.AddXyzProcedure(c,nil,6,2,nil,nil,99)
 	--Opponent-owned monsters can be used as Level 6 for this Xyz Summon
 	if EFFECT_XYZ_LEVEL then
 		local e0=Effect.CreateEffect(c)
@@ -44,6 +39,7 @@ function s.initial_effect(c)
 	e2:SetCountLimit(1,id+100)
 	e2:SetCondition(s.maincon)
 	e2:SetCost(s.detachcost)
+	e2:SetTarget(s.sorttg)
 	e2:SetOperation(s.sortop)
 	c:RegisterEffect(e2)
 end
@@ -84,13 +80,17 @@ function s.detachcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
 end
+function s.sorttg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)>=5
+		and Duel.GetFieldGroupCount(tp,0,LOCATION_DECK)>=5 end
+end
 function s.sortone(tp,p)
-	local ct=math.min(5,Duel.GetFieldGroupCount(p,LOCATION_DECK,0))
-	if ct<=0 then return end
-	Duel.ConfirmDecktop(tp,p,ct)
-	Duel.SortDecktop(tp,p,ct)
+	Duel.ConfirmDecktop(p,5)
+	Duel.SortDecktop(tp,p,5)
 end
 function s.sortop(e,tp,eg,ep,ev,re,r,rp)
+	if Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)<5
+		or Duel.GetFieldGroupCount(tp,0,LOCATION_DECK)<5 then return end
 	s.sortone(tp,tp)
 	s.sortone(tp,1-tp)
 end

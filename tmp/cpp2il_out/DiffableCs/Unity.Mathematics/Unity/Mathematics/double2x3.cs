@@ -1,0 +1,277 @@
+namespace Unity.Mathematics;
+
+[DefaultMember("Item")]
+[Il2CppEagerStaticClassConstruction]
+public struct double2x3 : IEquatable<double2x3>, IFormattable
+{
+	public static readonly double2x3 zero; //Field offset: 0x0
+	public double2 c0; //Field offset: 0x0
+	public double2 c1; //Field offset: 0x10
+	public double2 c2; //Field offset: 0x20
+
+	public double2 Item
+	{
+		[CallerCount(Count = 7)]
+		[DeduplicatedMethod]
+		 get { } //Length: 11
+	}
+
+	[CallerCount(Count = 2)]
+	[DeduplicatedMethod]
+	public double2x3(double2 c0, double2 c1, double2 c2) { }
+
+	[CallerCount(Count = 0)]
+	public double2x3(float v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public double2x3(uint2x3 v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public double2x3(uint v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public double2x3(int2x3 v) { }
+
+	[CallerCount(Count = 0)]
+	public double2x3(float2x3 v) { }
+
+	[CallerCount(Count = 0)]
+	public double2x3(bool2x3 v) { }
+
+	[CallerCount(Count = 0)]
+	public double2x3(bool v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public double2x3(double v) { }
+
+	[CallerCount(Count = 0)]
+	public double2x3(double m00, double m01, double m02, double m10, double m11, double m12) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public double2x3(int v) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 1)]
+	[ContainsUnimplementedInstructions]
+	public virtual bool Equals(object o) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public override bool Equals(double2x3 rhs) { }
+
+	[CallerCount(Count = 7)]
+	[DeduplicatedMethod]
+	public double2 get_Item(int index) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public virtual int GetHashCode() { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static double2x3 op_Addition(double2x3 lhs, double rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static double2x3 op_Addition(double lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static double2x3 op_Addition(double2x3 lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static double2x3 op_Decrement(double2x3 val) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static double2x3 op_Division(double2x3 lhs, double rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static double2x3 op_Division(double2x3 lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static double2x3 op_Division(double lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_Equality(double2x3 lhs, double rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_Equality(double2x3 lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_Equality(double lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public static double2x3 op_Explicit(bool v) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public static double2x3 op_Explicit(bool2x3 v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_GreaterThan(double2x3 lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_GreaterThan(double2x3 lhs, double rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_GreaterThan(double lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_GreaterThanOrEqual(double2x3 lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_GreaterThanOrEqual(double2x3 lhs, double rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_GreaterThanOrEqual(double lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public static double2x3 op_Implicit(float2x3 v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static double2x3 op_Implicit(int2x3 v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static double2x3 op_Implicit(double v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static double2x3 op_Implicit(uint v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static double2x3 op_Implicit(uint2x3 v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static double2x3 op_Implicit(int v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static double2x3 op_Implicit(float v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static double2x3 op_Increment(double2x3 val) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_Inequality(double2x3 lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_Inequality(double lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_Inequality(double2x3 lhs, double rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_LessThan(double2x3 lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_LessThan(double lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_LessThan(double2x3 lhs, double rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_LessThanOrEqual(double2x3 lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_LessThanOrEqual(double2x3 lhs, double rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool2x3 op_LessThanOrEqual(double lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 6)]
+	public static double2x3 op_Modulus(double lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 6)]
+	public static double2x3 op_Modulus(double2x3 lhs, double rhs) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 6)]
+	public static double2x3 op_Modulus(double2x3 lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static double2x3 op_Multiply(double lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static double2x3 op_Multiply(double2x3 lhs, double rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static double2x3 op_Multiply(double2x3 lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static double2x3 op_Subtraction(double lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static double2x3 op_Subtraction(double2x3 lhs, double rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static double2x3 op_Subtraction(double2x3 lhs, double2x3 rhs) { }
+
+	[CallerCount(Count = 0)]
+	public static double2x3 op_UnaryNegation(double2x3 val) { }
+
+	[CallerCount(Count = 0)]
+	public static double2x3 op_UnaryPlus(double2x3 val) { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(string), Member = "Format", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string), typeof(Object[])}, ReturnType = typeof(string))]
+	[CallsUnknownMethods(Count = 26)]
+	public virtual string ToString() { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(double), Member = "ToString", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string), typeof(IFormatProvider)}, ReturnType = typeof(string))]
+	[Calls(Type = typeof(string), Member = "Format", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string), typeof(Object[])}, ReturnType = typeof(string))]
+	[CallsUnknownMethods(Count = 26)]
+	public override string ToString(string format, IFormatProvider formatProvider) { }
+
+}
+

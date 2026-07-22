@@ -1,12 +1,13 @@
 --Adamantios, the Dark Armor
 local s,id=GetID()
+local STRING_ID=133315827
 function s.initial_effect(c)
 	--Xyz Summon
 	aux.AddXyzProcedure(c,nil,6,2,nil,nil,99)
 	c:EnableReviveLimit()
 	--Equip 1 Equip Spell from your hand, Deck, or GY to this card
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_EQUIP)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Destroy 1 Equip Spell you control instead
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetType(EFFECT_TYPE_CONTINUOUS+EFFECT_TYPE_SINGLE)
 	e2:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
 	e2:SetCode(EFFECT_DESTROY_REPLACE)
@@ -27,7 +28,7 @@ function s.initial_effect(c)
 	e2:SetOperation(s.repop)
 	c:RegisterEffect(e2)
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e3:SetCode(EFFECT_SEND_REPLACE)
 	e3:SetRange(LOCATION_MZONE)
@@ -74,7 +75,7 @@ function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return ((c:IsReason(REASON_EFFECT) and rp==1-tp) or c:IsReason(REASON_BATTLE))
 		and not c:IsReason(REASON_REPLACE)
 		and Duel.IsExistingMatchingCard(s.repfilter,tp,LOCATION_SZONE,0,1,nil,e) end
-	return Duel.SelectEffectYesNo(tp,c,aux.Stringid(id,1))
+	return Duel.SelectEffectYesNo(tp,c,aux.Stringid(STRING_ID,1))
 end
 function s.repop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
@@ -91,7 +92,7 @@ end
 function s.reptg2(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return eg:IsExists(s.repfilter2,1,nil,tp)
 		and Duel.IsExistingMatchingCard(s.repfilter,tp,LOCATION_SZONE,0,1,nil,e) end
-	if Duel.SelectEffectYesNo(tp,e:GetHandler(),aux.Stringid(id,1)) then
+	if Duel.SelectEffectYesNo(tp,e:GetHandler(),aux.Stringid(STRING_ID,1)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 		local g=Duel.SelectMatchingCard(tp,s.repfilter,tp,LOCATION_SZONE,0,1,1,nil,e)
 		if #g>0 then

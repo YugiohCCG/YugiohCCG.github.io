@@ -1,5 +1,6 @@
 --Stainless Kaleidragon
 local s,id=GetID()
+local STRING_ID=133174535
 local SET_STAIN=0xbc5
 s.listed_series={SET_STAIN}
 s.listed_names={218685316}
@@ -8,7 +9,7 @@ function s.initial_effect(c)
 	aux.AddFusionProcMix(c,false,true,218685316,s.matfilter,s.matfilter)
 	--Negate a Special Summon
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_DISABLE_SUMMON+CATEGORY_DESTROY)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_SPSUMMON)
@@ -20,8 +21,8 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Negate an effect that Special Summons
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
-	e2:SetCategory(CATEGORY_NEGATE+CATEGORY_DESTROY)
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
+	e2:SetCategory(CATEGORY_DISABLE+CATEGORY_DESTROY)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_CHAINING)
 	e2:SetRange(LOCATION_MZONE)
@@ -32,7 +33,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Look at opponent's hand and face-down cards
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e3:SetRange(LOCATION_MZONE)
@@ -81,19 +82,19 @@ function s.sumnegop(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.actnegcon(e,tp,eg,ep,ev,re,r,rp)
 	local ex=Duel.GetOperationInfo(ev,CATEGORY_SPECIAL_SUMMON)
-	return ex and Duel.IsChainNegatable(ev) and Duel.GetCustomActivityCount(id,tp,ACTIVITY_CHAIN)==0
+	return ex and Duel.IsChainDisablable(ev) and Duel.GetCustomActivityCount(id,tp,ACTIVITY_CHAIN)==0
 		and (rp~=tp or re:GetHandler():IsSetCard(SET_STAIN))
 end
 function s.actnegtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
-	Duel.SetOperationInfo(0,CATEGORY_NEGATE,eg,1,0,0)
+	Duel.SetOperationInfo(0,CATEGORY_DISABLE,eg,1,0,0)
 	if re:GetHandler():IsDestructable() and re:GetHandler():IsRelateToEffect(re) then
 		Duel.SetOperationInfo(0,CATEGORY_DESTROY,eg,1,0,0)
 	end
 end
 function s.actnegop(e,tp,eg,ep,ev,re,r,rp)
 	local rc=re:GetHandler()
-	if Duel.NegateActivation(ev)~=0 then
+	if Duel.NegateEffect(ev)~=0 then
 		if rc:IsRelateToEffect(re) then Duel.Destroy(rc,REASON_EFFECT) end
 		s.applylimit(e,tp)
 	end

@@ -1,7 +1,7 @@
 local s,id,o=GetID()
 local SET_NEMLERIA_OMEGA=0x191
 local SET_NEMLERIA_PI=0x192
-local STRING_ID=id
+local STRING_ID=133090287
 local FLAG_ID=id
 function s.initial_effect(c)
 	--Activate

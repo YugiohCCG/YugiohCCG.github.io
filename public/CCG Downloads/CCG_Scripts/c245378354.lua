@@ -1,5 +1,6 @@
 --Ursarctic Mikailus
 local s,id=GetID()
+local STRING_ID=133378354
 local SET_URSARCTIC=0x163
 local CARD_URSARCTIC_DEPARTURE=16471775
 local CARD_URSARCTIC_BIG_DIPPER=89264428
@@ -7,7 +8,7 @@ local CARD_LEOSHIP=247831166
 function s.initial_effect(c)
 	--Tribute 1 other Level 7 or higher monster from your hand; Special Summon this card
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -21,7 +22,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If Special Summoned: Set 1 "Ursarctic" Spell/Trap from your Deck
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SSET)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -32,7 +33,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If sent to the GY or banishment to activate an "Ursarctic" effect: draw 1 card
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,2))
+	e3:SetDescription(aux.Stringid(STRING_ID,2))
 	e3:SetCategory(CATEGORY_DRAW)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetProperty(EFFECT_FLAG_DELAY)
@@ -64,7 +65,7 @@ end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	local g=Duel.GetReleaseGroup(tp,true):Filter(s.relfilter,nil,c,tp)
-	g:Merge(Duel.GetMatchingGroup(s.repfilter,tp,LOCATION_HAND+LOCATION_MZONE+LOCATION_GRAVE,0,c,tp,c))
+	g:Merge(Duel.GetMatchingGroup(aux.NecroValleyFilter(s.repfilter),tp,LOCATION_HAND+LOCATION_MZONE+LOCATION_GRAVE,0,c,tp,c))
 	if chk==0 then return #g>0 end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 	local tc=g:Select(tp,1,1,nil):GetFirst()
@@ -114,7 +115,7 @@ function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
 	if tc and Duel.SSet(tp,tc)>0 and (tc:IsType(TYPE_QUICKPLAY) or tc:IsType(TYPE_TRAP)) then
 		local e1=Effect.CreateEffect(e:GetHandler())
-		e1:SetDescription(aux.Stringid(id,3))
+		e1:SetDescription(aux.Stringid(STRING_ID,3))
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetProperty(EFFECT_FLAG_SET_AVAILABLE)
 		if tc:IsType(TYPE_QUICKPLAY) then

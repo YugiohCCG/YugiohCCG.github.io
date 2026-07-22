@@ -1,0 +1,14 @@
+namespace System.Runtime.CompilerServices;
+
+[AttributeUsage(AttributeTargets::Assembly (1))]
+public sealed class DefaultDependencyAttribute : Attribute
+{
+	private LoadHint loadHint; //Field offset: 0x10
+
+	[CallerCount(Count = 31)]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[DeduplicatedMethod]
+	public DefaultDependencyAttribute(LoadHint loadHintArgument) { }
+
+}
+

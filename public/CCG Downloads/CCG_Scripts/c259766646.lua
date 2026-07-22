@@ -2,7 +2,7 @@ local s,id=GetID()
 local SET_NEMLERIA_OMEGA=0x191
 local SET_NEMLERIA_PI=0x192
 local CARD_DREAMING_NEMLERIA=CARD_DREAMING_NEMLERIA or 70155677
-local STRING_ID=id
+local STRING_ID=133766646
 local NEMLERIA_ST={
 	[18458255]=true,
 	[33499794]=true,
@@ -44,7 +44,7 @@ function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_TOEXTRA,nil,1,tp,LOCATION_HAND|LOCATION_DECK)
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOEXTRA)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local tg=Duel.SelectMatchingCard(tp,s.exfilter,tp,LOCATION_HAND|LOCATION_DECK,0,1,1,nil)
 	local tc=tg:GetFirst()
 	if not tc then return end

@@ -1,9 +1,10 @@
 --Chaos Fusion
 local s,id=GetID()
+local STRING_ID=133277197
 function s.initial_effect(c)
 	--Fusion Summon 1 LIGHT or DARK Fusion Monster
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON+CATEGORY_REMOVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -14,7 +15,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Banish this card; return 1 LIGHT and 1 DARK monster from banishment to the GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_REMOVE+CATEGORY_TOGRAVE)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_GRAVE)
@@ -107,7 +108,8 @@ function s.retcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Remove(c,POS_FACEUP,REASON_COST)
 end
 function s.retfilter(c,e,att)
-	return c:IsType(TYPE_MONSTER) and c:IsAttribute(att) and c:IsAbleToGrave() and c:IsCanBeEffectTarget(e)
+	return c:IsFaceup() and c:IsType(TYPE_MONSTER) and c:IsAttribute(att)
+		and c:IsAbleToGrave() and c:IsCanBeEffectTarget(e)
 end
 function s.rettg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return false end

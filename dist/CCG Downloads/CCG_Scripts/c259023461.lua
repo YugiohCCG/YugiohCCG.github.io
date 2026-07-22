@@ -1,5 +1,6 @@
 --Disciple of Fire
 local s,id=GetID()
+local STRING_ID=133023461
 local CARD_PHLOGISTIC_UPRISING=257239133
 local CARD_PHLOGISTON_DRAGON=242094473
 local CARD_PHLOGISTIC_HORDE=230303021
@@ -7,7 +8,7 @@ function s.initial_effect(c)
 	aux.AddCodeList(c,CARD_PHLOGISTIC_UPRISING,CARD_PHLOGISTON_DRAGON)
 	--Reveal this card; add "Phlogistic Uprising!"
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_HAND)
@@ -18,9 +19,10 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If you pay LP while this card is in your GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOHAND+CATEGORY_SPECIAL_SUMMON+CATEGORY_RECOVER)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e2:SetProperty(EFFECT_FLAG_DELAY)
 	e2:SetCode(EVENT_PAY_LPCOST)
 	e2:SetRange(LOCATION_GRAVE)
 	e2:SetCondition(s.paycon)
@@ -88,11 +90,11 @@ function s.paytg(e,tp,eg,ep,ev,re,r,rp,chk)
 		and Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil,REASON_EFFECT+REASON_DISCARD)
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.firefilter),tp,LOCATION_GRAVE,0,1,nil)
 	local b2=Duel.GetFlagEffect(tp,id+101)==0 and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+		and aux.NecroValleyFilter()(c) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 	if chk==0 then return b1 or b2 end
 	local op=0
 	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(id,1),aux.Stringid(id,2))
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,1),aux.Stringid(STRING_ID,2))
 	elseif b2 then
 		op=1
 	end
@@ -122,7 +124,8 @@ function s.payop(e,tp,eg,ep,ev,re,r,rp)
 			Duel.ConfirmCards(1-tp,g)
 		end
 	else
-		if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 or not c:IsRelateToEffect(e) then return end
+		if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 or not c:IsRelateToEffect(e)
+			or not aux.NecroValleyFilter()(c) then return end
 		if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 then
 			Duel.RegisterFlagEffect(tp,id+101,RESET_PHASE+PHASE_END,0,1)
 			local e1=Effect.CreateEffect(c)

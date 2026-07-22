@@ -1,5 +1,6 @@
 --RAGE OF NEPHTHYS
 local s,id=GetID()
+local STRING_ID=132287781
 local SET_NEPHTHYS=0x11f
 function s.initial_effect(c)
 	--Activate
@@ -9,7 +10,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	--During your opponent's Main Phase: reduce ATK and destroy monsters at 0 ATK
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_ATKCHANGE+CATEGORY_DESTROY)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -22,7 +23,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Rewrite an opponent's activated effect
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_CHAINING)
 	e2:SetRange(LOCATION_SZONE)

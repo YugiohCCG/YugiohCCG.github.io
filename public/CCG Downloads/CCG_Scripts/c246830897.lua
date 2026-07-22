@@ -1,5 +1,6 @@
 --Fruteonia
 local s,id=GetID()
+local STRING_ID=132830897
 local SET_FRUTE=0x813
 local CARD_FRUTEIFICATION=256930605
 function s.initial_effect(c)
@@ -30,7 +31,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--Tribute 1 WATER monster; add 1 WATER Ritual Monster or 1 "Fruteification"
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,0))
+	e4:SetDescription(aux.Stringid(STRING_ID,0))
 	e4:SetCategory(CATEGORY_RELEASE+CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e4:SetType(EFFECT_TYPE_IGNITION)
 	e4:SetRange(LOCATION_FZONE)
@@ -41,7 +42,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 	--If a monster on the field is Tributed: return 1 banished "Frute" card to the GY
 	local e5=Effect.CreateEffect(c)
-	e5:SetDescription(aux.Stringid(id,1))
+	e5:SetDescription(aux.Stringid(STRING_ID,1))
 	e5:SetCategory(CATEGORY_TOGRAVE)
 	e5:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e5:SetCode(EVENT_RELEASE)

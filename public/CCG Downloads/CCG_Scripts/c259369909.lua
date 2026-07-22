@@ -1,5 +1,6 @@
 --SERENE MERMAID OF THE GRAND BLUE
 local s,id=GetID()
+local STRING_ID=133369909
 local SET_GRAND_BLUE=0x67ee
 local CARD_UMI=22702055
 local CARD_CITY_GRAND_BLUE=259679619
@@ -8,7 +9,7 @@ local CARD_GRAND_BLUE_PRINCE=259937946
 function s.initial_effect(c)
 	--Special Summon this card from your hand
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_HAND)
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Fusion Summon 1 "Grand Blue" Fusion Monster
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_MZONE)

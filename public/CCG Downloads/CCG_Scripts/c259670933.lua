@@ -1,5 +1,6 @@
 --Domestica Kyrie
 local s,id=GetID()
+local STRING_ID=133670933
 local SET_DOMESTICA=0xe302
 local CARD_UNDERWORLD=259265448
 function s.initial_effect(c)
@@ -8,7 +9,7 @@ function s.initial_effect(c)
 	aux.AddFusionProcFunRep(c,s.fusfilter,2,true)
 	--Special Summon from the Extra Deck by shuffling materials from the GY
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_SPSUMMON_PROC)
 	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
@@ -27,7 +28,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If Special Summoned from the Extra Deck: activate 1 "Domestic Underworld"
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e3:SetProperty(EFFECT_FLAG_DELAY)
@@ -44,7 +45,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 	--During the turn this card in your GY was Tributed: send 1 "Domestica" monster
 	local e5=Effect.CreateEffect(c)
-	e5:SetDescription(aux.Stringid(id,2))
+	e5:SetDescription(aux.Stringid(STRING_ID,2))
 	e5:SetCategory(CATEGORY_TOGRAVE)
 	e5:SetType(EFFECT_TYPE_QUICK_O)
 	e5:SetCode(EVENT_FREE_CHAIN)

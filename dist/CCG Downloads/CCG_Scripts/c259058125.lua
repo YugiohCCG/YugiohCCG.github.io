@@ -1,5 +1,6 @@
 --Eclipse Observer Maya
-local s,id=GetID()
+local s,id,o=GetID()
+local STRING_ID=133058125
 local SET_ECLIPSE=0xf2f4
 function s.initial_effect(c)
 	--Gains ATK/DEF for each card in your opponent's hand
@@ -15,7 +16,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Discard this card; Set 1 "Eclipse" Quick-Play Spell from your hand
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetCategory(CATEGORY_SSET)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)
@@ -28,13 +29,13 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--If your opponent draws 2 or more cards, Special Summon this card from your GY
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,1))
+	e4:SetDescription(aux.Stringid(STRING_ID,1))
 	e4:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e4:SetCode(EVENT_DRAW)
 	e4:SetRange(LOCATION_GRAVE)
 	e4:SetProperty(EFFECT_FLAG_DELAY)
-	e4:SetCountLimit(1,id+100)
+	e4:SetCountLimit(1,id+o)
 	e4:SetCondition(s.spcon)
 	e4:SetTarget(s.sptg)
 	e4:SetOperation(s.spop)
@@ -63,7 +64,7 @@ function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_HAND,0,1,1,nil):GetFirst()
 	if tc and Duel.SSet(tp,tc)>0 then
 		local e1=Effect.CreateEffect(e:GetHandler())
-		e1:SetDescription(aux.Stringid(id,0))
+		e1:SetDescription(aux.Stringid(STRING_ID,0))
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetProperty(EFFECT_FLAG_SET_AVAILABLE)
 		e1:SetCode(EFFECT_QP_ACT_IN_SET_TURN)

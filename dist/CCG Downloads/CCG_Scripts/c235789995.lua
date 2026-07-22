@@ -1,5 +1,6 @@
 --NiuHao - Hikam
 local s,id=GetID()
+local STRING_ID=133789995
 local SET_NIUHAO=0xb69
 local SACRED_TREASURE_CODES={
 	[236542835]=true,
@@ -9,7 +10,7 @@ local SACRED_TREASURE_CODES={
 function s.initial_effect(c)
 	--If Normal or Special Summoned: banish 1 "NiuHao" monster from the Deck
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_REMOVE)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SUMMON_SUCCESS)
@@ -23,7 +24,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Banish this card; Set 1 "Sacred Treasure" Spell
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_REMOVE+CATEGORY_SSET)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_CHAINING)
@@ -42,7 +43,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 	--Special Summon this banished card during the next Standby Phase
 	local e5=Effect.CreateEffect(c)
-	e5:SetDescription(aux.Stringid(id,2))
+	e5:SetDescription(aux.Stringid(STRING_ID,2))
 	e5:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e5:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e5:SetCode(EVENT_PHASE+PHASE_STANDBY)
@@ -101,12 +102,7 @@ end
 function s.selfspcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local ct=c:GetFlagEffectLabel(id)
-	local tn=Duel.GetTurnCount()
-	if not ct or tn==ct then
-		c:ResetFlagEffect(id)
-		return false
-	end
-	return tn==ct+1
+	return ct and Duel.GetTurnCount()==ct+1
 end
 function s.selfsptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

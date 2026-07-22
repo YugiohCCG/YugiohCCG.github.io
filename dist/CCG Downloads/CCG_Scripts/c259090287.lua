@@ -1,8 +1,8 @@
-local s,id=GetID()
+local s,id,o=GetID()
 local SET_NEMLERIA_OMEGA=0x191
 local SET_NEMLERIA_PI=0x192
-local STRING_ID=id
-local FLAG_ID=98092087
+local STRING_ID=133090287
+local FLAG_ID=id
 function s.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -15,7 +15,7 @@ function s.initial_effect(c)
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_FZONE)
-	e2:SetCountLimit(1,98091007)
+	e2:SetCountLimit(1,id)
 	e2:SetTarget(s.extg)
 	e2:SetOperation(s.exop)
 	c:RegisterEffect(e2)
@@ -25,7 +25,7 @@ function s.initial_effect(c)
 	e3:SetCategory(CATEGORY_TOHAND)
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetRange(LOCATION_FZONE)
-	e3:SetCountLimit(1,98091008)
+	e3:SetCountLimit(1,id+o)
 	e3:SetCost(s.thcost)
 	e3:SetTarget(s.thtg)
 	e3:SetOperation(s.thop)

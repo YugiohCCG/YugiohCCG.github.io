@@ -1,16 +1,18 @@
 --Stained Sovereign Silas
 local s,id=GetID()
+local STRING_ID=133822671
 local SET_STAIN=0xbc5
 s.listed_series={SET_STAIN}
 function s.initial_effect(c)
 	Duel.EnableGlobalFlag(GLOBALFLAG_DECK_REVERSE_CHECK)
 	--Add or Set 1 "Stain" card
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SEARCH+CATEGORY_TOHAND)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e1:SetProperty(EFFECT_FLAG_DELAY)
 	e1:SetCode(EVENT_SUMMON_SUCCESS)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetTarget(s.thtg)
 	e1:SetOperation(s.thop)
 	c:RegisterEffect(e1)
@@ -19,23 +21,23 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Prevent a face-up card's effects from being activated
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)
 	e3:SetRange(LOCATION_MZONE)
 	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
-	e3:SetCountLimit(1,id+100,EFFECT_COUNT_CODE_OATH)
+	e3:SetCountLimit(1,id+100+EFFECT_COUNT_CODE_OATH)
 	e3:SetTarget(s.limtg)
 	e3:SetOperation(s.limop)
 	c:RegisterEffect(e3)
 	--Shuffle this into opponent's Deck, then Special Summon from GY
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,2))
+	e4:SetDescription(aux.Stringid(STRING_ID,2))
 	e4:SetCategory(CATEGORY_TODECK+CATEGORY_SPECIAL_SUMMON)
 	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e4:SetCode(EVENT_CHAINING)
 	e4:SetRange(LOCATION_GRAVE)
-	e4:SetCountLimit(1,id+200,EFFECT_COUNT_CODE_OATH)
+	e4:SetCountLimit(1,id+200+EFFECT_COUNT_CODE_OATH)
 	e4:SetCondition(s.spcon)
 	e4:SetTarget(s.sptg)
 	e4:SetOperation(s.spop)
@@ -60,7 +62,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)
 	local tc=g:GetFirst()
 	if not tc then return end
-	if tc:IsAbleToHand() and (not tc:IsSSetable() or Duel.SelectOption(tp,aux.Stringid(id,3),aux.Stringid(id,4))==0) then
+	if tc:IsAbleToHand() and (not tc:IsSSetable() or Duel.SelectOption(tp,aux.Stringid(STRING_ID,3),aux.Stringid(STRING_ID,4))==0) then
 		Duel.SendtoHand(tc,nil,REASON_EFFECT)
 		Duel.ConfirmCards(1-tp,tc)
 	elseif tc:IsSSetable() then

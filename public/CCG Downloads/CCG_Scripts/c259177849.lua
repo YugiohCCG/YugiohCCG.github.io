@@ -1,12 +1,13 @@
 --GRAND BLUE PRINCESS
 local s,id=GetID()
+local STRING_ID=133177849
 local SET_GRAND_BLUE=0x67ee
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	aux.AddFusionProcFunRep(c,s.fusmat,2,true)
 	--If Special Summoned: add or send 1 "Grand Blue" card from Deck
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetProperty(EFFECT_FLAG_DELAY)
@@ -17,7 +18,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Special Summon 1 "Grand Blue" monster, then send the targeted monster to the GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOGRAVE)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
@@ -28,7 +29,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If sent to the GY by card effect: shuffle 1 banished card, then gain DEF
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,2))
+	e3:SetDescription(aux.Stringid(STRING_ID,2))
 	e3:SetCategory(CATEGORY_TODECK+CATEGORY_DEFCHANGE)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
@@ -60,7 +61,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local b2=tc:IsAbleToGrave()
 	local op=0
 	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(id,3),aux.Stringid(id,4))
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,3),aux.Stringid(STRING_ID,4))
 	elseif b2 then
 		op=1
 	end
@@ -108,11 +109,14 @@ end
 function s.tdfilter(c)
 	return c:IsAbleToDeck()
 end
+function s.tdtgfilter(c,e)
+	return s.tdfilter(c) and c:IsCanBeEffectTarget(e)
+end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_REMOVED) and s.tdfilter(chkc) end
-	if chk==0 then return Duel.IsExistingTarget(s.tdfilter,tp,LOCATION_REMOVED,0,1,nil) end
+	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_REMOVED) and s.tdtgfilter(chkc,e) end
+	if chk==0 then return Duel.IsExistingTarget(s.tdtgfilter,tp,LOCATION_REMOVED,0,1,nil,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local g=Duel.SelectTarget(tp,s.tdfilter,tp,LOCATION_REMOVED,0,1,1,nil)
+	local g=Duel.SelectTarget(tp,s.tdtgfilter,tp,LOCATION_REMOVED,0,1,1,nil,e)
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,g,1,0,0)
 end
 function s.deffilter(c)

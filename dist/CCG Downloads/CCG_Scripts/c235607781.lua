@@ -1,10 +1,11 @@
 --The Yellow Frute
 local s,id=GetID()
+local STRING_ID=133607781
 local SET_FRUTE=0x813
 function s.initial_effect(c)
 	--Send this card; Special Summon 1 "Frute" monster
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOGRAVE+CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_HAND+LOCATION_MZONE)
@@ -15,7 +16,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If Tributed: draw
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_DRAW+CATEGORY_HANDES)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_RELEASE)
@@ -37,7 +38,7 @@ function s.spfilter(c,e,tp)
 				and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENSE)))
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+	if chk==0 then return Duel.GetMZoneCount(tp,e:GetHandler())>0
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil,e,tp) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)
 end
@@ -51,7 +52,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 		and tc:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENSE)
 	local pos=POS_FACEUP_DEFENSE
 	if b1 and b2 then
-		local op=Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3))
+		local op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))
 		if op==1 then pos=POS_FACEDOWN_DEFENSE end
 	elseif b2 then
 		pos=POS_FACEDOWN_DEFENSE
@@ -64,7 +65,7 @@ function s.drtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local fd=e:GetHandler():IsPreviousPosition(POS_FACEDOWN_DEFENSE)
 	if chk==0 then return Duel.IsPlayerCanDraw(tp,1) or (fd and Duel.IsPlayerCanDraw(tp,2)) end
 	local ct=1
-	if fd and Duel.IsPlayerCanDraw(tp,2) and (not Duel.IsPlayerCanDraw(tp,1) or Duel.SelectOption(tp,aux.Stringid(id,4),aux.Stringid(id,5))==1) then
+	if fd and Duel.IsPlayerCanDraw(tp,2) and (not Duel.IsPlayerCanDraw(tp,1) or Duel.SelectOption(tp,aux.Stringid(STRING_ID,4),aux.Stringid(STRING_ID,5))==1) then
 		ct=2
 	end
 	e:SetLabel(ct)

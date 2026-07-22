@@ -1,5 +1,6 @@
 --Eclipse Observer Riley
 local s,id=GetID()
+local STRING_ID=133926839
 local SET_ECLIPSE=0xf2f4
 local SET_ECLIPSE_OBSERVER=0xeb17
 local CARD_OBSERVATORY=259721372
@@ -16,7 +17,7 @@ local OBSERVER_MONSTERS={
 function s.initial_effect(c)
 	--Take 1 "Eclipse Observer" card from the Deck
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_SPECIAL_SUMMON+CATEGORY_DRAW)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_MZONE)
@@ -26,7 +27,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If your opponent draws 2 or more cards, add 1 "Eclipse" Quick-Play Spell from your GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOHAND)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_DRAW)
@@ -68,7 +69,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local add=tc:IsAbleToHand()
 	local op=1
 	if sp and add then
-		op=Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3))+1
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))+1
 	elseif sp then
 		op=2
 	end

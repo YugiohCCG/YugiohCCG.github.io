@@ -1,28 +1,29 @@
 --Aldrez Blitz
 local s,id=GetID()
+local STRING_ID=133700538
 local SET_ALDREZ=0xc1c
 local TOKEN_ALDREZ=217700539
 function s.initial_effect(c)
 	--Special Summon 1 Level 4 or lower "Aldrez" monster
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOKEN)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetTarget(s.sptg)
 	e1:SetOperation(s.spop)
 	c:RegisterEffect(e1)
 	--Set this card from the GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_LEAVE_GRAVE)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e2:SetRange(LOCATION_GRAVE)
-	e2:SetCountLimit(1,id+100,EFFECT_COUNT_CODE_OATH)
+	e2:SetCountLimit(1,id+100+EFFECT_COUNT_CODE_OATH)
 	e2:SetCondition(s.setcon)
 	e2:SetTarget(s.settg)
 	e2:SetOperation(s.setop)
@@ -50,7 +51,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 and tc:IsLevel(4)
 		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_ALDREZ,SET_ALDREZ,TYPES_TOKEN_MONSTER,1000,1000,4,RACE_SPELLCASTER,ATTRIBUTE_DARK)
-		and Duel.SelectYesNo(tp,aux.Stringid(id,2)) then
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 		local token=Duel.CreateToken(tp,TOKEN_ALDREZ)
 		Duel.SpecialSummon(token,0,tp,tp,false,false,POS_FACEUP)
 	end

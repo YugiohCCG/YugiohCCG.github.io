@@ -1,5 +1,6 @@
 --Qerets, the Scarstech Mother Ship
 local s,id=GetID()
+local STRING_ID=133086544
 local SET_SCARSTECH=0x52f8
 local RACE_GALAXY=RACE_GALAXY or 0x80000000
 function s.initial_effect(c)
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Your "Scarstech" monsters gain ATK when a card or effect resolves
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e2:SetCode(EVENT_CHAIN_SOLVED)
 	e2:SetRange(LOCATION_MZONE)
@@ -26,7 +27,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Lose ATK, then negate a targeting activation
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_NEGATE+CATEGORY_ATKCHANGE)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_CHAINING)
@@ -62,18 +63,21 @@ function s.negcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsFaceup() and c:GetAttack()>=3000 end
+	if chk==0 then return c:IsFaceup() and c:GetAttack()>=3000
+		and not c:IsHasEffect(EFFECT_REVERSE_UPDATE) end
 	Duel.SetOperationInfo(0,CATEGORY_NEGATE,eg,1,0,0)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if c:IsFaceup() and c:IsRelateToEffect(e) and c:GetAttack()>=3000 then
+	if c:IsFaceup() and c:IsRelateToEffect(e) and c:GetAttack()>=3000
+		and not c:IsHasEffect(EFFECT_REVERSE_UPDATE) then
 		local e1=Effect.CreateEffect(c)
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetCode(EFFECT_UPDATE_ATTACK)
 		e1:SetValue(-3000)
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 		c:RegisterEffect(e1)
+		Duel.BreakEffect()
 		Duel.NegateActivation(ev)
 	end
 end

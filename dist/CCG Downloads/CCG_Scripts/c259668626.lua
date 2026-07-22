@@ -1,5 +1,6 @@
 --Domestica in the Underworld
 local s,id=GetID()
+local STRING_ID=133668626
 local SET_DOMESTICA=0xe302
 local ATTRIBUTE_NATURE=0x80
 function s.initial_effect(c)
@@ -11,13 +12,13 @@ function s.initial_effect(c)
 	--This card in your hand can be used as Tribute for a NATURE monster
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
-	e1:SetCode(EFFECT_EXTRA_RELEASE)
+	e1:SetCode(EFFECT_EXTRA_RELEASE_SUM)
 	e1:SetRange(LOCATION_HAND)
 	e1:SetValue(s.relval)
 	c:RegisterEffect(e1)
 	--If sent from the hand to the GY: Set this card
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_SSET)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_TO_GRAVE)
@@ -29,7 +30,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If a NATURE monster returns from your GY to the Deck
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_DRAW+CATEGORY_TOGRAVE)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_TO_DECK)

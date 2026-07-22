@@ -1,5 +1,6 @@
 --Nuwa in the Wild
 local s,id=GetID()
+local STRING_ID=133796760
 local SET_DOMESTICA=0xe302
 local CARD_NUWA=259135917
 s.listed_names={CARD_NUWA}
@@ -17,7 +18,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	--Tribute this card; negate all other monsters
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_RELEASE+CATEGORY_DISABLE+CATEGORY_ATKCHANGE)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -30,7 +31,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If sent to the GY: return this card to the Extra Deck, then add "Nuwa, the Domesticated"
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TODECK+CATEGORY_TOHAND+CATEGORY_TOGRAVE)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
 	e2:SetCode(EVENT_TO_GRAVE)
@@ -94,14 +95,17 @@ function s.nuwafilter(c)
 end
 function s.rettg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsAbleToExtra() end
+	if chk==0 then return true end
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,c,1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_HAND)
 end
 function s.retop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not (c:IsRelateToEffect(e) and Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and c:IsLocation(LOCATION_EXTRA)) then return end
+	-- "also" makes the return and search independent parts of the resolution.
+	if c:IsRelateToEffect(e) and c:IsAbleToExtra() then
+		Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
+	end
 	if not Duel.IsExistingMatchingCard(s.nuwafilter,tp,LOCATION_DECK,0,1,nil) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local tc=Duel.SelectMatchingCard(tp,s.nuwafilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()

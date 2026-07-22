@@ -1,6 +1,6 @@
 local s,id=GetID()
 local SET_GRAYSCALE=SET_GRAYSCALE or 0x575d
-local STRING_ID=id
+local STRING_ID=133203522
 function s.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -21,6 +21,7 @@ function s.initial_effect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,2))
 	e3:SetCategory(CATEGORY_DRAW)
 	e3:SetType(EFFECT_TYPE_IGNITION)
+	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e3:SetRange(LOCATION_SZONE)
 	e3:SetCountLimit(1,id)
 	e3:SetCost(s.effcost)
@@ -71,7 +72,7 @@ function s.efftg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local opt=e:GetLabel()
 	if chkc then return opt==1 and chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE)
 		and aux.NecroValleyFilter(s.setfilter)(chkc) end
-	if chk==0 then 
+	if chk==0 then
 		local can1=Duel.IsPlayerCanDraw(tp,1) and Duel.IsExistingMatchingCard(s.graycostfilter,tp,LOCATION_HAND,0,1,nil)
 		local can2=Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingTarget(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil) and Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil)
 		return can1 or can2

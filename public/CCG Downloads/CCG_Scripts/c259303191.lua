@@ -1,9 +1,10 @@
 --Tome of Eclipse
 local s,id=GetID()
+local STRING_ID=133303191
 function s.initial_effect(c)
 	--Banish all other Spell/Trap Cards on the field
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_REMOVE+CATEGORY_DRAW+CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -51,7 +52,7 @@ end
 function s.retop(e,tp,eg,ep,ev,re,r,rp)
 	local g=e:GetLabelObject()
 	if not g then return end
-	local sg=g:Filter(s.retfilter,nil)
+	local sg=g:Filter(aux.NecroValleyFilter(s.retfilter),nil)
 	if #sg>0 then
 		Duel.SendtoGrave(sg,REASON_EFFECT+REASON_RETURN)
 	end

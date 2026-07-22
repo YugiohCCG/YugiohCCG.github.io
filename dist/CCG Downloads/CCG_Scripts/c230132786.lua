@@ -1,10 +1,11 @@
 --Stellaer of the Volcanos
 local s,id=GetID()
+local STRING_ID=132132786
 local SET_STELLAER=0xe40d
 function s.initial_effect(c)
 	--Special Summon this card from your hand
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_SPSUMMON_PROC)
 	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE)
@@ -14,7 +15,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If detached from a "Stellaer" Xyz Monster: inflict damage equal to total Rank x100
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_DAMAGE)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
@@ -65,7 +66,7 @@ function s.damage(tp)
 end
 function s.damtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local dam=s.damage(tp)
-	if chk==0 then return dam>0 and Duel.IsPlayerCanEffectDamage(1-tp) end
+	if chk==0 then return dam>0 end
 	Duel.SetOperationInfo(0,CATEGORY_DAMAGE,nil,0,1-tp,dam)
 end
 function s.damop(e,tp,eg,ep,ev,re,r,rp)

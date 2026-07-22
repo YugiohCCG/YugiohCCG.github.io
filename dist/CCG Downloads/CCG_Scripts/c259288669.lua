@@ -1,10 +1,11 @@
 --Charmelia Elysia
 local s,id=GetID()
+local STRING_ID=133288669
 local SET_CHARMELIA=0x12b1
 function s.initial_effect(c)
 	--Discard this card to Ritual Summon
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If Tributed for a Ritual Summon: return this card, then Special Summon
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TODECK+CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_RELEASE)
@@ -43,7 +44,7 @@ function s.charmritual(c,e,tp)
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true)
 end
 function s.monmatfilter(c,rc)
-	return c:IsType(TYPE_MONSTER) and c:GetLevel()>0 and c:IsAbleToGrave()
+	return c:IsType(TYPE_MONSTER) and c:GetLevel()>0 and (not c:IsLocation(LOCATION_DECK) or c:IsAbleToGrave())
 		and c:IsCanBeRitualMaterial(rc)
 end
 function s.stmatfilter(c)
@@ -98,7 +99,7 @@ function s.ritop(e,tp,eg,ep,ev,re,r,rp)
 	rc:SetMaterial(monmat)
 	if #handfieldmat>0 then Duel.ReleaseRitualMaterial(handfieldmat) end
 	if #deckmat>0 then Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end
-	if #stmat>0 then Duel.SendtoGrave(stmat,REASON_EFFECT+REASON_RITUAL) end
+	if #stmat>0 then Duel.SendtoGrave(stmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end
 	Duel.BreakEffect()
 	if Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
 		rc:CompleteProcedure()
@@ -116,13 +117,13 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return c:IsAbleToDeck() and aux.NecroValleyFilter()(c)
 		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),tp,
-			LOCATION_HAND+LOCATION_GRAVE,0,1,nil,e,tp) end
+			LOCATION_HAND+LOCATION_GRAVE,0,1,c,e,tp) end
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,c,1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not aux.NecroValleyFilter()(c) then return end
+	if not (c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)) then return end
 	if Duel.SendtoDeck(c,nil,SEQ_DECKBOTTOM,REASON_EFFECT)==0 or not c:IsLocation(LOCATION_DECK) then return end
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
 	Duel.BreakEffect()

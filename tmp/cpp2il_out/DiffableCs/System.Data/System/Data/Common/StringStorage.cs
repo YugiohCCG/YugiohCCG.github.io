@@ -1,0 +1,87 @@
+namespace System.Data.Common;
+
+internal sealed class StringStorage : DataStorage
+{
+	private String[] _values; //Field offset: 0x50
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(Type), Member = "GetTypeFromHandle", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(RuntimeTypeHandle)}, ReturnType = typeof(Type))]
+	[Calls(Type = typeof(DataStorage), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(DataColumn), typeof(Type), typeof(object), typeof(StorageType)}, ReturnType = typeof(void))]
+	public StringStorage(DataColumn column) { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(ExceptionBuilder), Member = "AggregateException", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(AggregateType), typeof(Type)}, ReturnType = typeof(Exception))]
+	[CallsDeduplicatedMethods(Count = 6)]
+	[CallsUnknownMethods(Count = 4)]
+	[ContainsUnimplementedInstructions]
+	public virtual object Aggregate(Int32[] recordNos, AggregateType kind) { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(DataTable), Member = "Compare", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string), typeof(string)}, ReturnType = typeof(int))]
+	[CallsUnknownMethods(Count = 2)]
+	public virtual int Compare(int recordNo1, int recordNo2) { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(DataTable), Member = "Compare", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string), typeof(string)}, ReturnType = typeof(int))]
+	[CallsUnknownMethods(Count = 3)]
+	[ContainsUnimplementedInstructions]
+	public virtual int CompareValueTo(int recordNo, object value) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 1)]
+	public virtual string ConvertObjectToXml(object value) { }
+
+	[CallerCount(Count = 0)]
+	[CallsDeduplicatedMethods(Count = 1)]
+	public virtual object ConvertValue(object value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public virtual object ConvertXmlToObject(string s) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 3)]
+	[DeduplicatedMethod]
+	public virtual void Copy(int recordNo1, int recordNo2) { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(BitArray), Member = "Set", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(int), typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 7)]
+	protected virtual void CopyValue(int record, object store, BitArray nullbits, int storeIndex) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 2)]
+	[DeduplicatedMethod]
+	public virtual object Get(int recordNo) { }
+
+	[CallerCount(Count = 0)]
+	protected virtual object GetEmptyStorage(int recordCount) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 2)]
+	public virtual int GetStringLength(int record) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 2)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public virtual bool IsNull(int record) { }
+
+	[CallerCount(Count = 0)]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 4)]
+	public virtual void Set(int record, object value) { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(Math), Member = "Min", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(int), typeof(int)}, ReturnType = typeof(int))]
+	[Calls(Type = typeof(Array), Member = "Copy", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(Array), typeof(int), typeof(Array), typeof(int), typeof(int)}, ReturnType = typeof(void))]
+	[CallsUnknownMethods(Count = 1)]
+	public virtual void SetCapacity(int capacity) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 5)]
+	protected virtual void SetStorage(object store, BitArray nullbits) { }
+
+}
+

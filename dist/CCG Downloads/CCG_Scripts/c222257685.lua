@@ -1,26 +1,27 @@
 --Branching to Guidance
 local s,id=GetID()
+local STRING_ID=132257685
 local TOKEN_GUIDANCE=222257686
 s.listed_names={TOKEN_GUIDANCE}
 function s.initial_effect(c)
 	--Reveal 1 monster; Special Summon 1 "Guidance Token"
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOKEN)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetTarget(s.tktg)
 	e1:SetOperation(s.tkop)
 	c:RegisterEffect(e1)
 	--Banish this card; Special Summon 1 "Guidance Token"
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOKEN)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_GRAVE)
 	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
-	e2:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e2:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e2:SetCost(aux.bfgcost)
 	e2:SetTarget(s.gytg)
 	e2:SetOperation(s.gyop)

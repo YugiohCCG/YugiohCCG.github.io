@@ -2,7 +2,7 @@
 local s,id=GetID()
 local SET_REDEYES=0x3b
 local SET_REDEYES_CUSTOM=0xfacc
-local STRING_ID=id
+local STRING_ID=133184310
 function s.initial_effect(c)
 	--If Summoned: equip 1 "Red-Eyes" monster from hand/GY to this card
 	local e1=Effect.CreateEffect(c)
@@ -152,11 +152,12 @@ function s.fmeqcon(e,tp,eg,ep,ev,re,r,rp)
 	return c:IsReason(REASON_MATERIAL) and c:IsReason(REASON_FUSION)
 end
 function s.fmeqfilter(c,e)
-	return c:IsFaceup() and s.isredeyes(c) and c:IsType(TYPE_MONSTER)
+	return c:IsFaceup() and s.isredeyes(c) and c:IsType(TYPE_MONSTER) and c:IsCanBeEffectTarget(e)
 end
 function s.fmeqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and s.fmeqfilter(chkc,e) end
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0
+	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and s.fmeqfilter(chkc,e)
+		and aux.NecroValleyFilter()(e:GetHandler()) end
+	if chk==0 then return aux.NecroValleyFilter()(e:GetHandler()) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0
 		and Duel.IsExistingTarget(s.fmeqfilter,tp,LOCATION_MZONE,0,1,nil,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_EQUIP)
 	Duel.SelectTarget(tp,s.fmeqfilter,tp,LOCATION_MZONE,0,1,1,nil,e)

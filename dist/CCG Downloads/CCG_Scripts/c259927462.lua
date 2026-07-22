@@ -1,4 +1,5 @@
 local s,id=GetID()
+local STRING_ID=133927462
 local SET_GLITCHLING=0x9894
 local COUNTER_CORRUPTION=0x1994
 function s.initial_effect(c)
@@ -7,7 +8,7 @@ function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--If Link Summoned: add up to 2 "Glitchling" cards
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -19,7 +20,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Place Corruption Counters
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_COUNTER)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)
@@ -60,7 +61,7 @@ end
 function s.cttg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local ct=Duel.GetMatchingGroupCount(s.ctcountfilter,tp,LOCATION_MZONE,0,nil)
 	if chk==0 then return ct>0 and Duel.IsExistingMatchingCard(s.ctfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
-	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,math.min(ct,Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,LOCATION_ONFIELD)),0,0)
+	Duel.SetOperationInfo(0,CATEGORY_COUNTER,nil,math.min(ct,Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,LOCATION_ONFIELD)),0,COUNTER_CORRUPTION)
 end
 function s.ctop(e,tp,eg,ep,ev,re,r,rp)
 	local ct=Duel.GetMatchingGroupCount(s.ctcountfilter,tp,LOCATION_MZONE,0,nil)

@@ -1,12 +1,13 @@
 --BRILLIANCE OF THE GRAND BLUE
 local s,id=GetID()
+local STRING_ID=133417461
 local SET_GRAND_BLUE=0x67ee
 local CARD_UMI=22702055
 local CARD_CITY_GRAND_BLUE=259679619
 function s.initial_effect(c)
 	--Add 1 "Grand Blue" card, then optionally send 1 "Grand Blue" card to the GY if you control "Umi"
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -16,7 +17,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If a "Grand Blue" monster leaves your GY by an opponent's card effect: add this card to your hand
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOHAND+CATEGORY_HANDES)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_LEAVE_GRAVE)
@@ -44,11 +45,12 @@ end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)
-	if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 then return end
+	local tc=g:GetFirst()
+	if not tc or Duel.SendtoHand(tc,nil,REASON_EFFECT)==0 or not tc:IsLocation(LOCATION_HAND) then return end
 	Duel.ConfirmCards(1-tp,g)
 	if Duel.IsExistingMatchingCard(s.umifilter,tp,LOCATION_ONFIELD,0,1,nil)
 		and Duel.IsExistingMatchingCard(s.tgfilter,tp,LOCATION_HAND+LOCATION_DECK,0,1,nil)
-		and Duel.SelectYesNo(tp,aux.Stringid(id,2)) then
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 		Duel.BreakEffect()
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 		local sg=Duel.SelectMatchingCard(tp,s.tgfilter,tp,LOCATION_HAND+LOCATION_DECK,0,1,1,nil)
@@ -67,16 +69,16 @@ function s.gycon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.gytg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsAbleToHand() end
+	if chk==0 then return c:IsAbleToHand() and aux.NecroValleyFilter()(c) end
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,c,1,0,0)
 end
 function s.gyop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not (c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)) then return end
-	if Duel.SendtoHand(c,nil,REASON_EFFECT)==0 then return end
+	if Duel.SendtoHand(c,nil,REASON_EFFECT)==0 or not c:IsLocation(LOCATION_HAND) then return end
 	Duel.ConfirmCards(1-tp,c)
 	if Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil)
-		and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then
 		Duel.BreakEffect()
 		Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_EFFECT+REASON_DISCARD)
 	end

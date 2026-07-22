@@ -1,4 +1,5 @@
 local s,id=GetID()
+local STRING_ID=133072906
 local SET_GLITCHLING=0x9894
 function s.initial_effect(c)
 	c:EnableReviveLimit()
@@ -12,7 +13,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	--Pendulum Effect: Ritual Summon using Cyberse monsters you control
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_PZONE)
@@ -23,7 +24,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Reveal this card and another monster; add 1 "Glitchling" Spell/Trap
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_HAND)
@@ -34,7 +35,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If Special Summoned: Ritual Summon
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,2))
+	e3:SetDescription(aux.Stringid(STRING_ID,2))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOGRAVE)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -166,7 +167,7 @@ function s.ritfilter(c,e,tp)
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true)
 end
 function s.ritmatfilter(c,rc)
-	return c:IsRace(RACE_CYBERSE) and c:GetLevel()>0 and c:IsAbleToGrave() and c:IsCanBeRitualMaterial(rc)
+	return c:IsRace(RACE_CYBERSE) and c:GetLevel()>0 and (not c:IsLocation(LOCATION_DECK) or c:IsAbleToGrave()) and c:IsCanBeRitualMaterial(rc)
 end
 function s.ritcheck(g,lv)
 	return g:GetSum(Card.GetLevel)>=lv

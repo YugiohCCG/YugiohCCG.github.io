@@ -1,5 +1,6 @@
 --Queen of Aldrez
 local s,id=GetID()
+local STRING_ID=133892575
 local SET_ALDREZ=0xc1c
 function s.initial_effect(c)
 	--Cannot be targeted for attacks while you control another "Aldrez" monster
@@ -22,7 +23,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Special Summon this card from your hand
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetRange(LOCATION_HAND)
@@ -33,7 +34,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--Add 1 "Aldrez" card from your Deck to your hand
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,1))
+	e4:SetDescription(aux.Stringid(STRING_ID,1))
 	e4:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e4:SetType(EFFECT_TYPE_IGNITION)
 	e4:SetRange(LOCATION_MZONE)

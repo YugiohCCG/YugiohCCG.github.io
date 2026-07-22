@@ -1,5 +1,6 @@
 --Ektelestis gia Taxis
 local s,id=GetID()
+local STRING_ID=132684822
 local TOKEN_PROTOGENIC=240299293
 local CARD_TO_PROTO_TAXIS=246380598
 local TAXIS_ST_CODES={
@@ -17,7 +18,7 @@ function s.initial_effect(c)
 	e0:SetValue(aux.fuslimit)
 	c:RegisterEffect(e0)
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_SPSUMMON_PROC)
 	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
@@ -43,7 +44,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--If Special Summoned from the Extra Deck: add or send 1 "Taxis" Spell/Trap
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,1))
+	e4:SetDescription(aux.Stringid(STRING_ID,1))
 	e4:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_TOGRAVE)
 	e4:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e4:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -104,8 +105,8 @@ function s.thfilter(c)
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil) end
-	Duel.SetPossibleOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
-	Duel.SetPossibleOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_DECK)
+	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
+	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_DECK)
 end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	if not Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil) then return end
@@ -116,7 +117,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local b2=tc:IsAbleToGrave()
 	local op=0
 	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3))
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))
 	elseif b2 then
 		op=1
 	end

@@ -18,6 +18,7 @@ DEFAULT_CARDS_PATH = REPO_ROOT / "src" / "data" / "cards.json"
 DEFAULT_DB_PATH = Path(r"C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Databases\CCG_v1.db")
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "scripts" / "output"
 DEFAULT_MAP_PATH = DEFAULT_OUTPUT_DIR / "CCG_v1_id_map.json"
+DEFAULT_BACKUP_DIR = DEFAULT_OUTPUT_DIR / "db_backups"
 
 
 TYPE_BITS = {
@@ -46,6 +47,20 @@ TYPE_BITS = {
     "Special Summon": 0x2000000,
     "Link": 0x4000000,
 }
+
+# Omega transports effect descriptions as signed 32-bit integers. A normal
+# aux.Stringid(card_id, slot) key is card_id * 16 + slot, so the documented
+# 210m-259m custom-card range always overflows. Current Omega builds then route
+# negative keys to the system-string branch instead of card localization.
+#
+# Mirror Omega's own "Strings Placeholder" token rows: each real CCG card gets
+# a hidden, signed-safe prompt carrier whose str1..str16 values duplicate the
+# real card's strings. The 132m-133m range is empty in the current official DB.
+MESSAGE_CARRIER_BASE = 132_000_000
+MESSAGE_CARRIER_MODULUS = 2_000_000
+MAX_SIGNED_STRING_CARD_ID = (2**31 - 1) // 16
+MESSAGE_CARRIER_OT = 4
+MESSAGE_CARRIER_TYPE = TYPE_BITS["Monster"] | TYPE_BITS["Token"]
 
 ATTRIBUTE_BITS = {
     "EARTH": 0x1,
@@ -116,6 +131,12 @@ TREATED_AS_RE = re.compile(
 OMEGA_SET_CODES = {
     "gladiator": 0x19,
     "gladiatorbeast": 0x1019,
+    "altergeist": 0x103,
+    "cardian": 0xE6,
+    "flowercardian": 0xE6,
+    "gaia": 0xBD,
+    "gaiathefierceknight": 0xBD,
+    "galaxy": 0x7B,
     "grayscale": 0x575D,
     "leet": 0xFE88,
     "scarstech": 0x52F8,
@@ -123,8 +144,8 @@ OMEGA_SET_CODES = {
     "phlogistondragon": 0x0F78,
     "phlogisticuprising": 0x6F9E,
     "phlogistonsroar": 0x4376,
-    "harpie": 0x079C,
-    "thunderdragon": 0x335E,
+    "harpie": 0x64,
+    "thunderdragon": 0x11C,
     "nemleria": 0x191,
     "redeyes": 0x3B,
     "orcust": 0x11B,
@@ -132,7 +153,7 @@ OMEGA_SET_CODES = {
     "frute": 0x813,
     "niuhao": 0xB69,
     "toproto": 0xE80D,
-    "stellaer": 0x0DE4,
+    "stellaer": 0xE40D,
     "ataxia": 0x7398,
     "taxis": 0x27E9,
     "dysmandr": 0x0A6B,
@@ -145,10 +166,24 @@ OMEGA_SET_CODES = {
     "bob": 0x92B1,
     "cryingchaos": 0x6F4,
     "shiningbrigade": 0x7a34,
+    "stardust": 0xA3,
+    "windborne": 0x21FC,
     "chronosaur": 0xdae7,
     "aquamarine": 0xf3c,
     "ohmen": 0x8de0,
     "ohmechanic": 0x8de1,
+    "arckcestial": 0x4ac0,
+    "bau": 0xba8,
+    "bauy": 0xba8,
+	"ghoti": 0x18A,
+	"myutant": 0x157,
+	"halloween": 0xFB6D,
+	"skewy": 0xAC74,
+	"crewal": 0xE2F,
+	"ghostrick": 0x8D,
+	"vampire": 0x8E,
+	"gravinity": 0x760,
+	"galactica": 0x9C9,
 }
 
 # Rows kept by older Omega DBs but not shipped with the current release assets.
@@ -225,9 +260,98 @@ EXTRA_TOKEN_CARDS = [
         "race": RACE_BITS["Warrior"],
         "attribute": ATTRIBUTE_BITS["DARK"],
     },
+	{
+		"id": 238064523,
+		"name": "Winborne Swallow Token",
+		"desc": 'Special Summoned by the effect of "Windborne Galesong Flock".',
+		"setcode": OMEGA_SET_CODES["windborne"],
+		"type": TYPE_BITS["Monster"] | TYPE_BITS["Normal"] | TYPE_BITS["Token"],
+		"atk": 1000,
+		"def": 1000,
+		"level": 4,
+		"race": RACE_BITS["Winged Beast"],
+		"attribute": ATTRIBUTE_BITS["WIND"],
+	},
+	{
+		"id": 229021850,
+		"name": "Galactican Machinator Token",
+		"desc": 'Special Summoned by the effect of "Galacticanes Venatici".',
+		"setcode": OMEGA_SET_CODES["galactica"],
+		"type": TYPE_BITS["Monster"] | TYPE_BITS["Normal"] | TYPE_BITS["Token"],
+		"atk": 1000,
+		"def": 0,
+		"level": 4,
+		"race": RACE_BITS["Machine"],
+		"attribute": ATTRIBUTE_BITS["LIGHT"],
+	},
 ]
 
 CARD_STRING_OVERRIDES = {
+    "altergeistregissae": ["Negate 1 face-up card's effects", "Set 1 Altergeist Trap from the GY", "Tribute from the hand"],
+    "altergeistifritware": ['Special Summon 1 "Altergeist" monster from your GY', 'Negate the monster effect, then add 1 "Altergeist" Trap from your GY', "Negate activation"],
+    "dragonprotectorofnature": ["Special Summon 1 Level 4 or lower NATURE monster"],
+    "transcendthependulum": ["Destroy all Spells/Traps, then place 2 Pendulum Monsters in your Pendulum Zones", "Pendulum Summon Pendulum Monsters in Defense Position"],
+    "strikingmirrorforce": ["Destroy attack position monsters"],
+    "risingelemental": ["Banish 1 monster from your GY; banish opponent monsters with the same Attribute"],
+    "yummykuriboh": ["Special Summon this card and 1 Level 1 monster"],
+    "sealedglyphsdragon": ["Become unaffected by the opponent's Spell/Trap effects"],
+    "devoteeoffire": ["Send 1 Dragon from the Extra Deck to the GY", "Set 1 card that lists Phlogiston Dragon", "Negate a Spell/Trap activation"],
+    "shamanoffire": ["Send and copy a Spell that lists Phlogiston Dragon"],
+    "guardianoffire": ['Send this card and discard 1 card; add a monster that lists "Phlogiston Dragon"'],
+    "phlogisticuprising": ['Shuffle "Phlogiston Dragon" into the Deck; Set this card from your GY'],
+    "phlogisticignition": ["Make your FIRE monsters gain ATK", "Set this card from your GY"],
+    "phlogistonswake": ['Give 1 "Phlogiston Dragon" additional attacks', 'Make your opponent\'s monsters attack 1 "Phlogiston Dragon"', "Pay LP in multiples of 300?", "Banish this card; Special Summon 1 FIRE monster from your GY"],
+    "phlogistondragon": ['Send up to 2 cards that list "Phlogiston Dragon" from your Deck to the GY'],
+    "phlogisticscorchingdragonhorde": ["Destroy opponent cards based on the LP you paid", 'Send 3 monsters that list "Phlogiston Dragon" from your Deck or Extra Deck to the GY', 'Also send 1 "Phlogiston Dragon" you control to the GY?'],
+    "curryboh": ["Special Summon this card from your hand and convert damage into LP gain", "Banish this card; gain LP equal to 1 monster's ATK"],
+    "starryknightarcenciel": ["Negate and destroy a DARK monster's effect", 'Return this card to the hand; Normal Summon 1 "Starry Knight" monster'],
+    "starryknightnebriel": ["Special Summon this card", "Special Summon a Level 7 LIGHT Dragon or Starry Knight", "Reveal a Level 7 LIGHT Dragon; add 1 LIGHT Fairy"],
+    "starryknightstarryqueen": ["Shuffle this card; Special Summon a Level 7 LIGHT Dragon", "Set a Starry Knight Spell/Trap; Special Summon this card", "Place this card in the Pendulum Zone"],
+    "chamroshesaegis": ["Special Summon a Level 2 Tuner Synchro Monster", "Change up to 3 monsters' battle positions"],
+    "gaiatheironcladknight": ["Special Summon this card from your hand", 'Banish this card and a Dragon; Special Summon a listed "Gaia" Fusion Monster', 'Shuffle this card into the Deck; return banished "Gaia" monsters to the GY'],
+    "curseddragonoftheknight": ["Special Summon this card from your hand", 'Banish a Dragon or Warrior Normal Monster; Special Summon a listed "Gaia" monster'],
+    "gaiathemagnificentknight": ["Special Summon this card from the hand", "Send a Warrior; add a Level 5 Dragon"],
+    "blazinggaiathespiralknight": ["Add a Gaia the Fierce Knight monster", "Make the Fusion Monster gain 2600 ATK", "Copy a Spiral Spell/Trap's activation effect"],
+    "dynatosthechallenger": ["Copy 1 opponent monster's effect and make this card's ATK/DEF equal to that monster's +100"],
+    "arckcestialcrystalshards": ['Discard 1 card; Special Summon 1 Level 4 or lower "Arckcestial" monster from your Deck', 'Add 1 banished "Arckcestial" card to your hand, then discard 1 card'],
+    "arckcestialfeather": ['Add 1 "Arckcestial" monster from your Deck to your hand', 'Add 1 Level 4 or lower "Arckcestial" monster from your GY to your hand'],
+    "arckcestialfireball": ["Special Summon this card if it was discarded", 'Special Summon 1 "Arckcestial" monster from your hand, then discard 1 card', 'Add 1 "Arckcestial" Spell/Trap from your Deck to your hand, then discard 1 card'],
+    "arckcestialorb": ['Discard 1 other "Arckcestial" card; Special Summon this card from your hand', 'Attach this card from your GY to an "Arckcestial" Xyz Monster'],
+    "arckcestialprism": ["Special Summon this card from your hand", 'Special Summon 1 Level 4 or lower "Arckcestial" monster from your GY'],
+    "arckcestialdescend": ["Add the selected monster to the hand", "Send the selected monster to the GY", "Special Summon an Arckcestial from the GY", "Set this card from the GY"],
+    "arckcestialmeadow": ["", 'Special Summon 1 "Arckcestial" monster from your GY'],
+    "arckcestialpillarofheavens": ['Return up to 2 banished "Arckcestial" cards to the GY', "Set this banished card"],
+
+    "zenatilcriminalbookkeeperofcryingchaos": ['Shuffle 3 "Crying Chaos" cards into the Deck', "Gain ATK equal to half a pointed Synchro Monster's ATK"],
+    "zebraofcryingchaos": ["Special Summon 1 Zombie monster from your GY", "Inflict 500 damage for each Zombie monster you control and in your GY"],
+    "ramofcryingchaos": ["Special Summon 1 Level 4 or lower Zombie monster from your GY", "Tribute 1 monster; destroy 1 card on the field"],
+    "natirtheswordsmasterofcryingchaos": ["Special Summon 1 Level 3 Zombie Tuner from your Deck or GY", "Shuffle 1 banished Zombie into the Deck; negate the effect"],
+    "revelationofcryingchaos": ["Special Summon 1 Level 4 or lower Zombie from your Deck or GY", 'Tribute 1 "Crying Chaos" monster; negate the effect and gain ATK'],
+    "chronosaurraptor": ['Add 1 "Chrono-Saur" monster from your Deck to your hand', 'Special Summon 1 "Chrono-Saur" monster from your hand or GY'],
+    "dragonofcryingchaos": ["Return all cards your opponent controls to the hand", "Negate the monster effect, then shuffle 1 Zombie from your GY into the Deck"],
+    "lightwithinthecryingchaos": ["Banish this card; add a Zombie Tuner to your hand or place it on the bottom of the Deck"],
+    "awhisperofcryingchaos": ["Banish this card; take control of 1 opponent monster and negate it"],
+    "muntithwindborneskydragonoftheshiningsun": ["Banish all monsters your opponent controls until the End Phase", 'Target 1 "Windborne" monster in your GY to add during your next Standby Phase'],
+    "iscyllawindbornekrakenofsunkendepths": ['Gain 200 ATK/DEF when you add a "Windborne" card', "Special Summon this card from your GY and reduce its Level by 2"],
+    "shiningbrigadehopedivision": ['Tribute this card; Special Summon 2 Level 2 "Shining Brigade" monsters'],
+    "shiningbrigadeforwarddivision": ['Add 1 "Shining Brigade" Spell from your Deck or GY to your hand'],
+    "shiningbrigadefloweringdivision": ['Add 1 "Shining Brigade" card from your GY or banishment to your hand'],
+    "shiningbrigadelovingdivision": ['Banish 1 "Shining Brigade" card from your GY; Special Summon this card', 'Set 1 "Shining Brigade" Trap from your Deck, GY, or banishment'],
+    "rankupmagickeyofarckcelestialforce": ["Xyz Summon Rank-Up", "Add this card from GY to hand"],
+    "urphielsfeatherdownpour": ["Banish 1 card on the field", "Set this card from the GY", "Banish 1 additional card"],
+    "arckcestialburning": ["Return to hand", "Set this card from GY"],
+    "lightillusionofvazagiel": ["Special Summon Arckcestial", "Set this card from GY", "Synchro Summon"],
+    "malphielarckcestialofprotection": ["Change Level to 4", "Send 1 card to GY"],
+    "vazagielarckcestialofsecrets": ["Change Level to 4", "Special Summon Arckcestial", "Send random card from hand to GY"],
+    "azerielarckcestialofdemise": ["Send 1 Arckcestial card", "Detach to search RUM", "Special Summon this card", "Destroy 1 face-up card", "Add Rank-Up-Magic from GY"],
+    "ophielarckcestialofwisdom": ["Add 1 Arckcestial Spell/Trap", "Special Summon this card", "Target GY Spell/Trap to add"],
+    "sarifielarckcestialofmoonlight": ["Xyz Summon using Rank 4", "Attach Arckcestial", "Special Summon and discard"],
+    "urphielthehigharckcestial": ["Negate activation", "Special Summon Arckcestials", "Banish 1 Arckcestial from GY instead"],
+    "bauymagician": ["Special Summon from banishment", "Quick Summon 1 Bau monster", "Cannot Special Summon Link Monsters"],
+    "dreamingbau": ["Banish to search and draw", "Quick Special Summon", "Draw 1 card", "Banish 1 Bau card", "Synchro Summon"],
+    "robau": ["Special Summon from banishment", "Equip to a Bau monster", "Add monster from banishment to hand", "Normal Summon 1 monster"],
+    "bau": ["Add 1 Bau card", "Destroy opponent monster", "Special Summon from GY"],
+    "wingedbauyfenrir": ["Banish 1 Bau card", "Negate hand/GY monster effect"],
     "toprotoousia": [
         "Special Summon 1 Protogenic Essence Token",
         "Banish this card; add 1 face-up banished monster",
@@ -779,6 +903,7 @@ CARD_STRING_OVERRIDES = {
         'Apply 1 "Sacred Treasure" effect',
         "Destroy 1 monster",
         'Special Summon 1 "NiuHao" monster',
+        'If this and another "Sacred Treasure" are banished: both players discard 1 card',
     ],
     "sacredtreasurechunyin": [
         'Apply 1 "Sacred Treasure" effect',
@@ -790,6 +915,7 @@ CARD_STRING_OVERRIDES = {
         'Apply 1 "Sacred Treasure" effect',
         "Destroy 1 Spell/Trap",
         "Banish 1 GY card",
+        'If this and another "Sacred Treasure" are banished: draw 1 card',
     ],
     "niuhaobauba": [
         'Special Summon 1 "NiuHao" monster',
@@ -1234,6 +1360,7 @@ CARD_STRING_OVERRIDES = {
     ],
     "grimoireofeclipse": [
         'Fusion Summon 1 "Eclipse Observer" monster',
+        'Use 1 Level 8 "Eclipse Observer" monster and 1 Spellcaster monster as Fusion Material?',
     ],
     "encyclopediaofeclipse": [
         "Negate all face-up monsters, then opponent draws",
@@ -1645,7 +1772,840 @@ CARD_STRING_OVERRIDES = {
         'Add 1 "Wyvernal" monster from Deck and send another to GY',
         "Banish this card; shuffle up to 4 Insect monsters from GY into Deck, then draw",
     ],
+    # July 2026 batch: explicit aux.Stringid messages audited against every
+    # script call site. Keep descriptions, prompts, and options in slot order.
+    "starfurybauydragon": [
+        "Banish 3 cards from your GY; return 1 card on the field to the hand",
+        'Shuffle this card into the Extra Deck; add 1 "Bau" card from your GY or banishment',
+    ],
+    "baeldemonincarnate": [
+        "Banish 1 material and the top 4 cards of your Deck; change this card's ATK",
+        "Special Summon 1 Level 4 or lower FIRE Fiend from your banishment",
+    ],
+    "bauyworld": [
+        'Add or banish 1 "Bau" monster from your Deck',
+        'Banish the selected "Bau" monster and 1 card from your hand',
+    ],
+    "bauyspellcasting": [
+        'Activate "Bauy World" or Special Summon 1 "Bau" Tuner',
+        "Set this banished card",
+        'Activate 1 "Bauy World"',
+        'Special Summon 1 "Bau" Tuner',
+        "Negate and banish 1 face-up card",
+    ],
+    "raibau": [
+        "Negate a Spell/Trap activation",
+        "Set this banished card",
+    ],
+    "bauyemergencyroom": [
+        'Pay 500 LP; Special Summon 1 "Bau" monster from your GY or banishment',
+        "Place this banished card face-up in your Spell & Trap Zone",
+    ],
+    "bhodithecorruptedhalloweentree": [
+        "Special Summon up to 2 Fiend monsters from your GY or banishment",
+        "Tribute 1 other Fiend; equip it to this card",
+    ],
+    "toddlerpumpkien": [
+        "Special Summon this card from your hand",
+        "Add 1 DARK Zombie monster when this card is used as material",
+    ],
+    "dreadfulsouldrain": [
+        "Discard 2 cards; return all monsters on the field to the hand",
+        "Draw up to 2 cards when this face-up card is sent from the Spell & Trap Zone to the GY",
+    ],
+    "brayshelloftheghoti": [
+        'Banish this card and 2 "Ghoti" monsters from your Deck',
+    ],
+    "shekupstingoftheghoti": [
+        "Banish 1 Fish; Special Summon this card",
+        'Add or banish 1 Level 4 or lower "Ghoti" monster from your Deck',
+        "Special Summon this banished card during the next Standby Phase",
+        'Banish the selected "Ghoti" monster',
+    ],
+    "ghotifromadeeperdepththanthedeepestdeep": [
+        "Banish all cards from both GYs",
+        'Banish 1 Fish; Set 1 "Ghoti" Trap from your Deck or banishment',
+    ],
+    "myutantel51": [
+        'Banish this card; add 1 "Myutant Evolution Lab" from your Deck',
+        'Banish 1 card; Special Summon the corresponding "Myutant" monster',
+    ],
+    "myutantevolution": [
+        'Add 1 "Myutant" card, then optionally place 1 card on the bottom of the Deck and draw',
+        'Shuffle a Level 8 or higher "Myutant" into the Deck, then banish and Special Summon',
+        "Place 1 card on the bottom of the Deck, then draw 1 card",
+    ],
+    "myutantamalgamate": [
+        'Set 1 "Myutant" Spell/Trap from your Deck, GY, or banishment',
+        'Send 1 "Myutant" card, banish the corresponding monster, and copy its effect',
+    ],
+    "pumpqueenthequeenofghosts": [
+        'Special Summon this card, then add 1 "Castle of Dark Illusions"',
+    ],
+    "pumprincetheprinceofghosts": [
+        "Place 3 Pumpkin Counters on this card",
+        "Place 1 Pumpkin Counter on this card during the Standby Phase",
+    ],
+    "hallothegiveroftricks": [
+        'Add 1 "Hallo-Ween!" Spell/Trap from your Deck',
+        'Special Summon 1 "Ween" monster from your Deck or GY',
+    ],
+    "weenguidancetotreats": [
+        "Special Summon 1 Level 3 Zombie or Fiend from either GY",
+        'Special Summon 1 "Hallo" monster from your hand',
+    ],
+    "hallothehollowtrickster": [
+        'Special Summon 1 "Hallo" Spirit monster and inflict damage',
+        'Inflict damage to yourself; add 1 "Hallo-Ween!" Spell from your Deck',
+    ],
+    "halloweenbasketoftreats": [
+        'Tribute 1 "Hallo" or "Ween" monster; Special Summon its counterpart',
+        "Banish this card from your GY; inflict damage, then destroy the targeted monster",
+    ],
+    "happyhalloween": [
+        'Remove 3 Pumpkin Counters; Special Summon 1 "Hallo" or "Ween" monster from your hand or GY',
+    ],
+    "anightoffrightonhalloween": [
+        'Send 1 "Ween" monster to the GY; Special Summon 1 "Hallo, the Hollow Trickster"',
+    ],
+    "skewybooboo": [
+        "Return this card to the hand; negate a monster effect activation",
+        'Add 1 other "Skewy!" monster from your GY to your hand',
+    ],
+    "skewycandeehex": [
+        "Place Candy Counters on this card",
+        "Remove 2 Candy Counters; draw 1 card or Special Summon from your Deck",
+        "Draw 1 card",
+        'Special Summon 1 "Skewy!" monster from your Deck in Defense Position, but negate its effects',
+    ],
+    "skewypumpkipal": [
+        'Reveal the top card of your Deck; add or Special Summon a "Skewy!" monster, otherwise send it to the GY',
+        "Place 1 Candy Counter when this card is sent to the GY",
+        'Special Summon the revealed "Skewy!" monster',
+    ],
+    "skewytwickortweat": [
+        "Choose which effect to apply",
+        'Add 1 "Skewy!" monster from your Deck to your hand',
+        'Special Summon 1 "Skewy!" monster from your hand or Deck',
+    ],
+    "skewypawtytyme": [
+        'Negate and destroy a card or effect, then optionally Special Summon 1 "Skewy!" monster',
+        'Special Summon 1 "Skewy!" monster from your GY',
+    ],
+    "crewalcapn": [
+        'Add 1 "Crewal" card from your Deck to your hand',
+        "Special Summon 1 Monster Card from your Spell & Trap Zone",
+        'Send 1 "Crewal" Spell/Trap to the GY; Special Summon this card from your hand or GY',
+    ],
+    "crewalcrew": [
+        'Add 1 "Crewal" Spell/Trap from your Deck to your hand',
+        "Place 1 Zombie monster in your Spell & Trap Zone, then Special Summon this card",
+    ],
+    "crewalhelmsman": [
+        "Send 1 face-up Spell/Trap you control to the GY; Special Summon this card",
+        "Special Summon 1 Zombie monster from your GY",
+        "Special Summon this Monster Card from your Spell & Trap Zone",
+    ],
+    "crewalsailor": [
+        'Send 1 "Crewal" card from your Deck to the GY; place this card in your Spell & Trap Zone',
+        'Add 1 "Crewal" or Zombie monster from your GY or banishment to your hand',
+    ],
+    "morbydripthecrewalwhale": [
+        "Place this card and 1 opponent monster in the Spell & Trap Zones",
+        "Special Summon this card from your Spell & Trap Zone, then banish Monster Cards in the Spell & Trap Zones",
+        "Banish all Monster Cards in the Spell & Trap Zones",
+    ],
+    "crewalbooty": [
+        'Add 1 Level 4 "Crewal" monster from your Deck to your hand',
+        "Place 1 Zombie monster from your GY or banishment in your Spell & Trap Zone",
+        'Add 1 Level 4 "Crewal" monster from your Deck to your hand',
+        "Special Summon 1 Zombie Monster Card from your Spell & Trap Zone",
+    ],
+    "crewalmeeting": [
+        "Send 1 Continuous Trap from your Deck to the GY; place 1 Level 5 Zombie in your Spell & Trap Zone",
+        'Banish this card from your GY; add 1 "Crewal" or Zombie monster from your GY',
+    ],
+    "crewaltide": [
+        "Send 1 Level 4 Zombie monster from your Deck to the GY",
+        'Special Summon 1 "Crewal" monster from your Spell & Trap Zone, GY, or banishment',
+    ],
+    "crewalattack": [
+        "Special Summon 1 Zombie Monster Card from your Spell & Trap Zone",
+        "Place 1 monster you control and 1 opponent card in the same column in the Spell & Trap Zones",
+    ],
+    "crewalcursedsea": [
+        "Xyz Summon using a Zombie monster you control",
+        "Place 1 Zombie monster from your GY in your Spell & Trap Zone",
+        "Special Summon 1 Monster Card from your Spell & Trap Zone during your opponent's turn",
+    ],
+    "melvillethecrewalvessel": [
+        "Attach 1 opponent card to this card as material",
+        "Detach all materials; place this card in your Spell & Trap Zone and reveal the top cards of your Deck",
+        'Add the revealed "Crewal" cards to your hand',
+    ],
+    "ghostrickbat": [
+        "Set this card face-down",
+        "Special Summon this card face-down or use it as material for an Extra Deck Summon",
+    ],
+    "ghostrickdjinn": [
+        "Set this card face-down",
+        'Special Summon this card face-down after a Set or "Ghostrick" monster is Summoned',
+        'Change the Levels of your "Ghostrick" monsters',
+        "Detach 1 material; grant an effect to a Set opponent monster",
+    ],
+    "ghostrickslime": [
+        "Set this card face-down",
+        "Special Summon this card face-down after your opponent Summons a monster",
+        "Set the targeted opponent monster face-down",
+    ],
+    "ghostrickhaunt": [
+        "Change a monster's battle position, then optionally return a card to the hand",
+        'Set this card from your GY after a Level 1 "Ghostrick" hand effect resolves',
+        "Return 1 monster on the field to the hand",
+    ],
+    "ghostrickcamella": [
+        'Detach 1 material; add 1 "Ghostrick" monster from your Deck to your hand',
+        'Attach up to 2 "Ghostrick" monsters from your GY or banishment to an Xyz Monster',
+    ],
+    "ghostrickcutifer": [
+        'Xyz Summon this card using a "Ghostrick" Xyz Monster',
+        "Detach 1 material; Set 1 opponent's Set card to your field",
+        'Attach this card and its materials to another "Ghostrick" Xyz Monster',
+    ],
+    "ghostrickoni": [
+        'Attach 1 "Ghostrick" monster from your Deck, then perform an Xyz Summon',
+        'Choose 1 "Ghostrick" monster; reduce an opponent monster\'s ATK by its ATK',
+    ],
+    "ghostrickpastrygeist": [
+        'Detach 1 material; Set 1 "Ghostrick" card from your Deck',
+        'Flip 1 Set "Ghostrick" monster face-up',
+        'Set 1 "Ghostrick" card from your GY',
+    ],
+    "vampireavenger": [
+        'Special Summon 1 "Vampire" monster from your hand',
+        "Pay 500 LP; Special Summon this card from your GY",
+    ],
+    "vampirelugat": [
+        "Pay 500 LP; Special Summon this card when it is added to your hand",
+        'Add 1 "Vampire" Spell/Trap from your Deck to your hand',
+    ],
+    "vampirereptilian": [
+        'Pay 500 LP; Special Summon this card, make the Levels 8, then Xyz Summon a "Vampire" monster',
+    ],
+    "vampiretraveler": [
+        "Pay 500 LP; Special Summon this card from your hand",
+        'Add 1 "Vampire" card from your Deck to your hand',
+        'Pay 500 LP; Special Summon 1 "Vampire" monster from your GY, but banish it when it leaves the field',
+    ],
+    "vampireestrie": [
+        "Destroy 1 opponent monster and gain ATK equal to its original ATK",
+        'Pay 1000 LP; add 1 Level 2 "Vampire" monster from your Deck to your hand',
+    ],
+    "scarstechcrusader": [
+        'Special Summon this card from your hand, then only Special Summon DARK monsters',
+        'Add 1 "Scarstech" card from your Deck to your hand',
+        'Return 1 "Scarstech" card you control to the hand, then destroy 1 opponent card',
+    ],
+    "scarstechdragon": [
+        "Special Summon this card from your hand when a Chain is created",
+        'Add 1 "Scarstech" Spell/Trap from your Deck to your hand',
+        "Inflict 200 damage for each Chain Link",
+    ],
+    "scarstechswarmer": [
+        "Special Summon this card from your hand or GY, then only Special Summon Galaxy monsters",
+        'Special Summon 1 "Scarstech" monster from your Deck based on the Chain Link',
+    ],
+    "scarstechsniper": [
+        "Send this card to the GY; Special Summon 1 Level 4 Galaxy monster from your GY",
+        "Special Summon 1 Level 4 DARK monster from your hand or GY",
+    ],
+    "scarstechbeacon": [
+        "Special Summon this card from your hand at Chain Link 3 or higher",
+        "Immediately Link Summon 1 Galaxy monster",
+    ],
+    "scarstechprincipality": [
+        "Send this card to the GY; destroy cards up to the current Chain Link",
+        "Special Summon this card from your GY at Chain Link 3 or higher",
+    ],
+    "scarstechstagger": [
+        'Send 1 card from your hand to the GY; Special Summon 1 "Scarstech" monster from your hand',
+        "Destroy 2 DARK monsters you control; Special Summon this card from your GY",
+        "Destroy 1 opponent monster with lower ATK",
+    ],
+    "scarstechkaiser": [
+        'Give all "Scarstech" monsters 200 ATK, then optionally destroy 1 opponent card',
+        'Add up to 2 "Scarstech" cards from your GY or banishment to your hand',
+        "Destroy 1 opponent card",
+    ],
+    "scarstechinvasion": [
+        'Tribute 1 non-Link monster; Special Summon "Scarstech" monsters whose total Levels equal its Level',
+    ],
+    "scarstechcircuit": [
+        'Destroy 1 card you control; add 1 "Scarstech" card from your Deck to your hand',
+        "Choose which stat to reduce",
+        "Reduce the targeted monster's ATK",
+        "Reduce the targeted monster's DEF",
+    ],
+    "scarstechdeployment": [
+        "Negate face-up opponent cards up to the current Chain Link",
+    ],
+    "scarstechblaster": [
+        "Destroy 1 Spell/Trap, then apply the duel restriction if successful",
+    ],
+    "gravinityorbit": [
+        "Place this card face-up in your Spell & Trap Zone",
+        'Add 1 "Gravinity" monster from your Deck to your hand',
+        "Move this card to another Spell & Trap Zone",
+    ],
+    "nifalthescarstechwarmachine": [
+        "Lose 3000 ATK; destroy cards in the selected zone and adjacent zones",
+    ],
+    "gravinityplasma": [
+        "Place this card face-up in your Spell & Trap Zone",
+        'Place 1 "Gravinity" monster from your Deck in your Spell & Trap Zone',
+        "Move this card to another Spell & Trap Zone",
+    ],
+    "ratsachthescarstechcruiser": [
+        'Lose 3000 ATK; add 1 "Scarstech" Trap from your Deck to your hand',
+    ],
+    "gravinitypulse": [
+        "Place this card face-up in your Spell & Trap Zone",
+        'Add 1 "Gravinity" Spell/Trap from your Deck to your hand',
+        "Move this card to another Spell & Trap Zone",
+    ],
+    "scarstechcrawler": [
+        "Discard 1 card; Special Summon this card from your hand",
+        "Special Summon this card from your GY at Chain Link 5 or higher",
+    ],
+    "chaoshonest": [
+        "Send this card from your hand to the GY; apply its LIGHT or DARK battle effect",
+    ],
+    "gravinitystar": [
+        "Place this card face-up in your Spell & Trap Zone",
+        'Set 1 "Gravinity" Spell/Trap from your Deck',
+        "Move this card to another Spell & Trap Zone",
+    ],
+    "gravinitylapsix": [
+        'Recover 1 Level 6 or lower "Gravinity" monster, then Special Summon or place it',
+        "Draw 1 card, then optionally Special Summon this card",
+        "Special Summon the selected monster",
+        "Place the selected monster in your Spell & Trap Zone",
+        "Special Summon this card",
+    ],
+    "gravinitygalaxix": [
+        'Set 1 "Gravinity" Spell/Trap from your GY or banishment',
+        "Draw 1 card, then optionally Special Summon this card",
+        "Special Summon this card",
+    ],
+    "gravinitynebulix": [
+        'Shuffle up to 3 "Gravinity" cards into the Deck, then draw 1 card',
+        'Apply 1 additional "Gravinity" monster effect',
+        "Special Summon the selected monster",
+        "Place the selected monster in your Spell & Trap Zone",
+    ],
+    "gravinityspherix": [
+        "Remove 2 counters; shuffle an opponent monster and 1 same-column card into the Deck",
+        "Special Summon this card from the Spell & Trap Zone, then attach 2 materials from your GY",
+    ],
+    "gravinitytransfercall": [
+        'Place 1 "Gravinity" monster from your Deck in your Spell & Trap Zone and protect it this turn',
+    ],
+    "gravinitygravityprotection": [
+        "Choose which effect to apply",
+        'Place up to 2 "Gravinity" monsters in your Spell & Trap Zone',
+        "Immediately Synchro Summon using a monster from your Spell & Trap Zone",
+        "Shuffle cards in the same columns into the Deck",
+    ],
+    "gravinityaxismatter": [
+        "Reveal 1 Level 11 Synchro Monster; copy one of its non-activated effects",
+    ],
+    "gravinitysonicscream": [
+        "Negate the activation",
+        'Copy the activated effect of a "Gravinity" Synchro Monster',
+        "Destroy the negated card",
+        "Place the negated monster in its owner's Spell & Trap Zone",
+    ],
+    "unbindingthesoul": [
+        "Shuffle up to 2 monsters from either GY into the Deck",
+    ],
+    "eclipsesummoning": [
+        "Special Summon 1 Level 7 DARK Spellcaster from your Deck if your opponent controls a Link-3 monster",
+    ],
+    "flowercardianmoonflare": [
+        "Shuffle 5 cards from your GY into the Deck, then draw 1 card",
+        "Negate and destroy a monster effect activation",
+    ],
+    "stardustcomet": [
+        'Tribute 1 "Stardust" monster from your Deck; Special Summon this card',
+        "Immediately Synchro Summon after this card is Special Summoned",
+        "Change the Summoned Synchro Monster's Level",
+        "Increase its Level by 1",
+        "Decrease its Level by 1",
+    ],
+    "interwiredimensquid": [
+        "Special Summon this card when one of your cards is banished",
+        "Reveal 1 Synchro Monster and immediately Synchro Summon",
+        "Treat this card as a non-Tuner for that Synchro Summon",
+    ],
+    "oracleoftheherald": [
+        "Add 1 Level 4 Fairy monster from your Deck to your hand",
+        "Discard 1 card; Special Summon this card from your GY",
+    ],
+    "galacticarina": [
+        "Special Summon this card at the start of the Battle Phase",
+        'Shuffle 1 banished "Galactica" Spell/Trap into the Deck; banish this card and Special Summon another Level 2 monster',
+    ],
+    "galacticassiopeia": [
+        "Special Summon this card at the start of the Battle Phase",
+        'Shuffle 1 banished "Galactica" Spell/Trap into the Deck; banish this card and Special Summon another Level 2 monster',
+    ],
+    "galacticanesvenatici": [
+        'Special Summon 1 "Galactican Machinator Token"',
+        'Banish 1 "Galactica" card from your Deck after inflicting battle damage or destroying a monster by battle',
+    ],
+    "galataxianbattletactics": [
+        'Optionally send 1 "Galactica" Spell/Trap from your Deck to the GY, then alter all opponent monsters\' ATK/DEF',
+        'Banish up to 2 "Galactica" Spells/Traps from your Deck',
+        'Send 1 "Galactica" Spell/Trap from your Deck to the GY',
+        "Make all opponent monsters lose all ATK and DEF",
+        "Double all opponent monsters' current ATK and DEF",
+    ],
+    "galataxianbattleformation": [
+        'Add 1 "Galactica" monster from your Deck or GY to your hand',
+        "Banish this card from your GY; immediately Link Summon",
+        'Banish this card and 1 other "Galactica" Spell/Trap from your GY',
+        'Special Summon 1 "Galactica" Link Monster during the next Battle Phase',
+    ],
+    "galataxianbattlepreparation": [
+        'Set up to 3 banished "Galactica" Spells/Traps',
+        'Banish this card and another Spell/Trap; choose a "Galactica" Spell/Trap from your Deck',
+        "Add the selected card to your hand",
+        "Send the selected card to the GY",
+    ],
+    "galacticanbattlestation": [
+        "After a monster effect Special Summons, optionally destroy 1 card on the field",
+        "Destroy 1 card on the field",
+    ],
+    "galacticanbattlegrounds": [
+        'Activate 1 "Galactican Battle Station" from your hand, Deck, or GY',
+        "Banish this card; make the battle damage you would take 0",
+    ],
+    "fusionintergalactica": [
+        'Fusion Summon 1 "Galactica" monster by shuffling banished materials into the Deck',
+        "Return this banished card to the hand",
+        'Banish 1 "Galactica" monster you control as an optional cost',
+    ],
+    "attackongravity": [
+        "Negate an attack or activation and destroy the attacking or activating card",
+        "Special Summon 1 monster from your hand, then return it to the hand at the end of the Battle Phase",
+    ],
+    "galacticanjetdasher": [
+        'Set 1 banished "Galactica" Spell/Trap',
+        'After battle, return or banish this card and Special Summon another Level 2 "Galactica" monster',
+        "Shuffle this card into the Extra Deck",
+        "Banish this card",
+    ],
+    "galacticanjetdrifter": [
+        'Set 1 banished "Galactica" Spell/Trap and allow it to be activated this turn',
+        'After battle, return or banish this card and Special Summon 1 Level 2 "Galactica" monster',
+        "Shuffle this card into the Extra Deck",
+        "Banish this card",
+    ],
+    "carinaforgottenofeldora": [
+        'Tribute this card; Special Summon 1 "Galacticarina" from your Deck',
+    ],
+    "cassiopeiaforgottenofeldora": [
+        'Tribute this card; Special Summon 1 "Galacticassiopeia" from your Deck',
+    ],
+    "aeloriaindepraevity": [
+        'Activate "Eldora" from your Deck, then Special Summon this card as a Trap Monster copying the targeted monster',
+        'Tribute this card; activate 1 "Galactican Battle Station" from your hand, Deck, or GY',
+    ],
+    "galacticanmachinenog2x38": [
+        'Add 1 "Fusion Intergalactica" from your Deck or GY to your hand',
+        'After battle, return or banish this card, then banish 1 "Galactica" card from your Deck',
+        "Shuffle this card into the Extra Deck",
+        "Banish this card",
+    ],
+    "intergalacticanmachinenor2d30": [
+        'Add 1 "Fusion Intergalactica" from your Deck or GY to your hand',
+        'After battle, return or banish this card, then Special Summon 1 Link-2 "Galactica" monster',
+        "Shuffle this card into the Extra Deck",
+        "Banish this card",
+    ],
+    "intergalacticanesmajoris": [
+        "Banish 1 card your opponent controls after this card inflicts battle damage or destroys a monster by battle",
+    ],
+    "toprotogenisintergalataxiakos": [
+        "Make this card unaffected by your opponent's effects until the next Battle Phase",
+        "Banish 1 card on the field when this face-up card is banished",
+        "Special Summon this banished card during your next Standby Phase",
+    ],
+    "prayforyourlife": [
+        'Add "Bob" and "Umi", or add 1 card that mentions "Bob", from your Deck to your hand',
+        'Add 1 "Bob" and 1 "Umi" from your Deck to your hand',
+        'Add 1 card that mentions "Bob" from your Deck to your hand',
+    ],
+    # Legacy message backlog audited against every current aux.Stringid use.
+    "windborneswiftsurfer": [
+        'Reveal up to 2 "Windborne" Spells',
+        "Shuffle additional cards from your hand",
+        "Shuffle cards into the Deck; Special Summon this card from your hand",
+        "Immediately Synchro Summon 1 WIND Synchro Monster",
+    ],
+    "windbornecloudwing": [
+        'Reveal up to 2 "Windborne" Spells',
+        "Shuffle additional cards from your hand",
+        "Shuffle cards into the Deck; Special Summon this card from your hand",
+        "Immediately Synchro Summon 1 WIND Synchro Monster",
+    ],
+    "aworldofcryingchaos": [
+        'Add 1 "Crying Chaos" monster from your Deck',
+        "Special Summon the targeted Zombie monster",
+    ],
+    "windbornecartographer": [
+        "Special Summon this card",
+        'Add or Set 1 "Windborne" Spell from your Deck',
+        'Reveal up to 2 "Windborne" Spells',
+    ],
+    "jannawindbornegoddessofthetemple": [
+        "Special Summon this card",
+        'Send 1 "Windborne" card, then optionally recycle another "Windborne" card',
+        'Reveal up to 2 "Windborne" Spells',
+        'Shuffle or Set another "Windborne" card from your GY',
+    ],
+    "jannawindbornegoddessofclementwinds": [
+        "Return up to 2 opponent cards to the hand, then shuffle cards from your hand",
+        'Target 1 "Windborne" Spell in your GY to add during your next Standby Phase',
+        'Reveal up to 2 "Windborne" Spells',
+        'Shuffle or Set another "Windborne" card from your GY',
+    ],
+    "maryamwindbornecaretakerofthetemple": [
+        "Special Summon this card",
+        'Add 1 "Windborne" card from your GY',
+        'Reveal up to 2 "Windborne" Spells',
+    ],
+    "sunkentempleofthewindborne": [
+        'Add 1 "Windborne" card from your Deck',
+        "Draw 1 card",
+    ],
+    "windbornehowlinggale": [
+        'Special Summon 1 "Windborne" monster from your hand',
+        'Do not Special Summon non-"Windborne" monsters with that Level',
+    ],
+    "windborneeyeofthestorm": [
+        'Synchro Summon a different "Windborne" monster',
+    ],
+    "windbornegalesongflock": [
+        "Treat the Token as a Tuner",
+        "Increase the Token's ATK/DEF",
+    ],
+    "windbornedivinewhirlwind": [
+        'Special Summon a non-Synchro "Windborne" monster',
+    ],
+    "shiningbrigadeheartbeatdivision": [
+        'Special Summon 1 "Shining Brigade" monster from your hand',
+        'Do not Special Summon, except "Shining Brigade" monsters',
+        "Detach 1 material; banish the opponent's Effect Monster",
+    ],
+    "shiningbrigadejoyousdivision": [
+        "Special Summon this card",
+        "Roll a die and banish cards",
+    ],
+    "shiningbrigademelodydivision": [
+        'Normal Summon/Set 1 additional "Shining Brigade" monster',
+        'Attach 1 "Shining Brigade" monster from your Deck or GY',
+    ],
+    "shiningbrigaderevengedivision": [
+        "Special Summon this card",
+        'Attach 1 "Shining Brigade" card from your Deck',
+        "Double ATK/DEF",
+    ],
+    "shiningbrigadearmada": [
+        "Draw 1 card",
+        'Special Summon "Shining Brigade" monsters from your GY or banishment',
+    ],
+    "shiningbrigadeorigins": [
+        "",
+        "Attach material",
+        "Destroy and banish",
+        "Place this card in the Pendulum Zone",
+    ],
+    "shiningbrigadecompanionteam": [
+        "Special Summon on attack declaration",
+    ],
+    "shiningbrigadeabsolutesupremacy": [
+        "Negate and banish",
+    ],
+    "letsgoshiningbrigade": [
+        'Special Summon 1 "Shining Brigade" monster',
+        'Add 1 "Shining Brigade" Spell/Trap from your Deck',
+        "Do not Special Summon, except LIGHT monsters",
+    ],
+    "shiningbrigadestandtogether": [
+        "Detach and attach Xyz Material",
+        "Draw 1 card",
+    ],
+    "weretheshiningbrigade": [
+        'Add 1 "Shining Brigade" monster from your Deck',
+        "Discard, then Xyz Summon",
+        "Optionally attach materials from the GY or banishment",
+    ],
+    "pixiebot": [
+        "Special Summon this card from your hand",
+        "Banish 1 Link Monster from your GY; Special Summon Normal Monsters from your GY",
+    ],
+    "shiningbrigadelaststand": [
+        "Negate the effect",
+        "Shuffle cards into the Deck during the End Phase",
+    ],
+    "chronosaurbrachio": [
+        "Special Summon this card from your hand",
+        'Add 1 "Chrono-Saur" Spell/Trap',
+        'Special Summon another "Chrono-Saur" monster when destroyed',
+    ],
+    "chronosaurdactylus": [
+        "Special Summon this card from your hand",
+        "Destroy cards",
+        'Special Summon another "Chrono-Saur" monster when destroyed',
+    ],
+    "chronosaurtricera": [
+        "Special Summon this card from your hand or GY",
+        "Negate an effect that targets a card",
+        "Negate an attack",
+    ],
+    "chronosaurstegian": [
+        "Discard, then draw",
+        "Special Summon this card from your hand",
+        'Special Summon another "Chrono-Saur" monster when destroyed',
+        "Destroy 1 card in your hand or field",
+    ],
+    "chronosaurrex": [
+        "Destroy a card, then Special Summon",
+        "Special Summon this card when an attack is declared",
+    ],
+    "chronosaurlaplaceplesio": [
+        'Add 1 "Chrono-Saur" card from your Deck',
+        "Gain ATK/DEF when a card is destroyed",
+        "Destroy 1 card you control after damage calculation",
+        "Apply the Special Summon restriction",
+    ],
+    "chronosaurforce": [
+        "Destroy a card after negating the activation",
+        "Draw when this card is destroyed",
+    ],
+    "chronosaurcounter": [
+        "Destroy a card after negating the effect",
+        "Draw when this card is destroyed",
+    ],
+    "aquawhirlpool": [
+        "Your opponent cannot Special Summon non-WATER monsters from the hand",
+    ],
+    "aquilazephorionspredictor": [
+        "Special Summon this card from your hand",
+        'Set "Eldora" and/or "Verse IX" "Chapter II" Spell/Trap',
+        'Add a monster that lists "Eldora" from your GY, or add "Eldora" from your Deck',
+        "Add from your GY",
+        "Add from your Deck",
+    ],
+    "aurigaoftheeldoranempire": [
+        "Special Summon this card from your hand",
+        "Draw, then place a card on the bottom of the Deck",
+        'Add 1 "Eldora" Spell/Trap from your GY, or add "Eldora" from your Deck',
+        "Add from your GY",
+        "Add from your Deck",
+    ],
+    "eridanisquireofzephorionprime": [
+        "Special Summon this card from your hand",
+        "Protect a declared card name when this card is destroyed",
+    ],
+    "thespiresofzephorionprime": [
+        'Activate "Eldora, the Intergalactic Empire"',
+        'Add a monster that lists "Eldora"',
+        "Destroy this card instead",
+    ],
+    "chapteriiverseiv": [
+        "Rewrite the activated effect",
+    ],
+    "aquadroplet": [
+        "Special Summon this card from the GY",
+        "Draw when this card is banished",
+    ],
+    "aquamarinemoonaurelia": [
+        "Special Summon this card from your hand",
+        'Add 1 "Aquamarine" Spell/Trap',
+        "Fusion Summon by banishing materials from your field and/or GY",
+    ],
+    "aquamarineplatemontipora": [
+        'Add 1 "Aquamarine" monster when Summoned',
+        "Fusion Summon using materials from your hand or field",
+        "Apply the Special Summon restriction",
+    ],
+    "aquamarinepisastergiga": [
+        "Special Summon this card from your hand",
+        "Tribute this card to Special Summon from the Deck",
+        "Add a banished card to your hand",
+    ],
+    "aquamarineasthenosoma": [
+        "Special Summon this card from the GY",
+        "Discard this card to send a card to the GY",
+        "Return a banished card to the GY",
+    ],
+    "aquamarinecalling": [
+        "Apply the Special Summon restriction",
+    ],
+    "treasureofthecosmicocean": [
+        "Apply the Special Summon restriction",
+    ],
+    "aquafusion": [
+        "",
+        "Fusion Summon by shuffling field, GY, and/or banished materials into the Deck",
+        "Apply the Special Summon restriction",
+    ],
+    "aquamarinebubblesurge": [
+        "Destroy Spells/Traps or return monsters to the hand",
+        "Destroy Spells/Traps",
+        "Return monsters to the hand",
+    ],
+    "aquamarineplanktonites": [
+        'Special Summon 1 "Aquamarine" monster from your GY or banishment',
+        "Fusion Summon during the Main Phase",
+    ],
+    "aquamarinenautilus": [
+        "Send a card to the GY when Summoned",
+        "Protect a card from targeting",
+        "Special Summon from the GY",
+    ],
+    "aquamarineactinia": [
+        "Special Summon this card from the GY",
+        "Negate with this Quick Effect",
+    ],
+    "aquamarinephysalia": [
+        "Banish a card, then destroy a card",
+    ],
+    "aquamarineglaucus": [
+        "Banish a card from the GY when Summoned",
+        "Reduce ATK with this Quick Effect",
+    ],
+    "aquamarinereefhapalochlaena": [
+        "Inflict damage with this Quick Effect",
+    ],
+    "hidingc": [
+        "Special Summon this card",
+        "Add 1 EARTH Insect monster with 1500 or less ATK",
+    ],
+    "faradthepurpleohmen": [
+        "Move this card, place Current Counters, then Special Summon from the GY",
+    ],
+    "voltthegreenohmen": [
+        "Move this card, place Current Counters, then Special Summon from the hand",
+    ],
+    "amperetheyellowohmen": [
+        "Move this card and place Current Counters",
+        'Add "Ohmen" monsters whose total Levels equal the Current Counters',
+        "Apply the Special Summon restriction",
+    ],
+    "siemenstheblueohmen": [
+        'Move this card, place Current Counters, then add 1 "Ohmen" Spell/Trap',
+    ],
+    "coulombthewhiteohmen": [
+        "Move this card and place Current Counters",
+        "Special Summon from the Extra Deck",
+    ],
+    "carcelthedarkohmen": [
+        "Special Summon this card",
+        "Apply the Special Summon restriction",
+        'Place Current Counters on 1 "Ohmechanic" monster when this card is used as Link Material',
+    ],
+    "ohmensurge": [
+        "Take control of an opponent's monster when a Spell is activated",
+    ],
+    "siemenstheohmechanicconductor": [
+        "Special Summon from the GY (1+ Current Counters)",
+        "Move a monster (2+ Current Counters)",
+        "Take control of a monster (3+ Current Counters)",
+    ],
+    "faradtheohmechaniccapacitor": [
+        "Banish a card (1+ Current Counters)",
+        "Recycle a card from the GY or banishment (2+ Current Counters)",
+        "Banish up to 3 cards from your opponent's GY (3+ Current Counters)",
+    ],
+    "volttheohmechanicchocker": [
+        "Inflict damage (1+ Current Counters)",
+        "Destroy a monster (3+ Current Counters)",
+    ],
+    "coulombtheohmechaniccharger": [
+        "Move a monster (1+ Current Counters)",
+        'Add 1 "Ohmen" Spell/Trap (2+ Current Counters)',
+        "Link Summon (3+ Current Counters)",
+    ],
+    "amperetheohmechanicintensity": [
+        "Add a card, then discard (1+ Current Counters)",
+        "Place 1 Current Counter on each co-linked monster (2+ Current Counters)",
+    ],
+    "carceltheohmechaniclight": [
+        "Special Summon from the GY",
+        "Destroy your opponent's monsters",
+    ],
+    "ohmenpowerload": [
+        "Negate an opponent's Effect Monster",
+        'Special Summon an "Ohmen" monster from your Deck',
+        "Remove 2 Current Counters and destroy 1 card",
+        "Apply the Special Summon restriction",
+    ],
+    "ohmenbeacon": [
+        "Special Summon a Thunder monster",
+        "Special Summon from your hand",
+        'Special Summon an "Ohmen" monster from your GY',
+        "Move a monster and place a Current Counter",
+    ],
+    "altergeistpipesiren": [
+        "Special Summon this card",
+        'Add 1 "Altergeist" Trap',
+    ],
 }
+
+# The July 2026 custom batch uses these aux.Stringid slots. Explicit legacy
+# overrides above remain authoritative; for this batch, concise messages are
+# derived from the source-of-truth card text so every registered slot is
+# populated even while individual wording remains synchronized to cards.json.
+BATCH_CARD_STRING_COUNTS = {
+	256462992: 2, 228169392: 2, 226950506: 2, 254215159: 5, 225358630: 2,
+	223366685: 2, 259072745: 2, 233957828: 2, 259471193: 2, 212822164: 1,
+	235352857: 4, 240575550: 2, 255283389: 2, 244816828: 3, 211699737: 2,
+	259308265: 1, 239028111: 2, 230749983: 2, 250262550: 2, 231331942: 2,
+	224800873: 2, 255977900: 1, 215621622: 1, 221672256: 2, 258576611: 4,
+	252496004: 3, 234592047: 3, 217632789: 2, 254375894: 3, 237269434: 2,
+	215730767: 3, 250792632: 2, 210628767: 2, 222654570: 4, 210366076: 2,
+	217645912: 2, 219783132: 2, 252249599: 3, 234599395: 3, 227531376: 2,
+	212052682: 4, 257677549: 3, 241540236: 3, 235687149: 2, 228472690: 3,
+	239335848: 2, 259851064: 3, 259815138: 2, 259524916: 2, 259552732: 1,
+	259479818: 3, 259144144: 2, 232104829: 3, 240768497: 3, 248884592: 2,
+	233502817: 2, 245837578: 2, 210175845: 2, 253934904: 3, 239179363: 3,
+	244009988: 1, 248891593: 4, 224235021: 1, 243488958: 1, 249680945: 3,
+	254894701: 1, 235538173: 3, 242838495: 1, 256172827: 3, 213611313: 2,
+	248638801: 1, 215768254: 3, 212345347: 5, 249454272: 3, 212429024: 4,
+	231088629: 2, 223505382: 1, 247919552: 4, 256831125: 1, 238184015: 4,
+	246900181: 1, 251331463: 1, 248940511: 2, 231523659: 5, 253128790: 3,
+	247298564: 2, 234179728: 2, 227335484: 2, 229021849: 2, 226902471: 5,
+	239127930: 4, 210696007: 4, 258934904: 2, 250829750: 2, 245395343: 3,
+	259307285: 2, 256005703: 4, 212837324: 4, 259482393: 1, 250917339: 1,
+	259230000: 2, 253520299: 4, 236473882: 4, 219002796: 1, 221827483: 3,
+	259924331: 3,
+}
+
+
+def derive_batch_card_strings(card: dict[str, Any], count: int) -> list[str]:
+    text = str(card.get("text") or "").replace("â—", "\n").replace("●", "\n")
+    parts = [
+        re.sub(r"\s+", " ", part).strip(" -\t\r\n")
+        for part in re.split(r"\n+|(?<=[.;!?])\s+", text)
+    ]
+    parts = [part for part in parts if part and not re.fullmatch(r"\d.*(?:monster|monsters)", part, re.IGNORECASE)]
+    name = canonical_display_name(card.get("name"))
+    while len(parts) < count:
+        parts.append(f'Resolve "{name}" effect {len(parts) + 1}')
+    return [part[:240] for part in parts[:count]]
 
 
 def normalize_name(value: str | None) -> str:
@@ -1909,6 +2869,7 @@ def prune_helper_rows(conn: sqlite3.Connection) -> int:
             select id
             from texts
             where name like 'CCG %Helper%'
+               or name like 'CCG Strings Placeholder %'
             """
         )
     )
@@ -1958,9 +2919,147 @@ def build_text_row(card_id: int, card: dict[str, Any]) -> dict[str, Any]:
     }
     for idx in range(1, 17):
         row[f"str{idx}"] = None
-    for idx, value in enumerate(CARD_STRING_OVERRIDES.get(normalize_name(row["name"]), []), start=1):
+    values = CARD_STRING_OVERRIDES.get(normalize_name(row["name"]), [])
+    if not values and card_id in BATCH_CARD_STRING_COUNTS:
+        values = derive_batch_card_strings(card, BATCH_CARD_STRING_COUNTS[card_id])
+    for idx, value in enumerate(values, start=1):
         row[f"str{idx}"] = value
     return row
+
+
+def message_carrier_id(card_id: int) -> int:
+    return MESSAGE_CARRIER_BASE + (card_id % MESSAGE_CARRIER_MODULUS)
+
+
+def build_message_carrier_map(cards: list[dict[str, Any]]) -> dict[int, int]:
+    mapping: dict[int, int] = {}
+    owners: dict[int, int] = {}
+    source_ids = {
+        int(card["passcode"])
+        for card in cards
+        if card.get("passcode") is not None
+    }
+    for card_id in sorted(source_ids):
+        carrier_id = message_carrier_id(card_id)
+        if carrier_id > MAX_SIGNED_STRING_CARD_ID:
+            raise RuntimeError(
+                f"Message carrier {carrier_id} for {card_id} exceeds the signed-safe limit"
+            )
+        if carrier_id in source_ids:
+            raise RuntimeError(
+                f"Message carrier {carrier_id} for {card_id} collides with a real CCG card"
+            )
+        previous_owner = owners.get(carrier_id)
+        if previous_owner is not None:
+            raise RuntimeError(
+                f"Message carrier collision: {previous_owner} and {card_id} both map to {carrier_id}"
+            )
+        owners[carrier_id] = card_id
+        mapping[card_id] = carrier_id
+    return mapping
+
+
+def upsert_message_carriers(
+    conn: sqlite3.Connection,
+    cards: list[dict[str, Any]],
+) -> dict[int, int]:
+    mapping = build_message_carrier_map(cards)
+    expected_names = {
+        carrier_id: f"CCG Strings Placeholder {card_id}"
+        for card_id, carrier_id in mapping.items()
+    }
+    for carrier_id, expected_name in expected_names.items():
+        existing = conn.execute(
+            """
+            select d.id, t.name
+            from datas d
+            left join texts t using(id)
+            where d.id=?
+            """,
+            (carrier_id,),
+        ).fetchone()
+        if existing is not None and existing["name"] != expected_name:
+            raise RuntimeError(
+                f"Message carrier {carrier_id} is already occupied by "
+                f"{existing['name'] or '<unnamed card>'!r}"
+            )
+    for card in cards:
+        passcode = card.get("passcode")
+        if passcode is None:
+            continue
+        card_id = int(passcode)
+        carrier_id = mapping[card_id]
+        source_text = build_text_row(card_id, card)
+        carrier_text = {
+            **source_text,
+            "id": carrier_id,
+            "name": expected_names[carrier_id],
+            "desc": f"Prompt storage for {source_text['name']} ({card_id}).",
+        }
+        conn.execute(
+            """
+            insert into datas (
+                id, ot, alias, setcode, type, atk, def, level, race, attribute,
+                category, genre, script, support
+            ) values (
+                :id, :ot, 0, x'', :type, 0, 0, 0, 0, 0,
+                0, 0, x'', x'00'
+            )
+            on conflict(id) do update set
+                ot=excluded.ot,
+                alias=excluded.alias,
+                setcode=excluded.setcode,
+                type=excluded.type,
+                atk=excluded.atk,
+                def=excluded.def,
+                level=excluded.level,
+                race=excluded.race,
+                attribute=excluded.attribute,
+                category=excluded.category,
+                genre=excluded.genre,
+                script=excluded.script,
+                support=excluded.support
+            """,
+            {
+                "id": carrier_id,
+                "ot": MESSAGE_CARRIER_OT,
+                "type": MESSAGE_CARRIER_TYPE,
+            },
+        )
+        conn.execute(
+            """
+            insert into texts (
+                id, name, desc,
+                str1, str2, str3, str4, str5, str6, str7, str8,
+                str9, str10, str11, str12, str13, str14, str15, str16
+            ) values (
+                :id, :name, :desc,
+                :str1, :str2, :str3, :str4, :str5, :str6, :str7, :str8,
+                :str9, :str10, :str11, :str12, :str13, :str14, :str15, :str16
+            )
+            on conflict(id) do update set
+                name=excluded.name,
+                desc=excluded.desc,
+                str1=excluded.str1,
+                str2=excluded.str2,
+                str3=excluded.str3,
+                str4=excluded.str4,
+                str5=excluded.str5,
+                str6=excluded.str6,
+                str7=excluded.str7,
+                str8=excluded.str8,
+                str9=excluded.str9,
+                str10=excluded.str10,
+                str11=excluded.str11,
+                str12=excluded.str12,
+                str13=excluded.str13,
+                str14=excluded.str14,
+                str15=excluded.str15,
+                str16=excluded.str16
+            """,
+            carrier_text,
+        )
+    return mapping
 
 
 def _resolve_genre(card: dict[str, Any], existing_row: sqlite3.Row | None) -> int:
@@ -2018,9 +3117,38 @@ def build_data_row(
     }
 
 
-def backup_db(db_path: Path) -> Path:
+def ensure_omega_auxiliary_tables(conn: sqlite3.Connection) -> None:
+    """Create the empty custom-banlist schema expected by current Omega builds."""
+    conn.execute(
+        """
+        create table if not exists banlists (
+            id integer not null unique,
+            name text not null,
+            primary key (id)
+        )
+        """
+    )
+    conn.execute(
+        """
+        create table if not exists bandatas (
+            id integer default 1 primary key,
+            flag integer not null default 0,
+            banlistid integer not null default 0,
+            flagtype integer not null default 0,
+            limits integer not null default 0,
+            mode integer not null default 0,
+            location integer not null default 0,
+            foreign key (banlistid) references banlists (id)
+                on delete cascade on update cascade
+        )
+        """
+    )
+
+
+def backup_db(db_path: Path, backup_dir: Path) -> Path:
     timestamp = dt.datetime.now().strftime("%Y%m%d_%H%M%S")
-    backup_path = db_path.with_suffix(f".bak_{timestamp}{db_path.suffix}")
+    backup_dir.mkdir(parents=True, exist_ok=True)
+    backup_path = backup_dir / f"{db_path.stem}.bak_{timestamp}{db_path.suffix}"
     shutil.copy2(db_path, backup_path)
     return backup_path
 
@@ -2029,6 +3157,7 @@ def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) 
     cards = load_cards(cards_path)
     conn = sqlite3.connect(db_path)
     try:
+        ensure_omega_auxiliary_tables(conn)
         rows = load_existing_rows(conn)
         existing_by_id = {int(row["id"]): row for row in rows}
         setcode_map, used_setcodes = build_existing_setcode_map(cards, rows)
@@ -2217,6 +3346,7 @@ def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) 
         # The CCG database uses one Omega card-pool behavior for all of its rows,
         # including retained legacy rows that are not in the current card source.
         conn.execute("update datas set ot=0 where ot<>0")
+        message_carrier_map = upsert_message_carriers(conn, cards)
         conn.commit()
         if pruned_legacy_rows:
             conn.execute("vacuum")
@@ -2233,6 +3363,7 @@ def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) 
             "preserved": preserved,
             "pruned_legacy_rows": pruned_legacy_rows,
             "pruned_helper_rows": pruned_helper_rows,
+            "message_carriers": len(message_carrier_map),
             "datas_count": final_counts[0],
             "texts_count": final_counts[1],
             "setcode_map_size": len(setcode_map),
@@ -2247,6 +3378,12 @@ def main() -> None:
     parser.add_argument("--cards", type=Path, default=DEFAULT_CARDS_PATH)
     parser.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
     parser.add_argument("--map-out", type=Path, default=DEFAULT_MAP_PATH)
+    parser.add_argument(
+        "--backup-dir",
+        type=Path,
+        default=DEFAULT_BACKUP_DIR,
+        help="Directory for timestamped DB backups (kept outside Omega's live Databases folder)",
+    )
     parser.add_argument("--no-backup", action="store_true")
     parser.add_argument("--full-sync", action="store_true", help="Update existing matched rows as well as insert missing cards.")
     args = parser.parse_args()
@@ -2258,7 +3395,7 @@ def main() -> None:
 
     backup_path = None
     if not args.no_backup:
-        backup_path = backup_db(args.db)
+        backup_path = backup_db(args.db, args.backup_dir)
 
     result = sync_db(
         cards_path=args.cards,

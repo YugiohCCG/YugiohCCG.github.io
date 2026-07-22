@@ -1,5 +1,6 @@
 --KANMURIYAMA
 local s,id=GetID()
+local STRING_ID=132801935
 function s.initial_effect(c)
 	--Activate this card by equipping it to a Spirit monster
 	local e1=Effect.CreateEffect(c)
@@ -19,7 +20,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If this card becomes equipped: add 1 Spirit monster with a different Attribute
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_EQUIP)
@@ -31,7 +32,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--If destroyed because the equipped monster returned to the hand: add this card to the hand
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,1))
+	e4:SetDescription(aux.Stringid(STRING_ID,1))
 	e4:SetCategory(CATEGORY_TOHAND)
 	e4:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e4:SetProperty(EFFECT_FLAG_DELAY)
@@ -42,7 +43,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 	--At the start of the Damage Step, return the opponent's battling monster to the hand
 	local e5=Effect.CreateEffect(c)
-	e5:SetDescription(aux.Stringid(id,2))
+	e5:SetDescription(aux.Stringid(STRING_ID,2))
 	e5:SetCategory(CATEGORY_TOHAND)
 	e5:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e5:SetCode(EVENT_BATTLE_START)

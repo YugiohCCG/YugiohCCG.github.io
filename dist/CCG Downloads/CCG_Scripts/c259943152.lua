@@ -1,7 +1,7 @@
 --A.I.P Lab
 local s,id=GetID()
 local SET_AIP=0xa979
-local STRING_ID=id
+local STRING_ID=133943152
 local AIP_EX_MONSTERS={
 	[259609997]=true,
 	[259664027]=true,
@@ -25,6 +25,7 @@ function s.initial_effect(c)
 	--If a Beast monster activates its effect: "A.I.P Ex" monsters gain 300 ATK
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,1))
+	e2:SetCategory(CATEGORY_ATKCHANGE)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_CHAINING)
 	e2:SetRange(LOCATION_FZONE)
@@ -36,7 +37,7 @@ function s.initial_effect(c)
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,2))
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
-	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e3:SetProperty(EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_DELAY)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e3:SetRange(LOCATION_FZONE)
 	e3:SetCountLimit(1,id+100)

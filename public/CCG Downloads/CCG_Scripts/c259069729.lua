@@ -1,5 +1,6 @@
 --Eclipse Observer Nora
 local s,id,o=GetID()
+local STRING_ID=133069729
 local SET_ECLIPSE=0xf2f4
 local SET_ECLIPSE_OBSERVER=0xeb17
 local CARD_OBSERVATORY=259721372
@@ -16,7 +17,7 @@ local OBSERVER_MONSTERS={
 function s.initial_effect(c)
 	--Send 1 "Eclipse" Quick-Play Spell or "Eclipse Observer" card from your Deck to the GY
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SUMMON_SUCCESS)
@@ -30,7 +31,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If your opponent draws 2 or more cards, draw 1 card
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_DRAW)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_DRAW)

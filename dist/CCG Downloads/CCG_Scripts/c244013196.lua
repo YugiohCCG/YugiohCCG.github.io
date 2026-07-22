@@ -1,5 +1,6 @@
 --TO PROTO CHRONO
 local s,id=GetID()
+local STRING_ID=132013196
 local SET_TO_PROTO=0xe80d
 function s.initial_effect(c)
 	c:EnableReviveLimit()
@@ -19,7 +20,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Must first be Special Summoned from the hand by banishing 1 "To Proto" monster you control
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetType(EFFECT_TYPE_FIELD)
 	e3:SetCode(EFFECT_SPSUMMON_PROC)
 	e3:SetProperty(EFFECT_FLAG_UNCOPYABLE)

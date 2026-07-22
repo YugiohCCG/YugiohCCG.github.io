@@ -1,7 +1,7 @@
 local s,id=GetID()
 local SET_NEMLERIA_OMEGA=0x191
 local SET_NEMLERIA_PI=0x192
-local STRING_ID=id
+local STRING_ID=133472680
 local EFFECT_FLAG_OATH=EFFECT_FLAG_OATH or 0
 function s.initial_effect(c)
 	--special summon
@@ -29,7 +29,7 @@ function s.initial_effect(c)
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetRange(LOCATION_MZONE)
-	e3:SetCountLimit(1,98091012)
+	e3:SetCountLimit(1,id)
 	e3:SetTarget(s.sstg)
 	e3:SetOperation(s.ssop)
 	c:RegisterEffect(e3)
@@ -84,7 +84,8 @@ function s.ssfilter(c,e,tp)
 end
 function s.sstg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
-		return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+		return (Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+				or Duel.IsExistingMatchingCard(s.cfilter,tp,LOCATION_MZONE,0,1,nil,e,tp))
 			and Duel.IsExistingMatchingCard(s.cfilter,tp,LOCATION_HAND+LOCATION_MZONE,0,1,nil,e,tp)
 			and Duel.IsExistingMatchingCard(s.ssfilter,tp,LOCATION_DECK,0,1,nil,e,tp)
 	end
@@ -92,7 +93,6 @@ function s.sstg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_DECK)
 end
 function s.ssop(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 	local sg=Duel.SelectMatchingCard(tp,s.cfilter,tp,LOCATION_HAND+LOCATION_MZONE,0,1,1,nil,e,tp)
 	if #sg==0 or Duel.SendtoGrave(sg,REASON_EFFECT)==0 or not sg:IsExists(Card.IsLocation,1,nil,LOCATION_GRAVE) then return end

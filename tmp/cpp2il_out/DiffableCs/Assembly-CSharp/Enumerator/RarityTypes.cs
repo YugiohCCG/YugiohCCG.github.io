@@ -1,0 +1,39 @@
+namespace Enumerator;
+
+[Flags]
+public enum RarityTypes
+{
+	NC = 1,
+	NRSP = 2,
+	SSP = 4,
+	R = 8,
+	SR = 16,
+	GGR = 32,
+	UR = 64,
+	UtR = 128,
+	ScR = 256,
+	UScR = 512,
+	GScR = 1024,
+	PScR = 2048,
+	GRHGR = 4096,
+	PlR = 8192,
+	NPRPC = 16384,
+	SPR = 32768,
+	UPR = 65536,
+	DNPRDPC = 131072,
+	DRPR = 262144,
+	DSPR = 524288,
+	DUPR = 1048576,
+	StR = 2097152,
+	GUR = 4194304,
+	PlScR = 8388608,
+	TTScR = 16777216,
+	DNRPR = 33554432,
+	SFR = 67108864,
+	CR = 134217728,
+	PGR = 268435456,
+	MSR = 536870912,
+	EScR = 1073741824,
+	SHR = 2147483648,
+}
+

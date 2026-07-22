@@ -1,4 +1,5 @@
 local s,id=GetID()
+local STRING_ID=133494236
 local SET_GLITCHLING=0x9894
 local COUNTER_CORRUPTION=0x1994
 local CARD_DIGITRON=32295838
@@ -13,7 +14,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	--If Ritual Summoned: Special Summon "Digitron"
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -37,8 +38,8 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--Negate a hand/GY monster effect
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,1))
-	e4:SetCategory(CATEGORY_NEGATE+CATEGORY_DESTROY+CATEGORY_COUNTER)
+	e4:SetDescription(aux.Stringid(STRING_ID,1))
+	e4:SetCategory(CATEGORY_DISABLE+CATEGORY_DESTROY+CATEGORY_COUNTER)
 	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetCode(EVENT_CHAINING)
 	e4:SetRange(LOCATION_MZONE)
@@ -96,7 +97,7 @@ end
 function s.negcon(e,tp,eg,ep,ev,re,r,rp)
 	local loc=Duel.GetChainInfo(ev,CHAININFO_TRIGGERING_LOCATION)
 	return Duel.GetTurnPlayer()==1-tp and ep==1-tp and re:IsActiveType(TYPE_MONSTER)
-		and (loc==LOCATION_HAND or loc==LOCATION_GRAVE) and Duel.IsChainNegatable(ev)
+		and (loc==LOCATION_HAND or loc==LOCATION_GRAVE) and Duel.IsChainDisablable(ev)
 end
 function s.cfilter(c)
 	return c:IsRace(RACE_CYBERSE) and c:IsReleasable()
@@ -110,16 +111,16 @@ end
 function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
 	s.register_lock(e,tp)
-	Duel.SetOperationInfo(0,CATEGORY_NEGATE,eg,1,0,0)
+	Duel.SetOperationInfo(0,CATEGORY_DISABLE,eg,1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,eg,1,0,0)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
-	if not Duel.NegateActivation(ev) then return end
+	if not Duel.NegateEffect(ev) then return end
 	if re:GetHandler():IsRelateToEffect(re) then
 		Duel.Destroy(eg,REASON_EFFECT)
 	end
 	if Duel.IsExistingMatchingCard(Card.IsCanAddCounter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil,COUNTER_CORRUPTION,1)
-		and Duel.SelectYesNo(tp,aux.Stringid(id,2)) then
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 		local cg=Duel.SelectMatchingCard(tp,Card.IsCanAddCounter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil,COUNTER_CORRUPTION,1)
 		local cc=cg:GetFirst()

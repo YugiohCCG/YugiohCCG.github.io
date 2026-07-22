@@ -1,7 +1,7 @@
 --A.I.P Ex Hive Mind
 local s,id=GetID()
 local SET_AIP=0xa979
-local STRING_ID=id
+local STRING_ID=133499577
 local CALLER=259465391
 local ZERO_MOTHER=259097228
 function s.initial_effect(c)
@@ -15,9 +15,8 @@ function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TODECK+CATEGORY_DRAW+CATEGORY_SPECIAL_SUMMON)
-	e1:SetType(EFFECT_TYPE_QUICK_O)
+	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
-	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetRange(LOCATION_SZONE)
 	e1:SetCountLimit(1,id)
 	e1:SetTarget(s.tg)
@@ -34,8 +33,7 @@ function s.tgfilter(c,tp)
 	if s.owner(c)==tp then
 		return Duel.IsPlayerCanDraw(tp,1)
 	end
-	local mg=s.xyzmatgroup(tp)
-	return Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_EXTRA,0,1,nil,mg)
+	return Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_EXTRA,0,1,nil)
 end
 function s.tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter(s.tgfilter)(chkc,tp) end
@@ -50,15 +48,9 @@ function s.tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 		Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 	end
 end
-function s.xyzmatfilter(c)
-	return c:IsFaceup() and c:IsType(TYPE_MONSTER)
-end
-function s.xyzmatgroup(tp)
-	return Duel.GetMatchingGroup(s.xyzmatfilter,tp,LOCATION_MZONE,0,nil)
-end
-function s.xyzfilter(c,mg)
+function s.xyzfilter(c)
 	return c:IsSetCard(SET_AIP) and c:IsType(TYPE_XYZ)
-		and c:IsCode(CALLER,ZERO_MOTHER) and c:IsXyzSummonable(mg)
+		and c:IsCode(CALLER,ZERO_MOTHER) and c:IsXyzSummonable(nil)
 end
 function s.op(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
@@ -70,13 +62,12 @@ function s.op(e,tp,eg,ep,ev,re,r,rp)
 			Duel.Draw(tp,1,REASON_EFFECT)
 		end
 	else
-		local mg=s.xyzmatgroup(tp)
-		if not Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_EXTRA,0,1,nil,mg) then return end
+		if not Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_EXTRA,0,1,nil) then return end
 		Duel.BreakEffect()
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-		local xc=Duel.SelectMatchingCard(tp,s.xyzfilter,tp,LOCATION_EXTRA,0,1,1,nil,mg):GetFirst()
+		local xc=Duel.SelectMatchingCard(tp,s.xyzfilter,tp,LOCATION_EXTRA,0,1,1,nil):GetFirst()
 		if xc then
-			Duel.XyzSummon(tp,xc,mg)
+			Duel.XyzSummon(tp,xc,nil)
 		end
 	end
 end

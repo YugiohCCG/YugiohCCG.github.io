@@ -2,7 +2,7 @@
 local s,id=GetID()
 local SET_REDEYES=0x3b
 local SET_REDEYES_CUSTOM=0xfacc
-local STRING_ID=id
+local STRING_ID=133114673
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	aux.AddFusionProcFunRep(c,s.ffilter,2,true)

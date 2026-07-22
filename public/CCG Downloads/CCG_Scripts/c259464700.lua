@@ -1,11 +1,12 @@
 --Scarstech Invader
 local s,id=GetID()
+local STRING_ID=133464700
 local SET_SCARSTECH=0x52f8
 local RACE_GALAXY=RACE_GALAXY or 0x80000000
 function s.initial_effect(c)
 	--Send itself to the GY and take control
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOGRAVE+CATEGORY_CONTROL)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_CHAINING)
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Special Summon itself from the GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_CHAINING)

@@ -1,5 +1,6 @@
 --Ursarctic Octantis
 local s,id=GetID()
+local STRING_ID=133051048
 local SET_URSARCTIC=0x163
 local CARD_HEXTANIUS=244921711
 local CARD_URSARCTIC_DEPARTURE=16471775
@@ -25,7 +26,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Tribute 1 Level 8 "Ursarctic" monster and this card; Special Summon 1 Level 7 "Ursarctic" Synchro
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_RELEASE+CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_MZONE)
@@ -35,7 +36,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If an "Ursarctic" card you control is destroyed: banish this card; Special Summon 1 "Ursarctic" monster
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_DESTROYED)
@@ -127,7 +128,7 @@ end
 function s.upcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	local g=Duel.GetReleaseGroup(tp,true):Filter(s.rfilter,c,tp)
-	g:Merge(Duel.GetMatchingGroup(s.excostfilter,tp,LOCATION_HAND+LOCATION_MZONE+LOCATION_GRAVE,0,c,tp))
+	g:Merge(Duel.GetMatchingGroup(aux.NecroValleyFilter(s.excostfilter),tp,LOCATION_HAND+LOCATION_MZONE+LOCATION_GRAVE,0,c,tp))
 	if chk==0 then return g:IsExists(s.costfilter,1,c,c,e,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 	local tc=g:FilterSelect(tp,s.costfilter,1,1,c,c,e,tp):GetFirst()

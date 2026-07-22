@@ -1,5 +1,6 @@
 --Tove, the Domesticated
 local s,id=GetID()
+local STRING_ID=133737127
 local RACE_BEAST_WINGED=RACE_BEAST+RACE_WINDBEAST
 function s.initial_effect(c)
 	--Cannot be Summoned while you control a monster
@@ -20,7 +21,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If sent from the hand to the GY: draw 1, then send up to 2 cards from your hand to the GY
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetCategory(CATEGORY_DRAW+CATEGORY_TOGRAVE)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_TO_GRAVE)
@@ -32,7 +33,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--Shuffle this card into the Deck; send 1 Level 1 Beast or Winged Beast monster
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,1))
+	e4:SetDescription(aux.Stringid(STRING_ID,1))
 	e4:SetCategory(CATEGORY_TODECK+CATEGORY_TOGRAVE)
 	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetCode(EVENT_FREE_CHAIN)
@@ -61,7 +62,7 @@ end
 function s.drop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.Draw(tp,1,REASON_EFFECT)==0 then return end
 	local g=Duel.GetMatchingGroup(Card.IsAbleToGrave,tp,LOCATION_HAND,0,nil)
-	if #g>0 and Duel.SelectYesNo(tp,aux.Stringid(id,2)) then
+	if #g>0 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 		local sg=g:Select(tp,1,math.min(2,#g),nil)
 		Duel.SendtoGrave(sg,REASON_EFFECT)
@@ -75,14 +76,15 @@ function s.tgfilter(c)
 end
 function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsAbleToDeck()
+	if chk==0 then return c:IsAbleToDeck() and aux.NecroValleyFilter()(c)
 		and Duel.IsExistingMatchingCard(s.tgfilter,tp,LOCATION_DECK,0,1,nil) end
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,c,1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_DECK)
 end
 function s.tgop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not (c:IsRelateToEffect(e) and Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and c:IsLocation(LOCATION_DECK)) then return end
+	if not (c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)
+		and Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and c:IsLocation(LOCATION_DECK)) then return end
 	if not Duel.IsExistingMatchingCard(s.tgfilter,tp,LOCATION_DECK,0,1,nil) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 	local tc=Duel.SelectMatchingCard(tp,s.tgfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()

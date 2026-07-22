@@ -1,16 +1,17 @@
 --Fruteopia
 local s,id=GetID()
+local STRING_ID=132140411
 local SET_FRUTE=0x813
 local CARD_FRUTEONIA=246830897
 local CARD_FRUTEIFICATION=256930605
 function s.initial_effect(c)
 	--Activate and optionally add
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetTarget(s.acttg)
 	e1:SetOperation(s.actop)
 	c:RegisterEffect(e1)
@@ -24,23 +25,23 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If a WATER Ritual Monster you control leaves the field by card effect
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_TOGRAVE+CATEGORY_SPECIAL_SUMMON)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_LEAVE_FIELD)
 	e3:SetRange(LOCATION_SZONE)
 	e3:SetProperty(EFFECT_FLAG_DELAY)
-	e3:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e3:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e3:SetTarget(s.sptg)
 	e3:SetOperation(s.spop)
 	c:RegisterEffect(e3)
 	--Banish this card; WATER monsters gain ATK
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,2))
+	e4:SetDescription(aux.Stringid(STRING_ID,2))
 	e4:SetCategory(CATEGORY_ATKCHANGE)
 	e4:SetType(EFFECT_TYPE_IGNITION)
 	e4:SetRange(LOCATION_GRAVE)
-	e4:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e4:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e4:SetCost(aux.bfgcost)
 	e4:SetTarget(s.atktg)
 	e4:SetOperation(s.atkop)
@@ -53,7 +54,7 @@ end
 function s.acttg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
 	local b1=Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK+LOCATION_REMOVED,0,1,nil)
-	if b1 and Duel.SelectYesNo(tp,aux.Stringid(id,0)) then
+	if b1 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then
 		e:SetLabel(1)
 		Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK+LOCATION_REMOVED)
 	else
@@ -73,7 +74,8 @@ function s.actop(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.lffilter(c,e,tp)
 	return c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE)
-		and c:IsReason(REASON_EFFECT) and c:IsAttribute(ATTRIBUTE_WATER) and c:IsType(TYPE_RITUAL)
+		and c:IsReason(REASON_EFFECT) and c:IsPreviousPosition(POS_FACEUP)
+		and (c:GetPreviousAttributeOnField()&ATTRIBUTE_WATER)>0 and c:IsType(TYPE_RITUAL)
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 		and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
 end
@@ -81,18 +83,15 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	local g=eg:Filter(s.lffilter,nil,e,tp)
 	if chk==0 then return c:IsAbleToGrave() and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and #g>0 end
-	g:KeepAlive()
-	e:SetLabelObject(g)
+	Duel.SetTargetCard(g)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,c,1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,g,1,0,0)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	local g=e:GetLabelObject()
-	if not g then return end
 	if c:IsRelateToEffect(e) and Duel.SendtoGrave(c,REASON_EFFECT)>0 and c:IsLocation(LOCATION_GRAVE)
 		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then
-		local sg=g:Filter(s.lffilter,nil,e,tp)
+		local sg=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(s.lffilter,nil,e,tp)
 		if #sg>0 then
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 			local tc=sg:Select(tp,1,1,nil):GetFirst()
@@ -101,7 +100,6 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 			end
 		end
 	end
-	g:DeleteGroup()
 end
 function s.waterfilter(c)
 	return c:IsFaceup() and c:IsAttribute(ATTRIBUTE_WATER)

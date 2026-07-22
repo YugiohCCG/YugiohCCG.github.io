@@ -1,11 +1,12 @@
 --Stellaer of the Plants
 local s,id=GetID()
+local STRING_ID=133219942
 local SET_STELLAER=0xe40d
 local ATTRIBUTE_NATURE=0x80
 function s.initial_effect(c)
 	--Special Summon this card from your hand
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_SPSUMMON_PROC)
 	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE)
@@ -15,7 +16,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If detached from a "Stellaer" Xyz Monster: attach this card to a "Stellaer" Xyz Monster
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_LEAVE_GRAVE)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
@@ -38,7 +39,7 @@ function s.spcon(e,c)
 			or Duel.IsExistingMatchingCard(s.xyzctrl,tp,LOCATION_MZONE,0,1,nil))
 end
 function s.splimit(e,c,sump,sumtype,sumpos,targetp,se)
-	return not c:IsAttribute(ATTRIBUTE_NATURE)
+	return c:IsAttribute(ATTRIBUTE_NATURE)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local e1=Effect.CreateEffect(c)

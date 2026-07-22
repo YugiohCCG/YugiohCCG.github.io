@@ -1,6 +1,6 @@
 local s,id=GetID()
 local SET_GRAYSCALE=SET_GRAYSCALE or 0x575d
-local STRING_ID=id
+local STRING_ID=133269688
 function s.initial_effect(c)
 	--Negate opponent monsters, then attach non-LIGHT monsters
 	local e1=Effect.CreateEffect(c)
@@ -46,21 +46,32 @@ function s.xyzgray(c)
 	return c:IsFaceup() and c:IsSetCard(SET_GRAYSCALE) and c:IsType(TYPE_XYZ)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
-	local rg=Duel.GetTargetCards(e):Filter(Card.IsFaceup,nil)
+	local rg=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(function(c,e) return c:IsRelateToEffect(e) and c:IsFaceup() end,nil,e)
 	if #rg==0 then return end
 	local og=Group.CreateGroup()
 	local tc=rg:GetFirst()
 	while tc do
-		local e1=Effect.CreateEffect(e:GetHandler())
-		e1:SetType(EFFECT_TYPE_SINGLE)
-		e1:SetCode(EFFECT_DISABLE)
-		e1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
-		tc:RegisterEffect(e1)
-		local e2=e1:Clone()
-		e2:SetCode(EFFECT_DISABLE_EFFECT)
-		tc:RegisterEffect(e2)
-		if not tc:IsAttribute(ATTRIBUTE_LIGHT) and not tc:IsType(TYPE_TOKEN) then
-			og:AddCard(tc)
+		if tc:IsCanBeDisabledByEffect(e,false) then
+			Duel.NegateRelatedChain(tc,RESET_TURN_SET)
+			local e1=Effect.CreateEffect(e:GetHandler())
+			e1:SetType(EFFECT_TYPE_SINGLE)
+			e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+			e1:SetCode(EFFECT_DISABLE)
+			e1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
+			tc:RegisterEffect(e1)
+			local e2=e1:Clone()
+			e2:SetCode(EFFECT_DISABLE_EFFECT)
+			e2:SetValue(RESET_TURN_SET)
+			tc:RegisterEffect(e2)
+			if tc:IsType(TYPE_TRAPMONSTER) then
+				local e3=e1:Clone()
+				e3:SetCode(EFFECT_DISABLE_TRAPMONSTER)
+				tc:RegisterEffect(e3)
+			end
+			if tc:IsDisabled() and not tc:IsAttribute(ATTRIBUTE_LIGHT) and not tc:IsType(TYPE_TOKEN)
+				and tc:IsCanOverlay() and not tc:IsImmuneToEffect(e) then
+				og:AddCard(tc)
+			end
 		end
 		tc=rg:GetNext()
 	end
@@ -69,6 +80,9 @@ function s.negop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 		local xc=Duel.SelectMatchingCard(tp,s.xyzgray,tp,LOCATION_MZONE,0,1,1,nil):GetFirst()
 		if xc then
+			local mg=Group.CreateGroup()
+			for tc in aux.Next(og) do mg:Merge(tc:GetOverlayGroup()) end
+			if #mg>0 then Duel.SendtoGrave(mg,REASON_RULE) end
 			Duel.Overlay(xc,og)
 		end
 	end
@@ -100,6 +114,7 @@ function s.gyop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 then
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)
+		e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 		e1:SetCode(EFFECT_DISABLE)
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 		tc:RegisterEffect(e1)

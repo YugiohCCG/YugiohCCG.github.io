@@ -1,5 +1,6 @@
 --The Fruted Warrior
 local s,id=GetID()
+local STRING_ID=133615627
 local CARD_FRUTEIFICATION=256930605
 function s.initial_effect(c)
 	c:EnableReviveLimit()
@@ -10,7 +11,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If Special Summoned: change 1 opponent monster to face-down Defense Position
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_POSITION)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -21,7 +22,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Tribute 1 other WATER monster; this card gains ATK
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_ATKCHANGE)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)

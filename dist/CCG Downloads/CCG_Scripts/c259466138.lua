@@ -3,7 +3,7 @@ local s,id=GetID()
 local SET_REDEYES=0x3b
 local SET_REDEYES_CUSTOM=0xfacc
 local RED_EYES_BLACK_DRAGON=74677422
-local STRING_ID=id
+local STRING_ID=133466138
 function s.initial_effect(c)
 	--If Summoned: add 1 "Red-Eyes" Spell/Trap from Deck to hand, also lock Link Summons
 	local e1=Effect.CreateEffect(c)
@@ -98,21 +98,22 @@ function s.tdcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Remove(e:GetHandler(),POS_FACEUP,REASON_COST)
 end
 function s.tdfilter(c,e)
-	return c~=e:GetHandler() and s.isredeyes(c) and c:IsAbleToDeck() and c:IsCanBeEffectTarget(e)
-		and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
+	return c~=e:GetHandler() and s.isredeyes(c) and c:IsAbleToDeck()
+		and (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup())
 end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_REMOVED) and s.tdfilter(chkc,e) end
-	if chk==0 then return Duel.IsExistingTarget(s.tdfilter,tp,LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_REMOVED,0,5,nil,e) end
+	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_REMOVED)
+		and aux.NecroValleyFilter(s.tdfilter)(chkc,e) end
+	if chk==0 then return Duel.IsExistingTarget(aux.NecroValleyFilter(s.tdfilter),tp,LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_REMOVED,0,5,nil,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local g=Duel.SelectTarget(tp,s.tdfilter,tp,LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_REMOVED,0,5,5,nil,e)
+	local g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.tdfilter),tp,LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_REMOVED,0,5,5,nil,e)
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,g,5,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
 end
 function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
 	if not g then return end
-	g=g:Filter(function(c) return c:IsRelateToEffect(e) and s.tdfilter(c,e) end,nil)
+	g=g:Filter(function(c) return c:IsRelateToEffect(e) and aux.NecroValleyFilter(s.tdfilter)(c,e) end,nil)
 	if #g==0 then return end
 	local rg=g:Filter(Card.IsCode,nil,RED_EYES_BLACK_DRAGON)
 	local ct=Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)

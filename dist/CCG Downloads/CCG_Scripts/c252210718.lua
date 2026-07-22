@@ -1,5 +1,6 @@
 --King of Aldrez
 local s,id=GetID()
+local STRING_ID=132210718
 local SET_ALDREZ=0xc1c
 function s.initial_effect(c)
 	c:SetUniqueOnField(1,0,id)
@@ -7,7 +8,7 @@ function s.initial_effect(c)
 	aux.AddXyzProcedure(c,s.xyzfilter,4,2,nil,nil,99)
 	--Detach 1 material; Special Summon 1 "Aldrez" monster
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_DESTROY)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -19,7 +20,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If Xyz Summoned: add 1 "Aldrez" Trap
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -31,7 +32,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Banish this card; Special Summon 1 banished "Aldrez" Link Monster
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,2))
+	e3:SetDescription(aux.Stringid(STRING_ID,2))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetRange(LOCATION_GRAVE)
@@ -48,9 +49,10 @@ function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return c:CheckRemoveOverlayCard(tp,1,REASON_COST) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVEXYZ)
-	c:RemoveOverlayCard(tp,1,1,REASON_COST)
-	local g=Duel.GetOperatedGroup()
-	e:SetLabel(g:IsExists(Card.IsType,1,nil,TYPE_LINK) and 1 or 0)
+	local sg=c:GetOverlayGroup():Select(tp,1,1,nil)
+	e:SetLabel(sg:IsExists(Card.IsType,1,nil,TYPE_LINK) and 1 or 0)
+	Duel.SendtoGrave(sg,REASON_COST)
+	Duel.RaiseSingleEvent(c,EVENT_DETACH_MATERIAL,e,0,0,0,0)
 end
 function s.spfilter(c,e,tp)
 	return c:IsSetCard(SET_ALDREZ) and c:IsType(TYPE_MONSTER)
@@ -72,7 +74,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if tc and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0
 		and e:GetLabel()==1
 		and Duel.IsExistingMatchingCard(Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
-		and Duel.SelectYesNo(tp,aux.Stringid(id,0)) then
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then
 		Duel.BreakEffect()
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 		local g=Duel.SelectMatchingCard(tp,Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)

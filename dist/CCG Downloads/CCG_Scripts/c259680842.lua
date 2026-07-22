@@ -1,5 +1,6 @@
 --Grimoire of Eclipse
 local s,id=GetID()
+local STRING_ID=133680842
 local SET_ECLIPSE_OBSERVER=0xeb17
 local CARD_BALEYGR=259193076
 local OBSERVER_MONSTERS={
@@ -15,7 +16,7 @@ local OBSERVER_MONSTERS={
 function s.initial_effect(c)
 	--Fusion Summon 1 "Eclipse Observer" monster
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON+CATEGORY_DRAW)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -106,7 +107,22 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	if not tc then return end
 	if sg1:IsContains(tc) and (not sg2 or not sg2:IsContains(tc) or not Duel.SelectYesNo(tp,ce:GetDescription())) then
 		local mat=nil
-		if tc:IsCode(CARD_BALEYGR) and mg1:CheckSubGroup(s.baleygrmatcheck,2,2) then
+		local b1=false
+		aux.FCheckAdditional=s.fcheck
+		if tc:CheckFusionMaterial(mg1,nil,chkf) then b1=true end
+		aux.FCheckAdditional=nil
+		local b2=(tc:IsCode(CARD_BALEYGR) and mg1:CheckSubGroup(s.baleygrmatcheck,2,2))
+		if b1 and b2 then
+			if Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then
+				Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FMATERIAL)
+				mat=mg1:SelectSubGroup(tp,s.baleygrmatcheck,false,2,2)
+			else
+				aux.FCheckAdditional=s.fcheck
+				mat=Duel.SelectFusionMaterial(tp,tc,mg1,nil,chkf)
+				aux.FCheckAdditional=nil
+			end
+		elseif b2 then
+			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FMATERIAL)
 			mat=mg1:SelectSubGroup(tp,s.baleygrmatcheck,false,2,2)
 		else
 			aux.FCheckAdditional=s.fcheck

@@ -1,5 +1,6 @@
 --RAGE OF NEPHTHYS
 local s,id=GetID()
+local STRING_ID=132287781
 local SET_NEPHTHYS=0x11f
 function s.initial_effect(c)
 	--Activate
@@ -9,7 +10,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	--During your opponent's Main Phase: reduce ATK and destroy monsters at 0 ATK
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_ATKCHANGE+CATEGORY_DESTROY)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -22,7 +23,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Rewrite an opponent's activated effect
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_CHAINING)
 	e2:SetRange(LOCATION_SZONE)
@@ -88,7 +89,6 @@ function s.chcost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.chop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ChangeTargetCard(ev,Group.CreateGroup())
-	re:SetLabel(tp)
 	Duel.ChangeChainOperation(ev,s.repop)
 end
 function s.desfilter(c)
@@ -99,12 +99,10 @@ function s.chtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.desfilter,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_ONFIELD,0,1,nil) end
 end
 function s.repop(e,tp,eg,ep,ev,re,r,rp)
-	local p=e:GetLabel()
-	if p~=0 and p~=1 then p=1-tp end
-	local g=Duel.GetMatchingGroup(s.desfilter,p,LOCATION_HAND+LOCATION_DECK+LOCATION_ONFIELD,0,nil)
-	if #g==0 then return end
+	local p=1-tp
+	if not Duel.IsExistingMatchingCard(s.desfilter,p,LOCATION_HAND+LOCATION_DECK+LOCATION_ONFIELD,0,1,nil) then return end
 	Duel.Hint(HINT_SELECTMSG,p,HINTMSG_DESTROY)
-	local sg=g:Select(p,1,1,nil)
+	local sg=Duel.SelectMatchingCard(p,s.desfilter,p,LOCATION_HAND+LOCATION_DECK+LOCATION_ONFIELD,0,1,1,nil)
 	if #sg>0 then
 		Duel.Destroy(sg,REASON_EFFECT)
 	end

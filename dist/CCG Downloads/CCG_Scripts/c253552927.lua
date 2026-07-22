@@ -1,5 +1,6 @@
 --Talismandrake Cremation
 local s,id=GetID()
+local STRING_ID=133552927
 local SET_TALISMANDRAKE=0xb47
 local CARD_ARMS_UNITED=215034223
 local CARD_SUPPRESSOR=238136421
@@ -11,23 +12,23 @@ function s.initial_effect(c)
 	aux.AddFusionProcFun2(c,s.darkpyro,s.lv5dark,true)
 	--Add or equip 1 "Talismandrake Arms" Spell/Trap
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_EQUIP)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetProperty(EFFECT_FLAG_DELAY)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetTarget(s.armstg)
 	e1:SetOperation(s.armsop)
 	c:RegisterEffect(e1)
 	--Shuffle cards from either GY or banishment into the Deck
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TODECK)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)
 	e2:SetRange(LOCATION_MZONE)
-	e2:SetCountLimit(1,id+100,EFFECT_COUNT_CODE_OATH)
+	e2:SetCountLimit(1,id+100+EFFECT_COUNT_CODE_OATH)
 	e2:SetCondition(s.tdcon)
 	e2:SetTarget(s.tdtg)
 	e2:SetOperation(s.tdop)
@@ -72,12 +73,12 @@ function s.armsop(e,tp,eg,ep,ev,re,r,rp)
 	if not (b1 or b2) then return end
 	local op=0
 	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3))
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))
 	elseif b1 then
-		Duel.SelectOption(tp,aux.Stringid(id,2))
+		Duel.SelectOption(tp,aux.Stringid(STRING_ID,2))
 		op=0
 	else
-		Duel.SelectOption(tp,aux.Stringid(id,3))
+		Duel.SelectOption(tp,aux.Stringid(STRING_ID,3))
 		op=1
 	end
 	if op==0 then
@@ -233,14 +234,17 @@ end
 function s.tdcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(s.armseqfilter,tp,LOCATION_SZONE,LOCATION_SZONE,1,nil,tp)
 end
+function s.tdfilter(c)
+	return c:IsAbleToDeck() and (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup())
+end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
-		return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(Card.IsAbleToDeck),tp,LOCATION_GRAVE+LOCATION_REMOVED,LOCATION_GRAVE+LOCATION_REMOVED,1,nil)
+		return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.tdfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,LOCATION_GRAVE+LOCATION_REMOVED,1,nil)
 	end
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,nil,1,PLAYER_ALL,LOCATION_GRAVE+LOCATION_REMOVED)
 end
 function s.tdop(e,tp,eg,ep,ev,re,r,rp)
-	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(Card.IsAbleToDeck),tp,LOCATION_GRAVE+LOCATION_REMOVED,LOCATION_GRAVE+LOCATION_REMOVED,nil)
+	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.tdfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,LOCATION_GRAVE+LOCATION_REMOVED,nil)
 	if #g==0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local sg=g:Select(tp,1,math.min(3,#g),nil)

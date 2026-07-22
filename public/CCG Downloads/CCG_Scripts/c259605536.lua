@@ -1,7 +1,7 @@
 local s,id=GetID()
 local SET_NEMLERIA_OMEGA=0x191
 local SET_NEMLERIA_PI=0x192
-local STRING_ID=id
+local STRING_ID=133605536
 function s.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -23,7 +23,7 @@ function s.initial_effect(c)
 	e3:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetRange(LOCATION_SZONE)
-	e3:SetCountLimit(1,98091002)
+	e3:SetCountLimit(1,id)
 	e3:SetCost(s.thcost)
 	e3:SetTarget(s.thtg)
 	e3:SetOperation(s.thop)
@@ -36,7 +36,7 @@ function s.initial_effect(c)
 	e4:SetCode(EVENT_REMOVE)
 	e4:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
 	e4:SetRange(LOCATION_SZONE)
-	e4:SetCountLimit(1,98091003)
+	e4:SetCountLimit(1,id+100)
 	e4:SetCondition(s.rmcon)
 	e4:SetTarget(s.rmtg)
 	e4:SetOperation(s.rmop)

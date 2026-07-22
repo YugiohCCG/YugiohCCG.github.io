@@ -1,7 +1,7 @@
 --Failures of the A.I.P
 local s,id=GetID()
 local SET_AIP=0xa979
-local STRING_ID=id
+local STRING_ID=133883029
 local AIP_EX_XYZ={
 	[259465391]=true,
 	[259097228]=true,
@@ -40,7 +40,7 @@ function s.actcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.monfilter(c,e)
 	return c:IsType(TYPE_MONSTER) and not c:IsType(TYPE_TOKEN)
-		and c:IsCanBeEffectTarget(e)
+		and c:IsCanOverlay() and c:IsCanBeEffectTarget(e)
 end
 function s.attachtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_MZONE) and s.monfilter(chkc,e) end
@@ -52,11 +52,14 @@ end
 function s.attachop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if not (tc and tc:IsRelateToEffect(e) and tc:IsControler(1-tp)
-		and tc:IsLocation(LOCATION_MZONE) and not tc:IsType(TYPE_TOKEN)) then return end
+		and tc:IsLocation(LOCATION_MZONE) and tc:IsCanOverlay()
+		and not tc:IsType(TYPE_TOKEN) and not tc:IsImmuneToEffect(e)) then return end
 	if not Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_MZONE,0,1,nil) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local xc=Duel.SelectMatchingCard(tp,s.xyzfilter,tp,LOCATION_MZONE,0,1,1,nil):GetFirst()
 	if xc then
+		local og=tc:GetOverlayGroup()
+		if #og>0 then Duel.SendtoGrave(og,REASON_RULE) end
 		Duel.Overlay(xc,Group.FromCards(tc))
 	end
 end

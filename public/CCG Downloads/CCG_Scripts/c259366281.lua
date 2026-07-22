@@ -1,12 +1,13 @@
 --Phlogiston's Roar
 local s,id=GetID()
+local STRING_ID=133366281
 local CARD_PHLOGISTON_DRAGON=242094473
 local CARD_PHLOGISTIC_HORDE=230303021
 function s.initial_effect(c)
 	aux.AddCodeList(c,CARD_PHLOGISTON_DRAGON)
 	--Activate the turn it was Set during your turn
 	local e0=Effect.CreateEffect(c)
-	e0:SetDescription(aux.Stringid(id,0))
+	e0:SetDescription(aux.Stringid(STRING_ID,0))
 	e0:SetType(EFFECT_TYPE_SINGLE)
 	e0:SetCode(EFFECT_TRAP_ACT_IN_SET_TURN)
 	e0:SetProperty(EFFECT_FLAG_SET_AVAILABLE+EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
@@ -14,8 +15,8 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	--Negate an opponent's monster effect
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,1))
-	e1:SetCategory(CATEGORY_NEGATE)
+	e1:SetDescription(aux.Stringid(STRING_ID,1))
+	e1:SetCategory(CATEGORY_DISABLE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_CHAINING)
 	e1:SetCountLimit(1,id)
@@ -26,9 +27,10 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Set this card from the GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,2))
+	e2:SetDescription(aux.Stringid(STRING_ID,2))
 	e2:SetCategory(CATEGORY_SSET)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e2:SetProperty(EFFECT_FLAG_DELAY)
 	e2:SetCode(EVENT_PAY_LPCOST)
 	e2:SetRange(LOCATION_GRAVE)
 	e2:SetCountLimit(1,id)
@@ -46,7 +48,7 @@ function s.phloglower(c,atk)
 end
 function s.negcon(e,tp,eg,ep,ev,re,r,rp)
 	local rc=re:GetHandler()
-	return rp==1-tp and re:IsActiveType(TYPE_MONSTER) and Duel.IsChainNegatable(ev)
+	return rp==1-tp and re:IsActiveType(TYPE_MONSTER) and Duel.IsChainDisablable(ev)
 		and rc and rc:GetAttack()>0
 		and Duel.IsExistingMatchingCard(s.phloglower,tp,LOCATION_MZONE,0,1,nil,rc:GetAttack())
 end
@@ -68,7 +70,7 @@ function s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
-	Duel.SetOperationInfo(0,CATEGORY_NEGATE,eg,1,0,0)
+	Duel.SetOperationInfo(0,CATEGORY_DISABLE,eg,1,0,0)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.NegateEffect(ev)

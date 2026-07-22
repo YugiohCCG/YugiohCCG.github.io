@@ -1,0 +1,331 @@
+namespace Unity.Collections;
+
+[DebuggerTypeProxy(typeof(NativeParallelHashSetDebuggerTypeProxy`1))]
+[GenerateTestsForBurstCompatibility(GenericTypeArguments = new IL2CPP_TYPE_IL2CPP_TYPE_INDEX[] {typeof(int)})]
+public struct NativeParallelHashSet : INativeDisposable, IDisposable, IEnumerable<T>, IEnumerable
+{
+	[NativeContainer]
+	[NativeContainerIsReadOnly]
+	internal struct Enumerator : IEnumerator<T>, IEnumerator, IDisposable
+	{
+		internal UnsafeParallelHashMapDataEnumerator m_Enumerator; //Field offset: 0x0
+
+		public override T Current
+		{
+			[CallerCount(Count = 0)]
+			[CallsDeduplicatedMethods(Count = 1)]
+			[CallsUnknownMethods(Count = 5)]
+			[DeduplicatedMethod]
+			 get { } //Length: 233
+		}
+
+		private override object System.Collections.IEnumerator.Current
+		{
+			[CallerCount(Count = 0)]
+			[CallsDeduplicatedMethods(Count = 1)]
+			[CallsUnknownMethods(Count = 5)]
+			[DeduplicatedMethod]
+			private get { } //Length: 250
+		}
+
+		[CallerCount(Count = 13327)]
+		[DeduplicatedMethod]
+		public override void Dispose() { }
+
+		[CallerCount(Count = 0)]
+		[CallsDeduplicatedMethods(Count = 1)]
+		[CallsUnknownMethods(Count = 5)]
+		[DeduplicatedMethod]
+		public override T get_Current() { }
+
+		[CallerCount(Count = 0)]
+		[Calls(Type = typeof(UnsafeParallelHashMapData), Member = "MoveNextSearch", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(UnsafeParallelHashMapData*), typeof(Int32&), typeof(Int32&), typeof(Int32&)}, ReturnType = typeof(bool))]
+		[CallsUnknownMethods(Count = 1)]
+		[DeduplicatedMethod]
+		public override bool MoveNext() { }
+
+		[CallerCount(Count = 0)]
+		[CallsDeduplicatedMethods(Count = 1)]
+		[DeduplicatedMethod]
+		public override void Reset() { }
+
+		[CallerCount(Count = 0)]
+		[CallsDeduplicatedMethods(Count = 1)]
+		[CallsUnknownMethods(Count = 5)]
+		[DeduplicatedMethod]
+		private override object System.Collections.IEnumerator.get_Current() { }
+
+	}
+
+	[GenerateTestsForBurstCompatibility(GenericTypeArguments = new IL2CPP_TYPE_IL2CPP_TYPE_INDEX[] {typeof(int)})]
+	[NativeContainerIsAtomicWriteOnly]
+	internal struct ParallelWriter
+	{
+		internal ParallelWriter<T, Boolean> m_Data; //Field offset: 0x0
+
+		public int Capacity
+		{
+			[CallerCount(Count = 0)]
+			[CallsUnknownMethods(Count = 3)]
+			[DeduplicatedMethod]
+			[IsReadOnly]
+			 get { } //Length: 112
+		}
+
+		[CallerCount(Count = 0)]
+		[CallsDeduplicatedMethods(Count = 1)]
+		[CallsUnknownMethods(Count = 5)]
+		[DeduplicatedMethod]
+		public bool Add(T item) { }
+
+		[CallerCount(Count = 0)]
+		[CallsDeduplicatedMethods(Count = 1)]
+		[CallsUnknownMethods(Count = 5)]
+		[DeduplicatedMethod]
+		public bool Add(T item, int threadIndexOverride) { }
+
+		[CallerCount(Count = 0)]
+		[CallsUnknownMethods(Count = 3)]
+		[DeduplicatedMethod]
+		[IsReadOnly]
+		public int get_Capacity() { }
+
+	}
+
+	[GenerateTestsForBurstCompatibility(GenericTypeArguments = new IL2CPP_TYPE_IL2CPP_TYPE_INDEX[] {typeof(int)})]
+	[NativeContainer]
+	[NativeContainerIsReadOnly]
+	internal struct ReadOnly : IEnumerable<T>, IEnumerable
+	{
+		internal UnsafeParallelHashMap<T, Boolean> m_Data; //Field offset: 0x0
+
+		public int Capacity
+		{
+			[CallerCount(Count = 0)]
+			[CallsUnknownMethods(Count = 3)]
+			[DeduplicatedMethod]
+			[IsReadOnly]
+			 get { } //Length: 112
+		}
+
+		public bool IsCreated
+		{
+			[CallerCount(Count = 0)]
+			[CallsUnknownMethods(Count = 3)]
+			[DeduplicatedMethod]
+			[IsReadOnly]
+			 get { } //Length: 112
+		}
+
+		public bool IsEmpty
+		{
+			[CallerCount(Count = 0)]
+			[CallsUnknownMethods(Count = 6)]
+			[DeduplicatedMethod]
+			[IsReadOnly]
+			 get { } //Length: 206
+		}
+
+		[CallerCount(Count = 9)]
+		[DeduplicatedMethod]
+		internal ReadOnly(ref NativeParallelHashSet<T>& data) { }
+
+		[CallerCount(Count = 13327)]
+		[Conditional("ENABLE_UNITY_COLLECTIONS_CHECKS")]
+		[DeduplicatedMethod]
+		[IsReadOnly]
+		private void CheckRead() { }
+
+		[CallerCount(Count = 0)]
+		[CallsDeduplicatedMethods(Count = 1)]
+		[CallsUnknownMethods(Count = 5)]
+		[DeduplicatedMethod]
+		[IsReadOnly]
+		public bool Contains(T item) { }
+
+		[CallerCount(Count = 0)]
+		[CallsUnknownMethods(Count = 3)]
+		[DeduplicatedMethod]
+		[IsReadOnly]
+		public int Count() { }
+
+		[CallerCount(Count = 0)]
+		[CallsUnknownMethods(Count = 3)]
+		[DeduplicatedMethod]
+		[IsReadOnly]
+		public int get_Capacity() { }
+
+		[CallerCount(Count = 0)]
+		[CallsUnknownMethods(Count = 3)]
+		[DeduplicatedMethod]
+		[IsReadOnly]
+		public bool get_IsCreated() { }
+
+		[CallerCount(Count = 0)]
+		[CallsUnknownMethods(Count = 6)]
+		[DeduplicatedMethod]
+		[IsReadOnly]
+		public bool get_IsEmpty() { }
+
+		[CallerCount(Count = 4)]
+		[CallsDeduplicatedMethods(Count = 1)]
+		[DeduplicatedMethod]
+		[IsReadOnly]
+		public Enumerator<T> GetEnumerator() { }
+
+		[CallerCount(Count = 0)]
+		[Calls(Type = typeof(NotImplementedException), Member = ".ctor", ReturnType = typeof(void))]
+		[CallsUnknownMethods(Count = 2)]
+		[DeduplicatedMethod]
+		private override IEnumerator<T> System.Collections.Generic.IEnumerable<T>.GetEnumerator() { }
+
+		[CallerCount(Count = 0)]
+		[Calls(Type = typeof(NotImplementedException), Member = ".ctor", ReturnType = typeof(void))]
+		[CallsUnknownMethods(Count = 2)]
+		[DeduplicatedMethod]
+		private override IEnumerator System.Collections.IEnumerable.GetEnumerator() { }
+
+		[CallerCount(Count = 0)]
+		[CallsUnknownMethods(Count = 3)]
+		[DeduplicatedMethod]
+		[IsReadOnly]
+		public NativeArray<T> ToNativeArray(AllocatorHandle allocator) { }
+
+	}
+
+	public const int MaxCapacity = 1073741823; //Field offset: 0x0
+	internal NativeParallelHashMap<T, Boolean> m_Data; //Field offset: 0x0
+
+	public int Capacity
+	{
+		[CallerCount(Count = 0)]
+		[CallsUnknownMethods(Count = 3)]
+		[DeduplicatedMethod]
+		[IsReadOnly]
+		 get { } //Length: 112
+		[CallerCount(Count = 0)]
+		[CallsUnknownMethods(Count = 3)]
+		[DeduplicatedMethod]
+		 set { } //Length: 103
+	}
+
+	public bool IsCreated
+	{
+		[CallerCount(Count = 0)]
+		[CallsUnknownMethods(Count = 3)]
+		[DeduplicatedMethod]
+		[IsReadOnly]
+		 get { } //Length: 112
+	}
+
+	public bool IsEmpty
+	{
+		[CallerCount(Count = 0)]
+		[CallsUnknownMethods(Count = 3)]
+		[DeduplicatedMethod]
+		[IsReadOnly]
+		 get { } //Length: 112
+	}
+
+	[CallerCount(Count = 0)]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 2)]
+	[DeduplicatedMethod]
+	public NativeParallelHashSet`1(int capacity, AllocatorHandle allocator) { }
+
+	[CallerCount(Count = 0)]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 5)]
+	[DeduplicatedMethod]
+	public bool Add(T item) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 3)]
+	[DeduplicatedMethod]
+	public ParallelWriter<T> AsParallelWriter() { }
+
+	[CallerCount(Count = 0)]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 1)]
+	[DeduplicatedMethod]
+	public ReadOnly<T> AsReadOnly() { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 3)]
+	[DeduplicatedMethod]
+	public void Clear() { }
+
+	[CallerCount(Count = 0)]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 5)]
+	[DeduplicatedMethod]
+	public bool Contains(T item) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 3)]
+	[DeduplicatedMethod]
+	public int Count() { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 3)]
+	[DeduplicatedMethod]
+	public override void Dispose() { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 3)]
+	[DeduplicatedMethod]
+	public override JobHandle Dispose(JobHandle inputDeps) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 3)]
+	[DeduplicatedMethod]
+	[IsReadOnly]
+	public int get_Capacity() { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 3)]
+	[DeduplicatedMethod]
+	[IsReadOnly]
+	public bool get_IsCreated() { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 3)]
+	[DeduplicatedMethod]
+	[IsReadOnly]
+	public bool get_IsEmpty() { }
+
+	[CallerCount(Count = 4)]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[DeduplicatedMethod]
+	public Enumerator<T> GetEnumerator() { }
+
+	[CallerCount(Count = 0)]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 5)]
+	[DeduplicatedMethod]
+	public bool Remove(T item) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 3)]
+	[DeduplicatedMethod]
+	public void set_Capacity(int value) { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(NotImplementedException), Member = ".ctor", ReturnType = typeof(void))]
+	[CallsUnknownMethods(Count = 2)]
+	[DeduplicatedMethod]
+	private override IEnumerator<T> System.Collections.Generic.IEnumerable<T>.GetEnumerator() { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(NotImplementedException), Member = ".ctor", ReturnType = typeof(void))]
+	[CallsUnknownMethods(Count = 2)]
+	[DeduplicatedMethod]
+	private override IEnumerator System.Collections.IEnumerable.GetEnumerator() { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 3)]
+	[DeduplicatedMethod]
+	public NativeArray<T> ToNativeArray(AllocatorHandle allocator) { }
+
+}
+

@@ -1,15 +1,16 @@
 --Talismandrake Sear
 local s,id=GetID()
+local STRING_ID=133935439
 local SET_TALISMANDRAKE=0xb47
 function s.initial_effect(c)
 	aux.EnablePendulumAttribute(c)
 	--Fusion Summon during your Main Phase
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_PZONE)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetCondition(function(e,tp) return Duel.IsMainPhase() end)
 	e1:SetTarget(s.fustg)
 	e1:SetOperation(s.fusop)
@@ -22,12 +23,12 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Special Summon/place Pendulum cards when used as Fusion Material
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetProperty(EFFECT_FLAG_DELAY)
 	e3:SetCode(EVENT_BE_MATERIAL)
-	e3:SetCountLimit(1,id+100,EFFECT_COUNT_CODE_OATH)
+	e3:SetCountLimit(1,id+100+EFFECT_COUNT_CODE_OATH)
 	e3:SetCondition(s.matcon)
 	e3:SetTarget(s.pstg)
 	e3:SetOperation(s.psop)
@@ -128,7 +129,7 @@ function s.psop(e,tp,eg,ep,ev,re,r,rp)
 	if #g>0 and Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)>0
 		and (Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1))
 		and Duel.IsExistingMatchingCard(s.pzfilter,tp,LOCATION_EXTRA,0,1,nil)
-		and Duel.SelectYesNo(tp,aux.Stringid(id,1)) then
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)
 		local pg=Duel.SelectMatchingCard(tp,s.pzfilter,tp,LOCATION_EXTRA,0,1,1,nil)
 		local pc=pg:GetFirst()

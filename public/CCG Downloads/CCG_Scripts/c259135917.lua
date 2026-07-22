@@ -1,5 +1,6 @@
 --Nuwa, the Domesticated
 local s,id=GetID()
+local STRING_ID=133135917
 local SET_DOMESTICA=0xe302
 s.listed_series={SET_DOMESTICA}
 function s.initial_effect(c)
@@ -21,9 +22,10 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If Normal Summoned: add 1 "Domestica" Fairy monster
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e3:SetProperty(EFFECT_FLAG_DELAY)
 	e3:SetCode(EVENT_SUMMON_SUCCESS)
 	e3:SetCountLimit(1,id)
 	e3:SetTarget(s.thtg)
@@ -31,7 +33,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--Shuffle this card; prevent activations
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,1))
+	e4:SetDescription(aux.Stringid(STRING_ID,1))
 	e4:SetCategory(CATEGORY_TODECK)
 	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetCode(EVENT_FREE_CHAIN)

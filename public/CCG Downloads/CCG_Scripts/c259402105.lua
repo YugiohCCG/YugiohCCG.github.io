@@ -1,5 +1,6 @@
 --Magical Girl Explosion!
 local s,id=GetID()
+local STRING_ID=133402105
 local SET_CHARMELIA=0x12b1
 function s.initial_effect(c)
 	--Activate
@@ -9,7 +10,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Tribute a "Charmelia" monster to negate and banish an opponent's monster
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_DISABLE+CATEGORY_REMOVE)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)
@@ -23,7 +24,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Special Summon a "Charmelia" Ritual Monster
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)
@@ -69,12 +70,13 @@ function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,1-tp,LOCATION_MZONE)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_NEGATE)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISABLE)
 	local tc=Duel.SelectMatchingCard(tp,s.negfilter,tp,0,LOCATION_MZONE,1,1,nil):GetFirst()
 	if not tc or not tc:IsFaceup() or not tc:IsCanBeDisabledByEffect(e,false) then return end
 	Duel.NegateRelatedChain(tc,RESET_TURN_SET)
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_SINGLE)
+	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 	e1:SetCode(EFFECT_DISABLE)
 	e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 	tc:RegisterEffect(e1)
@@ -87,7 +89,6 @@ function s.negop(e,tp,eg,ep,ev,re,r,rp)
 		e3:SetCode(EFFECT_DISABLE_TRAPMONSTER)
 		tc:RegisterEffect(e3)
 	end
-	Duel.BreakEffect()
 	Duel.Remove(tc,POS_FACEDOWN,REASON_EFFECT)
 end
 function s.extrafilter(c)

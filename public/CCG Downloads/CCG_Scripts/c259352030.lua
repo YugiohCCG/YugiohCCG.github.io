@@ -3,7 +3,7 @@ local s,id=GetID()
 local CARD_THUNDER_DRAGON=31786629
 local SET_THUNDER_DRAGON=0x11c
 local SET_THUNDER_DRAGON_CUSTOM=0x335e
-local STRING_ID=id
+local STRING_ID=133352030
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	aux.AddFusionProcCodeFun(c,CARD_THUNDER_DRAGON,aux.FilterBoolFunction(Card.IsRace,RACE_THUNDER),1,true,true)
@@ -99,7 +99,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.repfilter(c)
-	return c:IsRace(RACE_THUNDER) and c:IsAbleToRemove()
+	return c:IsRace(RACE_THUNDER) and c:IsAbleToRemove() and aux.NecroValleyFilter()(c)
 end
 function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsReason(REASON_BATTLE+REASON_EFFECT)

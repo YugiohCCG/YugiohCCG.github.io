@@ -1,10 +1,11 @@
 --Aetherstorm Zenith Wire-Tailed Sypharion
 local s,id=GetID()
+local STRING_ID=133365935
 local SET_AETHERSTORM=0x13fb
 s.listed_series={SET_AETHERSTORM}
 function s.initial_effect(c)
 	c:EnableReviveLimit()
-	aux.AddXyzProcedure(c,nil,9,2,s.xyzfilter,aux.Stringid(id,0),99)
+	aux.AddXyzProcedure(c,nil,9,2,s.xyzfilter,aux.Stringid(STRING_ID,0),99)
 	--Cannot Xyz Summon after invalid Special Summons
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_SINGLE)
@@ -30,13 +31,13 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Detach 1 material; destroy 1 opponent card
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_DESTROY)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_CHAINING)
 	e3:SetRange(LOCATION_MZONE)
 	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
-	e3:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e3:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e3:SetCondition(s.descon)
 	e3:SetCost(s.descost)
 	e3:SetTarget(s.destg)
@@ -44,12 +45,12 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--Attach 1 Dragon monster you control
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,2))
+	e4:SetDescription(aux.Stringid(STRING_ID,2))
 	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e4:SetCode(EVENT_PHASE+PHASE_END)
 	e4:SetRange(LOCATION_MZONE)
 	e4:SetProperty(EFFECT_FLAG_CARD_TARGET)
-	e4:SetCountLimit(1,id+100,EFFECT_COUNT_CODE_OATH)
+	e4:SetCountLimit(1,id+100+EFFECT_COUNT_CODE_OATH)
 	e4:SetTarget(s.mattg)
 	e4:SetOperation(s.matop)
 	c:RegisterEffect(e4)

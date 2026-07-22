@@ -1,10 +1,11 @@
 --CHAMPION OF THE GRAND BLUE
 local s,id=GetID()
+local STRING_ID=133429721
 local SET_GRAND_BLUE=0x67ee
 function s.initial_effect(c)
 	--Add or Special Summon 1 "Grand Blue" card from your GY
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
@@ -15,7 +16,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Special Summon this card, equip a "Grand Blue" monster to it, then destroy 1 card in its column
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,3))
+	e2:SetDescription(aux.Stringid(STRING_ID,3))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_EQUIP+CATEGORY_DESTROY)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)
@@ -57,7 +58,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local canhand=tc:IsAbleToHand()
 	local cansp=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and tc:IsType(TYPE_MONSTER)
 		and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)
-	if cansp and (not canhand or Duel.SelectOption(tp,aux.Stringid(id,1),aux.Stringid(id,2))==1) then
+	if cansp and (not canhand or Duel.SelectOption(tp,aux.Stringid(STRING_ID,1),aux.Stringid(STRING_ID,2))==1) then
 		Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
 	elseif canhand and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
 		Duel.ConfirmCards(1-tp,tc)

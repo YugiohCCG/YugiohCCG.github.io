@@ -1,10 +1,11 @@
 --Charmelia Hanabi
 local s,id=GetID()
+local STRING_ID=133790247
 local SET_CHARMELIA=0x12b1
 function s.initial_effect(c)
 	--Discard another "Charmelia" monster to Special Summon this card and a different name
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_HAND)
@@ -15,7 +16,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If Tributed for a Ritual Summon: activate a "Charmelia" Continuous Spell/Trap
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_RELEASE)
 	e2:SetProperty(EFFECT_FLAG_DELAY)

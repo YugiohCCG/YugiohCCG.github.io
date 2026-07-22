@@ -1,13 +1,14 @@
 --Reactor Shocker
 local s,id=GetID()
+local STRING_ID=133056746
 function s.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
-	e1:SetCategory(CATEGORY_NEGATE+CATEGORY_DRAW+CATEGORY_TODECK)
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
+	e1:SetCategory(CATEGORY_DISABLE+CATEGORY_DRAW+CATEGORY_TODECK)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_CHAINING)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetCondition(s.condition)
 	e1:SetTarget(s.target)
 	e1:SetOperation(s.activate)
@@ -15,41 +16,38 @@ function s.initial_effect(c)
 end
 function s.negatable(ev)
 	for i=1,ev do
-		if Duel.IsChainNegatable(i) then return true end
-	end
-	return false
-end
-function s.hasownchain(tp,ev)
-	for i=1,ev-1 do
-		local p=Duel.GetChainInfo(i,CHAININFO_TRIGGERING_PLAYER)
-		if p==tp then return true end
+		if Duel.IsChainDisablable(i) then return true end
 	end
 	return false
 end
 function s.condition(e,tp,eg,ep,ev,re,r,rp)
-	return rp==1-tp and ev>1 and s.hasownchain(tp,ev) and s.negatable(ev)
+	local ownct=0
+	local oppct=0
+	for i=1,ev do
+		local p=Duel.GetChainInfo(i,CHAININFO_TRIGGERING_PLAYER)
+		if p==tp then ownct=ownct+1 else oppct=oppct+1 end
+	end
+	return rp==1-tp and ev>1 and ownct>0 and s.negatable(ev)
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
-	Duel.SetOperationInfo(0,CATEGORY_NEGATE,nil,1,0,0)
-	if Duel.IsPlayerCanDraw(tp,1) then
-		Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
-	end
+	Duel.SetOperationInfo(0,CATEGORY_DISABLE,nil,1,0,0)
+	--We don't know exact number to draw here if some cannot be negated, but we can set a max
+	--Just drawing is optional here if it depends on negation, but drawing is mandatory if negated
 	Duel.SetChainLimit(aux.FALSE)
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
-	local ownct=1
+	local ownct=0
 	local oppct=0
+	local negated_own=0
 	for i=1,ev do
-		local te,p=Duel.GetChainInfo(i,CHAININFO_TRIGGERING_EFFECT,CHAININFO_TRIGGERING_PLAYER)
-		if te then
-			if p==tp then ownct=ownct+1 else oppct=oppct+1 end
-		end
-		if Duel.IsChainNegatable(i) then
-			Duel.NegateActivation(i)
+		local p=Duel.GetChainInfo(i,CHAININFO_TRIGGERING_PLAYER)
+		if p==tp then ownct=ownct+1 else oppct=oppct+1 end
+		if Duel.NegateEffect(i) then
+			if p==tp then negated_own=negated_own+1 end
 		end
 	end
-	if ownct>=oppct and ownct>0 and Duel.IsPlayerCanDraw(tp,ownct) then
+	if negated_own>0 and ownct>=oppct and Duel.IsPlayerCanDraw(tp,ownct) then
 		Duel.Draw(tp,ownct,REASON_EFFECT)
 	end
 	local te,p=Duel.GetChainInfo(1,CHAININFO_TRIGGERING_EFFECT,CHAININFO_TRIGGERING_PLAYER)

@@ -1,5 +1,6 @@
 --Mirage Formation Dragon
 local s,id=GetID()
+local STRING_ID=133072169
 local SET_HARPIE=0x64
 local SET_HARPIE_CUSTOM=0x079c
 local CARD_HARPIE_LADY=76812113
@@ -15,7 +16,7 @@ function s.initial_effect(c)
 	aux.EnableChangeCode(c,CARD_HARPIE_LADY_SISTERS,LOCATION_MZONE+LOCATION_GRAVE)
 	--Reveal this card and "Elegant Egotist"; Special Summon this card
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_EXTRA)
@@ -34,7 +35,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If Special Summoned from the Extra Deck: Set Spells/Traps
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_SSET)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetProperty(EFFECT_FLAG_DELAY)
@@ -46,7 +47,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--If your opponent Special Summons by card effect
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,2))
+	e4:SetDescription(aux.Stringid(STRING_ID,2))
 	e4:SetCategory(CATEGORY_TOHAND+CATEGORY_DESTROY)
 	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e4:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -149,23 +150,27 @@ function s.bcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return c:CheckRemoveOverlayCard(tp,1,REASON_COST) end
 	c:RemoveOverlayCard(tp,1,1,REASON_COST)
 end
-function s.myfilter(c)
-	return c:IsOnField() and (c:IsAbleToHand() or c:IsDestructable())
+function s.myfilter(c,e)
+	return c:IsOnField() and c:IsCanBeEffectTarget(e) and (c:IsAbleToHand() or c:IsDestructable())
 end
-function s.oppcardfilter(c)
-	return c:IsFaceup() and (c:IsAbleToHand() or c:IsDestructable())
+function s.oppcardfilter(c,e,tc)
+	return c:IsFaceup() and c:IsCanBeEffectTarget(e)
+		and ((tc:IsAbleToHand() and c:IsAbleToHand()) or (tc:IsDestructable() and c:IsDestructable()))
+end
+function s.pairfilter(c,e,tp)
+	return s.myfilter(c,e) and Duel.IsExistingTarget(s.oppcardfilter,tp,0,LOCATION_ONFIELD,1,nil,e,c)
 end
 function s.btg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then
-		if chkc:IsControler(tp) then return chkc:IsOnField() and s.myfilter(chkc) end
-		return chkc:IsControler(1-tp) and chkc:IsOnField() and s.oppcardfilter(chkc)
+		if chkc:IsControler(tp) then return chkc:IsOnField() and s.pairfilter(chkc,e,tp) end
+		return false
 	end
-	if chk==0 then return Duel.IsExistingTarget(s.myfilter,tp,LOCATION_ONFIELD,0,1,nil)
-		and Duel.IsExistingTarget(s.oppcardfilter,tp,0,LOCATION_ONFIELD,1,nil) end
+	if chk==0 then return Duel.IsExistingTarget(s.pairfilter,tp,LOCATION_ONFIELD,0,1,nil,e,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
-	local g1=Duel.SelectTarget(tp,s.myfilter,tp,LOCATION_ONFIELD,0,1,1,nil)
+	local g1=Duel.SelectTarget(tp,s.pairfilter,tp,LOCATION_ONFIELD,0,1,1,nil,e,tp)
+	local tc=g1:GetFirst()
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
-	local g2=Duel.SelectTarget(tp,s.oppcardfilter,tp,0,LOCATION_ONFIELD,1,1,nil)
+	local g2=Duel.SelectTarget(tp,s.oppcardfilter,tp,0,LOCATION_ONFIELD,1,1,nil,e,tc)
 	g1:Merge(g2)
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,g1,2,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g1,2,0,0)
@@ -175,15 +180,17 @@ function s.bop(e,tp,eg,ep,ev,re,r,rp)
 	if not g or #g<2 then return end
 	local tc1=g:Filter(Card.IsControler,nil,tp):GetFirst()
 	local tc2=g:Filter(Card.IsControler,nil,1-tp):GetFirst()
-	if not (tc1 and tc1:IsRelateToEffect(e) and tc1:IsOnField() and s.myfilter(tc1)
+	if not (tc1 and tc1:IsRelateToEffect(e) and tc1:IsControler(tp) and tc1:IsOnField()
+		and (tc1:IsAbleToHand() or tc1:IsDestructable())
 		and tc2 and tc2:IsRelateToEffect(e) and tc2:IsControler(1-tp)
-		and tc2:IsOnField() and s.oppcardfilter(tc2)) then return end
+		and tc2:IsOnField() and tc2:IsFaceup()
+		and (tc2:IsAbleToHand() or tc2:IsDestructable())) then return end
 	local b1=tc1:IsAbleToHand() and tc2:IsAbleToHand()
 	local b2=tc1:IsDestructable() and tc2:IsDestructable()
 	if not (b1 or b2) then return end
 	local op=0
 	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(id,3),aux.Stringid(id,4))
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,3),aux.Stringid(STRING_ID,4))
 	elseif b2 then
 		op=1
 	end

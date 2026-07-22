@@ -1,5 +1,6 @@
 --Wyvernal Lymantria
 local s,id=GetID()
+local STRING_ID=133763531
 local SET_WYVERNAL=0x4714
 function s.initial_effect(c)
 	--Fusion Summon procedure
@@ -8,7 +9,7 @@ function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--If Fusion Summoned: add 1 WIND Insect monster
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -20,7 +21,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Main Phase Quick Effect: Special Summon 1 Insect monster from your GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)

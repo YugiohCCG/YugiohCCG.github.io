@@ -1,0 +1,4851 @@
+namespace Unity.Mathematics;
+
+[DebuggerTypeProxy(typeof(DebuggerProxy))]
+[DefaultMember("Item")]
+[Il2CppEagerStaticClassConstruction]
+public struct int4 : IEquatable<int4>, IFormattable
+{
+	public sealed class DebuggerProxy
+	{
+		public int x; //Field offset: 0x10
+		public int y; //Field offset: 0x14
+		public int z; //Field offset: 0x18
+		public int w; //Field offset: 0x1C
+
+		[CallerCount(Count = 0)]
+		[CallsDeduplicatedMethods(Count = 1)]
+		[DeduplicatedMethod]
+		public DebuggerProxy(int4 v) { }
+
+	}
+
+	public static readonly int4 zero; //Field offset: 0x0
+	public int x; //Field offset: 0x0
+	public int y; //Field offset: 0x4
+	public int z; //Field offset: 0x8
+	public int w; //Field offset: 0xC
+
+	public int Item
+	{
+		[CallerCount(Count = 3)]
+		[DeduplicatedMethod]
+		 get { } //Length: 7
+		[CallerCount(Count = 1)]
+		[DeduplicatedMethod]
+		 set { } //Length: 8
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 ww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 www
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 15
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wwzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 wx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 19
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 10
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wxzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 wy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 11
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wyww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wywx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wywy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wywz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wyxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wyxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wyxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wyxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wyyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wyyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wyyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wyyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wyzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wyzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wyzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wyzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 wz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 11
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 wzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 wzzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 xw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 19
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 10
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 22
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 19
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 22
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xwzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 xx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 16
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 22
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 14
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 22
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 22
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xxzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 xy
+	{
+		[CallerCount(Count = 138)]
+		[DeduplicatedMethod]
+		 get { } //Length: 4
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 10
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xyww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xywx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xywy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xywz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 19
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xyxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xyxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 22
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xyxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xyxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xyyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xyyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 22
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xyyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xyyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xyz
+	{
+		[CallerCount(Count = 38)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xyzw
+	{
+		[CallerCount(Count = 13)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xyzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xyzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xyzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 xz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 19
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 10
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 19
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 22
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 xzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 22
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 xzzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 yw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 11
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 yww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 ywx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 ywy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 ywz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 ywzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 yx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 19
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 10
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 yxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 yxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 yxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 yxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yxzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 yy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 yyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yyww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yywx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yywy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yywz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 yyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yyxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yyxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yyxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yyxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 yyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 15
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yyyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yyyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yyyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yyyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 yyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yyzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yyzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yyzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yyzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 yz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 11
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 yzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 yzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 yzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 yzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 yzzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 zw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 11
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zwzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 zx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 19
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 10
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 25
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zxzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 zy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 11
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zyww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zywx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zywy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zywz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zyxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 set { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zyxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zyxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zyxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zyyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zyyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zyyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zyyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zyzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zyzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 26
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zyzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 27
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zyzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int2 zz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzww
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzwx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzwy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzwz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 17
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzxw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzxx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzxy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzxz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzyw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzyx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 23
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzyy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzyz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 24
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int3 zzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 15
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzzw
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzzx
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 20
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzzy
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 21
+	}
+
+	[EditorBrowsable(EditorBrowsableState::Never (1))]
+	public int4 zzzz
+	{
+		[CallerCount(Count = 0)]
+		[DeduplicatedMethod]
+		 get { } //Length: 18
+	}
+
+	[CallerCount(Count = 19)]
+	[DeduplicatedMethod]
+	public int4(int x, int y, int z, int w) { }
+
+	[CallerCount(Count = 0)]
+	public int4(double4 v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public int4(double v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public int4(float4 v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public int4(float v) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4(uint4 v) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4(uint v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public int4(bool4 v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public int4(bool v) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4(int4 xyzw) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4(int3 xyz, int w) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4(int2 xy, int2 zw) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4(int2 xy, int z, int w) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4(int x, int3 yzw) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4(int x, int2 yz, int w) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4(int x, int y, int2 zw) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4(int v) { }
+
+	[CallerCount(Count = 15)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public override bool Equals(int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[CallsUnknownMethods(Count = 1)]
+	[ContainsUnimplementedInstructions]
+	public virtual bool Equals(object o) { }
+
+	[CallerCount(Count = 3)]
+	[DeduplicatedMethod]
+	public int get_Item(int index) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_ww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_www() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wwzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_wx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wxzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_wy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wyww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wywx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wywy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wywz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wyxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wyxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wyxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wyxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wyyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wyyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wyyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wyyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wyzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wyzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wyzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wyzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_wz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_wzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_wzzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_xw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xwzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_xx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xxzz() { }
+
+	[CallerCount(Count = 138)]
+	[DeduplicatedMethod]
+	public int2 get_xy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xyww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xywx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xywy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xywz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xyxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xyxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xyxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xyxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xyyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xyyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xyyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xyyz() { }
+
+	[CallerCount(Count = 38)]
+	[DeduplicatedMethod]
+	public int3 get_xyz() { }
+
+	[CallerCount(Count = 13)]
+	[DeduplicatedMethod]
+	public int4 get_xyzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xyzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xyzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xyzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_xz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_xzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_xzzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_yw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_yww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_ywx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_ywy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_ywz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_ywzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_yx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_yxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_yxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_yxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_yxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yxzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_yy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_yyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yyww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yywx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yywy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yywz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_yyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yyxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yyxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yyxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yyxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_yyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yyyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yyyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yyyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yyyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_yyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yyzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yyzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yyzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yyzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_yz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_yzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_yzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_yzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_yzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_yzzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_zw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zwzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_zx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zxzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_zy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zyww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zywx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zywy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zywz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zyxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zyxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zyxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zyxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zyyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zyyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zyyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zyyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zyzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zyzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zyzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zyzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int2 get_zz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzww() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzwx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzwy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzwz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzxw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzxx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzxy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzxz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzyw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzyx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzyy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzyz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int3 get_zzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzzw() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzzx() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzzy() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public int4 get_zzzz() { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public virtual int GetHashCode() { }
+
+	[CallerCount(Count = 2)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_Addition(int4 lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_Addition(int lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_Addition(int4 lhs, int rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_BitwiseAnd(int lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_BitwiseAnd(int4 lhs, int rhs) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public static int4 op_BitwiseAnd(int4 lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_BitwiseOr(int4 lhs, int rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_BitwiseOr(int lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public static int4 op_BitwiseOr(int4 lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public static int4 op_Decrement(int4 val) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static int4 op_Division(int4 lhs, int rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static int4 op_Division(int lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static int4 op_Division(int4 lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static bool4 op_Equality(int4 lhs, int rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static bool4 op_Equality(int4 lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static bool4 op_Equality(int lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_ExclusiveOr(int lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_ExclusiveOr(int4 lhs, int rhs) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public static int4 op_ExclusiveOr(int4 lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_Explicit(double v) { }
+
+	[CallerCount(Count = 2)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_Explicit(float4 v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_Explicit(float v) { }
+
+	[CallerCount(Count = 13)]
+	[DeduplicatedMethod]
+	public static int4 op_Explicit(uint4 v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_Explicit(bool v) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public static int4 op_Explicit(uint v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_Explicit(bool4 v) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public static int4 op_Explicit(double4 v) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool4 op_GreaterThan(int4 lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool4 op_GreaterThan(int4 lhs, int rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool4 op_GreaterThan(int lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool4 op_GreaterThanOrEqual(int4 lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool4 op_GreaterThanOrEqual(int lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool4 op_GreaterThanOrEqual(int4 lhs, int rhs) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public static int4 op_Implicit(int v) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public static int4 op_Increment(int4 val) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static bool4 op_Inequality(int4 lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static bool4 op_Inequality(int lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static bool4 op_Inequality(int4 lhs, int rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_LeftShift(int4 x, int n) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool4 op_LessThan(int4 lhs, int rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool4 op_LessThan(int4 lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool4 op_LessThan(int lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool4 op_LessThanOrEqual(int lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool4 op_LessThanOrEqual(int4 lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static bool4 op_LessThanOrEqual(int4 lhs, int rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static int4 op_Modulus(int4 lhs, int rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static int4 op_Modulus(int4 lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static int4 op_Modulus(int lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public static int4 op_Multiply(int4 lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public static int4 op_Multiply(int4 lhs, int rhs) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public static int4 op_Multiply(int lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_OnesComplement(int4 val) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	public static int4 op_RightShift(int4 x, int n) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_Subtraction(int4 lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_Subtraction(int4 lhs, int rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_Subtraction(int lhs, int4 rhs) { }
+
+	[CallerCount(Count = 0)]
+	[ContainsUnimplementedInstructions]
+	[DeduplicatedMethod]
+	public static int4 op_UnaryNegation(int4 val) { }
+
+	[CallerCount(Count = 13)]
+	[DeduplicatedMethod]
+	public static int4 op_UnaryPlus(int4 val) { }
+
+	[CallerCount(Count = 1)]
+	[DeduplicatedMethod]
+	public void set_Item(int index, int value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wx(int2 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wxy(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wxyz(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wxz(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wxzy(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wy(int2 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wyx(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wyxz(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wyz(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wyzx(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wz(int2 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wzx(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wzxy(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wzy(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_wzyx(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xw(int2 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xwy(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xwyz(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xwz(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xwzy(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xy(int2 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xyw(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xywz(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xyz(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xyzw(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xz(int2 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xzw(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xzwy(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xzy(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_xzyw(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_yw(int2 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_ywx(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_ywxz(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_ywz(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_ywzx(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_yx(int2 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_yxw(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_yxwz(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_yxz(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_yxzw(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_yz(int2 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_yzw(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_yzwx(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_yzx(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_yzxw(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zw(int2 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zwx(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zwxy(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zwy(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zwyx(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zx(int2 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zxw(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zxwy(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zxy(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zxyw(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zy(int2 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zyw(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zywx(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zyx(int3 value) { }
+
+	[CallerCount(Count = 0)]
+	[DeduplicatedMethod]
+	public void set_zyxw(int4 value) { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(string), Member = "Format", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string), typeof(Object[])}, ReturnType = typeof(string))]
+	[CallsUnknownMethods(Count = 18)]
+	public virtual string ToString() { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(int), Member = "ToString", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string), typeof(IFormatProvider)}, ReturnType = typeof(string))]
+	[Calls(Type = typeof(string), Member = "Format", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string), typeof(Object[])}, ReturnType = typeof(string))]
+	[CallsUnknownMethods(Count = 18)]
+	public override string ToString(string format, IFormatProvider formatProvider) { }
+
+}
+

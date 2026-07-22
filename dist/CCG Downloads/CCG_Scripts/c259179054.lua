@@ -1,5 +1,6 @@
 --Wyvernal Megalopyge
 local s,id=GetID()
+local STRING_ID=133179054
 local SET_WYVERNAL=0x4714
 function s.initial_effect(c)
 	--Fusion Summon procedure
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If Fusion Summoned: add 1 "Wyvernal" card, then maybe destroy 1 other card
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetCategory(CATEGORY_TOHAND+CATEGORY_DESTROY)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -30,7 +31,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--Main Phase Quick Effect: destroy 1 WIND Insect, then all opponent monsters
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,1))
+	e4:SetDescription(aux.Stringid(STRING_ID,1))
 	e4:SetCategory(CATEGORY_DESTROY)
 	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetCode(EVENT_FREE_CHAIN)
@@ -68,7 +69,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ConfirmCards(1-tp,g)
 	local c=e:GetHandler()
 	if not Duel.IsExistingMatchingCard(s.desfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil,c) then return end
-	if not Duel.SelectYesNo(tp,aux.Stringid(id,0)) then return end
+	if not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then return end
 	Duel.BreakEffect()
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local dg=Duel.SelectMatchingCard(tp,s.desfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil,c)
@@ -93,7 +94,6 @@ function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g=Duel.SelectMatchingCard(tp,s.selffilter,tp,LOCATION_MZONE,0,1,1,nil)
 	if #g==0 or Duel.Destroy(g,REASON_EFFECT)==0 then return end
-	Duel.BreakEffect()
 	local og=Duel.GetMatchingGroup(Card.IsDestructable,tp,0,LOCATION_MZONE,nil)
 	if #og>0 then Duel.Destroy(og,REASON_EFFECT) end
 end

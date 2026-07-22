@@ -1,5 +1,6 @@
 --Maiden of Talismandrakes Seraphina
 local s,id=GetID()
+local STRING_ID=132142234
 local SET_TALISMANDRAKE=0xb47
 local CARD_ARMS_UNITED=215034223
 local CARD_SUPPRESSOR=238136421
@@ -12,23 +13,23 @@ function s.initial_effect(c)
 	aux.AddFusionProcFunFunRep(c,s.pyropend,aux.FilterBoolFunction(Card.IsFusionSetCard,SET_TALISMANDRAKE),2,2,true)
 	--Pendulum effect: shuffle 3, Special Summon, then equip
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TODECK+CATEGORY_SPECIAL_SUMMON+CATEGORY_EQUIP)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_PZONE)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetCost(s.pcost)
 	e1:SetTarget(s.psptg)
 	e1:SetOperation(s.pspop)
 	c:RegisterEffect(e1)
 	--If Fusion Summoned: add or equip 1 "Talismandrake Arms" Spell/Trap
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOHAND+CATEGORY_EQUIP)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
-	e2:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e2:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e2:SetCondition(s.fuscon)
 	e2:SetTarget(s.gytg)
 	e2:SetOperation(s.gyop)
@@ -42,18 +43,18 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--Place this card in your Pendulum Zone
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,2))
+	e4:SetDescription(aux.Stringid(STRING_ID,2))
 	e4:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e4:SetProperty(EFFECT_FLAG_DELAY)
 	e4:SetCode(EVENT_LEAVE_FIELD)
-	e4:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e4:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e4:SetCondition(s.pencon)
 	e4:SetTarget(s.pentg)
 	e4:SetOperation(s.penop)
 	c:RegisterEffect(e4)
 	--Destroy all cards your opponent controls
 	local e5=Effect.CreateEffect(c)
-	e5:SetDescription(aux.Stringid(id,3))
+	e5:SetDescription(aux.Stringid(STRING_ID,3))
 	e5:SetCategory(CATEGORY_DESTROY)
 	e5:SetType(EFFECT_TYPE_QUICK_O)
 	e5:SetCode(EVENT_FREE_CHAIN)
@@ -91,7 +92,7 @@ function s.pspop(e,tp,eg,ep,ev,re,r,rp)
 	if not (c:IsRelateToEffect(e) and Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0
 		and c:IsFaceup() and Duel.GetLocationCount(tp,LOCATION_SZONE)>0) then return end
 	if Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.equiparmsfilter),tp,LOCATION_GRAVE,0,1,nil)
-		and Duel.SelectYesNo(tp,aux.Stringid(id,5)) then
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,5)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_EQUIP)
 		local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.equiparmsfilter),tp,LOCATION_GRAVE,0,1,1,nil)
 		local ec=g:GetFirst()
@@ -147,12 +148,12 @@ function s.gyop(e,tp,eg,ep,ev,re,r,rp)
 	if not (b1 or b2) then return end
 	local op=0
 	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(id,4),aux.Stringid(id,5))
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,4),aux.Stringid(STRING_ID,5))
 	elseif b1 then
-		Duel.SelectOption(tp,aux.Stringid(id,4))
+		Duel.SelectOption(tp,aux.Stringid(STRING_ID,4))
 		op=0
 	else
-		Duel.SelectOption(tp,aux.Stringid(id,5))
+		Duel.SelectOption(tp,aux.Stringid(STRING_ID,5))
 		op=1
 	end
 	if op==0 then
@@ -325,7 +326,7 @@ function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not (c:IsRelateToEffect(e) and c:IsFaceup() and s.descon(e,tp,eg,ep,ev,re,r,rp)) then return end
+	if not (c:IsRelateToEffect(e) and c:IsFaceup()) then return end
 	local g=Duel.GetMatchingGroup(s.desfilter,tp,0,LOCATION_ONFIELD,nil)
 	if #g>0 then
 		Duel.Destroy(g,REASON_EFFECT)

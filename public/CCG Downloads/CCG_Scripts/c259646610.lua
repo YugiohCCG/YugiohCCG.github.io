@@ -1,5 +1,6 @@
 --Galatea-2, the Orcust Divider
 local s,id=GetID()
+local STRING_ID=133646610
 local SET_ORCUST=0x11b
 local CARD_ORCUSTRATED_BABEL=90351981
 function s.initial_effect(c)
@@ -17,7 +18,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Return 1 banished "Orcust" card to the GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_TOGRAVE)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_MZONE)
@@ -40,19 +41,21 @@ end
 function s.immval(e,te)
 	return te:GetOwnerPlayer()==1-e:GetHandlerPlayer() and te:IsActivated()
 end
-function s.tgfilter(c)
+function s.tgfilter(c,e)
 	return c:IsFaceup() and c:IsSetCard(SET_ORCUST) and c:IsAbleToGrave()
+		and c:IsCanBeEffectTarget(e)
 end
 function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_REMOVED) and s.tgfilter(chkc) end
-	if chk==0 then return Duel.IsExistingTarget(s.tgfilter,tp,LOCATION_REMOVED,0,1,nil) end
+	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_REMOVED)
+		and aux.NecroValleyFilter(s.tgfilter)(chkc,e) end
+	if chk==0 then return Duel.IsExistingTarget(aux.NecroValleyFilter(s.tgfilter),tp,LOCATION_REMOVED,0,1,nil,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
-	local g=Duel.SelectTarget(tp,s.tgfilter,tp,LOCATION_REMOVED,0,1,1,nil)
+	local g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.tgfilter),tp,LOCATION_REMOVED,0,1,1,nil,e)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,g,1,0,0)
 end
 function s.tgop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) then
+	if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.tgfilter)(tc,e) then
 		Duel.SendtoGrave(tc,REASON_EFFECT+REASON_RETURN)
 	end
 end

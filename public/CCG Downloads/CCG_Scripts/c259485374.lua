@@ -1,9 +1,10 @@
 --Heart of the Cards
 local s,id=GetID()
+local STRING_ID=133485374
 function s.initial_effect(c)
 	--Declare 1 card name
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
@@ -42,7 +43,7 @@ function s.epop(e,tp,eg,ep,ev,re,r,rp)
 	local oc=Duel.SelectMatchingCard(1-tp,s.otherfilter,tp,LOCATION_DECK,0,1,1,nil,tc):GetFirst()
 	if not oc then return end
 	local g=Group.FromCards(tc,oc)
-	Duel.ConfirmCards(1-tp,g)
+	Duel.ConfirmCards(tp,g)
 	local top=g:RandomSelect(1-tp,1)
 	local rest=(g-top):GetFirst()
 	local topc=top:GetFirst()

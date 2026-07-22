@@ -1,4 +1,5 @@
 local s,id=GetID()
+local STRING_ID=133873115
 local SET_GLITCHLING=0x9894
 local COUNTER_CORRUPTION=0x1994
 local CARD_BITRON=36211150
@@ -21,7 +22,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	--Pendulum Effect: destroy this card, then Ritual Summon
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_DESTROY+CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_PZONE)
@@ -31,7 +32,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If Ritual Summoned
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -43,8 +44,8 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Negate a Spell/Trap Card or effect
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,2))
-	e3:SetCategory(CATEGORY_NEGATE+CATEGORY_DESTROY)
+	e3:SetDescription(aux.Stringid(STRING_ID,2))
+	e3:SetCategory(CATEGORY_DISABLE+CATEGORY_DESTROY)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_CHAINING)
 	e3:SetRange(LOCATION_MZONE)
@@ -184,7 +185,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if tc and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 then
 		local code=tc:GetCode()
 		if Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.followfilter),tp,LOCATION_GRAVE+LOCATION_EXTRA,0,1,nil,e,tp,code)
-			and Duel.SelectYesNo(tp,aux.Stringid(id,3)) then
+			and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 			local sg=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.followfilter),tp,LOCATION_GRAVE+LOCATION_EXTRA,0,1,1,nil,e,tp,code)
 			local sc=sg:GetFirst()
@@ -197,7 +198,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.negcon(e,tp,eg,ep,ev,re,r,rp)
-	return ep==1-tp and re:IsActiveType(TYPE_SPELL+TYPE_TRAP) and Duel.IsChainNegatable(ev)
+	return ep==1-tp and re:IsActiveType(TYPE_SPELL+TYPE_TRAP) and Duel.IsChainDisablable(ev)
 end
 function s.cfilter(c,handler)
 	return c~=handler and c:IsRace(RACE_CYBERSE) and (c:IsType(TYPE_RITUAL) or c:IsType(TYPE_NORMAL)) and c:IsReleasable()
@@ -213,11 +214,11 @@ end
 function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
 	s.register_lock(e,tp)
-	Duel.SetOperationInfo(0,CATEGORY_NEGATE,eg,1,0,0)
+	Duel.SetOperationInfo(0,CATEGORY_DISABLE,eg,1,0,0)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	local ct=e:GetLabel()
-	if Duel.NegateActivation(ev) and ct>0 then
+	if Duel.NegateEffect(ev) and ct>0 then
 		local g=Duel.GetMatchingGroup(Card.IsDestructable,tp,0,LOCATION_SZONE,nil)
 		if #g>0 then
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)

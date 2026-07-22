@@ -1,10 +1,11 @@
 --Charmelia Pray
 local s,id=GetID()
+local STRING_ID=133241946
 local SET_CHARMELIA=0x12b1
 function s.initial_effect(c)
 	--Activate and Ritual Summon
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)

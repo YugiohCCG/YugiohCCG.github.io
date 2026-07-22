@@ -40,13 +40,37 @@ Priorities:
 5. Use the modern Omega style when possible:
    - `local s,id=GetID()`
    - `function s.initial_effect(c)`
-   - `aux.Stringid(id,n)` for prompt text
+   - `local STRING_ID=<generated signed-safe carrier ID>` and
+     `aux.Stringid(STRING_ID,n)` for custom prompt text
    - count limits tied to `id`, `id+100`, etc. when a card has multiple once-per-turn effects
 6. For unusual mechanics, copy the smallest proven official pattern and adapt it conservatively.
 7. Write only the custom script and any required prompt text/database update.
 8. Parse the Lua for syntax errors before handing it off.
 9. Copy the finished script into the installed Omega root script folder for local testing.
 10. Rebuild the scripts zip after any release-script change.
+
+### Custom prompt IDs
+
+Do not pass this project's nine-digit gameplay IDs directly to `aux.Stringid`.
+Omega encodes a card string as `card_id * 16 + slot` in a signed 32-bit value;
+IDs above `134217727` overflow, are sent to the system-message branch, and render
+as `Unknown (<negative number>)`.
+
+`sync_omega_ccg_db.py` creates one hidden Token message carrier per active card,
+using `132000000 + (card_id % 2000000)`, and mirrors the card's `str1` through
+`str16` values onto that carrier. Lua keeps the real `id` for gameplay logic and
+uses only `STRING_ID` for `aux.Stringid`. Cross-card prompt references must use
+the referenced card's carrier, not the current script's carrier.
+
+After any Lua or database-message edit, verify every route:
+
+```powershell
+python scripts\verify_omega_message_routes.py --report scripts\output\omega_message_route_manifest.json
+```
+
+The verifier checks all active scripts, signed-range safety, slots, DB text
+identity, hidden Token rows, one-to-one mapping, and collisions with Omega's
+official database.
 
 ## Database Workflow
 

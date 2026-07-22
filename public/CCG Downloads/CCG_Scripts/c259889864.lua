@@ -1,6 +1,6 @@
 --Aurelion Divine Illumination
 local s,id=GetID()
-local STRING_ID=id
+local STRING_ID=133889864
 function s.initial_effect(c)
 	--Declare up to 3 names; excavate the bottom 3 cards, then maybe Special Summon this card
 	local e1=Effect.CreateEffect(c)

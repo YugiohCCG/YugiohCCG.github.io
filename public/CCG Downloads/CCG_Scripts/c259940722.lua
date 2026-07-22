@@ -1,7 +1,7 @@
 --Virtua Leet
 local s,id=GetID()
 local SET_LEET=0xfe88
-local STRING_ID=id
+local STRING_ID=133940722
 local MATCOUNT_FLAG=id+1000
 function s.initial_effect(c)
 	c:EnableReviveLimit()
@@ -41,12 +41,15 @@ function s.initial_effect(c)
 	e4:SetCondition(s.con4)
 	e4:SetValue(s.immval)
 	c:RegisterEffect(e4)
-	--4+ materials: if Fusion Summoned this turn, you cannot Special Summon for the rest of the turn
+	--4+ materials: while this Fusion Summoned card is in its Summon turn, you cannot Special Summon
 	local e5=Effect.CreateEffect(c)
-	e5:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
-	e5:SetCode(EVENT_SPSUMMON_SUCCESS)
+	e5:SetType(EFFECT_TYPE_FIELD)
+	e5:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+	e5:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
+	e5:SetRange(LOCATION_MZONE)
+	e5:SetTargetRange(1,0)
 	e5:SetCondition(s.lockcon)
-	e5:SetOperation(s.lockop)
+	e5:SetTarget(aux.TRUE)
 	c:RegisterEffect(e5)
 	--5+ materials: banish 1 Cyberse from GY; destroy 1 opponent's card
 	local e6=Effect.CreateEffect(c)
@@ -94,22 +97,9 @@ end
 function s.immval(e,re)
 	return true
 end
-function s.lockcon(e,tp,eg,ep,ev,re,r,rp)
+function s.lockcon(e)
 	local c=e:GetHandler()
-	return c:IsSummonType(SUMMON_TYPE_FUSION) and s.matcount(c)>=4
-end
-function s.splimit(e,c,sump,sumtype,sumpos,targetp,se)
-	return true
-end
-function s.lockop(e,tp,eg,ep,ev,re,r,rp)
-	local e1=Effect.CreateEffect(e:GetHandler())
-	e1:SetType(EFFECT_TYPE_FIELD)
-	e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
-	e1:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
-	e1:SetTargetRange(1,0)
-	e1:SetTarget(s.splimit)
-	e1:SetReset(RESET_PHASE+PHASE_END)
-	Duel.RegisterEffect(e1,tp)
+	return c:IsSummonType(SUMMON_TYPE_FUSION) and c:IsStatus(STATUS_SPSUMMON_TURN) and s.matcount(c)>=4
 end
 function s.descon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

@@ -1,29 +1,31 @@
 --Stained Scioness Silia
 local s,id=GetID()
+local STRING_ID=132408495
 local SET_STAIN=0xbc5
 s.listed_series={SET_STAIN}
 function s.initial_effect(c)
 	Duel.EnableGlobalFlag(GLOBALFLAG_DECK_REVERSE_CHECK)
 	--Fusion Summon 1 "Stain" Fusion Monster
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetRange(LOCATION_HAND)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetCondition(s.fuscon)
+	e1:SetCost(s.fuscost)
 	e1:SetTarget(s.fustg)
 	e1:SetOperation(s.fusop)
 	c:RegisterEffect(e1)
 	--Send 1 "Stain" card from Deck to GY, then add it
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOGRAVE+CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_TO_GRAVE)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
-	e2:SetCountLimit(1,id+100,EFFECT_COUNT_CODE_OATH)
+	e2:SetCountLimit(1,id+100+EFFECT_COUNT_CODE_OATH)
 	e2:SetCost(s.thcost)
 	e2:SetTarget(s.thtg)
 	e2:SetOperation(s.thop)
@@ -43,6 +45,12 @@ function s.fusfilter(c,e,tp,mg,chkf)
 	return c:IsSetCard(SET_STAIN) and c:IsType(TYPE_FUSION)
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false)
 		and c:CheckFusionMaterial(mg,nil,chkf)
+end
+function s.fuscost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(function(c) return c:IsSetCard(SET_STAIN) and c:IsType(TYPE_FUSION) end,tp,LOCATION_EXTRA,0,1,nil) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
+	local g=Duel.SelectMatchingCard(tp,function(c) return c:IsSetCard(SET_STAIN) and c:IsType(TYPE_FUSION) end,tp,LOCATION_EXTRA,0,1,1,nil)
+	Duel.ConfirmCards(1-tp,g)
 end
 function s.fustg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local chkf=tp

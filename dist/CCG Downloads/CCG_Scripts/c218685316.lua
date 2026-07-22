@@ -1,18 +1,19 @@
 --Stargazer of the Stained
 local s,id=GetID()
+local STRING_ID=132685316
 local SET_STAIN=0xbc5
 s.listed_series={SET_STAIN}
 function s.initial_effect(c)
 	Duel.EnableGlobalFlag(GLOBALFLAG_DECK_REVERSE_CHECK)
 	--If a card leaves your opponent's Deck
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SEARCH+CATEGORY_TOHAND)
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_MOVE)
 	e1:SetRange(LOCATION_HAND+LOCATION_MZONE)
 	e1:SetProperty(EFFECT_FLAG_DELAY)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetCondition(s.thcon)
 	e1:SetCost(s.thcost)
 	e1:SetTarget(s.thtg)
@@ -20,11 +21,11 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Special Summon 1 face-up listed "Stain" monster from your opponent's Deck
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_GRAVE)
-	e2:SetCountLimit(1,id+100,EFFECT_COUNT_CODE_OATH)
+	e2:SetCountLimit(1,id+100+EFFECT_COUNT_CODE_OATH)
 	e2:SetCondition(s.spcon)
 	e2:SetCost(aux.bfgcost)
 	e2:SetTarget(s.sptg)

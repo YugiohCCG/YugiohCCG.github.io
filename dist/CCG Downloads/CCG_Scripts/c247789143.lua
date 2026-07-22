@@ -1,5 +1,6 @@
 --Stained Sorceress Silphia
 local s,id=GetID()
+local STRING_ID=133789143
 local SET_STAIN=0xbc5
 s.listed_series={SET_STAIN}
 function s.initial_effect(c)
@@ -19,19 +20,19 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Shuffle 1 "Stain" monster into opponent's Deck next Standby Phase
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_TODECK)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
-	e2:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e2:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e2:SetCondition(s.tdcon)
 	e2:SetTarget(s.tdtg)
 	e2:SetOperation(s.tdop)
 	c:RegisterEffect(e2)
 	--Once per Chain, when your opponent activates a card or effect
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_ATKCHANGE)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_CHAINING)
@@ -100,12 +101,12 @@ end
 function s.chaintg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	local b1=c:IsFaceup()
-	local b2=c:IsFaceup() and c:GetAttack()>=2000
+	local b2=c:IsFaceup() and c:GetAttack()>=2000 and not c:IsHasEffect(EFFECT_REVERSE_UPDATE)
 		and Duel.IsExistingMatchingCard(s.banpairfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil,tp)
 	if chk==0 then return b1 or b2 end
 	local op=aux.SelectFromOptions(tp,
-		{b1,aux.Stringid(id,1),1},
-		{b2,aux.Stringid(id,2),2})
+		{b1,aux.Stringid(STRING_ID,1),1},
+		{b2,aux.Stringid(STRING_ID,2),2})
 	e:SetLabel(op)
 	if op==1 then
 		e:SetCategory(CATEGORY_ATKCHANGE)
@@ -145,14 +146,15 @@ function s.chainop(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 		c:RegisterEffect(e1)
 	else
-		if c:GetAttack()<2000 then return end
+		if c:GetAttack()<2000 or c:IsHasEffect(EFFECT_REVERSE_UPDATE) then return end
+		local atk=c:GetAttack()
 		local e1=Effect.CreateEffect(c)
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetCode(EFFECT_UPDATE_ATTACK)
 		e1:SetValue(-2000)
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 		c:RegisterEffect(e1)
-		if not (c:IsRelateToEffect(e) and c:IsFaceup()) then return end
+		if not (c:IsRelateToEffect(e) and c:IsFaceup() and c:GetAttack()==atk-2000) then return end
 		local g1=Duel.GetMatchingGroup(s.banfilter,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
 		local g2=Duel.GetMatchingGroup(s.stainfilter,tp,LOCATION_MZONE,0,nil)
 		if #g1==0 or #g2==0 then return end

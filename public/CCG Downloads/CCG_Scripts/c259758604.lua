@@ -1,11 +1,12 @@
 --Charmelia Deal
 local s,id=GetID()
+local STRING_ID=133758604
 local SET_CHARMELIA=0x12b1
 local CARD_CHARMELIA_PRAY=259241946
 function s.initial_effect(c)
 	--Activate and add a "Charmelia" Ritual Monster and/or Ritual Spell
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -27,7 +28,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--If sent to the GY by a "Charmelia" monster effect: place this card
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,1))
+	e4:SetDescription(aux.Stringid(STRING_ID,1))
 	e4:SetCategory(CATEGORY_LEAVE_GRAVE)
 	e4:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e4:SetCode(EVENT_TO_GRAVE)

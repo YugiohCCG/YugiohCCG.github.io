@@ -1,11 +1,12 @@
 --PRIESTESS OF NEPHTHYS
 local s,id=GetID()
+local STRING_ID=133964444
 local SET_NEPHTHYS=0x11f
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--If Special Summoned: destroy 1 "Nephthys" monster from your Deck
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_DESTROY)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetProperty(EFFECT_FLAG_DELAY)
@@ -16,7 +17,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Shuffle this card from the hand into the Deck; add 1 "Nephthys" Spell/Trap
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TODECK+CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_HAND)
@@ -40,7 +41,18 @@ function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.SelectMatchingCard(tp,s.desfilter,tp,LOCATION_DECK,0,1,1,nil,e):GetFirst()
 	if not tc then return end
 	Duel.ConfirmCards(1-tp,tc)
-	Duel.Destroy(tc,REASON_EFFECT,LOCATION_GRAVE)
+	if Duel.Destroy(tc,REASON_EFFECT,LOCATION_GRAVE)==0 then return end
+	Duel.BreakEffect()
+	local te,ceg,cep,cev,cre,cr,crp=tc:CheckActivateEffect(true,true,true)
+	if not te then return end
+	local tg=te:GetTarget()
+	local op=te:GetOperation()
+	if tg then
+		tg(te,tp,ceg,cep,cev,cre,cr,crp,1)
+	end
+	if op then
+		op(te,tp,ceg,cep,cev,cre,cr,crp)
+	end
 end
 function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

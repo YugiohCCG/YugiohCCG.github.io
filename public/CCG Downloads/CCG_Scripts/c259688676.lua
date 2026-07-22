@@ -1,6 +1,6 @@
 --Herald of White Light
 local s,id=GetID()
-local STRING_ID=id
+local STRING_ID=133688676
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),1)
@@ -19,7 +19,6 @@ function s.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
 	e2:SetCode(EVENT_TO_GRAVE)
-	e2:SetCountLimit(1,id)
 	e2:SetCondition(s.thcon)
 	e2:SetTarget(s.thtg)
 	e2:SetOperation(s.thop)
@@ -32,7 +31,6 @@ function s.initial_effect(c)
 	e3:SetCode(EVENT_CHAINING)
 	e3:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DAMAGE_CAL)
 	e3:SetRange(LOCATION_GRAVE)
-	e3:SetCountLimit(1,id+100)
 	e3:SetCondition(s.negcon)
 	e3:SetCost(s.negcost)
 	e3:SetTarget(s.negtg)
@@ -82,7 +80,7 @@ function s.costfilter(c)
 end
 function s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsAbleToRemoveAsCost()
+	if chk==0 then return c:IsAbleToRemoveAsCost() and aux.NecroValleyFilter()(c)
 		and Duel.IsExistingMatchingCard(s.costfilter,tp,LOCATION_HAND,0,1,nil) end
 	Duel.Remove(c,POS_FACEUP,REASON_COST)
 	Duel.DiscardHand(tp,s.costfilter,1,1,REASON_COST+REASON_DISCARD)

@@ -1,10 +1,11 @@
 --The Green Frute
 local s,id=GetID()
+local STRING_ID=133745087
 local SET_FRUTE=0x813
 function s.initial_effect(c)
 	--Tribute 1 WATER monster; Special Summon this card face-down
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_RELEASE+CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_HAND+LOCATION_GRAVE)
@@ -15,7 +16,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If Tributed: send 1 "Frute" card to the GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOGRAVE)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_RELEASE)
@@ -70,7 +71,7 @@ function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local b2=fd and Duel.IsExistingMatchingCard(s.stfilter,tp,LOCATION_DECK,0,1,nil)
 	if chk==0 then return b1 or b2 end
 	if b1 and b2 then
-		e:SetLabel(Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3)))
+		e:SetLabel(Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3)))
 	elseif b2 then
 		e:SetLabel(1)
 	else

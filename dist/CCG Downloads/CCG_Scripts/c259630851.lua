@@ -1,7 +1,7 @@
 --A.I.P Ex Assimilation
 local s,id=GetID()
 local SET_AIP=0xa979
-local STRING_ID=id
+local STRING_ID=133630851
 local AIP_EX_XYZ={
 	[259465391]=true,
 	[259097228]=true,
@@ -60,17 +60,23 @@ function s.ctop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetControl(tc,tp)>0 then
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)
+		e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 		e1:SetCode(EFFECT_DISABLE)
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 		tc:RegisterEffect(e1)
 		local e2=e1:Clone()
 		e2:SetCode(EFFECT_DISABLE_EFFECT)
 		tc:RegisterEffect(e2)
-		if EFFECT_ADD_SETCODE then
+		if EFFECT_DISABLE_TRAPMONSTER and tc:IsType(TYPE_TRAPMONSTER) then
 			local e3=e1:Clone()
-			e3:SetCode(EFFECT_ADD_SETCODE)
-			e3:SetValue(SET_AIP)
+			e3:SetCode(EFFECT_DISABLE_TRAPMONSTER)
 			tc:RegisterEffect(e3)
+		end
+		if EFFECT_ADD_SETCODE then
+			local e4=e1:Clone()
+			e4:SetCode(EFFECT_ADD_SETCODE)
+			e4:SetValue(SET_AIP)
+			tc:RegisterEffect(e4)
 		end
 	end
 end
@@ -92,6 +98,7 @@ function s.gyop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.tdfilter),tp,LOCATION_GRAVE,0,1,1,nil)
 	if #g>0 and Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 then
+		Duel.BreakEffect()
 		Duel.Draw(tp,1,REASON_EFFECT)
 	end
 end

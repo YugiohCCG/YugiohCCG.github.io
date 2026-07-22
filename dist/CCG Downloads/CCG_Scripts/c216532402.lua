@@ -1,13 +1,14 @@
 --SACRED FEATHER OF NEPHTHYS
 local s,id=GetID()
+local STRING_ID=132532402
 local SET_NEPHTHYS=0x11f
-local CARD_CONDUCTOR_NEPHTHYS=84541257
+local CARD_CONDUCTOR_NEPHTHYS=8454126
 local CARD_DEVOTEE_NEPHTHYS=88176533
 local CARD_PRIESTESS_NEPHTHYS=211964444
 function s.initial_effect(c)
 	--Activate and Ritual Summon
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_RELEASE+CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -16,7 +17,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If a card is destroyed: banish this card; destroy 1 card you control, then place 1 Trap
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_DESTROY)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_DESTROYED)
@@ -88,7 +89,7 @@ function s.ritop(e,tp,eg,ep,ev,re,r,rp)
 	if not (cannormal or candeck) then return end
 	local useddeck=false
 	if cannormal and candeck then
-		useddeck=Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3))==1
+		useddeck=Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))==1
 	elseif candeck then
 		useddeck=true
 	end

@@ -1,14 +1,10 @@
 local s,id=GetID()
 local SET_GRAYSCALE=SET_GRAYSCALE or 0x575d
-local STRING_ID=id
+local STRING_ID=133624110
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--Link Summon procedure
-	if Link and Link.AddProcedure then
-		Link.AddProcedure(c,s.matfilter,2,4,s.lcheck)
-	elseif aux.AddLinkProcedure then
-		aux.AddLinkProcedure(c,s.matfilter,2,4,s.lcheck)
-	end
+	aux.AddLinkProcedure(c,s.matfilter,2,4,s.lcheck)
 	--Cannot be used as Link Material, except for a "Grayscale" monster
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_SINGLE)

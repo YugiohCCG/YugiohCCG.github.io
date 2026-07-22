@@ -1,5 +1,6 @@
 --A Stainless Story
 local s,id=GetID()
+local STRING_ID=133970073
 local SET_STAIN=0xbc5
 local CARD_BRIA=225091736
 local CARD_DANTE=216958556
@@ -18,18 +19,18 @@ function s.initial_effect(c)
 	Duel.EnableGlobalFlag(GLOBALFLAG_DECK_REVERSE_CHECK)
 	--Send 1 "Stain" monster; apply its Summon effect
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetCondition(s.actcon)
 	e1:SetTarget(s.tgtg)
 	e1:SetOperation(s.tgop)
 	c:RegisterEffect(e1)
 	--Banish this card; each player draws 1 card
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_DRAW)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_GRAVE)
@@ -42,8 +43,9 @@ function s.actcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetFieldGroupCount(tp,0,LOCATION_ONFIELD)>Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,0)
 end
 function s.sendfilter(c,tp)
-	return c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and c:IsAbleToGrave()
-		and s.copy_codes[c:GetCode()] and (c:IsControler(tp) or c:IsFaceup())
+	return (c:IsControler(tp) or c:IsFaceup()) and c:IsSetCard(SET_STAIN)
+		and c:IsType(TYPE_MONSTER) and c:IsAbleToGrave()
+		and s.copy_codes[c:GetCode()]
 end
 function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.sendfilter,tp,LOCATION_DECK,LOCATION_DECK,1,nil,tp) end
@@ -72,6 +74,7 @@ function s.ownstain(c,tp)
 	return c:IsControler(tp) and c:IsSetCard(SET_STAIN) and c:IsAbleToHand()
 end
 function s.briafilter(c,tp)
+	if c:IsLocation(LOCATION_REMOVED) and not c:IsFaceup() then return false end
 	if c:IsLocation(LOCATION_GRAVE) then
 		return (c:IsAbleToDeck() and aux.NecroValleyFilter(Card.IsAbleToDeck)(c))
 			or (s.ownstain(c,tp) and aux.NecroValleyFilter(Card.IsAbleToHand)(c))
@@ -84,7 +87,7 @@ function s.briaop(e,tp,sc)
 	local tc=Duel.SelectMatchingCard(tp,s.briafilter,tp,LOCATION_GRAVE+LOCATION_REMOVED,LOCATION_GRAVE+LOCATION_REMOVED,1,1,nil,tp):GetFirst()
 	if not tc then return end
 	local done=false
-	if s.ownstain(tc,tp) and Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3))==0 then
+	if s.ownstain(tc,tp) and Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))==0 then
 		if tc:IsLocation(LOCATION_GRAVE) and not aux.NecroValleyFilter(Card.IsAbleToHand)(tc) then return end
 		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
 			Duel.ConfirmCards(1-tp,tc)
@@ -117,10 +120,11 @@ function s.fenessop(e,tp,sc)
 	if not Duel.IsExistingMatchingCard(s.fenessfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local tc=Duel.SelectMatchingCard(tp,s.fenessfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil):GetFirst()
-	if not (tc and tc:IsFaceup() and aux.NegateAnyFilter(tc)) then return end
+	if not (tc and tc:IsFaceup() and aux.NegateAnyFilter(tc) and tc:IsCanBeDisabledByEffect(e,false)) then return end
 	Duel.NegateRelatedChain(tc,RESET_TURN_SET)
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_SINGLE)
+	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 	e1:SetCode(EFFECT_DISABLE)
 	e1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
 	tc:RegisterEffect(e1)
@@ -155,7 +159,7 @@ function s.silasop(e,tp)
 	local tc=Duel.SelectMatchingCard(tp,s.silasfilter,tp,LOCATION_DECK,0,1,1,nil,tp):GetFirst()
 	if not tc then return end
 	if tc:IsAbleToHand() and (not (tc:IsSSetable() and Duel.GetLocationCount(tp,LOCATION_SZONE)>0)
-		or Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,4))==0) then
+		or Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,4))==0) then
 		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
 			Duel.ConfirmCards(1-tp,tc)
 		end

@@ -1,5 +1,6 @@
 --Eclipse Observer Baleygr
 local s,id=GetID()
+local STRING_ID=133193076
 local SET_ECLIPSE=0xf2f4
 local SET_ECLIPSE_OBSERVER=0xeb17
 local OBSERVER_MONSTERS={
@@ -49,7 +50,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 	--Copy an "Eclipse" Quick-Play Spell's activation effect
 	local e5=Effect.CreateEffect(c)
-	e5:SetDescription(aux.Stringid(id,0))
+	e5:SetDescription(aux.Stringid(STRING_ID,0))
 	e5:SetType(EFFECT_TYPE_QUICK_O)
 	e5:SetCode(EVENT_FREE_CHAIN)
 	e5:SetRange(LOCATION_MZONE)
@@ -88,26 +89,29 @@ function s.cpcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.cpfilter(c)
 	return c:IsSetCard(SET_ECLIPSE) and c:IsType(TYPE_QUICKPLAY)
-		and c:IsAbleToRemoveAsCost() and c:CheckActivateEffect(true,true,false)~=nil
+		and c:IsAbleToRemoveAsCost() and aux.NecroValleyFilter()(c)
+		and c:CheckActivateEffect(true,true,false)~=nil
 end
 function s.cpcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	e:SetLabel(1)
-	if chk==0 then return true end
-end
-function s.cptg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then
-		if e:GetLabel()==0 then return false end
-		e:SetLabel(0)
-		return Duel.IsExistingMatchingCard(s.cpfilter,tp,LOCATION_GRAVE,0,1,nil)
-	end
-	e:SetLabel(0)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.cpfilter,tp,LOCATION_GRAVE,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local tc=Duel.SelectMatchingCard(tp,s.cpfilter,tp,LOCATION_GRAVE,0,1,1,nil):GetFirst()
+	if not tc then return end
 	local te,ceg,cep,cev,cre,cr,crp=tc:CheckActivateEffect(true,true,true)
-	Duel.Remove(tc,POS_FACEUP,REASON_COST)
+	if not te or Duel.Remove(tc,POS_FACEUP,REASON_COST)==0 then return end
 	e:SetProperty(te:GetProperty())
+	s.copy_args=s.copy_args or {}
+	s.copy_args[e]={ceg,cep,cev,cre,cr,crp}
+	e:SetLabelObject(te)
+end
+function s.cptg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return true end
+	local te=e:GetLabelObject()
+	local args=s.copy_args and s.copy_args[e]
+	if not te or not args then return end
+	e:SetLabelObject(nil)
 	local tg=te:GetTarget()
-	if tg then tg(e,tp,ceg,cep,cev,cre,cr,crp,1) end
+	if tg then tg(e,tp,args[1],args[2],args[3],args[4],args[5],args[6],1) end
 	te:SetLabelObject(e:GetLabelObject())
 	e:SetLabelObject(te)
 	Duel.ClearOperationInfo(0)
@@ -119,4 +123,5 @@ function s.cpop(e,tp,eg,ep,ev,re,r,rp)
 		local op=te:GetOperation()
 		if op then op(e,tp,eg,ep,ev,re,r,rp) end
 	end
+	if s.copy_args then s.copy_args[e]=nil end
 end

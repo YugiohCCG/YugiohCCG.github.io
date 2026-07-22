@@ -4,14 +4,82 @@ This repo is mid-work on custom YGO Omega card scripting. Future chats should tr
 
 ## Current State
 
-- Workspace: `C:\Applications\YugiohCCG.github.io`
-- Official Omega script reference: `C:\Applications\YugiohCCG.github.io\tmp\omega_scripts`
+- Workspace: `C:\Manual Files\Applications\YugiohCCG.github.io`
+- Official Omega script reference: `C:\Manual Files\Applications\YugiohCCG.github.io\tmp\omega_scripts`
 - Public custom scripts: `public/CCG Downloads/CCG_Scripts`
 - Public DB: `public/CCG Downloads/CCG_Database/CCG_v1.db`
 - Local Omega scripts loaded by Omega: `C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts`
 - Local Omega DB: `C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Databases\CCG_v1.db`
 
 The user considers `tmp\omega_scripts` the source of truth for best practices. Before scripting a new effect, search there for official cards with similar behavior and copy their structure where possible.
+
+## Ultimate Lua Audit - 2026-07-20 Fourth Pass Current
+
+Completed a primary clause-by-clause audit and an independent cross-review of all 577 cards against the current 17,532-file Omega corpus.
+
+- Final classifications: 267 pass, 187 fixed, 123 need manual ruling/in-engine confirmation. Manual takes precedence, so some manual rows also received confirmed fixes.
+- Public scripts: 592/592 syntax and strict `initial_effect` smoke pass (577 active plus 15 preserved prototypes); 1,562 effects created, 3,479 callbacks attached, and 1,710 direct registrations observed.
+- Audit delta: 253 standalone Lua files changed (252 existing plus new normal-monster script `c259275822.lua`); no baseline script was removed.
+- DB/message audit: 577 source cards and 1,184 currently referenced `aux.Stringid` slots, with zero missing rows, metadata mismatches, blank messages, or placeholders.
+- Corrected official/interoperable set codes for Altergeist, Cardian, Gaia, Galaxy, Harpie, Stardust, Thunder Dragon, Stellaer, and Windborne; Shining Brigade, Crying Chaos, and Chrono-Saur Lua/DB mismatches were also removed.
+- Public, installed Omega, `dist`, and both ZIP payloads are synchronized at 592/592 script hash parity. Public/installed/`dist` DB SHA-256 is `73b864429c3925672ffef433068e1008daa0a57a288f9fbc6b988394d73f0c34`.
+- `npm run build`, `npm run verify:public-cards`, archive payload checks, ID-map/cards-data parity, and `git diff --check` all pass.
+- Full 577-row results, exact changed filenames, all 168 official references, verification commands, hashes, and live-test risks: `docs/lua-audit-2026-07-20-ultimate-fourth-pass.md`.
+- Detailed manual-review work queue for all 123 flagged cards: `docs/lua-manual-review-guide-2026-07-20.md`.
+
+Do not describe all 577 cards as fully engine-certified. The 123 manual rows are compile/load clean but need scripted Omega duel scenarios or an authoritative ruling for custom mechanics, ambiguous wording, copied/rewritten effects, unusual material selection, or UI behavior.
+
+## Extensive Lua Audit - 2026-07-20 Third Pass Current
+
+Completed an independent third pass across all 481 public Lua files and the current 17,532-file recursive official/reference corpus.
+
+- 466 scripts map to active cards; the same 15 untracked orphan prototype scripts remain preserved.
+- 13 active scripts changed.
+- Eight printed `negate that effect` effects were corrected from activation negation to the official `IsChainDisablable` / `CATEGORY_DISABLE` / `NegateEffect` pattern.
+- Three existing effect negators received the matching chain-disablable predicate/category.
+- `Eldora, the Intergalactic Empire` now lets the player decline its printed `then you can Set` follow-up.
+- `Priestess of Nephthys` again applies the destroyed monster's Standby Phase effect through the official copied-effect idiom; the current payload had lost this previously documented behavior.
+- Verification passed: public/installed/`dist` syntax `481/481`; 481-script registration smoke with 1,294 effect creations, 2,965 callback assignments, and zero failures; zero unresolved named callbacks; zero custom-only API members; public/install/`dist`/ZIP parity; DB and generated-artifact parity; and `npm run build`.
+- Public/installed/`dist` DB SHA-256 remains `D077D2D242AA7143D4C9F60A56BA226EF32CB78ECC35B508E5A1CD6742A203C1`.
+- Full findings and changed IDs: `docs/lua-audit-2026-07-20-third-pass.md`.
+
+The 15 orphan scripts and 180 blank `aux.Stringid` uses across 71 active scripts remain explicitly out of scope. Live-test `Priestess of Nephthys`, the corrected effect negators across multiple card types, and Eldora's optional follow-up; retain the earlier ruling checks listed below.
+
+Reusable next-pass prompt:
+
+> Continue from `docs/lua-audit-2026-07-20-third-pass.md` and `docs/session-handoff-card-scripting.md`. Treat `tmp/omega_scripts` as the official Omega source of truth. Preserve the dirty worktree. Audit active cards individually and effect-by-effect, then rerun syntax, registration, API, DB/message, installed/ZIP/`dist` parity, and build checks. Keep the 15 orphan scripts and 71-card blank-message backlog separate unless explicitly authorized.
+
+## Extensive Lua Audit - 2026-07-19 Second Pass Prior
+
+Re-audited all 481 public Lua files effect-by-effect and mechanically against the 17,470-file official Omega corpus in `tmp/omega_scripts`.
+
+- 466 scripts map to current `cards.json`/DB cards. The other 15 are preserved untracked Arckcestial/Bau prototype scripts with no current card, ID-map, or DB row.
+- 140 scripts changed relative to the synchronized first-pass baseline: 132 active scripts and 8 orphan scripts receiving mechanical compatibility fixes.
+- Major second-pass fixes covered one incomplete effect suite (`Grayling`), one missing `end` that hid registered callbacks (`Grayscale Awakening: Revelation`), official procedure/API compatibility, 24 missing target flags, broad Necrovalley activation/resolution legality, optional-trigger delay behavior, three Grayscale discards incorrectly implemented as costs, and two effects selecting cards outside the opponent's field.
+- Final validation: public/installed/`dist` syntax `481/481`; strict load/registration smoke `481` scripts and `4,325` callbacks with zero scope or nil-registration failures; zero custom-only API names; zero unexplained procedure/revive-limit findings; zero public/install/`dist` or ZIP payload mismatches; DB/DB-ZIP/generated-artifact parity; and `npm run build` passed.
+- Public/installed/`dist` DB SHA-256 remains `D077D2D242AA7143D4C9F60A56BA226EF32CB78ECC35B508E5A1CD6742A203C1`.
+- Separate preserved UI debt: 180 blank `aux.Stringid` uses across 71 active older scripts. These are blank effect descriptions/prompts, not Lua registration failures; do not invent wording without a dedicated DB-message pass.
+- Detailed findings, exact changed IDs, official analogs, and verification evidence: `docs/lua-audit-2026-07-19-second-pass.md`.
+
+Remaining live/ruling checks are `Devotee of Fire`, copied activation behavior, `Grayrover` hand Extra Link Material, `Urphiel's Feather Downpour`, and targeted live checks of the new Necrovalley and Grayscale resolution fixes.
+
+Reusable next-pass prompt:
+
+> Continue from `docs/lua-audit-2026-07-19-second-pass.md` and `docs/session-handoff-card-scripting.md`. Treat `tmp/omega_scripts` as the official Omega source of truth. Audit cards individually and effect-by-effect; gather `cards.json` text, Omega ID, Lua, public/installed DB rows, and exact official analog before editing. Preserve the dirty worktree. First decide whether the 15 orphan Arckcestial/Bau scripts should be restored or removed, and whether the 71-card blank `aux.Stringid` backlog is in scope. After fixes, rerun syntax, strict callback registration, DB/message checks, public/install/ZIP/`dist` parity, and `npm run build`.
+
+## Extensive Lua Audit - 2026-07-17 Prior
+
+Audited all 481 standalone custom scripts mechanically against the official Omega constants/helpers and reviewed the latest 27 generated cards individually against `cards.json`, ID mapping, public/installed DB rows, and official analogs.
+
+- Latest 27: 23 fixed, 3 passed without Lua changes, and 1 (`Devotee of Fire`) needs a manual wording/ruling decision.
+- Major correction: `Urphiel's Feather Downpour` had an unrelated negate-all script and now implements its printed banish effects.
+- Corpus correction: `Grayhex`, `Graylock`, and `Grayrover` had nested duplicate `initial_effect` definitions that prevented later registrations; all now have one initializer. `Grayrover` also now uses the official Extra Link Material pattern.
+- Additional compatibility fixes covered invalid Fusion helpers, unsupported hints/reset constants, invalid chain-info fields, announcement arguments, detach events, Necrovalley movement, copied activation validation, zone legality, material restrictions, and effect scope.
+- Full verification passed for public/installed/dist syntax and `initial_effect` smoke (`481` each), script and ZIP parity, DB/DB-ZIP parity, DB coverage (`586/586`), card/ID-map artifacts, and `npm run build`.
+- Public/installed/dist DB SHA-256: `D077D2D242AA7143D4C9F60A56BA226EF32CB78ECC35B508E5A1CD6742A203C1`.
+- Detailed per-card findings and official references: `docs/lua-audit-2026-07-17.md`.
+
+Remaining live checks: resolve `Devotee of Fire`'s missing second-sentence activation condition, then spot-check copied activation behavior, `Grayrover`'s hand Extra Link Material prompt, and `Urphiel's Feather Downpour`'s optional second banish.
 
 ## Custom Card Batch - 2026-06-23 Current
 
@@ -21,13 +89,13 @@ Generated and bug-tested the next 10-card Nautica/Bob batch:
 | --- | --- | ---: | --- | --- |
 | Melody Merheart & the Nautical Coral Reef | CARD-0200 | 228040066 | Pass | Added cannot Normal Summon/Set, opponent Summon-triggered self-summon, and optional Necrovalley-safe GY add. |
 | Emma Oceannus & the Nautical Coastlines | CARD-00201 | 214349717 | Pass | Added cannot Normal Summon/Set, opponent Summon-triggered self-summon, and optional immediate "Nautica" Xyz Summon. No OPT was added because source has none. |
-| Bobbie Bluefin & the Nautical Nocturnes | CARD-00202 | 259114562 | Needs manual ruling | Implemented the opponent hand summon as a forced Special Summon in Attack Position with ATK 0, then Nautica-only negate. Confirm whether the "Normal or Special Summons" wording requires unsupported forced Normal Summon handling. |
-| Scarlet Seareef & the Nautical Creatures | CARD-00203 | 220749574 | Needs manual ruling | Added own Special Summon procedure with Necrovalley-safe GY bottom-deck cost, Xyz Level 1 treatment for Aqua Xyz Summons, hand discard/search, and summon draw/opponent summon. Bug-test fixed the GY cost filter to require both `IsAbleToDeckAsCost()` and Necrovalley legality. Confirm opponent summon wording and bottom-deck "any order" behavior in-engine. |
-| Evander Coldwater & the Nautical Abyss | CARD-00204 | 225109525 | Needs manual ruling | Added 2+ Level 1 Aqua Xyz procedure, ATK gain for "Nautica" materials, and detach/return/opponent summon Quick Effect. Confirm opponent "Normal or Special Summons" wording. |
-| Nautical Backwashing & Oceanic Waves | CARD-00205 | 223158720 | Needs manual ruling | Added shared once-per-turn Trap activation and GY effect, Necrovalley-safe GY return/recycle, and opponent summon after the return. Confirm opponent "Normal or Special Summons" wording. |
+| Bobbie Bluefin & the Nautical Nocturnes | CARD-00202 | 259114562 | Fixed / needs live-duel confirmation | Opponent hand summon now supports the Special Summon path plus a Normal Summon fallback when Special Summon is unavailable, applies ATK 0, and uses official Trap Monster disable coverage for the Nautica-only negate. |
+| Scarlet Seareef & the Nautical Creatures | CARD-00203 | 220749574 | Fixed / needs live-duel confirmation | Added own Special Summon procedure with Necrovalley-safe GY bottom-deck cost, Xyz Level 1 treatment for Aqua Xyz Summons, hand discard/search, summon draw, and opponent hand summon with Normal Summon fallback. Confirm bottom-deck "any order" behavior in-engine. |
+| Evander Coldwater & the Nautical Abyss | CARD-00204 | 225109525 | Fixed / needs live-duel confirmation | Added 2+ Level 1 Aqua Xyz procedure, ATK gain for "Nautica" materials, and detach/return/opponent summon Quick Effect with Normal Summon fallback. |
+| Nautical Backwashing & Oceanic Waves | CARD-00205 | 223158720 | Fixed / needs live-duel confirmation | Trap activation and GY effect now share the printed one-effect-per-turn bucket; opponent hand summon supports Normal Summon fallback; GY return/recycle remains Necrovalley-safe. Confirm bottom-deck "any order" behavior in-engine. |
 | Melissa Oceanheart & the Nautical Seabed | CARD-00206 | 238711686 | Pass | Added 2+ Level 1 Aqua Xyz procedure, battle/effect destruction protection while carrying a "Nautica" material, and detach 2 to Set a "Nautica" Spell/Trap or add a "Nautica" monster. |
-| Exploring the Nautical Waters | CARD-00207 | 248946297 | Needs manual ruling | Added activation HOPT, WATER Special Summon turn lock using `Duel.AddCustomActivityCounter`, search, opponent hand/Deck Special Summon in Attack Position with ATK 0, and Deck-summoned negate. Confirm opponent "Normal or Special Summons" wording. |
-| Nautical Adventures & Torrential Seas | CARD-00208 | 218905439 | Needs manual ruling | Added target/return both monsters, opponent hand summon, and GY attach to your WATER Xyz monster with `EFFECT_TO_GRAVE_REDIRECT` so this card is banished when detached. Confirm opponent summon wording and detach redirect in live duel. |
+| Exploring the Nautical Waters | CARD-00207 | 248946297 | Fixed / needs live-duel confirmation | WATER Special Summon turn lock now gates activation as an oath-style cost; opponent hand/Deck summon supports Normal Summon fallback; Deck-summoned negate remains in place. |
+| Nautical Adventures & Torrential Seas | CARD-00208 | 218905439 | Fixed / needs live-duel confirmation | Target/return both monsters now accounts for the returned opponent monster freeing a zone, opponent hand summon supports Normal Summon fallback, and GY attach uses the local overlay-material redirect pattern so this card is banished when detached. |
 | Bob | CARD-00209 | 259722826 | Pass | Normal Tuner script contains empty `initial_effect`. |
 
 Implementation notes:
@@ -37,6 +105,8 @@ Implementation notes:
 - Added DB `aux.Stringid` messages for the nine effect scripts; `Bob` does not call `aux.Stringid`.
 - The originally requested `src/data/ccg-omega-ids.json` file is not present in this checkout; IDs were confirmed from each card's `passcode` in `src/data/cards.json` and from generated `CCG_v1_id_map.json`.
 - Synchronized public scripts, installed Omega root scripts, public/dist script zips, public/installed/dist DBs, DB zips, ID maps, `public/assets/cards.json`, and `dist`.
+- Parallel re-audit on 2026-07-03 fixed the opponent "Normal or Special Summons" branches for Bobbie, Scarlet, Evander, Nautical Backwashing, Exploring, and Nautical Adventures. The scripts use the engine-supported Special Summon path when available, with a Normal Summon fallback when Special Summon is unavailable.
+- Parallel re-audit also fixed Bobbie's Trap Monster negate coverage, Nautical Backwashing's shared OPT count code, Exploring's WATER-only Special Summon oath timing, Nautical Adventures' overlay-material banish redirect, and stale installed/zip/dist script copies for the current batch.
 
 Official/local references used:
 
@@ -49,7 +119,8 @@ Official/local references used:
 - Bottom-of-Deck cost/effect patterns: official `tmp/omega_scripts/c60516416.lua`, `tmp/omega_scripts/c61434639.lua`.
 - Overlay/attach material and redirect: official `tmp/omega_scripts/c57448410.lua`, `tmp/omega_scripts/fixed-scripts/c39829561.lua`, `tmp/omega_scripts/c100240202.lua`.
 - WATER-only Special Summon turn lock/activity counter: official `tmp/omega_scripts/c100245016.lua`, local `public/CCG Downloads/CCG_Scripts/c259264449.lua`, `c259934043.lua`.
-- Negate/reset patterns: official `tmp/omega_scripts/c61434639.lua`, `tmp/omega_scripts/c95291684.lua`.
+- Negate/reset patterns: official `tmp/omega_scripts/c61434639.lua`, `tmp/omega_scripts/c95291684.lua`, `tmp/omega_scripts/c100245037.lua`, `tmp/omega_scripts/c100259003.lua`.
+- Overlay-material redirect pattern used for Nautical Adventures follow-up: local `public/CCG Downloads/CCG_Scripts/c259219942.lua`.
 
 Verification passed:
 
@@ -64,12 +135,14 @@ Verification passed:
 - Public/installed/dist `CCG_v1.db` hash parity (`58f60d2b0b0a84b4f7b589cdc72d152e4e29a408ade150e4ab35697bdf44f5b6`) and public/dist `CCG_Database.zip` payload/hash parity.
 - Public/dist artifact parity for `assets/cards.json` and `CCG_v1_id_map.json`.
 - `npm run build` passed after final script fix with only the existing Vite large-chunk warning.
+- 2026-07-03 parallel re-audit verification: per-card `luac -p` for the 10 in-scope scripts, full public/dist/installed counterpart `luac -p` for `466` scripts, static scan found no `require`, `dofile`, or `loadfile` in the ten scripts, public/installed/dist script hash parity for the 10 IDs, public/dist `CCG_Scripts.zip` payload/hash parity for `466` scripts, public/installed/dist DB row verification for the 10 IDs, public/installed/dist `CCG_v1.db` hash parity (`c38d86d5c92b33b8b6efb4a90332c2f294f02a76336032c1e902fad760e5ac11`), public/dist `CCG_Database.zip` payload/hash parity, `CCG_v1_id_map.json` checks, and `npm run build`.
 
 Remaining live-duel risks:
 
-- Bobbie, Scarlet, Evander, Nautical Backwashing, Exploring, and Nautical Adventures: confirm whether "your opponent Normal or Special Summons" requires a real forced Normal Summon branch. Current scripts use the official, engine-supported forced opponent Special Summon pattern.
+- Bobbie, Scarlet, Evander, Nautical Backwashing, Exploring, and Nautical Adventures: scripts now use Special Summon when available and Normal Summon as a fallback. Confirm in live Omega whether the opponent must be offered an explicit choice between Normal and Special Summon when both are legal.
+- Evander and Nautical Adventures: confirm whether the opponent's returned monster should itself be eligible as the immediate hand summon after it returns to hand; current legality primarily checks existing hand options plus zone availability after the return.
 - Scarlet and Nautical Backwashing: confirm Omega's bottom-of-Deck ordering prompt is acceptable for "in any order."
-- Nautical Adventures: confirm `EFFECT_TO_GRAVE_REDIRECT` on the attached Trap correctly banishes it when detached as Xyz Material.
+- Nautical Adventures: confirm the overlay-material redirect banishes this Trap correctly when detached as Xyz Material.
 
 ## Custom Card Batch - 2026-06-23 Previous
 
@@ -1241,6 +1314,16 @@ npm run build
 - For top-of-Deck placement from Deck, use official `Duel.ShuffleDeck(tp)` then `Duel.MoveSequence(tc,SEQ_DECKTOP)`.
 - For GY/banishment access that should respect Necrovalley, use `aux.NecroValleyFilter`.
 - Always verify `aux.Stringid(id,n)` usage against DB `texts.str(n+1)`.
+- Do not pass a nine-digit custom card ID directly to `aux.Stringid`. Omega stores the
+  encoded description (`card_id * 16 + slot`) in a signed 32-bit integer, so source IDs
+  above `134217727` overflow and display as `Unknown (<negative number>)`.
+- Route custom prompts through the card's generated `STRING_ID` carrier instead. The
+  current deterministic mapping is `132000000 + (card_id % 2000000)`; keep gameplay
+  uses of `id` unchanged. `sync_omega_ccg_db.py` creates matching hidden Token rows and
+  mirrors all 16 string slots using Omega's official `Strings Placeholder` pattern.
+- After any card or message edit, run `python scripts/verify_omega_message_routes.py`.
+  It rejects unsafe description keys, missing/incorrect carrier text, invalid slots,
+  carrier collisions, and scripts that point at the wrong card's carrier.
 - Keep public scripts, installed Omega root scripts, zip contents, public DB, installed DB, and `dist` artifacts in sync before reporting completion.
 
 ## Good Next-Step Workflow

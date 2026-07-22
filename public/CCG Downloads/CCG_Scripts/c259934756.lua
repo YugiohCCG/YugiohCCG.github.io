@@ -1,5 +1,6 @@
 --JELLY LASS OF THE GRAND BLUE
 local s,id=GetID()
+local STRING_ID=133934756
 local SET_GRAND_BLUE=0x67ee
 local CARD_UMI=22702055
 local CARD_CITY_GRAND_BLUE=259679619
@@ -8,7 +9,7 @@ local CARD_GRAND_BLUE_PRINCE=259937946
 function s.initial_effect(c)
 	--Special Summon this card from your hand if you control "Umi"
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_HAND)
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Fusion Summon 1 "Grand Blue" Fusion Monster
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_HAND)
@@ -28,7 +29,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If sent to the GY by card effect: Special Summon 1 other "Grand Blue" monster from your GY
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,2))
+	e3:SetDescription(aux.Stringid(STRING_ID,2))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetProperty(EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_DELAY)
@@ -106,13 +107,17 @@ function s.gyfilter(c,e,tp,sc)
 	return c~=sc and c:IsSetCard(SET_GRAND_BLUE) and c:IsType(TYPE_MONSTER)
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENSE)
 end
+function s.gytgfilter(c,e,tp,sc)
+	return s.gyfilter(c,e,tp,sc) and c:IsCanBeEffectTarget(e)
+end
 function s.gytg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local c=e:GetHandler()
-	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter(s.gyfilter)(chkc,e,tp,c) end
+	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE)
+		and aux.NecroValleyFilter(s.gytgfilter)(chkc,e,tp,c) end
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and Duel.IsExistingTarget(aux.NecroValleyFilter(s.gyfilter),tp,LOCATION_GRAVE,0,1,c,e,tp,c) end
+		and Duel.IsExistingTarget(aux.NecroValleyFilter(s.gytgfilter),tp,LOCATION_GRAVE,0,1,c,e,tp,c) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.gyfilter),tp,LOCATION_GRAVE,0,1,1,c,e,tp,c)
+	local g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.gytgfilter),tp,LOCATION_GRAVE,0,1,1,c,e,tp,c)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,g,1,0,0)
 end
 function s.gyop(e,tp,eg,ep,ev,re,r,rp)

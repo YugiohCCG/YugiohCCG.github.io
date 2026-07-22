@@ -1,11 +1,12 @@
 --Fruteaching
 local s,id=GetID()
+local STRING_ID=133458749
 local SET_FRUTE=0x813
 local CARD_FRUTEONIA=246830897
 function s.initial_effect(c)
 	--Special Summon 1 "Frute" monster
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -15,9 +16,10 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Change 1 monster you control to face-up or face-down Defense Position
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_POSITION)
 	e2:SetType(EFFECT_TYPE_IGNITION)
+	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e2:SetRange(LOCATION_GRAVE)
 	e2:SetCountLimit(1,id+100)
 	e2:SetCondition(s.poscon)
@@ -58,7 +60,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 		and tc:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENSE)
 	local pos=POS_FACEUP_DEFENSE
 	if b1 and b2 then
-		if Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3))==1 then
+		if Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))==1 then
 			pos=POS_FACEDOWN_DEFENSE
 		end
 	elseif b2 then
@@ -90,7 +92,7 @@ function s.posop(e,tp,eg,ep,ev,re,r,rp)
 	local b2=tc:IsFaceup() and tc:IsCanTurnSet() and not Duel.IsPlayerAffectedByEffect(tp,EFFECT_DIVINE_LIGHT)
 	if not (b1 or b2) then return end
 	if b1 and b2 then
-		if Duel.SelectOption(tp,aux.Stringid(id,4),aux.Stringid(id,5))==0 then
+		if Duel.SelectOption(tp,aux.Stringid(STRING_ID,4),aux.Stringid(STRING_ID,5))==0 then
 			Duel.ChangePosition(tc,POS_FACEUP_DEFENSE)
 		else
 			Duel.ChangePosition(tc,POS_FACEDOWN_DEFENSE)

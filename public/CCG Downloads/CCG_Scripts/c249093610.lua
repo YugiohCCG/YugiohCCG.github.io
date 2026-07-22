@@ -1,5 +1,6 @@
 --Ursarctic Nordbar
 local s,id=GetID()
+local STRING_ID=133093610
 local SET_URSARCTIC=0x163
 local CARD_HEXTANIUS=244921711
 function s.initial_effect(c)
@@ -22,7 +23,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If Special Summoned: Special Summon 1 "Ursarctic" monster from your GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -33,7 +34,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--During your opponent's Standby Phase: add 1 "Ursarctic" monster
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_PHASE+PHASE_STANDBY)
@@ -45,7 +46,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--Negate the activation, and if you do, destroy that card
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,2))
+	e4:SetDescription(aux.Stringid(STRING_ID,2))
 	e4:SetCategory(CATEGORY_NEGATE+CATEGORY_DESTROY)
 	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetCode(EVENT_CHAINING)

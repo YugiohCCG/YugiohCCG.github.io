@@ -1,5 +1,6 @@
 --Talismandrake Embers
 local s,id=GetID()
+local STRING_ID=132928871
 local SET_TALISMANDRAKE=0xb47
 function s.initial_effect(c)
 	aux.EnablePendulumAttribute(c)
@@ -14,7 +15,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Special Summon 1 "Talismandrake" Fusion Monster
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_PZONE)
@@ -24,7 +25,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Draw
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_DRAW)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetProperty(EFFECT_FLAG_DELAY)
@@ -42,7 +43,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e5)
 	--Place this card from the face-up Extra Deck in the Pendulum Zone
 	local e6=Effect.CreateEffect(c)
-	e6:SetDescription(aux.Stringid(id,2))
+	e6:SetDescription(aux.Stringid(STRING_ID,2))
 	e6:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e6:SetProperty(EFFECT_FLAG_DELAY)
 	e6:SetCode(EVENT_SPSUMMON_SUCCESS)

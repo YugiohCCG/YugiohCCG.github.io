@@ -1,5 +1,6 @@
 --NiuHao - Koai
 local s,id=GetID()
+local STRING_ID=133825514
 local SET_NIUHAO=0xb69
 local SACRED_TREASURE_CODES={
 	[236542835]=true,
@@ -31,7 +32,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Detach 1 material; shuffle up to 2 "NiuHao" monsters, then banish "Sacred Treasure" Spells
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)
@@ -78,7 +79,7 @@ function s.operation(e,tp,eg,ep,ev,re,r,rp)
 	local ct=og:FilterCount(s.tdctfilter,nil)
 	if ct<=0 then return end
 	if not Duel.IsExistingMatchingCard(s.rmfilter,tp,LOCATION_DECK,0,1,nil) then return end
-	if not Duel.SelectYesNo(tp,aux.Stringid(id,1)) then return end
+	if not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local rg=Duel.SelectMatchingCard(tp,s.rmfilter,tp,LOCATION_DECK,0,1,ct,nil)
 	if #rg>0 then

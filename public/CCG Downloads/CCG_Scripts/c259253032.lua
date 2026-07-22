@@ -1,4 +1,5 @@
 local s,id=GetID()
+local STRING_ID=133253032
 local SET_GLITCHLING=0x9894
 local COUNTER_CORRUPTION=0x1994
 local CARD_BITRON=36211150
@@ -10,7 +11,7 @@ function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--If Link Summoned: add cards
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -39,14 +40,14 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--Remove counters, destroy your card, negate, gain ATK
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,1))
+	e4:SetDescription(aux.Stringid(STRING_ID,1))
 	e4:SetCategory(CATEGORY_DESTROY+CATEGORY_DISABLE+CATEGORY_ATKCHANGE)
 	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetCode(EVENT_FREE_CHAIN)
 	e4:SetRange(LOCATION_MZONE)
-	e4:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e4:SetHintTiming(0,TIMING_MAIN_END)
 	e4:SetCondition(s.ctcon)
+	e4:SetCost(s.ctcost)
 	e4:SetTarget(s.cttg)
 	e4:SetOperation(s.ctop)
 	c:RegisterEffect(e4)
@@ -102,38 +103,37 @@ function s.ownfilter(c)
 	return c:IsDestructable() and ((c:IsSetCard(SET_GLITCHLING) and c:IsType(TYPE_MONSTER))
 		or (c:IsRace(RACE_CYBERSE) and c:IsType(TYPE_NORMAL)))
 end
-function s.cttg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then
-		if chkc:IsControler(1-tp) then return chkc:IsLocation(LOCATION_MZONE) and s.oppctfilter(chkc) end
-		return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_ONFIELD) and s.ownfilter(chkc)
-	end
-	if chk==0 then return Duel.IsExistingTarget(s.oppctfilter,tp,0,LOCATION_MZONE,1,nil)
-		and Duel.IsExistingTarget(s.ownfilter,tp,LOCATION_ONFIELD,0,1,nil) end
-	Duel.RegisterFlagEffect(tp,id,RESET_PHASE+PHASE_END,0,1)
+function s.ctcost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.oppctfilter,tp,0,LOCATION_MZONE,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
-	local g1=Duel.SelectTarget(tp,s.oppctfilter,tp,0,LOCATION_MZONE,1,1,nil)
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local g2=Duel.SelectTarget(tp,s.ownfilter,tp,LOCATION_ONFIELD,0,1,1,nil)
-	g1:Merge(g2)
-	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g2,1,0,0)
-	Duel.SetOperationInfo(0,CATEGORY_DISABLE,g1,1,0,0)
+	local g=Duel.SelectMatchingCard(tp,s.oppctfilter,tp,0,LOCATION_MZONE,1,1,nil)
+	local tc=g:GetFirst()
+	local ct=tc and tc:GetCounter(COUNTER_CORRUPTION) or 0
+	if tc and ct>0 and tc:RemoveCounter(tp,COUNTER_CORRUPTION,ct,REASON_COST) then
+		e:SetLabel(ct)
+		e:SetLabelObject(tc)
+	end
+end
+function s.cttg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.ownfilter,tp,LOCATION_ONFIELD,0,1,nil) end
+	Duel.RegisterFlagEffect(tp,id,RESET_PHASE+PHASE_END,0,1)
+	Duel.SetOperationInfo(0,CATEGORY_DESTROY,nil,1,tp,LOCATION_ONFIELD)
+	Duel.SetOperationInfo(0,CATEGORY_DISABLE,e:GetLabelObject(),1,0,0)
 end
 function s.ctop(e,tp,eg,ep,ev,re,r,rp)
-	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
-	if not g then return end
-	local oc=g:Filter(Card.IsControler,nil,1-tp):GetFirst()
-	local mc=g:Filter(Card.IsControler,nil,tp):GetFirst()
-	if not (oc and oc:IsRelateToEffect(e) and oc:IsControler(1-tp)
-		and oc:IsLocation(LOCATION_MZONE) and s.oppctfilter(oc)
-		and mc and mc:IsRelateToEffect(e) and mc:IsControler(tp)
-		and mc:IsOnField() and s.ownfilter(mc)) then return end
-	local ct=oc:GetCounter(COUNTER_CORRUPTION)
-	if ct<=0 then return end
-	oc:RemoveCounter(tp,COUNTER_CORRUPTION,ct,REASON_EFFECT)
+	local oc=e:GetLabelObject()
+	local ct=e:GetLabel()
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
+	local g=Duel.SelectMatchingCard(tp,s.ownfilter,tp,LOCATION_ONFIELD,0,1,1,nil)
+	local mc=g:GetFirst()
+	if not mc then return end
 	if Duel.Destroy(mc,REASON_EFFECT)>0 then
+		if not (oc and oc:IsFaceup() and oc:IsLocation(LOCATION_MZONE)
+			and oc:IsCanBeDisabledByEffect(e,false)) then return end
 		Duel.NegateRelatedChain(oc,RESET_TURN_SET)
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)
+		e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 		e1:SetCode(EFFECT_DISABLE)
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
 		oc:RegisterEffect(e1)
@@ -141,11 +141,16 @@ function s.ctop(e,tp,eg,ep,ev,re,r,rp)
 		e2:SetCode(EFFECT_DISABLE_EFFECT)
 		e2:SetValue(RESET_TURN_SET)
 		oc:RegisterEffect(e2)
-		local e3=Effect.CreateEffect(e:GetHandler())
-		e3:SetType(EFFECT_TYPE_SINGLE)
-		e3:SetCode(EFFECT_UPDATE_ATTACK)
-		e3:SetValue(ct*200)
-		e3:SetReset(RESET_EVENT+RESETS_STANDARD)
-		e:GetHandler():RegisterEffect(e3)
+		if oc:IsType(TYPE_TRAPMONSTER) then
+			local e3=e1:Clone()
+			e3:SetCode(EFFECT_DISABLE_TRAPMONSTER)
+			oc:RegisterEffect(e3)
+		end
+		local e4=Effect.CreateEffect(e:GetHandler())
+		e4:SetType(EFFECT_TYPE_SINGLE)
+		e4:SetCode(EFFECT_UPDATE_ATTACK)
+		e4:SetValue(ct*200)
+		e4:SetReset(RESET_EVENT+RESETS_STANDARD)
+		e:GetHandler():RegisterEffect(e4)
 	end
 end

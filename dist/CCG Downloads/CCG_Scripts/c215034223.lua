@@ -1,5 +1,6 @@
 --Talismandrake Arms United
 local s,id=GetID()
+local STRING_ID=133034223
 local SET_TALISMANDRAKE=0xb47
 local CARD_SUPPRESSOR=238136421
 local CARD_HALBERD=215921734
@@ -8,23 +9,23 @@ local CARD_SHIELD=255832330
 function s.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetCost(s.cost)
 	e1:SetTarget(s.pztg)
 	e1:SetOperation(s.pzop)
 	c:RegisterEffect(e1)
 	--Equip an Arms card from the Deck
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_EQUIP)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e2:SetRange(LOCATION_GRAVE)
-	e2:SetCountLimit(1,id+100,EFFECT_COUNT_CODE_OATH)
+	e2:SetCountLimit(1,id+100+EFFECT_COUNT_CODE_OATH)
 	e2:SetCondition(s.eqcon)
 	e2:SetCost(aux.bfgcost)
 	e2:SetTarget(s.eqtg)
@@ -58,8 +59,9 @@ function s.pzop(e,tp,eg,ep,ev,re,r,rp)
 		end
 	end
 end
-function s.cfilter(c,tp)
+function s.cfilter(c,tp,e)
 	return c:IsControler(tp) and c:IsRace(RACE_PYRO) and c:IsType(TYPE_FUSION)
+		and (not e or c:IsCanBeEffectTarget(e))
 		and Duel.IsExistingMatchingCard(s.armsfilter,tp,LOCATION_DECK,0,1,nil,c)
 end
 function s.eqcon(e,tp,eg,ep,ev,re,r,rp)
@@ -73,16 +75,16 @@ function s.armsfilter(c,tc)
 		and (c:IsCode(CARD_SHIELD) or (tc:IsRace(RACE_PYRO) and tc:IsAttribute(ATTRIBUTE_DARK)))
 end
 function s.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and eg:IsContains(chkc) and s.cfilter(chkc,tp) end
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and eg:IsExists(s.cfilter,1,nil,tp) end
+	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and eg:IsContains(chkc) and s.cfilter(chkc,tp,e) end
+	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and eg:IsExists(s.cfilter,1,nil,tp,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_EQUIP)
-	local g=eg:FilterSelect(tp,s.cfilter,1,1,nil,tp)
+	local g=eg:FilterSelect(tp,s.cfilter,1,1,nil,tp,e)
 	Duel.SetTargetCard(g)
 	Duel.SetOperationInfo(0,CATEGORY_EQUIP,nil,1,tp,LOCATION_DECK)
 end
 function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and tc:IsFaceup() and Duel.GetLocationCount(tp,LOCATION_SZONE)>0) then return end
+	if not (tc and tc:IsRelateToEffect(e) and s.cfilter(tc,tp,e) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_EQUIP)
 	local g=Duel.SelectMatchingCard(tp,s.armsfilter,tp,LOCATION_DECK,0,1,1,nil,tc)
 	local ec=g:GetFirst()

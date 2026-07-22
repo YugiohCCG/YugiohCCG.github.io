@@ -1,5 +1,6 @@
 --Eclipse Observer Ella
 local s,id=GetID()
+local STRING_ID=133487387
 local SET_ECLIPSE=0xf2f4
 local SET_ECLIPSE_OBSERVER=0xeb17
 local OBSERVER_MONSTERS={
@@ -15,7 +16,7 @@ local OBSERVER_MONSTERS={
 function s.initial_effect(c)
 	--Special Summon this card from your hand or GY
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_DRAW)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -27,7 +28,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Set 1 "Eclipse" Quick-Play Spell from your Deck or GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SSET)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_SUMMON_SUCCESS)
@@ -41,7 +42,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--If your opponent draws 2 or more cards, Special Summon 1 "Eclipse Observer" monster from your GY
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,2))
+	e4:SetDescription(aux.Stringid(STRING_ID,2))
 	e4:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e4:SetCode(EVENT_DRAW)

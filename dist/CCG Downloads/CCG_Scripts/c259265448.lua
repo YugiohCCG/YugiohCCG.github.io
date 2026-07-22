@@ -1,5 +1,6 @@
 --Domestic Underworld
 local s,id=GetID()
+local STRING_ID=133265448
 local SET_DOMESTICA=0xe302
 function s.initial_effect(c)
 	--Activate
@@ -9,7 +10,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	--Shuffle that card, then add 1 different Level 1 Beast or Winged Beast monster
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TODECK+CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_TO_GRAVE)
@@ -22,9 +23,9 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--At the start of the Battle Phase: Special Summon "Domestica" Fairy monsters
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOGRAVE)
-	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
 	e2:SetCode(EVENT_PHASE+PHASE_BATTLE_START)
 	e2:SetRange(LOCATION_SZONE)
 	e2:SetCountLimit(1,id+100)
@@ -74,7 +75,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local ac=Duel.SelectMatchingCard(tp,s.addfilter,tp,LOCATION_DECK,0,1,1,nil,code):GetFirst()
 	if ac and Duel.SendtoHand(ac,nil,REASON_EFFECT)>0 and ac:IsLocation(LOCATION_HAND) then
 		Duel.ConfirmCards(1-tp,ac)
-		if ac:IsAbleToGrave() and Duel.SelectYesNo(tp,aux.Stringid(id,2)) then
+		if ac:IsAbleToGrave() and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 			Duel.BreakEffect()
 			Duel.SendtoGrave(ac,REASON_EFFECT)
 		end
@@ -122,7 +123,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.tgop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if c:IsRelateToEffect(e) and c:IsAbleToGrave() then
+	if c:IsAbleToGrave() then
 		Duel.SendtoGrave(c,REASON_EFFECT)
 	end
 end

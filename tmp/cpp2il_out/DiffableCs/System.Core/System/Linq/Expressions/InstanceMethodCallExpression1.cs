@@ -1,0 +1,42 @@
+namespace System.Linq.Expressions;
+
+internal sealed class InstanceMethodCallExpression1 : InstanceMethodCallExpression, IArgumentProvider
+{
+	private object _arg0; //Field offset: 0x20
+
+	public virtual int ArgumentCount
+	{
+		[CallerCount(Count = 9)]
+		[DeduplicatedMethod]
+		 get { } //Length: 6
+	}
+
+	[CallerCount(Count = 3)]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 1)]
+	[DeduplicatedMethod]
+	public InstanceMethodCallExpression1(MethodInfo method, Expression instance, Expression arg0) { }
+
+	[CallerCount(Count = 9)]
+	[DeduplicatedMethod]
+	public virtual int get_ArgumentCount() { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(ExpressionUtils), Member = "ReturnObject", MemberTypeParameters = new IL2CPP_TYPE_OBJECT[] {"T"}, MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(object)}, ReturnType = "T")]
+	[Calls(Type = typeof(ArgumentOutOfRangeException), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[CallsUnknownMethods(Count = 4)]
+	public virtual Expression GetArgument(int index) { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(ExpressionUtils), Member = "ReturnReadOnly", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(IArgumentProvider), typeof(Object&)}, ReturnType = typeof(System.Collections.ObjectModel.ReadOnlyCollection`1<System.Linq.Expressions.Expression>))]
+	[DeduplicatedMethod]
+	internal virtual ReadOnlyCollection<Expression> GetOrMakeArguments() { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(ExpressionUtils), Member = "ReturnObject", MemberTypeParameters = new IL2CPP_TYPE_OBJECT[] {"T"}, MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(object)}, ReturnType = "T")]
+	[Calls(Type = typeof(Expression), Member = "Call", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(Expression), typeof(MethodInfo), typeof(Expression)}, ReturnType = typeof(MethodCallExpression))]
+	[CallsUnknownMethods(Count = 1)]
+	internal virtual MethodCallExpression Rewrite(Expression instance, IReadOnlyList<Expression> args) { }
+
+}
+

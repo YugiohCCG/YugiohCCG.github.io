@@ -1,9 +1,10 @@
 --Encyclopedia of Eclipse
 local s,id=GetID()
+local STRING_ID=133614765
 function s.initial_effect(c)
 	--Negate the effects of all face-up monsters, then your opponent draws
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_DISABLE+CATEGORY_DRAW)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -28,6 +29,7 @@ function s.negate(tc,c)
 	Duel.NegateRelatedChain(tc,RESET_TURN_SET)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
+	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 	e1:SetCode(EFFECT_DISABLE)
 	e1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
 	tc:RegisterEffect(e1)
@@ -43,13 +45,17 @@ function s.negate(tc,c)
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(s.filter,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
+	local negated=false
 	for tc in aux.Next(g) do
-		if tc:IsCanBeDisabledByEffect(e,false) then
+		if aux.NegateMonsterFilter(tc) and tc:IsCanBeDisabledByEffect(e,false) then
 			s.negate(tc,e:GetHandler())
+			negated=true
 		end
 	end
+	if not negated then return end
 	local ct=Duel.GetMatchingGroupCount(s.filter,tp,0,LOCATION_MZONE,nil)
 	if ct>0 then
+		Duel.BreakEffect()
 		Duel.Draw(1-tp,ct,REASON_EFFECT)
 	end
 end

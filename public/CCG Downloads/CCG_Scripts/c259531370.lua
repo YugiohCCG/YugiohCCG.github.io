@@ -1,10 +1,11 @@
 --Scarstech Wyvern
 local s,id=GetID()
+local STRING_ID=133531370
 local SET_SCARSTECH=0x52f8
 function s.initial_effect(c)
 	--Special Summon itself from hand
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_CHAINING)
@@ -16,7 +17,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Send a "Scarstech" monster from Deck to GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOGRAVE)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
@@ -30,7 +31,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--Boost your "Scarstech" monsters
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,2))
+	e4:SetDescription(aux.Stringid(STRING_ID,2))
 	e4:SetCategory(CATEGORY_ATKCHANGE+CATEGORY_DEFCHANGE)
 	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetCode(EVENT_CHAINING)
@@ -44,7 +45,7 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_SCARSTECH}
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetCurrentChain()>=1
+	return Duel.GetCurrentChain()>=2
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -76,11 +77,11 @@ function s.scarmon(c)
 	return c:IsFaceup() and c:IsSetCard(SET_SCARSTECH) and c:IsType(TYPE_MONSTER)
 end
 function s.boostcon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetCurrentChain()>=1
+	return Duel.GetCurrentChain()>=2
 end
 function s.boosttg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.scarmon,tp,LOCATION_MZONE,0,1,nil) end
-	e:SetLabel((Duel.GetCurrentChain()+1)*100)
+	e:SetLabel(Duel.GetCurrentChain()*100)
 end
 function s.boostop(e,tp,eg,ep,ev,re,r,rp)
 	local value=e:GetLabel()

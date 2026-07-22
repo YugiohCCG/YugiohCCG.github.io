@@ -1,7 +1,7 @@
 local s,id=GetID()
 local SET_GLADIATOR=SET_GLADIATOR or 0x19
 local SET_GLADIATOR_BEAST=SET_GLADIATOR_BEAST or 0x1019
-local STRING_ID=id
+local STRING_ID=133395418
 function s.initial_effect(c)
 	--Shuffle monsters you control; Special Summon "Gladiator Beast" monsters
 	local e1=Effect.CreateEffect(c)

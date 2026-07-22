@@ -1,5 +1,6 @@
 --ONIBI
 local s,id=GetID()
+local STRING_ID=133713649
 function s.initial_effect(c)
 	--Spirit return
 	aux.EnableSpiritReturn(c,EVENT_SUMMON_SUCCESS,EVENT_FLIP)
@@ -12,7 +13,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Normal Summon 1 Spirit monster
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_SUMMON+CATEGORY_RELEASE+CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)
@@ -47,7 +48,7 @@ function s.sumcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return s.canrelease(e,tp) or s.cannormal(e,tp) end
 	local rel=s.canrelease(e,tp)
 	local norm=s.cannormal(e,tp)
-	if rel and (not norm or Duel.SelectYesNo(tp,aux.Stringid(id,1))) then
+	if rel and (not norm or Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1))) then
 		Duel.Release(e:GetHandler(),REASON_COST)
 		e:SetLabel(1)
 	else
@@ -73,7 +74,7 @@ function s.sumop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Summon(tp,tc,true,nil)
 	if tc:IsCode(id) and tc:IsLocation(LOCATION_MZONE)
 		and Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil)
-		and Duel.SelectYesNo(tp,aux.Stringid(id,2)) then
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 		Duel.BreakEffect()
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)

@@ -1,7 +1,7 @@
 --Rush at the Gnome
 local s,id=GetID()
 local OATH=EFFECT_COUNT_CODE_OATH or 0
-local STRING_ID=id
+local STRING_ID=133755133
 function s.initial_effect(c)
 	--Target 1 opponent's monster; it cannot be Tributed or used as material this turn
 	local e1=Effect.CreateEffect(c)

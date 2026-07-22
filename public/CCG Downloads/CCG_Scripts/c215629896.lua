@@ -1,5 +1,6 @@
 --NiuHao - Zaoka
 local s,id=GetID()
+local STRING_ID=133629896
 local SET_NIUHAO=0xb69
 local SACRED_TREASURE_CODES={
 	[236542835]=true,
@@ -9,11 +10,11 @@ local SACRED_TREASURE_CODES={
 function s.initial_effect(c)
 	--If Normal or Special Summoned: add 1 "NiuHao" or "Sacred Treasure" card
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SUMMON_SUCCESS)
-	e1:SetProperty(EFFECT_FLAG_DELAY)
+	e1:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
 	e1:SetCountLimit(1,id)
 	e1:SetTarget(s.thtg)
 	e1:SetOperation(s.thop)
@@ -23,7 +24,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Banish this card; excavate the top 3 cards
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_REMOVE+CATEGORY_TOGRAVE)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_CHAINING)
@@ -42,7 +43,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 	--Special Summon this banished card during the next Standby Phase
 	local e5=Effect.CreateEffect(c)
-	e5:SetDescription(aux.Stringid(id,2))
+	e5:SetDescription(aux.Stringid(STRING_ID,2))
 	e5:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e5:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e5:SetCode(EVENT_PHASE+PHASE_STANDBY)

@@ -1,5 +1,6 @@
 --Charmelia Fairy Kyubey
 local s,id=GetID()
+local STRING_ID=133489283
 local SET_CHARMELIA=0x12b1
 function s.initial_effect(c)
 	c:EnableReviveLimit()
@@ -20,7 +21,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Reveal and shuffle this card to Special Summon a "Charmelia" monster from the Deck
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_TODECK+CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_HAND)
@@ -31,7 +32,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Place an opponent's monster in your Spell & Trap Zone
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)
 	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
@@ -71,15 +72,15 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
 	end
 end
-function s.plfilter(c)
-	return c:IsFaceup() and c:IsType(TYPE_MONSTER)
+function s.plfilter(c,e)
+	return c:IsFaceup() and c:IsType(TYPE_MONSTER) and c:IsCanBeEffectTarget(e)
 end
 function s.pltg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(1-tp) and s.plfilter(chkc) end
+	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(1-tp) and s.plfilter(chkc,e) end
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and Duel.IsExistingTarget(s.plfilter,tp,0,LOCATION_MZONE,1,nil) end
+		and Duel.IsExistingTarget(s.plfilter,tp,0,LOCATION_MZONE,1,nil,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
-	Duel.SelectTarget(tp,s.plfilter,tp,0,LOCATION_MZONE,1,1,nil)
+	Duel.SelectTarget(tp,s.plfilter,tp,0,LOCATION_MZONE,1,1,nil,e)
 end
 function s.plop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()

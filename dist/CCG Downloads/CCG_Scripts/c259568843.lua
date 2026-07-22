@@ -1,10 +1,11 @@
 --Charmelia Robin
 local s,id=GetID()
+local STRING_ID=133568843
 local SET_CHARMELIA=0x12b1
 function s.initial_effect(c)
 	--Respond to an opponent's chain to a "Charmelia" card or effect
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_CHAINING)
@@ -17,7 +18,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If Tributed for a Ritual Summon: add a "Charmelia" card
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_RELEASE)
@@ -40,7 +41,7 @@ function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 		if chk==0 then return c:IsDiscardable() end
 		Duel.SendtoGrave(c,REASON_COST+REASON_DISCARD)
 	else
-		if chk==0 then return c:IsAbleToRemoveAsCost() end
+		if chk==0 then return c:IsAbleToRemoveAsCost() and aux.NecroValleyFilter()(c) end
 		Duel.Remove(c,POS_FACEUP,REASON_COST)
 	end
 end

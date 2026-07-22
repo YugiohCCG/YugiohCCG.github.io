@@ -1,5 +1,6 @@
 --JELLY MISS OF THE GRAND BLUE
 local s,id=GetID()
+local STRING_ID=133273394
 local SET_GRAND_BLUE=0x67ee
 local CARD_UMI=22702055
 local CARD_CITY_GRAND_BLUE=259679619
@@ -8,7 +9,7 @@ local CARD_GRAND_BLUE_PRINCE=259937946
 function s.initial_effect(c)
 	--Special Summon this card, then if you control "Umi", negate a card and gain ATK/DEF
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_DISABLE+CATEGORY_ATKCHANGE+CATEGORY_DEFCHANGE)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_HAND)
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Fusion Summon by shuffling materials from the GY into the Deck, including this card
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,2))
+	e2:SetDescription(aux.Stringid(STRING_ID,2))
 	e2:SetCategory(CATEGORY_TODECK+CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_GRAVE)
@@ -46,7 +47,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end
 	if Duel.IsExistingMatchingCard(s.umifilter,tp,LOCATION_ONFIELD,0,1,nil)
 		and Duel.IsExistingMatchingCard(aux.NegateAnyFilter,tp,0,LOCATION_ONFIELD,1,nil)
-		and Duel.SelectYesNo(tp,aux.Stringid(id,1)) then
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISABLE)
 		local tc=Duel.SelectMatchingCard(tp,aux.NegateAnyFilter,tp,0,LOCATION_ONFIELD,1,1,nil):GetFirst()
 		if tc and tc:IsFaceup() and tc:IsCanBeDisabledByEffect(e,false) then

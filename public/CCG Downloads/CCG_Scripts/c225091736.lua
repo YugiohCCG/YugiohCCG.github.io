@@ -1,12 +1,13 @@
 --Stained Bird Bria
 local s,id=GetID()
+local STRING_ID=133091736
 local SET_STAIN=0xbc5
 s.listed_series={SET_STAIN}
 function s.initial_effect(c)
 	Duel.EnableGlobalFlag(GLOBALFLAG_DECK_REVERSE_CHECK)
 	--Shuffle this card into the opponent's Deck and add 1 "Stain" card
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TODECK+CATEGORY_SEARCH+CATEGORY_TOHAND+CATEGORY_DRAW)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_HAND)
@@ -17,7 +18,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Place 1 card from the GY/banishment on the bottom of the Deck or add it
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TODECK+CATEGORY_TOHAND)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_SUMMON_SUCCESS)
@@ -61,11 +62,12 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)
 	if #g>0 then
-		Duel.SendtoHand(g,nil,REASON_EFFECT)
-		Duel.ConfirmCards(1-tp,g)
-		if Duel.GetFieldGroupCount(tp,0,LOCATION_ONFIELD)>Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,0)
-			and Duel.IsPlayerCanDraw(tp,1) then
-			Duel.Draw(tp,1,REASON_EFFECT)
+		if Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
+			Duel.ConfirmCards(1-tp,g)
+			if Duel.GetFieldGroupCount(tp,0,LOCATION_ONFIELD)>Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,0)
+				and Duel.IsPlayerCanDraw(tp,1) then
+				Duel.Draw(tp,1,REASON_EFFECT)
+			end
 		end
 	end
 end
@@ -73,6 +75,7 @@ function s.ownstain(c,tp)
 	return c:IsControler(tp) and c:IsSetCard(SET_STAIN) and c:IsAbleToHand()
 end
 function s.botfilter(c,tp)
+	if c:IsLocation(LOCATION_REMOVED) and not c:IsFaceup() then return false end
 	if c:IsLocation(LOCATION_GRAVE) then
 		return (c:IsAbleToDeck() and aux.NecroValleyFilter(Card.IsAbleToDeck)(c))
 			or (s.ownstain(c,tp) and aux.NecroValleyFilter(Card.IsAbleToHand)(c))
@@ -92,7 +95,7 @@ function s.botop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if not (tc and tc:IsRelateToEffect(e)) then return end
 	local added=false
-	if s.ownstain(tc,tp) and Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3))==1 then
+	if s.ownstain(tc,tp) and Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))==1 then
 		if tc:IsLocation(LOCATION_GRAVE) and not aux.NecroValleyFilter(Card.IsAbleToHand)(tc) then return end
 		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
 			Duel.ConfirmCards(1-tp,tc)

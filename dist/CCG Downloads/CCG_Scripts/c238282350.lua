@@ -1,5 +1,6 @@
 --Knight of Aldrez
 local s,id=GetID()
+local STRING_ID=132282350
 local SET_ALDREZ=0xc1c
 function s.initial_effect(c)
 	c:EnableReviveLimit()
@@ -14,7 +15,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	--Discard 1 card; take 1 "Aldrez" card from Deck
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -28,7 +29,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Revive an "Aldrez" Xyz Monster sent to the GY by an opponent's card
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_TO_GRAVE)
@@ -75,7 +76,7 @@ function s.deckop(e,tp,eg,ep,ev,re,r,rp)
 		and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)
 	local op=0
 	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3))
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))
 	elseif b2 then
 		op=1
 	elseif not b1 then
@@ -113,7 +114,7 @@ function s.revop(e,tp,eg,ep,ev,re,r,rp)
 	if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.revfilter)(tc,e,tp)
 		and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.ovfilter),tp,LOCATION_GRAVE,LOCATION_GRAVE,1,nil)
-		and Duel.SelectYesNo(tp,aux.Stringid(id,1)) then
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then
 		Duel.BreakEffect()
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
 		local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.ovfilter),tp,LOCATION_GRAVE,LOCATION_GRAVE,1,1,nil)

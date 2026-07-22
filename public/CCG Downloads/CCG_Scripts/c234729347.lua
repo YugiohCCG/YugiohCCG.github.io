@@ -1,5 +1,6 @@
 --THE BEGINNING
 local s,id=GetID()
+local STRING_ID=132729347
 local SET_TO_PROTO=0xe80d
 local TOKEN_PROTOGENIC=240299293
 local RACE_GALAXY=0x80000000
@@ -26,7 +27,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--Banish 1 monster from your hand; add 1 "To Proto" monster
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,0))
+	e4:SetDescription(aux.Stringid(STRING_ID,0))
 	e4:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e4:SetType(EFFECT_TYPE_IGNITION)
 	e4:SetRange(LOCATION_FZONE)
@@ -37,9 +38,9 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 	--If you Special Summon a Level 11 "To Proto" monster from hand/GY: Special Summon a Token
 	local e5=Effect.CreateEffect(c)
-	e5:SetDescription(aux.Stringid(id,1))
+	e5:SetDescription(aux.Stringid(STRING_ID,1))
 	e5:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOKEN)
-	e5:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e5:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
 	e5:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e5:SetRange(LOCATION_FZONE)
 	e5:SetProperty(EFFECT_FLAG_DELAY)

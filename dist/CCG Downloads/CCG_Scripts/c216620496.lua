@@ -1,9 +1,10 @@
 --Remembrance of the Melody
 local s,id=GetID()
+local STRING_ID=132620496
 function s.initial_effect(c)
 	--Return up to 3 banished Spells/Traps to the GY
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -14,7 +15,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If a Spell/Trap in your possession is banished: banish this card; add 1 banished Spell/Trap
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_REMOVE+CATEGORY_TOHAND)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_REMOVE)
@@ -28,7 +29,8 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function s.gyfilter(c,e)
-	return c:IsType(TYPE_SPELL+TYPE_TRAP) and not c:IsCode(id) and c:IsAbleToGrave() and c:IsCanBeEffectTarget(e)
+	return c:IsFaceup() and c:IsType(TYPE_SPELL+TYPE_TRAP) and not c:IsCode(id)
+		and c:IsAbleToGrave() and c:IsCanBeEffectTarget(e)
 end
 function s.gytg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_REMOVED) and chkc:IsControler(tp) and s.gyfilter(chkc,e) end
@@ -55,7 +57,8 @@ function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Remove(c,POS_FACEUP,REASON_COST)
 end
 function s.thfilter(c,e)
-	return c:IsType(TYPE_SPELL+TYPE_TRAP) and not c:IsCode(id) and c:IsAbleToHand() and c:IsCanBeEffectTarget(e)
+	return c:IsFaceup() and c:IsType(TYPE_SPELL+TYPE_TRAP) and not c:IsCode(id)
+		and c:IsAbleToHand() and c:IsCanBeEffectTarget(e)
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_REMOVED) and chkc:IsControler(tp) and s.thfilter(chkc,e) end

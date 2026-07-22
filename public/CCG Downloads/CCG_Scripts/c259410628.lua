@@ -1,5 +1,6 @@
 --Domestica in the Wild
 local s,id=GetID()
+local STRING_ID=133410628
 local ATTRIBUTE_NATURE=0x80
 function s.initial_effect(c)
 	--Activate
@@ -16,7 +17,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If sent from the hand to the GY: Set this card
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_SSET)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_TO_GRAVE)
@@ -28,7 +29,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Reveal 1 Beast or Winged Beast Fusion Monster, then you can Fusion Summon it
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_RELEASE+CATEGORY_SPECIAL_SUMMON+CATEGORY_TODECK)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)
@@ -68,7 +69,7 @@ end
 function s.fuscost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
 	if Duel.IsExistingMatchingCard(Card.IsReleasable,tp,LOCATION_MZONE,0,1,nil)
-		and Duel.SelectYesNo(tp,aux.Stringid(id,2)) then
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 		local g=Duel.SelectMatchingCard(tp,Card.IsReleasable,tp,LOCATION_MZONE,0,1,1,nil)
 		Duel.Release(g,REASON_COST)
@@ -80,7 +81,7 @@ function s.exfilter(c,e,tp)
 end
 function s.matfilter(c,e,fc)
 	return c:IsType(TYPE_MONSTER) and c:IsCanBeFusionMaterial(fc,SUMMON_TYPE_FUSION)
-		and c:IsAbleToDeckOrExtra() and not c:IsImmuneToEffect(e)
+		and c:IsAbleToDeck() and not c:IsImmuneToEffect(e)
 end
 function s.fustg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.exfilter,tp,LOCATION_EXTRA,0,1,nil,e,tp) end
@@ -95,7 +96,7 @@ function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ConfirmCards(1-tp,fc)
 	local mg=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.matfilter),tp,LOCATION_GRAVE,0,nil,e,fc)
 	if Duel.GetLocationCountFromEx(tp,tp,nil,fc)<=0 or not fc:CheckFusionMaterial(mg,nil,tp|0x200)
-		or not Duel.SelectYesNo(tp,aux.Stringid(id,3)) then return end
+		or not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FMATERIAL)
 	local mat=Duel.SelectFusionMaterial(tp,fc,mg,nil,tp|0x200)
 	if not mat or #mat==0 or aux.NecroValleyNegateCheck(mat) then return end

@@ -1,19 +1,21 @@
 --Fruteification
 local s,id=GetID()
+local STRING_ID=132930605
 local SET_FRUTE=0x813
 function s.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_RELEASE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
+	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetTarget(s.target)
 	e1:SetOperation(s.activate)
 	c:RegisterEffect(e1)
 	--Banish this card; send 1 WATER Ritual Monster from your Deck to the GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOGRAVE)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_GRAVE)
@@ -58,7 +60,7 @@ function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local canrv=Duel.GetFlagEffect(tp,id)==0
 		and Duel.IsExistingTarget(s.rvtgfilter,tp,LOCATION_GRAVE,0,1,nil,e,tp)
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.ritfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil,e,tp,mg,true)
-	if canrv and Duel.SelectYesNo(tp,aux.Stringid(id,0)) then
+	if canrv and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
 		Duel.SelectTarget(tp,s.rvtgfilter,tp,LOCATION_GRAVE,0,1,1,nil,e,tp)
 		Duel.RegisterFlagEffect(tp,id,RESET_PHASE+PHASE_END,EFFECT_FLAG_OATH,1)

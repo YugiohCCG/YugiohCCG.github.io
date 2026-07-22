@@ -1,5 +1,6 @@
 --Ursarctic Megailus
 local s,id=GetID()
+local STRING_ID=132837030
 local SET_URSARCTIC=0x163
 local CARD_URSARCTIC_DEPARTURE=16471775
 local CARD_URSARCTIC_BIG_DIPPER=89264428
@@ -7,7 +8,7 @@ local CARD_LEOSHIP=247831166
 function s.initial_effect(c)
 	--Tribute 1 other Level 7 or higher monster from your hand; Special Summon this card
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -21,7 +22,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If Special Summoned: destroy 1 opponent's monster
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_DESTROY)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -32,7 +33,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If sent to the GY or banishment to activate an "Ursarctic" effect: draw 1 card
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,2))
+	e3:SetDescription(aux.Stringid(STRING_ID,2))
 	e3:SetCategory(CATEGORY_DRAW)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetProperty(EFFECT_FLAG_DELAY)
@@ -51,11 +52,11 @@ function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.relfilter(c,ec,tp)
 	return c~=ec and c:IsLevelAbove(7) and c:IsLocation(LOCATION_HAND) and c:IsReleasable()
-		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+		and Duel.GetMZoneCount(tp,c)>0
 end
 function s.repfilter(c,tp,ec)
-	return c~=ec and c:IsAbleToRemoveAsCost() and s.repeffect(c,tp)
-		and (Duel.GetLocationCount(tp,LOCATION_MZONE)>0 or c:IsLocation(LOCATION_MZONE))
+	return c~=ec and c:IsAbleToRemoveAsCost() and aux.NecroValleyFilter()(c)
+		and s.repeffect(c,tp) and Duel.GetMZoneCount(tp,c)>0
 end
 function s.repeffect(c,tp)
 	return c:IsHasEffect(CARD_URSARCTIC_DEPARTURE,tp) or c:IsHasEffect(CARD_URSARCTIC_BIG_DIPPER,tp)

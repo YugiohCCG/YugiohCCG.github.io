@@ -1,13 +1,14 @@
 --Stellaer of the Frozen
 local s,id=GetID()
+local STRING_ID=133581666
 local SET_STELLAER=0xe40d
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--Xyz Summon
-	aux.AddXyzProcedure(c,aux.FilterBoolFunction(Card.IsRace,RACE_DRAGON),9,2,s.xyzalt,aux.Stringid(id,0))
+	aux.AddXyzProcedure(c,aux.FilterBoolFunction(Card.IsRace,RACE_DRAGON),9,2,s.xyzalt,aux.Stringid(STRING_ID,0))
 	--During the Main Phase: Set 1 face-up card
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,1))
+	e1:SetDescription(aux.Stringid(STRING_ID,1))
 	e1:SetCategory(CATEGORY_POSITION)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -28,7 +29,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Destroy this card, then draw 1 card
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,2))
+	e3:SetDescription(aux.Stringid(STRING_ID,2))
 	e3:SetCategory(CATEGORY_DESTROY+CATEGORY_DRAW)
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetRange(LOCATION_MZONE)
@@ -69,7 +70,7 @@ end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if not (c:IsRelateToEffect(e) and tc and tc:IsRelateToEffect(e) and s.setfilter(tc)) then return end
+	if not (tc and tc:IsRelateToEffect(e) and s.setfilter(tc)) then return end
 	if tc:IsType(TYPE_MONSTER) then
 		Duel.ChangePosition(tc,POS_FACEDOWN_DEFENSE)
 	else

@@ -1,5 +1,6 @@
 --GRAND BLUE MATRIARCH
 local s,id=GetID()
+local STRING_ID=133093260
 local SET_GRAND_BLUE=0x67ee
 function s.initial_effect(c)
 	c:EnableReviveLimit()
@@ -19,7 +20,7 @@ function s.initial_effect(c)
 	end
 	--Tribute 1 WATER monster; negate a Spell/Trap activation
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_NEGATE+CATEGORY_DESTROY)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_CHAINING)
@@ -33,7 +34,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--During your opponent's turn, revive a WATER monster you own sent from your field to the GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_TO_GRAVE)
@@ -91,7 +92,7 @@ function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.spfilter(c,e,tp)
 	return c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE)
-		and c:IsOwner(tp) and c:IsAttribute(ATTRIBUTE_WATER) and c:IsType(TYPE_MONSTER)
+		and c:GetOwner()==tp and c:IsAttribute(ATTRIBUTE_WATER) and c:IsType(TYPE_MONSTER)
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENSE)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)

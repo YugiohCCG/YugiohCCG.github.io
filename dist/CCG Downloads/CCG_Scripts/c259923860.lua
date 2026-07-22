@@ -1,7 +1,7 @@
 local s,id=GetID()
 local SET_GRAYSCALE=SET_GRAYSCALE or 0x575d
 local TOKEN_GRAYSCALE=98090004
-local STRING_ID=id
+local STRING_ID=133923860
 function s.initial_effect(c)
 	--Reveal 1 "Grayscale" monster; add 1 different "Grayscale" monster, then discard
 	local e1=Effect.CreateEffect(c)
@@ -73,9 +73,10 @@ function s.faceupgray(c)
 end
 function s.tkcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsAbleToRemoveAsCost() end
+	if chk==0 then return c:IsAbleToRemoveAsCost() and aux.NecroValleyFilter()(c) end
 	Duel.Remove(c,POS_FACEUP,REASON_COST)
 end
+
 function s.tktg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_GRAYSCALE,SET_GRAYSCALE,TYPE_MONSTER+TYPE_NORMAL+TYPE_TOKEN,800,800,4,RACE_FIEND,ATTRIBUTE_LIGHT) end
@@ -91,18 +92,21 @@ function s.tkop(e,tp,eg,ep,ev,re,r,rp)
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
-		e1:SetCode(EFFECT_CANNOT_BE_MATERIAL)
+		e1:SetCode(EFFECT_CANNOT_BE_FUSION_MATERIAL)
 		e1:SetValue(s.tokenmatlimit)
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 		token:RegisterEffect(e1,true)
+		local e2=e1:Clone()
+		e2:SetCode(EFFECT_CANNOT_BE_SYNCHRO_MATERIAL)
+		token:RegisterEffect(e2,true)
+		local e3=e1:Clone()
+		e3:SetCode(EFFECT_CANNOT_BE_LINK_MATERIAL)
+		token:RegisterEffect(e3,true)
 	end
 end
-function s.tokenmatlimit(e,c,sumtype)
-	local st=sumtype or 0
-	return c and not c:IsSetCard(SET_GRAYSCALE)
-		and ((st&SUMMON_TYPE_FUSION)==SUMMON_TYPE_FUSION
-			or (st&SUMMON_TYPE_SYNCHRO)==SUMMON_TYPE_SYNCHRO
-			or (st&SUMMON_TYPE_LINK)==SUMMON_TYPE_LINK)
+function s.tokenmatlimit(e,c)
+	if not c then return false end
+	return not c:IsSetCard(SET_GRAYSCALE)
 end
 function s.lightfiend(c)
 	return c:IsAttribute(ATTRIBUTE_LIGHT) and c:IsRace(RACE_FIEND)

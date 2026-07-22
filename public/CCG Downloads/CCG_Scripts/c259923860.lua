@@ -1,7 +1,7 @@
 local s,id=GetID()
 local SET_GRAYSCALE=SET_GRAYSCALE or 0x575d
 local TOKEN_GRAYSCALE=98090004
-local STRING_ID=id
+local STRING_ID=133923860
 function s.initial_effect(c)
 	--Reveal 1 "Grayscale" monster; add 1 different "Grayscale" monster, then discard
 	local e1=Effect.CreateEffect(c)
@@ -73,8 +73,9 @@ function s.faceupgray(c)
 end
 function s.tkcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsAbleToRemoveAsCost() end
+	if chk==0 then return c:IsAbleToRemoveAsCost() and aux.NecroValleyFilter()(c) end
 	Duel.Remove(c,POS_FACEUP,REASON_COST)
+end
 
 function s.tktg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
@@ -122,5 +123,4 @@ function s.lightfiendlock(e,tp)
 	e1:SetTarget(s.splimit)
 	e1:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e1,tp)
-end
 end

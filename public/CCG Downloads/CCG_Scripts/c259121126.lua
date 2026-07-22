@@ -1,7 +1,7 @@
 --A.I.P Ex Predator
 local s,id=GetID()
 local SET_AIP=0xa979
-local STRING_ID=id
+local STRING_ID=133121126
 local AIP_EX_MONSTERS={
 	[259609997]=true,
 	[259664027]=true,
@@ -31,6 +31,7 @@ function s.initial_effect(c)
 	--Set 1 "A.I.P" Spell/Trap from Deck
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,1))
+	e2:SetCategory(CATEGORY_SSET)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
 	e2:SetCode(EVENT_SUMMON_SUCCESS)
@@ -50,11 +51,12 @@ function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(Card.IsRace,tp,LOCATION_MZONE,0,1,nil,RACE_BEAST)
 end
 function s.costfilter(c,tp)
-	return c:IsRace(RACE_BEAST) and Duel.GetMZoneCount(tp,c)>0
+	return c:IsRace(RACE_BEAST) and c:IsReleasable() and Duel.GetMZoneCount(tp,c)>0
 end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.CheckReleaseGroup(tp,s.costfilter,1,nil,tp) end
-	local g=Duel.SelectReleaseGroup(tp,s.costfilter,1,1,nil,tp)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.costfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil,tp) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
+	local g=Duel.SelectMatchingCard(tp,s.costfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,1,nil,tp)
 	Duel.Release(g,REASON_COST)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -75,6 +77,7 @@ end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0
 		and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil) end
+	Duel.SetOperationInfo(0,CATEGORY_SSET,nil,1,tp,LOCATION_DECK)
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end

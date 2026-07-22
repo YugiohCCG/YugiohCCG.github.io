@@ -1,5 +1,6 @@
 --MURAMASA
 local s,id=GetID()
+local STRING_ID=133378501
 local CARD_KANMURIYAMA=248801935
 function s.initial_effect(c)
 	--Spirit return
@@ -13,7 +14,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Tribute Summon using 1 Special Summoned monster your opponent controls
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetType(EFFECT_TYPE_SINGLE)
 	e2:SetCode(EFFECT_SUMMON_PROC)
 	e2:SetRange(LOCATION_HAND)
@@ -24,9 +25,10 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If Normal Summoned: add or equip 1 Spirit Equip Spell
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_EQUIP)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e3:SetProperty(EFFECT_FLAG_DELAY)
 	e3:SetCode(EVENT_SUMMON_SUCCESS)
 	e3:SetCountLimit(1,id)
 	e3:SetTarget(s.eqtg)
@@ -70,7 +72,7 @@ function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 	if not tc then return end
 	local canhand=tc:IsAbleToHand()
 	local canequip=Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and not tc:IsForbidden()
-	if canhand and (not canequip or Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3))==0) then
+	if canhand and (not canequip or Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))==0) then
 		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
 			Duel.ConfirmCards(1-tp,tc)
 		end

@@ -1,5 +1,6 @@
 --Domestica Anjelie
 local s,id=GetID()
+local STRING_ID=133337739
 local SET_DOMESTICA=0xe302
 function s.initial_effect(c)
 	--Summon restriction
@@ -8,7 +9,7 @@ function s.initial_effect(c)
 	s.add_extra_summon(c)
 	--Tribute this card; add 1 "Domestica" Spell/Trap
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetCategory(CATEGORY_RELEASE+CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_TOGRAVE)
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetRange(LOCATION_MZONE)
@@ -23,7 +24,7 @@ function s.bp()
 	return ph>=PHASE_BATTLE_START and ph<=PHASE_BATTLE
 end
 function s.sumcon(e)
-	return not s.bp() and Duel.GetFieldGroupCount(e:GetHandlerPlayer(),LOCATION_MZONE,0)>1
+	return not s.bp() and Duel.GetFieldGroupCount(e:GetHandlerPlayer(),LOCATION_MZONE,0)>0
 end
 function s.splimit(e,se,sp,st,pos,tp)
 	return s.bp() or not Duel.IsExistingMatchingCard(aux.TRUE,sp,LOCATION_MZONE,0,1,nil)

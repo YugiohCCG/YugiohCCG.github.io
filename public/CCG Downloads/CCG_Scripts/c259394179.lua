@@ -1,5 +1,6 @@
 --Pip in the Wild
 local s,id=GetID()
+local STRING_ID=133394179
 local SET_DOMESTICA=0xe302
 local CARD_PIP=259377794
 function s.initial_effect(c)
@@ -15,7 +16,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	--Tribute this card; send all monsters on the field to the GY
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_RELEASE+CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -28,7 +29,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If sent to the GY: return this card to the Extra Deck, then add "Pip, the Domesticated"
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TODECK+CATEGORY_TOHAND+CATEGORY_TOGRAVE)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
 	e2:SetCode(EVENT_TO_GRAVE)
@@ -77,7 +78,10 @@ function s.rettg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.retop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not (c:IsRelateToEffect(e) and Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and c:IsLocation(LOCATION_EXTRA)) then return end
+	-- "also" does not make the search depend on this card returning successfully.
+	if c:IsRelateToEffect(e) and c:IsAbleToExtra() then
+		Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
+	end
 	if not Duel.IsExistingMatchingCard(s.pipfilter,tp,LOCATION_DECK,0,1,nil) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local tc=Duel.SelectMatchingCard(tp,s.pipfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()

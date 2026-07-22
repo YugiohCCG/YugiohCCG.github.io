@@ -1,5 +1,6 @@
 --TO PROTO EISODOS
 local s,id=GetID()
+local STRING_ID=133543138
 local SET_TO_PROTO=0xe80d
 local TOKEN_PROTOGENIC=240299293
 local RACE_GALAXY=0x80000000
@@ -9,7 +10,7 @@ function s.initial_effect(c)
 	aux.AddLinkProcedure(c,aux.FilterBoolFunction(Card.IsType,TYPE_EFFECT),2,2,s.lcheck)
 	--If banished from the field: Special Summon 2 "Protogenic Essence Tokens"
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOKEN)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_REMOVE)
@@ -21,7 +22,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--During your opponent's turn: banish a monster you control and 1 "To Proto" monster from your Deck
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON+CATEGORY_TODECK)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)
@@ -51,8 +52,6 @@ function s.tktg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,2,tp,0)
 end
 function s.tkop(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	if not (c:IsRelateToEffect(e) and c:IsFaceup()) then return end
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<2 or not Duel.IsPlayerCanSpecialSummonCount(tp,2) then return end
 	if not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT) then return end
 	local token1=Duel.CreateToken(tp,TOKEN_PROTOGENIC)
@@ -99,7 +98,7 @@ function s.rmop(e,tp,eg,ep,ev,re,r,rp)
 	if not (b1 or b2) then return end
 	local op=0
 	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3))
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))
 	elseif b2 then
 		op=1
 	end

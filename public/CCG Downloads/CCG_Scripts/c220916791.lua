@@ -1,10 +1,11 @@
 --The White Frute
 local s,id=GetID()
+local STRING_ID=132916791
 local SET_FRUTE=0x813
 function s.initial_effect(c)
 	--Tribute 1 WATER monster; Special Summon this card, then add 1 "Frute" monster
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_RELEASE+CATEGORY_SPECIAL_SUMMON+CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_HAND)
@@ -15,7 +16,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If Tributed: add or Special Summon 1 "Frute" monster from the GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOHAND+CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_RELEASE)
@@ -39,7 +40,7 @@ function s.addfilter(c)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+	if chk==0 then return (Duel.GetLocationCount(tp,LOCATION_MZONE)>0 or not e:IsCostChecked())
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 		and Duel.IsExistingMatchingCard(s.addfilter,tp,LOCATION_DECK,0,1,nil) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,0,0)
@@ -89,15 +90,15 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	if not (b1 or b2 or b3) then return end
 	local op=0
 	if b1 and (b2 or b3) then
-		local opts={aux.Stringid(id,2)}
-		if b2 then table.insert(opts,aux.Stringid(id,3)) end
-		if b3 then table.insert(opts,aux.Stringid(id,4)) end
+		local opts={aux.Stringid(STRING_ID,2)}
+		if b2 then table.insert(opts,aux.Stringid(STRING_ID,3)) end
+		if b3 then table.insert(opts,aux.Stringid(STRING_ID,4)) end
 		local sel=Duel.SelectOption(tp,table.unpack(opts))+1
 		local label=opts[sel]
-		if label==aux.Stringid(id,3) then op=1
-		elseif label==aux.Stringid(id,4) then op=2 end
+		if label==aux.Stringid(STRING_ID,3) then op=1
+		elseif label==aux.Stringid(STRING_ID,4) then op=2 end
 	elseif b2 and b3 then
-		op=Duel.SelectOption(tp,aux.Stringid(id,3),aux.Stringid(id,4))+1
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,3),aux.Stringid(STRING_ID,4))+1
 	elseif b2 or b3 then
 		op=b2 and 1 or 2
 	end

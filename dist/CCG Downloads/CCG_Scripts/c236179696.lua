@@ -1,5 +1,6 @@
 --The Flying Frute
 local s,id=GetID()
+local STRING_ID=132179696
 local SET_FRUTE=0x813
 function s.initial_effect(c)
 	--Link Summon using face-down monsters you control
@@ -8,7 +9,7 @@ function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--If Link Summoned: send or Set 1 "Frute" card
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOGRAVE+CATEGORY_SSET)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -20,10 +21,11 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Tribute 1 other WATER monster; banish 1 card in either GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_RELEASE+CATEGORY_REMOVE)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)
+	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetHintTiming(0,TIMINGS_CHECK_MONSTER+TIMING_END_PHASE)
 	e2:SetCountLimit(1,id+100)
@@ -51,7 +53,7 @@ function s.sstg(e,tp,eg,ep,ev,re,r,rp,chk)
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil)
 	if chk==0 then return b1 or b2 end
 	if b1 and b2 then
-		e:SetLabel(Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3)))
+		e:SetLabel(Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3)))
 	elseif b2 then
 		e:SetLabel(1)
 	else

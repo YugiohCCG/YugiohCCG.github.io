@@ -1,5 +1,6 @@
 --Talismandrake Pyre
 local s,id=GetID()
+local STRING_ID=133362839
 local SET_TALISMANDRAKE=0xb47
 local CARD_ARMS_UNITED=215034223
 local CARD_SUPPRESSOR=238136421
@@ -11,7 +12,7 @@ function s.initial_effect(c)
 	aux.AddFusionProcFun2(c,s.darkpyro,s.pyro,true)
 	--Add or send 1 card from the Deck
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetProperty(EFFECT_FLAG_DELAY)
@@ -22,7 +23,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Destroy a Pendulum Zone card, then place another
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_DESTROY)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)
@@ -65,15 +66,15 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local opts={}
 	local ops={}
 	if Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil) then
-		table.insert(opts,aux.Stringid(id,2))
+		table.insert(opts,aux.Stringid(STRING_ID,2))
 		table.insert(ops,1)
 	end
 	if Duel.IsExistingMatchingCard(s.darkpyrothfilter,tp,LOCATION_DECK,0,1,nil) then
-		table.insert(opts,aux.Stringid(id,3))
+		table.insert(opts,aux.Stringid(STRING_ID,3))
 		table.insert(ops,2)
 	end
 	if Duel.IsExistingMatchingCard(s.tgfilter,tp,LOCATION_DECK,0,1,nil) then
-		table.insert(opts,aux.Stringid(id,4))
+		table.insert(opts,aux.Stringid(STRING_ID,4))
 		table.insert(ops,3)
 	end
 	if #ops==0 then return end

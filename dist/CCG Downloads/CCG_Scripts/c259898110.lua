@@ -2,7 +2,7 @@ local s,id=GetID()
 local SET_NEMLERIA_OMEGA=0x191
 local SET_NEMLERIA_PI=0x192
 local CARD_DREAMING_NEMLERIA=CARD_DREAMING_NEMLERIA or 70155677
-local STRING_ID=id
+local STRING_ID=133898110
 local EFFECT_FLAG_OATH=EFFECT_FLAG_OATH or 0
 function s.initial_effect(c)
 	--special summon
@@ -12,7 +12,7 @@ function s.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetRange(LOCATION_HAND)
-	e1:SetCountLimit(1,98091013)
+	e1:SetCountLimit(1,id)
 	e1:SetCost(s.spcost)
 	e1:SetTarget(s.sptg)
 	e1:SetOperation(s.spop)
@@ -23,7 +23,7 @@ function s.initial_effect(c)
 	e2:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_MZONE)
-	e2:SetCountLimit(1,98091014)
+	e2:SetCountLimit(1,id+100)
 	e2:SetCost(s.thcost)
 	e2:SetTarget(s.thtg)
 	e2:SetOperation(s.thop)
@@ -34,7 +34,7 @@ function s.initial_effect(c)
 	e3:SetCategory(CATEGORY_TOHAND+CATEGORY_TODECK)
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetRange(LOCATION_MZONE)
-	e3:SetCountLimit(1,98091015)
+	e3:SetCountLimit(1,id+200)
 	e3:SetTarget(s.rttg)
 	e3:SetOperation(s.rtop)
 	c:RegisterEffect(e3)
@@ -65,7 +65,7 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOEXTRA)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local g=Duel.SelectMatchingCard(tp,s.tefilter,tp,LOCATION_DECK,0,1,1,nil)
 	local tc=g:GetFirst()
 	if not tc then return end

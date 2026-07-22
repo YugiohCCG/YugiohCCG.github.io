@@ -1,9 +1,10 @@
 --Manual of Eclipse
 local s,id=GetID()
+local STRING_ID=133273851
 function s.initial_effect(c)
 	--Banish up to 5 monsters from your opponent's GY
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_REMOVE+CATEGORY_DRAW+CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -55,7 +56,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	Duel.RegisterEffect(e1,tp)
 end
 function s.retop(e,tp,eg,ep,ev,re,r,rp)
-	local g=Duel.GetMatchingGroup(s.retfilter,tp,0,LOCATION_REMOVED,nil)
+	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.retfilter),tp,0,LOCATION_REMOVED,nil)
 	if #g>0 then
 		Duel.SendtoGrave(g,REASON_EFFECT+REASON_RETURN)
 	end

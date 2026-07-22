@@ -1,19 +1,14 @@
 --Zero Mother of the A.I.P Ex
 local s,id=GetID()
 local SET_AIP=0xa979
-local STRING_ID=id
-local XYZ_INFINITE_MATS=(Xyz and Xyz.InfiniteMats) or 99
+local STRING_ID=133097228
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	if c.SetUniqueOnField then
 		c:SetUniqueOnField(1,0,id)
 	end
 	--2+ Level 9 monsters
-	if Xyz and Xyz.AddProcedure then
-		Xyz.AddProcedure(c,nil,9,2,nil,nil,XYZ_INFINITE_MATS)
-	elseif aux.AddXyzProcedure then
-		aux.AddXyzProcedure(c,nil,9,2,nil,nil,99)
-	end
+	aux.AddXyzProcedure(c,nil,9,2,nil,nil,99)
 	--Unaffected by Beast monster effects your opponent controls
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
@@ -47,7 +42,8 @@ s.listed_series={SET_AIP}
 function s.immval(e,re)
 	local rc=re:GetHandler()
 	return rc and rc:IsType(TYPE_MONSTER) and rc:IsRace(RACE_BEAST)
-		and rc:IsControler(1-e:GetHandlerPlayer())
+		and re:GetOwnerPlayer()==1-e:GetHandlerPlayer()
+		and re:GetActivateLocation()==LOCATION_MZONE
 end
 function s.matmatch(e,c)
 	local og=e:GetHandler():GetOverlayGroup()
@@ -71,20 +67,24 @@ function s.detachcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
 end
-function s.attachfilter(c)
+function s.attachfilter(c,e)
 	return c:IsType(TYPE_MONSTER) and not c:IsType(TYPE_TOKEN)
+		and c:IsCanOverlay() and not c:IsImmuneToEffect(e)
 end
 function s.attachtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.attachfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,e:GetHandler()) end
+	if chk==0 then return Duel.IsExistingMatchingCard(s.attachfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,e:GetHandler(),e) end
 end
 function s.attachop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) then return end
-	local g=Duel.GetMatchingGroup(s.attachfilter,tp,LOCATION_MZONE,LOCATION_MZONE,c)
+	local g=Duel.GetMatchingGroup(s.attachfilter,tp,LOCATION_MZONE,LOCATION_MZONE,c,e)
 	if #g==0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
 	local sg=g:Select(tp,1,math.min(2,#g),nil)
 	if #sg>0 then
+		local og=Group.CreateGroup()
+		for tc in aux.Next(sg) do og:Merge(tc:GetOverlayGroup()) end
+		if #og>0 then Duel.SendtoGrave(og,REASON_RULE) end
 		Duel.Overlay(c,sg)
 	end
 end

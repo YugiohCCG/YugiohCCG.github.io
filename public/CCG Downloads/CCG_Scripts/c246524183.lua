@@ -1,10 +1,11 @@
 --PROTOGENESIS
 local s,id=GetID()
+local STRING_ID=132524183
 local SET_TO_PROTO=0xe80d
 function s.initial_effect(c)
 	--Reveal 1 "To Proto" monster; Special Summon or banish it
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_REMOVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)

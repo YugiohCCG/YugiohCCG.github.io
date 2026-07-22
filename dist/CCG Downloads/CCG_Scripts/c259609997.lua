@@ -1,7 +1,7 @@
 --A.I.P Ex Larva
 local s,id=GetID()
 local SET_AIP=0xa979
-local STRING_ID=id
+local STRING_ID=133609997
 local EFFECT_FLAG_SET_AVAILABLE=EFFECT_FLAG_SET_AVAILABLE or 0
 local AIP_EX_MONSTERS={
 	[259609997]=true,
@@ -20,7 +20,7 @@ function s.initial_effect(c)
 	e0:SetProperty(EFFECT_FLAG_UNCOPYABLE)
 	e0:SetCode(EFFECT_SPSUMMON_PROC)
 	e0:SetRange(LOCATION_HAND)
-	e0:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e0:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e0:SetCondition(s.spcon)
 	c:RegisterEffect(e0)
 	--Draw 1, reveal it, then Special Summon it if it is a Beast
@@ -73,7 +73,8 @@ function s.drop(e,tp,eg,ep,ev,re,r,rp)
 		and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)
 		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then
 		Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
-	else
+	end
+	if tc:IsLocation(LOCATION_HAND) then
 		Duel.ShuffleHand(tp)
 	end
 end

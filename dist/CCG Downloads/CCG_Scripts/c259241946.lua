@@ -1,10 +1,11 @@
 --Charmelia Pray
 local s,id=GetID()
+local STRING_ID=133241946
 local SET_CHARMELIA=0x12b1
 function s.initial_effect(c)
 	--Activate and Ritual Summon
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -76,11 +77,13 @@ function s.ritualsummon(e,tp)
 	rc:SetMaterial(monmat)
 	if #handfieldmat>0 then Duel.ReleaseRitualMaterial(handfieldmat) end
 	if #deckmat>0 then Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end
-	if #stmat>0 then Duel.SendtoGrave(stmat,REASON_EFFECT+REASON_RITUAL) end
+	if #stmat>0 then Duel.SendtoGrave(stmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end
 	Duel.BreakEffect()
 	if Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
 		rc:CompleteProcedure()
+		return true
 	end
+	return false
 end
 function s.exlimit(e,c)
 	return c:IsLocation(LOCATION_EXTRA) and not c:IsRace(RACE_SPELLCASTER+RACE_FAIRY)
@@ -96,6 +99,7 @@ function s.register_lock(e,tp)
 	Duel.RegisterEffect(e1,tp)
 end
 function s.ritop(e,tp,eg,ep,ev,re,r,rp)
-	s.ritualsummon(e,tp)
-	s.register_lock(e,tp)
+	if s.ritualsummon(e,tp) then
+		s.register_lock(e,tp)
+	end
 end

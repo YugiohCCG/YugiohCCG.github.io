@@ -1,7 +1,7 @@
 --Calcu Leet
 local s,id=GetID()
 local SET_LEET=0xfe88
-local STRING_ID=id
+local STRING_ID=133825991
 function s.initial_effect(c)
 	--Target a Cyberse monster; add a Cyberse monster with matching ATK/DEF, then maybe banish the target
 	local e1=Effect.CreateEffect(c)

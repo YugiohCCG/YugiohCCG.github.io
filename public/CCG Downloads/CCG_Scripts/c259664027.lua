@@ -1,7 +1,7 @@
 --A.I.P Ex Shrieker
 local s,id=GetID()
 local SET_AIP=0xa979
-local STRING_ID=id
+local STRING_ID=133664027
 local AIP_EX_MONSTERS={
 	[259609997]=true,
 	[259664027]=true,
@@ -55,6 +55,7 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,2,tp,LOCATION_DECK)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
+	s.exlock(e,tp)
 	if Duel.IsPlayerAffectedByEffect(tp,59822133) then return end
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<2 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
@@ -68,7 +69,6 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 			tc:RegisterEffect(e1)
 		end
 	end
-	s.exlock(e,tp)
 end
 function s.splimit(e,c,sump,sumtype,sumpos,targetp,se)
 	return not s.isaip_ex(c)

@@ -1,5 +1,6 @@
 --Charmelia Fairy Morningstar
 local s,id=GetID()
+local STRING_ID=133753109
 local SET_CHARMELIA=0x12b1
 function s.initial_effect(c)
 	if c.SetUniqueOnField then
@@ -15,7 +16,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	--Send a Continuous Spell/Trap to negate and destroy opponent's cards
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_DISABLE+CATEGORY_DESTROY)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -29,7 +30,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If sent to the GY: add up to 2 "Charmelia" cards
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOHAND)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_TO_GRAVE)
@@ -48,7 +49,7 @@ function s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.costfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 	local tc=Duel.SelectMatchingCard(tp,s.costfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,1,nil):GetFirst()
-	local ismonster=tc:IsOriginalType(TYPE_MONSTER) or tc:IsType(TYPE_MONSTER)
+	local ismonster=tc:GetOriginalType()&TYPE_MONSTER~=0 or tc:IsType(TYPE_MONSTER)
 	if Duel.SendtoGrave(tc,REASON_COST)>0 and ismonster and tc:IsLocation(LOCATION_GRAVE) then
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)
@@ -58,11 +59,14 @@ function s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)
 		tc:RegisterEffect(e1)
 	end
 end
+function s.negfilter(c,e)
+	return aux.NegateAnyFilter(c) and c:IsCanBeEffectTarget(e)
+end
 function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsOnField() and chkc:IsControler(1-tp) and aux.NegateAnyFilter(chkc) end
-	if chk==0 then return Duel.IsExistingTarget(aux.NegateAnyFilter,tp,0,LOCATION_ONFIELD,1,nil) end
+	if chkc then return chkc:IsOnField() and chkc:IsControler(1-tp) and s.negfilter(chkc,e) end
+	if chk==0 then return Duel.IsExistingTarget(s.negfilter,tp,0,LOCATION_ONFIELD,1,nil,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
-	local g=Duel.SelectTarget(tp,aux.NegateAnyFilter,tp,0,LOCATION_ONFIELD,1,2,nil)
+	local g=Duel.SelectTarget(tp,s.negfilter,tp,0,LOCATION_ONFIELD,1,2,nil,e)
 	Duel.SetOperationInfo(0,CATEGORY_DISABLE,g,#g,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,#g,0,0)
 end
@@ -97,25 +101,26 @@ function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.BreakEffect()
 	Duel.Destroy(dg,REASON_EFFECT)
 end
-function s.thfilter(c)
+function s.thfilter(c,e)
 	return c:IsSetCard(SET_CHARMELIA) and c:IsAbleToHand()
 		and (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup())
+		and (not e or c:IsCanBeEffectTarget(e))
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE+LOCATION_REMOVED)
-		and aux.NecroValleyFilter(s.thfilter)(chkc) end
+		and aux.NecroValleyFilter(s.thfilter)(chkc,e) end
 	if chk==0 then return Duel.IsExistingTarget(aux.NecroValleyFilter(s.thfilter),tp,
-		LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) end
+		LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.thfilter),tp,
-		LOCATION_GRAVE+LOCATION_REMOVED,0,1,2,nil)
+		LOCATION_GRAVE+LOCATION_REMOVED,0,1,2,nil,e)
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,g,#g,0,0)
 end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
 	if not g then return end
 	g=g:Filter(Card.IsRelateToEffect,nil,e)
-	g=g:Filter(aux.NecroValleyFilter(s.thfilter),nil)
+	g=g:Filter(aux.NecroValleyFilter(s.thfilter),nil,nil)
 	if #g>0 then
 		Duel.SendtoHand(g,nil,REASON_EFFECT)
 		Duel.ConfirmCards(1-tp,g)

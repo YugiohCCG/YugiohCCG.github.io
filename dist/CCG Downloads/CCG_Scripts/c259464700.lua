@@ -1,11 +1,12 @@
 --Scarstech Invader
 local s,id=GetID()
+local STRING_ID=133464700
 local SET_SCARSTECH=0x52f8
 local RACE_GALAXY=RACE_GALAXY or 0x80000000
 function s.initial_effect(c)
 	--Send itself to the GY and take control
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOGRAVE+CATEGORY_CONTROL)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_CHAINING)
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Special Summon itself from the GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_CHAINING)
@@ -72,13 +73,13 @@ end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and aux.NecroValleyFilter()(c)
+		and aux.NecroValleyFilter(aux.TRUE)(c)
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,0,0)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)
+	if c:IsRelateToEffect(e) and aux.NecroValleyFilter(aux.TRUE)(c)
 		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false) then
 		Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)

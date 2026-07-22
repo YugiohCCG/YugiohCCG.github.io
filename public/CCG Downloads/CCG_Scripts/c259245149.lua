@@ -1,5 +1,6 @@
 --Domestica Lunalie
 local s,id=GetID()
+local STRING_ID=133245149
 local SET_DOMESTICA=0xe302
 function s.initial_effect(c)
 	--Summon restriction
@@ -8,7 +9,7 @@ function s.initial_effect(c)
 	s.add_extra_summon(c)
 	--Tribute this card; add 1 "Domestica" card from your GY
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetCategory(CATEGORY_RELEASE+CATEGORY_TOHAND+CATEGORY_TOGRAVE)
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetRange(LOCATION_MZONE)
@@ -85,7 +86,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.thfilter)(tc,e)
 		and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) then
 		local g=Duel.GetMatchingGroup(Card.IsAbleToGrave,tp,LOCATION_HAND,0,nil)
-		if #g>0 and Duel.SelectYesNo(tp,aux.Stringid(id,1)) then
+		if #g>0 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 			local sg=g:Select(tp,1,1,nil)
 			Duel.SendtoGrave(sg,REASON_EFFECT)

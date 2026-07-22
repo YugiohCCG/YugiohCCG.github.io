@@ -1,5 +1,6 @@
 --Sacred Treasure - Bojin
 local s,id=GetID()
+local STRING_ID=132542835
 local SET_NIUHAO=0xb69
 local SACRED_TREASURE_CODES={
 	[236542835]=true,
@@ -9,17 +10,18 @@ local SACRED_TREASURE_CODES={
 function s.initial_effect(c)
 	--Activate 1 effect
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_DESTROY+CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,id,EFFECT_COUNT_CODE_OATH)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetCondition(s.condition)
 	e1:SetTarget(s.target)
 	e1:SetOperation(s.activate)
 	c:RegisterEffect(e1)
 	--If this card and another "Sacred Treasure" card is banished
 	local e2=Effect.CreateEffect(c)
+	e2:SetDescription(aux.Stringid(STRING_ID,3))
 	e2:SetCategory(CATEGORY_HANDES)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
 	e2:SetCode(EVENT_REMOVE)
@@ -48,7 +50,7 @@ function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 		and Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_HAND,0,1,nil,e,tp)
 	if chk==0 then return b1 or b2 end
 	if b1 and b2 then
-		e:SetLabel(Duel.SelectOption(tp,aux.Stringid(id,1),aux.Stringid(id,2)))
+		e:SetLabel(Duel.SelectOption(tp,aux.Stringid(STRING_ID,1),aux.Stringid(STRING_ID,2)))
 	elseif b2 then
 		e:SetLabel(1)
 	else
@@ -61,7 +63,6 @@ function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
-	if not e:GetHandler():IsRelateToEffect(e) then return end
 	if e:GetLabel()==0 then
 		if not Duel.IsExistingMatchingCard(s.desfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil,e) then return end
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)

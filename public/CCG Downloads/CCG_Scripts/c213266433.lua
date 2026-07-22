@@ -1,5 +1,6 @@
 --The Hanging Frute
 local s,id=GetID()
+local STRING_ID=133266433
 local SET_FRUTE=0x813
 local CARD_FRUTEIFICATION=256930605
 local RESET_CHAIN_COMPAT=RESET_CHAIN or (RESET_PHASE+PHASE_END)
@@ -14,7 +15,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--If Special Summoned: Special Summon 1 "Frute" monster from your GY face-down
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -25,7 +26,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Tribute 1 other WATER monster; protect your monsters
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_RELEASE+CATEGORY_POSITION)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_CHAINING)

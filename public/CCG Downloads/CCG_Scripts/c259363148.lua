@@ -1,7 +1,7 @@
 local s,id=GetID()
 local SET_GLADIATOR=SET_GLADIATOR or 0x19
 local SET_GLADIATOR_BEAST=SET_GLADIATOR_BEAST or 0x1019
-local STRING_ID=id
+local STRING_ID=133363148
 local TEST_MONSTERS={
 	[3030892]=true,
 	[62076252]=true,
@@ -136,8 +136,7 @@ function s.battlecon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.extracost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsAbleToDeckAsCost()
-		or (Card.IsAbleToExtraAsCost and c:IsAbleToExtraAsCost()) end
+	if chk==0 then return c:IsAbleToDeckOrExtraAsCost() end
 	Duel.SendtoDeck(c,nil,SEQ_DECKTOP,REASON_COST)
 end
 function s.gbfilter(c,e,tp)

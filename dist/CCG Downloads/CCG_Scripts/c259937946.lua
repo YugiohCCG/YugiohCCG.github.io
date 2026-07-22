@@ -1,5 +1,6 @@
 --GRAND BLUE PRINCE
 local s,id=GetID()
+local STRING_ID=133937946
 local SET_GRAND_BLUE=0x67ee
 local CARD_GRAND_BLUE_PRINCESS=259177849
 function s.initial_effect(c)
@@ -14,7 +15,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	--If Special Summoned: Special Summon 1 WATER monster from the GY
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_DISABLE)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
@@ -25,7 +26,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Shuffle 1 card from the GY, then optionally send 1 "Grand Blue" card to the GY
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TODECK+CATEGORY_TOGRAVE)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)
@@ -93,7 +94,7 @@ function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	if not (tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.tdfilter)(tc)) then return end
 	if Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==0 then return end
 	if Duel.IsExistingMatchingCard(s.tgfilter,tp,LOCATION_DECK,0,1,nil)
-		and Duel.SelectYesNo(tp,aux.Stringid(id,2)) then
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 		Duel.BreakEffect()
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 		local g=Duel.SelectMatchingCard(tp,s.tgfilter,tp,LOCATION_DECK,0,1,1,nil)

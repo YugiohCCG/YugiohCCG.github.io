@@ -1,10 +1,11 @@
 --Stardrake of Gravitic Coils
 local s,id=GetID()
+local STRING_ID=133265629
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--Xyz Summon by using the monster you control with the lowest ATK or DEF
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_SPSUMMON_PROC)
 	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)

@@ -1,5 +1,6 @@
 --PROTOGENIC ASTRAL CYCLE
 local s,id=GetID()
+local STRING_ID=132706629
 local SET_TO_PROTO=0xe80d
 local TOKEN_PROTOGENIC=240299293
 local RACE_GALAXY=0x80000000
@@ -21,7 +22,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Special Summon 1 "Protogenic Essence Token"
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOKEN)
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetRange(LOCATION_FZONE)
@@ -31,7 +32,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	--When your opponent activates a card effect: banish 1 Effect Monster; Special Summon 1 "To Proto" monster
 	local e4=Effect.CreateEffect(c)
-	e4:SetDescription(aux.Stringid(id,1))
+	e4:SetDescription(aux.Stringid(STRING_ID,1))
 	e4:SetCategory(CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON)
 	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetCode(EVENT_CHAINING)

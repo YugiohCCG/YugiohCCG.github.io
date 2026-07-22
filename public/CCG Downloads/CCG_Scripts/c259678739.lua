@@ -1,4 +1,5 @@
 local s,id=GetID()
+local STRING_ID=133678739
 local SET_GLITCHLING=0x9894
 local COUNTER_CORRUPTION=0x1994
 local CARD_CORRUPTION=259546637
@@ -45,7 +46,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e6)
 	--Reveal this card and another monster; add 1 "Glitchling" monster
 	local e7=Effect.CreateEffect(c)
-	e7:SetDescription(aux.Stringid(id,0))
+	e7:SetDescription(aux.Stringid(STRING_ID,0))
 	e7:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e7:SetType(EFFECT_TYPE_IGNITION)
 	e7:SetRange(LOCATION_HAND)
@@ -56,7 +57,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e7)
 	--If Special Summoned: Ritual Summon
 	local e8=Effect.CreateEffect(c)
-	e8:SetDescription(aux.Stringid(id,1))
+	e8:SetDescription(aux.Stringid(STRING_ID,1))
 	e8:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e8:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e8:SetCode(EVENT_SPSUMMON_SUCCESS)

@@ -1,5 +1,6 @@
 --Aldrez Opening
 local s,id=GetID()
+local STRING_ID=132923192
 local SET_ALDREZ=0xc1c
 function s.initial_effect(c)
 	--Activate
@@ -38,7 +39,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e6)
 	--Shuffle up to 3 "Aldrez" cards into the Deck, then draw 1
 	local e7=Effect.CreateEffect(c)
-	e7:SetDescription(aux.Stringid(id,0))
+	e7:SetDescription(aux.Stringid(STRING_ID,0))
 	e7:SetCategory(CATEGORY_TODECK+CATEGORY_DRAW)
 	e7:SetType(EFFECT_TYPE_IGNITION)
 	e7:SetRange(LOCATION_SZONE)
@@ -59,7 +60,7 @@ function s.limcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.limop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not c:IsRelateToEffect(e) or c:IsFacedown() then return end
+	if not c:IsOnField() or c:IsFacedown() then return end
 	if Duel.GetCurrentChain()==0 then
 		Duel.SetChainLimitTillChainEnd(s.chainlm)
 	elseif Duel.GetCurrentChain()==1 then
@@ -81,7 +82,7 @@ function s.limreset(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.limop2(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if c:IsRelateToEffect(e) and c:IsFaceup() and c:GetFlagEffect(id+100)~=0 then
+	if c:IsOnField() and c:IsFaceup() and c:GetFlagEffect(id+100)~=0 then
 		Duel.SetChainLimitTillChainEnd(s.chainlm)
 	end
 	c:ResetFlagEffect(id+100)
@@ -108,7 +109,7 @@ function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 then
 		local og=Duel.GetOperatedGroup()
 		if og:IsExists(Card.IsLocation,1,nil,LOCATION_DECK+LOCATION_EXTRA)
-			and Duel.IsPlayerCanDraw(tp,1) and Duel.SelectYesNo(tp,aux.Stringid(id,0)) then
+			and Duel.IsPlayerCanDraw(tp,1) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then
 			Duel.BreakEffect()
 			Duel.Draw(tp,1,REASON_EFFECT)
 		end

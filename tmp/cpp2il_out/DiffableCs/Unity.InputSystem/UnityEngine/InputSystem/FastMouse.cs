@@ -1,0 +1,416 @@
+namespace UnityEngine.InputSystem;
+
+internal class FastMouse : Mouse, IInputStateCallbackReceiver, IEventMerger
+{
+	public const string metadata = "AutoWindowSpace;Vector2;Delta;Button;Axis;Digital;Integer;Mouse;Pointer"; //Field offset: 0x0
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousepositionx", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousedeltaup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousedeltadown", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousedeltaleft", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousedeltaright", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousedeltax", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousedeltay", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousescrollup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousescrolldown", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousescrollleft", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousescrollright", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousescrollx", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousescrolly", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMouseradiusx", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousepositiony", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMouseradiusy", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMouseclickCount", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(IntegerControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMouseleftButton", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(ButtonControl))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputDevice), typeof(int), typeof(int), typeof(int)}, ReturnType = typeof(DeviceBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMouseposition", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(Vector2Control))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousedelta", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(DeltaControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousescroll", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(DeltaControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousepress", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(ButtonControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousedisplayIndex", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(IntegerControl))]
+	[Calls(Type = typeof(RuntimeHelpers), Member = "InitializeArray", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(Array), typeof(RuntimeFieldHandle)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousemiddleButton", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(ButtonControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMouseforwardButton", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(ButtonControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousebackButton", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(ButtonControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousepressure", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(AxisControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMouseradius", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(Vector2Control))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMousepointerId", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(IntegerControl))]
+	[Calls(Type = typeof(FastMouse), Member = "Initialize_ctrlMouserightButton", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InternedString), typeof(InputControl)}, ReturnType = typeof(ButtonControl))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 91)]
+	[ContainsUnimplementedInstructions]
+	public FastMouse() { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(ButtonControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isButton", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 3)]
+	[CallsUnknownMethods(Count = 11)]
+	private ButtonControl Initialize_ctrlMousebackButton(InternedString kButtonLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(IntegerControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_synthetic", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 11)]
+	private IntegerControl Initialize_ctrlMouseclickCount(InternedString kIntegerLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 11)]
+	private DeltaControl Initialize_ctrlMousedelta(InternedString kDeltaLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_synthetic", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMousedeltadown(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_synthetic", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMousedeltaleft(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_synthetic", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMousedeltaright(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_synthetic", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMousedeltaup(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMousedeltax(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMousedeltay(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(IntegerControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 11)]
+	private IntegerControl Initialize_ctrlMousedisplayIndex(InternedString kIntegerLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(ButtonControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isButton", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 3)]
+	[CallsUnknownMethods(Count = 11)]
+	private ButtonControl Initialize_ctrlMouseforwardButton(InternedString kButtonLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(ButtonControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isButton", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 4)]
+	[CallsUnknownMethods(Count = 12)]
+	private ButtonControl Initialize_ctrlMouseleftButton(InternedString kButtonLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(ButtonControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isButton", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 4)]
+	[CallsUnknownMethods(Count = 12)]
+	private ButtonControl Initialize_ctrlMousemiddleButton(InternedString kButtonLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(IntegerControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 11)]
+	private IntegerControl Initialize_ctrlMousepointerId(InternedString kDigitalLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(Vector2Control), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_dontReset", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputDevice), Member = "set_hasDontResetControls", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 11)]
+	private Vector2Control Initialize_ctrlMouseposition(InternedString kVector2Layout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_dontReset", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputDevice), Member = "set_hasDontResetControls", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMousepositionx(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_dontReset", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputDevice), Member = "set_hasDontResetControls", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMousepositiony(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(ButtonControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_synthetic", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isButton", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 3)]
+	[CallsUnknownMethods(Count = 11)]
+	private ButtonControl Initialize_ctrlMousepress(InternedString kButtonLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputDevice), Member = "set_hasControlsWithDefaultState", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 11)]
+	private AxisControl Initialize_ctrlMousepressure(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(Vector2Control), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 11)]
+	private Vector2Control Initialize_ctrlMouseradius(InternedString kVector2Layout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMouseradiusx(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMouseradiusy(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(ButtonControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isButton", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 4)]
+	[CallsUnknownMethods(Count = 12)]
+	private ButtonControl Initialize_ctrlMouserightButton(InternedString kButtonLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 11)]
+	private DeltaControl Initialize_ctrlMousescroll(InternedString kDeltaLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_synthetic", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMousescrolldown(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_synthetic", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMousescrollleft(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_synthetic", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMousescrollright(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_synthetic", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMousescrollup(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMousescrollx(InternedString kAxisLayout, InputControl parent) { }
+
+	[CalledBy(Type = typeof(FastMouse), Member = ".ctor", ReturnType = typeof(void))]
+	[CallerCount(Count = 1)]
+	[Calls(Type = typeof(AxisControl), Member = ".ctor", ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControlExtensions), Member = "Setup", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl)}, ReturnType = typeof(ControlBuilder))]
+	[Calls(Type = typeof(InternedString), Member = ".ctor", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(string)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(InputControl), Member = "set_isSetupFinished", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(bool)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 12)]
+	private AxisControl Initialize_ctrlMousescrolly(InternedString kAxisLayout, InputControl parent) { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(InputEventPtr), Member = "get_type", ReturnType = typeof(FourCC))]
+	[Calls(Type = typeof(MouseState), Member = "get_Format", ReturnType = typeof(FourCC))]
+	[Calls(Type = typeof(StateEvent), Member = "get_state", ReturnType = typeof(Void*))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 1)]
+	internal static bool MergeForward(InputEventPtr currentEventPtr, InputEventPtr nextEventPtr) { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(InputState), Member = "Change", MemberTypeParameters = new IL2CPP_TYPE_OBJECT[] {typeof(Vector2)}, MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl), typeof(Vector2), typeof(InputUpdateType), typeof(InputEventPtr)}, ReturnType = typeof(void))]
+	[DeduplicatedMethod]
+	protected void OnNextUpdate() { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(InputEventPtr), Member = "get_type", ReturnType = typeof(FourCC))]
+	[Calls(Type = typeof(MouseState), Member = "get_Format", ReturnType = typeof(FourCC))]
+	[Calls(Type = typeof(StateEvent), Member = "get_state", ReturnType = typeof(Void*))]
+	[Calls(Type = typeof(InputControl), Member = "get_currentStatePtr", ReturnType = typeof(Void*))]
+	[Calls(Type = typeof(InputState), Member = "Change", MemberTypeParameters = new IL2CPP_TYPE_OBJECT[] {typeof(MouseState)}, MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl), typeof(MouseState&), typeof(InputUpdateType), typeof(InputEventPtr)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(Mouse), Member = "OnStateEvent", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputEventPtr)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 1)]
+	protected void OnStateEvent(InputEventPtr eventPtr) { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(InputEventPtr), Member = "get_type", ReturnType = typeof(FourCC))]
+	[Calls(Type = typeof(MouseState), Member = "get_Format", ReturnType = typeof(FourCC))]
+	[Calls(Type = typeof(StateEvent), Member = "get_state", ReturnType = typeof(Void*))]
+	[CallsDeduplicatedMethods(Count = 2)]
+	[CallsUnknownMethods(Count = 1)]
+	private override bool UnityEngine.InputSystem.LowLevel.IEventMerger.MergeForward(InputEventPtr currentEventPtr, InputEventPtr nextEventPtr) { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(InputState), Member = "Change", MemberTypeParameters = new IL2CPP_TYPE_OBJECT[] {typeof(Vector2)}, MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl), typeof(Vector2), typeof(InputUpdateType), typeof(InputEventPtr)}, ReturnType = typeof(void))]
+	[DeduplicatedMethod]
+	private override void UnityEngine.InputSystem.LowLevel.IInputStateCallbackReceiver.OnNextUpdate() { }
+
+	[CallerCount(Count = 0)]
+	[Calls(Type = typeof(InputEventPtr), Member = "get_type", ReturnType = typeof(FourCC))]
+	[Calls(Type = typeof(MouseState), Member = "get_Format", ReturnType = typeof(FourCC))]
+	[Calls(Type = typeof(StateEvent), Member = "get_state", ReturnType = typeof(Void*))]
+	[Calls(Type = typeof(InputControl), Member = "get_currentStatePtr", ReturnType = typeof(Void*))]
+	[Calls(Type = typeof(InputState), Member = "Change", MemberTypeParameters = new IL2CPP_TYPE_OBJECT[] {typeof(MouseState)}, MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputControl), typeof(MouseState&), typeof(InputUpdateType), typeof(InputEventPtr)}, ReturnType = typeof(void))]
+	[Calls(Type = typeof(Mouse), Member = "OnStateEvent", MemberParameters = new IL2CPP_TYPE_OBJECT[] {typeof(InputEventPtr)}, ReturnType = typeof(void))]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[CallsUnknownMethods(Count = 1)]
+	private override void UnityEngine.InputSystem.LowLevel.IInputStateCallbackReceiver.OnStateEvent(InputEventPtr eventPtr) { }
+
+}
+

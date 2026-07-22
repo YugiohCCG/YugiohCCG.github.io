@@ -1,5 +1,6 @@
 --Prophecy of Storms
 local s,id=GetID()
+local STRING_ID=133592011
 local ATTRIBUTE_SEARCH=ATTRIBUTE_WIND
 s.search_codes={
 	[256110263]=true,
@@ -8,7 +9,7 @@ s.search_codes={
 function s.initial_effect(c)
 	--Return 1 WIND Extra Deck monster; Special Summon this card
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TODECK+CATEGORY_SPECIAL_SUMMON+CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_HAND)

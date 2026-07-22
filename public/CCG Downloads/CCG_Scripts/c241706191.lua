@@ -1,5 +1,6 @@
 --Talismandrake Enkindle
 local s,id=GetID()
+local STRING_ID=133706191
 local SET_TALISMANDRAKE=0xb47
 local CARD_ARMS_UNITED=215034223
 local CARD_SUPPRESSOR=238136421
@@ -11,7 +12,7 @@ function s.initial_effect(c)
 	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,SET_TALISMANDRAKE),s.darkpyro,true)
 	--Add or equip 1 "Talismandrake Arms" Spell/Trap
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_EQUIP)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetProperty(EFFECT_FLAG_DELAY)
@@ -22,7 +23,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Banish the activated card
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_REMOVE)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_CHAINING)
@@ -69,12 +70,12 @@ function s.armsop(e,tp,eg,ep,ev,re,r,rp)
 	if not (b1 or b2) then return end
 	local op=0
 	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(id,2),aux.Stringid(id,3))
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))
 	elseif b1 then
-		Duel.SelectOption(tp,aux.Stringid(id,2))
+		Duel.SelectOption(tp,aux.Stringid(STRING_ID,2))
 		op=0
 	else
-		Duel.SelectOption(tp,aux.Stringid(id,3))
+		Duel.SelectOption(tp,aux.Stringid(STRING_ID,3))
 		op=1
 	end
 	if op==0 then

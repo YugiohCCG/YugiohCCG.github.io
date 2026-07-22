@@ -2,7 +2,7 @@ local s,id=GetID()
 local SET_NEMLERIA_OMEGA=0x191
 local SET_NEMLERIA_PI=0x192
 local CARD_DREAMING_NEMLERIA=CARD_DREAMING_NEMLERIA or 70155677
-local STRING_ID=id
+local STRING_ID=133392825
 local TIMINGS_CHECK_MONSTER=TIMINGS_CHECK_MONSTER or 0
 local RESET_CHAIN_COMPAT=RESET_CHAIN or (RESET_PHASE+PHASE_END)
 function s.initial_effect(c)
@@ -64,7 +64,7 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOEXTRA)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local g=Duel.SelectMatchingCard(tp,s.tefilter,tp,LOCATION_DECK,0,1,1,nil)
 	local tc=g:GetFirst()
 	if not tc then return end

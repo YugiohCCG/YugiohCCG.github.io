@@ -1,7 +1,7 @@
 local s,id=GetID()
 local SET_GLADIATOR=SET_GLADIATOR or 0x19
 local SET_GLADIATOR_BEAST=SET_GLADIATOR_BEAST or 0x1019
-local STRING_ID=id
+local STRING_ID=133607933
 local TEST_MONSTERS={
 	[3030892]=true,
 	[62076252]=true,
@@ -29,7 +29,7 @@ function s.initial_effect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
-	e3:SetCode(EVENT_PHASE|PHASE_BATTLE)
+	e3:SetCode(EVENT_PHASE+PHASE_BATTLE)
 	e3:SetRange(LOCATION_MZONE)
 	e3:SetCondition(s.battlecon)
 	e3:SetCost(s.tdcost)

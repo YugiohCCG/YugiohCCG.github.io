@@ -1,5 +1,6 @@
 --Prophecy of Waterfalls
 local s,id=GetID()
+local STRING_ID=133058567
 local ATTRIBUTE_SEARCH=ATTRIBUTE_WATER
 s.search_codes={
 	[246830897]=true,
@@ -17,7 +18,7 @@ s.search_codes={
 function s.initial_effect(c)
 	--Return 1 WATER Extra Deck monster; Special Summon this card
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TODECK+CATEGORY_SPECIAL_SUMMON+CATEGORY_TOHAND+CATEGORY_SEARCH)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_HAND)

@@ -1,15 +1,10 @@
 local s,id=GetID()
 local SET_GRAYSCALE=SET_GRAYSCALE or 0x575d
-local XYZ_INFINITE_MATS=(Xyz and Xyz.InfiniteMats) or 99
-local STRING_ID=id
+local STRING_ID=133626409
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--Xyz Summon procedure
-	if Xyz and Xyz.AddProcedure then
-		Xyz.AddProcedure(c,nil,8,2,nil,nil,XYZ_INFINITE_MATS,nil,nil,s.xyzcheck)
-	elseif aux.AddXyzProcedure then
-		aux.AddXyzProcedure(c,nil,8,2,nil,nil,99,nil,nil,s.xyzcheck)
-	end
+	aux.AddXyzProcedureLevelFree(c,s.xyzfilter,s.xyzcheck,2,99)
 	--Cannot be used as Link Material, except for a "Grayscale" monster
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_SINGLE)
@@ -48,7 +43,10 @@ s.listed_series={SET_GRAYSCALE}
 function s.lightfiendmat(c)
 	return c:IsAttribute(ATTRIBUTE_LIGHT) and c:IsRace(RACE_FIEND)
 end
-function s.xyzcheck(g,tp,xyz)
+function s.xyzfilter(c,xyz)
+	return c:IsLevel(8)
+end
+function s.xyzcheck(g,xyz,tp)
 	return g:IsExists(s.lightfiendmat,1,nil)
 end
 function s.linklimit(e,c)

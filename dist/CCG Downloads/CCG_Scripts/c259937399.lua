@@ -1,6 +1,6 @@
 local s,id=GetID()
 local SET_GRAYSCALE=SET_GRAYSCALE or 0x575d
-local STRING_ID=id
+local STRING_ID=133937399
 function s.initial_effect(c)
 	--Cannot be used as Xyz or Link Material, except for a "Grayscale" monster
 	local e0=Effect.CreateEffect(c)
@@ -40,6 +40,7 @@ function s.initial_effect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,2))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e3:SetProperty(EFFECT_FLAG_DELAY)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e3:SetRange(LOCATION_GRAVE)
 	e3:SetCountLimit(1,id+200)
@@ -50,7 +51,8 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_GRAYSCALE}
 function s.matlimit(e,c)
-	return c and not c:IsSetCard(SET_GRAYSCALE)
+	if not c then return false end
+	return not c:IsSetCard(SET_GRAYSCALE)
 end
 function s.handcon(e,tp,eg,ep,ev,re,r,rp)
 	local ph=Duel.GetCurrentPhase()
@@ -106,14 +108,12 @@ function s.linkop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.registerextra(c)
-	if not EFFECT_EXTRA_MATERIAL then return nil end
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
-	e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET+EFFECT_FLAG_CANNOT_DISABLE)
-	e1:SetCode(EFFECT_EXTRA_MATERIAL)
+	e1:SetCode(EFFECT_EXTRA_LINK_MATERIAL)
 	e1:SetRange(LOCATION_MZONE)
-	e1:SetTargetRange(1,0)
-	e1:SetOperation(s.extracon)
+	e1:SetTargetRange(LOCATION_HAND,0)
+	e1:SetTarget(s.handmatfilter)
 	e1:SetValue(s.extraval)
 	e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 	c:RegisterEffect(e1)
@@ -127,26 +127,13 @@ function s.resetextra(c,tp,ex)
 	e1:SetOperation(function(e) ex:Reset() e:Reset() end)
 	Duel.RegisterEffect(e1,tp)
 end
-function s.handmatfilter(c)
+function s.handmatfilter(e,c)
 	return c:IsSetCard(SET_GRAYSCALE) and c:IsAttribute(ATTRIBUTE_LIGHT) and c:IsRace(RACE_FIEND)
 		and c:IsCanBeLinkMaterial()
 end
-function s.extracon(c,e,tp,sg,mg,lc,og,chk)
-	return sg:IsContains(e:GetHandler())
-end
-function s.extraval(chk,summon_type,e,...)
-	if chk==0 then
-		local tp,sc=...
-		if summon_type~=SUMMON_TYPE_LINK or not sc:IsSetCard(SET_GRAYSCALE) then
-			return Group.CreateGroup()
-		end
-		return Duel.GetMatchingGroup(s.handmatfilter,tp,LOCATION_HAND,0,nil)
-	elseif chk==1 then
-		local sg,sc,tp=...
-		if (summon_type&SUMMON_TYPE_LINK)==SUMMON_TYPE_LINK and #sg>0 then
-			Duel.Hint(HINT_CARD,tp,id)
-		end
-	end
+function s.extraval(e,lc,mg,c,tp)
+	if not lc:IsSetCard(SET_GRAYSCALE) then return false,nil end
+	return true,not mg or mg:IsContains(e:GetHandler())
 end
 function s.xyzspfilter(c,tp)
 	return c:IsControler(tp) and c:IsFaceup() and c:IsSetCard(SET_GRAYSCALE) and c:IsType(TYPE_XYZ)
@@ -157,14 +144,14 @@ end
 function s.gysptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return aux.NecroValleyFilter()(c)
-		and Duel.GetFieldGroupCount(tp,LOCATION_HAND,0)>0
+		and Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil)
 		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,tp,LOCATION_GRAVE)
 end
 function s.gyspop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if Duel.DiscardHand(tp,aux.TRUE,1,1,REASON_EFFECT+REASON_DISCARD)<=0 then return end
+	if Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_EFFECT+REASON_DISCARD)<=0 then return end
 	if c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then
 		Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 	end

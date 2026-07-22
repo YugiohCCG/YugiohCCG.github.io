@@ -1,5 +1,6 @@
 --Sorceress of Fire
 local s,id=GetID()
+local STRING_ID=133360287
 local SET_PHLOGISTON=0x0f78
 local SET_PHLOGISTIC_UPRISING=0x6f9e
 local SET_PHLOGISTON_ROAR=0x4376
@@ -9,7 +10,7 @@ function s.initial_effect(c)
 	aux.AddCodeList(c,CARD_PHLOGISTON_DRAGON)
 	--Shuffle "Phlogist" Spell/Trap Cards, then Special Summon this card
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TODECK+CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_HAND+LOCATION_GRAVE)
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Discard this card; pay LP; send 1 monster that lists "Phlogiston Dragon"
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOGRAVE)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)

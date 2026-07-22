@@ -1,4 +1,5 @@
 local s,id=GetID()
+local STRING_ID=133156549
 local SET_GLITCHLING=0x9894
 local COUNTER_CORRUPTION=0x1994
 local CARD_PROTRON=24154052
@@ -13,7 +14,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	--If Ritual Summoned: Special Summon "Protron"
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -34,7 +35,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Ritual Summon
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_COUNTER)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)
@@ -131,7 +132,7 @@ function s.ritop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
 		rc:CompleteProcedure()
 		if Duel.IsExistingMatchingCard(Card.IsCanAddCounter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil,COUNTER_CORRUPTION,1)
-			and Duel.SelectYesNo(tp,aux.Stringid(id,2)) then
+			and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 			local cg=Duel.SelectMatchingCard(tp,Card.IsCanAddCounter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil,COUNTER_CORRUPTION,1)
 			local cc=cg:GetFirst()

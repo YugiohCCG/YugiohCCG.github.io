@@ -1,0 +1,14 @@
+namespace UnityEngine.Rendering.Universal;
+
+[AttributeUsage(AttributeTargets::Field (256))]
+internal sealed class RenderPathCompatibleAttribute : Attribute
+{
+	public RenderPathCompatibility renderPath; //Field offset: 0x10
+
+	[CallerCount(Count = 31)]
+	[CallsDeduplicatedMethods(Count = 1)]
+	[DeduplicatedMethod]
+	public RenderPathCompatibleAttribute(RenderPathCompatibility renderPath) { }
+
+}
+

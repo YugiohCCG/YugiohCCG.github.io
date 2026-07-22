@@ -1,11 +1,12 @@
 --Domestication
 local s,id=GetID()
+local STRING_ID=133201342
 local SET_DOMESTICA=0xe302
 local CARD_PIP_WILD=259394179
 function s.initial_effect(c)
 	--Reveal a Fusion Monster and 1 listed material, then send that Fusion Monster to the GY
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -15,7 +16,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Shuffle this card into the Deck instead
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e2:SetCode(EFFECT_SEND_REPLACE)
 	e2:SetRange(LOCATION_GRAVE)
@@ -57,7 +58,7 @@ function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return (r&REASON_EFFECT)~=0 and aux.NecroValleyFilter(Card.IsAbleToDeck)(c)
 		and eg:IsExists(s.repfilter,1,nil,tp) end
-	if Duel.SelectEffectYesNo(tp,c,aux.Stringid(id,1)) then
+	if Duel.SelectEffectYesNo(tp,c,aux.Stringid(STRING_ID,1)) then
 		local g=eg:Filter(s.repfilter,nil,tp)
 		local tc=g:GetFirst()
 		if #g>1 then

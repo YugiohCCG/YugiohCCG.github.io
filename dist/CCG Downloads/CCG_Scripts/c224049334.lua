@@ -1,5 +1,6 @@
 --Solemn Rebirth
 local s,id=GetID()
+local STRING_ID=132049334
 function s.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -8,7 +9,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Set destroyed Spells/Traps
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,0))
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_LEAVE_GRAVE+CATEGORY_SSET)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)

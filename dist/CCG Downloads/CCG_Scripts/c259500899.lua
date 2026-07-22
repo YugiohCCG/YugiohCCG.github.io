@@ -1,10 +1,11 @@
 --DIVING DAUGHTERS OF THE GRAND BLUE
 local s,id=GetID()
+local STRING_ID=133500899
 local SET_GRAND_BLUE=0x67ee
 function s.initial_effect(c)
 	--If Normal or Special Summoned: send 1 "Grand Blue" monster from your Deck to the GY
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SUMMON_SUCCESS)
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--If sent to the GY by card effect: target 1 other "Grand Blue" card; Special Summon this card
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetProperty(EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_DELAY)
@@ -49,15 +50,19 @@ end
 function s.otherfilter(c,sc)
 	return c~=sc and c:IsSetCard(SET_GRAND_BLUE)
 end
+function s.othertgfilter(c,e,sc)
+	return s.otherfilter(c,sc) and c:IsCanBeEffectTarget(e)
+end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local c=e:GetHandler()
-	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_ONFIELD+LOCATION_GRAVE) and s.otherfilter(chkc,c) end
+	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_ONFIELD+LOCATION_GRAVE)
+		and s.othertgfilter(chkc,e,c) end
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and aux.NecroValleyFilter()(c)
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENSE)
-		and Duel.IsExistingTarget(s.otherfilter,tp,LOCATION_ONFIELD+LOCATION_GRAVE,0,1,c,c) end
+		and aux.NecroValleyFilter()(c)
+		and Duel.IsExistingTarget(s.othertgfilter,tp,LOCATION_ONFIELD+LOCATION_GRAVE,0,1,c,e,c) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
-	Duel.SelectTarget(tp,s.otherfilter,tp,LOCATION_ONFIELD+LOCATION_GRAVE,0,1,1,c,c)
+	Duel.SelectTarget(tp,s.othertgfilter,tp,LOCATION_ONFIELD+LOCATION_GRAVE,0,1,1,c,e,c)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,0,0)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)

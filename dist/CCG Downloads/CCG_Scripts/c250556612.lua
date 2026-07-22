@@ -1,9 +1,13 @@
 --NiuHao - Zao
 local s,id=GetID()
+local STRING_ID=132556612
 local SET_NIUHAO=0xb69
 local CARD_BOJIN=236542835
 local CARD_CHUNYIN=229499914
 local CARD_HUANGJIN=246421842
+local STRING_BOJIN=132542835
+local STRING_CHUNYIN=133499914
+local STRING_HUANGJIN=132421842
 local SACRED_TREASURE_CODES={
 	[CARD_BOJIN]=true,
 	[CARD_CHUNYIN]=true,
@@ -34,7 +38,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Detach 1 material; banish 2 "Sacred Treasure" Spells and apply their activation effects
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetCategory(CATEGORY_REMOVE+CATEGORY_DESTROY+CATEGORY_SPECIAL_SUMMON+CATEGORY_POSITION+CATEGORY_DRAW)
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)
@@ -111,7 +115,7 @@ function s.applybojin(e,tp)
 	if not (b1 or b2) then return end
 	local op=0
 	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(CARD_BOJIN,1),aux.Stringid(CARD_BOJIN,2))
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_BOJIN,1),aux.Stringid(STRING_BOJIN,2))
 	elseif b2 then
 		op=1
 	end
@@ -139,7 +143,7 @@ function s.applychunyin(e,tp)
 	if not (b1 or b2) then return end
 	local op=0
 	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(CARD_CHUNYIN,1),aux.Stringid(CARD_CHUNYIN,2))
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_CHUNYIN,1),aux.Stringid(STRING_CHUNYIN,2))
 	elseif b2 then
 		op=1
 	end
@@ -167,7 +171,7 @@ function s.applyhuangjin(e,tp)
 	if not (b1 or b2) then return end
 	local op=0
 	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(CARD_HUANGJIN,1),aux.Stringid(CARD_HUANGJIN,2))
+		op=Duel.SelectOption(tp,aux.Stringid(STRING_HUANGJIN,1),aux.Stringid(STRING_HUANGJIN,2))
 	elseif b2 then
 		op=1
 	end

@@ -1,6 +1,8 @@
 --To Proto Taxis
 local s,id=GetID()
+local STRING_ID=132380598
 local SET_TO_PROTO=0xe80d
+local TOKEN_PROTOGENIC=240299293
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--Must first be Special Summoned by its own procedure
@@ -19,7 +21,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	--Special Summon procedure
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,0))
+	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetType(EFFECT_TYPE_FIELD)
 	e3:SetCode(EFFECT_SPSUMMON_PROC)
 	e3:SetProperty(EFFECT_FLAG_UNCOPYABLE)
@@ -57,7 +59,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e7)
 	--Tribute 1 Token; double 1 monster's ATK/DEF
 	local e8=Effect.CreateEffect(c)
-	e8:SetDescription(aux.Stringid(id,1))
+	e8:SetDescription(aux.Stringid(STRING_ID,1))
 	e8:SetCategory(CATEGORY_ATKCHANGE+CATEGORY_DEFCHANGE)
 	e8:SetType(EFFECT_TYPE_QUICK_O)
 	e8:SetCode(EVENT_FREE_CHAIN)
@@ -70,11 +72,11 @@ function s.initial_effect(c)
 	c:RegisterEffect(e8)
 	--If banished from the field: add 1 banished "To Proto" monster
 	local e9=Effect.CreateEffect(c)
-	e9:SetDescription(aux.Stringid(id,2))
+	e9:SetDescription(aux.Stringid(STRING_ID,2))
 	e9:SetCategory(CATEGORY_TOHAND)
 	e9:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e9:SetCode(EVENT_REMOVE)
-	e9:SetProperty(EFFECT_FLAG_DELAY)
+	e9:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
 	e9:SetCountLimit(1,id+100)
 	e9:SetCondition(s.rmcon)
 	e9:SetTarget(s.rmtg)
@@ -82,6 +84,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e9)
 end
 s.listed_series={SET_TO_PROTO}
+s.listed_names={TOKEN_PROTOGENIC}
 function s.spfilter(c,tp)
 	return c:IsFaceup() and c:IsSetCard(SET_TO_PROTO) and c:IsType(TYPE_MONSTER)
 		and c:IsAbleToRemoveAsCost() and Duel.GetMZoneCount(tp,c)>0
@@ -121,7 +124,7 @@ function s.damcon(e)
 	return e:GetHandler():GetBattleTarget()~=nil
 end
 function s.tokencostfilter(c)
-	return c:IsType(TYPE_TOKEN) and c:IsReleasable()
+	return c:IsCode(TOKEN_PROTOGENIC) and c:IsReleasable()
 end
 function s.tokencost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.CheckReleaseGroup(tp,s.tokencostfilter,1,nil) end
@@ -164,19 +167,20 @@ function s.rmcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsFaceup() and e:GetHandler():IsPreviousControler(tp)
 		and e:GetHandler():IsPreviousLocation(LOCATION_ONFIELD)
 end
-function s.rmfilter(c,code)
+function s.rmfilter(c,e,code)
 	return c:IsFaceup() and c:IsSetCard(SET_TO_PROTO) and c:IsType(TYPE_MONSTER)
-		and not c:IsCode(code) and c:IsAbleToHand()
+		and not c:IsCode(code) and c:IsAbleToHand() and c:IsCanBeEffectTarget(e)
 end
-function s.rmtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.rmfilter,tp,LOCATION_REMOVED,0,1,nil,id) end
-	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_REMOVED)
+function s.rmtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_REMOVED) and s.rmfilter(chkc,e,id) end
+	if chk==0 then return Duel.IsExistingTarget(s.rmfilter,tp,LOCATION_REMOVED,0,1,nil,e,id) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
+	local g=Duel.SelectTarget(tp,s.rmfilter,tp,LOCATION_REMOVED,0,1,1,nil,e,id)
+	Duel.SetOperationInfo(0,CATEGORY_TOHAND,g,1,0,0)
 end
 function s.rmop(e,tp,eg,ep,ev,re,r,rp)
-	if not Duel.IsExistingMatchingCard(s.rmfilter,tp,LOCATION_REMOVED,0,1,nil,id) then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
-	local g=Duel.SelectMatchingCard(tp,s.rmfilter,tp,LOCATION_REMOVED,0,1,1,nil,id)
-	if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
-		Duel.ConfirmCards(1-tp,g)
+	local tc=Duel.GetFirstTarget()
+	if tc and tc:IsRelateToEffect(e) and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) then
+		Duel.ConfirmCards(1-tp,tc)
 	end
 end

@@ -1,5 +1,6 @@
 --Rigel the Thousand-Armed
 local s,id=GetID()
+local STRING_ID=133853847
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	aux.AddLinkProcedure(c,aux.FilterBoolFunction(Card.IsLinkType,TYPE_EFFECT),2)
@@ -30,7 +31,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 	--Gain ATK and attack all monsters
 	local e5=Effect.CreateEffect(c)
-	e5:SetDescription(aux.Stringid(id,0))
+	e5:SetDescription(aux.Stringid(STRING_ID,0))
 	e5:SetCategory(CATEGORY_ATKCHANGE)
 	e5:SetType(EFFECT_TYPE_IGNITION)
 	e5:SetRange(LOCATION_MZONE)
@@ -48,7 +49,7 @@ function s.aclimit(e,re,tp)
 end
 function s.linksum(c)
 	if c:IsType(TYPE_LINK) then return c:GetLink() end
-	return 0
+	return 1
 end
 function s.atktg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsFaceup() end

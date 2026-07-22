@@ -1,17 +1,18 @@
 --Checkmate in Aldrez
 local s,id=GetID()
+local STRING_ID=133849997
 local SET_ALDREZ=0xc1c
 function s.initial_effect(c)
 	--Activate from hand while you control an "Aldrez" Xyz Monster
 	local e0=Effect.CreateEffect(c)
-	e0:SetDescription(aux.Stringid(id,0))
+	e0:SetDescription(aux.Stringid(STRING_ID,0))
 	e0:SetType(EFFECT_TYPE_SINGLE)
 	e0:SetCode(EFFECT_TRAP_ACT_IN_HAND)
 	e0:SetCondition(s.handcon)
 	c:RegisterEffect(e0)
 	--Negate a face-up monster
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(id,0))
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_DISABLE+CATEGORY_DESTROY)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
@@ -23,7 +24,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Special Summon 1 "Aldrez" monster from GY/banishment
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_GRAVE)
@@ -67,21 +68,24 @@ end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and aux.NegateAnyFilter(tc)) then return end
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsFaceup() and aux.NegateAnyFilter(tc)
+		and tc:IsCanBeDisabledByEffect(e,false)) then return end
 	Duel.NegateRelatedChain(tc,RESET_TURN_SET)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
+	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 	e1:SetCode(EFFECT_DISABLE)
 	e1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
 	tc:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_SINGLE)
+	e2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 	e2:SetCode(EFFECT_DISABLE_EFFECT)
 	e2:SetValue(RESET_TURN_SET)
 	e2:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
 	tc:RegisterEffect(e2)
 	if s.highestatk(tp) and Duel.IsExistingMatchingCard(s.desfilter,tp,0,LOCATION_MZONE,1,tc)
-		and Duel.SelectYesNo(tp,aux.Stringid(id,2)) then
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 		Duel.BreakEffect()
 		local g=Duel.GetMatchingGroup(s.desfilter,tp,0,LOCATION_MZONE,tc)
 		Duel.Destroy(g,REASON_EFFECT)
