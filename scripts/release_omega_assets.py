@@ -22,6 +22,10 @@ Then for each image category (Arts / Pics / Holograms):
   3. Update the matching part-count constant in
      `scripts/ccg-omega-installer.iss`.
 
+The standalone Lua payload is also rebuilt from the active cards in
+``cards.json``. Orphan card scripts and shared/helper modules fail the release
+instead of being copied into Omega's global Scripts folder.
+
 Optional finishing steps (publish run only, never with --export-only):
 
   --recompile-installer / --iscc <path>
@@ -40,7 +44,8 @@ Optional finishing steps (publish run only, never with --export-only):
 Usage:
   python scripts/release_omega_assets.py [--overwrite] [--use-omega-install]
                                          [--export-only] [--skip-db]
-                                         [--skip-images] [--keep-staging]
+                                         [--skip-images] [--skip-scripts]
+                                         [--keep-staging]
                                          [--recompile-installer | --iscc <path>]
                                          [--push] [--commit-message "<msg>"]
 """
@@ -198,6 +203,33 @@ def run_db_sync(db_path: Path, full_sync: bool) -> None:
     proc = subprocess.run(cmd, check=False)
     if proc.returncode != 0:
         raise SystemExit(f"sync_omega_ccg_db.py failed (exit {proc.returncode})")
+
+
+def build_scripts_package() -> None:
+    cmd = [sys.executable, str(SCRIPTS_DIR / "package_omega_ccg_scripts.py")]
+    print("\n[scripts] rebuilding card-only CCG_Scripts.zip")
+    proc = subprocess.run(cmd, check=False)
+    if proc.returncode != 0:
+        raise SystemExit(f"package_omega_ccg_scripts.py failed (exit {proc.returncode})")
+
+
+def mirror_export_to_omega(source_dir: Path, omega_dir: Path) -> None:
+    """Copy only the freshly exported CCG files into Omega's shared asset dir."""
+    omega_dir.mkdir(parents=True, exist_ok=True)
+    copied = 0
+    for source in source_dir.iterdir():
+        if source.is_file():
+            shutil.copy2(source, omega_dir / source.name)
+            copied += 1
+    print(f"  mirrored {copied} CCG files -> {omega_dir}")
+
+
+def run_release_audit() -> None:
+    cmd = [sys.executable, "-B", str(SCRIPTS_DIR / "verify_omega_release.py")]
+    print("\n[verify] auditing installer payloads and folder layout")
+    proc = subprocess.run(cmd, check=False)
+    if proc.returncode != 0:
+        raise SystemExit(f"verify_omega_release.py failed (exit {proc.returncode})")
 
 
 def zip_repo_db() -> None:
@@ -386,6 +418,11 @@ def main() -> int:
         help="Skip the image export/zip step (Arts/Pics/Holograms).",
     )
     parser.add_argument(
+        "--skip-scripts",
+        action="store_true",
+        help="Skip rebuilding and validating the standalone CCG Lua package.",
+    )
+    parser.add_argument(
         "--recompile-installer",
         action="store_true",
         help="After building artifacts, run Inno Setup (ISCC.exe) on "
@@ -420,7 +457,10 @@ def main() -> int:
     if args.use_omega_install and not OMEGA_INSTALL_ROOT.exists():
         raise SystemExit(f"--use-omega-install given but {OMEGA_INSTALL_ROOT} does not exist")
 
-    if not args.use_omega_install and not args.skip_images:
+    uses_staging = not args.skip_images and not (
+        args.use_omega_install and args.export_only
+    )
+    if uses_staging:
         STAGING_DIR.mkdir(parents=True, exist_ok=True)
 
     completed: "OrderedDict[str, int]" = OrderedDict()
@@ -465,12 +505,24 @@ def main() -> int:
                 print(f"  [db] aborted: {exc}")
                 failures.append(("db", str(exc)))
 
+    if not args.skip_scripts and not args.export_only:
+        try:
+            build_scripts_package()
+        except SystemExit as exc:
+            print(f"  [scripts] aborted: {exc}")
+            failures.append(("scripts", str(exc)))
+
     image_tasks = [] if args.skip_images else TASKS
     for task in image_tasks:
-        if args.use_omega_install:
+        direct_omega_export = args.use_omega_install and args.export_only
+        if direct_omega_export:
             export_dir = OMEGA_INSTALL_ROOT / task["omega_subdir"]
         else:
             export_dir = STAGING_DIR / task["staging_subdir"]
+            # Never package a retained/interrupted staging directory. The ZIPs
+            # must contain only files emitted for the current cards.json.
+            shutil.rmtree(export_dir, ignore_errors=True)
+            export_dir.mkdir(parents=True, exist_ok=True)
 
         try:
             run_exporter(task, export_dir, args.overwrite)
@@ -480,6 +532,12 @@ def main() -> int:
                 print(f"  [{task['label']}] keeping previous zips and .iss constant intact.")
             failures.append((task["label"], str(exc)))
             continue
+
+        if args.use_omega_install and not direct_omega_export:
+            mirror_export_to_omega(
+                export_dir,
+                OMEGA_INSTALL_ROOT / task["omega_subdir"],
+            )
 
         if args.export_only:
             continue
@@ -495,7 +553,7 @@ def main() -> int:
         if change is not None:
             iss_changes.append((task["iss_constant"], change[0], change[1]))
 
-    if not args.use_omega_install and not args.keep_staging and not args.export_only:
+    if uses_staging and not args.keep_staging and not args.export_only:
         shutil.rmtree(STAGING_DIR, ignore_errors=True)
 
     if args.recompile_installer and not args.export_only:
@@ -514,6 +572,13 @@ def main() -> int:
             except SystemExit as exc:
                 print(f"  [installer] aborted: {exc}")
                 failures.append(("installer", str(exc)))
+
+    if not args.export_only and not failures:
+        try:
+            run_release_audit()
+        except SystemExit as exc:
+            print(f"  [verify] aborted: {exc}")
+            failures.append(("verify", str(exc)))
 
     pushed = False
     push_attempted = False

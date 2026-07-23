@@ -49,6 +49,10 @@ Priorities:
 9. Copy the finished script into the installed Omega root script folder for local testing.
 10. Rebuild the scripts zip after any release-script change.
 
+Use `npm run package:omega:scripts` to build it. The packager requires exact
+parity with active `cards.json` passcodes and rejects orphan card files and
+shared/helper Lua modules; custom card scripts must remain standalone.
+
 ### Custom prompt IDs
 
 Do not pass this project's nine-digit gameplay IDs directly to `aux.Stringid`.
@@ -71,6 +75,13 @@ python scripts\verify_omega_message_routes.py --report scripts\output\omega_mess
 The verifier checks all active scripts, signed-range safety, slots, DB text
 identity, hidden Token rows, one-to-one mapping, and collisions with Omega's
 official database.
+
+Before publishing an installer, run `npm run verify:omega`. It checks the DB,
+card-only Lua ZIP, every image archive and installer part count, then extracts
+the payload into an isolated copy of Omega's expected folder layout.
+The smoke install also confirms that matching filenames are overwritten and
+unrelated existing files are preserved; the installer does not clean Omega's
+shared folders.
 
 ## Database Workflow
 

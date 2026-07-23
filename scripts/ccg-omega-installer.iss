@@ -3,7 +3,7 @@
 ; Re-run this installer any time to update to the newest files on GitHub.
 
 #define MyAppName "CCG Add-on for YGO Omega"
-#define MyAppVersion "1.2.3"
+#define MyAppVersion "1.3.1"
 
 [Setup]
 AppName={#MyAppName}
@@ -122,6 +122,22 @@ begin
   end;
 end;
 
+function IsOmegaRoot(const RootDir: string): Boolean;
+begin
+  Result := DirExists(AddBackslash(RootDir) + 'YGO Omega_Data\Files');
+end;
+
+function NextButtonClick(CurPageID: Integer): Boolean;
+begin
+  Result := True;
+  if (CurPageID = wpSelectDir) and not IsOmegaRoot(WizardDirValue) then
+  begin
+    MsgBox('That folder does not appear to be the YGO Omega root. Select the folder that contains YGO Omega_Data.',
+      mbError, MB_OK);
+    Result := False;
+  end;
+end;
+
 function InstallPayload: Boolean;
 var
   TempDbZip, TempScriptsZip, TempImagesZip, TempPicsZip, TempHologramsZip, TempBanlist: string;
@@ -131,6 +147,12 @@ var
   i: Integer;
 begin
   Result := False;
+  if not IsOmegaRoot(ExpandConstant('{app}')) then
+  begin
+    MsgBox('The selected folder is not a YGO Omega root (YGO Omega_Data\Files was not found).',
+      mbError, MB_OK);
+    Exit;
+  end;
   TempDbZip := GetTempDir + DB_ZIP_NAME;
   TempScriptsZip := GetTempDir + 'ccg_scripts.zip';
   TempImagesZip := GetTempDir + 'ccg_images.zip';
@@ -283,8 +305,6 @@ begin
   end;
 
   ForceDirectories(ExtractFileDir(DestBanlist));
-  if FileExists(DestBanlist) then
-    DeleteFile(DestBanlist);
   if not CopyFile(TempBanlist, DestBanlist, False) then
   begin
     MsgBox('Failed to copy the banlist into YGO Omega.', mbError, MB_OK);

@@ -48,7 +48,10 @@
     "release:omega:installer": "python scripts/release_omega_assets.py --skip-db --skip-images --recompile-installer --push --commit-message \"Recompile Omega CCG installer EXE\"",
     "test:omega": "python scripts/release_omega_assets.py --use-omega-install --export-only --overwrite",
     "release:omega:db-only": "python scripts/release_omega_assets.py --skip-images",
-    "release:omega:images-only": "python scripts/release_omega_assets.py --skip-db"
+    "release:omega:images-only": "python scripts/release_omega_assets.py --skip-db",
+    "package:omega:scripts": "python scripts/package_omega_ccg_scripts.py",
+    "verify:omega:scripts": "python scripts/package_omega_ccg_scripts.py --check",
+    "verify:omega": "python scripts/verify_omega_release.py"
   },
   "engines": {
     "node": ">=18.18"

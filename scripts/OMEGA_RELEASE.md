@@ -1,6 +1,6 @@
 # Omega CCG Release Pipeline
 
-This document describes the automated workflow for building and publishing the YGO Omega CCG add-on (database, images, installer). 
+This document describes the automated workflow for building and publishing the YGO Omega CCG add-on (database, standalone card scripts, images, installer).
 
 ## Overview
 
@@ -10,6 +10,7 @@ This document describes the automated workflow for building and publishing the Y
 | --- | --- | --- |
 | `CCG_v1.db` | `public/CCG Downloads/CCG_Database/` | Omega card database |
 | `CCG_Database.zip` | same folder | Zipped DB for the installer |
+| `CCG_Scripts.zip` | `public/CCG Downloads/CCG_Scripts/` | Standalone Lua for active CCG cards only |
 | `YGO_Omega_Images_v{N}.zip` | `public/CCG Downloads/` | Cropped art (624×624 JPEG) |
 | `YGO_Omega_Pics_v{N}.zip` | `public/CCG Downloads/YGO_Omega_Images/` | Full card images |
 | `YGO_Omega_Holograms_v{N}.zip` | `public/CCG Downloads/YGO_Omega_Images/` | Hologram cutouts (monsters only) |
@@ -56,6 +57,15 @@ They iterate `src/data/cards.json`, use each card's `passcode` as the output fil
 
 `scripts/release_omega_assets.py` handles:
 
+The script step requires exactly one standalone `c<ID>.lua` for every active
+`cards.json` passcode. Orphan card scripts and shared/helper Lua modules stop
+the release before `CCG_Scripts.zip` can be published.
+
+When `--use-omega-install` is combined with a publish run, archives are built
+from a clean CCG-only staging directory and those exact files are then mirrored
+into Omega. The shared live `Arts`, `Pics`, and `Holograms` folders are never
+used as ZIP input.
+
 1. **DB sync** — runs `sync_omega_ccg_db.py` against the repo DB (or local Omega DB with `--use-omega-install`), then re-zips `CCG_Database.zip`.
 2. **Image export** — runs all three exporters.
 3. **Chunking** — packs files into ≤95 MB zip parts (replaces manual `split-images.ps1`).
@@ -84,6 +94,8 @@ They iterate `src/data/cards.json`, use each card's `passcode` as the output fil
 | `npm run release:omega:with-omega-install` | Like `release:omega`, but also writes DB/images to local Omega install before mirroring to repo. |
 | `npm run release:omega:db-only` | Refresh `CCG_v1.db` + `CCG_Database.zip` only. Skips images (~seconds). |
 | `npm run release:omega:images-only` | Refresh image zips + `.iss` only. Skips DB. |
+| `npm run package:omega:scripts` | Rebuild the card-only Lua ZIP and reject missing/orphan/helper scripts. |
+| `npm run verify:omega` | Audit every payload and perform an isolated Omega-folder smoke extraction. |
 
 ### Related (not part of the image/DB pipeline)
 
@@ -219,6 +231,12 @@ scripts/ccg-omega-installer.iss   (source)
         v
 public/CCG Downloads/CCG_Omega_Addon_Setup.exe   (what users run)
 ```
+
+The installer is additive/overwrite-only. It does not clean or prune any Omega
+folder: archive extraction replaces files with the same names and adds missing
+files, while unrelated files (including old custom-card files) remain untouched.
+The isolated `npm run verify:omega` smoke test seeds both matching and unrelated
+files in every target folder and asserts this contract.
 
 The `.iss` file tells the installer which zip URLs to download from GitHub Pages and where to extract them in the user's YGO Omega folder. When image part counts change (e.g. `IMAGE_PART_COUNT` 3 → 1), the EXE **must** be recompiled or end users will try to download zip parts that no longer exist.
 

@@ -2882,6 +2882,39 @@ def prune_helper_rows(conn: sqlite3.Connection) -> int:
     return len(ids)
 
 
+def prune_non_release_rows(
+    conn: sqlite3.Connection,
+    cards: list[dict[str, Any]],
+    message_carrier_map: dict[int, int],
+) -> int:
+    """Remove rows that are not active cards or required CCG support records.
+
+    Full syncs historically upserted the current card list but retained arbitrary
+    rows already present in the seed database.  A distributable CCG database must
+    instead have a closed membership: active cards, the explicit CCG Tokens, and
+    the hidden prompt carriers required by Omega's signed string-ID transport.
+    """
+    allowed_ids = {
+        int(card["passcode"])
+        for card in cards
+        if card.get("passcode") is not None
+    }
+    allowed_ids.update(int(token["id"]) for token in EXTRA_TOKEN_CARDS)
+    allowed_ids.update(message_carrier_map.values())
+
+    stale_ids = [
+        int(row[0])
+        for row in conn.execute("select id from datas")
+        if int(row[0]) not in allowed_ids
+    ]
+    if not stale_ids:
+        return 0
+
+    conn.executemany("delete from texts where id=?", ((card_id,) for card_id in stale_ids))
+    conn.executemany("delete from datas where id=?", ((card_id,) for card_id in stale_ids))
+    return len(stale_ids)
+
+
 def build_existing_setcode_map(cards: list[dict[str, Any]], rows: list[sqlite3.Row]) -> tuple[dict[str, int], set[int]]:
     source_by_norm = {normalize_name(canonical_display_name(card.get("name"))): card for card in cards}
     candidates: dict[str, Counter[int]] = defaultdict(Counter)
@@ -3347,8 +3380,9 @@ def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) 
         # including retained legacy rows that are not in the current card source.
         conn.execute("update datas set ot=0 where ot<>0")
         message_carrier_map = upsert_message_carriers(conn, cards)
+        pruned_non_release_row_count = prune_non_release_rows(conn, cards, message_carrier_map)
         conn.commit()
-        if pruned_legacy_rows:
+        if pruned_legacy_rows or pruned_helper_rows or pruned_non_release_row_count:
             conn.execute("vacuum")
         map_path.parent.mkdir(parents=True, exist_ok=True)
         map_path.write_text(json.dumps(mapping_output, indent=2), encoding="utf-8")
@@ -3363,6 +3397,7 @@ def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) 
             "preserved": preserved,
             "pruned_legacy_rows": pruned_legacy_rows,
             "pruned_helper_rows": pruned_helper_rows,
+            "pruned_non_release_rows": pruned_non_release_row_count,
             "message_carriers": len(message_carrier_map),
             "datas_count": final_counts[0],
             "texts_count": final_counts[1],

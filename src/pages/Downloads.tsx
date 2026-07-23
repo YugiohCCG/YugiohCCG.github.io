@@ -7,11 +7,7 @@ const DB_URL = `${IMAGES_BASE}/CCG_Database/CCG_v1.db`;
 const SCRIPTS_ZIP_URL = `${IMAGES_BASE}/CCG_Scripts/CCG_Scripts.zip`;
 const BANLIST_URL = `${IMAGES_BASE}/CCG_Banlist/CCG_Banlist.lflist.conf`;
 const IMAGE_ASSETS_BASE = `${IMAGES_BASE}/YGO_Omega_Images`;
-const IMAGE_PARTS = [
-  `${IMAGES_BASE}/YGO_Omega_Images_v1.zip`,
-  `${IMAGES_BASE}/YGO_Omega_Images_v2.zip`,
-  `${IMAGES_BASE}/YGO_Omega_Images_v3.zip`,
-];
+const IMAGE_PARTS = [`${IMAGES_BASE}/YGO_Omega_Images_v1.zip`];
 const PIC_PARTS = [
   `${IMAGE_ASSETS_BASE}/YGO_Omega_Pics_v1.zip`,
   `${IMAGE_ASSETS_BASE}/YGO_Omega_Pics_v2.zip`,
@@ -22,10 +18,6 @@ const HOLOGRAM_PARTS = [
   `${IMAGE_ASSETS_BASE}/YGO_Omega_Holograms_v1.zip`,
   `${IMAGE_ASSETS_BASE}/YGO_Omega_Holograms_v2.zip`,
   `${IMAGE_ASSETS_BASE}/YGO_Omega_Holograms_v3.zip`,
-  `${IMAGE_ASSETS_BASE}/YGO_Omega_Holograms_v4.zip`,
-  `${IMAGE_ASSETS_BASE}/YGO_Omega_Holograms_v5.zip`,
-  `${IMAGE_ASSETS_BASE}/YGO_Omega_Holograms_v6.zip`,
-  `${IMAGE_ASSETS_BASE}/YGO_Omega_Holograms_v7.zip`,
 ];
 
 export default function Downloads() {
@@ -63,7 +55,11 @@ export default function Downloads() {
               Installs the database, scripts, banlist, card art, full-card images, and holograms automatically. Default path:
               <code className="ml-1 rounded bg-black/20 px-1.5 py-0.5">C:\Program Files (x86)\YGO Omega</code>
             </p>
-            <a className="btn mt-4 bg-white/95" href={INSTALLER_URL}>
+            <a
+              className="btn mt-4 bg-white/95"
+              href={INSTALLER_URL}
+              download="CCG_Omega_Addon_Setup.exe"
+            >
               Download Installer (.exe)
             </a>
           </div>
