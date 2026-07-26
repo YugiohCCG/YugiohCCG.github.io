@@ -30,10 +30,10 @@ function s.initial_effect(c)
 	e2:SetOperation(s.spop)
 	c:RegisterEffect(e2)
 end
-function s.matfilter(c,lc,sumtype,tp)
+function s.matfilter(c)
 	return c:IsLevelBelow(4) and c:IsLinkRace(RACE_ZOMBIE)
 end
-function s.lcheck(g,lc,sumtype,tp)
+function s.lcheck(g)
 	return g:IsExists(Card.IsLinkSetCard,1,nil,0x6F4)
 end
 function s.thcon(e,tp,eg,ep,ev,re,r,rp)

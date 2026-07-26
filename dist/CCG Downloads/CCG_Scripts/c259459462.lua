@@ -39,7 +39,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 s.listed_series={SET_SCARSTECH}
-function s.lcheck(g,lc,sumtype,tp)
+function s.lcheck(g)
 	return g:IsExists(Card.IsLinkSetCard,1,nil,SET_SCARSTECH)
 end
 function s.atkop(e,tp,eg,ep,ev,re,r,rp)

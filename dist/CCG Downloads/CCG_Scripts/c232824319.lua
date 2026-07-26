@@ -34,8 +34,8 @@ function s.initial_effect(c)
 	c:SetUniqueOnField(1,0,id)
 end
 s.listed_series={0x7a34}
-function s.matfilter(c,sc,st,tp)
-	return c:IsSetCard(0x7a34) and not c:IsType(TYPE_LINK,sc,st,tp)
+function s.matfilter(c)
+	return c:IsSetCard(0x7a34) and not c:IsType(TYPE_LINK)
 end
 function s.cfilter(c)
 	return c:IsFaceup() and c:IsSetCard(0x7a34)

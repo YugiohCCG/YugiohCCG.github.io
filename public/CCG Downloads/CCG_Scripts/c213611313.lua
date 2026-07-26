@@ -1,6 +1,7 @@
 local s,id=GetID()
 local STRING_ID=133611313
 local SET_SCARSTECH=0x52f8
+local RACE_GALAXY=0x80000000
 function s.initial_effect(c)
 	aux.AddLinkProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,SET_SCARSTECH),2,2)
 	c:EnableReviveLimit()

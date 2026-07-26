@@ -37,7 +37,7 @@ function s.initial_effect(c)
 end
 function s.syncheck(g,sc,tp)
 	local tuners=g:Filter(Card.IsType,nil,TYPE_TUNER)
-	local nontuners=g:Filter(function(c) return not c:IsType(TYPE_TUNER) end)
+	local nontuners=g:Filter(function(c) return not c:IsType(TYPE_TUNER) end,nil)
 	if #tuners~=3 or #nontuners~=3 then return false end
 	local t_attrs=tuners:GetClassCount(Card.GetAttribute)
 	local n_attrs=nontuners:GetClassCount(Card.GetAttribute)

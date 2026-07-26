@@ -52,8 +52,8 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_OHMEN, SET_OHMECHANIC}
 
-function s.lcheck(g,lc,sumtype,tp)
-	return g:IsExists(Card.IsSetCard,1,nil,SET_OHMECHANIC,lc,sumtype,tp)
+function s.lcheck(g)
+	return g:IsExists(Card.IsSetCard,1,nil,SET_OHMECHANIC)
 end
 
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)

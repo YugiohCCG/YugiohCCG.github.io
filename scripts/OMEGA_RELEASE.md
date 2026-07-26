@@ -13,7 +13,7 @@ This document describes the automated workflow for building and publishing the Y
 | `CCG_Scripts.zip` | `public/CCG Downloads/CCG_Scripts/` | Standalone Lua for active CCG cards only |
 | `YGO_Omega_Images_v{N}.zip` | `public/CCG Downloads/` | Cropped art (624×624 JPEG) |
 | `YGO_Omega_Pics_v{N}.zip` | `public/CCG Downloads/YGO_Omega_Images/` | Full card images |
-| `YGO_Omega_Holograms_v{N}.zip` | `public/CCG Downloads/YGO_Omega_Images/` | Hologram cutouts (monsters only) |
+| `YGO_Omega_Holograms_v{N}.zip` | `public/CCG Downloads/YGO_Omega_Images/` | Opaque primary Arts images (monsters only) |
 | `CCG_Omega_Addon_Setup.exe` | `public/CCG Downloads/` | End-user installer |
 | `ccg-omega-installer.iss` | `scripts/` | Installer source (part counts, download URLs) |
 
@@ -278,5 +278,5 @@ These are all handled by `release_omega_assets.py`.
 | `cards.json has N cards without a passcode` | Missing `passcode` on new cards | Add passcodes (or run `import_upcoming_set.py` which allocates them) |
 | `ModuleNotFoundError: cv2` | Missing Python deps | `python -m pip install -r scripts/requirements.txt` |
 | Installer downloads wrong zip parts | EXE is stale | Recompile with `release:omega:installer` after `.iss` part counts changed |
-| Hologram step is slow | OpenCV grabCut per monster (~25+ min for full set) | Use `release:omega:db-only` when only metadata changed |
+| Experimental Hologram cutout step is slow | OpenCV grabCut is enabled with `--cutout` | Omit `--cutout` to use the primary Arts image baseline |
 | `git push` skipped | Earlier step failed | Fix the reported failure, then re-run |

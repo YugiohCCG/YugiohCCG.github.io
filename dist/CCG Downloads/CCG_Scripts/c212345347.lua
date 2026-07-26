@@ -2,7 +2,7 @@ local s,id=GetID()
 local STRING_ID=132345347
 local SET_GRAVINITY=0x760
 function s.initial_effect(c)
-	aux.AddSynchroProcedure(c,nil,1,1,aux.NonTuner(nil),1,99)
+	aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),1,1)
 	c:EnableReviveLimit()
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

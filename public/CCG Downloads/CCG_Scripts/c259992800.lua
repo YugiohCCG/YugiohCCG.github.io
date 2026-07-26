@@ -1,7 +1,6 @@
 --Red-Eyes Moon Dragon
 local s,id=GetID()
 local SET_REDEYES=0x3b
-local SET_REDEYES_CUSTOM=0xfacc
 local STRING_ID=133992800
 function s.initial_effect(c)
 	--Equip this card from hand/GY to a monster you control
@@ -27,9 +26,9 @@ function s.initial_effect(c)
 	e2:SetOperation(s.desop)
 	c:RegisterEffect(e2)
 end
-s.listed_series={SET_REDEYES,SET_REDEYES_CUSTOM}
+s.listed_series={SET_REDEYES}
 function s.isredeyes(c)
-	return c:IsSetCard(SET_REDEYES) or c:IsSetCard(SET_REDEYES_CUSTOM)
+	return c:IsSetCard(SET_REDEYES)
 end
 function s.eqlimit(e,c)
 	return c==e:GetLabelObject()

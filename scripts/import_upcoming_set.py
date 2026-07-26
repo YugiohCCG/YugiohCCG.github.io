@@ -156,6 +156,9 @@ CARD_TYPE_OVERRIDES = {
     # Pendulum subtype.
     "Glitchling Leotron": ["Ritual", "Pendulum", "Effect"],
     "Glitchling Mage": ["Ritual", "Pendulum", "Effect"],
+    # Printed card-frame/type corrections that OCR previously missed.
+    "Eclipse Observer Aaliyah": ["Tuner", "Effect"],
+    "Scarstech Prologue": ["Normal"],
 }
 
 LINK_ARROW_OVERRIDES = {

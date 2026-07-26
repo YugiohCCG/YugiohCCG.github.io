@@ -436,7 +436,7 @@ function countMonsterTokenMatches(profile: MaterialProfile, token: string): numb
     const normalizedName = normalizeName(card.name);
     const normalizedArchetype = normalizeName(card.archetype ?? "");
     if (
-      normalizedName.includes(normalizedToken) ||
+      normalizedName === normalizedToken ||
       normalizedArchetype.includes(normalizedToken)
     ) {
       return total + 1;
@@ -740,7 +740,6 @@ function cardMatchesQuotedMaterial(card: DraftPoolCard, quotedTokens: Set<string
   for (const token of quotedTokens) {
     if (
       cardName === token ||
-      cardName.includes(token) ||
       archetype === token ||
       archetype.includes(token)
     ) {

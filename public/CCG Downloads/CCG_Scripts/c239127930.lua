@@ -16,7 +16,7 @@ function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExisting
 function s.thop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND) local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.thfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil):GetFirst() if tc and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,tc) end end
 function s.evfilter(c,tp) return c:IsSummonPlayer(tp) and c:IsSetCard(SET_GALACTICA) end
 function s.lkcon(e,tp,eg) return eg:IsExists(s.evfilter,1,nil,tp) end
-function s.lkfilter(c) return c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_LINK) and c:IsLinkSummonable() end
+function s.lkfilter(c) return c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_LINK) and c:IsLinkSummonable(nil) end
 function s.lktg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(s.lkfilter,tp,LOCATION_EXTRA,0,1,nil) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA) end
 function s.lkop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON) local lc=Duel.SelectMatchingCard(tp,s.lkfilter,tp,LOCATION_EXTRA,0,1,1,nil):GetFirst() if lc then Duel.LinkSummon(tp,lc,nil) end end
 function s.othercost(c,ec) return c~=ec and c:IsAbleToRemoveAsCost() end

@@ -4,7 +4,7 @@ local STRING_ID=133225324
 function s.initial_effect(c)
 	-- link summon
 	c:EnableReviveLimit()
-	aux.AddLinkProcedure(c,Card.IsType,3,99,s.lcheck,TYPE_EFFECT)
+	aux.AddLinkProcedure(c,aux.FilterBoolFunction(Card.IsType,TYPE_EFFECT),3,99,s.lcheck)
 	-- destroy and place PZones
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -28,11 +28,11 @@ function s.initial_effect(c)
 	e2:SetOperation(s.penop)
 	c:RegisterEffect(e2)
 end
-function s.lcheck(g,lc,sumtype,tp)
-	return g:IsExists(s.matfilter,1,nil,lc,sumtype,tp)
+function s.lcheck(g)
+	return g:IsExists(s.matfilter,1,nil)
 end
-function s.matfilter(c,lc,sumtype,tp)
-	return c:IsType(TYPE_PENDULUM,lc,sumtype,tp) and (c:IsType(TYPE_SYNCHRO,lc,sumtype,tp) or c:IsType(TYPE_FUSION,lc,sumtype,tp) or c:IsType(TYPE_XYZ,lc,sumtype,tp))
+function s.matfilter(c)
+	return c:IsType(TYPE_PENDULUM) and (c:IsType(TYPE_SYNCHRO) or c:IsType(TYPE_FUSION) or c:IsType(TYPE_XYZ))
 end
 function s.descon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK)

@@ -34,7 +34,7 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_TO_PROTO}
 s.listed_names={TOKEN_PROTOGENIC}
-function s.matfilter(c,lc,sumtype,tp)
+function s.matfilter(c)
 	return c:IsCode(TOKEN_PROTOGENIC)
 end
 function s.thcon(e,tp,eg,ep,ev,re,r,rp)

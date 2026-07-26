@@ -5,39 +5,30 @@ import json
 import zipfile
 from pathlib import Path
 
-import cv2
-import numpy as np
-from PIL import Image, ImageEnhance, ImageFilter
+from PIL import Image, ImageFilter
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CARDS_PATH = REPO_ROOT / "src" / "data" / "cards.json"
 DEFAULT_HOLOGRAMS_PATH = Path(r"C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Holograms")
-DEFAULT_SOURCE_ASSETS = REPO_ROOT / "public" / "assets" / "cards"
+DEFAULT_ARTS_PATH = Path(r"C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Arts")
 
-# Same art window as the working Omega Arts exporter, resized to Omega's
-# hologram convention.
-ART_X_RATIO = 168 / 1388
-ART_Y_RATIO = 372 / 2026
-ART_SIDE_RATIO = 1052 / 1388
+# Omega displays holograms at 512x512. The source is the already-exported
+# primary Arts image so the Holograms baseline always matches Arts exactly.
 OUTPUT_SIZE = 512
 
 
-
-def crop_card_art(image: Image.Image) -> Image.Image:
-    rgb = image.convert("RGB")
-    width, height = rgb.size
-    left = round(width * ART_X_RATIO)
-    top = round(height * ART_Y_RATIO)
-    side = round(width * ART_SIDE_RATIO)
-    side = min(side, width - left, height - top)
-    return rgb.crop((left, top, left + side, top + side)).resize(
+def resize_primary_art(image: Image.Image) -> Image.Image:
+    return image.convert("RGB").resize(
         (OUTPUT_SIZE, OUTPUT_SIZE),
         Image.Resampling.LANCZOS,
     )
 
 
 def make_cutout_alpha(art: Image.Image) -> Image.Image:
+    import cv2
+    import numpy as np
+
     rgb = np.array(art.convert("RGB"))
     height, width = rgb.shape[:2]
 
@@ -93,11 +84,9 @@ def make_cutout_alpha(art: Image.Image) -> Image.Image:
     return Image.fromarray(alpha, "L").filter(ImageFilter.GaussianBlur(1.0))
 
 
-def build_hologram(source_image: Image.Image, opaque: bool) -> Image.Image:
-    art = crop_card_art(source_image)
-    art = ImageEnhance.Color(art).enhance(1.08)
-    art = ImageEnhance.Contrast(art).enhance(1.04)
-    alpha = Image.new("L", art.size, 255) if opaque else make_cutout_alpha(art)
+def build_hologram(source_image: Image.Image, cutout: bool = False) -> Image.Image:
+    art = resize_primary_art(source_image)
+    alpha = make_cutout_alpha(art) if cutout else Image.new("L", art.size, 255)
     hologram = art.convert("RGBA")
     hologram.putalpha(alpha)
     return hologram
@@ -113,11 +102,11 @@ def package_outputs(paths: list[Path], zip_path: Path) -> None:
 
 def export_holograms(
     cards_path: Path,
-    assets_dir: Path,
+    arts_dir: Path,
     holograms_dir: Path,
     overwrite: bool,
     include_spells: bool,
-    opaque: bool,
+    cutout: bool,
     ids: set[int] | None,
 ) -> tuple[int, int, list[Path]]:
     cards = json.loads(cards_path.read_text(encoding="utf-8"))
@@ -146,18 +135,13 @@ def export_holograms(
             skipped += 1
             continue
 
-        image_ref = str(card.get("image") or "")
-        if not image_ref.startswith("/assets/cards/"):
-            skipped += 1
-            continue
-
-        source_path = assets_dir / image_ref.split("/assets/cards/", 1)[1]
+        source_path = arts_dir / f"{passcode}.jpg"
         if not source_path.exists():
             skipped += 1
             continue
 
         with Image.open(source_path) as source_image:
-            hologram = build_hologram(source_image, opaque=opaque)
+            hologram = build_hologram(source_image, cutout=cutout)
             hologram.save(output_path, format="PNG", optimize=True)
         touched.append(output_path)
         exported += 1
@@ -178,24 +162,35 @@ def parse_ids(raw_ids: list[str]) -> set[int] | None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Export YGO Omega CCG hologram PNGs from source card renders.")
+    parser = argparse.ArgumentParser(
+        description="Export YGO Omega CCG hologram PNGs from primary Arts images."
+    )
     parser.add_argument("--cards", type=Path, default=DEFAULT_CARDS_PATH)
-    parser.add_argument("--assets", type=Path, default=DEFAULT_SOURCE_ASSETS)
+    parser.add_argument("--arts", type=Path, default=DEFAULT_ARTS_PATH)
     parser.add_argument("--holograms", type=Path, default=DEFAULT_HOLOGRAMS_PATH)
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--include-spells", action="store_true")
-    parser.add_argument("--opaque", action="store_true", help="Keep the full square art opaque instead of auto-cutting the subject out.")
+    parser.add_argument(
+        "--cutout",
+        action="store_true",
+        help="Opt into experimental subject cutouts. The default preserves the full primary Arts image.",
+    )
+    parser.add_argument(
+        "--opaque",
+        action="store_true",
+        help=argparse.SUPPRESS,
+    )
     parser.add_argument("--id", action="append", default=[], help="Omega card ID to export. Can be repeated or comma-separated.")
     parser.add_argument("--zip", type=Path, help="Optional zip package path containing the exported PNGs at archive root.")
     args = parser.parse_args()
 
     exported, skipped, touched = export_holograms(
         cards_path=args.cards,
-        assets_dir=args.assets,
+        arts_dir=args.arts,
         holograms_dir=args.holograms,
         overwrite=args.overwrite,
         include_spells=args.include_spells,
-        opaque=args.opaque,
+        cutout=args.cutout and not args.opaque,
         ids=parse_ids(args.id),
     )
     if args.zip:

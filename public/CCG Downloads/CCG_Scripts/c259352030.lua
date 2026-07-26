@@ -2,7 +2,6 @@
 local s,id=GetID()
 local CARD_THUNDER_DRAGON=31786629
 local SET_THUNDER_DRAGON=0x11c
-local SET_THUNDER_DRAGON_CUSTOM=0x335e
 local STRING_ID=133352030
 function s.initial_effect(c)
 	c:EnableReviveLimit()
@@ -47,7 +46,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 s.listed_names={CARD_THUNDER_DRAGON}
-s.listed_series={SET_THUNDER_DRAGON,SET_THUNDER_DRAGON_CUSTOM}
+s.listed_series={SET_THUNDER_DRAGON}
 function s.matfilter(c,sc)
 	return c:IsRace(RACE_THUNDER) and not c:IsCode(id) and c:IsAbleToRemoveAsCost()
 		and c:IsCanBeFusionMaterial(sc,SUMMON_TYPE_SPECIAL)
@@ -81,7 +80,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	g:DeleteGroup()
 end
 function s.tdfilter(c)
-	return (c:IsSetCard(SET_THUNDER_DRAGON) or c:IsSetCard(SET_THUNDER_DRAGON_CUSTOM) or c:IsCode(CARD_THUNDER_DRAGON))
+	return (c:IsSetCard(SET_THUNDER_DRAGON) or c:IsCode(CARD_THUNDER_DRAGON))
 		and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)

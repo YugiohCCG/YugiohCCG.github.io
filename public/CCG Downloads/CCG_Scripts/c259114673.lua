@@ -1,7 +1,6 @@
 --Red-Eyes Turbo Dragon
 local s,id=GetID()
 local SET_REDEYES=0x3b
-local SET_REDEYES_CUSTOM=0xfacc
 local STRING_ID=133114673
 function s.initial_effect(c)
 	c:EnableReviveLimit()
@@ -34,9 +33,9 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 s.material_setcode=SET_REDEYES
-s.listed_series={SET_REDEYES,SET_REDEYES_CUSTOM}
+s.listed_series={SET_REDEYES}
 function s.isredeyes(c)
-	return c:IsSetCard(SET_REDEYES) or c:IsSetCard(SET_REDEYES_CUSTOM)
+	return c:IsSetCard(SET_REDEYES)
 end
 function s.ffilter(c)
 	return s.isredeyes(c) and c:IsType(TYPE_MONSTER)

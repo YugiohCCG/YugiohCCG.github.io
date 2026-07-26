@@ -1,5 +1,6 @@
 local s,id=GetID()
 local STRING_ID=133502817
+local RACE_GALAXY=0x80000000
 function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

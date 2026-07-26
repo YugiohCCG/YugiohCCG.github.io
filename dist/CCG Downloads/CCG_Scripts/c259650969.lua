@@ -27,7 +27,6 @@ function s.initial_effect(c)
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,3))
 	e3:SetType(EFFECT_TYPE_IGNITION)
-	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e3:SetRange(LOCATION_SZONE)
 	e3:SetCountLimit(1)
 	e3:SetTarget(s.mvtg)
@@ -101,17 +100,12 @@ function s.hasfreemzone(tp)
 	end
 	return false
 end
-function s.mvtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and s.mvfilter(chkc,tp) end
+function s.mvtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return s.hasfreemzone(tp)
-		and Duel.IsExistingTarget(s.mvfilter,tp,LOCATION_MZONE,0,1,nil,tp) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
-	Duel.SelectTarget(tp,s.mvfilter,tp,LOCATION_MZONE,0,1,1,nil,tp)
+		and Duel.IsExistingMatchingCard(s.mvfilter,tp,LOCATION_MZONE,0,1,nil,tp) end
 end
 function s.mvop(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
-	local tc=Duel.GetFirstTarget()
-	if not tc or not tc:IsRelateToEffect(e) or tc:IsControler(1-tp) then return end
 	local free_zones = 0
 	for i=0,4 do
 		if Duel.CheckLocation(tp,LOCATION_MZONE,i) then
@@ -119,6 +113,9 @@ function s.mvop(e,tp,eg,ep,ev,re,r,rp)
 		end
 	end
 	if free_zones == 0 then return end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
+	local tc=Duel.SelectMatchingCard(tp,s.mvfilter,tp,LOCATION_MZONE,0,1,1,nil,tp):GetFirst()
+	if not tc then return end
 	local disable_mask = bit.bxor(free_zones, 0xff)
 	Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_TOZONE)
 	local s_field = Duel.SelectDisableField(tp, 1, LOCATION_MZONE, 0, disable_mask)

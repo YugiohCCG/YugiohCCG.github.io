@@ -83,7 +83,7 @@ function s.atkcost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.atktg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
-	e:SetLabel(Duel.GetCurrentChain()+1)
+	e:SetLabel(Duel.GetCurrentChain())
 	Duel.SetOperationInfo(0,CATEGORY_ATKCHANGE,nil,1,tp,LOCATION_MZONE)
 end
 function s.atkop(e,tp)

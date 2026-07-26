@@ -2,6 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133126370
 local SET_ECLIPSE=0xf2f4
+local CARD_BOOK_OF_ECLIPSE=35480699
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	aux.AddXyzProcedure(c,aux.FilterBoolFunction(Card.IsRace,RACE_SPELLCASTER),8,2)
@@ -43,6 +44,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 s.listed_series={SET_ECLIPSE}
+s.listed_names={CARD_BOOK_OF_ECLIPSE}
 function s.thcon(e,tp,eg,ep,ev,re,r,rp)
 	e:SetLabel(#eg)
 	return ep==1-tp and #eg>=2
@@ -88,7 +90,7 @@ function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.qpfilter(c)
-	return c:IsSetCard(SET_ECLIPSE) and c:IsType(TYPE_QUICKPLAY)
+	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE)) and c:IsType(TYPE_QUICKPLAY)
 end
 function s.gyct(tp)
 	local g=Duel.GetMatchingGroup(s.qpfilter,tp,LOCATION_GRAVE,0,nil)

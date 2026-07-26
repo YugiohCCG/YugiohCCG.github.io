@@ -54,8 +54,8 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_OHMEN, SET_OHMECHANIC}
 
-function s.lcheck(g,lc,sumtype,tp)
-	return g:IsExists(Card.IsSetCard,1,nil,SET_OHMEN,lc,sumtype,tp) and g:FilterCount(Card.IsRace,nil,RACE_THUNDER)==#g
+function s.lcheck(g)
+	return g:IsExists(Card.IsSetCard,1,nil,SET_OHMEN) and g:FilterCount(Card.IsRace,nil,RACE_THUNDER)==#g
 end
 
 function s.atkcon(e)

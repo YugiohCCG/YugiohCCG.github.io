@@ -40,8 +40,8 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 s.listed_series={SET_GRAND_BLUE}
-function s.matfilter(c,lc,sumtype,tp)
-	return c:IsLinkSetCard(SET_GRAND_BLUE) and c:IsType(TYPE_MONSTER,lc,sumtype,tp)
+function s.matfilter(c)
+	return c:IsLinkSetCard(SET_GRAND_BLUE) and c:IsType(TYPE_MONSTER)
 end
 function s.discon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK)

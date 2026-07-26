@@ -4,6 +4,7 @@ local STRING_ID=133069729
 local SET_ECLIPSE=0xf2f4
 local SET_ECLIPSE_OBSERVER=0xeb17
 local CARD_OBSERVATORY=259721372
+local CARD_BOOK_OF_ECLIPSE=35480699
 local OBSERVER_MONSTERS={
 	[259652372]=true,
 	[259926839]=true,
@@ -44,6 +45,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 s.listed_series={SET_ECLIPSE,SET_ECLIPSE_OBSERVER}
+s.listed_names={CARD_BOOK_OF_ECLIPSE}
 function s.isobservermonster(c)
 	return c:IsType(TYPE_MONSTER) and (OBSERVER_MONSTERS[c:GetCode()] or c:IsSetCard(SET_ECLIPSE_OBSERVER))
 end
@@ -51,7 +53,8 @@ function s.isobservercard(c)
 	return s.isobservermonster(c) or c:IsSetCard(SET_ECLIPSE_OBSERVER) or c:IsCode(CARD_OBSERVATORY)
 end
 function s.tgfilter(c)
-	return c:IsAbleToGrave() and ((c:IsSetCard(SET_ECLIPSE) and c:IsType(TYPE_QUICKPLAY)) or s.isobservercard(c))
+	return c:IsAbleToGrave() and (((c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE))
+		and c:IsType(TYPE_QUICKPLAY)) or s.isobservercard(c))
 end
 function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.tgfilter,tp,LOCATION_DECK,0,1,nil) end

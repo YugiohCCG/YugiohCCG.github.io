@@ -2684,6 +2684,7 @@ def build_type(card: dict[str, Any]) -> int:
             "Toon",
             "Xyz",
             "Pendulum",
+            "Special Summon",
             "Link",
         ):
             if bit_name in card_types:

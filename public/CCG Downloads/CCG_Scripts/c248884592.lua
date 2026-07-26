@@ -1,6 +1,7 @@
 local s,id=GetID()
 local STRING_ID=132884592
 local SET_SCARSTECH=0x52f8
+local RACE_GALAXY=0x80000000
 function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -50,8 +51,12 @@ function s.deckfilter(c,e,tp,lv)
 	return c:IsSetCard(SET_SCARSTECH) and not c:IsCode(id) and c:IsLevelBelow(lv) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.sptg2(e,tp,eg,ep,ev,re,r,rp,chk)
-	local lv=Duel.GetCurrentChain()+1
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(s.deckfilter,tp,LOCATION_DECK,0,1,nil,e,tp,lv) end
+	local lv=Duel.GetCurrentChain()
+	if chk==0 then
+		lv=lv+1
+		return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+			and Duel.IsExistingMatchingCard(s.deckfilter,tp,LOCATION_DECK,0,1,nil,e,tp,lv)
+	end
 	e:SetLabel(lv)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_DECK)
 end

@@ -2,7 +2,6 @@
 local s,id=GetID()
 local STRING_ID=133794136
 local SET_HARPIE=0x64
-local SET_HARPIE_CUSTOM=0x079c
 local CARD_HARPIE_LADY=76812113
 local CARD_HARPIES_HUNTING_GROUND=75782277
 local HARP_CODE_LIST={CARD_HARPIE_LADY,91932350,27927359,54415063,80316585,id}
@@ -64,8 +63,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	Duel.SendtoHand(g,nil,REASON_COST)
 end
 function s.harpiemon(c)
-	return (c:IsSetCard(SET_HARPIE) or c:IsSetCard(SET_HARPIE_CUSTOM))
-		and c:IsType(TYPE_MONSTER) and c:IsAbleToGraveAsCost()
+	return c:IsSetCard(SET_HARPIE) and c:IsType(TYPE_MONSTER) and c:IsAbleToGraveAsCost()
 end
 function s.nsfilter(c)
 	return c:IsRace(RACE_WINDBEAST) and c:IsSummonable(true,nil)

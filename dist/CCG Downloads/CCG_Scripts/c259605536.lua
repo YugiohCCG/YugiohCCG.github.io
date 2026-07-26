@@ -34,7 +34,7 @@ function s.initial_effect(c)
 	e4:SetCategory(CATEGORY_REMOVE)
 	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e4:SetCode(EVENT_REMOVE)
-	e4:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
+	e4:SetProperty(EFFECT_FLAG_DELAY)
 	e4:SetRange(LOCATION_SZONE)
 	e4:SetCountLimit(1,id+100)
 	e4:SetCondition(s.rmcon)
@@ -84,16 +84,14 @@ end
 function s.banfilter(c,tp)
 	return c:IsControler(1-tp) and c:IsOnField() and c:IsAbleToRemove(tp,POS_FACEUP)
 end
-function s.rmtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return s.banfilter(chkc,tp) end
-	if chk==0 then return Duel.IsExistingTarget(s.banfilter,tp,0,LOCATION_ONFIELD,1,nil,tp) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-	local g=Duel.SelectTarget(tp,s.banfilter,tp,0,LOCATION_ONFIELD,1,1,nil,tp)
-	Duel.SetOperationInfo(0,CATEGORY_REMOVE,g,1,0,0)
+function s.rmtg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.banfilter,tp,0,LOCATION_ONFIELD,1,nil,tp) end
+	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,1-tp,LOCATION_ONFIELD)
 end
 function s.rmop(e,tp,eg,ep,ev,re,r,rp)
-	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) and s.banfilter(tc,tp) then
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
+	local tc=Duel.SelectMatchingCard(tp,s.banfilter,tp,0,LOCATION_ONFIELD,1,1,nil,tp):GetFirst()
+	if tc then
 		Duel.Remove(tc,POS_FACEUP,REASON_EFFECT)
 	end
 end

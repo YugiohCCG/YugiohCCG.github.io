@@ -3,6 +3,7 @@ local s,id=GetID()
 local STRING_ID=132299292
 local SET_TO_PROTO=0xe80d
 local TOKEN_PROTOGENIC=240299293
+local RACE_GALAXY=0x80000000
 function s.initial_effect(c)
 	--Special Summon 1 "Protogenic Essence Token"
 	local e1=Effect.CreateEffect(c)

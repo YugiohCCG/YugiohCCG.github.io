@@ -2,7 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133464700
 local SET_SCARSTECH=0x52f8
-local RACE_GALAXY=RACE_GALAXY or 0x80000000
+local RACE_GALAXY=0x80000000
 function s.initial_effect(c)
 	--Send itself to the GY and take control
 	local e1=Effect.CreateEffect(c)

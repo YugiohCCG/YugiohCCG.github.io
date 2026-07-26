@@ -3,6 +3,7 @@ local s,id=GetID()
 local STRING_ID=133193076
 local SET_ECLIPSE=0xf2f4
 local SET_ECLIPSE_OBSERVER=0xeb17
+local CARD_BOOK_OF_ECLIPSE=35480699
 local OBSERVER_MONSTERS={
 	[259652372]=true,
 	[259926839]=true,
@@ -62,6 +63,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e5)
 end
 s.listed_series={SET_ECLIPSE,SET_ECLIPSE_OBSERVER}
+s.listed_names={CARD_BOOK_OF_ECLIPSE}
 function s.isobservermonster(c)
 	return c:IsType(TYPE_MONSTER) and (OBSERVER_MONSTERS[c:GetCode()] or c:IsSetCard(SET_ECLIPSE_OBSERVER))
 end
@@ -76,7 +78,7 @@ function s.immtg(e,c)
 end
 function s.immval(e,te)
 	local tc=te:GetHandler()
-	return tc:IsSetCard(SET_ECLIPSE) and tc:IsType(TYPE_QUICKPLAY)
+	return (tc:IsSetCard(SET_ECLIPSE) or tc:IsCode(CARD_BOOK_OF_ECLIPSE)) and tc:IsType(TYPE_QUICKPLAY)
 end
 function s.hand3con(e)
 	return Duel.GetFieldGroupCount(e:GetHandlerPlayer(),0,LOCATION_HAND)>=3
@@ -87,17 +89,30 @@ end
 function s.cpcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetFieldGroupCount(tp,0,LOCATION_HAND)>=9
 end
-function s.cpfilter(c)
-	return c:IsSetCard(SET_ECLIPSE) and c:IsType(TYPE_QUICKPLAY)
+function s.getcopyeffect(c,tp,use_count)
+	local te,ceg,cep,cev,cre,cr,crp=c:CheckActivateEffect(true,true,use_count)
+	if te then return te,ceg,cep,cev,cre,cr,crp end
+	--Official Omega also exposes activation effects through GetActivateEffect.
+	--Use it as a generic fallback when CheckActivateEffect cannot snapshot an
+	--otherwise legal free-chain Quick-Play activation (such as Tome of Eclipse).
+	te=c:GetActivateEffect()
+	if not te then return nil end
+	local tg=te:GetTarget()
+	local test_group=Group.CreateGroup()
+	if tg and not tg(te,tp,test_group,tp,0,nil,0,tp,0) then return nil end
+	return te,test_group,tp,0,nil,0,tp
+end
+function s.cpfilter(c,tp)
+	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE)) and c:IsType(TYPE_QUICKPLAY)
 		and c:IsAbleToRemoveAsCost() and aux.NecroValleyFilter()(c)
-		and c:CheckActivateEffect(true,true,false)~=nil
+		and s.getcopyeffect(c,tp,false)~=nil
 end
 function s.cpcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.cpfilter,tp,LOCATION_GRAVE,0,1,nil) end
+	if chk==0 then return Duel.IsExistingMatchingCard(s.cpfilter,tp,LOCATION_GRAVE,0,1,nil,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-	local tc=Duel.SelectMatchingCard(tp,s.cpfilter,tp,LOCATION_GRAVE,0,1,1,nil):GetFirst()
+	local tc=Duel.SelectMatchingCard(tp,s.cpfilter,tp,LOCATION_GRAVE,0,1,1,nil,tp):GetFirst()
 	if not tc then return end
-	local te,ceg,cep,cev,cre,cr,crp=tc:CheckActivateEffect(true,true,true)
+	local te,ceg,cep,cev,cre,cr,crp=s.getcopyeffect(tc,tp,true)
 	if not te or Duel.Remove(tc,POS_FACEUP,REASON_COST)==0 then return end
 	e:SetProperty(te:GetProperty())
 	s.copy_args=s.copy_args or {}

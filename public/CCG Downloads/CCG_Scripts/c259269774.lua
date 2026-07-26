@@ -2,7 +2,6 @@
 local s,id=GetID()
 local STRING_ID=133269774
 local SET_HARPIE=0x64
-local SET_HARPIE_CUSTOM=0x079c
 local CARD_HARPIE_LADY=76812113
 local HARP_CODE_LIST={CARD_HARPIE_LADY,91932350,27927359,54415063,80316585,259794136}
 function s.initial_effect(c)
@@ -42,7 +41,7 @@ function s.isharpielady(c)
 	return c:IsCode(table.unpack(HARP_CODE_LIST))
 end
 function s.tunerfilter(c)
-	return c:IsType(TYPE_TUNER) or c:IsSetCard(SET_HARPIE) or c:IsSetCard(SET_HARPIE_CUSTOM)
+	return c:IsType(TYPE_TUNER) or c:IsSetCard(SET_HARPIE)
 end
 function s.descon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_SYNCHRO)

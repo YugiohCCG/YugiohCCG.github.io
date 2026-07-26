@@ -15,7 +15,6 @@ function s.initial_effect(c)
 	e1:SetCategory(CATEGORY_DISABLE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetTarget(s.target)
 	e1:SetOperation(s.activate)
@@ -33,16 +32,19 @@ function s.chainop(e,tp,eg,ep,ev)
 end
 function s.handcon(e,tp) return Duel.IsTurnPlayer(1-tp) and Duel.GetFlagEffect(tp,id)>0 end
 function s.disfilter(c) return c:IsFaceup() and aux.NegateAnyFilter(c) end
-function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	local ct=Duel.GetCurrentChain()+1
-	if chkc then return chkc:IsControler(1-tp) and chkc:IsOnField() and s.disfilter(chkc) end
-	if chk==0 then return Duel.IsExistingTarget(s.disfilter,tp,0,LOCATION_ONFIELD,1,nil) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISABLE)
-	local g=Duel.SelectTarget(tp,s.disfilter,tp,0,LOCATION_ONFIELD,1,ct,nil)
-	Duel.SetOperationInfo(0,CATEGORY_DISABLE,g,#g,0,0)
+function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.disfilter,tp,0,LOCATION_ONFIELD,1,nil) end
+	local ct=Duel.GetCurrentChain()
+	e:SetLabel(ct)
+	Duel.SetOperationInfo(0,CATEGORY_DISABLE,nil,1,1-tp,LOCATION_ONFIELD)
 end
 function s.activate(e,tp)
-	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(function(c,te) return c:IsRelateToEffect(te) and c:IsFaceup() end,nil,e)
+	local ct=e:GetLabel()
+	if ct<=0 then return end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISABLE)
+	local g=Duel.SelectMatchingCard(tp,s.disfilter,tp,0,LOCATION_ONFIELD,1,ct,nil)
+	if #g==0 then return end
+	Duel.HintSelection(g)
 	for tc in aux.Next(g) do
 		if tc:IsCanBeDisabledByEffect(e,false) then
 			Duel.NegateRelatedChain(tc,RESET_TURN_SET)

@@ -2,6 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133612312
 local SET_ECLIPSE=0xf2f4
+local CARD_BOOK_OF_ECLIPSE=35480699
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),1)
@@ -42,6 +43,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 s.listed_series={SET_ECLIPSE}
+s.listed_names={CARD_BOOK_OF_ECLIPSE}
 function s.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_SYNCHRO)
 end
@@ -85,7 +87,7 @@ function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.setfilter(c)
-	return c:IsSetCard(SET_ECLIPSE) and c:IsType(TYPE_QUICKPLAY)
+	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE)) and c:IsType(TYPE_QUICKPLAY)
 		and c:IsSSetable() and (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup())
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)

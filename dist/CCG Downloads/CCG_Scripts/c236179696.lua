@@ -34,7 +34,7 @@ function s.initial_effect(c)
 	e2:SetOperation(s.rmop)
 	c:RegisterEffect(e2)
 end
-function s.matfilter(c,lc,sumtype,tp)
+function s.matfilter(c)
 	return c:IsAttribute(ATTRIBUTE_WATER)
 end
 function s.sumcon(e,tp,eg,ep,ev,re,r,rp)

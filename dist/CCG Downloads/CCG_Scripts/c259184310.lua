@@ -1,7 +1,6 @@
 --Red-Eyes Meteor Metal Dragon
 local s,id=GetID()
 local SET_REDEYES=0x3b
-local SET_REDEYES_CUSTOM=0xfacc
 local STRING_ID=133184310
 function s.initial_effect(c)
 	--If Summoned: equip 1 "Red-Eyes" monster from hand/GY to this card
@@ -43,9 +42,9 @@ function s.initial_effect(c)
 	e4:SetOperation(s.fmeqop)
 	c:RegisterEffect(e4)
 end
-s.listed_series={SET_REDEYES,SET_REDEYES_CUSTOM}
+s.listed_series={SET_REDEYES}
 function s.isredeyes(c)
-	return c:IsSetCard(SET_REDEYES) or c:IsSetCard(SET_REDEYES_CUSTOM)
+	return c:IsSetCard(SET_REDEYES)
 end
 function s.eqlimit(e,c)
 	return c==e:GetLabelObject()

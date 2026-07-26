@@ -4,7 +4,7 @@ local STRING_ID=132552954
 function s.initial_effect(c)
 	-- synchro summon
 	c:EnableReviveLimit()
-	aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),1,99)
+	aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),1,1)
 	-- special summon
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

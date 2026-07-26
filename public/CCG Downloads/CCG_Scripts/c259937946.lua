@@ -41,7 +41,7 @@ end
 s.listed_series={SET_GRAND_BLUE}
 s.listed_names={CARD_GRAND_BLUE_PRINCESS}
 function s.ownmat(c,fc)
-	return c:IsControler(fc:GetControler())
+	return c:GetOwner()==fc:GetControler()
 end
 function s.princessmat(c,fc,subm)
 	return s.ownmat(c,fc) and (c:IsFusionCode(CARD_GRAND_BLUE_PRINCESS) or (subm and c:CheckFusionSubstitute(fc)))

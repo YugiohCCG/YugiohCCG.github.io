@@ -19,7 +19,7 @@ function s.initial_effect(c)
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
-	e3:SetProperty(EFFECT_FLAG_DELAY)
+	e3:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e3:SetRange(LOCATION_SZONE)
 	e3:SetCountLimit(1,id+100)
@@ -58,10 +58,13 @@ end
 function s.oppfilter(c)
 	return c:IsFaceup() and (c:GetOriginalType()&TYPE_MONSTER)~=0 and not c:IsForbidden()
 end
-function s.pltg(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.pltg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_MZONE) and s.oppfilter(chkc) end
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.GetLocationCount(1-tp,LOCATION_SZONE)>0
 		and Duel.IsExistingMatchingCard(s.ownfilter,tp,LOCATION_MZONE,0,1,nil)
-		and Duel.IsExistingMatchingCard(s.oppfilter,tp,0,LOCATION_MZONE,1,nil) end
+		and Duel.IsExistingTarget(s.oppfilter,tp,0,LOCATION_MZONE,1,nil) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)
+	Duel.SelectTarget(tp,s.oppfilter,tp,0,LOCATION_MZONE,1,1,nil)
 end
 function s.maketrap(c,owner)
 	local e1=Effect.CreateEffect(owner)
@@ -79,7 +82,9 @@ function s.plop(e,tp,eg,ep,ev,re,r,rp)
 	if not tc or not Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then return end
 	s.maketrap(tc,e:GetHandler())
 	Duel.BreakEffect()
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)
-	local oc=Duel.SelectMatchingCard(tp,s.oppfilter,tp,0,LOCATION_MZONE,1,1,nil):GetFirst()
-	if oc and Duel.MoveToField(oc,tp,1-tp,LOCATION_SZONE,POS_FACEUP,true) then s.maketrap(oc,e:GetHandler()) end
+	local oc=Duel.GetFirstTarget()
+	if oc and oc:IsRelateToEffect(e) and oc:IsControler(1-tp) and s.oppfilter(oc)
+		and Duel.MoveToField(oc,tp,1-tp,LOCATION_SZONE,POS_FACEUP,true) then
+		s.maketrap(oc,e:GetHandler())
+	end
 end

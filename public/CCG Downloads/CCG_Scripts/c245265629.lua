@@ -74,10 +74,10 @@ function s.xyzcon(e,c)
 end
 function s.xyztg(e,tp,eg,ep,ev,re,r,rp,chk,c)
 	local g=s.getmatgroup(tp,c)
-	if chk==0 then return #g>0 end
+	if #g==0 then return false end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
 	local sg=g:CancelableSelect(tp,1,1,nil)
-	if sg then
+	if sg and #sg>0 then
 		sg:KeepAlive()
 		e:SetLabelObject(sg)
 		return true

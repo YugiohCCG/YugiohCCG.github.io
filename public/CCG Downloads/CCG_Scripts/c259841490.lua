@@ -20,7 +20,6 @@ function s.initial_effect(c)
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetType(EFFECT_TYPE_IGNITION)
-	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetCountLimit(1,id)
 	e2:SetCondition(s.effcon1)
@@ -54,8 +53,8 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_OHMEN}
 
-function s.lcheck(g,lc,sumtype,tp)
-	return g:IsExists(Card.IsSetCard,1,nil,SET_OHMEN,lc,sumtype,tp) and g:FilterCount(Card.IsRace,nil,RACE_THUNDER)==#g
+function s.lcheck(g)
+	return g:IsExists(Card.IsSetCard,1,nil,SET_OHMEN) and g:FilterCount(Card.IsRace,nil,RACE_THUNDER)==#g
 end
 
 function s.atkcon(e)
@@ -74,16 +73,15 @@ function s.hasfreemzone(tp)
 	end
 	return false
 end
-function s.efftg1(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsLocation(LOCATION_MZONE) and s.movefilter(chkc,tp) end
+function s.efftg1(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return s.hasfreemzone(tp)
-		and Duel.IsExistingTarget(s.movefilter,tp,LOCATION_MZONE,0,1,nil,tp) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
-	Duel.SelectTarget(tp,s.movefilter,tp,LOCATION_MZONE,0,1,1,nil,tp)
+		and Duel.IsExistingMatchingCard(s.movefilter,tp,LOCATION_MZONE,0,1,nil,tp) end
 end
 function s.effop1(e,tp,eg,ep,ev,re,r,rp)
-	local tc=Duel.GetFirstTarget()
-	if not tc or not tc:IsRelateToEffect(e) or tc:IsControler(1-tp) then return end
+	if not s.hasfreemzone(tp) then return end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
+	local tc=Duel.SelectMatchingCard(tp,s.movefilter,tp,LOCATION_MZONE,0,1,1,nil,tp):GetFirst()
+	if not tc then return end
 	local free_zones = 0
 	for i=0,4 do
 		if Duel.CheckLocation(tp,LOCATION_MZONE,i) then

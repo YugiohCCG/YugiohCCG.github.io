@@ -49,16 +49,19 @@ function s.altcon(e,c,og,min,max)
 	local g=Duel.GetMatchingGroup(s.altfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,nil,c,tp)
 	return g:CheckSubGroup(s.altcheck,2,2,tp,c)
 end
-function s.alttg(e,tp,eg,ep,ev,re,r,rp,chk,c,sg,og)
-	if chk==0 then return true end
+function s.alttg(e,tp,eg,ep,ev,re,r,rp,chk,c,og,min,max)
 	local g=Duel.GetMatchingGroup(s.altfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,nil,c,tp)
 	if not g:CheckSubGroup(s.altcheck,2,2,tp,c) then return false end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
-	local mat=g:SelectSubGroup(tp,s.altcheck,false,2,2,tp,c)
-	sg:Merge(mat)
+	local mat=g:SelectSubGroup(tp,s.altcheck,Duel.IsSummonCancelable(),2,2,tp,c)
+	if not mat then return false end
+	mat:KeepAlive()
+	e:SetLabelObject(mat)
 	return true
 end
-function s.altop(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
+function s.altop(e,tp,eg,ep,ev,re,r,rp,c,og,min,max)
+	local sg=e:GetLabelObject()
+	if not sg then return end
 	for tc in aux.Next(sg) do
 		local mg=tc:GetOverlayGroup()
 		if #mg>0 then
@@ -77,6 +80,7 @@ function s.altop(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
 	local e2=e1:Clone()
 	e2:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
 	Duel.RegisterEffect(e2,tp)
+	sg:DeleteGroup()
 end
 function s.imcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end

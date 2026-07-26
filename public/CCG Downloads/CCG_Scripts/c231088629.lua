@@ -3,7 +3,7 @@ local STRING_ID=133088629
 local SET_GRAVINITY=0x760
 local COUNTER_GRAVITY=0x1290
 function s.initial_effect(c)
-	aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,SET_GRAVINITY),1,1,aux.NonTuner(function(tc) return tc:IsRace(RACE_CYBERSE) and tc:IsType(TYPE_SYNCHRO) end),1,99)
+	aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,SET_GRAVINITY),aux.NonTuner(s.ntfilter),1)
 	c:EnableReviveLimit()
 	c:EnableCounterPermit(COUNTER_GRAVITY)
 	local e0=Effect.CreateEffect(c)
@@ -33,11 +33,13 @@ function s.initial_effect(c)
 	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetCode(EVENT_FREE_CHAIN)
 	e4:SetRange(LOCATION_MZONE)
-	e4:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e4:SetCost(s.tdcost)
 	e4:SetTarget(s.tdtg)
 	e4:SetOperation(s.tdop)
 	c:RegisterEffect(e4)
+end
+function s.ntfilter(c)
+	return c:IsRace(RACE_CYBERSE) and c:IsType(TYPE_SYNCHRO)
 end
 function s.trapify(c)
 	local e0=Effect.CreateEffect(c)
@@ -86,16 +88,22 @@ function s.tdcost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.oppfilter(c) return c:IsFaceup() and c:IsType(TYPE_MONSTER) and c:IsAbleToDeck() end
 function s.ownfilter(c,oc) return c:IsSetCard(SET_GRAVINITY) and (c:GetOriginalType()&TYPE_MONSTER)~=0 and c:IsAbleToDeck() and oc:GetColumnGroup():IsContains(c) end
-function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsOnField() and chkc:IsAbleToDeck() end
-	if chk==0 then return Duel.IsExistingTarget(function(c,p) return s.oppfilter(c) and Duel.IsExistingTarget(s.ownfilter,p,LOCATION_ONFIELD,0,1,nil,c) end,tp,0,LOCATION_MZONE,1,nil,tp) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local oc=Duel.SelectTarget(tp,function(c,p) return s.oppfilter(c) and Duel.IsExistingTarget(s.ownfilter,p,LOCATION_ONFIELD,0,1,nil,c) end,tp,0,LOCATION_MZONE,1,1,nil,tp):GetFirst()
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local gc=Duel.SelectTarget(tp,s.ownfilter,tp,LOCATION_ONFIELD,0,1,1,nil,oc):GetFirst()
-	Duel.SetOperationInfo(0,CATEGORY_TODECK,Group.FromCards(oc,gc),2,0,0)
+function s.pairfilter(c,tp)
+	return s.oppfilter(c) and Duel.IsExistingMatchingCard(s.ownfilter,tp,LOCATION_ONFIELD,0,1,nil,c)
+end
+function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.pairfilter,tp,0,LOCATION_MZONE,1,nil,tp) end
+	Duel.SetOperationInfo(0,CATEGORY_TODECK,nil,2,PLAYER_ALL,LOCATION_ONFIELD)
 end
 function s.tdop(e,tp)
-	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e)
-	if #g==2 then Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT) end
+	local g=Duel.GetMatchingGroup(s.pairfilter,tp,0,LOCATION_MZONE,nil,tp)
+	if #g==0 then return end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
+	local oc=g:Select(tp,1,1,nil):GetFirst()
+	if not oc then return end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
+	local gc=Duel.SelectMatchingCard(tp,s.ownfilter,tp,LOCATION_ONFIELD,0,1,1,nil,oc):GetFirst()
+	if gc then
+		Duel.SendtoDeck(Group.FromCards(oc,gc),nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
+	end
 end

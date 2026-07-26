@@ -34,7 +34,7 @@ function s.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_TO_GRAVE)
 	e2:SetRange(LOCATION_GRAVE)
-	e2:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
+	e2:SetProperty(EFFECT_FLAG_DELAY)
 	e2:SetCountLimit(1,id+100)
 	e2:SetCondition(s.revcon)
 	e2:SetCost(aux.bfgcost)
@@ -42,7 +42,7 @@ function s.initial_effect(c)
 	e2:SetOperation(s.revop)
 	c:RegisterEffect(e2)
 end
-function s.lcheck(g,lc,sumtype,tp)
+function s.lcheck(g)
 	return g:IsExists(Card.IsSetCard,1,nil,SET_ALDREZ)
 end
 function s.xyzlv(e,c,rc)
@@ -100,18 +100,19 @@ end
 function s.revtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g=eg:Filter(aux.NecroValleyFilter(s.revfilter),nil,e,tp)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and #g>0 end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local sg=g:Select(tp,1,1,nil)
-	Duel.SetTargetCard(sg)
-	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,sg,1,0,0)
+	Duel.SetTargetCard(g)
+	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_GRAVE)
 end
 function s.ovfilter(c)
 	return c:IsCanOverlay()
 end
 function s.revop(e,tp,eg,ep,ev,re,r,rp)
-	local tc=Duel.GetFirstTarget()
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
-	if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.revfilter)(tc,e,tp)
+	local g=eg:Filter(aux.NecroValleyFilter(s.revfilter),nil,e,tp):Filter(Card.IsRelateToEffect,nil,e)
+	if #g==0 then return end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
+	local tc=g:Select(tp,1,1,nil):GetFirst()
+	if tc
 		and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.ovfilter),tp,LOCATION_GRAVE,LOCATION_GRAVE,1,nil)
 		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then

@@ -2,6 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133452058
 local SET_ALTERGEIST=0x103
+local CARD_PERSONAL_SPOOFING=53936268
 function s.initial_effect(c)
 	-- Special Summon
 	local e1=Effect.CreateEffect(c)
@@ -64,7 +65,8 @@ end
 
 function s.thfilter(c)
 	return c:IsType(TYPE_TRAP) and c:IsAbleToHand()
-		and (c:IsSetCard(SET_ALTERGEIST) or c:IsCode(44811082) or aux.IsSetNameMonsterListed(c,SET_ALTERGEIST))
+		and (c:IsSetCard(SET_ALTERGEIST) or c:IsCode(CARD_PERSONAL_SPOOFING)
+			or aux.IsSetNameMonsterListed(c,SET_ALTERGEIST))
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil) end

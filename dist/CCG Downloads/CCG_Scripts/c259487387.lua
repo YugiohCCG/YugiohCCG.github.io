@@ -3,6 +3,7 @@ local s,id=GetID()
 local STRING_ID=133487387
 local SET_ECLIPSE=0xf2f4
 local SET_ECLIPSE_OBSERVER=0xeb17
+local CARD_BOOK_OF_ECLIPSE=35480699
 local OBSERVER_MONSTERS={
 	[259652372]=true,
 	[259926839]=true,
@@ -55,6 +56,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 s.listed_series={SET_ECLIPSE,SET_ECLIPSE_OBSERVER}
+s.listed_names={CARD_BOOK_OF_ECLIPSE}
 function s.isobservermonster(c)
 	return c:IsType(TYPE_MONSTER) and (OBSERVER_MONSTERS[c:GetCode()] or c:IsSetCard(SET_ECLIPSE_OBSERVER))
 end
@@ -76,7 +78,8 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.setfilter(c)
-	return c:IsSetCard(SET_ECLIPSE) and c:IsType(TYPE_QUICKPLAY) and c:IsSSetable()
+	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE))
+		and c:IsType(TYPE_QUICKPLAY) and c:IsSSetable()
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0

@@ -8,7 +8,7 @@ function s.initial_effect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_DRAW)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e1:SetProperty(EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_IGNORE_IMMUNE)
 	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetCost(s.cost)
 	e1:SetTarget(s.target)
@@ -33,13 +33,36 @@ end
 function s.splimit(e,c)
 	return not c:IsRace(RACE_SPELLCASTER)
 end
+function s.xyzlevel(e,c,rc)
+	local rk=e:GetLabel()
+	return rk | (rk << 16)
+end
+function s.xyzcheck(xc,e,tp,mc)
+	local function check()
+		return mc:IsCanBeXyzMaterial(xc)
+			and xc:IsCanBeSpecialSummoned(e,SUMMON_TYPE_XYZ,tp,false,false)
+			and Duel.GetLocationCountFromEx(tp,tp,mc,xc)>0
+	end
+	if mc:GetLevel()==xc:GetRank() then return check() end
+	--Omega's Xyz eligibility checks can reject a Level monster when the chosen
+	--Xyz Monster has a higher Rank. Temporarily give it that Xyz Level, using
+	--the same EFFECT_XYZ_LEVEL pattern as the official Omega scripts, then
+	--reset it after every material/summon/zone check.
+	local le=Effect.CreateEffect(e:GetHandler())
+	le:SetType(EFFECT_TYPE_SINGLE)
+	le:SetCode(EFFECT_XYZ_LEVEL)
+	le:SetLabel(xc:GetRank())
+	le:SetValue(s.xyzlevel)
+	mc:RegisterEffect(le,true)
+	local can_use=check()
+	le:Reset()
+	return can_use
+end
 function s.xyzfilter(c,e,tp,mc)
 	local lv=mc:GetLevel()
 	local rk=c:GetRank()
 	return c:IsType(TYPE_XYZ) and c:IsRace(RACE_SPELLCASTER) and rk>=lv
-		and mc:IsCanBeXyzMaterial(c)
-		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_XYZ,tp,false,false)
-		and Duel.GetLocationCountFromEx(tp,tp,mc,c)>0
+		and s.xyzcheck(c,e,tp,mc)
 		and (rk==lv or Duel.IsPlayerCanDraw(1-tp,rk-lv))
 end
 function s.tgfilter(c,e,tp)
@@ -68,7 +91,7 @@ end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and tc:IsFaceup() and tc:IsControler(tp) and not tc:IsImmuneToEffect(e)) then return end
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsFaceup() and tc:IsControler(tp)) then return end
 	if not aux.MustMaterialCheck(tc,tp,EFFECT_MUST_BE_XMATERIAL) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local sc=Duel.SelectMatchingCard(tp,s.xyzfilter,tp,LOCATION_EXTRA,0,1,1,nil,e,tp,tc):GetFirst()

@@ -2,6 +2,8 @@
 local s,id=GetID()
 local STRING_ID=133920959
 local SET_AQUAMARINE=0xf3c
+local CARD_HAPALOCHLAENA=259920959
+local CARD_LEGACY_HAPALOCHLAENA=210678856
 function s.initial_effect(c)
 	--Fusion Material
 	c:EnableReviveLimit()
@@ -49,14 +51,16 @@ end
 function s.dmgcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsMainPhase()
 end
-function s.filter8plus(c,code)
-	return c:IsFaceup() and c:IsSetCard(SET_AQUAMARINE) and c:IsLevelAbove(8) and not c:IsCode(code)
+function s.filter8plus(c)
+	return c:IsFaceup() and c:IsSetCard(SET_AQUAMARINE) and c:IsLevelAbove(8)
+		and not c:IsCode(CARD_HAPALOCHLAENA,CARD_LEGACY_HAPALOCHLAENA)
 end
 function s.get_max_uses(tp)
-	return Duel.GetMatchingGroupCount(s.filter8plus,tp,LOCATION_MZONE,0,nil,id)
+	return Duel.GetMatchingGroupCount(s.filter8plus,tp,LOCATION_MZONE,0,nil)
 end
 function s.costfilter(c)
 	return c:IsSetCard(SET_AQUAMARINE) and c:IsType(TYPE_FUSION) and c:IsAbleToRemoveAsCost()
+		and not c:IsCode(CARD_HAPALOCHLAENA,CARD_LEGACY_HAPALOCHLAENA)
 		and aux.NecroValleyFilter()(c)
 end
 function s.dmgcost(e,tp,eg,ep,ev,re,r,rp,chk)

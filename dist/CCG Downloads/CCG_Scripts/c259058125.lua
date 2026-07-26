@@ -2,6 +2,7 @@
 local s,id,o=GetID()
 local STRING_ID=133058125
 local SET_ECLIPSE=0xf2f4
+local CARD_BOOK_OF_ECLIPSE=35480699
 function s.initial_effect(c)
 	--Gains ATK/DEF for each card in your opponent's hand
 	local e1=Effect.CreateEffect(c)
@@ -42,6 +43,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 s.listed_series={SET_ECLIPSE}
+s.listed_names={CARD_BOOK_OF_ECLIPSE}
 function s.val(e,c)
 	return Duel.GetFieldGroupCount(c:GetControler(),0,LOCATION_HAND)*300
 end
@@ -51,7 +53,8 @@ function s.setcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SendtoGrave(c,REASON_COST+REASON_DISCARD)
 end
 function s.setfilter(c)
-	return c:IsSetCard(SET_ECLIPSE) and c:IsType(TYPE_QUICKPLAY) and c:IsSSetable()
+	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE))
+		and c:IsType(TYPE_QUICKPLAY) and c:IsSSetable()
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0

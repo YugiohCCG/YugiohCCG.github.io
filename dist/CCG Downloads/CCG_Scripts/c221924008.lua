@@ -44,19 +44,22 @@ function s.sprcon(e,c)
 	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.sprfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,nil)
 	return g:GetClassCount(Card.GetCode)>=3
 end
-function s.sprtg(e,tp,eg,ep,ev,re,r,rp,chk,c,sg,og)
-	if chk==0 then return true end
+function s.sprtg(e,tp,eg,ep,ev,re,r,rp,chk,c,og,min,max)
 	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.sprfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,nil)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local mat=g:SelectSubGroup(tp,aux.dncheck,false,3,3)
+	local mat=g:SelectSubGroup(tp,aux.dncheck,Duel.IsSummonCancelable(),3,3)
 	if mat and #mat==3 then
-		sg:Merge(mat)
+		mat:KeepAlive()
+		e:SetLabelObject(mat)
 		return true
 	end
 	return false
 end
-function s.sprop(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
+function s.sprop(e,tp,eg,ep,ev,re,r,rp,c,og,min,max)
+	local sg=e:GetLabelObject()
+	if not sg then return end
 	Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_COST+REASON_MATERIAL)
+	sg:DeleteGroup()
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)

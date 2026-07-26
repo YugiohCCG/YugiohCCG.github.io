@@ -2,7 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133543855
 function s.initial_effect(c)
-	aux.AddLinkProcedure(c,s.matfilter,1,1)
+	aux.AddLinkProcedure(c,function(mc) return s.matfilter(mc,c) end,1,1)
 	c:EnableReviveLimit()
 	--You can only Link Summon this card once per turn
 	local e1=Effect.CreateEffect(c)
@@ -24,8 +24,8 @@ function s.initial_effect(c)
 	e2:SetOperation(s.spop)
 	c:RegisterEffect(e2)
 end
-function s.matfilter(c,lc,sumtype,tp)
-	return c:GetOwner()==1-tp
+function s.matfilter(c,lc)
+	return c:GetOwner()==1-lc:GetControler()
 end
 function s.regcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK)

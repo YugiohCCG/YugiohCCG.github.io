@@ -136,13 +136,22 @@ TASKS = [
 ]
 
 
-def run_exporter(task: dict, output_dir: Path, overwrite: bool) -> None:
+def run_exporter(
+    task: dict,
+    output_dir: Path,
+    overwrite: bool,
+    arts_dir: Path | None = None,
+) -> None:
     cmd: list[str] = [
         sys.executable,
         str(SCRIPTS_DIR / task["exporter"]),
         task["exporter_arg"],
         str(output_dir),
     ]
+    if task["label"] == "holograms":
+        if arts_dir is None:
+            raise SystemExit("hologram export requires the primary Arts directory")
+        cmd.extend(["--arts", str(arts_dir)])
     if overwrite:
         cmd.append("--overwrite")
     print(f"\n[{task['label']}] running {task['exporter']} -> {output_dir}")
@@ -525,7 +534,11 @@ def main() -> int:
             export_dir.mkdir(parents=True, exist_ok=True)
 
         try:
-            run_exporter(task, export_dir, args.overwrite)
+            if direct_omega_export:
+                arts_dir = OMEGA_INSTALL_ROOT / "Arts"
+            else:
+                arts_dir = STAGING_DIR / "Arts"
+            run_exporter(task, export_dir, args.overwrite, arts_dir=arts_dir)
         except SystemExit as exc:
             print(f"  [{task['label']}] aborted: {exc}")
             if not args.export_only:

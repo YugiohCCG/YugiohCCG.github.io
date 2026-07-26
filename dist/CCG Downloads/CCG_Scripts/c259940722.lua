@@ -57,7 +57,6 @@ function s.initial_effect(c)
 	e6:SetCategory(CATEGORY_REMOVE+CATEGORY_DESTROY)
 	e6:SetType(EFFECT_TYPE_IGNITION)
 	e6:SetRange(LOCATION_MZONE)
-	e6:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e6:SetCountLimit(1)
 	e6:SetCondition(s.descon)
 	e6:SetCost(s.descost)
@@ -114,20 +113,17 @@ function s.descost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.rmfilter),tp,LOCATION_GRAVE,0,1,1,nil)
 	Duel.Remove(g,POS_FACEUP,REASON_COST)
 end
-function s.destfilter(c,e)
-	return c:IsCanBeEffectTarget(e) and c:IsDestructable()
+function s.destfilter(c)
+	return c:IsDestructable()
 end
-function s.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_ONFIELD) and s.destfilter(chkc,e) end
-	if chk==0 then return Duel.IsExistingTarget(s.destfilter,tp,0,LOCATION_ONFIELD,1,nil,e) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local g=Duel.SelectTarget(tp,s.destfilter,tp,0,LOCATION_ONFIELD,1,1,nil,e)
-	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
+function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.destfilter,tp,0,LOCATION_ONFIELD,1,nil) end
+	Duel.SetOperationInfo(0,CATEGORY_DESTROY,nil,1,1-tp,LOCATION_ONFIELD)
 end
 function s.desop(e,tp,eg,ep,ev,re,r,rp)
-	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) and tc:IsControler(1-tp)
-		and tc:IsOnField() and tc:IsDestructable() then
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
+	local tc=Duel.SelectMatchingCard(tp,s.destfilter,tp,0,LOCATION_ONFIELD,1,1,nil):GetFirst()
+	if tc then
 		Duel.Destroy(tc,REASON_EFFECT)
 	end
 end

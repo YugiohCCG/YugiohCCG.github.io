@@ -2,7 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133086544
 local SET_SCARSTECH=0x52f8
-local RACE_GALAXY=RACE_GALAXY or 0x80000000
+local RACE_GALAXY=0x80000000
 function s.initial_effect(c)
 	if c.SetUniqueOnField then
 		c:SetUniqueOnField(1,0,id)

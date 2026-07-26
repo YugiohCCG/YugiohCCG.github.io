@@ -29,7 +29,7 @@ function s.filter(c) return c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsDestructable(
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsOnField() and s.filter(chkc) end
 	if chk==0 then return Duel.IsExistingTarget(s.filter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
-	e:SetLabel(Duel.GetCurrentChain()+1)
+	e:SetLabel(Duel.GetCurrentChain())
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g=Duel.SelectTarget(tp,s.filter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
@@ -44,7 +44,11 @@ function s.activate(e,tp)
 		e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
 		e1:SetCode(EFFECT_CANNOT_ACTIVATE)
 		e1:SetTargetRange(0,1)
-		e1:SetValue(function(te) return te:GetHandler():IsCode(code) end)
+		e1:SetLabel(code)
+		e1:SetValue(s.aclimit)
 		Duel.RegisterEffect(e1,tp)
 	end
+end
+function s.aclimit(e,re,tp)
+	return re:GetHandler():IsCode(e:GetLabel())
 end

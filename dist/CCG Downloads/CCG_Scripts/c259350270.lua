@@ -56,8 +56,8 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_OHMEN}
 
-function s.lcheck(g,lc,sumtype,tp)
-	return g:IsExists(Card.IsRace,1,nil,RACE_THUNDER,lc,sumtype,tp)
+function s.lcheck(g)
+	return g:IsExists(Card.IsRace,1,nil,RACE_THUNDER)
 end
 
 function s.atkcon(e)

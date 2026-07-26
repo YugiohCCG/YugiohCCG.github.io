@@ -37,22 +37,20 @@ end
 function s.extra_dragon_filter(c)
 	return c:IsRace(RACE_DRAGON) and c:IsAbleToGraveAsCost()
 end
-function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,c,sg,og)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.extra_dragon_filter,tp,LOCATION_EXTRA,0,1,nil) end
+function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,c)
+	local mg=Duel.GetMatchingGroup(s.extra_dragon_filter,tp,LOCATION_EXTRA,0,nil)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
-	local g=Duel.SelectMatchingCard(tp,s.extra_dragon_filter,tp,LOCATION_EXTRA,0,1,1,nil)
-	if #g>0 then
-		g:KeepAlive()
-		e:SetLabelObject(g)
+	local tc=mg:SelectUnselect(nil,tp,false,true,1,1)
+	if tc then
+		e:SetLabelObject(tc)
 		return true
 	end
 	return false
 end
-function s.spop(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
-	local g=e:GetLabelObject()
-	if g then
-		Duel.SendtoGrave(g,REASON_COST)
-		g:DeleteGroup()
+function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
+	local tc=e:GetLabelObject()
+	if tc then
+		Duel.SendtoGrave(tc,REASON_COST)
 	end
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)

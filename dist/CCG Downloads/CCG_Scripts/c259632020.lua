@@ -35,13 +35,13 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 s.listed_series={SET_GRAYSCALE}
-function s.matfilter(c,lc,sumtype,tp)
+function s.matfilter(c)
 	return c:IsAttribute(ATTRIBUTE_LIGHT) and c:IsRace(RACE_FIEND)
 end
 function s.graymat(c)
 	return c:IsSetCard(SET_GRAYSCALE)
 end
-function s.lcheck(g,lc,sumtype,tp)
+function s.lcheck(g)
 	return g:IsExists(s.graymat,1,nil)
 end
 function s.linklimit(e,c)

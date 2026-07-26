@@ -29,7 +29,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 s.listed_series={SET_ORCUST}
-function s.lcheck(g,lc,sumtype,tp)
+function s.lcheck(g)
 	return g:IsExists(Card.IsLinkSetCard,1,nil,SET_ORCUST)
 end
 function s.immcon(e)

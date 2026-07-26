@@ -37,7 +37,7 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_TO_PROTO}
 s.listed_names={TOKEN_PROTOGENIC}
-function s.lcheck(g,lc,sumtype,tp)
+function s.lcheck(g)
 	return g:GetClassCount(Card.GetCode)==#g
 end
 function s.tkcon(e,tp,eg,ep,ev,re,r,rp)

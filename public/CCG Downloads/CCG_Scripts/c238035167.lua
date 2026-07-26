@@ -117,7 +117,7 @@ function s.fsop(e,tp,eg,ep,ev,re,r,rp)
 			Duel.BreakEffect()
 			Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)
 		else
-			local mat2=ce:Select(ce,e,tp,tc,mg3,chkf)
+			local mat2=Duel.SelectFusionMaterial(tp,tc,mg3,nil,chkf)
 			if not mat2 or #mat2==0 or Duel.GetLocationCountFromEx(tp,tp,mat2,tc)<=0 then return end
 			local fop=ce:GetOperation()
 			fop(ce,e,tp,tc,mat2)

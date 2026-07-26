@@ -2,7 +2,7 @@ local s,id=GetID()
 local STRING_ID=133523659
 local SET_STARDUST=0xa3
 local SET_SYNCHRON=0x1017
-local SET_WARRIOR=0x8d0
+local SET_SYNCHRO_WARRIOR=0x66
 function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -49,7 +49,7 @@ function s.spop(e,tp)
 end
 function s.evfilter(c,tp) return c:IsSummonPlayer(tp) and c:IsSetCard(SET_STARDUST) and not c:IsCode(id) end
 function s.syncon(e,tp,eg) return eg:IsExists(s.evfilter,1,nil,tp) end
-function s.synfilter(c) return c:IsType(TYPE_SYNCHRO) and c:IsSetCard(SET_STARDUST,SET_SYNCHRON,SET_WARRIOR) and c:IsSynchroSummonable(nil) end
+function s.synfilter(c) return c:IsType(TYPE_SYNCHRO) and c:IsSetCard(SET_STARDUST,SET_SYNCHRON,SET_SYNCHRO_WARRIOR) and c:IsSynchroSummonable(nil) end
 function s.syntg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.synfilter,tp,LOCATION_EXTRA,0,1,nil) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)

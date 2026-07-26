@@ -24,10 +24,10 @@ function s.initial_effect(c)
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(STRING_ID,1))
 	e4:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_POSITION)
-	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e4:SetType(EFFECT_TYPE_QUICK_O)
 	e4:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e4:SetRange(LOCATION_HAND)
-	e4:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
+	e4:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e4:SetCountLimit(1,id)
 	e4:SetCondition(s.spcon)
 	e4:SetTarget(s.sptg)
@@ -44,14 +44,17 @@ function s.posop(e,tp,eg,ep,ev,re,r,rp)
 	if c:IsRelateToEffect(e) and c:IsFaceup() then Duel.ChangePosition(c,POS_FACEDOWN_DEFENSE) end
 end
 function s.spcon(e,tp,eg) return eg:IsExists(Card.IsSummonPlayer,1,nil,1-tp) end
-function s.spfilter(c,eg) return eg:IsContains(c) and c:IsControler(1-tp) and c:IsCanTurnSet() end
+function s.spfilter(c,eg,e,tp)
+	return eg:IsContains(c) and c:IsSummonPlayer(1-tp) and c:IsLocation(LOCATION_MZONE)
+		and c:IsCanTurnSet() and c:IsCanBeEffectTarget(e)
+end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local c=e:GetHandler()
-	if chkc then return eg:IsContains(chkc) and chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_MZONE) end
+	if chkc then return s.spfilter(chkc,eg,e,tp) end
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEDOWN_DEFENSE)
-		and eg:IsExists(function(tc,p) return tc:IsControler(1-p) and tc:IsLocation(LOCATION_MZONE) and tc:IsCanTurnSet() end,1,nil,tp) end
+		and eg:IsExists(s.spfilter,1,nil,eg,e,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_POSCHANGE)
-	local g=eg:FilterSelect(tp,function(tc,p) return tc:IsControler(1-p) and tc:IsLocation(LOCATION_MZONE) and tc:IsCanTurnSet() end,1,1,nil,tp)
+	local g=eg:FilterSelect(tp,s.spfilter,1,1,nil,eg,e,tp)
 	Duel.SetTargetCard(g)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,tp,LOCATION_HAND)
 end

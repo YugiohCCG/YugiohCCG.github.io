@@ -2,7 +2,7 @@ local s,id=GetID()
 local STRING_ID=132429024
 local SET_GRAVINITY=0x760
 function s.initial_effect(c)
-	aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,SET_GRAVINITY),1,1,aux.NonTuner(function(tc) return tc:IsRace(RACE_CYBERSE) and tc:IsType(TYPE_SYNCHRO) end),1,99)
+	aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,SET_GRAVINITY),aux.NonTuner(s.ntfilter),1)
 	c:EnableReviveLimit()
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_SINGLE)
@@ -27,6 +27,9 @@ function s.initial_effect(c)
 	e2:SetCondition(s.addcon)
 	e2:SetOperation(s.addop)
 	c:RegisterEffect(e2)
+end
+function s.ntfilter(c)
+	return c:IsRace(RACE_CYBERSE) and c:IsType(TYPE_SYNCHRO)
 end
 function s.tdcon(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_SYNCHRO) or e:GetHandler():IsPreviousLocation(LOCATION_SZONE) end
 function s.tdfilter(c) return c:IsSetCard(SET_GRAVINITY) and c:IsAbleToDeck() end

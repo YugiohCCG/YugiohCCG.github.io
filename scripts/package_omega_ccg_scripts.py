@@ -1,9 +1,9 @@
 """Build the installer Lua payload from the active CCG card list.
 
-Only standalone ``c<ID>.lua`` files whose IDs occur in ``cards.json`` are
-eligible for the archive.  This deliberately rejects orphan card scripts and
-shared helper modules so the installer cannot leak either into Omega's global
-Scripts directory.
+Only standalone ``c<ID>.lua`` files whose IDs occur in ``cards.json`` or the
+explicit legacy compatibility allowlist are eligible for the archive.  This
+deliberately rejects accidental orphan card scripts and shared helper modules
+so the installer cannot leak either into Omega's global Scripts directory.
 """
 from __future__ import annotations
 
@@ -19,6 +19,9 @@ DEFAULT_CARDS_PATH = REPO_ROOT / "src" / "data" / "cards.json"
 DEFAULT_SCRIPTS_DIR = REPO_ROOT / "public" / "CCG Downloads" / "CCG_Scripts"
 DEFAULT_ZIP_PATH = DEFAULT_SCRIPTS_DIR / "CCG_Scripts.zip"
 CARD_SCRIPT_RE = re.compile(r"^c(\d+)\.lua$")
+COMPATIBILITY_SCRIPT_IDS = {
+    210678856,  # Retired passcode for Aquamarine Reef Hapalochlaena.
+}
 
 
 def load_card_ids(cards_path: Path) -> set[int]:
@@ -46,11 +49,18 @@ def collect_scripts(scripts_dir: Path, card_ids: set[int]) -> list[Path]:
             continue
         by_id[int(match.group(1))] = path
 
+    expected_ids = card_ids | COMPATIBILITY_SCRIPT_IDS
     missing = sorted(card_ids - set(by_id))
-    orphaned = sorted(set(by_id) - card_ids)
+    missing_compatibility = sorted(COMPATIBILITY_SCRIPT_IDS - set(by_id))
+    orphaned = sorted(set(by_id) - expected_ids)
     errors: list[str] = []
     if missing:
         errors.append("missing active card scripts: " + ", ".join(map(str, missing)))
+    if missing_compatibility:
+        errors.append(
+            "missing compatibility scripts: "
+            + ", ".join(map(str, missing_compatibility))
+        )
     if orphaned:
         errors.append("orphan card scripts: " + ", ".join(map(str, orphaned)))
     if helpers:
@@ -58,7 +68,7 @@ def collect_scripts(scripts_dir: Path, card_ids: set[int]) -> list[Path]:
     if errors:
         raise ValueError("; ".join(errors))
 
-    return [by_id[card_id] for card_id in sorted(card_ids)]
+    return [by_id[card_id] for card_id in sorted(expected_ids)]
 
 
 def build_archive(script_paths: list[Path], zip_path: Path) -> None:
@@ -83,7 +93,9 @@ def verify_archive(script_paths: list[Path], zip_path: Path) -> None:
     with zipfile.ZipFile(zip_path, "r") as archive:
         actual_names = archive.namelist()
         if actual_names != expected_names:
-            raise ValueError("CCG_Scripts.zip entry list does not match active scripts")
+            raise ValueError(
+                "CCG_Scripts.zip entry list does not match active/compatibility scripts"
+            )
         for path in script_paths:
             if archive.read(path.name) != path.read_bytes():
                 raise ValueError(f"CCG_Scripts.zip content mismatch: {path.name}")

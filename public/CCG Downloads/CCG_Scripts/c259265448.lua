@@ -15,7 +15,7 @@ function s.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_TO_GRAVE)
 	e1:SetRange(LOCATION_SZONE)
-	e1:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
+	e1:SetProperty(EFFECT_FLAG_DELAY)
 	e1:SetCountLimit(1,id)
 	e1:SetCondition(s.thcon)
 	e1:SetTarget(s.thtg)
@@ -41,33 +41,30 @@ end
 function s.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(s.l1filter,1,nil,tp)
 end
-function s.tdfilter(c,e,tp)
-	return s.l1filter(c,tp) and c:IsCanBeEffectTarget(e) and c:IsAbleToDeck()
+function s.tdfilter(c,tp)
+	return c:IsLocation(LOCATION_GRAVE) and s.l1filter(c,tp) and c:IsAbleToDeck()
 		and aux.NecroValleyFilter()(c)
 end
 function s.addfilter(c,code)
 	return c:IsLevel(1) and c:IsRace(RACE_BEAST+RACE_WINDBEAST) and c:IsType(TYPE_MONSTER)
 		and not c:IsCode(code) and c:IsAbleToHand()
 end
-function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return eg:IsContains(chkc) and chkc:IsLocation(LOCATION_GRAVE) and s.tdfilter(chkc,e,tp)
-		and Duel.IsExistingMatchingCard(s.addfilter,tp,LOCATION_DECK,0,1,nil,chkc:GetCode()) end
-	if chk==0 then return eg:IsExists(function(c,e,tp)
-		return s.tdfilter(c,e,tp) and Duel.IsExistingMatchingCard(s.addfilter,tp,LOCATION_DECK,0,1,nil,c:GetCode())
-	end,1,nil,e,tp) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local g=eg:Filter(function(c,e,tp)
-		return s.tdfilter(c,e,tp) and Duel.IsExistingMatchingCard(s.addfilter,tp,LOCATION_DECK,0,1,nil,c:GetCode())
-	end,nil,e,tp)
-	local tc=g:Select(tp,1,1,nil):GetFirst()
-	Duel.SetTargetCard(tc)
-	Duel.SetOperationInfo(0,CATEGORY_TODECK,tc,1,0,0)
+function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return eg:IsExists(function(c,tp)
+		return s.tdfilter(c,tp) and Duel.IsExistingMatchingCard(s.addfilter,tp,LOCATION_DECK,0,1,nil,c:GetCode())
+	end,1,nil,tp) end
+	Duel.SetOperationInfo(0,CATEGORY_TODECK,nil,1,tp,LOCATION_GRAVE)
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
 end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
-	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and s.tdfilter(tc,e,tp)) then return end
+	local g=eg:Filter(function(c,tp)
+		return s.tdfilter(c,tp) and Duel.IsExistingMatchingCard(s.addfilter,tp,LOCATION_DECK,0,1,nil,c:GetCode())
+	end,nil,tp)
+	if #g==0 then return end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
+	local tc=g:Select(tp,1,1,nil):GetFirst()
+	if not tc then return end
 	local code=tc:GetCode()
 	if Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==0 or not tc:IsLocation(LOCATION_DECK) then return end
 	if not Duel.IsExistingMatchingCard(s.addfilter,tp,LOCATION_DECK,0,1,nil,code) then return end
