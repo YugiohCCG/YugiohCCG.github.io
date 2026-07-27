@@ -88,7 +88,13 @@ function s.oppsummon(e,tp)
 		and Duel.IsExistingMatchingCard(s.oppnsfilter,p,LOCATION_HAND,0,1,nil)
 	local tc=nil
 	local fromdeck=false
-	if cansp then
+	local op=0
+	if canns and cansp then
+		op=Duel.SelectOption(p,1151,1152)
+	elseif cansp then
+		op=1
+	end
+	if op==1 then
 		Duel.Hint(HINT_SELECTMSG,p,HINTMSG_SPSUMMON)
 		tc=Duel.SelectMatchingCard(p,s.oppfilter,p,LOCATION_HAND+LOCATION_DECK,0,1,1,nil,e,p):GetFirst()
 		if not tc then return false,nil,false end

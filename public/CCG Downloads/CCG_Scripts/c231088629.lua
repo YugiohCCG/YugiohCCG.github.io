@@ -59,6 +59,8 @@ function s.trapify(c)
 	c:RegisterEffect(e1)
 end
 function s.replaceop(e,tp,eg)
+	--This continuous effect was not active before the handler itself was Summoned.
+	if eg:IsContains(e:GetHandler()) then return end
 	for tc in aux.Next(eg) do
 		local p=tc:GetOwner()
 		if not tc:IsPreviousLocation(LOCATION_SZONE) and tc:IsLocation(LOCATION_MZONE) and Duel.GetLocationCount(p,LOCATION_SZONE)>0

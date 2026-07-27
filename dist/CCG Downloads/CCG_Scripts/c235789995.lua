@@ -2,11 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133789995
 local SET_NIUHAO=0xb69
-local SACRED_TREASURE_CODES={
-	[236542835]=true,
-	[229499914]=true,
-	[246421842]=true,
-}
+local SET_SACRED_TREASURE=0x8a20
 function s.initial_effect(c)
 	--If Normal or Special Summoned: banish 1 "NiuHao" monster from the Deck
 	local e1=Effect.CreateEffect(c)
@@ -80,7 +76,7 @@ function s.selfcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Remove(c,POS_FACEUP,REASON_COST)
 end
 function s.setfilter(c)
-	return SACRED_TREASURE_CODES[c:GetCode()] and c:IsType(TYPE_SPELL) and c:IsSSetable()
+	return c:IsSetCard(SET_SACRED_TREASURE) and c:IsType(TYPE_SPELL) and c:IsSSetable()
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0

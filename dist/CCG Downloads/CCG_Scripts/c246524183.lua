@@ -10,6 +10,7 @@ function s.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	e1:SetCost(s.revcost)
 	e1:SetTarget(s.target)
 	e1:SetOperation(s.activate)
 	c:RegisterEffect(e1)
@@ -23,25 +24,35 @@ function s.filter(c,e,tp)
 		and ((s.nsfilter(c) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false))
 			or (not s.nsfilter(c) and c:IsAbleToRemove()))
 end
-function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.revcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_HAND+LOCATION_DECK,0,1,nil,e,tp) end
-	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK)
-	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,tp,LOCATION_HAND+LOCATION_DECK)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
+	local tc=Duel.SelectMatchingCard(tp,s.filter,tp,LOCATION_HAND+LOCATION_DECK,0,1,1,nil,e,tp):GetFirst()
+	Duel.ConfirmCards(1-tp,tc)
+	if tc:IsLocation(LOCATION_HAND) then Duel.ShuffleHand(tp) end
+	tc:CreateEffectRelation(e)
+	e:SetLabelObject(tc)
+end
+function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return true end
+	local tc=e:GetLabelObject()
+	if s.nsfilter(tc) then
+		Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,tc,1,tp,tc:GetLocation())
+	else
+		Duel.SetOperationInfo(0,CATEGORY_REMOVE,tc,1,tp,tc:GetLocation())
+	end
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
-	if not Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_HAND+LOCATION_DECK,0,1,nil,e,tp) then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
-	local g=Duel.SelectMatchingCard(tp,s.filter,tp,LOCATION_HAND+LOCATION_DECK,0,1,1,nil,e,tp)
-	local tc=g:GetFirst()
-	if not tc then return end
-	Duel.ConfirmCards(1-tp,tc)
+	local tc=e:GetLabelObject()
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsLocation(LOCATION_HAND+LOCATION_DECK)) then return end
 	local ok=false
 	if s.nsfilter(tc) then
 		Duel.Hint(HINT_CARD,0,id)
-		ok=Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0
+		ok=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)
+			and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0
 	else
 		Duel.Hint(HINT_CARD,0,id)
-		ok=Duel.Remove(tc,POS_FACEUP,REASON_EFFECT)>0
+		ok=tc:IsAbleToRemove() and Duel.Remove(tc,POS_FACEUP,REASON_EFFECT)>0
 	end
 	if ok then
 		local e1=Effect.CreateEffect(e:GetHandler())

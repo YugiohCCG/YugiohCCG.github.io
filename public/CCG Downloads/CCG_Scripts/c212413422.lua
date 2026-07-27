@@ -41,6 +41,7 @@ function s.initial_effect(c)
 	e3:SetRange(LOCATION_REMOVED)
 	e3:SetCountLimit(1,id+2)
 	e3:SetCondition(s.recon)
+	e3:SetCost(s.recost)
 	e3:SetTarget(s.retg)
 	e3:SetOperation(s.reop)
 	c:RegisterEffect(e3)
@@ -104,20 +105,21 @@ function s.recon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	return c:IsLocation(LOCATION_REMOVED) and eg:IsExists(s.banishfilter,1,nil,c)
 end
+function s.recost(e,tp,eg,ep,ev,re,r,rp,chk)
+	local c=e:GetHandler()
+	if chk==0 then return c:IsAbleToDeckAsCost() end
+	Duel.SendtoDeck(c,tp,SEQ_DECKSHUFFLE,REASON_COST)
+end
 function s.retg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsAbleToDeck() end
+	if chk==0 then return true end
 	local g=eg:Filter(s.banishfilter,nil,c)
 	Duel.SetTargetCard(g)
-	Duel.SetOperationInfo(0,CATEGORY_TODECK,c,1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,g,#g,0,0)
 end
 function s.reop(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	if c:IsRelateToEffect(e) and Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 then
-		local g=Duel.GetTargetsRelateToChain():Filter(Card.IsLocation,nil,LOCATION_REMOVED)
-		if #g>0 then
-			Duel.SendtoGrave(g,REASON_EFFECT+REASON_RETURN)
-		end
+	local g=Duel.GetTargetsRelateToChain():Filter(Card.IsLocation,nil,LOCATION_REMOVED)
+	if #g>0 then
+		Duel.SendtoGrave(g,REASON_EFFECT+REASON_RETURN)
 	end
 end

@@ -2,6 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133362839
 local SET_TALISMANDRAKE=0xb47
+local SET_TALISMANDRAKE_ARMS=0x452f
 local CARD_ARMS_UNITED=215034223
 local CARD_SUPPRESSOR=238136421
 local CARD_HALBERD=215921734
@@ -47,8 +48,7 @@ function s.darkpyrothfilter(c)
 	return c:IsType(TYPE_MONSTER) and c:IsRace(RACE_PYRO) and c:IsAttribute(ATTRIBUTE_DARK) and c:IsAbleToHand()
 end
 function s.armsfilter(c)
-	return c:IsSetCard(SET_TALISMANDRAKE) and c:IsType(TYPE_SPELL+TYPE_TRAP)
-		and c:IsCode(CARD_ARMS_UNITED,CARD_SUPPRESSOR,CARD_HALBERD,CARD_SABRE,CARD_SHIELD)
+	return c:IsSetCard(SET_TALISMANDRAKE_ARMS) and c:IsType(TYPE_SPELL+TYPE_TRAP)
 end
 function s.tgfilter(c)
 	return s.armsfilter(c) and c:IsAbleToGrave()

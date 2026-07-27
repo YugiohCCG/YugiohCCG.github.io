@@ -2,6 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133868535
 local SET_VIR_PEDICAE_MORTIS=0x39e2
+local SET_RECOLLECTION=0x6167
 local CARD_BEAR_TRAP=251699681
 local CARD_RECOLLECTION_STATIC=211086520
 local CARD_RECOLLECTION_IRON=234984156
@@ -36,7 +37,7 @@ function s.initial_effect(c)
 	e3:SetOperation(s.atkop)
 	c:RegisterEffect(e3)
 end
-s.listed_series={SET_VIR_PEDICAE_MORTIS}
+s.listed_series={SET_VIR_PEDICAE_MORTIS,SET_RECOLLECTION}
 s.listed_names={CARD_BEAR_TRAP,CARD_RECOLLECTION_STATIC,CARD_RECOLLECTION_IRON,CARD_RECOLLECTION_MINE,CARD_RECOLLECTION_KABOOM}
 function s.thfilter(c)
 	return (c:IsCode(CARD_BEAR_TRAP) or (c:IsCode(CARD_RECOLLECTION_MINE) and c:IsType(TYPE_FIELD))) and c:IsAbleToHand()
@@ -59,7 +60,7 @@ function s.atkcon(e,tp,eg,ep,ev,re,r,rp)
 	return s.virbattler(Duel.GetAttacker(),tp) or s.virbattler(Duel.GetAttackTarget(),tp)
 end
 function s.recfilter(c)
-	return c:IsCode(CARD_RECOLLECTION_STATIC,CARD_RECOLLECTION_IRON,CARD_RECOLLECTION_MINE,CARD_RECOLLECTION_KABOOM)
+	return c:IsSetCard(SET_RECOLLECTION)
 		and c:IsType(TYPE_SPELL) and c:IsAbleToGraveAsCost()
 end
 function s.atkcost(e,tp,eg,ep,ev,re,r,rp,chk)

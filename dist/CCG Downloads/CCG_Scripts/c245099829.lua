@@ -2,12 +2,10 @@
 local s,id=GetID()
 local STRING_ID=133099829
 local SET_STELLAER=0xe40d
+local SET_AZRYNIOR=0x2159
 local SET_TO_PROTO=0xe80d
 local TOKEN_PROTOGENIC=240299293
 local RACE_GALAXY=0x80000000
-local AZRYNIOR_ST_CODES={
-	[236239443]=true, --Restoration of Azrynior
-}
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	aux.AddFusionProcCodeFun(c,TOKEN_PROTOGENIC,s.matfilter,1,true,true)
@@ -68,7 +66,7 @@ function s.initial_effect(c)
 		Duel.RegisterEffect(ge1,0)
 	end
 end
-s.listed_series={SET_STELLAER}
+s.listed_series={SET_STELLAER,SET_AZRYNIOR}
 s.listed_names={TOKEN_PROTOGENIC}
 function s.matfilter(c)
 	return c:IsRace(RACE_DRAGON) and c:IsFusionAttribute(ATTRIBUTE_LIGHT)
@@ -81,7 +79,7 @@ function s.plcon2(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_FUSION)
 end
 function s.plfilter(c)
-	return AZRYNIOR_ST_CODES[c:GetCode()] and c:IsType(TYPE_CONTINUOUS)
+	return c:IsSetCard(SET_AZRYNIOR) and c:IsType(TYPE_CONTINUOUS)
 		and c:IsType(TYPE_SPELL+TYPE_TRAP) and not c:IsForbidden()
 		and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
 end

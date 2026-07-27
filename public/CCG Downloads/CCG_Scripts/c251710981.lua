@@ -74,15 +74,17 @@ function s.spcon2(e,tp,eg,ep,ev,re,r,rp)
 	local tg=Duel.GetChainInfo(ev,CHAININFO_TARGET_CARDS)
 	return tg and tg:IsExists(s.tgfilter,1,nil)
 end
+function s.relfilter(c,tp)
+	return c:IsSetCard(0x4ac0) and Duel.GetMZoneCount(tp,c)>0
+end
 function s.spcost2(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.CheckReleaseGroup(tp,Card.IsSetCard,1,nil,0x4ac0) end
-	local g=Duel.SelectReleaseGroup(tp,Card.IsSetCard,1,1,nil,0x4ac0)
+	if chk==0 then return Duel.CheckReleaseGroup(tp,s.relfilter,1,nil,tp) end
+	local g=Duel.SelectReleaseGroup(tp,s.relfilter,1,1,nil,tp)
 	Duel.Release(g,REASON_COST)
 end
 function s.sptg2(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and aux.NecroValleyFilter()(c) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end
+	if chk==0 then return aux.NecroValleyFilter()(c) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,0,0)
 end
 function s.spop2(e,tp,eg,ep,ev,re,r,rp)

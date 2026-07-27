@@ -104,28 +104,31 @@ function s.hordefilter(c)
 end
 function s.hordetg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.hordefilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,3,nil) end
-	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,3,tp,LOCATION_DECK+LOCATION_EXTRA)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
+	local g=Duel.SelectMatchingCard(tp,s.hordefilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,3,3,nil)
+	Duel.ConfirmCards(1-tp,g)
+	local field_g=Duel.GetMatchingGroup(aux.AND(Card.IsFaceup,Card.IsCode),tp,LOCATION_MZONE,0,nil,242094473)
+	if #field_g>0 then
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
+		g:Merge(field_g:Select(tp,1,1,nil))
+	end
+	for tc in aux.Next(g) do tc:CreateEffectRelation(e) end
+	g:KeepAlive()
+	e:SetLabelObject(g)
+	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,g,#g,tp,LOCATION_DECK+LOCATION_EXTRA+LOCATION_MZONE)
 end
 function s.hordeop(e,tp,eg,ep,ev,re,r,rp)
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
-	local g=Duel.SelectMatchingCard(tp,s.hordefilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,3,3,nil)
-	if #g==3 then
-		local field_g=Duel.GetMatchingGroup(aux.AND(Card.IsFaceup,Card.IsCode),tp,LOCATION_MZONE,0,nil,242094473)
-		if #field_g>0 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
-			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
-			local sg=field_g:Select(tp,1,1,nil)
-			g:Merge(sg)
-		end
-		local tc=g:GetFirst()
-		while tc do
-			if Duel.SendtoGrave(tc,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_GRAVE) then
-				local e1=Effect.CreateEffect(e:GetHandler())
-				e1:SetType(EFFECT_TYPE_SINGLE)
-				e1:SetCode(EFFECT_CANNOT_TRIGGER)
-				e1:SetReset(RESET_EVENT+RESETS_STANDARD)
-				tc:RegisterEffect(e1)
-			end
-			tc=g:GetNext()
+	local g=e:GetLabelObject()
+	if not g then return end
+	local rg=g:Filter(Card.IsRelateToEffect,nil,e)
+	for tc in aux.Next(rg) do
+		if Duel.SendtoGrave(tc,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_GRAVE) then
+			local e1=Effect.CreateEffect(e:GetHandler())
+			e1:SetType(EFFECT_TYPE_SINGLE)
+			e1:SetCode(EFFECT_CANNOT_TRIGGER)
+			e1:SetReset(RESET_EVENT+RESETS_STANDARD)
+			tc:RegisterEffect(e1)
 		end
 	end
+	g:DeleteGroup()
 end

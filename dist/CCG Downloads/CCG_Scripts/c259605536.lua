@@ -1,6 +1,5 @@
 local s,id=GetID()
-local SET_NEMLERIA_OMEGA=0x191
-local SET_NEMLERIA_PI=0x192
+local SET_NEMLERIA=0x191
 local STRING_ID=133605536
 function s.initial_effect(c)
 	--Activate
@@ -59,7 +58,7 @@ function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Remove(rg,POS_FACEDOWN,REASON_COST)
 end
 function s.thfilter(c)
-	return (c:IsSetCard(SET_NEMLERIA_OMEGA) or c:IsSetCard(SET_NEMLERIA_PI))
+	return c:IsSetCard(SET_NEMLERIA)
 		and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)

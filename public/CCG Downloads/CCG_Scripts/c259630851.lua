@@ -1,11 +1,8 @@
 --A.I.P Ex Assimilation
 local s,id=GetID()
 local SET_AIP=0xa979
+local SET_AIP_EX=0x715b
 local STRING_ID=133630851
-local AIP_EX_XYZ={
-	[259465391]=true,
-	[259097228]=true,
-}
 function s.initial_effect(c)
 	--Take control of 1 opponent's monster
 	local e1=Effect.CreateEffect(c)
@@ -31,10 +28,9 @@ function s.initial_effect(c)
 	e2:SetOperation(s.gyop)
 	c:RegisterEffect(e2)
 end
-s.listed_series={SET_AIP}
+s.listed_series={SET_AIP,SET_AIP_EX}
 function s.xyzfilter(c)
-	return c:IsFaceup() and c:IsSetCard(SET_AIP) and c:IsType(TYPE_XYZ)
-		and not c:IsCode(259275822)
+	return c:IsFaceup() and c:IsSetCard(SET_AIP_EX) and c:IsType(TYPE_XYZ)
 end
 function s.actcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_MZONE,0,1,nil)
@@ -77,6 +73,9 @@ function s.ctop(e,tp,eg,ep,ev,re,r,rp)
 			e4:SetCode(EFFECT_ADD_SETCODE)
 			e4:SetValue(SET_AIP)
 			tc:RegisterEffect(e4)
+			local e5=e4:Clone()
+			e5:SetValue(SET_AIP_EX)
+			tc:RegisterEffect(e5)
 		end
 	end
 end

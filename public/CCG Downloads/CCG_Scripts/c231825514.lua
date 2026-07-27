@@ -2,11 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133825514
 local SET_NIUHAO=0xb69
-local SACRED_TREASURE_CODES={
-	[236542835]=true,
-	[229499914]=true,
-	[246421842]=true,
-}
+local SET_SACRED_TREASURE=0x8a20
 function s.initial_effect(c)
 	--Xyz Summon
 	aux.AddXyzProcedure(c,aux.FilterBoolFunction(Card.IsRace,RACE_WINDBEAST),1,2,nil,nil,99)
@@ -60,7 +56,7 @@ function s.tdfilter(c)
 	return c:IsFaceup() and c:IsSetCard(SET_NIUHAO) and c:IsType(TYPE_MONSTER) and c:IsAbleToDeck()
 end
 function s.rmfilter(c)
-	return SACRED_TREASURE_CODES[c:GetCode()] and c:IsType(TYPE_SPELL) and c:IsAbleToRemove()
+	return c:IsSetCard(SET_SACRED_TREASURE) and c:IsType(TYPE_SPELL) and c:IsAbleToRemove()
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_REMOVED) and s.tdfilter(chkc) end

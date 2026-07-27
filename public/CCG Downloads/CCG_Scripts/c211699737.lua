@@ -24,6 +24,7 @@ function s.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetCountLimit(1,id+100)
+	e2:SetCost(s.cpcost)
 	e2:SetTarget(s.cptg)
 	e2:SetOperation(s.cpop)
 	c:RegisterEffect(e2)
@@ -50,16 +51,22 @@ end
 function s.revfilter(c)
 	return c:IsSetCard(SET_MYUTANT) and c:IsAbleToGrave()
 end
-function s.cptg(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.cpcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.revfilter,tp,LOCATION_DECK,0,1,nil) end
-	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_DECK)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
+	local rc=Duel.SelectMatchingCard(tp,s.revfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
+	Duel.ConfirmCards(1-tp,rc)
+	rc:CreateEffectRelation(e)
+	e:SetLabelObject(rc)
+end
+function s.cptg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return true end
+	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,e:GetLabelObject(),1,tp,LOCATION_DECK)
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,tp,LOCATION_DECK)
 end
 function s.cpop(e,tp,eg,ep,ev,re,r,rp)
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
-	local rc=Duel.SelectMatchingCard(tp,s.revfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
-	if not rc then return end
-	Duel.ConfirmCards(1-tp,rc)
+	local rc=e:GetLabelObject()
+	if not (rc and rc:IsRelateToEffect(e) and rc:IsLocation(LOCATION_DECK) and s.revfilter(rc)) then return end
 	local typ=rc:GetOriginalType()
 	local code=(typ&TYPE_MONSTER)~=0 and BEAST or ((typ&TYPE_SPELL)~=0 and MIST or ARSENAL)
 	if Duel.SendtoGrave(rc,REASON_EFFECT)==0 or not rc:IsLocation(LOCATION_GRAVE) then return end

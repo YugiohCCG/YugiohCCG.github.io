@@ -1,6 +1,5 @@
 local s,id=GetID()
-local SET_NEMLERIA_OMEGA=0x191
-local SET_NEMLERIA_PI=0x192
+local SET_NEMLERIA=0x191
 local CARD_DREAMING_NEMLERIA=CARD_DREAMING_NEMLERIA or 70155677
 local STRING_ID=133392825
 local TIMINGS_CHECK_MONSTER=TIMINGS_CHECK_MONSTER or 0
@@ -35,7 +34,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function s.costfilter(c)
-	return (c:IsSetCard(SET_NEMLERIA_OMEGA) or c:IsSetCard(SET_NEMLERIA_PI)) and c:IsDiscardable()
+	return c:IsSetCard(SET_NEMLERIA) and c:IsDiscardable()
 end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -100,7 +99,7 @@ function s.immcost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.tgfilter(c,e,tp)
 	return c:IsControler(tp) and c:IsOnField() and c~=e:GetHandler()
-		and (c:IsSetCard(SET_NEMLERIA_OMEGA) or c:IsSetCard(SET_NEMLERIA_PI)) and c:IsCanBeEffectTarget(e)
+		and c:IsSetCard(SET_NEMLERIA) and c:IsCanBeEffectTarget(e)
 end
 function s.immtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return s.tgfilter(chkc,e,tp) end

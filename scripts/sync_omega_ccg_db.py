@@ -16,6 +16,7 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CARDS_PATH = REPO_ROOT / "src" / "data" / "cards.json"
 DEFAULT_DB_PATH = Path(r"C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Databases\CCG_v1.db")
+DEFAULT_OFFICIAL_DB_PATH = Path(r"C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Bundles\db")
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "scripts" / "output"
 DEFAULT_MAP_PATH = DEFAULT_OUTPUT_DIR / "CCG_v1_id_map.json"
 DEFAULT_BACKUP_DIR = DEFAULT_OUTPUT_DIR / "db_backups"
@@ -128,15 +129,39 @@ TREATED_AS_RE = re.compile(
     re.IGNORECASE,
 )
 
-OMEGA_SET_CODES = {
+OFFICIAL_SHARED_SET_CODES = {
     "gladiator": 0x19,
     "gladiatorbeast": 0x1019,
     "altergeist": 0x103,
     "cardian": 0xE6,
     "flowercardian": 0xE6,
+    "chaos": 0xCF,
     "gaia": 0xBD,
     "gaiathefierceknight": 0xBD,
     "galaxy": 0x7B,
+    "ghostrick": 0x8D,
+    "ghoti": 0x18A,
+    "harpie": 0x64,
+    "kuriboh": 0xA4,
+    "myutant": 0x157,
+    "nemleria": 0x191,
+    "nephthys": 0x11F,
+    "orcust": 0x11B,
+    "pendulum": 0xF2,
+    "phantasmspiral": 0xFA,
+    "prophecy": 0x6E,
+    "rankupmagic": 0x95,
+    "reactor": 0x63,
+    "redeyes": 0x3B,
+    "stardust": 0xA3,
+    "starryknight": 0x159,
+    "thunderdragon": 0x11C,
+    "ursarctic": 0x163,
+    "vampire": 0x8E,
+}
+
+OMEGA_SET_CODES = {
+    **OFFICIAL_SHARED_SET_CODES,
     "grayscale": 0x575D,
     "leet": 0xFE88,
     "scarstech": 0x52F8,
@@ -144,11 +169,6 @@ OMEGA_SET_CODES = {
     "phlogistondragon": 0x0F78,
     "phlogisticuprising": 0x6F9E,
     "phlogistonsroar": 0x4376,
-    "harpie": 0x64,
-    "thunderdragon": 0x11C,
-    "nemleria": 0x191,
-    "redeyes": 0x3B,
-    "orcust": 0x11B,
     "aldrez": 0xC1C,
     "frute": 0x813,
     "niuhao": 0xB69,
@@ -159,14 +179,12 @@ OMEGA_SET_CODES = {
     "dysmandr": 0x0A6B,
     "stellar": 0x257C,
     "eldora": 0x0738,
-    "phantasmspiral": 0x00FA,
     "wickedpuppeteer": 0xE0A9,
     "virpedicaemortis": 0x39E2,
     "nautica": 0x08F0,
     "bob": 0x92B1,
     "cryingchaos": 0x6F4,
     "shiningbrigade": 0x7a34,
-    "stardust": 0xA3,
     "windborne": 0x21FC,
     "chronosaur": 0xdae7,
     "aquamarine": 0xf3c,
@@ -175,15 +193,36 @@ OMEGA_SET_CODES = {
     "arckcestial": 0x4ac0,
     "bau": 0xba8,
     "bauy": 0xba8,
-	"ghoti": 0x18A,
-	"myutant": 0x157,
 	"halloween": 0xFB6D,
 	"skewy": 0xAC74,
 	"crewal": 0xE2F,
-	"ghostrick": 0x8D,
-	"vampire": 0x8E,
 	"gravinity": 0x760,
-	"galactica": 0x9C9,
+    "galactica": 0x9C9,
+    "eclipseobserver": 0xEB17,
+    "azrynior": 0x2159,
+    "sacredtreasure": 0x8A20,
+    "talismandrakearms": 0x452F,
+    "aipex": 0x715B,
+    "recollection": 0x6167,
+}
+
+# These named sub-series share a broader primary archetype in cards.json but
+# are independently referenced by card text. Giving them a secondary setcode
+# avoids closed card-code lists and automatically supports future members.
+NAME_BASED_ARCHETYPE_PATTERNS = (
+    ("rankupmagic", r"\bRank-Up-Magic\b"),
+    ("eclipseobserver", r"\bEclipse Observer\b"),
+    ("azrynior", r"\bAzrynior\b"),
+    ("sacredtreasure", r"\bSacred Treasure\b"),
+    ("talismandrakearms", r"\bTalismandrake Arms\b"),
+    ("aipex", r"\bA\.I\.P Ex\b"),
+    ("recollection", r"\bRecollection\b"),
+)
+
+# "Chapter II Verse IV" is explicitly included by the Ataxia support card,
+# while retaining "The Hallowed Scripts" as its primary series.
+ADDITIONAL_CARD_SET_CODES = {
+    241957394: (0x7398,),
 }
 
 # Rows kept by older Omega DBs but not shipped with the current release assets.
@@ -2643,6 +2682,20 @@ def decode_setcodes(blob: bytes | None) -> list[int]:
     return [code for code in codes if code]
 
 
+def load_database_setcodes(db_path: Path | None) -> set[int]:
+    """Return every setcode already claimed by an Omega database."""
+    if db_path is None or not db_path.exists():
+        return set()
+    conn = sqlite3.connect(f"{db_path.resolve().as_uri()}?mode=ro", uri=True)
+    try:
+        claimed: set[int] = set()
+        for (blob,) in conn.execute("select setcode from datas where setcode is not null"):
+            claimed.update(decode_setcodes(blob))
+        return claimed
+    finally:
+        conn.close()
+
+
 def encode_setcodes(codes: list[int]) -> bytes:
     unique: list[int] = []
     seen: set[int] = set()
@@ -2775,6 +2828,15 @@ def extract_treated_as_names(text: str | None) -> list[str]:
             seen.add(key)
             names.append(name)
     return names
+
+
+def extract_name_based_archetype_names(name: str | None) -> list[str]:
+    card_name = canonical_display_name(name)
+    return [
+        key
+        for key, pattern in NAME_BASED_ARCHETYPE_PATTERNS
+        if re.search(pattern, card_name, re.IGNORECASE)
+    ]
 
 
 def allocate_setcode(name: str, used_codes: set[int]) -> int:
@@ -3119,6 +3181,7 @@ def build_data_row(
     if archetype:
         tags.append(archetype)
     tags.extend(extract_treated_as_names(card.get("text")))
+    tags.extend(extract_name_based_archetype_names(card.get("name")))
     if "Ohmechanic" in (card.get("name") or ""):
         tags.append("Ohmechanic")
     setcodes: list[int] = []
@@ -3130,6 +3193,10 @@ def build_data_row(
         if key not in setcode_map:
             setcode_map[key] = allocate_setcode(tag, used_setcodes)
         code = setcode_map[key]
+        if code not in seen_codes:
+            seen_codes.add(code)
+            setcodes.append(code)
+    for code in ADDITIONAL_CARD_SET_CODES.get(card_id, ()):
         if code not in seen_codes:
             seen_codes.add(code)
             setcodes.append(code)
@@ -3187,7 +3254,13 @@ def backup_db(db_path: Path, backup_dir: Path) -> Path:
     return backup_path
 
 
-def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) -> dict[str, Any]:
+def sync_db(
+    cards_path: Path,
+    db_path: Path,
+    map_path: Path,
+    insert_only: bool,
+    official_db_path: Path | None = DEFAULT_OFFICIAL_DB_PATH,
+) -> dict[str, Any]:
     cards = load_cards(cards_path)
     conn = sqlite3.connect(db_path)
     try:
@@ -3195,6 +3268,8 @@ def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) 
         rows = load_existing_rows(conn)
         existing_by_id = {int(row["id"]): row for row in rows}
         setcode_map, used_setcodes = build_existing_setcode_map(cards, rows)
+        official_setcodes = load_database_setcodes(official_db_path)
+        used_setcodes.update(official_setcodes)
 
         inserted = 0
         updated = 0
@@ -3403,6 +3478,7 @@ def sync_db(cards_path: Path, db_path: Path, map_path: Path, insert_only: bool) 
             "datas_count": final_counts[0],
             "texts_count": final_counts[1],
             "setcode_map_size": len(setcode_map),
+            "reserved_official_setcodes": len(official_setcodes),
             "mapping_path": str(map_path),
         }
     finally:
@@ -3413,6 +3489,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Sync cards.json into the Omega CCG_v1 database.")
     parser.add_argument("--cards", type=Path, default=DEFAULT_CARDS_PATH)
     parser.add_argument("--db", type=Path, default=DEFAULT_DB_PATH)
+    parser.add_argument(
+        "--official-db",
+        type=Path,
+        default=DEFAULT_OFFICIAL_DB_PATH,
+        help="Official Omega database whose setcodes must be preserved for TCG/OCG interoperability.",
+    )
     parser.add_argument("--map-out", type=Path, default=DEFAULT_MAP_PATH)
     parser.add_argument(
         "--backup-dir",
@@ -3438,6 +3520,7 @@ def main() -> None:
         db_path=args.db,
         map_path=args.map_out,
         insert_only=not args.full_sync,
+        official_db_path=args.official_db,
     )
 
     if backup_path is not None:

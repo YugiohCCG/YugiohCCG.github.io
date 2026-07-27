@@ -5,9 +5,6 @@ local SET_DYSMANDR=0x0a6b
 local SET_TO_PROTO=0xe80d
 local TOKEN_PROTOGENIC=240299293
 local RACE_GALAXY=0x80000000
-local DYSMANDR_ST_CODES={
-	[242009896]=true, --Extinction of Dysmandr
-}
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	aux.AddFusionProcCodeFun(c,TOKEN_PROTOGENIC,s.matfilter,1,true,true)
@@ -81,7 +78,7 @@ function s.plcon2(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_FUSION)
 end
 function s.plfilter(c)
-	return DYSMANDR_ST_CODES[c:GetCode()] and c:IsType(TYPE_CONTINUOUS)
+	return c:IsSetCard(SET_DYSMANDR) and c:IsType(TYPE_CONTINUOUS)
 		and c:IsType(TYPE_SPELL+TYPE_TRAP) and not c:IsForbidden()
 		and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
 end

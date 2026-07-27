@@ -37,7 +37,8 @@ function s.plfilter(c)
 		and (c:GetOriginalType()&TYPE_MONSTER)~=0 and not c:IsForbidden()
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0
+	if chk==0 then return (Duel.GetLocationCount(tp,LOCATION_SZONE)>0
+		or Duel.IsExistingMatchingCard(s.costfilter,tp,LOCATION_SZONE,0,1,nil))
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.plfilter),tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) end
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)

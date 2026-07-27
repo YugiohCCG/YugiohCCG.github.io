@@ -5,16 +5,6 @@ local SET_ECLIPSE=0xf2f4
 local SET_ECLIPSE_OBSERVER=0xeb17
 local CARD_OBSERVATORY=259721372
 local CARD_BOOK_OF_ECLIPSE=35480699
-local OBSERVER_MONSTERS={
-	[259652372]=true,
-	[259926839]=true,
-	[259069729]=true,
-	[259487387]=true,
-	[259058125]=true,
-	[259193076]=true,
-	[259126370]=true,
-	[259612312]=true,
-}
 function s.initial_effect(c)
 	--Send 1 "Eclipse" Quick-Play Spell or "Eclipse Observer" card from your Deck to the GY
 	local e1=Effect.CreateEffect(c)
@@ -47,7 +37,7 @@ end
 s.listed_series={SET_ECLIPSE,SET_ECLIPSE_OBSERVER}
 s.listed_names={CARD_BOOK_OF_ECLIPSE}
 function s.isobservermonster(c)
-	return c:IsType(TYPE_MONSTER) and (OBSERVER_MONSTERS[c:GetCode()] or c:IsSetCard(SET_ECLIPSE_OBSERVER))
+	return c:IsType(TYPE_MONSTER) and c:IsSetCard(SET_ECLIPSE_OBSERVER)
 end
 function s.isobservercard(c)
 	return s.isobservermonster(c) or c:IsSetCard(SET_ECLIPSE_OBSERVER) or c:IsCode(CARD_OBSERVATORY)

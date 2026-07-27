@@ -25,6 +25,7 @@ function s.initial_effect(c)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetCondition(s.actcon)
+	e1:SetCost(s.tgcost)
 	e1:SetTarget(s.tgtg)
 	e1:SetOperation(s.tgop)
 	c:RegisterEffect(e1)
@@ -44,20 +45,25 @@ function s.actcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.sendfilter(c,tp)
 	return (c:IsControler(tp) or c:IsFaceup()) and c:IsSetCard(SET_STAIN)
-		and c:IsType(TYPE_MONSTER) and c:IsAbleToGrave()
+		and c:IsType(TYPE_MONSTER) and c:IsAbleToGraveAsCost()
 		and s.copy_codes[c:GetCode()]
 end
-function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.tgcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.sendfilter,tp,LOCATION_DECK,LOCATION_DECK,1,nil,tp) end
-	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,PLAYER_ALL,LOCATION_DECK)
-end
-function s.tgop(e,tp,eg,ep,ev,re,r,rp)
-	if not Duel.IsExistingMatchingCard(s.sendfilter,tp,LOCATION_DECK,LOCATION_DECK,1,nil,tp) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 	local tc=Duel.SelectMatchingCard(tp,s.sendfilter,tp,LOCATION_DECK,LOCATION_DECK,1,1,nil,tp):GetFirst()
 	if not tc then return end
-	local code=tc:GetCode()
-	if Duel.SendtoGrave(tc,REASON_EFFECT)==0 or not tc:IsLocation(LOCATION_GRAVE) then return end
+	e:SetLabel(tc:GetCode())
+	e:SetLabelObject(tc)
+	Duel.SendtoGrave(tc,REASON_COST)
+end
+function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return true end
+end
+function s.tgop(e,tp,eg,ep,ev,re,r,rp)
+	local tc=e:GetLabelObject()
+	local code=e:GetLabel()
+	if not tc then return end
 	if code==CARD_BRIA then
 		s.briaop(e,tp,tc)
 	elseif code==CARD_DANTE then

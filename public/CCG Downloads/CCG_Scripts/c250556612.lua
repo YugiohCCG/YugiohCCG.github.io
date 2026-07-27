@@ -2,17 +2,13 @@
 local s,id=GetID()
 local STRING_ID=132556612
 local SET_NIUHAO=0xb69
+local SET_SACRED_TREASURE=0x8a20
 local CARD_BOJIN=236542835
 local CARD_CHUNYIN=229499914
 local CARD_HUANGJIN=246421842
 local STRING_BOJIN=132542835
 local STRING_CHUNYIN=133499914
 local STRING_HUANGJIN=132421842
-local SACRED_TREASURE_CODES={
-	[CARD_BOJIN]=true,
-	[CARD_CHUNYIN]=true,
-	[CARD_HUANGJIN]=true,
-}
 function s.initial_effect(c)
 	--Xyz Summon
 	aux.AddXyzProcedure(c,aux.FilterBoolFunction(Card.IsRace,RACE_WINDBEAST),1,2,nil,nil,99)
@@ -62,7 +58,7 @@ function s.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	c:RemoveOverlayCard(tp,1,1,REASON_COST)
 end
 function s.rmfilter(c)
-	return SACRED_TREASURE_CODES[c:GetCode()] and c:IsType(TYPE_SPELL) and c:IsAbleToRemove()
+	return c:IsSetCard(SET_SACRED_TREASURE) and c:IsType(TYPE_SPELL) and c:IsAbleToRemove()
 		and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -91,7 +87,7 @@ function s.canapply(tp)
 	return Duel.IsExistingMatchingCard(s.niufilter,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.applyeffect(e,tp,tc)
-	if not (tc:IsFaceup() and SACRED_TREASURE_CODES[tc:GetCode()] and s.canapply(tp)) then return end
+	if not (tc:IsFaceup() and tc:IsSetCard(SET_SACRED_TREASURE) and s.canapply(tp)) then return end
 	local code=tc:GetCode()
 	if code==CARD_BOJIN then
 		s.applybojin(e,tp)

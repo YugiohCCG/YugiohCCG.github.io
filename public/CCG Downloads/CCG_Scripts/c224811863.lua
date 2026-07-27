@@ -20,6 +20,7 @@ function s.initial_effect(c)
 	e2:SetCode(EVENT_SUMMON_SUCCESS)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
 	e2:SetCountLimit(1,id)
+	e2:SetCost(s.copycost)
 	e2:SetTarget(s.copytg)
 	e2:SetOperation(s.copyop)
 	c:RegisterEffect(e2)
@@ -66,46 +67,34 @@ function s.splimit(e,c,sump,sumtype,sumpos,targetp,se)
 end
 function s.copyfilter(c)
 	return c:IsType(TYPE_SPELL) and (aux.IsCodeListed(c,242094473) or c:IsCode(242094473))
-		and c:IsAbleToGrave() and c:CheckActivateEffect(true,true,false)~=nil
+		and c:IsAbleToGraveAsCost() and c:CheckActivateEffect(true,true,false)~=nil
 end
-function s.copytg(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.copycost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.copyfilter,tp,LOCATION_DECK,0,1,nil)
 		and Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil) end
-	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_DECK)
-	Duel.SetOperationInfo(0,CATEGORY_HANDES,nil,0,tp,1)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
+	local tc=Duel.SelectMatchingCard(tp,s.copyfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
+	Duel.SendtoGrave(tc,REASON_COST)
+	Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_COST+REASON_DISCARD)
+	e:SetLabelObject(tc)
+end
+function s.copytg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return true end
+	local tc=e:GetLabelObject()
+	local te,ceg,cep,cev,cre,cr,crp=tc:CheckActivateEffect(true,true,true)
+	if not te then return end
+	e:SetCategory(te:GetCategory())
+	e:SetProperty(te:GetProperty())
+	local tg=te:GetTarget()
+	if tg then tg(e,tp,ceg,cep,cev,cre,cr,crp,1) end
+	te:SetLabelObject(e:GetLabelObject())
+	e:SetLabelObject(te)
+	Duel.ClearOperationInfo(0)
 end
 function s.copyop(e,tp,eg,ep,ev,re,r,rp)
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
-	local g=Duel.SelectMatchingCard(tp,s.copyfilter,tp,LOCATION_DECK,0,1,1,nil)
-	if #g>0 and Duel.SendtoGrave(g,REASON_EFFECT)>0 and g:GetFirst():IsLocation(LOCATION_GRAVE) then
-		local tc=g:GetFirst()
-		if Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_EFFECT+REASON_DISCARD)>0 then
-			local te,ceg,cep,cev,cre,cr,crp=tc:CheckActivateEffect(true,true,true)
-			if not te then return end
-			local tg=te:GetTarget()
-			local op=te:GetOperation()
-			e:SetCategory(te:GetCategory())
-			e:SetProperty(te:GetProperty())
-			Duel.ClearTargetCard()
-			if tg then tg(e,tp,ceg,cep,cev,cre,cr,crp,1) end
-			Duel.ClearOperationInfo(0)
-			Duel.BreakEffect()
-			local g2=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)
-			if g2 then
-				local etc=g2:GetFirst()
-				while etc do
-					etc:CreateEffectRelation(e)
-					etc=g2:GetNext()
-				end
-			end
-			if op then op(e,tp,ceg,cep,cev,cre,cr,crp) end
-			if g2 then
-				local etc=g2:GetFirst()
-				while etc do
-					etc:ReleaseEffectRelation(e)
-					etc=g2:GetNext()
-				end
-			end
-		end
-	end
+	local te=e:GetLabelObject()
+	if not te then return end
+	e:SetLabelObject(te:GetLabelObject())
+	local op=te:GetOperation()
+	if op then op(e,tp,eg,ep,ev,re,r,rp) end
 end

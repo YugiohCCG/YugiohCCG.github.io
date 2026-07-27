@@ -22,6 +22,7 @@ function s.initial_effect(c)
 	e2:SetCode(EVENT_TO_GRAVE)
 	e2:SetCountLimit(1,id)
 	e2:SetCondition(s.xyzcon)
+	e2:SetCost(s.xyzcost)
 	e2:SetTarget(s.xyztg)
 	e2:SetOperation(s.xyzop)
 	c:RegisterEffect(e2)
@@ -62,6 +63,15 @@ end
 function s.selffilter(c,e,tp)
 	return c:IsCanBeSpecialSummoned(e,0,tp,false,false) and aux.NecroValleyFilter()(c)
 end
+function s.xyzcost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.handfilter,tp,LOCATION_HAND,0,1,nil,e,tp) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
+	local tc=Duel.SelectMatchingCard(tp,s.handfilter,tp,LOCATION_HAND,0,1,1,nil,e,tp):GetFirst()
+	Duel.ConfirmCards(1-tp,tc)
+	Duel.ShuffleHand(tp)
+	tc:CreateEffectRelation(e)
+	e:SetLabelObject(tc)
+end
 function s.xyztg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return Duel.IsPlayerCanSpecialSummonCount(tp,2)
@@ -74,14 +84,10 @@ function s.xyzfilter(c,mg)
 end
 function s.xyzop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
+	local tc=e:GetLabelObject()
 	if not (c:IsRelateToEffect(e) and Duel.IsPlayerCanSpecialSummonCount(tp,2)
 		and Duel.GetLocationCount(tp,LOCATION_MZONE)>1 and s.selffilter(c,e,tp)) then return end
-	if not Duel.IsExistingMatchingCard(s.handfilter,tp,LOCATION_HAND,0,1,nil,e,tp) then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
-	local tc=Duel.SelectMatchingCard(tp,s.handfilter,tp,LOCATION_HAND,0,1,1,nil,e,tp):GetFirst()
-	if not tc then return end
-	Duel.ConfirmCards(1-tp,tc)
-	Duel.ShuffleHand(tp)
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsLocation(LOCATION_HAND) and s.handfilter(tc,e,tp)) then return end
 	local g=Group.FromCards(c,tc)
 	if Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)~=2 then return end
 	local mg=g:Filter(Card.IsLocation,nil,LOCATION_MZONE)

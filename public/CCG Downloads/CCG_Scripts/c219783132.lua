@@ -24,6 +24,7 @@ function s.initial_effect(c)
 	e3:SetRange(LOCATION_SZONE)
 	e3:SetCountLimit(1,id+100)
 	e3:SetCondition(s.plcon)
+	e3:SetCost(s.plcost)
 	e3:SetTarget(s.pltg)
 	e3:SetOperation(s.plop)
 	c:RegisterEffect(e3)
@@ -58,10 +59,18 @@ end
 function s.oppfilter(c)
 	return c:IsFaceup() and (c:GetOriginalType()&TYPE_MONSTER)~=0 and not c:IsForbidden()
 end
+function s.plcost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0
+		and Duel.IsExistingMatchingCard(s.ownfilter,tp,LOCATION_MZONE,0,1,nil) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)
+	local tc=Duel.SelectMatchingCard(tp,s.ownfilter,tp,LOCATION_MZONE,0,1,1,nil):GetFirst()
+	if tc and Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then
+		s.maketrap(tc,e:GetHandler())
+	end
+end
 function s.pltg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_MZONE) and s.oppfilter(chkc) end
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.GetLocationCount(1-tp,LOCATION_SZONE)>0
-		and Duel.IsExistingMatchingCard(s.ownfilter,tp,LOCATION_MZONE,0,1,nil)
+	if chk==0 then return Duel.GetLocationCount(1-tp,LOCATION_SZONE)>0
 		and Duel.IsExistingTarget(s.oppfilter,tp,0,LOCATION_MZONE,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)
 	Duel.SelectTarget(tp,s.oppfilter,tp,0,LOCATION_MZONE,1,1,nil)
@@ -76,12 +85,7 @@ function s.maketrap(c,owner)
 	c:RegisterEffect(e1)
 end
 function s.plop(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 or Duel.GetLocationCount(1-tp,LOCATION_SZONE)<=0 then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)
-	local tc=Duel.SelectMatchingCard(tp,s.ownfilter,tp,LOCATION_MZONE,0,1,1,nil):GetFirst()
-	if not tc or not Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then return end
-	s.maketrap(tc,e:GetHandler())
-	Duel.BreakEffect()
+	if Duel.GetLocationCount(1-tp,LOCATION_SZONE)<=0 then return end
 	local oc=Duel.GetFirstTarget()
 	if oc and oc:IsRelateToEffect(e) and oc:IsControler(1-tp) and s.oppfilter(oc)
 		and Duel.MoveToField(oc,tp,1-tp,LOCATION_SZONE,POS_FACEUP,true) then

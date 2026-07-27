@@ -95,6 +95,53 @@ CANNOT_ACTIVATE_VALUE_RE = re.compile(
 SPSUMMON_PROC_CODE_RE = re.compile(
     r"\b([A-Za-z_]\w*):SetCode\(\s*EFFECT_SPSUMMON_PROC\s*\)"
 )
+OPPONENT_SUMMON_CHOICE_TEXT_RE = re.compile(
+    r"your opponent Normal or Special Summons 1 monster", re.IGNORECASE
+)
+OPPONENT_SUMMON_CHOICE_CODE_RE = re.compile(
+    r"Duel\.SelectOption\(\s*(?:1\s*-\s*tp|p)\s*,\s*1151\s*,\s*1152\s*\)"
+)
+OPTIONAL_IF_SUMMONED_TEXT_RE = re.compile(
+    r"If this card is (?:Fusion |Synchro |Xyz |Link |Ritual |"
+    r"Normal or Special |Normal |Special )?Summoned[^:]*:\s*You can",
+    re.IGNORECASE,
+)
+EFFECT_REGISTRATION_BLOCK_RE = re.compile(
+    r"local\s+(?P<effect>e\d+)\s*=\s*Effect\.CreateEffect\(c\)"
+    r"(?P<body>.*?c:RegisterEffect\(\s*(?P=effect)\s*\))",
+    re.DOTALL,
+)
+FUNCTION_BLOCK_RE = re.compile(
+    r"^\s*function\s+s\.(?P<name>[A-Za-z_]\w*)\s*\([^\)]*\)"
+    r"(?P<body>.*?)(?=^\s*function\s+s\.|\Z)",
+    re.MULTILINE | re.DOTALL,
+)
+OPERATION_CALLBACK_RE = re.compile(
+    r"\bSetOperation\(\s*s\.([A-Za-z_]\w*)\s*\)"
+)
+SPSUMMON_PROC_OPERATION_RE = re.compile(
+    r"\b(?P<effect>[A-Za-z_]\w*):SetCode\(\s*EFFECT_SPSUMMON_PROC\s*\)"
+    r"(?:(?!RegisterEffect).){0,1200}?"
+    r"(?P=effect):SetOperation\(\s*s\.([A-Za-z_]\w*)\s*\)",
+    re.DOTALL,
+)
+ACTIVATION_REVEAL_TEXT_RE = re.compile(
+    r"\b(?:reveal|show)\b[^;.!?]*;", re.IGNORECASE
+)
+ACTIVATION_CHOOSE_TEXT_RE = re.compile(r"\bchoose\b[^;.!?]*;", re.IGNORECASE)
+ACTIVATION_TARGET_TEXT_RE = re.compile(
+    r"(?:\b(?:you can(?: also)?|then|and)\s+target\b|"
+    r"(?:^|[\n.!?●•]\s*)target\b)[^;.!?]*;",
+    re.IGNORECASE,
+)
+ACTIVATION_PLACE_TEXT_RE = re.compile(r"\bplace\b[^;.!?]*;", re.IGNORECASE)
+ACTIVATION_ROLL_TEXT_RE = re.compile(
+    r"\broll\s+(?:a|one|1)\s+(?:six-sided|6-sided)\s+die\b[^;.!?]*;",
+    re.IGNORECASE,
+)
+ACTIVATION_DECLARE_TEXT_RE = re.compile(
+    r"\bdeclare\b[^;.!?]*;", re.IGNORECASE
+)
 
 
 def count_top_level_arguments(arguments: str) -> int:
@@ -170,6 +217,25 @@ def find_raw_spsummon_proc_targets(
         ]
         callbacks.append((callback_name, arguments, definition.group(2)))
     return callbacks
+
+
+def has_activation_time_code(text: str, pattern: str) -> bool:
+    """Return whether a non-operation callback performs an activation action."""
+
+    operation_callbacks = set(OPERATION_CALLBACK_RE.findall(text))
+    procedure_operations = set(SPSUMMON_PROC_OPERATION_RE.findall(text))
+    procedure_operations = {
+        match[1] if isinstance(match, tuple) else match
+        for match in procedure_operations
+    }
+    return any(
+        (
+            block.group("name") not in operation_callbacks
+            or block.group("name") in procedure_operations
+        )
+        and re.search(pattern, block.group("body"))
+        for block in FUNCTION_BLOCK_RE.finditer(text)
+    )
 
 
 def row_for_id(
@@ -271,6 +337,14 @@ def main() -> int:
     referenced_card_ids: dict[int, list[str]] = {}
     spell_trap_activation_scripts = 0
     quick_effect_scripts = 0
+    opponent_summon_choice_scripts = 0
+    delayed_optional_summon_triggers = 0
+    activation_reveal_scripts = 0
+    activation_choose_scripts = 0
+    activation_target_scripts = 0
+    activation_place_scripts = 0
+    activation_roll_scripts = 0
+    activation_declare_scripts = 0
     try:
         known_setcodes = database_setcodes(custom) | database_setcodes(official)
         known_card_ids = {
@@ -318,6 +392,81 @@ def main() -> int:
                     )
                 else:
                     quick_effect_scripts += 1
+            printed_text = effect_texts.get(card_id, "")
+            if ACTIVATION_REVEAL_TEXT_RE.search(printed_text):
+                activation_reveal_scripts += 1
+                if not has_activation_time_code(text, r"\bDuel\.ConfirmCards\s*\("):
+                    errors.append(
+                        f"{path.name}: printed reveal/show occurs before a "
+                        "semicolon, but ConfirmCards only occurs during resolution"
+                    )
+            if ACTIVATION_CHOOSE_TEXT_RE.search(printed_text):
+                activation_choose_scripts += 1
+                if not has_activation_time_code(
+                    text, r"\bDuel\.(?:SelectMatchingCard|SelectTarget)\s*\("
+                ):
+                    errors.append(
+                        f"{path.name}: printed choice occurs before a semicolon, "
+                        "but no card is selected during activation"
+                    )
+            if ACTIVATION_TARGET_TEXT_RE.search(printed_text):
+                activation_target_scripts += 1
+                if not has_activation_time_code(
+                    text, r"\bDuel\.(?:SelectTarget|SetTargetCard)\s*\("
+                ):
+                    errors.append(
+                        f"{path.name}: printed target occurs before a semicolon, "
+                        "but no target is established during activation"
+                    )
+            if ACTIVATION_PLACE_TEXT_RE.search(printed_text):
+                activation_place_scripts += 1
+                if not has_activation_time_code(
+                    text, r"\bDuel\.(?:MoveToField|SendtoDeck)\s*\("
+                ):
+                    errors.append(
+                        f"{path.name}: printed placement occurs before a semicolon, "
+                        "but the card is only moved during resolution"
+                    )
+            if ACTIVATION_ROLL_TEXT_RE.search(printed_text):
+                activation_roll_scripts += 1
+                if not has_activation_time_code(text, r"\bDuel\.TossDice\s*\("):
+                    errors.append(
+                        f"{path.name}: printed die roll occurs before a semicolon, "
+                        "but the roll only occurs during resolution"
+                    )
+            if ACTIVATION_DECLARE_TEXT_RE.search(printed_text):
+                activation_declare_scripts += 1
+                if not has_activation_time_code(
+                    text, r"\bDuel\.Announce(?:Card|Level|Number)\s*\("
+                ):
+                    errors.append(
+                        f"{path.name}: printed declaration occurs before a "
+                        "semicolon, but the value is only announced during "
+                        "resolution"
+                    )
+            if OPPONENT_SUMMON_CHOICE_TEXT_RE.search(printed_text):
+                opponent_summon_choice_scripts += 1
+                if not OPPONENT_SUMMON_CHOICE_CODE_RE.search(text):
+                    errors.append(
+                        f"{path.name}: printed text lets the opponent choose between "
+                        "a Normal or Special Summon, but the script has no opponent "
+                        "Duel.SelectOption call using Omega strings 1151/1152"
+                    )
+            if OPTIONAL_IF_SUMMONED_TEXT_RE.search(printed_text):
+                for block in EFFECT_REGISTRATION_BLOCK_RE.finditer(text):
+                    body = block.group("body")
+                    if (
+                        "EFFECT_TYPE_TRIGGER_O" in body
+                        and "EVENT_SPSUMMON_SUCCESS" in body
+                    ):
+                        if "EFFECT_FLAG_DELAY" not in body:
+                            errors.append(
+                                f"{path.name}: optional `If this card is Summoned` "
+                                f"trigger {block.group('effect')} lacks "
+                                "EFFECT_FLAG_DELAY and can miss timing"
+                            )
+                        else:
+                            delayed_optional_summon_triggers += 1
             for setcode_name, value in SETCODE_CONSTANT_RE.findall(text):
                 setcode = int(value, 0)
                 referenced_setcodes.setdefault(setcode, []).append(
@@ -561,6 +710,17 @@ def main() -> int:
     print(f"referenced_card_ids={len(referenced_card_ids)}")
     print(f"spell_trap_activation_scripts={spell_trap_activation_scripts}")
     print(f"quick_effect_scripts={quick_effect_scripts}")
+    print(f"opponent_summon_choice_scripts={opponent_summon_choice_scripts}")
+    print(
+        "delayed_optional_summon_triggers="
+        f"{delayed_optional_summon_triggers}"
+    )
+    print(f"activation_reveal_scripts={activation_reveal_scripts}")
+    print(f"activation_choose_scripts={activation_choose_scripts}")
+    print(f"activation_target_scripts={activation_target_scripts}")
+    print(f"activation_place_scripts={activation_place_scripts}")
+    print(f"activation_roll_scripts={activation_roll_scripts}")
+    print(f"activation_declare_scripts={activation_declare_scripts}")
     print(f"create_token_calls={create_token_calls}")
     print(f"create_token_targets={len(create_token_targets)}")
     print(f"summon_code_checks={summon_code_checks}")

@@ -1,16 +1,8 @@
 --A.I.P Ex Predator
 local s,id=GetID()
 local SET_AIP=0xa979
+local SET_AIP_EX=0x715b
 local STRING_ID=133121126
-local AIP_EX_MONSTERS={
-	[259609997]=true,
-	[259664027]=true,
-	[259137697]=true,
-	[259522807]=true,
-	[259121126]=true,
-	[259465391]=true,
-	[259097228]=true,
-}
 function s.initial_effect(c)
 	if c.SetUniqueOnField then
 		c:SetUniqueOnField(1,0,id)
@@ -43,9 +35,9 @@ function s.initial_effect(c)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
 	c:RegisterEffect(e3)
 end
-s.listed_series={SET_AIP}
+s.listed_series={SET_AIP,SET_AIP_EX}
 function s.isaip_ex(c)
-	return c:IsSetCard(SET_AIP) and c:IsType(TYPE_MONSTER) and not c:IsCode(259275822)
+	return c:IsSetCard(SET_AIP_EX) and c:IsType(TYPE_MONSTER)
 end
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(Card.IsRace,tp,LOCATION_MZONE,0,1,nil,RACE_BEAST)

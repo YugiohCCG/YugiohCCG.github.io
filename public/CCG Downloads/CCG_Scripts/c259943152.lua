@@ -1,16 +1,8 @@
 --A.I.P Lab
 local s,id=GetID()
 local SET_AIP=0xa979
+local SET_AIP_EX=0x715b
 local STRING_ID=133943152
-local AIP_EX_MONSTERS={
-	[259609997]=true,
-	[259664027]=true,
-	[259137697]=true,
-	[259522807]=true,
-	[259121126]=true,
-	[259465391]=true,
-	[259097228]=true,
-}
 function s.initial_effect(c)
 	--Activate; optionally Special Summon 1 Beast monster from hand or GY
 	local e1=Effect.CreateEffect(c)
@@ -46,9 +38,9 @@ function s.initial_effect(c)
 	e3:SetOperation(s.lvop)
 	c:RegisterEffect(e3)
 end
-s.listed_series={SET_AIP}
+s.listed_series={SET_AIP,SET_AIP_EX}
 function s.isaip_ex(c)
-	return c:IsSetCard(SET_AIP) and c:IsType(TYPE_MONSTER) and not c:IsCode(259275822)
+	return c:IsSetCard(SET_AIP_EX) and c:IsType(TYPE_MONSTER)
 end
 function s.spfilter(c,e,tp)
 	return c:IsRace(RACE_BEAST) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)

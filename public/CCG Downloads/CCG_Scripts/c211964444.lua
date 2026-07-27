@@ -12,6 +12,7 @@ function s.initial_effect(c)
 	e1:SetProperty(EFFECT_FLAG_DELAY)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e1:SetCountLimit(1,id)
+	e1:SetCost(s.descost)
 	e1:SetTarget(s.destg)
 	e1:SetOperation(s.desop)
 	c:RegisterEffect(e1)
@@ -31,16 +32,21 @@ s.listed_series={SET_NEPHTHYS}
 function s.desfilter(c,e)
 	return c:IsSetCard(SET_NEPHTHYS) and c:IsType(TYPE_MONSTER) and c:IsDestructable(e)
 end
-function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.descost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.desfilter,tp,LOCATION_DECK,0,1,nil,e) end
-	Duel.SetOperationInfo(0,CATEGORY_DESTROY,nil,1,tp,LOCATION_DECK)
-end
-function s.desop(e,tp,eg,ep,ev,re,r,rp)
-	if not Duel.IsExistingMatchingCard(s.desfilter,tp,LOCATION_DECK,0,1,nil,e) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
 	local tc=Duel.SelectMatchingCard(tp,s.desfilter,tp,LOCATION_DECK,0,1,1,nil,e):GetFirst()
-	if not tc then return end
 	Duel.ConfirmCards(1-tp,tc)
+	tc:CreateEffectRelation(e)
+	e:SetLabelObject(tc)
+end
+function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return true end
+	Duel.SetOperationInfo(0,CATEGORY_DESTROY,e:GetLabelObject(),1,tp,LOCATION_DECK)
+end
+function s.desop(e,tp,eg,ep,ev,re,r,rp)
+	local tc=e:GetLabelObject()
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsLocation(LOCATION_DECK) and s.desfilter(tc,e)) then return end
 	if Duel.Destroy(tc,REASON_EFFECT,LOCATION_GRAVE)==0 then return end
 	Duel.BreakEffect()
 	local te,ceg,cep,cev,cre,cr,crp=tc:CheckActivateEffect(true,true,true)

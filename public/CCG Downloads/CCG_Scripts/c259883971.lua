@@ -1,6 +1,5 @@
 local s,id=GetID()
-local SET_NEMLERIA_OMEGA=0x191
-local SET_NEMLERIA_PI=0x192
+local SET_NEMLERIA=0x191
 local STRING_ID=133883971
 function s.initial_effect(c)
 	--Activate
@@ -33,7 +32,7 @@ function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,nil,1,PLAYER_ALL,LOCATION_REMOVED)
 end
 function s.spfilter(c,e,tp)
-	return (c:IsSetCard(SET_NEMLERIA_OMEGA) or c:IsSetCard(SET_NEMLERIA_PI))
+	return c:IsSetCard(SET_NEMLERIA)
 		and c:IsType(TYPE_MONSTER) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
@@ -56,6 +55,7 @@ function s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return c:IsAbleToRemoveAsCost(POS_FACEDOWN) end
 	Duel.Remove(c,POS_FACEDOWN,REASON_COST)
+	Duel.ConfirmCards(1-tp,Duel.GetFieldGroup(tp,LOCATION_EXTRA,0))
 end
 function s.exfilter(c,tp)
 	return c:IsFacedown() and c:IsAbleToRemove(tp,POS_FACEDOWN) and not c:IsCode(70155677)
@@ -73,7 +73,6 @@ end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetFieldGroup(tp,LOCATION_EXTRA,0)
 	if #g==0 then return end
-	Duel.ConfirmCards(1-tp,g)
 	local rg=g:Filter(s.exfilter,nil,tp)
 	if #rg<3 then return end
 	Duel.Hint(HINT_SELECTMSG,1-tp,HINTMSG_REMOVE)

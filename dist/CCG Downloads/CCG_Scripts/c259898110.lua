@@ -1,6 +1,5 @@
 local s,id=GetID()
-local SET_NEMLERIA_OMEGA=0x191
-local SET_NEMLERIA_PI=0x192
+local SET_NEMLERIA=0x191
 local CARD_DREAMING_NEMLERIA=CARD_DREAMING_NEMLERIA or 70155677
 local STRING_ID=133898110
 local EFFECT_FLAG_OATH=EFFECT_FLAG_OATH or 0
@@ -40,7 +39,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function s.costfilter(c)
-	return (c:IsSetCard(SET_NEMLERIA_OMEGA) or c:IsSetCard(SET_NEMLERIA_PI)) and c:IsDiscardable()
+	return c:IsSetCard(SET_NEMLERIA) and c:IsDiscardable()
 end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -94,7 +93,7 @@ function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Remove(rg,POS_FACEDOWN,REASON_COST)
 end
 function s.thfilter(c)
-	return (c:IsSetCard(SET_NEMLERIA_OMEGA) or c:IsSetCard(SET_NEMLERIA_PI))
+	return c:IsSetCard(SET_NEMLERIA)
 		and c:IsType(TYPE_SPELL) and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)

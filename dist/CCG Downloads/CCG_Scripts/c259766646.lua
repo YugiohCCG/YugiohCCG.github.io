@@ -1,19 +1,7 @@
 local s,id=GetID()
-local SET_NEMLERIA_OMEGA=0x191
-local SET_NEMLERIA_PI=0x192
+local SET_NEMLERIA=0x191
 local CARD_DREAMING_NEMLERIA=CARD_DREAMING_NEMLERIA or 70155677
 local STRING_ID=133766646
-local NEMLERIA_ST={
-	[18458255]=true,
-	[33499794]=true,
-	[44843954]=true,
-	[57296396]=true,
-	[259017109]=true,
-	[259090287]=true,
-	[259605536]=true,
-	[259766646]=true,
-	[259883971]=true,
-}
 function s.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)
@@ -27,12 +15,12 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 s.listed_names={CARD_DREAMING_NEMLERIA}
-s.listed_series={SET_NEMLERIA_OMEGA,SET_NEMLERIA_PI}
+s.listed_series={SET_NEMLERIA}
 function s.exfilter(c)
 	return c:IsCode(CARD_DREAMING_NEMLERIA) and not c:IsForbidden()
 end
 function s.setfilter(c)
-	return (c:IsSetCard(SET_NEMLERIA_OMEGA) or c:IsSetCard(SET_NEMLERIA_PI) or NEMLERIA_ST[c:GetCode()])
+	return c:IsSetCard(SET_NEMLERIA)
 		and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) and c:IsSSetable()
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)

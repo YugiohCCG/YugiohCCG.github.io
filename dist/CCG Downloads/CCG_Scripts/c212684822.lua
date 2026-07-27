@@ -1,11 +1,9 @@
 --Ektelestis gia Taxis
 local s,id=GetID()
 local STRING_ID=132684822
+local SET_TAXIS=0x27e9
 local TOKEN_PROTOGENIC=240299293
 local CARD_TO_PROTO_TAXIS=246380598
-local TAXIS_ST_CODES={
-	[224751741]=true, --Fall of Azrynior
-}
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--Fusion material text
@@ -100,7 +98,7 @@ function s.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonLocation(LOCATION_EXTRA)
 end
 function s.thfilter(c)
-	return TAXIS_ST_CODES[c:GetCode()] and c:IsType(TYPE_SPELL+TYPE_TRAP)
+	return c:IsSetCard(SET_TAXIS) and c:IsType(TYPE_SPELL+TYPE_TRAP)
 		and (c:IsAbleToHand() or c:IsAbleToGrave())
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)

@@ -2,11 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133629896
 local SET_NIUHAO=0xb69
-local SACRED_TREASURE_CODES={
-	[236542835]=true,
-	[229499914]=true,
-	[246421842]=true,
-}
+local SET_SACRED_TREASURE=0x8a20
 function s.initial_effect(c)
 	--If Normal or Special Summoned: add 1 "NiuHao" or "Sacred Treasure" card
 	local e1=Effect.CreateEffect(c)
@@ -55,7 +51,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e5)
 end
 function s.niucard(c)
-	return c:IsSetCard(SET_NIUHAO) or SACRED_TREASURE_CODES[c:GetCode()]
+	return c:IsSetCard(SET_NIUHAO) or c:IsSetCard(SET_SACRED_TREASURE)
 end
 function s.thfilter(c)
 	return s.niucard(c) and c:IsAbleToHand()

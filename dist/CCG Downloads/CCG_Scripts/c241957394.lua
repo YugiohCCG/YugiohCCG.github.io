@@ -34,11 +34,14 @@ end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.efffilter,tp,LOCATION_MZONE,0,1,nil)
 		and Duel.IsExistingMatchingCard(Card.IsCode,tp,LOCATION_DECK,0,1,nil,CARD_EXTINCTION) end
-end
-function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local tc=Duel.SelectMatchingCard(tp,s.efffilter,tp,LOCATION_MZONE,0,1,1,nil):GetFirst()
-	if not tc then return end
+	tc:CreateEffectRelation(e)
+	e:SetLabelObject(tc)
+end
+function s.activate(e,tp,eg,ep,ev,re,r,rp)
+	local tc=e:GetLabelObject()
+	if not (tc and tc:IsRelateToEffect(e) and s.efffilter(tc)) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 	local g=Duel.SelectMatchingCard(tp,Card.IsCode,tp,LOCATION_DECK,0,1,1,nil,CARD_EXTINCTION)
 	local gc=g:GetFirst()

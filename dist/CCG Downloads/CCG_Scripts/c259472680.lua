@@ -1,6 +1,5 @@
 local s,id=GetID()
-local SET_NEMLERIA_OMEGA=0x191
-local SET_NEMLERIA_PI=0x192
+local SET_NEMLERIA=0x191
 local STRING_ID=133472680
 local EFFECT_FLAG_OATH=EFFECT_FLAG_OATH or 0
 function s.initial_effect(c)
@@ -52,7 +51,7 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,0,0)
 end
 function s.splimit(e,c)
-	return not (c:IsSetCard(SET_NEMLERIA_OMEGA) or c:IsSetCard(SET_NEMLERIA_PI))
+	return not c:IsSetCard(SET_NEMLERIA)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
@@ -69,7 +68,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.atktg(e,c)
 	return c:IsFaceup() and c:IsControler(e:GetHandlerPlayer())
-		and (c:IsSetCard(SET_NEMLERIA_OMEGA) or c:IsSetCard(SET_NEMLERIA_PI)) and c:IsType(TYPE_MONSTER)
+		and c:IsSetCard(SET_NEMLERIA) and c:IsType(TYPE_MONSTER)
 end
 function s.atkval(e,c)
 	return Duel.GetMatchingGroupCount(Card.IsFacedown,e:GetHandlerPlayer(),LOCATION_REMOVED,0,nil)*100
@@ -79,7 +78,7 @@ function s.cfilter(c,e,tp)
 		and (c:IsLocation(LOCATION_HAND) or c:IsFaceup())
 end
 function s.ssfilter(c,e,tp)
-	return (c:IsSetCard(SET_NEMLERIA_OMEGA) or c:IsSetCard(SET_NEMLERIA_PI))
+	return c:IsSetCard(SET_NEMLERIA)
 		and c:IsType(TYPE_MONSTER) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.sstg(e,tp,eg,ep,ev,re,r,rp,chk)

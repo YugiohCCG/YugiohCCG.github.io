@@ -1,13 +1,10 @@
 --Polemistis gia Ataxia
 local s,id=GetID()
 local STRING_ID=132065048
+local SET_ATAXIA=0x7398
 local SET_TO_PROTO=0xe80d
 local TOKEN_PROTOGENIC=240299293
 local CARD_TO_PROTO_ATAXIA=224225695
-local ATAXIA_ST_CODES={
-	[239245471]=true, --Birth of Azrynior
-	[241957394]=true, --Chapter II Verse IV
-}
 function s.initial_effect(c)
 	c:EnableReviveLimit()
 	--Fusion material text
@@ -123,7 +120,7 @@ function s.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonLocation(LOCATION_EXTRA)
 end
 function s.thfilter(c)
-	return ATAXIA_ST_CODES[c:GetCode()] and c:IsType(TYPE_SPELL+TYPE_TRAP)
+	return c:IsSetCard(SET_ATAXIA) and c:IsType(TYPE_SPELL+TYPE_TRAP)
 		and (c:IsAbleToHand() or c:IsAbleToGrave())
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)

@@ -2,16 +2,6 @@
 local s,id=GetID()
 local STRING_ID=133680842
 local SET_ECLIPSE_OBSERVER=0xeb17
-local OBSERVER_MONSTERS={
-	[259652372]=true,
-	[259926839]=true,
-	[259069729]=true,
-	[259487387]=true,
-	[259058125]=true,
-	[259193076]=true,
-	[259126370]=true,
-	[259612312]=true,
-}
 function s.initial_effect(c)
 	--Fusion Summon 1 "Eclipse Observer" monster
 	local e1=Effect.CreateEffect(c)
@@ -25,7 +15,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function s.isobservermonster(c)
-	return c:IsType(TYPE_MONSTER) and (OBSERVER_MONSTERS[c:GetCode()] or c:IsSetCard(SET_ECLIPSE_OBSERVER))
+	return c:IsType(TYPE_MONSTER) and c:IsSetCard(SET_ECLIPSE_OBSERVER)
 end
 function s.matfilter(c)
 	return c:IsType(TYPE_MONSTER) and c:IsCanBeFusionMaterial() and c:IsAbleToGrave()

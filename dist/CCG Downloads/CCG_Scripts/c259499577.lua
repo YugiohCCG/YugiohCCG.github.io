@@ -1,6 +1,7 @@
 --A.I.P Ex Hive Mind
 local s,id=GetID()
 local SET_AIP=0xa979
+local SET_AIP_EX=0x715b
 local STRING_ID=133499577
 local CALLER=259465391
 local ZERO_MOTHER=259097228
@@ -23,7 +24,7 @@ function s.initial_effect(c)
 	e1:SetOperation(s.op)
 	c:RegisterEffect(e1)
 end
-s.listed_series={SET_AIP}
+s.listed_series={SET_AIP,SET_AIP_EX}
 function s.owner(c)
 	if c.GetOwner then return c:GetOwner() end
 	return c:GetControler()
@@ -49,8 +50,7 @@ function s.tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	end
 end
 function s.xyzfilter(c)
-	return c:IsSetCard(SET_AIP) and c:IsType(TYPE_XYZ)
-		and c:IsCode(CALLER,ZERO_MOTHER) and c:IsXyzSummonable(nil)
+	return c:IsSetCard(SET_AIP_EX) and c:IsType(TYPE_XYZ) and c:IsXyzSummonable(nil)
 end
 function s.op(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()

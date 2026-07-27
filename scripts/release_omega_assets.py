@@ -234,11 +234,22 @@ def mirror_export_to_omega(source_dir: Path, omega_dir: Path) -> None:
 
 
 def run_release_audit() -> None:
-    cmd = [sys.executable, "-B", str(SCRIPTS_DIR / "verify_omega_release.py")]
-    print("\n[verify] auditing installer payloads and folder layout")
-    proc = subprocess.run(cmd, check=False)
-    if proc.returncode != 0:
-        raise SystemExit(f"verify_omega_release.py failed (exit {proc.returncode})")
+    audits = (
+        (
+            "archetype interoperability against official Omega",
+            "verify_omega_archetypes.py",
+        ),
+        (
+            "installer payloads and folder layout",
+            "verify_omega_release.py",
+        ),
+    )
+    for label, script_name in audits:
+        print(f"\n[verify] auditing {label}")
+        cmd = [sys.executable, "-B", str(SCRIPTS_DIR / script_name)]
+        proc = subprocess.run(cmd, check=False)
+        if proc.returncode != 0:
+            raise SystemExit(f"{script_name} failed (exit {proc.returncode})")
 
 
 def zip_repo_db() -> None:

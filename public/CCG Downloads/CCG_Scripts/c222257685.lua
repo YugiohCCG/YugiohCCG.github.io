@@ -11,6 +11,7 @@ function s.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	e1:SetCost(s.tkcost)
 	e1:SetTarget(s.tktg)
 	e1:SetOperation(s.tkop)
 	c:RegisterEffect(e1)
@@ -38,8 +39,16 @@ end
 function s.handfilter(c,tp)
 	return s.copyfilter(c) and not c:IsPublic() and s.cantoken(tp,c)
 end
-function s.tktg(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.tkcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.handfilter,tp,LOCATION_HAND,0,1,nil,tp) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
+	local tc=Duel.SelectMatchingCard(tp,s.handfilter,tp,LOCATION_HAND,0,1,1,nil,tp):GetFirst()
+	Duel.ConfirmCards(1-tp,tc)
+	Duel.ShuffleHand(tp)
+	e:SetLabel(tc:GetCode(),tc:GetRace(),tc:GetAttribute(),tc:GetLevel(),tc:GetAttack(),tc:GetDefense())
+end
+function s.tktg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return true end
 	Duel.SetOperationInfo(0,CATEGORY_TOKEN,nil,1,tp,0)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,0)
 end
@@ -81,14 +90,8 @@ function s.summontoken(e,tp,code,race,attr,lv,atk,def)
 	Duel.SpecialSummon(token,0,tp,tp,false,false,POS_FACEUP_DEFENSE)
 end
 function s.tkop(e,tp,eg,ep,ev,re,r,rp)
-	if not Duel.IsExistingMatchingCard(s.handfilter,tp,LOCATION_HAND,0,1,nil,tp) then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
-	local g=Duel.SelectMatchingCard(tp,s.handfilter,tp,LOCATION_HAND,0,1,1,nil,tp)
-	local tc=g:GetFirst()
-	if not tc then return end
-	Duel.ConfirmCards(1-tp,g)
-	Duel.ShuffleHand(tp)
-	s.summontoken(e,tp,tc:GetCode(),tc:GetRace(),tc:GetAttribute(),tc:GetLevel(),tc:GetAttack(),tc:GetDefense())
+	local code,race,attr,lv,atk,def=e:GetLabel()
+	s.summontoken(e,tp,code,race,attr,lv,atk,def)
 end
 function s.gyfilter(c,e,tp)
 	return s.copyfilter(c) and c:IsCanBeEffectTarget(e) and s.cantoken(tp,c)

@@ -2,11 +2,7 @@
 local s,id=GetID()
 local STRING_ID=132421842
 local SET_NIUHAO=0xb69
-local SACRED_TREASURE_CODES={
-	[236542835]=true,
-	[229499914]=true,
-	[246421842]=true,
-}
+local SET_SACRED_TREASURE=0x8a20
 function s.initial_effect(c)
 	--Activate 1 effect
 	local e1=Effect.CreateEffect(c)
@@ -79,7 +75,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.stfilter(c)
-	return c:IsFaceup() and SACRED_TREASURE_CODES[c:GetCode()]
+	return c:IsFaceup() and c:IsSetCard(SET_SACRED_TREASURE)
 end
 function s.drcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsContains(e:GetHandler()) and eg:IsExists(s.stfilter,1,e:GetHandler())

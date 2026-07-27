@@ -54,13 +54,16 @@ function s.dgfilter(c,tc)
 end
 function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.efilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
+	local tc=Duel.SelectMatchingCard(tp,s.efilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,1,nil):GetFirst()
+	tc:CreateEffectRelation(e)
+	e:SetLabelObject(tc)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,nil,1,PLAYER_ALL,LOCATION_MZONE)
 end
 function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local tc=Duel.SelectMatchingCard(tp,s.efilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,1,nil):GetFirst()
-	if not tc then return end
+	local tc=e:GetLabelObject()
+	if not (tc and tc:IsRelateToEffect(e) and s.efilter(tc)) then return end
 	local g=Duel.GetMatchingGroup(s.dgfilter,tp,LOCATION_MZONE,LOCATION_MZONE,nil,tc)
 	if #g==0 or Duel.Destroy(g,REASON_EFFECT)==0 then return end
 	Duel.BreakEffect()

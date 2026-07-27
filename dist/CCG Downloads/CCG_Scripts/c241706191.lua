@@ -2,6 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133706191
 local SET_TALISMANDRAKE=0xb47
+local SET_TALISMANDRAKE_ARMS=0x452f
 local CARD_ARMS_UNITED=215034223
 local CARD_SUPPRESSOR=238136421
 local CARD_HALBERD=215921734
@@ -38,8 +39,7 @@ function s.darkpyro(c)
 	return c:IsRace(RACE_PYRO) and c:IsFusionAttribute(ATTRIBUTE_DARK)
 end
 function s.armsfilter(c)
-	return c:IsSetCard(SET_TALISMANDRAKE) and c:IsType(TYPE_SPELL+TYPE_TRAP)
-		and c:IsCode(CARD_ARMS_UNITED,CARD_SUPPRESSOR,CARD_HALBERD,CARD_SABRE,CARD_SHIELD)
+	return c:IsSetCard(SET_TALISMANDRAKE_ARMS) and c:IsType(TYPE_SPELL+TYPE_TRAP)
 end
 function s.thfilter(c)
 	return s.armsfilter(c) and c:IsAbleToHand()
