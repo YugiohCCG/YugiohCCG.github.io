@@ -175,6 +175,7 @@ OMEGA_SET_CODES = {
     "toproto": 0xE80D,
     "stellaer": 0xE40D,
     "ataxia": 0x7398,
+    "thehallowedscripts": 0x59C4,
     "taxis": 0x27E9,
     "dysmandr": 0x0A6B,
     "stellar": 0x257C,
@@ -196,8 +197,9 @@ OMEGA_SET_CODES = {
 	"halloween": 0xFB6D,
 	"skewy": 0xAC74,
 	"crewal": 0xE2F,
-	"gravinity": 0x760,
+    "gravinity": 0x760,
     "galactica": 0x9C9,
+    "eclipse": 0xF2F4,
     "eclipseobserver": 0xEB17,
     "azrynior": 0x2159,
     "sacredtreasure": 0x8A20,
@@ -223,6 +225,11 @@ NAME_BASED_ARCHETYPE_PATTERNS = (
 # while retaining "The Hallowed Scripts" as its primary series.
 ADDITIONAL_CARD_SET_CODES = {
     241957394: (0x7398,),
+    257549955: (0xE40D,),
+    259214334: (0xE40D,),
+    254065048: (0x7398,),
+    248638801: (0x00CF,),
+    251331463: (0xF2F4,),
 }
 
 # Rows kept by older Omega DBs but not shipped with the current release assets.
@@ -551,10 +558,11 @@ CARD_STRING_OVERRIDES = {
     ],
     "eldoratheintergalacticempire": [
         "Destroy this card; negate that effect",
-        'Destroy monsters; Set "Eldora in Depraevity"',
+        'Destroy matching Effect Monsters, then Set "Eldora in Depraevity"',
+        'Set 1 "Eldora in Depraevity"?',
     ],
     "eldoraindepraevity": [
-        "Tribute 1 Token; destroy matching Effect Monsters",
+        "Special Summon 1 matching monster from your GY or Deck",
     ],
     "frozengirlbloodmoon": [
         "Discard this card; negate that effect",
@@ -2804,7 +2812,8 @@ def build_def(card: dict[str, Any]) -> int:
         return 0
     card_types = {str(x) for x in (card.get("cardTypes") or [])}
     if "Link" not in card_types:
-        return int(card.get("def") or 0)
+        defense = card.get("def")
+        return -2 if defense is None else int(defense)
     arrows = 0
     for arrow in card.get("linkArrows") or []:
         arrows |= LINK_ARROW_BITS.get(str(arrow), 0)
@@ -3011,7 +3020,9 @@ def build_text_row(card_id: int, card: dict[str, Any]) -> dict[str, Any]:
     row = {
         "id": card_id,
         "name": canonical_display_name(card.get("name")),
-        "desc": str(card.get("text") or ""),
+        # Omega stores real line feeds in card descriptions. Older imports
+        # accidentally persisted the two visible characters ``\n``.
+        "desc": str(card.get("text") or "").replace("\\n", "\n"),
     }
     for idx in range(1, 17):
         row[f"str{idx}"] = None
@@ -3206,7 +3217,11 @@ def build_data_row(
         "alias": int(existing_row["alias"]) if existing_row else 0,
         "setcode": encode_setcodes(setcodes),
         "type": build_type(card),
-        "atk": int(card.get("atk") or 0),
+        "atk": (
+            -2
+            if str(card.get("category") or "") == "Monster" and card.get("atk") is None
+            else int(card.get("atk") or 0)
+        ),
         "def": build_def(card),
         "level": build_level(card),
         "race": build_race(card),

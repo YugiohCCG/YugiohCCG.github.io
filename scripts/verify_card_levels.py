@@ -5,21 +5,12 @@ import json
 from pathlib import Path
 from typing import Any
 
-import cv2
+from card_star_detector import detect_star_slots
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 CARDS_PATH = REPO_ROOT / "src" / "data" / "cards.json"
 PUBLIC_ROOT = REPO_ROOT / "public"
-
-# Level stars sit on fixed slots in the custom card renders after resizing.
-LEVEL_SLOT_CENTERS = [186 + 92 * index for index in range(12)]
-
-# Full-art/imported layouts can put artwork circles inside the normal star ROI.
-IMAGE_LEVEL_OVERRIDES = {
-    "Ether Mademoiselle": 10,
-}
-
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -42,64 +33,20 @@ def resolve_image_path(image_path: str) -> Path:
     return PUBLIC_ROOT / image_path.lstrip("/").replace("/", "\\")
 
 
-def detect_level_slots(image_path: Path) -> tuple[int | None, list[int]]:
-    image = cv2.imread(str(image_path))
-    if image is None:
-        return None, []
-
-    image = cv2.resize(image, (1388, 2026))
-    roi = image[200:340, 50:1250]
-    hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
-    saturation = cv2.GaussianBlur(hsv[:, :, 1], (9, 9), 2)
-
-    circles = cv2.HoughCircles(
-        saturation,
-        cv2.HOUGH_GRADIENT,
-        dp=1.2,
-        minDist=60,
-        param1=80,
-        param2=18,
-        minRadius=25,
-        maxRadius=55,
-    )
-
-    if circles is None:
-        return 0, []
-
-    slots: set[int] = set()
-    for circle in circles[0]:
-        x = int(round(circle[0] + 50))
-        y = int(round(circle[1] + 200))
-        if not 258 <= y <= 325:
-            continue
-
-        slot_index = min(range(len(LEVEL_SLOT_CENTERS)), key=lambda index: abs(LEVEL_SLOT_CENTERS[index] - x))
-        if abs(LEVEL_SLOT_CENTERS[slot_index] - x) <= 32:
-            slots.add(slot_index)
-
-    if not slots:
-        return 0, []
-
-    ordered_slots = sorted(slots)
-    if ordered_slots[-1] != len(LEVEL_SLOT_CENTERS) - 1:
-        return len(ordered_slots), ordered_slots
-
-    leftmost_slot = ordered_slots[-1]
-    while leftmost_slot - 1 in slots:
-        leftmost_slot -= 1
-
-    return len(LEVEL_SLOT_CENTERS) - leftmost_slot, ordered_slots
-
-
 def is_level_card(card: dict[str, Any]) -> bool:
     if card.get("category") != "Monster":
         return False
 
     card_types = set(card.get("cardTypes") or [])
-    if "Xyz" in card_types or "Link" in card_types:
+    if "Link" in card_types:
         return False
 
-    return card.get("level") is not None
+    return card.get("rank" if "Xyz" in card_types else "level") is not None
+
+
+def source_star_count(card: dict[str, Any]) -> int | None:
+    card_types = set(card.get("cardTypes") or [])
+    return card.get("rank" if "Xyz" in card_types else "level")
 
 
 def main() -> int:
@@ -119,14 +66,12 @@ def main() -> int:
             continue
 
         image_path = resolve_image_path(image_value)
-        detected_level, slots = detect_level_slots(image_path)
+        detected_level, slots = detect_star_slots(image_path)
         if detected_level is None:
             unreadable.append((card, str(image_path)))
             continue
 
-        detected_level = IMAGE_LEVEL_OVERRIDES.get(card["name"], detected_level)
-
-        if detected_level != card.get("level"):
+        if detected_level != source_star_count(card):
             mismatches.append((card, detected_level, slots))
 
     print(f"Checked level cards: {sum(1 for card in cards if is_level_card(card))}")
@@ -135,7 +80,8 @@ def main() -> int:
 
     for card, detected_level, slots in mismatches:
         print(
-            f"{card['name']}: database={card['level']} image={detected_level} slots={slots} imagePath={card['image']}"
+            f"{card['name']}: source={source_star_count(card)} "
+            f"image={detected_level} slots={slots} imagePath={card['image']}"
         )
 
     if unreadable:
@@ -144,7 +90,8 @@ def main() -> int:
 
     if args.write and mismatches:
         for card, detected_level, _slots in mismatches:
-            card["level"] = detected_level
+            field = "rank" if "Xyz" in set(card.get("cardTypes") or []) else "level"
+            card[field] = detected_level
 
         with CARDS_PATH.open("w", encoding="utf-8", newline="\n") as handle:
             json.dump(cards, handle, ensure_ascii=False, indent=2)

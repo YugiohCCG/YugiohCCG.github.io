@@ -2,6 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133034223
 local SET_TALISMANDRAKE=0xb47
+local SET_TALISMANDRAKE_ARMS=0x452f
 local CARD_SUPPRESSOR=238136421
 local CARD_HALBERD=215921734
 local CARD_SABRE=248788543
@@ -68,7 +69,7 @@ function s.eqcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetCurrentPhase()&(PHASE_DAMAGE+PHASE_DAMAGE_CAL)==0 and eg:IsExists(s.cfilter,1,nil,tp)
 end
 function s.armsfilter(c,tc)
-	return c:IsSetCard(SET_TALISMANDRAKE) and c:IsType(TYPE_SPELL+TYPE_TRAP)
+	return c:IsSetCard(SET_TALISMANDRAKE_ARMS) and c:IsType(TYPE_SPELL+TYPE_TRAP)
 		and c:IsCode(CARD_SUPPRESSOR,CARD_HALBERD,CARD_SABRE,CARD_SHIELD)
 		and not c:IsForbidden()
 		and (not c:IsCode(CARD_SHIELD) or (tc:IsRace(RACE_PYRO) and tc:IsAttribute(ATTRIBUTE_DARK) and tc:IsType(TYPE_FUSION)))

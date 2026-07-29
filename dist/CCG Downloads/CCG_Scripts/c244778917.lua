@@ -17,8 +17,18 @@ function s.initial_effect(c)
 	local e2=e1:Clone()
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
 	c:RegisterEffect(e2)
+	--Can be treated as 2 materials for a "Vir Pedicae Mortis" Link Summon
+	local e3=Effect.CreateEffect(c)
+	e3:SetType(EFFECT_TYPE_SINGLE)
+	e3:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
+	e3:SetCode(id)
+	e3:SetValue(s.linkmatval)
+	c:RegisterEffect(e3)
 end
 s.listed_series={SET_VIR_PEDICAE_MORTIS}
+function s.linkmatval(e,lc)
+	return lc:IsSetCard(SET_VIR_PEDICAE_MORTIS) and lc:IsType(TYPE_LINK)
+end
 function s.desfilter(c)
 	return c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsDestructable()
 end

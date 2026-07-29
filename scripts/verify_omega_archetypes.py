@@ -33,7 +33,15 @@ SET_CONSTANT_RE = re.compile(
     r"(?:SET_[A-Z0-9_]+\s+or\s+)?(0x[0-9a-fA-F]+|\d+)\b"
 )
 NUMBER_RE = re.compile(r"\b(?:0x[0-9a-fA-F]+|\d+)\b")
-QUOTED_ARCHETYPE_RE = re.compile(r'"([^"]+)"\s+cards?\b', re.IGNORECASE)
+QUOTED_ARCHETYPE_RE = re.compile(
+    r'"([^"\r\n]+)"\s+'
+    r"(?:(?:Fusion|Synchro|Xyz|Link|Ritual|Pendulum|Effect|Normal|Tuner|"
+    r"Spirit|Union|Gemini|Flip|Toon|Maximum|Continuous|Quick-Play|Field|"
+    r"Equip|Counter)\s+)*"
+    r"(?:cards?|monsters?|spells?|traps?|spell\s*/\s*traps?)"
+    r"(?:\s+cards?)?\b",
+    re.IGNORECASE,
+)
 SET_FILTER_RE = re.compile(
     r"(?:[A-Za-z0-9_.:]*Is[A-Za-z]*SetCard\s*\(|Card\.Is[A-Za-z]*SetCard\s*,)"
     r"([^)\r\n]{0,300})",
@@ -46,6 +54,17 @@ SET_IDENTIFIER_RE = re.compile(r"\bSET_[A-Z0-9_]+\b")
 SET_CONSTANT_ALIASES = {
     "phlogiston": "phlogistondragon",
 }
+
+QUOTE_TRANSLATION = str.maketrans(
+    {
+        "\u201c": '"',
+        "\u201d": '"',
+        "\u201e": '"',
+        "\u201f": '"',
+        "\u00ab": '"',
+        "\u00bb": '"',
+    }
+)
 
 
 def load_cards(path: Path) -> list[dict[str, Any]]:
@@ -260,7 +279,8 @@ def main() -> None:
             name: parse_number(token)
             for name, token in SET_CONSTANT_RE.findall(source)
         }
-        effect_text = TREATED_AS_RE.sub("", str(card.get("text") or ""))
+        effect_text = str(card.get("text") or "").translate(QUOTE_TRANSLATION)
+        effect_text = TREATED_AS_RE.sub("", effect_text)
         for quoted_name in QUOTED_ARCHETYPE_RE.findall(effect_text):
             key = normalize_name(quoted_name)
             expected = expected_tags.get(key)

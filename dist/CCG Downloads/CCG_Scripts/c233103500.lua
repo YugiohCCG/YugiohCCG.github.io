@@ -3,9 +3,12 @@ local s,id=GetID()
 local STRING_ID=133103500
 local SET_VIR_PEDICAE_MORTIS=0x39e2
 local CARD_BEAR_TRAP=251699681
+local CARD_FEARLESS_HUNTER=244778917
 function s.initial_effect(c)
 	c:EnableReviveLimit()
-	aux.AddLinkProcedure(c,nil,2,3,s.lcheck)
+	--Omega's standard Link procedure, with Fearless Hunter allowed to
+	--contribute either 1 or 2 toward this archetype's Link Rating.
+	s.AddLinkProcedure(c,nil,2,3,s.lcheck)
 	--If Link Summoned: Special Summon 1 "Vir Pedicae Mortis" monster from your GY
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -33,7 +36,95 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 s.listed_series={SET_VIR_PEDICAE_MORTIS}
-s.listed_names={CARD_BEAR_TRAP}
+s.listed_names={CARD_BEAR_TRAP,CARD_FEARLESS_HUNTER}
+function s.AddLinkProcedure(c,f,min,max,gf)
+	local e1=Effect.CreateEffect(c)
+	e1:SetDescription(1166)
+	e1:SetType(EFFECT_TYPE_FIELD)
+	e1:SetCode(EFFECT_SPSUMMON_PROC)
+	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
+	e1:SetRange(LOCATION_EXTRA)
+	e1:SetCondition(s.LinkCondition(f,min,max,gf))
+	e1:SetTarget(s.LinkTarget(f,min,max,gf))
+	e1:SetOperation(Auxiliary.LinkOperation(f,min,max,gf))
+	e1:SetValue(SUMMON_TYPE_LINK)
+	c:RegisterEffect(e1)
+	return e1
+end
+function s.GetLinkCount(c,lc)
+	local effects={c:IsHasEffect(CARD_FEARLESS_HUNTER)}
+	for _,te in ipairs(effects) do
+		local value=te:GetValue()
+		if type(value)=="function" and value(te,lc) then
+			return 1+0x10000*2
+		end
+	end
+	return Auxiliary.GetLinkCount(c)
+end
+function s.LCheckGoal(sg,tp,lc,gf,lmat)
+	return sg:CheckWithSumEqual(s.GetLinkCount,lc:GetLink(),#sg,#sg,lc)
+		and Duel.GetLocationCountFromEx(tp,tp,sg,lc)>0 and (not gf or gf(sg,lc,tp))
+		and not sg:IsExists(Auxiliary.LUncompatibilityFilter,1,nil,sg,lc,tp)
+		and (not lmat or sg:IsContains(lmat))
+end
+function s.LinkCondition(f,minct,maxct,gf)
+	return function(e,c,og,lmat,min,max)
+		if c==nil then return true end
+		if c:IsType(TYPE_PENDULUM) and c:IsFaceup() then return false end
+		local minc=minct
+		local maxc=maxct
+		if min then
+			if min>minc then minc=min end
+			if max<maxc then maxc=max end
+			if minc>maxc then return false end
+		end
+		local tp=c:GetControler()
+		local mg
+		if og then
+			mg=og:Filter(Auxiliary.LConditionFilter,nil,f,c,e)
+		else
+			mg=Auxiliary.GetLinkMaterials(tp,f,c,e)
+		end
+		if lmat~=nil then
+			if not Auxiliary.LConditionFilter(lmat,f,c,e) then return false end
+			mg:AddCard(lmat)
+		end
+		local fg=Duel.GetMustMaterial(tp,EFFECT_MUST_BE_LMATERIAL)
+		if fg:IsExists(Auxiliary.MustMaterialCounterFilter,1,nil,mg) then return false end
+		Duel.SetSelectedCard(fg)
+		return mg:CheckSubGroup(s.LCheckGoal,minc,maxc,tp,c,gf,lmat)
+	end
+end
+function s.LinkTarget(f,minct,maxct,gf)
+	return function(e,tp,eg,ep,ev,re,r,rp,chk,c,og,lmat,min,max)
+		local minc=minct
+		local maxc=maxct
+		if min then
+			if min>minc then minc=min end
+			if max<maxc then maxc=max end
+			if minc>maxc then return false end
+		end
+		local mg
+		if og then
+			mg=og:Filter(Auxiliary.LConditionFilter,nil,f,c,e)
+		else
+			mg=Auxiliary.GetLinkMaterials(tp,f,c,e)
+		end
+		if lmat~=nil then
+			if not Auxiliary.LConditionFilter(lmat,f,c,e) then return false end
+			mg:AddCard(lmat)
+		end
+		local fg=Duel.GetMustMaterial(tp,EFFECT_MUST_BE_LMATERIAL)
+		Duel.SetSelectedCard(fg)
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_LMATERIAL)
+		local cancel=Duel.IsSummonCancelable()
+		local sg=mg:SelectSubGroup(tp,s.LCheckGoal,cancel,minc,maxc,tp,c,gf,lmat)
+		if not sg then return false end
+		sg:KeepAlive()
+		e:SetLabelObject(sg)
+		return true
+	end
+end
 function s.lcheck(g,lc)
 	return g:IsExists(Card.IsSetCard,1,nil,SET_VIR_PEDICAE_MORTIS)
 end

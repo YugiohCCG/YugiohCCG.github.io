@@ -15,6 +15,8 @@ from winrt.windows.graphics.imaging import BitmapDecoder
 from winrt.windows.media.ocr import OcrEngine
 from winrt.windows.storage import FileAccessMode, StorageFile
 
+from card_star_detector import detect_star_count as detect_printed_star_count
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 CARDS_PATH = REPO_ROOT / "src" / "data" / "cards.json"
@@ -29,8 +31,6 @@ RECENT_CUTOFF = datetime(2026, 4, 24, 0, 0, 0).timestamp()
 
 REF_WIDTH = 813
 REF_HEIGHT = 1185
-LEVEL_SLOT_CENTERS = [186 + 92 * index for index in range(12)]
-
 FULL_BOX = (0, 0, REF_WIDTH, REF_HEIGHT)
 TOP_RIGHT_OCR_BOX = (650, 5, 810, 145)
 ATTRIBUTE_FEATURE_BOX = (680, 12, 806, 122)
@@ -638,8 +638,12 @@ def parse_stats(name: str, card_types: list[str] | None, *texts: str) -> tuple[i
     merged = " ".join(texts).upper()
     merged = merged.replace("ATK /", "ATK/").replace("DEF /", "DEF/").replace("LINK -", "LINK-")
 
-    atk_match = re.search(r"ATK/?\s*([0-9OI?]{1,10})", merged)
-    def_match = re.search(r"DEF/?\s*([0-9OI?]{1,10})", merged)
+    # OCR commonly inserts spaces inside a printed stat (for example,
+    # ``ATK/1 100``). Keep consuming separated stat digits so 1100 does not
+    # silently become 1 in cards.json.
+    stat_token = r"([0-9OI?](?:\s*[0-9OI?]){0,9})"
+    atk_match = re.search(rf"ATK/?\s*{stat_token}", merged)
+    def_match = re.search(rf"DEF/?\s*{stat_token}", merged)
     link_match = re.search(r"LINK\s*-\s*([0-9OS])", merged) if card_types and "Link" in card_types else None
 
     atk = clean_stat_token(atk_match.group(1)) if atk_match else None
@@ -653,51 +657,7 @@ def parse_stats(name: str, card_types: list[str] | None, *texts: str) -> tuple[i
 
 
 def detect_star_count(image_path: Path) -> int | None:
-    image = cv2.imread(str(image_path))
-    if image is None:
-        return None
-
-    image = cv2.resize(image, (1388, 2026))
-    roi = image[200:340, 50:1250]
-    hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
-    saturation = cv2.GaussianBlur(hsv[:, :, 1], (9, 9), 2)
-
-    circles = cv2.HoughCircles(
-        saturation,
-        cv2.HOUGH_GRADIENT,
-        dp=1.2,
-        minDist=60,
-        param1=80,
-        param2=18,
-        minRadius=25,
-        maxRadius=55,
-    )
-
-    if circles is None:
-        return 0
-
-    slots: set[int] = set()
-    for circle in circles[0]:
-        x = int(round(circle[0] + 50))
-        y = int(round(circle[1] + 200))
-        if not 258 <= y <= 325:
-            continue
-        slot_index = min(range(len(LEVEL_SLOT_CENTERS)), key=lambda index: abs(LEVEL_SLOT_CENTERS[index] - x))
-        if abs(LEVEL_SLOT_CENTERS[slot_index] - x) <= 32:
-            slots.add(slot_index)
-
-    if not slots:
-        return 0
-
-    ordered = sorted(slots)
-    if ordered[-1] != len(LEVEL_SLOT_CENTERS) - 1:
-        return len(ordered)
-
-    leftmost = ordered[-1]
-    while leftmost - 1 in slots:
-        leftmost -= 1
-
-    return len(LEVEL_SLOT_CENTERS) - leftmost
+    return detect_printed_star_count(image_path)
 
 
 def infer_archetype(name: str, effect_text: str | None) -> str | None:

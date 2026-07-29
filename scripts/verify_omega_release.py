@@ -9,6 +9,7 @@ import sqlite3
 import sys
 import tempfile
 import zipfile
+from collections import Counter
 from contextlib import ExitStack
 from io import BytesIO
 from pathlib import Path
@@ -25,11 +26,17 @@ from package_omega_ccg_scripts import (
     load_card_ids,
     verify_archive,
 )
+from card_star_detector import detect_star_count
 from sync_omega_ccg_db import (
+    DEFAULT_OFFICIAL_DB_PATH,
     EXTRA_TOKEN_CARDS,
+    OFFICIAL_SHARED_SET_CODES,
+    OMEGA_SET_CODES,
     build_data_row,
     build_existing_setcode_map,
     build_message_carrier_map,
+    build_text_row,
+    decode_setcodes,
 )
 
 
@@ -99,11 +106,21 @@ def audit_source_metadata(audit: Audit, cards: list[dict]) -> None:
     """Reject incomplete source rows before they can produce a partial Omega DB."""
 
     failures: list[str] = []
+    image_paths: list[str] = []
     for card in cards:
         card_id = card.get("passcode")
         name = str(card.get("name") or f"card {card_id}")
         category = card.get("category")
         prefix = f"{card_id} ({name})"
+        image_value = card.get("image")
+        if not isinstance(image_value, str) or not image_value.startswith("/assets/cards/"):
+            failures.append(f"{prefix}: invalid/missing image path {image_value!r}")
+        else:
+            image_paths.append(image_value)
+            if not (REPO_ROOT / "public" / image_value.lstrip("/")).is_file():
+                failures.append(f"{prefix}: image path does not exist: {image_value}")
+        if "\\n" in str(card.get("text") or ""):
+            failures.append(f"{prefix}: description contains a literal backslash-n")
         if category not in {"Monster", "Spell", "Trap"}:
             failures.append(f"{prefix}: invalid category {category!r}")
             continue
@@ -178,15 +195,31 @@ def audit_source_metadata(audit: Audit, cards: list[dict]) -> None:
                 )
         elif "Xyz" in card_types:
             rank = card.get("rank")
-            if not isinstance(rank, int) or rank <= 0:
+            if not isinstance(rank, int) or not 1 <= rank <= 13:
                 failures.append(f"{prefix}: invalid/missing rank {rank!r}")
         else:
             level = card.get("level")
-            if not isinstance(level, int) or level <= 0:
+            if not isinstance(level, int) or not 1 <= level <= 13:
                 failures.append(f"{prefix}: invalid/missing level {level!r}")
 
         if "Pendulum" in card_types and not isinstance(card.get("scale"), int):
             failures.append(f"{prefix}: missing Pendulum scale")
+        for field in ("atk", "def"):
+            value = card.get(field)
+            if value is not None and (
+                not isinstance(value, int) or value < 0 or value % 50 != 0
+            ):
+                failures.append(f"{prefix}: implausible {field.upper()} {value!r}")
+
+    duplicate_images = [
+        path
+        for path, count in Counter(image_paths).items()
+        if count > 1
+    ]
+    if duplicate_images:
+        failures.append(
+            "duplicate image paths: " + ", ".join(sorted(duplicate_images))
+        )
 
     audit.require(
         not failures,
@@ -194,6 +227,117 @@ def audit_source_metadata(audit: Audit, cards: list[dict]) -> None:
     )
     if not failures:
         audit.note(f"source metadata: {len(cards)} complete card rows")
+
+
+def audit_printed_star_counts(audit: Audit, cards: list[dict]) -> None:
+    """Compare every printed Level/Rank row with its normalized card image."""
+
+    mismatches: list[str] = []
+    checked = 0
+    for card in cards:
+        if card.get("category") != "Monster":
+            continue
+        card_types = set(card.get("cardTypes") or [])
+        if "Link" in card_types:
+            continue
+        field = "rank" if "Xyz" in card_types else "level"
+        expected = card.get(field)
+        image_path = REPO_ROOT / "public" / str(card.get("image") or "").lstrip("/")
+        detected = detect_star_count(image_path)
+        checked += 1
+        if detected != expected:
+            mismatches.append(
+                f"{card.get('passcode')} ({card.get('name')}): "
+                f"{field} source={expected!r}, image={detected!r}"
+            )
+    audit.require(
+        not mismatches,
+        "printed star metadata differs: " + "; ".join(mismatches[:20]),
+    )
+    if not mismatches:
+        audit.note(f"printed stars: {checked} Level/Rank images match source")
+
+
+def audit_importer_regressions(audit: Audit) -> None:
+    """Protect OCR parsing cases that previously corrupted core DB stats."""
+
+    try:
+        from import_upcoming_set import parse_stats
+    except (ImportError, OSError) as exc:
+        audit.errors.append(f"importer regression: cannot import parser: {exc}")
+        return
+    cases = [
+        ("ATK/1 100 DEF/1600", (1100, 1600, None)),
+        ("ATK/ 2 600 DEF/ 1 800", (2600, 1800, None)),
+        ("ATK/ 800 DEF/2 300 ©2026", (800, 2300, None)),
+    ]
+    failures = [
+        f"{source!r} -> {parse_stats('regression', ['Effect'], source)!r}"
+        for source, expected in cases
+        if parse_stats("regression", ["Effect"], source) != expected
+    ]
+    audit.require(
+        not failures,
+        "importer regression: " + "; ".join(failures),
+    )
+    if not failures:
+        audit.note(f"importer: {len(cases)} spaced-stat OCR regressions pass")
+
+
+def audit_official_database_collisions(
+    audit: Audit,
+    active_ids: set[int],
+    carrier_ids: set[int],
+) -> None:
+    """Reject CCG IDs/setcodes that collide with the official Omega bundle."""
+
+    if not DEFAULT_OFFICIAL_DB_PATH.is_file():
+        audit.errors.append(
+            f"official database: missing {DEFAULT_OFFICIAL_DB_PATH}"
+        )
+        return
+    try:
+        connection = sqlite3.connect(
+            f"{DEFAULT_OFFICIAL_DB_PATH.resolve().as_uri()}?mode=ro",
+            uri=True,
+        )
+        official_ids = {
+            int(row[0])
+            for row in connection.execute("select id from datas")
+        }
+        official_setcodes: set[int] = set()
+        for (blob,) in connection.execute(
+            "select setcode from datas where setcode is not null"
+        ):
+            official_setcodes.update(decode_setcodes(blob))
+        connection.close()
+    except sqlite3.DatabaseError as exc:
+        audit.errors.append(f"official database: cannot audit collisions: {exc}")
+        return
+
+    active_collisions = sorted(active_ids & official_ids)
+    carrier_collisions = sorted(carrier_ids & official_ids)
+    shared_codes = set(OFFICIAL_SHARED_SET_CODES.values())
+    custom_codes = set(OMEGA_SET_CODES.values()) - shared_codes
+    setcode_collisions = sorted(custom_codes & official_setcodes)
+    audit.require(
+        not active_collisions,
+        f"official database: active CCG ID collisions {active_collisions}",
+    )
+    audit.require(
+        not carrier_collisions,
+        f"official database: prompt-carrier ID collisions {carrier_collisions}",
+    )
+    audit.require(
+        not setcode_collisions,
+        "official database: custom setcode collisions "
+        + ", ".join(f"0x{code:04X}" for code in setcode_collisions),
+    )
+    if not (active_collisions or carrier_collisions or setcode_collisions):
+        audit.note(
+            "official database: active IDs, prompt carriers, and custom "
+            "setcodes are collision-free"
+        )
 
 
 def audit_image_group(
@@ -350,7 +494,8 @@ def audit_holograms_from_arts(
 
 def audit_database(audit: Audit, cards: list[dict], active_ids: set[int]) -> set[int]:
     token_ids = {int(token["id"]) for token in EXTRA_TOKEN_CARDS}
-    carrier_ids = set(build_message_carrier_map(cards).values())
+    carrier_map = build_message_carrier_map(cards)
+    carrier_ids = set(carrier_map.values())
     expected_ids = active_ids | token_ids | carrier_ids
     row_mismatches: list[str] = []
     try:
@@ -362,7 +507,11 @@ def audit_database(audit: Audit, cards: list[dict], active_ids: set[int]) -> set
         active_rows = [
             connection.execute(
                 """
-                select d.*, t.name
+                select d.*, t.name, t.desc,
+                       t.str1, t.str2, t.str3, t.str4,
+                       t.str5, t.str6, t.str7, t.str8,
+                       t.str9, t.str10, t.str11, t.str12,
+                       t.str13, t.str14, t.str15, t.str16
                 from datas d left join texts t on d.id=t.id
                 where d.id=?
                 """,
@@ -377,7 +526,7 @@ def audit_database(audit: Audit, cards: list[dict], active_ids: set[int]) -> set
             )
             for card, row in zip(cards, active_rows):
                 card_id = int(card["passcode"])
-                expected = build_data_row(
+                expected_data = build_data_row(
                     card_id,
                     card,
                     setcode_map,
@@ -395,12 +544,57 @@ def audit_database(audit: Audit, cards: list[dict], active_ids: set[int]) -> set
                         "race",
                         "attribute",
                     )
-                    if row[column] != expected[column]
+                    if row[column] != expected_data[column]
                 ]
+                expected_text = build_text_row(card_id, card)
+                changed.extend(
+                    f"texts.{column}"
+                    for column in (
+                        "name",
+                        "desc",
+                        *(f"str{index}" for index in range(1, 17)),
+                    )
+                    if row[column] != expected_text[column]
+                )
                 if changed:
                     row_mismatches.append(
                         f"{card_id} ({card.get('name')}): "
                         f"{', '.join(changed)}"
+                    )
+            for card in cards:
+                card_id = int(card["passcode"])
+                carrier_id = carrier_map[card_id]
+                carrier_row = connection.execute(
+                    """
+                    select name, desc,
+                           str1, str2, str3, str4,
+                           str5, str6, str7, str8,
+                           str9, str10, str11, str12,
+                           str13, str14, str15, str16
+                    from texts where id=?
+                    """,
+                    (carrier_id,),
+                ).fetchone()
+                source_text = build_text_row(card_id, card)
+                expected_carrier = {
+                    **source_text,
+                    "name": f"CCG Strings Placeholder {card_id}",
+                    "desc": f"Prompt storage for {source_text['name']} ({card_id}).",
+                }
+                changed = [
+                    column
+                    for column in (
+                        "name",
+                        "desc",
+                        *(f"str{index}" for index in range(1, 17)),
+                    )
+                    if carrier_row is None
+                    or carrier_row[column] != expected_carrier[column]
+                ]
+                if changed:
+                    row_mismatches.append(
+                        f"carrier {carrier_id} for {card_id}: "
+                        f"{', '.join(f'texts.{column}' for column in changed)}"
                     )
         connection.close()
     except (OSError, sqlite3.DatabaseError) as exc:
@@ -659,6 +853,13 @@ def main() -> int:
     }
     audit.note(f"source: {len(active_ids)} unique active CCG card IDs")
     audit_source_metadata(audit, cards)
+    audit_printed_star_counts(audit, cards)
+    audit_importer_regressions(audit)
+    audit_official_database_collisions(
+        audit,
+        active_ids,
+        set(build_message_carrier_map(cards).values()),
+    )
 
     try:
         script_paths = collect_scripts(SCRIPTS_DIR, active_ids)

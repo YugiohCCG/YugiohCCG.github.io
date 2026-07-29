@@ -68,8 +68,8 @@ function s.setcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	return c:IsReason(REASON_DESTROY) and c:IsPreviousLocation(LOCATION_ONFIELD)
 end
-function s.tgfilter(c)
-	return c:IsFaceup() and c:IsType(TYPE_EFFECT) and c:IsDestructable()
+function s.tgfilter(c,e)
+	return c:IsType(TYPE_MONSTER) and c:IsCanBeEffectTarget(e)
 end
 function s.setfilter(c)
 	return c:IsCode(CARD_ELDORA_DEPRAEVITY) and c:IsSSetable()
@@ -85,49 +85,54 @@ function s.match(c,tc)
 end
 function s.dgfilter(c,tc)
 	return c~=tc and c:IsFaceup() and c:IsType(TYPE_EFFECT) and not c:IsCode(CARD_DYSMANDR)
-		and s.match(c,tc) and c:IsDestructable()
+		and s.match(c,tc)
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and s.tgfilter(chkc) end
-	if chk==0 then return Duel.IsExistingTarget(s.tgfilter,tp,LOCATION_MZONE,0,1,nil) end
+	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and s.tgfilter(chkc,e) end
+	if chk==0 then return Duel.IsExistingTarget(s.tgfilter,tp,LOCATION_MZONE,0,1,nil,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local g=Duel.SelectTarget(tp,s.tgfilter,tp,LOCATION_MZONE,0,1,1,nil)
+	local g=Duel.SelectTarget(tp,s.tgfilter,tp,LOCATION_MZONE,0,1,1,nil,e)
 	local tc=g:GetFirst()
 	local dg=Duel.GetMatchingGroup(s.dgfilter,tp,LOCATION_MZONE,0,tc,tc)
-	dg:AddCard(tc)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,dg,#dg,0,0)
-	if Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) then
+	if Duel.GetLocationCount(tp,LOCATION_SZONE)>0
+		and Duel.IsExistingMatchingCard(
+			aux.NecroValleyFilter(s.setfilter),tp,
+			LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil
+		)
+	then
 		Duel.SetOperationInfo(0,CATEGORY_SSET,nil,1,tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED)
 	end
-	if Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_GRAVE,0,1,nil) then
+	if Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil) then
 		Duel.SetOperationInfo(0,CATEGORY_LEAVE_GRAVE,nil,1,tp,LOCATION_GRAVE)
 	end
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and s.tgfilter(tc)) then return end
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsType(TYPE_MONSTER)) then return end
 	local dg=Duel.GetMatchingGroup(s.dgfilter,tp,LOCATION_MZONE,0,tc,tc)
-	dg:AddCard(tc)
-	if Duel.Destroy(dg,REASON_EFFECT)==0 then return end
-	if not Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) then return end
-	if not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then return end
+	if #dg==0 or Duel.Destroy(dg,REASON_EFFECT)==0 then return end
+	if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0
+		or not Duel.IsExistingMatchingCard(
+			aux.NecroValleyFilter(s.setfilter),tp,
+			LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil
+		)
+	then
+		return
+	end
+	if not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then return end
 	Duel.BreakEffect()
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
-	local sc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil):GetFirst()
+	local sc=Duel.SelectMatchingCard(
+		tp,aux.NecroValleyFilter(s.setfilter),tp,
+		LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil
+	):GetFirst()
 	if sc and Duel.SSet(tp,sc)>0 then
 		if sc:IsType(TYPE_QUICKPLAY) then
 			local e1=Effect.CreateEffect(e:GetHandler())
 			e1:SetType(EFFECT_TYPE_SINGLE)
 			e1:SetProperty(EFFECT_FLAG_SET_AVAILABLE)
 			e1:SetCode(EFFECT_QP_ACT_IN_SET_TURN)
-			e1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
-			sc:RegisterEffect(e1)
-		end
-		if sc:IsType(TYPE_TRAP) then
-			local e1=Effect.CreateEffect(e:GetHandler())
-			e1:SetType(EFFECT_TYPE_SINGLE)
-			e1:SetProperty(EFFECT_FLAG_SET_AVAILABLE)
-			e1:SetCode(EFFECT_TRAP_ACT_IN_SET_TURN)
 			e1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
 			sc:RegisterEffect(e1)
 		end
