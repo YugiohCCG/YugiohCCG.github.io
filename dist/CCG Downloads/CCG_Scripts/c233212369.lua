@@ -112,11 +112,11 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local tg=e:GetLabelObject()
 	local g=tg:Filter(s.thfilter,nil,fid)
 	if #g>0 then
-		for tc in aux.Next(g) do
-			if aux.NecroValleyFilter()(tc) and tc:IsAbleToHand() then
-				Duel.SendtoHand(tc,nil,REASON_EFFECT)
-				Duel.ConfirmCards(1-tp,tc)
-			end
+		g=g:Filter(aux.NecroValleyFilter(),nil)
+		g=g:Filter(Card.IsAbleToHand,nil)
+		if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
+			local hg=g:Filter(Card.IsLocation,nil,LOCATION_HAND)
+			if #hg>0 then Duel.ConfirmCards(1-tp,hg) end
 		end
 	end
 	tg:DeleteGroup()

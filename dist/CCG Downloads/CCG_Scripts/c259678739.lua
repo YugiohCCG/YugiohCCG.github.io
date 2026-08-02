@@ -66,6 +66,7 @@ function s.initial_effect(c)
 	e8:SetTarget(s.rittg)
 	e8:SetOperation(s.ritop)
 	c:RegisterEffect(e8)
+	Duel.AddCustomActivityCounter(id,ACTIVITY_SPSUMMON,s.counterfilter)
 end
 s.listed_series={SET_GLITCHLING}
 s.counter_add_list={COUNTER_CORRUPTION}
@@ -79,6 +80,11 @@ function s.splimit(e,c)
 	return not (c:IsLocation(LOCATION_EXTRA)
 		or c:IsSetCard(SET_GLITCHLING)
 		or (c:IsRace(RACE_CYBERSE) and (c:IsType(TYPE_RITUAL) or c:IsType(TYPE_NORMAL))))
+end
+function s.counterfilter(c)
+	return c:IsSummonLocation(LOCATION_EXTRA)
+		or c:IsSetCard(SET_GLITCHLING)
+		or (c:IsRace(RACE_CYBERSE) and (c:IsType(TYPE_RITUAL) or c:IsType(TYPE_NORMAL)))
 end
 function s.register_lock(e,tp)
 	local e1=Effect.CreateEffect(e:GetHandler())
@@ -108,7 +114,8 @@ function s.thfilter(c)
 		and (not c:IsLocation(LOCATION_EXTRA) or c:IsFaceup())
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,nil) end
+	if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0
+		and Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,nil) end
 	s.register_lock(e,tp)
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK+LOCATION_EXTRA)
 end
@@ -158,7 +165,8 @@ function s.ritfilter(c,e,tp)
 	return mg:CheckSubGroup(s.matcheck,1,#mg,lv,s.countercap(tp,lv),tp,c)
 end
 function s.rittg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.ritfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,nil,e,tp) end
+	if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0
+		and Duel.IsExistingMatchingCard(s.ritfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,nil,e,tp) end
 	s.register_lock(e,tp)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_DECK+LOCATION_EXTRA)
 end

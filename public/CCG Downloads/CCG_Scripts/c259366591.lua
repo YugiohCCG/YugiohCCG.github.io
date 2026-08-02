@@ -59,7 +59,8 @@ end
 function s.syncon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local rc=c:GetReasonCard()
-	return c:IsReason(REASON_SYNCHRO) and rc:IsAttribute(ATTRIBUTE_LIGHT)
+	return c:IsLocation(LOCATION_GRAVE) and c:IsReason(REASON_SYNCHRO)
+		and rc and rc:IsAttribute(ATTRIBUTE_LIGHT)
 end
 function s.thfilter(c)
 	return c:IsFaceup() and c:IsSetCard(0x4ac0) and c:IsAbleToHand()

@@ -58,14 +58,19 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not c:IsRelateToEffect(e) then return end
 	local rev_g=e:GetLabelObject()
+	e:SetLabelObject(nil)
+	if not c:IsRelateToEffect(e) then
+		if rev_g then rev_g:DeleteGroup() end
+		return
+	end
 	local rev_ct=e:GetLabel()
 	
 	local to_deck=Group.CreateGroup()
 	if rev_g and #rev_g>0 then
 		to_deck:Merge(rev_g:Filter(Card.IsLocation,nil,LOCATION_HAND))
 	end
+	if rev_g then rev_g:DeleteGroup() end
 	local max_add = 2 - #to_deck
 	if max_add > 0 then
 		local hg=Duel.GetMatchingGroup(Card.IsAbleToDeck,tp,LOCATION_HAND,0,c)

@@ -60,8 +60,9 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if c:IsRelateToEffect(e) then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP) end
 end
 function s.thcon(e,tp,eg,ep,ev,re,r,rp)
-	local rc=e:GetHandler():GetReasonCard()
-	return (r&(REASON_FUSION+REASON_SYNCHRO+REASON_LINK))~=0 and rc
+	local c=e:GetHandler()
+	local rc=c:GetReasonCard()
+	return c:IsLocation(LOCATION_GRAVE) and (r&(REASON_FUSION+REASON_SYNCHRO+REASON_LINK))~=0 and rc
 		and rc:IsAttribute(ATTRIBUTE_DARK) and rc:IsRace(RACE_ZOMBIE)
 end
 function s.thfilter(c,atk)

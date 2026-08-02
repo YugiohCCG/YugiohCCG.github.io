@@ -25,7 +25,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 function s.fldfilter(c,tp)
-	return c:IsCode(BAUY_WORLD) and c:IsFaceup() and c:GetActivateEffect()
+	return c:IsCode(BAUY_WORLD) and (c:IsLocation(LOCATION_DECK) or c:IsFaceup()) and c:GetActivateEffect()
 		and c:GetActivateEffect():IsActivatable(tp,true,true)
 end
 function s.spfilter(c,e,tp)

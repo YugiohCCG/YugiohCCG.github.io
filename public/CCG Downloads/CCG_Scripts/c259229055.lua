@@ -9,11 +9,11 @@ function s.initial_effect(c)
 	local e0=Effect.CreateEffect(c)
 	e0:SetDescription(aux.Stringid(STRING_ID,0))
 	e0:SetType(EFFECT_TYPE_FIELD)
-	e0:SetProperty(EFFECT_FLAG_UNCOPYABLE)
+	e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e0:SetCode(EFFECT_SPSUMMON_PROC)
 	e0:SetRange(LOCATION_EXTRA)
-	e0:SetCondition(s.altcon)
-	e0:SetTarget(s.alttg)
+	e0:SetCondition(aux.XyzLevelFreeCondition(s.altfilter,s.altcheck,2,2))
+	e0:SetTarget(aux.XyzLevelFreeTarget(s.altfilter,s.altcheck,2,2))
 	e0:SetOperation(s.altop)
 	e0:SetValue(SUMMON_TYPE_XYZ)
 	c:RegisterEffect(e0)
@@ -51,33 +51,27 @@ end
 function s.l4filter(c)
 	return c:IsFaceup() and c:IsSetCard(SET_GRAYSCALE) and c:IsType(TYPE_LINK) and c:GetLink()==4
 end
-function s.altcon(e,c)
-	if c==nil then return true end
-	local tp=c:GetControler()
-	return Duel.IsExistingMatchingCard(s.r8filter,tp,LOCATION_MZONE,0,1,nil)
-		and Duel.IsExistingMatchingCard(s.l4filter,tp,LOCATION_MZONE,0,1,nil)
+function s.altfilter(c,sc)
+	return c:IsControler(sc:GetControler()) and c:IsLocation(LOCATION_MZONE)
+		and (s.r8filter(c) or s.l4filter(c))
 end
-function s.alttg(e,tp,eg,ep,ev,re,r,rp,chk,c)
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
-	local g1=Duel.SelectMatchingCard(tp,s.r8filter,tp,LOCATION_MZONE,0,1,1,nil)
-	local tc=g1:GetFirst()
-	if not tc then return false end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
-	local g2=Duel.SelectMatchingCard(tp,s.l4filter,tp,LOCATION_MZONE,0,1,1,tc)
-	if #g2==0 then return false end
-	g1:Merge(g2)
-	g1:KeepAlive()
-	e:SetLabelObject(g1)
-	return true
+function s.altcheck(g,sc,tp)
+	return g:FilterCount(s.r8filter,nil)==1 and g:FilterCount(s.l4filter,nil)==1
 end
-function s.altop(e,tp,eg,ep,ev,re,r,rp,c)
-	local g=e:GetLabelObject()
+function s.altop(e,tp,eg,ep,ev,re,r,rp,c,og,min,max)
+	local kept=not (og and not min)
+	local g=kept and e:GetLabelObject() or og
 	if not g then return end
-	if c then
-		c:SetMaterial(g)
-		Duel.Overlay(c,g)
+	local r8=g:Filter(s.r8filter,nil):GetFirst()
+	if not r8 then
+		if kept then g:DeleteGroup() end
+		return
 	end
-	g:DeleteGroup()
+	local mg=r8:GetOverlayGroup()
+	if #mg>0 then Duel.Overlay(c,mg) end
+	c:SetMaterial(g)
+	Duel.Overlay(c,g)
+	if kept then g:DeleteGroup() end
 end
 function s.xyzsummoncon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_XYZ)

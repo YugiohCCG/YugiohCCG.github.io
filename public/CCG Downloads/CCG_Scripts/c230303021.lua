@@ -121,8 +121,9 @@ function s.hordeop(e,tp,eg,ep,ev,re,r,rp)
 	local g=e:GetLabelObject()
 	if not g then return end
 	local rg=g:Filter(Card.IsRelateToEffect,nil,e)
-	for tc in aux.Next(rg) do
-		if Duel.SendtoGrave(tc,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_GRAVE) then
+	if #rg>0 and Duel.SendtoGrave(rg,REASON_EFFECT)>0 then
+		local og=rg:Filter(Card.IsLocation,nil,LOCATION_GRAVE)
+		for tc in aux.Next(og) do
 			local e1=Effect.CreateEffect(e:GetHandler())
 			e1:SetType(EFFECT_TYPE_SINGLE)
 			e1:SetCode(EFFECT_CANNOT_TRIGGER)

@@ -145,6 +145,7 @@ function s.sphreplaceop(e,tp,eg)
 			e1:SetCondition(function(te) return te:GetHandler():IsType(TYPE_TRAP) and Duel.IsMainPhase() end)
 			e1:SetTarget(s.sphsptg)
 			e1:SetOperation(s.sphspop)
+			e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 			tc:RegisterEffect(e1)
 		end
 	end

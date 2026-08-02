@@ -39,7 +39,8 @@ end
 function s.syncon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local rc=c:GetReasonCard()
-	return c:IsReason(REASON_SYNCHRO) and rc:IsAttribute(ATTRIBUTE_LIGHT)
+	return c:IsLocation(LOCATION_GRAVE) and c:IsReason(REASON_SYNCHRO)
+		and rc and rc:IsAttribute(ATTRIBUTE_LIGHT)
 end
 function s.spfilter2(c,e,tp)
 	return c:IsSetCard(0x4ac0) and c:IsLevelBelow(4) and not c:IsCode(id) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)

@@ -119,7 +119,7 @@ function s.atkcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if opts[#opts]~=lp-1 then
 		table.insert(opts,lp-1)
 	end
-	Duel.Hint(HINT_SELECTMSG,tp,HINGMSG_NUMBER)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_NUMBER)
 	local pay=Duel.AnnounceNumber(tp,table.unpack(opts))
 	Duel.PayLPCost(tp,pay)
 	e:SetLabel(pay)

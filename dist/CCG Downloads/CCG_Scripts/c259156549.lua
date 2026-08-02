@@ -47,6 +47,7 @@ function s.initial_effect(c)
 	e3:SetTarget(s.rittg)
 	e3:SetOperation(s.ritop)
 	c:RegisterEffect(e3)
+	Duel.AddCustomActivityCounter(id,ACTIVITY_SPSUMMON,s.counterfilter)
 end
 s.listed_series={SET_GLITCHLING}
 s.listed_names={CARD_PROTRON}
@@ -55,6 +56,11 @@ function s.splimit(e,c)
 	return not (c:IsLocation(LOCATION_EXTRA)
 		or c:IsSetCard(SET_GLITCHLING)
 		or (c:IsRace(RACE_CYBERSE) and (c:IsType(TYPE_RITUAL) or c:IsType(TYPE_NORMAL))))
+end
+function s.counterfilter(c)
+	return c:IsSummonLocation(LOCATION_EXTRA)
+		or c:IsSetCard(SET_GLITCHLING)
+		or (c:IsRace(RACE_CYBERSE) and (c:IsType(TYPE_RITUAL) or c:IsType(TYPE_NORMAL)))
 end
 function s.register_lock(e,tp)
 	local e1=Effect.CreateEffect(e:GetHandler())
@@ -73,7 +79,8 @@ function s.protronfilter(c,e,tp)
 	return c:IsCode(CARD_PROTRON) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+	if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0
+		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.protronfilter),tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,nil,e,tp) end
 	s.register_lock(e,tp)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE)
@@ -119,7 +126,8 @@ function s.spfilter(c,e,tp)
 		and s.zonecheck(tp,c,exg)
 end
 function s.rittg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_EXTRA,0,1,nil,e,tp) end
+	if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0
+		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_EXTRA,0,1,nil,e,tp) end
 	s.register_lock(e,tp)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_EXTRA)
 end

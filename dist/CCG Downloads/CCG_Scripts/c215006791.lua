@@ -77,13 +77,20 @@ function s.retfilter(c)
 	return c:GetFlagEffect(id)>0
 end
 function s.retcon(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetLabelObject():IsExists(s.retfilter,1,nil)
+	if not e:GetLabelObject():IsExists(s.retfilter,1,nil) then
+		e:GetLabelObject():DeleteGroup()
+		e:Reset()
+		return false
+	end
+	return true
 end
 function s.retop(e,tp,eg,ep,ev,re,r,rp)
-	local g=e:GetLabelObject():Filter(s.retfilter,nil)
+	local og=e:GetLabelObject()
+	local g=og:Filter(s.retfilter,nil)
 	for tc in aux.Next(g) do
 		Duel.ReturnToField(tc)
 	end
+	og:DeleteGroup()
 end
 function s.thfilter1(c)
 	return c:IsSetCard(0x21fc) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()

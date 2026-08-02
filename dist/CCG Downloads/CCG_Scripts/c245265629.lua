@@ -11,9 +11,9 @@ function s.initial_effect(c)
 	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e1:SetRange(LOCATION_EXTRA)
 	e1:SetCountLimit(1,id)
-	e1:SetCondition(s.xyzcon)
-	e1:SetTarget(s.xyztg)
-	e1:SetOperation(s.xyzop)
+	e1:SetCondition(aux.XyzLevelFreeCondition(s.matfilter,s.xyzcheck,1,1))
+	e1:SetTarget(aux.XyzLevelFreeTarget(s.matfilter,s.xyzcheck,1,1))
+	e1:SetOperation(aux.XyzLevelFreeOperation(s.matfilter,s.xyzcheck,1,1))
 	e1:SetValue(SUMMON_TYPE_XYZ)
 	c:RegisterEffect(e1)
 	--Cannot be used as Xyz or Link Material
@@ -51,44 +51,19 @@ function s.highatkfilter(c,tp)
 	local atk=c:GetAttack()
 	return not g:IsExists(function(tc) return tc:GetAttack()>atk end,1,c)
 end
-function s.matfilter(c,sc,tp,minatk,mindef)
-	return c:IsFaceup() and c:IsCanBeXyzMaterial(sc) and (c:GetAttack()==minatk or c:GetDefense()==mindef)
-		and Duel.GetLocationCountFromEx(tp,tp,Group.FromCards(c),sc)>0
-end
-function s.getmatgroup(tp,sc)
-	local g=Duel.GetMatchingGroup(function(c) return c:IsFaceup() and c:IsCanBeXyzMaterial(sc) end,tp,LOCATION_MZONE,0,nil)
-	if #g==0 then return g end
-	local minatk=g:GetFirst():GetAttack()
-	local mindef=g:GetFirst():GetDefense()
-	for tc in aux.Next(g) do
-		minatk=math.min(minatk,tc:GetAttack())
-		mindef=math.min(mindef,tc:GetDefense())
-	end
-	return g:Filter(s.matfilter,nil,sc,tp,minatk,mindef)
-end
-function s.xyzcon(e,c)
-	if c==nil then return true end
+function s.matfilter(c,sc)
+	if not (c:IsFaceup() and c:IsLocation(LOCATION_MZONE)) then return false end
 	local tp=c:GetControler()
+	local g=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_MZONE,0,nil)
+	local ag=g:GetMinGroup(Card.GetAttack)
+	if ag and ag:IsContains(c) then return true end
+	local dg=g:Filter(function(tc) return not tc:IsType(TYPE_LINK) end,nil)
+	if #dg==0 then return false end
+	dg=dg:GetMinGroup(Card.GetDefense)
+	return dg and dg:IsContains(c)
+end
+function s.xyzcheck(g,sc,tp)
 	return Duel.IsExistingMatchingCard(s.highatkfilter,tp,0,LOCATION_MZONE,1,nil,tp)
-		and #s.getmatgroup(tp,c)>0
-end
-function s.xyztg(e,tp,eg,ep,ev,re,r,rp,chk,c)
-	local g=s.getmatgroup(tp,c)
-	if #g==0 then return false end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
-	local sg=g:CancelableSelect(tp,1,1,nil)
-	if sg and #sg>0 then
-		sg:KeepAlive()
-		e:SetLabelObject(sg)
-		return true
-	else return false end
-end
-function s.xyzop(e,tp,eg,ep,ev,re,r,rp,c)
-	local g=e:GetLabelObject()
-	if not g then return end
-	c:SetMaterial(g)
-	Duel.Overlay(c,g)
-	g:DeleteGroup()
 end
 function s.atkcon(e)
 	local c=e:GetHandler()

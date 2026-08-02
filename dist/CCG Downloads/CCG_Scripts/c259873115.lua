@@ -55,6 +55,7 @@ function s.initial_effect(c)
 	e3:SetTarget(s.negtg)
 	e3:SetOperation(s.negop)
 	c:RegisterEffect(e3)
+	Duel.AddCustomActivityCounter(id,ACTIVITY_SPSUMMON,s.counterfilter)
 end
 s.listed_series={SET_GLITCHLING}
 s.listed_names={CARD_BITRON,CARD_PROTRON,CARD_DIGITRON}
@@ -63,6 +64,11 @@ function s.splimit(e,c)
 	return not (c:IsLocation(LOCATION_EXTRA)
 		or c:IsSetCard(SET_GLITCHLING)
 		or (c:IsRace(RACE_CYBERSE) and (c:IsType(TYPE_RITUAL) or c:IsType(TYPE_NORMAL))))
+end
+function s.counterfilter(c)
+	return c:IsSummonLocation(LOCATION_EXTRA)
+		or c:IsSetCard(SET_GLITCHLING)
+		or (c:IsRace(RACE_CYBERSE) and (c:IsType(TYPE_RITUAL) or c:IsType(TYPE_NORMAL)))
 end
 function s.register_lock(e,tp)
 	local e1=Effect.CreateEffect(e:GetHandler())
@@ -157,7 +163,8 @@ function s.normalfilter(c,e,tp)
 	return c:IsCode(CARD_BITRON,CARD_PROTRON,CARD_DIGITRON) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+	if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0
+		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.normalfilter),tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,nil,e,tp) end
 	s.register_lock(e,tp)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE)
@@ -212,7 +219,7 @@ function s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Release(g,REASON_COST)
 end
 function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return true end
+	if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0 end
 	s.register_lock(e,tp)
 	Duel.SetOperationInfo(0,CATEGORY_DISABLE,eg,1,0,0)
 end

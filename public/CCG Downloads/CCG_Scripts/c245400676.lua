@@ -5,9 +5,16 @@ local SET_TO_PROTO=0xe80d
 local TOKEN_PROTOGENIC=240299293
 local RACE_GALAXY=0x80000000
 function s.initial_effect(c)
-	c:SetSPSummonOnce(id)
 	aux.AddLinkProcedure(c,s.matfilter,1,1)
 	c:EnableReviveLimit()
+	--Can only be Link Summoned once per turn
+	local e0=Effect.CreateEffect(c)
+	e0:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
+	e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+	e0:SetCode(EVENT_SPSUMMON_SUCCESS)
+	e0:SetCondition(s.linkregcon)
+	e0:SetOperation(s.linkregop)
+	c:RegisterEffect(e0)
 	--If Link Summoned: discard 1 card; add a listed Spell/Trap
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -36,6 +43,22 @@ s.listed_series={SET_TO_PROTO}
 s.listed_names={TOKEN_PROTOGENIC}
 function s.matfilter(c)
 	return c:IsCode(TOKEN_PROTOGENIC)
+end
+function s.linkregcon(e)
+	return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK)
+end
+function s.linklimit(e,c,sump,sumtype)
+	return c:IsCode(id) and (sumtype&SUMMON_TYPE_LINK)==SUMMON_TYPE_LINK
+end
+function s.linkregop(e,tp)
+	local e1=Effect.CreateEffect(e:GetHandler())
+	e1:SetType(EFFECT_TYPE_FIELD)
+	e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+	e1:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
+	e1:SetTargetRange(1,0)
+	e1:SetTarget(s.linklimit)
+	e1:SetReset(RESET_PHASE+PHASE_END)
+	Duel.RegisterEffect(e1,tp)
 end
 function s.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK)
