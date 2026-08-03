@@ -124,6 +124,14 @@ export default function Downloads() {
             </div>
           </li>
           <li className="rounded-lg border border-slate-300/70 bg-white px-3 py-2">
+            To display Scarstech Circuit&apos;s custom victory message, back up
+            <code className="mx-1">YGO Omega_Data\Files\Bundles\strdata.conf</code>
+            and append this line once:
+            <div className="mt-1 break-all font-mono text-xs text-slate-500">
+              !victory 0x24 Victory by the effect of &quot;Scarstech Circuit&quot;
+            </div>
+          </li>
+          <li className="rounded-lg border border-slate-300/70 bg-white px-3 py-2">
             Extract all image parts directly into
             <div className="mt-1 text-xs text-slate-500">
               C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Arts

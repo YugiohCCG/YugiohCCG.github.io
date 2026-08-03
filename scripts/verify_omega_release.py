@@ -28,6 +28,7 @@ from package_omega_ccg_scripts import (
 )
 from card_star_detector import detect_star_count
 from sync_omega_ccg_db import (
+    COMPATIBILITY_CARD_ALIASES,
     DEFAULT_OFFICIAL_DB_PATH,
     EXTRA_TOKEN_CARDS,
     OFFICIAL_SHARED_SET_CODES,
@@ -52,6 +53,11 @@ INSTALLER_PATH = DOWNLOADS / "CCG_Omega_Addon_Setup.exe"
 INSTALLER_SOURCE = REPO_ROOT / "scripts" / "ccg-omega-installer.iss"
 INSTALLER_BUILD_PATH = REPO_ROOT / "scripts" / "output" / "CCG_Omega_Addon_Setup.exe"
 DOWNLOADS_PAGE_SOURCE = REPO_ROOT / "src" / "pages" / "Downloads.tsx"
+CIRCUIT_SCRIPT_PATH = SCRIPTS_DIR / "c248891593.lua"
+CIRCUIT_WIN_REASON = 0x24
+CIRCUIT_VICTORY_LINE = (
+    '!victory 0x24 Victory by the effect of "Scarstech Circuit"'
+)
 HOLOGRAM_SIZE = (512, 512)
 MONSTER_ATTRIBUTES = {
     "DARK",
@@ -494,9 +500,10 @@ def audit_holograms_from_arts(
 
 def audit_database(audit: Audit, cards: list[dict], active_ids: set[int]) -> set[int]:
     token_ids = {int(token["id"]) for token in EXTRA_TOKEN_CARDS}
+    compatibility_ids = set(COMPATIBILITY_CARD_ALIASES)
     carrier_map = build_message_carrier_map(cards)
     carrier_ids = set(carrier_map.values())
-    expected_ids = active_ids | token_ids | carrier_ids
+    expected_ids = active_ids | compatibility_ids | token_ids | carrier_ids
     row_mismatches: list[str] = []
     try:
         connection = sqlite3.connect(DB_PATH)
@@ -561,6 +568,60 @@ def audit_database(audit: Audit, cards: list[dict], active_ids: set[int]) -> set
                         f"{card_id} ({card.get('name')}): "
                         f"{', '.join(changed)}"
                     )
+            for compatibility_id, canonical_id in COMPATIBILITY_CARD_ALIASES.items():
+                compatibility_row = connection.execute(
+                    """
+                    select d.*, t.name, t.desc,
+                           t.str1, t.str2, t.str3, t.str4,
+                           t.str5, t.str6, t.str7, t.str8,
+                           t.str9, t.str10, t.str11, t.str12,
+                           t.str13, t.str14, t.str15, t.str16
+                    from datas d left join texts t on d.id=t.id
+                    where d.id=?
+                    """,
+                    (compatibility_id,),
+                ).fetchone()
+                canonical_row = connection.execute(
+                    """
+                    select d.*, t.name, t.desc,
+                           t.str1, t.str2, t.str3, t.str4,
+                           t.str5, t.str6, t.str7, t.str8,
+                           t.str9, t.str10, t.str11, t.str12,
+                           t.str13, t.str14, t.str15, t.str16
+                    from datas d left join texts t on d.id=t.id
+                    where d.id=?
+                    """,
+                    (canonical_id,),
+                ).fetchone()
+                mirrored_columns = (
+                    "ot",
+                    "setcode",
+                    "type",
+                    "atk",
+                    "def",
+                    "level",
+                    "race",
+                    "attribute",
+                    "category",
+                    "genre",
+                    "name",
+                    "desc",
+                    *(f"str{index}" for index in range(1, 17)),
+                )
+                changed = [
+                    column
+                    for column in mirrored_columns
+                    if compatibility_row is None
+                    or canonical_row is None
+                    or compatibility_row[column] != canonical_row[column]
+                ]
+                if compatibility_row is None or compatibility_row["alias"] != canonical_id:
+                    changed.append("alias")
+                if changed:
+                    row_mismatches.append(
+                        f"compatibility {compatibility_id} -> {canonical_id}: "
+                        f"{', '.join(changed)}"
+                    )
             for card in cards:
                 card_id = int(card["passcode"])
                 carrier_id = carrier_map[card_id]
@@ -606,6 +667,10 @@ def audit_database(audit: Audit, cards: list[dict], active_ids: set[int]) -> set
     audit.require(data_ids == expected_ids, f"database: unexpected IDs {sorted(data_ids - expected_ids)}")
     audit.require(active_ids <= data_ids, f"database: missing active cards {sorted(active_ids - data_ids)}")
     audit.require(
+        compatibility_ids <= data_ids,
+        f"database: missing compatibility cards {sorted(compatibility_ids - data_ids)}",
+    )
+    audit.require(
         not row_mismatches,
         "database: source metadata differs for "
         + "; ".join(row_mismatches[:20]),
@@ -620,6 +685,7 @@ def audit_database(audit: Audit, cards: list[dict], active_ids: set[int]) -> set
 
     audit.note(
         f"database: {len(active_ids)} cards, {len(token_ids)} CCG Tokens, "
+        f"{len(compatibility_ids)} compatibility aliases, "
         f"{len(carrier_ids)} hidden prompt carriers"
     )
     return expected_ids
@@ -653,6 +719,50 @@ def audit_installer_constants(audit: Audit, groups: dict[str, list[Path]]) -> No
                 "installer: published EXE differs from the compiler output",
             )
         audit.note(f"installer: compiled EXE present ({INSTALLER_PATH.stat().st_size:,} bytes)")
+
+
+def audit_circuit_victory_string(audit: Audit) -> None:
+    try:
+        script = CIRCUIT_SCRIPT_PATH.read_text(encoding="utf-8")
+        installer = INSTALLER_SOURCE.read_text(encoding="utf-8")
+        downloads = DOWNLOADS_PAGE_SOURCE.read_text(encoding="utf-8")
+    except OSError as exc:
+        audit.errors.append(f"Circuit victory string: cannot read release source: {exc}")
+        return
+
+    reason_hex = f"0x{CIRCUIT_WIN_REASON:x}"
+    audit.require(
+        re.search(
+            rf"local\s+WIN_REASON_SCARSTECH_CIRCUIT\s*=\s*{reason_hex}\b",
+            script,
+            re.IGNORECASE,
+        )
+        is not None,
+        "Circuit victory string: Lua reason is not the reserved one-byte value 0x24",
+    )
+    audit.require(
+        "Duel.Win(tp,WIN_REASON_SCARSTECH_CIRCUIT)" in script,
+        "Circuit victory string: Duel.Win does not use the named reason",
+    )
+    audit.require(
+        "EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE" in script,
+        "Circuit victory string: win watcher lacks official protection flags",
+    )
+    audit.require(
+        CIRCUIT_VICTORY_LINE in installer,
+        "Circuit victory string: installer does not install the 0x24 label",
+    )
+    audit.require(
+        r"YGO Omega_Data\Files\Bundles\strdata.conf" in installer
+        and ".ccg-backup" in installer,
+        "Circuit victory string: installer lacks the target path or one-time backup",
+    )
+    audit.require(
+        "!victory 0x24 Victory by the effect of &quot;Scarstech Circuit&quot;"
+        in downloads,
+        "Circuit victory string: manual install instructions are missing",
+    )
+    audit.note("Circuit victory string: one-byte Lua reason and installer/manual label agree")
 
 
 def audit_website_downloads(audit: Audit, groups: dict[str, list[Path]]) -> None:
@@ -852,12 +962,16 @@ def main() -> int:
         if str(card.get("category")) == "Monster"
     }
     audit.note(f"source: {len(active_ids)} unique active CCG card IDs")
+    audit.require(
+        set(COMPATIBILITY_CARD_ALIASES) == COMPATIBILITY_SCRIPT_IDS,
+        "compatibility: database aliases and script allowlist differ",
+    )
     audit_source_metadata(audit, cards)
     audit_printed_star_counts(audit, cards)
     audit_importer_regressions(audit)
     audit_official_database_collisions(
         audit,
-        active_ids,
+        active_ids | set(COMPATIBILITY_CARD_ALIASES),
         set(build_message_carrier_map(cards).values()),
     )
 
@@ -895,6 +1009,7 @@ def main() -> int:
         monster_ids,
     )
     audit.require(BANLIST_PATH.is_file() and BANLIST_PATH.stat().st_size > 0, "banlist: payload is missing/empty")
+    audit_circuit_victory_string(audit)
     audit_installer_constants(audit, groups)
     audit_website_downloads(audit, groups)
 

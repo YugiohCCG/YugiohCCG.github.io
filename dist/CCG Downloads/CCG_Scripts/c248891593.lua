@@ -1,6 +1,7 @@
 local s,id=GetID()
 local STRING_ID=132891593
 local SET_SCARSTECH=0x52f8
+local WIN_REASON_SCARSTECH_CIRCUIT=0x24
 function s.initial_effect(c)
 	c:SetUniqueOnField(1,0,id)
 	local e0=Effect.CreateEffect(c)
@@ -30,15 +31,22 @@ function s.initial_effect(c)
 	local e3=Effect.CreateEffect(c)
 	e3:SetType(EFFECT_TYPE_SINGLE)
 	e3:SetCode(EFFECT_TRAP_ACT_IN_HAND)
-	e3:SetCondition(function(e,tp) return Duel.IsExistingMatchingCard(function(c) return c:IsFaceup() and c:IsSetCard(SET_SCARSTECH) end,tp,LOCATION_MZONE,0,1,nil) end)
+	e3:SetCondition(s.handcon)
 	c:RegisterEffect(e3)
 	local e4=Effect.CreateEffect(c)
 	e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e4:SetCode(EVENT_CHAINING)
 	e4:SetRange(LOCATION_SZONE)
+	e4:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e4:SetCondition(function(e,tp,eg,ep,ev) return ev==20 end)
-	e4:SetOperation(function(e,tp) Duel.Win(tp,0x52f8) end)
+	e4:SetOperation(function(e,tp) Duel.Win(tp,WIN_REASON_SCARSTECH_CIRCUIT) end)
 	c:RegisterEffect(e4)
+end
+function s.scfilter(c)
+	return c:IsFaceup() and c:IsSetCard(SET_SCARSTECH)
+end
+function s.handcon(e)
+	return Duel.IsExistingMatchingCard(s.scfilter,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil)
 end
 function s.chaincost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

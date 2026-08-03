@@ -13,8 +13,11 @@ function s.initial_effect(c)
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_SINGLE)
 	e2:SetCode(EFFECT_TRAP_ACT_IN_HAND)
-	e2:SetCondition(function(e,tp) return Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,0)==0 end)
+	e2:SetCondition(s.handcon)
 	c:RegisterEffect(e2)
+end
+function s.handcon(e)
+	return Duel.GetFieldGroupCount(e:GetHandlerPlayer(),LOCATION_ONFIELD,0)==0
 end
 function s.linkfilter(c) return c:IsFaceup() and c:IsType(TYPE_LINK) and c:IsLinkAbove(3) end
 function s.condition(e,tp) return Duel.IsExistingMatchingCard(s.linkfilter,tp,0,LOCATION_MZONE,1,nil) end

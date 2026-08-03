@@ -22,8 +22,12 @@ function s.initial_effect(c)
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_SINGLE)
 	e2:SetCode(EFFECT_TRAP_ACT_IN_HAND)
-	e2:SetCondition(function(e,tp) return Duel.IsTurnPlayer(1-tp) and Duel.GetFlagEffect(tp,id)>0 end)
+	e2:SetCondition(s.handcon)
 	c:RegisterEffect(e2)
+end
+function s.handcon(e)
+	local tp=e:GetHandlerPlayer()
+	return Duel.IsTurnPlayer(1-tp) and Duel.GetFlagEffect(tp,id)>0
 end
 function s.filter(c) return c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsDestructable() end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)

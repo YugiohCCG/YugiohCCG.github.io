@@ -3,7 +3,7 @@
 ; Re-run this installer any time to update to the newest files on GitHub.
 
 #define MyAppName "CCG Add-on for YGO Omega"
-#define MyAppVersion "1.3.1"
+#define MyAppVersion "1.3.2"
 
 [Setup]
 AppName={#MyAppName}
@@ -42,6 +42,8 @@ const
   DB_ZIP_NAME = 'CCG_Database.zip';
   DB_NAME = 'CCG_v1.db';
   BANLIST_NAME = 'CCG_Banlist.lflist.conf';
+  VICTORY_REASON_PREFIX = '!victory 0x24 ';
+  VICTORY_REASON_LINE = '!victory 0x24 Victory by the effect of "Scarstech Circuit"';
   IMAGE_PART_COUNT = 1;
   PICS_PART_COUNT = 4;
   HOLOGRAM_PART_COUNT = 3;
@@ -136,6 +138,57 @@ begin
       mbError, MB_OK);
     Result := False;
   end;
+end;
+
+function EnsureCircuitVictoryString(const RootDir: string): Boolean;
+var
+  StringsPath, BackupPath, CurrentLine: string;
+  Lines: TStringList;
+  I: Integer;
+  Found: Boolean;
+begin
+  Result := False;
+  StringsPath := AddBackslash(RootDir) +
+    'YGO Omega_Data\Files\Bundles\strdata.conf';
+  BackupPath := StringsPath + '.ccg-backup';
+  if not FileExists(StringsPath) then
+  begin
+    Log('Omega victory-string file is missing: ' + StringsPath);
+    Exit;
+  end;
+
+  if not FileExists(BackupPath) then
+  begin
+    if not CopyFile(StringsPath, BackupPath, True) then
+    begin
+      Log('Could not create the one-time victory-string backup: ' + BackupPath);
+      Exit;
+    end;
+  end;
+
+  Lines := TStringList.Create;
+  try
+    Lines.LoadFromFile(StringsPath);
+    Found := False;
+    for I := 0 to Lines.Count - 1 do
+    begin
+      CurrentLine := Trim(Lines[I]);
+      if Pos(Lowercase(VICTORY_REASON_PREFIX), Lowercase(CurrentLine)) = 1 then
+      begin
+        Lines[I] := VICTORY_REASON_LINE;
+        Found := True;
+        Break;
+      end;
+    end;
+    if not Found then
+      Lines.Add(VICTORY_REASON_LINE);
+    Lines.SaveToFile(StringsPath);
+    Log('Scarstech Circuit victory string installed in: ' + StringsPath);
+    Result := True;
+  except
+    Log('Could not update the Omega victory-string file: ' + StringsPath);
+  end;
+  Lines.Free;
 end;
 
 function InstallPayload: Boolean;
@@ -298,6 +351,16 @@ begin
   if not UnzipFile(TempScriptsZip, DestScriptsRoot) then
   begin
     MsgBox('Failed to extract scripts into YGO Omega.', mbError, MB_OK);
+    hologramParts.Free;
+    imageParts.Free;
+    picsParts.Free;
+    Exit;
+  end;
+
+  if not EnsureCircuitVictoryString(ExpandConstant('{app}')) then
+  begin
+    MsgBox('Failed to install the Scarstech Circuit victory message. The original Omega string file was not changed.',
+      mbError, MB_OK);
     hologramParts.Free;
     imageParts.Free;
     picsParts.Free;

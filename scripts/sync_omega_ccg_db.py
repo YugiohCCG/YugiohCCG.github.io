@@ -232,9 +232,14 @@ ADDITIONAL_CARD_SET_CODES = {
     251331463: (0xF2F4,),
 }
 
+# Alternate passcodes retained for backwards-compatible decks and replays. These
+# receive full database metadata and point at the current card through ``alias``.
+COMPATIBILITY_CARD_ALIASES = {
+    210678856: 259920959,  # Aquamarine Reef Hapalochlena
+}
+
 # Rows kept by older Omega DBs but not shipped with the current release assets.
 RELEASE_EXCLUDED_LEGACY_IDS = {
-    210678856: "Aquamarine Reef Hapalochlena",
     220812388: "Ash Blossom & Joyous Spring",
     239482600: "Pumqueen the Queen of Ghosts",
     242053169: "Bobbie Bluefin & the Nautical Nocrturnes",
@@ -2088,7 +2093,7 @@ CARD_STRING_OVERRIDES = {
         'Tribute 1 non-Link monster; Special Summon "Scarstech" monsters whose total Levels equal its Level',
     ],
     "scarstechcircuit": [
-        'Destroy 1 card you control; add 1 "Scarstech" card from your Deck to your hand',
+        'Destroy 1 "Scarstech" monster you control; add 1 "Scarstech" monster from your Deck to your hand',
         "Choose which stat to reduce",
         "Reduce the targeted monster's ATK",
         "Reduce the targeted monster's DEF",
@@ -2963,8 +2968,9 @@ def prune_non_release_rows(
 
     Full syncs historically upserted the current card list but retained arbitrary
     rows already present in the seed database.  A distributable CCG database must
-    instead have a closed membership: active cards, the explicit CCG Tokens, and
-    the hidden prompt carriers required by Omega's signed string-ID transport.
+    instead have a closed membership: active cards, supported alternate passcodes,
+    the explicit CCG Tokens, and the hidden prompt carriers required by Omega's
+    signed string-ID transport.
     """
     allowed_ids = {
         int(card["passcode"])
@@ -2972,6 +2978,7 @@ def prune_non_release_rows(
         if card.get("passcode") is not None
     }
     allowed_ids.update(int(token["id"]) for token in EXTRA_TOKEN_CARDS)
+    allowed_ids.update(COMPATIBILITY_CARD_ALIASES)
     allowed_ids.update(message_carrier_map.values())
 
     stale_ids = [
@@ -3233,6 +3240,108 @@ def build_data_row(
     }
 
 
+def upsert_card_rows(
+    conn: sqlite3.Connection,
+    data_row: dict[str, Any],
+    text_row: dict[str, Any],
+) -> None:
+    conn.execute(
+        """
+        insert into datas (
+            id, ot, alias, setcode, type, atk, def, level, race, attribute,
+            category, genre, script, support
+        ) values (
+            :id, :ot, :alias, :setcode, :type, :atk, :def, :level, :race, :attribute,
+            :category, :genre, :script, :support
+        )
+        on conflict(id) do update set
+            ot=excluded.ot,
+            alias=excluded.alias,
+            setcode=excluded.setcode,
+            type=excluded.type,
+            atk=excluded.atk,
+            def=excluded.def,
+            level=excluded.level,
+            race=excluded.race,
+            attribute=excluded.attribute,
+            category=excluded.category,
+            genre=excluded.genre,
+            script=excluded.script,
+            support=excluded.support
+        """,
+        data_row,
+    )
+    conn.execute(
+        """
+        insert into texts (
+            id, name, desc,
+            str1, str2, str3, str4, str5, str6, str7, str8,
+            str9, str10, str11, str12, str13, str14, str15, str16
+        ) values (
+            :id, :name, :desc,
+            :str1, :str2, :str3, :str4, :str5, :str6, :str7, :str8,
+            :str9, :str10, :str11, :str12, :str13, :str14, :str15, :str16
+        )
+        on conflict(id) do update set
+            name=excluded.name,
+            desc=excluded.desc,
+            str1=excluded.str1,
+            str2=excluded.str2,
+            str3=excluded.str3,
+            str4=excluded.str4,
+            str5=excluded.str5,
+            str6=excluded.str6,
+            str7=excluded.str7,
+            str8=excluded.str8,
+            str9=excluded.str9,
+            str10=excluded.str10,
+            str11=excluded.str11,
+            str12=excluded.str12,
+            str13=excluded.str13,
+            str14=excluded.str14,
+            str15=excluded.str15,
+            str16=excluded.str16
+        """,
+        text_row,
+    )
+
+
+def upsert_compatibility_cards(
+    conn: sqlite3.Connection,
+    cards: list[dict[str, Any]],
+    setcode_map: dict[str, int],
+    used_setcodes: set[int],
+    existing_by_id: dict[int, sqlite3.Row],
+) -> int:
+    """Retain full metadata for alternate passcodes with compatibility scripts."""
+
+    cards_by_id = {
+        int(card["passcode"]): card
+        for card in cards
+        if card.get("passcode") is not None
+    }
+    for compatibility_id, canonical_id in COMPATIBILITY_CARD_ALIASES.items():
+        card = cards_by_id.get(canonical_id)
+        if card is None:
+            raise RuntimeError(
+                f"Compatibility passcode {compatibility_id} targets missing card {canonical_id}"
+            )
+        canonical_existing_row = existing_by_id.get(canonical_id)
+        data_row = build_data_row(
+            canonical_id,
+            card,
+            setcode_map,
+            used_setcodes,
+            canonical_existing_row,
+        )
+        data_row["id"] = compatibility_id
+        data_row["alias"] = canonical_id
+        text_row = build_text_row(canonical_id, card)
+        text_row["id"] = compatibility_id
+        upsert_card_rows(conn, data_row, text_row)
+    return len(COMPATIBILITY_CARD_ALIASES)
+
+
 def ensure_omega_auxiliary_tables(conn: sqlite3.Connection) -> None:
     """Create the empty custom-banlist schema expected by current Omega builds."""
     conn.execute(
@@ -3333,65 +3442,7 @@ def sync_db(
             if existing_row is not None and insert_only:
                 continue
 
-            conn.execute(
-                """
-                insert into datas (
-                    id, ot, alias, setcode, type, atk, def, level, race, attribute,
-                    category, genre, script, support
-                ) values (
-                    :id, :ot, :alias, :setcode, :type, :atk, :def, :level, :race, :attribute,
-                    :category, :genre, :script, :support
-                )
-                on conflict(id) do update set
-                    ot=excluded.ot,
-                    alias=excluded.alias,
-                    setcode=excluded.setcode,
-                    type=excluded.type,
-                    atk=excluded.atk,
-                    def=excluded.def,
-                    level=excluded.level,
-                    race=excluded.race,
-                    attribute=excluded.attribute,
-                    category=excluded.category,
-                    genre=excluded.genre,
-                    script=excluded.script,
-                    support=excluded.support
-                """,
-                data_row,
-            )
-            conn.execute(
-                """
-                insert into texts (
-                    id, name, desc,
-                    str1, str2, str3, str4, str5, str6, str7, str8,
-                    str9, str10, str11, str12, str13, str14, str15, str16
-                ) values (
-                    :id, :name, :desc,
-                    :str1, :str2, :str3, :str4, :str5, :str6, :str7, :str8,
-                    :str9, :str10, :str11, :str12, :str13, :str14, :str15, :str16
-                )
-                on conflict(id) do update set
-                    name=excluded.name,
-                    desc=excluded.desc,
-                    str1=excluded.str1,
-                    str2=excluded.str2,
-                    str3=excluded.str3,
-                    str4=excluded.str4,
-                    str5=excluded.str5,
-                    str6=excluded.str6,
-                    str7=excluded.str7,
-                    str8=excluded.str8,
-                    str9=excluded.str9,
-                    str10=excluded.str10,
-                    str11=excluded.str11,
-                    str12=excluded.str12,
-                    str13=excluded.str13,
-                    str14=excluded.str14,
-                    str15=excluded.str15,
-                    str16=excluded.str16
-                """,
-                text_row,
-            )
+            upsert_card_rows(conn, data_row, text_row)
 
         if missing_passcodes:
             preview = ", ".join(missing_passcodes[:5])
@@ -3400,6 +3451,14 @@ def sync_db(
                 f"cards.json has {len(missing_passcodes)} cards without a passcode field: {preview}{extra}\n"
                 "Add a 'passcode' integer to each new card before syncing."
             )
+
+        compatibility_rows = upsert_compatibility_cards(
+            conn,
+            cards,
+            setcode_map,
+            used_setcodes,
+            existing_by_id,
+        )
 
         for token in EXTRA_TOKEN_CARDS:
             conn.execute(
@@ -3489,6 +3548,7 @@ def sync_db(
             "pruned_legacy_rows": pruned_legacy_rows,
             "pruned_helper_rows": pruned_helper_rows,
             "pruned_non_release_rows": pruned_non_release_row_count,
+            "compatibility_rows": compatibility_rows,
             "message_carriers": len(message_carrier_map),
             "datas_count": final_counts[0],
             "texts_count": final_counts[1],

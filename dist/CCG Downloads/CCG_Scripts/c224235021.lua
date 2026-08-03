@@ -30,7 +30,10 @@ function s.chainop(e,tp,eg,ep,ev)
 	if ev<3 then return end
 	for p=0,1 do if Duel.IsExistingMatchingCard(s.linkfilter,p,LOCATION_MZONE,0,1,nil) then Duel.RegisterFlagEffect(p,id,RESET_PHASE+PHASE_END,0,1) end end
 end
-function s.handcon(e,tp) return Duel.IsTurnPlayer(1-tp) and Duel.GetFlagEffect(tp,id)>0 end
+function s.handcon(e)
+	local tp=e:GetHandlerPlayer()
+	return Duel.IsTurnPlayer(1-tp) and Duel.GetFlagEffect(tp,id)>0
+end
 function s.disfilter(c) return c:IsFaceup() and aux.NegateAnyFilter(c) end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.disfilter,tp,0,LOCATION_ONFIELD,1,nil) end
