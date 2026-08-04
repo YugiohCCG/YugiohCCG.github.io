@@ -710,6 +710,15 @@ def audit_installer_constants(audit: Audit, groups: dict[str, list[Path]]) -> No
                 int(match.group(1)) == len(parts),
                 f"installer: {constant}={match.group(1)} but found {len(parts)} part(s)",
             )
+    audit.require(
+        re.search(r"(?mi)^\s*AppendDefaultDirName\s*=\s*no\s*$", source) is not None,
+        "installer: Browse must not append a second YGO Omega directory",
+    )
+    audit.require(
+        "OmegaRoot := FindOmegaRoot(WizardDirValue);" in source
+        and "WizardForm.DirEdit.Text := OmegaRoot;" in source,
+        "installer: selected Omega subfolders are not normalized to the installation root",
+    )
     audit.require(INSTALLER_PATH.is_file(), "installer: published EXE is missing")
     if INSTALLER_PATH.is_file():
         audit.require(INSTALLER_BUILD_PATH.is_file(), "installer: compiler output EXE is missing")

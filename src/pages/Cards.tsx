@@ -90,7 +90,6 @@ export default function Cards() {
     if (!q.set?.length) delete (q as any).set;
     if (!q.category) delete (q as any).category;
     return q;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
 
   const results = useMemo(() => {

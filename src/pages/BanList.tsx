@@ -26,7 +26,7 @@ function banlistGroup(card: Card): string {
   const cardTypes: string[] = Array.isArray((card as any).cardTypes)
     ? (card as any).cardTypes.map((t: any) => String(t).toLowerCase())
     : typeStr
-      ? typeStr.split(/[\/ ]+/)
+      ? typeStr.split(/[/ ]+/)
       : [];
 
   const has = (k: string) => typeStr.includes(k) || cardTypes.some((t) => t.includes(k));

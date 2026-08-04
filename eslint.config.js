@@ -1,12 +1,22 @@
 // ESLint flat config (ESLint v9+)
-import js from "@eslint/js";
-import tsParser from "@typescript-eslint/parser";
-import tsPlugin from "@typescript-eslint/eslint-plugin";
+const js = require("@eslint/js");
+const tsParser = require("@typescript-eslint/parser");
+const tsPlugin = require("@typescript-eslint/eslint-plugin");
 
-export default [
-  js.configs.recommended,
+module.exports = [
   {
-    ignores: ["dist", "node_modules"],
+    ignores: [
+      "dist/**",
+      "node_modules/**",
+      "output/**",
+      "public/**",
+      "tmp/**",
+      "Legacy Files/**",
+      "scripts/output/**",
+    ],
+  },
+  {
+    files: ["src/**/*.{ts,tsx}"],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
@@ -18,8 +28,12 @@ export default [
       "@typescript-eslint": tsPlugin,
     },
     rules: {
+      ...js.configs.recommended.rules,
       ...tsPlugin.configs.recommended.rules,
-      "no-unused-vars": "off", // handled by TS rule below
+      "no-undef": "off", // TypeScript checks globals and unresolved names more accurately
+      "no-unused-vars": "off", // handled by the TypeScript-aware rule below
+      // Card JSON and third-party component adapters are intentionally dynamic.
+      "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unused-vars": [
         "warn",
         { argsIgnorePattern: "^_" },

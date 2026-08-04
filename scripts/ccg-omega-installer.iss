@@ -3,12 +3,13 @@
 ; Re-run this installer any time to update to the newest files on GitHub.
 
 #define MyAppName "CCG Add-on for YGO Omega"
-#define MyAppVersion "1.3.2"
+#define MyAppVersion "1.3.3"
 
 [Setup]
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 DefaultDirName={commonpf32}\YGO Omega
+AppendDefaultDirName=no
 UsePreviousAppDir=no
 DisableDirPage=no
 DisableProgramGroupPage=yes
@@ -129,14 +130,70 @@ begin
   Result := DirExists(AddBackslash(RootDir) + 'YGO Omega_Data\Files');
 end;
 
+function FindOmegaRoot(const SelectedDir: string): string;
+var
+  Candidate, ParentDir: string;
+  I: Integer;
+begin
+  Result := '';
+
+  { Accept the root itself. }
+  if IsOmegaRoot(SelectedDir) then
+  begin
+    Result := SelectedDir;
+    Exit;
+  end;
+
+  { Accept the root's parent, which users may select after older installers
+    taught the Browse dialog to append "YGO Omega" automatically. }
+  Candidate := AddBackslash(SelectedDir) + 'YGO Omega';
+  if IsOmegaRoot(Candidate) then
+  begin
+    Result := Candidate;
+    Exit;
+  end;
+
+  { If a user selects YGO Omega_Data or one of its subfolders, walk upward
+    until the actual installation root is found. This also repairs the
+    duplicated "YGO Omega\YGO Omega" path produced by version 1.3.2. }
+  Candidate := SelectedDir;
+  for I := 0 to 32 do
+  begin
+    if IsOmegaRoot(Candidate) then
+    begin
+      Result := Candidate;
+      Exit;
+    end;
+
+    ParentDir := ExtractFileDir(Candidate);
+    if (ParentDir = '') or (CompareText(ParentDir, Candidate) = 0) then
+      Break;
+    Candidate := ParentDir;
+  end;
+end;
+
 function NextButtonClick(CurPageID: Integer): Boolean;
+var
+  OmegaRoot: string;
 begin
   Result := True;
-  if (CurPageID = wpSelectDir) and not IsOmegaRoot(WizardDirValue) then
+  if CurPageID <> wpSelectDir then
+    Exit;
+
+  OmegaRoot := FindOmegaRoot(WizardDirValue);
+  if OmegaRoot = '' then
   begin
-    MsgBox('That folder does not appear to be the YGO Omega root. Select the folder that contains YGO Omega_Data.',
+    MsgBox('YGO Omega was not found at or near the selected folder.' + #13#10 + #13#10 +
+      'Select the folder that directly contains YGO Omega_Data, or select any folder inside that installation.',
       mbError, MB_OK);
     Result := False;
+    Exit;
+  end;
+
+  if CompareText(WizardDirValue, OmegaRoot) <> 0 then
+  begin
+    Log(Format('Resolved selected folder "%s" to YGO Omega root "%s".', [WizardDirValue, OmegaRoot]));
+    WizardForm.DirEdit.Text := OmegaRoot;
   end;
 end;
 

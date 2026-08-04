@@ -61,7 +61,7 @@ const asStrList = (c: any, keys: string[]): string[] => {
     const v = c?.[k];
     if (Array.isArray(v)) return v.map(String);
     if (typeof v === "string" && v) {
-      return v.split(/[\/ ]+/).filter(Boolean).map(String);
+      return v.split(/[/ ]+/).filter(Boolean).map(String);
     }
   }
   return [];
