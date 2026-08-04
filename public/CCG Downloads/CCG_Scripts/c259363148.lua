@@ -76,25 +76,20 @@ end
 function s.contactfilter(c)
 	return s.matfilter(c) and c:IsAbleToDeckAsCost()
 end
+function s.contactcheck(g,tp,c)
+	return Duel.GetLocationCountFromEx(tp,tp,g,c)>0
+end
 function s.contactcon(e,c)
 	if c==nil then return true end
 	local tp=c:GetControler()
-	if not Duel.IsExistingMatchingCard(s.contactfilter,tp,LOCATION_HAND|LOCATION_MZONE,0,2,nil) then return false end
-	return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		or Duel.IsExistingMatchingCard(s.contactfilter,tp,LOCATION_MZONE,0,1,nil)
+	local g=Duel.GetMatchingGroup(s.contactfilter,tp,LOCATION_HAND|LOCATION_MZONE,0,nil)
+	return g:CheckSubGroup(s.contactcheck,2,2,tp,c)
 end
 function s.contacttg(e,tp,eg,ep,ev,re,r,rp,chk,c)
+	local g=Duel.GetMatchingGroup(s.contactfilter,tp,LOCATION_HAND|LOCATION_MZONE,0,nil)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local sg=nil
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then
-		sg=Duel.SelectMatchingCard(tp,s.contactfilter,tp,LOCATION_HAND|LOCATION_MZONE,0,2,2,nil)
-	else
-		sg=Duel.SelectMatchingCard(tp,s.contactfilter,tp,LOCATION_MZONE,0,1,1,nil)
-		local tc=sg:GetFirst()
-		local sg2=Duel.SelectMatchingCard(tp,s.contactfilter,tp,LOCATION_HAND|LOCATION_MZONE,0,1,1,tc)
-		sg:Merge(sg2)
-	end
-	if #sg~=2 then return false end
+	local sg=g:SelectSubGroup(tp,s.contactcheck,true,2,2,tp,c)
+	if not sg then return false end
 	sg:KeepAlive()
 	e:SetLabelObject(sg)
 	return true
