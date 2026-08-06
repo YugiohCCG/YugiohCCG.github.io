@@ -56,9 +56,9 @@ function s.registerleave(c,tp)
 end
 function s.costfilter(c,tp,needzone)
 	if needzone and not (c:IsLocation(LOCATION_MZONE) and c:IsControler(tp)) then return false end
-	return c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and (c:IsLocation(LOCATION_HAND) and c:IsAbleToGraveAsCost()
+	return c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and (c:IsLocation(LOCATION_HAND) and c:IsReleasable()
 		or c:IsLocation(LOCATION_MZONE) and c:IsFaceup() and c:IsReleasable()
-		or c:IsLocation(LOCATION_DECK) and c:IsFaceup() and c:IsAbleToGraveAsCost())
+		or c:IsLocation(LOCATION_DECK) and c:IsFaceup() and c:IsReleasable())
 end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local needzone=Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
@@ -66,11 +66,7 @@ function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return #g>0 end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 	local tc=g:Select(tp,1,1,nil):GetFirst()
-	if tc:IsLocation(LOCATION_MZONE) then
-		Duel.Release(tc,REASON_COST)
-	else
-		Duel.SendtoGrave(tc,REASON_COST+REASON_RELEASE)
-	end
+	Duel.Release(tc,REASON_COST)
 end
 function s.spfilter(c,e,tp)
 	return c:IsSetCard(SET_STAIN) and c:IsLevelBelow(4) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
@@ -83,7 +79,7 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE)
 end
 function s.relfilter(c)
-	return c:IsFaceup() and c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and c:IsAbleToGrave()
+	return c:IsFaceup() and c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and c:IsReleasableByEffect()
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
@@ -101,7 +97,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 			Duel.BreakEffect()
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 			local rel=rg:Select(tp,1,1,nil)
-			Duel.SendtoGrave(rel,REASON_EFFECT+REASON_RELEASE)
+			Duel.Release(rel,REASON_EFFECT)
 		end
 	end
 end

@@ -39,16 +39,14 @@ end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local ownct=0
 	local oppct=0
-	local negated_own=0
 	for i=1,ev do
 		local p=Duel.GetChainInfo(i,CHAININFO_TRIGGERING_PLAYER)
 		if p==tp then ownct=ownct+1 else oppct=oppct+1 end
-		if Duel.NegateEffect(i) then
-			if p==tp then negated_own=negated_own+1 end
-		end
+		Duel.NegateEffect(i)
 	end
-	if negated_own>0 and ownct>=oppct and Duel.IsPlayerCanDraw(tp,ownct) then
-		Duel.Draw(tp,ownct,REASON_EFFECT)
+	local total_own=ownct+1 --This card is also one of your effects in this Chain
+	if total_own>=oppct and Duel.IsPlayerCanDraw(tp,total_own) then
+		Duel.Draw(tp,total_own,REASON_EFFECT)
 	end
 	local te,p=Duel.GetChainInfo(1,CHAININFO_TRIGGERING_EFFECT,CHAININFO_TRIGGERING_PLAYER)
 	if te and p==tp and Duel.IsExistingMatchingCard(Card.IsAbleToDeck,tp,LOCATION_HAND,0,1,nil) then

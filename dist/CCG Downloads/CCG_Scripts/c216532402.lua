@@ -46,7 +46,7 @@ function s.matfilter(c,rc)
 		and (rc==nil or c:IsCanBeRitualMaterial(rc))
 end
 function s.deckmatfilter(c,rc)
-	return s.matfilter(c,rc) and c:IsAbleToGrave()
+	return s.matfilter(c,rc) and c:IsReleasableByEffect()
 end
 function s.getmatgroup(mg,rc,tp)
 	local res=mg:Filter(s.matfilter,nil,rc)
@@ -98,7 +98,7 @@ function s.ritop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 		mat=deckmg:Select(tp,1,1,nil)
 		rc:SetMaterial(mat)
-		if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL)==0 then return end
+		if Duel.Release(mat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL)==0 then return end
 	else
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 		mat=mg:SelectSubGroup(tp,s.matcheck,true,1,lv,lv,tp)

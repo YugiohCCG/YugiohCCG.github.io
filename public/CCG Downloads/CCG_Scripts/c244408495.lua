@@ -14,7 +14,6 @@ function s.initial_effect(c)
 	e1:SetRange(LOCATION_HAND)
 	e1:SetCountLimit(1,id)
 	e1:SetCondition(s.fuscon)
-	e1:SetCost(s.fuscost)
 	e1:SetTarget(s.fustg)
 	e1:SetOperation(s.fusop)
 	c:RegisterEffect(e1)
@@ -45,12 +44,6 @@ function s.fusfilter(c,e,tp,mg,chkf)
 	return c:IsSetCard(SET_STAIN) and c:IsType(TYPE_FUSION)
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false)
 		and c:CheckFusionMaterial(mg,nil,chkf)
-end
-function s.fuscost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(function(c) return c:IsSetCard(SET_STAIN) and c:IsType(TYPE_FUSION) end,tp,LOCATION_EXTRA,0,1,nil) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
-	local g=Duel.SelectMatchingCard(tp,function(c) return c:IsSetCard(SET_STAIN) and c:IsType(TYPE_FUSION) end,tp,LOCATION_EXTRA,0,1,1,nil)
-	Duel.ConfirmCards(1-tp,g)
 end
 function s.fustg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local chkf=tp

@@ -96,12 +96,12 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	g:DeleteGroup()
 end
 function s.atkloss(c)
-	local oatk=c:GetTextAttack()
+	local oatk=c:GetBaseAttack()
 	if oatk<0 then return 0 end
 	return math.max(0,oatk-c:GetAttack())
 end
 function s.defloss(c)
-	local odef=c:GetTextDefense()
+	local odef=c:GetBaseDefense()
 	if odef<0 then return 0 end
 	return math.max(0,odef-c:GetDefense())
 end

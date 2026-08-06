@@ -71,7 +71,7 @@ function s.lpop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(s.lpfilter,tp,LOCATION_MZONE,0,nil)
 	local val=0
 	for tc in aux.Next(g) do
-		val=val+math.max(0,tc:GetTextAttack())+math.max(0,tc:GetTextDefense())
+		val=val+math.max(0,tc:GetBaseAttack())+math.max(0,tc:GetBaseDefense())
 	end
 	if val>0 then
 		Duel.SetLP(tp,math.max(0,Duel.GetLP(tp)-val))

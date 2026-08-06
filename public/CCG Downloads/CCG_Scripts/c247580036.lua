@@ -34,22 +34,14 @@ end
 function s.trcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(s.cfilter,1,nil,tp,e:GetHandler())
 end
-function s.costfilter(c)
-	return c:IsType(TYPE_MONSTER) and (c:IsLocation(LOCATION_MZONE) and c:IsControler(c:GetControler()) and c:IsReleasable()
-		or c:IsLocation(LOCATION_DECK) and c:IsFaceup() and c:IsAbleToGraveAsCost())
-end
 function s.trcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g1=Duel.GetMatchingGroup(Card.IsReleasable,tp,LOCATION_MZONE,0,nil)
-	local g2=Duel.GetMatchingGroup(function(c) return c:IsFaceup() and c:IsType(TYPE_MONSTER) and c:IsAbleToGraveAsCost() end,tp,0,LOCATION_DECK,nil)
+	local g2=Duel.GetMatchingGroup(function(c) return c:IsFaceup() and c:IsType(TYPE_MONSTER) and c:IsReleasable() end,tp,0,LOCATION_DECK,nil)
 	g1:Merge(g2)
 	if chk==0 then return #g1>0 end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 	local tc=g1:Select(tp,1,1,nil):GetFirst()
-	if tc:IsLocation(LOCATION_MZONE) then
-		Duel.Release(tc,REASON_COST)
-	else
-		Duel.SendtoGrave(tc,REASON_COST+REASON_RELEASE)
-	end
+	Duel.Release(tc,REASON_COST)
 end
 function s.tgfilter(c)
 	return c:IsFaceup() and c:IsType(TYPE_MONSTER)

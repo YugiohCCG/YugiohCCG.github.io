@@ -51,7 +51,7 @@ function s.zonetg(e,c)
 end
 function s.zoneval(e,c,tp)
 	local blocked=e:GetHandler():GetColumnZone(LOCATION_MZONE,tp)&0x1f
-	return 0x1f-blocked
+	return 0x7f-blocked
 end
 function s.tktg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0

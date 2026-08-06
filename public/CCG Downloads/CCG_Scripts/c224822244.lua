@@ -28,6 +28,7 @@ function s.initial_effect(c)
 	e3:SetRange(LOCATION_MZONE)
 	e3:SetCountLimit(1,id+100)
 	e3:SetCondition(s.tdcon)
+	e3:SetTarget(s.tdtg)
 	e3:SetOperation(s.tdop)
 	c:RegisterEffect(e3)
 end
@@ -67,6 +68,14 @@ function s.tdcon(e,tp,eg,ep,ev,re,r,rp)
 	local d=Duel.GetAttackTarget()
 	return (a==c and d and d:IsControler(1-tp)) or (d==c and a and a:IsControler(1-tp))
 end
+function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk)
+	local c=e:GetHandler()
+	local a=Duel.GetAttacker()
+	local d=Duel.GetAttackTarget()
+	local tc=a==c and d or d==c and a
+	if chk==0 then return c:IsAbleToDeck() and tc and tc:IsAbleToDeck() end
+	Duel.SetOperationInfo(0,CATEGORY_TODECK,Group.FromCards(c,tc),2,0,0)
+end
 function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local a=Duel.GetAttacker()
@@ -75,10 +84,6 @@ function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	if a==c then tc=d elseif d==c then tc=a end
 	if not (c:IsRelateToEffect(e) and tc and tc:IsControler(1-tp)) then return end
 	if s.faceupoppdeck(c,tp,REASON_EFFECT) and tc:IsRelateToBattle() then
-		local p=tc:GetControler()
-		if Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_DECK) then
-			Duel.ShuffleDeck(p)
-			Duel.MoveSequence(tc,SEQ_DECKTOP)
-		end
+		Duel.SendtoDeck(tc,nil,SEQ_DECKTOP,REASON_EFFECT)
 	end
 end

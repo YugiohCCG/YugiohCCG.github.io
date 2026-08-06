@@ -70,8 +70,9 @@ function s.repop(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.descon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	local rc=c:GetReasonCard()
-	return c:IsSummonType(SUMMON_TYPE_FUSION) and rc and rc:IsCode(232449539)
+	local re=c:GetReasonEffect()
+	return c:IsSummonType(SUMMON_TYPE_FUSION) and (type(re)=="userdata" or type(re)=="table")
+		and re:GetHandler():IsCode(232449539)
 end
 function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,e:GetHandler()) end

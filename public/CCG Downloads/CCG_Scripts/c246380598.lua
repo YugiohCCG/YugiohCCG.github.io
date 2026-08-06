@@ -113,8 +113,8 @@ end
 function s.doubled(c)
 	local atk=c:GetAttack()
 	local def=c:GetDefense()
-	local oatk=math.max(0,c:GetTextAttack())
-	local odef=math.max(0,c:GetTextDefense())
+	local oatk=math.max(0,c:GetBaseAttack())
+	local odef=math.max(0,c:GetBaseDefense())
 	return (atk>oatk*2) or (def>odef*2)
 end
 function s.distg(e,c)

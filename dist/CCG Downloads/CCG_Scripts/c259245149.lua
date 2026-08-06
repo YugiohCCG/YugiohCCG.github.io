@@ -26,6 +26,9 @@ end
 function s.sumcon(e)
 	return not s.bp() and Duel.GetFieldGroupCount(e:GetHandlerPlayer(),LOCATION_MZONE,0)>0
 end
+function s.nsumcon(e)
+	return not s.bp() and Duel.GetFieldGroupCount(e:GetHandlerPlayer(),LOCATION_MZONE,0)>1
+end
 function s.splimit(e,se,sp,st,pos,tp)
 	return s.bp() or not Duel.IsExistingMatchingCard(aux.TRUE,sp,LOCATION_MZONE,0,1,nil)
 end
@@ -34,7 +37,7 @@ function s.add_lv5_summon_limit(c)
 	e0:SetType(EFFECT_TYPE_SINGLE)
 	e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e0:SetCode(EFFECT_CANNOT_SUMMON)
-	e0:SetCondition(s.sumcon)
+	e0:SetCondition(s.nsumcon)
 	c:RegisterEffect(e0)
 	local e1=e0:Clone()
 	e1:SetCode(EFFECT_CANNOT_FLIP_SUMMON)

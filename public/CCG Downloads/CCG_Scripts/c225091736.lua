@@ -108,6 +108,6 @@ function s.botop(e,tp,eg,ep,ev,re,r,rp)
 		end
 	end
 	if added and c:IsRelateToEffect(e) then
-		s.faceupoppdeck(c,tp,REASON_EFFECT)
+		Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
 	end
 end
