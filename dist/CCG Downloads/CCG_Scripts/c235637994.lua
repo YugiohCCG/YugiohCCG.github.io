@@ -53,8 +53,10 @@ s.listed_series={SET_CHRONO_SAUR}
 
 function s.checkop(e,tp,eg,ep,ev,re,r,rp)
 	for tc in aux.Next(eg) do
+		local was_dinosaur=(tc:IsPreviousLocation(LOCATION_MZONE) and tc:GetPreviousRaceOnField()&RACE_DINOSAUR~=0)
+			or (tc:IsPreviousLocation(LOCATION_HAND) and tc:IsRace(RACE_DINOSAUR))
 		if tc:IsReason(REASON_EFFECT) and tc:IsPreviousLocation(LOCATION_HAND+LOCATION_ONFIELD)
-			and (tc:IsPreviousSetCard(SET_CHRONO_SAUR) or tc:GetPreviousRaceOnField()&RACE_DINOSAUR~=0) then
+			and (tc:IsPreviousSetCard(SET_CHRONO_SAUR) or was_dinosaur) then
 			Duel.RegisterFlagEffect(tc:GetPreviousControler(),id,RESET_PHASE+PHASE_END,0,1)
 		end
 	end

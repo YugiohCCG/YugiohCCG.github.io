@@ -33,7 +33,8 @@ function s.lcheck(g)
 	return g:IsExists(Card.IsSetCard,1,nil,0x7a34)
 end
 function s.negcon(e,tp,eg,ep,ev,re,r,rp)
-	return rp==1-tp and not e:GetHandler():IsStatus(STATUS_BATTLE_DESTROYED) and Duel.IsChainNegatable(ev)
+	return rp==1-tp and (re:IsActiveType(TYPE_MONSTER) or re:IsHasType(EFFECT_TYPE_ACTIVATE))
+		and not e:GetHandler():IsStatus(STATUS_BATTLE_DESTROYED) and Duel.IsChainNegatable(ev)
 end
 function s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -62,7 +63,8 @@ function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	local rc=re:GetHandler()
-	if Duel.NegateActivation(ev) and rc:IsRelateToEffect(re) and Duel.Remove(eg,POS_FACEUP,REASON_EFFECT)~=0 and rc:IsLocation(LOCATION_REMOVED) then
+	if Duel.NegateActivation(ev) and rc:IsRelateToEffect(re)
+		and Duel.Remove(rc,POS_FACEUP,REASON_EFFECT)>0 and rc:IsLocation(LOCATION_REMOVED) then
 		local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.gyfilter),tp,0,LOCATION_GRAVE,nil,rc:GetCode())
 		if #g>0 then
 			Duel.Remove(g,POS_FACEUP,REASON_EFFECT)

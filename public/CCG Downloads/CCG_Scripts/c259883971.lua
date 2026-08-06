@@ -42,13 +42,13 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	if #g==0 then return end
 	local ct=Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
 	ct=ct or #g
-	local maxct=math.min(math.floor(ct/10),Duel.GetLocationCount(tp,LOCATION_MZONE))
-	if Duel.IsPlayerAffectedByEffect(tp,59822133) then maxct=math.min(maxct,1) end
-	if maxct<=0 then return end
+	local spct=math.floor(ct/10)
+	if spct<=0 or Duel.GetLocationCount(tp,LOCATION_MZONE)<spct
+		or (spct>1 and Duel.IsPlayerAffectedByEffect(tp,59822133)) then return end
 	local sg=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,nil,e,tp)
-	if #sg==0 or not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then return end
+	if #sg<spct or not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local tg=sg:Select(tp,1,math.min(maxct,#sg),nil)
+	local tg=sg:Select(tp,spct,spct,nil)
 	if #tg>0 then
 		Duel.SpecialSummon(tg,0,tp,tp,false,false,POS_FACEUP)
 	end

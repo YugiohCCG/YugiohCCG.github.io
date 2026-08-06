@@ -63,18 +63,17 @@ function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 		and r==REASON_LINK and rc and rc:IsSetCard(SET_VIR_PEDICAE_MORTIS) and rc:IsType(TYPE_LINK)
 end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.CheckReleaseGroup(tp,Card.IsReleasable,1,nil) end
+	if chk==0 then return Duel.CheckReleaseGroup(tp,s.sprelfilter,1,nil,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
-	local g=Duel.SelectReleaseGroup(tp,Card.IsReleasable,1,1,nil)
+	local g=Duel.SelectReleaseGroup(tp,s.sprelfilter,1,1,nil,tp)
 	Duel.Release(g,REASON_COST)
 end
-function s.zonecheck(tp)
-	return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		or Duel.IsExistingMatchingCard(Card.IsReleasable,tp,LOCATION_MZONE,0,1,nil)
+function s.sprelfilter(c,tp)
+	return c:IsReleasable() and Duel.GetMZoneCount(tp,c)>0
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return s.zonecheck(tp) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	if chk==0 then return c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 		and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c)) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,0,0)
 end

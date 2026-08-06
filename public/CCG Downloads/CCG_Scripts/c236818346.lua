@@ -92,22 +92,20 @@ function s.tkop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.SpecialSummonComplete()
 end
 function s.ctcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.CheckReleaseGroup(tp,Card.IsReleasable,1,nil) end
+	if chk==0 then return Duel.CheckReleaseGroup(tp,s.relfilter,1,nil,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
-	local g=Duel.SelectReleaseGroup(tp,Card.IsReleasable,1,1,nil)
+	local g=Duel.SelectReleaseGroup(tp,s.relfilter,1,1,nil,tp)
 	Duel.Release(g,REASON_COST)
+end
+function s.relfilter(c,tp)
+	return c:IsReleasable() and Duel.GetMZoneCount(tp,c)>0
 end
 function s.ctfilter(c)
 	return c:IsControlerCanBeChanged()
 end
-function s.ctzone(tp)
-	return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		or Duel.IsExistingMatchingCard(Card.IsReleasable,tp,LOCATION_MZONE,0,1,nil)
-end
 function s.cttg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_MZONE) and s.ctfilter(chkc) end
-	if chk==0 then return s.ctzone(tp)
-		and Duel.IsExistingTarget(s.ctfilter,tp,0,LOCATION_MZONE,1,nil) end
+	if chk==0 then return Duel.IsExistingTarget(s.ctfilter,tp,0,LOCATION_MZONE,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONTROL)
 	local g=Duel.SelectTarget(tp,s.ctfilter,tp,0,LOCATION_MZONE,1,1,nil)
 	Duel.SetOperationInfo(0,CATEGORY_CONTROL,g,1,0,0)

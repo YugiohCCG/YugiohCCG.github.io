@@ -93,8 +93,10 @@ end
 function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=e:GetLabelObject()
-	if not c:IsRelateToEffect(e) or not tc or not tc:IsLocation(LOCATION_GRAVE)
-		or not aux.NecroValleyFilter()(tc)
+	if not c:IsRelateToEffect(e) or not tc
+		or not tc:IsLocation(LOCATION_GRAVE+LOCATION_REMOVED+LOCATION_EXTRA)
+		or (tc:IsLocation(LOCATION_REMOVED+LOCATION_EXTRA) and not tc:IsFaceup())
+		or (tc:IsLocation(LOCATION_GRAVE) and not aux.NecroValleyFilter()(tc))
 		or Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 or not Duel.Equip(tp,tc,c) then return end
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)

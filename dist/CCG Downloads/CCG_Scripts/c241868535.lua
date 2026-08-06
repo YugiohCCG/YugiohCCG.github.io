@@ -61,6 +61,7 @@ function s.atkcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.recfilter(c)
 	return c:IsSetCard(SET_RECOLLECTION)
+		and not c:IsCode(CARD_RECOLLECTION_KABOOM)
 		and c:IsType(TYPE_SPELL) and c:IsAbleToGraveAsCost()
 end
 function s.atkcost(e,tp,eg,ep,ev,re,r,rp,chk)

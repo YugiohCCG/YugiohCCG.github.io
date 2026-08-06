@@ -16,7 +16,7 @@ function s.initial_effect(c)
 	-- extra attacks
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_SINGLE)
-	e2:SetCode(EFFECT_EXTRA_ATTACK_MONSTER)
+	e2:SetCode(EFFECT_EXTRA_ATTACK)
 	e2:SetValue(s.atkval)
 	c:RegisterEffect(e2)
 	-- lose ATK/DEF

@@ -37,7 +37,7 @@ function s.oppnsfilter(c)
 end
 function s.canoppsummon(e,tp,rg)
 	local p=1-tp
-	local ft=rg and Duel.GetMZoneCount(p,rg,tp) or Duel.GetLocationCount(p,LOCATION_MZONE)
+	local ft=rg and Duel.GetMZoneCount(p,rg,p) or Duel.GetLocationCount(p,LOCATION_MZONE)
 	return (ft>0 and Duel.IsPlayerCanSpecialSummon(p)
 			and Duel.IsExistingMatchingCard(s.oppfilter,p,LOCATION_HAND,0,1,nil,e,p))
 		or (ft>0 and Duel.IsPlayerCanSummon(p)

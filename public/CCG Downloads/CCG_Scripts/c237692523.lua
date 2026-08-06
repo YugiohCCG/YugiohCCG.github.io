@@ -58,7 +58,7 @@ function s.zonefilter(c,tp)
 end
 function s.linkedzone(tp)
 	local zone=0
-	local lgs=Duel.GetMatchingGroup(s.zonefilter,tp,LOCATION_MZONE,0,nil)
+	local lgs=Duel.GetMatchingGroup(s.zonefilter,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
 	for tc in aux.Next(lgs) do
 		zone=zone|tc:GetLinkedZone(tp)
 	end

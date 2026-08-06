@@ -23,14 +23,15 @@ function s.papafilter(c)
 	return c:IsFaceup() and c:IsCode(CARD_PEDICAES_PAPA) and c:IsDestructable()
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.minefilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil)
+	if chk==0 then return s.summoncount(tp)<=1
+		and Duel.IsExistingMatchingCard(s.minefilter,tp,LOCATION_ONFIELD,0,1,nil)
 		and Duel.IsExistingMatchingCard(s.papafilter,tp,LOCATION_MZONE,0,1,nil) end
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,nil,2,PLAYER_ALL,LOCATION_ONFIELD)
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local g=Group.CreateGroup()
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local mg=Duel.SelectMatchingCard(tp,s.minefilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil)
+	local mg=Duel.SelectMatchingCard(tp,s.minefilter,tp,LOCATION_ONFIELD,0,1,1,nil)
 	if #mg==0 then s.applysummonlimit(e,tp) return end
 	g:Merge(mg)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)

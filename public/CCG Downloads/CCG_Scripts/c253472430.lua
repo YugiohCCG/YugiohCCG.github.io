@@ -44,6 +44,7 @@ function s.chkfilter(c,tp,g2,sg)
 	return res
 end
 function s.chkfilter2(c,tp,c1,sg)
+	if c==c1 then return false end
 	sg:AddCard(c)
 	local res=Duel.IsExistingMatchingCard(s.synfilter,tp,LOCATION_EXTRA,0,1,nil,sg)
 	sg:RemoveCard(c)

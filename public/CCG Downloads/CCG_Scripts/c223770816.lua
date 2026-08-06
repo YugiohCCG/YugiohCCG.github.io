@@ -133,7 +133,7 @@ function s.copytg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.copyop(e,tp,eg,ep,ev,re,r,rp)
 	local te=e:GetLabelObject()
-	if not te or not te:GetHandler():IsRelateToChain() then return end
+	if not te or not te:GetHandler():IsRelateToEffect(e) then return end
 	e:SetLabelObject(te:GetLabelObject())
 	local op=te:GetOperation()
 	if op then op(e,tp,eg,ep,ev,re,r,rp) end

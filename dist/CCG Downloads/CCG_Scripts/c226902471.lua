@@ -40,9 +40,9 @@ function s.activate(e,tp)
 	local op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,3),aux.Stringid(STRING_ID,4))
 	local g=Duel.GetMatchingGroup(Card.IsFaceup,tp,0,LOCATION_MZONE,nil)
 	for tc in aux.Next(g) do
-		local mult=op==0 and 0 or 2
-		local ea=Effect.CreateEffect(e:GetHandler()) ea:SetType(EFFECT_TYPE_SINGLE) ea:SetCode(EFFECT_SET_ATTACK_FINAL) ea:SetValue(tc:GetAttack()*mult) ea:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END) tc:RegisterEffect(ea)
-		local ed=ea:Clone() ed:SetCode(EFFECT_SET_DEFENSE_FINAL) ed:SetValue(tc:GetDefense()*mult) tc:RegisterEffect(ed)
+		local sign=op==0 and -1 or 1
+		local ea=Effect.CreateEffect(e:GetHandler()) ea:SetType(EFFECT_TYPE_SINGLE) ea:SetCode(EFFECT_UPDATE_ATTACK) ea:SetValue(tc:GetAttack()*sign) ea:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END) tc:RegisterEffect(ea)
+		local ed=ea:Clone() ed:SetCode(EFFECT_UPDATE_DEFENSE) ed:SetValue(tc:GetDefense()*sign) tc:RegisterEffect(ed)
 	end
 end
 function s.rmfilter(c) return c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_SPELL+TYPE_TRAP) and not c:IsCode(id) and c:IsAbleToRemove() end

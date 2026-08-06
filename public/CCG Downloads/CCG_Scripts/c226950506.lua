@@ -5,7 +5,7 @@ function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCost(s.actcost)
+	e1:SetOperation(s.activate)
 	c:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
@@ -28,9 +28,9 @@ end
 function s.linklimit(e,c)
 	return c:IsType(TYPE_LINK)
 end
-function s.actcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return true end
+function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
+	if not c:IsRelateToEffect(e) then return end
 	c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,0,1)
 	Duel.RegisterFlagEffect(tp,id,0,0,1)
 	local e1=Effect.CreateEffect(c)

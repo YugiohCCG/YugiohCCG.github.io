@@ -10,7 +10,8 @@ function s.initial_effect(c)
 	local e3=Effect.CreateEffect(c) e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS) e3:SetCode(EVENT_DESTROYED) e3:SetRange(LOCATION_MZONE) e3:SetOperation(s.regop) c:RegisterEffect(e3)
 end
 function s.tgfilter(c,e,tp)
-	return c:IsFaceup() and c:IsType(TYPE_EFFECT) and c:IsType(TYPE_MONSTER) and c:IsCanBeEffectTarget(e)
+	return c:IsFaceup() and c:IsType(TYPE_EFFECT) and c:IsType(TYPE_MONSTER)
+		and not c:IsType(TYPE_XYZ+TYPE_LINK) and c:IsCanBeEffectTarget(e)
 		and Duel.IsPlayerCanSpecialSummonMonster(tp,id,SET_ELDORA,TYPES_EFFECT_TRAP_MONSTER,
 			c:GetAttack(),c:GetDefense(),c:GetLevel(),c:GetRace(),c:GetAttribute())
 end

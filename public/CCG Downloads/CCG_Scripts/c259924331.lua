@@ -21,7 +21,7 @@ function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	local pair=Duel.IsExistingMatchingCard(s.bobfilter,tp,LOCATION_DECK,0,1,nil) and Duel.IsExistingMatchingCard(s.umifilter,tp,LOCATION_DECK,0,1,nil)
 	local listed=Duel.IsExistingMatchingCard(s.listfilter,tp,LOCATION_DECK,0,1,nil)
 	if chk==0 then return pair or listed end
-	local chain=Duel.GetCurrentChain()
+	local chain=Duel.GetCurrentChain()-1
 	local te,player=nil,nil
 	if chain>0 then te,player=Duel.GetChainInfo(chain,CHAININFO_TRIGGERING_EFFECT,CHAININFO_TRIGGERING_PLAYER) end
 	e:SetLabel(te and player==1-tp and te:IsActiveType(TYPE_MONSTER) and 1 or 0)

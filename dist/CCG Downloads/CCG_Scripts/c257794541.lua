@@ -31,6 +31,9 @@ s.listed_series={0x21fc}
 function s.revfilter(c)
 	return c:IsSetCard(0x21fc) and c:IsType(TYPE_SPELL) and not c:IsPublic()
 end
+function s.revflagfilter(c)
+	return c:GetFlagEffect(id+500)>0
+end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return true end
@@ -39,13 +42,13 @@ function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
 		local sg=g:Select(tp,1,2,nil)
 		Duel.ConfirmCards(1-tp,sg)
+		for tc in aux.Next(sg) do
+			tc:RegisterFlagEffect(id+500,RESET_CHAIN,0,1)
+		end
 		Duel.ShuffleHand(tp)
 		e:SetLabel(#sg)
-		sg:KeepAlive()
-		e:SetLabelObject(sg)
 	else
 		e:SetLabel(0)
-		e:SetLabelObject(nil)
 	end
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -58,10 +61,8 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	local rev_g=e:GetLabelObject()
-	e:SetLabelObject(nil)
+	local rev_g=Duel.GetMatchingGroup(s.revflagfilter,tp,LOCATION_HAND,0,nil)
 	if not c:IsRelateToEffect(e) then
-		if rev_g then rev_g:DeleteGroup() end
 		return
 	end
 	local rev_ct=e:GetLabel()
@@ -70,7 +71,6 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if rev_g and #rev_g>0 then
 		to_deck:Merge(rev_g:Filter(Card.IsLocation,nil,LOCATION_HAND))
 	end
-	if rev_g then rev_g:DeleteGroup() end
 	local max_add = 2 - #to_deck
 	if max_add > 0 then
 		local hg=Duel.GetMatchingGroup(Card.IsAbleToDeck,tp,LOCATION_HAND,0,c)

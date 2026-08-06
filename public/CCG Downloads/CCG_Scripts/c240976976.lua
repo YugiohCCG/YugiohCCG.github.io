@@ -60,7 +60,7 @@ function s.drcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.drcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsAbleToDeckAsCost() and aux.NecroValleyFilter()(c) end
+	if chk==0 then return c:IsAbleToDeckAsCost() end
 	Duel.SendtoDeck(c,nil,SEQ_DECKBOTTOM,REASON_COST)
 end
 function s.drtg(e,tp,eg,ep,ev,re,r,rp,chk)

@@ -38,11 +38,12 @@ end
 function s.oppnsfilter(c)
 	return c:IsType(TYPE_MONSTER) and c:IsSummonable(true,nil)
 end
-function s.canoppsummon(e,tp)
+function s.canoppsummon(e,tp,rg)
 	local p=1-tp
-	return (Duel.GetLocationCount(p,LOCATION_MZONE)>0 and Duel.IsPlayerCanSpecialSummon(p)
+	local ft=rg and Duel.GetMZoneCount(p,rg,p) or Duel.GetLocationCount(p,LOCATION_MZONE)
+	return (ft>0 and Duel.IsPlayerCanSpecialSummon(p)
 			and Duel.IsExistingMatchingCard(s.oppfilter,p,LOCATION_HAND,0,1,nil,e,p))
-		or (Duel.IsPlayerCanSummon(p)
+		or (ft>0 and Duel.IsPlayerCanSummon(p)
 			and Duel.IsExistingMatchingCard(s.oppnsfilter,p,LOCATION_HAND,0,1,nil))
 end
 function s.atkzero(e,c)
@@ -92,12 +93,14 @@ end
 function s.rtfilter(c)
 	return c:IsAbleToHand()
 end
+function s.rtfilter2(c,e,tp)
+	return c:IsAbleToHand() and s.canoppsummon(e,tp,Group.FromCards(c))
+end
 function s.rttg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(1-tp) and s.rtfilter(chkc) end
-	if chk==0 then return Duel.IsExistingTarget(s.rtfilter,tp,0,LOCATION_MZONE,1,nil)
-		and s.canoppsummon(e,tp) end
+	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(1-tp) and s.rtfilter2(chkc,e,tp) end
+	if chk==0 then return Duel.IsExistingTarget(s.rtfilter2,tp,0,LOCATION_MZONE,1,nil,e,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND)
-	local g=Duel.SelectTarget(tp,s.rtfilter,tp,0,LOCATION_MZONE,1,1,nil)
+	local g=Duel.SelectTarget(tp,s.rtfilter2,tp,0,LOCATION_MZONE,1,1,nil,e,tp)
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,g,1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_SUMMON,nil,1,1-tp,LOCATION_HAND)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,1-tp,LOCATION_HAND)

@@ -12,7 +12,15 @@ function s.initial_effect(c)
 	e1:SetCondition(s.sprcon)
 	e1:SetTarget(s.sprtg)
 	e1:SetOperation(s.sprop)
+	e1:SetValue(SUMMON_VALUE_SELF)
 	c:RegisterEffect(e1)
+	-- apply the Extra Deck restriction only after this Summon succeeds
+	local e4=Effect.CreateEffect(c)
+	e4:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
+	e4:SetCode(EVENT_SPSUMMON_SUCCESS)
+	e4:SetCondition(s.limitcon)
+	e4:SetOperation(s.limitop)
+	c:RegisterEffect(e4)
 	-- spsummon level 2 tuner synchro
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,0))
@@ -60,6 +68,13 @@ function s.sprop(e,tp,eg,ep,ev,re,r,rp,c,og,min,max)
 	if not sg then return end
 	Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_COST+REASON_MATERIAL)
 	sg:DeleteGroup()
+
+end
+function s.limitcon(e)
+	return e:GetHandler():IsSummonType(SUMMON_TYPE_SPECIAL+SUMMON_VALUE_SELF)
+end
+function s.limitop(e,tp)
+	local c=e:GetHandler()
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)

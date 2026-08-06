@@ -7,10 +7,32 @@ function s.initial_effect(c)
 	local e3=e2:Clone() e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e3:SetCode(EVENT_REMOVE) e3:SetCondition(s.rmcon) c:RegisterEffect(e3)
 end
 function s.costfilter(c) return c:IsFaceup() and c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_MONSTER) and c:IsAbleToRemoveAsCost() end
-function s.cost(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return true end if Duel.IsExistingMatchingCard(s.costfilter,tp,LOCATION_MZONE,0,1,nil) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE) local tc=Duel.SelectMatchingCard(tp,s.costfilter,tp,LOCATION_MZONE,0,1,1,nil):GetFirst() Duel.Remove(tc,POS_FACEUP,REASON_COST) end end
 function s.matfilter(c) return c:IsFaceup() and c:IsType(TYPE_MONSTER) and c:IsCanBeFusionMaterial() and c:IsAbleToDeck() end
 function s.fusfilter(c,e,tp,mg) return c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_FUSION) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false,POS_FACEUP_ATTACK) and c:CheckFusionMaterial(mg,nil,tp) end
-function s.fustg(e,tp,eg,ep,ev,re,r,rp,chk) local mg=Duel.GetMatchingGroup(s.matfilter,tp,LOCATION_REMOVED,0,nil) if chk==0 then return Duel.IsExistingMatchingCard(s.fusfilter,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA) end
+function s.hasfusion(e,tp,mg) return Duel.IsExistingMatchingCard(s.fusfilter,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg) end
+function s.enablesfusion(c,e,tp,mg)
+	if not s.costfilter(c) then return false end
+	local tg=mg:Clone()
+	tg:AddCard(c)
+	return s.hasfusion(e,tp,tg)
+end
+function s.cost(e,tp,eg,ep,ev,re,r,rp,chk)
+	local mg=Duel.GetMatchingGroup(s.matfilter,tp,LOCATION_REMOVED,0,nil)
+	local current=s.hasfusion(e,tp,mg)
+	local filter=current and s.costfilter or s.enablesfusion
+	if chk==0 then return current or Duel.IsExistingMatchingCard(s.enablesfusion,tp,LOCATION_MZONE,0,1,nil,e,tp,mg) end
+	if Duel.IsExistingMatchingCard(filter,tp,LOCATION_MZONE,0,1,nil,e,tp,mg)
+		and (not current or Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2))) then
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
+		local tc=Duel.SelectMatchingCard(tp,filter,tp,LOCATION_MZONE,0,1,1,nil,e,tp,mg):GetFirst()
+		if tc then Duel.Remove(tc,POS_FACEUP,REASON_COST) end
+	end
+end
+function s.fustg(e,tp,eg,ep,ev,re,r,rp,chk)
+	local mg=Duel.GetMatchingGroup(s.matfilter,tp,LOCATION_REMOVED,0,nil)
+	if chk==0 then return s.hasfusion(e,tp,mg) or Duel.IsExistingMatchingCard(s.enablesfusion,tp,LOCATION_MZONE,0,1,nil,e,tp,mg) end
+	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
+end
 function s.fusop(e,tp)
 	local mg=Duel.GetMatchingGroup(s.matfilter,tp,LOCATION_REMOVED,0,nil) local fg=Duel.GetMatchingGroup(s.fusfilter,tp,LOCATION_EXTRA,0,nil,e,tp,mg) if #fg==0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON) local fc=fg:Select(tp,1,1,nil):GetFirst() local mat=Duel.SelectFusionMaterial(tp,fc,mg,nil,tp) if not mat or #mat==0 then return end

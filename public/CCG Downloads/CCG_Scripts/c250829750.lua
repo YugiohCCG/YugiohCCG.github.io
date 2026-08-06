@@ -13,9 +13,11 @@ function s.stfilter(c,tp)
 	return c:IsFaceupEx() and c:IsCode(STATION) and not c:IsForbidden()
 		and te and te:IsActivatable(tp,true,true)
 end
-function s.acttg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.stfilter),tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,tp) end end
+function s.acttg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return true end end
 function s.actop(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
+	if not Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.stfilter),tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,tp)
+		or not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD) local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.stfilter),tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil,tp):GetFirst() if not tc then return end
 	local te=tc:GetActivateEffect() if not te or not te:IsActivatable(tp,true,true) then return end
 	local fc=Duel.GetFieldCard(tp,LOCATION_FZONE,0)

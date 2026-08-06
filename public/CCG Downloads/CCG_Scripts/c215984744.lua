@@ -69,7 +69,8 @@ function s.recfilter(c)
 	return s.isrecollection(c) and c:IsAbleToHand()
 end
 function s.secondfilter(c)
-	return (c:IsCode(CARD_BEAR_TRAP) or (c:IsSetCard(SET_VIR_PEDICAE_MORTIS) and not s.isrecollection(c))) and c:IsAbleToHand()
+	return (c:IsCode(CARD_BEAR_TRAP) or (c:IsSetCard(SET_VIR_PEDICAE_MORTIS)
+		and not c:IsCode(CARD_PEDICAES_PAPA) and not s.isrecollection(c))) and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.recfilter,tp,LOCATION_DECK,0,1,nil)

@@ -69,7 +69,11 @@ function s.rtop(e,tp,eg,ep,ev,re,r,rp)
 					e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 					e1:SetCode(EVENT_PHASE+PHASE_STANDBY)
 					e1:SetCountLimit(1)
-					e1:SetReset(RESET_PHASE+PHASE_STANDBY,1)
+					if Duel.GetCurrentPhase()==PHASE_STANDBY then
+						e1:SetReset(RESET_PHASE+PHASE_STANDBY,2)
+					else
+						e1:SetReset(RESET_PHASE+PHASE_STANDBY)
+					end
 					e1:SetLabel(ct)
 					e1:SetOperation(s.drawop)
 					Duel.RegisterEffect(e1,tp)

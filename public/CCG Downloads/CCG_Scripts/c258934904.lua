@@ -9,7 +9,10 @@ function s.initial_effect(c)
 	local e4=Effect.CreateEffect(c) e4:SetDescription(aux.Stringid(STRING_ID,0)) e4:SetCategory(CATEGORY_DESTROY) e4:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS) e4:SetCode(EVENT_CHAIN_SOLVED) e4:SetRange(LOCATION_FZONE) e4:SetCountLimit(2,id) e4:SetCondition(s.descon) e4:SetOperation(s.desop) c:RegisterEffect(e4)
 end
 function s.descon(e,tp,eg,ep,ev,re,r,rp)
-	return rp==tp and Duel.GetCurrentPhase()>=PHASE_BATTLE_START and Duel.GetCurrentPhase()<=PHASE_DAMAGE
-		and re:IsActiveType(TYPE_MONSTER) and re:IsHasCategory(CATEGORY_SPECIAL_SUMMON)
+	local ph=Duel.GetCurrentPhase()
+	if rp~=tp or (ph~=PHASE_DAMAGE and ph~=PHASE_DAMAGE_CAL)
+		or not re:IsActiveType(TYPE_MONSTER) or not re:IsHasCategory(CATEGORY_SPECIAL_SUMMON) then return false end
+	local ex,g=Duel.GetOperationInfo(ev,CATEGORY_SPECIAL_SUMMON)
+	return ex and g and g:IsExists(Card.IsSetCard,1,nil,SET_GALACTICA)
 end
 function s.desop(e,tp) local g=Duel.GetMatchingGroup(Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,nil) if #g>0 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY) local tc=g:Select(tp,1,1,nil):GetFirst() Duel.Destroy(tc,REASON_EFFECT) end end

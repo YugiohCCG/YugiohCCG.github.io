@@ -65,9 +65,7 @@ function s.splimit(e,c,sump,sumtype,sumpos,targetp,se)
 	return not (c:IsAttribute(ATTRIBUTE_LIGHT) and c:IsRace(RACE_SPELLCASTER))
 end
 function s.attcon(e,tp,eg,ep,ev,re,r,rp)
-	local ph=Duel.GetCurrentPhase()
-	return (ph==PHASE_MAIN1 or ph==PHASE_MAIN2)
-		and Duel.IsExistingMatchingCard(aux.AND(Card.IsFaceup,Card.IsType),tp,LOCATION_MZONE,0,1,nil,TYPE_XYZ)
+	return Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.xyzfilter(c)
 	return c:IsFaceup() and c:IsSetCard(0x4ac0) and c:IsType(TYPE_XYZ)

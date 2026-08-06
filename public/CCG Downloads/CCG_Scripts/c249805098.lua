@@ -31,7 +31,8 @@ function s.initial_effect(c)
 end
 s.listed_series={0x159}
 function s.negcon(e,tp,eg,ep,ev,re,r,rp)
-	return rp~=tp and re:IsActiveType(TYPE_MONSTER) and re:GetHandler():IsAttribute(ATTRIBUTE_DARK)
+	local attr=Duel.GetChainInfo(ev,CHAININFO_TRIGGERING_ATTRIBUTE)
+	return re:IsActiveType(TYPE_MONSTER) and (attr&ATTRIBUTE_DARK)~=0
 		and Duel.IsChainDisablable(ev)
 end
 function s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)

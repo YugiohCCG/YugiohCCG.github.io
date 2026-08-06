@@ -13,12 +13,10 @@ function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
-	e1:SetType(EFFECT_TYPE_FIELD)
-	e1:SetCode(EFFECT_SPSUMMON_PROC)
-	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE)
+	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_HAND)
 	e1:SetCountLimit(1,id)
-	e1:SetCondition(s.spcon1)
+	e1:SetCost(s.spcost1)
 	e1:SetTarget(s.sptg1)
 	e1:SetOperation(s.spop1)
 	c:RegisterEffect(e1)
@@ -41,26 +39,25 @@ s.listed_series={0xbd}
 function s.revfilter(c)
 	return c:IsLevelAbove(5) and c:IsRace(RACE_DRAGON) and not c:IsPublic()
 end
-function s.spcon1(e,c)
-	if c==nil then return true end
-	local tp=c:GetControler()
-	return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and Duel.IsExistingMatchingCard(s.revfilter,tp,LOCATION_HAND,0,1,c)
-end
-function s.sptg1(e,tp,eg,ep,ev,re,r,rp,chk,c)
+function s.spcost1(e,tp,eg,ep,ev,re,r,rp,chk)
+	local c=e:GetHandler()
+	if chk==0 then return Duel.IsExistingMatchingCard(s.revfilter,tp,LOCATION_HAND,0,1,c) end
 	local g=Duel.GetMatchingGroup(s.revfilter,tp,LOCATION_HAND,0,c)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
-	local tc=g:SelectUnselect(nil,tp,false,true,1,1)
-	if tc then
-		e:SetLabelObject(tc)
-		return true
-	else return false end
+	local tc=g:Select(tp,1,1,nil):GetFirst()
+	Duel.ConfirmCards(1-tp,Group.FromCards(c,tc))
+	Duel.ShuffleHand(tp)
 end
-function s.spop1(e,tp,eg,ep,ev,re,r,rp,c)
-	local tc=e:GetLabelObject()
-	if tc then
-		Duel.ConfirmCards(1-tp,Group.FromCards(c,tc))
-		Duel.ShuffleHand(tp)
+function s.sptg1(e,tp,eg,ep,ev,re,r,rp,chk)
+	local c=e:GetHandler()
+	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+		and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end
+	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,0,0)
+end
+function s.spop1(e,tp,eg,ep,ev,re,r,rp)
+	local c=e:GetHandler()
+	if c:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then
+		Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 	end
 end
 function s.sendfilter(c)

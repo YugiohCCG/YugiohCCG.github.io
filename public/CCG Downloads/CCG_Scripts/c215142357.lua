@@ -66,7 +66,9 @@ end
 function s.xyzfilter(c)
 	return c:IsFaceup() and c:IsSetCard(SET_SHINING_BRIGADE) and c:IsType(TYPE_XYZ) and c:GetOverlayCount()>0
 end
-s.attfilter=aux.FilterBoolFunction(Card.IsSetCard,SET_SHINING_BRIGADE)
+function s.attfilter(c)
+	return c:IsSetCard(SET_SHINING_BRIGADE) and c:IsType(TYPE_MONSTER)
+end
 function s.atcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_MZONE,0,1,nil)
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.attfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil) end

@@ -53,6 +53,9 @@ end
 function s.cfilter(c)
 	return c:IsSetCard(0x6f4) and c:IsType(TYPE_SYNCHRO) and c:IsFaceup()
 end
+function s.atkfilter(c)
+	return c:IsFaceup()
+end
 function s.atkcon(e,tp,eg,ep,ev,re,r,rp)
 	local cg=e:GetHandler():GetLinkedGroup()
 	return cg and cg:IsExists(s.cfilter,1,nil)
@@ -65,7 +68,7 @@ function s.atkop(e,tp,eg,ep,ev,re,r,rp)
 	local cg=c:GetLinkedGroup()
 	if not cg or not c:IsRelateToEffect(e) or c:IsFacedown() then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
-	local g=cg:FilterSelect(tp,s.cfilter,1,1,nil)
+	local g=cg:FilterSelect(tp,s.atkfilter,1,1,nil)
 	local tc=g:GetFirst()
 	if tc then
 		local e1=Effect.CreateEffect(c)

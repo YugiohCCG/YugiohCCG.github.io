@@ -44,7 +44,7 @@ end
 s.listed_series={0x7a34}
 function s.cfilter(c,tp)
 	return c:IsPreviousControler(tp) and c:IsPreviousPosition(POS_FACEUP) and c:IsSetCard(0x7a34)
-		and c:IsReason(REASON_EFFECT) and c:GetReasonPlayer()==1-tp
+		and c:IsReason(REASON_EFFECT+REASON_BATTLE) and c:GetReasonPlayer()==1-tp
 end
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(s.cfilter,1,nil,tp)
@@ -77,7 +77,7 @@ function s.attfilter(c)
 	return c:IsSetCard(0x7a34)
 end
 function s.atttg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.attfilter,tp,LOCATION_DECK,0,1,nil) end
+	if chk==0 then return true end
 end
 function s.attop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

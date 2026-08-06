@@ -62,7 +62,7 @@ end
 function s.ffilter(c,e,tp,mg)
 	return c:IsType(TYPE_FUSION) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 		and (mg==nil or Duel.GetLocationCountFromEx(tp,tp,mg,c)>0)
-		and aux.IsCodeListed(c,63680324)
+		and aux.IsMaterialListSetCard(c,0xbd)
 end
 function s.drgfilter3(c,e,tp,hc)
 	if not aux.NecroValleyFilter(s.drgfilter2)(c) then return false end

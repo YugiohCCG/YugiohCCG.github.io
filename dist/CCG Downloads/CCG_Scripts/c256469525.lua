@@ -21,13 +21,10 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	-- copy effect
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_ATKCHANGE+CATEGORY_DEFCHANGE)
-	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
-	e2:SetProperty(EFFECT_FLAG_DELAY)
 	e2:SetCondition(s.copycon)
-	e2:SetTarget(s.copytg)
 	e2:SetOperation(s.copyop)
 	c:RegisterEffect(e2)
 end
@@ -44,9 +41,6 @@ function s.copycon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.copyfilter(c)
 	return c:IsFaceup() and not c:IsType(TYPE_TOKEN)
-end
-function s.copytg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.copyfilter,tp,0,LOCATION_MZONE,1,nil) end
 end
 function s.copyop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
