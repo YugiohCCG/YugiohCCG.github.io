@@ -5,6 +5,7 @@ local SET_DOMESTICA=0xe302
 local CARD_TOVE=259737127
 local CARD_DOMESTIC_UNDERWORLD=259265448
 function s.initial_effect(c)
+	aux.AddCodeList(c,259265448)
 	aux.AddMaterialCodeList(c,CARD_TOVE)
 	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionCode,CARD_TOVE),s.domfairy,true)
 	c:EnableReviveLimit()

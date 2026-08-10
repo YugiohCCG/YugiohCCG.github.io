@@ -2,6 +2,7 @@ local s,id=GetID()
 local STRING_ID=132462992
 local SET_BAU=0xba8
 function s.initial_effect(c)
+	aux.AddCodeList(c,221511784,237444604)
 	c:EnableReviveLimit()
 	aux.AddSynchroProcedure(c,s.tfilter,aux.NonTuner(Card.IsCode,237444604),1)
 	local e1=Effect.CreateEffect(c)

@@ -5,11 +5,12 @@ local BEAST=34695290
 local MIST=61089209
 local ARSENAL=7574904
 function s.initial_effect(c)
+	aux.AddCodeList(c,7574904,34695290,61089209)
 	c:EnableReviveLimit()
 	aux.AddFusionProcFunRep(c,s.ffilter,2,true)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
-	e1:SetCategory(CATEGORY_SSET)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e1]=true
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetProperty(EFFECT_FLAG_DELAY)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)

@@ -1,0 +1,100 @@
+[
+  {
+    "script": "c221759221.lua",
+    "script_sha256": "258e2125946d9d80599b3eb78ae8ca379923829460e5b142980b0f2edf27ec20",
+    "kind": "target-operation-search-mismatch",
+    "line": 88,
+    "reason": "The activation guard requires a hand card able to return to the Deck. The operation's revflagfilter identifies the separately revealed mandatory subset before selecting any additional able cards."
+  },
+  {
+    "script": "c222654570.lua",
+    "script_sha256": "589db8a7afbb0064b02a27630a9847d9551ffe7bba3515fdcc72e6f755c2ce04",
+    "kind": "target-operation-search-mismatch",
+    "line": 71,
+    "reason": "The SZONE monster search is an optional follow-up after placing the first card and is independently guarded inside the operation."
+  },
+  {
+    "script": "c224751741.lua",
+    "script_sha256": "85e543f8c13bd8f6eb025d95329724769d675941be63f3b8c038b01c4b5fe44f",
+    "kind": "target-operation-search-mismatch",
+    "line": 88,
+    "reason": "Fusion materials are collected after the mandatory Token is created; the activation guard separately proves a Dragon material and a summonable named Fusion."
+  },
+  {
+    "script": "c224751741.lua",
+    "script_sha256": "85e543f8c13bd8f6eb025d95329724769d675941be63f3b8c038b01c4b5fe44f",
+    "kind": "target-operation-search-mismatch",
+    "line": 95,
+    "reason": "The second material-group read applies the selected Fusion Monster to the same post-Token material pool; activation legality is established by dragonmat and fusfilter."
+  },
+  {
+    "script": "c227745087.lua",
+    "script_sha256": "4615299fa378b2ba63a79313c0ad9a42dee37f66ccd5a45390ea0f07f562d48c",
+    "kind": "target-operation-search-mismatch",
+    "line": 86,
+    "reason": "The operation deliberately selects with one of two predicates chosen and stored by the target callback. Both option predicates are checked at activation."
+  },
+  {
+    "script": "c239245471.lua",
+    "script_sha256": "f40f2550809cdb331126de046fc24c11bbd5296cd37c9e0d9dac07474421064e",
+    "kind": "target-operation-search-mismatch",
+    "line": 84,
+    "reason": "Fusion materials are collected after the mandatory Token is created; the activation guard separately proves a Dragon material and a summonable named Fusion."
+  },
+  {
+    "script": "c239245471.lua",
+    "script_sha256": "f40f2550809cdb331126de046fc24c11bbd5296cd37c9e0d9dac07474421064e",
+    "kind": "target-operation-search-mismatch",
+    "line": 91,
+    "reason": "The second material-group read applies the selected Fusion Monster to the same post-Token material pool; activation legality is established by dragonmat and fusfilter."
+  },
+  {
+    "script": "c242009896.lua",
+    "script_sha256": "b60bdb6f92560d50d67ab726ed2303d91f1c041fded86415177acbb9954b420c",
+    "kind": "target-operation-search-mismatch",
+    "line": 68,
+    "reason": "The target callback chooses the reference monster. The operation's different predicate intentionally finds all other monsters sharing one of its characteristics."
+  },
+  {
+    "script": "c244816828.lua",
+    "script_sha256": "a9f116b07c42c19fd39ae6f49afab6b4ab7d5fa7b5af33922074c0f26facd49b",
+    "kind": "target-operation-search-mismatch",
+    "line": 84,
+    "reason": "rmfilter validates that each banishable card has the corresponding named summon available; the later spfilter selection uses the code determined by the card actually banished."
+  },
+  {
+    "script": "c247789143.lua",
+    "script_sha256": "14e256cac1d35c738ff8489906d78733b1020a2effcb1d7fbf5f7426d36c47ae",
+    "kind": "target-operation-search-mismatch",
+    "line": 157,
+    "reason": "banpairfilter proves the two required groups exist. Resolution then materializes the generic monster group and the own Stain group separately."
+  },
+  {
+    "script": "c259614765.lua",
+    "script_sha256": "ced669df90a707fca8a54f001e0cfaf7e34908d4d56f8c1b82c33b432cd64db2",
+    "kind": "target-operation-search-mismatch",
+    "line": 47,
+    "reason": "Activation checks for at least one negatable monster and draw legality. Resolution enumerates all face-up monsters, applies the negate predicate individually, then counts the opponent's current face-up monsters."
+  },
+  {
+    "script": "c259650969.lua",
+    "script_sha256": "a19bdb4d4c2fedfc455897d5f57fd30e6e52aed764e375368937f0ad1d111ce8",
+    "kind": "target-operation-search-mismatch",
+    "line": 130,
+    "reason": "The guarded mvfilter selection is performed earlier in the operation. This second group is the post-move set of co-linked monsters that receive counters."
+  },
+  {
+    "script": "c259679619.lua",
+    "script_sha256": "49df75a3b346cc05e4af57e70bba003d56c87eefad178548d9821b97925a22f1",
+    "kind": "target-operation-search-mismatch",
+    "line": 51,
+    "reason": "The activation search is optional, so the card may be activated with no target. Resolution correctly applies Necrovalley legality before offering and selecting the search."
+  },
+  {
+    "script": "c259783008.lua",
+    "script_sha256": "99b312d59ea4201079e4a892ecf53c453a5e2231fa41aff647cab5a1d5ff4586",
+    "kind": "target-operation-search-mismatch",
+    "line": 78,
+    "reason": "tgfilter only accepts a first Deck monster when another same-name copy is available. The operation then uses samefilter for the required second copy."
+  }
+]

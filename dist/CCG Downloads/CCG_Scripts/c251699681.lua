@@ -34,7 +34,7 @@ function s.initial_effect(c)
 	--Set this card from the GY
 	local e5=Effect.CreateEffect(c)
 	e5:SetDescription(aux.Stringid(STRING_ID,1))
-	e5:SetCategory(CATEGORY_SSET)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e5]=true
 	e5:SetType(EFFECT_TYPE_IGNITION)
 	e5:SetRange(LOCATION_GRAVE)
 	e5:SetCondition(s.setcon)

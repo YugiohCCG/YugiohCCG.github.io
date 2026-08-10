@@ -1,7 +1,9 @@
 -- Phlogistic Uprising!
 local s,id=GetID()
 local STRING_ID=133239133
+local CARD_PHLOGISTON_DRAGON=242094473
 function s.initial_effect(c)
+	aux.AddCodeList(c,CARD_PHLOGISTON_DRAGON)
 	-- activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_FUSION_SUMMON+CATEGORY_TODECK)

@@ -4,7 +4,7 @@ local SET_GALACTICA=0x9c9
 function s.initial_effect(c)
 	local e0=Effect.CreateEffect(c) e0:SetType(EFFECT_TYPE_SINGLE) e0:SetCode(EFFECT_ADD_SETCODE) e0:SetValue(SET_GALACTICA) c:RegisterEffect(e0)
 	local e1=Effect.CreateEffect(c)
-	e1:SetDescription(aux.Stringid(STRING_ID,0)) e1:SetCategory(CATEGORY_SSET) e1:SetType(EFFECT_TYPE_ACTIVATE) e1:SetCode(EVENT_FREE_CHAIN) e1:SetProperty(EFFECT_FLAG_CARD_TARGET) e1:SetCountLimit(1,id) e1:SetTarget(s.settg) e1:SetOperation(s.setop) c:RegisterEffect(e1)
+	e1:SetDescription(aux.Stringid(STRING_ID,0)) if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e1]=true e1:SetType(EFFECT_TYPE_ACTIVATE) e1:SetCode(EVENT_FREE_CHAIN) e1:SetProperty(EFFECT_FLAG_CARD_TARGET) e1:SetCountLimit(1,id) e1:SetTarget(s.settg) e1:SetOperation(s.setop) c:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_REMOVE+CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_TOGRAVE) e2:SetType(EFFECT_TYPE_IGNITION) e2:SetRange(LOCATION_GRAVE) e2:SetCountLimit(1,id) e2:SetCost(s.cost) e2:SetTarget(s.dectg) e2:SetOperation(s.decop) c:RegisterEffect(e2)
 end
@@ -12,7 +12,7 @@ function s.setfilter(c) return c:IsFaceup() and c:IsSetCard(SET_GALACTICA) and c
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_REMOVED) and s.setfilter(chkc) end
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingTarget(s.setfilter,tp,LOCATION_REMOVED,0,1,nil) end
-	local ft=Duel.GetLocationCount(tp,LOCATION_SZONE) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET) local g=Duel.SelectTarget(tp,s.setfilter,tp,LOCATION_REMOVED,0,1,math.min(3,ft),nil) Duel.SetOperationInfo(0,CATEGORY_SSET,g,#g,0,0)
+	local ft=Duel.GetLocationCount(tp,LOCATION_SZONE) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET) Duel.SelectTarget(tp,s.setfilter,tp,LOCATION_REMOVED,0,1,math.min(3,ft),nil)
 end
 function s.setop(e,tp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(function(c,te) return c:IsRelateToEffect(te) and c:IsSSetable() end,nil,e)

@@ -5,6 +5,7 @@ local SET_HALLOWEEN=0xfb6d
 -- "Hallo, the Spirit of Tricks" is referenced by the card text but is absent from cards.json/CCG_v1.db.
 local HALLO_SPIRIT=0
 function s.initial_effect(c)
+	aux.AddCodeList(c,54611591,215621622)
 	c:EnableReviveLimit()
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_SINGLE)

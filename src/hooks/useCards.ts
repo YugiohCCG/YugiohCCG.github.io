@@ -30,6 +30,7 @@ export type UseCardsOptions = {
   includeTCG?: boolean;
   includeCustom?: boolean;
   includeTest?: boolean;
+  ignoreTextQuery?: boolean;
 };
 
 export type Indexes = {
@@ -153,8 +154,9 @@ export default function useCards(
   // FILTERED results to display
   const cards: Card[] = useMemo(() => {
     if (!sourceCards?.length) return [];
-    return sourceCards.filter((c) => isVisible(c) && cardMatches(c, query));
-  }, [sourceCards, query]);
+    const matchQuery = opts.ignoreTextQuery ? { ...query, q: undefined } : query;
+    return sourceCards.filter((c) => isVisible(c) && cardMatches(c, matchQuery));
+  }, [sourceCards, query, opts.ignoreTextQuery]);
 
   // INDEXES from the UNFILTERED source (so UI options never disappear)
   const indexes: Indexes = useMemo(() => {
@@ -164,7 +166,14 @@ export default function useCards(
     }
 
     const archetypes = Array.from(
-      new Set(sourceCards.map((c: any) => c?.archetype).filter(Boolean).map(String))
+      new Set(
+        sourceCards.flatMap((c: any) => [
+          c?.archetype,
+          ...(Array.isArray(c?.archetypes) ? c.archetypes : []),
+          ...(Array.isArray(c?.treatedAs) ? c.treatedAs : []),
+          ...(Array.isArray(c?.namedSeries) ? c.namedSeries : []),
+        ]).filter(Boolean).map(String)
+      )
     ).sort((a, b) => a.localeCompare(b));
 
     const monsterTypes = Array.from(

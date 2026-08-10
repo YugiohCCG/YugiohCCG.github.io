@@ -15,7 +15,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,1))
-	e2:SetCategory(CATEGORY_SSET)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e2]=true
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)
 	e2:SetRange(LOCATION_SZONE)
@@ -58,7 +58,6 @@ function s.trapcon(e) return e:GetHandler():IsType(TYPE_TRAP) end
 function s.setfilter(c) return c:IsSetCard(SET_GRAVINITY) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil) end
-	Duel.SetOperationInfo(0,CATEGORY_SSET,nil,1,tp,LOCATION_DECK)
 end
 function s.setop(e,tp)
 	local c=e:GetHandler()

@@ -35,7 +35,7 @@ function s.initial_effect(c)
 	--If Special Summoned from the Extra Deck: Set Spells/Traps
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,1))
-	e3:SetCategory(CATEGORY_SSET)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e3]=true
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetProperty(EFFECT_FLAG_DELAY)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
@@ -125,7 +125,6 @@ function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local ct=math.min(Duel.GetMatchingGroupCount(s.harplady,tp,LOCATION_MZONE,0,nil),Duel.GetLocationCount(tp,LOCATION_SZONE))
 	local g=Duel.GetMatchingGroup(s.setfilter,tp,LOCATION_DECK,0,nil)
 	if chk==0 then return ct>0 and g:CheckSubGroup(aux.dncheck,1,ct) end
-	Duel.SetOperationInfo(0,CATEGORY_SSET,nil,1,tp,LOCATION_DECK)
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local ct=math.min(Duel.GetMatchingGroupCount(s.harplady,tp,LOCATION_MZONE,0,nil),Duel.GetLocationCount(tp,LOCATION_SZONE))

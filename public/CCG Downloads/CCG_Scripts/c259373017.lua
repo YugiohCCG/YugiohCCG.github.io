@@ -3,6 +3,7 @@ local s,id=GetID()
 local CARD_AURELION=259889864
 local STRING_ID=133373017
 function s.initial_effect(c)
+	aux.AddCodeList(c,259889864)
 	--If your opponent Special Summons: Special Summon this card from your hand
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

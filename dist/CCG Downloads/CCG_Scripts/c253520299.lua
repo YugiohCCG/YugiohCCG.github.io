@@ -3,6 +3,7 @@ local STRING_ID=133520299
 local SET_GALACTICA=0x9c9
 local FUSION_INTERGALACTICA=245395343
 function s.initial_effect(c)
+	aux.AddCodeList(c,245395343)
 	aux.AddLinkProcedure(c,aux.FilterBoolFunction(Card.IsType,TYPE_EFFECT),2,2,s.lcheck) c:EnableReviveLimit()
 	local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH) e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.thtg) e1:SetOperation(s.thop) c:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCountLimit(1,id) e2:SetTarget(s.rmtg) e2:SetOperation(s.rmop) c:RegisterEffect(e2)

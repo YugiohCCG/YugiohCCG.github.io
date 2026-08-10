@@ -4,6 +4,7 @@ local STRING_ID=132009896
 local TOKEN_PROTOGENIC=240299293
 local CARD_DYSMANDR=223512283
 function s.initial_effect(c)
+	aux.AddCodeList(c,223512283)
 	--Activate
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_ACTIVATE)

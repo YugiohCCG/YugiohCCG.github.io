@@ -3,6 +3,8 @@ local STRING_ID=133482393
 local GALACTICARINA=234179728
 local ELDORA=214552846
 function s.initial_effect(c)
+	aux.AddCodeList(c,ELDORA)
+	aux.AddCodeList(c,234179728)
 	if not s.global_check then s.global_check=true s.history={[0]={},[1]={}} local ge=Effect.CreateEffect(c) ge:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS) ge:SetCode(EVENT_DESTROYED) ge:SetOperation(s.regop) Duel.RegisterEffect(ge,0) end
 	local e1=Effect.CreateEffect(c) e1:SetType(EFFECT_TYPE_FIELD) e1:SetCode(EFFECT_SPSUMMON_PROC) e1:SetProperty(EFFECT_FLAG_UNCOPYABLE) e1:SetRange(LOCATION_HAND) e1:SetCountLimit(1,id) e1:SetCondition(s.spcon) c:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,0)) e2:SetCategory(CATEGORY_RELEASE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_QUICK_O) e2:SetCode(EVENT_FREE_CHAIN) e2:SetRange(LOCATION_MZONE) e2:SetCountLimit(1,id+100) e2:SetCondition(s.qcon) e2:SetCost(s.qcost) e2:SetTarget(s.qtg) e2:SetOperation(s.qop) c:RegisterEffect(e2)

@@ -10,7 +10,8 @@ function s.initial_effect(c)
 	--If Link Summoned: send or Set 1 "Frute" card
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
-	e1:SetCategory(CATEGORY_TOGRAVE+CATEGORY_SSET)
+	e1:SetCategory(CATEGORY_TOGRAVE)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e1]=true
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e1:SetProperty(EFFECT_FLAG_DELAY)
@@ -62,7 +63,6 @@ function s.sstg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if e:GetLabel()==0 then
 		Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_DECK)
 	else
-		Duel.SetOperationInfo(0,CATEGORY_SSET,nil,1,tp,LOCATION_GRAVE+LOCATION_REMOVED)
 	end
 end
 function s.ssop(e,tp,eg,ep,ev,re,r,rp)

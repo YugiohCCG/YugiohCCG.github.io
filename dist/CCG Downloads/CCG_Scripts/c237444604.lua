@@ -2,6 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133444604
 function s.initial_effect(c)
+	aux.AddCodeList(c,221511784)
 	-- Synchro Summon
 	aux.AddSynchroProcedure(c,nil,aux.NonTuner(Card.IsCode,221511784),1,1)
 	c:EnableReviveLimit()

@@ -4,6 +4,7 @@ local STRING_ID=133447408
 local CARD_PEDICAES_PAPA=241868535
 local CARD_RECOLLECTION_MINE=231872299
 function s.initial_effect(c)
+	aux.AddCodeList(c,241868535)
 	--Destroy 1 "Mine" Field Spell and 1 "Pedicae's Papa", and if you do, destroy all cards
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

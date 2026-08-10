@@ -3,10 +3,12 @@ local SET_NEMLERIA=0x191
 local CARD_DREAMING_NEMLERIA=CARD_DREAMING_NEMLERIA or 70155677
 local STRING_ID=133766646
 function s.initial_effect(c)
+	aux.AddCodeList(c,70155677)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
-	e1:SetCategory(CATEGORY_TOEXTRA+CATEGORY_SSET)
+	e1:SetCategory(CATEGORY_TOEXTRA)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e1]=true
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetCountLimit(1,id)

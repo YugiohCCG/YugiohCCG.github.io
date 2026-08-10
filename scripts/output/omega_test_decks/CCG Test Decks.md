@@ -343,7 +343,7 @@ File: `CCG Test - Charmelia.ydk`
 - 3× Charmelia Pray (`259241946`) — engine
 - 3× Charmelia Fairy Morningstar (`259753109`) — engine
 - 3× Charmelia Beast (`259226799`) — engine
-- 3× Magical Girl Explosion (`259402105`) — custom related support
+- 3× Magical Girl Explosion! (`259402105`) — custom related support
 - 1× Remembrance of the Melody (`216620496`) — custom side-deck test option
 - 1× Interwire Dimensquid (`253128790`) — custom side-deck test option
 - 1× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option
@@ -576,12 +576,12 @@ File: `CCG Test - Dysmandr.ydk`
 ### Main (40)
 
 - 3× Extinction of Dysmandr (`242009896`) — engine
+- 3× Eldora in Depraevity (`229786055`) — custom related support
 - 3× Fall of Azrynior (`224751741`) — custom related support
 - 3× Carina of the Eldoran System (`228686743`) — custom related support
 - 3× Eldora, the Intergalactic Empire (`214552846`) — custom related support
 - 3× Galacticanes Auriga (`220148485`) — custom related support
-- 3× Eldora in Depraevity (`229786055`) — custom related support
-- 3× Chapter Ii Verse Iv (`241957394`) — custom related support
+- 3× Chapter II Verse IV (`241957394`) — custom related support
 - 2× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option
 - 2× Ghost Doll & Midnight Manor (`222782750`) — custom side-deck test option
 - 2× Dominus Sentinel (`259290896`) — custom side-deck test option
@@ -629,7 +629,7 @@ File: `CCG Test - Eclipse.ydk`
 - 2× Manual of Eclipse (`259273851`) — engine
 - 2× Tome of Eclipse (`259303191`) — engine
 - 2× Eclipse Summoning (`251331463`) — custom related support
-- 2× Grayscale Awakening: Eclipse (`259203522`) — custom related support
+- 2× Grayscale Awakening: Eclipse! (`259203522`) — custom related support
 - 1× Remembrance of the Melody (`216620496`) — custom side-deck test option
 - 1× Interwire Dimensquid (`253128790`) — custom side-deck test option
 - 1× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option
@@ -670,10 +670,10 @@ File: `CCG Test - Eldora.ydk`
 - 3× Carina, Forgotten of Eldora (`259482393`) — engine
 - 3× Cassiopeia, Forgotten of Eldora (`250917339`) — engine
 - 3× The Spires of Zephorion Prime (`244972185`) — engine
+- 3× Eldora in Depraevity (`229786055`) — engine
 - 3× Eridani, Squire of Zephorion Prime (`213990492`) — engine
 - 3× Aeloria in Depraevity (`259230000`) — engine
 - 3× Eldora, the Intergalactic Empire (`214552846`) — engine
-- 3× Eldora in Depraevity (`229786055`) — engine
 - 2× Carina of the Eldoran System (`228686743`) — custom related support
 - 2× Cassiopeia of the Eldoran System (`212377618`) — custom related support
 - 1× Galacticanes Auriga (`220148485`) — custom related support
@@ -1121,14 +1121,14 @@ File: `CCG Test - Grayscale.ydk`
 
 ### Main (40)
 
-- 3× Grayling, the Grayscale Imp (`259934043`) — engine
-- 3× Grayscale Awakening: Revelation (`259923860`) — engine
-- 3× Grayscale Awakening: Nullbind (`259269688`) — engine
-- 3× Grayhex, the Chanter of Grayscale (`259688514`) — engine
-- 3× Graylock, the Sorcerer of Grayscale (`259724129`) — engine
-- 3× Grayrover, the Wandering Grayscale (`259937399`) — engine
-- 3× Graysentry, the Guard of Grayscale (`259341133`) — engine
-- 3× Grayscale Awakening: Eclipse (`259203522`) — engine
+- 3× Grayling the Grayscale Imp (`259934043`) — engine
+- 3× Grayscale Awakening: Revelation! (`259923860`) — engine
+- 3× Grayscale Awakening: Nullbind! (`259269688`) — engine
+- 3× Grayhex the Chanter of Grayscale (`259688514`) — engine
+- 3× Graylock the Sorcerer of Grayscale (`259724129`) — engine
+- 3× Grayrover the Wandering Grayscale (`259937399`) — engine
+- 3× Graysentry the Guard of Grayscale (`259341133`) — engine
+- 3× Grayscale Awakening: Eclipse! (`259203522`) — engine
 - 2× Remembrance of the Melody (`216620496`) — custom side-deck test option
 - 2× Interwire Dimensquid (`253128790`) — custom side-deck test option
 - 1× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option
@@ -1144,11 +1144,11 @@ File: `CCG Test - Grayscale.ydk`
 
 ### Extra (14)
 
-- 3× Grayseer, the Grayscale Spy (`259632020`) — engine Extra Deck
-- 3× Grayterror, the Grayscale Beast (`259624110`) — engine Extra Deck
-- 2× Graydimm, the Grayscale Shadow (`259245496`) — engine Extra Deck
+- 3× Grayseer the Grayscale Spy (`259632020`) — engine Extra Deck
+- 3× Grayterror the Grayscale Beast (`259624110`) — engine Extra Deck
+- 2× Graydimm the Grayscale Shadow (`259245496`) — engine Extra Deck
 - 2× Graydeux, the Eternal Grayscale Entity (`259229055`) — engine Extra Deck
-- 2× Grayshade, the Phantom of Grayscale (`259626409`) — engine Extra Deck
+- 2× Grayshade the Phantom of Grayscale (`259626409`) — engine Extra Deck
 - 1× Rigel the Thousand-Armed (`215853847`) — custom generic Extra Deck option
 - 1× Chaos Honest (`248638801`) — custom generic Extra Deck option
 
@@ -1330,7 +1330,7 @@ File: `CCG Test - Myutant.ydk`
 
 ### Main (40)
 
-- 3× Myutant El-51 (`255283389`) — engine
+- 3× Myutant EL-51 (`255283389`) — engine
 - 3× Myutant Evolution (`244816828`) — engine
 - 3× Remembrance of the Melody (`216620496`) — custom non-engine
 - 3× Interwire Dimensquid (`253128790`) — custom non-engine
@@ -1415,10 +1415,10 @@ File: `CCG Test - Nemleria.ydk`
 ### Main (40)
 
 - 3× Nemleria's Dream Bedroom (`259090287`) — engine
+- 3× Nemleria Dream Creator - Pyjama (`259392825`) — engine
 - 3× Nemleria Dream Creator - Veilleuse (`259898110`) — engine
-- 3× Nemleria Dream Creator Pyjama (`259392825`) — engine
 - 3× Nemleria Big Eepy (`259883971`) — engine
-- 3× Night Night Nemleria (`259766646`) — engine
+- 3× Night Night, Nemleria (`259766646`) — engine
 - 3× Pyjama Party of Happy Nemleria (`259605536`) — engine
 - 3× Nemleria Dream Devourer - Soleil (`259472680`) — engine
 - 3× Nemleria's Nightmare (`259017109`) — engine
@@ -1501,11 +1501,11 @@ File: `CCG Test - NiuHao.ydk`
 
 ### Main (40)
 
-- 3× Niuhao - Bauba (`218600459`) — engine
-- 3× Niuhao - Oro (`232232676`) — engine
-- 3× Niuhao - Zaoka (`215629896`) — engine
-- 3× Niuhao - Hikam (`235789995`) — engine
-- 3× Niuhao - Lokaeo (`227043533`) — engine
+- 3× NiuHao - Bauba (`218600459`) — engine
+- 3× NiuHao - Oro (`232232676`) — engine
+- 3× NiuHao - Zaoka (`215629896`) — engine
+- 3× NiuHao - Hikam (`235789995`) — engine
+- 3× NiuHao - Lokaeo (`227043533`) — engine
 - 3× Sacred Treasure - Chunyin (`229499914`) — engine
 - 3× Sacred Treasure - Bojin (`236542835`) — engine
 - 3× Sacred Treasure - Huangjin (`246421842`) — engine
@@ -1524,8 +1524,8 @@ File: `CCG Test - NiuHao.ydk`
 
 ### Extra (7)
 
-- 3× Niuhao - Koai (`231825514`) — engine Extra Deck
-- 3× Niuhao - Zao (`250556612`) — engine Extra Deck
+- 3× NiuHao - Koai (`231825514`) — engine Extra Deck
+- 3× NiuHao - Zao (`250556612`) — engine Extra Deck
 - 1× Rigel the Thousand-Armed (`215853847`) — custom generic Extra Deck option
 
 ### Side (15)
@@ -1685,7 +1685,7 @@ File: `CCG Test - Phlogiston Dragon.ydk`
 - 3× Phlogistic Ignition (`219714894`) — engine
 - 3× Phlogistic Uprising! (`257239133`) — engine
 - 3× Disciple of Fire (`259023461`) — custom related support
-- 3× Phlogiston's Roar (`259366281`) — custom related support
+- 3× Phlogiston's Roar! (`259366281`) — custom related support
 - 1× Remembrance of the Melody (`216620496`) — custom side-deck test option
 - 1× Interwire Dimensquid (`253128790`) — custom side-deck test option
 - 1× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option
@@ -1843,7 +1843,7 @@ File: `CCG Test - Red-Eyes.ydk`
 
 ### Main (40)
 
-- 3× Red-Eyes Gearfried the Iron Knight (`259466138`) — engine
+- 3× Red-Eyes Gearfried, the Iron Knight (`259466138`) — engine
 - 3× Red-Eyes Moon Dragon (`259992800`) — engine
 - 3× Red-Eyes Roar (`259562343`) — engine
 - 3× Red-Eyes Meteor Metal Dragon (`259184310`) — engine
@@ -1893,12 +1893,12 @@ File: `CCG Test - Scarstech.ydk`
 - 2× Scarstech Kaiser (`239179363`) — engine
 - 2× Scarstech Sniper (`233502817`) — engine
 - 2× Scarstech Swarmer (`248884592`) — engine
+- 2× Scarstech Wyvern (`259531370`) — engine
 - 2× Scarstech Circuit (`248891593`) — engine
 - 2× Scarstech Beacon (`245837578`) — engine
 - 2× Scarstech Invader (`259464700`) — engine
 - 2× Scarstech Principality (`210175845`) — engine
 - 2× Scarstech Stagger (`253934904`) — engine
-- 2× Scarstech Wyvern (`259531370`) — engine
 - 1× Scarstech Invasion (`244009988`) — engine
 - 1× Scarstech Prologue (`224467692`) — engine
 - 1× Scarstech Deployment (`224235021`) — engine
@@ -1906,9 +1906,9 @@ File: `CCG Test - Scarstech.ydk`
 - 3× The Misstakes of the A.I.P Experience (`259275822`) — custom related support
 - 1× Remembrance of the Melody (`216620496`) — custom side-deck test option
 - 1× Interwire Dimensquid (`253128790`) — custom side-deck test option
+- 1× Branching to Guidance (`222257685`) — custom side-deck test option
+- 1× Primite Dragon Citrine (`234818744`) — custom side-deck test option
 - 1× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option
-- 1× Ghost Doll & Midnight Manor (`222782750`) — custom side-deck test option
-- 1× Dominus Sentinel (`259290896`) — custom side-deck test option
 - 3× Ash Blossom & Joyous Spring (`14558127`) — official consistency/interaction (Ash Blossom & Joyous Spring)
 - 1× Infinite Impermanence (`10045474`) — official consistency/interaction (Infinite Impermanence)
 
@@ -1994,9 +1994,9 @@ File: `CCG Test - Skewy!.ydk`
 
 ### Main (40)
 
-- 3× Skewy! Boo Boo (`221672256`) — engine
-- 3× Skewy! Twick-Or-Tweat (`234592047`) — engine
-- 3× Skewy! Candee Hex (`258576611`) — engine
+- 3× Skewy! Boo-Boo (`221672256`) — engine
+- 3× Skewy! Twick-or-Tweat (`234592047`) — engine
+- 3× Skewy! Candee-Hex (`258576611`) — engine
 - 3× Skewy! Pumpki-Pal (`252496004`) — engine
 - 3× Skewy! Pawty Tyme (`217632789`) — engine
 - 3× Frozen Girl & Blood Moon (`222676270`) — custom non-engine
@@ -2302,8 +2302,8 @@ File: `CCG Test - To Proto.ydk`
 
 - 3× To Proto Archegoni (`245400676`) — engine Extra Deck
 - 3× To Proto Eisodos (`241543138`) — engine Extra Deck
-- 1× Ektelestis Gia Taxis (`212684822`) — custom related Extra Deck support
-- 1× Polemistis Gia Ataxia (`254065048`) — custom related Extra Deck support
+- 1× Ektelestis gia Taxis (`212684822`) — custom related Extra Deck support
+- 1× Polemistis gia Ataxia (`254065048`) — custom related Extra Deck support
 - 1× Rigel the Thousand-Armed (`215853847`) — custom generic Extra Deck option
 - 1× Chaos Honest (`248638801`) — custom generic Extra Deck option
 
@@ -2413,7 +2413,7 @@ File: `CCG Test - Vir Pedicae Mortis.ydk`
 
 ### Main (40)
 
-- 3× Pedicaes Papa (`241868535`) — engine
+- 3× Pedicae's Papa (`241868535`) — engine
 - 3× Vir Pedicae Mortis - Entity's Happy Servant (`215984744`) — engine
 - 3× Recollection: the Mine (`231872299`) — engine
 - 3× Vir Pedicae Mortis - Fearless Hunter (`244778917`) — engine
@@ -2603,10 +2603,10 @@ File: `CCG Test - Standalone and Non-Engine Lab.ydk`
 
 ### Main (40)
 
-- 3× Hiding "c" (`258260221`) — standalone/custom non-engine coverage
-- 3× Lance Luminar Justiciar (`259373017`) — standalone/custom non-engine coverage
+- 3× Hiding "C" (`258260221`) — standalone/custom non-engine coverage
+- 3× Lance — Luminar Justiciar (`259373017`) — standalone/custom non-engine coverage
 - 2× Yummy Kuriboh (`253152295`) — standalone/custom non-engine coverage
-- 2× Aurelion Divine Illumination (`259889864`) — standalone/custom non-engine coverage
+- 2× Aurelion — Divine Illumination (`259889864`) — standalone/custom non-engine coverage
 - 2× Pixie Bot (`237692523`) — standalone/custom non-engine coverage
 - 2× Stardust Comet (`231523659`) — standalone/custom non-engine coverage
 - 2× The Condescender (`221321849`) — standalone/custom non-engine coverage
@@ -2631,8 +2631,8 @@ File: `CCG Test - Standalone and Non-Engine Lab.ydk`
 - 2× Ether Mademoiselle (`259223502`) — standalone/custom Extra Deck coverage
 - 1× Chamroshes' Aegis (`221924008`) — standalone/custom Extra Deck coverage
 - 1× Dragon Protector of Nature (`259152704`) — standalone/custom Extra Deck coverage
-- 1× Adamantios, the Dark Armor (`259315827`) — standalone/custom Extra Deck coverage
 - 1× Flower Cardian Moonflare (`248940511`) — standalone/custom Extra Deck coverage
+- 1× Adamantios, the Dark Armor (`259315827`) — standalone/custom Extra Deck coverage
 - 1× Rising Elemental (`228464260`) — standalone/custom Extra Deck coverage
 - 1× Stardrake of Gravitic Coils (`245265629`) — standalone/custom Extra Deck coverage
 - 1× Transcend the Pendulum (`259225324`) — standalone/custom Extra Deck coverage

@@ -3,6 +3,7 @@ local s,id=GetID()
 local STRING_ID=133746105
 local SET_AQUAMARINE=0xf3c
 function s.initial_effect(c)
+	aux.AddCodeList(c,225161820)
 	--Fusion Material
 	c:EnableReviveLimit()
 	aux.AddFusionProcMix(c,true,true,function(c) return c:IsSetCard(SET_AQUAMARINE) and c:IsType(TYPE_FUSION) end,function(c) return c:IsSetCard(SET_AQUAMARINE) end)

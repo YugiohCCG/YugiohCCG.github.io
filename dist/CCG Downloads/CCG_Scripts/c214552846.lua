@@ -4,6 +4,7 @@ local STRING_ID=132552846
 local CARD_DYSMANDR=223512283
 local CARD_ELDORA_DEPRAEVITY=229786055
 function s.initial_effect(c)
+	aux.AddCodeList(c,223512283,229786055)
 	--Activate
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_ACTIVATE)
@@ -23,7 +24,8 @@ function s.initial_effect(c)
 	--If destroyed and sent to the GY
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,1))
-	e2:SetCategory(CATEGORY_DESTROY+CATEGORY_SSET)
+	e2:SetCategory(CATEGORY_DESTROY)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e2]=true
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
 	e2:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
 	e2:SetCode(EVENT_TO_GRAVE)
@@ -101,7 +103,6 @@ function s.settg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 			LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil
 		)
 	then
-		Duel.SetOperationInfo(0,CATEGORY_SSET,nil,1,tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED)
 	end
 	if Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil) then
 		Duel.SetOperationInfo(0,CATEGORY_LEAVE_GRAVE,nil,1,tp,LOCATION_GRAVE)

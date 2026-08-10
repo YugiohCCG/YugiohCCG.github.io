@@ -20,7 +20,8 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,1))
-	e2:SetCategory(CATEGORY_LEAVE_GRAVE+CATEGORY_SSET)
+	e2:SetCategory(CATEGORY_LEAVE_GRAVE)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e2]=true
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_CHAINING)
 	e2:SetRange(LOCATION_GRAVE)
@@ -60,7 +61,6 @@ end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return aux.NecroValleyFilter(s.selfsetfilter)(e:GetHandler()) end
 	Duel.SetOperationInfo(0,CATEGORY_LEAVE_GRAVE,e:GetHandler(),1,tp,LOCATION_GRAVE)
-	Duel.SetOperationInfo(0,CATEGORY_SSET,e:GetHandler(),1,tp,LOCATION_GRAVE)
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

@@ -4,6 +4,7 @@ local SET_GALACTICA=0x9c9
 local AURIGA=220148485
 local FUSION_INTERGALACTICA=245395343
 function s.initial_effect(c)
+	aux.AddCodeList(c,220148485,245395343)
 	aux.AddFusionProcFun2(c,function(mc) return mc:IsFusionSetCard(SET_GALACTICA) and mc:IsLevel(2) end,aux.FilterBoolFunction(Card.IsRace,RACE_MACHINE),true) c:EnableReviveLimit()
 	local e0=Effect.CreateEffect(c) e0:SetType(EFFECT_TYPE_SINGLE) e0:SetCode(EFFECT_SPSUMMON_CONDITION) e0:SetRange(LOCATION_EXTRA) e0:SetProperty(EFFECT_FLAG_SINGLE_RANGE+EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE) e0:SetValue(s.splimit) c:RegisterEffect(e0)
 	local e1=Effect.CreateEffect(c) e1:SetType(EFFECT_TYPE_SINGLE) e1:SetCode(EFFECT_IMMUNE_EFFECT) e1:SetProperty(EFFECT_FLAG_SINGLE_RANGE) e1:SetRange(LOCATION_MZONE) e1:SetValue(s.immval) c:RegisterEffect(e1)

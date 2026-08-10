@@ -2,6 +2,7 @@
 local s,id=GetID()
 local STRING_ID=132856437
 function s.initial_effect(c)
+	aux.AddCodeList(c,221511784,226950506)
 	-- treat as non-Tuner
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)

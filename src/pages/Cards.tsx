@@ -22,6 +22,7 @@ export default function Cards() {
     includeTCG: false,
     includeCustom: true,
     includeTest: false,
+    ignoreTextQuery: true,
   });
   const { withLegal, loading: loadingBan, error: errorBan } = useBanlistCards("TCG");
   const [params] = useSearchParams();
@@ -52,7 +53,6 @@ export default function Cards() {
     const category = (params.get("category") as Query["category"]) || "";
     const set = params.get("set") ? [params.get("set")!] : [];
     const q: Query = {
-      q: qStr || undefined,
       set,
       archetype: getAll("archetype"),
       category,

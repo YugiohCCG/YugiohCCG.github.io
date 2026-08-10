@@ -3,6 +3,7 @@ local STRING_ID=133308265
 local PUMPKING=29155212
 local CASTLE=62121
 function s.initial_effect(c)
+	aux.AddCodeList(c,62121,29155212)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_TOHAND+CATEGORY_SEARCH)

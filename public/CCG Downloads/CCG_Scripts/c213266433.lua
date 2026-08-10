@@ -5,6 +5,7 @@ local SET_FRUTE=0x813
 local CARD_FRUTEIFICATION=256930605
 local RESET_CHAIN_COMPAT=RESET_CHAIN or (RESET_PHASE+PHASE_END)
 function s.initial_effect(c)
+	aux.AddCodeList(c,256930605)
 	c:EnableReviveLimit()
 	--"Frute" monsters can attack all face-down Defense Position monsters once each
 	local e1=Effect.CreateEffect(c)

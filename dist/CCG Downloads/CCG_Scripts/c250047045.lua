@@ -2,6 +2,7 @@
 local s,id=GetID()
 local STRING_ID=132047045
 function s.initial_effect(c)
+	aux.AddCodeList(c,221511784,226950506)
 	-- banish to search and draw
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

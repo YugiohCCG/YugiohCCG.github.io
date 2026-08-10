@@ -3,6 +3,7 @@ local s,id=GetID()
 local STRING_ID=133615627
 local CARD_FRUTEIFICATION=256930605
 function s.initial_effect(c)
+	aux.AddCodeList(c,256930605)
 	c:EnableReviveLimit()
 	--Piercing battle damage
 	local e1=Effect.CreateEffect(c)

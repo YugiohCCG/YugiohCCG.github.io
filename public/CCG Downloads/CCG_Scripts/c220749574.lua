@@ -4,6 +4,7 @@ local STRING_ID=132749574
 local SET_NAUTICA=0x08f0
 local CARD_EXPLORING=248946297
 function s.initial_effect(c)
+	aux.AddCodeList(c,248946297)
 	c:EnableReviveLimit()
 	--Cannot be Normal Summoned/Set
 	local e1=Effect.CreateEffect(c)

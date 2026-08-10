@@ -5,6 +5,7 @@ local BEAST=34695290
 local MIST=61089209
 local ARSENAL=7574904
 function s.initial_effect(c)
+	aux.AddCodeList(c,7574904,34695290,61089209)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_TODECK+CATEGORY_DRAW)

@@ -6,6 +6,7 @@ local CARD_ORCHIS=236818346
 local CARD_TRAGEDY=243306841
 local TOKEN_PUPPET=234178974
 function s.initial_effect(c)
+	aux.AddCodeList(c,243306841)
 	--Treated as "Wicked Puppeteer Orchis" and a Ritual Monster while on the field
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_SINGLE)

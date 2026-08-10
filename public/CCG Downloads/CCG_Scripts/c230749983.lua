@@ -3,6 +3,7 @@ local STRING_ID=132749983
 local SET_HALLOWEEN=0xfb6d
 local WEEN=250262550
 function s.initial_effect(c)
+	aux.AddCodeList(c,4341721)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)

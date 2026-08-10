@@ -4,6 +4,7 @@ local STRING_ID=133786055
 local CARD_ELDORA=214552846
 local CARD_EXTINCTION=242009896
 function s.initial_effect(c)
+	aux.AddCodeList(c,214552846,242009896)
 	--Special Summon a matching monster destroyed this turn
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

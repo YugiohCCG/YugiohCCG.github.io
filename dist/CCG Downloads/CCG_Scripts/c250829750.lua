@@ -3,6 +3,7 @@ local STRING_ID=132829750
 local SET_GALACTICA=0x9c9
 local STATION=258934904
 function s.initial_effect(c)
+	aux.AddCodeList(c,258934904)
 	local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) e1:SetCategory(CATEGORY_LEAVE_GRAVE) e1:SetType(EFFECT_TYPE_ACTIVATE) e1:SetCode(EVENT_FREE_CHAIN) e1:SetTarget(s.acttg) e1:SetOperation(s.actop) c:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(c) e2:SetType(EFFECT_TYPE_FIELD) e2:SetCode(EFFECT_CANNOT_ACTIVATE) e2:SetRange(LOCATION_SZONE) e2:SetProperty(EFFECT_FLAG_PLAYER_TARGET) e2:SetTargetRange(0,1) e2:SetCondition(s.actcon) e2:SetValue(1) c:RegisterEffect(e2)
 	local e3=Effect.CreateEffect(c) e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS) e3:SetCode(EFFECT_DESTROY_REPLACE) e3:SetRange(LOCATION_SZONE) e3:SetTarget(s.reptg) e3:SetValue(s.repval) e3:SetOperation(s.repop) c:RegisterEffect(e3)

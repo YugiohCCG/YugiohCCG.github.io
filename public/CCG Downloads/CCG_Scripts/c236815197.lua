@@ -1,7 +1,9 @@
 -- Phlogiston's Wake
 local s,id=GetID()
 local STRING_ID=132815197
+local CARD_PHLOGISTON_DRAGON=242094473
 function s.initial_effect(c)
+	aux.AddCodeList(c,CARD_PHLOGISTON_DRAGON)
 	-- activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)

@@ -6,6 +6,7 @@ local SET_ECLIPSE_OBSERVER=0xeb17
 local CARD_OBSERVATORY=259721372
 local CARD_BOOK_OF_ECLIPSE=35480699
 function s.initial_effect(c)
+	aux.AddCodeList(c,120222045)
 	--Take 1 "Eclipse Observer" card from the Deck
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

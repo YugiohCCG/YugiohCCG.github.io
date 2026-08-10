@@ -5,6 +5,7 @@ local EVOLUTION_LAB=34572613
 local M05=62201847
 local ST46=8200556
 function s.initial_effect(c)
+	aux.AddCodeList(c,8200556,34572613,62201847)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_REMOVE+CATEGORY_TOHAND+CATEGORY_SEARCH)

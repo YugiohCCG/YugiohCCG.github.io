@@ -4,6 +4,7 @@ local STRING_ID=133081514
 local SET_ELDORA=0x0738
 local CARD_ELDORA_FIELD=214552846
 function s.initial_effect(c)
+	aux.AddCodeList(c,CARD_ELDORA_FIELD)
 	--Special Summon from hand
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

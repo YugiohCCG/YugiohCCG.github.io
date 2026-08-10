@@ -4,6 +4,7 @@ local STRING_ID=132216813
 local SET_FRUTE=0x813
 local CARD_FRUTEONIA=246830897
 function s.initial_effect(c)
+	aux.AddCodeList(c,246830897)
 	--Special Summon this card
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -18,7 +19,8 @@ function s.initial_effect(c)
 	--If Tributed: add "Fruteonia" or Set 1 "Frute" Spell/Trap
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,1))
-	e2:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_SSET)
+	e2:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e2]=true
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_RELEASE)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
@@ -81,7 +83,6 @@ function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if e:GetLabel()==0 then
 		Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
 	else
-		Duel.SetOperationInfo(0,CATEGORY_SSET,nil,1,tp,LOCATION_DECK)
 	end
 end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)

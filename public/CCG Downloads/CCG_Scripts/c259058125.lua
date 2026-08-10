@@ -4,6 +4,7 @@ local STRING_ID=133058125
 local SET_ECLIPSE=0xf2f4
 local CARD_BOOK_OF_ECLIPSE=35480699
 function s.initial_effect(c)
+	aux.AddCodeList(c,120222045)
 	--Gains ATK/DEF for each card in your opponent's hand
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	--Discard this card; Set 1 "Eclipse" Quick-Play Spell from your hand
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,0))
-	e3:SetCategory(CATEGORY_SSET)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e3]=true
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)
 	e3:SetRange(LOCATION_HAND)
@@ -59,7 +60,6 @@ end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0
 		and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_HAND,0,1,nil) end
-	Duel.SetOperationInfo(0,CATEGORY_SSET,nil,1,tp,LOCATION_HAND)
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end

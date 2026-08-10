@@ -3,6 +3,7 @@ local STRING_ID=133028111
 local COUNTER_PUMPKIN=0x2f
 local PUMPRINCESS=17601919
 function s.initial_effect(c)
+	aux.AddCodeList(c,17601919)
 	c:EnableCounterPermit(COUNTER_PUMPKIN)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

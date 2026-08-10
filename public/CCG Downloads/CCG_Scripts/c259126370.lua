@@ -4,6 +4,7 @@ local STRING_ID=133126370
 local SET_ECLIPSE=0xf2f4
 local CARD_BOOK_OF_ECLIPSE=35480699
 function s.initial_effect(c)
+	aux.AddCodeList(c,120222045)
 	c:EnableReviveLimit()
 	aux.AddXyzProcedure(c,aux.FilterBoolFunction(Card.IsRace,RACE_SPELLCASTER),8,2)
 	--If your opponent draws 2 or more cards, excavate and add 2 cards

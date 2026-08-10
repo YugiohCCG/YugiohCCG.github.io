@@ -1,7 +1,9 @@
 -- Phlogistic Scorching Dragon Horde
 local s,id=GetID()
 local STRING_ID=132303021
+local CARD_PHLOGISTON_DRAGON=242094473
 function s.initial_effect(c)
+	aux.AddCodeList(c,CARD_PHLOGISTON_DRAGON)
 	-- fusion summon
 	c:EnableReviveLimit()
 	aux.AddFusionProcMixRep(c,true,true,s.ffilter2,2,2,s.ffilter1)

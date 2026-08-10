@@ -6,6 +6,7 @@ local CARD_CONDUCTOR_NEPHTHYS=8454126
 local CARD_DEVOTEE_NEPHTHYS=88176533
 local CARD_PRIESTESS_NEPHTHYS=211964444
 function s.initial_effect(c)
+	aux.AddCodeList(c,8454126)
 	--Activate and Ritual Summon
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

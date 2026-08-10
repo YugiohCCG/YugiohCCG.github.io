@@ -10,7 +10,8 @@ function s.initial_effect(c)
 	--Set destroyed Spells/Traps
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,0))
-	e2:SetCategory(CATEGORY_LEAVE_GRAVE+CATEGORY_SSET)
+	e2:SetCategory(CATEGORY_LEAVE_GRAVE)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e2]=true
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)
 	e2:SetRange(LOCATION_SZONE+LOCATION_GRAVE)
@@ -50,7 +51,6 @@ function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,nil)
 	if chk==0 then return ft>0 and #g>0 and #g<=ft end
 	Duel.SetOperationInfo(0,CATEGORY_LEAVE_GRAVE,g,#g,tp,0)
-	Duel.SetOperationInfo(0,CATEGORY_SSET,g,#g,tp,0)
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local ft=Duel.GetLocationCount(tp,LOCATION_SZONE)

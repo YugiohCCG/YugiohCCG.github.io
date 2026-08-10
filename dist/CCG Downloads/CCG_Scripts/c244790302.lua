@@ -5,6 +5,7 @@ local SET_STAIN=0xbc5
 s.listed_series={SET_STAIN}
 s.listed_names={232449539}
 function s.initial_effect(c)
+	aux.AddCodeList(c,232449539)
 	Duel.EnableGlobalFlag(GLOBALFLAG_DECK_REVERSE_CHECK)
 	c:EnableReviveLimit()
 	aux.AddFusionProcFunRep(c,s.ffilter,2,true)

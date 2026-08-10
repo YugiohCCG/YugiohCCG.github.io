@@ -4,6 +4,7 @@ local STRING_ID=133458749
 local SET_FRUTE=0x813
 local CARD_FRUTEONIA=246830897
 function s.initial_effect(c)
+	aux.AddCodeList(c,246830897)
 	--Special Summon 1 "Frute" monster
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

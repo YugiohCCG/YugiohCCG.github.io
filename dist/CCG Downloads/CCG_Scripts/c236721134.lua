@@ -1,7 +1,9 @@
 -- Devotee of Fire
 local s,id=GetID()
 local STRING_ID=132721134
+local CARD_PHLOGISTON_DRAGON=242094473
 function s.initial_effect(c)
+	aux.AddCodeList(c,CARD_PHLOGISTON_DRAGON)
 	-- spsummon from grave
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)

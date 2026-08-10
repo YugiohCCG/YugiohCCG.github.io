@@ -9,6 +9,7 @@ local CARD_DATA_TRANSFERT=259961648
 local CARD_CORRUPTION=259546637
 local STRING_CORRUPTION=133546637
 function s.initial_effect(c)
+	aux.AddCodeList(c,36211150,259961648)
 	c:EnableReviveLimit()
 	--Special Summon limit
 	local e0=Effect.CreateEffect(c)

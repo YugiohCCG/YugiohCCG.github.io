@@ -29,12 +29,16 @@ function s.eqcheck(ev)
 	return ex and ((l and l&(LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE)~=0)
 		or (g and g:IsExists(s.eqfilter,1,nil)))
 end
+function s.setcheck(ev,re)
+	if type(aux.CCGSetEffects)=="table" and aux.CCGSetEffects[re] then return true end
+	local cat=_G["CATEGORY_".."SET"]
+	return cat and (re:IsHasCategory(cat)
+		or s.loccheck(ev,cat,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE))
+end
 function s.discon(e,tp,eg,ep,ev,re,r,rp)
 	if not Duel.IsChainDisablable(ev) then return false end
-	return s.loccheck(ev,CATEGORY_SSET,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE)
-		or s.loccheck(ev,CATEGORY_MSET,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE)
-		or re:IsHasCategory(CATEGORY_SSET) or re:IsHasCategory(CATEGORY_MSET)
-		or s.eqcheck(ev) or s.loccheck(ev,CATEGORY_LEAVE_GRAVE,LOCATION_GRAVE)
+	return s.setcheck(ev,re) or s.eqcheck(ev)
+		or s.loccheck(ev,CATEGORY_LEAVE_GRAVE,LOCATION_GRAVE)
 end
 function s.discost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

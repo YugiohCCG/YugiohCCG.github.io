@@ -6,6 +6,7 @@ local CARD_BITRON=36211150
 local CARD_PROTRON=24154052
 local CARD_DIGITRON=32295838
 function s.initial_effect(c)
+	aux.AddCodeList(c,24154052,32295838,36211150)
 	--Link Summon
 	aux.AddLinkProcedure(c,aux.FilterBoolFunction(Card.IsLinkRace,RACE_CYBERSE),2,3)
 	c:EnableReviveLimit()

@@ -4,6 +4,7 @@ local STRING_ID=133612312
 local SET_ECLIPSE=0xf2f4
 local CARD_BOOK_OF_ECLIPSE=35480699
 function s.initial_effect(c)
+	aux.AddCodeList(c,120222045)
 	c:EnableReviveLimit()
 	aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),1)
 	--If Synchro Summoned: return all opponent Spell/Trap Cards
@@ -33,7 +34,7 @@ function s.initial_effect(c)
 	--If sent to the GY: Set up to 2 "Eclipse" Quick-Play Spells
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,2))
-	e3:SetCategory(CATEGORY_SSET)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e3]=true
 	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_TO_GRAVE)
 	e3:SetProperty(EFFECT_FLAG_DELAY)
@@ -93,7 +94,6 @@ end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local ct=Duel.GetLocationCount(tp,LOCATION_SZONE)
 	if chk==0 then return ct>0 and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) end
-	Duel.SetOperationInfo(0,CATEGORY_SSET,nil,1,tp,LOCATION_GRAVE+LOCATION_REMOVED)
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local ct=Duel.GetLocationCount(tp,LOCATION_SZONE)

@@ -4,6 +4,7 @@ local SET_ELDORA=0x738
 local ELDORA=214552846
 local STATION=258934904
 function s.initial_effect(c)
+	aux.AddCodeList(c,214552846,258934904)
 	local e0=Effect.CreateEffect(c) e0:SetType(EFFECT_TYPE_SINGLE) e0:SetCode(EFFECT_ADD_SETCODE) e0:SetValue(SET_ELDORA) c:RegisterEffect(e0)
 	local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) e1:SetCategory(CATEGORY_SPECIAL_SUMMON) e1:SetType(EFFECT_TYPE_ACTIVATE) e1:SetCode(EVENT_FREE_CHAIN) e1:SetProperty(EFFECT_FLAG_CARD_TARGET) e1:SetTarget(s.target) e1:SetOperation(s.activate) c:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_RELEASE) e2:SetType(EFFECT_TYPE_QUICK_O) e2:SetCode(EVENT_FREE_CHAIN) e2:SetRange(LOCATION_MZONE) e2:SetHintTiming(0,TIMINGS_CHECK_MONSTER+TIMING_END_PHASE) e2:SetCondition(s.stcon) e2:SetCost(s.stcost) e2:SetTarget(s.sttg) e2:SetOperation(s.stop) c:RegisterEffect(e2)

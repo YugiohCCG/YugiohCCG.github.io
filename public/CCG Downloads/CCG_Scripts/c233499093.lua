@@ -1,6 +1,7 @@
 local s,id=GetID()
 local STRING_ID=133499093
 function s.initial_effect(c)
+	aux.AddCodeList(c,234296128)
 	c:EnableReviveLimit()
 	aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsRace,RACE_ZOMBIE),aux.NonTuner(aux.FilterBoolFunction(Card.IsCode,234296128)),1,1)
 	local e1=Effect.CreateEffect(c)

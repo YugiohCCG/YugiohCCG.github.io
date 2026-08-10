@@ -3,6 +3,7 @@ local SET_NEMLERIA=0x191
 local STRING_ID=133090287
 local FLAG_ID=id
 function s.initial_effect(c)
+	aux.AddCodeList(c,70155677)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)

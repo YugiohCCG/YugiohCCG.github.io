@@ -5,6 +5,7 @@ local SET_ECLIPSE=0xf2f4
 local SET_ECLIPSE_OBSERVER=0xeb17
 local CARD_BOOK_OF_ECLIPSE=35480699
 function s.initial_effect(c)
+	aux.AddCodeList(c,120222045)
 	c:EnableReviveLimit()
 	aux.AddFusionProcFun2(c,s.fusmat1,aux.FilterBoolFunction(Card.IsRace,RACE_SPELLCASTER),true)
 	--"Eclipse Observer" cards are unaffected by "Eclipse" Quick-Play Spells

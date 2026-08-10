@@ -8,6 +8,7 @@ local CARD_DIGITRON=32295838
 local CARD_GLITCHLING_WITCH=259678739
 local CARD_GLITCHLING_MAGE=259072906
 function s.initial_effect(c)
+	aux.AddCodeList(c,24154052,32295838,36211150,259072906,259678739)
 	--Ritual Summon
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)

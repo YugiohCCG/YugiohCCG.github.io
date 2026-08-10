@@ -6,6 +6,7 @@ local CARD_TRUE_ORCHIS=234178973
 local CARD_ORCHIS=236818346
 local CARD_TRAGEDY=243306841
 function s.initial_effect(c)
+	aux.AddCodeList(c,243306841)
 	--When activated: add 1 "Wicked Puppeteer" monster
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

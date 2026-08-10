@@ -5,6 +5,7 @@ local SET_AQUAMARINE=0xf3c
 local CARD_HAPALOCHLAENA=259920959
 local CARD_LEGACY_HAPALOCHLAENA=210678856
 function s.initial_effect(c)
+	aux.AddCodeList(c,225161820,249746105)
 	--Fusion Material
 	c:EnableReviveLimit()
 	aux.AddFusionProcMixRep(c,true,true,function(c) return c:IsSetCard(SET_AQUAMARINE) and c:IsType(TYPE_FUSION) and c:IsLevelAbove(7) end,2,2)

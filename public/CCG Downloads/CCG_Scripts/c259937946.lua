@@ -4,6 +4,7 @@ local STRING_ID=133937946
 local SET_GRAND_BLUE=0x67ee
 local CARD_GRAND_BLUE_PRINCESS=259177849
 function s.initial_effect(c)
+	aux.AddCodeList(c,259177849)
 	c:EnableReviveLimit()
 	aux.AddFusionProcMix(c,true,true,s.princessmat,s.gbmat)
 	--Must first be Fusion Summoned

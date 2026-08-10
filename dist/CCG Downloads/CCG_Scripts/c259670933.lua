@@ -4,6 +4,7 @@ local STRING_ID=133670933
 local SET_DOMESTICA=0xe302
 local CARD_UNDERWORLD=259265448
 function s.initial_effect(c)
+	aux.AddCodeList(c,259265448)
 	c:EnableReviveLimit()
 	c:SetSPSummonOnce(id)
 	aux.AddFusionProcFunRep(c,s.fusfilter,2,true)

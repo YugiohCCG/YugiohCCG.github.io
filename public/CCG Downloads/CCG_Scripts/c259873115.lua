@@ -11,6 +11,7 @@ local CARD_GLITCHLING_PROTRON=259156549
 local CARD_GLITCHLING_DIGITRON=259494236
 local CARD_GLITCHLING_HEXATRON=259253032
 function s.initial_effect(c)
+	aux.AddCodeList(c,24154052,32295838,36211150,259961648)
 	c:EnableReviveLimit()
 	aux.EnablePendulumAttribute(c)
 	--Special Summon limit

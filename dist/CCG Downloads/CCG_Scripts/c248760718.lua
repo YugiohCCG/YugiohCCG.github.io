@@ -27,7 +27,8 @@ function s.initial_effect(c)
 	-- set and spsummon
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,1))
-	e3:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_SSET)
+	e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e3]=true
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)
 	e3:SetRange(LOCATION_HAND)

@@ -5,6 +5,7 @@ local SET_VIR_PEDICAE_MORTIS=0x39e2
 local CARD_BEAR_TRAP=251699681
 local CARD_FEARLESS_HUNTER=244778917
 function s.initial_effect(c)
+	aux.AddCodeList(c,251699681)
 	c:EnableReviveLimit()
 	--Omega's standard Link procedure, with Fearless Hunter allowed to
 	--contribute either 1 or 2 toward this archetype's Link Rating.

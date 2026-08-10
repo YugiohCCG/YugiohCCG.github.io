@@ -3,6 +3,7 @@ local STRING_ID=133017109
 local TIMINGS_CHECK_MONSTER=TIMINGS_CHECK_MONSTER or 0
 local TYPE_EFFECT_TRAP_MONSTER=TYPE_EFFECT+TYPE_TRAP+TYPE_MONSTER
 function s.initial_effect(c)
+	aux.AddCodeList(c,70155677)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

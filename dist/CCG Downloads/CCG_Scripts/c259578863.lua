@@ -30,7 +30,8 @@ function s.initial_effect(c)
 	--Banish this card; Set or add 1 "Grand Blue" Spell
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,1))
-	e3:SetCategory(CATEGORY_SEARCH+CATEGORY_TOHAND+CATEGORY_SSET)
+	e3:SetCategory(CATEGORY_SEARCH+CATEGORY_TOHAND)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e3]=true
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetRange(LOCATION_GRAVE)
 	e3:SetCountLimit(1,id+100)

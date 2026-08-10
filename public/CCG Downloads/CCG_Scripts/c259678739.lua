@@ -4,6 +4,7 @@ local SET_GLITCHLING=0x9894
 local COUNTER_CORRUPTION=0x1994
 local CARD_CORRUPTION=259546637
 function s.initial_effect(c)
+	aux.AddCodeList(c,259961648)
 	c:EnableReviveLimit()
 	aux.EnablePendulumAttribute(c)
 	--Special Summon limit

@@ -10,6 +10,7 @@ local CARD_RECOLLECTION_IRON=234984156
 local CARD_RECOLLECTION_MINE=231872299
 local CARD_RECOLLECTION_KABOOM=241447408
 function s.initial_effect(c)
+	aux.AddCodeList(c,241868535,251699681)
 	--If Normal or Special Summoned: add 1 "Recollection" and 1 "Bear Trap" or "Mortis" card
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

@@ -5,6 +5,7 @@ local SET_TAXIS=0x27e9
 local TOKEN_PROTOGENIC=240299293
 local CARD_TO_PROTO_TAXIS=246380598
 function s.initial_effect(c)
+	aux.AddCodeList(c,246380598)
 	c:EnableReviveLimit()
 	--Fusion material text
 	aux.AddFusionProcFunRep(c,s.matfilter,2,true)

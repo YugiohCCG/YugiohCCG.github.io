@@ -4,6 +4,7 @@ local STRING_ID=133957394
 local CARD_DYSMANDR=223512283
 local CARD_EXTINCTION=242009896
 function s.initial_effect(c)
+	aux.AddCodeList(c,223512283,242009896)
 	--Treated as The Hallowed Scripts of the Ataxia
 	--Activate (Rewrite effect)
 	local e1=Effect.CreateEffect(c)

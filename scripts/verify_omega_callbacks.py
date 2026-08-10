@@ -76,7 +76,7 @@ def main() -> int:
     parser.add_argument("--lua", default=None, help="Lua executable (defaults to PATH).")
     args = parser.parse_args()
 
-    lua = args.lua or shutil.which("lua")
+    lua = args.lua or shutil.which("lua") or shutil.which("lua5.4")
     if not lua:
         raise SystemExit("Lua executable not found on PATH")
     if not args.harness.is_file():

@@ -5,6 +5,7 @@ local SET_VIR_PEDICAE_MORTIS=0x39e2
 local CARD_PEDICAES_PAPA=241868535
 local CARD_RECOLLECTION_KABOOM=241447408
 function s.initial_effect(c)
+	aux.AddCodeList(c,241447408)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)

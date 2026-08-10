@@ -1,0 +1,5957 @@
+{
+  "schema_version": 1,
+  "summary": {
+    "active_cards": 577,
+    "scripts": 578,
+    "parsed_scripts": 578,
+    "effect_creations": 1985,
+    "callback_functions": 3605,
+    "search_calls": 2769,
+    "accepted_replacement_target_callbacks": 3,
+    "errors": 0,
+    "review_candidates": 0,
+    "accepted_reviewed_findings": 14,
+    "stale_reviewed_findings": 0,
+    "findings_by_kind": {}
+  },
+  "findings": [],
+  "accepted_findings": [
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 231,
+      "card_id": 221759221,
+      "card_name": "Windborne Cartographer",
+      "script": "c221759221.lua",
+      "line": 88,
+      "detail": "e3: s.sptg does not visibly guard s.spop's Duel.GetMatchingGroup(s.revflagfilter|tp|LOCATION_HAND|0).",
+      "disposition": "The activation guard requires a hand card able to return to the Deck. The operation's revflagfilter identifies the separately revealed mandatory subset before selecting any additional able cards."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 392,
+      "card_id": 222654570,
+      "card_name": "Crewal Booty",
+      "script": "c222654570.lua",
+      "line": 71,
+      "detail": "e2: s.target does not visibly guard s.operation's Duel.SelectMatchingCard(s.szfilter|tp|LOCATION_SZONE|0).",
+      "disposition": "The SZONE monster search is an optional follow-up after placing the first card and is independently guarded inside the operation."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 160,
+      "card_id": 224751741,
+      "card_name": "Fall of Azrynior",
+      "script": "c224751741.lua",
+      "line": 88,
+      "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
+      "disposition": "Fusion materials are collected after the mandatory Token is created; the activation guard separately proves a Dragon material and a summonable named Fusion."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 160,
+      "card_id": 224751741,
+      "card_name": "Fall of Azrynior",
+      "script": "c224751741.lua",
+      "line": 95,
+      "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
+      "disposition": "The second material-group read applies the selected Fusion Monster to the same post-Token material pool; activation legality is established by dragonmat and fusfilter."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 49,
+      "card_id": 227745087,
+      "card_name": "The Green Frute",
+      "script": "c227745087.lua",
+      "line": 86,
+      "detail": "e2: s.tgtg does not visibly guard s.tgop's Duel.SelectMatchingCard(f|tp|LOCATION_DECK|0).",
+      "disposition": "The operation deliberately selects with one of two predicates chosen and stored by the target callback. Both option predicates are checked at activation."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 159,
+      "card_id": 239245471,
+      "card_name": "Birth of Azrynior",
+      "script": "c239245471.lua",
+      "line": 84,
+      "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
+      "disposition": "Fusion materials are collected after the mandatory Token is created; the activation guard separately proves a Dragon material and a summonable named Fusion."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 159,
+      "card_id": 239245471,
+      "card_name": "Birth of Azrynior",
+      "script": "c239245471.lua",
+      "line": 91,
+      "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
+      "disposition": "The second material-group read applies the selected Fusion Monster to the same post-Token material pool; activation legality is established by dragonmat and fusfilter."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 164,
+      "card_id": 242009896,
+      "card_name": "Extinction of Dysmandr",
+      "script": "c242009896.lua",
+      "line": 68,
+      "detail": "e1: s.destg does not visibly guard s.desop's Duel.GetMatchingGroup(s.dgfilter|tp|LOCATION_MZONE|LOCATION_MZONE).",
+      "disposition": "The target callback chooses the reference monster. The operation's different predicate intentionally finds all other monsters sharing one of its characteristics."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 372,
+      "card_id": 244816828,
+      "card_name": "Myutant Evolution",
+      "script": "c244816828.lua",
+      "line": 84,
+      "detail": "e2: s.sptg does not visibly guard s.spop's Duel.SelectMatchingCard(s.spfilter|tp|LOCATION_HAND+LOCATION_DECK|0).",
+      "disposition": "rmfilter validates that each banishable card has the corresponding named summon available; the later spfilter selection uses the code determined by the card actually banished."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 16,
+      "card_id": 247789143,
+      "card_name": "Stained Sorceress Silphia",
+      "script": "c247789143.lua",
+      "line": 157,
+      "detail": "e3: s.chaintg does not visibly guard s.chainop's Duel.GetMatchingGroup(s.banfilter|tp|LOCATION_MZONE|LOCATION_MZONE).",
+      "disposition": "banpairfilter proves the two required groups exist. Resolution then materializes the generic monster group and the own Stain group separately."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 570,
+      "card_id": 259614765,
+      "card_name": "Encyclopedia of Eclipse",
+      "script": "c259614765.lua",
+      "line": 47,
+      "detail": "e1: s.target does not visibly guard s.activate's Duel.GetMatchingGroup(s.filter|tp|LOCATION_MZONE|LOCATION_MZONE).",
+      "disposition": "Activation checks for at least one negatable monster and draw legality. Resolution enumerates all face-up monsters, applies the negate predicate individually, then counts the opponent's current face-up monsters."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 307,
+      "card_id": 259650969,
+      "card_name": "Ohmen Beacon",
+      "script": "c259650969.lua",
+      "line": 130,
+      "detail": "e3: s.mvtg does not visibly guard s.mvop's Duel.GetMatchingGroup(function(mc)returnmc:IsFaceup()andmc:GetMutualLinkedGroupCount()>0end|tp|LOCATION_MZONE|0).",
+      "disposition": "The guarded mvfilter selection is performed earlier in the operation. This second group is the post-move set of co-linked monsters that receive counters."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 120,
+      "card_id": 259679619,
+      "card_name": "City Within the Grand Blue",
+      "script": "c259679619.lua",
+      "line": 51,
+      "detail": "e1: s.thtg does not visibly guard s.thop's Duel.SelectMatchingCard(aux.NecroValleyFilter(s.thfilter)|tp|LOCATION_DECK+LOCATION_GRAVE|0).",
+      "disposition": "The activation search is optional, so the card may be activated with no target. Resolution correctly applies Necrovalley legality before offering and selecting the search."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 555,
+      "card_id": 259783008,
+      "card_name": "Wyvernal Caudina",
+      "script": "c259783008.lua",
+      "line": 78,
+      "detail": "e2: s.tgtg does not visibly guard s.tgop's Duel.SelectMatchingCard(s.samefilter|tp|LOCATION_DECK|0).",
+      "disposition": "tgfilter only accepts a first Deck monster when another same-name copy is available. The operation then uses samefilter for the required second copy."
+    }
+  ],
+  "stale_reviewed_findings": [],
+  "cards": [
+    {
+      "ordinal": 417,
+      "card_id": 210175845,
+      "card_name": "Scarstech Principality",
+      "script": "c210175845.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 393,
+      "card_id": 210366076,
+      "card_name": "Crewal Meeting",
+      "script": "c210366076.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 7
+    },
+    {
+      "ordinal": 24,
+      "card_id": 210506870,
+      "card_name": "Talismandrake Heat",
+      "script": "c210506870.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 8
+    },
+    {
+      "ordinal": 391,
+      "card_id": 210628767,
+      "card_name": "Morbydrip the Crewal Whale",
+      "script": "c210628767.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": null,
+      "card_id": 210678856,
+      "card_name": "Compatibility script",
+      "script": "c210678856.lua",
+      "parsed": true,
+      "effects": 0,
+      "callbacks": 0,
+      "searches": 0
+    },
+    {
+      "ordinal": 453,
+      "card_id": 210696007,
+      "card_name": "Galataxian Battle Preparation",
+      "script": "c210696007.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 170,
+      "card_id": 210716547,
+      "card_name": "Clock of Aldrez",
+      "script": "c210716547.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 5
+    },
+    {
+      "ordinal": 40,
+      "card_id": 210923192,
+      "card_name": "Aldrez Opening",
+      "script": "c210923192.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 191,
+      "card_id": 211086520,
+      "card_name": "Recollection: Static, Lead, and Nerve",
+      "script": "c211086520.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 2
+    },
+    {
+      "ordinal": 280,
+      "card_id": 211682274,
+      "card_name": "Aquamarine Pisaster Giga",
+      "script": "c211682274.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 5
+    },
+    {
+      "ordinal": 373,
+      "card_id": 211699737,
+      "card_name": "Myutant Amalgamate",
+      "script": "c211699737.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 309,
+      "card_id": 211873618,
+      "card_name": "Altergeist Regissae",
+      "script": "c211873618.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 126,
+      "card_id": 211964444,
+      "card_name": "Priestess of Nephthys",
+      "script": "c211964444.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 399,
+      "card_id": 212052682,
+      "card_name": "Ghostrick Djinn",
+      "script": "c212052682.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 13,
+      "searches": 5
+    },
+    {
+      "ordinal": 312,
+      "card_id": 212055290,
+      "card_name": "Advent of Cosmic Beings",
+      "script": "c212055290.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 2
+    },
+    {
+      "ordinal": 153,
+      "card_id": 212184534,
+      "card_name": "Stellaer of the Flames",
+      "script": "c212184534.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 432,
+      "card_id": 212345347,
+      "card_name": "Gravinity Lapsix",
+      "script": "c212345347.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 465,
+      "card_id": 212377618,
+      "card_name": "Cassiopeia of the Eldoran System",
+      "script": "c212377618.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 0,
+      "searches": 0
+    },
+    {
+      "ordinal": 331,
+      "card_id": 212413422,
+      "card_name": "Gaia, the Iron Clad Knight",
+      "script": "c212413422.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 7,
+      "searches": 5
+    },
+    {
+      "ordinal": 434,
+      "card_id": 212429024,
+      "card_name": "Gravinity Nebulix",
+      "script": "c212429024.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 3
+    },
+    {
+      "ordinal": 142,
+      "card_id": 212684822,
+      "card_name": "Ektelestis gia Taxis",
+      "script": "c212684822.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 277,
+      "card_id": 212737555,
+      "card_name": "Aqua Droplet",
+      "script": "c212737555.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 368,
+      "card_id": 212822164,
+      "card_name": "Bray, Shell of the Ghoti",
+      "script": "c212822164.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 3,
+      "searches": 2
+    },
+    {
+      "ordinal": 459,
+      "card_id": 212837324,
+      "card_name": "Galactican Jet Drifter",
+      "script": "c212837324.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 56,
+      "card_id": 213266433,
+      "card_name": "The Hanging Frute",
+      "script": "c213266433.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 9,
+      "searches": 7
+    },
+    {
+      "ordinal": 270,
+      "card_id": 213530841,
+      "card_name": "Chrono-Saur Counter",
+      "script": "c213530841.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 429,
+      "card_id": 213611313,
+      "card_name": "Scarstech Crawler",
+      "script": "c213611313.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 58,
+      "card_id": 213615627,
+      "card_name": "The Fruted Warrior",
+      "script": "c213615627.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 42,
+      "card_id": 213849997,
+      "card_name": "Checkmate in Aldrez",
+      "script": "c213849997.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 6,
+      "searches": 9
+    },
+    {
+      "ordinal": 274,
+      "card_id": 213990492,
+      "card_name": "Eridani, Squire of Zephorion Prime",
+      "script": "c213990492.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 3
+    },
+    {
+      "ordinal": 157,
+      "card_id": 214226989,
+      "card_name": "Stellaer of Purity",
+      "script": "c214226989.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 9,
+      "searches": 4
+    },
+    {
+      "ordinal": 200,
+      "card_id": 214349717,
+      "card_name": "Emma Oceannus & the Nautical Coastlines",
+      "script": "c214349717.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 3,
+      "searches": 2
+    },
+    {
+      "ordinal": 106,
+      "card_id": 214371067,
+      "card_name": "Enra",
+      "script": "c214371067.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 340,
+      "card_id": 214511076,
+      "card_name": "Arckcestial Prism",
+      "script": "c214511076.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 3
+    },
+    {
+      "ordinal": 165,
+      "card_id": 214552846,
+      "card_name": "Eldora, the Intergalactic Empire",
+      "script": "c214552846.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 9
+    },
+    {
+      "ordinal": 240,
+      "card_id": 215006791,
+      "card_name": "Muntith, Windborne Skydragon of the Shining Sun",
+      "script": "c215006791.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 10,
+      "searches": 5
+    },
+    {
+      "ordinal": 26,
+      "card_id": 215034223,
+      "card_name": "Talismandrake Arms United",
+      "script": "c215034223.lua",
+      "parsed": true,
+      "effects": 12,
+      "callbacks": 13,
+      "searches": 7
+    },
+    {
+      "ordinal": 233,
+      "card_id": 215068354,
+      "card_name": "Janna, Windborne Goddess of the Temple",
+      "script": "c215068354.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 9
+    },
+    {
+      "ordinal": 353,
+      "card_id": 215105971,
+      "card_name": "Urphiel, the High Arckcestial",
+      "script": "c215105971.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 7
+    },
+    {
+      "ordinal": 259,
+      "card_id": 215142357,
+      "card_name": "Shining Brigade - Stand Together!",
+      "script": "c215142357.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 6
+    },
+    {
+      "ordinal": 154,
+      "card_id": 215445495,
+      "card_name": "Stellaer of the Waters",
+      "script": "c215445495.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 381,
+      "card_id": 215621622,
+      "card_name": "A Night of Fright on Hallo-Ween!",
+      "script": "c215621622.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 4,
+      "searches": 4
+    },
+    {
+      "ordinal": 66,
+      "card_id": 215629896,
+      "card_name": "NiuHao - Zaoka",
+      "script": "c215629896.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 10,
+      "searches": 2
+    },
+    {
+      "ordinal": 389,
+      "card_id": 215730767,
+      "card_name": "Crewal Helmsman",
+      "script": "c215730767.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 10,
+      "searches": 4
+    },
+    {
+      "ordinal": 431,
+      "card_id": 215768254,
+      "card_name": "Gravinity Star",
+      "script": "c215768254.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 8,
+      "searches": 2
+    },
+    {
+      "ordinal": 91,
+      "card_id": 215853847,
+      "card_name": "Rigel the Thousand-Armed",
+      "script": "c215853847.lua",
+      "parsed": true,
+      "effects": 7,
+      "callbacks": 5,
+      "searches": 0
+    },
+    {
+      "ordinal": 244,
+      "card_id": 215885404,
+      "card_name": "Pot of Fortune",
+      "script": "c215885404.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 2
+    },
+    {
+      "ordinal": 28,
+      "card_id": 215921734,
+      "card_name": "Right Talismandrake Arms - Blaze Halberd",
+      "script": "c215921734.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 186,
+      "card_id": 215984744,
+      "card_name": "Vir Pedicae Mortis - Entity's Happy Servant",
+      "script": "c215984744.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 8
+    },
+    {
+      "ordinal": 52,
+      "card_id": 216140411,
+      "card_name": "Fruteopia",
+      "script": "c216140411.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 288,
+      "card_id": 216258796,
+      "card_name": "Aquamarine Actinia",
+      "script": "c216258796.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 229,
+      "card_id": 216294702,
+      "card_name": "A Throne of Crying Chaos",
+      "script": "c216294702.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 2,
+      "searches": 4
+    },
+    {
+      "ordinal": 155,
+      "card_id": 216505735,
+      "card_name": "Stellaer of the Air",
+      "script": "c216505735.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 127,
+      "card_id": 216532402,
+      "card_name": "Sacred Feather of Nephthys",
+      "script": "c216532402.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 12
+    },
+    {
+      "ordinal": 81,
+      "card_id": 216620496,
+      "card_name": "Remembrance of the Melody",
+      "script": "c216620496.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 5,
+      "card_id": 216958556,
+      "card_name": "Stained Deer Dante",
+      "script": "c216958556.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 6
+    },
+    {
+      "ordinal": 228,
+      "card_id": 217029078,
+      "card_name": "Windborne Cloudwing",
+      "script": "c217029078.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 8
+    },
+    {
+      "ordinal": 212,
+      "card_id": 217118040,
+      "card_name": "Plague Doctor of Crying Chaos",
+      "script": "c217118040.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 18,
+      "card_id": 217174535,
+      "card_name": "Stainless Kaleidragon",
+      "script": "c217174535.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 1
+    },
+    {
+      "ordinal": 139,
+      "card_id": 217332244,
+      "card_name": "To Proto Psychi",
+      "script": "c217332244.lua",
+      "parsed": true,
+      "effects": 7,
+      "callbacks": 11,
+      "searches": 4
+    },
+    {
+      "ordinal": 386,
+      "card_id": 217632789,
+      "card_name": "Skewy! Pawty Tyme",
+      "script": "c217632789.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 394,
+      "card_id": 217645912,
+      "card_name": "Crewal Tide",
+      "script": "c217645912.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 39,
+      "card_id": 217700538,
+      "card_name": "Aldrez Blitz",
+      "script": "c217700538.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 105,
+      "card_id": 217713649,
+      "card_name": "Onibi",
+      "script": "c217713649.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 6
+    },
+    {
+      "ordinal": 34,
+      "card_id": 218142234,
+      "card_name": "Maiden of Talismandrakes Seraphina",
+      "script": "c218142234.lua",
+      "parsed": true,
+      "effects": 14,
+      "callbacks": 21,
+      "searches": 12
+    },
+    {
+      "ordinal": 213,
+      "card_id": 218261525,
+      "card_name": "Scarecrow of Crying Chaos",
+      "script": "c218261525.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 6
+    },
+    {
+      "ordinal": 62,
+      "card_id": 218600459,
+      "card_name": "NiuHao - Bauba",
+      "script": "c218600459.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 10,
+      "searches": 6
+    },
+    {
+      "ordinal": 9,
+      "card_id": 218685316,
+      "card_name": "Stargazer of the Stained",
+      "script": "c218685316.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 84,
+      "card_id": 218837030,
+      "card_name": "Ursarctic Megailus",
+      "script": "c218837030.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 10,
+      "searches": 4
+    },
+    {
+      "ordinal": 207,
+      "card_id": 218905439,
+      "card_name": "Nautical Adventures & Torrential Seas",
+      "script": "c218905439.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 10
+    },
+    {
+      "ordinal": 466,
+      "card_id": 219002796,
+      "card_name": "Intergalacticanes Majoris",
+      "script": "c219002796.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 172,
+      "card_id": 219047593,
+      "card_name": "Phantasm Spiral Resurgence",
+      "script": "c219047593.lua",
+      "parsed": true,
+      "effects": 8,
+      "callbacks": 8,
+      "searches": 4
+    },
+    {
+      "ordinal": 182,
+      "card_id": 219150610,
+      "card_name": "Wicked Puppeteery",
+      "script": "c219150610.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 9
+    },
+    {
+      "ordinal": 99,
+      "card_id": 219419648,
+      "card_name": "Sustained Succubus Saria",
+      "script": "c219419648.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 197,
+      "card_id": 219543855,
+      "card_name": "Securitake Agent",
+      "script": "c219543855.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 322,
+      "card_id": 219714894,
+      "card_name": "Phlogistic Ignition",
+      "script": "c219714894.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 395,
+      "card_id": 219783132,
+      "card_name": "Crewal Attack",
+      "script": "c219783132.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 356,
+      "card_id": 219826457,
+      "card_name": "Ro-Bau",
+      "script": "c219826457.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 11,
+      "searches": 7
+    },
+    {
+      "ordinal": 158,
+      "card_id": 219905997,
+      "card_name": "Stellaer of the Ground",
+      "script": "c219905997.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 347,
+      "card_id": 219995840,
+      "card_name": "Light Illusion of Vazagiel",
+      "script": "c219995840.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 249,
+      "card_id": 220124524,
+      "card_name": "Shining Brigade - Heartbeat Division",
+      "script": "c220124524.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 2
+    },
+    {
+      "ordinal": 450,
+      "card_id": 220148485,
+      "card_name": "Galacticanes Auriga",
+      "script": "c220148485.lua",
+      "parsed": true,
+      "effects": 0,
+      "callbacks": 0,
+      "searches": 0
+    },
+    {
+      "ordinal": 279,
+      "card_id": 220150285,
+      "card_name": "Aquamarine Plate Montipora",
+      "script": "c220150285.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 7
+    },
+    {
+      "ordinal": 222,
+      "card_id": 220305422,
+      "card_name": "Natir, the Swords Master of Crying Chaos",
+      "script": "c220305422.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 326,
+      "card_id": 220538776,
+      "card_name": "Curryboh",
+      "script": "c220538776.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 202,
+      "card_id": 220749574,
+      "card_name": "Scarlet Seareef & the Nautical Creatures",
+      "script": "c220749574.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 9,
+      "searches": 12
+    },
+    {
+      "ordinal": 354,
+      "card_id": 220856437,
+      "card_name": "Bauy Magician",
+      "script": "c220856437.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 5
+    },
+    {
+      "ordinal": 50,
+      "card_id": 220916791,
+      "card_name": "The White Frute",
+      "script": "c220916791.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 5
+    },
+    {
+      "ordinal": 210,
+      "card_id": 221047295,
+      "card_name": "Bookkeeper of Crying Chaos",
+      "script": "c221047295.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 3,
+      "card_id": 221321849,
+      "card_name": "The Condescender",
+      "script": "c221321849.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 282,
+      "card_id": 221509060,
+      "card_name": "Aquamarine Calling",
+      "script": "c221509060.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 2
+    },
+    {
+      "ordinal": 357,
+      "card_id": 221511784,
+      "card_name": "Bau",
+      "script": "c221511784.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 11,
+      "searches": 8
+    },
+    {
+      "ordinal": 382,
+      "card_id": 221672256,
+      "card_name": "Skewy! Boo-Boo",
+      "script": "c221672256.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 231,
+      "card_id": 221759221,
+      "card_name": "Windborne Cartographer",
+      "script": "c221759221.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 10,
+      "searches": 8
+    },
+    {
+      "ordinal": 11,
+      "card_id": 221822671,
+      "card_name": "Stained Sovereign Silas",
+      "script": "c221822671.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 6
+    },
+    {
+      "ordinal": 467,
+      "card_id": 221827483,
+      "card_name": "To Protogenis Intergalataxiakos",
+      "script": "c221827483.lua",
+      "parsed": true,
+      "effects": 7,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 113,
+      "card_id": 221855414,
+      "card_name": "Otakemaru the Accuser",
+      "script": "c221855414.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 11,
+      "searches": 4
+    },
+    {
+      "ordinal": 330,
+      "card_id": 221924008,
+      "card_name": "Chamroshes' Aegis",
+      "script": "c221924008.lua",
+      "parsed": true,
+      "effects": 7,
+      "callbacks": 10,
+      "searches": 6
+    },
+    {
+      "ordinal": 90,
+      "card_id": 222257685,
+      "card_name": "Branching to Guidance",
+      "script": "c222257685.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 333,
+      "card_id": 222476063,
+      "card_name": "Gaia the Magnificent Knight",
+      "script": "c222476063.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 392,
+      "card_id": 222654570,
+      "card_name": "Crewal Booty",
+      "script": "c222654570.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 4,
+      "searches": 9
+    },
+    {
+      "ordinal": 167,
+      "card_id": 222676270,
+      "card_name": "Frozen Girl & Blood Moon",
+      "script": "c222676270.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 4,
+      "searches": 0
+    },
+    {
+      "ordinal": 168,
+      "card_id": 222782750,
+      "card_name": "Ghost Doll & Midnight Manor",
+      "script": "c222782750.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 4,
+      "searches": 0
+    },
+    {
+      "ordinal": 174,
+      "card_id": 222875833,
+      "card_name": "Phantasm Spiral Ensnarement",
+      "script": "c222875833.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 204,
+      "card_id": 223158720,
+      "card_name": "Nautical Backwashing & Oceanic Waves",
+      "script": "c223158720.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 4,
+      "searches": 11
+    },
+    {
+      "ordinal": 364,
+      "card_id": 223366685,
+      "card_name": "Bauy Emergency Room!",
+      "script": "c223366685.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 436,
+      "card_id": 223505382,
+      "card_name": "Gravinity Transfer Call",
+      "script": "c223505382.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 2,
+      "searches": 2
+    },
+    {
+      "ordinal": 163,
+      "card_id": 223512283,
+      "card_name": "Dysmandr, the Depraevity of Worlds",
+      "script": "c223512283.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 8,
+      "searches": 3
+    },
+    {
+      "ordinal": 94,
+      "card_id": 223558392,
+      "card_name": "Prophecy of Boulders",
+      "script": "c223558392.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 5
+    },
+    {
+      "ordinal": 95,
+      "card_id": 223592011,
+      "card_name": "Prophecy of Storms",
+      "script": "c223592011.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 5
+    },
+    {
+      "ordinal": 253,
+      "card_id": 223750159,
+      "card_name": "Shining Brigade Armada",
+      "script": "c223750159.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 1
+    },
+    {
+      "ordinal": 334,
+      "card_id": 223770816,
+      "card_name": "Blazing Gaia the Spiral Knight",
+      "script": "c223770816.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 4
+    },
+    {
+      "ordinal": 21,
+      "card_id": 224049334,
+      "card_name": "Solemn Rebirth",
+      "script": "c224049334.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 4,
+      "searches": 2
+    },
+    {
+      "ordinal": 138,
+      "card_id": 224225695,
+      "card_name": "To Proto Ataxia",
+      "script": "c224225695.lua",
+      "parsed": true,
+      "effects": 10,
+      "callbacks": 10,
+      "searches": 6
+    },
+    {
+      "ordinal": 422,
+      "card_id": 224235021,
+      "card_name": "Scarstech Deployment",
+      "script": "c224235021.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 4,
+      "searches": 3
+    },
+    {
+      "ordinal": 20,
+      "card_id": 224274662,
+      "card_name": "Armored Nova Mecha-Scaled Xyrion",
+      "script": "c224274662.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 11,
+      "searches": 2
+    },
+    {
+      "ordinal": 411,
+      "card_id": 224467692,
+      "card_name": "Scarstech Prologue",
+      "script": "c224467692.lua",
+      "parsed": true,
+      "effects": 0,
+      "callbacks": 0,
+      "searches": 0
+    },
+    {
+      "ordinal": 160,
+      "card_id": 224751741,
+      "card_name": "Fall of Azrynior",
+      "script": "c224751741.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 242,
+      "card_id": 224774049,
+      "card_name": "Pot of Gambling",
+      "script": "c224774049.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 0
+    },
+    {
+      "ordinal": 379,
+      "card_id": 224800873,
+      "card_name": "Hallo-Ween! Basket of Treats",
+      "script": "c224800873.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 319,
+      "card_id": 224811863,
+      "card_name": "Shaman of Fire",
+      "script": "c224811863.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 5
+    },
+    {
+      "ordinal": 7,
+      "card_id": 224822244,
+      "card_name": "Stained Raptor Rollo",
+      "script": "c224822244.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 218,
+      "card_id": 224943273,
+      "card_name": "Goat of Crying Chaos",
+      "script": "c224943273.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 4,
+      "card_id": 225091736,
+      "card_name": "Stained Bird Bria",
+      "script": "c225091736.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 5
+    },
+    {
+      "ordinal": 146,
+      "card_id": 225106953,
+      "card_name": "Stellaer of the Gems",
+      "script": "c225106953.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 203,
+      "card_id": 225109525,
+      "card_name": "Evander Coldwater & the Nautical Abyss",
+      "script": "c225109525.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 4,
+      "searches": 8
+    },
+    {
+      "ordinal": 290,
+      "card_id": 225161820,
+      "card_name": "Aquamarine Glaucus",
+      "script": "c225161820.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 7
+    },
+    {
+      "ordinal": 442,
+      "card_id": 225260657,
+      "card_name": "Lowkey Lowkey",
+      "script": "c225260657.lua",
+      "parsed": true,
+      "effects": 0,
+      "callbacks": 0,
+      "searches": 0
+    },
+    {
+      "ordinal": 363,
+      "card_id": 225358630,
+      "card_name": "Rai-Bau",
+      "script": "c225358630.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 1
+    },
+    {
+      "ordinal": 175,
+      "card_id": 226063408,
+      "card_name": "Grand Puppet of Wicked Puppeteer",
+      "script": "c226063408.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 198,
+      "card_id": 226645052,
+      "card_name": "Harmony Pearlwood & the Nautical Deepwaters",
+      "script": "c226645052.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 3,
+      "searches": 2
+    },
+    {
+      "ordinal": 258,
+      "card_id": 226827770,
+      "card_name": "The One Called Forth",
+      "script": "c226827770.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 0
+    },
+    {
+      "ordinal": 451,
+      "card_id": 226902471,
+      "card_name": "Galataxian Battle Tactics",
+      "script": "c226902471.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 4,
+      "searches": 5
+    },
+    {
+      "ordinal": 145,
+      "card_id": 226903348,
+      "card_name": "Stellaer of the Sea",
+      "script": "c226903348.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 361,
+      "card_id": 226950506,
+      "card_name": "Bauy World",
+      "script": "c226950506.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 284,
+      "card_id": 227035644,
+      "card_name": "Aqua Fusion",
+      "script": "c227035644.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 11
+    },
+    {
+      "ordinal": 65,
+      "card_id": 227043533,
+      "card_name": "NiuHao - Lokaeo",
+      "script": "c227043533.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 10,
+      "searches": 7
+    },
+    {
+      "ordinal": 448,
+      "card_id": 227335484,
+      "card_name": "Galacticassiopeia",
+      "script": "c227335484.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 31,
+      "card_id": 227362839,
+      "card_name": "Talismandrake Pyre",
+      "script": "c227362839.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 14
+    },
+    {
+      "ordinal": 398,
+      "card_id": 227531376,
+      "card_name": "Ghostrick Bat",
+      "script": "c227531376.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 3
+    },
+    {
+      "ordinal": 219,
+      "card_id": 227610954,
+      "card_name": "Zenatil, Criminal Bookkeeper of Crying Chaos",
+      "script": "c227610954.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 49,
+      "card_id": 227745087,
+      "card_name": "The Green Frute",
+      "script": "c227745087.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 5
+    },
+    {
+      "ordinal": 108,
+      "card_id": 228033609,
+      "card_name": "Shishi",
+      "script": "c228033609.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 199,
+      "card_id": 228040066,
+      "card_name": "Melody Merheart & the Nautical Coral Reef",
+      "script": "c228040066.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 3,
+      "searches": 2
+    },
+    {
+      "ordinal": 360,
+      "card_id": 228169392,
+      "card_name": "Bael, Demon Incarnate",
+      "script": "c228169392.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 349,
+      "card_id": 228386117,
+      "card_name": "Vazagiel, Arckcestial of Secrets",
+      "script": "c228386117.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 3
+    },
+    {
+      "ordinal": 315,
+      "card_id": 228464260,
+      "card_name": "Rising Elemental",
+      "script": "c228464260.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 403,
+      "card_id": 228472690,
+      "card_name": "Ghostrick Cutifer",
+      "script": "c228472690.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 344,
+      "card_id": 228635967,
+      "card_name": "Rank-Up-Magic Key of Arck Celestial Force",
+      "script": "c228635967.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 89,
+      "card_id": 228686743,
+      "card_name": "Carina of the Eldoran System",
+      "script": "c228686743.lua",
+      "parsed": true,
+      "effects": 0,
+      "callbacks": 0,
+      "searches": 0
+    },
+    {
+      "ordinal": 339,
+      "card_id": 228860650,
+      "card_name": "Arckcestial Orb",
+      "script": "c228860650.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 5
+    },
+    {
+      "ordinal": 35,
+      "card_id": 228926678,
+      "card_name": "Bishop of Aldrez",
+      "script": "c228926678.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 449,
+      "card_id": 229021849,
+      "card_name": "Galacticanes Venatici",
+      "script": "c229021849.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 92,
+      "card_id": 229327103,
+      "card_name": "Prophecy of Infernos",
+      "script": "c229327103.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 5
+    },
+    {
+      "ordinal": 107,
+      "card_id": 229399508,
+      "card_name": "Kokeshisa",
+      "script": "c229399508.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 60,
+      "card_id": 229499914,
+      "card_name": "Sacred Treasure - Chunyin",
+      "script": "c229499914.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 8
+    },
+    {
+      "ordinal": 166,
+      "card_id": 229786055,
+      "card_name": "Eldora in Depraevity",
+      "script": "c229786055.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 5
+    },
+    {
+      "ordinal": 195,
+      "card_id": 229875953,
+      "card_name": "Teleum Mortis",
+      "script": "c229875953.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 111,
+      "card_id": 229996802,
+      "card_name": "Takama No Hara",
+      "script": "c229996802.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 4,
+      "searches": 6
+    },
+    {
+      "ordinal": 148,
+      "card_id": 230132786,
+      "card_name": "Stellaer of the Volcanos",
+      "script": "c230132786.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 325,
+      "card_id": 230303021,
+      "card_name": "Phlogistic Scorching Dragon Horde",
+      "script": "c230303021.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 7,
+      "searches": 7
+    },
+    {
+      "ordinal": 376,
+      "card_id": 230749983,
+      "card_name": "Hallo, the Giver of Tricks",
+      "script": "c230749983.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 4
+    },
+    {
+      "ordinal": 248,
+      "card_id": 230812008,
+      "card_name": "Shining Brigade - Loving Division",
+      "script": "c230812008.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 22,
+      "card_id": 230947464,
+      "card_name": "Talismandrake Spark",
+      "script": "c230947464.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 2
+    },
+    {
+      "ordinal": 147,
+      "card_id": 230998543,
+      "card_name": "Stellaer of the Breeze",
+      "script": "c230998543.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 435,
+      "card_id": 231088629,
+      "card_name": "Gravinity Spherix",
+      "script": "c231088629.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 8,
+      "searches": 5
+    },
+    {
+      "ordinal": 352,
+      "card_id": 231089172,
+      "card_name": "Sarifiel, Arckcestial of Moonlight",
+      "script": "c231089172.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 44,
+      "card_id": 231129918,
+      "card_name": "Rook of Aldrez",
+      "script": "c231129918.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 236,
+      "card_id": 231273040,
+      "card_name": "Windborne Howling Gale",
+      "script": "c231273040.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 3,
+      "searches": 6
+    },
+    {
+      "ordinal": 378,
+      "card_id": 231331942,
+      "card_name": "Hallo, the Hollow Trickster",
+      "script": "c231331942.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 156,
+      "card_id": 231400558,
+      "card_name": "Stellaer of the Darkness",
+      "script": "c231400558.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 444,
+      "card_id": 231523659,
+      "card_name": "Stardust Comet",
+      "script": "c231523659.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 67,
+      "card_id": 231825514,
+      "card_name": "NiuHao - Koai",
+      "script": "c231825514.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 193,
+      "card_id": 231872299,
+      "card_name": "Recollection: the Mine",
+      "script": "c231872299.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 4,
+      "searches": 9
+    },
+    {
+      "ordinal": 37,
+      "card_id": 231892575,
+      "card_name": "Queen of Aldrez",
+      "script": "c231892575.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 246,
+      "card_id": 232038002,
+      "card_name": "Shining Brigade - Forward Division",
+      "script": "c232038002.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 247,
+      "card_id": 232100722,
+      "card_name": "Shining Brigade - Flowering Division",
+      "script": "c232100722.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 412,
+      "card_id": 232104829,
+      "card_name": "Scarstech Crusader",
+      "script": "c232104829.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 6
+    },
+    {
+      "ordinal": 64,
+      "card_id": 232232676,
+      "card_name": "NiuHao - Oro",
+      "script": "c232232676.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 10,
+      "searches": 6
+    },
+    {
+      "ordinal": 13,
+      "card_id": 232449539,
+      "card_name": "Abstain from Light",
+      "script": "c232449539.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 134,
+      "card_id": 232706629,
+      "card_name": "Protogenic Astral Cycle",
+      "script": "c232706629.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 5
+    },
+    {
+      "ordinal": 255,
+      "card_id": 232824319,
+      "card_name": "Shining Brigade - Companion Team",
+      "script": "c232824319.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 3,
+      "searches": 2
+    },
+    {
+      "ordinal": 189,
+      "card_id": 233103500,
+      "card_name": "Vir Pedicae Mortis - True Nightmare",
+      "script": "c233103500.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 239,
+      "card_id": 233212369,
+      "card_name": "Windborne Divine Whirlwind",
+      "script": "c233212369.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 211,
+      "card_id": 233436485,
+      "card_name": "Crow of Crying Chaos",
+      "script": "c233436485.lua",
+      "parsed": true,
+      "effects": 0,
+      "callbacks": 0,
+      "searches": 0
+    },
+    {
+      "ordinal": 225,
+      "card_id": 233499093,
+      "card_name": "Dragon of Crying Chaos",
+      "script": "c233499093.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 415,
+      "card_id": 233502817,
+      "card_name": "Scarstech Sniper",
+      "script": "c233502817.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 177,
+      "card_id": 233659599,
+      "card_name": "Minion Puppets of Wicked Puppeteer",
+      "script": "c233659599.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 38,
+      "card_id": 233759343,
+      "card_name": "Aldrez Battery",
+      "script": "c233759343.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 366,
+      "card_id": 233957828,
+      "card_name": "Toddler Pumpkien",
+      "script": "c233957828.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 2
+    },
+    {
+      "ordinal": 179,
+      "card_id": 234178973,
+      "card_name": "The True Wicked Puppeteer, Orchis",
+      "script": "c234178973.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 447,
+      "card_id": 234179728,
+      "card_name": "Galacticarina",
+      "script": "c234179728.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 223,
+      "card_id": 234296128,
+      "card_name": "Revelation of Crying Chaos",
+      "script": "c234296128.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 144,
+      "card_id": 234455260,
+      "card_name": "Stellaer of the Night",
+      "script": "c234455260.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 263,
+      "card_id": 234507067,
+      "card_name": "Chrono-Saur Brachio",
+      "script": "c234507067.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 385,
+      "card_id": 234592047,
+      "card_name": "Skewy! Twick-or-Tweat",
+      "script": "c234592047.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 8
+    },
+    {
+      "ordinal": 397,
+      "card_id": 234599395,
+      "card_name": "Melville the Crewal Vessel",
+      "script": "c234599395.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 2
+    },
+    {
+      "ordinal": 133,
+      "card_id": 234729347,
+      "card_name": "The Beginning",
+      "script": "c234729347.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 6
+    },
+    {
+      "ordinal": 184,
+      "card_id": 234818744,
+      "card_name": "Primite Dragon Citrine",
+      "script": "c234818744.lua",
+      "parsed": true,
+      "effects": 0,
+      "callbacks": 0,
+      "searches": 0
+    },
+    {
+      "ordinal": 192,
+      "card_id": 234984156,
+      "card_name": "Recollection: a Lesson in Iron",
+      "script": "c234984156.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 3,
+      "searches": 2
+    },
+    {
+      "ordinal": 86,
+      "card_id": 235051048,
+      "card_name": "Ursarctic Octantis",
+      "script": "c235051048.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 10,
+      "searches": 9
+    },
+    {
+      "ordinal": 343,
+      "card_id": 235051716,
+      "card_name": "Arckcestial Pillar of Heavens",
+      "script": "c235051716.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 369,
+      "card_id": 235352857,
+      "card_name": "Shekup, Sting of the Ghoti",
+      "script": "c235352857.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 4
+    },
+    {
+      "ordinal": 36,
+      "card_id": 235448944,
+      "card_name": "Pawn of Aldrez",
+      "script": "c235448944.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 1
+    },
+    {
+      "ordinal": 426,
+      "card_id": 235538173,
+      "card_name": "Gravinity Plasma",
+      "script": "c235538173.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 2
+    },
+    {
+      "ordinal": 47,
+      "card_id": 235607781,
+      "card_name": "The Yellow Frute",
+      "script": "c235607781.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 345,
+      "card_id": 235612490,
+      "card_name": "Urphiel's Feather Downpour",
+      "script": "c235612490.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 6
+    },
+    {
+      "ordinal": 264,
+      "card_id": 235637994,
+      "card_name": "Chrono-Saur Dactylus",
+      "script": "c235637994.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 9,
+      "searches": 4
+    },
+    {
+      "ordinal": 402,
+      "card_id": 235687149,
+      "card_name": "Ghostrick Camella",
+      "script": "c235687149.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 63,
+      "card_id": 235789995,
+      "card_name": "NiuHao - Hikam",
+      "script": "c235789995.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 10,
+      "searches": 6
+    },
+    {
+      "ordinal": 214,
+      "card_id": 236017388,
+      "card_name": "Slug of Crying Chaos",
+      "script": "c236017388.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 46,
+      "card_id": 236158052,
+      "card_name": "The Blue Frute",
+      "script": "c236158052.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 4,
+      "searches": 4
+    },
+    {
+      "ordinal": 55,
+      "card_id": 236179696,
+      "card_name": "The Flying Frute",
+      "script": "c236179696.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 10
+    },
+    {
+      "ordinal": 161,
+      "card_id": 236239443,
+      "card_name": "Restoration of Azrynior",
+      "script": "c236239443.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 464,
+      "card_id": 236473882,
+      "card_name": "Intergalactican Machine - No. R2-D30",
+      "script": "c236473882.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 4
+    },
+    {
+      "ordinal": 59,
+      "card_id": 236542835,
+      "card_name": "Sacred Treasure - Bojin",
+      "script": "c236542835.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 149,
+      "card_id": 236551669,
+      "card_name": "Pride of the Stellaers",
+      "script": "c236551669.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 9
+    },
+    {
+      "ordinal": 252,
+      "card_id": 236616849,
+      "card_name": "Shining Brigade - Revenge Division",
+      "script": "c236616849.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 5
+    },
+    {
+      "ordinal": 318,
+      "card_id": 236721134,
+      "card_name": "Devotee of Fire",
+      "script": "c236721134.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 7
+    },
+    {
+      "ordinal": 190,
+      "card_id": 236744343,
+      "card_name": "Entity's Realm - Pedicae Estate",
+      "script": "c236744343.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 323,
+      "card_id": 236815197,
+      "card_name": "Phlogiston's Wake",
+      "script": "c236815197.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 5
+    },
+    {
+      "ordinal": 180,
+      "card_id": 236818346,
+      "card_name": "Wicked Puppeteer, Orchis",
+      "script": "c236818346.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 5
+    },
+    {
+      "ordinal": 267,
+      "card_id": 236898203,
+      "card_name": "Chrono-Saur Rex",
+      "script": "c236898203.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 3
+    },
+    {
+      "ordinal": 350,
+      "card_id": 237089049,
+      "card_name": "Azeriel, Arckcestial of Demise",
+      "script": "c237089049.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 12,
+      "searches": 7
+    },
+    {
+      "ordinal": 388,
+      "card_id": 237269434,
+      "card_name": "Crewal Crew",
+      "script": "c237269434.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 4,
+      "searches": 4
+    },
+    {
+      "ordinal": 358,
+      "card_id": 237444604,
+      "card_name": "Winged Bauy Fenrir",
+      "script": "c237444604.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 241,
+      "card_id": 237684285,
+      "card_name": "Janna, Windborne Goddess of Clement Winds",
+      "script": "c237684285.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 6
+    },
+    {
+      "ordinal": 261,
+      "card_id": 237692523,
+      "card_name": "Pixie Bot",
+      "script": "c237692523.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 5
+    },
+    {
+      "ordinal": 173,
+      "card_id": 237917359,
+      "card_name": "Phantasm Spiral Shrine",
+      "script": "c237917359.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 5
+    },
+    {
+      "ordinal": 278,
+      "card_id": 238035167,
+      "card_name": "Aquamarine Moon Aurelia",
+      "script": "c238035167.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 10
+    },
+    {
+      "ordinal": 238,
+      "card_id": 238064522,
+      "card_name": "Windborne Galesong Flock",
+      "script": "c238064522.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 2,
+      "searches": 0
+    },
+    {
+      "ordinal": 27,
+      "card_id": 238136421,
+      "card_name": "Left Talismandrake Arms - Blaze Suppressor",
+      "script": "c238136421.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 439,
+      "card_id": 238184015,
+      "card_name": "Gravinity Sonic Scream",
+      "script": "c238184015.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 1
+    },
+    {
+      "ordinal": 328,
+      "card_id": 238241974,
+      "card_name": "Starry Knight Nebriel",
+      "script": "c238241974.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 8
+    },
+    {
+      "ordinal": 332,
+      "card_id": 238256111,
+      "card_name": "Cursed Dragon of the Knight",
+      "script": "c238256111.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 5
+    },
+    {
+      "ordinal": 43,
+      "card_id": 238282350,
+      "card_name": "Knight of Aldrez",
+      "script": "c238282350.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 5
+    },
+    {
+      "ordinal": 205,
+      "card_id": 238711686,
+      "card_name": "Melissa Oceanheart & the Nautical Seabed",
+      "script": "c238711686.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 257,
+      "card_id": 238841732,
+      "card_name": "Let's Go, Shining Brigade!",
+      "script": "c238841732.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 260,
+      "card_id": 238976759,
+      "card_name": "We're the Shining Brigade!",
+      "script": "c238976759.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 6
+    },
+    {
+      "ordinal": 375,
+      "card_id": 239028111,
+      "card_name": "Pumprince the Prince of Ghosts",
+      "script": "c239028111.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 1
+    },
+    {
+      "ordinal": 452,
+      "card_id": 239127930,
+      "card_name": "Galataxian Battle Formation",
+      "script": "c239127930.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 8
+    },
+    {
+      "ordinal": 419,
+      "card_id": 239179363,
+      "card_name": "Scarstech Kaiser",
+      "script": "c239179363.lua",
+      "parsed": true,
+      "effects": 7,
+      "callbacks": 9,
+      "searches": 7
+    },
+    {
+      "ordinal": 346,
+      "card_id": 239235967,
+      "card_name": "Arckcestial Burning",
+      "script": "c239235967.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 159,
+      "card_id": 239245471,
+      "card_name": "Birth of Azrynior",
+      "script": "c239245471.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 404,
+      "card_id": 239335848,
+      "card_name": "Ghostrick Oni",
+      "script": "c239335848.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 8
+    },
+    {
+      "ordinal": 220,
+      "card_id": 239725695,
+      "card_name": "Zebra of Crying Chaos",
+      "script": "c239725695.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 320,
+      "card_id": 240104048,
+      "card_name": "Guardian of Fire",
+      "script": "c240104048.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 130,
+      "card_id": 240299292,
+      "card_name": "To Proto Ousia",
+      "script": "c240299292.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 3
+    },
+    {
+      "ordinal": 216,
+      "card_id": 240511702,
+      "card_name": "Hunter of Crying Chaos",
+      "script": "c240511702.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 7
+    },
+    {
+      "ordinal": 370,
+      "card_id": 240575550,
+      "card_name": "Ghoti from a Deeper Depth Than the Deepest Deep",
+      "script": "c240575550.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 6
+    },
+    {
+      "ordinal": 413,
+      "card_id": 240768497,
+      "card_name": "Scarstech Dragon",
+      "script": "c240768497.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 215,
+      "card_id": 240976976,
+      "card_name": "Witch of Crying Chaos",
+      "script": "c240976976.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 2,
+      "card_id": 241056746,
+      "card_name": "Reactor Shocker",
+      "script": "c241056746.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 3,
+      "searches": 2
+    },
+    {
+      "ordinal": 337,
+      "card_id": 241440521,
+      "card_name": "Arckcestial Feather",
+      "script": "c241440521.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 194,
+      "card_id": 241447408,
+      "card_name": "Recollection: Kaboom Papa",
+      "script": "c241447408.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 4,
+      "searches": 5
+    },
+    {
+      "ordinal": 256,
+      "card_id": 241504188,
+      "card_name": "Shining Brigade - Absolute Supremacy",
+      "script": "c241504188.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 1
+    },
+    {
+      "ordinal": 401,
+      "card_id": 241540236,
+      "card_name": "Ghostrick Haunt",
+      "script": "c241540236.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 140,
+      "card_id": 241543138,
+      "card_name": "To Proto Eisodos",
+      "script": "c241543138.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 33,
+      "card_id": 241706191,
+      "card_name": "Talismandrake Enkindle",
+      "script": "c241706191.lua",
+      "parsed": true,
+      "effects": 12,
+      "callbacks": 12,
+      "searches": 10
+    },
+    {
+      "ordinal": 185,
+      "card_id": 241868535,
+      "card_name": "Pedicae's Papa",
+      "script": "c241868535.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 224,
+      "card_id": 241880822,
+      "card_name": "Chrono-Saur Raptor",
+      "script": "c241880822.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 276,
+      "card_id": 241957394,
+      "card_name": "Chapter II Verse IV",
+      "script": "c241957394.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 8
+    },
+    {
+      "ordinal": 287,
+      "card_id": 241976572,
+      "card_name": "Aquamarine Nautilus",
+      "script": "c241976572.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 164,
+      "card_id": 242009896,
+      "card_name": "Extinction of Dysmandr",
+      "script": "c242009896.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 4
+    },
+    {
+      "ordinal": 324,
+      "card_id": 242094473,
+      "card_name": "Phlogiston Dragon",
+      "script": "c242094473.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 427,
+      "card_id": 242838495,
+      "card_name": "Ratsach, the Scarstech Cruiser",
+      "script": "c242838495.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 4,
+      "searches": 2
+    },
+    {
+      "ordinal": 188,
+      "card_id": 243144691,
+      "card_name": "Vir Pedicae Mortis - the Unhallowed Warden",
+      "script": "c243144691.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 245,
+      "card_id": 243194249,
+      "card_name": "Shining Brigade - Hope Division",
+      "script": "c243194249.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 181,
+      "card_id": 243306841,
+      "card_name": "Wicked Puppeteer Tragedy",
+      "script": "c243306841.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 4
+    },
+    {
+      "ordinal": 251,
+      "card_id": 243420199,
+      "card_name": "Shining Brigade - Melody Division",
+      "script": "c243420199.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 2,
+      "searches": 4
+    },
+    {
+      "ordinal": 423,
+      "card_id": 243488958,
+      "card_name": "Scarstech Blaster",
+      "script": "c243488958.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 4,
+      "searches": 2
+    },
+    {
+      "ordinal": 97,
+      "card_id": 243920845,
+      "card_name": "Prophecy of Shadows",
+      "script": "c243920845.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 5
+    },
+    {
+      "ordinal": 420,
+      "card_id": 244009988,
+      "card_name": "Scarstech Invasion",
+      "script": "c244009988.lua",
+      "parsed": true,
+      "effects": 7,
+      "callbacks": 6,
+      "searches": 6
+    },
+    {
+      "ordinal": 135,
+      "card_id": 244013196,
+      "card_name": "To Proto Chrono",
+      "script": "c244013196.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 3,
+      "searches": 2
+    },
+    {
+      "ordinal": 10,
+      "card_id": 244408495,
+      "card_name": "Stained Scioness Silia",
+      "script": "c244408495.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 187,
+      "card_id": 244778917,
+      "card_name": "Vir Pedicae Mortis - Fearless Hunter",
+      "script": "c244778917.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 3,
+      "searches": 2
+    },
+    {
+      "ordinal": 15,
+      "card_id": 244790302,
+      "card_name": "Stained Avatar",
+      "script": "c244790302.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 372,
+      "card_id": 244816828,
+      "card_name": "Myutant Evolution",
+      "script": "c244816828.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 3,
+      "searches": 9
+    },
+    {
+      "ordinal": 96,
+      "card_id": 244920555,
+      "card_name": "Prophecy of Rays",
+      "script": "c244920555.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 5
+    },
+    {
+      "ordinal": 87,
+      "card_id": 244921711,
+      "card_name": "Ursarctic Hextanius",
+      "script": "c244921711.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 6
+    },
+    {
+      "ordinal": 183,
+      "card_id": 244959812,
+      "card_name": "Divine Phoenix of Nephthys",
+      "script": "c244959812.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 6
+    },
+    {
+      "ordinal": 275,
+      "card_id": 244972185,
+      "card_name": "The Spires of Zephorion Prime",
+      "script": "c244972185.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 8
+    },
+    {
+      "ordinal": 254,
+      "card_id": 244986323,
+      "card_name": "Shining Brigade Origins",
+      "script": "c244986323.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 10,
+      "searches": 6
+    },
+    {
+      "ordinal": 162,
+      "card_id": 245099829,
+      "card_name": "Azrynior, the Abundaence of Purity",
+      "script": "c245099829.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 8,
+      "searches": 3
+    },
+    {
+      "ordinal": 1,
+      "card_id": 245265629,
+      "card_name": "Stardrake of Gravitic Coils",
+      "script": "c245265629.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 4,
+      "searches": 3
+    },
+    {
+      "ordinal": 338,
+      "card_id": 245354354,
+      "card_name": "Arckcestial Fireball",
+      "script": "c245354354.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 5
+    },
+    {
+      "ordinal": 83,
+      "card_id": 245378354,
+      "card_name": "Ursarctic Mikailus",
+      "script": "c245378354.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 10,
+      "searches": 4
+    },
+    {
+      "ordinal": 456,
+      "card_id": 245395343,
+      "card_name": "Fusion Intergalactica",
+      "script": "c245395343.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 9
+    },
+    {
+      "ordinal": 131,
+      "card_id": 245400676,
+      "card_name": "To Proto Archegoni",
+      "script": "c245400676.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 11,
+      "searches": 6
+    },
+    {
+      "ordinal": 308,
+      "card_id": 245452058,
+      "card_name": "Altergeist Pipesiren",
+      "script": "c245452058.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 416,
+      "card_id": 245837578,
+      "card_name": "Scarstech Beacon",
+      "script": "c245837578.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 25,
+      "card_id": 245935439,
+      "card_name": "Talismandrake Sear",
+      "script": "c245935439.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 10
+    },
+    {
+      "ordinal": 100,
+      "card_id": 245970073,
+      "card_name": "A Stainless Story",
+      "script": "c245970073.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 12
+    },
+    {
+      "ordinal": 48,
+      "card_id": 246216813,
+      "card_name": "The Red Frute",
+      "script": "c246216813.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 8
+    },
+    {
+      "ordinal": 136,
+      "card_id": 246380598,
+      "card_name": "To Proto Taxis",
+      "script": "c246380598.lua",
+      "parsed": true,
+      "effects": 10,
+      "callbacks": 11,
+      "searches": 6
+    },
+    {
+      "ordinal": 112,
+      "card_id": 246393365,
+      "card_name": "Rei-Tachi Ga Kita Hi",
+      "script": "c246393365.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 3
+    },
+    {
+      "ordinal": 61,
+      "card_id": 246421842,
+      "card_name": "Sacred Treasure - Huangjin",
+      "script": "c246421842.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 171,
+      "card_id": 246496923,
+      "card_name": "Aldrez Grandmaster",
+      "script": "c246496923.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 132,
+      "card_id": 246524183,
+      "card_name": "Protogenesis",
+      "script": "c246524183.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 3
+    },
+    {
+      "ordinal": 51,
+      "card_id": 246830897,
+      "card_name": "Fruteonia",
+      "script": "c246830897.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 8
+    },
+    {
+      "ordinal": 440,
+      "card_id": 246900181,
+      "card_name": "Unbinding the Soul",
+      "script": "c246900181.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 2
+    },
+    {
+      "ordinal": 446,
+      "card_id": 247298564,
+      "card_name": "Oracle of the Herald",
+      "script": "c247298564.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 3
+    },
+    {
+      "ordinal": 109,
+      "card_id": 247378501,
+      "card_name": "Muramasa",
+      "script": "c247378501.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 5
+    },
+    {
+      "ordinal": 53,
+      "card_id": 247458749,
+      "card_name": "Fruteaching",
+      "script": "c247458749.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 6,
+      "card_id": 247499445,
+      "card_name": "Stained Fox Feness",
+      "script": "c247499445.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 17,
+      "card_id": 247580036,
+      "card_name": "Distained Druid Dragar",
+      "script": "c247580036.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 4,
+      "searches": 5
+    },
+    {
+      "ordinal": 226,
+      "card_id": 247779405,
+      "card_name": "Windborne Swiftsurfer",
+      "script": "c247779405.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 8
+    },
+    {
+      "ordinal": 16,
+      "card_id": 247789143,
+      "card_name": "Stained Sorceress Silphia",
+      "script": "c247789143.lua",
+      "parsed": true,
+      "effects": 7,
+      "callbacks": 9,
+      "searches": 6
+    },
+    {
+      "ordinal": 85,
+      "card_id": 247831166,
+      "card_name": "Ursarctic Leoship",
+      "script": "c247831166.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 437,
+      "card_id": 247919552,
+      "card_name": "Gravinity Gravity Protection",
+      "script": "c247919552.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 2,
+      "searches": 10
+    },
+    {
+      "ordinal": 57,
+      "card_id": 248290754,
+      "card_name": "The Fruteful Moon",
+      "script": "c248290754.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 7,
+      "searches": 7
+    },
+    {
+      "ordinal": 14,
+      "card_id": 248453205,
+      "card_name": "Shattering Sustained",
+      "script": "c248453205.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 9
+    },
+    {
+      "ordinal": 430,
+      "card_id": 248638801,
+      "card_name": "Chaos Honest",
+      "script": "c248638801.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 4,
+      "searches": 0
+    },
+    {
+      "ordinal": 329,
+      "card_id": 248760718,
+      "card_name": "Starry Knight Starry Queen",
+      "script": "c248760718.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 10,
+      "searches": 8
+    },
+    {
+      "ordinal": 29,
+      "card_id": 248788543,
+      "card_name": "Right Talismandrake Arms - Blaze Sabre",
+      "script": "c248788543.lua",
+      "parsed": true,
+      "effects": 7,
+      "callbacks": 9,
+      "searches": 6
+    },
+    {
+      "ordinal": 110,
+      "card_id": 248801935,
+      "card_name": "Kanmuriyama",
+      "script": "c248801935.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 12,
+      "searches": 4
+    },
+    {
+      "ordinal": 414,
+      "card_id": 248884592,
+      "card_name": "Scarstech Swarmer",
+      "script": "c248884592.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 421,
+      "card_id": 248891593,
+      "card_name": "Scarstech Circuit",
+      "script": "c248891593.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 443,
+      "card_id": 248940511,
+      "card_name": "Flower Cardian Moonflare",
+      "script": "c248940511.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 206,
+      "card_id": 248946297,
+      "card_name": "Exploring the Nautical Waters",
+      "script": "c248946297.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 4,
+      "searches": 9
+    },
+    {
+      "ordinal": 221,
+      "card_id": 249018041,
+      "card_name": "Ram of Crying Chaos",
+      "script": "c249018041.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 88,
+      "card_id": 249093610,
+      "card_name": "Ursarctic Nordbar",
+      "script": "c249093610.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 11,
+      "searches": 6
+    },
+    {
+      "ordinal": 433,
+      "card_id": 249454272,
+      "card_name": "Gravinity Galaxix",
+      "script": "c249454272.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 262,
+      "card_id": 249629457,
+      "card_name": "Shining Brigade - Last Stand",
+      "script": "c249629457.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 424,
+      "card_id": 249680945,
+      "card_name": "Gravinity Orbit",
+      "script": "c249680945.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 2
+    },
+    {
+      "ordinal": 289,
+      "card_id": 249746105,
+      "card_name": "Aquamarine Physalia",
+      "script": "c249746105.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 4,
+      "searches": 6
+    },
+    {
+      "ordinal": 327,
+      "card_id": 249805098,
+      "card_name": "Starry Knight Arc-En-Ciel",
+      "script": "c249805098.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 8,
+      "searches": 3
+    },
+    {
+      "ordinal": 355,
+      "card_id": 250047045,
+      "card_name": "Dreaming Bau",
+      "script": "c250047045.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 377,
+      "card_id": 250262550,
+      "card_name": "Ween, Guidance to Treats",
+      "script": "c250262550.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 286,
+      "card_id": 250339529,
+      "card_name": "Aquamarine Planktonites",
+      "script": "c250339529.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 7
+    },
+    {
+      "ordinal": 41,
+      "card_id": 250508903,
+      "card_name": "Checked in Aldrez",
+      "script": "c250508903.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 68,
+      "card_id": 250556612,
+      "card_name": "NiuHao - Zao",
+      "script": "c250556612.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 15
+    },
+    {
+      "ordinal": 390,
+      "card_id": 250792632,
+      "card_name": "Crewal Sailor",
+      "script": "c250792632.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 455,
+      "card_id": 250829750,
+      "card_name": "Galactican Battle Grounds",
+      "script": "c250829750.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 314,
+      "card_id": 250902476,
+      "card_name": "Striking Mirror Force",
+      "script": "c250902476.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 461,
+      "card_id": 250917339,
+      "card_name": "Cassiopeia, Forgotten of Eldora",
+      "script": "c250917339.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 93,
+      "card_id": 251058567,
+      "card_name": "Prophecy of Waterfalls",
+      "script": "c251058567.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 5
+    },
+    {
+      "ordinal": 281,
+      "card_id": 251191343,
+      "card_name": "Aquamarine Asthenosoma",
+      "script": "c251191343.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 5
+    },
+    {
+      "ordinal": 268,
+      "card_id": 251236672,
+      "card_name": "Chrono-Saur Laplace Plesio",
+      "script": "c251236672.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 5
+    },
+    {
+      "ordinal": 441,
+      "card_id": 251331463,
+      "card_name": "Eclipse Summoning",
+      "script": "c251331463.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 3
+    },
+    {
+      "ordinal": 235,
+      "card_id": 251571153,
+      "card_name": "Sunken Temple of the Windborne",
+      "script": "c251571153.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 196,
+      "card_id": 251699681,
+      "card_name": "Bear Trap",
+      "script": "c251699681.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 10,
+      "searches": 1
+    },
+    {
+      "ordinal": 351,
+      "card_id": 251710981,
+      "card_name": "Ophiel, Arckcestial of Wisdom",
+      "script": "c251710981.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 10,
+      "searches": 4
+    },
+    {
+      "ordinal": 45,
+      "card_id": 252210718,
+      "card_name": "King of Aldrez",
+      "script": "c252210718.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 9
+    },
+    {
+      "ordinal": 396,
+      "card_id": 252249599,
+      "card_name": "Crewal Cursed Sea",
+      "script": "c252249599.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 8,
+      "searches": 5
+    },
+    {
+      "ordinal": 384,
+      "card_id": 252496004,
+      "card_name": "Skewy! Pumpki-Pal",
+      "script": "c252496004.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 217,
+      "card_id": 252513554,
+      "card_name": "Guardian of Crying Chaos",
+      "script": "c252513554.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 1
+    },
+    {
+      "ordinal": 310,
+      "card_id": 252552954,
+      "card_name": "Altergeist Ifritware",
+      "script": "c252552954.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 445,
+      "card_id": 253128790,
+      "card_name": "Interwire Dimensquid",
+      "script": "c253128790.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 316,
+      "card_id": 253152295,
+      "card_name": "Yummy Kuriboh",
+      "script": "c253152295.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 3
+    },
+    {
+      "ordinal": 232,
+      "card_id": 253472430,
+      "card_name": "A Whisper of Crying Chaos",
+      "script": "c253472430.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 5,
+      "searches": 7
+    },
+    {
+      "ordinal": 463,
+      "card_id": 253520299,
+      "card_name": "Galactican Machine - No. G2-X38",
+      "script": "c253520299.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 4
+    },
+    {
+      "ordinal": 32,
+      "card_id": 253552927,
+      "card_name": "Talismandrake Cremation",
+      "script": "c253552927.lua",
+      "parsed": true,
+      "effects": 12,
+      "callbacks": 12,
+      "searches": 12
+    },
+    {
+      "ordinal": 271,
+      "card_id": 253928485,
+      "card_name": "Aqua Whirlpool",
+      "script": "c253928485.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 3,
+      "searches": 1
+    },
+    {
+      "ordinal": 418,
+      "card_id": 253934904,
+      "card_name": "Scarstech Stagger",
+      "script": "c253934904.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 141,
+      "card_id": 254065048,
+      "card_name": "Polemistis gia Ataxia",
+      "script": "c254065048.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 6
+    },
+    {
+      "ordinal": 362,
+      "card_id": 254215159,
+      "card_name": "Bauy Spellcasting",
+      "script": "c254215159.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 4,
+      "searches": 8
+    },
+    {
+      "ordinal": 387,
+      "card_id": 254375894,
+      "card_name": "Crewal Cap'n",
+      "script": "c254375894.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 6
+    },
+    {
+      "ordinal": 425,
+      "card_id": 254894701,
+      "card_name": "Nifal, the Scarstech War Machine",
+      "script": "c254894701.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 4,
+      "searches": 1
+    },
+    {
+      "ordinal": 266,
+      "card_id": 255048812,
+      "card_name": "Chrono-Saur Stegian",
+      "script": "c255048812.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 9,
+      "searches": 8
+    },
+    {
+      "ordinal": 285,
+      "card_id": 255082735,
+      "card_name": "Aquamarine Bubble Surge",
+      "script": "c255082735.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 3,
+      "searches": 7
+    },
+    {
+      "ordinal": 82,
+      "card_id": 255277197,
+      "card_name": "Chaos Fusion",
+      "script": "c255277197.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 12
+    },
+    {
+      "ordinal": 371,
+      "card_id": 255283389,
+      "card_name": "Myutant EL-51",
+      "script": "c255283389.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 250,
+      "card_id": 255668557,
+      "card_name": "Shining Brigade - Joyous Division",
+      "script": "c255668557.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 2
+    },
+    {
+      "ordinal": 243,
+      "card_id": 255686110,
+      "card_name": "Iscylla, Windborne Kraken of Sunken Depths",
+      "script": "c255686110.lua",
+      "parsed": true,
+      "effects": 7,
+      "callbacks": 5,
+      "searches": 0
+    },
+    {
+      "ordinal": 30,
+      "card_id": 255832330,
+      "card_name": "Left Talismandrake Arms - Blaze Shield",
+      "script": "c255832330.lua",
+      "parsed": true,
+      "effects": 7,
+      "callbacks": 9,
+      "searches": 5
+    },
+    {
+      "ordinal": 230,
+      "card_id": 255953418,
+      "card_name": "A World of Crying Chaos",
+      "script": "c255953418.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 3
+    },
+    {
+      "ordinal": 380,
+      "card_id": 255977900,
+      "card_name": "Happy Hallo-Ween!",
+      "script": "c255977900.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 458,
+      "card_id": 256005703,
+      "card_name": "Galactican Jet Dasher",
+      "script": "c256005703.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 237,
+      "card_id": 256110263,
+      "card_name": "Windborne Eye of the Storm",
+      "script": "c256110263.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 4,
+      "searches": 3
+    },
+    {
+      "ordinal": 428,
+      "card_id": 256172827,
+      "card_name": "Gravinity Pulse",
+      "script": "c256172827.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 2
+    },
+    {
+      "ordinal": 317,
+      "card_id": 256207361,
+      "card_name": "Sealed Glyphs Dragon",
+      "script": "c256207361.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 1
+    },
+    {
+      "ordinal": 129,
+      "card_id": 256287781,
+      "card_name": "Rage of Nephthys",
+      "script": "c256287781.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 8
+    },
+    {
+      "ordinal": 359,
+      "card_id": 256462992,
+      "card_name": "Starfury Bauy Dragon",
+      "script": "c256462992.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 335,
+      "card_id": 256469525,
+      "card_name": "Dynatos, the Challenger",
+      "script": "c256469525.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 3,
+      "searches": 1
+    },
+    {
+      "ordinal": 12,
+      "card_id": 256608976,
+      "card_name": "Stained Silhouette",
+      "script": "c256608976.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 8
+    },
+    {
+      "ordinal": 438,
+      "card_id": 256831125,
+      "card_name": "Gravinity Axis Matter",
+      "script": "c256831125.lua",
+      "parsed": true,
+      "effects": 10,
+      "callbacks": 13,
+      "searches": 5
+    },
+    {
+      "ordinal": 23,
+      "card_id": 256928871,
+      "card_name": "Talismandrake Embers",
+      "script": "c256928871.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 3
+    },
+    {
+      "ordinal": 54,
+      "card_id": 256930605,
+      "card_name": "Fruteification",
+      "script": "c256930605.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 9
+    },
+    {
+      "ordinal": 273,
+      "card_id": 257081514,
+      "card_name": "Auriga of the Eldoran Empire",
+      "script": "c257081514.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 10
+    },
+    {
+      "ordinal": 348,
+      "card_id": 257176166,
+      "card_name": "Malphiel, Arckcestial of Protection",
+      "script": "c257176166.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 2
+    },
+    {
+      "ordinal": 321,
+      "card_id": 257239133,
+      "card_name": "Phlogistic Uprising!",
+      "script": "c257239133.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 8
+    },
+    {
+      "ordinal": 178,
+      "card_id": 257464336,
+      "card_name": "Guardian of Wicked Puppeteer",
+      "script": "c257464336.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 150,
+      "card_id": 257549955,
+      "card_name": "A Stellaer Is Reborn",
+      "script": "c257549955.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 400,
+      "card_id": 257677549,
+      "card_name": "Ghostrick Slime",
+      "script": "c257677549.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 1
+    },
+    {
+      "ordinal": 234,
+      "card_id": 257794541,
+      "card_name": "Maryam, Windborne Caretaker of the Temple",
+      "script": "c257794541.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 8
+    },
+    {
+      "ordinal": 227,
+      "card_id": 258241424,
+      "card_name": "Light Within the Crying Chaos",
+      "script": "c258241424.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 4
+    },
+    {
+      "ordinal": 292,
+      "card_id": 258260221,
+      "card_name": "Hiding \"C\"",
+      "script": "c258260221.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 341,
+      "card_id": 258328859,
+      "card_name": "Arckcestial Descend",
+      "script": "c258328859.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 10,
+      "searches": 5
+    },
+    {
+      "ordinal": 383,
+      "card_id": 258576611,
+      "card_name": "Skewy! Candee-Hex",
+      "script": "c258576611.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 8
+    },
+    {
+      "ordinal": 342,
+      "card_id": 258590942,
+      "card_name": "Arckcestial Meadow",
+      "script": "c258590942.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 454,
+      "card_id": 258934904,
+      "card_name": "Galactican Battle Station",
+      "script": "c258934904.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 2,
+      "searches": 1
+    },
+    {
+      "ordinal": 475,
+      "card_id": 259017109,
+      "card_name": "Nemleria's Nightmare",
+      "script": "c259017109.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 525,
+      "card_id": 259023461,
+      "card_name": "Disciple of Fire",
+      "script": "c259023461.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 7
+    },
+    {
+      "ordinal": 125,
+      "card_id": 259028576,
+      "card_name": "Stellaer of the Lightning Runes",
+      "script": "c259028576.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 305,
+      "card_id": 259033429,
+      "card_name": "Carcel, the Ohmechanic Light",
+      "script": "c259033429.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 10,
+      "searches": 6
+    },
+    {
+      "ordinal": 143,
+      "card_id": 259057226,
+      "card_name": "Stellaer of the Cold",
+      "script": "c259057226.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 567,
+      "card_id": 259058125,
+      "card_name": "Eclipse Observer Maya",
+      "script": "c259058125.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 565,
+      "card_id": 259069729,
+      "card_name": "Eclipse Observer Nora",
+      "script": "c259069729.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 530,
+      "card_id": 259072169,
+      "card_name": "Mirage Formation Dragon",
+      "script": "c259072169.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 13,
+      "searches": 11
+    },
+    {
+      "ordinal": 365,
+      "card_id": 259072745,
+      "card_name": "Bhodi, the Corrupted Halloween Tree",
+      "script": "c259072745.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 10,
+      "searches": 4
+    },
+    {
+      "ordinal": 537,
+      "card_id": 259072906,
+      "card_name": "Glitchling Mage",
+      "script": "c259072906.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 14
+    },
+    {
+      "ordinal": 562,
+      "card_id": 259073666,
+      "card_name": "Wyvernal Gathering",
+      "script": "c259073666.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 4
+    },
+    {
+      "ordinal": 523,
+      "card_id": 259086544,
+      "card_name": "Qerets, the Scarstech Mother Ship",
+      "script": "c259086544.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 4,
+      "searches": 1
+    },
+    {
+      "ordinal": 476,
+      "card_id": 259090287,
+      "card_name": "Nemleria's Dream Bedroom",
+      "script": "c259090287.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 9,
+      "searches": 5
+    },
+    {
+      "ordinal": 123,
+      "card_id": 259093260,
+      "card_name": "Grand Blue Matriarch",
+      "script": "c259093260.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 9,
+      "searches": 2
+    },
+    {
+      "ordinal": 504,
+      "card_id": 259097228,
+      "card_name": "Zero Mother of the A.I.P Ex",
+      "script": "c259097228.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 296,
+      "card_id": 259107906,
+      "card_name": "Siemens, the Blue Ohmen",
+      "script": "c259107906.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 201,
+      "card_id": 259114562,
+      "card_name": "Bobbie Bluefin & the Nautical Nocturnes",
+      "script": "c259114562.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 3,
+      "searches": 8
+    },
+    {
+      "ordinal": 509,
+      "card_id": 259114673,
+      "card_name": "Red-Eyes Turbo Dragon",
+      "script": "c259114673.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 498,
+      "card_id": 259121126,
+      "card_name": "A.I.P Ex Predator",
+      "script": "c259121126.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 575,
+      "card_id": 259126370,
+      "card_name": "Eclipse Observer Chandra",
+      "script": "c259126370.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 6
+    },
+    {
+      "ordinal": 102,
+      "card_id": 259135917,
+      "card_name": "Nuwa, the Domesticated",
+      "script": "c259135917.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 8
+    },
+    {
+      "ordinal": 496,
+      "card_id": 259137697,
+      "card_name": "A.I.P Ex Claw",
+      "script": "c259137697.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 4
+    },
+    {
+      "ordinal": 513,
+      "card_id": 259138193,
+      "card_name": "Digita Leet",
+      "script": "c259138193.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 4,
+      "searches": 6
+    },
+    {
+      "ordinal": 410,
+      "card_id": 259144144,
+      "card_name": "Vampire Estrie",
+      "script": "c259144144.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 311,
+      "card_id": 259152704,
+      "card_name": "Dragon Protector of Nature",
+      "script": "c259152704.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 3
+    },
+    {
+      "ordinal": 532,
+      "card_id": 259156549,
+      "card_name": "Glitchling Protron",
+      "script": "c259156549.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 6
+    },
+    {
+      "ordinal": 561,
+      "card_id": 259160760,
+      "card_name": "Wyvernal Sanctuary",
+      "script": "c259160760.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 10
+    },
+    {
+      "ordinal": 293,
+      "card_id": 259174227,
+      "card_name": "Farad, the Purple Ohmen",
+      "script": "c259174227.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 121,
+      "card_id": 259177849,
+      "card_name": "Grand Blue Princess",
+      "script": "c259177849.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 10
+    },
+    {
+      "ordinal": 560,
+      "card_id": 259179054,
+      "card_name": "Wyvernal Megalopyge",
+      "script": "c259179054.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 8
+    },
+    {
+      "ordinal": 507,
+      "card_id": 259184310,
+      "card_name": "Red-Eyes Meteor Metal Dragon",
+      "script": "c259184310.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 8
+    },
+    {
+      "ordinal": 574,
+      "card_id": 259193076,
+      "card_name": "Eclipse Observer Baleygr",
+      "script": "c259193076.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 2
+    },
+    {
+      "ordinal": 74,
+      "card_id": 259201342,
+      "card_name": "Domestication",
+      "script": "c259201342.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 5
+    },
+    {
+      "ordinal": 491,
+      "card_id": 259203522,
+      "card_name": "Grayscale Awakening: Eclipse!",
+      "script": "c259203522.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 4,
+      "searches": 7
+    },
+    {
+      "ordinal": 151,
+      "card_id": 259214334,
+      "card_name": "Stellaer's Pain",
+      "script": "c259214334.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 3,
+      "searches": 1
+    },
+    {
+      "ordinal": 137,
+      "card_id": 259219942,
+      "card_name": "Stellaer of the Plants",
+      "script": "c259219942.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 3
+    },
+    {
+      "ordinal": 577,
+      "card_id": 259223502,
+      "card_name": "Ether Mademoiselle",
+      "script": "c259223502.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 313,
+      "card_id": 259225324,
+      "card_name": "Transcend the Pendulum",
+      "script": "c259225324.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 5
+    },
+    {
+      "ordinal": 269,
+      "card_id": 259226793,
+      "card_name": "Chrono-Saur Force",
+      "script": "c259226793.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 550,
+      "card_id": 259226799,
+      "card_name": "Charmelia Beast",
+      "script": "c259226799.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 489,
+      "card_id": 259229055,
+      "card_name": "Graydeux, the Eternal Grayscale Entity",
+      "script": "c259229055.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 9
+    },
+    {
+      "ordinal": 462,
+      "card_id": 259230000,
+      "card_name": "Aeloria in Depraevity",
+      "script": "c259230000.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 7,
+      "searches": 5
+    },
+    {
+      "ordinal": 265,
+      "card_id": 259235389,
+      "card_name": "Chrono-Saur Tricera",
+      "script": "c259235389.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 10,
+      "searches": 0
+    },
+    {
+      "ordinal": 548,
+      "card_id": 259241946,
+      "card_name": "Charmelia Pray",
+      "script": "c259241946.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 3,
+      "searches": 4
+    },
+    {
+      "ordinal": 73,
+      "card_id": 259245149,
+      "card_name": "Domestica Lunalie",
+      "script": "c259245149.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 4
+    },
+    {
+      "ordinal": 487,
+      "card_id": 259245496,
+      "card_name": "Graydimm the Grayscale Shadow",
+      "script": "c259245496.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 8
+    },
+    {
+      "ordinal": 531,
+      "card_id": 259247807,
+      "card_name": "Glitchling Bitron",
+      "script": "c259247807.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 15
+    },
+    {
+      "ordinal": 540,
+      "card_id": 259253032,
+      "card_name": "Glitchling Hexatron",
+      "script": "c259253032.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 8,
+      "searches": 9
+    },
+    {
+      "ordinal": 572,
+      "card_id": 259264449,
+      "card_name": "Spellbook of Eclipse",
+      "script": "c259264449.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 5
+    },
+    {
+      "ordinal": 71,
+      "card_id": 259264881,
+      "card_name": "Domestica Praerie",
+      "script": "c259264881.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 75,
+      "card_id": 259265448,
+      "card_name": "Domestic Underworld",
+      "script": "c259265448.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 492,
+      "card_id": 259269688,
+      "card_name": "Grayscale Awakening: Nullbind!",
+      "script": "c259269688.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 7
+    },
+    {
+      "ordinal": 529,
+      "card_id": 259269774,
+      "card_name": "Harpie Lady Sisters - Phoenix Formation",
+      "script": "c259269774.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 7
+    },
+    {
+      "ordinal": 118,
+      "card_id": 259273394,
+      "card_name": "Jelly Miss of the Grand Blue",
+      "script": "c259273394.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 4,
+      "searches": 8
+    },
+    {
+      "ordinal": 571,
+      "card_id": 259273851,
+      "card_name": "Manual of Eclipse",
+      "script": "c259273851.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 3,
+      "searches": 3
+    },
+    {
+      "ordinal": 493,
+      "card_id": 259275822,
+      "card_name": "The Misstakes of the A.I.P Experience",
+      "script": "c259275822.lua",
+      "parsed": true,
+      "effects": 0,
+      "callbacks": 0,
+      "searches": 0
+    },
+    {
+      "ordinal": 546,
+      "card_id": 259288669,
+      "card_name": "Charmelia Elysia",
+      "script": "c259288669.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 169,
+      "card_id": 259290896,
+      "card_name": "Dominus Sentinel",
+      "script": "c259290896.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 3
+    },
+    {
+      "ordinal": 573,
+      "card_id": 259303191,
+      "card_name": "Tome of Eclipse",
+      "script": "c259303191.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 3,
+      "searches": 2
+    },
+    {
+      "ordinal": 519,
+      "card_id": 259304399,
+      "card_name": "Scarstech Draco",
+      "script": "c259304399.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 457,
+      "card_id": 259307285,
+      "card_name": "Attack on Gravity",
+      "script": "c259307285.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 374,
+      "card_id": 259308265,
+      "card_name": "Pumpqueen the Queen of Ghosts",
+      "script": "c259308265.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 3
+    },
+    {
+      "ordinal": 524,
+      "card_id": 259315827,
+      "card_name": "Adamantios, the Dark Armor",
+      "script": "c259315827.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 6
+    },
+    {
+      "ordinal": 72,
+      "card_id": 259337739,
+      "card_name": "Domestica Anjelie",
+      "script": "c259337739.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 481,
+      "card_id": 259341133,
+      "card_name": "Graysentry the Guard of Grayscale",
+      "script": "c259341133.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 6
+    },
+    {
+      "ordinal": 558,
+      "card_id": 259348317,
+      "card_name": "Wyvernal Sphinx",
+      "script": "c259348317.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 8,
+      "searches": 8
+    },
+    {
+      "ordinal": 301,
+      "card_id": 259350270,
+      "card_name": "Farad, the Ohmechanic Capacitor",
+      "script": "c259350270.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 11,
+      "searches": 6
+    },
+    {
+      "ordinal": 516,
+      "card_id": 259352030,
+      "card_name": "Thunder Dragon Behemoth",
+      "script": "c259352030.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 6
+    },
+    {
+      "ordinal": 526,
+      "card_id": 259360287,
+      "card_name": "Sorceress of Fire",
+      "script": "c259360287.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 471,
+      "card_id": 259363148,
+      "card_name": "Gladiator Beast Satyrius",
+      "script": "c259363148.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 11,
+      "searches": 6
+    },
+    {
+      "ordinal": 19,
+      "card_id": 259365935,
+      "card_name": "Aetherstorm Zenith Wire-Tailed Sypharion",
+      "script": "c259365935.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 10,
+      "searches": 4
+    },
+    {
+      "ordinal": 527,
+      "card_id": 259366281,
+      "card_name": "Phlogiston's Roar!",
+      "script": "c259366281.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 1
+    },
+    {
+      "ordinal": 272,
+      "card_id": 259366507,
+      "card_name": "Aquila, Zephorion's Predictor",
+      "script": "c259366507.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 11
+    },
+    {
+      "ordinal": 336,
+      "card_id": 259366591,
+      "card_name": "Arckcestial Crystal Shards",
+      "script": "c259366591.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 116,
+      "card_id": 259369909,
+      "card_name": "Serene Mermaid of the Grand Blue",
+      "script": "c259369909.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 518,
+      "card_id": 259373017,
+      "card_name": "Lance — Luminar Justiciar",
+      "script": "c259373017.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 69,
+      "card_id": 259377794,
+      "card_name": "Pip, the Domesticated",
+      "script": "c259377794.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 7,
+      "searches": 8
+    },
+    {
+      "ordinal": 477,
+      "card_id": 259392825,
+      "card_name": "Nemleria Dream Creator - Pyjama",
+      "script": "c259392825.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 9
+    },
+    {
+      "ordinal": 79,
+      "card_id": 259394179,
+      "card_name": "Pip in the Wild",
+      "script": "c259394179.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 7
+    },
+    {
+      "ordinal": 470,
+      "card_id": 259395418,
+      "card_name": "Gladiator Beast Attrocitar",
+      "script": "c259395418.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 551,
+      "card_id": 259402105,
+      "card_name": "Magical Girl Explosion!",
+      "script": "c259402105.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 300,
+      "card_id": 259405917,
+      "card_name": "Siemens, the Ohmechanic Conductor",
+      "script": "c259405917.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 11,
+      "searches": 9
+    },
+    {
+      "ordinal": 77,
+      "card_id": 259410628,
+      "card_name": "Domestica in the Wild",
+      "script": "c259410628.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 6
+    },
+    {
+      "ordinal": 119,
+      "card_id": 259417461,
+      "card_name": "Brilliance of the Grand Blue",
+      "script": "c259417461.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 114,
+      "card_id": 259429721,
+      "card_name": "Champion of the Grand Blue",
+      "script": "c259429721.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 556,
+      "card_id": 259431066,
+      "card_name": "Wyvernal Myops",
+      "script": "c259431066.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 7
+    },
+    {
+      "ordinal": 306,
+      "card_id": 259434499,
+      "card_name": "Ohmen Powerload",
+      "script": "c259434499.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 3,
+      "searches": 7
+    },
+    {
+      "ordinal": 522,
+      "card_id": 259459462,
+      "card_name": "Ganan, the Scarstech City",
+      "script": "c259459462.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 2,
+      "searches": 0
+    },
+    {
+      "ordinal": 521,
+      "card_id": 259464700,
+      "card_name": "Scarstech Invader",
+      "script": "c259464700.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 503,
+      "card_id": 259465391,
+      "card_name": "Caller of the A.I.P Ex",
+      "script": "c259465391.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 2
+    },
+    {
+      "ordinal": 505,
+      "card_id": 259466138,
+      "card_name": "Red-Eyes Gearfried, the Iron Knight",
+      "script": "c259466138.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 10,
+      "searches": 4
+    },
+    {
+      "ordinal": 367,
+      "card_id": 259471193,
+      "card_name": "Dreadful Soul Drain",
+      "script": "c259471193.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 3
+    },
+    {
+      "ordinal": 478,
+      "card_id": 259472680,
+      "card_name": "Nemleria Dream Devourer - Soleil",
+      "script": "c259472680.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 8
+    },
+    {
+      "ordinal": 8,
+      "card_id": 259475154,
+      "card_name": "Stained Solitaire",
+      "script": "c259475154.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 10
+    },
+    {
+      "ordinal": 304,
+      "card_id": 259479044,
+      "card_name": "Ampere, the Ohmechanic Intensity",
+      "script": "c259479044.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 2
+    },
+    {
+      "ordinal": 409,
+      "card_id": 259479818,
+      "card_name": "Vampire Traveler",
+      "script": "c259479818.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 4
+    },
+    {
+      "ordinal": 460,
+      "card_id": 259482393,
+      "card_name": "Carina, Forgotten of Eldora",
+      "script": "c259482393.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 541,
+      "card_id": 259485374,
+      "card_name": "Heart of the Cards",
+      "script": "c259485374.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 3,
+      "searches": 4
+    },
+    {
+      "ordinal": 566,
+      "card_id": 259487387,
+      "card_name": "Eclipse Observer Ella",
+      "script": "c259487387.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 552,
+      "card_id": 259489283,
+      "card_name": "Charmelia Fairy Kyubey",
+      "script": "c259489283.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 536,
+      "card_id": 259494236,
+      "card_name": "Glitchling Digitron",
+      "script": "c259494236.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 10,
+      "searches": 4
+    },
+    {
+      "ordinal": 502,
+      "card_id": 259499577,
+      "card_name": "A.I.P Ex Hive Mind",
+      "script": "c259499577.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 2,
+      "searches": 5
+    },
+    {
+      "ordinal": 115,
+      "card_id": 259500899,
+      "card_name": "Diving Daughters of the Grand Blue",
+      "script": "c259500899.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 302,
+      "card_id": 259519336,
+      "card_name": "Volt, the Ohmechanic Chocker",
+      "script": "c259519336.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 2
+    },
+    {
+      "ordinal": 497,
+      "card_id": 259522807,
+      "card_name": "A.I.P Ex Maw",
+      "script": "c259522807.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 3
+    },
+    {
+      "ordinal": 407,
+      "card_id": 259524916,
+      "card_name": "Vampire Lugat",
+      "script": "c259524916.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 176,
+      "card_id": 259527622,
+      "card_name": "Knight Puppet of Wicked Puppeteer",
+      "script": "c259527622.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 520,
+      "card_id": 259531370,
+      "card_name": "Scarstech Wyvern",
+      "script": "c259531370.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 4
+    },
+    {
+      "ordinal": 557,
+      "card_id": 259533644,
+      "card_name": "Wyvernal Crenata",
+      "script": "c259533644.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 539,
+      "card_id": 259546637,
+      "card_name": "Glitchling Corruption",
+      "script": "c259546637.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 8
+    },
+    {
+      "ordinal": 408,
+      "card_id": 259552732,
+      "card_name": "Vampire Reptilian",
+      "script": "c259552732.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 3,
+      "searches": 5
+    },
+    {
+      "ordinal": 508,
+      "card_id": 259562343,
+      "card_name": "Red-Eyes Roar",
+      "script": "c259562343.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 10
+    },
+    {
+      "ordinal": 547,
+      "card_id": 259568843,
+      "card_name": "Charmelia Robin",
+      "script": "c259568843.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 542,
+      "card_id": 259576196,
+      "card_name": "The Orcustograph",
+      "script": "c259576196.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 122,
+      "card_id": 259578863,
+      "card_name": "Oracle of the Grand Blue",
+      "script": "c259578863.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 10
+    },
+    {
+      "ordinal": 128,
+      "card_id": 259581666,
+      "card_name": "Stellaer of the Frozen",
+      "script": "c259581666.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 8,
+      "searches": 3
+    },
+    {
+      "ordinal": 98,
+      "card_id": 259586445,
+      "card_name": "Stellaer of the Swamp",
+      "script": "c259586445.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 3
+    },
+    {
+      "ordinal": 554,
+      "card_id": 259599798,
+      "card_name": "Wyvernal Luna",
+      "script": "c259599798.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 4
+    },
+    {
+      "ordinal": 473,
+      "card_id": 259605536,
+      "card_name": "Pyjama Party of Happy Nemleria",
+      "script": "c259605536.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 5
+    },
+    {
+      "ordinal": 469,
+      "card_id": 259607933,
+      "card_name": "Gladiator Beast Sabearius",
+      "script": "c259607933.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 494,
+      "card_id": 259609997,
+      "card_name": "A.I.P Ex Larva",
+      "script": "c259609997.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 1
+    },
+    {
+      "ordinal": 576,
+      "card_id": 259612312,
+      "card_name": "Eclipse Observer Seara",
+      "script": "c259612312.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 4
+    },
+    {
+      "ordinal": 544,
+      "card_id": 259614449,
+      "card_name": "Charmelia Kiana",
+      "script": "c259614449.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 570,
+      "card_id": 259614765,
+      "card_name": "Encyclopedia of Eclipse",
+      "script": "c259614765.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 2,
+      "searches": 4
+    },
+    {
+      "ordinal": 486,
+      "card_id": 259624110,
+      "card_name": "Grayterror the Grayscale Beast",
+      "script": "c259624110.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 11
+    },
+    {
+      "ordinal": 488,
+      "card_id": 259626409,
+      "card_name": "Grayshade the Phantom of Grayscale",
+      "script": "c259626409.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 7
+    },
+    {
+      "ordinal": 510,
+      "card_id": 259628203,
+      "card_name": "Red-Eyes Booster Dragon",
+      "script": "c259628203.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 501,
+      "card_id": 259630851,
+      "card_name": "A.I.P Ex Assimilation",
+      "script": "c259630851.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 485,
+      "card_id": 259632020,
+      "card_name": "Grayseer the Grayscale Spy",
+      "script": "c259632020.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 543,
+      "card_id": 259646610,
+      "card_name": "Galatea-2, the Orcust Divider",
+      "script": "c259646610.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 295,
+      "card_id": 259650132,
+      "card_name": "Ampere, the Yellow Ohmen",
+      "script": "c259650132.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 4
+    },
+    {
+      "ordinal": 307,
+      "card_id": 259650969,
+      "card_name": "Ohmen Beacon",
+      "script": "c259650969.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 11
+    },
+    {
+      "ordinal": 563,
+      "card_id": 259652372,
+      "card_name": "Eclipse Observer Aaliyah",
+      "script": "c259652372.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 4
+    },
+    {
+      "ordinal": 152,
+      "card_id": 259655976,
+      "card_name": "Stellaer of Lighting",
+      "script": "c259655976.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 8,
+      "searches": 3
+    },
+    {
+      "ordinal": 495,
+      "card_id": 259664027,
+      "card_name": "A.I.P Ex Shrieker",
+      "script": "c259664027.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 76,
+      "card_id": 259668626,
+      "card_name": "Domestica in the Underworld",
+      "script": "c259668626.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 1
+    },
+    {
+      "ordinal": 78,
+      "card_id": 259670933,
+      "card_name": "Domestica Kyrie",
+      "script": "c259670933.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 11,
+      "searches": 8
+    },
+    {
+      "ordinal": 533,
+      "card_id": 259678739,
+      "card_name": "Glitchling Witch",
+      "script": "c259678739.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 8,
+      "searches": 8
+    },
+    {
+      "ordinal": 120,
+      "card_id": 259679619,
+      "card_name": "City Within the Grand Blue",
+      "script": "c259679619.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 3,
+      "searches": 4
+    },
+    {
+      "ordinal": 569,
+      "card_id": 259680842,
+      "card_name": "Grimoire of Eclipse",
+      "script": "c259680842.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 5
+    },
+    {
+      "ordinal": 101,
+      "card_id": 259686203,
+      "card_name": "Mylo, the Domesticated",
+      "script": "c259686203.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 7
+    },
+    {
+      "ordinal": 484,
+      "card_id": 259688514,
+      "card_name": "Grayhex the Chanter of Grayscale",
+      "script": "c259688514.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 4
+    },
+    {
+      "ordinal": 515,
+      "card_id": 259688676,
+      "card_name": "Herald of White Light",
+      "script": "c259688676.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 3
+    },
+    {
+      "ordinal": 80,
+      "card_id": 259718504,
+      "card_name": "Tove in the Wild",
+      "script": "c259718504.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 7
+    },
+    {
+      "ordinal": 568,
+      "card_id": 259721372,
+      "card_name": "Eclipse Observatory",
+      "script": "c259721372.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 208,
+      "card_id": 259722826,
+      "card_name": "Bob",
+      "script": "c259722826.lua",
+      "parsed": true,
+      "effects": 0,
+      "callbacks": 0,
+      "searches": 0
+    },
+    {
+      "ordinal": 483,
+      "card_id": 259724129,
+      "card_name": "Graylock the Sorcerer of Grayscale",
+      "script": "c259724129.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 4
+    },
+    {
+      "ordinal": 294,
+      "card_id": 259726853,
+      "card_name": "Volt, the Green Ohmen",
+      "script": "c259726853.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 70,
+      "card_id": 259737127,
+      "card_name": "Tove, the Domesticated",
+      "script": "c259737127.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 6
+    },
+    {
+      "ordinal": 553,
+      "card_id": 259753109,
+      "card_name": "Charmelia Fairy Morningstar",
+      "script": "c259753109.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 511,
+      "card_id": 259755133,
+      "card_name": "Rush at the Gnome",
+      "script": "c259755133.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 3,
+      "searches": 2
+    },
+    {
+      "ordinal": 549,
+      "card_id": 259758604,
+      "card_name": "Charmelia Deal",
+      "script": "c259758604.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 559,
+      "card_id": 259763531,
+      "card_name": "Wyvernal Lymantria",
+      "script": "c259763531.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 472,
+      "card_id": 259766646,
+      "card_name": "Night Night, Nemleria",
+      "script": "c259766646.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 4
+    },
+    {
+      "ordinal": 298,
+      "card_id": 259780273,
+      "card_name": "Carcel, the Dark Ohmen",
+      "script": "c259780273.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 555,
+      "card_id": 259783008,
+      "card_name": "Wyvernal Caudina",
+      "script": "c259783008.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 545,
+      "card_id": 259790247,
+      "card_name": "Charmelia Hanabi",
+      "script": "c259790247.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 6
+    },
+    {
+      "ordinal": 528,
+      "card_id": 259794136,
+      "card_name": "Harpie Cyber Dancer",
+      "script": "c259794136.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 10
+    },
+    {
+      "ordinal": 104,
+      "card_id": 259796760,
+      "card_name": "Nuwa in the Wild",
+      "script": "c259796760.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 7,
+      "searches": 7
+    },
+    {
+      "ordinal": 406,
+      "card_id": 259815138,
+      "card_name": "Vampire Avenger",
+      "script": "c259815138.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 512,
+      "card_id": 259825991,
+      "card_name": "Calcu Leet",
+      "script": "c259825991.lua",
+      "parsed": true,
+      "effects": 1,
+      "callbacks": 2,
+      "searches": 4
+    },
+    {
+      "ordinal": 303,
+      "card_id": 259841490,
+      "card_name": "Coulomb, the Ohmechanic Charger",
+      "script": "c259841490.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 11,
+      "searches": 6
+    },
+    {
+      "ordinal": 405,
+      "card_id": 259851064,
+      "card_name": "Ghostrick Pastrygeist",
+      "script": "c259851064.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 299,
+      "card_id": 259869259,
+      "card_name": "Ohmen Surge",
+      "script": "c259869259.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 4,
+      "searches": 7
+    },
+    {
+      "ordinal": 538,
+      "card_id": 259873115,
+      "card_name": "Glitchling Leotron",
+      "script": "c259873115.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 10,
+      "searches": 9
+    },
+    {
+      "ordinal": 297,
+      "card_id": 259881255,
+      "card_name": "Coulomb, the White Ohmen",
+      "script": "c259881255.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 500,
+      "card_id": 259883029,
+      "card_name": "Failures of the A.I.P",
+      "script": "c259883029.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 474,
+      "card_id": 259883971,
+      "card_name": "Nemleria Big Eepy",
+      "script": "c259883971.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 7
+    },
+    {
+      "ordinal": 517,
+      "card_id": 259889864,
+      "card_name": "Aurelion — Divine Illumination",
+      "script": "c259889864.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 0
+    },
+    {
+      "ordinal": 479,
+      "card_id": 259898110,
+      "card_name": "Nemleria Dream Creator - Veilleuse",
+      "script": "c259898110.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 10
+    },
+    {
+      "ordinal": 103,
+      "card_id": 259911246,
+      "card_name": "Mylo in the Wild",
+      "script": "c259911246.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 7
+    },
+    {
+      "ordinal": 291,
+      "card_id": 259920959,
+      "card_name": "Aquamarine Reef Hapalochlaena",
+      "script": "c259920959.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 490,
+      "card_id": 259923860,
+      "card_name": "Grayscale Awakening: Revelation!",
+      "script": "c259923860.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 5
+    },
+    {
+      "ordinal": 468,
+      "card_id": 259924331,
+      "card_name": "Pray for Your Life!",
+      "script": "c259924331.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 2,
+      "searches": 10
+    },
+    {
+      "ordinal": 564,
+      "card_id": 259926839,
+      "card_name": "Eclipse Observer Riley",
+      "script": "c259926839.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 535,
+      "card_id": 259927462,
+      "card_name": "Glitchling Octron",
+      "script": "c259927462.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 480,
+      "card_id": 259934043,
+      "card_name": "Grayling the Grayscale Imp",
+      "script": "c259934043.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 6
+    },
+    {
+      "ordinal": 117,
+      "card_id": 259934756,
+      "card_name": "Jelly Lass of the Grand Blue",
+      "script": "c259934756.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 7
+    },
+    {
+      "ordinal": 482,
+      "card_id": 259937399,
+      "card_name": "Grayrover the Wandering Grayscale",
+      "script": "c259937399.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 11,
+      "searches": 4
+    },
+    {
+      "ordinal": 124,
+      "card_id": 259937946,
+      "card_name": "Grand Blue Prince",
+      "script": "c259937946.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 4,
+      "searches": 6
+    },
+    {
+      "ordinal": 514,
+      "card_id": 259940722,
+      "card_name": "Virtua Leet",
+      "script": "c259940722.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 10,
+      "searches": 4
+    },
+    {
+      "ordinal": 499,
+      "card_id": 259943152,
+      "card_name": "A.I.P Lab",
+      "script": "c259943152.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 209,
+      "card_id": 259944943,
+      "card_name": "Bob, but Stronger!",
+      "script": "c259944943.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 2,
+      "searches": 0
+    },
+    {
+      "ordinal": 534,
+      "card_id": 259961648,
+      "card_name": "Glitchling Data-Transfert",
+      "script": "c259961648.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 7
+    },
+    {
+      "ordinal": 506,
+      "card_id": 259992800,
+      "card_name": "Red-Eyes Moon Dragon",
+      "script": "c259992800.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 6,
+      "searches": 6
+    },
+    {
+      "ordinal": 283,
+      "card_id": 259998396,
+      "card_name": "Treasure of the Cosmic Ocean",
+      "script": "c259998396.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 3
+    }
+  ]
+}

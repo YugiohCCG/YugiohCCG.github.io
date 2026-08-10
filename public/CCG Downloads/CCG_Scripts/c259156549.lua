@@ -4,6 +4,7 @@ local SET_GLITCHLING=0x9894
 local COUNTER_CORRUPTION=0x1994
 local CARD_PROTRON=24154052
 function s.initial_effect(c)
+	aux.AddCodeList(c,24154052,259961648)
 	c:EnableReviveLimit()
 	--Special Summon limit
 	local e0=Effect.CreateEffect(c)

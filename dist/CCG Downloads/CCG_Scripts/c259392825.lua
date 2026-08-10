@@ -5,6 +5,7 @@ local STRING_ID=133392825
 local TIMINGS_CHECK_MONSTER=TIMINGS_CHECK_MONSTER or 0
 local RESET_CHAIN_COMPAT=RESET_CHAIN or (RESET_PHASE+PHASE_END)
 function s.initial_effect(c)
+	aux.AddCodeList(c,70155677)
 	--special summon
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

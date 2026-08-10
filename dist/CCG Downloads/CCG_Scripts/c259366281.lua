@@ -28,7 +28,7 @@ function s.initial_effect(c)
 	--Set this card from the GY
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,2))
-	e2:SetCategory(CATEGORY_SSET)
+	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e2]=true
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
 	e2:SetCode(EVENT_PAY_LPCOST)
@@ -82,7 +82,6 @@ function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and c:IsSSetable()
 		and aux.NecroValleyFilter(aux.TRUE)(c) end
-	Duel.SetOperationInfo(0,CATEGORY_SSET,c,1,tp,LOCATION_GRAVE)
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

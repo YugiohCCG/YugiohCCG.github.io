@@ -3,6 +3,7 @@ local STRING_ID=133621622
 local WEEN=250262550
 local HOLLOW=231331942
 function s.initial_effect(c)
+	aux.AddCodeList(c,231331942)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_TOGRAVE+CATEGORY_SPECIAL_SUMMON)

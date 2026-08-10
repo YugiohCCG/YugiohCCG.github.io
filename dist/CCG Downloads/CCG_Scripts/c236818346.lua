@@ -5,6 +5,7 @@ local SET_WICKED_PUPPETEER=0xe0a9
 local CARD_TRAGEDY=243306841
 local TOKEN_PUPPET=234178974
 function s.initial_effect(c)
+	aux.AddCodeList(c,243306841)
 	c:EnableReviveLimit()
 	--Cannot be targeted while you control another monster
 	local e1=Effect.CreateEffect(c)

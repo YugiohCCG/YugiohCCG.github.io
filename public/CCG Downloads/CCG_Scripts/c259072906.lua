@@ -2,6 +2,7 @@ local s,id=GetID()
 local STRING_ID=133072906
 local SET_GLITCHLING=0x9894
 function s.initial_effect(c)
+	aux.AddCodeList(c,259961648)
 	c:EnableReviveLimit()
 	aux.EnablePendulumAttribute(c)
 	--Special Summon limit

@@ -2,6 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133612490
 function s.initial_effect(c)
+	aux.AddCodeList(c,215105971)
 	-- banish cards on the field
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

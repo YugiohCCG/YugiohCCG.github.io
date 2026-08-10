@@ -80,6 +80,11 @@ export interface Card {
   // set & flavor
   set: string | null; // e.g., "TATA-001 Tainted Tails" or null
   archetype: string | null; // e.g., "Stardrake" or null
+  // Optional richer memberships. The current source uses `archetype` as its
+  // primary label, while generated/audited data may expose secondary series.
+  archetypes?: string[] | null;
+  treatedAs?: string[] | null;
+  namedSeries?: string[] | null;
   text: string | null; // effect text (nullable)
   keywords: string[] | string | null; // if you store searchable keywords
 

@@ -4,6 +4,7 @@ local STRING_ID=133646610
 local SET_ORCUST=0x11b
 local CARD_ORCUSTRATED_BABEL=90351981
 function s.initial_effect(c)
+	aux.AddCodeList(c,90351981)
 	c:EnableReviveLimit()
 	aux.AddLinkProcedure(c,aux.FilterBoolFunction(Card.IsLinkType,TYPE_EFFECT),2,3,s.lcheck)
 	--"Orcustrated Babel" is unaffected by your opponent's activated effects

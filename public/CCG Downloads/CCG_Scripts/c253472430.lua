@@ -1,6 +1,7 @@
 local s,id=GetID()
 local STRING_ID=133472430
 function s.initial_effect(c)
+	aux.AddCodeList(c,233499093)
 	--Synchro Summon
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)

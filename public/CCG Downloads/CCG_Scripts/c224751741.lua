@@ -6,6 +6,7 @@ local TOKEN_PROTOGENIC=240299293
 local CARD_DYSMANDR=223512283
 local RACE_GALAXY=0x80000000
 function s.initial_effect(c)
+	aux.AddCodeList(c,223512283)
 	--Special Summon 1 DARK "Protogenic Essence Token", then Fusion Summon
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

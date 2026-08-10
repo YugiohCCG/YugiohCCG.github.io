@@ -4,6 +4,7 @@ local STRING_ID=132744343
 local SET_VIR_PEDICAE_MORTIS=0x39e2
 local CARD_PEDICAES_PAPA=241868535
 function s.initial_effect(c)
+	aux.AddCodeList(c,241868535)
 	--When activated: add 1 "Vir Pedicae Mortis" monster from your Deck or GY
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

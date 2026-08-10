@@ -3,6 +3,7 @@ local s,id=GetID()
 local SET_VIR_PEDICAE_MORTIS=0x39e2
 local CARD_BEAR_TRAP=251699681
 function s.initial_effect(c)
+	aux.AddCodeList(c,251699681)
 	--Equip only to a "Vir Pedicae Mortis" monster
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_EQUIP)

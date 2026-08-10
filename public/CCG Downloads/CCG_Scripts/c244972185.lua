@@ -4,6 +4,7 @@ local STRING_ID=132972185
 local SET_ELDORA=0x0738
 local CARD_ELDORA_FIELD=214552846
 function s.initial_effect(c)
+	aux.AddCodeList(c,214552846)
 	--Treated as Eldora card
 	--Activate
 	local e1=Effect.CreateEffect(c)

@@ -5,6 +5,7 @@ local SET_FRUTE=0x813
 local CARD_FRUTEONIA=246830897
 local CARD_FRUTEIFICATION=256930605
 function s.initial_effect(c)
+	aux.AddCodeList(c,246830897,256930605)
 	--Activate and optionally add
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

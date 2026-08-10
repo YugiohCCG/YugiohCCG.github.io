@@ -73,6 +73,16 @@ const hasAny = (hay: string[] = [], needles: string[] = []) => {
   return needles.some((n) => H.has(up(n)));
 };
 
+const archetypesFrom = (card: any): string[] => {
+  const values = [
+    card?.archetype,
+    ...(Array.isArray(card?.archetypes) ? card.archetypes : []),
+    ...(Array.isArray(card?.treatedAs) ? card.treatedAs : []),
+    ...(Array.isArray(card?.namedSeries) ? card.namedSeries : []),
+  ];
+  return Array.from(new Set(values.filter(Boolean).map(String)));
+};
+
 const isOneOf = (n: number | undefined | null, list?: number[]) => {
   if (!list || !list.length) return true;
   if (n == null) return false;
@@ -132,9 +142,8 @@ export function cardMatches(card: Card, q: Query): boolean {
 
   // archetype
   if (q.archetype) {
-    const arch = asStr(C, ["archetype"]);
-    const want = Array.isArray(q.archetype) ? q.archetype[0] : q.archetype;
-    if (up(arch) !== up(want)) return false;
+    const wanted = Array.isArray(q.archetype) ? q.archetype : [q.archetype];
+    if (!hasAny(archetypesFrom(C), wanted)) return false;
   }
 
   // category (Monster/Spell/Trap)
@@ -230,7 +239,9 @@ export function cardMatches(card: Card, q: Query): boolean {
   }
 
   // date
-  const added = asStr(C, ["timestamps?.added", "timestamps", "added"]);
+  const added = C.timestamps?.added != null
+    ? String(C.timestamps.added)
+    : asStr(C, ["added"]);
   if (!dateInRange(added, q.dateStart, q.dateEnd)) return false;
 
   return true;

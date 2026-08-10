@@ -4,6 +4,7 @@ local CARD_DREAMING_NEMLERIA=CARD_DREAMING_NEMLERIA or 70155677
 local STRING_ID=133898110
 local EFFECT_FLAG_OATH=EFFECT_FLAG_OATH or 0
 function s.initial_effect(c)
+	aux.AddCodeList(c,70155677)
 	--special summon
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

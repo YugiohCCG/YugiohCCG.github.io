@@ -6,6 +6,7 @@ local SET_TO_PROTO=0xe80d
 local TOKEN_PROTOGENIC=240299293
 local CARD_TO_PROTO_ATAXIA=224225695
 function s.initial_effect(c)
+	aux.AddCodeList(c,224225695)
 	c:EnableReviveLimit()
 	--Fusion material text
 	aux.AddFusionProcFunRep(c,s.matfilter,2,true)
