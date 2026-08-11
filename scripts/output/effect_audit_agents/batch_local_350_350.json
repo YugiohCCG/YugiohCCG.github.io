@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-331-360",
+  "ordinal_start": 350,
+  "ordinal_end": 350,
+  "cards": [{
+    "ordinal": 350,
+    "passcode": 237089049,
+    "name": "Azeriel, Arckcestial of Demise",
+    "text_sha256": "a5a63e11f9b165e087da8a0c3ad9a41436a74097bcc7deb128a084beea61d278",
+    "script_sha256": "1cf08f8a89c72dbcf9e88bd3a822224f35a95e4b4f5dba7e0f7a493abf6aeeae",
+    "overall_verdict": "FIXED",
+    "coverage_override": {"expected_individual_effects": 5, "reason": "One Xyz material requirement and four separately activatable HOPT effects account for all printed clauses; the final sentence applies the HOPT to those four effects."},
+    "effects": [
+      {
+        "effect_index": 1,
+        "printed_clause": "2 Level 4 \"Arckcestial\" monsters, including a LIGHT Synchro Monster.",
+        "lua_implementation": "A level-free two-material Xyz procedure requires both materials to be Level 4 Arckcestial cards and the selected group to include a LIGHT Synchro Monster.",
+        "official_references": [{"script": "c44311445.lua", "card_id": 44311445, "card_name": "Madolche Puddingcess Chocolat-a-la-Mode", "matched_structure": "Official filtered Xyz procedures validate an exact material group and special material qualification."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 2,
+        "printed_clause": "If this card is Xyz Summoned: You can send 1 \"Arckcestial\" monster from your Deck to the GY.",
+        "lua_implementation": "A delayed Xyz Summon trigger checks SUMMON_TYPE_XYZ and sends one Deck Arckcestial monster able to go to the GY under the first HOPT code.",
+        "official_references": [{"script": "c40044918.lua", "card_id": 40044918, "card_name": "Elemental HERO Stratos", "matched_structure": "Official summon-triggered Deck selection effects register summon events, filter the Deck, and perform the selected movement at resolution."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 3,
+        "printed_clause": "You can detach 1 material from this card; add 1 \"Rank-Up-Magic\" Spell from your Deck to your hand.",
+        "lua_implementation": "An Ignition Effect removes one overlay as cost, then searches a Rank-Up-Magic Spell from the Deck and reveals it, under a distinct HOPT code.",
+        "official_references": [{"script": "c58988903.lua", "card_id": 58988903, "card_name": "Rank-Up-Magic Skip Force", "matched_structure": "Official Rank-Up-Magic support uses the Rank-Up-Magic setcode and Xyz overlay-cost handling."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 4,
+        "printed_clause": "If you Special Summon an \"Arckcestial\" Xyz or Synchro Monster(s): You can Special Summon this card from your GY in Defense Position, then you can add 1 \"Rank-Up-Magic\" Spell from your GY to your hand.",
+        "lua_implementation": "The GY delayed field trigger now requires an event monster that was Special Summoned by this effect's controller, is Arckcestial, and is Synchro/Xyz; it revives Azeriel in Defense and optionally recovers a GY Rank-Up-Magic Spell.",
+        "official_references": [{"script": "c10019086.lua", "card_id": 10019086, "card_name": "Tri-Brigade Arms Bucephalus II", "matched_structure": "Official 'If you Special Summon' event handling uses Card.IsSummonPlayer to distinguish who performed the summon."}],
+        "verdict": "FIXED",
+        "issue": "Confirmed and corrected: end-state control is not the summoning player. The previous IsControler check incorrectly triggered when an opponent's effect Special Summoned an Arckcestial to this player's field."
+      },
+      {
+        "effect_index": 5,
+        "printed_clause": "If this card is detached from an \"Arckcestial\" Xyz Monster to activate that monster's effect: You can destroy 1 face-up card on the field.",
+        "lua_implementation": "A delayed EVENT_MOVE trigger verifies REASON_COST, an activated Arckcestial Xyz reason effect, and previous overlay location, then chooses and destroys one face-up card under its own HOPT code.",
+        "official_references": [{"script": "c32696942.lua", "card_id": 32696942, "card_name": "Big Belly Knight", "matched_structure": "Official detached-as-cost triggers inspect REASON_COST, the reason effect, and previous overlay location."}],
+        "verdict": "PASS",
+        "issue": null
+      }
+    ]
+  }],
+  "summary": {"cards": 1, "effects": 5, "pass": 4, "fixed": 1, "defects": 0, "custom_gaps": 0}
+}

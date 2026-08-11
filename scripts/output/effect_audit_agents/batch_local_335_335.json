@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-331-360",
+  "ordinal_start": 335,
+  "ordinal_end": 335,
+  "cards": [{
+    "ordinal": 335,
+    "passcode": 256469525,
+    "name": "Dynatos, the Challenger",
+    "text_sha256": "dfa77ab2242c85454a2c5506e1c57e90970937c2a21bccfb1e9528d777b32e9e",
+    "script_sha256": "6f86ffff3442d0c8d72142381c3ebb34c670313da261012a59a8ed27abd101d0",
+    "overall_verdict": "PASS",
+    "audit_note": "Rejected the reported CopyEffect defect. The parenthetical 'you choose' selects the opponent's monster, not one effect among that monster's effects. Official copy-effect cards use CopyEffect with the chosen monster's original code, which is the engine-standard representation of becoming that monster's printed effects.",
+    "coverage_override": {"expected_individual_effects": 3, "reason": "Always-treated-as identity, the conditioned hand summon procedure, and the summon-way-dependent copy/stat effect are the three individual mechanics."},
+    "effects": [
+      {
+        "effect_index": 1,
+        "printed_clause": "This card is always treated as an \"Ataxia\" card.",
+        "lua_implementation": "An uncopyable, cannot-disable EFFECT_ADD_SETCODE grants the Ataxia setcode, matching the card database's identity metadata.",
+        "official_references": [{"script": "c48486809.lua", "card_id": 48486809, "card_name": "Winged Kuriboh LV6", "matched_structure": "Official always-treated-as archetype identity is represented through persistent card identity/setcode handling."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 2,
+        "printed_clause": "If you control no monsters and your opponent controls a monster, you can Special Summon this card (from your hand). You can only Special Summon \"Dynatos, the Challenger\" once per turn this way.",
+        "lua_implementation": "An uncopyable hand summon procedure checks zero controlled monsters, at least one opposing monster, and an open zone, with an oath count limit for this summon method.",
+        "official_references": [{"script": "c8910971.lua", "card_id": 8910971, "card_name": "Lord Gaia the Fierce Knight", "matched_structure": "Official conditioned inherent hand Special Summons use EFFECT_SPSUMMON_PROC and an uncopyable procedure condition."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 3,
+        "printed_clause": "If Summoned this way, this card's effect becomes the effect of 1 monster your opponent controls (you choose), also this card's original ATK/DEF become equal to that monster's ATK/DEF +100.",
+        "lua_implementation": "On a summon performed by its own procedure, a continuous summon event chooses a face-up non-Token opposing monster, sets base ATK/DEF to its current values plus 100, and copies the chosen monster card's printed effect set by original code.",
+        "official_references": [
+          {"script": "c43237273.lua", "card_id": 43237273, "card_name": "Neo-Spacian Dark Panther", "matched_structure": "Official 'replace this effect with that monster's original effects' handling chooses an opponent's face-up monster and calls CopyEffect with its original code."},
+          {"script": "c30312361.lua", "card_id": 30312361, "card_name": "Phantom of Chaos", "matched_structure": "Official monster-effect copying combines CopyEffect with base-stat replacement derived from the selected monster."}
+        ],
+        "verdict": "PASS",
+        "issue": null
+      }
+    ]
+  }],
+  "summary": {"cards": 1, "effects": 3, "pass": 3, "fixed": 0, "defects": 0, "custom_gaps": 0}
+}

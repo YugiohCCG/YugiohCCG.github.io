@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-289-330",
+  "ordinal_start": 295,
+  "ordinal_end": 295,
+  "cards": [
+    {
+      "ordinal": 295,
+      "passcode": 259650132,
+      "name": "Ampere, the Yellow Ohmen",
+      "text_sha256": "391746e8836651bfc6dbcea3b30319deda59db46b0c9868f133e60b539e25ad0",
+      "script_sha256": "089434f6cbf499bd344a16a0c98e64ff9114e06faba3d182ee8cbf5d5aecb699",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Special Summon this card from hand to a zone a Link Monster points to.",
+          "lua_implementation": "Hand summon procedure uses the controller's linked-zone mask.",
+          "official_references": [
+            {
+              "script": "c27918365.lua",
+              "card_id": 27918365,
+              "card_name": "World Legacy - \"World Crown\"",
+              "matched_structure": "Linked-zone hand Special Summon procedure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "On Special Summon to a linked zone: traverse co-links, place Current Counters, and move to a terminal pointed Main Monster Zone; HOPT.",
+          "lua_implementation": "The breadth-first traversal now records each discovered Link Monster depth, counts every visited Link Monster for the later search, and derives movement destinations only from terminal frontier Link Monsters with no deeper co-linked successor.",
+          "official_references": [
+            {
+              "script": "c18585765.lua",
+              "card_id": 18585765,
+              "card_name": "Voltester",
+              "matched_structure": "Recursive Link-arrow traversal component."
+            },
+            {
+              "script": "c25163979.lua",
+              "card_id": 25163979,
+              "card_name": "World Legacy's Nightmare",
+              "matched_structure": "Co-link-aware movement component."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the previous destination mask included zones pointed to by interior traversal nodes, while the text limits movement to the zones reached when traversal terminates."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "During the Main Phase, add differently named \"Ohmen\" monsters whose total Levels equal the counters placed by this card, then lock Special Summons to \"Ohmen\"; HOPT.",
+          "lua_implementation": "An ignition effect reads the stored counter count, recursively validates/selects a different-code exact-Level subset, adds it, and installs an end-turn archetype Special Summon lock with a separate HOPT key.",
+          "official_references": [
+            {
+              "script": "c10182251.lua",
+              "card_id": 10182251,
+              "card_name": "Lyrilusc - Beryl Canary",
+              "matched_structure": "Exact-resolution archetype Special Summon lock and hard once-per-turn structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Confirmed terminal-zone traversal defect and corrected movement to use only the terminal BFS frontier.",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 2,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

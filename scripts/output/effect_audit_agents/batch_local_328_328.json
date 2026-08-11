@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-289-330",
+  "ordinal_start": 328,
+  "ordinal_end": 328,
+  "cards": [
+    {
+      "ordinal": 328,
+      "passcode": 238241974,
+      "name": "Starry Knight Nebriel",
+      "text_sha256": "4dd4474d46c4b673c3dc494f80682757d06f1ff1bab7bc85ace4ea85aab1e691",
+      "script_sha256": "cfd1a58508bdf88dcd638f5134155120da9636959c68b5b412fadf66c028d2d8",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If controlling a \"Starry Knight\" or Level 7 LIGHT Dragon: Quick Special Summon this card from hand/GY; HOPT.",
+          "lua_implementation": "Free-chain hand/GY effect checks either controlled class, applies Necrovalley legality, and summons this handler under id HOPT.",
+          "official_references": [
+            {
+              "script": "c27036706.lua",
+              "card_id": 27036706,
+              "card_name": "Starry Knight Ciel",
+              "matched_structure": "Conditioned Starry Knight self Special Summon from hand."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If Special Summoned: Special Summon a Level 7 LIGHT Dragon or \"Starry Knight\" from hand/GY; HOPT.",
+          "lua_implementation": "Delayed trigger chooses a legal candidate from hand or Necrovalley-filtered GY and Special Summons it; separate HOPT.",
+          "official_references": [
+            {
+              "script": "c59228631.lua",
+              "card_id": 59228631,
+              "card_name": "Starry Knight Astel",
+              "matched_structure": "Starry Knight Quick Special Summon of a Level 7 LIGHT Dragon from hand."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Reveal a Level 7 LIGHT Dragon in hand; add a LIGHT Fairy from Deck; HOPT.",
+          "lua_implementation": "The ignition cost confirms one non-public Level 7 LIGHT Dragon and immediately calls Duel.ShuffleHand to conceal its hand position before the LIGHT Fairy search resolves.",
+          "official_references": [
+            {
+              "script": "c2106266.lua",
+              "card_id": 2106266,
+              "card_name": "Galloping Gaia",
+              "matched_structure": "Official reveal-from-hand search cost calls Duel.ConfirmCards followed by Duel.ShuffleHand before resolving the Deck search."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the previous reveal left the confirmed card position exposed because it omitted the official ShuffleHand concealment step."
+        }
+      ],
+      "audit_note": "Confirmed and fixed reveal concealment by shuffling the hand immediately after confirmation, matching official reveal-cost searches.",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 2,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

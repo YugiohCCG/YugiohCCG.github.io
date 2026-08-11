@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-331-360",
+  "ordinal_start": 360,
+  "ordinal_end": 360,
+  "cards": [{
+    "ordinal": 360,
+    "passcode": 228169392,
+    "name": "Bael, Demon Incarnate",
+    "text_sha256": "3838c6cce765d7ac8bd4aa27a4efd510afa9d84e5a2cf3061be63de9e97a67df",
+    "script_sha256": "2ddf79d669e92fe49d3dab999400ccbdc9be8f441d89ac98d9bf29a46aba0b54",
+    "overall_verdict": "FIXED",
+    "coverage_override": {"expected_individual_effects": 4, "reason": "The Xyz material requirement, self-protection, Battle-Phase ATK effect, and leave-field summon/protection effect are the four individual mechanics."},
+    "effects": [
+      {
+        "effect_index": 1,
+        "printed_clause": "3 Level 1 Tuners.",
+        "lua_implementation": "The standard Xyz procedure requires exactly three Level 1 monsters that each have TYPE_TUNER.",
+        "official_references": [{"script": "c44311445.lua", "card_id": 44311445, "card_name": "Madolche Puddingcess Chocolat-a-la-Mode", "matched_structure": "Official Xyz procedures encode an exact material level, count, and material filter."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 2,
+        "printed_clause": "This Xyz Summoned card cannot be targeted by card effects.",
+        "lua_implementation": "While this card remains Xyz Summoned in the Monster Zone, EFFECT_CANNOT_BE_EFFECT_TARGET now has value 1, prohibiting targeting by either player's card effects.",
+        "official_references": [{"script": "c6165656.lua", "card_id": 6165656, "card_name": "Number C88: Gimmick Puppet Disaster Leo", "matched_structure": "Official unqualified 'cannot be targeted by card effects' protection uses EFFECT_CANNOT_BE_EFFECT_TARGET with SetValue(1)."}],
+        "verdict": "FIXED",
+        "issue": "Confirmed and corrected: aux.tgoval protects only against the opponent. The unqualified text prohibits both players from targeting this card."
+      },
+      {
+        "effect_index": 3,
+        "printed_clause": "Once per Battle Phase, at the start of the Battle Phase: You can banish 1 material from this card and the top 4 cards of your Deck; make this card's ATK become equal to the number of all banished cards times 200.",
+        "lua_implementation": "The phase-start trigger banishes one removable overlay and exactly four removable top Deck cards as cost, then permanently sets ATK to both players' current banished-card count times 200. The turn-wide SetCountLimit was removed, allowing the distinct start event of a second Battle Phase.",
+        "official_references": [{"script": "c11808215.lua", "card_id": 11808215, "card_name": "Dice Dungeon", "matched_structure": "Official start-of-Battle-Phase effects register EVENT_PHASE+PHASE_BATTLE_START and perform their Battle Phase operation from that phase event."}],
+        "verdict": "FIXED",
+        "issue": "Confirmed and corrected: SetCountLimit(1) resets per turn, not per Battle Phase, so it wrongly blocked use at the start of a second Battle Phase in the same turn. The phase-start event itself provides one trigger opportunity per Battle Phase."
+      },
+      {
+        "effect_index": 4,
+        "printed_clause": "If this Xyz Summoned card with material leaves the field: You can Special Summon 1 of your banished Level 4 or lower FIRE Fiend monsters, and if you do, it cannot be targeted by card effects.",
+        "lua_implementation": "A delayed leave-field trigger checks previous Monster Zone, Xyz Summon type, and prior overlay count, summons a face-up banished Level 4 or lower FIRE Fiend, and now grants that monster targeting protection from both players.",
+        "official_references": [
+          {"script": "c12744567.lua", "card_id": 12744567, "card_name": "Number C101: Silent Honor DARK", "matched_structure": "Official leave-field Xyz effects inspect prior Xyz Summon state and prior overlay count."},
+          {"script": "c6165656.lua", "card_id": 6165656, "card_name": "Number C88: Gimmick Puppet Disaster Leo", "matched_structure": "Official unqualified targeting protection grants EFFECT_CANNOT_BE_EFFECT_TARGET with value 1."}
+        ],
+        "verdict": "FIXED",
+        "issue": "Confirmed and corrected: the granted aux.tgoval protection was opponent-only despite the unqualified text; the summoned monster is now untargetable by either player's card effects."
+      }
+    ]
+  }],
+  "summary": {"cards": 1, "effects": 4, "pass": 1, "fixed": 3, "defects": 0, "custom_gaps": 0}
+}

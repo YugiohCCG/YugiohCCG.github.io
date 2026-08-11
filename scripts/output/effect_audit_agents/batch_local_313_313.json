@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-289-330",
+  "ordinal_start": 313,
+  "ordinal_end": 313,
+  "cards": [
+    {
+      "ordinal": 313,
+      "passcode": 259225324,
+      "name": "Transcend the Pendulum",
+      "text_sha256": "713191198ebe8314abe8dfe0f651b6abfd7e8558dbce8dfde335dcbd3662bd9a",
+      "script_sha256": "4ee194010166e2aee52d6113d12004dda73aca5425a361ceea4488ff4c0bf631",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "3+ Effect Monsters including a Synchro, Fusion, or Xyz Pendulum Monster.",
+          "lua_implementation": "Link procedure requires all materials be Effect Monsters and subgroup-checks for a Pendulum monster also carrying Synchro/Fusion/Xyz type.",
+          "official_references": [
+            {
+              "script": "c11738489.lua",
+              "card_id": 11738489,
+              "card_name": "The Arrival Cyberse @Ignister",
+              "matched_structure": "3+ Effect Monster Link procedure with an additional material-property subgroup check."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If Link Summoned: destroy all Spells/Traps, then place a Deck Pendulum and differently named face-up Extra Deck Pendulum into your Pendulum Zones; HOPT.",
+          "lua_implementation": "The optional Link Summon trigger now requires at least one Spell/Trap and a legal differently named Deck/face-up Extra Deck Pendulum pair at activation. Resolution proceeds to placement only if Duel.Destroy destroys at least one card and both Pendulum Zones are then free.",
+          "official_references": [
+            {
+              "script": "c29432356.lua",
+              "card_id": 29432356,
+              "card_name": "Zefraath",
+              "matched_structure": "Moving a selected Pendulum card into Pendulum/Extra mechanics with HOPT structure."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the previous trigger was always activatable and could perform the mandatory then-part without a successful destroy or without a legal Pendulum pair."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Ignition: immediately after resolution Pendulum Summon Pendulum monster(s) in Defense Position; HOPT.",
+          "lua_implementation": "The script creates an official-style temporary extra Pendulum Summon permission, selects scale-legal candidates, raises EVENT_SPSUMMON_SUCCESS_G_P, and then calls Duel.SpecialSummon with SUMMON_TYPE_PENDULUM in Defense Position, matching official Pendulum Evolution and Pendulum Encore sequencing.",
+          "official_references": [
+            {
+              "script": "c55795155.lua",
+              "card_id": 55795155,
+              "card_name": "Pendulum Evolution",
+              "matched_structure": "Official immediately-after-resolution Pendulum Summon raises EVENT_SPSUMMON_SUCCESS_G_P before Duel.SpecialSummon with SUMMON_TYPE_PENDULUM."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Confirmed and fixed activation/resolution legality for the destroy-then-place effect. Rejected the alleged premature Pendulum event: official Pendulum Evolution and Pendulum Encore use the same RaiseEvent-before-SpecialSummon engine sequence.",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 2,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

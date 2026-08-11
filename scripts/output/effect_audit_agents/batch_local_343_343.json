@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-331-360",
+  "ordinal_start": 343,
+  "ordinal_end": 343,
+  "cards": [{
+    "ordinal": 343,
+    "passcode": 235051716,
+    "name": "Arckcestial Pillar of Heavens",
+    "text_sha256": "f6b2e2f5951958de7fd02a05022a1af84fc9c2dab048d99d1680396c8c57eb6f",
+    "script_sha256": "300ff6d2b8d9aa75d9425e938d66224c695f0c47322c4364d1288d52d5d41e5a",
+    "overall_verdict": "FIXED",
+    "coverage_override": {"expected_individual_effects": 2, "reason": "The once-per-turn return effect and banishment-triggered self-Set effect are the two printed effects; their limit sentences are attached conditions."},
+    "effects": [
+      {
+        "effect_index": 1,
+        "printed_clause": "Once per turn: You can target up to 2 of your banished \"Arckcestial\" cards; return them to the GY.",
+        "lua_implementation": "A Spell Zone Ignition Effect targets one or two face-up banished Arckcestial cards and returns the still-related targets to the GY with REASON_EFFECT+REASON_RETURN.",
+        "official_references": [{"script": "c1154611.lua", "card_id": 1154611, "card_name": "Paleozoic Leanchoilia", "matched_structure": "Official banished-card recovery targets a banished card and returns it to the GY with Duel.SendtoGrave and REASON_RETURN."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 2,
+        "printed_clause": "If this card is banished by the effect of an \"Arckcestial\" card: You can Set this card. You can only use this effect once per turn.",
+        "lua_implementation": "The delayed EVENT_REMOVE trigger now requires this card's REASON_EFFECT and an Arckcestial reason-effect handler, then Sets itself if still related and Settable under its HOPT code.",
+        "official_references": [{"script": "c11074235.lua", "card_id": 11074235, "card_name": "Mana Dragon Zirnitron", "matched_structure": "Official movement triggers validate effect provenance with Card.IsReason(REASON_EFFECT) before performing their recovery action."}],
+        "verdict": "FIXED",
+        "issue": "Confirmed and corrected: checking only re and its handler also accepted banishment paid as an Arckcestial activation cost. The trigger now requires REASON_EFFECT."
+      }
+    ]
+  }],
+  "summary": {"cards": 1, "effects": 2, "pass": 1, "fixed": 1, "defects": 0, "custom_gaps": 0}
+}

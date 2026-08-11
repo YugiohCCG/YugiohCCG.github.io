@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-289-330",
+  "ordinal_start": 293,
+  "ordinal_end": 293,
+  "cards": [
+    {
+      "ordinal": 293,
+      "passcode": 259174227,
+      "name": "Farad, the Purple Ohmen",
+      "text_sha256": "09d57ec33c31a1a91e093fe5336f84a7d9e03ecfe77f2a6487efc78964d67fb2",
+      "script_sha256": "7e93e2cfed82b65a52b8fab4f0ead565340f9decd67947f08c12a6ae60fb448d",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Special Summon this card from hand to a zone a Link Monster points to.",
+          "lua_implementation": "An uncopyable hand summon procedure uses Duel.GetLinkedZone as the allowed zone mask.",
+          "official_references": [
+            {
+              "script": "c27918365.lua",
+              "card_id": 27918365,
+              "card_name": "World Legacy - \"World Crown\"",
+              "matched_structure": "Special Summon procedure restricted to a linked zone."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "On being Special Summoned to a linked zone: traverse pointing/co-linked Link Monsters with Current Counters until terminal Link Monsters point only to Main Monster Zones, move this card to one of those terminal zones, then Special Summon 1 Thunder monster from your GY into one of those zones; HOPT.",
+          "lua_implementation": "The breadth-first traversal now records each discovered Link Monster depth, adds Current Counters to every visited Link Monster, derives destinations only from terminal frontier Link Monsters with no deeper co-linked successor, and moves/summons only into those pointed Main Monster Zones.",
+          "official_references": [
+            {
+              "script": "c18585765.lua",
+              "card_id": 18585765,
+              "card_name": "Voltester",
+              "matched_structure": "Official recursive Link-arrow traversal component; Voltester follows arrows through successive Link Monsters."
+            },
+            {
+              "script": "c25163979.lua",
+              "card_id": 25163979,
+              "card_name": "World Legacy's Nightmare",
+              "matched_structure": "Official linked-monster movement with Duel.MoveSequence."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the previous destination mask included zones pointed to by interior traversal nodes, while the text limits movement to the zones reached when traversal terminates."
+        }
+      ],
+      "audit_note": "Confirmed terminal-zone traversal defect and corrected movement to use only the terminal BFS frontier.",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 1,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

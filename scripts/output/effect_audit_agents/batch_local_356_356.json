@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-331-360",
+  "ordinal_start": 356,
+  "ordinal_end": 356,
+  "cards": [{
+    "ordinal": 356,
+    "passcode": 219826457,
+    "name": "Ro-Bau",
+    "text_sha256": "21654af664f1d79cd650e71f5162533d80e61dde27f69eccd5749f8b3a9adcc2",
+    "script_sha256": "c5de3525df16561d4985329e3dc9ec8c440509f233b2b1a23215c56e5531244e",
+    "overall_verdict": "FIXED",
+    "coverage_override": {"expected_individual_effects": 4, "reason": "The continuous original-ATK calculation and three separately activatable HOPT effects account for all mechanics; the shared limit sentence is attached to the latter three."},
+    "effects": [
+      {
+        "effect_index": 1,
+        "printed_clause": "This card's original ATK becomes 250 times the number of \"Bau\" cards you control.",
+        "lua_implementation": "A single-range EFFECT_SET_BASE_ATTACK now counts only face-up cards on this player's field that publicly satisfy the Bau setcode, multiplying that count by 250.",
+        "official_references": [{"script": "c95243515.lua", "card_id": 95243515, "card_name": "Virtual World Tiger - Fufu", "matched_structure": "Official continuous archetype-card field counts combine Card.IsFaceup and Card.IsSetCard before deriving a persistent effect value."}],
+        "verdict": "FIXED",
+        "issue": "Confirmed and corrected: face-down cards do not publicly possess an archetype for this continuous calculation. The old bare Card.IsSetCard count could include hidden Bau cards."
+      },
+      {
+        "effect_index": 2,
+        "printed_clause": "If you control \"Bauy World\": You can Special Summon this card from your banishment.",
+        "lua_implementation": "A banished-zone Ignition Effect checks for face-up Bauy World and summon legality, then Special Summons this card under the first HOPT code.",
+        "official_references": [{"script": "c10560119.lua", "card_id": 10560119, "card_name": "Fishborg Doctor", "matched_structure": "Official conditioned self-Special Summons from a non-hand location check field state, available zone, and summon legality."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 3,
+        "printed_clause": "During the Main Phase (Quick Effect): You can target 1 \"Bau\" you control; equip this card to it as an Equip Spell that gives it 2500 ATK, from your face-up field or GY.",
+        "lua_implementation": "A Main-Phase Quick Effect from the Monster Zone/GY targets a controlled Bau, equips this card if both remain legal, applies a bound equip limit, and grants 2500 ATK under a distinct HOPT code.",
+        "official_references": [{"script": "c42940335.lua", "card_id": 42940335, "card_name": "Mimighoul Throne", "matched_structure": "Official monster-to-Equip-Spell Quick Effects target an eligible monster, call Duel.Equip, register EFFECT_EQUIP_LIMIT, and grant ATK."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 4,
+        "printed_clause": "If a monster this card is equipped to destroys a monster by battle: You can add 1 monster from your banishment to your hand, then, immediately after this effect resolves, you can Normal Summon 1 monster.",
+        "lua_implementation": "A delayed equipped-card battle-destroying trigger recovers one face-up banished monster, then optionally performs an immediate legal Normal Summon under its own HOPT code.",
+        "official_references": [{"script": "c65515667.lua", "card_id": 65515667, "card_name": "Motor Kaiser", "matched_structure": "Official immediate Normal Summon effects select a currently summonable monster and resolve with Duel.Summon."}],
+        "verdict": "PASS",
+        "issue": null
+      }
+    ]
+  }],
+  "summary": {"cards": 1, "effects": 4, "pass": 3, "fixed": 1, "defects": 0, "custom_gaps": 0}
+}

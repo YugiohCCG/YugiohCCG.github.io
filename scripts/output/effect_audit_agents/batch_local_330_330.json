@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-289-330",
+  "ordinal_start": 330,
+  "ordinal_end": 330,
+  "cards": [
+    {
+      "ordinal": 330,
+      "passcode": 221924008,
+      "name": "Chamroshes' Aegis",
+      "text_sha256": "7f0e3dc26e0a76d80b4c6589864a7a0b3a10ebbb3640a8466f72be0349663689",
+      "script_sha256": "ab21cb40f6e7cd4f573b7afb0e3982213b6f37c2cf17cf6b00efda93386a475d",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "3 Level 3 or lower Tuners with different names; must first be Special Summoned from Extra by shuffling those cards from GY/banishment into Deck.",
+          "lua_implementation": "Revive-limited custom Extra Deck procedure finds three face-up-accessible Level ≤3 Tuners with distinct codes in GY/banishment and shuffles them as procedure material/cost.",
+          "official_references": [
+            {
+              "script": "c56832966.lua",
+              "card_id": 56832966,
+              "card_name": "Number S39: Utopia the Lightning",
+              "matched_structure": "Alternative Extra Deck summon procedure with retained material selection; the exact three-Tuner shuffle procedure is custom."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If Summoned this way, Extra Deck Special Summons are Synchro-only for the rest of the turn.",
+          "lua_implementation": "A continuous summon-success watcher recognizes SUMMON_VALUE_SELF and registers an end-turn restriction against non-Synchro Extra Deck summons.",
+          "official_references": [
+            {
+              "script": "c10194329.lua",
+              "card_id": 10194329,
+              "card_name": "Raidraptor - Avenge Vulture",
+              "matched_structure": "Post-special-summon Extra Deck type lock."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "When Special Summoned: Special Summon a Level 2 Tuner Synchro from Extra, banish it when it leaves, and allow it to be non-Tuner for Synchro Material; HOPT.",
+          "lua_implementation": "Trigger summons an eligible Level 2 Tuner Synchro, installs leave-field redirect and EFFECT_NONTUNER with standard reset, and uses id HOPT.",
+          "official_references": [
+            {
+              "script": "c40380686.lua",
+              "card_id": 40380686,
+              "card_name": "Baby Mudragon",
+              "matched_structure": "Exact 'may be treated as non-Tuner for Synchro Material' implementation."
+            },
+            {
+              "script": "c10642488.lua",
+              "card_id": 10642488,
+              "card_name": "Vic Viper T301",
+              "matched_structure": "Special Summon with leave-field banish redirect."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If sent to GY: change battle position of up to 3 field monsters; HOPT.",
+          "lua_implementation": "Delayed GY trigger selects 1–3 monsters on either field and calls ChangePosition with mappings for every current position; separate HOPT key.",
+          "official_references": [
+            {
+              "script": "c16020923.lua",
+              "card_id": 16020923,
+              "card_name": "Pikari @Ignister",
+              "matched_structure": "Targeted temporary/state-change effect with HOPT trigger structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "You can only use each following effect of \"Chamroses' Aegis\" once per turn.",
+          "lua_implementation": "The two following activated effects use separate hard once-per-turn keys based on this card?s actual passcode. This enforces the clearly intended restriction despite the printed card-name typo.",
+          "official_references": [
+            {
+              "script": "c40044918.lua",
+              "card_id": 40044918,
+              "card_name": "Elemental HERO Stratos",
+              "matched_structure": "Named hard once-per-turn effects key off the card's actual identity."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Rejected as a Lua defect. The printed typo is in the card name inside the restriction; the Lua correctly applies separate hard once-per-turn keys to the two following effects of the actual card.",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 5,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

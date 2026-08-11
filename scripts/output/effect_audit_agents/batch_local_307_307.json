@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-289-330",
+  "ordinal_start": 307,
+  "ordinal_end": 307,
+  "cards": [
+    {
+      "ordinal": 307,
+      "passcode": 259650969,
+      "name": "Ohmen Beacon",
+      "text_sha256": "6f5a0f885650d5fcd6c7f75749a16f11c616c2976a6d29f1ad36e3a739995e36",
+      "script_sha256": "a19bdb4d4c2fedfc455897d5f57fd30e6e52aed764e375368937f0ad1d111ce8",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "On activation, optionally Special Summon a Thunder from hand, or if controlling an \"Ohmechanic\", an \"Ohmen\" from GY instead; only 1 activation per turn.",
+          "lua_implementation": "Free-chain activation with oath count optionally selects either branch. Hand candidates check summon legality; the GY filter checks only Ohmen/Necrovalley before calling SpecialSummon.",
+          "official_references": [
+            {
+              "script": "c21985407.lua",
+              "card_id": 21985407,
+              "card_name": "Starry Knight Arrival",
+              "matched_structure": "Continuous Spell activation with optional branch-based Special Summon."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "GY branch: Special Summon an \"Ohmen\" monster from your GY.",
+          "lua_implementation": "The GY branch uses an Ohmen filter that requires Necrovalley legality and IsCanBeSpecialSummoned before the option is offered and again when the monster is selected.",
+          "official_references": [
+            {
+              "script": "c35146019.lua",
+              "card_id": 35146019,
+              "card_name": "Altergeist Manifestation",
+              "matched_structure": "Official GY Special Summon filter includes IsCanBeSpecialSummoned and Necrovalley legality."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Co-linked monsters you control with a Current Counter cannot be targeted by opponent card effects.",
+          "lua_implementation": "Field EFFECT_CANNOT_BE_EFFECT_TARGET uses mutual-link count plus counter count and aux.tgoval.",
+          "official_references": [
+            {
+              "script": "c24151924.lua",
+              "card_id": 24151924,
+              "card_name": "G Golem Invalid Dolmen",
+              "matched_structure": "Continuous co-linked monster protection."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Once per turn, move 1 monster you control to another Main Monster Zone, then place a Current Counter on all your co-linked monsters.",
+          "lua_implementation": "The ignition target requires both a free Main Monster Zone and a selectable face-up controlled monster, then moves that monster and counters all currently co-linked controlled monsters.",
+          "official_references": [
+            {
+              "script": "c25163979.lua",
+              "card_id": 25163979,
+              "card_name": "World Legacy's Nightmare",
+              "matched_structure": "Official movement operation first verifies a movable monster and destination."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Rejected both reported defects. The GY filter already checks IsCanBeSpecialSummoned, and the movement target already requires both a free zone and a selectable controlled face-up monster.",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 4,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-289-330",
+  "ordinal_start": 319,
+  "ordinal_end": 319,
+  "cards": [
+    {
+      "ordinal": 319,
+      "passcode": 224811863,
+      "name": "Shaman of Fire",
+      "text_sha256": "182740ec1db85460bc798c10ebee98150f2e58863946b02277da9dd20f524a8a",
+      "script_sha256": "2cc10619ab0105303888a88ac47fe2b1b6e1f223266876df05771292576d3b0d",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "With no monsters, Special Summon from hand by sending a Dragon from Extra Deck to GY; if so, Extra Deck Special Summons are FIRE-only for the rest of the turn.",
+          "lua_implementation": "Custom hand summon procedure selects an Extra Deck Dragon and sends it as procedure cost, then registers an end-turn restriction against non-FIRE Extra Deck summons after success.",
+          "official_references": [
+            {
+              "script": "c10194329.lua",
+              "card_id": 10194329,
+              "card_name": "Raidraptor - Avenge Vulture",
+              "matched_structure": "Self Special Summon followed by an Extra Deck-only Attribute/type restriction."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If Normal/Special Summoned: send a Spell listing \"Phlogiston Dragon\" from Deck, then discard 1; this effect becomes that Spell's activation effect; HOPT.",
+          "lua_implementation": "Trigger cost selects a CheckActivateEffect-capable listed Spell, sends it plus a discard as costs, then imports its category/property/target and invokes the selected activation operation.",
+          "official_references": [
+            {
+              "script": "c10136446.lua",
+              "card_id": 10136446,
+              "card_name": "Darklord Eveningstar",
+              "matched_structure": "Official dynamic application of a selected Spell/Trap activation effect using CheckActivateEffect."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Darklord Eveningstar supplies the closest exact engine pattern, but Shaman sources the Spell from Deck and has a two-part cost. There is no official exact analogue for copying every possible custom listed Spell from Deck; event parameters used by arbitrary future Spells remain unmatched."
+        }
+      ],
+      "audit_note": "Confirmed as an unresolved custom-reference gap, not a demonstrated Lua defect: Darklord-style activation-effect copying exists officially, but no exact official source covers this Deck-send plus discard custom source set.",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 1,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

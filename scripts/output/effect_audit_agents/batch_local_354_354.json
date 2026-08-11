@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-331-360",
+  "ordinal_start": 354,
+  "ordinal_end": 354,
+  "cards": [{
+    "ordinal": 354,
+    "passcode": 220856437,
+    "name": "Bauy Magician",
+    "text_sha256": "3725be48afcb719c33f1b895ee5ad29070bb74d14452f0e1d3d1abb2b7f8e0d3",
+    "script_sha256": "4c969b0edf67a4090dc6388751f2949da48c3c25ecc88198534437c04a2fee15",
+    "overall_verdict": "FIXED",
+    "coverage_override": {"expected_individual_effects": 3, "reason": "Optional non-Tuner treatment, banished self-summon, and the Main-Phase summon/Link-lock effect are the three mechanics; the two HOPT clauses attach to the latter two."},
+    "effects": [
+      {
+        "effect_index": 1,
+        "printed_clause": "If this card you control is used as Synchro Material, you can treat it as a non-Tuner.",
+        "lua_implementation": "A single-range EFFECT_NONTUNER on the Monster Zone permits this controlled card to be treated as a non-Tuner for its controller's Synchro Summon.",
+        "official_references": [{"script": "c40380686.lua", "card_id": 40380686, "card_name": "Baby Mudragon", "matched_structure": "Official optional non-Tuner treatment for Synchro Material uses EFFECT_NONTUNER and a controller-aware value function."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 2,
+        "printed_clause": "If you control \"Bauy World\": You can Special Summon this card from your banishment.",
+        "lua_implementation": "A banished-zone Ignition Effect checks for face-up Bauy World, an open Monster Zone, and this card's summon legality, then Special Summons it under its HOPT code.",
+        "official_references": [{"script": "c10560119.lua", "card_id": 10560119, "card_name": "Fishborg Doctor", "matched_structure": "Official conditioned self-Special Summons from a non-hand location check field state, zone availability, and summon legality."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 3,
+        "printed_clause": "During the Main Phase (Quick Effect): You can banish this face-up card and 1 card from your hand; Special Summon 1 \"Bau\" monster from your hand or Deck, except \"Bauy Magician\", also you cannot Special Summon Link Monsters for the rest of this turn.",
+        "lua_implementation": "The Main-Phase Quick Effect banishes this face-up card and one hand card as cost, summons another Bau from hand/Deck, then registers an End-Phase-resetting player restriction that now rejects Link Monsters from every location.",
+        "official_references": [{"script": "c10194329.lua", "card_id": 10194329, "card_name": "Raidraptor - Avenge Vulture", "matched_structure": "Official post-resolution summon locks use a player-targeted EFFECT_CANNOT_SPECIAL_SUMMON field effect with an End Phase reset."}],
+        "verdict": "FIXED",
+        "issue": "Confirmed and corrected: the text has no 'from the Extra Deck' qualifier. The old restriction allowed Link Monsters to be revived from the GY or banishment; it now blocks Link Special Summons from any location."
+      }
+    ]
+  }],
+  "summary": {"cards": 1, "effects": 3, "pass": 2, "fixed": 1, "defects": 0, "custom_gaps": 0}
+}

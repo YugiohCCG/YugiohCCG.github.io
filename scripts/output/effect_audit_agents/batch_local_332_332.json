@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-331-360",
+  "ordinal_start": 332,
+  "ordinal_end": 332,
+  "cards": [{
+    "ordinal": 332,
+    "passcode": 238256111,
+    "name": "Cursed Dragon of the Knight",
+    "text_sha256": "4c893e87f754e2b73ac95378a4f8ff571b1730858c152b806174b1f8e0f50546",
+    "script_sha256": "e1bc16a3e20a4ed66151dab3fa259ee59884b923bfcb97549ff24c1923422772",
+    "overall_verdict": "FIXED",
+    "coverage_override": {"expected_individual_effects": 3, "reason": "The summon effect, summoned-trigger effect, and the latter effect's turn-wide Extra Deck restriction are audited separately; the final sentence only assigns HOPT limits to those effects."},
+    "effects": [
+      {
+        "effect_index": 1,
+        "printed_clause": "If you control a Warrior \"Gaia\" monster(s): You can Special Summon this card from your hand.",
+        "lua_implementation": "A hand Ignition Effect checks for a face-up Warrior Gaia monster, an open Monster Zone, and this card's summon legality, then Special Summons it under the shared first HOPT code.",
+        "official_references": [{"script": "c8910971.lua", "card_id": 8910971, "card_name": "Lord Gaia the Fierce Knight", "matched_structure": "Official Gaia support supplies a conditioned self-Special Summon from the hand and checks the available Monster Zone."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 2,
+        "printed_clause": "If this card is Normal or Special Summoned: You can banish 1 Dragon or 1 Warrior Normal Monster from your hand or GY; Special Summon 1 \"Gaia the Dragon Champion\" or 1 monster that mentions it from your Deck/Extra Deck.",
+        "lua_implementation": "The Normal/Special Summon trigger now accepts any removable Dragon, or a removable Warrior that is also Normal, from hand/GY as cost; resolution summons the exact listed Fusion or a card whose text lists it from Deck/Extra Deck.",
+        "official_references": [
+          {"script": "c2519690.lua", "card_id": 2519690, "card_name": "Sky Galloping Gaia the Dragon Champion", "matched_structure": "Official Gaia support uses Gaia the Dragon Champion's listed identity and Dragon/Warrior support structure."},
+          {"script": "c47222536.lua", "card_id": 47222536, "card_name": "Dark Magical Circle", "matched_structure": "Official listed-name searches use aux.IsCodeListed to match cards whose text mentions a specific card."}
+        ],
+        "verdict": "FIXED",
+        "issue": "Confirmed and corrected: the repeated article in '1 Dragon or 1 Warrior Normal Monster' makes the alternatives any Dragon, or a Warrior Normal Monster. The old grouped predicate incorrectly required Dragons to be Normal too."
+      },
+      {
+        "effect_index": 3,
+        "printed_clause": "You cannot Special Summon from the Extra Deck the turn you activate this effect, except Level 5 or higher Dragon monsters.",
+        "lua_implementation": "A custom activity counter prevents activation after a disallowed Extra Deck summon, and activation installs an oath restriction through the End Phase allowing only Level 5+ Dragons from the Extra Deck.",
+        "official_references": [{"script": "c10182251.lua", "card_id": 10182251, "card_name": "Lyrilusc - Beryl Canary", "matched_structure": "Official all-turn summon restrictions combine an activity-history check with a rest-of-turn EFFECT_CANNOT_SPECIAL_SUMMON oath."}],
+        "verdict": "PASS",
+        "issue": null
+      }
+    ]
+  }],
+  "summary": {"cards": 1, "effects": 3, "pass": 2, "fixed": 1, "defects": 0, "custom_gaps": 0}
+}

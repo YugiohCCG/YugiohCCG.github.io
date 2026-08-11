@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-289-330",
+  "ordinal_start": 297,
+  "ordinal_end": 297,
+  "cards": [
+    {
+      "ordinal": 297,
+      "passcode": 259881255,
+      "name": "Coulomb, the White Ohmen",
+      "text_sha256": "26b7b2c611e8bd4a64b681b4b7821f38402ecfae3b325a2a4f3e9cf38cdc75ee",
+      "script_sha256": "ff8b5cac3acca73ae736cdcb90c0af4f2ca49c8f6182d97181e8c57f6f715460",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If you control no monsters or all your monsters are Thunder, Special Summon this card from hand.",
+          "lua_implementation": "Uncopyable hand procedure requires an open zone and either no monsters or every controlled monster satisfying RACE_THUNDER.",
+          "official_references": [
+            {
+              "script": "c70095154.lua",
+              "card_id": 70095154,
+              "card_name": "Cyber Dragon",
+              "matched_structure": "Condition-based inherent Special Summon from hand."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "On Special Summon to a linked zone: traverse co-links, place Current Counters, and move to a terminal pointed Main Monster Zone; HOPT.",
+          "lua_implementation": "The breadth-first traversal now records each discovered Link Monster depth, adds Current Counters to every visited Link Monster, and derives movement destinations only from terminal frontier Link Monsters with no deeper co-linked successor.",
+          "official_references": [
+            {
+              "script": "c18585765.lua",
+              "card_id": 18585765,
+              "card_name": "Voltester",
+              "matched_structure": "Recursive arrow-following component."
+            },
+            {
+              "script": "c25163979.lua",
+              "card_id": 25163979,
+              "card_name": "World Legacy's Nightmare",
+              "matched_structure": "Linked-zone movement component."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the previous destination mask included zones pointed to by interior traversal nodes, while the text limits movement to the zones reached when traversal terminates."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "During your Main Phase, send any number of \"Ohmen\" cards from hand; Special Summon Extra Deck \"Ohmen\" Link monsters whose total Link Rating equals the number sent, then give each a Current Counter; HOPT.",
+          "lua_implementation": "Ignition cost uses subgroup validation against summonable Ohmen Links, records cards actually sent, selects an exact Link-Rating subgroup within Extra Deck zone capacity, SpecialSummonSteps them, and adds counters; separate HOPT key.",
+          "official_references": [
+            {
+              "script": "c12989604.lua",
+              "card_id": 12989604,
+              "card_name": "World Legacy Awakens",
+              "matched_structure": "Immediate/constructed Link-monster summon selection and legality checks; Coulomb Special Summons rather than Link Summons as printed."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Confirmed terminal-zone traversal defect and corrected movement to use only the terminal BFS frontier.",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 2,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

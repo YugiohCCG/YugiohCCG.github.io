@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-289-330",
+  "ordinal_start": 311,
+  "ordinal_end": 311,
+  "cards": [
+    {
+      "ordinal": 311,
+      "passcode": 259152704,
+      "name": "Dragon Protector of Nature",
+      "text_sha256": "3bce60f04b9760e2befdf00c736dd9b51ef354e0f7f0b31abc53f6b4324bdc0c",
+      "script_sha256": "4fd8ba0c297b8d98b59ed13b7c9e8e995512108af1301e1e5a557301388aa8f0",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "1 Tuner + 1+ non-Tuner Synchro Monsters.",
+          "lua_implementation": "Synchro procedure accepts one unrestricted Tuner and one or more non-Tuner Synchro monsters.",
+          "official_references": [
+            {
+              "script": "c4891376.lua",
+              "card_id": 4891376,
+              "card_name": "Zalen the Shackled Dragon",
+              "matched_structure": "Near-exact Tuner plus Synchro-monster material procedure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If Synchro Summoned using a NATURE Tuner: Special Summon a Level 4 or lower NATURE from Deck/GY; HOPT.",
+          "lua_implementation": "Material inspection requires a Tuner with custom attribute bit 0x80; the trigger summons a Level 4-or-lower 0x80 monster from Deck/GY under id HOPT.",
+          "official_references": [
+            {
+              "script": "c11069680.lua",
+              "card_id": 11069680,
+              "card_name": "Junk Converter",
+              "matched_structure": "Synchro-material inspection and summon-trigger structure."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "NATURE (0x80) is a CCG custom Attribute and has no official Omega card-effect analogue; only the material inspection and Deck/GY summon components match official patterns."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Opponent cannot target NATURE monsters you control with card effects.",
+          "lua_implementation": "Field cannot-target effect covers controlled 0x80 monsters and uses aux.tgoval.",
+          "official_references": [
+            {
+              "script": "c94292987.lua",
+              "card_id": 94292987,
+              "card_name": "Fabled Gamygyn",
+              "matched_structure": "Opponent-only archetypal/attribute target protection field effect."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "All opponent monsters must attack this card, if able.",
+          "lua_implementation": "Two official-style field effects now work together: EFFECT_MUST_ATTACK compels each opponent monster to declare an attack if able, and EFFECT_MUST_ATTACK_MONSTER requires this card as the attack target.",
+          "official_references": [
+            {
+              "script": "c50546029.lua",
+              "card_id": 50546029,
+              "card_name": "G Golem Dignified Trilithon",
+              "matched_structure": "Exact printed attack compulsion implemented with both EFFECT_MUST_ATTACK and EFFECT_MUST_ATTACK_MONSTER."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: EFFECT_MUST_ATTACK_MONSTER alone selected the required target only if the opponent chose to attack; it did not compel attack declarations."
+        }
+      ],
+      "audit_note": "Confirmed and fixed the missing attack compulsion. The NATURE-attribute material/summon clause remains an unresolved custom-reference gap because 0x80 has no official Omega analogue.",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 2,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

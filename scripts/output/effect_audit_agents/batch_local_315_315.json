@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-289-330",
+  "ordinal_start": 315,
+  "ordinal_end": 315,
+  "cards": [
+    {
+      "ordinal": 315,
+      "passcode": 228464260,
+      "name": "Rising Elemental",
+      "text_sha256": "d793c563cd146b45af7326ab4fbd278618bf185b74868844415f851eeec7a6b7",
+      "script_sha256": "90b6c2c2b57aa7cb16fa715fe9775ba2bbcf2ebed273564c2ecb4f5ffae87ca5",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "3 Tuners with different Attributes + 3 non-Tuners with different Attributes.",
+          "lua_implementation": "AddSynchroMixProcedure requires exactly three Tuners and three non-Tuners; a group check requires three Attribute classes in each subgroup.",
+          "official_references": [
+            {
+              "script": "c4891376.lua",
+              "card_id": 4891376,
+              "card_name": "Zalen the Shackled Dragon",
+              "matched_structure": "Mixed Tuner/non-Tuner Synchro procedure; the exact 3+3 per-subgroup Attribute uniqueness is custom."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "No official Omega script has this exact six-material, independently distinct-Attribute composition; the Lua explicitly enforces it."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "While face-up, also WIND, WATER, FIRE, EARTH, and DARK.",
+          "lua_implementation": "Single-range EFFECT_ADD_ATTRIBUTE adds all five Attribute bits.",
+          "official_references": [
+            {
+              "script": "c11270236.lua",
+              "card_id": 11270236,
+              "card_name": "Invoked Elysium",
+              "matched_structure": "Official multiple-Attribute field treatment via EFFECT_ADD_ATTRIBUTE."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If Synchro Summoned using 6 different Attributes, gains a once-per-turn Quick Effect: banish a GY monster; banish opponent field/GY monsters sharing its Attribute.",
+          "lua_implementation": "Quick Effect condition checks the six material Attribute classes, banishes one GY monster as cost, stores its Attribute mask, and removes all matching opponent Monster Zone/GY monsters; SOPT count.",
+          "official_references": [
+            {
+              "script": "c11270236.lua",
+              "card_id": 11270236,
+              "card_name": "Invoked Elysium",
+              "matched_structure": "Attribute comparison and mass removal structure on a multi-Attribute Fusion monster."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Unaffected by activated effects of opponent monsters sharing an Attribute with another monster you control.",
+          "lua_implementation": "EFFECT_IMMUNE_EFFECT now requires an opponent-owned monster effect that is both active-type Monster and re:IsActivated(), then checks whether another face-up controlled monster shares its handler Attribute.",
+          "official_references": [
+            {
+              "script": "c13023431.lua",
+              "card_id": 13023431,
+              "card_name": "Chevreuil, Hunting Scout of the Deep Forest",
+              "matched_structure": "Official immunity specifically gates on te:IsActivated()/activated-effect semantics."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the previous immunity omitted re:IsActivated() and therefore also blocked continuous and other non-activated monster effects."
+        }
+      ],
+      "audit_note": "Confirmed and fixed the activated-effect immunity boundary. The exact six-material independently distinct-Attribute Synchro composition remains an unresolved custom-reference gap.",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 2,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

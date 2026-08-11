@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-289-330",
+  "ordinal_start": 301,
+  "ordinal_end": 301,
+  "cards": [
+    {
+      "ordinal": 301,
+      "passcode": 259350270,
+      "name": "Farad, the Ohmechanic Capacitor",
+      "text_sha256": "88e72a6cac9b6d664e34ef2e52f150c6118e3274804d7dec2380d55717b22358",
+      "script_sha256": "09bccf37e8b2fd5634e7753dd06282dd21e43d0bc43a3b838ee5d86b6a7f2b7f",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2 monsters including a Thunder monster; ATK becomes 0 with no Current Counters; threshold effects.",
+          "lua_implementation": "Link procedure requires exactly two with at least one Thunder; a single-range final ATK effect and threshold conditions implement the static framework.",
+          "official_references": [
+            {
+              "script": "c1861629.lua",
+              "card_id": 1861629,
+              "card_name": "Decode Talker",
+              "matched_structure": "Link material subgroup check and continuous single-range effect structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "1+: During the Main Phase, target and banish 1 opponent card; HOPT.",
+          "lua_implementation": "Ignition effect at 1+ counters targets an opponent on-field removable card and banishes it, with key id.",
+          "official_references": [
+            {
+              "script": "c25533642.lua",
+              "card_id": 25533642,
+              "card_name": "Altergeist Meluseek",
+              "matched_structure": "Targeted on-field removal operation and HOPT trigger/activation structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "2+: During the Main Phase, target an \"Ohmen\" in your GY or banishment and add it; HOPT.",
+          "lua_implementation": "Ignition at 2+ targets a face-up removed or GY Ohmen, applies Necrovalley filtering to GY, and returns it with key id+100.",
+          "official_references": [
+            {
+              "script": "c1154611.lua",
+              "card_id": 1154611,
+              "card_name": "Paleozoic Leanchoilia",
+              "matched_structure": "Targeting a banished/GY card and returning it to a destination."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "3+: Quick Effect, remove all Current Counters from this card and co-linked Link Monsters; banish up to 3 cards in opponent GY; HOPT.",
+          "lua_implementation": "Free-chain effect at 3+ removes every Current Counter from this card and its mutual-linked group, then non-target-selects 1–3 removable opponent GY cards.",
+          "official_references": [
+            {
+              "script": "c13536606.lua",
+              "card_id": 13536606,
+              "card_name": "V-LAN Hydra",
+              "matched_structure": "Mutual-linked group acquisition used for the distributed counter cost."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "No official script has the exact distributed Current Counter cost; the removal operation itself is conventional."
+        }
+      ],
+      "audit_note": "Confirmed as an unresolved custom-reference gap, not a demonstrated Lua defect: no official script removes a distributed custom-counter cost from a Link monster and its co-linked group.",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 3,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

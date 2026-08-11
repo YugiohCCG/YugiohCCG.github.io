@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-289-330",
+  "ordinal_start": 321,
+  "ordinal_end": 321,
+  "cards": [
+    {
+      "ordinal": 321,
+      "passcode": 257239133,
+      "name": "Phlogistic Uprising!",
+      "text_sha256": "9ceb82efc3500adaf0e1432b15d6dccd8a110eb2d37f1fefd93dfccc25a4c496",
+      "script_sha256": "2867fac572c7e30b103af68827d9ab9b3d986b1ce019296b9ac7d030a2638420",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Fusion Summon a FIRE Dragon from GY/Extra using hand/field materials sent to GY and/or GY materials shuffled into Deck, then optionally pay LP in 300 multiples.",
+          "lua_implementation": "Activation builds hand/field and Necrovalley-filtered GY material groups, checks Fusion material and destination, sends hand/field materials to GY, shuffles GY materials, Special Summons the selected FIRE Dragon as Fusion from GY or Extra, completes procedure, then offers 0 or a payable 300 multiple.",
+          "official_references": [
+            {
+              "script": "c81223446.lua",
+              "card_id": 81223446,
+              "card_name": "Necro Fusion",
+              "matched_structure": "Fusion Summon using GY materials with alternate material disposition."
+            },
+            {
+              "script": "c70534340.lua",
+              "card_id": 70534340,
+              "card_name": "Lubellion the Searing Dragon",
+              "matched_structure": "Fusion material selection that shuffles GY/banished materials into Deck."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Official references cover GY material use/shuffling, but no official Omega effect Fusion Summons the Fusion Monster itself from the GY with this hybrid disposition. The Lua uses nocheck only for the GY Fusion target; that custom summon legality remains unmatched."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Shuffle \"Phlogiston Dragon\" from GY; Set this card from GY, banish it when it leaves; HOPT.",
+          "lua_implementation": "GY ignition shuffles exact code as cost, Sets this card if legal, and installs leave-field banish redirect under id HOPT.",
+          "official_references": [
+            {
+              "script": "c10333641.lua",
+              "card_id": 10333641,
+              "card_name": "Superheavy Samurai Stealthy",
+              "matched_structure": "Self-Set/revival-style operation with leave-field banish redirect."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Confirmed as an unresolved custom-reference gap, not a demonstrated Lua defect: official scripts cover GY Fusion materials and shuffle disposition, but not a Fusion Summon whose Fusion Monster itself may originate in the GY.",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 1,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}
