@@ -63,16 +63,22 @@
           "lua_implementation": "At the End Phase, the registered delayed effect now totals GetBaseAttack/GetBaseDefense for every monster the player controls, including face-down monsters, and subtracts that total from LP.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c1082946.lua",
-              "card_id": 1082946,
-              "card_name": "Pyro Clock of Destiny",
-              "matched_structure": "Pyro Clock of Destiny demonstrates turn-timed global effects; official original-stat calculations use original-stat accessors."
+              "script": "c15443125.lua",
+              "card_id": 15443125,
+              "card_name": "Spright Starter",
+              "matched_structure": "Official LP-loss resolution uses GetBaseAttack for a monster's original ATK and Duel.SetLP to apply the loss."
             },
             {
-              "script": "tmp/omega_scripts/c94380860.lua",
+              "script": "c94380860.lua",
               "card_id": 94380860,
               "card_name": "Number 103: Ragnazero",
-              "matched_structure": "Uses current-versus-original ATK accessors, illustrating that original statistics are not base-stat accessors."
+              "matched_structure": "Official current-versus-original stat handling compares a face-up field monster's current ATK with GetBaseAttack."
+            },
+            {
+              "script": "c12527118.lua",
+              "card_id": 12527118,
+              "card_name": "Cassimolar",
+              "matched_structure": "Official delayed End Phase handling records a later operation involving a monster's original ATK."
             }
           ],
           "verdict": "FIXED",

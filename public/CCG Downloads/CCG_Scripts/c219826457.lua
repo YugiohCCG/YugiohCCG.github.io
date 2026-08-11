@@ -67,7 +67,7 @@ s.listed_series={0xba8}
 
 function s.atkval(e,c)
 	local tp=e:GetHandlerPlayer()
-	return Duel.GetMatchingGroupCount(Card.IsSetCard,tp,LOCATION_ONFIELD,0,nil,0xba8)*250
+	return Duel.GetMatchingGroupCount(aux.AND(Card.IsFaceup,Card.IsSetCard),tp,LOCATION_ONFIELD,0,nil,0xba8)*250
 end
 
 -- Special Summon from banishment

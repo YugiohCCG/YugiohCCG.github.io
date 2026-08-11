@@ -109,7 +109,7 @@ end
 
 -- Special Summon from GY
 function s.spfilter2(c,tp)
-	return c:IsControler(tp) and c:IsSetCard(0x4ac0) and (c:IsType(TYPE_SYNCHRO) or c:IsType(TYPE_XYZ))
+	return c:IsSummonPlayer(tp) and c:IsSetCard(0x4ac0) and (c:IsType(TYPE_SYNCHRO) or c:IsType(TYPE_XYZ))
 end
 function s.spcon2(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(s.spfilter2,1,nil,tp)

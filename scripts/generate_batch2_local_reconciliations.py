@@ -88,6 +88,43 @@ COVERAGE = {
     144: "The summon procedure and its resulting restriction are one procedure record; the detached search and its HOPT are represented by the remaining records.",
 }
 
+REFERENCE_OVERRIDES = {
+    (127, 3): [
+        {
+            "script": "c7986397.lua",
+            "card_id": 7986397,
+            "card_name": "Revendread Evolution",
+            "matched_structure": "Official Ritual handling permits a specifically filtered Main Deck monster to be included in the Ritual material group, while ordinary hand/field materials are filtered for Ritual-material legality.",
+        },
+        {
+            "script": "c51124303.lua",
+            "card_id": 51124303,
+            "card_name": "Nekroz Kaleidoscope",
+            "matched_structure": "Official Ritual Spell selection, material assignment, release, Ritual Summon, and CompleteProcedure structure.",
+        },
+    ],
+    (132, 4): [
+        {
+            "script": "c15443125.lua",
+            "card_id": 15443125,
+            "card_name": "Spright Starter",
+            "matched_structure": "Official LP-loss resolution uses GetBaseAttack for a monster's original ATK and Duel.SetLP to apply the loss.",
+        },
+        {
+            "script": "c94380860.lua",
+            "card_id": 94380860,
+            "card_name": "Number 103: Ragnazero",
+            "matched_structure": "Official current-versus-original stat handling compares a face-up field monster's current ATK with GetBaseAttack.",
+        },
+        {
+            "script": "c12527118.lua",
+            "card_id": 12527118,
+            "card_name": "Cassimolar",
+            "matched_structure": "Official delayed End Phase handling records a later operation involving a monster's original ATK.",
+        },
+    ],
+}
+
 
 def digest(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
@@ -114,6 +151,8 @@ def main() -> None:
                 effect["issue"] = issue
                 if ordinal == 134:
                     effect["printed_clause"] = "If your opponent activates a card effect: banish 1 Effect Monster you control; Special Summon 1 To Proto monster from hand or GY, ignoring its Summoning conditions."
+            if key in REFERENCE_OVERRIDES:
+                effect["official_references"] = REFERENCE_OVERRIDES[key]
         verdicts = {effect["verdict"] for effect in record["effects"]}
         record["overall_verdict"] = (
             "CUSTOM_GAP" if "CUSTOM_GAP" in verdicts

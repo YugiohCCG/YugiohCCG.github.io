@@ -102,5 +102,5 @@ function s.spop2(e,tp,eg,ep,ev,re,r,rp)
 	Duel.RegisterEffect(e1,tp)
 end
 function s.splimit(e,c,sump,sumtype,sumpos,targetp,se)
-	return c:IsType(TYPE_LINK) and c:IsLocation(LOCATION_EXTRA)
+	return c:IsType(TYPE_LINK)
 end

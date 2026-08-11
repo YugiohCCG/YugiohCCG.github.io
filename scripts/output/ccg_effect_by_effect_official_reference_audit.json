@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-11T12:18:15.602088+00:00",
+  "generated_at": "2026-08-11T12:20:06.590538+00:00",
   "method": "Fresh effect-by-effect comparison; historical checklist Markdown and prior pass verdicts are not inputs.",
   "sources": {
     "cards": "src/data/cards.json",
@@ -63,22 +63,24 @@
       "batch_local_380_380.json",
       "batch_local_382_382.json",
       "batch_local_411_411.json",
+      "batch_local_465_465.json",
       "batch_local_573_573.json",
       "batch_local_574_574.json",
       "batch_local_575_575.json",
       "batch_local_576_576.json",
-      "batch_local_577_577.json"
+      "batch_local_577_577.json",
+      "batch_local_89_89.json"
     ]
   },
   "summary": {
     "active_cards": 577,
     "audited_cards": 437,
-    "individual_effect_records": 1587,
+    "individual_effect_records": 1585,
     "effect_verdicts": {
       "CUSTOM_GAP": 39,
       "DEFECT": 84,
       "FIXED": 44,
-      "PASS": 1420
+      "PASS": 1418
     },
     "warnings": 105,
     "errors": 157
@@ -156,9 +158,6 @@
     "ordinal 70: missing card audit (Tove, the Domesticated)",
     "ordinal 71: missing card audit (Domestica Praerie)",
     "ordinal 72: missing card audit (Domestica Anjelie)",
-    "ordinal 89: Normal Monster must have zero effect records",
-    "ordinal 89 effect 1: c12931061.lua shares no concrete Lua structure with the CCG script",
-    "ordinal 89 effect 2: c12931061.lua shares no concrete Lua structure with the CCG script",
     "ordinal 293: stale/incorrect script hash",
     "ordinal 294: stale/incorrect script hash",
     "ordinal 295: stale/incorrect script hash",
@@ -169,9 +168,13 @@
     "ordinal 315: stale/incorrect script hash",
     "ordinal 323: stale/incorrect script hash",
     "ordinal 328: stale/incorrect script hash",
-    "ordinal 375 effect 1: duplicate official reference c17601919.lua",
-    "ordinal 429 effect 3: duplicate official reference c73602965.lua",
-    "ordinal 465: Normal Monster script registers an effect",
+    "ordinal 332: stale/incorrect script hash",
+    "ordinal 343: stale/incorrect script hash",
+    "ordinal 350: stale/incorrect script hash",
+    "ordinal 352: stale/incorrect script hash",
+    "ordinal 354: stale/incorrect script hash",
+    "ordinal 356: stale/incorrect script hash",
+    "ordinal 360: stale/incorrect script hash",
     "ordinal 505: missing card audit (Red-Eyes Gearfried, the Iron Knight)",
     "ordinal 506: missing card audit (Red-Eyes Moon Dragon)",
     "ordinal 507: missing card audit (Red-Eyes Meteor Metal Dragon)",
@@ -239,8 +242,7 @@
     "ordinal 569: missing card audit (Grimoire of Eclipse)",
     "ordinal 570: missing card audit (Encyclopedia of Eclipse)",
     "ordinal 571: missing card audit (Manual of Eclipse)",
-    "ordinal 572: missing card audit (Spellbook of Eclipse)",
-    "ordinal 574 effect 1: missing official script 'c33475154.lua'"
+    "ordinal 572: missing card audit (Spellbook of Eclipse)"
   ],
   "warnings": [
     "ordinal 117 (Jelly Lass of the Grand Blue): 4 records below conservative printed-clause floor 5",
@@ -3112,48 +3114,18 @@
       "text_sha256": "bb77062676b657621552c01f6afdef2aeae89340a1d9fe050f646e94b5a61976",
       "script_sha256": "e295014fc6a5718a8d1806eb251f28f73845bfb947f5855af74871431e3af6d7",
       "overall_verdict": "PASS",
-      "effects": [
-        {
-          "effect_index": 1,
-          "printed_clause": "(This card is also treated as a \"Galactica\" card.)",
-          "lua_implementation": "The Lua is empty; the CCG database setcode blob contains the Galactica setcode, so identity is data-driven.",
-          "official_references": [
-            {
-              "script": "tmp/omega_scripts/c12931061.lua",
-              "card_id": 12931061,
-              "card_name": "U.A. Hyper Stadium",
-              "matched_structure": "U.A. Hyper Stadium’s “always treated as” archetype identity is represented by database setcodes while script handles gameplay effects.",
-              "official_effect_text": "(This card is always treated as a \"F.A.\" card.)\n[b]When[/b] this card is activated: [b]You can[/b] add 1 \"U.A.\" or \"F.A.\" monster from your Deck to your hand, OR add 1 \"U.A. Stadium\" from your GY to your hand. [b]You can[/b] reveal 1 Field Spell in your hand [b]and[/b] pay 1000 LP; [b]you can[/b] Normal Summon 1 \"U.A.\" or \"F.A.\" monster during your [b]Main Phase[/b] this turn, in addition to your Normal Summon/Set. ([b]You can[/b] only gain this effect [b]once[/b] [b]per turn[/b].) [b]You can[/b] only activate 1 \"U.A. Hyper Stadium\" [b]per turn[/b].",
-              "script_sha256": "bc72ccfbb0e9b36295380bcf15f8f4e1e4614e9f1b7c3eaee1292db8a0e79807",
-              "verified_shared_tokens": []
-            }
-          ],
-          "verdict": "PASS",
-          "issue": null
-        },
-        {
-          "effect_index": 2,
-          "printed_clause": "Normal Monster flavor text and Galactic Coordinates have no gameplay effect.",
-          "lua_implementation": "No Lua effects are registered, correct for non-effect flavor text.",
-          "official_references": [
-            {
-              "script": "tmp/omega_scripts/c12931061.lua",
-              "card_id": 12931061,
-              "card_name": "U.A. Hyper Stadium",
-              "matched_structure": "Database-driven treated-as identity is distinct from non-operative flavor text; the latter registers no Lua effect.",
-              "official_effect_text": "(This card is always treated as a \"F.A.\" card.)\n[b]When[/b] this card is activated: [b]You can[/b] add 1 \"U.A.\" or \"F.A.\" monster from your Deck to your hand, OR add 1 \"U.A. Stadium\" from your GY to your hand. [b]You can[/b] reveal 1 Field Spell in your hand [b]and[/b] pay 1000 LP; [b]you can[/b] Normal Summon 1 \"U.A.\" or \"F.A.\" monster during your [b]Main Phase[/b] this turn, in addition to your Normal Summon/Set. ([b]You can[/b] only gain this effect [b]once[/b] [b]per turn[/b].) [b]You can[/b] only activate 1 \"U.A. Hyper Stadium\" [b]per turn[/b].",
-              "script_sha256": "bc72ccfbb0e9b36295380bcf15f8f4e1e4614e9f1b7c3eaee1292db8a0e79807",
-              "verified_shared_tokens": []
-            }
-          ],
-          "verdict": "PASS",
-          "issue": null
-        }
-      ],
+      "classification": "Normal Monster",
+      "audit_note": "The prose and Galactic coordinates are flavor text. Galactica identity is stored in the Omega database setcode blob (type 17, setcode 0x09c9), not implemented as a monster effect.",
+      "coverage_override": {
+        "expected_individual_effects": 0,
+        "reason": "Carina is a Normal Monster with data-driven Galactica membership and zero gameplay effects."
+      },
+      "effects": [],
+      "supersedes_batch": "batch_2_73_144.json",
       "lua_effect_creations": 0,
       "conservative_printed_clause_floor": 0,
       "heuristic_printed_clause_floor": 0,
-      "source_batch": "batch_2_73_144.json"
+      "source_batch": "batch_local_89_89.json"
     },
     {
       "ordinal": 90,
@@ -10059,10 +10031,43 @@
           "lua_implementation": "The alternative selects one Main Deck Nephthys monster that is releasable and legal Ritual Material; Main Deck monsters necessarily have a Level, and Ritual-material legality still applies to a monster Tributed for a Ritual Summon.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c51124303.lua",
+              "script": "c7986397.lua",
+              "card_id": 7986397,
+              "card_name": "Revendread Evolution",
+              "matched_structure": "Official Ritual handling permits a specifically filtered Main Deck monster to be included in the Ritual material group, while ordinary hand/field materials are filtered for Ritual-material legality.",
+              "official_effect_text": "This card can be used to Ritual Summon any \"Vendread\" Ritual Monster from your hand or GY. You must [b]also[/b] Tribute monsters from your hand or field, [b]and[/b]/or send 1 \"Vendread\" monster from your Deck to the GY, whose total Levels equal the Level of the Ritual Monster you Ritual Summon. The Ritual Summoned monster is destroyed during the [b]End Phase[/b] of the next turn. [b]You can[/b] only activate 1 \"Revendread Evolution\" [b]per turn[/b].",
+              "script_sha256": "cc6e2390b19abd9b7ebd56be71aa2fc56a8f84eb12fa0056361a33419a342458",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Card.GetLevel",
+                "Duel.BreakEffect",
+                "Duel.Destroy",
+                "Duel.GetMatchingGroup",
+                "Duel.GetRitualMaterial",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.ReleaseRitualMaterial",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "REASON_EFFECT",
+                "REASON_MATERIAL",
+                "REASON_RITUAL",
+                "SUMMON_TYPE_RITUAL"
+              ]
+            },
+            {
+              "script": "c51124303.lua",
               "card_id": 51124303,
               "card_name": "Nekroz Kaleidoscope",
-              "matched_structure": "Nekroz Kaleidoscope and official Ritual Spells demonstrate nonstandard Ritual material locations.",
+              "matched_structure": "Official Ritual Spell selection, material assignment, release, Ritual Summon, and CompleteProcedure structure.",
               "official_effect_text": "This card can be used to Ritual Summon any number of \"Nekroz\" Ritual Monsters. Tribute 1 monster from your hand or field, or send 1 monster from your Extra Deck to the GY, [b]also[/b] after that, Ritual Summon any number of \"Nekroz\" monsters whose total Levels equal the Level of that monster. [b]You can[/b] only use this effect of \"Nekroz Kaleidoscope\" [b]once[/b] [b]per turn[/b]. If you control no monsters: [b]You can[/b] [b]banish[/b] this card [b]and[/b] 1 \"Nekroz\" monster from your GY; add 1 \"Nekroz\" Spell from your Deck to your hand.",
               "script_sha256": "c4bf659884f121c613c17d1dd5f21708bc303a659021bad3bf494a14f06d2f62",
               "verified_shared_tokens": [
@@ -11038,27 +11043,38 @@
           "lua_implementation": "At the End Phase, the registered delayed effect now totals GetBaseAttack/GetBaseDefense for every monster the player controls, including face-down monsters, and subtracts that total from LP.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c1082946.lua",
-              "card_id": 1082946,
-              "card_name": "Pyro Clock of Destiny",
-              "matched_structure": "Pyro Clock of Destiny demonstrates turn-timed global effects; official original-stat calculations use original-stat accessors.",
-              "official_effect_text": "Move the turn count forward by 1 turn. The turn in which this card is activated continues as normal.",
-              "script_sha256": "03853232f1f5a987df846c32c85f3236da2e30dc7f6081301dd6b685ca607c9d",
+              "script": "c15443125.lua",
+              "card_id": 15443125,
+              "card_name": "Spright Starter",
+              "matched_structure": "Official LP-loss resolution uses GetBaseAttack for a monster's original ATK and Duel.SetLP to apply the loss.",
+              "official_effect_text": "Special Summon 1 \"Spright\" monster from your Deck, but lose LP equal to its original ATK, [b]also[/b] for the rest of this turn after this card resolves, you [b]cannot[/b] Special Summon, except Level/Rank/Link 2 monsters. [b]You can[/b] only activate 1 \"Spright Starter\" [b]per turn[/b].",
+              "script_sha256": "76d176dbf2c304b216483f82fc2e152c952464c6de85bc461d7382139b7587e9",
               "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLP",
+                "Duel.GetLocationCount",
                 "Duel.Hint",
                 "Duel.IsExistingMatchingCard",
+                "Duel.RegisterEffect",
                 "Duel.SelectMatchingCard",
+                "Duel.SetLP",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
                 "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_FIELD",
                 "EVENT_FREE_CHAIN",
                 "Effect.CreateEffect",
-                "aux.Stringid"
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "RESET_PHASE"
               ]
             },
             {
-              "script": "tmp/omega_scripts/c94380860.lua",
+              "script": "c94380860.lua",
               "card_id": 94380860,
               "card_name": "Number 103: Ragnazero",
-              "matched_structure": "Uses current-versus-original ATK accessors, illustrating that original statistics are not base-stat accessors.",
+              "matched_structure": "Official current-versus-original stat handling compares a face-up field monster's current ATK with GetBaseAttack.",
               "official_effect_text": "2 Level 4 monsters\n[b]Once[/b] [b]per turn[/b] ([b]Quick Effect[/b]): [b]You can[/b] detach 1 material from this card, [b]then[/b] [b]target[/b] 1 Attack Position monster your opponent controls, whose current ATK is different from its original ATK; [b]destroy[/b] it, [b]and if you do[/b], draw 1 card.",
               "script_sha256": "5fba9da98e639cbc05eb2ade594c0b5818926a5580f8b1a477776f177eeb5268",
               "verified_shared_tokens": [
@@ -11069,6 +11085,26 @@
                 "LOCATION_MZONE",
                 "REASON_EFFECT",
                 "aux.Stringid"
+              ]
+            },
+            {
+              "script": "c12527118.lua",
+              "card_id": 12527118,
+              "card_name": "Cassimolar",
+              "matched_structure": "Official delayed End Phase handling records a later operation involving a monster's original ATK.",
+              "official_effect_text": "[b]When[/b] this card is Normal Summoned: [b]You can[/b] [b]target[/b] 1 face-up monster your opponent controls; it gains ATK equal to its original ATK, [b]also[/b] during the [b]End Phase[/b] of the next turn, [b]destroy[/b] that face-up monster, [b]and if you do[/b], your opponent takes damage equal to half its original ATK. At the start of your opponent's [b]Battle Phase[/b]: [b]You can[/b] Tribute this Normal Summoned/Set card; your opponent's monsters [b]cannot[/b] attack directly for the rest of this turn.",
+              "script_sha256": "6d6240c95c8a0422283f04990b59c8bbdab6346b35f39faa695300923711e50d",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.RegisterEffect",
+                "EFFECT_TYPE_CONTINUOUS",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_PHASE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "RESET_PHASE"
               ]
             }
           ],
@@ -33787,7 +33823,7 @@
       "passcode": 259174227,
       "name": "Farad, the Purple Ohmen",
       "text_sha256": "09d57ec33c31a1a91e093fe5336f84a7d9e03ecfe77f2a6487efc78964d67fb2",
-      "script_sha256": "6bec06cdb4ec53008bba39186a82429d865acd56ef91dad0eb87b85eb6b32ca5",
+      "script_sha256": "7e93e2cfed82b65a52b8fab4f0ead565340f9decd67947f08c12a6ae60fb448d",
       "overall_verdict": "DEFECT",
       "effects": [
         {
@@ -33886,7 +33922,7 @@
       "passcode": 259726853,
       "name": "Volt, the Green Ohmen",
       "text_sha256": "3228173c8f9fa36530529a8d10cd5e1a5faf7f766d3e2d1c451d03a9b192179d",
-      "script_sha256": "6e0ac43cdd45dc460104ba7f19635d9acf82eb3d6dfb2ad46422adfb462ef633",
+      "script_sha256": "085a8a7d43c58e11cb52319321f5df94ff0bc9c01cf94097d03a295d60b22fe8",
       "overall_verdict": "DEFECT",
       "effects": [
         {
@@ -33985,7 +34021,7 @@
       "passcode": 259650132,
       "name": "Ampere, the Yellow Ohmen",
       "text_sha256": "391746e8836651bfc6dbcea3b30319deda59db46b0c9868f133e60b539e25ad0",
-      "script_sha256": "b6e24d1aa2bd77bf7aded70f7d329fb82cf02ac80ac33aff6e2b3cd4182a9504",
+      "script_sha256": "089434f6cbf499bd344a16a0c98e64ff9114e06faba3d182ee8cbf5d5aecb699",
       "overall_verdict": "DEFECT",
       "effects": [
         {
@@ -34128,7 +34164,7 @@
       "passcode": 259107906,
       "name": "Siemens, the Blue Ohmen",
       "text_sha256": "a29580f24516c5461261803356261790a840c686903ff92979f1b29c90369f7e",
-      "script_sha256": "499e84addaeb6afebf2b0359f5c505cd19c04924c6c269a579f3b34ce48d6076",
+      "script_sha256": "1f970473a5518b00ba096a37bf0a2d1afa0c198126ef568d1a3f7a5a37762b10",
       "overall_verdict": "DEFECT",
       "effects": [
         {
@@ -34236,7 +34272,7 @@
       "passcode": 259881255,
       "name": "Coulomb, the White Ohmen",
       "text_sha256": "26b7b2c611e8bd4a64b681b4b7821f38402ecfae3b325a2a4f3e9cf38cdc75ee",
-      "script_sha256": "4396fda5a017bdcf72689deb2f33dcf0592f83dc928540a310f1be3c4f6db333",
+      "script_sha256": "ff8b5cac3acca73ae736cdcb90c0af4f2ca49c8f6182d97181e8c57f6f715460",
       "overall_verdict": "DEFECT",
       "effects": [
         {
@@ -38706,7 +38742,7 @@
       "passcode": 238256111,
       "name": "Cursed Dragon of the Knight",
       "text_sha256": "4c893e87f754e2b73ac95378a4f8ff571b1730858c152b806174b1f8e0f50546",
-      "script_sha256": "d34c4393c44b7358e9c55eceaa29d60517291fcc03517dd2df1078e9a929a1c9",
+      "script_sha256": "e1bc16a3e20a4ed66151dab3fa259ee59884b923bfcb97549ff24c1923422772",
       "overall_verdict": "DEFECT",
       "effects": [
         {
@@ -39917,7 +39953,7 @@
       "passcode": 235051716,
       "name": "Arckcestial Pillar of Heavens",
       "text_sha256": "f6b2e2f5951958de7fd02a05022a1af84fc9c2dab048d99d1680396c8c57eb6f",
-      "script_sha256": "72febf69abfb838a311c693b23b738686f6557329e4b5f0967756bdc6a098430",
+      "script_sha256": "300ff6d2b8d9aa75d9425e938d66224c695f0c47322c4364d1288d52d5d41e5a",
       "overall_verdict": "DEFECT",
       "effects": [
         {
@@ -40700,7 +40736,7 @@
       "passcode": 237089049,
       "name": "Azeriel, Arckcestial of Demise",
       "text_sha256": "a5a63e11f9b165e087da8a0c3ad9a41436a74097bcc7deb128a084beea61d278",
-      "script_sha256": "b6bc40f0e32b2c539f04e36df8f00ef91ad4e4c4ab6a7add0aa2b7b841f8b8f5",
+      "script_sha256": "1cf08f8a89c72dbcf9e88bd3a822224f35a95e4b4f5dba7e0f7a493abf6aeeae",
       "overall_verdict": "DEFECT",
       "effects": [
         {
@@ -41056,7 +41092,7 @@
       "passcode": 231089172,
       "name": "Sarifiel, Arckcestial of Moonlight",
       "text_sha256": "ebe80ebadc853662b02871c19567d8f8cdd588e55a883f0cdbfd7671955f5685",
-      "script_sha256": "40a849d8760f6fa47645ee66acfc21b5c170aad74bb1528fc92858d8342f52c4",
+      "script_sha256": "7a948ff8c6a981cc4161212e03f7785d6e04026b9d94d484add9506a6ada2cd7",
       "overall_verdict": "DEFECT",
       "effects": [
         {
@@ -41119,6 +41155,7 @@
                 "EFFECT_TYPE_SINGLE",
                 "EFFECT_TYPE_TRIGGER_O",
                 "Effect.CreateEffect",
+                "LOCATION_HAND",
                 "LOCATION_MZONE",
                 "REASON_COST",
                 "REASON_EFFECT",
@@ -41317,7 +41354,7 @@
       "passcode": 220856437,
       "name": "Bauy Magician",
       "text_sha256": "3725be48afcb719c33f1b895ee5ad29070bb74d14452f0e1d3d1abb2b7f8e0d3",
-      "script_sha256": "475311ba546e1e40538e65ec97683a9be3bf81dced7190623a46bdb6e8daaeec",
+      "script_sha256": "4c969b0edf67a4090dc6388751f2949da48c3c25ecc88198534437c04a2fee15",
       "overall_verdict": "DEFECT",
       "effects": [
         {
@@ -41401,7 +41438,6 @@
                 "EFFECT_FLAG_PLAYER_TARGET",
                 "EFFECT_TYPE_FIELD",
                 "Effect.CreateEffect",
-                "LOCATION_EXTRA",
                 "LOCATION_HAND",
                 "LOCATION_MZONE",
                 "PHASE_END",
@@ -41535,7 +41571,7 @@
       "passcode": 219826457,
       "name": "Ro-Bau",
       "text_sha256": "21654af664f1d79cd650e71f5162533d80e61dde27f69eccd5749f8b3a9adcc2",
-      "script_sha256": "21cd1731ae989bd6ce19ced93dee09ee70cb59d1d764676092dda61995ee75e4",
+      "script_sha256": "c5de3525df16561d4985329e3dc9ec8c440509f233b2b1a23215c56e5531244e",
       "overall_verdict": "DEFECT",
       "effects": [
         {
@@ -42120,7 +42156,7 @@
       "passcode": 228169392,
       "name": "Bael, Demon Incarnate",
       "text_sha256": "3838c6cce765d7ac8bd4aa27a4efd510afa9d84e5a2cf3061be63de9e97a67df",
-      "script_sha256": "67e1efa322f765d568e241e8f6e8f32b8066a276ef09ac67ff40392cacbe399d",
+      "script_sha256": "2ddf79d669e92fe49d3dab999400ccbdc9be8f441d89ac98d9bf29a46aba0b54",
       "overall_verdict": "DEFECT",
       "effects": [
         {
@@ -45539,28 +45575,7 @@
               "script": "tmp/omega_scripts/c17601919.lua",
               "card_id": 17601919,
               "card_name": "Pumprincess the Princess of Ghosts",
-              "matched_structure": "Concrete official named-card reference and counter-based Pumpkin implementation.",
-              "official_effect_text": "If this face-up card is destroyed in a Monster Zone, [b]you can[/b] place it face-up in your Spell & Trap Zone as a Continuous Spell, [b]instead[/b] of sending it to the GY. While this card is treated as a Continuous Spell by this effect, during each [b]Standby Phase[/b]: Place 1 Pumpkin Counter on this card. All monsters your opponent controls lose 100 ATK/DEF for each Pumpkin Counter on this card.",
-              "script_sha256": "52bb7dd042e15dc4400e1004faafb486967ac31274b73a102c804340cd65238e",
-              "verified_shared_tokens": [
-                "CATEGORY_COUNTER",
-                "Duel.SetOperationInfo",
-                "EFFECT_TYPE_FIELD",
-                "EFFECT_TYPE_TRIGGER_F",
-                "EFFECT_UPDATE_ATTACK",
-                "EFFECT_UPDATE_DEFENSE",
-                "EVENT_PHASE",
-                "Effect.CreateEffect",
-                "LOCATION_MZONE",
-                "PHASE_STANDBY",
-                "aux.Stringid"
-              ]
-            },
-            {
-              "script": "tmp/omega_scripts/c17601919.lua",
-              "card_id": 17601919,
-              "card_name": "Pumprincess the Princess of Ghosts",
-              "matched_structure": "Counter placement with an explicit maximum/capacity check.",
+              "matched_structure": "Concrete official named-card reference and counter placement with an explicit capacity check.",
               "official_effect_text": "If this face-up card is destroyed in a Monster Zone, [b]you can[/b] place it face-up in your Spell & Trap Zone as a Continuous Spell, [b]instead[/b] of sending it to the GY. While this card is treated as a Continuous Spell by this effect, during each [b]Standby Phase[/b]: Place 1 Pumpkin Counter on this card. All monsters your opponent controls lose 100 ATK/DEF for each Pumpkin Counter on this card.",
               "script_sha256": "52bb7dd042e15dc4400e1004faafb486967ac31274b73a102c804340cd65238e",
               "verified_shared_tokens": [
@@ -57594,36 +57609,7 @@
               "script": "tmp/omega_scripts/c73602965.lua",
               "card_id": 73602965,
               "card_name": "Arias the Labrynth Butler",
-              "matched_structure": "Main Phase hand-cost Quick Effect followed by Special Summon.",
-              "official_effect_text": "During the [b]Main Phase[/b] ([b]Quick Effect[/b]): [b]You can[/b] send this card from your hand or field to the GY; Special Summon 1 \"Labrynth\" monster, or Set 1 Normal Trap, from your hand. The Set Normal Trap can be activated this turn. [b]When[/b] your opponent activates a card or effect in response to your card or effect activation of a Normal Trap or a \"Labrynth\" card, except \"Arias the Labrynth Butler\" ([b]Quick Effect[/b]): [b]You can[/b] activate this effect in the GY; Special Summon this card. [b]You can[/b] only use each effect of \"Arias the Labrynth Butler\" [b]once[/b] [b]per turn[/b].",
-              "script_sha256": "1f7979c6709ba96b824aad435a4ea61a85d5d87a1e22c1f40c599ae4339ae16f",
-              "verified_shared_tokens": [
-                "CATEGORY_SPECIAL_SUMMON",
-                "Duel.GetLocationCount",
-                "Duel.Hint",
-                "Duel.IsExistingMatchingCard",
-                "Duel.SelectMatchingCard",
-                "Duel.SetOperationInfo",
-                "Duel.SpecialSummon",
-                "EFFECT_TYPE_QUICK_O",
-                "EFFECT_TYPE_SINGLE",
-                "EVENT_CHAINING",
-                "EVENT_FREE_CHAIN",
-                "Effect.CreateEffect",
-                "LOCATION_GRAVE",
-                "LOCATION_HAND",
-                "LOCATION_MZONE",
-                "REASON_COST",
-                "RESET_EVENT",
-                "aux.NecroValleyFilter",
-                "aux.Stringid"
-              ]
-            },
-            {
-              "script": "tmp/omega_scripts/c73602965.lua",
-              "card_id": 73602965,
-              "card_name": "Arias the Labrynth Butler",
-              "matched_structure": "Discard cost followed by Special Summon.",
+              "matched_structure": "Main Phase discard-cost Quick Effect followed by a Special Summon.",
               "official_effect_text": "During the [b]Main Phase[/b] ([b]Quick Effect[/b]): [b]You can[/b] send this card from your hand or field to the GY; Special Summon 1 \"Labrynth\" monster, or Set 1 Normal Trap, from your hand. The Set Normal Trap can be activated this turn. [b]When[/b] your opponent activates a card or effect in response to your card or effect activation of a Normal Trap or a \"Labrynth\" card, except \"Arias the Labrynth Butler\" ([b]Quick Effect[/b]): [b]You can[/b] activate this effect in the GY; Special Summon this card. [b]You can[/b] only use each effect of \"Arias the Labrynth Butler\" [b]once[/b] [b]per turn[/b].",
               "script_sha256": "1f7979c6709ba96b824aad435a4ea61a85d5d87a1e22c1f40c599ae4339ae16f",
               "verified_shared_tokens": [
@@ -63816,19 +63802,20 @@
       "passcode": 212377618,
       "name": "Cassiopeia of the Eldoran System",
       "text_sha256": "04b3786ce6a14bcb2e43991ca61f7077c511688be87d37d0c9f86d2be61837a9",
-      "script_sha256": "116e591eb5e20ab9f91ae608e07da090ff27c971dcf8d1caa378f1c6be2bb5a8",
-      "overall_verdict": "DEFECT",
+      "script_sha256": "a8c393023f3689c77171a3c55b4b76b1d0977ff5781df41deafc7a12c1897011",
+      "overall_verdict": "FIXED",
+      "classification": "Normal Monster",
+      "audit_note": "Removed the runtime EFFECT_ADD_SETCODE registration. The generated Omega database already stores type 17 and Galactica setcode 0x09c9, so the empty script is correct for a Normal Monster.",
       "coverage_override": {
         "expected_individual_effects": 0,
-        "reason": "This is a Normal Monster; its prose is flavor text and therefore contains zero printed effects."
+        "reason": "Cassiopeia is a Normal Monster; its Galactica identity is database metadata and its remaining prose is flavor text."
       },
       "effects": [],
-      "classification": "Normal Monster",
-      "audit_note": "Printed prose is flavor text and has zero effects. The current Lua nevertheless registers an archetype set-code effect; this conflicts with the strict zero-effect Normal Monster validator and requires separate data/engine treatment rather than manufacturing a printed effect.",
-      "lua_effect_creations": 1,
+      "supersedes_batch": "batch_7_433_504.json",
+      "lua_effect_creations": 0,
       "conservative_printed_clause_floor": 0,
       "heuristic_printed_clause_floor": 0,
-      "source_batch": "batch_7_433_504.json"
+      "source_batch": "batch_local_465_465.json"
     },
     {
       "ordinal": 466,
@@ -70630,12 +70617,6 @@
                 "aux.FilterBoolFunction",
                 "aux.Stringid"
               ]
-            },
-            {
-              "script": "c33475154.lua",
-              "card_id": 33475154,
-              "card_name": "Witchcrafter Madame Rilliona",
-              "matched_structure": "Official Fusion procedure combines a named/archetypal requirement with Spellcaster materials."
             }
           ],
           "verdict": "PASS",
