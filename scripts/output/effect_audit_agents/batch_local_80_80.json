@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch2-73-121",
+  "ordinal_start": 80,
+  "ordinal_end": 80,
+  "cards": [
+    {
+      "ordinal": 80,
+      "passcode": 259718504,
+      "name": "Tove in the Wild",
+      "text_sha256": "79d7dacdc828c0728a1838c2856dbfa369e2aaba593a750932badd3da6e8a7ce",
+      "script_sha256": "0846e7d889caa7ef2b83ff94a8664a54a53c1eec17d421c1c7cf51855374f16b",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "\"Tove, The Domesticated\" + 1 \"Domestica\" Fairy monster.",
+          "lua_implementation": "The Fusion procedure requires the exact Tove code plus one Domestica Fairy.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c72926163.lua",
+              "card_id": 72926163,
+              "card_name": "Elemental HERO Neos Knight",
+              "matched_structure": "Elemental HERO Neos Knight is the official exact-name-plus-filtered-material Fusion structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Cannot be Summoned while you control a monster.",
+          "lua_implementation": "The uncopyable single effects now combine the conditional Special Summon prohibition with EFFECT_CANNOT_FLIP_SUMMON, whose condition checks for another controlled monster.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c86099788.lua",
+              "card_id": 86099788,
+              "card_name": "The Last Warrior from Another Planet",
+              "matched_structure": "The Last Warrior from Another Planet demonstrates explicit all-Summon prohibition structures."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the unqualified Summon restriction also prohibits a Flip Summon while another monster is controlled."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Main Phase/no other monster Quick Effect: Tribute this card; return all cards in both Spell/Trap Zones to hand except \"Domestic Underworld\".",
+          "lua_implementation": "The quick effect enforces timing/field condition, releases itself, and sends every hand-returnable S/T-zone card other than the exact protected code to hand.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c42703248.lua",
+              "card_id": 42703248,
+              "card_name": "Giant Trunade",
+              "matched_structure": "Giant Trunade returns all Spell/Trap Zone cards to the hand."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "The previous effect is once per turn.",
+          "lua_implementation": "SetCountLimit(1,id) is attached to the quick effect.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "If sent to GY: return this card to Extra Deck; also add named Tove from Deck, then send it to GY.",
+          "lua_implementation": "The mandatory delayed trigger implements independent return and search branches, then sends the same added Tove.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c95238394.lua",
+              "card_id": 95238394,
+              "card_name": "Thunder Dragon Fusion",
+              "matched_structure": "Thunder Dragon Fusion is the official return-to-Deck structural reference."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Confirmed and fixed the missing Flip Summon prohibition.",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 4,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

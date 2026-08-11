@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch2-73-121",
+  "ordinal_start": 116,
+  "ordinal_end": 116,
+  "cards": [
+    {
+      "ordinal": 116,
+      "passcode": 259369909,
+      "name": "Serene Mermaid of the Grand Blue",
+      "text_sha256": "f68cee6fc31125d6e440367e06f6abf6f360a6f188b7c275accc7a8522cd8962",
+      "script_sha256": "0e7289e269953b367fb6bb8b8f5711003a5d690ca351e8506be83e90e7f734dc",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If you control a Grand Blue monster or Umi: Special Summon this card from hand.",
+          "lua_implementation": "Hand ignition checks face-up Grand Blue monster or exact/treated Umi field card, open zone and summon legality.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c32909498.lua",
+              "card_id": 32909498,
+              "card_name": "Kashtira Fenrir",
+              "matched_structure": "Kashtira Fenrir supplies official conditional self-Special-Summon from hand structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "During Main Phase: Fusion Summon a Grand Blue Fusion using hand/field monsters.",
+          "lua_implementation": "Main Phase ignition builds set-monster hand/field material and currently supports the two printed Grand Blue Fusions, sends selected material and completes Fusion procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c24094653.lua",
+              "card_id": 24094653,
+              "card_name": "Polymerization",
+              "matched_structure": "Polymerization is the official hand/field Fusion material procedure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "After the Fusion Summon, for the rest of the turn you may only Special Summon from Extra Deck using Grand Blue monsters as materials.",
+          "lua_implementation": "Four material prohibitions prevent non-Grand-Blue cards from being used as Fusion, Synchro, Xyz, or Link Material for the rest of the turn, but materialless Extra Deck procedures are not represented by those hooks.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c60303688.lua",
+              "card_id": 60303688,
+              "card_name": "Dogmatika Ecclesia, the Virtuous",
+              "matched_structure": "Dogmatika Ecclesia, the Virtuous uses a post-resolution Extra Deck Special Summon restriction."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Confirmed as an engine/procedure gap: the generic Special Summon restriction callback does not expose a prospective material group. Official Heraldic Beast Gryphon uses additional Xyz-only workaround state and is itself marked not fully implemented; there is no general equivalent covering all Extra Deck summon procedures."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Each effect is once per turn.",
+          "lua_implementation": "The two effects use id/id+100.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Confirmed an unresolved generic materialless Extra Deck summon gap.",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 3,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

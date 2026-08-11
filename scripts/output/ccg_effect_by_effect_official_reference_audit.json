@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-11T12:21:48.565658+00:00",
+  "generated_at": "2026-08-11T12:25:54.749406+00:00",
   "method": "Fresh effect-by-effect comparison; historical checklist Markdown and prior pass verdicts are not inputs.",
   "sources": {
     "cards": "src/data/cards.json",
@@ -14,6 +14,16 @@
       "batch_5_289_360.json",
       "batch_6_361_432.json",
       "batch_7_433_504.json",
+      "batch_local_100_100.json",
+      "batch_local_103_103.json",
+      "batch_local_104_104.json",
+      "batch_local_110_110.json",
+      "batch_local_111_111.json",
+      "batch_local_113_113.json",
+      "batch_local_115_115.json",
+      "batch_local_116_116.json",
+      "batch_local_120_120.json",
+      "batch_local_121_121.json",
       "batch_local_125_125.json",
       "batch_local_126_126.json",
       "batch_local_127_127.json",
@@ -80,6 +90,10 @@
       "batch_local_335_335.json",
       "batch_local_343_343.json",
       "batch_local_350_350.json",
+      "batch_local_352_352.json",
+      "batch_local_354_354.json",
+      "batch_local_356_356.json",
+      "batch_local_360_360.json",
       "batch_local_369_369.json",
       "batch_local_371_371.json",
       "batch_local_377_377.json",
@@ -93,6 +107,9 @@
       "batch_local_575_575.json",
       "batch_local_576_576.json",
       "batch_local_577_577.json",
+      "batch_local_79_79.json",
+      "batch_local_80_80.json",
+      "batch_local_87_87.json",
       "batch_local_89_89.json"
     ]
   },
@@ -101,13 +118,13 @@
     "audited_cards": 437,
     "individual_effect_records": 1585,
     "effect_verdicts": {
-      "CUSTOM_GAP": 39,
-      "DEFECT": 64,
-      "FIXED": 57,
-      "PASS": 1425
+      "CUSTOM_GAP": 43,
+      "DEFECT": 45,
+      "FIXED": 70,
+      "PASS": 1427
     },
-    "warnings": 92,
-    "errors": 144
+    "warnings": 89,
+    "errors": 140
   },
   "errors": [
     "ordinal 1: missing card audit (Stardrake of Gravitic Coils)",
@@ -182,10 +199,6 @@
     "ordinal 70: missing card audit (Tove, the Domesticated)",
     "ordinal 71: missing card audit (Domestica Praerie)",
     "ordinal 72: missing card audit (Domestica Anjelie)",
-    "ordinal 352: stale/incorrect script hash",
-    "ordinal 354: stale/incorrect script hash",
-    "ordinal 356: stale/incorrect script hash",
-    "ordinal 360: stale/incorrect script hash",
     "ordinal 505: missing card audit (Red-Eyes Gearfried, the Iron Knight)",
     "ordinal 506: missing card audit (Red-Eyes Moon Dragon)",
     "ordinal 507: missing card audit (Red-Eyes Meteor Metal Dragon)",
@@ -330,10 +343,7 @@
     "ordinal 348 (Malphiel, Arckcestial of Protection): 4 records below conservative printed-clause floor 5",
     "ordinal 349 (Vazagiel, Arckcestial of Secrets): 4 records below conservative printed-clause floor 5",
     "ordinal 351 (Ophiel, Arckcestial of Wisdom): 4 records below conservative printed-clause floor 5",
-    "ordinal 352 (Sarifiel, Arckcestial of Moonlight): 3 records below conservative printed-clause floor 5",
-    "ordinal 354 (Bauy Magician): 3 records below conservative printed-clause floor 5",
     "ordinal 355 (Dreaming Bau): 2 records below conservative printed-clause floor 6",
-    "ordinal 356 (Ro-Bau): 4 records below conservative printed-clause floor 5",
     "ordinal 357 (Bau): 4 records below conservative printed-clause floor 6",
     "ordinal 358 (Winged Bauy Fenrir): 3 records below conservative printed-clause floor 4",
     "ordinal 359 (Starfury Bauy Dragon): 4 records below conservative printed-clause floor 5",
@@ -1424,8 +1434,8 @@
       "passcode": 259394179,
       "name": "Pip in the Wild",
       "text_sha256": "01ad696340c1c665626740f0a6deae3603b16ff47598a7739d7b7e7b8a97c51f",
-      "script_sha256": "f1e39f9efaf93f38eec2a5f6b68b2ae81b213ce5c90231127826e4f073b7922a",
-      "overall_verdict": "DEFECT",
+      "script_sha256": "809946f0accfd12853d0dd2211f5a048d8cbe66d6e805446121cefedd43a8a99",
+      "overall_verdict": "FIXED",
       "effects": [
         {
           "effect_index": 1,
@@ -1455,7 +1465,7 @@
         {
           "effect_index": 2,
           "printed_clause": "Cannot be Summoned while you control a monster.",
-          "lua_implementation": "Only EFFECT_SPSUMMON_CONDITION is registered. It blocks Special Summons while a monster is controlled but does not register EFFECT_CANNOT_FLIP_SUMMON.",
+          "lua_implementation": "The uncopyable single effects now combine the conditional Special Summon prohibition with EFFECT_CANNOT_FLIP_SUMMON, whose condition checks for another controlled monster.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c86099788.lua",
@@ -1467,6 +1477,7 @@
               "verified_shared_tokens": [
                 "Duel.GetMatchingGroup",
                 "Duel.SetOperationInfo",
+                "EFFECT_CANNOT_FLIP_SUMMON",
                 "EFFECT_TYPE_SINGLE",
                 "EFFECT_TYPE_TRIGGER_F",
                 "Effect.CreateEffect",
@@ -1477,8 +1488,8 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "The blanket printed Summon restriction includes Flip Summons, but the Lua only restricts Special Summons."
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the Fusion previously prohibited only Special Summons, so a face-down copy could be Flip Summoned while its controller had another monster."
         },
         {
           "effect_index": 3,
@@ -1580,18 +1591,24 @@
           "issue": null
         }
       ],
-      "lua_effect_creations": 3,
-      "conservative_printed_clause_floor": 4,
+      "audit_note": "Confirmed and fixed the missing Flip Summon prohibition.",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      },
+      "supersedes_batch": "batch_2_73_144.json",
+      "lua_effect_creations": 4,
+      "conservative_printed_clause_floor": 5,
       "heuristic_printed_clause_floor": 4,
-      "source_batch": "batch_2_73_144.json"
+      "source_batch": "batch_local_79_79.json"
     },
     {
       "ordinal": 80,
       "passcode": 259718504,
       "name": "Tove in the Wild",
       "text_sha256": "79d7dacdc828c0728a1838c2856dbfa369e2aaba593a750932badd3da6e8a7ce",
-      "script_sha256": "f2358be7984af6831ee00177516ae5b21aa1494142b216a61b1649749fb8d5fc",
-      "overall_verdict": "DEFECT",
+      "script_sha256": "0846e7d889caa7ef2b83ff94a8664a54a53c1eec17d421c1c7cf51855374f16b",
+      "overall_verdict": "FIXED",
       "effects": [
         {
           "effect_index": 1,
@@ -1621,7 +1638,7 @@
         {
           "effect_index": 2,
           "printed_clause": "Cannot be Summoned while you control a monster.",
-          "lua_implementation": "Only SPSUMMON_CONDITION is registered; Flip Summon is not prohibited.",
+          "lua_implementation": "The uncopyable single effects now combine the conditional Special Summon prohibition with EFFECT_CANNOT_FLIP_SUMMON, whose condition checks for another controlled monster.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c86099788.lua",
@@ -1633,6 +1650,7 @@
               "verified_shared_tokens": [
                 "Duel.GetMatchingGroup",
                 "Duel.SetOperationInfo",
+                "EFFECT_CANNOT_FLIP_SUMMON",
                 "EFFECT_TYPE_SINGLE",
                 "EFFECT_TYPE_TRIGGER_F",
                 "Effect.CreateEffect",
@@ -1643,8 +1661,8 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "The Lua permits a Flip Summon while another monster is controlled, contrary to the unqualified printed restriction."
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the unqualified Summon restriction also prohibits a Flip Summon while another monster is controlled."
         },
         {
           "effect_index": 3,
@@ -1736,10 +1754,16 @@
           "issue": null
         }
       ],
-      "lua_effect_creations": 3,
-      "conservative_printed_clause_floor": 4,
+      "audit_note": "Confirmed and fixed the missing Flip Summon prohibition.",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      },
+      "supersedes_batch": "batch_2_73_144.json",
+      "lua_effect_creations": 4,
+      "conservative_printed_clause_floor": 5,
       "heuristic_printed_clause_floor": 4,
-      "source_batch": "batch_2_73_144.json"
+      "source_batch": "batch_local_80_80.json"
     },
     {
       "ordinal": 81,
@@ -2698,7 +2722,7 @@
       "name": "Ursarctic Hextanius",
       "text_sha256": "27ad96a4e3d7f4be13213918479de9c0e2b439f872abc5cf263e1a800e67330a",
       "script_sha256": "f8cb036b595c5f005f96c2f3ccd9e08fad2dc2547a23f8ef8b63a13a02172e82",
-      "overall_verdict": "DEFECT",
+      "overall_verdict": "CUSTOM_GAP",
       "effects": [
         {
           "effect_index": 1,
@@ -2753,7 +2777,7 @@
         {
           "effect_index": 2,
           "printed_clause": "For the Special Summon of any Ursarctic Synchro, this card can be Level 7 or 8 and a non-Tuner.",
-          "lua_implementation": "No reusable material effects are registered. Alternate values are hard-coded only in Octantis, Hextanius and Nordbar helpers, so official Ursarctic procedures do not see them.",
+          "lua_implementation": "The alternate Level/non-Tuner values are consumed by the three CCG Ursarctic procedures that explicitly call Hextanius-aware helpers; the card cannot inject those choices into unrelated official Extra Deck procedures.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c27693363.lua",
@@ -2797,8 +2821,8 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "The substitution rule is not implemented for every Ursarctic Synchro Summon; it only works in three custom scripts."
+          "verdict": "CUSTOM_GAP",
+          "issue": "Confirmed as an engine/procedure integration gap, not safely patchable in this card alone: official Ursarctic Synchros implement their own EFFECT_SPSUMMON_PROC and expose no card-local hook through which Hextanius can supply two alternate Levels and a non-Tuner role."
         },
         {
           "effect_index": 3,
@@ -2898,10 +2922,16 @@
           "issue": null
         }
       ],
+      "audit_note": "Confirmed an unresolved cross-script Ursarctic procedure gap; no unsafe card-local workaround was added.",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      },
+      "supersedes_batch": "batch_2_73_144.json",
       "lua_effect_creations": 4,
-      "conservative_printed_clause_floor": 4,
+      "conservative_printed_clause_floor": 5,
       "heuristic_printed_clause_floor": 4,
-      "source_batch": "batch_2_73_144.json"
+      "source_batch": "batch_local_87_87.json"
     },
     {
       "ordinal": 88,
@@ -5120,7 +5150,7 @@
         {
           "effect_index": 3,
           "printed_clause": "This effect becomes that monster’s effect if it is Normal or Special Summoned.",
-          "lua_implementation": "The Lua does not dynamically adopt an official effect object. It hard-codes the current summon operations for Bria, Dante, Feness, Rollo and Silas, manually reproducing their choices and follow-ups.",
+          "lua_implementation": "The five currently eligible Main Deck Stain summon effects are manually mirrored; no dynamic monster-trigger object is invoked from the sent card.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c10136446.lua",
@@ -5174,7 +5204,7 @@
             }
           ],
           "verdict": "CUSTOM_GAP",
-          "issue": "No official Omega mechanism exactly turns this activation into an arbitrary sent CCG monster’s Normal/Special Summon effect. The current five operations are manually mirrored, so activation metadata/target declaration and future or errata effects remain unmatched."
+          "issue": "Confirmed as a custom-engine gap: CheckActivateEffect supports activatable Spell/Trap effects, but there is no official generic API that safely rebinds an arbitrary monster's Normal/Special Summon trigger, targets, metadata, and operation to this Spell's resolution."
         },
         {
           "effect_index": 4,
@@ -5235,10 +5265,16 @@
           "issue": null
         }
       ],
+      "audit_note": "Confirmed the existing dynamic summon-effect-copy limitation; the current five eligible Main Deck effects remain explicitly mirrored.",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      },
+      "supersedes_batch": "batch_2_73_144.json",
       "lua_effect_creations": 3,
-      "conservative_printed_clause_floor": 3,
+      "conservative_printed_clause_floor": 5,
       "heuristic_printed_clause_floor": 3,
-      "source_batch": "batch_2_73_144.json"
+      "source_batch": "batch_local_100_100.json"
     },
     {
       "ordinal": 101,
@@ -5578,8 +5614,8 @@
       "passcode": 259911246,
       "name": "Mylo in the Wild",
       "text_sha256": "dda6a9006f30d878c353df9fc4f44879effc64e719bef010d8db652294046db9",
-      "script_sha256": "ece221c04964aed93297fd55f70334556c83138d6fdc1f0741820bf72b46b10c",
-      "overall_verdict": "DEFECT",
+      "script_sha256": "da5f27fd3857324e374728ba4ccc56294313b0801b9a29e6f38ff87d4ae56199",
+      "overall_verdict": "FIXED",
       "effects": [
         {
           "effect_index": 1,
@@ -5610,7 +5646,7 @@
         {
           "effect_index": 2,
           "printed_clause": "Cannot be Summoned while you control a monster.",
-          "lua_implementation": "Only Special Summons are restricted; no CANNOT_FLIP_SUMMON is registered.",
+          "lua_implementation": "The uncopyable single effects now combine the conditional Special Summon prohibition with EFFECT_CANNOT_FLIP_SUMMON, whose condition checks for another controlled monster.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c86099788.lua",
@@ -5622,6 +5658,7 @@
               "verified_shared_tokens": [
                 "Duel.GetMatchingGroup",
                 "Duel.SetOperationInfo",
+                "EFFECT_CANNOT_FLIP_SUMMON",
                 "EFFECT_TYPE_FIELD",
                 "EFFECT_TYPE_SINGLE",
                 "EFFECT_TYPE_TRIGGER_F",
@@ -5633,8 +5670,8 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "A face-down Mylo in the Wild can be Flip Summoned while another monster is controlled."
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: a face-down copy previously remained Flip Summonable while another monster was controlled."
         },
         {
           "effect_index": 3,
@@ -5675,7 +5712,7 @@
         {
           "effect_index": 4,
           "printed_clause": "At end of turn, end the temporary face-down change.",
-          "lua_implementation": "The End Phase operation changes every surviving saved face-down monster to face-up Defense Position, regardless of whether it was originally Attack or Defense Position.",
+          "lua_implementation": "Before turning the legal face-up monsters face-down, the operation separates their original Attack- and Defense-Position groups. At the End Phase it restores each surviving affected monster to its corresponding original face-up position.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c35480699.lua",
@@ -5705,8 +5742,8 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "The Lua does not restore each monster’s prior battle position; original Attack Position monsters all return in Defense Position."
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the prior End Phase operation returned every surviving monster in face-up Defense Position and lost original Attack Position."
         },
         {
           "effect_index": 5,
@@ -5771,18 +5808,24 @@
           "issue": null
         }
       ],
-      "lua_effect_creations": 4,
-      "conservative_printed_clause_floor": 4,
+      "audit_note": "Confirmed and fixed both the missing Flip Summon prohibition and original-position restoration.",
+      "coverage_override": {
+        "expected_individual_effects": 6,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      },
+      "supersedes_batch": "batch_2_73_144.json",
+      "lua_effect_creations": 5,
+      "conservative_printed_clause_floor": 6,
       "heuristic_printed_clause_floor": 4,
-      "source_batch": "batch_2_73_144.json"
+      "source_batch": "batch_local_103_103.json"
     },
     {
       "ordinal": 104,
       "passcode": 259796760,
       "name": "Nuwa in the Wild",
       "text_sha256": "492426c070a2830ce6a115440f08c5d933aa23021d91311d5548282f42f151c5",
-      "script_sha256": "9a573c59f6a85fe54516a6cca8dba454e6fbc6c0b44104d3e8bfeed08d966721",
-      "overall_verdict": "DEFECT",
+      "script_sha256": "f5266fc24d9ed89f1592f61cb3e80d8ffbfc9c27d3213231a2335e5c881b715c",
+      "overall_verdict": "FIXED",
       "effects": [
         {
           "effect_index": 1,
@@ -5813,7 +5856,7 @@
         {
           "effect_index": 2,
           "printed_clause": "Cannot be Summoned while you control a monster.",
-          "lua_implementation": "Only SPSUMMON_CONDITION is registered.",
+          "lua_implementation": "The uncopyable single effects now combine the conditional Special Summon prohibition with EFFECT_CANNOT_FLIP_SUMMON, whose condition checks for another controlled monster.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c86099788.lua",
@@ -5825,6 +5868,7 @@
               "verified_shared_tokens": [
                 "Duel.GetMatchingGroup",
                 "Duel.SetOperationInfo",
+                "EFFECT_CANNOT_FLIP_SUMMON",
                 "EFFECT_TYPE_SINGLE",
                 "EFFECT_TYPE_TRIGGER_F",
                 "Effect.CreateEffect",
@@ -5835,8 +5879,8 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "The unqualified restriction is missing a Flip Summon prohibition."
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the unqualified Summon restriction was missing its Flip Summon prohibition."
         },
         {
           "effect_index": 3,
@@ -5965,10 +6009,16 @@
           "issue": null
         }
       ],
-      "lua_effect_creations": 5,
-      "conservative_printed_clause_floor": 4,
+      "audit_note": "Confirmed and fixed the missing Flip Summon prohibition.",
+      "coverage_override": {
+        "expected_individual_effects": 6,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      },
+      "supersedes_batch": "batch_2_73_144.json",
+      "lua_effect_creations": 6,
+      "conservative_printed_clause_floor": 6,
       "heuristic_printed_clause_floor": 4,
-      "source_batch": "batch_2_73_144.json"
+      "source_batch": "batch_local_104_104.json"
     },
     {
       "ordinal": 105,
@@ -6819,7 +6869,7 @@
       "name": "Kanmuriyama",
       "text_sha256": "fbe483670c4f46fcada84dfaa406796ee7e68f99c47b46f5269dd6445d8edad9",
       "script_sha256": "98cac33543c8c0785c60e075743df6425a7bdbe50afa850bbebc8d72edbadffb",
-      "overall_verdict": "DEFECT",
+      "overall_verdict": "PASS",
       "effects": [
         {
           "effect_index": 1,
@@ -6922,7 +6972,7 @@
         {
           "effect_index": 4,
           "printed_clause": "If this card is destroyed and sent from field to GY because the equipped monster returned to hand: add it to hand.",
-          "lua_implementation": "EVENT_TO_GRAVE checks prior SZONE, REASON_LOST_TARGET and previous equip target now in hand, but does not check REASON_DESTROY.",
+          "lua_implementation": "EVENT_TO_GRAVE requires prior Spell/Trap Zone location, REASON_LOST_TARGET, and the previous equip target now being in the hand. This is the official engine representation used by Sword of Kusanagi when an Equip is lost because its Spirit target returned.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c48716139.lua",
@@ -6960,8 +7010,8 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "The printed condition additionally says this Equip was destroyed; the Lua triggers on any REASON_LOST_TARGET send and never verifies destruction."
+          "verdict": "PASS",
+          "issue": null
         },
         {
           "effect_index": 5,
@@ -7017,10 +7067,16 @@
           "issue": null
         }
       ],
+      "audit_note": "Rejected the requested REASON_DESTROY check: official Sword of Kusanagi uses REASON_LOST_TARGET for this exact Equip-loss event.",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      },
+      "supersedes_batch": "batch_2_73_144.json",
       "lua_effect_creations": 5,
-      "conservative_printed_clause_floor": 4,
+      "conservative_printed_clause_floor": 5,
       "heuristic_printed_clause_floor": 4,
-      "source_batch": "batch_2_73_144.json"
+      "source_batch": "batch_local_110_110.json"
     },
     {
       "ordinal": 111,
@@ -7028,7 +7084,7 @@
       "name": "Takama No Hara",
       "text_sha256": "eaf79d5572b9bd8f1eeae1b78b32a544fa3f54ee388bbf7f143a17416262ee96",
       "script_sha256": "8f03d8f3b5fcee8f726180131c09d29feeb369b46d266429d7115c614683cce0",
-      "overall_verdict": "DEFECT",
+      "overall_verdict": "CUSTOM_GAP",
       "effects": [
         {
           "effect_index": 1,
@@ -7069,7 +7125,7 @@
         {
           "effect_index": 2,
           "printed_clause": "Banish this from GY, target a Spirit you control; it cannot return to hand by card effect until End Phase.",
-          "lua_implementation": "The GY ignition banishes as cost and grants unconditional EFFECT_CANNOT_TO_HAND through End Phase.",
+          "lua_implementation": "The selected face-up Spirit receives EFFECT_CANNOT_TO_HAND through the End Phase; this enforces the destination but the core prohibition is reason-agnostic.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c33420078.lua",
@@ -7094,8 +7150,8 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "EFFECT_CANNOT_TO_HAND blocks returning the monster as an activation cost or non-effect procedure too; the printed restriction only blocks return by card effect."
+          "verdict": "CUSTOM_GAP",
+          "issue": "Confirmed as an engine granularity gap: EFFECT_CANNOT_TO_HAND also prevents returning the card as a cost, while the text says only 'by card effect'. The standard API supplies no reason parameter or effect-only destination-prohibition code that can express the narrower rule exactly."
         },
         {
           "effect_index": 3,
@@ -7124,10 +7180,16 @@
           "issue": null
         }
       ],
+      "audit_note": "Confirmed an unresolved reason-filtering limitation in destination prohibitions.",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      },
+      "supersedes_batch": "batch_2_73_144.json",
       "lua_effect_creations": 3,
-      "conservative_printed_clause_floor": 2,
+      "conservative_printed_clause_floor": 3,
       "heuristic_printed_clause_floor": 2,
-      "source_batch": "batch_2_73_144.json"
+      "source_batch": "batch_local_111_111.json"
     },
     {
       "ordinal": 112,
@@ -7234,7 +7296,7 @@
       "name": "Otakemaru the Accuser",
       "text_sha256": "2d742c1fccf35b346fec3aaa6b85d886d6820956c6e0dfe3d94ed20fda1f046b",
       "script_sha256": "6f4bd03cf45fe0fdfb3c037f62e430b411f13a3e78b331c8ebcece61eb2cb375",
-      "overall_verdict": "DEFECT",
+      "overall_verdict": "CUSTOM_GAP",
       "effects": [
         {
           "effect_index": 1,
@@ -7268,7 +7330,7 @@
         {
           "effect_index": 2,
           "printed_clause": "If Special Summoned: other Spirit monsters cannot return to hand or Extra Deck by card effect during this turn’s End Phase.",
-          "lua_implementation": "The summon trigger registers End-Phase-conditioned CANNOT_TO_HAND for other face-up Spirits and CANNOT_TO_DECK for other Extra Deck-type Spirits.",
+          "lua_implementation": "The Special Summon trigger installs End-Phase-only CANNOT_TO_HAND/CANNOT_TO_DECK effects for other face-up Spirit monsters; those destination effects also apply to costs and non-effect movement.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c3078576.lua",
@@ -7291,8 +7353,8 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "The destination prohibitions are reason-agnostic and also block return costs/non-effect movement during the End Phase, broader than “by card effect”."
+          "verdict": "CUSTOM_GAP",
+          "issue": "Confirmed as an engine granularity gap: the standard destination prohibitions cannot be limited to REASON_EFFECT. EFFECT_SPIRIT_DONOT_RETURN covers built-in Spirit returns but would under-implement arbitrary card effects named by this text."
         },
         {
           "effect_index": 3,
@@ -7442,10 +7504,16 @@
           "issue": null
         }
       ],
+      "audit_note": "Confirmed an unresolved reason-filtering limitation in destination prohibitions.",
+      "coverage_override": {
+        "expected_individual_effects": 6,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      },
+      "supersedes_batch": "batch_2_73_144.json",
       "lua_effect_creations": 5,
-      "conservative_printed_clause_floor": 5,
+      "conservative_printed_clause_floor": 6,
       "heuristic_printed_clause_floor": 5,
-      "source_batch": "batch_2_73_144.json"
+      "source_batch": "batch_local_113_113.json"
     },
     {
       "ordinal": 114,
@@ -7615,8 +7683,8 @@
       "passcode": 259500899,
       "name": "Diving Daughters of the Grand Blue",
       "text_sha256": "1d87f884382e724231356673fd40c1bd50bc7fa43cdabec7949534c7543e656b",
-      "script_sha256": "f7291fa5df717870ac96949b0b6cdd855b31f2130756a781ebf53d5bb4fda214",
-      "overall_verdict": "DEFECT",
+      "script_sha256": "382da9a57d46e020c9dce0eb1dddd0dd031e5c4008431fc2c75ff706dc790d3b",
+      "overall_verdict": "FIXED",
       "effects": [
         {
           "effect_index": 1,
@@ -7661,7 +7729,6 @@
               "script_sha256": "d30bd8c5d0e75b97c8932ddf662a17145632d7f76dafeaa2b2bc5402d3f07632",
               "verified_shared_tokens": [
                 "CATEGORY_TOGRAVE",
-                "Duel.GetFirstTarget",
                 "Duel.Hint",
                 "Duel.IsExistingMatchingCard",
                 "Duel.IsExistingTarget",
@@ -7688,7 +7755,7 @@
         {
           "effect_index": 3,
           "printed_clause": "Special Summon this card in Defense Position.",
-          "lua_implementation": "The operation first requires the selected target to remain related and still be another Grand Blue, then summons the handler.",
+          "lua_implementation": "The target is used only as activation information. Resolution now checks the handler, Necrovalley, and zone availability directly, so the self-Special-Summon does not depend on the informational target remaining related or retaining its archetype.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c32696942.lua",
@@ -7716,8 +7783,8 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "The printed target is not acted on and no “if that target remains” condition exists; the Lua incorrectly makes the self-Summon fail when that target leaves or loses archetype identity."
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the previous operation incorrectly aborted if the targeted Grand Blue card left its location or ceased to satisfy the archetype filter."
         },
         {
           "effect_index": 4,
@@ -7779,10 +7846,16 @@
           "issue": null
         }
       ],
+      "audit_note": "Confirmed and removed an improper resolution dependency on an informational target.",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      },
+      "supersedes_batch": "batch_2_73_144.json",
       "lua_effect_creations": 3,
-      "conservative_printed_clause_floor": 3,
+      "conservative_printed_clause_floor": 5,
       "heuristic_printed_clause_floor": 3,
-      "source_batch": "batch_2_73_144.json"
+      "source_batch": "batch_local_115_115.json"
     },
     {
       "ordinal": 116,
@@ -7790,7 +7863,7 @@
       "name": "Serene Mermaid of the Grand Blue",
       "text_sha256": "f68cee6fc31125d6e440367e06f6abf6f360a6f188b7c275accc7a8522cd8962",
       "script_sha256": "0e7289e269953b367fb6bb8b8f5711003a5d690ca351e8506be83e90e7f734dc",
-      "overall_verdict": "DEFECT",
+      "overall_verdict": "CUSTOM_GAP",
       "effects": [
         {
           "effect_index": 1,
@@ -7863,7 +7936,7 @@
         {
           "effect_index": 3,
           "printed_clause": "After the Fusion Summon, for the rest of the turn you may only Special Summon from Extra Deck using Grand Blue monsters as materials.",
-          "lua_implementation": "Four field effects prohibit non-Grand-Blue cards from being Fusion/Synchro/Xyz/Link Material through End Phase.",
+          "lua_implementation": "Four material prohibitions prevent non-Grand-Blue cards from being used as Fusion, Synchro, Xyz, or Link Material for the rest of the turn, but materialless Extra Deck procedures are not represented by those hooks.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c60303688.lua",
@@ -7894,8 +7967,8 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "Material prohibitions do not stop Extra Deck Special Summons that use no material, such as Pendulum Summons from the face-up Extra Deck or built-in procedures without engine material use; the printed restriction forbids those summons too."
+          "verdict": "CUSTOM_GAP",
+          "issue": "Confirmed as an engine/procedure gap: the generic Special Summon restriction callback does not expose a prospective material group. Official Heraldic Beast Gryphon uses additional Xyz-only workaround state and is itself marked not fully implemented; there is no general equivalent covering all Extra Deck summon procedures."
         },
         {
           "effect_index": 4,
@@ -7923,10 +7996,16 @@
           "issue": null
         }
       ],
+      "audit_note": "Confirmed an unresolved generic materialless Extra Deck summon gap.",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      },
+      "supersedes_batch": "batch_2_73_144.json",
       "lua_effect_creations": 3,
       "conservative_printed_clause_floor": 4,
       "heuristic_printed_clause_floor": 4,
-      "source_batch": "batch_2_73_144.json"
+      "source_batch": "batch_local_116_116.json"
     },
     {
       "ordinal": 117,
@@ -8438,12 +8517,12 @@
       "name": "City Within the Grand Blue",
       "text_sha256": "7c5cf3b4f2d4dbec89ddec678a6a67d70eaf30c00df1b7e1c664f21a473ac536",
       "script_sha256": "49df75a3b346cc05e4af57e70bba003d56c87eefad178548d9821b97925a22f1",
-      "overall_verdict": "DEFECT",
+      "overall_verdict": "PASS",
       "effects": [
         {
           "effect_index": 1,
           "printed_clause": "(This card is always treated as \"Umi\".)",
-          "lua_implementation": "Lua registers unconditional ADD_CODE 22702055, but the CCG DB alias field is 0 rather than Umi’s ID.",
+          "lua_implementation": "The card registers unconditional EFFECT_ADD_CODE for Umi. The official Omega database also stores A Legendary Ocean with alias 0 and its official script contains no add-code effect, so a nonzero datas.alias is not an Omega requirement for this printed identity clause.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c295517.lua",
@@ -8463,8 +8542,8 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "Runtime ADD_CODE supports effect references but does not implement “always treated as” for deck construction; the database lacks alias 22702055, allowing three City plus three Umi."
+          "verdict": "PASS",
+          "issue": null
         },
         {
           "effect_index": 2,
@@ -8558,18 +8637,24 @@
           "issue": null
         }
       ],
+      "audit_note": "Rejected the alias finding because the official Omega database uses alias 0 for A Legendary Ocean as well.",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      },
+      "supersedes_batch": "batch_2_73_144.json",
       "lua_effect_creations": 3,
-      "conservative_printed_clause_floor": 3,
+      "conservative_printed_clause_floor": 4,
       "heuristic_printed_clause_floor": 3,
-      "source_batch": "batch_2_73_144.json"
+      "source_batch": "batch_local_120_120.json"
     },
     {
       "ordinal": 121,
       "passcode": 259177849,
       "name": "Grand Blue Princess",
       "text_sha256": "fe3b6a88bc57aff50c0b9351cf3168aed7d414ec65b27a4a013e978cc98b5f30",
-      "script_sha256": "5a1a0f75a694ff4e47beac6de3dfe5a2e1e44abcb6b872c6f17f45c2089836b5",
-      "overall_verdict": "DEFECT",
+      "script_sha256": "e0069769b810f3a9f4851359186840a9e73123669ac53b1c00dcd74e9d547382",
+      "overall_verdict": "FIXED",
       "effects": [
         {
           "effect_index": 1,
@@ -8688,7 +8773,7 @@
         {
           "effect_index": 4,
           "printed_clause": "If the summon succeeds, send the targeted monster to GY.",
-          "lua_implementation": "The Lua summons first and sends the target only after success, but its pre-resolution target-relation guard prevents the summon when the target disappeared.",
+          "lua_implementation": "Resolution now attempts the Grand Blue Special Summon independently. Only after that summon succeeds does it recheck the targeted monster and send it to the GY if it remains related and sendable.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c38179121.lua",
@@ -8715,8 +8800,8 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "The target is only used by the second “and if you do” action. If it leaves before resolution, the printed first Special Summon should still resolve, but Lua returns before attempting it."
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the old pre-resolution target guard incorrectly prevented the first action when only the later 'and if you do' target had disappeared."
         },
         {
           "effect_index": 5,
@@ -8843,10 +8928,16 @@
           "issue": null
         }
       ],
+      "audit_note": "Confirmed and fixed incorrect conjunction/target resolution ordering.",
+      "coverage_override": {
+        "expected_individual_effects": 7,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      },
+      "supersedes_batch": "batch_2_73_144.json",
       "lua_effect_creations": 4,
-      "conservative_printed_clause_floor": 5,
+      "conservative_printed_clause_floor": 7,
       "heuristic_printed_clause_floor": 5,
-      "source_batch": "batch_2_73_144.json"
+      "source_batch": "batch_local_121_121.json"
     },
     {
       "ordinal": 122,
@@ -41273,18 +41364,22 @@
       "name": "Sarifiel, Arckcestial of Moonlight",
       "text_sha256": "ebe80ebadc853662b02871c19567d8f8cdd588e55a883f0cdbfd7671955f5685",
       "script_sha256": "7a948ff8c6a981cc4161212e03f7785d6e04026b9d94d484add9506a6ada2cd7",
-      "overall_verdict": "DEFECT",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The standard/alternative Xyz material method is one summon mechanic, followed by two separately activatable HOPT effects."
+      },
       "effects": [
         {
           "effect_index": 1,
-          "printed_clause": "2 Level 6 LIGHT Spellcasters; alternatively Xyz Summon using a Rank 4 \"Arckcestial\", transferring materials.",
-          "lua_implementation": "AddXyzProcedure enforces Level 6 LIGHT Spellcasters and an ovfilter for face-up Rank 4 Arckcestial, with engine material transfer.",
+          "printed_clause": "2 Level 6 LIGHT Spellcaster monsters. You can also Xyz Summon this card by using a Rank 4 \"Arckcestial\" monster (transfer its materials to this card).",
+          "lua_implementation": "The Xyz procedure accepts two Level 6 LIGHT Spellcasters or overlays this card on one face-up Rank 4 Arckcestial Xyz Monster, transferring its materials through the engine procedure.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c44311445.lua",
+              "script": "c44311445.lua",
               "card_id": 44311445,
               "card_name": "Madolche Puddingcess Chocolat-a-la-Mode",
-              "matched_structure": "Official alternative Xyz Summon over a Rank 4 archetype Xyz with material transfer.",
+              "matched_structure": "Official alternative Xyz procedures overlay on a filtered Rank 4 archetype Xyz Monster and transfer its materials.",
               "official_effect_text": "2 Level 5 EARTH monsters\n[b]You can[/b] [b]also[/b] Xyz Summon this card by using a Rank 4 or lower \"Madolche\" Xyz Monster you control as the material. (Transfer its materials to this card.) [b]Once[/b] [b]per turn[/b]: [b]You can[/b] [b]target[/b] 1 \"Madolche\" card in your GY; shuffle it into the Deck. While this card has \"Madolche Puddingcess\" as material, [b]when[/b] a \"Madolche\" card(s) in your GY is shuffled into the Main Deck (except during the Damage Step): [b]You can[/b] detach 1 material from this card; Special Summon 1 \"Madolche\" monster from your Deck in Attack Position or face-down Defense Position.",
               "script_sha256": "08651f908a6a7ccdc36045aff9f580ae7ba85fc83b12f9cfb575c0390e4d9b6e",
               "verified_shared_tokens": [
@@ -41311,14 +41406,14 @@
         },
         {
           "effect_index": 2,
-          "printed_clause": "If Special Summoned: attach an \"Arckcestial\" monster from GY/face-up banishment; HOPT.",
-          "lua_implementation": "Delayed summon trigger non-target-selects a Necrovalley-legal monster and overlays it under id HOPT.",
+          "printed_clause": "If this card is Special Summoned: You can attach 1 \"Arckcestial\" monster from your GY or face-up banishment to this card as material.",
+          "lua_implementation": "A delayed Special Summon trigger chooses a Necrovalley-legal Arckcestial monster from the GY or face-up banishment and overlays it onto this card under the first HOPT code.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c6812770.lua",
+              "script": "c6812770.lua",
               "card_id": 6812770,
               "card_name": "Performage Cup Tricker",
-              "matched_structure": "Attach a GY/available archetype card as Xyz material.",
+              "matched_structure": "Official Xyz support selects an eligible card and attaches it with Duel.Overlay while respecting zone/public-state requirements.",
               "official_effect_text": "P\n[b]You can[/b] [b]target[/b] 1 \"Performage\" Xyz Monster you control; attach this card to it as material. If a card(s) is added to your Extra Deck (except during the Damage Step): [b]You can[/b] add 1 face-up \"Performage\" Pendulum Monster from your Extra Deck to your hand. [b]You can[/b] only use each effect of \"Performage Cup Tricker\" [b]once[/b] [b]per turn[/b].\nE\nIf this card is in your hand: [b]You can[/b] [b]target[/b] 1 Xyz Monster on the field; detach 1 material from it, [b]and if you do[/b], Special Summon this card, [b]then[/b] make 1 Xyz Monster on the field lose 600 ATK. If this card is detached from an Xyz Monster [b]and[/b] sent to the GY to activate that monster's effect: [b]You can[/b] [b]target[/b] 2 Xyz Monsters you control; attach 1 material from 1 of those monsters to the other. [b]You can[/b] only use each effect of \"Performage Cup Tricker\" [b]once[/b] [b]per turn[/b].",
               "script_sha256": "a0d3430e72be72624fc4c5703ad1d176e476b92134f320d17ba77604c07496f1",
               "verified_shared_tokens": [
@@ -41349,42 +41444,44 @@
         },
         {
           "effect_index": 3,
-          "printed_clause": "Main-Phase Quick Effect: detach 1; Special Summon an \"Arckcestial\" from GY in Defense, then discard 1; HOPT.",
-          "lua_implementation": "Main-Phase Quick Effect detaches one, checks only a summonable GY target and zone, summons one, then blindly calls DiscardHand; it never requires a discardable hand card at activation.",
+          "printed_clause": "During the Main Phase (Quick Effect): You can detach 1 material from this card; Special Summon 1 \"Arckcestial\" monster from your GY in Defense Position, then discard 1 card.",
+          "lua_implementation": "A Main-Phase Quick Effect removes one overlay as cost and now requires both a summonable GY Arckcestial plus an actually discardable hand card at activation; it summons in Defense, then performs the mandatory discard.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c27132400.lua",
-              "card_id": 27132400,
-              "card_name": "Altergeist Malwisp",
-              "matched_structure": "Official GY Special Summon filters combined with mandatory follow-up legality checks.",
-              "official_effect_text": "If this card is added to your hand, except by drawing it: [b]You can[/b] Special Summon it. If this card is Normal or Special Summoned: [b]You can[/b] [b]target[/b] 1 \"Altergeist\" monster in your GY, except \"Altergeist Malwisp\"; Special Summon it in Defense Position, but for the rest of this turn, it [b]cannot[/b] activate its effects. [b]You can[/b] only use each effect of \"Altergeist Malwisp\" [b]once[/b] [b]per turn[/b].",
-              "script_sha256": "f9a54ba136b48ae408af3a9b85059b62358c48002ffe93793f293ad422136246",
+              "script": "c18249921.lua",
+              "card_id": 18249921,
+              "card_name": "Virtual World Gate - Xuanwu",
+              "matched_structure": "Official 'Special Summon, then send 1 card from your hand' handling requires the mandatory hand movement in its activation-legality check before summoning from the GY.",
+              "official_effect_text": "During the [b]Battle Phase[/b], if you control another \"Virtual World Gate\" card: [b]You can[/b] [b]target[/b] 1 face-up monster on the field; change its battle position. During your [b]Main Phase[/b]: [b]You can[/b] [b]banish[/b] this card from your GY, [b]then[/b] [b]target[/b] 1 \"Virtual World\" monster in your GY; Special Summon it, but [b]negate[/b] its effects, [b]then[/b] send 1 card from your hand to the GY. [b]You can[/b] only use each effect of \"Virtual World Gate - Xuanwu\" [b]once[/b] [b]per turn[/b]. [b]You can[/b] only activate 1 \"Virtual World Gate - Xuanwu\" [b]per turn[/b].",
+              "script_sha256": "e32f5fc803977bcaba4ecae7336a498bbf0dc9b494f305fef08e95096af6069e",
               "verified_shared_tokens": [
                 "CATEGORY_SPECIAL_SUMMON",
+                "Duel.BreakEffect",
                 "Duel.GetLocationCount",
                 "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
                 "Duel.SetOperationInfo",
-                "Duel.SpecialSummon",
-                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_QUICK_O",
                 "EFFECT_TYPE_SINGLE",
-                "EFFECT_TYPE_TRIGGER_O",
-                "EVENT_SPSUMMON_SUCCESS",
+                "EVENT_FREE_CHAIN",
                 "Effect.CreateEffect",
                 "LOCATION_GRAVE",
+                "LOCATION_HAND",
                 "LOCATION_MZONE",
-                "aux.NecroValleyFilter",
+                "REASON_EFFECT",
                 "aux.Stringid"
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "With an empty/non-discardable hand the effect can still activate and resolve the Special Summon without performing the mandatory 'then discard 1 card'."
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the old target check allowed activation with no discardable hand card, permitting the Special Summon while the mandatory 'then discard 1 card' could not be performed."
         }
       ],
+      "supersedes_batch": "batch_5_289_360.json",
       "lua_effect_creations": 2,
-      "conservative_printed_clause_floor": 5,
+      "conservative_printed_clause_floor": 3,
       "heuristic_printed_clause_floor": 5,
-      "source_batch": "batch_5_289_360.json"
+      "source_batch": "batch_local_352_352.json"
     },
     {
       "ordinal": 353,
@@ -41535,18 +41632,22 @@
       "name": "Bauy Magician",
       "text_sha256": "3725be48afcb719c33f1b895ee5ad29070bb74d14452f0e1d3d1abb2b7f8e0d3",
       "script_sha256": "4c969b0edf67a4090dc6388751f2949da48c3c25ecc88198534437c04a2fee15",
-      "overall_verdict": "DEFECT",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Optional non-Tuner treatment, banished self-summon, and the Main-Phase summon/Link-lock effect are the three mechanics; the two HOPT clauses attach to the latter two."
+      },
       "effects": [
         {
           "effect_index": 1,
-          "printed_clause": "If used as Synchro Material, may be treated as non-Tuner.",
-          "lua_implementation": "Single-range EFFECT_NONTUNER uses the Synchro candidate controller check.",
+          "printed_clause": "If this card you control is used as Synchro Material, you can treat it as a non-Tuner.",
+          "lua_implementation": "A single-range EFFECT_NONTUNER on the Monster Zone permits this controlled card to be treated as a non-Tuner for its controller's Synchro Summon.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c40380686.lua",
+              "script": "c40380686.lua",
               "card_id": 40380686,
               "card_name": "Baby Mudragon",
-              "matched_structure": "Exact optional non-Tuner treatment for Synchro Material.",
+              "matched_structure": "Official optional non-Tuner treatment for Synchro Material uses EFFECT_NONTUNER and a controller-aware value function.",
               "official_effect_text": "If this card you control is used as Synchro Material, [b]you can[/b] treat it as a non-Tuner. If this card is sent to the GY as Synchro Material: [b]You can[/b] declare 1 Type or Attribute, [b]then[/b] [b]target[/b] 1 Synchro Monster you control; it becomes the declared Type/Attribute, until the end of this turn.",
               "script_sha256": "f0ca52b5c77c518610392930c066097bcbe8651c349a4dd98d40b1ee2da87ea6",
               "verified_shared_tokens": [
@@ -41567,14 +41668,14 @@
         },
         {
           "effect_index": 2,
-          "printed_clause": "If controlling \"Bauy World\": Special Summon this banished card; HOPT.",
-          "lua_implementation": "Banished-zone ignition checks face-up exact Field Spell code and summons self under id HOPT.",
+          "printed_clause": "If you control \"Bauy World\": You can Special Summon this card from your banishment.",
+          "lua_implementation": "A banished-zone Ignition Effect checks for face-up Bauy World, an open Monster Zone, and this card's summon legality, then Special Summons it under its HOPT code.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c10560119.lua",
+              "script": "c10560119.lua",
               "card_id": 10560119,
               "card_name": "Fishborg Doctor",
-              "matched_structure": "Self Special Summon from a non-hand zone with field condition and HOPT.",
+              "matched_structure": "Official conditioned self-Special Summons from a non-hand location check field state, zone availability, and summon legality.",
               "official_effect_text": "If this card is in your Graveyard [b]and[/b] all monsters you control are \"Fishborg\" monsters (min. 1): [b]You can[/b] Special Summon this card, [b]and if you do[/b], [b]banish[/b] it [b]when[/b] it leaves the field. [b]You can[/b] only use this effect of \"Fishborg Doctor\" [b]once[/b] [b]per turn[/b]. If you control a monster that is not a \"Fishborg\" monster, [b]destroy[/b] this card.",
               "script_sha256": "7127dc17c2b3652a873fdee01b13785e5cb9ddceb6a79e4cc73c57de6b02ec5c",
               "verified_shared_tokens": [
@@ -41598,14 +41699,14 @@
         },
         {
           "effect_index": 3,
-          "printed_clause": "Main-Phase Quick Effect: banish this face-up card and a hand card; Special Summon another \"Bau\" from hand/Deck, then cannot Special Summon Link Monsters for rest turn; HOPT.",
-          "lua_implementation": "Quick Effect pays both banishes as cost, summons a Bau from hand/Deck, then registers a lock whose filter returns true only for Link monsters currently in LOCATION_EXTRA.",
+          "printed_clause": "During the Main Phase (Quick Effect): You can banish this face-up card and 1 card from your hand; Special Summon 1 \"Bau\" monster from your hand or Deck, except \"Bauy Magician\", also you cannot Special Summon Link Monsters for the rest of this turn.",
+          "lua_implementation": "The Main-Phase Quick Effect banishes this face-up card and one hand card as cost, summons another Bau from hand/Deck, then registers an End-Phase-resetting player restriction that now rejects Link Monsters from every location.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c10194329.lua",
+              "script": "c10194329.lua",
               "card_id": 10194329,
               "card_name": "Raidraptor - Avenge Vulture",
-              "matched_structure": "Rest-of-turn Extra Deck restriction filter after Special Summon.",
+              "matched_structure": "Official post-resolution summon locks use a player-targeted EFFECT_CANNOT_SPECIAL_SUMMON field effect with an End Phase reset.",
               "official_effect_text": "If you take damage: [b]You can[/b] Special Summon this card from your hand, [b]also[/b] you [b]cannot[/b] Special Summon monsters from the Extra Deck for the rest of this turn, except \"Raidraptor\" monsters.",
               "script_sha256": "06b0cece82599466e6f317d63d51b3dd5f52a1338f40eeaf2ae4a8af82d5f8f6",
               "verified_shared_tokens": [
@@ -41625,14 +41726,15 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "The text prohibits Special Summoning Link Monsters from any location. Lua only prohibits Link Monsters while they are in the Extra Deck, so it still permits reviving a Link Monster from GY or banishment."
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the text has no 'from the Extra Deck' qualifier. The old restriction allowed Link Monsters to be revived from the GY or banishment; it now blocks Link Special Summons from any location."
         }
       ],
+      "supersedes_batch": "batch_5_289_360.json",
       "lua_effect_creations": 4,
-      "conservative_printed_clause_floor": 5,
+      "conservative_printed_clause_floor": 3,
       "heuristic_printed_clause_floor": 5,
-      "source_batch": "batch_5_289_360.json"
+      "source_batch": "batch_local_354_354.json"
     },
     {
       "ordinal": 355,
@@ -41752,54 +41854,59 @@
       "name": "Ro-Bau",
       "text_sha256": "21654af664f1d79cd650e71f5162533d80e61dde27f69eccd5749f8b3a9adcc2",
       "script_sha256": "c5de3525df16561d4985329e3dc9ec8c440509f233b2b1a23215c56e5531244e",
-      "overall_verdict": "DEFECT",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "The continuous original-ATK calculation and three separately activatable HOPT effects account for all mechanics; the shared limit sentence is attached to the latter three."
+      },
       "effects": [
         {
           "effect_index": 1,
-          "printed_clause": "Original ATK becomes 250 times the number of \"Bau\" cards you control.",
-          "lua_implementation": "Single-range EFFECT_SET_BASE_ATTACK counts every setcode 0xba8 card in LOCATION_ONFIELD without requiring face-up status.",
+          "printed_clause": "This card's original ATK becomes 250 times the number of \"Bau\" cards you control.",
+          "lua_implementation": "A single-range EFFECT_SET_BASE_ATTACK now counts only face-up cards on this player's field that publicly satisfy the Bau setcode, multiplying that count by 250.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c11738489.lua",
-              "card_id": 11738489,
-              "card_name": "The Arrival Cyberse @Ignister",
-              "matched_structure": "Original-ATK continuous calculation counts only cards whose public/current properties are legally available.",
-              "official_effect_text": "3+ monsters with different Attributes\n[b]You can[/b] only control 1 \"The Arrival Cyberse @Ignister\". The original ATK of this card becomes 1000 x the number of materials used for its Link Summon. [b]Unaffected[/b] by other cards' effects. [b]Once[/b] [b]per turn[/b]: [b]You can[/b] [b]target[/b] 1 other monster on the field; [b]destroy[/b] it, [b]and if you do[/b], Special Summon 1 \"@Ignister Token\" (Cyberse/DARK/Level 1/ATK 0/DEF 0) to your zone this card points to.",
-              "script_sha256": "51545089dd91c81588375850d5121e9397a490c9dd3fe48c76f73e647d08ed20",
+              "script": "c95243515.lua",
+              "card_id": 95243515,
+              "card_name": "Virtual World Tiger - Fufu",
+              "matched_structure": "Official continuous archetype-card field counts combine Card.IsFaceup and Card.IsSetCard before deriving a persistent effect value.",
+              "official_effect_text": "2+ Level 9 monsters\nGains the following effects, based on the number of \"Virtual World Gate\" cards you control.\n● 2+: This card can attack directly.\n● 4: This card is [b]unaffected[/b] by activated card effects, except \"Virtual World\" cards.\n[b]Once[/b] [b]per turn[/b] ([b]Quick Effect[/b]): [b]You can[/b] detach 1 material from this card, [b]then[/b] [b]target[/b] 1 Effect Monster you control [b]and[/b] 1 Effect Monster on the field with a different Type [b]and[/b] Attribute from it; [b]negate[/b] their effects until the end of this turn.",
+              "script_sha256": "72da4610fac1a948ebeae7cd83f68a3b876180ce81eb157a4d6762b1c7fc7ecb",
               "verified_shared_tokens": [
-                "CATEGORY_SPECIAL_SUMMON",
-                "Duel.GetFirstTarget",
-                "Duel.GetLocationCount",
+                "Card.IsFaceup",
+                "Card.IsSetCard",
+                "Duel.GetMatchingGroupCount",
                 "Duel.Hint",
                 "Duel.IsExistingTarget",
                 "Duel.SelectTarget",
                 "Duel.SetOperationInfo",
-                "Duel.SpecialSummon",
+                "EFFECT_FLAG_CANNOT_DISABLE",
                 "EFFECT_FLAG_CARD_TARGET",
                 "EFFECT_FLAG_SINGLE_RANGE",
-                "EFFECT_SET_BASE_ATTACK",
-                "EFFECT_TYPE_IGNITION",
+                "EFFECT_TYPE_QUICK_O",
                 "EFFECT_TYPE_SINGLE",
+                "EVENT_FREE_CHAIN",
                 "Effect.CreateEffect",
                 "LOCATION_MZONE",
-                "REASON_EFFECT",
-                "TYPE_MONSTER"
+                "LOCATION_ONFIELD",
+                "aux.AND",
+                "aux.Stringid"
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "Face-down cards you control should not contribute an archetype property to a continuous public ATK calculation. The missing face-up filter counts hidden Bau cards."
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: face-down cards do not publicly possess an archetype for this continuous calculation. The old bare Card.IsSetCard count could include hidden Bau cards."
         },
         {
           "effect_index": 2,
-          "printed_clause": "If controlling \"Bauy World\": Special Summon this banished card; HOPT.",
-          "lua_implementation": "Banished ignition checks exact Field Spell and summons self under id HOPT.",
+          "printed_clause": "If you control \"Bauy World\": You can Special Summon this card from your banishment.",
+          "lua_implementation": "A banished-zone Ignition Effect checks for face-up Bauy World and summon legality, then Special Summons this card under the first HOPT code.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c10560119.lua",
+              "script": "c10560119.lua",
               "card_id": 10560119,
               "card_name": "Fishborg Doctor",
-              "matched_structure": "Conditioned self Special Summon from banishment/GY-style zone.",
+              "matched_structure": "Official conditioned self-Special Summons from a non-hand location check field state, available zone, and summon legality.",
               "official_effect_text": "If this card is in your Graveyard [b]and[/b] all monsters you control are \"Fishborg\" monsters (min. 1): [b]You can[/b] Special Summon this card, [b]and if you do[/b], [b]banish[/b] it [b]when[/b] it leaves the field. [b]You can[/b] only use this effect of \"Fishborg Doctor\" [b]once[/b] [b]per turn[/b]. If you control a monster that is not a \"Fishborg\" monster, [b]destroy[/b] this card.",
               "script_sha256": "7127dc17c2b3652a873fdee01b13785e5cb9ddceb6a79e4cc73c57de6b02ec5c",
               "verified_shared_tokens": [
@@ -41825,14 +41932,14 @@
         },
         {
           "effect_index": 3,
-          "printed_clause": "Main-Phase Quick Effect: target a \"Bau\" you control; equip this card from face-up field/GY to it as Equip Spell granting 2500 ATK; HOPT.",
-          "lua_implementation": "Quick Effect from MZONE/GY checks Main Phase, target and S/T zone, then Duel.Equip; EQUIP_LIMIT restricts to Bau and an Equip effect grants 2500; separate HOPT.",
+          "printed_clause": "During the Main Phase (Quick Effect): You can target 1 \"Bau\" you control; equip this card to it as an Equip Spell that gives it 2500 ATK, from your face-up field or GY.",
+          "lua_implementation": "A Main-Phase Quick Effect from the Monster Zone/GY targets a controlled Bau, equips this card if both remain legal, applies a bound equip limit, and grants 2500 ATK under a distinct HOPT code.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c42940335.lua",
+              "script": "c42940335.lua",
               "card_id": 42940335,
               "card_name": "Mimighoul Throne",
-              "matched_structure": "Near-exact Quick Effect equipping an Xyz/monster card to a targeted archetype monster as an Equip Spell.",
+              "matched_structure": "Official monster-to-Equip-Spell Quick Effects target an eligible monster, call Duel.Equip, register EFFECT_EQUIP_LIMIT, and grant ATK.",
               "official_effect_text": "2 Level 1 \"Mimighoul\" monsters\nYou can detach 1 material from this card; Special Summon 1 \"Mimighoul Master\" from your hand, Deck or GY. During the Main Phase (Quick Effect): You can target 1 \"Mimighoul Master\" you control; equip this card to it as an Equip Spell that gives it 1000 ATK, then you can return cards from the field to the hand, up to the number of materials this card had. You can only use 1 \"Mimighoul Throne\" effect per turn, and only once that turn.",
               "script_sha256": "539abd9183071c9489be471de972af5b0cf6556324fb948e9eca05d8095f1440",
               "verified_shared_tokens": [
@@ -41880,14 +41987,14 @@
         },
         {
           "effect_index": 4,
-          "printed_clause": "If equipped monster destroys by battle: add a banished monster, then optionally immediately Normal Summon; HOPT.",
-          "lua_implementation": "Field trigger from SZONE confirms equip target in EVENT_BATTLE_DESTROYING, adds a face-up banished monster, then optionally Duel.Summon on a summonable hand/field monster; separate HOPT.",
+          "printed_clause": "If a monster this card is equipped to destroys a monster by battle: You can add 1 monster from your banishment to your hand, then, immediately after this effect resolves, you can Normal Summon 1 monster.",
+          "lua_implementation": "A delayed equipped-card battle-destroying trigger recovers one face-up banished monster, then optionally performs an immediate legal Normal Summon under its own HOPT code.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c65515667.lua",
+              "script": "c65515667.lua",
               "card_id": 65515667,
               "card_name": "Motor Kaiser",
-              "matched_structure": "Immediate Normal Summon after an activated effect resolves.",
+              "matched_structure": "Official immediate Normal Summon effects select a currently summonable monster and resolve with Duel.Summon.",
               "official_effect_text": "You can reveal this card in your hand; immediately after this effect resolves, Normal Summon 1 DARK Machine monster. You can target 1 monster you control; destroy it, then you can Special Summon 1 \"Engine Token\" (Machine/EARTH/Level 1/ATK 200/DEF 200) in Attack Position. You can only use each effect of \"Motor Kaiser\" once per turn.",
               "script_sha256": "27e58e1347eabd0206f6ec9375e0d653622fb1e834f155f87478fbba13109000",
               "verified_shared_tokens": [
@@ -41920,10 +42027,11 @@
           "issue": null
         }
       ],
+      "supersedes_batch": "batch_5_289_360.json",
       "lua_effect_creations": 6,
-      "conservative_printed_clause_floor": 5,
+      "conservative_printed_clause_floor": 4,
       "heuristic_printed_clause_floor": 5,
-      "source_batch": "batch_5_289_360.json"
+      "source_batch": "batch_local_356_356.json"
     },
     {
       "ordinal": 357,
@@ -42337,18 +42445,22 @@
       "name": "Bael, Demon Incarnate",
       "text_sha256": "3838c6cce765d7ac8bd4aa27a4efd510afa9d84e5a2cf3061be63de9e97a67df",
       "script_sha256": "2ddf79d669e92fe49d3dab999400ccbdc9be8f441d89ac98d9bf29a46aba0b54",
-      "overall_verdict": "DEFECT",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "The Xyz material requirement, self-protection, Battle-Phase ATK effect, and leave-field summon/protection effect are the four individual mechanics."
+      },
       "effects": [
         {
           "effect_index": 1,
           "printed_clause": "3 Level 1 Tuners.",
-          "lua_implementation": "Standard Xyz procedure requires three Level 1 monsters satisfying TYPE_TUNER.",
+          "lua_implementation": "The standard Xyz procedure requires exactly three Level 1 monsters that each have TYPE_TUNER.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c44311445.lua",
+              "script": "c44311445.lua",
               "card_id": 44311445,
               "card_name": "Madolche Puddingcess Chocolat-a-la-Mode",
-              "matched_structure": "Filtered exact-count Xyz material procedure.",
+              "matched_structure": "Official Xyz procedures encode an exact material level, count, and material filter.",
               "official_effect_text": "2 Level 5 EARTH monsters\n[b]You can[/b] [b]also[/b] Xyz Summon this card by using a Rank 4 or lower \"Madolche\" Xyz Monster you control as the material. (Transfer its materials to this card.) [b]Once[/b] [b]per turn[/b]: [b]You can[/b] [b]target[/b] 1 \"Madolche\" card in your GY; shuffle it into the Deck. While this card has \"Madolche Puddingcess\" as material, [b]when[/b] a \"Madolche\" card(s) in your GY is shuffled into the Main Deck (except during the Damage Step): [b]You can[/b] detach 1 material from this card; Special Summon 1 \"Madolche\" monster from your Deck in Attack Position or face-down Defense Position.",
               "script_sha256": "08651f908a6a7ccdc36045aff9f580ae7ba85fc83b12f9cfb575c0390e4d9b6e",
               "verified_shared_tokens": [
@@ -42375,13 +42487,13 @@
         {
           "effect_index": 2,
           "printed_clause": "This Xyz Summoned card cannot be targeted by card effects.",
-          "lua_implementation": "Conditional single-range cannot-target effect uses aux.tgoval.",
+          "lua_implementation": "While this card remains Xyz Summoned in the Monster Zone, EFFECT_CANNOT_BE_EFFECT_TARGET now has value 1, prohibiting targeting by either player's card effects.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c6165656.lua",
+              "script": "c6165656.lua",
               "card_id": 6165656,
               "card_name": "Number C88: Gimmick Puppet Disaster Leo",
-              "matched_structure": "Official neither-player targeting prohibition uses SetValue(1), not aux.tgoval.",
+              "matched_structure": "Official unqualified 'cannot be targeted by card effects' protection uses EFFECT_CANNOT_BE_EFFECT_TARGET with SetValue(1).",
               "official_effect_text": "4 Level 9 monsters\nMust be Special Summoned with a \"Rank-Up-Magic\" Spell targeting \"Number 88: Gimmick Puppet of Leo\". Neither player can [b]target[/b] this card on the field with card effects. [b]Once[/b] [b]per turn[/b]: [b]You can[/b] detach 1 material from this card; inflict 1000 damage to your opponent. During your [b]End Phase[/b], if your opponent's LP are 2000 or less, [b]and[/b] this card has no materials, you win the Duel.",
               "script_sha256": "71d3836b3d1cdf635c591a73fc6c2aac5161d6c2b26b71e3bd4329898622a5d6",
               "verified_shared_tokens": [
@@ -42397,19 +42509,19 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "aux.tgoval only blocks the opponent's effects. The printed clause has no opponent qualifier and must block both players from targeting this card."
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: aux.tgoval protects only against the opponent. The unqualified text prohibits both players from targeting this card."
         },
         {
           "effect_index": 3,
-          "printed_clause": "Once per Battle Phase, at start of Battle Phase: banish 1 material and top 4 Deck cards; set ATK to all banished cards ×200.",
-          "lua_implementation": "Battle-start phase trigger uses SetCountLimit(1), banishes one removable overlay plus exactly four removable top cards as cost, then sets final ATK to both players' current banished-card count ×200 with no phase reset.",
+          "printed_clause": "Once per Battle Phase, at the start of the Battle Phase: You can banish 1 material from this card and the top 4 cards of your Deck; make this card's ATK become equal to the number of all banished cards times 200.",
+          "lua_implementation": "The phase-start trigger banishes one removable overlay and exactly four removable top Deck cards as cost, then permanently sets ATK to both players' current banished-card count times 200. The turn-wide SetCountLimit was removed, allowing the distinct start event of a second Battle Phase.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c11808215.lua",
+              "script": "c11808215.lua",
               "card_id": 11808215,
               "card_name": "Dice Dungeon",
-              "matched_structure": "Official start-of-Battle-Phase trigger registration without converting 'once per Battle Phase' into a named once-per-turn.",
+              "matched_structure": "Official start-of-Battle-Phase effects register EVENT_PHASE+PHASE_BATTLE_START and perform their Battle Phase operation from that phase event.",
               "official_effect_text": "[b]When[/b] this card is activated: [b]You can[/b] add 1 \"Dimension Dice\" from your Deck to your hand. At the start of the [b]Battle Phase[/b]: [b]You can[/b] activate this effect; each player rolls a six-sided die [b]and[/b] applies the result to all monsters they control, until the end of this turn.\n● 1: Lose 1000 ATK.\n● 2: Gain 1000 ATK.\n● 3: Lose 500 ATK.\n● 4: Gain 500 ATK.\n● 5: Halve their ATK.\n● 6: Double their ATK.",
               "script_sha256": "d1aa67e7b0e8cfc207c77fc7b7304d3550c3e93a21dd433c85b233d22dc2c2b8",
               "verified_shared_tokens": [
@@ -42430,19 +42542,19 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "SetCountLimit(1) resets per turn, not per Battle Phase. If an effect creates a second Battle Phase in the same turn, Bael cannot use its printed once-per-Battle-Phase effect again."
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: SetCountLimit(1) resets per turn, not per Battle Phase, so it wrongly blocked use at the start of a second Battle Phase in the same turn. The phase-start event itself provides one trigger opportunity per Battle Phase."
         },
         {
           "effect_index": 4,
-          "printed_clause": "If this Xyz Summoned card with material leaves field: Special Summon a banished Level 4 or lower FIRE Fiend; it cannot be targeted by card effects.",
-          "lua_implementation": "Delayed leave-field trigger checks previous MZONE, Xyz Summon type and prior overlay count, summons a face-up banished matching monster, then grants cannot-target using aux.tgoval.",
+          "printed_clause": "If this Xyz Summoned card with material leaves the field: You can Special Summon 1 of your banished Level 4 or lower FIRE Fiend monsters, and if you do, it cannot be targeted by card effects.",
+          "lua_implementation": "A delayed leave-field trigger checks previous Monster Zone, Xyz Summon type, and prior overlay count, summons a face-up banished Level 4 or lower FIRE Fiend, and now grants that monster targeting protection from both players.",
           "official_references": [
             {
-              "script": "tmp/omega_scripts/c12744567.lua",
+              "script": "c12744567.lua",
               "card_id": 12744567,
               "card_name": "Number C101: Silent Honor DARK",
-              "matched_structure": "Prior Xyz Summon/overlay-count leave-field trigger checks.",
+              "matched_structure": "Official leave-field Xyz effects inspect prior Xyz Summon state and prior overlay count.",
               "official_effect_text": "3 Level 5 monsters\n[b]Once[/b] [b]per turn[/b]: [b]You can[/b] [b]target[/b] 1 Special Summoned monster your opponent controls; attach it to this card as material. [b]When[/b] this card is destroyed [b]and[/b] sent to the GY while it has material: [b]You can[/b] Special Summon this card from your GY, [b]then[/b] gain LP equal to the original ATK of this card. \"Number 101: Silent Honor ARK\" must be in your GY to activate [b]and[/b] to resolve this effect. If this card is Special Summoned this way, it [b]cannot[/b] attack for the rest of this turn.",
               "script_sha256": "f5400ec1c101894c271e82c56528b5e57e603c0f96fc6f221e8f45c157aa65ac",
               "verified_shared_tokens": [
@@ -42462,10 +42574,10 @@
               ]
             },
             {
-              "script": "tmp/omega_scripts/c6165656.lua",
+              "script": "c6165656.lua",
               "card_id": 6165656,
               "card_name": "Number C88: Gimmick Puppet Disaster Leo",
-              "matched_structure": "Neither-player target protection requires SetValue(1).",
+              "matched_structure": "Official unqualified targeting protection grants EFFECT_CANNOT_BE_EFFECT_TARGET with value 1.",
               "official_effect_text": "4 Level 9 monsters\nMust be Special Summoned with a \"Rank-Up-Magic\" Spell targeting \"Number 88: Gimmick Puppet of Leo\". Neither player can [b]target[/b] this card on the field with card effects. [b]Once[/b] [b]per turn[/b]: [b]You can[/b] detach 1 material from this card; inflict 1000 damage to your opponent. During your [b]End Phase[/b], if your opponent's LP are 2000 or less, [b]and[/b] this card has no materials, you win the Duel.",
               "script_sha256": "71d3836b3d1cdf635c591a73fc6c2aac5161d6c2b26b71e3bd4329898622a5d6",
               "verified_shared_tokens": [
@@ -42481,14 +42593,15 @@
               ]
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "The leave trigger and summon filter match, but the granted protection again uses opponent-only aux.tgoval despite the unqualified 'cannot be targeted by card effects'."
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the granted aux.tgoval protection was opponent-only despite the unqualified text; the summoned monster is now untargetable by either player's card effects."
         }
       ],
+      "supersedes_batch": "batch_5_289_360.json",
       "lua_effect_creations": 5,
-      "conservative_printed_clause_floor": 2,
+      "conservative_printed_clause_floor": 4,
       "heuristic_printed_clause_floor": 2,
-      "source_batch": "batch_5_289_360.json"
+      "source_batch": "batch_local_360_360.json"
     },
     {
       "ordinal": 361,

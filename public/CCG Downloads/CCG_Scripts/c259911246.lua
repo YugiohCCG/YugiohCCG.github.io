@@ -16,6 +16,12 @@ function s.initial_effect(c)
 	e0:SetCode(EFFECT_SPSUMMON_CONDITION)
 	e0:SetValue(s.splimit)
 	c:RegisterEffect(e0)
+	local e0b=Effect.CreateEffect(c)
+	e0b:SetType(EFFECT_TYPE_SINGLE)
+	e0b:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
+	e0b:SetCode(EFFECT_CANNOT_FLIP_SUMMON)
+	e0b:SetCondition(s.fliplimit)
+	c:RegisterEffect(e0b)
 	--Tribute this card; Set all monsters
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -46,6 +52,9 @@ end
 function s.splimit(e,se,sp,st,pos,tp)
 	return not Duel.IsExistingMatchingCard(aux.TRUE,sp,LOCATION_MZONE,0,1,nil)
 end
+function s.fliplimit(e)
+	return Duel.IsExistingMatchingCard(aux.TRUE,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,e:GetHandler())
+end
 function s.poscon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsMainPhase() and not Duel.IsExistingMatchingCard(aux.TRUE,tp,LOCATION_MZONE,0,1,e:GetHandler())
 end
@@ -70,26 +79,32 @@ function s.endop(e,tp,eg,ep,ev,re,r,rp)
 	if g then
 		local sg=g:Filter(s.retfilter,nil)
 		if #sg>0 then
-			Duel.ChangePosition(sg,POS_FACEUP_DEFENSE)
+			Duel.ChangePosition(sg,e:GetLabel())
 		end
 		g:DeleteGroup()
 	end
 	e:Reset()
 end
-function s.posop(e,tp,eg,ep,ev,re,r,rp)
-	local g=Duel.GetMatchingGroup(s.posfilter,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
-	if #g==0 or Duel.ChangePosition(g,POS_FACEDOWN_DEFENSE)==0 then return end
-	local og=Duel.GetOperatedGroup()
-	if #og==0 then return end
-	og:KeepAlive()
-	local e1=Effect.CreateEffect(e:GetHandler())
+function s.registerend(c,tp,g,pos)
+	if #g==0 then return end
+	g:KeepAlive()
+	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e1:SetCode(EVENT_PHASE+PHASE_END)
 	e1:SetCountLimit(1)
-	e1:SetLabelObject(og)
+	e1:SetLabel(pos)
+	e1:SetLabelObject(g)
 	e1:SetOperation(s.endop)
 	e1:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e1,tp)
+end
+function s.posop(e,tp,eg,ep,ev,re,r,rp)
+	local g=Duel.GetMatchingGroup(s.posfilter,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
+	local ag=g:Filter(Card.IsAttackPos,nil)
+	local dg=g:Filter(Card.IsDefensePos,nil)
+	if #g==0 or Duel.ChangePosition(g,POS_FACEDOWN_DEFENSE)==0 then return end
+	s.registerend(e:GetHandler(),tp,ag,POS_FACEUP_ATTACK)
+	s.registerend(e:GetHandler(),tp,dg,POS_FACEUP_DEFENSE)
 end
 function s.mylofilter(c)
 	return c:IsCode(CARD_MYLO) and c:IsAbleToHand()

@@ -16,6 +16,12 @@ function s.initial_effect(c)
 	e0:SetCode(EFFECT_SPSUMMON_CONDITION)
 	e0:SetValue(s.splimit)
 	c:RegisterEffect(e0)
+	local e0b=Effect.CreateEffect(c)
+	e0b:SetType(EFFECT_TYPE_SINGLE)
+	e0b:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
+	e0b:SetCode(EFFECT_CANNOT_FLIP_SUMMON)
+	e0b:SetCondition(s.fliplimit)
+	c:RegisterEffect(e0b)
 	--Tribute this card; negate all other monsters
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -45,6 +51,9 @@ function s.domfairy(c)
 end
 function s.splimit(e,se,sp,st,pos,tp)
 	return not Duel.IsExistingMatchingCard(aux.TRUE,sp,LOCATION_MZONE,0,1,nil)
+end
+function s.fliplimit(e)
+	return Duel.IsExistingMatchingCard(aux.TRUE,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,e:GetHandler())
 end
 function s.negcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsMainPhase() and not Duel.IsExistingMatchingCard(aux.TRUE,tp,LOCATION_MZONE,0,1,e:GetHandler())

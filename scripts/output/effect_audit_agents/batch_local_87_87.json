@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch2-73-121",
+  "ordinal_start": 87,
+  "ordinal_end": 87,
+  "cards": [
+    {
+      "ordinal": 87,
+      "passcode": 244921711,
+      "name": "Ursarctic Hextanius",
+      "text_sha256": "27ad96a4e3d7f4be13213918479de9c0e2b439f872abc5cf263e1a800e67330a",
+      "script_sha256": "f8cb036b595c5f005f96c2f3ccd9e08fad2dc2547a23f8ef8b63a13a02172e82",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Cannot be Synchro Summoned; must be Special Summoned by sending two controlled Ursarctic monsters with Level difference 6.",
+          "lua_implementation": "The custom Extra Deck procedure checks face-up Ursarctic materials, exact difference, sendability and Extra Zone, then sends both.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c27693363.lua",
+              "card_id": 27693363,
+              "card_name": "Ursarctic Polari",
+              "matched_structure": "Ursarctic Polari is the exact official structural family for Level-difference procedures."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "For the Special Summon of any Ursarctic Synchro, this card can be Level 7 or 8 and a non-Tuner.",
+          "lua_implementation": "The alternate Level/non-Tuner values are consumed by the three CCG Ursarctic procedures that explicitly call Hextanius-aware helpers; the card cannot inject those choices into unrelated official Extra Deck procedures.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c27693363.lua",
+              "card_id": 27693363,
+              "card_name": "Ursarctic Polari",
+              "matched_structure": "Ursarctic Polari is an official Ursarctic procedure that would need to recognize the substitution but contains no Hextanius hook."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Confirmed as an engine/procedure integration gap, not safely patchable in this card alone: official Ursarctic Synchros implement their own EFFECT_SPSUMMON_PROC and expose no card-local hook through which Hextanius can supply two alternate Levels and a non-Tuner role."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If Special Summoned: Special Summon a WATER monster with 700 ATK or 700 DEF from Deck.",
+          "lua_implementation": "A delayed summon trigger filters WATER and either exact stat, checks zone, and Special Summons one.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c32696942.lua",
+              "card_id": 32696942,
+              "card_name": "Big Belly Knight",
+              "matched_structure": "Big Belly Knight demonstrates a summon trigger leading to a filtered Special Summon."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Banish this from GY; shuffle up to 3 other Ursarctic cards from GY/banishment into Deck, then draw 1.",
+          "lua_implementation": "Ignition cost banishes self; operation selects one to three other legal cards, shuffles, then draws only if at least one returned.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c95238394.lua",
+              "card_id": 95238394,
+              "card_name": "Thunder Dragon Fusion",
+              "matched_structure": "Thunder Dragon Fusion uses shuffle-to-Deck handling across GY/banishment."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "Each listed activated effect is once per turn.",
+          "lua_implementation": "The two activated effects use id and id+100.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Confirmed an unresolved cross-script Ursarctic procedure gap; no unsafe card-local workaround was added.",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 4,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

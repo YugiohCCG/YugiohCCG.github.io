@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch2-73-121",
+  "ordinal_start": 115,
+  "ordinal_end": 115,
+  "cards": [
+    {
+      "ordinal": 115,
+      "passcode": 259500899,
+      "name": "Diving Daughters of the Grand Blue",
+      "text_sha256": "1d87f884382e724231356673fd40c1bd50bc7fa43cdabec7949534c7543e656b",
+      "script_sha256": "382da9a57d46e020c9dce0eb1dddd0dd031e5c4008431fc2c75ff706dc790d3b",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If Normal or Special Summoned: send a Grand Blue monster from Deck to GY.",
+          "lua_implementation": "Cloned delayed Normal/Special Summon triggers share one count key and send one set monster from Deck.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c81439173.lua",
+              "card_id": 81439173,
+              "card_name": "Foolish Burial",
+              "matched_structure": "Foolish Burial supplies the official Deck-to-GY operation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If sent to GY by card effect: target another Grand Blue card you control or in GY.",
+          "lua_implementation": "Delayed EVENT_TO_GRAVE checks REASON_EFFECT and targets another own set card from field/GY.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c30328508.lua",
+              "card_id": 30328508,
+              "card_name": "Shaddoll Squamata",
+              "matched_structure": "Shaddoll Squamata demonstrates an EVENT_TO_GRAVE condition specifically requiring card-effect reason."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Special Summon this card in Defense Position.",
+          "lua_implementation": "The target is used only as activation information. Resolution now checks the handler, Necrovalley, and zone availability directly, so the self-Special-Summon does not depend on the informational target remaining related or retaining its archetype.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c32696942.lua",
+              "card_id": 32696942,
+              "card_name": "Big Belly Knight",
+              "matched_structure": "Big Belly Knight demonstrates a GY-trigger Special Summon that does not operate on an activation-information target."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the previous operation incorrectly aborted if the targeted Grand Blue card left its location or ceased to satisfy the archetype filter."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Banish it if it leaves the field.",
+          "lua_implementation": "After successful summon, LEAVE_FIELD_REDIRECT points to banishment with RESETS_REDIRECT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c66102515.lua",
+              "card_id": 66102515,
+              "card_name": "Kurikurinku @Ignister",
+              "matched_structure": "Special Summon from hand or GY, then apply a leave-field redirect that banishes the summoned monster."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "Each effect is once per turn.",
+          "lua_implementation": "The two effects use id/id+100; summon clones share id.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Confirmed and removed an improper resolution dependency on an informational target.",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 4,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

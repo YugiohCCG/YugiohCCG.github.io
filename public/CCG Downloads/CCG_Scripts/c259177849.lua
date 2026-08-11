@@ -92,7 +92,6 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and s.tgfilter(tc)) then return end
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
 	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,nil,e,tp)
 	if #g==0 then return end
@@ -100,7 +99,9 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local sc=g:Select(tp,1,1,nil):GetFirst()
 	if sc and Duel.SpecialSummon(sc,0,tp,tp,false,false,POS_FACEUP_DEFENSE)>0 then
 		Duel.BreakEffect()
-		Duel.SendtoGrave(tc,REASON_EFFECT)
+		if tc and tc:IsRelateToEffect(e) and s.tgfilter(tc) then
+			Duel.SendtoGrave(tc,REASON_EFFECT)
+		end
 	end
 end
 function s.tdcon(e,tp,eg,ep,ev,re,r,rp)

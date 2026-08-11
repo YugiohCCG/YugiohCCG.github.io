@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch2-73-121",
+  "ordinal_start": 110,
+  "ordinal_end": 110,
+  "cards": [
+    {
+      "ordinal": 110,
+      "passcode": 248801935,
+      "name": "Kanmuriyama",
+      "text_sha256": "fbe483670c4f46fcada84dfaa406796ee7e68f99c47b46f5269dd6445d8edad9",
+      "script_sha256": "98cac33543c8c0785c60e075743df6425a7bdbe50afa850bbebc8d72edbadffb",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Equip only to a Spirit monster.",
+          "lua_implementation": "Activation targets a face-up Spirit on either field; persistent EQUIP_LIMIT accepts only TYPE_SPIRIT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c1200843.lua",
+              "card_id": 1200843,
+              "card_name": "Mirror of Yata",
+              "matched_structure": "Mirror of Yata uses the official Equip-only-to-a-Spirit restriction."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this becomes equipped: add a Spirit from Deck with a different Attribute than the equipped monster.",
+          "lua_implementation": "Delayed EVENT_EQUIP checks a current equip target, snapshots its current Attribute for search filtering, and adds/confirms one different-Attribute Spirit.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c33325951.lua",
+              "card_id": 33325951,
+              "card_name": "Shinobaroness Shade Peacock",
+              "matched_structure": "Shinobaroness Shade Peacock searches Spirit-related cards and demonstrates TYPE_SPIRIT metadata filtering."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "The equip-trigger search is once per turn.",
+          "lua_implementation": "SetCountLimit(1,id).",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If this card is destroyed and sent from field to GY because the equipped monster returned to hand: add it to hand.",
+          "lua_implementation": "EVENT_TO_GRAVE requires prior Spell/Trap Zone location, REASON_LOST_TARGET, and the previous equip target now being in the hand. This is the official engine representation used by Sword of Kusanagi when an Equip is lost because its Spirit target returned.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c48716139.lua",
+              "card_id": 48716139,
+              "card_name": "Sword of Kusanagi",
+              "matched_structure": "Sword of Kusanagi triggers when its equipped Spirit returns and the Equip is sent to GY due to lost target."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "At start of Damage Step when equipped monster battles: you can return that opponent monster to hand.",
+          "lua_implementation": "EVENT_BATTLE_START captures the equipped monster’s battle target, requires opponent control/hand-returnability, and returns it if still related to battle.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c94192409.lua",
+              "card_id": 94192409,
+              "card_name": "Compulsory Evacuation Device",
+              "matched_structure": "Compulsory Evacuation Device supplies return-to-hand operation; official battle-start triggers use EVENT_BATTLE_START."
+            },
+            {
+              "script": "tmp/omega_scripts/c80344569.lua",
+              "card_id": 80344569,
+              "card_name": "Neo-Spacian Grand Mole",
+              "matched_structure": "Triggers at the start of the Damage Step and returns battling monsters to the hand."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Rejected the requested REASON_DESTROY check: official Sword of Kusanagi uses REASON_LOST_TARGET for this exact Equip-loss event.",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 5,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch2-73-121",
+  "ordinal_start": 104,
+  "ordinal_end": 104,
+  "cards": [
+    {
+      "ordinal": 104,
+      "passcode": 259796760,
+      "name": "Nuwa in the Wild",
+      "text_sha256": "492426c070a2830ce6a115440f08c5d933aa23021d91311d5548282f42f151c5",
+      "script_sha256": "f5266fc24d9ed89f1592f61cb3e80d8ffbfc9c27d3213231a2335e5c881b715c",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "\"Nuwa, The Domesticated\" + 1 Domestica Fairy.",
+          "lua_implementation": "The Fusion procedure requires exact Nuwa plus a set Fairy.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c72926163.lua",
+              "card_id": 72926163,
+              "card_name": "Elemental HERO Neos Knight",
+              "matched_structure": "Elemental HERO Neos Knight supplies exact-name-plus-filter Fusion structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Cannot be Summoned while you control a monster.",
+          "lua_implementation": "The uncopyable single effects now combine the conditional Special Summon prohibition with EFFECT_CANNOT_FLIP_SUMMON, whose condition checks for another controlled monster.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c86099788.lua",
+              "card_id": 86099788,
+              "card_name": "The Last Warrior from Another Planet",
+              "matched_structure": "The Last Warrior from Another Planet demonstrates explicit summon-type prohibition."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the unqualified Summon restriction was missing its Flip Summon prohibition."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Main Phase/no other monster Quick Effect: Tribute this card; negate all other face-up monsters until End Phase.",
+          "lua_implementation": "The condition/cost are literal; after self-release, every face-up monster receives DISABLE, DISABLE_EFFECT and Trap Monster disable through End Phase.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c54693926.lua",
+              "card_id": 54693926,
+              "card_name": "Dark Ruler No More",
+              "matched_structure": "Dark Ruler No More applies temporary effect negation to a group of face-up monsters."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Also their ATK becomes 0 for the rest of the turn.",
+          "lua_implementation": "Each same affected monster receives SET_ATTACK_FINAL 0 with the identical End Phase reset.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c17086528.lua",
+              "card_id": 17086528,
+              "card_name": "Xiangsheng Magician",
+              "matched_structure": "Xiangsheng Magician uses official final-ATK replacement effects."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "The quick effect is once per turn.",
+          "lua_implementation": "SetCountLimit(1,id).",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 6,
+          "printed_clause": "If sent to GY: return this to Extra Deck; also add Nuwa, then send it to GY.",
+          "lua_implementation": "The mandatory delayed trigger handles independent return/search and sends the added exact card.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c95238394.lua",
+              "card_id": 95238394,
+              "card_name": "Thunder Dragon Fusion",
+              "matched_structure": "Thunder Dragon Fusion supplies return-to-Deck/Extra handling."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Confirmed and fixed the missing Flip Summon prohibition.",
+      "coverage_override": {
+        "expected_individual_effects": 6,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 6,
+    "pass": 5,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

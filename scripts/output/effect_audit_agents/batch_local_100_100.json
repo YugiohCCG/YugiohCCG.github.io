@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch2-73-121",
+  "ordinal_start": 100,
+  "ordinal_end": 100,
+  "cards": [
+    {
+      "ordinal": 100,
+      "passcode": 245970073,
+      "name": "A Stainless Story",
+      "text_sha256": "d285eaac45027de1c7777f7cb729497208c2408f0b3f3dfd68dd48f782dc8f6c",
+      "script_sha256": "5fbaeb0b542fff9526615b1238ea3091b33b5abc020e1f0a523105c7b886a4f9",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Activate only while opponent controls more cards than you.",
+          "lua_implementation": "The activation condition compares total on-field group counts for both players.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15693423.lua",
+              "card_id": 15693423,
+              "card_name": "Evenly Matched",
+              "matched_structure": "Evenly Matched uses comparative field-card counts as activation/resolution logic."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Send a Stain monster from your Deck or a face-up Stain in your opponent’s Deck to GY as the pre-semicolon action.",
+          "lua_implementation": "GLOBALFLAG_DECK_REVERSE_CHECK exposes face-up Deck cards; cost selection permits own Deck or only face-up opponent Deck Stain among the five summon-effect codes and sends with REASON_COST.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c27911549.lua",
+              "card_id": 27911549,
+              "card_name": "Parasite Paracide",
+              "matched_structure": "Parasite Paracide uses official face-up cards inside an opponent’s Deck and the global reverse-Deck check."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "This effect becomes that monster’s effect if it is Normal or Special Summoned.",
+          "lua_implementation": "The five currently eligible Main Deck Stain summon effects are manually mirrored; no dynamic monster-trigger object is invoked from the sent card.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10136446.lua",
+              "card_id": 10136446,
+              "card_name": "Darklord Eveningstar",
+              "matched_structure": "Darklord Eveningstar uses CheckActivateEffect to obtain and execute another card’s target/operation."
+            },
+            {
+              "script": "tmp/omega_scripts/c39552584.lua",
+              "card_id": 39552584,
+              "card_name": "Grapha, Dragon Overlord of Dark World",
+              "matched_structure": "Grapha, Dragon Overlord of Dark World uses ChangeChainOperation for an effect that becomes another printed operation."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Confirmed as a custom-engine gap: CheckActivateEffect supports activatable Spell/Trap effects, but there is no official generic API that safely rebinds an arbitrary monster's Normal/Special Summon trigger, targets, metadata, and operation to this Spell's resolution."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Banish this card from GY; each player draws 1.",
+          "lua_implementation": "A GY ignition banishes as cost, requires both players able to draw, then draws one for each.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c70368879.lua",
+              "card_id": 70368879,
+              "card_name": "Upstart Goblin",
+              "matched_structure": "Upstart Goblin supplies official draw operation; shared-player draw scripts call Duel.Draw separately for each player."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "You can only activate 1 \"A Stainless Story\" per turn.",
+          "lua_implementation": "Only the card activation uses oath SetCountLimit; the GY effect is intentionally unrestricted by that activation-only sentence.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c35261759.lua",
+              "card_id": 35261759,
+              "card_name": "Pot of Desires",
+              "matched_structure": "Pot of Desires uses an oath-style once-per-card-activation count limit."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Confirmed the existing dynamic summon-effect-copy limitation; the current five eligible Main Deck effects remain explicitly mirrored.",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 4,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

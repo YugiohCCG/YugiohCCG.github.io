@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch2-73-121",
+  "ordinal_start": 79,
+  "ordinal_end": 79,
+  "cards": [
+    {
+      "ordinal": 79,
+      "passcode": 259394179,
+      "name": "Pip in the Wild",
+      "text_sha256": "01ad696340c1c665626740f0a6deae3603b16ff47598a7739d7b7e7b8a97c51f",
+      "script_sha256": "809946f0accfd12853d0dd2211f5a048d8cbe66d6e805446121cefedd43a8a99",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "\"Pip, The Domesticated\" + 1 \"Domestica\" Fairy monster.",
+          "lua_implementation": "The Fusion procedure requires the exact Pip code plus one Domestica Fairy and enables revive limit.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c72926163.lua",
+              "card_id": 72926163,
+              "card_name": "Elemental HERO Neos Knight",
+              "matched_structure": "Elemental HERO Neos Knight uses an exact named material plus a race-filtered second Fusion material."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Cannot be Summoned while you control a monster.",
+          "lua_implementation": "The uncopyable single effects now combine the conditional Special Summon prohibition with EFFECT_CANNOT_FLIP_SUMMON, whose condition checks for another controlled monster.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c86099788.lua",
+              "card_id": 86099788,
+              "card_name": "The Last Warrior from Another Planet",
+              "matched_structure": "The Last Warrior from Another Planet demonstrates explicit summon prohibition."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the Fusion previously prohibited only Special Summons, so a face-down copy could be Flip Summoned while its controller had another monster."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "During the Main Phase, while you control no other monster (Quick Effect), Tribute this card; send all monsters on the field to the GY.",
+          "lua_implementation": "A Main-Phase quick effect checks no other controlled monster, releases the handler as cost, then sends every able monster on both fields.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c90448279.lua",
+              "card_id": 90448279,
+              "card_name": "Divine Arsenal AA-ZEUS - Sky Thunder",
+              "matched_structure": "Divine Arsenal AA-ZEUS - Sky Thunder uses a non-destruction mass send-to-GY operation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "The previous effect is once per turn.",
+          "lua_implementation": "The quick effect uses SetCountLimit(1,id).",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring provides the official HOPT key pattern."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "If sent to the GY: return this card to the Extra Deck; also add the named Pip from Deck to hand, then send it to GY.",
+          "lua_implementation": "A mandatory delayed EVENT_TO_GRAVE trigger independently returns the Fusion, then searches/confirms Pip and sends that same successfully added card.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c95238394.lua",
+              "card_id": 95238394,
+              "card_name": "Thunder Dragon Fusion",
+              "matched_structure": "Thunder Dragon Fusion supplies return-to-Deck/Extra handling."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Confirmed and fixed the missing Flip Summon prohibition.",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 4,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

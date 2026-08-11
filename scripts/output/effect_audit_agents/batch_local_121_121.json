@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch2-73-121",
+  "ordinal_start": 121,
+  "ordinal_end": 121,
+  "cards": [
+    {
+      "ordinal": 121,
+      "passcode": 259177849,
+      "name": "Grand Blue Princess",
+      "text_sha256": "fe3b6a88bc57aff50c0b9351cf3168aed7d414ec65b27a4a013e978cc98b5f30",
+      "script_sha256": "e0069769b810f3a9f4851359186840a9e73123669ac53b1c00dcd74e9d547382",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2 Grand Blue monsters.",
+          "lua_implementation": "Fusion procedure requires exactly two Grand Blue materials.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10817524.lua",
+              "card_id": 10817524,
+              "card_name": "First of the Dragons",
+              "matched_structure": "First of the Dragons supplies repeated exact-two Fusion material structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If Special Summoned: take a Grand Blue card from Deck and add it or send it to GY.",
+          "lua_implementation": "Delayed summon trigger selects a set card able to at least one destination, offers legal destination options, then adds/confirms or sends.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c40044918.lua",
+              "card_id": 40044918,
+              "card_name": "Elemental HERO Stratos",
+              "matched_structure": "Elemental HERO Stratos demonstrates summon-trigger archetype Deck selection; Foolish Burial supplies send branch."
+            },
+            {
+              "script": "tmp/omega_scripts/c81439173.lua",
+              "card_id": 81439173,
+              "card_name": "Foolish Burial",
+              "matched_structure": "Sends a selected monster from Deck to the GY; the alternative add branch follows standard Deck search handling."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Target a monster you control; Special Summon a Grand Blue monster from hand/GY.",
+          "lua_implementation": "Ignition targets one sendable own monster and requires a legal hand/GY set monster and open zone; resolution currently aborts unless target remains related.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c83764718.lua",
+              "card_id": 83764718,
+              "card_name": "Monster Reborn",
+              "matched_structure": "Monster Reborn supplies Special Summon from GY; official conjunctive effects resolve their first operation independently of a later target action."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If the summon succeeds, send the targeted monster to GY.",
+          "lua_implementation": "Resolution now attempts the Grand Blue Special Summon independently. Only after that summon succeeds does it recheck the targeted monster and send it to the GY if it remains related and sendable.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c38179121.lua",
+              "card_id": 38179121,
+              "card_name": "Double Evolution Pill",
+              "matched_structure": "Double Evolution Pill and official “Special Summon, and if you do” scripts gate the second operation on summon success."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the old pre-resolution target guard incorrectly prevented the first action when only the later 'and if you do' target had disappeared."
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "If sent to GY by card effect: target one of your banished cards; shuffle it into Deck.",
+          "lua_implementation": "Delayed REASON_EFFECT trigger targets an own-side returnable banished card and sends it to shuffled Deck.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c48976825.lua",
+              "card_id": 48976825,
+              "card_name": "Burial from a Different Dimension",
+              "matched_structure": "Burial from a Different Dimension supplies banished-card target/recheck movement structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 6,
+          "printed_clause": "If returned, Grand Blue monsters you control gain 300 DEF until end of next turn.",
+          "lua_implementation": "After successful return, each current face-up set monster receives UPDATE_DEFENSE 300 with two End Phase reset counts.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c84339249.lua",
+              "card_id": 84339249,
+              "card_name": "Protecting Spirit Loagaeth",
+              "matched_structure": "Protecting Spirit Loagaeth supplies temporary stat effects; official two-turn effects use RESET_PHASE+PHASE_END with count 2."
+            },
+            {
+              "script": "tmp/omega_scripts/c24224830.lua",
+              "card_id": 24224830,
+              "card_name": "Called by the Grave",
+              "matched_structure": "Uses RESET_PHASE+PHASE_END with reset count 2 for an effect lasting through the next End Phase."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 7,
+          "printed_clause": "Each effect is once per turn.",
+          "lua_implementation": "Three effects use id/id+100/id+200.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Confirmed and fixed incorrect conjunction/target resolution ordering.",
+      "coverage_override": {
+        "expected_individual_effects": 7,
+        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 7,
+    "pass": 6,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

@@ -67,8 +67,6 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and s.otherfilter(tc,c)) then return end
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 or not (c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)) then return end
 	if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP_DEFENSE)>0 then
 		local e1=Effect.CreateEffect(c)
