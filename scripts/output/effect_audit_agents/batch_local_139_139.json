@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-122-144",
+  "ordinal_start": 139,
+  "ordinal_end": 139,
+  "cards": [
+    {
+      "ordinal": 139,
+      "passcode": 217332244,
+      "name": "To Proto Psychi",
+      "text_sha256": "f6807763c30b730f56f9861ec6331a1f8f130fa3f1cb2529679ceb7146a5792e",
+      "script_sha256": "495f8ec124b10da53d9e6a426350a6563dd193b992d2dec85209f4424e4d01bc",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Cannot be Normal Summoned/Set; must first be Special Summoned by banishing a controlled To Proto.",
+          "lua_implementation": "Explicit restrictions plus revive limit/hand procedure implement first summon.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c72989439.lua",
+              "card_id": 72989439,
+              "card_name": "Black Luster Soldier - Envoy of the Beginning",
+              "matched_structure": "Black Luster Soldier - Envoy of the Beginning supplies banish-paid summon procedure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card inflicts battle damage, gain LP equal to damage inflicted.",
+          "lua_implementation": "EVENT_BATTLE_DAMAGE requires damaged player be opponent, records ev and recovers exactly ev.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c5795882.lua",
+              "card_id": 5795882,
+              "card_name": "Vampire's Domain",
+              "matched_structure": "Vampire’s Domain recovers LP equal to battle damage inflicted."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Quick Effect: Tribute a Token, then pay any amount of LP.",
+          "lua_implementation": "The cost offers LP payments in 100-point increments plus LP minus 1, then applies the chosen payment as permanent ATK/DEF gain.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10000010.lua",
+              "card_id": 10000010,
+              "card_name": "The Winged Dragon of Ra",
+              "matched_structure": "The Winged Dragon of Ra pays a variable LP amount and records it for ATK/DEF gain."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Unresolved engine/UI gap: the printed 'any amount' includes every integer from 1 through LP minus 1, but Omega's AnnounceNumber interface requires an explicit finite option list and no official script exposes an unrestricted integer-entry LP prompt."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "This card gains ATK/DEF equal to LP paid.",
+          "lua_implementation": "Operation reads the paid label and grants permanent UPDATE_ATTACK/DEFENSE with standard reset.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10000010.lua",
+              "card_id": 10000010,
+              "card_name": "The Winged Dragon of Ra",
+              "matched_structure": "The Winged Dragon of Ra gains paired ATK/DEF equal to LP paid."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "If banished from field: recover a differently named banished To Proto.",
+          "lua_implementation": "Delayed previous-field EVENT_REMOVE targets/adds one face-up own banished set monster excluding this code.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c80280944.lua",
+              "card_id": 80280944,
+              "card_name": "Giant Rex",
+              "matched_structure": "Giant Rex supplies delayed banishment trigger structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 6,
+          "printed_clause": "Each activated effect is once per turn.",
+          "lua_implementation": "Battle recovery, quick effect and banished trigger use id+200/id/id+100.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 6,
+    "pass": 5,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

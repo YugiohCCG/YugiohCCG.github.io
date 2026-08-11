@@ -3,6 +3,7 @@ local s,id=GetID()
 local STRING_ID=132998543
 local SET_STELLAER=0xe40d
 function s.initial_effect(c)
+	Duel.EnableGlobalFlag(GLOBALFLAG_DETACH_EVENT)
 	--Special Summon this card from your hand
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -19,7 +20,7 @@ function s.initial_effect(c)
 	e2:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
-	e2:SetCode(EVENT_TO_GRAVE)
+	e2:SetCode(EVENT_DETACH_MATERIAL)
 	e2:SetCountLimit(1,id)
 	e2:SetCondition(s.xyzcon)
 	e2:SetCost(s.xyzcost)
@@ -77,7 +78,7 @@ function s.xyztg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsPlayerCanSpecialSummonCount(tp,2)
 		and Duel.GetLocationCount(tp,LOCATION_MZONE)>1 and s.selffilter(c,e,tp)
 		and Duel.IsExistingMatchingCard(s.handfilter,tp,LOCATION_HAND,0,1,nil,e,tp) end
-	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,2,tp,LOCATION_HAND+LOCATION_GRAVE)
+	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,2,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED)
 end
 function s.xyzfilter(c,mg)
 	return c:IsSetCard(SET_STELLAER) and c:IsType(TYPE_XYZ) and c:IsXyzSummonable(mg,2,2)

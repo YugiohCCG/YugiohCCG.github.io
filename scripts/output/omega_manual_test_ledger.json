@@ -3,661 +3,122 @@
   "guide": "docs/lua-manual-review-guide-2026-07-20.md",
   "guide_sha256": "4cbf98f1a532e72f344f6c3f5df0fa74adc224c733729c5a25f9342ae17717a2",
   "summary": {
-    "total": 123,
-    "pending": 123,
+    "historical_guide_total": 123,
+    "resolved_exclusions": 26,
+    "total": 97,
+    "pending": 97,
     "errors": 0
   },
   "errors": [],
+  "resolved_guide_exclusions": [
+    {
+      "card_id": 212684822,
+      "reason": "Ektelestis requirements, reflected half damage, and Taxis add/send behavior are fully implemented."
+    },
+    {
+      "card_id": 215984744,
+      "reason": "Recollection, Bear Trap/Mortis, and Mine matching resolve through current name/set pools."
+    },
+    {
+      "card_id": 223512283,
+      "reason": "Dysmandr name-series placement resolves through its generated archetype setcode."
+    },
+    {
+      "card_id": 223558392,
+      "reason": "EARTH printed-text searches use the generated official-plus-CCG search pool."
+    },
+    {
+      "card_id": 223592011,
+      "reason": "WIND printed-text searches use the generated official-plus-CCG search pool."
+    },
+    {
+      "card_id": 224467692,
+      "reason": "Scarstech Prologue is a Normal Monster (Omega type 17); flavor text and an empty script are correct."
+    },
+    {
+      "card_id": 224751741,
+      "reason": "Fall of Azrynior carries the Taxis setcode in the database, matching official treated-as handling."
+    },
+    {
+      "card_id": 224774049,
+      "reason": "Pot of Gambling declares, rolls, excavates, adds a matching card, and shuffles the remainder."
+    },
+    {
+      "card_id": 229327103,
+      "reason": "FIRE printed-text searches use the generated official-plus-CCG search pool."
+    },
+    {
+      "card_id": 229786055,
+      "reason": "Eldora's destruction provenance and matching-characteristic summon pools are implemented as written."
+    },
+    {
+      "card_id": 231331942,
+      "reason": "Hallo, the Spirit of Tricks is resolved to official TCG ID 54611591."
+    },
+    {
+      "card_id": 235612490,
+      "reason": "Feather Downpour banishes an Arckcestial from the GY as cost and performs the conditional second banish."
+    },
+    {
+      "card_id": 236721134,
+      "reason": "Devotee's send and Set clauses are one semicolon-linked trigger effect."
+    },
+    {
+      "card_id": 239245471,
+      "reason": "Birth of Azrynior carries the Ataxia setcode in the database, matching official treated-as handling."
+    },
+    {
+      "card_id": 241447408,
+      "reason": "Kaboom Papa rejects activation after more than one prior Summon and caps the turn at one Summon."
+    },
+    {
+      "card_id": 242009896,
+      "reason": "Extinction destroys every other matching Effect Monster, then the chosen monster, including when no others exist."
+    },
+    {
+      "card_id": 243920845,
+      "reason": "DARK printed-text searches use the generated official-plus-CCG search pool."
+    },
+    {
+      "card_id": 244013196,
+      "reason": "To Proto Chrono's recovered full text, summon, negate/stat/counter, and banished recovery effects are implemented."
+    },
+    {
+      "card_id": 244790302,
+      "reason": "Stained Avatar dynamically applies a targeted Stain Spell/Trap activation effect."
+    },
+    {
+      "card_id": 244920555,
+      "reason": "LIGHT printed-text searches use the generated official-plus-CCG search pool."
+    },
+    {
+      "card_id": 245099829,
+      "reason": "Azrynior name-series placement resolves through its generated archetype setcode."
+    },
+    {
+      "card_id": 245400676,
+      "reason": "To Proto Archegoni uses a generated name-or-printed-text Spell/Trap pool."
+    },
+    {
+      "card_id": 250556612,
+      "reason": "NiuHao - Zao dynamically applies both banished Sacred Treasure activation effects in sequence."
+    },
+    {
+      "card_id": 251058567,
+      "reason": "WATER printed-text searches use the generated official-plus-CCG search pool."
+    },
+    {
+      "card_id": 251236672,
+      "reason": "Laplace Plesio has separate hard once-per-turn counters and own-Battle-Phase stat duration."
+    },
+    {
+      "card_id": 254065048,
+      "reason": "Polemistis continuously gains the full ATK/DEF amount currently lost by field monsters."
+    }
+  ],
   "tests": [
     {
       "guide_number": 1,
-      "card_id": 244790302,
-      "card_name": "Stained Avatar",
-      "source_ordinal": 15,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "card-pool-sensitive copy.",
-      "audited_implementation": "destruction replacement; Fusion trigger; copied activation [implemented]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Run the relevant GY branch both with and without Necrovalley, including activation legality and a Necrovalley effect appearing before resolution.",
-        "Include face-up and face-down banished cards and confirm hidden cards are never selected unless the text explicitly permits them."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c244790302.lua",
-      "script_sha256": "2d90cf404be7c87fc95a6fc86b7ae0b38d80fe186c00a70f964a7163f2b26c23",
-      "test_decks": [
-        "Stain"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 2,
-      "card_id": 250556612,
-      "card_name": "Niuhao - Zao",
-      "source_ordinal": 68,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "future card-pool sensitivity.",
-      "audited_implementation": "manually applied current Treasure branches [implemented]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Run the relevant GY branch both with and without Necrovalley, including activation legality and a Necrovalley effect appearing before resolution.",
-        "Include face-up and face-down banished cards and confirm hidden cards are never selected unless the text explicitly permits them."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c250556612.lua",
-      "script_sha256": "66d08d30a353671d212cf7f6cf29341fd186bdde725e6b2f69690d3ab34ef8bb",
-      "test_decks": [
-        "NiuHao"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 3,
-      "card_id": 229327103,
-      "card_name": "Prophecy of Infernos",
-      "source_ordinal": 92,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "hardcoded text-list pool.",
-      "audited_implementation": "return, summon, then text-list search [implemented]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon.",
-        "Attempt the effect/procedure twice and after a negated activation to confirm the intended card, effect, or oath count limit."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c229327103.lua",
-      "script_sha256": "67ebd30d0e84d787ae5055cce350d3cbcbab4e92340133c3806fa84f87127505",
-      "test_decks": [
-        "Prophecy"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 4,
-      "card_id": 251058567,
-      "card_name": "Prophecy of Waterfalls",
-      "source_ordinal": 93,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "hardcoded text-list pool.",
-      "audited_implementation": "return, summon, then text-list search [implemented]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon.",
-        "Attempt the effect/procedure twice and after a negated activation to confirm the intended card, effect, or oath count limit."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c251058567.lua",
-      "script_sha256": "f1bc3b1858f66ceb6f4ba710b90971f197bd7d06e74c3946f0d886656dc6f99b",
-      "test_decks": [
-        "Prophecy"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 5,
-      "card_id": 223558392,
-      "card_name": "Prophecy of Boulders",
-      "source_ordinal": 94,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "return/summon; current eligible search list empty.",
-      "audited_implementation": "return/summon; current eligible search list empty. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon.",
-        "Attempt the effect/procedure twice and after a negated activation to confirm the intended card, effect, or oath count limit."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c223558392.lua",
-      "script_sha256": "672e0e660f7b30d1ecbf2e3f860fc5a7972245161fb7c8608ba2386e6835836e",
-      "test_decks": [
-        "Prophecy"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 6,
-      "card_id": 223592011,
-      "card_name": "Prophecy of Storms",
-      "source_ordinal": 95,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "hardcoded text-list pool.",
-      "audited_implementation": "return, summon, then text-list search [implemented]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon.",
-        "Attempt the effect/procedure twice and after a negated activation to confirm the intended card, effect, or oath count limit."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c223592011.lua",
-      "script_sha256": "1ee43605fc7f30f58f4ad19b380113608658d28ea7ac614f5c144c4e80a38ed2",
-      "test_decks": [
-        "Prophecy"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 7,
-      "card_id": 244920555,
-      "card_name": "Prophecy of Rays",
-      "source_ordinal": 96,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "hardcoded text-list pool.",
-      "audited_implementation": "return, summon, then text-list search [implemented]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon.",
-        "Attempt the effect/procedure twice and after a negated activation to confirm the intended card, effect, or oath count limit."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c244920555.lua",
-      "script_sha256": "45c87055248350a4eaa2885451177a2f46ec3e1ea5c63ef199da0a18041e3982",
-      "test_decks": [
-        "Prophecy"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 8,
-      "card_id": 243920845,
-      "card_name": "Prophecy of Shadows",
-      "source_ordinal": 97,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "hardcoded text-list pool.",
-      "audited_implementation": "return, summon, then text-list search [implemented]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon.",
-        "Attempt the effect/procedure twice and after a negated activation to confirm the intended card, effect, or oath count limit."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c243920845.lua",
-      "script_sha256": "e72f5d414979f5ff6f2cdbe0ad52e9ba78876e13d548c2ecf7205ac3e1986787",
-      "test_decks": [
-        "Prophecy"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 9,
-      "card_id": 245400676,
-      "card_name": "To Proto Archegoni",
-      "source_ordinal": 131,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "text-list pool.",
-      "audited_implementation": "Link once-per-turn procedure; discard search resolves if source leaves [fixed]; protection [implemented]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Run the relevant GY branch both with and without Necrovalley, including activation legality and a Necrovalley effect appearing before resolution.",
-        "Include face-up and face-down banished cards and confirm hidden cards are never selected unless the text explicitly permits them."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c245400676.lua",
-      "script_sha256": "0a2cb37eef2967f79435aa23daabac93899a39bbb98c5b80960c3501b1795093",
-      "test_decks": [
-        "To Proto"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 10,
-      "card_id": 254065048,
-      "card_name": "Polemistis Gia Ataxia",
-      "source_ordinal": 141,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "continuous-loss interpretation.",
-      "audited_implementation": "Tribute Fusion procedure; loss-based stat gain; attack-all; hardcoded Ataxia S/T access [implemented]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Run the relevant GY branch both with and without Necrovalley, including activation legality and a Necrovalley effect appearing before resolution.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c254065048.lua",
-      "script_sha256": "cf46f50d9f602ea411f54fed3899198b76631d543c7f23bc00d9f17743401e05",
-      "test_decks": [
-        "To Proto"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 11,
-      "card_id": 212684822,
-      "card_name": "Ektelestis Gia Taxis",
-      "source_ordinal": 142,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "damage layering/card pool.",
-      "audited_implementation": "Tribute Fusion procedure; reflected half damage; hardcoded Taxis S/T access [implemented]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Run the relevant GY branch both with and without Necrovalley, including activation legality and a Necrovalley effect appearing before resolution.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c212684822.lua",
-      "script_sha256": "d9e481b4f7bd660a4b542072cdeb3321b6d8d55d4c7cfd7a165fbba06d05c9f9",
-      "test_decks": [
-        "To Proto"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 12,
-      "card_id": 239245471,
-      "card_name": "Birth of Azrynior",
-      "source_ordinal": 159,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "named S/T pool.",
-      "audited_implementation": "Token-then-Fusion; optional shuffle and GY recovery [implemented]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Run the relevant GY branch both with and without Necrovalley, including activation legality and a Necrovalley effect appearing before resolution.",
-        "Include face-up and face-down banished cards and confirm hidden cards are never selected unless the text explicitly permits them."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c239245471.lua",
-      "script_sha256": "f40f2550809cdb331126de046fc24c11bbd5296cd37c9e0d9dac07474421064e",
-      "test_decks": [
-        "Standalone and Non-Engine Lab"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 13,
-      "card_id": 224751741,
-      "card_name": "Fall of Azrynior",
-      "source_ordinal": 160,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "named S/T pool.",
-      "audited_implementation": "Normal Spell Token/Fusion no longer depends on source relation [fixed]; GY shuffle cost and recovery [implemented]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Run the relevant GY branch both with and without Necrovalley, including activation legality and a Necrovalley effect appearing before resolution.",
-        "Include face-up and face-down banished cards and confirm hidden cards are never selected unless the text explicitly permits them."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c224751741.lua",
-      "script_sha256": "85e543f8c13bd8f6eb025d95329724769d675941be63f3b8c038b01c4b5fe44f",
-      "test_decks": [
-        "Dysmandr"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 14,
-      "card_id": 245099829,
-      "card_name": "Azrynior, the Abundaence of Purity",
-      "source_ordinal": 162,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "hardcoded S/T pool.",
-      "audited_implementation": "Fusion/protection/stat; place S/T; global Token-Tribute tracker and End Token [implemented]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Run the relevant GY branch both with and without Necrovalley, including activation legality and a Necrovalley effect appearing before resolution.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c245099829.lua",
-      "script_sha256": "34cfe579b8348b899c9a2f98c590e7e6561730c915d409ba525dc79ffe85d8ff",
-      "test_decks": [
-        "Stellaer"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 15,
-      "card_id": 223512283,
-      "card_name": "Dysmandr, the Depraevity of Worlds",
-      "source_ordinal": 163,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "hardcoded S/T pool.",
-      "audited_implementation": "Fusion/protection/stat; Galaxy race corrected [fixed]; source-independent place and End trigger [fixed]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Run the relevant GY branch both with and without Necrovalley, including activation legality and a Necrovalley effect appearing before resolution.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c223512283.lua",
-      "script_sha256": "fa9f802eb7c0b3e4a96dd1fc06de957f861642d0446ec47b1320e30feb00a085",
-      "test_decks": [
-        "Dysmandr"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 16,
-      "card_id": 215984744,
-      "card_name": "Vir Pedicae Mortis - Entity's Happy Servant",
-      "source_ordinal": 186,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "The script's code-based approximation of the printed \"Mine\" Field Spell/\"Recollection\" identity needs an authoritative card-pool/ruling confirmation.",
-      "audited_implementation": "The script's code-based approximation of the printed \"Mine\" Field Spell/\"Recollection\" identity needs an authoritative card-pool/ruling confirmation. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Run the relevant GY branch both with and without Necrovalley, including activation legality and a Necrovalley effect appearing before resolution.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c215984744.lua",
-      "script_sha256": "8ebfcc307a8e0e477efacd7ab8e63e4bcf7c38b1de8ca86b06e6153aac6c21c9",
-      "test_decks": [
-        "Vir Pedicae Mortis"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 17,
-      "card_id": 231331942,
-      "card_name": "Hallo, the Hollow Trickster",
-      "source_ordinal": 378,
-      "workstream": "Card-pool and dependency definitions",
-      "problem": "Hallo, the Spirit of Tricks is absent from cards.json/DB, so the first effect cannot fully resolve.",
-      "audited_implementation": "Hallo, the Spirit of Tricks is absent from cards.json/DB, so the first effect cannot fully resolve. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Enumerate the exact currently legal card IDs and confirm that every intended card is included and every unintended card is excluded.",
-        "Decide whether the rule should be name-, set-code-, listed-text-, or explicit-ID-based, including how future cards enter the pool.",
-        "Test one valid card, one near-name false positive, and a newly added/future placeholder so the implementation does not silently become stale.",
-        "Run the relevant GY branch both with and without Necrovalley, including activation legality and a Necrovalley effect appearing before resolution.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c231331942.lua",
-      "script_sha256": "7603b3d39637c114addb27bc5b144ce457a2320b94a297926881e7352462e3d3",
-      "test_decks": [
-        "Hallo-Ween!",
-        "Spirit"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 18,
       "card_id": 256608976,
       "card_name": "Stained Silhouette",
       "source_ordinal": 12,
@@ -695,7 +156,7 @@
       }
     },
     {
-      "guide_number": 19,
+      "guide_number": 2,
       "card_id": 256287781,
       "card_name": "Rage of Nephthys",
       "source_ordinal": 129,
@@ -733,7 +194,7 @@
       }
     },
     {
-      "guide_number": 20,
+      "guide_number": 3,
       "card_id": 214552846,
       "card_name": "Eldora, the Intergalactic Empire",
       "source_ordinal": 165,
@@ -772,7 +233,7 @@
       }
     },
     {
-      "guide_number": 21,
+      "guide_number": 4,
       "card_id": 222676270,
       "card_name": "Frozen Girl & Blood Moon",
       "source_ordinal": 167,
@@ -867,7 +328,7 @@
       }
     },
     {
-      "guide_number": 22,
+      "guide_number": 5,
       "card_id": 222782750,
       "card_name": "Ghost Doll & Midnight Manor",
       "source_ordinal": 168,
@@ -962,7 +423,7 @@
       }
     },
     {
-      "guide_number": 23,
+      "guide_number": 6,
       "card_id": 210716547,
       "card_name": "Clock of Aldrez",
       "source_ordinal": 170,
@@ -1000,7 +461,7 @@
       }
     },
     {
-      "guide_number": 24,
+      "guide_number": 7,
       "card_id": 241957394,
       "card_name": "Chapter Ii Verse Iv",
       "source_ordinal": 276,
@@ -1038,7 +499,7 @@
       }
     },
     {
-      "guide_number": 25,
+      "guide_number": 8,
       "card_id": 211699737,
       "card_name": "Myutant Amalgamate",
       "source_ordinal": 373,
@@ -1076,7 +537,7 @@
       }
     },
     {
-      "guide_number": 26,
+      "guide_number": 9,
       "card_id": 256831125,
       "card_name": "Gravinity Axis Matter",
       "source_ordinal": 438,
@@ -1114,7 +575,7 @@
       }
     },
     {
-      "guide_number": 27,
+      "guide_number": 10,
       "card_id": 258934904,
       "card_name": "Galactican Battle Station",
       "source_ordinal": 454,
@@ -1151,7 +612,7 @@
       }
     },
     {
-      "guide_number": 28,
+      "guide_number": 11,
       "card_id": 232706629,
       "card_name": "Protogenic Astral Cycle",
       "source_ordinal": 134,
@@ -1189,7 +650,7 @@
       }
     },
     {
-      "guide_number": 29,
+      "guide_number": 12,
       "card_id": 259780273,
       "card_name": "Carcel, the Dark Ohmen",
       "source_ordinal": 298,
@@ -1227,7 +688,7 @@
       }
     },
     {
-      "guide_number": 30,
+      "guide_number": 13,
       "card_id": 259869259,
       "card_name": "Ohmen Surge",
       "source_ordinal": 299,
@@ -1265,7 +726,7 @@
       }
     },
     {
-      "guide_number": 31,
+      "guide_number": 14,
       "card_id": 259405917,
       "card_name": "Siemens, the Ohmechanic Conductor",
       "source_ordinal": 300,
@@ -1303,7 +764,7 @@
       }
     },
     {
-      "guide_number": 32,
+      "guide_number": 15,
       "card_id": 259350270,
       "card_name": "Farad, the Ohmechanic Capacitor",
       "source_ordinal": 301,
@@ -1341,7 +802,7 @@
       }
     },
     {
-      "guide_number": 33,
+      "guide_number": 16,
       "card_id": 259841490,
       "card_name": "Coulomb, the Ohmechanic Charger",
       "source_ordinal": 303,
@@ -1379,7 +840,7 @@
       }
     },
     {
-      "guide_number": 34,
+      "guide_number": 17,
       "card_id": 259479044,
       "card_name": "Ampere, the Ohmechanic Intensity",
       "source_ordinal": 304,
@@ -1416,7 +877,7 @@
       }
     },
     {
-      "guide_number": 35,
+      "guide_number": 18,
       "card_id": 259033429,
       "card_name": "Carcel, the Ohmechanic Light",
       "source_ordinal": 305,
@@ -1454,7 +915,7 @@
       }
     },
     {
-      "guide_number": 36,
+      "guide_number": 19,
       "card_id": 259650969,
       "card_name": "Ohmen Beacon",
       "source_ordinal": 307,
@@ -1492,344 +953,7 @@
       }
     },
     {
-      "guide_number": 37,
-      "card_id": 244013196,
-      "card_name": "To Proto Chrono",
-      "source_ordinal": 135,
-      "workstream": "Source wording and authoritative rulings",
-      "problem": "summon restriction and procedure; source text is truncated.",
-      "audited_implementation": "summon restriction and procedure; source text is truncated. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Obtain a definitive wording/ruling for the ambiguous clause before treating the current interpretation as final.",
-        "Write down the intended activation condition, legal card pool, sequence conjunction, and duration in PSCT-like terms.",
-        "After that decision, compare the script literally against the clarified text and test both the accepted interpretation and the closest rejected interpretation.",
-        "Include face-up and face-down banished cards and confirm hidden cards are never selected unless the text explicitly permits them.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c244013196.lua",
-      "script_sha256": "8ac40896af2ac93d08c8eb0e2c8c840620bd0d499e994a5fc5e4e79c0bfceec3",
-      "test_decks": [
-        "To Proto"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 38,
-      "card_id": 242009896,
-      "card_name": "Extinction of Dysmandr",
-      "source_ordinal": 164,
-      "workstream": "Source wording and authoritative rulings",
-      "problem": "12 source typo.",
-      "audited_implementation": "named Token cost; matching mass destruction; then continuation requires successful first destruction [fixed]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Obtain a definitive wording/ruling for the ambiguous clause before treating the current interpretation as final.",
-        "Write down the intended activation condition, legal card pool, sequence conjunction, and duration in PSCT-like terms.",
-        "After that decision, compare the script literally against the clarified text and test both the accepted interpretation and the closest rejected interpretation.",
-        "Attempt the effect/procedure twice and after a negated activation to confirm the intended card, effect, or oath count limit."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c242009896.lua",
-      "script_sha256": "b60bdb6f92560d50d67ab726ed2303d91f1c041fded86415177acbb9954b420c",
-      "test_decks": [
-        "Dysmandr"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 39,
-      "card_id": 229786055,
-      "card_name": "Eldora in Depraevity",
-      "source_ordinal": 166,
-      "workstream": "Source wording and authoritative rulings",
-      "problem": "source text/name inconsistency.",
-      "audited_implementation": "copied Extinction branch; then continuation success gate [fixed]. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Obtain a definitive wording/ruling for the ambiguous clause before treating the current interpretation as final.",
-        "Write down the intended activation condition, legal card pool, sequence conjunction, and duration in PSCT-like terms.",
-        "After that decision, compare the script literally against the clarified text and test both the accepted interpretation and the closest rejected interpretation.",
-        "Attempt the effect/procedure twice and after a negated activation to confirm the intended card, effect, or oath count limit."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c229786055.lua",
-      "script_sha256": "16114e55a4a207c5640016dc403b0d51817b0a880cdf5838b09e0837c38a6c1d",
-      "test_decks": [
-        "Dysmandr",
-        "Eldora"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 40,
-      "card_id": 241447408,
-      "card_name": "Recollection: Kaboom Papa",
-      "source_ordinal": 194,
-      "workstream": "Source wording and authoritative rulings",
-      "problem": "\"Only conduct 1 Summon this turn\" needs a ruling on activation after prior summons and whether summon events or monsters are counted.",
-      "audited_implementation": "\"Only conduct 1 Summon this turn\" needs a ruling on activation after prior summons and whether summon events or monsters are counted. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Obtain a definitive wording/ruling for the ambiguous clause before treating the current interpretation as final.",
-        "Write down the intended activation condition, legal card pool, sequence conjunction, and duration in PSCT-like terms.",
-        "After that decision, compare the script literally against the clarified text and test both the accepted interpretation and the closest rejected interpretation.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c241447408.lua",
-      "script_sha256": "7a27d167e4b532fd74ab8ec56aace478c3297c12d92ae9ffb1369287668307c7",
-      "test_decks": [
-        "Vir Pedicae Mortis"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 41,
-      "card_id": 224774049,
-      "card_name": "Pot of Gambling",
-      "source_ordinal": 242,
-      "workstream": "Source wording and authoritative rulings",
-      "problem": "Printed text does not unambiguously state the default disposition/order for excavated cards; implementation choice requires a ruling.",
-      "audited_implementation": "Printed text does not unambiguously state the default disposition/order for excavated cards; implementation choice requires a ruling. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Obtain a definitive wording/ruling for the ambiguous clause before treating the current interpretation as final.",
-        "Write down the intended activation condition, legal card pool, sequence conjunction, and duration in PSCT-like terms.",
-        "After that decision, compare the script literally against the clarified text and test both the accepted interpretation and the closest rejected interpretation.",
-        "Use distinguishable cards to verify exact top/bottom ordering and what happens to every card not added or summoned."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c224774049.lua",
-      "script_sha256": "26cbf7ac8fcea9b7a3d9f02cd35043659c236728c6da1781738ce0dc74413cf8",
-      "test_decks": [
-        "Pot"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 42,
-      "card_id": 251236672,
-      "card_name": "Chrono-Saur Laplace Plesio",
-      "source_ordinal": 268,
-      "workstream": "Source wording and authoritative rulings",
-      "problem": "Fixed ATK/DEF reset to the next own Battle Phase and limited post-battle selection to destructible own cards; shared \"previous effects once per turn\" wording remains ruling-sensitive.",
-      "audited_implementation": "Fixed ATK/DEF reset to the next own Battle Phase and limited post-battle selection to destructible own cards; shared \"previous effects once per turn\" wording remains ruling-sensitive. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Obtain a definitive wording/ruling for the ambiguous clause before treating the current interpretation as final.",
-        "Write down the intended activation condition, legal card pool, sequence conjunction, and duration in PSCT-like terms.",
-        "After that decision, compare the script literally against the clarified text and test both the accepted interpretation and the closest rejected interpretation.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon.",
-        "Attempt the effect/procedure twice and after a negated activation to confirm the intended card, effect, or oath count limit."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c251236672.lua",
-      "script_sha256": "be453a9f00e1d08ff1910330fcc52ee481611be22d60dc024ed0a988fb911d7e",
-      "test_decks": [
-        "Chrono-Saur"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 43,
-      "card_id": 236721134,
-      "card_name": "Devotee of Fire",
-      "source_ordinal": 318,
-      "workstream": "Source wording and authoritative rulings",
-      "problem": "Source text gives the Set effect no activation condition; current on-summon interpretation needs a ruling.",
-      "audited_implementation": "Source text gives the Set effect no activation condition; current on-summon interpretation needs a ruling. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Obtain a definitive wording/ruling for the ambiguous clause before treating the current interpretation as final.",
-        "Write down the intended activation condition, legal card pool, sequence conjunction, and duration in PSCT-like terms.",
-        "After that decision, compare the script literally against the clarified text and test both the accepted interpretation and the closest rejected interpretation.",
-        "Run the relevant GY branch both with and without Necrovalley, including activation legality and a Necrovalley effect appearing before resolution.",
-        "Include a full-zone case and a case where paying the cost opens a zone; the UI must not reject a legal post-cost state or promise an impossible summon."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c236721134.lua",
-      "script_sha256": "197d3dde452f8615ec31a525719f92c9bbbd7151f854c1847989e2cb2b2caaa3",
-      "test_decks": [
-        "Phlogiston Dragon"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 44,
-      "card_id": 235612490,
-      "card_name": "Urphiel's Feather Downpour",
-      "source_ordinal": 345,
-      "workstream": "Source wording and authoritative rulings",
-      "problem": "Added activation-time Necrovalley legality to the discarded self-Set trigger. The second field banish wording and discard-to-Set timing remain ruling-sensitive.",
-      "audited_implementation": "Added activation-time Necrovalley legality to the discarded self-Set trigger. The second field banish wording and discard-to-Set timing remain ruling-sensitive. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Obtain a definitive wording/ruling for the ambiguous clause before treating the current interpretation as final.",
-        "Write down the intended activation condition, legal card pool, sequence conjunction, and duration in PSCT-like terms.",
-        "After that decision, compare the script literally against the clarified text and test both the accepted interpretation and the closest rejected interpretation.",
-        "Run the relevant GY branch both with and without Necrovalley, including activation legality and a Necrovalley effect appearing before resolution.",
-        "Include face-up and face-down banished cards and confirm hidden cards are never selected unless the text explicitly permits them."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c235612490.lua",
-      "script_sha256": "b17169bdd40ddde67b639162e6bf9a9c9a448294d7f7049178c458d71eb08e3a",
-      "test_decks": [
-        "Arckcestial"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 45,
-      "card_id": 224467692,
-      "card_name": "Scarstech Prologue",
-      "source_ordinal": 411,
-      "workstream": "Source wording and authoritative rulings",
-      "problem": "Effect metadata conflicts with flavor-only text.",
-      "audited_implementation": "Effect metadata conflicts with flavor-only text. The file compiles and initializes; the open item is behavioral or interpretive, not a known load failure.",
-      "checklist": [
-        "Obtain a definitive wording/ruling for the ambiguous clause before treating the current interpretation as final.",
-        "Write down the intended activation condition, legal card pool, sequence conjunction, and duration in PSCT-like terms.",
-        "After that decision, compare the script literally against the clarified text and test both the accepted interpretation and the closest rejected interpretation."
-      ],
-      "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
-      "script": "c224467692.lua",
-      "script_sha256": "a8c393023f3689c77171a3c55b4b76b1d0977ff5781df41deafc7a12c1897011",
-      "test_decks": [
-        "Scarstech"
-      ],
-      "result": {
-        "status": "pending",
-        "tester": "",
-        "tested_at": "",
-        "omega_build": "",
-        "ruling_adopted": "",
-        "positive_case": "",
-        "negative_boundary_case": "",
-        "interruption_case": "",
-        "replay_or_log": "",
-        "evidence_sha256": "",
-        "observed_result": "",
-        "change_required": "",
-        "retest_result": "",
-        "reviewer": ""
-      }
-    },
-    {
-      "guide_number": 46,
+      "guide_number": 20,
       "card_id": 246380598,
       "card_name": "To Proto Taxis",
       "source_ordinal": 136,
@@ -1867,7 +991,7 @@
       }
     },
     {
-      "guide_number": 47,
+      "guide_number": 21,
       "card_id": 217332244,
       "card_name": "To Proto Psychi",
       "source_ordinal": 139,
@@ -1905,7 +1029,7 @@
       }
     },
     {
-      "guide_number": 48,
+      "guide_number": 22,
       "card_id": 219047593,
       "card_name": "Phantasm Spiral Resurgence",
       "source_ordinal": 172,
@@ -1942,7 +1066,7 @@
       }
     },
     {
-      "guide_number": 49,
+      "guide_number": 23,
       "card_id": 232449539,
       "card_name": "Abstain from Light",
       "source_ordinal": 13,
@@ -1958,7 +1082,7 @@
       ],
       "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
       "script": "c232449539.lua",
-      "script_sha256": "61ce94be046aa0b0e073bff71fbfa9f8fbb84254c29f7bf627fbd7926c5db40b",
+      "script_sha256": "da7f1d9f09cea168992997001329bd225be1c7abb5ba6c8c4a8b79047c57b3be",
       "test_decks": [
         "Stain"
       ],
@@ -1980,7 +1104,7 @@
       }
     },
     {
-      "guide_number": 50,
+      "guide_number": 24,
       "card_id": 248453205,
       "card_name": "Shattering Sustained",
       "source_ordinal": 14,
@@ -2018,7 +1142,7 @@
       }
     },
     {
-      "guide_number": 51,
+      "guide_number": 25,
       "card_id": 247580036,
       "card_name": "Distained Druid Dragar",
       "source_ordinal": 17,
@@ -2056,7 +1180,7 @@
       }
     },
     {
-      "guide_number": 52,
+      "guide_number": 26,
       "card_id": 245970073,
       "card_name": "A Stainless Story",
       "source_ordinal": 100,
@@ -2094,7 +1218,7 @@
       }
     },
     {
-      "guide_number": 53,
+      "guide_number": 27,
       "card_id": 247378501,
       "card_name": "Muramasa",
       "source_ordinal": 109,
@@ -2132,7 +1256,7 @@
       }
     },
     {
-      "guide_number": 54,
+      "guide_number": 28,
       "card_id": 219543855,
       "card_name": "Securitake Agent",
       "source_ordinal": 197,
@@ -2170,7 +1294,7 @@
       }
     },
     {
-      "guide_number": 55,
+      "guide_number": 29,
       "card_id": 259552732,
       "card_name": "Vampire Reptilian",
       "source_ordinal": 408,
@@ -2208,7 +1332,7 @@
       }
     },
     {
-      "guide_number": 56,
+      "guide_number": 30,
       "card_id": 236542835,
       "card_name": "Sacred Treasure - Bojin",
       "source_ordinal": 59,
@@ -2246,7 +1370,7 @@
       }
     },
     {
-      "guide_number": 57,
+      "guide_number": 31,
       "card_id": 246421842,
       "card_name": "Sacred Treasure - Huangjin",
       "source_ordinal": 61,
@@ -2284,7 +1408,7 @@
       }
     },
     {
-      "guide_number": 58,
+      "guide_number": 32,
       "card_id": 259737127,
       "card_name": "Tove, the Domesticated",
       "source_ordinal": 70,
@@ -2322,7 +1446,7 @@
       }
     },
     {
-      "guide_number": 59,
+      "guide_number": 33,
       "card_id": 259686203,
       "card_name": "Mylo, the Domesticated",
       "source_ordinal": 101,
@@ -2360,7 +1484,7 @@
       }
     },
     {
-      "guide_number": 60,
+      "guide_number": 34,
       "card_id": 259135917,
       "card_name": "Nuwa, the Domesticated",
       "source_ordinal": 102,
@@ -2398,7 +1522,7 @@
       }
     },
     {
-      "guide_number": 61,
+      "guide_number": 35,
       "card_id": 259911246,
       "card_name": "Mylo in the Wild",
       "source_ordinal": 103,
@@ -2436,7 +1560,7 @@
       }
     },
     {
-      "guide_number": 62,
+      "guide_number": 36,
       "card_id": 248801935,
       "card_name": "Kanmuriyama",
       "source_ordinal": 110,
@@ -2474,7 +1598,7 @@
       }
     },
     {
-      "guide_number": 63,
+      "guide_number": 37,
       "card_id": 221855414,
       "card_name": "Otakemaru the Accuser",
       "source_ordinal": 113,
@@ -2512,7 +1636,7 @@
       }
     },
     {
-      "guide_number": 64,
+      "guide_number": 38,
       "card_id": 211964444,
       "card_name": "Priestess of Nephthys",
       "source_ordinal": 126,
@@ -2550,7 +1674,7 @@
       }
     },
     {
-      "guide_number": 65,
+      "guide_number": 39,
       "card_id": 246524183,
       "card_name": "Protogenesis",
       "source_ordinal": 132,
@@ -2588,7 +1712,7 @@
       }
     },
     {
-      "guide_number": 66,
+      "guide_number": 40,
       "card_id": 236898203,
       "card_name": "Chrono-Saur Rex",
       "source_ordinal": 267,
@@ -2626,7 +1750,7 @@
       }
     },
     {
-      "guide_number": 67,
+      "guide_number": 41,
       "card_id": 231523659,
       "card_name": "Stardust Comet",
       "source_ordinal": 444,
@@ -2642,7 +1766,7 @@
       ],
       "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
       "script": "c231523659.lua",
-      "script_sha256": "f113ecff087fa0da3e4471fc112139a31670a3fe5deb6546c91aa0cf1244fa93",
+      "script_sha256": "408480f299de2b4a9b6b0e370cbc3122bb130c5d78e8c14c9d3d4ee87a2fe285",
       "test_decks": [
         "Standalone and Non-Engine Lab"
       ],
@@ -2664,7 +1788,7 @@
       }
     },
     {
-      "guide_number": 68,
+      "guide_number": 42,
       "card_id": 221321849,
       "card_name": "The Condescender",
       "source_ordinal": 3,
@@ -2702,7 +1826,7 @@
       }
     },
     {
-      "guide_number": 69,
+      "guide_number": 43,
       "card_id": 247499445,
       "card_name": "Stained Fox Feness",
       "source_ordinal": 6,
@@ -2718,7 +1842,7 @@
       ],
       "acceptance_condition": "Record the authoritative interpretation and an Omega replay/log showing the positive case, the closest illegal case, and any listed interruption case. The observed result must match the exact source sequence and leave no broader/narrower legal pool than intended.",
       "script": "c247499445.lua",
-      "script_sha256": "5e6fae76e38ec675a54ad18e938fdc62f81a4470f2874503354324a4944c4835",
+      "script_sha256": "6d49eb153f754618f9b548ff01acfd0480bfcf2e79dd9db3b8f1d715cc961867",
       "test_decks": [
         "Stain"
       ],
@@ -2740,7 +1864,7 @@
       }
     },
     {
-      "guide_number": 70,
+      "guide_number": 44,
       "card_id": 236158052,
       "card_name": "The Blue Frute",
       "source_ordinal": 46,
@@ -2778,7 +1902,7 @@
       }
     },
     {
-      "guide_number": 71,
+      "guide_number": 45,
       "card_id": 235607781,
       "card_name": "The Yellow Frute",
       "source_ordinal": 47,
@@ -2816,7 +1940,7 @@
       }
     },
     {
-      "guide_number": 72,
+      "guide_number": 46,
       "card_id": 246216813,
       "card_name": "The Red Frute",
       "source_ordinal": 48,
@@ -2854,7 +1978,7 @@
       }
     },
     {
-      "guide_number": 73,
+      "guide_number": 47,
       "card_id": 227745087,
       "card_name": "The Green Frute",
       "source_ordinal": 49,
@@ -2892,7 +2016,7 @@
       }
     },
     {
-      "guide_number": 74,
+      "guide_number": 48,
       "card_id": 220916791,
       "card_name": "The White Frute",
       "source_ordinal": 50,
@@ -2930,7 +2054,7 @@
       }
     },
     {
-      "guide_number": 75,
+      "guide_number": 49,
       "card_id": 246830897,
       "card_name": "Fruteonia",
       "source_ordinal": 51,
@@ -2968,7 +2092,7 @@
       }
     },
     {
-      "guide_number": 76,
+      "guide_number": 50,
       "card_id": 216140411,
       "card_name": "Fruteopia",
       "source_ordinal": 52,
@@ -3006,7 +2130,7 @@
       }
     },
     {
-      "guide_number": 77,
+      "guide_number": 51,
       "card_id": 256930605,
       "card_name": "Fruteification",
       "source_ordinal": 54,
@@ -3044,7 +2168,7 @@
       }
     },
     {
-      "guide_number": 78,
+      "guide_number": 52,
       "card_id": 248290754,
       "card_name": "The Fruteful Moon",
       "source_ordinal": 57,
@@ -3082,7 +2206,7 @@
       }
     },
     {
-      "guide_number": 79,
+      "guide_number": 53,
       "card_id": 259377794,
       "card_name": "Pip, the Domesticated",
       "source_ordinal": 69,
@@ -3120,7 +2244,7 @@
       }
     },
     {
-      "guide_number": 80,
+      "guide_number": 54,
       "card_id": 259264881,
       "card_name": "Domestica Praerie",
       "source_ordinal": 71,
@@ -3158,7 +2282,7 @@
       }
     },
     {
-      "guide_number": 81,
+      "guide_number": 55,
       "card_id": 259337739,
       "card_name": "Domestica Anjelie",
       "source_ordinal": 72,
@@ -3196,7 +2320,7 @@
       }
     },
     {
-      "guide_number": 82,
+      "guide_number": 56,
       "card_id": 259245149,
       "card_name": "Domestica Lunalie",
       "source_ordinal": 73,
@@ -3234,7 +2358,7 @@
       }
     },
     {
-      "guide_number": 83,
+      "guide_number": 57,
       "card_id": 259668626,
       "card_name": "Domestica in the Underworld",
       "source_ordinal": 76,
@@ -3272,7 +2396,7 @@
       }
     },
     {
-      "guide_number": 84,
+      "guide_number": 58,
       "card_id": 259410628,
       "card_name": "Domestica in the Wild",
       "source_ordinal": 77,
@@ -3310,7 +2434,7 @@
       }
     },
     {
-      "guide_number": 85,
+      "guide_number": 59,
       "card_id": 259670933,
       "card_name": "Domestica Kyrie",
       "source_ordinal": 78,
@@ -3348,7 +2472,7 @@
       }
     },
     {
-      "guide_number": 86,
+      "guide_number": 60,
       "card_id": 247831166,
       "card_name": "Ursarctic Leoship",
       "source_ordinal": 85,
@@ -3386,7 +2510,7 @@
       }
     },
     {
-      "guide_number": 87,
+      "guide_number": 61,
       "card_id": 235051048,
       "card_name": "Ursarctic Octantis",
       "source_ordinal": 86,
@@ -3424,7 +2548,7 @@
       }
     },
     {
-      "guide_number": 88,
+      "guide_number": 62,
       "card_id": 244921711,
       "card_name": "Ursarctic Hextanius",
       "source_ordinal": 87,
@@ -3462,7 +2586,7 @@
       }
     },
     {
-      "guide_number": 89,
+      "guide_number": 63,
       "card_id": 249093610,
       "card_name": "Ursarctic Nordbar",
       "source_ordinal": 88,
@@ -3500,7 +2624,7 @@
       }
     },
     {
-      "guide_number": 90,
+      "guide_number": 64,
       "card_id": 222257685,
       "card_name": "Branching to Guidance",
       "source_ordinal": 90,
@@ -3595,7 +2719,7 @@
       }
     },
     {
-      "guide_number": 91,
+      "guide_number": 65,
       "card_id": 217713649,
       "card_name": "Onibi",
       "source_ordinal": 105,
@@ -3633,7 +2757,7 @@
       }
     },
     {
-      "guide_number": 92,
+      "guide_number": 66,
       "card_id": 259369909,
       "card_name": "Serene Mermaid of the Grand Blue",
       "source_ordinal": 116,
@@ -3671,7 +2795,7 @@
       }
     },
     {
-      "guide_number": 93,
+      "guide_number": 67,
       "card_id": 259093260,
       "card_name": "Grand Blue Matriarch",
       "source_ordinal": 123,
@@ -3709,7 +2833,7 @@
       }
     },
     {
-      "guide_number": 94,
+      "guide_number": 68,
       "card_id": 216532402,
       "card_name": "Sacred Feather of Nephthys",
       "source_ordinal": 127,
@@ -3747,7 +2871,7 @@
       }
     },
     {
-      "guide_number": 95,
+      "guide_number": 69,
       "card_id": 259581666,
       "card_name": "Stellaer of the Frozen",
       "source_ordinal": 128,
@@ -3785,7 +2909,7 @@
       }
     },
     {
-      "guide_number": 96,
+      "guide_number": 70,
       "card_id": 259219942,
       "card_name": "Stellaer of the Plants",
       "source_ordinal": 137,
@@ -3823,7 +2947,7 @@
       }
     },
     {
-      "guide_number": 97,
+      "guide_number": 71,
       "card_id": 230998543,
       "card_name": "Stellaer of the Breeze",
       "source_ordinal": 147,
@@ -3861,7 +2985,7 @@
       }
     },
     {
-      "guide_number": 98,
+      "guide_number": 72,
       "card_id": 236239443,
       "card_name": "Restoration of Azrynior",
       "source_ordinal": 161,
@@ -3899,7 +3023,7 @@
       }
     },
     {
-      "guide_number": 99,
+      "guide_number": 73,
       "card_id": 259290896,
       "card_name": "Dominus Sentinel",
       "source_ordinal": 169,
@@ -3994,7 +3118,7 @@
       }
     },
     {
-      "guide_number": 100,
+      "guide_number": 74,
       "card_id": 244778917,
       "card_name": "Vir Pedicae Mortis - Fearless Hunter",
       "source_ordinal": 187,
@@ -4032,7 +3156,7 @@
       }
     },
     {
-      "guide_number": 101,
+      "guide_number": 75,
       "card_id": 259114562,
       "card_name": "Bobbie Bluefin & the Nautical Nocturnes",
       "source_ordinal": 201,
@@ -4070,7 +3194,7 @@
       }
     },
     {
-      "guide_number": 102,
+      "guide_number": 76,
       "card_id": 220749574,
       "card_name": "Scarlet Seareef & the Nautical Creatures",
       "source_ordinal": 202,
@@ -4108,7 +3232,7 @@
       }
     },
     {
-      "guide_number": 103,
+      "guide_number": 77,
       "card_id": 225109525,
       "card_name": "Evander Coldwater & the Nautical Abyss",
       "source_ordinal": 203,
@@ -4146,7 +3270,7 @@
       }
     },
     {
-      "guide_number": 104,
+      "guide_number": 78,
       "card_id": 223158720,
       "card_name": "Nautical Backwashing & Oceanic Waves",
       "source_ordinal": 204,
@@ -4184,7 +3308,7 @@
       }
     },
     {
-      "guide_number": 105,
+      "guide_number": 79,
       "card_id": 248946297,
       "card_name": "Exploring the Nautical Waters",
       "source_ordinal": 206,
@@ -4222,7 +3346,7 @@
       }
     },
     {
-      "guide_number": 106,
+      "guide_number": 80,
       "card_id": 218905439,
       "card_name": "Nautical Adventures & Torrential Seas",
       "source_ordinal": 207,
@@ -4260,7 +3384,7 @@
       }
     },
     {
-      "guide_number": 107,
+      "guide_number": 81,
       "card_id": 259944943,
       "card_name": "Bob, but Stronger!",
       "source_ordinal": 209,
@@ -4298,7 +3422,7 @@
       }
     },
     {
-      "guide_number": 108,
+      "guide_number": 82,
       "card_id": 256110263,
       "card_name": "Windborne Eye of the Storm",
       "source_ordinal": 237,
@@ -4336,7 +3460,7 @@
       }
     },
     {
-      "guide_number": 109,
+      "guide_number": 83,
       "card_id": 259434499,
       "card_name": "Ohmen Powerload",
       "source_ordinal": 306,
@@ -4374,7 +3498,7 @@
       }
     },
     {
-      "guide_number": 110,
+      "guide_number": 84,
       "card_id": 257239133,
       "card_name": "Phlogistic Uprising!",
       "source_ordinal": 321,
@@ -4412,7 +3536,7 @@
       }
     },
     {
-      "guide_number": 111,
+      "guide_number": 85,
       "card_id": 221924008,
       "card_name": "Chamroshes' Aegis",
       "source_ordinal": 330,
@@ -4450,7 +3574,7 @@
       }
     },
     {
-      "guide_number": 112,
+      "guide_number": 86,
       "card_id": 240575550,
       "card_name": "Ghoti from a Deeper Depth Than the Deepest Deep",
       "source_ordinal": 370,
@@ -4488,7 +3612,7 @@
       }
     },
     {
-      "guide_number": 113,
+      "guide_number": 87,
       "card_id": 259308265,
       "card_name": "Pumpqueen the Queen of Ghosts",
       "source_ordinal": 374,
@@ -4526,7 +3650,7 @@
       }
     },
     {
-      "guide_number": 114,
+      "guide_number": 88,
       "card_id": 239335848,
       "card_name": "Ghostrick Oni",
       "source_ordinal": 404,
@@ -4564,7 +3688,7 @@
       }
     },
     {
-      "guide_number": 115,
+      "guide_number": 89,
       "card_id": 231088629,
       "card_name": "Gravinity Spherix",
       "source_ordinal": 435,
@@ -4602,7 +3726,7 @@
       }
     },
     {
-      "guide_number": 116,
+      "guide_number": 90,
       "card_id": 213266433,
       "card_name": "The Hanging Frute",
       "source_ordinal": 56,
@@ -4640,7 +3764,7 @@
       }
     },
     {
-      "guide_number": 117,
+      "guide_number": 91,
       "card_id": 229499914,
       "card_name": "Sacred Treasure - Chunyin",
       "source_ordinal": 60,
@@ -4677,7 +3801,7 @@
       }
     },
     {
-      "guide_number": 118,
+      "guide_number": 92,
       "card_id": 259679619,
       "card_name": "City Within the Grand Blue",
       "source_ordinal": 120,
@@ -4714,7 +3838,7 @@
       }
     },
     {
-      "guide_number": 119,
+      "guide_number": 93,
       "card_id": 259519336,
       "card_name": "Volt, the Ohmechanic Chocker",
       "source_ordinal": 302,
@@ -4752,7 +3876,7 @@
       }
     },
     {
-      "guide_number": 120,
+      "guide_number": 94,
       "card_id": 215105971,
       "card_name": "Urphiel, the High Arckcestial",
       "source_ordinal": 353,
@@ -4790,7 +3914,7 @@
       }
     },
     {
-      "guide_number": 121,
+      "guide_number": 95,
       "card_id": 238184015,
       "card_name": "Gravinity Sonic Scream",
       "source_ordinal": 439,
@@ -4828,7 +3952,7 @@
       }
     },
     {
-      "guide_number": 122,
+      "guide_number": 96,
       "card_id": 248940511,
       "card_name": "Flower Cardian Moonflare",
       "source_ordinal": 443,
@@ -4866,7 +3990,7 @@
       }
     },
     {
-      "guide_number": 123,
+      "guide_number": 97,
       "card_id": 259307285,
       "card_name": "Attack on Gravity",
       "source_ordinal": 457,

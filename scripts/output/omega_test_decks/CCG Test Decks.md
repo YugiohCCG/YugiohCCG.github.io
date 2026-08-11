@@ -2280,9 +2280,9 @@ File: `CCG Test - To Proto.ydk`
 - 3× To Proto Ousia (`240299292`) — engine
 - 3× The Beginning (`234729347`) — engine
 - 3× To Proto Ataxia (`224225695`) — engine
+- 3× To Proto Chrono (`244013196`) — engine
 - 3× To Proto Taxis (`246380598`) — engine
 - 3× Protogenesis (`246524183`) — engine
-- 3× To Proto Chrono (`244013196`) — engine
 - 3× To Proto Psychi (`217332244`) — engine
 - 3× Protogenic Astral Cycle (`232706629`) — engine
 - 2× Remembrance of the Melody (`216620496`) — custom side-deck test option

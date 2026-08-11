@@ -1,0 +1,601 @@
+{
+  "schema_version": 1,
+  "verdicts": ["PASS", "FIXED", "UNSUPPORTED", "MANUAL_RULING"],
+  "reviews": [
+    {
+      "passcode": 245265629,
+      "text_sha256": "3477bad4eb647aa5bffb9ad9b75a10f0f3f590fcf7c48afef0b681d4acc65044",
+      "script_sha256": "ddb38f81636fc18af34a58b1dc130b01a6cd824dce7107159021ef3ae3be76ec",
+      "verdict": "PASS",
+      "effects": [
+        {
+          "clause": "Alternative once-per-turn Xyz Summon using a lowest-ATK or lowest-DEF monster while the opponent's 3000+ monster has the field's highest ATK.",
+          "lua": "aux.XyzLevelFreeCondition/Target/Operation with s.matfilter and s.xyzcheck; the shared summon count limit is applied to both procedures.",
+          "official_omega": ["c100245006.lua", "c101204038.lua", "c101306036.lua"],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "Cannot be used as Xyz or Link Material.",
+          "lua": "EFFECT_CANNOT_BE_XYZ_MATERIAL and EFFECT_CANNOT_BE_LINK_MATERIAL.",
+          "official_omega": ["c1003028.lua", "c13289758.lua", "c14212201.lua"],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "While Xyz Summoned, the opponent cannot attack other monsters.",
+          "lua": "EFFECT_CANNOT_SELECT_BATTLE_TARGET conditioned on SUMMON_TYPE_XYZ.",
+          "official_omega": ["c101204005.lua", "c10979723.lua", "c120229002.lua"],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "During damage calculation against a monster, ATK becomes that monster's ATK +100.",
+          "lua": "EFFECT_SET_ATTACK_FINAL during PHASE_DAMAGE_CAL using the battle target's ATK +100.",
+          "official_omega": ["c10248389.lua", "c47737087.lua", "c54289683.lua"],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 241056746,
+      "text_sha256": "159ae6bd13e237057ca75803ffdde6c62a3b17b409537ef77b4fcb302ca7567f",
+      "script_sha256": "6cf5df2a1b8caed32165e1fb672d9e45fe8a27bfb193db8006f6c1c7d4396be9",
+      "verdict": "PASS",
+      "effects": [
+        {
+          "clause": "On an opponent's activation in a chain containing your effect, prevent responses and negate all other activated effects; draw based on your chain-link count and bottom-Deck a hand card if your effect was Chain Link 1.",
+          "lua": "EVENT_CHAINING validates both players in the chain, SetChainLimit(aux.FALSE) closes responses, NegateEffect iterates the earlier links, and the player/link counts gate the draw and hand return.",
+          "official_omega": ["c100245010.lua", "c100245011.lua", "c100259009.lua"],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 221321849,
+      "text_sha256": "75542f0b52ea3af5fd7dc754ca0a6c0f5b39fe730dce4c7ffb72460c44d5c9cb",
+      "script_sha256": "c6ba6ad90b1d986468b21ca92a6570f33e347acbe81162518be4e69234659f7f",
+      "verdict": "UNSUPPORTED",
+      "effects": [
+        {
+          "clause": "Send from hand and reduce a target's Level, Rank, or Link Rating by 1-3 until the end of the next turn.",
+          "lua": "Implements EFFECT_UPDATE_LEVEL and EFFECT_UPDATE_RANK only; Link monsters are not legal targets.",
+          "official_omega": ["constant.lua", "c100211053.lua", "c100212003.lua"],
+          "verdict": "UNSUPPORTED",
+          "notes": "The bundled Omega constant/API corpus exposes no effect code that changes Link Rating. The printed Link Rating branch cannot be implemented faithfully in this runtime."
+        },
+        {
+          "clause": "Special Summon from the GY while a monster has a reduced Level, Rank, or Link Rating, then banish this card when it leaves.",
+          "lua": "The reduced-value condition covers Level and Rank, and the summon applies EFFECT_LEAVE_FIELD_REDIRECT; the Link Rating condition is necessarily absent.",
+          "official_omega": ["c100213002.lua", "c100214018.lua", "c100245003.lua"],
+          "verdict": "UNSUPPORTED"
+        }
+      ]
+    },
+    {
+      "passcode": 225091736,
+      "text_sha256": "c2b5c0160a69e198981878e18faea1c54b695ee39b2d3d710b3d1514273d7f63",
+      "script_sha256": "7a2e8fcc3acc38d1dfbe6bf6269f4be4ac12ccc260e8a89f1cd9a510a31eaf33",
+      "verdict": "FIXED",
+      "effects": [
+        {
+          "clause": "Discard; shuffle this card face-up into the opponent's Deck, also add a Stain card, then conditionally draw.",
+          "lua": "The face-up opponent-Deck move and search now resolve independently as required by 'also'; the later draw remains gated by successful addition and the field-count condition.",
+          "official_omega": ["c100211002.lua", "c100211122.lua", "c100212006.lua"],
+          "verdict": "FIXED"
+        },
+        {
+          "clause": "On Summon, bottom-Deck a GY/banished card or add your Stain card instead, and if successful shuffle this card.",
+          "lua": "Targets either public location, applies Necrovalley legality, offers the owner option, and gates the self-shuffle on the selected move succeeding.",
+          "official_omega": ["c1006081.lua", "c101203023.lua", "c10158145.lua"],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 216958556,
+      "text_sha256": "fde61ee8ce546a09a9cb4840c33a3d0ed6410b824c253beaf94afdae105cb48b",
+      "script_sha256": "8056041f275334792b3a69179f084f0a733b2737788786681c13e83c93e6a5a0",
+      "verdict": "FIXED",
+      "effects": [
+        {
+          "clause": "On Summon, destroy an opponent's card and, if successful, shuffle this card into the Deck.",
+          "lua": "Duel.Destroy success gates the handler's shuffle.",
+          "official_omega": ["c1006081.lua", "c101203023.lua", "c10158145.lua"],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "From the GY, show a face-up Stain card, then shuffle this card face-up into the opponent's Deck, also add a Stain monster.",
+          "lua": "After a successful reveal, the self-move and search now resolve independently as required by 'also'.",
+          "official_omega": ["c100213002.lua", "c100214018.lua", "c100240205.lua"],
+          "verdict": "FIXED"
+        }
+      ]
+    },
+    {
+      "passcode": 247499445,
+      "text_sha256": "f58bf3d7ee2d4fca0d13824f75bdded1c61f13aaa6c60c55797470540fe2a6e8",
+      "script_sha256": "6d49eb153f754618f9b548ff01acfd0480bfcf2e79dd9db3b8f1d715cc961867",
+      "verdict": "FIXED",
+      "effects": [
+        {
+          "clause": "If the opponent controls more cards, activate from hand to Special Summon this card.",
+          "lua": "Converted the non-chain Special Summon procedure to a HOPT hand Ignition Effect with condition, target legality, and resolution checks.",
+          "official_omega": ["c100211002.lua", "c100211122.lua", "c100212006.lua"],
+          "verdict": "FIXED"
+        },
+        {
+          "clause": "On Summon, negate another face-up card until the End Phase and, if successful, shuffle this card.",
+          "lua": "NegateAnyFilter and IsCanBeDisabledByEffect establish success before the temporary disable and handler shuffle.",
+          "official_omega": ["c100201001.lua", "c101208206.lua", "c14799437.lua"],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "Send a Level 4 or lower Stain monster from Deck as cost, then shuffle this card face-up into the opponent's Deck.",
+          "lua": "The Deck send is paid with REASON_COST and the handler move resolves through the shared face-up opponent-Deck helper.",
+          "official_omega": ["c10000000.lua", "c10000080.lua", "c10000090.lua"],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 224822244,
+      "text_sha256": "cc92d31c48f830b3a3eaaea6d7afe1ab28a64a4061a8c30b44f899229f65181f",
+      "script_sha256": "570fd9982adf667a47d9ff2f9d01255ec53ede1fbeeb26db9bc6d2746432f505",
+      "verdict": "PASS",
+      "effects": [
+        {
+          "clause": "On Summon, revive your Stain monster or an opponent's monster, then shuffle this card if the summon succeeds.",
+          "lua": "Controller-aware GY targeting, Necrovalley checks, and Special Summon success correctly gate the self-shuffle.",
+          "official_omega": ["c1006081.lua", "c101203023.lua", "c10158145.lua"],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "When this card battles, shuffle it face-up into the opponent's Deck, also after that put the opposing monster on top of the Deck.",
+          "lua": "Battle participants are captured and the later top-Deck action is correctly gated by the handler's successful move.",
+          "official_omega": ["c100245003.lua", "c100256019.lua", "c100256019.lua"],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 259475154,
+      "text_sha256": "683e041dd0bdb1e2f108d019a321999ebeda3b0a3e3ffbb728d12a1d818287b5",
+      "script_sha256": "490d272d9e6c00fdf5ae5be05896f814cb41f0cd71deb45ee2099138b64a5e22",
+      "verdict": "PASS",
+      "effects": [
+        {
+          "clause": "Reveal a Stain Fusion, move a Stain monster face-up into the opponent's Deck, also Special Summon this card.",
+          "lua": "The reveal is an activation cost; the Deck move and self-summon are attempted independently during resolution.",
+          "official_omega": ["c100211002.lua", "c100211122.lua", "c100212006.lua"],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "Move a qualifying controlled Stain monster face-up into the opponent's Deck, also add a Stain card from Deck, GY, or banishment.",
+          "lua": "The two 'also' actions resolve independently, with public-banishment and Necrovalley-safe GY filtering.",
+          "official_omega": ["c100213002.lua", "c100214018.lua", "c100240205.lua"],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 218685316,
+      "text_sha256": "1cdd718a11935728ecccd03547c2a71ba287b181ae4db3595309e95c33b38232",
+      "script_sha256": "ab4efc3ba5737fdab839d9ffdcc3bbe7415a944516b652a702b8be47428a827e",
+      "verdict": "FIXED",
+      "effects": [
+        {
+          "clause": "When a card leaves the opponent's Deck outside the Draw Phase, Tribute this card from hand or field to search a Stain card.",
+          "lua": "EVENT_MOVE checks previous Deck/controller state; the cost now uses Duel.Release from either location, matching official hand/field Tribute handling.",
+          "official_omega": ["c38339996.lua", "c65734501.lua", "c91222209.lua"],
+          "verdict": "FIXED"
+        },
+        {
+          "clause": "Banish this card from the GY to Special Summon a qualifying face-up Stain monster from the opponent's Deck.",
+          "lua": "The opponent-card condition, banish cost, face-up exact mention list, zone check, and destination controller all match the text.",
+          "official_omega": ["c100213002.lua", "c100214018.lua", "c100240205.lua"],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 244408495,
+      "text_sha256": "0831f88d67dca499491234454ff6aaa61c44d31797c73a2eb14bcb33cb98453b",
+      "script_sha256": "ad9d61d9589dfd48e7a1fceba1a50491611d0844af022c0ef64ea9e627cfad9b",
+      "verdict": "PASS",
+      "effects": [
+        {
+          "clause": "Quick Fusion Summon during your Main Phase using qualifying Stain monsters from hand or field.",
+          "lua": "Turn/Main Phase condition, exact mention list, Fusion-material legality, material send, summon, and CompleteProcedure are present.",
+          "official_omega": ["c100211053.lua", "c100212003.lua", "c14457896.lua"],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "When sent to the GY, discard and send a Stain card from Deck to GY as cost, then add that sent card.",
+          "lua": "Both semicolon-separated payments occur in cost; the selected card is retained and only added if it remains legally accessible in the GY.",
+          "official_omega": ["c100245001.lua", "c100245002.lua", "c100259002.lua"],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 232449539,
+      "text_sha256": "798ba9af1f9a3aaefa68a85e37e934eabd48c22cd2fc45c0fbbad566d9d36666",
+      "script_sha256": "da7f1d9f09cea168992997001329bd225be1c7abb5ba6c8c4a8b79047c57b3be",
+      "verdict": "MANUAL_RULING",
+      "effects": [
+        {
+          "clause": "Fusion Summon a Stain Fusion using Stain monsters from hand or field.",
+          "lua": "Builds a legal material group, revalidates it for the selected Fusion, sends materials with Fusion reasons, checks the Extra Monster Zone, summons, and completes the procedure.",
+          "official_omega": ["procedure.lua", "c100211053.lua", "c100212003.lua"],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "Also, after resolution, prevent another Abstain activation and non-Stain Extra Deck summons for the turn.",
+          "lua": "FIXED: player restrictions are now registered at the start of resolution and therefore apply even if the independent Fusion action later becomes impossible.",
+          "official_omega": ["c100211003.lua", "c100211051.lua", "c100214012.lua"],
+          "verdict": "FIXED"
+        },
+        {
+          "clause": "If your Stain monster was shuffled into either Deck this turn, face-up Stain monsters in the opponent's Deck may be banished as material and return to the GY in the End Phase.",
+          "lua": "Tracks effect-driven Stain moves into a Deck, adds only face-up opponent-Deck monsters to the material group, banishes selected materials, and retains exactly that group for the End Phase return.",
+          "official_omega": ["procedure.lua", "c17825378.lua"],
+          "verdict": "MANUAL_RULING",
+          "notes": "Omega EVENT_MOVE does not expose whether a Deck entry used shuffle versus top/bottom placement, so the trigger discriminator and face-up opponent-Deck material UI still require an engine scenario test."
+        }
+      ]
+    },
+    {
+      "passcode": 256831125,
+      "text_sha256": "1098984290191f035286262fcf684111665c1c501c4a678f94fc03f17135d7ab",
+      "script_sha256": "28d5fb755f79272ae9f34af778b0b5dd8600051db555a8bf2d852831cc157314",
+      "verdict": "UNSUPPORTED",
+      "effects": [
+        {
+          "clause": "The opponent cannot target Gravinity Synchro Monster Cards with effects.",
+          "lua": "A field EFFECT_CANNOT_BE_EFFECT_TARGET protects controlled Gravinity cards whose original type includes Synchro.",
+          "official_omega": ["c1061200.lua", "c13301895.lua", "c20212491.lua"],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "Reduce the Level, Rank, or Link Rating of opposing monsters sharing a Gravinity column by 1.",
+          "lua": "EFFECT_UPDATE_LEVEL and EFFECT_UPDATE_RANK cover the first two values; no Link Rating modifier exists in the bundled Omega API/constants.",
+          "official_omega": ["constant.lua"],
+          "verdict": "UNSUPPORTED"
+        },
+        {
+          "clause": "During the Standby Phase, reveal a Level 11 Gravinity Synchro and gain its non-activated effects for the turn.",
+          "lua": "The current pool's Nebulix and Spherix non-activated behavior is implemented explicitly with temporary effects.",
+          "official_omega": ["c23153227.lua", "c43331750.lua", "c70369116.lua", "c97769122.lua"],
+          "verdict": "MANUAL_RULING",
+          "notes": "The explicit implementation must be extended if another eligible Level 11 Gravinity Synchro is added."
+        }
+      ]
+    },
+    {
+      "passcode": 257081514,
+      "text_sha256": "be3aee9f96b861297fddf47b11d43892045a9e4e8337589bae856fabd7c7929e",
+      "script_sha256": "4cb83bb7e57ce526b486891a33cb61565fa87a7c34f866b2f864c5db122b8fa1",
+      "verdict": "FIXED",
+      "effects": [
+        {
+          "clause": "While Eldora is controlled, activate from hand to Special Summon this card.",
+          "lua": "FIXED: converted the non-chain summon procedure to a HOPT hand Ignition Effect with summon and zone revalidation.",
+          "official_omega": ["c100211002.lua", "c100211122.lua", "c100212006.lua"],
+          "verdict": "FIXED"
+        },
+        {
+          "clause": "If Summoned, draw 1 then bottom-Deck a hand card.",
+          "lua": "Normal, Flip, and Special Summon triggers share the count code; successful draw gates the hand selection and bottom-Deck move.",
+          "official_omega": ["c1006081.lua", "c101203023.lua", "c10158145.lua"],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "If destroyed by Eldora or an opponent's effect, recover an Eldora Spell/Trap from the GY or conditionally fetch Eldora from Deck.",
+          "lua": "The reason effect/player condition and both mutually selected search pools match the text, with Necrovalley applied to GY recovery.",
+          "official_omega": ["c47077318.lua", "c53085623.lua"],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 212413422,
+      "text_sha256": "c7dfcfa508c03c772eadb403fec9ac9701dc8b57300b4c07e48bab6fd0537bf9",
+      "script_sha256": "99be7cedde363086e9d2c9f916a3c0621b9de6a1330c46366a49c955e0e2ac93",
+      "verdict": "FIXED",
+      "effects": [
+        {
+          "clause": "Always treated as a Gaia the Fierce Knight monster.",
+          "lua": "A cannot-disable, uncopyable EFFECT_ADD_SETCODE supplies official Gaia set code 0xbd.",
+          "official_omega": ["constant.lua"],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "If a face-up Dragon is on the field, activate from hand to Special Summon this card.",
+          "lua": "FIXED: converted the non-chain procedure to a HOPT hand Ignition Effect checking either field and revalidating the summon at resolution.",
+          "official_omega": ["c100211002.lua", "c100211122.lua", "c100212006.lua"],
+          "verdict": "FIXED"
+        },
+        {
+          "clause": "On Special Summon, banish this card and a targeted Dragon, then Special Summon a qualifying Gaia Fusion and give it 2600 ATK.",
+          "lua": "The target is validated against the exact Fusion pool, both cards must be banished, and summon success gates the temporary +2600 update.",
+          "official_omega": ["procedure.lua", "c100245001.lua", "c100245002.lua"],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "When another Gaia monster is banished while this card is banished, shuffle this card and return those monsters to the GY.",
+          "lua": "EVENT_REMOVE excludes the handler, pays its Deck-shuffle cost, retains the event group as targets, and returns surviving banished targets.",
+          "official_omega": ["c11852093.lua", "c20938824.lua", "c33334269.lua"],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 238256111,
+      "text_sha256": "4c893e87f754e2b73ac95378a4f8ff571b1730858c152b806174b1f8e0f50546",
+      "script_sha256": "d34c4393c44b7358e9c55eceaa29d60517291fcc03517dd2df1078e9a929a1c9",
+      "verdict": "FIXED",
+      "effects": [
+        {
+          "clause": "While controlling a Warrior Gaia monster, activate from hand to Special Summon this card.",
+          "lua": "FIXED: converted the non-chain procedure to a HOPT hand Ignition Effect and preserved the exact controlled-monster condition.",
+          "official_omega": ["c100211002.lua", "c100211122.lua", "c100212006.lua"],
+          "verdict": "FIXED"
+        },
+        {
+          "clause": "On Normal or Special Summon, banish a Dragon/Warrior Normal Monster to summon Gaia the Dragon Champion or a card listing it, with an Extra Deck oath.",
+          "lua": "The activity counter enforces prior-turn legality, the cost registers the Level 5+ Dragon Extra Deck restriction, and the search accepts the named card or IsCodeListed consumers.",
+          "official_omega": ["c100211003.lua", "c100211051.lua", "c100214012.lua"],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 214511076,
+      "text_sha256": "9329adef3d9cb7648db51d7f5cd54a3c2e468b88f092fed5b08a1c1541df5057",
+      "script_sha256": "c2531dee368bc58c86c96a26f1b94e789cc31a920f1509fceeb24865aed8b0d9",
+      "verdict": "FIXED",
+      "effects": [
+        {
+          "clause": "While controlling no monsters or only Arckcestial monsters, activate from hand to Special Summon this card.",
+          "lua": "FIXED: converted the non-chain procedure to a HOPT hand Ignition Effect while preserving the empty/all-Arckcestial condition.",
+          "official_omega": ["c100211002.lua", "c100211122.lua", "c100212006.lua"],
+          "verdict": "FIXED"
+        },
+        {
+          "clause": "If sent as Synchro Material for a LIGHT monster, revive another Level 4 or lower Arckcestial monster.",
+          "lua": "EVENT_BE_MATERIAL verifies Synchro reason, LIGHT reason card, GY destination, target legality, zone availability, and Necrovalley at both stages.",
+          "official_omega": ["c100245032.lua", "c100245034.lua", "c101303204.lua"],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 217118040,
+      "text_sha256": "55ea87d9dfbe01d3397e348b8536f335d5577974808cd331986a7f1903a1acbc",
+      "script_sha256": "3becfbe6ddb2b4c4dba0c0f44900e77c3d52f5036c25c951f1a5de6603d46e96",
+      "verdict": "FIXED",
+      "effects": [
+        {
+          "clause": "If you control a Level 3 or lower Zombie monster, you can Special Summon this card from hand.",
+          "lua": "FIXED: converted the incorrectly activated hand effect to an uncopyable EFFECT_SPSUMMON_PROC, matching the no-colon inherent-summon text.",
+          "official_omega": ["c1003028.lua", "c101202083.lua", "c101203021.lua"],
+          "verdict": "FIXED"
+        },
+        {
+          "clause": "If you control no Tuners, send a hand card as cost so this card is treated as a Tuner for the turn.",
+          "lua": "The Ignition Effect checks face-up controlled Tuners, pays the semicolon cost, and applies temporary TYPE_TUNER with standard reset semantics.",
+          "official_omega": ["c100211002.lua", "c100211122.lua", "c100212006.lua"],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 231523659,
+      "text_sha256": "e5cf7c23cd556e63db8553969ae5209a43305251412944bdc51aaa28f15049cb",
+      "script_sha256": "408480f299de2b4a9b6b0e370cbc3122bb130c5d78e8c14c9d3d4ee87a2fe285",
+      "verdict": "FIXED",
+      "effects": [
+        {
+          "clause": "Quick Effect from hand: Tribute another Stardust monster from Deck, then Special Summon this card.",
+          "lua": "FIXED: the Deck cost now requires IsReleasable and uses Duel.Release, so Tribute prohibitions are respected before the self-summon resolves.",
+          "official_omega": ["c38339996.lua", "c65734501.lua", "c91222209.lua"],
+          "verdict": "FIXED"
+        },
+        {
+          "clause": "After another Stardust monster is Normal or Special Summoned, immediately Synchro Summon a listed family, then optionally alter its Level by 1.",
+          "lua": "The summon-player/name trigger, SynchroSummonable filter, immediate Duel.SynchroSummon, and optional post-success Level direction all match the printed sequence.",
+          "official_omega": ["procedure.lua", "c100211051.lua", "c100211097.lua"],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 224467692,
+      "text_sha256": "ce543e74e72c240f176e14ca7777a0b534409a1f152955b5ccb7c22ad6ee3cdd",
+      "script_sha256": "a8c393023f3689c77171a3c55b4b76b1d0977ff5781df41deafc7a12c1897011",
+      "verdict": "PASS",
+      "effects": [
+        {
+          "clause": "Normal Monster flavor text; no activated, continuous, or summon effects are printed.",
+          "lua": "The card is TYPE_MONSTER | TYPE_NORMAL in the Omega database and its empty initial_effect function correctly registers zero effects.",
+          "official_omega": ["constant.lua"],
+          "verdict": "PASS",
+          "notes": "The former manual-review finding incorrectly treated flavor-only text as conflicting Effect Monster metadata. Current website cardTypes and Omega type 17 both identify a Normal Monster."
+        }
+      ]
+    },
+    {
+      "passcode": 244790302,
+      "text_sha256": "6a41259f7e49da52e7e62010ec97cdbd0e82faf39856999affd8f34c558f29cf",
+      "script_sha256": "2d90cf404be7c87fc95a6fc86b7ae0b38d80fe186c00a70f964a7163f2b26c23",
+      "verdict": "PASS",
+      "effects": [{"clause": "Apply a targeted Stain Spell/Trap's activation effect.", "lua": "CheckActivateEffect forwards the selected effect's target and operation, following Darklord Eveningstar's official pattern.", "verdict": "PASS"}]
+    },
+    {
+      "passcode": 250556612,
+      "text_sha256": "8eafa378fd36dba9ed65d71090b0fd2ecae8c2cc56b5f74a2cd15370ffa9b8e9",
+      "script_sha256": "abb1bc0ef97611c80e83a42a749973e010207281ec393efce36e87acea833381",
+      "verdict": "FIXED",
+      "effects": [{"clause": "Banish two Sacred Treasure Spells and apply both activation effects in sequence.", "lua": "FIXED: replaced three hardcoded names with CheckActivateEffect dispatch for every eligible Sacred Treasure Spell.", "verdict": "FIXED"}]
+    },
+    {
+      "passcode": 229327103,
+      "text_sha256": "86e2488ecd7c4a64f7af35bc9ef883bada7db5bb6b5f4c21eca140b23b3c2afb",
+      "script_sha256": "b0bf60f0bddd23ede12cc0898607fc57301d8fc0c2ff386ad0ba9ad473b90d36",
+      "verdict": "FIXED",
+      "effects": [{"clause": "Search a Spell/Trap whose text lists FIRE.", "lua": "FIXED: generated pool covers all 160 matching official TCG and CCG Spell/Traps and is hash-checked by QA.", "verdict": "FIXED"}]
+    },
+    {
+      "passcode": 251058567,
+      "text_sha256": "ae698e5518758acc5873889d0edf352d1be998c83c3089b4a334877831f61320",
+      "script_sha256": "25643515569167686f7c9c2aee832c6af7e3064161efed5d0b1b5890a61adc4e",
+      "verdict": "FIXED",
+      "effects": [{"clause": "Search a Spell/Trap whose text lists WATER.", "lua": "FIXED: generated pool covers all 155 matching official TCG and CCG Spell/Traps and is hash-checked by QA.", "verdict": "FIXED"}]
+    },
+    {
+      "passcode": 223558392,
+      "text_sha256": "4ad1a10896be5df8b8fe9a6f59847916d1d69b44c0edd1d79137f49f6c8b6f68",
+      "script_sha256": "a2f2b7e6a45d08129aa9dc81044ac02a9ab5585405098f2cc3a2392576e168bc",
+      "verdict": "FIXED",
+      "effects": [{"clause": "Search a Spell/Trap whose text lists EARTH.", "lua": "FIXED: generated pool covers all 196 matching official TCG and CCG Spell/Traps and is hash-checked by QA.", "verdict": "FIXED"}]
+    },
+    {
+      "passcode": 223592011,
+      "text_sha256": "92ddeb245919f2cd0a722dee95d64ab2ee0081f81d76b7fb6d451dd6aa01ca9e",
+      "script_sha256": "9a0373f382a2cc741be5da528d11ae410e4680ea75af8db1abaf745b5b71d0fc",
+      "verdict": "FIXED",
+      "effects": [{"clause": "Search a Spell/Trap whose text lists WIND.", "lua": "FIXED: generated pool covers all 131 matching official TCG and CCG Spell/Traps and is hash-checked by QA.", "verdict": "FIXED"}]
+    },
+    {
+      "passcode": 244920555,
+      "text_sha256": "818b2819b9c08004f6f8d28a2fed5726b0221b348d84f70995f0b3c08c0f453e",
+      "script_sha256": "17a6df6f86a316d63a18bfeb5d7e5c1b73217b36b27569f3ecda7417ba65eda4",
+      "verdict": "FIXED",
+      "effects": [{"clause": "Search a Spell/Trap whose text lists LIGHT.", "lua": "FIXED: generated pool covers all 348 matching official TCG and CCG Spell/Traps and is hash-checked by QA.", "verdict": "FIXED"}]
+    },
+    {
+      "passcode": 243920845,
+      "text_sha256": "96543c44e46b950303adfbf2a4d67ec0fadd3f586775c998af8867e2c2e033ce",
+      "script_sha256": "dbc41a78873afa974f54cffa7988dcfeac2daebe63d2b035dab8c03e3be895e6",
+      "verdict": "FIXED",
+      "effects": [{"clause": "Search a Spell/Trap whose text lists DARK.", "lua": "FIXED: generated pool covers all 469 matching official TCG and CCG Spell/Traps and is hash-checked by QA.", "verdict": "FIXED"}]
+    },
+    {
+      "passcode": 245400676,
+      "text_sha256": "24ceb2a492fa437e38b375e86faf0c18255e3b2b10e41f6f6c3ce2b6b03be56e",
+      "script_sha256": "0a94f3256978e4b814b55e625a864361bc1c92b11055087af7cde6ab643299dc",
+      "verdict": "FIXED",
+      "effects": [{"clause": "Search a Spell/Trap with To Proto in its name or printed text.", "lua": "FIXED: generated exact-name/text pool supplements the To Proto setcode and is checked for staleness.", "verdict": "FIXED"}]
+    },
+    {
+      "passcode": 254065048,
+      "text_sha256": "6f1f4b2e49ed9e81046477f3cffe82cb73af94e644395904cee0ea6ef2ceb68d",
+      "script_sha256": "13de90d1df28f5ceff53adc5d3ef938a605489e65347624ba1f46481d2d8fe3c",
+      "verdict": "FIXED",
+      "effects": [{"clause": "Gain ATK/DEF equal to the amount currently lost by monsters on the field.", "lua": "FIXED: continuous values now sum the full current loss instead of dividing it by two; printed text was corrected too.", "verdict": "FIXED"}]
+    },
+    {
+      "passcode": 212684822,
+      "text_sha256": "de5ff9514fc63cc75fd86bd66a10b797ffd3c6e86a42afc8e069a2f800e67a45",
+      "script_sha256": "d9e481b4f7bd660a4b542072cdeb3321b6d8d55d4c7cfd7a165fbba06d05c9f9",
+      "verdict": "PASS",
+      "effects": [{"clause": "Required Taxis/Token summon, reflected half battle damage, and Taxis add-or-send trigger.", "lua": "All conditions, material release, damage replacement, and destination choice are explicit and match the ruling.", "verdict": "PASS"}]
+    },
+    {
+      "passcode": 239245471,
+      "text_sha256": "5338794898d2908dcc9f336c6a931365d3df35b1f9de27b3c8bf33926b54fcf4",
+      "script_sha256": "f40f2550809cdb331126de046fc24c11bbd5296cd37c9e0d9dac07474421064e",
+      "verdict": "PASS",
+      "effects": [{"clause": "This card is also treated as an Ataxia card.", "lua": "Omega database setcode 0x7398 supplies the treated-as identity, matching official Winged Kuriboh LV6 handling.", "verdict": "PASS"}]
+    },
+    {
+      "passcode": 224751741,
+      "text_sha256": "fadabcceaaf02dfbe380f5ce5fc272a75c441e3481f1683c0c1d3d67cdf061f5",
+      "script_sha256": "85e543f8c13bd8f6eb025d95329724769d675941be63f3b8c038b01c4b5fe44f",
+      "verdict": "PASS",
+      "effects": [{"clause": "This card is also treated as a Taxis card.", "lua": "Omega database setcode 0x27e9 supplies the treated-as identity, matching official treated-as-card handling.", "verdict": "PASS"}]
+    },
+    {
+      "passcode": 245099829,
+      "text_sha256": "d2283838066849b318539ce769cc1d913684160cd7fa81fd32c1d1884d7c15f2",
+      "script_sha256": "34cfe579b8348b899c9a2f98c590e7e6561730c915d409ba525dc79ffe85d8ff",
+      "verdict": "PASS",
+      "effects": [{"clause": "Place an Azrynior Continuous Spell/Trap from hand, Deck, or GY.", "lua": "The generated Azrynior setcode performs name-series matching and MoveToField places it face-up.", "verdict": "PASS"}]
+    },
+    {
+      "passcode": 223512283,
+      "text_sha256": "778ad51a3bd3b01fde564605ad38ff44020f3e53af5a1442d43dc8d75a38253b",
+      "script_sha256": "fa9f802eb7c0b3e4a96dd1fc06de957f861642d0446ec47b1320e30feb00a085",
+      "verdict": "PASS",
+      "effects": [{"clause": "Place a Dysmandr Continuous Spell/Trap from hand, Deck, or GY.", "lua": "The generated Dysmandr setcode performs name-series matching and MoveToField places it face-up.", "verdict": "PASS"}]
+    },
+    {
+      "passcode": 215984744,
+      "text_sha256": "798dc92d6ab7a9dbcad4bb700c3bbec31e58f5bcbd0d12515cbbb313f3662ec3",
+      "script_sha256": "8ebfcc307a8e0e477efacd7ab8e63e4bcf7c38b1de8ca86b06e6153aac6c21c9",
+      "verdict": "PASS",
+      "effects": [{"clause": "Search Recollection plus Bear Trap or Mortis, and protect Recollection/Mine cards.", "lua": "Current CCG name-derived setcodes cover every Recollection/Mortis card; Bear Trap and the current Mine Field Spell use exact names.", "verdict": "PASS"}]
+    },
+    {
+      "passcode": 231331942,
+      "text_sha256": "708478c8a875c74235e9c564391b6aa06cb63925c283215484ecd77a687dadd9",
+      "script_sha256": "8f97f5562ef19b906b7d9bdd7e4c41ffc6d2bf073460e98a33984fcc53eab922",
+      "verdict": "FIXED",
+      "effects": [{"clause": "Special Summon Hallo, the Spirit of Tricks.", "lua": "FIXED: resolves the named official TCG card to ID 54611591 instead of a disabled zero placeholder.", "verdict": "FIXED"}]
+    },
+    {
+      "passcode": 244013196,
+      "text_sha256": "011cede40051732935ea3fbba782e06968853fd65c0014f9ca08e3c9afa18696",
+      "script_sha256": "059ad0e9ec10efaec10910211dd86015351335f413899d8cc37f749d83577388",
+      "verdict": "FIXED",
+      "effects": [{"clause": "Full summon, Main Phase negate/stat/counter advance, and banished recovery text.", "lua": "FIXED: restored the complete source text and implemented both omitted effects; active card turn counters are incremented through Card.SetTurnCounter.", "verdict": "FIXED"}]
+    },
+    {
+      "passcode": 242009896,
+      "text_sha256": "04eb09cb18ff1a9a47f6ae455f0e8a9b41428eb3f81d6752628146f956f5facf",
+      "script_sha256": "4fcb78197930005452f6a71e81296f187b2ffa58c23093cc8e093f137b685628",
+      "verdict": "FIXED",
+      "effects": [{"clause": "Destroy all other matching Effect Monsters, then destroy the chosen monster.", "lua": "FIXED: the chosen monster is now destroyed even when no other matching monster exists.", "verdict": "FIXED"}]
+    },
+    {
+      "passcode": 229786055,
+      "text_sha256": "e4cf58090a2fc2b6696515bc5a9e854438404c4cdd864ef810b4e1ab3545f9c2",
+      "script_sha256": "16114e55a4a207c5640016dc403b0d51817b0a880cdf5838b09e0837c38a6c1d",
+      "verdict": "PASS",
+      "effects": [{"clause": "Revive a differently named matching monster destroyed by the listed sources, with Deck access while Eldora is in the GY.", "lua": "Reason-effect provenance and all five matching characteristics are checked at activation and resolution.", "verdict": "PASS"}]
+    },
+    {
+      "passcode": 241447408,
+      "text_sha256": "e8361406f53fc81d2339bf4b6140e7e7304a1cf671890b4b23b42b1d41dd4e5a",
+      "script_sha256": "7a27d167e4b532fd74ab8ec56aace478c3297c12d92ae9ffb1369287668307c7",
+      "verdict": "PASS",
+      "effects": [{"clause": "The player can conduct only one total Summon this turn and cannot activate after more than one.", "lua": "Combined Normal, Flip, and Special Summon activity is checked at activation and capped at one for the remainder of the turn.", "verdict": "PASS"}]
+    },
+    {
+      "passcode": 224774049,
+      "text_sha256": "6f3823d153077e8f2fb586b939359a7b9183556ac512b764308dd6cec09ae162",
+      "script_sha256": "26cbf7ac8fcea9b7a3d9f02cd35043659c236728c6da1781738ce0dc74413cf8",
+      "verdict": "PASS",
+      "effects": [{"clause": "Declare, roll, excavate that many, add one matching card, then shuffle the rest.", "lua": "The declared code is retained through resolution, the die result bounds excavation, and ShuffleDeck randomizes every unadded card.", "verdict": "PASS"}]
+    },
+    {
+      "passcode": 251236672,
+      "text_sha256": "f5ccc5e9d45eaaefb2e0eb88b217cabcec069a68ec34c777d0ae67ffee1999e3",
+      "script_sha256": "5d0ac9d0de5b1d63b423ffa2709640c10bc7c4c5d9a3e0126b429315c27009cc",
+      "verdict": "FIXED",
+      "effects": [{"clause": "Three separate hard once-per-turn effects and gain through the end of your Battle Phase.", "lua": "FIXED: search, destruction gain, and post-damage destruction now use distinct count codes; RESET_SELF_TURN carries the gain to the next own Battle Phase when needed.", "verdict": "FIXED"}]
+    },
+    {
+      "passcode": 236721134,
+      "text_sha256": "0c0016e286121c5c186d7b56a0c38c77efa8bf52da66baf7be14934d80f94765",
+      "script_sha256": "5e4d03479953afc1ce2ad43824592c3e1a23db438e413c2d8d4e39bf960c13f4",
+      "verdict": "FIXED",
+      "effects": [{"clause": "On summon, send a Dragon from the Extra Deck; Set the listed Spell/Trap.", "lua": "FIXED: text and Lua now make the send and Set one semicolon-linked trigger with one hard once-per-turn counter.", "verdict": "FIXED"}]
+    },
+    {
+      "passcode": 235612490,
+      "text_sha256": "80484cb1b889ce422eef70cf4821848d7c5eb02697984fec7616abc0901476b6",
+      "script_sha256": "b17169bdd40ddde67b639162e6bf9a9c9a448294d7f7049178c458d71eb08e3a",
+      "verdict": "PASS",
+      "effects": [{"clause": "Banish an Arckcestial from the GY as cost; banish one field card and optionally a second with Urphiel.", "lua": "Cost, first mandatory banish, named-monster check, and optional additional banish are implemented in printed sequence.", "verdict": "PASS"}]
+    }
+  ]
+}

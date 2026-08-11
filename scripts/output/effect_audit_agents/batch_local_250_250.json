@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "batch": "local-confirmed-fix",
+  "ordinal_start": 250,
+  "ordinal_end": 250,
+  "cards": [
+    {
+      "ordinal": 250,
+      "passcode": 255668557,
+      "name": "Shining Brigade - Joyous Division",
+      "text_sha256": "b16fe40185ab0a8cc6fa483bba5ae1cdb65f54aa7a6641818793e77c282b9a37",
+      "script_sha256": "ba55d190324f626896afca80d13279a3114645230b6f1d97ab43661fc6daaa16",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Special Summon trigger and its hard once-per-turn sentence form one effect; the material-granted Quick Effect and its once-per-turn sentence form the second effect."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "When a Shining Brigade monster is Special Summoned: You can Special Summon this card from your GY or banishment. You can only use this effect once per turn.",
+          "lua_implementation": "A GY/banishment trigger checks the event group for a face-up Shining Brigade monster, verifies the handler can be Special Summoned, revives it, and uses the card id as a hard once-per-turn key.",
+          "official_references": [
+            {"script":"c83764718.lua","card_id":83764718,"card_name":"Monster Reborn","matched_structure":"Performs a legal GY Special Summon during resolution."},
+            {"script":"c336601.lua","card_id":336601,"card_name":"Moon Gardna","matched_structure":"Uses an id-keyed once-per-turn limit for the trigger."}
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "A Shining Brigade monster that has this card as material gains: Once per turn, during the Main Phase (Quick Effect): You can roll a 6-sided die; banish cards from your opponent's GY up to half the number rolled (rounded up).",
+          "lua_implementation": "EVENT_BE_MATERIAL grants the qualifying Xyz Monster a Main Phase Quick Effect. Its target step declares the dice/removal categories; its operation rolls the die and then lets the controller banish between one and ceil(result/2) eligible opposing GY cards.",
+          "official_references": [
+            {"script":"c4145852.lua","card_id":4145852,"card_name":"Zoodiac Ramram","matched_structure":"Registers an effect associated with a card used as Xyz Material."},
+            {"script":"c3549275.lua","card_id":3549275,"card_name":"Dice Jar","matched_structure":"Calls Duel.TossDice during the resolving operation, after players had the opportunity to respond."}
+          ],
+          "verdict": "FIXED",
+          "issue": "Fixed: the die roll was moved from target declaration to resolution, so its result is not exposed before the Chain resolves."
+        }
+      ]
+    }
+  ],
+  "summary": {"cards":1,"effects":2,"pass":1,"fixed":1,"defects":0,"custom_gaps":0}
+}

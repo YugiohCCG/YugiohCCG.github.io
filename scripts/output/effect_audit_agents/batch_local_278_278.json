@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "batch": "local-confirmed-fix",
+  "ordinal_start": 278,
+  "ordinal_end": 278,
+  "cards": [{
+    "ordinal": 278,
+    "passcode": 238035167,
+    "name": "Aquamarine Moon Aurelia",
+    "text_sha256": "5368852ec53cfe0fc0d025e66b79129316861fd2e1f7ccbd60f015c63e1d6338",
+    "script_sha256": "0c703c5a185316c5e8b0a7c085cfa14ffe3ab92de029a98862c117f1c305b458",
+    "overall_verdict": "FIXED",
+    "coverage_override": {"expected_individual_effects":4,"reason":"The summon procedure and its limit, two following triggered effects, and their shared each-effect HOPT sentence are four audit units."},
+    "effects": [
+      {
+        "effect_index": 1,
+        "printed_clause": "If you control an Aquamarine monster, you can Special Summon this card from your hand. You can only Special Summon Aquamarine Moon Aurelia once per turn this way.",
+        "lua_implementation": "An uncopyable hand EFFECT_SPSUMMON_PROC requires an open zone and a controlled Aquamarine monster. An oath count keyed to this card now enforces the once-per-turn procedure.",
+        "official_references": [{"script":"c336601.lua","card_id":336601,"card_name":"Moon Gardna","matched_structure":"Uses an uncopyable hand EFFECT_SPSUMMON_PROC with an oath SetCountLimit."}],
+        "verdict": "FIXED",
+        "issue": "Fixed: the printed once-per-turn Special Summon procedure now has an oath count limit."
+      },
+      {
+        "effect_index": 2,
+        "printed_clause": "If this card is Special Summoned: You can add 1 Aquamarine Spell/Trap from your Deck to your hand.",
+        "lua_implementation": "A delayed EVENT_SPSUMMON_SUCCESS trigger searches an eligible archetype Spell/Trap, adds it, reveals it, and uses the card id as a hard once-per-turn key.",
+        "official_references": [{"script":"c336601.lua","card_id":336601,"card_name":"Moon Gardna","matched_structure":"Uses a delayed summon-success trigger, filtered hand addition, and id-keyed limit."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 3,
+        "printed_clause": "If this card is banished from your GY: You can Fusion Summon 1 Aquamarine Fusion Monster by banishing its listed materials from your field and/or GY.",
+        "lua_implementation": "A delayed EVENT_REMOVE trigger checks previous GY location, builds legal field/GY materials under Necrovalley, supports Chain Material, banishes selected materials with Fusion reasons, Fusion Summons, and completes the procedure.",
+        "official_references": [{"script":"c51476410.lua","card_id":51476410,"card_name":"Clock Lizard","matched_structure":"Fusion Summons using banished GY-accessible materials and completes the procedure."},{"script":"c39552584.lua","card_id":39552584,"card_name":"Grapha, Dragon Overlord of Dark World","matched_structure":"Checks mixed Fusion material requirements and performs the Fusion Summon operation."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 4,
+        "printed_clause": "You can only use each of the following effects of Aquamarine Moon Aurelia once per turn.",
+        "lua_implementation": "The search and banishment-triggered Fusion effects use distinct id and id+100 hard keys; the separately worded summon procedure uses its own oath key.",
+        "official_references": [{"script":"c336601.lua","card_id":336601,"card_name":"Moon Gardna","matched_structure":"Uses distinct id-keyed limits for separate effects."}],
+        "verdict": "PASS",
+        "issue": null
+      }
+    ]
+  }],
+  "summary": {"cards":1,"effects":4,"pass":3,"fixed":1,"defects":0,"custom_gaps":0}
+}

@@ -427,6 +427,8 @@ CARD_STRING_OVERRIDES = {
     ],
     "toprotochrono": [
         "Special Summon this card from your hand",
+        "Negate 1 monster's effects, gain its ATK/DEF, and advance active turn counters",
+        'Add 1 differently named banished "To Proto" monster to your hand',
     ],
     "toprototaxis": [
         "Special Summon this card from your hand",

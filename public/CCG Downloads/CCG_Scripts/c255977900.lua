@@ -28,8 +28,15 @@ function s.initial_effect(c)
 	e3:SetOperation(s.spop)
 	c:RegisterEffect(e3)
 end
+s.hallo_ween_monster_codes={
+	[54611591]=true,
+	[81005500]=true,
+	[230749983]=true,
+	[231331942]=true,
+	[250262550]=true,
+}
 function s.hwfilter(c,tp)
-	return c:IsSummonPlayer(tp) and c:IsCode(HALLO_GIVER,HALLO_HOLLOW,WEEN)
+	return c:IsSummonPlayer(tp) and s.hallo_ween_monster_codes[c:GetCode()]
 end
 function s.ctcon(e,tp,eg)
 	return eg:IsExists(s.hwfilter,1,nil,tp)
@@ -43,7 +50,7 @@ function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:GetHandler():RemoveCounter(tp,COUNTER_HALLOWEEN,3,REASON_COST)
 end
 function s.spfilter(c,e,tp)
-	return c:IsCode(HALLO_GIVER,HALLO_HOLLOW,WEEN) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return s.hallo_ween_monster_codes[c:GetCode()] and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0

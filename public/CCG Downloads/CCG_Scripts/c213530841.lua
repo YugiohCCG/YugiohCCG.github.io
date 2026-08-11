@@ -58,7 +58,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 			if re:GetHandler():IsRelateToEffect(re) and re:GetHandler():IsDestructable(e) then
 				g:AddCard(re:GetHandler())
 			end
-			local g2=Duel.GetMatchingGroup(Card.IsDestructable,tp,LOCATION_HAND+LOCATION_ONFIELD,0,e:GetHandler(),e)
+			local g2=Duel.GetMatchingGroup(Card.IsDestructable,tp,LOCATION_HAND+LOCATION_ONFIELD,0,nil,e)
 			g:Merge(g2)
 			if #g>0 then
 				Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)

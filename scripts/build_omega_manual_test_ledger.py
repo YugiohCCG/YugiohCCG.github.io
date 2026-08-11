@@ -19,6 +19,34 @@ SCRIPTS = ROOT / "public" / "CCG Downloads" / "CCG_Scripts"
 DECK_MANIFEST = ROOT / "scripts" / "output" / "omega_test_decks" / "CCG Test Decks.json"
 LEDGER = ROOT / "scripts" / "output" / "omega_manual_test_ledger.json"
 STATUS_REPORT = ROOT / "docs" / "ccg-live-test-status.md"
+RESOLVED_GUIDE_EXCLUSIONS = {
+    224467692: "Scarstech Prologue is a Normal Monster (Omega type 17); flavor text and an empty script are correct.",
+    212684822: "Ektelestis requirements, reflected half damage, and Taxis add/send behavior are fully implemented.",
+    215984744: "Recollection, Bear Trap/Mortis, and Mine matching resolve through current name/set pools.",
+    223512283: "Dysmandr name-series placement resolves through its generated archetype setcode.",
+    223558392: "EARTH printed-text searches use the generated official-plus-CCG search pool.",
+    223592011: "WIND printed-text searches use the generated official-plus-CCG search pool.",
+    224751741: "Fall of Azrynior carries the Taxis setcode in the database, matching official treated-as handling.",
+    224774049: "Pot of Gambling declares, rolls, excavates, adds a matching card, and shuffles the remainder.",
+    229327103: "FIRE printed-text searches use the generated official-plus-CCG search pool.",
+    229786055: "Eldora's destruction provenance and matching-characteristic summon pools are implemented as written.",
+    231331942: "Hallo, the Spirit of Tricks is resolved to official TCG ID 54611591.",
+    235612490: "Feather Downpour banishes an Arckcestial from the GY as cost and performs the conditional second banish.",
+    236721134: "Devotee's send and Set clauses are one semicolon-linked trigger effect.",
+    239245471: "Birth of Azrynior carries the Ataxia setcode in the database, matching official treated-as handling.",
+    241447408: "Kaboom Papa rejects activation after more than one prior Summon and caps the turn at one Summon.",
+    242009896: "Extinction destroys every other matching Effect Monster, then the chosen monster, including when no others exist.",
+    243920845: "DARK printed-text searches use the generated official-plus-CCG search pool.",
+    244013196: "To Proto Chrono's recovered full text, summon, negate/stat/counter, and banished recovery effects are implemented.",
+    244790302: "Stained Avatar dynamically applies a targeted Stain Spell/Trap activation effect.",
+    244920555: "LIGHT printed-text searches use the generated official-plus-CCG search pool.",
+    245099829: "Azrynior name-series placement resolves through its generated archetype setcode.",
+    245400676: "To Proto Archegoni uses a generated name-or-printed-text Spell/Trap pool.",
+    250556612: "NiuHao - Zao dynamically applies both banished Sacred Treasure activation effects in sequence.",
+    251058567: "WATER printed-text searches use the generated official-plus-CCG search pool.",
+    251236672: "Laplace Plesio has separate hard once-per-turn counters and own-Battle-Phase stat duration.",
+    254065048: "Polemistis continuously gains the full ATK/DEF amount currently lost by field monsters.",
+}
 
 ENTRY_RE = re.compile(
     r"^###\s+(?P<number>\d+)\.\s+(?P<name>.+?)\s+-\s+(?P<id>\d+)\s*$"
@@ -108,6 +136,7 @@ def render_status(ledger: dict[str, Any]) -> str:
         "",
         "This ledger tracks the ruling- and engine-sensitive cards that cannot be certified by syntax, callback, database, or static semantic checks alone.",
         "",
+        f"- Historical guide entries resolved statically and excluded: {summary.get('resolved_exclusions', 0)}",
         f"- Total live-test cards: {summary['total']}",
         f"- Passed: {summary.get('passed', 0)}",
         f"- Failed: {summary.get('failed', 0)}",
@@ -147,7 +176,10 @@ def main() -> int:
     args = parser.parse_args()
 
     guide_source = GUIDE.read_text(encoding="utf-8")
-    entries = parse_guide(guide_source)
+    historical_entries = parse_guide(guide_source)
+    entries = [entry for entry in historical_entries if entry["card_id"] not in RESOLVED_GUIDE_EXCLUSIONS]
+    for number, entry in enumerate(entries, 1):
+        entry["guide_number"] = number
     cards = json.loads(CARDS.read_text(encoding="utf-8-sig"))
     cards_by_id = {int(card["passcode"]): card for card in cards}
     decks = deck_coverage(DECK_MANIFEST)
@@ -156,8 +188,10 @@ def main() -> int:
     tests: list[dict[str, Any]] = []
     valid_statuses = {"pending", "passed", "failed", "blocked"}
 
-    if len(entries) != 123:
-        errors.append(f"manual guide contains {len(entries)} card entries, expected 123")
+    if len(historical_entries) != 123:
+        errors.append(f"historical manual guide contains {len(historical_entries)} card entries, expected 123")
+    if len(entries) != 123 - len(RESOLVED_GUIDE_EXCLUSIONS):
+        errors.append(f"active manual queue contains {len(entries)} card entries, expected {123 - len(RESOLVED_GUIDE_EXCLUSIONS)}")
     if [entry["guide_number"] for entry in entries] != list(range(1, len(entries) + 1)):
         errors.append("manual guide numbering is not contiguous")
 
@@ -216,8 +250,18 @@ def main() -> int:
         "schema_version": 1,
         "guide": GUIDE.relative_to(ROOT).as_posix(),
         "guide_sha256": sha256(GUIDE),
-        "summary": {"total": len(tests), **dict(sorted(statuses.items())), "errors": len(errors)},
+        "summary": {
+            "historical_guide_total": len(historical_entries),
+            "resolved_exclusions": len(RESOLVED_GUIDE_EXCLUSIONS),
+            "total": len(tests),
+            **dict(sorted(statuses.items())),
+            "errors": len(errors),
+        },
         "errors": errors,
+        "resolved_guide_exclusions": [
+            {"card_id": card_id, "reason": reason}
+            for card_id, reason in sorted(RESOLVED_GUIDE_EXCLUSIONS.items())
+        ],
         "tests": tests,
     }
     rendered_json = json.dumps(ledger, indent=2, ensure_ascii=False) + "\n"

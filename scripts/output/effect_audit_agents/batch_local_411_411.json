@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "batch": "local-normal-monster-correction",
+  "ordinal_start": 411,
+  "ordinal_end": 411,
+  "cards": [
+    {
+      "ordinal": 411,
+      "passcode": 224467692,
+      "name": "Scarstech Prologue",
+      "text_sha256": "ce543e74e72c240f176e14ca7777a0b534409a1f152955b5ccb7c22ad6ee3cdd",
+      "script_sha256": "a8c393023f3689c77171a3c55b4b76b1d0977ff5781df41deafc7a12c1897011",
+      "overall_verdict": "PASS",
+      "classification": "Normal Monster",
+      "audit_note": "The card text is flavor text. As a Normal Monster it has no individual effects to compare, and its empty initial_effect function correctly registers none.",
+      "coverage_override": {
+        "expected_individual_effects": 0,
+        "reason": "Scarstech Prologue is a Normal Monster; its prose is flavor text, so the correct effect count is zero."
+      },
+      "effects": []
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 0,
+    "pass": 1,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

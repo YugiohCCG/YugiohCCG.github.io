@@ -1,0 +1,13 @@
+{"schema_version":1,"batch":"local-rejected-finding","ordinal_start":166,"ordinal_end":166,"cards":[{
+  "ordinal":166,"passcode":229786055,"name":"Eldora in Depraevity","text_sha256":"e4cf58090a2fc2b6696515bc5a9e854438404c4cdd864ef810b4e1ab3545f9c2","script_sha256":"16114e55a4a207c5640016dc403b0d51817b0a880cdf5838b09e0837c38a6c1d","overall_verdict":"PASS",
+  "coverage_override":{"expected_individual_effects":1,"reason":"The target qualification, same-characteristic GY/conditional Deck summon alternatives, and HOPT are all parts of one activation effect."},
+  "effects":[{
+    "effect_index":1,
+    "printed_clause":"Target 1 monster in your GY destroyed this turn by Eldora, Extinction of Dysmandr, or the opponent's effect; Special Summon a different-name monster sharing a characteristic from your GY, or, if Eldora is in your GY, Special Summon it from your Deck instead. HOPT.",
+    "lua_implementation":"The target filter verifies current-turn effect destruction, allowed source, GY targetability, and existence of a legal matching summon. The summon filter requires a different-name Monster sharing Type, Attribute, Level, ATK, or DEF. Normally it searches the GY; while Eldora is in the GY it extends that same matching-monster pool to the Deck, then Special Summons the selection in face-up Attack Position.",
+    "official_references":[{"script":"c89558743.lua","card_id":89558743,"card_name":"Small World","matched_structure":"Compares monster Type, Attribute, Level, ATK, and DEF to establish shared characteristics."},{"script":"c59919307.lua","card_id":59919307,"card_name":"Back to the Front","matched_structure":"Targets and Special Summons an eligible monster from the GY in a constrained battle position."}],
+    "verdict":"PASS",
+    "issue":null,
+    "review_note":"Rejected the earlier defect claim: grammatically, 'it' refers to the previously specified different-name matching monster, not to the Spell Card Eldora. Extending the generic matching pool from GY to Deck is therefore literal."
+  }]
+}],"summary":{"cards":1,"effects":1,"pass":1,"fixed":0,"defects":0,"custom_gaps":0}}

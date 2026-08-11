@@ -1,123 +1,151 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-10T20:48:23+00:00",
+  "generated_at": "2026-08-11T11:26:43+00:00",
   "mode": "full",
   "status": "PASS",
-  "checks_total": 16,
-  "checks_passed": 16,
+  "checks_total": 20,
+  "checks_passed": 20,
   "live_certification_status": "INCOMPLETE",
   "checks": [
     {
       "name": "Authoritative card manifest",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 1.032,
-      "output": "wrote C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\output\\ccg_qa_manifest.json\nactive_cards=577\nscripts=578\ncompatibility_scripts=[210678856]\ndatabase_rows=1162\nprimary_archetypes=85\ncards_without_primary_archetype=35\neffect_creations=1985\neffect_registrations=2257\nerrors=0"
+      "duration_seconds": 1.094,
+      "output": "wrote C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\output\\ccg_qa_manifest.json\nactive_cards=577\nscripts=578\ncompatibility_scripts=[210678856]\ndatabase_rows=1162\nprimary_archetypes=85\ncards_without_primary_archetype=35\neffect_creations=1988\neffect_registrations=2261\nerrors=0"
     },
     {
       "name": "Lua compiler syntax",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 9.0,
+      "duration_seconds": 10.453,
       "output": "scripts=578\nerrors=0"
+    },
+    {
+      "name": "Generated printed-text search pools",
+      "status": "PASS",
+      "returncode": 0,
+      "duration_seconds": 0.765,
+      "output": "FIRE: 160 searchable Spell/Trap cards\nWATER: 155 searchable Spell/Trap cards\nEARTH: 196 searchable Spell/Trap cards\nWIND: 131 searchable Spell/Trap cards\nLIGHT: 348 searchable Spell/Trap cards\nDARK: 469 searchable Spell/Trap cards\nTo Proto name/text: 3 searchable Spell/Trap cards\nverified generated pools; changed=0"
     },
     {
       "name": "Lua semantic and search-condition audit",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 1.109,
-      "output": "active_cards=577\nscripts=578\nparsed_scripts=578\neffect_creations=1985\ncallback_functions=3605\nsearch_calls=2769\naccepted_replacement_target_callbacks=3\nerrors=0\nreview_candidates=0\naccepted_reviewed_findings=14\nstale_reviewed_findings=0\nfindings_by_kind={}\nreport=C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\output\\ccg_lua_semantic_audit.json"
-    },
-    {
-      "name": "Omega callback smoke",
-      "status": "PASS",
-      "returncode": 0,
-      "duration_seconds": 9.015,
-      "output": "scripts=578\ncallbacks=5086\nerrors=0"
+      "duration_seconds": 1.36,
+      "output": "active_cards=577\nscripts=578\nparsed_scripts=578\neffect_creations=1988\ncallback_functions=3617\nsearch_calls=2762\naccepted_replacement_target_callbacks=3\nerrors=0\nreview_candidates=0\naccepted_reviewed_findings=14\nstale_reviewed_findings=0\nfindings_by_kind={}\nreport=C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\output\\ccg_lua_semantic_audit.json"
     },
     {
       "name": "Omega runtime references",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 1.0,
-      "output": "active_cards=577\npublic_scripts=578\nmissing_active_scripts=0\nmissing_compatibility_scripts=0\npreserved_orphan_scripts=0\nloaded_card_scripts=1\nsynchro_procedure_calls=23\nlink_procedure_calls=36\nmodern_procedure_namespace_calls=0\nchain_material_select_calls=0\ndirect_link_custom_filters=8\nmodern_link_group_filter_signatures=0\nzero_argument_link_api_calls=0\ncurrent_chain_plus_one_calls=0\ngalaxy_race_scripts=17\ncannot_activate_callbacks=10\nraw_spsummon_proc_targets=18\nreferenced_setcodes=68\nreferenced_card_ids=86\nspell_trap_activation_scripts=172\nquick_effect_scripts=185\nopponent_summon_choice_scripts=6\ndelayed_optional_summon_triggers=117\nactivation_reveal_scripts=29\nactivation_choose_scripts=3\nactivation_target_scripts=180\nactivation_place_scripts=4\nactivation_roll_scripts=1\nactivation_declare_scripts=7\ncreate_token_calls=17\ncreate_token_targets=8\nsummon_code_checks=30\nsummon_code_targets=9\nstatic_copy_effect_targets=0\ndynamic_copy_effect_calls=3\nerrors=0"
+      "duration_seconds": 1.187,
+      "output": "active_cards=577\npublic_scripts=578\nmissing_active_scripts=0\nmissing_compatibility_scripts=0\npreserved_orphan_scripts=0\nloaded_card_scripts=1\nsynchro_procedure_calls=23\nlink_procedure_calls=36\nmodern_procedure_namespace_calls=0\nchain_material_select_calls=0\ndirect_link_custom_filters=8\nmodern_link_group_filter_signatures=0\nzero_argument_link_api_calls=0\ncurrent_chain_plus_one_calls=0\ngalaxy_race_scripts=17\ncannot_activate_callbacks=10\nraw_spsummon_proc_targets=18\nreferenced_setcodes=68\nreferenced_card_ids=83\nspell_trap_activation_scripts=172\nquick_effect_scripts=186\nopponent_summon_choice_scripts=6\ndelayed_optional_summon_triggers=117\nactivation_reveal_scripts=29\nactivation_choose_scripts=3\nactivation_target_scripts=181\nactivation_place_scripts=4\nactivation_roll_scripts=1\nactivation_declare_scripts=7\ncreate_token_calls=17\ncreate_token_targets=8\nsummon_code_checks=30\nsummon_code_targets=9\nstatic_copy_effect_targets=0\ndynamic_copy_effect_calls=3\nerrors=0"
     },
     {
       "name": "Archetype interoperability",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 1.266,
-      "output": "Archetype verification passed: cards=577 scripts=578 archetypes=85 named_or_treated_series=10 shared_official=26 quoted_support_checks=840 warnings=0"
+      "duration_seconds": 1.563,
+      "output": "Archetype verification passed: cards=577 scripts=578 archetypes=85 named_or_treated_series=10 shared_official=26 quoted_support_checks=841 warnings=0"
+    },
+    {
+      "name": "Named-card runtime relationships",
+      "status": "PASS",
+      "returncode": 0,
+      "duration_seconds": 0.547,
+      "output": "cards=577\nscripts=577\nknown_names=19476\nrelationships_checked=142\nruntime_list_codes_consumed=5\nerrors=0\nreview_candidates=0\nfindings_by_kind={}\nofficial_database_loaded=True\nreport=C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\output\\omega_named_card_relations.json"
     },
     {
       "name": "Headless Omega registration",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 5.031,
+      "duration_seconds": 5.593,
       "output": "engine_version=11.0\ncards_tested=577\npassed=577\nfailed=0\nreport=C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\output\\omega_headless_registration_audit.json\nomega_scripts_zip=C:\\Program Files (x86)\\YGO Omega\\ygopro-scripts.zip"
+    },
+    {
+      "name": "Hash-pinned effect review ledger",
+      "status": "PASS",
+      "returncode": 0,
+      "duration_seconds": 0.641,
+      "output": "{\n  \"active_cards\": 577,\n  \"current_reviews\": 577,\n  \"inherited_current_reviews\": 533,\n  \"fresh_current_reviews\": 44,\n  \"stale_reviews\": 0,\n  \"pending_reviews\": 0,\n  \"current_verdicts\": {\n    \"PASS\": 275,\n    \"UNSUPPORTED\": 2,\n    \"FIXED\": 207,\n    \"MANUAL_RULING\": 93\n  },\n  \"errors\": 0\n}"
+    },
+    {
+      "name": "Omega callback smoke",
+      "status": "PASS",
+      "returncode": 0,
+      "duration_seconds": 11.219,
+      "output": "scripts=578\ncallbacks=5091\nerrors=0"
     },
     {
       "name": "Message routes",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 0.625,
-      "output": "active_cards=577\ncards_with_string_calls=560\nstring_call_occurrences=1423\nunique_carrier_slots=1343\nerrors=0"
+      "duration_seconds": 0.562,
+      "output": "active_cards=577\ncards_with_string_calls=560\nstring_call_occurrences=1417\nunique_carrier_slots=1343\nerrors=0"
     },
     {
       "name": "Script ZIP parity",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 0.313,
+      "duration_seconds": 0.281,
       "output": "verified C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\CCG_Scripts.zip (578 standalone CCG card scripts)"
     },
     {
       "name": "Public card data parity",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 0.093,
+      "duration_seconds": 0.079,
       "output": "public cards.json is in sync"
     },
     {
       "name": "Omega test-deck coverage",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 0.719,
+      "duration_seconds": 0.875,
       "output": "archetypes=57\ncustom_cards_covered=577\ndecks_generated=58\noutput=C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\output\\omega_test_decks"
     },
     {
       "name": "Live-test ledger integrity",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 0.516,
-      "output": "manual_tests=123\nblocked=0\nfailed=0\npassed=0\npending=123\ncards_with_test_decks=123\nerrors=0"
+      "duration_seconds": 0.546,
+      "output": "manual_tests=97\nblocked=0\nfailed=0\npassed=0\npending=97\ncards_with_test_decks=97\nerrors=0"
+    },
+    {
+      "name": "Manual-input skip report",
+      "status": "PASS",
+      "returncode": 0,
+      "duration_seconds": 0.204,
+      "output": "active_cards=577\nobjectively_resolved=482\nunresolved_skips=95\nregression_only=2\nmanual_scenarios=97\nerrors=0"
     },
     {
       "name": "Website filter/search unit tests",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 3.0,
-      "output": "> test\n> vitest run\n\n\n RUN  v3.2.7 C:/Manual Files/Applications/YugiohCCG.github.io\n\n ✓ src/utils/search.test.ts (1 test) 8ms\n ✓ src/utils/filters.test.ts (8 tests) 9ms\n\n Test Files  2 passed (2)\n      Tests  9 passed (9)\n   Start at  06:47:34\n   Duration  1.73s (transform 143ms, setup 0ms, collect 205ms, tests 17ms, environment 1ms, prepare 611ms)"
+      "duration_seconds": 3.39,
+      "output": "> test\n> vitest run\n\n\n RUN  v3.2.7 C:/Manual Files/Applications/YugiohCCG.github.io\n\n ✓ src/utils/filters.test.ts (8 tests) 14ms\n ✓ src/utils/search.test.ts (1 test) 9ms\n\n Test Files  2 passed (2)\n      Tests  9 passed (9)\n   Start at  21:25:52\n   Duration  1.13s (transform 155ms, setup 0ms, collect 262ms, tests 23ms, environment 1ms, prepare 749ms)"
     },
     {
       "name": "TypeScript/React lint",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 4.219,
+      "duration_seconds": 4.438,
       "output": "> lint\n> eslint src --ext .ts,.tsx"
     },
     {
       "name": "Omega release integrity",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 25.281,
+      "duration_seconds": 26.765,
       "output": "PASS  source: 577 unique active CCG card IDs\nPASS  source metadata: 577 complete card rows\nPASS  printed stars: 368 Level/Rank images match source\nPASS  importer: 3 spaced-stat OCR regressions pass\nPASS  official database: active IDs, prompt carriers, and custom setcodes are collision-free\nPASS  scripts: 577 active and 1 compatibility card scripts; no helpers/orphans\nPASS  database: 577 cards, 7 CCG Tokens, 1 compatibility aliases, 577 hidden prompt carriers\nPASS  Arts: 577 cards across 1 archive part(s)\nPASS  Pics: 577 cards across 4 archive part(s)\nPASS  Holograms: 405 cards across 3 archive part(s)\nPASS  Holograms: 405 opaque primary Arts images at 512x512\nPASS  Circuit victory string: one-byte Lua reason and installer/manual label agree\nPASS  installer: compiled EXE present (1,957,647 bytes)\nPASS  website downloads: installer and manual part links match the release\nPASS  smoke install: correct folders; matching files replaced; new files added; unrelated files preserved\n\nOmega release audit passed."
     },
     {
       "name": "Production build",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 16.953,
-      "output": "> prebuild\n> node scripts/sync-public-cards.cjs\n\npublic cards.json is already in sync\n\n> build\n> tsc --noEmit && vite build\n\nvite v7.1.5 building for production...\ntransforming...\n✓ 80 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                      0.80 kB │ gzip:   0.40 kB\ndist/assets/index-BElZ3her.css      47.12 kB │ gzip:  10.74 kB\ndist/assets/banlist--mm8nsPh.js      1.05 kB │ gzip:   0.64 kB\ndist/assets/index-DxJJ1gHX.js    1,155.51 kB │ gzip: 218.97 kB\n✓ built in 10.11s\n\n> postbuild\n> node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit."
+      "duration_seconds": 17.188,
+      "output": "> prebuild\n> node scripts/sync-public-cards.cjs\n\npublic cards.json is already in sync\n\n> build\n> tsc --noEmit && vite build\n\nvite v7.1.5 building for production...\ntransforming...\n✓ 80 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                      0.80 kB │ gzip:   0.40 kB\ndist/assets/index-BElZ3her.css      47.12 kB │ gzip:  10.74 kB\ndist/assets/banlist--mm8nsPh.js      1.05 kB │ gzip:   0.64 kB\ndist/assets/index-Bc1_Q9dK.js    1,155.98 kB │ gzip: 219.02 kB\n✓ built in 9.76s\n\n> postbuild\n> node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit."
     }
   ],
   "artifacts": {
@@ -125,7 +153,10 @@
     "semantic_audit": "scripts/output/ccg_lua_semantic_audit.json",
     "live_test_ledger": "scripts/output/omega_manual_test_ledger.json",
     "headless_registration": "scripts/output/omega_headless_registration_audit.json",
-    "headless_field_probe": "scripts/output/omega_headless_field_probe.json"
+    "headless_field_probe": "scripts/output/omega_headless_field_probe.json",
+    "named_card_relations": "scripts/output/omega_named_card_relations.json",
+    "effect_review_ledger": "scripts/output/ccg_effect_review_ledger.json",
+    "manual_input_skips": "scripts/output/ccg_manual_input_skips.json"
   },
   "manifest": {
     "summary": {
@@ -137,8 +168,8 @@
       "database_rows": 1162,
       "primary_archetypes": 85,
       "cards_without_primary_archetype": 35,
-      "effect_creations": 1985,
-      "effect_registrations": 2257,
+      "effect_creations": 1988,
+      "effect_registrations": 2261,
       "errors": 0
     },
     "errors": []
@@ -148,9 +179,9 @@
       "active_cards": 577,
       "scripts": 578,
       "parsed_scripts": 578,
-      "effect_creations": 1985,
-      "callback_functions": 3605,
-      "search_calls": 2769,
+      "effect_creations": 1988,
+      "callback_functions": 3617,
+      "search_calls": 2762,
       "accepted_replacement_target_callbacks": 3,
       "errors": 0,
       "review_candidates": 0,
@@ -190,7 +221,7 @@
         "card_id": 224751741,
         "card_name": "Fall of Azrynior",
         "script": "c224751741.lua",
-        "line": 87,
+        "line": 88,
         "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
         "disposition": "Fusion materials are collected after the mandatory Token is created; the activation guard separately proves a Dragon material and a summonable named Fusion."
       },
@@ -201,7 +232,7 @@
         "card_id": 224751741,
         "card_name": "Fall of Azrynior",
         "script": "c224751741.lua",
-        "line": 94,
+        "line": 95,
         "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
         "disposition": "The second material-group read applies the selected Fusion Monster to the same post-Token material pool; activation legality is established by dragonmat and fusfilter."
       },
@@ -223,7 +254,7 @@
         "card_id": 239245471,
         "card_name": "Birth of Azrynior",
         "script": "c239245471.lua",
-        "line": 83,
+        "line": 84,
         "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
         "disposition": "Fusion materials are collected after the mandatory Token is created; the activation guard separately proves a Dragon material and a summonable named Fusion."
       },
@@ -234,7 +265,7 @@
         "card_id": 239245471,
         "card_name": "Birth of Azrynior",
         "script": "c239245471.lua",
-        "line": 90,
+        "line": 91,
         "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
         "disposition": "The second material-group read applies the selected Fusion Monster to the same post-Token material pool; activation legality is established by dragonmat and fusfilter."
       },
@@ -245,7 +276,7 @@
         "card_id": 242009896,
         "card_name": "Extinction of Dysmandr",
         "script": "c242009896.lua",
-        "line": 67,
+        "line": 68,
         "detail": "e1: s.destg does not visibly guard s.desop's Duel.GetMatchingGroup(s.dgfilter|tp|LOCATION_MZONE|LOCATION_MZONE).",
         "disposition": "The target callback chooses the reference monster. The operation's different predicate intentionally finds all other monsters sharing one of its characteristics."
       },
@@ -256,7 +287,7 @@
         "card_id": 244816828,
         "card_name": "Myutant Evolution",
         "script": "c244816828.lua",
-        "line": 83,
+        "line": 84,
         "detail": "e2: s.sptg does not visibly guard s.spop's Duel.SelectMatchingCard(s.spfilter|tp|LOCATION_HAND+LOCATION_DECK|0).",
         "disposition": "rmfilter validates that each banishable card has the corresponding named summon available; the later spfilter selection uses the code determined by the card actually banished."
       },
@@ -325,8 +356,10 @@
   },
   "live_test_ledger": {
     "summary": {
-      "total": 123,
-      "pending": 123,
+      "historical_guide_total": 123,
+      "resolved_exclusions": 26,
+      "total": 97,
+      "pending": 97,
       "errors": 0
     },
     "errors": []

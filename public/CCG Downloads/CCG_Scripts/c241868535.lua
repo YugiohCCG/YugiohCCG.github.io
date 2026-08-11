@@ -40,8 +40,12 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_VIR_PEDICAE_MORTIS,SET_RECOLLECTION}
 s.listed_names={CARD_BEAR_TRAP,CARD_RECOLLECTION_STATIC,CARD_RECOLLECTION_IRON,CARD_RECOLLECTION_MINE,CARD_RECOLLECTION_KABOOM}
+s.mine_field_codes={
+	[76375976]=true,
+	[231872299]=true,
+}
 function s.thfilter(c)
-	return (c:IsCode(CARD_BEAR_TRAP) or (c:IsCode(CARD_RECOLLECTION_MINE) and c:IsType(TYPE_FIELD))) and c:IsAbleToHand()
+	return (c:IsCode(CARD_BEAR_TRAP) or (s.mine_field_codes[c:GetCode()] and c:IsType(TYPE_FIELD))) and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil) end

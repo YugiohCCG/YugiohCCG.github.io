@@ -62,6 +62,7 @@ function s.bfsop(e,tp,eg,ep,ev,re,r,rp)
 	if not c:IsRelateToEffect(e) then return end
 	
 	local visited = Group.CreateGroup()
+	local terminals = Group.CreateGroup()
 	local queue = {}
 	
 	local g = Duel.GetMatchingGroup(function(tc)
@@ -78,13 +79,18 @@ function s.bfsop(e,tp,eg,ep,ev,re,r,rp)
 		local curr = queue[head]
 		head = head + 1
 		local lg = curr:GetLinkedGroup()
+		local found_next = false
 		for tc in aux.Next(lg) do
 			if tc:IsControler(tp) and tc:IsType(TYPE_LINK) and not visited:IsContains(tc) then
 				if tc:GetLinkedGroup():IsContains(curr) then
+					found_next = true
 					visited:AddCard(tc)
 					table.insert(queue, tc)
 				end
 			end
+		end
+		if not found_next then
+			terminals:AddCard(curr)
 		end
 	end
 	
@@ -100,7 +106,7 @@ function s.bfsop(e,tp,eg,ep,ev,re,r,rp)
 	c:RegisterFlagEffect(id, RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END, 0, 1, ct)
 	
 	local allowed_mask = 0
-	for tc in aux.Next(visited) do
+	for tc in aux.Next(terminals) do
 		allowed_mask = bit.bor(allowed_mask, tc:GetLinkedZone(tp))
 	end
 	allowed_mask = bit.band(allowed_mask, 0x1f)

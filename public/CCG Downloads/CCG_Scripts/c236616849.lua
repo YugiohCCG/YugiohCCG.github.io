@@ -43,7 +43,7 @@ function s.initial_effect(c)
 end
 s.listed_series={0x7a34}
 function s.cfilter(c,tp)
-	return c:IsPreviousControler(tp) and c:IsPreviousPosition(POS_FACEUP) and c:IsSetCard(0x7a34)
+	return c:IsPreviousControler(tp) and c:IsPreviousSetCard(0x7a34)
 		and c:IsReason(REASON_EFFECT+REASON_BATTLE) and c:GetReasonPlayer()==1-tp
 end
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)

@@ -26,12 +26,16 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ConfirmDecktop(tp,ct)
 	local g=Duel.GetDecktopGroup(tp,ct)
 	local tg=g:Filter(Card.IsCode,nil,ac)
+	local added=false
 	if #tg>0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local sg=tg:Select(tp,1,1,nil)
-		Duel.SendtoHand(sg,nil,REASON_EFFECT)
-		Duel.ConfirmCards(1-tp,sg)
-	else
+		if Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then
+			Duel.ConfirmCards(1-tp,sg)
+			added=true
+		end
+	end
+	if not added then
 		Duel.SetLP(tp,Duel.GetLP(tp)-2000)
 	end
 	Duel.ShuffleDeck(tp)

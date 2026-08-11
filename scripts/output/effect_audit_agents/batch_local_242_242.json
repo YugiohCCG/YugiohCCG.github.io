@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "batch": "local-confirmed-fix",
+  "ordinal_start": 242,
+  "ordinal_end": 242,
+  "cards": [
+    {
+      "ordinal": 242,
+      "passcode": 224774049,
+      "name": "Pot of Gambling",
+      "text_sha256": "6f3823d153077e8f2fb586b939359a7b9183556ac512b764308dd6cec09ae162",
+      "script_sha256": "dfa261b42b0788122170778a1250a4d33e050dacb2f044d1517bb3443bb193f8",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Declare 1 card name; roll a six-sided die, then excavate cards from the top of your deck equal to the result, then add 1 excavated card with the declared name to your hand.",
+          "lua_implementation": "The target announces and stores a card code. Resolution rolls one die, reveals up to that many available Deck cards, selects one matching card if present, attempts to add it, and shuffles the Deck.",
+          "official_references": [
+            {"script":"c49299410.lua","card_id":49299410,"card_name":"The Black Goat Laughs","matched_structure":"Announces and stores a card code for use during resolution."},
+            {"script":"c3549275.lua","card_id":3549275,"card_name":"Dice Jar","matched_structure":"Calls Duel.TossDice during the resolving operation."}
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If you did not add any card by this effect, you lose 2000 LP.",
+          "lua_implementation": "Resolution initializes added=false and changes it only when Duel.SendtoHand succeeds; it subtracts 2000 LP whenever no card was actually added, including a failed add despite an excavated name match.",
+          "official_references": [
+            {"script":"c3549275.lua","card_id":3549275,"card_name":"Dice Jar","matched_structure":"Applies the result-dependent consequence during effect resolution after the die roll."}
+          ],
+          "verdict": "FIXED",
+          "issue": "Fixed: the LP-loss branch now depends on successful addition rather than merely finding a matching excavated card."
+        }
+      ]
+    }
+  ],
+  "summary": {"cards":1,"effects":2,"pass":1,"fixed":1,"defects":0,"custom_gaps":0}
+}

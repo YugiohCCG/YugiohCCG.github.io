@@ -27,6 +27,11 @@ function s.initial_effect(c)
 	e3:SetOperation(s.handop)
 	c:RegisterEffect(e3)
 end
+s.hallo_monster_codes={
+	[54611591]=true,
+	[230749983]=true,
+	[231331942]=true,
+}
 function s.gyfilter(c,e,tp)
 	return c:IsLevelBelow(3) and c:IsRace(RACE_ZOMBIE+RACE_FIEND)
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
@@ -54,7 +59,7 @@ function s.gyop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.hallofilter(c,e,tp)
-	return c:IsCode(HALLO_GIVER,HALLO_HOLLOW) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return s.hallo_monster_codes[c:GetCode()] and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.handtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0

@@ -70,12 +70,13 @@ function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not (c:IsRelateToEffect(e) and aux.NecroValleyFilter(Card.IsAbleToDeck)(c)) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
 	local sg=Duel.SelectMatchingCard(tp,s.showfilter,tp,LOCATION_ONFIELD,LOCATION_DECK,1,1,nil)
 	if #sg==0 then return end
 	Duel.ConfirmCards(1-tp,sg)
-	if not s.faceupoppdeck(c,tp,REASON_EFFECT) then return end
+	if c:IsRelateToEffect(e) and aux.NecroValleyFilter(Card.IsAbleToDeck)(c) then
+		s.faceupoppdeck(c,tp,REASON_EFFECT)
+	end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)
 	if #g>0 then

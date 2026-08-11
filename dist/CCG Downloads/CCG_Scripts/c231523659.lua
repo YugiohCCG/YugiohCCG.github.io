@@ -31,12 +31,12 @@ function s.initial_effect(c)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
 	c:RegisterEffect(e3)
 end
-function s.costfilter(c) return c:IsSetCard(SET_STARDUST) and not c:IsCode(id) and c:IsType(TYPE_MONSTER) and c:IsAbleToGraveAsCost() end
+function s.costfilter(c) return c:IsSetCard(SET_STARDUST) and not c:IsCode(id) and c:IsType(TYPE_MONSTER) and c:IsReleasable() end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.costfilter,tp,LOCATION_DECK,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 	local tc=Duel.SelectMatchingCard(tp,s.costfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
-	Duel.SendtoGrave(tc,REASON_COST+REASON_RELEASE)
+	Duel.Release(tc,REASON_COST)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

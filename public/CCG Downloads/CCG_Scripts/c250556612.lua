@@ -1,14 +1,7 @@
 --NiuHao - Zao
 local s,id=GetID()
 local STRING_ID=132556612
-local SET_NIUHAO=0xb69
 local SET_SACRED_TREASURE=0x8a20
-local CARD_BOJIN=236542835
-local CARD_CHUNYIN=229499914
-local CARD_HUANGJIN=246421842
-local STRING_BOJIN=132542835
-local STRING_CHUNYIN=133499914
-local STRING_HUANGJIN=132421842
 function s.initial_effect(c)
 	--Xyz Summon
 	aux.AddXyzProcedure(c,aux.FilterBoolFunction(Card.IsRace,RACE_WINDBEAST),1,2,nil,nil,99)
@@ -60,6 +53,7 @@ end
 function s.rmfilter(c)
 	return c:IsSetCard(SET_SACRED_TREASURE) and c:IsType(TYPE_SPELL) and c:IsAbleToRemove()
 		and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
+		and c:CheckActivateEffect(false,true,false)~=nil
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.rmfilter,tp,LOCATION_HAND+LOCATION_GRAVE,0,2,nil) end
@@ -75,109 +69,16 @@ function s.operation(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 		local tc=og:Select(tp,1,1,nil):GetFirst()
 		og:RemoveCard(tc)
-		if tc then
-			s.applyeffect(e,tp,tc)
-		end
+		if tc then s.applyeffect(e,tp,tc) end
 	end
-end
-function s.niufilter(c)
-	return c:IsFaceup() and c:IsSetCard(SET_NIUHAO) and c:IsType(TYPE_MONSTER)
-end
-function s.canapply(tp)
-	return Duel.IsExistingMatchingCard(s.niufilter,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.applyeffect(e,tp,tc)
-	if not (tc:IsFaceup() and tc:IsSetCard(SET_SACRED_TREASURE) and s.canapply(tp)) then return end
-	local code=tc:GetCode()
-	if code==CARD_BOJIN then
-		s.applybojin(e,tp)
-	elseif code==CARD_CHUNYIN then
-		s.applychunyin(e,tp)
-	elseif code==CARD_HUANGJIN then
-		s.applyhuangjin(e,tp)
-	end
-end
-function s.bojindesfilter(c,e)
-	return c:IsType(TYPE_MONSTER) and c:IsDestructable(e)
-end
-function s.bojinspfilter(c,e,tp)
-	return c:IsSetCard(SET_NIUHAO) and c:IsType(TYPE_MONSTER)
-		and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
-end
-function s.applybojin(e,tp)
-	local b1=Duel.IsExistingMatchingCard(s.bojindesfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil,e)
-	local b2=Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and Duel.IsExistingMatchingCard(s.bojinspfilter,tp,LOCATION_HAND,0,1,nil,e,tp)
-	if not (b1 or b2) then return end
-	local op=0
-	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(STRING_BOJIN,1),aux.Stringid(STRING_BOJIN,2))
-	elseif b2 then
-		op=1
-	end
-	if op==0 then
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-		local tc=Duel.SelectMatchingCard(tp,s.bojindesfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,1,nil,e):GetFirst()
-		if tc then Duel.Destroy(tc,REASON_EFFECT) end
-	else
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-		local tc=Duel.SelectMatchingCard(tp,s.bojinspfilter,tp,LOCATION_HAND,0,1,1,nil,e,tp):GetFirst()
-		if tc then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP) end
-	end
-end
-function s.posfilter(c)
-	return c:IsFaceup() and c:IsCanTurnSet()
-		and not Duel.IsPlayerAffectedByEffect(c:GetControler(),EFFECT_DIVINE_LIGHT)
-end
-function s.chunrmfilter(c)
-	return c:IsSetCard(SET_NIUHAO) and c:IsType(TYPE_MONSTER) and c:IsAbleToRemove()
-end
-function s.applychunyin(e,tp)
-	local b1=Duel.IsExistingMatchingCard(s.posfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil)
-	local g=Duel.GetMatchingGroup(s.chunrmfilter,tp,LOCATION_DECK,0,nil)
-	local b2=g:GetClassCount(Card.GetCode)>=2
-	if not (b1 or b2) then return end
-	local op=0
-	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(STRING_CHUNYIN,1),aux.Stringid(STRING_CHUNYIN,2))
-	elseif b2 then
-		op=1
-	end
-	if op==0 then
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_POSCHANGE)
-		local tc=Duel.SelectMatchingCard(tp,s.posfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,1,nil):GetFirst()
-		if tc then Duel.ChangePosition(tc,POS_FACEDOWN_DEFENSE) end
-	else
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-		aux.GCheckAdditional=aux.dncheck
-		local sg=g:SelectSubGroup(tp,aux.TRUE,false,2,2)
-		aux.GCheckAdditional=nil
-		if sg and #sg==2 then Duel.Remove(sg,POS_FACEUP,REASON_EFFECT) end
-	end
-end
-function s.huangdesfilter(c,e)
-	return c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsDestructable(e)
-end
-function s.gyrmfilter(c)
-	return c:IsAbleToRemove()
-end
-function s.applyhuangjin(e,tp)
-	local b1=Duel.IsExistingMatchingCard(s.huangdesfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil,e)
-	local b2=Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.gyrmfilter),tp,LOCATION_GRAVE,LOCATION_GRAVE,1,nil)
-	if not (b1 or b2) then return end
-	local op=0
-	if b1 and b2 then
-		op=Duel.SelectOption(tp,aux.Stringid(STRING_HUANGJIN,1),aux.Stringid(STRING_HUANGJIN,2))
-	elseif b2 then
-		op=1
-	end
-	if op==0 then
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-		local tc=Duel.SelectMatchingCard(tp,s.huangdesfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil,e):GetFirst()
-		if tc then Duel.Destroy(tc,REASON_EFFECT) end
-	else
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-		local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.gyrmfilter),tp,LOCATION_GRAVE,LOCATION_GRAVE,1,1,nil):GetFirst()
-		if tc then Duel.Remove(tc,POS_FACEUP,REASON_EFFECT) end
-	end
+	if not (tc:IsFaceup() and tc:IsLocation(LOCATION_REMOVED)) then return end
+	local te,ceg,cep,cev,cre,cr,crp=tc:CheckActivateEffect(false,true,true)
+	if not te then return end
+	local tg=te:GetTarget()
+	if tg then tg(e,tp,ceg,cep,cev,cre,cr,crp,1) end
+	local op=te:GetOperation()
+	if op then op(e,tp,ceg,cep,cev,cre,cr,crp) end
+	Duel.ClearOperationInfo(0)
 end

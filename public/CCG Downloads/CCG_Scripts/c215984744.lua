@@ -39,6 +39,17 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_VIR_PEDICAE_MORTIS,SET_RECOLLECTION}
 s.listed_names={CARD_PEDICAES_PAPA,CARD_BEAR_TRAP,CARD_RECOLLECTION_STATIC,CARD_RECOLLECTION_IRON,CARD_RECOLLECTION_MINE,CARD_RECOLLECTION_KABOOM}
+s.mine_field_codes={
+	[76375976]=true,
+	[231872299]=true,
+}
+s.mortis_codes={
+	[215984744]=true,
+	[229875953]=true,
+	[233103500]=true,
+	[243144691]=true,
+	[244778917]=true,
+}
 function s.isrecollection(c)
 	return c:IsSetCard(SET_RECOLLECTION)
 end
@@ -70,8 +81,7 @@ function s.recfilter(c)
 	return s.isrecollection(c) and c:IsAbleToHand()
 end
 function s.secondfilter(c)
-	return (c:IsCode(CARD_BEAR_TRAP) or (c:IsSetCard(SET_VIR_PEDICAE_MORTIS)
-		and not c:IsCode(CARD_PEDICAES_PAPA) and not s.isrecollection(c))) and c:IsAbleToHand()
+	return (c:IsCode(CARD_BEAR_TRAP) or s.mortis_codes[c:GetCode()]) and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.recfilter,tp,LOCATION_DECK,0,1,nil)
@@ -98,7 +108,7 @@ function s.indcon(e)
 	return Duel.IsExistingMatchingCard(s.papafilter,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.indtg(e,c)
-	return c:IsFaceup() and (s.isrecollection(c) or (c:IsCode(CARD_RECOLLECTION_MINE) and c:IsType(TYPE_FIELD)))
+	return c:IsFaceup() and (s.isrecollection(c) or (s.mine_field_codes[c:GetCode()] and c:IsType(TYPE_FIELD)))
 end
 function s.indval(e,re,rp)
 	return rp==1-e:GetHandlerPlayer()

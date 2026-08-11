@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "batch": "local-fix",
+  "ordinal_start": 318,
+  "ordinal_end": 318,
+  "cards": [
+    {
+      "ordinal": 318,
+      "passcode": 236721134,
+      "name": "Devotee of Fire",
+      "text_sha256": "0c0016e286121c5c186d7b56a0c38c77efa8bf52da66baf7be14934d80f94765",
+      "script_sha256": "ef8ecdaf0ac1ded6de69a83d237004556bd255daa18dfea4a4c508db083dbf30",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The three once-per-turn sentences are restrictions attached to the corresponding summon procedure, summon trigger, and negation effect; they are included in those three records rather than counted as separate effects."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If you control a FIRE Dragon monster, you can Special Summon this card from your GY. You can only Special Summon Devotee of Fire once per turn this way.",
+          "lua_implementation": "An uncopyable GY EFFECT_SPSUMMON_PROC checks Necrovalley, an open zone, and a face-up FIRE Dragon; its oath count code limits this procedure to once per turn.",
+          "official_references": [{"script":"c10560119.lua","card_id":10560119,"card_name":"Fishborg Doctor","matched_structure":"Uses a once-per-turn inherent Special Summon procedure from the GY with location/field-state legality checks."}],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Normal or Special Summoned: You can send 1 Dragon monster from your Extra Deck to the GY; Set 1 Spell/Trap that lists Phlogiston Dragon in its text directly from your Deck or GY. You can only use this effect once per turn.",
+          "lua_implementation": "The Normal/Special Summon trigger now sends one Extra Deck Dragon able to go to the GY as REASON_COST before target selection, then at resolution Sets one legal listed Spell/Trap from Deck or Necrovalley-permitted GY. Both summon events share SetCountLimit(1,id).",
+          "official_references": [
+            {"script":"c54701958.lua","card_id":54701958,"card_name":"Lunalight Liger Dancer","matched_structure":"Implements a semicolon-positioned Extra Deck send with IsAbleToGraveAsCost and Duel.SendtoGrave(...,REASON_COST) in SetCost."},
+            {"script":"c47222536.lua","card_id":47222536,"card_name":"Dark Magical Circle","matched_structure":"Uses aux.IsCodeListed to identify cards whose printed text lists a specific named card."}
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the previous Lua sent the Extra Deck Dragon during resolution with REASON_EFFECT. The semicolon makes that send the activation cost, so it is now paid in SetCost with REASON_COST."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "When your opponent activates a Spell/Trap Card or effect, while you control a Phlogiston Dragon (Quick Effect): You can Tribute this card; negate that activation. You can only use this effect once per turn.",
+          "lua_implementation": "The opponent Spell/Trap chain condition checks a face-up Phlogiston Dragon, releases Devotee as cost, and negates the activation under a distinct hard once-per-turn code.",
+          "official_references": [{"script":"c1508649.lua","card_id":1508649,"card_name":"Altergeist Hexstia","matched_structure":"Uses a Tribute/release cost in a chain-response effect and Duel.NegateActivation for the opponent's activation."}],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    }
+  ],
+  "summary": {"cards":1,"effects":3,"pass":2,"fixed":1,"defects":0,"custom_gaps":0}
+}

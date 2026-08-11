@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-122-144",
+  "ordinal_start": 135,
+  "ordinal_end": 135,
+  "cards": [
+    {
+      "ordinal": 135,
+      "passcode": 244013196,
+      "name": "To Proto Chrono",
+      "text_sha256": "011cede40051732935ea3fbba782e06968853fd65c0014f9ca08e3c9afa18696",
+      "script_sha256": "059ad0e9ec10efaec10910211dd86015351335f413899d8cc37f749d83577388",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Cannot be Normal Summoned/Set.",
+          "lua_implementation": "Single CANNOT_SUMMON and CANNOT_MSET effects register the explicit restrictions.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10000010.lua",
+              "card_id": 10000010,
+              "card_name": "The Winged Dragon of Ra",
+              "matched_structure": "The Winged Dragon of Ra uses explicit Normal Summon/Set restrictions for a special summon class."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Must first be Special Summoned from hand by banishing a To Proto monster you control.",
+          "lua_implementation": "Revive limit plus SPSUMMON_CONDITION restrict first summon; a hand SPSUMMON_PROC selects one face-up controlled set monster that opens a zone and banishes it as cost.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c72989439.lua",
+              "card_id": 72989439,
+              "card_name": "Black Luster Soldier - Envoy of the Beginning",
+              "matched_structure": "Black Luster Soldier - Envoy of the Beginning uses a hand Special Summon procedure paid by banishing monsters."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Main Phase Quick Effect: Tribute a Protogenic Essence Token; negate a face-up monster.",
+          "lua_implementation": "Main-Phase quick effect releases exact Token as cost, targets a face-up monster and installs DISABLE/DISABLE_EFFECT with standard reset.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c84815190.lua",
+              "card_id": 84815190,
+              "card_name": "Baronne de Fleur",
+              "matched_structure": "Baronne de Fleur supplies official quick negation structure; Lonefire supplies Tribute cost."
+            },
+            {
+              "script": "tmp/omega_scripts/c48686504.lua",
+              "card_id": 48686504,
+              "card_name": "Lonefire Blossom",
+              "matched_structure": "Uses release/Tribute of a controlled monster as activation cost."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Then this card gains ATK/DEF equal to that monster’s current ATK/DEF.",
+          "lua_implementation": "Resolution snapshots nonnegative current stats before negation and grants permanent UPDATE_ATTACK/DEFENSE to the related handler.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10000010.lua",
+              "card_id": 10000010,
+              "card_name": "The Winged Dragon of Ra",
+              "matched_structure": "The Winged Dragon of Ra uses paired ATK/DEF gain equal to a captured numeric value."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "If the gain occurs, increase all effects’ turn count by 1.",
+          "lua_implementation": "The operation increments Card TurnCounter values on cards in accessible locations, which covers conventional card-maintained turn counters but cannot enumerate or advance arbitrary effect-local reset durations.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c1082946.lua",
+              "card_id": 1082946,
+              "card_name": "Pyro Clock of Destiny",
+              "matched_structure": "Pyro Clock of Destiny is the closest official card: it advances the global turn count by one while the current turn continues."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Unresolved engine/design gap: Omega exposes card turn counters, not a universal collection of every effect's remaining turn duration. The printed phrase 'all effect's turn count' needs a narrower ruling or engine support."
+        },
+        {
+          "effect_index": 6,
+          "printed_clause": "If banished from field: target a differently named banished To Proto monster; add it to hand.",
+          "lua_implementation": "Delayed EVENT_REMOVE requires previous on-field location, targets face-up own banished set monster excluding this code, then adds/confirms it.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c80280944.lua",
+              "card_id": 80280944,
+              "card_name": "Giant Rex",
+              "matched_structure": "Giant Rex uses a delayed EVENT_REMOVE trigger with previous-location/banished-card handling."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 7,
+          "printed_clause": "Each activated effect is once per turn.",
+          "lua_implementation": "Quick effect and banished trigger use id/id+100.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 7,
+    "pass": 6,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

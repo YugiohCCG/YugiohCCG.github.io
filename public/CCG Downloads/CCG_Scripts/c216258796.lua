@@ -41,7 +41,7 @@ function s.spcon1(e,c)
 		and Duel.IsExistingMatchingCard(function(c) return c:IsFaceup() and c:IsAttribute(ATTRIBUTE_WATER) and c:IsRace(RACE_AQUA) end,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.negcon(e,tp,eg,ep,ev,re,r,rp)
-	return rp==1-tp and Duel.IsChainNegatable(ev)
+	return Duel.IsChainNegatable(ev)
 		and Duel.IsExistingMatchingCard(function(c) return c:IsFaceup() and c:IsSetCard(SET_AQUAMARINE) and c~=e:GetHandler() end,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.costfilter(c)

@@ -27,7 +27,7 @@ function s.initial_effect(c)
 	e1:SetTarget(s.sptg)
 	e1:SetOperation(s.spop)
 	c:RegisterEffect(e1)
-	--Gain half the ATK/DEF currently lost by monsters on the field
+	--Gain the ATK/DEF currently lost by monsters on the field
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_SINGLE)
 	e2:SetCode(EFFECT_UPDATE_ATTACK)
@@ -111,11 +111,11 @@ function s.lossfilter(c)
 end
 function s.atkval(e,c)
 	local g=Duel.GetMatchingGroup(s.lossfilter,e:GetHandlerPlayer(),LOCATION_MZONE,LOCATION_MZONE,nil)
-	return math.floor(g:GetSum(s.atkloss)/2)
+	return g:GetSum(s.atkloss)
 end
 function s.defval(e,c)
 	local g=Duel.GetMatchingGroup(s.lossfilter,e:GetHandlerPlayer(),LOCATION_MZONE,LOCATION_MZONE,nil)
-	return math.floor(g:GetSum(s.defloss)/2)
+	return g:GetSum(s.defloss)
 end
 function s.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonLocation(LOCATION_EXTRA)

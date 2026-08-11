@@ -24,6 +24,8 @@ LIVE_TEST_LEDGER = ROOT / "scripts" / "output" / "omega_manual_test_ledger.json"
 HEADLESS_REPORT = ROOT / "scripts" / "output" / "omega_headless_registration_audit.json"
 FIELD_PROBE_REPORT = ROOT / "scripts" / "output" / "omega_headless_field_probe.json"
 NAMED_RELATIONS_REPORT = ROOT / "scripts" / "output" / "omega_named_card_relations.json"
+EFFECT_REVIEW_LEDGER = ROOT / "scripts" / "output" / "ccg_effect_review_ledger.json"
+MANUAL_INPUT_REPORT = ROOT / "scripts" / "output" / "ccg_manual_input_skips.json"
 SCRIPTS_DIR = ROOT / "public" / "CCG Downloads" / "CCG_Scripts"
 ANSI_RE = re.compile(r"\x1b\[[0-9;]*[A-Za-z]")
 
@@ -179,13 +181,16 @@ def main() -> int:
     checks: list[tuple[str, list[str] | None, str | None]] = [
         ("Authoritative card manifest", [python, "scripts/build_ccg_qa_manifest.py"], None),
         ("Lua compiler syntax", None, "lua_syntax"),
+        ("Generated printed-text search pools", [python, "scripts/sync_text_search_pools.py", "--check"], None),
         ("Lua semantic and search-condition audit", [node, "scripts/verify_ccg_lua_semantics.cjs", "--strict-review"], None),
+        ("Hash-pinned effect review ledger", [python, "scripts/build_ccg_effect_review_ledger.py"], None),
         ("Omega callback smoke", [python, "scripts/verify_omega_callbacks.py"], None),
         ("Message routes", [python, "scripts/verify_omega_message_routes.py"], None),
         ("Script ZIP parity", [python, "scripts/package_omega_ccg_scripts.py", "--check"], None),
         ("Public card data parity", [node, "scripts/sync-public-cards.cjs", "--check"], None),
         ("Omega test-deck coverage", [python, "scripts/build_omega_test_decks.py"], None),
         ("Live-test ledger integrity", [python, "scripts/build_omega_manual_test_ledger.py"], None),
+        ("Manual-input skip report", [python, "scripts/build_ccg_manual_input_report.py"], None),
         ("Website filter/search unit tests", [npm, "test"], None),
         ("TypeScript/React lint", [npm, "run", "lint"], None),
     ]
@@ -243,6 +248,8 @@ def main() -> int:
             "headless_registration": HEADLESS_REPORT.relative_to(ROOT).as_posix(),
             "headless_field_probe": FIELD_PROBE_REPORT.relative_to(ROOT).as_posix(),
             "named_card_relations": NAMED_RELATIONS_REPORT.relative_to(ROOT).as_posix(),
+            "effect_review_ledger": EFFECT_REVIEW_LEDGER.relative_to(ROOT).as_posix(),
+            "manual_input_skips": MANUAL_INPUT_REPORT.relative_to(ROOT).as_posix(),
         },
         "manifest": compact_artifact(manifest_payload),
         "semantic_audit": compact_artifact(

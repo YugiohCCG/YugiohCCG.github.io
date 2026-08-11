@@ -20,7 +20,7 @@ function s.initial_effect(c)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
 	e2:SetCode(EVENT_DESTROYED)
 	e2:SetRange(LOCATION_FZONE)
-	e2:SetCountLimit(1,id)
+	e2:SetCountLimit(1,id+100)
 	e2:SetCondition(s.atkcon)
 	e2:SetTarget(s.atktg)
 	e2:SetOperation(s.atkop)
@@ -32,6 +32,7 @@ function s.initial_effect(c)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_BATTLED)
 	e3:SetRange(LOCATION_FZONE)
+	e3:SetCountLimit(1,id+200)
 	e3:SetCondition(s.descon)
 	e3:SetTarget(s.destg)
 	e3:SetOperation(s.desop)
@@ -74,7 +75,8 @@ end
 function s.atkcon(e,tp,eg,ep,ev,re,r,rp)
 	local tc=eg:GetFirst()
 	for tc in aux.Next(eg) do
-		if tc:IsPreviousControler(tp) and tc:IsPreviousLocation(LOCATION_ONFIELD+LOCATION_HAND) then
+		if tc:IsPreviousControler(tp) and tc:IsPreviousLocation(LOCATION_ONFIELD+LOCATION_HAND)
+			and tc:IsReason(REASON_BATTLE+REASON_EFFECT) then
 			return true
 		end
 	end

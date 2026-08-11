@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-122-144",
+  "ordinal_start": 141,
+  "ordinal_end": 141,
+  "cards": [
+    {
+      "ordinal": 141,
+      "passcode": 254065048,
+      "name": "Polemistis gia Ataxia",
+      "text_sha256": "6f1f4b2e49ed9e81046477f3cffe82cb73af94e644395904cee0ea6ef2ceb68d",
+      "script_sha256": "13de90d1df28f5ceff53adc5d3ef938a605489e65347624ba1f46481d2d8fe3c",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2 Level 1+ Protogenic Essence Tokens.",
+          "lua_implementation": "Fusion material metadata requires exactly two exact Tokens with Level at least 1.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10817524.lua",
+              "card_id": 10817524,
+              "card_name": "First of the Dragons",
+              "matched_structure": "First of the Dragons supplies repeated exact-two Fusion material structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Must first be Special Summoned from Extra Deck by Tributing those materials while controlling To Proto Ataxia; no Polymerization.",
+          "lua_implementation": "Revive limit/SPSUMMON_CONDITION plus custom Extra SPSUMMON_PROC checks exact face-up Ataxia, selects exactly two releasable legal Tokens, records and releases them.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c79229522.lua",
+              "card_id": 79229522,
+              "card_name": "Chimeratech Fortress Dragon",
+              "matched_structure": "Chimeratech Fortress Dragon is an official no-Polymerization Extra Deck procedure."
+            },
+            {
+              "script": "tmp/omega_scripts/c48686504.lua",
+              "card_id": 48686504,
+              "card_name": "Lonefire Blossom",
+              "matched_structure": "Lonefire Blossom supplies Tribute/release semantics."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If monster(s) loses ATK/DEF, this card gains ATK/DEF equal to amount lost.",
+          "lua_implementation": "Continuous UPDATE_ATTACK and UPDATE_DEFENSE values sum each current face-up monster's deficit from GetBaseAttack/GetBaseDefense.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c90263923.lua",
+              "card_id": 90263923,
+              "card_name": "Leeching the Light",
+              "matched_structure": "Leeching the Light demonstrates deriving a live ATK modification from current field monster stats."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Unresolved design/engine gap: the printed event-like phrase does not define duration or accumulation, and Omega exposes no official ATK/DEF-loss event from which to record historical losses. The current script models live deficits only."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Can attack all opponent monsters once each.",
+          "lua_implementation": "Unconditional EFFECT_ATTACK_ALL value 1.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c96938777.lua",
+              "card_id": 96938777,
+              "card_name": "Machine Lord Ür",
+              "matched_structure": "Machine Lord Ür uses the exact attack-all-once-each implementation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "If Special Summoned from Extra Deck: add to hand or send an Ataxia Spell/Trap from Deck.",
+          "lua_implementation": "Delayed summon trigger checks Summon location Extra, selects a set S/T legal for at least one destination and offers add/confirm or send.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c40044918.lua",
+              "card_id": 40044918,
+              "card_name": "Elemental HERO Stratos",
+              "matched_structure": "Elemental HERO Stratos supplies summon-trigger Deck selection; Foolish Burial supplies send branch."
+            },
+            {
+              "script": "tmp/omega_scripts/c81439173.lua",
+              "card_id": 81439173,
+              "card_name": "Foolish Burial",
+              "matched_structure": "Sends a selected monster from Deck to the GY; the alternative branch adds it to hand."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 6,
+          "printed_clause": "The summon-trigger effect is once per turn.",
+          "lua_implementation": "SetCountLimit(1,id).",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 6,
+    "pass": 5,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

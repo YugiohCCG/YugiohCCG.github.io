@@ -1,0 +1,12 @@
+{"schema_version":1,"batch":"local-confirmed-fix","ordinal_start":164,"ordinal_end":164,"cards":[{
+  "ordinal":164,"passcode":242009896,"name":"Extinction of Dysmandr","text_sha256":"04eb09cb18ff1a9a47f6ae455f0e8a9b41428eb3f81d6752628146f956f5facf","script_sha256":"dabf4ab0f296d3d1c481573f09a52326fc2ef54189a74400c5effb00b32d19e4","overall_verdict":"FIXED",
+  "coverage_override":{"expected_individual_effects":1,"reason":"The control condition, Token Tribute cost, choose/mass-destroy/then-destroy operation, and HOPT are parts of one Quick Effect."},
+  "effects":[{
+    "effect_index":1,
+    "printed_clause":"While controlling Dysmandr, Tribute a Protogenic Essence Token, choose an Effect Monster; destroy all other Effect Monsters sharing Type, Attribute, Level, ATK or DEF except Dysmandr, then destroy the chosen monster. HOPT.",
+    "lua_implementation":"A hard-once-per-turn Quick Effect checks face-up Dysmandr, Tributes the required releasable Token as cost, chooses and relates a face-up Effect Monster without targeting, builds the five-characteristic matching group excluding Dysmandr and the chosen card, and now destroys the chosen card only after at least one other matching monster was successfully destroyed.",
+    "official_references":[{"script":"c89558743.lua","card_id":89558743,"card_name":"Small World","matched_structure":"Compares monster Type, Attribute, Level, ATK, and DEF to establish shared characteristics."},{"script":"c90448279.lua","card_id":90448279,"card_name":"Divine Arsenal AA-ZEUS - Sky Thunder","matched_structure":"Builds and processes a non-targeting mass on-field group during resolution."}],
+    "verdict":"FIXED",
+    "issue":"Fixed: the 'then' destruction of the chosen monster is now gated on successful destruction of at least one card in the required first group."
+  }]
+}],"summary":{"cards":1,"effects":1,"pass":0,"fixed":1,"defects":0,"custom_gaps":0}}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "batch": "local-confirmed-fix",
+  "ordinal_start": 273,
+  "ordinal_end": 273,
+  "cards": [{
+    "ordinal": 273,
+    "passcode": 257081514,
+    "name": "Auriga of the Eldoran Empire",
+    "text_sha256": "be3aee9f96b861297fddf47b11d43892045a9e4e8337589bae856fabd7c7929e",
+    "script_sha256": "772e71f3039036647727ea685ed82a8dbccd94b321f870654e1754fd693012fd",
+    "overall_verdict": "FIXED",
+    "coverage_override": {"expected_individual_effects":4,"reason":"The summon procedure and its procedure limit form one effect; the Summoned trigger, destruction trigger, and shared each-effect HOPT are the other three audit units."},
+    "effects": [
+      {
+        "effect_index": 1,
+        "printed_clause": "If you control Eldora, the Intergalactic Empire, you can Special Summon this card from your hand. You can only Special Summon Auriga once per turn this way.",
+        "lua_implementation": "An uncopyable hand EFFECT_SPSUMMON_PROC checks an open Monster Zone and a face-up controlled card with Eldora's exact code. An oath count keyed to this card enforces the once-per-turn procedure.",
+        "official_references": [{"script":"c336601.lua","card_id":336601,"card_name":"Moon Gardna","matched_structure":"Uses an uncopyable hand EFFECT_SPSUMMON_PROC with a condition and oath once-per-turn limit."}],
+        "verdict": "FIXED",
+        "issue": "Fixed: the self-Summon is now a non-activated procedure rather than an Ignition Effect that starts a Chain."
+      },
+      {
+        "effect_index": 2,
+        "printed_clause": "If this card is Summoned: You can draw 1 card, then place 1 card from your hand on the bottom of your Deck.",
+        "lua_implementation": "Normal, Special, and Flip Summon trigger clones share one hard count key. Resolution draws one, shuffles the hand for hidden information, then sends one selected hand card to the bottom of the Deck.",
+        "official_references": [{"script":"c336601.lua","card_id":336601,"card_name":"Moon Gardna","matched_structure":"Registers cloned summon-event triggers sharing one id-keyed count limit."},{"script":"c48712195.lua","card_id":48712195,"card_name":"Card Trader","matched_structure":"Handles a draw/hand-return sequence while preserving hidden hand information."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 3,
+        "printed_clause": "If this card is destroyed by Eldora, the Intergalactic Empire or your opponent's card effect: You can add 1 Eldora Spell/Trap from your GY, or if Eldora is in your GY, add it from your Deck instead.",
+        "lua_implementation": "A delayed EVENT_DESTROYED trigger requires effect destruction by the exact Field Spell or the opponent, then offers whichever GY archetype recovery and conditional exact-code Deck-search branches are legal at resolution.",
+        "official_references": [{"script":"c4145852.lua","card_id":4145852,"card_name":"Zoodiac Ramram","matched_structure":"Uses a delayed EVENT_DESTROYED trigger and checks the destruction reason."},{"script":"c336601.lua","card_id":336601,"card_name":"Moon Gardna","matched_structure":"Selects and adds a filtered card to the hand under a hard once-per-turn limit."}],
+        "verdict": "PASS",
+        "issue": null
+      },
+      {
+        "effect_index": 4,
+        "printed_clause": "You can only use each effect of Auriga of the Eldoran Empire once per turn.",
+        "lua_implementation": "The Summoned trigger and destruction trigger use distinct hard count keys; the separately worded summon-procedure limit uses its own oath key.",
+        "official_references": [{"script":"c336601.lua","card_id":336601,"card_name":"Moon Gardna","matched_structure":"Uses separate id-keyed hard/oath turn limits for distinct effects."}],
+        "verdict": "PASS",
+        "issue": null
+      }
+    ]
+  }],
+  "summary": {"cards":1,"effects":4,"pass":3,"fixed":1,"defects":0,"custom_gaps":0}
+}

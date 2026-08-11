@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-122-144",
+  "ordinal_start": 134,
+  "ordinal_end": 134,
+  "cards": [
+    {
+      "ordinal": 134,
+      "passcode": 232706629,
+      "name": "Protogenic Astral Cycle",
+      "text_sha256": "96fc518c9224f6607372195a29065759f3c68951ff2ad982cc40a3346a432f7c",
+      "script_sha256": "d94c5f295e5b62059c1f1edfe9e9bd1134fce3e6856a77b9058d5a82f49d91f6",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Neither player can Summon Effect Monsters to Main Monster Zones in this card’s column.",
+          "lua_implementation": "A both-player MUST_USE_MZONE effect targets Effect Monsters and returns all zones except the corresponding Main Monster Zone; Extra Monster Zones remain allowed.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c46247282.lua",
+              "card_id": 46247282,
+              "card_name": "Iron Dragon Tiamaton",
+              "matched_structure": "Iron Dragon Tiamaton uses column-zone calculations and summon placement restrictions."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Once per turn: Special Summon one Protogenic Essence Token.",
+          "lua_implementation": "SZONE ignition has soft SetCountLimit(1), exact Token legality and token creation.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15341821.lua",
+              "card_id": 15341821,
+              "card_name": "Dandylion",
+              "matched_structure": "Dandylion supplies exact Token creation; SetCountLimit(1) is soft once-per-turn form."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If opponent activates a card effect: banish an Effect Monster you control.",
+          "lua_implementation": "EVENT_CHAINING requires opponent reason player; cost selects a face-up removable Effect Monster that opens a zone and banishes it.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom demonstrates opponent-chain timing; official costs filter and banish a controlled monster."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If your opponent activates a card effect: banish 1 Effect Monster you control; Special Summon 1 To Proto monster from hand or GY, ignoring its Summoning conditions.",
+          "lua_implementation": "The source text now uses the standard phrase 'ignoring its Summoning conditions', matching IsCanBeSpecialSummoned(...,true,false) and Duel.SpecialSummon(...,true,false).",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c34325937.lua",
+              "card_id": 34325937,
+              "card_name": "Unification of the Cubic Lords",
+              "matched_structure": "Unification of the Cubic Lords is an official “ignoring its Summoning conditions” implementation."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed as a literal source-text typo: 'ignoring its card effects' is not a defined summon instruction, while the canonical Lua already implemented the standard official 'ignoring its Summoning conditions' semantics."
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "The opponent-response effect is once per turn.",
+          "lua_implementation": "SetCountLimit(1,id+100).",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 4,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

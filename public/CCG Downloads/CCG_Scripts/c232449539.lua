@@ -87,6 +87,7 @@ function s.registerreturn(e,tp,g)
 	Duel.RegisterEffect(e1,tp)
 end
 function s.fusop(e,tp,eg,ep,ev,re,r,rp)
+	s.applylimit(e,tp)
 	local chkf=tp
 	local mg=s.getmaterials(tp,nil)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
@@ -113,6 +114,8 @@ function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 	else
 		banmat:DeleteGroup()
 	end
+end
+function s.applylimit(e,tp)
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)

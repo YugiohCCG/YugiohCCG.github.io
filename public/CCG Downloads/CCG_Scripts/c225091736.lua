@@ -57,8 +57,9 @@ function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not (c:IsRelateToEffect(e) and c:IsLocation(LOCATION_HAND)) then return end
-	if not s.faceupoppdeck(c,tp,REASON_EFFECT) then return end
+	if c:IsRelateToEffect(e) and c:IsLocation(LOCATION_HAND) then
+		s.faceupoppdeck(c,tp,REASON_EFFECT)
+	end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)
 	if #g>0 then

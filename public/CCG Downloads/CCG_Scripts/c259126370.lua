@@ -3,8 +3,9 @@ local s,id=GetID()
 local STRING_ID=133126370
 local SET_ECLIPSE=0xf2f4
 local CARD_BOOK_OF_ECLIPSE=35480699
+local CARD_BOOK_OF_LUNAR_ECLIPSE=31834488
 function s.initial_effect(c)
-	aux.AddCodeList(c,120222045)
+	aux.AddCodeList(c,120222045,CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE)
 	c:EnableReviveLimit()
 	aux.AddXyzProcedure(c,aux.FilterBoolFunction(Card.IsRace,RACE_SPELLCASTER),8,2)
 	--If your opponent draws 2 or more cards, excavate and add 2 cards
@@ -45,7 +46,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 s.listed_series={SET_ECLIPSE}
-s.listed_names={CARD_BOOK_OF_ECLIPSE}
+s.listed_names={CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE}
 function s.thcon(e,tp,eg,ep,ev,re,r,rp)
 	e:SetLabel(#eg)
 	return ep==1-tp and #eg>=2
@@ -73,25 +74,25 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ShuffleDeck(tp)
 end
 function s.tdfilter(c,e)
-	return c:IsFaceup() and c:IsAbleToDeck() and c:IsCanBeEffectTarget(e)
+	return c:IsAbleToDeck() and c:IsCanBeEffectTarget(e)
 end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_REMOVED)
-		and aux.NecroValleyFilter(s.tdfilter)(chkc,e) end
-	if chk==0 then return Duel.IsExistingTarget(aux.NecroValleyFilter(s.tdfilter),tp,LOCATION_REMOVED,0,1,nil,e) end
+		and s.tdfilter(chkc,e) end
+	if chk==0 then return Duel.IsExistingTarget(s.tdfilter,tp,LOCATION_REMOVED,0,1,nil,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.tdfilter),tp,LOCATION_REMOVED,0,1,3,nil,e)
+	local g=Duel.SelectTarget(tp,s.tdfilter,tp,LOCATION_REMOVED,0,1,3,nil,e)
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,g,#g,0,0)
 end
 function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e)
-	g=g:Filter(aux.NecroValleyFilter(s.tdfilter),nil,e)
+	g=g:Filter(s.tdfilter,nil,e)
 	if #g>0 then
 		Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
 	end
 end
 function s.qpfilter(c)
-	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE)) and c:IsType(TYPE_QUICKPLAY)
+	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE)) and c:IsType(TYPE_QUICKPLAY)
 end
 function s.gyct(tp)
 	local g=Duel.GetMatchingGroup(s.qpfilter,tp,LOCATION_GRAVE,0,nil)

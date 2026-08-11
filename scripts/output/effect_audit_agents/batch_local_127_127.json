@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-122-144",
+  "ordinal_start": 127,
+  "ordinal_end": 127,
+  "cards": [
+    {
+      "ordinal": 127,
+      "passcode": 216532402,
+      "name": "Sacred Feather of Nephthys",
+      "text_sha256": "b4bacf98e02e3a9d74318856acec05555b4e76ac84d2755415c4fff01a200e4b",
+      "script_sha256": "0113973f94750d6f422cc718954dd11279ad2739a8de4c517b11395901c94e09",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Ritual Summon any Nephthys Ritual Monster.",
+          "lua_implementation": "Activation selects a hand Nephthys Ritual monster summonable by Ritual, sets material and completes procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c51124303.lua",
+              "card_id": 51124303,
+              "card_name": "Nekroz Kaleidoscope",
+              "matched_structure": "Official Ritual Spell selection, Ritual Summon, material assignment, and CompleteProcedure structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Tribute Nephthys monsters from hand/field whose total Levels equal or exceed the Ritual Monster’s Level.",
+          "lua_implementation": "Ritual material group is filtered to set monsters with Level >0 and legal ritual material; subgroup sum is at least required Level and releases with Ritual material reason.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c51124303.lua",
+              "card_id": 51124303,
+              "card_name": "Nekroz Kaleidoscope",
+              "matched_structure": "Official Ritual material-pool and Level-sum subgroup handling."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If you control no monsters, you may Tribute 1 Nephthys monster from Deck instead.",
+          "lua_implementation": "The alternative selects one Main Deck Nephthys monster that is releasable and legal Ritual Material; Main Deck monsters necessarily have a Level, and Ritual-material legality still applies to a monster Tributed for a Ritual Summon.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c51124303.lua",
+              "card_id": 51124303,
+              "card_name": "Nekroz Kaleidoscope",
+              "matched_structure": "Nekroz Kaleidoscope and official Ritual Spells demonstrate nonstandard Ritual material locations."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": "Rejected: Xyz and Link Monsters cannot be in the Main Deck location named by the effect, and the word Tribute does not override effects that prohibit use as Ritual Material."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If any card is destroyed while you control Conductor, Devotee or Priestess: banish this card from GY.",
+          "lua_implementation": "Delayed EVENT_DESTROYED checks exact named face-up monster and aux.bfgcost.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c8454126.lua",
+              "card_id": 8454126,
+              "card_name": "Conductor of Nephthys",
+              "matched_structure": "Conductor of Nephthys is the exact official named Nephthys reference and uses destruction triggers."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "Destroy 1 card you control, then place a Nephthys Continuous Trap face-up from Deck.",
+          "lua_implementation": "Target legality ensures a destroyable own card and available Trap; when S/T zone is full it requires destroying an S/T to open one. Successful destruction gates MoveToField face-up.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c98684220.lua",
+              "card_id": 98684220,
+              "card_name": "Black Chaos",
+              "matched_structure": "Black Chaos places a Continuous Trap face-up from Deck/GY using MoveToField."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 6,
+          "printed_clause": "The GY effect is once per turn.",
+          "lua_implementation": "SetCountLimit(1,id).",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 6,
+    "pass": 6,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

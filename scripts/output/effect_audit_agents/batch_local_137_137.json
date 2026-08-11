@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-122-144",
+  "ordinal_start": 137,
+  "ordinal_end": 137,
+  "cards": [
+    {
+      "ordinal": 137,
+      "passcode": 259219942,
+      "name": "Stellaer of the Plants",
+      "text_sha256": "c3bc1fc8ae139893b32b63b5fc919b313e109db240f7376414e358d919037dc5",
+      "script_sha256": "2822496f38ff523bbffa9abb3c6728a966c059a4c956b7e62e7b26847ae407f9",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Conditional hand Special Summon, then NATURE Special Summon lock for the rest of turn.",
+          "lua_implementation": "Hand procedure checks empty field or Dragon Xyz; its operation registers CANNOT_SPECIAL_SUMMON for NATURE through End Phase.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c32909498.lua",
+              "card_id": 32909498,
+              "card_name": "Kashtira Fenrir",
+              "matched_structure": "Kashtira Fenrir supplies conditional hand procedure and post-summon restriction structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If detached from a Stellaer Xyz to activate its effect: target a Stellaer Xyz you control.",
+          "lua_implementation": "EVENT_MOVE now catches the material moving from overlay to the GY or banishment; the condition verifies detachment as the activation cost of a Stellaer Xyz Monster before attaching this card.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c9491461.lua",
+              "card_id": 9491461,
+              "card_name": "Gagaga Ganbara Knight",
+              "matched_structure": "Gagaga Ganbara Knight is the official detached-to-activate trigger analogue."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: EVENT_TO_GRAVE did not implement the destination-independent detached wording. Official Gagaga Ganbara Knight and Capshell establish EVENT_MOVE or paired destination events for this condition."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Attach this card as material, but banish it when detached.",
+          "lua_implementation": "Resolution overlays handler onto target. A target-specific TO_GRAVE_REDIRECT field effect on that Xyz redirects this overlay card to banishment when it would detach to GY.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c6812770.lua",
+              "card_id": 6812770,
+              "card_name": "Performage Cup Tricker",
+              "matched_structure": "Performage Cup Tricker attaches itself to an Xyz as material; official redirect effects handle later detached destination."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "The detached effect is once per turn.",
+          "lua_implementation": "SetCountLimit(1,id).",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "The summon procedure and its resulting Attribute lock are one procedure record; the detached trigger and its leave-field redirect are separately recorded, and the HOPT is included with that activated effect."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 3,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

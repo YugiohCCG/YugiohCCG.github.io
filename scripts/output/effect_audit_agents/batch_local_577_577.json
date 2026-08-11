@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "batch": "local-tail",
+  "ordinal_start": 577,
+  "ordinal_end": 577,
+  "cards": [
+    {
+      "ordinal": 577,
+      "passcode": 259223502,
+      "name": "Ether Mademoiselle",
+      "text_sha256": "b5a130d2661cb3385ca4c808dd0a13f2f8472b0713c8edada6539a567a1788bc",
+      "script_sha256": "5406f877d77fd308b72f627f4ae351588117b70988e497f1c34c51e7d53450f1",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2 Level 7 or higher LIGHT or DARK monsters",
+          "lua_implementation": "EnableReviveLimit plus AddFusionProcFunRep requires exactly two materials; s.fusfilter requires each material to be Level 7 or higher and to have LIGHT or DARK Attribute.",
+          "official_references": [
+            {
+              "script": "c57157964.lua",
+              "card_id": 57157964,
+              "card_name": "Fossil Machine Skull Convoy",
+              "matched_structure": "Uses an official Fusion material procedure with Card.IsLevelAbove(7)."
+            },
+            {
+              "script": "c74631897.lua",
+              "card_id": 74631897,
+              "card_name": "Artmage Non-Finito",
+              "matched_structure": "Uses EnableReviveLimit and aux.AddFusionProcFunRep with a repeat count of 2."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Fusion Summoned: You can target 1 Level 7 or lower LIGHT or DARK monster in your GY; Special Summon it, but negate its effects, also you cannot Special Summon from the Extra Deck for the rest of this turn, except Fusion Monsters. You can only use this effect of Ether Mademoiselle once per turn.",
+          "lua_implementation": "EVENT_SPSUMMON_SUCCESS checks SUMMON_TYPE_FUSION, targets a Level 7 or lower LIGHT/DARK monster through Necrovalley, Special Summons and disables it, then registers an Extra Deck Fusion-only summon restriction through the End Phase. SetCountLimit(1,id) supplies the hard once-per-turn limit.",
+          "official_references": [
+            {
+              "script": "c3534077.lua",
+              "card_id": 3534077,
+              "card_name": "Coach Soldier Wolfbark",
+              "matched_structure": "Targets a monster in the GY, Special Summons it, and registers EFFECT_DISABLE plus EFFECT_DISABLE_EFFECT with standard resets."
+            },
+            {
+              "script": "c6498706.lua",
+              "card_id": 6498706,
+              "card_name": "Fusion Deployment",
+              "matched_structure": "Registers EFFECT_CANNOT_SPECIAL_SUMMON with a target that permits only Fusion Monsters from the Extra Deck and resets at the End Phase."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "During your turn, when your opponent activates a card or effect on the field (Quick Effect): You can negate the activation, and if you do, destroy that card. You can only use this effect of Ether Mademoiselle once per turn.",
+          "lua_implementation": "An EVENT_CHAINING Quick Effect is restricted to the controller's turn, opponent activations whose activation location is on the field, and negatable chains; it negates activation and conditionally destroys the related handler. SetCountLimit(1,id+100) is a distinct hard once-per-turn code.",
+          "official_references": [
+            {
+              "script": "c14972952.lua",
+              "card_id": 14972952,
+              "card_name": "Vaalmonica Ereditare",
+              "matched_structure": "Uses EVENT_CHAINING, Duel.IsChainNegatable, Duel.NegateActivation, relation/destructibility checks, and Duel.Destroy for the same negate-and-destroy conjunction."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 3,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

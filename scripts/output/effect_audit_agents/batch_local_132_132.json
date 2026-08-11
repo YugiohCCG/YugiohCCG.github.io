@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-122-144",
+  "ordinal_start": 132,
+  "ordinal_end": 132,
+  "cards": [
+    {
+      "ordinal": 132,
+      "passcode": 246524183,
+      "name": "Protogenesis",
+      "text_sha256": "8361147a31a89cab93e4951b66cb0914688a8cb7bb6fa3d564397bf3ce1d4200",
+      "script_sha256": "c040c02d92b3a10b9bb68e28a7b584d3eca1942cbb1302f62c37d00360a6c2ac",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Reveal one To Proto monster in hand or Deck.",
+          "lua_implementation": "The activation cost selects a current legal branch card, confirms it, shuffles hand if needed, and creates an effect relation.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c2390019.lua",
+              "card_id": 2390019,
+              "card_name": "Ojamassimilation",
+              "matched_structure": "Ojamassimilation uses reveal/confirm selection tied to later resolution."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If it can be Normal Summoned/Set, Special Summon it; otherwise banish it.",
+          "lua_implementation": "nsfilter classifies summonable-card or monster-settable cards; resolution Special Summons that class and banishes the other class face-up.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c34325937.lua",
+              "card_id": 34325937,
+              "card_name": "Unification of the Cubic Lords",
+              "matched_structure": "Unification of the Cubic Lords uses ignoring-condition Special Summon branches; official reveal effects preserve selected-card relation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can only use this effect once per turn.",
+          "lua_implementation": "Activation uses SetCountLimit(1,id).",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If you do, during End Phase lose LP equal to total original ATK and DEF of each monster you control.",
+          "lua_implementation": "At the End Phase, the registered delayed effect now totals GetBaseAttack/GetBaseDefense for every monster the player controls, including face-down monsters, and subtracts that total from LP.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c1082946.lua",
+              "card_id": 1082946,
+              "card_name": "Pyro Clock of Destiny",
+              "matched_structure": "Pyro Clock of Destiny demonstrates turn-timed global effects; official original-stat calculations use original-stat accessors."
+            },
+            {
+              "script": "tmp/omega_scripts/c94380860.lua",
+              "card_id": 94380860,
+              "card_name": "Number 103: Ragnazero",
+              "matched_structure": "Uses current-versus-original ATK accessors, illustrating that original statistics are not base-stat accessors."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Partly confirmed and corrected: the face-up filter was unprinted. The GetBaseAttack/GetBaseDefense claim was rejected because Omega uses base values for a field monster's current original ATK/DEF, as in Regenesis Lord."
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 3,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

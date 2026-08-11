@@ -41,18 +41,8 @@ function s.thcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then
-		if c:IsLocation(LOCATION_HAND) then
-			return c:IsAbleToGraveAsCost()
-		else
-			return c:IsReleasable()
-		end
-	end
-	if c:IsLocation(LOCATION_HAND) then
-		Duel.SendtoGrave(c,REASON_COST+REASON_RELEASE)
-	else
-		Duel.Release(c,REASON_COST)
-	end
+	if chk==0 then return c:IsReleasable() end
+	Duel.Release(c,REASON_COST)
 end
 function s.thfilter(c)
 	return c:IsSetCard(SET_STAIN) and c:IsAbleToHand()

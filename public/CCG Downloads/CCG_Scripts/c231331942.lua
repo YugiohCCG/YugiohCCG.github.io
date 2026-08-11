@@ -2,8 +2,8 @@ local s,id=GetID()
 local STRING_ID=133331942
 local NIGHT=215621622
 local SET_HALLOWEEN=0xfb6d
--- "Hallo, the Spirit of Tricks" is referenced by the card text but is absent from cards.json/CCG_v1.db.
-local HALLO_SPIRIT=0
+-- Official TCG card "Hallo, the Spirit of Tricks".
+local HALLO_SPIRIT=54611591
 function s.initial_effect(c)
 	aux.AddCodeList(c,54611591,215621622)
 	c:EnableReviveLimit()
@@ -39,7 +39,7 @@ function s.splimit(e,se,sp,st)
 	return (se and se:GetHandler():IsCode(NIGHT)) or c:IsStatus(STATUS_PROC_COMPLETE)
 end
 function s.spiritfilter(c,e,tp)
-	return HALLO_SPIRIT~=0 and c:IsCode(HALLO_SPIRIT) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return c:IsCode(HALLO_SPIRIT) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
@@ -63,9 +63,11 @@ function s.thfilter(c)
 	return c:IsSetCard(SET_HALLOWEEN) and c:IsType(TYPE_SPELL) and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil) end
+	if chk==0 then return true end
 	Duel.SetOperationInfo(0,CATEGORY_DAMAGE,nil,0,tp,500)
-	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
+	if Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil) then
+		Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
+	end
 end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local ct=Duel.GetMatchingGroupCount(s.fiendfilter,tp,LOCATION_GRAVE,0,nil)

@@ -70,9 +70,11 @@ function s.negcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	local ct=c:GetFlagEffect(id)+1
+	local ct=c:GetFlagEffect(id)
 	if chk==0 then return c:CheckRemoveOverlayCard(tp,ct,REASON_COST) end
-	c:RemoveOverlayCard(tp,ct,ct,REASON_COST)
+	if ct>0 then
+		c:RemoveOverlayCard(tp,ct,ct,REASON_COST)
+	end
 	c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,0,1)
 end
 function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk)

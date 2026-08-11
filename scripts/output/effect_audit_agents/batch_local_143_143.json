@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-122-144",
+  "ordinal_start": 143,
+  "ordinal_end": 143,
+  "cards": [
+    {
+      "ordinal": 143,
+      "passcode": 259057226,
+      "name": "Stellaer of the Cold",
+      "text_sha256": "17fcd3d9ed5b9e929ce0b313374ba12700c89eb47a04cd004b6cca4d433c49e2",
+      "script_sha256": "e350d3a31251d0855d9e6438f83816851715088fd47d7a07aa59e46a3af54633",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Conditional hand Special Summon, then ICE Special Summon lock for rest of turn.",
+          "lua_implementation": "Hand procedure checks empty own field or Dragon Xyz and registers CANNOT_SPECIAL_SUMMON for ICE through End Phase.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c32909498.lua",
+              "card_id": 32909498,
+              "card_name": "Kashtira Fenrir",
+              "matched_structure": "Kashtira Fenrir supplies conditional hand procedure/post-procedure restriction structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If detached from a Stellaer Xyz to activate an effect: Special Summon a Stellaer monster from hand.",
+          "lua_implementation": "EVENT_MOVE now catches detachment to the GY or banishment; the condition verifies REASON_COST and a Stellaer Xyz activating handler before Special Summoning from hand.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c9491461.lua",
+              "card_id": 9491461,
+              "card_name": "Gagaga Ganbara Knight",
+              "matched_structure": "Gagaga Ganbara Knight is the official detached-to-activate trigger analogue."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: EVENT_TO_GRAVE missed redirected detachment. Official Gagaga Ganbara Knight uses EVENT_MOVE for the same printed trigger."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Banish that summoned monster when it leaves field.",
+          "lua_implementation": "Successful summoned monster receives LEAVE_FIELD_REDIRECT to banishment with standard redirect reset.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c66102515.lua",
+              "card_id": 66102515,
+              "card_name": "Kurikurinku @Ignister",
+              "matched_structure": "Special Summon from hand or GY, then apply a leave-field redirect that banishes the summoned monster."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "The detached effect is once per turn.",
+          "lua_implementation": "SetCountLimit(1,id).",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "The summon procedure and its resulting Attribute lock are one procedure record; the detached summon, leave-field redirect, and its HOPT are represented by the remaining records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 3,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}
