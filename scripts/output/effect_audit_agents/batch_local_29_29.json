@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-1-72",
+  "ordinal_start": 29,
+  "ordinal_end": 29,
+  "cards": [
+    {
+      "ordinal": 29,
+      "passcode": 248788543,
+      "name": "Right Talismandrake Arms - Blaze Sabre",
+      "text_sha256": "d02f299cbcf0822a3ea9f4604558090c5be49bb171ebad1a159c9326ced4804a",
+      "script_sha256": "93a3cdfab155ea8be08250b469172831ef66c0883219e03c7185d41763faf279",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If you control a \"Talismandrake\" monster: Target 1 face-up card your opponent controls; negate its effects until the end of this turn.",
+          "lua_implementation": "c248788543.lua uses Duel.NegateRelatedChain, EFFECT_DISABLE; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c97268402.lua",
+              "card_id": 97268402,
+              "card_name": "Effect Veiler",
+              "matched_structure": "face-up target negation with End Phase reset."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "During your Main Phase, or if your opponent Special Summons a monster(s) (except during the Damage Step): You can target 1 DARK Pyro monster you control; equip this card from your GY to it as an Equip Spell with the following effects.",
+          "lua_implementation": "c248788543.lua uses Duel.Equip, EFFECT_EQUIP_LIMIT; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c56747793.lua",
+              "card_id": 56747793,
+              "card_name": "United We Stand",
+              "matched_structure": "continuous Equip-derived ATK calculation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "● The equipped monster gains 500 ATK for each Equip Spell equipped to a monster you control, also, if it would be destroyed by battle, you can destroy this card instead.",
+          "lua_implementation": "The equipped monster gains 500 ATK for each face-up Equip Spell whose equip target is a monster controlled by the equipped monster's controller, and battle destruction can be replaced by destroying this Equip Card.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c56747793.lua",
+              "card_id": 56747793,
+              "card_name": "United We Stand",
+              "matched_structure": "continuous Equip-derived ATK calculation."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and fixed: own Spell/Trap Zone Equip Cards attached to opposing monsters no longer contribute."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use 1 \"Right Talismandrake Arms - Blaze Sabre\" effect per turn, and only once that turn.",
+          "lua_implementation": "c248788543.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "named hard once-per-turn SetCountLimit structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Independent manual segmentation of the exact current printed text into 4 atomic material, condition, cost, operation, restriction, and count-limit clauses; every record was compared with current canonical Lua and an official Omega structure."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 3,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

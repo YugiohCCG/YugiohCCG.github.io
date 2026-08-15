@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "batch": "batch-8c-local-reconciliation",
+  "ordinal_start": 551,
+  "ordinal_end": 551,
+  "cards": [
+    {
+      "ordinal": 551,
+      "passcode": 259402105,
+      "name": "Magical Girl Explosion!",
+      "text_sha256": "56b84e1a5967cdb369d16b056810b0121af85fe233c5e5014544119a31599f19",
+      "script_sha256": "4de30d56064d40fd0f8e54ba4cfad18dc20cf7880a5bb5c625b6c96cb2794195",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Fresh semantic segmentation found 4 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "(This card is always treated as a \"Charmelia\" card.)",
+          "lua_implementation": "The current CCG database row stores both the card's own setcode and Charmelia setcode 0x12b1 (hex blob D2EBB112); listed_series also exposes Charmelia to script tooling.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c28306253.lua",
+              "card_id": 28306253,
+              "matched_structure": "Official always-treated-as naming/archetype classification is database/list metadata rather than an activated Lua effect.",
+              "card_name": "Angry Burger"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "If the opponent controls more cards, they cannot respond to this card's effect activations.",
+          "lua_implementation": "Each activated effect calls protect_chain during target setup; if the opponent's on-field count exceeds the controller's, SetChainLimit permits only the controller to add the next chain link.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c48130397.lua",
+              "card_id": 48130397,
+              "matched_structure": "Sets a chain limit during activation targeting so the opponent cannot respond.",
+              "card_name": "Super Polymerization"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        },
+        {
+          "printed_clause": "Once per turn during either Main Phase: Tribute a hand/face-up-field \"Charmelia\" monster; non-target-select an opponent monster, negate it, and if successful banish it face-down.",
+          "lua_implementation": "A Main-Phase Quick Effect releases one eligible hand/MZONE monster as cost, non-target-selects a negatable opposing monster at resolution, registers disable effects, then removes it face-down without a sequential break; id count limit applies.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c24224830.lua",
+              "card_id": 24224830,
+              "matched_structure": "Banishes a monster and applies effect negation to the selected card.",
+              "card_name": "Called by the Grave"
+            },
+            {
+              "script": "tmp/omega_scripts/c11155484.lua",
+              "card_id": 11155484,
+              "matched_structure": "Cost followed by negation and a dependent removal/destruction operation.",
+              "card_name": "Crystal Miracle"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 3
+        },
+        {
+          "printed_clause": "If the opponent controls an Extra-Deck-Summoned monster: Special Summon a \"Charmelia\" Ritual from hand/Deck/GY ignoring conditions, treated as a Ritual Summon; HOPT.",
+          "lua_implementation": "The condition now recognizes every opponent monster whose Summon location was the Extra Deck, including a face-down one, matching Dogmatika Ecclesia. The filter and operation use nocheck=true,nolimit=true to ignore Summoning Conditions, summon with SUMMON_TYPE_RITUAL, and CompleteProcedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c60303688.lua",
+              "card_id": 60303688,
+              "matched_structure": "Official Extra-Deck-summoned-monster condition checks IsSummonLocation without requiring face-up.",
+              "card_name": "Dogmatika Ecclesia, the Virtuous"
+            },
+            {
+              "script": "tmp/omega_scripts/c14094090.lua",
+              "card_id": 14094090,
+              "matched_structure": "Ignoring Summoning conditions uses IsCanBeSpecialSummoned/Duel.SpecialSummon with nocheck=true.",
+              "card_name": "Super Soldier Ritual"
+            },
+            {
+              "script": "tmp/omega_scripts/c8454126.lua",
+              "card_id": 8454126,
+              "matched_structure": "Special Summon treated as a Ritual Summon through SUMMON_TYPE_RITUAL and CompleteProcedure.",
+              "card_name": "Conductor of Nephthys"
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the old face-up filter excluded face-down Extra-Deck-Summoned monsters, and nocheck=false did not implement the explicit 'ignoring its Summoning Conditions' instruction.",
+          "effect_index": 4
+        }
+      ],
+      "supersedes_batch": "batch_8c_539_555.json",
+      "reconciliation_note": "All batch_8c findings for this card were re-evaluated against current Lua and the cited official Omega references. Confirmed defects are patched; retained CUSTOM_GAP records explain the remaining engine/source limit."
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 3,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

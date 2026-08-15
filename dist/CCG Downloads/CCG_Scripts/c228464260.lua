@@ -73,7 +73,7 @@ end
 function s.efilter(e,re)
 	local c=e:GetHandler()
 	local tp=e:GetHandlerPlayer()
-	if not re:IsActiveType(TYPE_MONSTER) or re:GetOwnerPlayer()==tp then return false end
+	if not re:IsActiveType(TYPE_MONSTER) or not re:IsActivated() or re:GetOwnerPlayer()==tp then return false end
 	local rc=re:GetHandler()
 	if not rc then return false end
 	local attr=rc:GetAttribute()

@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 204,
+  "ordinal_end": 204,
+  "cards": [
+    {
+      "ordinal": 204,
+      "passcode": 223158720,
+      "name": "Nautical Backwashing & Oceanic Waves",
+      "text_sha256": "fef64d3fb1fe26550df2d08052b83a38dc1da9ba910bfb5f716704770f34e7da",
+      "script_sha256": "678b3236921b61886f42ed5a53d5ce605819304dff3951f2d1100f7af34b663a",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Target a Nautica in your GY; return it, then opponent Normal/Special Summons from hand in Attack with ATK 0.",
+          "lua_implementation": "Adversarial re-review confirmed that the current canonical Lua implements this printed effect with supported Omega primitives. A compound effect need not have a single-card official analogue; the attached official references validate its individual engine structures.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c45184165.lua",
+              "card_id": 45184165,
+              "card_name": "Raidraptor - Skull Eagle",
+              "matched_structure": "Targeted archetype recovery from GY.",
+              "official_effect_text": "If this card is detached from an Xyz Monster [b]and[/b] sent to the Graveyard to activate that monster's effect: [b]You can[/b] [b]banish[/b] this card from your Graveyard, [b]then[/b] [b]target[/b] 1 \"Raidraptor\" card in your Graveyard; add it to your hand. [b]You can[/b] only use this effect of \"Raidraptor - Skull Eagle\" [b]once[/b] [b]per turn[/b]. An Xyz Monster that was Summoned using this card on the field as Xyz Material gains this effect.\n● If it is Xyz Summoned: It gains 300 ATK.",
+              "script_sha256": "87cf582e6074430e193ab9c8bdd57886c9017339f1795c87d6c43bcba44091a9",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Duel.GetFirstTarget",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "aux.Stringid",
+                "aux.bfgcost"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c18940725.lua",
+              "card_id": 18940725,
+              "card_name": "Floowandereeze & Robina",
+              "matched_structure": "Effect-driven Normal Summon component.",
+              "official_effect_text": "If this face-up card would leave the field, [b]banish[/b] it [b]instead[/b]. [b]You can[/b] only use each of the following effects of \"Floowandereeze & Robina\" [b]once[/b] [b]per turn[/b], [b]and[/b] [b]cannot[/b] Special Summon during the turn you activate either effect. If this card is Normal Summoned: [b]You can[/b] add 1 Level 4 or lower Winged Beast monster from your Deck to your hand, [b]then[/b] [b]immediately[/b] after this effect resolves, [b]you can[/b] Normal Summon 1 Winged Beast monster. If a Winged Beast monster is Normal Summoned to your field while this card is banished: [b]You can[/b] add this card to your hand.",
+              "script_sha256": "4fe6fa535afac0f55d133a716d1eb3de052f96b9b7f188dde6280cc64d37b93c",
+              "verified_shared_tokens": [
+                "CATEGORY_SUMMON",
+                "CATEGORY_TOHAND",
+                "Duel.BreakEffect",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "Duel.Summon",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Banish this from GY; put 3 Aqua monsters from GY on Deck bottom in any order, then draw 1. Only one effect per turn.",
+          "lua_implementation": "Shared HOPT id with activation; GY ignition banishes cost, selects exactly three, requires all three reach bottom, then draws.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c40005099.lua",
+              "card_id": 40005099,
+              "card_name": "Shiranui Style Synthesis",
+              "matched_structure": "GY banish cost plus multi-card GY recycling and follow-up draw.",
+              "official_effect_text": "[b]Once[/b] [b]per turn[/b], if you control no monsters: [b]You can[/b] send 1 card from your hand to the Graveyard, [b]then[/b] activate 1 of these effects.\n● [b]Target[/b] 1 Zombie-Type monster with 0 DEF in your Graveyard; Special Summon it.\n● [b]Target[/b] 1 of your banished Zombie-Type monsters with 0 DEF; [b]return[/b] it to the Graveyard.\n[b]You can[/b] only activate 1 \"Shiranui Style Synthesis\" [b]per turn[/b].",
+              "script_sha256": "4b60eff1fbec2a67c9634350abfdf9bb350c88c861b797a3610ad81d35f7bfd5",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetFirstTarget",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.IsExistingTarget",
+                "Duel.SelectOption",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_IGNITION",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "lua_effect_creations": 3,
+      "conservative_printed_clause_floor": 2,
+      "heuristic_printed_clause_floor": 2,
+      "source_batch": "batch_local_204_204.json",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_204_204.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

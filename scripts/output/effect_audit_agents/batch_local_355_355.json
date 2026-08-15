@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 355,
+  "ordinal_end": 355,
+  "cards": [
+    {
+      "ordinal": 355,
+      "passcode": 250047045,
+      "name": "Dreaming Bau",
+      "text_sha256": "375191b2f6869d833537a54ab699169b201c4be6648367d6d21c3d28b3b93de7",
+      "script_sha256": "229ce7cdf4a5dff36619f9bcf296656f1fb0fde233cfba44da1540dd5fbceed2",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Banish 2 hand cards including this; add \"Bauy World\", then optionally draw 1; HOPT.",
+          "lua_implementation": "Hand ignition banishes this and one other hand card as cost, searches exact Field Spell code, then optionally draws after successful add; id HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c85590798.lua",
+              "card_id": 85590798,
+              "card_name": "Starry Knight Ceremony",
+              "matched_structure": "Hand cost, exact-card search, and optional follow-up draw structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If controlling \"Bauy World\": Quick Special Summon this banished card, then optionally on your turn banish a GY \"Bau\", or on opponent turn immediately Synchro Summon; HOPT.",
+          "lua_implementation": "Banished free-chain effect checks Field Spell, summons self, branches on turn player, and either optionally removes a GY archetype card or calls Duel.SynchroSummon on a currently summonable Extra Deck monster; separate HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c1154611.lua",
+              "card_id": 1154611,
+              "card_name": "Paleozoic Leanchoilia",
+              "matched_structure": "Banished/GY card movement operation."
+            },
+            {
+              "script": "tmp/omega_scripts/c28827503.lua",
+              "card_id": 28827503,
+              "card_name": "Link into the VRAINS!",
+              "matched_structure": "Immediate Extra Deck Summon after an effect resolves."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The hand banish/search/optional-draw sequence is one effect. The banished-card Quick Summon and its turn-player-dependent optional bullet follow-up are one second effect; both records include their HOPTs."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

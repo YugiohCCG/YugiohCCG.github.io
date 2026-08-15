@@ -38,8 +38,13 @@ function s.descon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK)
 end
 function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return true end
 	local g=Duel.GetMatchingGroup(Card.IsType,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,nil,TYPE_SPELL+TYPE_TRAP)
+	if chk==0 then
+		if #g==0 then return false end
+		local g1=Duel.GetMatchingGroup(s.pzfilter1,tp,LOCATION_DECK,0,nil)
+		local g2=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_EXTRA,0,nil):Filter(s.pzfilter1,nil)
+		return g1:IsExists(s.pzfilter1pair,1,nil,g2)
+	end
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,#g,0,0)
 end
 function s.pzfilter1(c)
@@ -53,7 +58,7 @@ function s.pzfilter1pair(c,g)
 end
 function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(Card.IsType,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,nil,TYPE_SPELL+TYPE_TRAP)
-	Duel.Destroy(g,REASON_EFFECT)
+	if Duel.Destroy(g,REASON_EFFECT)==0 then return end
 	if not (Duel.CheckLocation(tp,LOCATION_PZONE,0) and Duel.CheckLocation(tp,LOCATION_PZONE,1)) then return end
 	local g1=Duel.GetMatchingGroup(s.pzfilter1,tp,LOCATION_DECK,0,nil)
 	local g2=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_EXTRA,0,nil):Filter(s.pzfilter1,nil)

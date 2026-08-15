@@ -5,8 +5,9 @@ local SET_ECLIPSE=0xf2f4
 local SET_ECLIPSE_OBSERVER=0xeb17
 local CARD_OBSERVATORY=259721372
 local CARD_BOOK_OF_ECLIPSE=35480699
+local CARD_BOOK_OF_LUNAR_ECLIPSE=31834488
 function s.initial_effect(c)
-	aux.AddCodeList(c,120222045)
+	aux.AddCodeList(c,120222045,CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE)
 	--Send 1 "Eclipse" Quick-Play Spell or "Eclipse Observer" card from your Deck to the GY
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -36,7 +37,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 s.listed_series={SET_ECLIPSE,SET_ECLIPSE_OBSERVER}
-s.listed_names={CARD_BOOK_OF_ECLIPSE}
+s.listed_names={CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE}
 function s.isobservermonster(c)
 	return c:IsType(TYPE_MONSTER) and c:IsSetCard(SET_ECLIPSE_OBSERVER)
 end
@@ -44,7 +45,7 @@ function s.isobservercard(c)
 	return s.isobservermonster(c) or c:IsSetCard(SET_ECLIPSE_OBSERVER) or c:IsCode(CARD_OBSERVATORY)
 end
 function s.tgfilter(c)
-	return c:IsAbleToGrave() and (((c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE))
+	return c:IsAbleToGrave() and (((c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE))
 		and c:IsType(TYPE_QUICKPLAY)) or s.isobservercard(c))
 end
 function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)

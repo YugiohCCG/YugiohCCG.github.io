@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch3-coverage-reconciliation",
+  "ordinal_start": 177,
+  "ordinal_end": 177,
+  "cards": [
+    {
+      "ordinal": 177,
+      "passcode": 233659599,
+      "name": "Minion Puppets of Wicked Puppeteer",
+      "text_sha256": "426581848702440f205fac3051bb3acbd9ad0460cdcdd4e1f1951dbad7b4ec4e",
+      "script_sha256": "09ab8b0f3ab8c385a4a64789fe00d60a984aae8c6bfb80a845f6e57c84cc8929",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Main Phase/Orchis Tribute Special Summon from hand or GY. HOPT.",
+          "lua_implementation": "Conditioned Quick Effect Tributes one and summons the handler; HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c22865492.lua",
+              "card_id": 22865492,
+              "card_name": "Vision HERO Increase",
+              "matched_structure": "Tribute-cost self Special Summon."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If Tributed while controlling Orchis: target opponent monster; take control until end of turn. HOPT.",
+          "lua_implementation": "EVENT_RELEASE delayed trigger checks current Orchis, targets a control-changeable opponent monster and Duel.GetControl's it through PHASE_END; HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c98045062.lua",
+              "card_id": 98045062,
+              "card_name": "Enemy Controller",
+              "matched_structure": "Targets an opponent monster and takes control until the End Phase after a Tribute cost."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Main-Phase self-Summon procedure and the Tributed control-change trigger are the two distinct effects; the shared 'each effect' HOPT sentence is represented in both records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

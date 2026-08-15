@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 223,
+      "passcode": 234296128,
+      "name": "Revelation of Crying Chaos",
+      "text_sha256": "36f04c3ba73a5cb8f6af586124fab476024442329d54dfc4cb564a0f8231f94c",
+      "script_sha256": "21c01de6d495998e8b5e41d7bc744e34f6cb3228a1ad3cb65e261d177b46bb48",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "1 Zombie Tuner monster + 1+ non-Tuner monsters",
+          "lua_implementation": "AddSynchroProcedure enforces a Zombie Tuner and one or more non-Tuners.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c5800323.lua",
+              "card_id": 5800323,
+              "card_name": "Poplar of the White Forest",
+              "matched_structure": "Synchro procedure/Summon",
+              "official_effect_text": "1 Tuner + 1+ non-Tuner monsters\nIf this card is Special Summoned: You can target 2 \"White Forest\" monsters in your GY; place them face-up in their owners' Spell & Trap Zones as Continuous Spells. During your opponent's Main Phase, you can (Quick Effect): Immediately after this effect resolves, Synchro Summon using this card you control. You can only use each effect of \"Poplar of the White Forest\" once per turn.",
+              "script_sha256": "0db0eb90d44d85dbb976bffcaaa0b649383d545375d418859e7f64818197575a",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetChainInfo",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_QUICK_O",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "RESET_EVENT",
+                "TYPE_MONSTER",
+                "aux.AddSynchroProcedure",
+                "aux.NonTuner",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Synchro Summoned using a Zombie Synchro Monster: You can Special Summon 1 Level 4 or lower Zombie monster from your Deck or GY.",
+          "lua_implementation": "e1 checks the material group for a Zombie Synchro and summons a Level 4-or-lower Zombie from Deck/GY.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c29301450.lua",
+              "card_id": 29301450,
+              "card_name": "S:P Little Knight",
+              "matched_structure": "material-inspection Summon trigger",
+              "official_effect_text": "2 Effect Monsters\nIf this card is Link Summoned using a Fusion, Synchro, Xyz, or Link Monster as material: [b]You can[/b] [b]target[/b] 1 card on the field or in either GY; [b]banish[/b] it, [b]also[/b] your monsters [b]cannot[/b] attack directly this turn. [b]When[/b] your opponent activates a card or effect ([b]Quick Effect[/b]): [b]You can[/b] [b]target[/b] 2 face-up monsters on the field, including a monster you control; [b]banish[/b] both until the [b]End Phase[/b]. [b]You can[/b] only use each effect of \"S:P Little Knight\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "8d5918ec712e1cf83b0746453c8def3a20fc3c5a562fff869a617b866df9b785",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_QUICK_O",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_CHAINING",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "LOCATION_ONFIELD",
+                "PHASE_END",
+                "RESET_EVENT",
+                "RESET_PHASE",
+                "TYPE_SYNCHRO",
+                "aux.FilterBoolFunction",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "When your opponent activates a card or effect that would make a card you control leave the field (Quick Effect): You can Tribute 1 \"Crying Chaos\" monster you control; Negate that effect, and if you do, this card gains ATK equal to the Tributed monster's combined ATK and DEF until the end of this turn.",
+          "lua_implementation": "negcon recognizes the standard leave-field operation-info categories; negcost Tributes a Crying Chaos monster and stores its current GetAttack()+GetDefense(); negop negates and applies that value through the End Phase.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c66102515.lua",
+              "card_id": 66102515,
+              "card_name": "Kurikurinku @Ignister",
+              "matched_structure": "target-group check then negate",
+              "official_effect_text": "If this card is in your hand or GY (Quick Effect): You can Tribute 1 \"@Ignister\" monster; Special Summon this card, but banish it when it leaves the field. When a card or effect is activated that targets a Cyberse monster(s) you control, and you control a Cyberse monster that was Special Summoned from the Extra Deck (Quick Effect): You can Tribute this card; negate that effect. You can only use each effect of \"Kurikurinku @Ignister\" once per turn.",
+              "script_sha256": "65bae903329b2db0f1571a36ac247edf9573e17e37b4263b63aa77de1c2a1203",
+              "verified_shared_tokens": [
+                "CATEGORY_DISABLE",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.CheckReleaseGroup",
+                "Duel.GetChainInfo",
+                "Duel.IsExistingMatchingCard",
+                "Duel.NegateEffect",
+                "Duel.Release",
+                "Duel.SelectReleaseGroup",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_QUICK_O",
+                "EFFECT_TYPE_SINGLE",
+                "EVENT_CHAINING",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_COST",
+                "RESET_EVENT",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c38296564.lua",
+              "card_id": 38296564,
+              "card_name": "Safe Zone",
+              "matched_structure": "destruction/target protection",
+              "official_effect_text": "Activate this card by targeting 1 face-up Attack Position monster on the field; that face-up monster [b]cannot[/b] be destroyed by battle or your opponent's card effects, your opponent [b]cannot[/b] [b]target[/b] it with card effects, [b]also[/b] it [b]cannot[/b] attack your opponent directly. [b]When[/b] this card leaves the field, [b]destroy[/b] that monster. [b]When[/b] that monster leaves the field, [b]destroy[/b] this card.",
+              "script_sha256": "9bcd9412e146364b2117615b0c71ddce676e60993494baf9976908dbd9a524c7",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE"
+              ]
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Omega can inspect declared operation-info categories and chain targets, but arbitrary Lua operations need not declare either, so the engine cannot determine every effect that would make a controlled card leave the field. Exact resolution requires an engine API exposing the resolving operation's affected cards/destinations, or card text restricted to declared targets and enumerated leave-field categories."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use each effect of \"Revelation of Crying Chaos\" once per turn.",
+          "lua_implementation": "e1/e2 use distinct id/id+1 hard limits.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "id-keyed hard/oath turn limits",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_DAMAGE_STEP",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "TYPE_MONSTER",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "overall_verdict": "CUSTOM_GAP",
+      "audit_note": "Adversarial completion review: effect 3 retained. Prior labels were not treated as evidence.",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Complete card override retained after re-reading every printed clause, current Lua registration/procedure, relevant engine helpers/constants, and each cited official Omega script/database record."
+      },
+      "supersedes_batch": null
+    }
+  ],
+  "batch": "local-adversarial-custom-gap-review-217-432",
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 3,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

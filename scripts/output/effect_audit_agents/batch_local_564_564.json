@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch8d-556-572",
+  "ordinal_start": 564,
+  "ordinal_end": 564,
+  "cards": [
+    {
+      "ordinal": 564,
+      "passcode": 259926839,
+      "name": "Eclipse Observer Riley",
+      "text_sha256": "59a61a058fdc4336b8f063e017b1dbaf592d80b868fa6f9deb3197b6cec52463",
+      "script_sha256": "22c95ddf69daa4620853fc825bd0efb7880ad01d2a9fb469b03a69e32fadbb5a",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Deck take/add-or-summon operation is one choice effect including its conditional draw, and the opponent-draw-triggered recovery is the second effect; their HOPT clauses are merged."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "During your Main Phase: You can take 1 \"Eclipse Observer\" card from your Deck and either add it to your hand or, if it is a Level 4 or lower monster, Special Summon it. If you Special Summon it, your opponent draws 2 cards. You can only use this effect of \"Eclipse Observer Riley\" once per turn.",
+          "lua_implementation": "A field Ignition Effect filters observer-series cards plus Eclipse Observatory in the Deck. At resolution it offers add-to-hand and, for a legal Level 4-or-lower monster with an open zone and two-card opponent draw available, Special Summon. It draws two for the opponent only after a successful summon and applies its own HOPT.",
+          "official_references": [
+            {
+              "script": "c20065322.lua",
+              "card_id": 20065322,
+              "card_name": "The Flute of Summoning Kuriboh",
+              "matched_structure": "Official Omega takes one specifically qualified monster from the Deck and branches between adding it to the hand and Special Summoning it after checking the selected card's summon and zone legality."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If your opponent draws 2 or more cards at the same time, except by the effect of \"Eclipse Observer Riley\": You can target 1 \"Eclipse\" Quick-Play Spell in your GY; add it to your hand. You can only use this effect of \"Eclipse Observer Riley\" once per turn.",
+          "lua_implementation": "The delayed opponent-draw trigger now recognizes custom Eclipse Quick-Play Spells plus both official name matches, Book of Eclipse and Book of Lunar Eclipse, in the GY. Both official IDs are present in AddCodeList/listed_names, and the selected Necrovalley-legal target is returned to hand under the existing HOPT.",
+          "official_references": [
+            {
+              "script": "c63288573.lua",
+              "card_id": 63288573,
+              "card_name": "Sky Striker Ace - Kagari",
+              "matched_structure": "Official Omega targets a specifically qualified Spell in the controller's GY and adds the still-related, Necrovalley-legal target to the hand."
+            },
+            {
+              "script": "c31834488.lua",
+              "card_id": 31834488,
+              "card_name": "Book of Lunar Eclipse",
+              "matched_structure": "The official Omega DB and script identify Book of Lunar Eclipse as an existing Quick-Play Spell whose printed name contains the quoted Eclipse name, so it belongs to the intended name-based pool alongside Book of Eclipse."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: Book of Lunar Eclipse (31834488) was omitted from the explicit official-name pool."
+        }
+      ],
+      "audit_note": "Added Book of Lunar Eclipse consistently to Riley's metadata and GY recovery filter."
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 1,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

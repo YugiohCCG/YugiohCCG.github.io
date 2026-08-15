@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 349,
+  "ordinal_end": 349,
+  "cards": [
+    {
+      "ordinal": 349,
+      "passcode": 228386117,
+      "name": "Vazagiel, Arckcestial of Secrets",
+      "text_sha256": "5f82574aa4173a1b3dbd4bbc679524db8551e81b8079086098cd9ade562168e6",
+      "script_sha256": "88029cfec83f5ce2d099008c60c48543c051c78058716f4eb1edbe84bd60adc6",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "1 LIGHT Tuner + 1+ non-Tuners including an \"Arckcestial\".",
+          "lua_implementation": "Filtered Synchro mix procedure and material subgroup condition.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c4891376.lua",
+              "card_id": 4891376,
+              "card_name": "Zalen the Shackled Dragon",
+              "matched_structure": "Filtered Tuner/non-Tuner Synchro procedure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If Synchro Summoned: Level becomes 4 until end turn; HOPT.",
+          "lua_implementation": "Summon trigger registers end-turn Level 4 under id HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c16020923.lua",
+              "card_id": 16020923,
+              "card_name": "Pikari @Ignister",
+              "matched_structure": "Level-change effect and reset."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "During Main Phase: target an \"Arckcestial\" in GY; Special Summon it, then discard; HOPT.",
+          "lua_implementation": "Ignition requires a discardable hand card, targets a legal GY monster, revives it, then discards after success under separate HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c27132400.lua",
+              "card_id": 27132400,
+              "card_name": "Altergeist Malwisp",
+              "matched_structure": "Targeted archetype GY revival followed by another operation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If detached from an \"Arckcestial\" Xyz to activate it: send a random opponent hand card to GY; HOPT.",
+          "lua_implementation": "Mandatory delayed move trigger validates detach-as-cost from activated archetype Xyz, randomly selects one opponent hand card, and sends it; separate HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c32696942.lua",
+              "card_id": 32696942,
+              "card_name": "Big Belly Knight",
+              "matched_structure": "Detached-as-Xyz-cost trigger provenance."
+            },
+            {
+              "script": "tmp/omega_scripts/c16923472.lua",
+              "card_id": 16923472,
+              "card_name": "Wind-Up Hunter",
+              "matched_structure": "Random opponent hand selection and send-to-GY operation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "The Synchro material requirement, temporary Level-change trigger, Main-Phase revival/then-discard effect, and detached-material random hand send are four units; all three activated HOPTs are represented."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 4,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

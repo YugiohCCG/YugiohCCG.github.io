@@ -39,7 +39,7 @@ function s.initial_effect(c)
 	e4:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
 	e4:SetTargetRange(0,1)
 	e4:SetCondition(s.hand6con)
-	e4:SetValue(99)
+	e4:SetValue(100)
 	c:RegisterEffect(e4)
 	--Copy an "Eclipse" Quick-Play Spell's activation effect
 	local e5=Effect.CreateEffect(c)

@@ -25,15 +25,6 @@ function s.initial_effect(c)
 	e2:SetTarget(s.negtg)
 	e2:SetOperation(s.negop)
 	c:RegisterEffect(e2)
-	local e3=Effect.CreateEffect(c)
-	e3:SetType(EFFECT_TYPE_SINGLE)
-	e3:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
-	e3:SetRange(LOCATION_MZONE)
-	e3:SetCode(EFFECT_SYNCHRO_MATERIAL_CUSTOM)
-	e3:SetTarget(s.syntg)
-	e3:SetValue(1)
-	e3:SetOperation(s.synop)
-	c:RegisterEffect(e3)
 end
 function s.tdfilter(c) return (c:IsType(TYPE_SPELL) or c:IsSetCard(SET_CARDIAN)) and c:IsAbleToDeck() end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
@@ -54,11 +45,4 @@ function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.NegateActivation(ev) and re:GetHandler():IsRelateToEffect(re) then Duel.Destroy(re:GetHandler(),REASON_EFFECT) end
-end
-function s.synfilter(c,syncard,tuner,f) return c:IsFaceupEx() and c:IsCanBeSynchroMaterial(syncard,tuner) and (not f or f(c,syncard)) end
-function s.syntg(e,syncard,f,min,max)
-	return syncard:IsSetCard(SET_CARDIAN)
-end
-function s.synop(e,tp,eg,ep,ev,re,r,rp,syncard,f,min,max)
-	Duel.SetSynchroMaterial(Group.FromCards(e:GetHandler()))
 end

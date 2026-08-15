@@ -4,8 +4,9 @@ local STRING_ID=133721372
 local SET_ECLIPSE=0xf2f4
 local SET_ECLIPSE_OBSERVER=0xeb17
 local CARD_BOOK_OF_ECLIPSE=35480699
+local CARD_BOOK_OF_LUNAR_ECLIPSE=31834488
 function s.initial_effect(c)
-	aux.AddCodeList(c,120222045)
+	aux.AddCodeList(c,120222045,CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE)
 	--Activate
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -31,7 +32,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 end
 s.listed_series={SET_ECLIPSE,SET_ECLIPSE_OBSERVER}
-s.listed_names={CARD_BOOK_OF_ECLIPSE}
+s.listed_names={CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE}
 function s.isobservermonster(c)
 	return c:IsType(TYPE_MONSTER) and c:IsSetCard(SET_ECLIPSE_OBSERVER)
 end
@@ -39,7 +40,7 @@ function s.thfilter1(c)
 	return s.isobservermonster(c) and c:IsAbleToHand()
 end
 function s.thfilter2(c)
-	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE))
+	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE))
 		and c:IsType(TYPE_QUICKPLAY) and c:IsAbleToHand()
 end
 function s.acttg(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -67,7 +68,7 @@ function s.actop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.negfilter(c,e,tp)
-	return c:IsControler(1-tp) and c:IsLocation(LOCATION_MZONE) and c:IsCanBeEffectTarget(e)
+	return c:IsSummonPlayer(1-tp) and c:IsLocation(LOCATION_MZONE) and c:IsCanBeEffectTarget(e)
 		and c:IsAbleToRemove() and aux.NegateMonsterFilter(c)
 end
 function s.negcon(e,tp,eg,ep,ev,re,r,rp)
@@ -86,7 +87,7 @@ function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and tc:IsControler(1-tp)
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsSummonPlayer(1-tp)
 		and tc:IsLocation(LOCATION_MZONE) and tc:IsFaceup()
 		and tc:IsAbleToRemove() and tc:IsCanBeDisabledByEffect(e,false)) then return end
 	Duel.NegateRelatedChain(tc,RESET_TURN_SET)

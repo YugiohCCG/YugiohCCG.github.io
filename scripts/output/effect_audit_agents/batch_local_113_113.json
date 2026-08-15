@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "batch": "local-reconciliation-batch2-73-121",
+  "batch": "local-custom-gap-adversarial-1-216",
   "ordinal_start": 113,
   "ordinal_end": 113,
   "cards": [
@@ -21,7 +21,21 @@
               "script": "tmp/omega_scripts/c90953320.lua",
               "card_id": 90953320,
               "card_name": "T.G. Hyper Librarian",
-              "matched_structure": "T.G. Hyper Librarian supplies standard one-Tuner/one-plus-non-Tuner Synchro procedure structure."
+              "matched_structure": "T.G. Hyper Librarian supplies standard one-Tuner/one-plus-non-Tuner Synchro procedure structure.",
+              "official_effect_text": "1 Tuner + 1+ non-Tuner monsters\nIf a monster is Synchro Summoned: Draw 1 card. This card must be face-up on the field to activate [b]and[/b] to resolve this effect.",
+              "script_sha256": "a5b334c7c2422768a70635832957f59dfb44a13d784b7d02c3c86bd87675f9b8",
+              "verified_shared_tokens": [
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_TRIGGER_F",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.AddSynchroProcedure",
+                "aux.NonTuner",
+                "aux.Stringid"
+              ]
             }
           ],
           "verdict": "PASS",
@@ -30,17 +44,31 @@
         {
           "effect_index": 2,
           "printed_clause": "If Special Summoned: other Spirit monsters cannot return to hand or Extra Deck by card effect during this turn’s End Phase.",
-          "lua_implementation": "The Special Summon trigger installs End-Phase-only CANNOT_TO_HAND/CANNOT_TO_DECK effects for other face-up Spirit monsters; those destination effects also apply to costs and non-effect movement.",
+          "lua_implementation": "The Special Summon trigger installs End-Phase-only CANNOT_TO_HAND/CANNOT_TO_DECK effects for other face-up Spirit monsters; those destination effects also apply to costs and non-effect movement. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c3078576.lua",
               "card_id": 3078576,
               "card_name": "Yata-Garasu",
-              "matched_structure": "Yata-Garasu provides the official End Phase Spirit return being suppressed."
+              "matched_structure": "Yata-Garasu provides the official End Phase Spirit return being suppressed.",
+              "official_effect_text": "[b]Cannot[/b] be Special Summoned. During the [b]End Phase[/b] of the turn this card was Normal Summoned or flipped face-up: [b]Return[/b] it to the hand. If this card inflicts battle damage to your opponent: Skip the [b]Draw Phase[/b] of their next turn.",
+              "script_sha256": "eae629c81efeea4ebe2de8dccbf42201d94607280cb12f665f6c49173db53c3d",
+              "verified_shared_tokens": [
+                "Duel.RegisterEffect",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_F",
+                "EVENT_SUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "PHASE_END",
+                "RESET_PHASE",
+                "aux.Stringid"
+              ]
             }
           ],
           "verdict": "CUSTOM_GAP",
-          "issue": "Confirmed as an engine granularity gap: the standard destination prohibitions cannot be limited to REASON_EFFECT. EFFECT_SPIRIT_DONOT_RETURN covers built-in Spirit returns but would under-implement arbitrary card effects named by this text."
+          "issue": "EFFECT_CANNOT_TO_HAND and EFFECT_CANNOT_TO_DECK are reason-agnostic, so the current Lua also blocks costs and other non-effect movement during the End Phase. EFFECT_SPIRIT_DONOT_RETURN would cover only the built-in Spirit return and not arbitrary card effects. Resolution: remove 'by card effect', narrow the text to built-in Spirit returns, or add effect-only hand/Extra-Deck return prohibitions and use them in c221855414.lua."
         },
         {
           "effect_index": 3,
@@ -51,7 +79,33 @@
               "script": "tmp/omega_scripts/c84339249.lua",
               "card_id": 84339249,
               "card_name": "Protecting Spirit Loagaeth",
-              "matched_structure": "Protecting Spirit Loagaeth supplies official effect-target protection structure."
+              "matched_structure": "Protecting Spirit Loagaeth supplies official effect-target protection structure.",
+              "official_effect_text": "If this card on the field is destroyed by battle or card effect: [b]You can[/b] [b]target[/b] 1 monster on the field; it [b]cannot[/b] be destroyed by battle this turn. [b]You can[/b] only use each of the following effects of \"Protecting Spirit Loagaeth\" [b]once[/b] [b]per turn[/b]. If an effect of a Fairy monster you control is activated (except during the Damage Step): [b]You can[/b] Special Summon this card from your hand. [b]You can[/b] [b]target[/b] 1 face-up card your opponent controls [b]and[/b] 1 Attack Position monster you control; [b]banish[/b] that opponent's card, [b]and if you do[/b], change your monster to Defense Position.",
+              "script_sha256": "cccb7c961dbe5750cafe6bcd4ded73efe427231d1d249479e7bd7dfb19f13bba",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetFirstTarget",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.RegisterEffect",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "LOCATION_ONFIELD",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "RESET_PHASE",
+                "TYPE_MONSTER",
+                "aux.Stringid"
+              ]
             }
           ],
           "verdict": "PASS",
@@ -66,7 +120,23 @@
               "script": "tmp/omega_scripts/c94192409.lua",
               "card_id": 94192409,
               "card_name": "Compulsory Evacuation Device",
-              "matched_structure": "Compulsory Evacuation Device supplies official target-and-return operation."
+              "matched_structure": "Compulsory Evacuation Device supplies official target-and-return operation.",
+              "official_effect_text": "[b]Target[/b] 1 monster on the field; [b]return[/b] that [b]target[/b] to the hand.",
+              "script_sha256": "605ef29654e2d7197d88d010b204e33de1313d79d0abdd3f7168044a2f95e376",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Card.IsAbleToHand",
+                "Duel.GetFirstTarget",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "REASON_EFFECT"
+              ]
             }
           ],
           "verdict": "PASS",
@@ -81,7 +151,30 @@
               "script": "tmp/omega_scripts/c33325951.lua",
               "card_id": 33325951,
               "card_name": "Shinobaroness Shade Peacock",
-              "matched_structure": "Shinobaroness Shade Peacock/Spirit Extra Deck monsters use phase-timed return procedures."
+              "matched_structure": "Shinobaroness Shade Peacock/Spirit Extra Deck monsters use phase-timed return procedures.",
+              "official_effect_text": "[b]You can[/b] Ritual Summon this card with \"Shinobird's Calling\". This card's name becomes \"Shinobaroness Peacock\" while in the hand or on the field. If this card is Ritual Summoned: [b]You can[/b] add 1 Spell/Trap from your Deck to your hand that mentions \"Spirit monster\" in its text. [b]You can[/b] only use this effect of \"Shinobaroness Shade Peacock\" [b]once[/b] [b]per turn[/b]. [b]Once[/b] [b]per turn[/b], during the [b]Standby Phase[/b] of the next turn after this card was banished: Special Summon this banished card. [b]Once[/b] [b]per turn[/b], during the [b]End Phase[/b], if this card was Special Summoned this turn: [b]Return[/b] this card to the hand.",
+              "script_sha256": "4663dbebe847e0093a9fbdd8eebb12e1a1e80e02a0c5542a74348c0444f42502",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TOHAND",
+                "Duel.Hint",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_F",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_PHASE",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_ONFIELD",
+                "REASON_EFFECT",
+                "RESET_PHASE",
+                "TYPE_SPIRIT",
+                "aux.Stringid"
+              ]
             }
           ],
           "verdict": "PASS",
@@ -96,7 +189,29 @@
               "script": "tmp/omega_scripts/c54447022.lua",
               "card_id": 54447022,
               "card_name": "Soul Charge",
-              "matched_structure": "Soul Charge supplies multi-monster GY Special Summon structure; official ignore-condition summons use nocheck=true."
+              "matched_structure": "Soul Charge supplies multi-monster GY Special Summon structure; official ignore-condition summons use nocheck=true.",
+              "official_effect_text": "[b]Target[/b] any number of monsters in your GY; Special Summon them, [b]and if you do[/b], you lose 1000 LP for each monster Special Summoned by this effect. You [b]cannot[/b] conduct your [b]Battle Phase[/b] the turn you activate this card. [b]You can[/b] only activate 1 \"Soul Charge\" [b]per turn[/b].",
+              "script_sha256": "5ed80057035f9f2c58134aca0db570c2089b3b8714b3fc72295b3a93b282ba64",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetCurrentPhase",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.IsPlayerAffectedByEffect",
+                "Duel.RegisterEffect",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "RESET_PHASE"
+              ]
             }
           ],
           "verdict": "PASS",
@@ -106,8 +221,13 @@
       "audit_note": "Confirmed an unresolved reason-filtering limitation in destination prohibitions.",
       "coverage_override": {
         "expected_individual_effects": 6,
-        "reason": "The audit records split this card into its material/procedure, restrictions, activated or continuous operations, and printed count-limit clauses; no printed functional clause is omitted."
-      }
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_113_113.json",
+      "lua_effect_creations": 5,
+      "conservative_printed_clause_floor": 6,
+      "heuristic_printed_clause_floor": 5,
+      "source_batch": "batch_local_113_113.json"
     }
   ],
   "summary": {

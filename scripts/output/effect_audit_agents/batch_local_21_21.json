@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-1-72",
+  "ordinal_start": 21,
+  "ordinal_end": 21,
+  "cards": [
+    {
+      "ordinal": 21,
+      "passcode": 224049334,
+      "name": "Solemn Rebirth",
+      "text_sha256": "332914dbc68552bba2ed34ccbc628f64ee1edc9fe72ebf4943349c6e75223a69",
+      "script_sha256": "f37411064066972bc0fea49e4b8054e5eb8b89821e6bb0f5edc89522031d4060",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "You can banish this card from your field or GY; Set all Spell/Trap Cards that were destroyed by your opponent's card effects this turn from your GY to your Spell & Trap Zone.",
+          "lua_implementation": "EVENT_DESTROYED now flags each on-field Spell/Trap in the GY by the effect's reason player; the activating player can Set exactly cards whose recorded destroyer was that player's opponent, independent of previous controller.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c2006591.lua",
+              "card_id": 2006591,
+              "card_name": "Sinful Spoils Awakening",
+              "matched_structure": "leave-field tracking and destination/replacement handling."
+            },
+            {
+              "script": "tmp/omega_scripts/c89208725.lua",
+              "card_id": 89208725,
+              "card_name": "Metaverse",
+              "matched_structure": "Deck selection followed by activation or Set."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and fixed: 'your opponent's card effects' is relative to the activating player, not each destroyed card's previous controller."
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 1,
+        "reason": "Independent manual segmentation of the exact current printed text into 1 atomic material, condition, cost, operation, restriction, and count-limit clauses; every record was compared with current canonical Lua and an official Omega structure."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 1,
+    "pass": 0,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

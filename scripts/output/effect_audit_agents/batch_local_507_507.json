@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "batch": "local-507-reconciliation",
+  "ordinal_start": 507,
+  "ordinal_end": 507,
+  "cards": [
+    {
+      "ordinal": 507,
+      "passcode": 259184310,
+      "name": "Red-Eyes Meteor Metal Dragon",
+      "text_sha256": "57c336305b5c40b9e0c0a3fe532ce79fc97d2309fb88ec5617eefcc335c0e5e9",
+      "script_sha256": "b2d57fc4c4cea9bd5a53c9cd1f6b0582c3a0f08f7a935e41da999fc8a8311f62",
+      "overall_verdict": "FIXED",
+      "coverage_override": {"expected_individual_effects": 3, "reason": "Normal/Special Summon clones implement one printed trigger; each equip sentence remains one effect, and the Fusion Summon plus its material handling is one effect."},
+      "effects": [
+        {"effect_index": 1, "printed_clause": "If this card is Normal or Special Summoned: You can equip 1 \"Red-Eyes\" monster from your hand or GY to it.", "lua_implementation": "Delayed EVENT_SUMMON_SUCCESS and EVENT_SPSUMMON_SUCCESS clones share id, require Spell/Trap Zone capacity, select a Red-Eyes monster from hand or Necrovalley-valid GY, and equip it to this face-up card with an equip limit.", "official_references": [{"script": "tmp/omega_scripts/c21140872.lua", "card_id": 21140872, "card_name": "Red-Eyes Slash Dragon", "matched_structure": "Official Red-Eyes effect equips a monster from the GY with Duel.Equip and installs a recipient-specific EFFECT_EQUIP_LIMIT."}], "verdict": "PASS", "issue": null},
+        {"effect_index": 2, "printed_clause": "During the Main Phase (Quick Effect): You can Fusion Summon 1 Dragon, Fiend, or Warrior Fusion Monster by using Monster Cards from your hand or field.", "lua_implementation": "A Main Phase EVENT_FREE_CHAIN Quick Effect now builds the ordinary Duel.GetFusionMaterial group and merges face-up original Monster Cards in the controller's Spell/Trap Zone that can be Fusion Material, can be sent to the GY, and are not immune. It filters Dragon/Warrior/Fiend Fusions, selects material, sends it with REASON_EFFECT+REASON_MATERIAL+REASON_FUSION, Special Summons with SUMMON_TYPE_FUSION, completes the procedure, and retains Chain Material support.", "official_references": [{"script": "tmp/omega_scripts/c57425061.lua", "card_id": 57425061, "card_name": "Vision Fusion", "matched_structure": "Official Fusion effect merges eligible face-up original Monster Cards from LOCATION_SZONE into Duel.GetFusionMaterial before CheckFusionMaterial and SelectFusionMaterial."}, {"script": "tmp/omega_scripts/c13258285.lua", "card_id": 13258285, "card_name": "Ukiyoe-P.U.N.K. Sharakusai", "matched_structure": "Official monster Quick/activated Fusion pattern selects hand/field material, sends it with Fusion-material reasons, Special Summons, and completes the procedure."}], "verdict": "FIXED", "issue": "Fixed: face-up Monster Cards in the controller's Spell/Trap Zone are now included in the printed hand-or-field material pool using Omega's Vision Fusion extra-material pattern."},
+        {"effect_index": 3, "printed_clause": "If this card is sent to the GY as Fusion Material: You can target 1 \"Red-Eyes\" monster you control; equip this card to it.", "lua_implementation": "A delayed EVENT_TO_GRAVE trigger requires REASON_MATERIAL and REASON_FUSION, targets a face-up controlled Red-Eyes monster, validates Necrovalley and Spell/Trap capacity, and equips this GY card with an equip limit under id+200.", "official_references": [{"script": "tmp/omega_scripts/c21140872.lua", "card_id": 21140872, "card_name": "Red-Eyes Slash Dragon", "matched_structure": "Official Red-Eyes operation targets a recipient, equips a monster from the GY, and registers EFFECT_EQUIP_LIMIT."}], "verdict": "PASS", "issue": null}
+      ]
+    }
+  ]
+}

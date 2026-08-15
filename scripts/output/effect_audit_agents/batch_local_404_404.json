@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "batch": "local-adversarial-custom-gap-review-217-432",
+  "ordinal_start": 404,
+  "ordinal_end": 404,
+  "cards": [
+    {
+      "ordinal": 404,
+      "passcode": 239335848,
+      "name": "Ghostrick Oni",
+      "text_sha256": "d9c521418692e8eafc28a82e9b1acf42441b65e425a9e0e2834f00abd385e92b",
+      "script_sha256": "0075658da34a569b5a67b5f4377f03e217d4e12ac5b82f374e0f86f85eb6c69f",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2+ Level 1 monsters, including a Ghostrick monster.",
+          "lua_implementation": "aux.AddXyzProcedureLevelFree requires Level 1 materials, minimum two, with at least one Ghostrick and revive limit.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c53334641.lua",
+              "card_id": 53334641,
+              "card_name": "Ghostrick Angel of Mischief",
+              "matched_structure": "Ghostrick Xyz material requirement and revive limit."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Gains 200 DEF for each Ghostrick card in your GY.",
+          "lua_implementation": "A single EFFECT_UPDATE_DEFENSE value counts all setcoded Ghostrick cards in the controller's GY and returns count*200.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c36584821.lua",
+              "card_id": 36584821,
+              "card_name": "Gren Maju Da Eiza",
+              "matched_structure": "Dynamic continuous stat value derived from a zone count."
+            },
+            {
+              "script": "tmp/omega_scripts/c70410002.lua",
+              "card_id": 70410002,
+              "card_name": "The Accumulator",
+              "matched_structure": "Aggregate card count converted into a continuous stat modifier."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "During your opponent's turn (Quick Effect): Attach 1 Ghostrick card from your Deck to this card.",
+          "lua_implementation": "A free-chain Quick Effect restricted to the opponent's turn selects one Deck Ghostrick that can overlay and overlays it under the handler.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c27068117.lua",
+              "card_id": 27068117,
+              "card_name": "Overlay Regen",
+              "matched_structure": "Attaches a card to an Xyz Monster as material."
+            },
+            {
+              "script": "tmp/omega_scripts/c30095833.lua",
+              "card_id": 30095833,
+              "card_name": "Odd-Eyes Rebellion Xyz Dragon",
+              "matched_structure": "Attaches a selected card as Xyz material during an activated effect."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Then immediately after this effect resolves Xyz Summon 1 Rank 3 or lower Ghostrick monster you control using this card as material (transfer this card's materials).",
+          "lua_implementation": "After attaching a Deck card, the implementation chooses an already-controlled Rank 3 or lower Ghostrick Xyz Monster, transfers Oni's materials, and overlays Oni onto it as the closest executable approximation.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c73860462.lua",
+              "card_id": 73860462,
+              "card_name": "Wonder Xyz",
+              "matched_structure": "Official immediate-after-resolution Xyz Summon via Duel.XyzSummon."
+            },
+            {
+              "script": "tmp/omega_scripts/c72859417.lua",
+              "card_id": 72859417,
+              "card_name": "Lyrilusc - Bird Sanctuary",
+              "matched_structure": "Attaches one existing Xyz Monster to another and transfers materials, which is what the current Lua actually does."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "An already-controlled monster cannot be Xyz Summoned, so 'Xyz Summon ... monster you control' is internally impossible. Exact resolution requires selecting the Xyz Monster from the Extra Deck and defining its legal materials, or replacing 'Xyz Summon' with an attach/transfer instruction matching the current controlled-monster approximation."
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "Also, it can activate its effects as Quick Effects this turn.",
+          "lua_implementation": "The selected Xyz Monster is recorded for the turn, but the Lua cannot rewrite all of its arbitrary ignition and trigger registrations into Quick Effects.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c33252803.lua",
+              "card_id": 33252803,
+              "card_name": "Rank-Up-Magic Quick Chaos",
+              "matched_structure": "Closest official structure: performs an immediate Xyz Summon and grants/uses effects on the resulting monster."
+            },
+            {
+              "script": "tmp/omega_scripts/c82566662.lua",
+              "card_id": 82566662,
+              "card_name": "Taotie Dragon",
+              "matched_structure": "Registers material-dependent capabilities explicitly rather than via an inert flag."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Omega has no generic runtime API that changes every arbitrary ignition/trigger effect registered on a selected monster into a Quick Effect for one turn; an inert flag cannot do so. Exact resolution requires engine support for temporary effect-type conversion, or revised text granting one specifically scripted Quick Effect."
+        },
+        {
+          "effect_index": 6,
+          "printed_clause": "If this card is sent to the GY: Target 1 Ghostrick monster you control or in your GY; monsters your opponent controls lose ATK equal to that monster's ATK.",
+          "lua_implementation": "A delayed targeted GY trigger accepts a Ghostrick monster in the controller's Monster Zone or GY, reads nonnegative printed ATK, and registers permanent-until-standard-reset negative ATK updates on all face-up opponent monsters.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c57157964.lua",
+              "card_id": 57157964,
+              "card_name": "Fossil Machine Skull Convoy",
+              "matched_structure": "All opponent monsters lose ATK based on another monster's stat."
+            },
+            {
+              "script": "tmp/omega_scripts/c74003290.lua",
+              "card_id": 74003290,
+              "card_name": "Lost Wind",
+              "matched_structure": "Registers persistent ATK reduction effects on affected monsters."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "overall_verdict": "CUSTOM_GAP",
+      "coverage_override": {
+        "expected_individual_effects": 6,
+        "reason": "Complete card override retained after re-reading every printed clause, current Lua registration/procedure, relevant engine helpers/constants, and each cited official Omega script/database record."
+      },
+      "audit_note": "Adversarial completion review: effect 4 retained; effect 5 retained. Prior labels were not treated as evidence.",
+      "supersedes_batch": "local-reconciliation-batch6-plus-gravinity-collateral"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 6,
+    "pass": 4,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 2
+  }
+}

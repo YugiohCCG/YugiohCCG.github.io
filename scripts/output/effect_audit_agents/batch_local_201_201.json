@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 201,
+  "ordinal_end": 201,
+  "cards": [
+    {
+      "ordinal": 201,
+      "passcode": 259114562,
+      "name": "Bobbie Bluefin & the Nautical Nocturnes",
+      "text_sha256": "39e3c3098d7dcc02ba710d9aa523c8cbfd770e0c4553f6c341c492465552d490",
+      "script_sha256": "621373d5613f3ca5203b97c7a764e7f1615162bf3725cc326d0b183a1bc85510",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Cannot be Normal Summoned/Set.",
+          "lua_implementation": "CANNOT_SUMMON and CANNOT_MSET single effects.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c32731036.lua",
+              "card_id": 32731036,
+              "card_name": "The Bystial Lubellion",
+              "matched_structure": "Cannot Normal Summon/Set restriction.",
+              "official_effect_text": "[b]Cannot[/b] be Normal Summoned/Set. Must be Special Summoned (from your hand or GY) by Tributing 1 Level 6 or higher DARK Dragon monster. [b]You can[/b] only Special Summon \"The Bystial Lubellion\" [b]once[/b] [b]per turn[/b] this way. [b]You can[/b] send this card from your hand to the GY; add 1 \"Bystial\" monster from your Deck to your hand, except \"The Bystial Lubellion\". During your [b]Main Phase[/b]: [b]You can[/b] place 1 \"Branded\" Continuous Spell/Trap from your Deck face-up on your field. [b]You can[/b] only use each effect of \"The Bystial Lubellion\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "c9d5cf2e4ab4f47e433382c1e0e80212001e5e3c117c21a8f9e8971395d321b6",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "TYPE_MONSTER"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "On opponent Summon: Special Summon this, then opponent Normal or Special Summons from hand in Attack, ATK 0; if all yours are Nautica, negate it. HOPT.",
+          "lua_implementation": "Adversarial re-review confirmed that the current canonical Lua implements this printed effect with supported Omega primitives. A compound effect need not have a single-card official analogue; the attached official references validate its individual engine structures.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c18940725.lua",
+              "card_id": 18940725,
+              "card_name": "Floowandereeze & Robina",
+              "matched_structure": "Duel.Summon performs a Normal Summon during effect resolution.",
+              "official_effect_text": "If this face-up card would leave the field, [b]banish[/b] it [b]instead[/b]. [b]You can[/b] only use each of the following effects of \"Floowandereeze & Robina\" [b]once[/b] [b]per turn[/b], [b]and[/b] [b]cannot[/b] Special Summon during the turn you activate either effect. If this card is Normal Summoned: [b]You can[/b] add 1 Level 4 or lower Winged Beast monster from your Deck to your hand, [b]then[/b] [b]immediately[/b] after this effect resolves, [b]you can[/b] Normal Summon 1 Winged Beast monster. If a Winged Beast monster is Normal Summoned to your field while this card is banished: [b]You can[/b] add this card to your hand.",
+              "script_sha256": "4fe6fa535afac0f55d133a716d1eb3de052f96b9b7f188dde6280cc64d37b93c",
+              "verified_shared_tokens": [
+                "CATEGORY_SUMMON",
+                "Duel.BreakEffect",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.Summon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c55465441.lua",
+              "card_id": 55465441,
+              "card_name": "Give and Take",
+              "matched_structure": "An effect Special Summons a monster under another player's control.",
+              "official_effect_text": "Special Summon 1 monster from your Graveyard to your opponent's side of the field in Defense Position, [b]and[/b] increase the Level of 1 monster you control by the Level of the Special Summoned monster, until the [b]End Phase[/b].",
+              "script_sha256": "23a226dd17e6699c761f949b244faf5cb3c1a39abaa429d68d6b1ad91fb87205",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "RESET_EVENT"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c21521304.lua",
+              "card_id": 21521304,
+              "card_name": "Number 39: Utopia Beyond",
+              "matched_structure": "Sets opposing monster ATK to 0.",
+              "official_effect_text": "2 Level 6 monsters\nIf this card is Xyz Summoned: The ATK of all monsters your opponent currently controls become 0. [b]Once[/b] [b]per turn[/b] ([b]Quick Effect[/b]): [b]You can[/b] detach 1 material from this card, [b]then[/b] [b]target[/b] 1 face-up Xyz Monster you control [b]and[/b] 1 \"Utopia\" monster in your GY; [b]banish[/b] the first [b]target[/b], [b]and if you do[/b], Special Summon the second [b]target[/b], [b]then[/b] gain 1250 LP.",
+              "script_sha256": "130a8ca617686eb55228619c0cb6afedf23a0fb2a0d8d9847381f49139b87be6",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Card.IsFaceup",
+                "Duel.BreakEffect",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_SET_ATTACK_FINAL",
+                "EFFECT_TYPE_SINGLE",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_201_201.json",
+      "lua_effect_creations": 4,
+      "conservative_printed_clause_floor": 2,
+      "heuristic_printed_clause_floor": 4,
+      "source_batch": "batch_local_201_201.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

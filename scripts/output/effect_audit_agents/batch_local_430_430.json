@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch6-plus-gravinity-collateral",
+  "ordinal_start": 430,
+  "ordinal_end": 430,
+  "cards": [
+    {
+      "ordinal": 430,
+      "passcode": 248638801,
+      "name": "Chaos Honest",
+      "text_sha256": "d7b0f124656c82ce403f5833e9814785afa26fcdd2c616f09744dc72db438dd0",
+      "script_sha256": "b0cae674fd64130fac038bb0d5526a319123bab9ae0a28f366d81a352eac6cb4",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2 LIGHT and/or DARK Effect Monsters.",
+          "lua_implementation": "aux.AddLinkProcedure requires exactly two Effect Monsters whose Attribute intersects LIGHT|DARK, and enables revive limit.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c4280258.lua",
+              "card_id": 4280258,
+              "card_name": "Apollousa, Bow of the Goddess",
+              "matched_structure": "Filtered Link procedure with exact/minimum material count."
+            },
+            {
+              "script": "tmp/omega_scripts/c22850702.lua",
+              "card_id": 22850702,
+              "card_name": "Chaos Angel",
+              "matched_structure": "LIGHT/DARK material predicates in an Extra Deck summon procedure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "While face-up on the field, this card is also DARK-Attribute.",
+          "lua_implementation": "A single-range EFFECT_ADD_ATTRIBUTE in the Monster Zone adds ATTRIBUTE_DARK.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c19652159.lua",
+              "card_id": 19652159,
+              "card_name": "Light and Darkness Dragonlord",
+              "matched_structure": "Adds/handles simultaneous LIGHT and DARK Attributes with EFFECT_ADD_ATTRIBUTE."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "The Damage Step Quick Effect applies effects in sequence based on the Attributes of materials used for this card's Link Summon.",
+          "lua_implementation": "LIGHT- and DARK-material flags now reset with RESET_EVENT+RESETS_STANDARD; the Quick Effect snapshots them into its label before sending Chaos Honest to the GY as cost.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c82566662.lua",
+              "card_id": 82566662,
+              "card_name": "Taotie Dragon",
+              "matched_structure": "Registers which material card types were used and grants corresponding effects."
+            },
+            {
+              "script": "tmp/omega_scripts/c74997493.lua",
+              "card_id": 74997493,
+              "card_name": "Saryuja Skull Dread",
+              "matched_structure": "Registers Link-material-count-dependent abilities at Link Summon."
+            },
+            {
+              "script": "tmp/omega_scripts/c37742478.lua",
+              "card_id": 37742478,
+              "card_name": "Honest",
+              "matched_structure": "Damage Step ATK modification after sending the handler as cost."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: official material-derived Link effects and flags reset when the Link-Summoned object undergoes a standard state change."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "LIGHT: That pointed LIGHT/DARK battling monster gains ATK equal to the opposing monster's ATK until end of turn.",
+          "lua_implementation": "The condition identifies one or both battling monsters in the handler's linked group with LIGHT/DARK Attribute; resolution chooses one if both, then a LIGHT-material flag applies +max(0,opponent current ATK) through End Phase.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c37742478.lua",
+              "card_id": 37742478,
+              "card_name": "Honest",
+              "matched_structure": "Exact Damage Step gain equal to the opponent monster's ATK until end of turn."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "DARK: That opponent's monster loses ATK equal to its own ATK until end of turn.",
+          "lua_implementation": "When the DARK-material flag exists, resolution applies a negative update equal to the opposing monster's current nonnegative ATK through End Phase.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c26914168.lua",
+              "card_id": 26914168,
+              "card_name": "Dark Honest",
+              "matched_structure": "Damage Step effect that reduces the opposing monster's ATK based on its own/current ATK."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "Five records cover Link materials, added DARK Attribute, material-dependent sequence, LIGHT branch, and DARK branch."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 4,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

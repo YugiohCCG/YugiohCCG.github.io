@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch6-plus-gravinity-collateral",
+  "ordinal_start": 424,
+  "ordinal_end": 424,
+  "cards": [
+    {
+      "ordinal": 424,
+      "passcode": 249680945,
+      "name": "Gravinity Orbit",
+      "text_sha256": "9bf83d60df6a6b240b9da2719cf32981a45ebc4ac33b437df7a44d2a0df258f0",
+      "script_sha256": "c216ee7854cab5307410b350ca14bdf487c474030dbcdb0df33a97e5f32e284e",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "During the Main Phase, if this card is in your hand (Quick Effect): You can place this card face-up in one of your Spell & Trap Zones as a Continuous Trap.",
+          "lua_implementation": "A hand free-chain Quick Effect checks Main Phase and a free Spell & Trap Zone, moves the related handler face-up, and registers TYPE_TRAP+TYPE_CONTINUOUS with a standard reset.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c42493140.lua",
+              "card_id": 42493140,
+              "card_name": "Centur-Ion Trudea",
+              "matched_structure": "Monster placed in Spell & Trap Zone as a face-up Continuous Trap during the Main Phase."
+            },
+            {
+              "script": "tmp/omega_scripts/c4160316.lua",
+              "card_id": 4160316,
+              "card_name": "Centur-Ion Bonds",
+              "matched_structure": "MoveToField/type-change structure for face-up Continuous Trap monsters."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "During either player's turn, if this card is treated as a Continuous Trap: Add 1 Gravinity monster from your Deck to your hand.",
+          "lua_implementation": "A free-chain Quick Effect in the Spell & Trap Zone requires current Trap type, uses id+100, searches/confirms a Gravinity monster.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15005145.lua",
+              "card_id": 15005145,
+              "card_name": "Centur-Ion Primera",
+              "matched_structure": "Continuous-Trap monster effect that searches an archetype card from Deck."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "During either player's turn, if this card is treated as a Continuous Trap: Move this card to another column.",
+          "lua_implementation": "A separate free-chain Quick Effect requires Trap type, main Spell & Trap sequence and another free Spell & Trap Zone; SelectDisableField chooses an empty own Spell & Trap Zone and Duel.MoveSequence moves the handler.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c37480144.lua",
+              "card_id": 37480144,
+              "card_name": "Column Switch",
+              "matched_structure": "Selects another legal field zone and moves a card to a different column."
+            },
+            {
+              "script": "tmp/omega_scripts/c88392300.lua",
+              "card_id": 88392300,
+              "card_name": "Wattkinetic Puppeteer",
+              "matched_structure": "Quick Effect movement to another Main Monster Zone/column."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use each effect of Gravinity Orbit once per turn.",
+          "lua_implementation": "The hand placement, search, and move options use distinct id/id+100/id+200 hard once-per-turn keys.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c42493140.lua",
+              "card_id": 42493140,
+              "card_name": "Centur-Ion Trudea",
+              "matched_structure": "Distinct hard once-per-turn keys for placement and Continuous-Trap effects."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "Support implementation for using this card from the Spell & Trap Zone as Gravinity Synchro material.",
+          "lua_implementation": "The Spell & Trap Zone extra-material value now accepts only Gravinity Lapsix or Gravinity Galaxix as the destination Synchro Monster.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14507213.lua",
+              "card_id": 14507213,
+              "card_name": "Synchro Material",
+              "matched_structure": "Official EFFECT_EXTRA_SYNCHRO_MATERIAL registration with a destination predicate."
+            },
+            {
+              "script": "tmp/omega_scripts/c97682931.lua",
+              "card_id": 97682931,
+              "card_name": "Revolution Synchron",
+              "matched_structure": "Extra Synchro material value function limited by the summoned Synchro monster."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: those are the only destination monsters whose exact text grants use of Gravinity Monster Cards from the Spell & Trap Zone."
+        }
+      ],
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "Five records cover hand placement, search choice, column movement choice, per-effect HOPT, and destination-scoped extra-material support."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 4,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 202,
+  "ordinal_end": 202,
+  "cards": [
+    {
+      "ordinal": 202,
+      "passcode": 220749574,
+      "name": "Scarlet Seareef & the Nautical Creatures",
+      "text_sha256": "491c52682153d34b8202bd8da14c5a10c798e51fec2eb533ae7edfbad3e4efa6",
+      "script_sha256": "5a327e4a71f6716ef97a703809a12a61ef3792e10f7f6149a1ec75df464fe30c",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Cannot be Normal Summoned/Set; must first Special Summon from hand by putting 2 GY Aqua monsters on Deck bottom in any order.",
+          "lua_implementation": "Revive limit plus hand inherent procedure selects exactly two Necrovalley-valid Aqua monsters as cost and sends them to Deck bottom; normal summon/set prohibited.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c33420078.lua",
+              "card_id": 33420078,
+              "card_name": "Plaguespreader Zombie",
+              "matched_structure": "Places a selected card on top/bottom of Deck as a Special Summon cost.",
+              "official_effect_text": "If this card is in your GY: [b]You can[/b] place 1 card from your hand on the top of the Deck; Special Summon this card, but [b]banish[/b] it [b]when[/b] it leaves the field.",
+              "script_sha256": "6e78d0f68d753b90521255698c581d9d2aa4292b5d5211f6d2a2be09f2c04e53",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoDeck",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_TYPE_IGNITION",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_COST",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c32731036.lua",
+              "card_id": 32731036,
+              "card_name": "The Bystial Lubellion",
+              "matched_structure": "Must-first self Special Summon procedure and Normal Summon/Set prohibition.",
+              "official_effect_text": "[b]Cannot[/b] be Normal Summoned/Set. Must be Special Summoned (from your hand or GY) by Tributing 1 Level 6 or higher DARK Dragon monster. [b]You can[/b] only Special Summon \"The Bystial Lubellion\" [b]once[/b] [b]per turn[/b] this way. [b]You can[/b] send this card from your hand to the GY; add 1 \"Bystial\" monster from your Deck to your hand, except \"The Bystial Lubellion\". During your [b]Main Phase[/b]: [b]You can[/b] place 1 \"Branded\" Continuous Spell/Trap from your Deck face-up on your field. [b]You can[/b] only use each effect of \"The Bystial Lubellion\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "c9d5cf2e4ab4f47e433382c1e0e80212001e5e3c117c21a8f9e8971395d321b6",
+              "verified_shared_tokens": [
+                "CATEGORY_SEARCH",
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_IGNITION",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_COST",
+                "REASON_EFFECT",
+                "TYPE_MONSTER"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Can treat this as Level 1 when Xyz Summoning an Aqua monster.",
+          "lua_implementation": "EFFECT_XYZ_LEVEL returns packed current-Level/Level-1 alternatives only for Aqua Xyz candidates.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c26082117.lua",
+              "card_id": 26082117,
+              "card_name": "Gagaga Magician",
+              "matched_structure": "Changes/overrides Level for Xyz use through engine level effects.",
+              "official_effect_text": "[b]Cannot[/b] be used as Synchro Material. [b]You can[/b] only control 1 \"Gagaga Magician\". [b]Once[/b] [b]per turn[/b]: [b]You can[/b] declare a Level from 1 to 8; this card becomes that Level until the end of this turn.",
+              "script_sha256": "38e5c6fb2befb6371e3bb55cce99a5f7b4ce1eccbc3103e9c7301bbcef6dfaaf",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_TYPE_IGNITION",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Discard 1; shuffle this hand card into Deck, then add Exploring the Nautical Waters.",
+          "lua_implementation": "Hand ignition discards another card as cost, sends handler to shuffled Deck, then only if it reached Deck searches exact Exploring.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14785765.lua",
+              "card_id": 14785765,
+              "card_name": "Blackwing - Zephyros the Elite",
+              "matched_structure": "Moves the handler to Deck/hand as part of a self-referential cost/effect and gates follow-up on success.",
+              "official_effect_text": "If this card is in your GY: [b]You can[/b] [b]return[/b] 1 face-up card you control to the hand; Special Summon this card, [b]and if you do[/b], take 400 damage. [b]You can[/b] only use this effect of \"Blackwing - Zephyros the Elite\" [b]once[/b] per Duel.",
+              "script_sha256": "8c6b3f1476b76ecab1bc4596b448abdf1ab90627032b4ba1ba506690332e793c",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_IGNITION",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_COST",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If Special Summoned: draw 1, then opponent Normal or Special Summons from hand in Attack with ATK 0.",
+          "lua_implementation": "Adversarial re-review confirmed that the current canonical Lua implements this printed effect with supported Omega primitives. A compound effect need not have a single-card official analogue; the attached official references validate its individual engine structures.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c18940725.lua",
+              "card_id": 18940725,
+              "card_name": "Floowandereeze & Robina",
+              "matched_structure": "Effect-driven Normal Summon.",
+              "official_effect_text": "If this face-up card would leave the field, [b]banish[/b] it [b]instead[/b]. [b]You can[/b] only use each of the following effects of \"Floowandereeze & Robina\" [b]once[/b] [b]per turn[/b], [b]and[/b] [b]cannot[/b] Special Summon during the turn you activate either effect. If this card is Normal Summoned: [b]You can[/b] add 1 Level 4 or lower Winged Beast monster from your Deck to your hand, [b]then[/b] [b]immediately[/b] after this effect resolves, [b]you can[/b] Normal Summon 1 Winged Beast monster. If a Winged Beast monster is Normal Summoned to your field while this card is banished: [b]You can[/b] add this card to your hand.",
+              "script_sha256": "4fe6fa535afac0f55d133a716d1eb3de052f96b9b7f188dde6280cc64d37b93c",
+              "verified_shared_tokens": [
+                "CATEGORY_SEARCH",
+                "CATEGORY_SUMMON",
+                "CATEGORY_TOHAND",
+                "Duel.BreakEffect",
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "Duel.Summon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c55465441.lua",
+              "card_id": 55465441,
+              "card_name": "Give and Take",
+              "matched_structure": "Effect-driven Special Summon under another player's control.",
+              "official_effect_text": "Special Summon 1 monster from your Graveyard to your opponent's side of the field in Defense Position, [b]and[/b] increase the Level of 1 monster you control by the Level of the Special Summoned monster, until the [b]End Phase[/b].",
+              "script_sha256": "23a226dd17e6699c761f949b244faf5cb3c1a39abaa429d68d6b1ad91fb87205",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetChainInfo",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "RESET_EVENT"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_202_202.json",
+      "lua_effect_creations": 6,
+      "conservative_printed_clause_floor": 4,
+      "heuristic_printed_clause_floor": 5,
+      "source_batch": "batch_local_202_202.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 4,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

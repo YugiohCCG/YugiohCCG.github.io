@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 209,
+  "ordinal_end": 209,
+  "cards": [
+    {
+      "ordinal": 209,
+      "passcode": 259944943,
+      "name": "Bob, but Stronger!",
+      "text_sha256": "bff0c57151cb3d53bfadc528dee29a68e083075c667f3d6ff1d41c47df426263",
+      "script_sha256": "354928a6362dac1f88f394cdf6b77c8d6c63d72e47fdd7ff9318fcf95067844b",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Bob + Umi; must first be Special Summoned from Extra Deck by sending those controlled cards to GY without Polymerization.",
+          "lua_implementation": "Replaced the standard Fusion/contact helpers with a dedicated summon procedure that selects exactly one controlled Bob and one controlled Umi, verifies the freed Extra Deck zone, records both as material, and sends both to the GY for the summon. aux.AddCodeList registers both exact material names at runtime.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c79229522.lua",
+              "card_id": 79229522,
+              "card_name": "Chimeratech Fortress Dragon",
+              "matched_structure": "Contact Fusion sends listed controlled materials without Polymerization and uses a summon condition/revive limit.",
+              "official_effect_text": "\"Cyber Dragon\" + 1+ Machine monsters\n[b]Cannot[/b] be used as Fusion Material. Must first be Special Summoned (from your Extra Deck) by sending the above cards from either field to the GY. The original ATK of this card becomes 1000 x the number of materials used for its Special Summon.",
+              "script_sha256": "fb7739d509adc4da0e2520efe22aba582086ee114f28b9c588b132e4d3131cac",
+              "verified_shared_tokens": [
+                "Duel.SendtoGrave",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_CONDITION",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_EXTRA",
+                "LOCATION_ONFIELD",
+                "REASON_COST"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c11502550.lua",
+              "card_id": 11502550,
+              "card_name": "Elemental HERO Air Neos",
+              "matched_structure": "Official AddContactFusionProcedure plus SPSUMMON_CONDITION returning false while in Extra Deck.",
+              "official_effect_text": "\"Elemental Hero Neos\" + \"Neo-Spacian Air Hummingbird\"\nThis card can only be Special Summoned from your Extra Deck by returning the above cards you control to the Deck. (You do not use \"Polymerization\".) While your Life Points are lower than your opponent's, this card gains ATK equal to the difference. This card returns to the Extra Deck during the [b]End Phase[/b].",
+              "script_sha256": "f5408036f36c2036b12dfbe2f1c3f7f1be428c207242719699eddc36923f5511",
+              "verified_shared_tokens": [
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_CONDITION",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_EXTRA",
+                "LOCATION_MZONE",
+                "LOCATION_ONFIELD"
+              ]
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "The previous helper path rejected Umi because official Fusion helpers require Card.IsCanBeFusionMaterial; the dedicated procedure now implements the printed non-Polymerization summon exactly, with Bob and Umi registered through aux.AddCodeList."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You can only control 1 Bob, but Stronger!.",
+          "lua_implementation": "SetUniqueOnField(1,0,id) enforces one on its controller's field.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c44968687.lua",
+              "card_id": 44968687,
+              "card_name": "The Legendary Fisherman III",
+              "matched_structure": "Unique-on-field control restriction via SetUniqueOnField.",
+              "official_effect_text": "[b]Cannot[/b] be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 1 \"The Legendary Fisherman\". [b]When[/b] this card is Special Summoned: [b]You can[/b] [b]banish[/b] all monsters your opponent controls, [b]also[/b] this card [b]cannot[/b] attack this turn. [b]Cannot[/b] be destroyed by battle or card effects, [b]also[/b] [b]unaffected[/b] by Spell/Trap effects. [b]Once[/b] [b]per turn[/b]: [b]You can[/b] [b]return[/b] as many of your opponent's banished cards as possible to their GY, [b]and if you do[/b], the first battle or effect damage your opponent takes this turn becomes doubled.",
+              "script_sha256": "1f7c124a4c1e2ed69dd1af0007fca41422ee90c4fa63a6d06dc334cfd7f63b9f",
+              "verified_shared_tokens": [
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.SendtoGrave",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_CONDITION",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Can attack all opponent monsters once each.",
+          "lua_implementation": "Unconditional EFFECT_ATTACK_ALL value 1 on this card.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c3410461.lua",
+              "card_id": 3410461,
+              "card_name": "Alba-Lenatus the Abyss Dragon",
+              "matched_structure": "Can attack each opponent monster through EFFECT_ATTACK_ALL.",
+              "official_effect_text": "\"Fallen of Albaz\" + 1+ Dragon monsters\n[b]Cannot[/b] be used as Fusion Material. Must be either Fusion Summoned, or Special Summoned by sending the above cards from any Monster Zones to the GY. Can attack monsters a number of times each [b]Battle Phase[/b], up to the number of materials used for it. [b]Once[/b] [b]per turn[/b], during the [b]End Phase[/b], if this card is in the GY because it was sent there this turn: [b]You can[/b] add 1 \"Polymerization\" Normal Spell or \"Fusion\" Normal Spell from your Deck to your hand.",
+              "script_sha256": "75ffe6b72e89747ead14ada512a54b83d4097eccafe19734ea1a2a1a40841f32",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.SendtoGrave",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_CONDITION",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "REASON_COST"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Your Bob and monsters mentioning it can attack in face-up Defense Position using DEF.",
+          "lua_implementation": "Field EFFECT_DEFENSE_ATTACK targets exact Bob or cards for which aux.IsCodeListed(Bob) and applies DEF damage calculation; aux.AddCodeList publishes Bob's exact code so this card itself participates correctly in runtime named-card relations.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c47222536.lua",
+              "card_id": 47222536,
+              "card_name": "Dark Magical Circle",
+              "matched_structure": "aux.IsCodeListed implements printed 'mentions this card' relations.",
+              "official_effect_text": "[b]When[/b] this card is activated: Look at the top 3 cards of your Deck, [b]then[/b] [b]you can[/b] reveal 1 of them that is \"Dark Magician\" or a Spell/Trap that mentions \"Dark Magician\", [b]and[/b] add it to your hand, [b]also[/b] place the remaining cards on top of your Deck in any order. If \"Dark Magician\" is Normal or Special Summoned to your field (except during the Damage Step): [b]You can[/b] [b]target[/b] 1 card your opponent controls; [b]banish[/b] it. [b]You can[/b] only use each effect of \"Dark Magical Circle\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "259da9fcbe4667ba5fa12b4579085a3917d913c8f79791d60c17e1b37a31b480",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_ONFIELD",
+                "aux.IsCodeListed"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "If this attacks a Defense Position monster, inflict double piercing battle damage.",
+          "lua_implementation": "Single EFFECT_PIERCE with DOUBLE_DAMAGE value.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c11125718.lua",
+              "card_id": 11125718,
+              "card_name": "Lancer Dragonute",
+              "matched_structure": "Official piercing battle damage effect registration.",
+              "official_effect_text": "If this card attacks a Defense Position monster, inflict piercing battle damage to your opponent.",
+              "script_sha256": "09ea85d972872a4e6f1370bc56837c323b3ffc6c83a80598ed38ee507cce0507",
+              "verified_shared_tokens": [
+                "EFFECT_PIERCE",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "lua_effect_creations": 5,
+      "conservative_printed_clause_floor": 5,
+      "heuristic_printed_clause_floor": 4,
+      "source_batch": "batch_local_209_209.json",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_209_209.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 4,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

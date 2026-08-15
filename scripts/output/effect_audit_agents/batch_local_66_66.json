@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-1-72",
+  "ordinal_start": 66,
+  "ordinal_end": 66,
+  "cards": [
+    {
+      "ordinal": 66,
+      "passcode": 215629896,
+      "name": "NiuHao - Zaoka",
+      "text_sha256": "50011b4b1bd76b4570308af62b8be93fba9a82c385721835cbbed025a08074ee",
+      "script_sha256": "c9c633382e64429d9a8ac6f4b299032646327e79a117e8914dba50ef0d5d6e97",
+      "overall_verdict": "FIXED",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If this card is Normal or Special Summoned: You can add 1 \"NiuHao\" or \"Sacred Treasure\" card from your GY or banishment to the hand.",
+          "lua_implementation": "c215629896.lua uses Duel.SpecialSummon, Duel.Remove, Duel.SendtoHand; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c32807846.lua",
+              "card_id": 32807846,
+              "card_name": "Reinforcement of the Army",
+              "matched_structure": "Deck search, SendtoHand, and confirmation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "When your opponent activates a card effect on the field or banishment (Quick Effect): You can banish this card from your hand or face-up field; excavate the top 3 cards of your Deck, then send all \"NiuHao\" and \"Sacred Treasure\" cards excavated by this effect to the GY, also, shuffle the rest into your Deck.",
+          "lua_implementation": "Activation now requires at least three cards in the Deck; resolution confirms exactly the top three, sends all excavated NiuHao/Sacred Treasure cards to the GY, and shuffles the remainder.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c25550531.lua",
+              "card_id": 25550531,
+              "card_name": "Purrely",
+              "matched_structure": "exactly-three top-Deck confirmation, processing, and shuffle structure."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and fixed: an effect that excavates the top 3 cannot activate with fewer than three cards or silently excavate fewer."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "During the Standby Phase of the next turn after this card was banished: You can Special Summon this banished card.",
+          "lua_implementation": "c215629896.lua uses Duel.SpecialSummon, Duel.Remove; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c83764718.lua",
+              "card_id": 83764718,
+              "card_name": "Monster Reborn",
+              "matched_structure": "GY target validation and Special Summon resolution."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use each effect of NiuHao - Zaoka once per turn.",
+          "lua_implementation": "c215629896.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "named hard once-per-turn SetCountLimit structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Independent manual segmentation of the exact current printed text into 4 atomic material, condition, cost, operation, restriction, and count-limit clauses; every record was compared with current canonical Lua and an official Omega structure."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 3,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

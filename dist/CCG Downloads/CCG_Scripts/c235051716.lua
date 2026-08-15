@@ -48,7 +48,7 @@ function s.reop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.setcon(e,tp,eg,ep,ev,re,r,rp)
-	return re and re:GetHandler():IsSetCard(0x4ac0)
+	return e:GetHandler():IsReason(REASON_EFFECT) and re and re:GetHandler():IsSetCard(0x4ac0)
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

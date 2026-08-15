@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "batch": "local-adversarial-custom-gap-review-217-432",
+  "ordinal_start": 373,
+  "ordinal_end": 373,
+  "cards": [
+    {
+      "ordinal": 373,
+      "passcode": 211699737,
+      "name": "Myutant Amalgamate",
+      "text_sha256": "fdc6efcad5dd3bc12c2d58b947f191731812a7bb2a56c4851ab843a965281a9b",
+      "script_sha256": "3c005782a4fea983d3a6feae29b73d5092c48b55490379b1759d084edf17d06e",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2 Myutant monsters.",
+          "lua_implementation": "EnableReviveLimit and aux.AddFusionProcFunRep require exactly two cards satisfying IsFusionSetCard(SET_MYUTANT).",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c41209827.lua",
+              "card_id": 41209827,
+              "card_name": "Starving Venom Fusion Dragon",
+              "matched_structure": "Repeated-filter two-material Fusion procedure with revive limit."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Fusion Summoned: You can Set 1 Myutant Spell/Trap Card from your Deck, GY, or banishment.",
+          "lua_implementation": "A delayed summon trigger checks SUMMON_TYPE_FUSION and Sets one Myutant Spell/Trap from Deck, GY, or face-up banishment with Necrovalley filtering.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c77675029.lua",
+              "card_id": 77675029,
+              "card_name": "Exosister Karmael",
+              "matched_structure": "Sets an archetype Spell/Trap from Deck, GY, or banishment after an Extra Deck summon."
+            },
+            {
+              "script": "tmp/omega_scripts/c52553102.lua",
+              "card_id": 52553102,
+              "card_name": "Jurrac Astero",
+              "matched_structure": "Set-from-Deck/GY operation attached to a Synchro/Fusion summon trigger."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "During your Main Phase: You can reveal 1 Myutant card from your Deck; send it to the GY, then banish 1 monster from your Deck based on the revealed card.",
+          "lua_implementation": "An ignition effect reveals and retains a Myutant Deck card as activation cost. At resolution it sends that card to the GY, maps its original type to Beast/Mist/Arsenal, then banishes the corresponding exact monster from the Deck.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c62201847.lua",
+              "card_id": 62201847,
+              "card_name": "Myutant M-05",
+              "matched_structure": "Official Myutant original-type branching between named monsters."
+            },
+            {
+              "script": "tmp/omega_scripts/c22796548.lua",
+              "card_id": 22796548,
+              "card_name": "Archfiend's Oath",
+              "matched_structure": "Reveals/retains a Deck card and resolves later according to the revealed information."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "And if you do, this effect becomes that monster's original effect.",
+          "lua_implementation": "After banishing the corresponding Myutant monster, the handler uses CopyEffect with a standard state-change reset, granting that card's copyable effects rather than replacing and executing only this resolving effect.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c43237273.lua",
+              "card_id": 43237273,
+              "card_name": "Neo-Spacian Dark Panther",
+              "matched_structure": "Replaces/copies another monster's original effects with an explicit duration."
+            },
+            {
+              "script": "tmp/omega_scripts/c30312361.lua",
+              "card_id": 30312361,
+              "card_name": "Phantom of Chaos",
+              "matched_structure": "Banishes a monster and copies its effects via CopyEffect with a defined reset."
+            },
+            {
+              "script": "tmp/omega_scripts/c6351147.lua",
+              "card_id": 6351147,
+              "card_name": "Transaction Rollback",
+              "matched_structure": "Makes the resolving effect become another card's activation effect by invoking the referenced effect's target/operation rather than permanently copying the card."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "The text does not identify which of an arbitrary monster's effects is meant or provide that effect's event, activation condition, cost, target, or parameters. CopyEffect grants the card's copyable effects for a duration; it cannot make this already-resolving effect become and execute an unspecified original effect. Exact resolution requires wording that grants copied effects for a stated duration, or selection of one specifically activatable effect with defined cost/target semantics."
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "You can only use each effect of Myutant Amalgamate once per turn.",
+          "lua_implementation": "The Fusion trigger and Main Phase ignition use id and id+100 hard once-per-turn keys.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c62201847.lua",
+              "card_id": 62201847,
+              "card_name": "Myutant M-05",
+              "matched_structure": "Separate hard once-per-turn keys for multiple Myutant effects."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "overall_verdict": "CUSTOM_GAP",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "Complete card override retained after re-reading every printed clause, current Lua registration/procedure, relevant engine helpers/constants, and each cited official Omega script/database record."
+      },
+      "audit_note": "Adversarial completion review: effect 4 retained. Prior labels were not treated as evidence.",
+      "supersedes_batch": "local-reconciliation-batch6-plus-gravinity-collateral"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 4,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

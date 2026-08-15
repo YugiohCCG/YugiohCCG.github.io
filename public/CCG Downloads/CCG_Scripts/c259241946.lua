@@ -20,7 +20,8 @@ function s.charmritual(c,e,tp)
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true)
 end
 function s.monmatfilter(c,rc)
-	return c:IsType(TYPE_MONSTER) and c:GetLevel()>0 and c:IsAbleToGrave()
+	return c:IsType(TYPE_MONSTER) and c:GetLevel()>0
+		and (not c:IsLocation(LOCATION_DECK) or c:IsAbleToGrave())
 		and c:IsCanBeRitualMaterial(rc)
 end
 function s.stmatfilter(c)
@@ -99,7 +100,6 @@ function s.register_lock(e,tp)
 	Duel.RegisterEffect(e1,tp)
 end
 function s.ritop(e,tp,eg,ep,ev,re,r,rp)
-	if s.ritualsummon(e,tp) then
-		s.register_lock(e,tp)
-	end
+	s.ritualsummon(e,tp)
+	s.register_lock(e,tp)
 end

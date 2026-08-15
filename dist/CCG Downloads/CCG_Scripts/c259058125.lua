@@ -3,8 +3,9 @@ local s,id,o=GetID()
 local STRING_ID=133058125
 local SET_ECLIPSE=0xf2f4
 local CARD_BOOK_OF_ECLIPSE=35480699
+local CARD_BOOK_OF_LUNAR_ECLIPSE=31834488
 function s.initial_effect(c)
-	aux.AddCodeList(c,120222045)
+	aux.AddCodeList(c,120222045,CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE)
 	--Gains ATK/DEF for each card in your opponent's hand
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
@@ -44,7 +45,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 s.listed_series={SET_ECLIPSE}
-s.listed_names={CARD_BOOK_OF_ECLIPSE}
+s.listed_names={CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE}
 function s.val(e,c)
 	return Duel.GetFieldGroupCount(c:GetControler(),0,LOCATION_HAND)*300
 end
@@ -54,7 +55,7 @@ function s.setcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SendtoGrave(c,REASON_COST+REASON_DISCARD)
 end
 function s.setfilter(c)
-	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE))
+	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE))
 		and c:IsType(TYPE_QUICKPLAY) and c:IsSSetable()
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)

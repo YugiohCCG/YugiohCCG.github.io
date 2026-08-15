@@ -130,8 +130,6 @@ function s.effop(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetValue(tc:GetOriginalCodeRule())
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
 		c:RegisterEffect(e1)
-		if not tc:IsType(TYPE_TRAPMONSTER) then
-			c:CopyEffect(tc:GetOriginalCode(),RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,1)
-		end
+		c:CopyEffect(tc:GetOriginalCode(),RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,1)
 	end
 end

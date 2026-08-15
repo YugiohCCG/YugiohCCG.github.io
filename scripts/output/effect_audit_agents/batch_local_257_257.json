@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 257,
+      "passcode": 238841732,
+      "name": "Let's Go, Shining Brigade!",
+      "text_sha256": "e31a029e5304c2af4607d1e2e2a3b1198b684005409abb65bd25165bb0b3976d",
+      "script_sha256": "82395c874661800bde4084dd9ad16cea3d06ae5e5c201db995c5ce3faf12199e",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If you control no monsters: Special Summon 1 \"Shining Brigade\" monster from your Deck. You cannot Special Summon monsters the turn you activate this effect, except LIGHT Monsters. You can banish this card from your GY; add 1 \"Shining Brigade\" Spell/Trap from your Deck to your hand. You can only activate 1 \"Let's Go, Shining Brigade!\" effect per turn, and only once that turn.",
+          "lua_implementation": "Activation checks an empty monster field; custom prior-activity counting plus an oath restriction enforce the full-turn LIGHT lock, then one archetype monster is summoned from Deck.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c44362883.lua",
+              "card_id": 44362883,
+              "card_name": "Branded Fusion",
+              "matched_structure": "full-turn activity/oath Summon lock",
+              "official_effect_text": "Fusion Summon 1 Fusion Monster that mentions \"Fallen of Albaz\" as material from your Extra Deck, using 2 monsters from your hand, Deck, or field. You [b]cannot[/b] Special Summon from the Extra Deck, except Fusion Monsters, the turn you activate this card. [b]You can[/b] only activate 1 \"Branded Fusion\" [b]per turn[/b].",
+              "script_sha256": "a78b719f2f7bef65a2afac1c29f75f917548fe6952d5dd2c3f1b92c39635c96a",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.AddCustomActivityCounter",
+                "Duel.GetCustomActivityCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.RegisterEffect",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_CANNOT_SPECIAL_SUMMON",
+                "EFFECT_COUNT_CODE_OATH",
+                "EFFECT_FLAG_OATH",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "RESET_PHASE"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c5288597.lua",
+              "card_id": 5288597,
+              "card_name": "Transmodify",
+              "matched_structure": "filtered Deck Special Summon",
+              "official_effect_text": "Send 1 face-up monster you control to the GY; Special Summon from your Deck, 1 monster with the same Type [b]and[/b] Attribute as that monster in the GY, but 1 Level higher. [b]You can[/b] only activate 1 \"Transmodify\" [b]per turn[/b].",
+              "script_sha256": "7ab7390c817fe27b9beefc7cb86030950f9a4656f89d2544fc407f1d802b2bd9",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_ACTIVATE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You can banish this card from your GY; add 1 \"Shining Brigade\" Spell/Trap from your Deck to your hand.",
+          "lua_implementation": "A GY Ignition Effect banishes itself as cost and searches an archetype Spell/Trap.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c51858306.lua",
+              "card_id": 51858306,
+              "card_name": "Eclipse Wyvern",
+              "matched_structure": "EVENT_REMOVE after GY",
+              "official_effect_text": "If this card is sent to the GY: [b]Banish[/b] 1 Level 7 or higher LIGHT or DARK Dragon monster from your Deck. If this card is banished from your GY: [b]You can[/b] add the monster banished by this card's effect to your hand.",
+              "script_sha256": "2b98189064141a1ba77c8832891109dbfe4f7966bdfa5735a76f31ed382fcdc0",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "filtered add-to-hand",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_COUNT_CODE_OATH",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can only activate 1 \"Let's Go, Shining Brigade!\" effect per turn, and only once that turn.",
+          "lua_implementation": "Both effects use the same oath count code, so only one may be used.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c49299410.lua",
+              "card_id": 49299410,
+              "card_name": "The Black Goat Laughs",
+              "matched_structure": "effects share one turn count",
+              "official_effect_text": "Declare 1 Monster Card name; this turn, neither player can Special Summon monsters with that original name, except from the GY. [b]You can[/b] [b]banish[/b] this card from the GY, [b]then[/b] declare 1 Monster Card name; this turn, neither player can activate the effects of monsters on the field with that original name. [b]You can[/b] only use 1 \"The Black Goat Laughs\" effect [b]per turn[/b], [b]and[/b] only [b]once[/b] that turn.",
+              "script_sha256": "bfb8be0e18b7eb2ba0e068e3e6dc89a536d7919a5c28f71399892d648970d969",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.RegisterEffect",
+                "Duel.SetOperationInfo",
+                "EFFECT_CANNOT_SPECIAL_SUMMON",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "RESET_PHASE",
+                "aux.bfgcost"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The Deck Summon activation with its LIGHT lock, the GY search effect, and their shared one-effect-per-turn restriction are three complete audit units."
+      }
+    }
+  ]
+}

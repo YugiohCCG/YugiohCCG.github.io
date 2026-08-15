@@ -1,0 +1,130 @@
+{
+  "inputs": {
+    "source": "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json",
+    "public": "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\assets\\cards.json",
+    "database": "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Database\\CCG_v1.db",
+    "installed_database": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db",
+    "scripts": "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts"
+  },
+  "summary": {
+    "active_cards": 577,
+    "public_cards": 577,
+    "unique_active_passcodes": 577,
+    "repository_database_rows_total": 1162,
+    "repository_database_active_rows": 577,
+    "installed_database_rows_total": 1161,
+    "installed_database_active_rows": 577,
+    "canonical_scripts_total": 578,
+    "canonical_active_scripts": 577,
+    "canonical_missing_active_scripts": 0,
+    "canonical_non_active_scripts": [
+      210678856
+    ],
+    "json_copy_cards_equal": 577,
+    "database_fields_compared_per_database": 4616,
+    "repository_database_divergent_cards": 0,
+    "installed_database_divergent_cards": 7,
+    "categories": {
+      "Monster": 405,
+      "Spell": 123,
+      "Trap": 49
+    },
+    "spell_trap_icons": {
+      "Spell:Continuous": 21,
+      "Spell:Equip": 3,
+      "Spell:Field": 21,
+      "Spell:Normal": 36,
+      "Spell:Quick-Play": 37,
+      "Spell:Ritual": 5,
+      "Trap:Continuous": 16,
+      "Trap:Counter": 6,
+      "Trap:Normal": 27
+    },
+    "monster_subtypes": {
+      "Effect": 396,
+      "Fusion": 44,
+      "Link": 37,
+      "Normal": 9,
+      "Pendulum": 10,
+      "Ritual": 13,
+      "Special Summon": 17,
+      "Spirit": 6,
+      "Synchro": 31,
+      "Tuner": 28,
+      "Xyz": 40
+    },
+    "normal_monsters": 9,
+    "normal_monsters_without_runtime_findings": 9,
+    "extra_deck_monsters": 152,
+    "extra_deck_subtypes": {
+      "Fusion": 44,
+      "Link": 37,
+      "Synchro": 31,
+      "Xyz": 40
+    },
+    "findings": 7,
+    "finding_kinds": {
+      "database_divergence": 7
+    },
+    "scarstech_prologue": {
+      "present": true,
+      "cardTypes": [
+        "Normal"
+      ],
+      "repository_db_type": 17,
+      "installed_db_type": 17,
+      "runtime_effect_findings": 0
+    }
+  },
+  "findings": [
+    {
+      "kind": "database_divergence",
+      "passcode": 232706629,
+      "name": "Protogenic Astral Cycle",
+      "source": "installed DB",
+      "detail": "ordinal 134; {'desc': {'expected': 'Neither player can Summon Effect Monsters to Main Monster Zones in this card\\'s column. Once per turn: You can Special Summon 1 \"Protogenic Essence Token\" (Galaxy/LIGHT/Level 1/ATK 0/DEF 0). If your opponent activates a card effect: You can Special Summon 1 \"To Proto\" monster from your hand or GY ignoring its Summoning conditions by banishing 1 Effect Monster you control. You can only use the previous effect of \"Protogenic Astral Cycle\" once per turn.', 'actual': 'Neither player can Summon Effect Monsters to Main Monster Zones in this card\\'s column. Once per turn: You can Special Summon 1 \"Protogenic Essence Token\" (Galaxy/LIGHT/Level 1/ATK 0/DEF 0). If your opponent activates a card effect: You can Special Summon 1 \"To Proto\" monster from your hand or GY ignoring its card effects by banishing 1 Effect Monster you control. You can only use the previous effect of \"Protogenic Astral Cycle\" once per turn.'}}"
+    },
+    {
+      "kind": "database_divergence",
+      "passcode": 244013196,
+      "name": "To Proto Chrono",
+      "source": "installed DB",
+      "detail": "ordinal 135; {'desc': {'expected': 'Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by banishing 1 \"To Proto\" monster you control. During the Main Phase (Quick Effect): You can Tribute 1 \"Protogenic Essence Token\"; negate the effects of 1 monster on the field, then this card gains ATK/DEF equal to that monster\\'s ATK/DEF, and if you do, increase all effect\\'s turn count by 1. If this card is banished from the field: You can target 1 of your banished \"To Proto\" monsters with a different name; add it to your hand. You can only use each effect of \"To Proto Chrono\" once per turn.', 'actual': 'Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by banishing 1 \"To Proto\" monster you control. During'}}"
+    },
+    {
+      "kind": "database_divergence",
+      "passcode": 254065048,
+      "name": "Polemistis gia Ataxia",
+      "source": "installed DB",
+      "detail": "ordinal 141; {'desc': {'expected': '2 Level 1 or higher \"Protogenic Essence Tokens\"\\nMust first be Special Summoned (from your Extra Deck) by Tributing the Required Materials you control while you control \"To Proto Ataxia\" (You do not use \"Polymerization\"). If a monster(s) loses ATK/DEF, this card gains ATK/DEF equal to the amount lost. This card can attack all monsters your opponent controls, once each. If this card is Special Summoned from the Extra Deck: You can add to your hand or send to the GY 1 \"Ataxia\" Spell/Trap from your Deck. You can only use this effect of \"Polemistis gia Ataxia\" once per turn.', 'actual': '2 Level 1 or higher \"Protogenic Essence Tokens\"\\nMust first be Special Summoned (from your Extra Deck) by Tributing the Required Materials you control while you control \"To Proto Ataxia\" (You do not use \"Polymerization\"). If a monster(s) loses ATK/DEF, this card gains half the ATK/DEF. This card can attack all monsters your opponent controls, once each. If this card is Special Summoned from the Extra Deck: You can add to your hand or send to the GY 1 \"Ataxia\" Spell/Trap from your Deck. You can only use this effect of \"Polemistis gia Ataxia\" once per turn.'}}"
+    },
+    {
+      "kind": "database_divergence",
+      "passcode": 231872299,
+      "name": "Recollection: the Mine",
+      "source": "installed DB",
+      "detail": "ordinal 193; {'desc': {'expected': 'All monsters your opponent controls lose 500 ATK for each \"Vir Pedicae Mortis\" monster you control. Once per turn: You can banish 1 card from your GY, then discard 1 card; Special Summon 1 \"Pedicae\\'s Papa\" or 1 \"Vir Pedicae Mortis\" monster from your Deck, then add 1 \"Recollection: Kaboom Papa\" from your Deck to your hand. You can only activate 1 \"Recollection: The Mine\" per turn.', 'actual': 'All monsters your opponent controls lose 500 ATK for each \"Vir Pedicae Mortis\" monster you control. Once per turn: You can banish 1 card from your GY, then discard 1 card; Special Summon 1 \"Predicae\\'s Papa\" or 1 \"Vir Pedicae Mortis\" monster from your Deck, then add 1 \"Recollection: Kaboom Papa\" from your Deck to your hand. You can only activate 1 \"Recollection: The Mine\" per turn.'}}"
+    },
+    {
+      "kind": "database_divergence",
+      "passcode": 236721134,
+      "name": "Devotee of Fire",
+      "source": "installed DB",
+      "detail": "ordinal 318; {'desc': {'expected': 'If you control a FIRE Dragon monster, you can Special Summon this card (from your GY). You can only Special Summon \"Devotee of Fire\" once per turn this way. You can only use each of the following effects of \"Devotee of Fire\" once per turn. If this card is Normal or Special Summoned: You can send 1 Dragon monster from your Extra Deck to the GY; Set 1 Spell/Trap that lists \"Phlogiston Dragon\" in its text directly from your Deck or GY. When your opponent activates a Spell/Trap Card or effect, while you control a \"Phlogiston Dragon\" (Quick Effect): You can Tribute this card; negate that activation.', 'actual': 'If you control a FIRE Dragon monster, you can Special Summon this card (from your GY). You can only Special Summon \"Devotee of Fire\" once per turn this way. You can only use each of the following effects of \"Devotee of Fire\" once per turn. If this card is Normal or Special Summoned: You can send 1 Dragon monster from your Extra Deck to the GY. Set 1 Spell/Trap that lists \"Phlogiston Dragon\" in its text directly from your Deck or GY. When your opponent activates a Spell/Trap Card or effect, while you control a \"Phlogiston Dragon\" (Quick Effect): You can Tribute this card; negate that activation.'}}"
+    },
+    {
+      "kind": "database_divergence",
+      "passcode": 259230000,
+      "name": "Aeloria in Depraevity",
+      "source": "installed DB",
+      "detail": "ordinal 462; {'desc': {'expected': '(This card is always treated as an \"Eldora\" card.) Activate this card by targeting 1 Effect Monster you control; activate 1 \"Eldora, the Intergalactic Empire\" from your Deck, then Special Summon this card as an Effect Monster with the same Type, Attribute, Level, ATK and DEF as that target and with the following effects (this card is also still a Trap). ● Cannot be destroyed by card effects. ● During the turn \"Eldora, the Intergalactic Empire\" was destroyed by your opponent\\'s card effect while you controlled this card (Quick Effect): You can Tribute this card; activate 1 \"Galactican Battle Station\" from your hand, Deck or GY.', 'actual': '(This card is always treated as an \"Eldora\" card.) Activate this card by targeting 1 Effect Monster you control; activate 1 \"Eldora, the Intergalactic Empire\" from your Deck, then Special Summon this card as an Effect Monster with the same Type, Attribute, Level, ATK and DEF as that target and with the following effects (this card is also still a Trap). ● Cannot be destroyed by card effects. ● If \"Eldora, the Intergalactic Empire\" was destroyed by your opponent\\'s card effect while you controlled this card (Quick Effect): You can Tribute this card; activate 1 \"Galactican Battle Station\" from your hand, Deck or GY.'}}"
+    },
+    {
+      "kind": "database_divergence",
+      "passcode": 259023461,
+      "name": "Disciple of Fire",
+      "source": "installed DB",
+      "detail": "ordinal 525; {'desc': {'expected': 'You can reveal this card in your hand; add 1 \"Phlogistic Uprising!\" from your Deck to your hand. If you pay LP while this card is in your GY: You can activate 1 of these effects. O Once, while this card is in your GY: Discard 1 card, then add 1 FIRE monster from your GY to your hand. O Special Summon this card (but banish it when it leaves the field), and if you do, you can gain LP equal to half the LP you paid this turn while you controlled a \"Phlogiston Dragon\". You can only use each effect of \"Disciple of Fire\" once per turn.', 'actual': 'You can reveal this card in your hand; add 1 \"Phlogistic Uprising!\" from your Deck to your . If you pay LP while this card is in your GY: You can activate 1 of these effects. O Once, while this card is in your GY: Discard 1 card, then add 1 FIRE monster from your GY to your hand. O Special Summon this card (but banish it when it leaves the field), and if you do, you can gain LP equal to half the LP you paid this turn while you controlled a \"Phlogiston Dragon\". You can only use each effect of \"Disciple of Fire\" once per turn.'}}"
+    }
+  ]
+}

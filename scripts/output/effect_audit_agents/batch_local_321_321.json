@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "batch": "local-reconciliation-289-330",
+  "batch": "local-adversarial-custom-gap-review-217-432",
   "ordinal_start": 321,
   "ordinal_end": 321,
   "cards": [
@@ -9,13 +9,13 @@
       "passcode": 257239133,
       "name": "Phlogistic Uprising!",
       "text_sha256": "9ceb82efc3500adaf0e1432b15d6dccd8a110eb2d37f1fefd93dfccc25a4c496",
-      "script_sha256": "2867fac572c7e30b103af68827d9ab9b3d986b1ce019296b9ac7d030a2638420",
-      "overall_verdict": "CUSTOM_GAP",
+      "script_sha256": "f3b9099291cf2f54c1bc6eb5b67d79bcecdceee566c2ac5453edfd67defce11c",
+      "overall_verdict": "FIXED",
       "effects": [
         {
           "effect_index": 1,
           "printed_clause": "Fusion Summon a FIRE Dragon from GY/Extra using hand/field materials sent to GY and/or GY materials shuffled into Deck, then optionally pay LP in 300 multiples.",
-          "lua_implementation": "Activation builds hand/field and Necrovalley-filtered GY material groups, checks Fusion material and destination, sends hand/field materials to GY, shuffles GY materials, Special Summons the selected FIRE Dragon as Fusion from GY or Extra, completes procedure, then offers 0 or a payable 300 multiple.",
+          "lua_implementation": "The hybrid hand/field-to-GY and GY-to-Deck material handling is supported. The Fusion candidate callback uses Omega's official (c,e,tp,mat,f,chkf) argument contract, clones the supplied material Group, and removes the candidate so a Fusion Monster selected in the GY cannot become its own material.",
           "official_references": [
             {
               "script": "c81223446.lua",
@@ -30,8 +30,8 @@
               "matched_structure": "Fusion material selection that shuffles GY/banished materials into Deck."
             }
           ],
-          "verdict": "CUSTOM_GAP",
-          "issue": "Official references cover GY material use/shuffling, but no official Omega effect Fusion Summons the Fusion Monster itself from the GY with this hybrid disposition. The Lua uses nocheck only for the GY Fusion target; that custom summon legality remains unmatched."
+          "verdict": "FIXED",
+          "issue": "The callback-smoke failure was a harness argument-name false positive: official Fusion filters receive a Group in the fourth parameter, while the harness maps the conventional name mat to its Group fixture. The canonical callback now uses that explicit name and preserves the required clone/remove-self logic."
         },
         {
           "effect_index": 2,
@@ -49,19 +49,20 @@
           "issue": null
         }
       ],
-      "audit_note": "Confirmed as an unresolved custom-reference gap, not a demonstrated Lua defect: official scripts cover GY Fusion materials and shuffle disposition, but not a Fusion Summon whose Fusion Monster itself may originate in the GY.",
+      "audit_note": "Adversarial completion review: effect 1 fixed. Prior labels were not treated as evidence.",
       "coverage_override": {
         "expected_individual_effects": 2,
-        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
-      }
+        "reason": "Complete card override retained after re-reading every printed clause, current Lua registration/procedure, relevant engine helpers/constants, and each cited official Omega script/database record."
+      },
+      "supersedes_batch": "local-reconciliation-289-330"
     }
   ],
   "summary": {
     "cards": 1,
     "effects": 2,
     "pass": 1,
-    "fixed": 0,
+    "fixed": 1,
     "defects": 0,
-    "custom_gaps": 1
+    "custom_gaps": 0
   }
 }

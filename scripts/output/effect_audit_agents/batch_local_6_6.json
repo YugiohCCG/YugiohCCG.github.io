@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 6,
+  "ordinal_end": 6,
+  "cards": [
+    {
+      "ordinal": 6,
+      "passcode": 247499445,
+      "name": "Stained Fox Feness",
+      "text_sha256": "f58bf3d7ee2d4fca0d13824f75bdded1c61f13aaa6c60c55797470540fe2a6e8",
+      "script_sha256": "6d49eb153f754618f9b548ff01acfd0480bfcf2e79dd9db3b8f1d715cc961867",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If your opponent controls more cards than you do: You can Special Summon this card from your hand.",
+          "lua_implementation": "c247499445.lua uses Duel.SpecialSummon; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c83764718.lua",
+              "card_id": 83764718,
+              "card_name": "Monster Reborn",
+              "matched_structure": "GY target validation and Special Summon resolution.",
+              "official_effect_text": "[b]Target[/b] 1 monster in either GY; Special Summon it.",
+              "script_sha256": "c2677a8427d0284a26fcc60bc085e20131958550a1d54040ac15e06f8aa75afb",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetFirstTarget",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_CARD_TARGET",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Normal or Special Summoned: You can target 1 other face-up card on the field; negate its effects until the end of this turn, and if you do, shuffle this card into the Deck.",
+          "lua_implementation": "c247499445.lua uses Duel.SpecialSummon, Duel.NegateRelatedChain, EFFECT_DISABLE, Duel.SendtoDeck, Duel.ShuffleDeck; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c97268402.lua",
+              "card_id": 97268402,
+              "card_name": "Effect Veiler",
+              "matched_structure": "face-up target negation with End Phase reset.",
+              "official_effect_text": "During your opponent's [b]Main Phase[/b] ([b]Quick Effect[/b]): [b]You can[/b] send this card from your hand to the GY, [b]then[/b] [b]target[/b] 1 Effect Monster your opponent controls; [b]negate[/b] the effects of that face-up monster your opponent controls, until the end of this turn.",
+              "script_sha256": "f79441a6fb194377e54f0e9a496be52962031c010636ab8499296781d23c608f",
+              "verified_shared_tokens": [
+                "CATEGORY_DISABLE",
+                "Duel.GetFirstTarget",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.NegateRelatedChain",
+                "Duel.SelectTarget",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "EFFECT_DISABLE",
+                "EFFECT_DISABLE_EFFECT",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "REASON_COST",
+                "RESET_EVENT",
+                "RESET_PHASE",
+                "RESET_TURN_SET",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can send 1 Level 4 or lower \"Stain\" monster from your Deck to the GY; Shuffle this card face-up into your opponent's Deck.",
+          "lua_implementation": "Adversarial re-review confirmed that the current canonical Lua implements this printed effect with supported Omega primitives. A compound effect need not have a single-card official analogue; the attached official references validate its individual engine structures.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c27911549.lua",
+              "card_id": 27911549,
+              "card_name": "Parasite Paracide",
+              "matched_structure": "closest official opponent-Deck insertion and reversed-card structure.",
+              "official_effect_text": "FLIP: Shuffle this card face-up into your opponent's Deck.\nIf you draw this card after it was added to your Deck by its effect: Special Summon it in Defense Position, [b]and if you do[/b], take 1000 damage. All monsters controlled by the player that Summoned this card by its effect become Insect monsters.",
+              "script_sha256": "5b36b6ab4cef901df627b5343cad0d4df3959d355f9e6be61104dbd4f92fb35f",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TODECK",
+                "Duel.EnableGlobalFlag",
+                "Duel.SendtoDeck",
+                "Duel.SetOperationInfo",
+                "Duel.ShuffleDeck",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c81439173.lua",
+              "card_id": 81439173,
+              "card_name": "Foolish Burial",
+              "matched_structure": "Deck selection and send-to-GY operation.",
+              "official_effect_text": "Send 1 monster from your Deck to the GY.",
+              "script_sha256": "067f1d7b00e54da284e72ba69a6f408fc21aa0231e3ca5b905b9548f4f773634",
+              "verified_shared_tokens": [
+                "CATEGORY_TOGRAVE",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "REASON_EFFECT",
+                "TYPE_MONSTER"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use each effect of \"Stained Fox Feness\" once per turn.",
+          "lua_implementation": "c247499445.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "named hard once-per-turn SetCountLimit structure.",
+              "official_effect_text": "[b]When[/b] a card or effect is activated that includes any of these effects ([b]Quick Effect[/b]): [b]You can[/b] [b]discard[/b] this card; [b]negate[/b] that effect.\n● Add a card from the Deck to the hand.\n● Special Summon from the Deck.\n● Send a card from the Deck to the GY.\n[b]You can[/b] only use this effect of \"Ash Blossom & Joyous Spring\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "fd4c7dd7e01c5ab227d539187369c7d37a9062b9fa5f9a93cf8c8344eb1a770b",
+              "verified_shared_tokens": [
+                "CATEGORY_DISABLE",
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TOGRAVE",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_HAND",
+                "REASON_COST"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_6_6.json",
+      "lua_effect_creations": 4,
+      "conservative_printed_clause_floor": 4,
+      "heuristic_printed_clause_floor": 5,
+      "source_batch": "batch_local_6_6.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 4,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

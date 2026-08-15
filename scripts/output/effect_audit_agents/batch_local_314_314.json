@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 314,
+  "ordinal_end": 314,
+  "cards": [
+    {
+      "ordinal": 314,
+      "passcode": 250902476,
+      "name": "Striking Mirror Force",
+      "text_sha256": "5f6f22c3ca0384955e235cced1536a92a658f54bac6ebdefe30ee3a52d30d45c",
+      "script_sha256": "221c8b5e54c927d551d165d8d04369f974f6c2b6d2952494fb1371829daa4cf5",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "When opponent activates a card/effect or declares an attack: destroy that card, then optionally destroy an opponent Attack Position monster; only 1 activation per turn.",
+          "lua_implementation": "Separate EVENT_CHAINING and EVENT_ATTACK_ANNOUNCE activation effects share the oath count. Each destroys the chain handler/event group or attacker first and only after a successful destruction optionally selects and destroys an Attack Position opponent monster.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c44095762.lua",
+              "card_id": 44095762,
+              "card_name": "Mirror Force",
+              "matched_structure": "Attack-announcement Trap activation and attacker destruction."
+            },
+            {
+              "script": "tmp/omega_scripts/c10552026.lua",
+              "card_id": 10552026,
+              "card_name": "Gouki Heel Ogre",
+              "matched_structure": "EVENT_CHAINING operation that uses Duel.Destroy(eg) after relation/chain checks."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 1,
+        "reason": "The card/effect-activation and attack-announcement cases are alternate activation events for one Trap effect; destruction, optional follow-up destruction, and the activation HOPT are all represented in record 1."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 1,
+    "pass": 1,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

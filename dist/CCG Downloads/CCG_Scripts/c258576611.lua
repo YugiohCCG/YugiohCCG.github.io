@@ -6,7 +6,7 @@ function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_COUNTER)
-	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
+	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetProperty(EFFECT_FLAG_DELAY)
 	e1:SetCode(EVENT_SUMMON_SUCCESS)
 	e1:SetCountLimit(1,id)
@@ -44,19 +44,22 @@ end
 function s.ctfilter(c,ct)
 	return c:IsFaceup() and c:IsCanAddCounter(COUNTER_CANDY,ct)
 end
+function s.skewyfilter(c)
+	return c:IsFaceup() and c:IsSetCard(SET_SKEWY)
+end
 function s.cttg(e,tp,eg,ep,ev,re,r,rp,chk)
-	local ct=Duel.IsExistingMatchingCard(Card.IsSetCard,tp,LOCATION_MZONE,0,1,e:GetHandler(),SET_SKEWY) and 2 or 1
+	local ct=Duel.IsExistingMatchingCard(s.skewyfilter,tp,LOCATION_MZONE,0,1,e:GetHandler()) and 2 or 1
 	if chk==0 then return Duel.IsExistingMatchingCard(s.ctfilter,tp,0,LOCATION_MZONE,1,nil,ct) end
 end
 function s.ctop(e,tp,eg,ep,ev,re,r,rp)
-	local ct=Duel.IsExistingMatchingCard(Card.IsSetCard,tp,LOCATION_MZONE,0,1,e:GetHandler(),SET_SKEWY) and 2 or 1
+	local ct=Duel.IsExistingMatchingCard(s.skewyfilter,tp,LOCATION_MZONE,0,1,e:GetHandler()) and 2 or 1
 	if not Duel.IsExistingMatchingCard(s.ctfilter,tp,0,LOCATION_MZONE,1,nil,ct) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local tc=Duel.SelectMatchingCard(tp,s.ctfilter,tp,0,LOCATION_MZONE,1,1,nil,ct):GetFirst()
 	if tc then tc:AddCounter(COUNTER_CANDY,ct) end
 end
 function s.discon(e,tp)
-	return Duel.IsExistingMatchingCard(Card.IsSetCard,tp,LOCATION_MZONE,0,1,nil,SET_SKEWY)
+	return Duel.IsExistingMatchingCard(s.skewyfilter,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.distg(e,c)
 	return c:GetCounter(COUNTER_CANDY)>0

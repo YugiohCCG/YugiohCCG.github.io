@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "batch": "local-reconciliation-122-144",
+  "batch": "local-custom-gap-adversarial-1-216",
   "ordinal_start": 135,
   "ordinal_end": 135,
   "cards": [
@@ -21,7 +21,32 @@
               "script": "tmp/omega_scripts/c10000010.lua",
               "card_id": 10000010,
               "card_name": "The Winged Dragon of Ra",
-              "matched_structure": "The Winged Dragon of Ra uses explicit Normal Summon/Set restrictions for a special summon class."
+              "matched_structure": "The Winged Dragon of Ra uses explicit Normal Summon/Set restrictions for a special summon class.",
+              "official_effect_text": "[b]Cannot[/b] be Special Summoned. Requires 3 Tributes to Normal Summon ([b]cannot[/b] be Normal Set). This card's Normal Summon [b]cannot[/b] be negated. [b]When[/b] Normal Summoned, other cards [b]and[/b] effects [b]cannot[/b] be activated. [b]When[/b] this card is Normal Summoned: [b]You can[/b] pay LP so that you only have 100 left; this card gains ATK/DEF equal to the amount of LP paid. [b]You can[/b] pay 1000 LP, [b]then[/b] [b]target[/b] 1 monster on the field; [b]destroy[/b] that [b]target[/b].",
+              "script_sha256": "f72d77f1071515ae0ebebec7f338c52c079cf6a68787944db5596a24dc9791aa",
+              "verified_shared_tokens": [
+                "CATEGORY_ATKCHANGE",
+                "Duel.GetFirstTarget",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.Release",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_CONDITION",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EFFECT_UPDATE_ATTACK",
+                "EFFECT_UPDATE_DEFENSE",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
             }
           ],
           "verdict": "PASS",
@@ -36,7 +61,33 @@
               "script": "tmp/omega_scripts/c72989439.lua",
               "card_id": 72989439,
               "card_name": "Black Luster Soldier - Envoy of the Beginning",
-              "matched_structure": "Black Luster Soldier - Envoy of the Beginning uses a hand Special Summon procedure paid by banishing monsters."
+              "matched_structure": "Black Luster Soldier - Envoy of the Beginning uses a hand Special Summon procedure paid by banishing monsters.",
+              "official_effect_text": "[b]Cannot[/b] be Normal Summoned/Set. Must first be Special Summoned (from your hand) by banishing 1 LIGHT [b]and[/b] 1 DARK monster from your GY. [b]Once[/b] [b]per turn[/b], [b]you can[/b] activate 1 of these effects.\n● [b]Target[/b] 1 monster on the field; [b]banish[/b] it. This card [b]cannot[/b] attack the turn this effect is activated.\n● If this attacking card destroys an opponent's monster by battle: It can make a second attack in a row.",
+              "script_sha256": "0e92f0686658254fddbc0c4baebdd12316a0c4a50620dc852cf17d2413d3bf47",
+              "verified_shared_tokens": [
+                "Duel.GetFirstTarget",
+                "Duel.GetMZoneCount",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.Remove",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
             }
           ],
           "verdict": "PASS",
@@ -51,13 +102,52 @@
               "script": "tmp/omega_scripts/c84815190.lua",
               "card_id": 84815190,
               "card_name": "Baronne de Fleur",
-              "matched_structure": "Baronne de Fleur supplies official quick negation structure; Lonefire supplies Tribute cost."
+              "matched_structure": "Baronne de Fleur supplies official quick negation structure; Lonefire supplies Tribute cost.",
+              "official_effect_text": "1 Tuner + 1+ non-Tuner monsters\n[b]Once[/b] [b]per turn[/b]: [b]You can[/b] [b]target[/b] 1 card on the field; [b]destroy[/b] it. [b]Once[/b] while face-up on the field, [b]when[/b] a card or effect is activated ([b]Quick Effect[/b]): [b]You can[/b] [b]negate[/b] the activation, [b]and if you do[/b], [b]destroy[/b] that card. [b]You can[/b] only use the previous effect of \"Baronne de Fleur\" [b]once[/b] [b]per turn[/b]. [b]Once[/b] [b]per turn[/b], during the [b]Standby Phase[/b]: [b]You can[/b] [b]target[/b] 1 Level 9 or lower monster in your GY; [b]return[/b] this card to the Extra Deck, [b]and if you do[/b], Special Summon that monster.",
+              "script_sha256": "5e628034e9b0aa684912345fff581171f890969cd92e1efebee72f836e4527d7",
+              "verified_shared_tokens": [
+                "Duel.GetFirstTarget",
+                "Duel.GetMZoneCount",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_QUICK_O",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_EXTRA",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "LOCATION_ONFIELD",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
             },
             {
               "script": "tmp/omega_scripts/c48686504.lua",
               "card_id": 48686504,
               "card_name": "Lonefire Blossom",
-              "matched_structure": "Uses release/Tribute of a controlled monster as activation cost."
+              "matched_structure": "Uses release/Tribute of a controlled monster as activation cost.",
+              "official_effect_text": "[b]Once[/b] [b]per turn[/b]: [b]You can[/b] Tribute 1 face-up Plant monster; Special Summon 1 Plant monster from your Deck.",
+              "script_sha256": "c482116b698dfeb850a24174ed0d636bf17d43721e51e36b56cbf7c2e6fd470e",
+              "verified_shared_tokens": [
+                "Duel.CheckReleaseGroup",
+                "Duel.GetMZoneCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Release",
+                "Duel.SelectMatchingCard",
+                "Duel.SelectReleaseGroup",
+                "Duel.SetOperationInfo",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "REASON_COST",
+                "aux.Stringid"
+              ]
             }
           ],
           "verdict": "PASS",
@@ -72,7 +162,32 @@
               "script": "tmp/omega_scripts/c10000010.lua",
               "card_id": 10000010,
               "card_name": "The Winged Dragon of Ra",
-              "matched_structure": "The Winged Dragon of Ra uses paired ATK/DEF gain equal to a captured numeric value."
+              "matched_structure": "The Winged Dragon of Ra uses paired ATK/DEF gain equal to a captured numeric value.",
+              "official_effect_text": "[b]Cannot[/b] be Special Summoned. Requires 3 Tributes to Normal Summon ([b]cannot[/b] be Normal Set). This card's Normal Summon [b]cannot[/b] be negated. [b]When[/b] Normal Summoned, other cards [b]and[/b] effects [b]cannot[/b] be activated. [b]When[/b] this card is Normal Summoned: [b]You can[/b] pay LP so that you only have 100 left; this card gains ATK/DEF equal to the amount of LP paid. [b]You can[/b] pay 1000 LP, [b]then[/b] [b]target[/b] 1 monster on the field; [b]destroy[/b] that [b]target[/b].",
+              "script_sha256": "f72d77f1071515ae0ebebec7f338c52c079cf6a68787944db5596a24dc9791aa",
+              "verified_shared_tokens": [
+                "CATEGORY_ATKCHANGE",
+                "Duel.GetFirstTarget",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.Release",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_CONDITION",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EFFECT_UPDATE_ATTACK",
+                "EFFECT_UPDATE_DEFENSE",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
             }
           ],
           "verdict": "PASS",
@@ -81,17 +196,27 @@
         {
           "effect_index": 5,
           "printed_clause": "If the gain occurs, increase all effects’ turn count by 1.",
-          "lua_implementation": "The operation increments Card TurnCounter values on cards in accessible locations, which covers conventional card-maintained turn counters but cannot enumerate or advance arbitrary effect-local reset durations.",
+          "lua_implementation": "The operation increments Card TurnCounter values on cards in accessible locations, which covers conventional card-maintained turn counters but cannot enumerate or advance arbitrary effect-local reset durations. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c1082946.lua",
               "card_id": 1082946,
               "card_name": "Pyro Clock of Destiny",
-              "matched_structure": "Pyro Clock of Destiny is the closest official card: it advances the global turn count by one while the current turn continues."
+              "matched_structure": "Pyro Clock of Destiny is the closest official card: it advances the global turn count by one while the current turn continues.",
+              "official_effect_text": "Move the turn count forward by 1 turn. The turn in which this card is activated continues as normal.",
+              "script_sha256": "03853232f1f5a987df846c32c85f3236da2e30dc7f6081301dd6b685ca607c9d",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "aux.Stringid"
+              ]
             }
           ],
           "verdict": "CUSTOM_GAP",
-          "issue": "Unresolved engine/design gap: Omega exposes card turn counters, not a universal collection of every effect's remaining turn duration. The printed phrase 'all effect's turn count' needs a narrower ruling or engine support."
+          "issue": "Omega stores some Card TurnCounter values but has no enumerable 'turn count' for every active effect or reset duration. The phrase 'all effects' turn count' also does not define which players, cards, locations, counters, or durations are included. Resolution: define the exact counters/effects and locations to advance, or replace the clause with a supported operation such as Pyro Clock of Destiny's global turn-count advance."
         },
         {
           "effect_index": 6,
@@ -102,7 +227,22 @@
               "script": "tmp/omega_scripts/c80280944.lua",
               "card_id": 80280944,
               "card_name": "Giant Rex",
-              "matched_structure": "Giant Rex uses a delayed EVENT_REMOVE trigger with previous-location/banished-card handling."
+              "matched_structure": "Giant Rex uses a delayed EVENT_REMOVE trigger with previous-location/banished-card handling.",
+              "official_effect_text": "[b]Cannot[/b] attack directly. If this card is banished: [b]You can[/b] Special Summon this card, [b]and if you do[/b], this card gains 200 ATK for each of your banished Dinosaur monsters. [b]You can[/b] only use this effect of \"Giant Rex\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2b2eaa59caa26ba52d3e9b5dddad828181d6bf577978118e9ac63bd456e4cd50",
+              "verified_shared_tokens": [
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EFFECT_UPDATE_ATTACK",
+                "EVENT_REMOVE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "LOCATION_REMOVED",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
             }
           ],
           "verdict": "PASS",
@@ -117,13 +257,33 @@
               "script": "tmp/omega_scripts/c14558127.lua",
               "card_id": 14558127,
               "card_name": "Ash Blossom & Joyous Spring",
-              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure.",
+              "official_effect_text": "[b]When[/b] a card or effect is activated that includes any of these effects ([b]Quick Effect[/b]): [b]You can[/b] [b]discard[/b] this card; [b]negate[/b] that effect.\n● Add a card from the Deck to the hand.\n● Special Summon from the Deck.\n● Send a card from the Deck to the GY.\n[b]You can[/b] only use this effect of \"Ash Blossom & Joyous Spring\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "fd4c7dd7e01c5ab227d539187369c7d37a9062b9fa5f9a93cf8c8344eb1a770b",
+              "verified_shared_tokens": [
+                "CATEGORY_DISABLE",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_QUICK_O",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_HAND",
+                "REASON_COST"
+              ]
             }
           ],
           "verdict": "PASS",
           "issue": null
         }
-      ]
+      ],
+      "supersedes_batch": "batch_local_135_135.json",
+      "lua_effect_creations": 7,
+      "conservative_printed_clause_floor": 7,
+      "heuristic_printed_clause_floor": 5,
+      "source_batch": "batch_local_135_135.json",
+      "coverage_override": {
+        "expected_individual_effects": 7,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      }
     }
   ],
   "summary": {

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "batch": "local-517-reconciliation",
+  "ordinal_start": 517,
+  "ordinal_end": 517,
+  "cards": [
+    {
+      "ordinal": 517,
+      "passcode": 259889864,
+      "name": "Aurelion — Divine Illumination",
+      "text_sha256": "3d4783c1dcdcce30275cbc25b92eb4ccf2409b26fadf9452519f47bb0d1996ae",
+      "script_sha256": "ea7559687ffeb7f58a51c5d4d231da8da22a23548e5d5f0b40cc5d7405cca0a0",
+      "overall_verdict": "PASS",
+      "coverage_override": {"expected_individual_effects": 2, "reason": "Declaration, bottom-three excavation, conditional self-Summon, and shuffling are one operation; returning this card as cost and negating activation are the second effect. The shared HOPT sentence is not separate."},
+      "effects": [
+        {"effect_index": 1, "printed_clause": "You can declare up to 3 card names; excavate 3 cards from the bottom of your Deck, then, if all excavated cards are a declared name, Special Summon this card from your hand, and if you do, shuffle those cards into your Deck.", "lua_implementation": "The hand Ignition target announces one to three card codes and stores them as chain-reset player flags. Resolution repeatedly takes the minimum Card.GetSequence from the controller's Deck group to obtain exactly the bottom three, confirms them, checks every code against the declarations, Special Summons this card if legal, and shuffles the Deck after success, thereby shuffling those still-in-Deck cards.", "official_references": [{"script": "tmp/omega_scripts/c18631392.lua", "card_id": 18631392, "card_name": "Ma'at", "matched_structure": "Official effect announces three card names, reveals three Deck cards, compares their codes against the declarations, and performs a conditional payoff."}, {"script": "tmp/omega_scripts/c120304049.lua", "card_id": 120304049, "card_name": "Extra! Extra! Hot Off the Press", "matched_structure": "Official Omega card takes and reveals the bottom three Deck cards through RD.SendDeckBottomToTop; Omega's RDFunction implementation defines that operation by repeatedly selecting GetMinGroup(Card.GetSequence), exactly certifying Aurelion's bottom-card selection rule."}], "verdict": "PASS", "issue": null},
+        {"effect_index": 2, "printed_clause": "When your opponent activates a card or effect (Quick Effect): You can return this card you control to the hand; negate the activation.", "lua_implementation": "An MZONE EVENT_CHAINING Quick Effect with id+100 requires an opponent-controlled, negatable chain, returns this card to the hand as cost, and calls Duel.NegateActivation; Damage Step and Damage Calculation flags match the unrestricted response timing.", "official_references": [{"script": "tmp/omega_scripts/c29587993.lua", "card_id": 29587993, "card_name": "Mist Valley Apex Avian", "matched_structure": "Official Quick Effect returns a controlled card to the hand as cost and negates an opponent card/effect activation."}], "verdict": "PASS", "issue": null}
+      ]
+    }
+  ]
+}

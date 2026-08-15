@@ -189,7 +189,10 @@ function s.penop(e,tp,eg,ep,ev,re,r,rp)
 	if #tg==0 then e1:Reset() return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	aux.GCheckAdditional=aux.PendOperationCheck(ft1,ft2,ft)
-	local g=tg:SelectSubGroup(tp,aux.TRUE,false,1,math.min(#tg,ft))
+	--The printed effect Pendulum Summons exactly 1 Cyberse monster.
+	--Keep Omega's immediate-Pendulum-Summon subgroup handling, but cap the
+	--selection at one instead of filling every available Monster Zone.
+	local g=tg:SelectSubGroup(tp,aux.TRUE,false,1,1)
 	aux.GCheckAdditional=nil
 	if not g then e1:Reset() return end
 	local sg=Group.CreateGroup()

@@ -50,8 +50,15 @@ function s.ffilter1(c,e)
 	return not c:IsImmuneToEffect(e)
 end
 function s.ffilter2(c,e,tp,m,f,chkf)
-	return c:IsType(TYPE_FUSION) and c:IsSetCard(SET_AQUAMARINE) and (not f or f(c))
-		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and c:CheckFusionMaterial(m,nil,chkf)
+	if not (c:IsType(TYPE_FUSION) and c:IsSetCard(SET_AQUAMARINE) and (not f or f(c))
+		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false)) then return false end
+	aux.FCheckAdditional=s.exactlytwo
+	local res=c:CheckFusionMaterial(m,nil,chkf)
+	aux.FCheckAdditional=nil
+	return res
+end
+function s.exactlytwo(tp,sg,fc)
+	return #sg==2
 end
 function s.fstg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
@@ -97,13 +104,17 @@ function s.fsop(e,tp,eg,ep,ev,re,r,rp)
 		local tg=sg:Select(tp,1,1,nil)
 		local tc=tg:GetFirst()
 		if sg1:IsContains(tc) and (ce==nil or not Duel.SelectYesNo(tp,ce:GetDescription())) then
+			aux.FCheckAdditional=s.exactlytwo
 			local mat1=Duel.SelectFusionMaterial(tp,tc,m,nil,chkf)
+			aux.FCheckAdditional=nil
 			tc:SetMaterial(mat1)
 			Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
 			Duel.BreakEffect()
 			Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)
 		else
+			aux.FCheckAdditional=s.exactlytwo
 			local mat2=Duel.SelectFusionMaterial(tp,tc,mg3,nil,chkf)
+			aux.FCheckAdditional=nil
 			local fop=ce:GetOperation()
 			fop(ce,e,tp,tc,mat2)
 		end

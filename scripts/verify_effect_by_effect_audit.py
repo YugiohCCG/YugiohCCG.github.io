@@ -10,6 +10,7 @@ trusted from reviewer prose.
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
@@ -63,9 +64,15 @@ def load_official_cards() -> dict[int, tuple[str, str]]:
         }
 
 
-def main() -> int:
+def main(ordinal_start: int | None = None, ordinal_end: int | None = None) -> int:
     cards = json.loads(CARDS_PATH.read_text(encoding="utf-8"))
-    by_ordinal = {ordinal: card for ordinal, card in enumerate(cards, 1)}
+    all_by_ordinal = {ordinal: card for ordinal, card in enumerate(cards, 1)}
+    by_ordinal = {
+        ordinal: card
+        for ordinal, card in all_by_ordinal.items()
+        if (ordinal_start is None or ordinal >= ordinal_start)
+        and (ordinal_end is None or ordinal <= ordinal_end)
+    }
     official_cards = load_official_cards()
     errors: list[str] = []
     warnings: list[str] = []
@@ -79,6 +86,8 @@ def main() -> int:
             continue
         for record in payload.get("cards", []):
             ordinal = int(record.get("ordinal", 0))
+            if ordinal not in by_ordinal:
+                continue
             if ordinal in records:
                 if "_local_" not in path.name:
                     errors.append(f"ordinal {ordinal}: duplicate in {records[ordinal]['_batch_file']} and {path.name}")
@@ -207,7 +216,7 @@ def main() -> int:
             "batch_files": [path.name for path in batch_paths],
         },
         "summary": {
-            "active_cards": len(cards),
+            "active_cards": len(by_ordinal),
             "audited_cards": len(enriched),
             "individual_effect_records": sum(len(card.get("effects", [])) for card in enriched),
             "effect_verdicts": dict(sorted(counts.items())),
@@ -218,10 +227,15 @@ def main() -> int:
         "warnings": warnings,
         "cards": enriched,
     }
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    output = OUTPUT
+    if ordinal_start is not None or ordinal_end is not None:
+        start_label = ordinal_start if ordinal_start is not None else "first"
+        end_label = ordinal_end if ordinal_end is not None else "last"
+        output = OUTPUT.with_name(f"{OUTPUT.stem}_{start_label}_{end_label}{OUTPUT.suffix}")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(payload["summary"], indent=2))
-    print(f"report={OUTPUT}")
+    print(f"report={output}")
     for error in errors[:30]:
         print(f"ERROR {error}")
     for warning in warnings[:30]:
@@ -232,4 +246,8 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--ordinal-start", type=int)
+    parser.add_argument("--ordinal-end", type=int)
+    args = parser.parse_args()
+    raise SystemExit(main(args.ordinal_start, args.ordinal_end))

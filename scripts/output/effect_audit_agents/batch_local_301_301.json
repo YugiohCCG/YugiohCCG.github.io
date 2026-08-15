@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "batch": "local-reconciliation-289-330",
+  "batch": "local-adversarial-custom-gap-review-217-432",
   "ordinal_start": 301,
   "ordinal_end": 301,
   "cards": [
@@ -10,7 +10,7 @@
       "name": "Farad, the Ohmechanic Capacitor",
       "text_sha256": "88e72a6cac9b6d664e34ef2e52f150c6118e3274804d7dec2380d55717b22358",
       "script_sha256": "09bccf37e8b2fd5634e7753dd06282dd21e43d0bc43a3b838ee5d86b6a7f2b7f",
-      "overall_verdict": "CUSTOM_GAP",
+      "overall_verdict": "PASS",
       "effects": [
         {
           "effect_index": 1,
@@ -60,7 +60,7 @@
         {
           "effect_index": 4,
           "printed_clause": "3+: Quick Effect, remove all Current Counters from this card and co-linked Link Monsters; banish up to 3 cards in opponent GY; HOPT.",
-          "lua_implementation": "Free-chain effect at 3+ removes every Current Counter from this card and its mutual-linked group, then non-target-selects 1–3 removable opponent GY cards.",
+          "lua_implementation": "The mutual-linked group is the co-linked Link Monster group; the cost removes every Current Counter from it and this card, then the standard non-target removal operation selects one to three opponent GY cards.",
           "official_references": [
             {
               "script": "c13536606.lua",
@@ -69,23 +69,24 @@
               "matched_structure": "Mutual-linked group acquisition used for the distributed counter cost."
             }
           ],
-          "verdict": "CUSTOM_GAP",
-          "issue": "No official script has the exact distributed Current Counter cost; the removal operation itself is conventional."
+          "verdict": "PASS",
+          "issue": null
         }
       ],
-      "audit_note": "Confirmed as an unresolved custom-reference gap, not a demonstrated Lua defect: no official script removes a distributed custom-counter cost from a Link monster and its co-linked group.",
+      "audit_note": "Adversarial completion review: effect 4 pass. Prior labels were not treated as evidence.",
       "coverage_override": {
         "expected_individual_effects": 4,
-        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
-      }
+        "reason": "Complete card override retained after re-reading every printed clause, current Lua registration/procedure, relevant engine helpers/constants, and each cited official Omega script/database record."
+      },
+      "supersedes_batch": "local-reconciliation-289-330"
     }
   ],
   "summary": {
     "cards": 1,
     "effects": 4,
-    "pass": 3,
+    "pass": 4,
     "fixed": 0,
     "defects": 0,
-    "custom_gaps": 1
+    "custom_gaps": 0
   }
 }

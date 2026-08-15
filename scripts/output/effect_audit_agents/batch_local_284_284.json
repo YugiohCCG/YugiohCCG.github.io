@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 284,
+      "passcode": 227035644,
+      "name": "Aqua Fusion",
+      "text_sha256": "a5d0259778befe2ac9590a95cfb09baa47a16cfb1f99311cb33a894a1d833c21",
+      "script_sha256": "d4a59f3a7a598a0f5f4bd813074a77770a1a3077af83c0b0362b7cbe20a34c53",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "(This card is always treated as an \"Aquamarine\" card.)",
+          "lua_implementation": "Source archetype/set metadata provides 0xf3c identity and listed_series records it.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c48486809.lua",
+              "card_id": 48486809,
+              "card_name": "Winged Kuriboh LV6",
+              "matched_structure": "database-backed always-treated-as identity",
+              "official_effect_text": "(This card is always treated as an \"Elemental HERO\" [b]and[/b] \"Favorite\" card.)\n[b]Cannot[/b] be Normal Summoned/Set. Must be Special Summoned (from your hand or GY) by banishing 1 \"Elemental HERO\" Fusion Monster or 1 \"Winged Kuriboh\" from your hand, face-up field, or GY. [b]You can[/b] only Special Summon \"Winged Kuriboh LV6\" [b]once[/b] [b]per turn[/b] this way. [b]When[/b] an opponent's monster declares an attack, or your opponent activates a monster effect on the field ([b]Quick Effect[/b]): [b]You can[/b] Tribute this card; [b]destroy[/b] that 1 monster, [b]and if you do[/b], inflict damage to your opponent equal to its original ATK.",
+              "script_sha256": "2b3af9b8d25e54387374b29c3d80407429aea491aeb71cc410697705720ca07d",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_ONFIELD",
+                "REASON_EFFECT",
+                "TYPE_FUSION"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Fusion Summon 1 \"Aquamarine\" Fusion Monster from your Extra Deck, using 2 monsters from your hand, Deck, or field as Fusion Material.",
+          "lua_implementation": "The activation merges eligible hand/field and Deck materials, and s.exactlytwo is installed through aux.FCheckAdditional for every CheckFusionMaterial and SelectFusionMaterial call.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c44362883.lua",
+              "card_id": 44362883,
+              "card_name": "Branded Fusion",
+              "matched_structure": "exactly two materials from hand/Deck/field",
+              "official_effect_text": "Fusion Summon 1 Fusion Monster that mentions \"Fallen of Albaz\" as material from your Extra Deck, using 2 monsters from your hand, Deck, or field. You [b]cannot[/b] Special Summon from the Extra Deck, except Fusion Monsters, the turn you activate this card. [b]You can[/b] only activate 1 \"Branded Fusion\" [b]per turn[/b].",
+              "script_sha256": "a78b719f2f7bef65a2afac1c29f75f917548fe6952d5dd2c3f1b92c39635c96a",
+              "verified_shared_tokens": [
+                "CATEGORY_FUSION_SUMMON",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.AddCustomActivityCounter",
+                "Duel.BreakEffect",
+                "Duel.GetChainMaterial",
+                "Duel.GetCustomActivityCount",
+                "Duel.GetFusionMaterial",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.RegisterEffect",
+                "Duel.SelectFusionMaterial",
+                "Duel.SelectYesNo",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_CANNOT_SPECIAL_SUMMON",
+                "EFFECT_FLAG_OATH",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_EXTRA",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "REASON_FUSION",
+                "REASON_MATERIAL",
+                "RESET_PHASE",
+                "SUMMON_TYPE_FUSION",
+                "TYPE_FUSION",
+                "aux.FCheckAdditional"
+              ]
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Fixed: both ordinary and Chain Material paths now require exactly two selected Fusion Materials."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You cannot Special Summon monsters from the Extra Deck, except WATER Fusion Monsters, the turn you use this effect.",
+          "lua_implementation": "A custom activity counter checks the full turn and an oath restriction blocks non-WATER/non-Fusion Extra Deck Summons through PHASE_END.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c44362883.lua",
+              "card_id": 44362883,
+              "card_name": "Branded Fusion",
+              "matched_structure": "full-turn activity/oath Summon lock",
+              "official_effect_text": "Fusion Summon 1 Fusion Monster that mentions \"Fallen of Albaz\" as material from your Extra Deck, using 2 monsters from your hand, Deck, or field. You [b]cannot[/b] Special Summon from the Extra Deck, except Fusion Monsters, the turn you activate this card. [b]You can[/b] only activate 1 \"Branded Fusion\" [b]per turn[/b].",
+              "script_sha256": "a78b719f2f7bef65a2afac1c29f75f917548fe6952d5dd2c3f1b92c39635c96a",
+              "verified_shared_tokens": [
+                "CATEGORY_FUSION_SUMMON",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.AddCustomActivityCounter",
+                "Duel.BreakEffect",
+                "Duel.GetChainMaterial",
+                "Duel.GetCustomActivityCount",
+                "Duel.GetFusionMaterial",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.RegisterEffect",
+                "Duel.SelectFusionMaterial",
+                "Duel.SelectYesNo",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_CANNOT_SPECIAL_SUMMON",
+                "EFFECT_FLAG_OATH",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_EXTRA",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "REASON_FUSION",
+                "REASON_MATERIAL",
+                "RESET_PHASE",
+                "SUMMON_TYPE_FUSION",
+                "TYPE_FUSION",
+                "aux.FCheckAdditional"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "During your Main Phase, except the turn this card was sent to the GY: You can banish this card from your GY; Fusion Summon 1 \"Aquamarine\" Fusion Monster from your Extra Deck, by shuffling Fusion Materials listed on it its materials into the Deck, from among your cards on the field, in your GY, and/or your face-up banished cards.",
+          "lua_implementation": "A GY Ignition Effect checks GetTurnID, banishes itself as cost, builds the stated face-up/available pool under Necrovalley, selects Fusion material, returns it to Deck and completes a Fusion Summon.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c51476410.lua",
+              "card_id": 51476410,
+              "card_name": "Clock Lizard",
+              "matched_structure": "Fusion by banishing GY materials",
+              "official_effect_text": "2 Cyberse monsters\n[b]You can[/b] Tribute this card; [b]return[/b] 1 Fusion Monster from your GY to the Extra Deck, [b]then[/b] Fusion Summon that Fusion Monster from your Extra Deck, by banishing Fusion Materials listed on it from your GY. If this card is banished from your GY: [b]You can[/b] make Special Summoned monsters your opponent currently controls lose 400 ATK for each Cyberse monster currently in your GY, until the end of this turn.",
+              "script_sha256": "09665431e6a231cf72610dba0407024b7252284c0e89e89a05fb4e1e571c0725",
+              "verified_shared_tokens": [
+                "CATEGORY_FUSION_SUMMON",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.BreakEffect",
+                "Duel.GetChainMaterial",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectFusionMaterial",
+                "Duel.SelectMatchingCard",
+                "Duel.SelectYesNo",
+                "Duel.SendtoDeck",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_IGNITION",
+                "Effect.CreateEffect",
+                "LOCATION_EXTRA",
+                "LOCATION_GRAVE",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "REASON_FUSION",
+                "REASON_MATERIAL",
+                "RESET_PHASE",
+                "SUMMON_TYPE_FUSION",
+                "TYPE_FUSION",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c67169062.lua",
+              "card_id": 67169062,
+              "card_name": "Pot of Avarice",
+              "matched_structure": "return GY cards to shuffled Deck",
+              "official_effect_text": "[b]Target[/b] 5 monsters in your GY; shuffle all 5 into the Deck, [b]then[/b] draw 2 cards.",
+              "script_sha256": "84240d6c1582a5ea848e403e21964eafa460cba1df8fa5819b026fd5519efa58",
+              "verified_shared_tokens": [
+                "CATEGORY_TODECK",
+                "Duel.BreakEffect",
+                "Duel.Hint",
+                "Duel.SendtoDeck",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_ACTIVATE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_EXTRA",
+                "LOCATION_GRAVE",
+                "REASON_EFFECT"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "You can only use each effect of \"Aqua Fusion\" once per turn.",
+          "lua_implementation": "Activation and GY Fusion use distinct id/id+100 hard limits.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "id-keyed hard/oath turn limits",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "REASON_EFFECT",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows."
+    }
+  ]
+}

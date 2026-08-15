@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch6-plus-gravinity-collateral",
+  "ordinal_start": 399,
+  "ordinal_end": 399,
+  "cards": [
+    {
+      "ordinal": 399,
+      "passcode": 212052682,
+      "name": "Ghostrick Djinn",
+      "text_sha256": "c62444d6f6a3e6f92a9ecebb9def5e8c55946923d124940c85ba025d57f52f36",
+      "script_sha256": "1bc299774ed9002cd3bc01bb6d4fd821ae8bea7fbe32b4dff54b7cf6e87bc3e8",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Cannot be Normal Summoned unless you control a Ghostrick monster; once per turn, you can change this card to face-down Defense Position.",
+          "lua_implementation": "The standard Ghostrick EFFECT_CANNOT_SUMMON and soft-once-per-turn self-Set ignition match official Ghostrick scripts.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c27491571.lua",
+              "card_id": 27491571,
+              "card_name": "Ghostrick Witch",
+              "matched_structure": "Exact official Ghostrick summon restriction and self-Set implementation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If you Set a monster(s) or Special Summon a Ghostrick monster(s): You can Special Summon this card from your hand in face-down Defense Position.",
+          "lua_implementation": "The Set and Ghostrick Special Summon trigger clones no longer carry an unprinted hard once-per-turn; each eligible copy may trigger as written.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c54512827.lua",
+              "card_id": 54512827,
+              "card_name": "Ghostrick Lantern",
+              "matched_structure": "Special Summons a Ghostrick from hand in face-down Defense Position in response to an event."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: no once-per-turn restriction appears on this effect."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is flipped face-up: You can declare 1 Level between 1 and 4, then target any number of Ghostrick monsters you control; they become that declared Level.",
+          "lua_implementation": "The flip trigger announces Level 1 through 4 and targets any number of face-up Level-bearing Ghostrick monsters without an unprinted hard once-per-turn.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c36239585.lua",
+              "card_id": 36239585,
+              "card_name": "Ghostrick Fairy",
+              "matched_structure": "Ghostrick flip-trigger structure and position-based activation."
+            },
+            {
+              "script": "tmp/omega_scripts/c9831539.lua",
+              "card_id": 9831539,
+              "card_name": "Tannhauser Gate",
+              "matched_structure": "Applies level changes to multiple targeted monsters."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the printed flip effect has no count limit."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "An Xyz Monster with this card as material gains: Once per turn (Quick Effect), detach 1 material, target 1 face-up opponent monster; change it to face-down Defense Position.",
+          "lua_implementation": "An EFFECT_TYPE_XMATERIAL Quick Effect detaches one material as cost, targets a face-up opponent monster able to turn Set, and changes it to face-down Defense Position; SetCountLimit(1) is soft per host Xyz.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14087893.lua",
+              "card_id": 14087893,
+              "card_name": "Book of Moon",
+              "matched_structure": "Targeted change to face-down Defense Position."
+            },
+            {
+              "script": "tmp/omega_scripts/c53334641.lua",
+              "card_id": 53334641,
+              "card_name": "Ghostrick Angel of Mischief",
+              "matched_structure": "Xyz-material-granted effect structure with detach cost/once-per-turn behavior."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Four records cover Ghostrick summon/set rule, hand summon trigger, flip Level change, and granted Xyz-material effect."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 2,
+    "fixed": 2,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch6-plus-gravinity-collateral",
+  "ordinal_start": 394,
+  "ordinal_end": 394,
+  "cards": [
+    {
+      "ordinal": 394,
+      "passcode": 217645912,
+      "name": "Crewal Tide",
+      "text_sha256": "c8679ee39c01c709a9f9ffad69a5790d98a53094dc62a540f8cd4378629c0166",
+      "script_sha256": "d746579195dd9f8525b0ac3b0f8467ecd28e32e60dd5a8bf0beebf56058b7914",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "When this card is activated: You can send 1 Level 4 or lower Zombie monster from your Deck to the GY.",
+          "lua_implementation": "The Field Spell activation requires and sends one Level 4 or lower Zombie from Deck as the activation operation.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c81439173.lua",
+              "card_id": 81439173,
+              "card_name": "Foolish Burial",
+              "matched_structure": "Sends a selected monster from Deck to GY by effect."
+            },
+            {
+              "script": "tmp/omega_scripts/c26692769.lua",
+              "card_id": 26692769,
+              "card_name": "The Phantom Knights of Rusty Bardiche",
+              "matched_structure": "Archetype/type-filtered Deck-to-GY operation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You cannot Special Summon the turn you activate this effect, except Crewal monsters.",
+          "lua_implementation": "A custom activity counter rejects activation after any non-Crewal Special Summon; activation cost registers an oath Special Summon restriction against non-Crewal cards through End Phase.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c57835716.lua",
+              "card_id": 57835716,
+              "card_name": "Orcust Harp Horror",
+              "matched_structure": "Whole-turn oath restriction with prior-activity checking."
+            },
+            {
+              "script": "tmp/omega_scripts/c23516703.lua",
+              "card_id": 23516703,
+              "card_name": "Summon Limit",
+              "matched_structure": "Activity counter used to enforce summon history."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If a monster is Special Summoned from the owner's Spell & Trap Zone: You can Special Summon 1 Zombie Monster Card from your Spell & Trap Zone or Crewal monster from your banishment or GY.",
+          "lua_implementation": "The Spell & Trap Zone branch now requires both original Monster Card type and Zombie Race; the GY/banishment branch remains restricted to face-up-accessible Crewal cards.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c19186123.lua",
+              "card_id": 19186123,
+              "card_name": "Vision Release",
+              "matched_structure": "Special Summons a face-up Monster Card from a Spell & Trap Zone."
+            },
+            {
+              "script": "tmp/omega_scripts/c15005145.lua",
+              "card_id": 15005145,
+              "card_name": "Centur-Ion Primera",
+              "matched_structure": "Self/other summon from Continuous-Trap state."
+            },
+            {
+              "script": "tmp/omega_scripts/c40155014.lua",
+              "card_id": 40155014,
+              "card_name": "Centur-Ion Phalanx",
+              "matched_structure": "Special Summon from GY/banishment."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the printed Zombie qualifier applies to the Spell & Trap Zone alternative."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use each effect of Crewal Tide once per turn.",
+          "lua_implementation": "The activation and field trigger use id and id+100 hard once-per-turn keys.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15005145.lua",
+              "card_id": 15005145,
+              "card_name": "Centur-Ion Primera",
+              "matched_structure": "Separate hard once-per-turn card and zone-transition effects."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Four records cover activation mill, summon oath, SZONE/GY/banishment summon trigger, and per-effect HOPT."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 3,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

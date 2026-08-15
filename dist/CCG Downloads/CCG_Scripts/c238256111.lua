@@ -53,7 +53,8 @@ function s.counterfilter(c)
 	return not c:IsLocation(LOCATION_EXTRA) or (c:IsLevelAbove(5) and c:IsRace(RACE_DRAGON))
 end
 function s.banfilter(c)
-	return (c:IsRace(RACE_DRAGON) or c:IsRace(RACE_WARRIOR)) and c:IsType(TYPE_NORMAL) and c:IsAbleToRemoveAsCost()
+	return (c:IsRace(RACE_DRAGON) or (c:IsRace(RACE_WARRIOR) and c:IsType(TYPE_NORMAL)))
+		and c:IsAbleToRemoveAsCost()
 end
 function s.spcost2(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0

@@ -62,7 +62,7 @@ function s.spcon(e,tp,eg)
 	return eg:IsExists(s.evfilter,1,nil)
 end
 function s.spfilter(c,e,tp)
-	return c:IsFaceupEx() and ((c:IsLocation(LOCATION_SZONE) and (c:GetOriginalType()&TYPE_MONSTER)~=0)
+	return c:IsFaceupEx() and ((c:IsLocation(LOCATION_SZONE) and (c:GetOriginalType()&TYPE_MONSTER)~=0 and c:IsRace(RACE_ZOMBIE))
 		or (c:IsSetCard(SET_CREWAL) and c:IsLocation(LOCATION_GRAVE+LOCATION_REMOVED)))
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end

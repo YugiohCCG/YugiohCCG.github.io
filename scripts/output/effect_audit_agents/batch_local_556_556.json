@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "batch": "local-adversarial-completion-tail-556-577",
+  "ordinal_start": 556,
+  "ordinal_end": 556,
+  "cards": [
+    {
+      "ordinal": 556,
+      "passcode": 259431066,
+      "name": "Wyvernal Myops",
+      "text_sha256": "30c3e2850c0b5f2544edb4d4cad063d27f84e489cffc0fc6a64720c9686d5bef",
+      "script_sha256": "94e840a831b998a378ae3d90c9bfdf831b2704d09b34a36ca88ae874c059d605",
+      "overall_verdict": "CUSTOM_GAP",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Three independently usable printed effects are present; the shared once-per-turn sentence is merged into the three effect records it governs."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "You can banish 1 Insect monster from your GY; Special Summon this card from your hand. You can only use this effect of \"Wyvernal Myops\" once per turn.",
+          "lua_implementation": "An Ignition Effect in LOCATION_HAND uses SetCost(s.spcost) to select and face-up banish one Insect monster from the controller's GY as REASON_COST, then Special Summons the handler from the hand. SetCountLimit(1,id) supplies the effect's hard once per turn.",
+          "official_references": [
+            {
+              "script": "c21057444.lua",
+              "card_id": 21057444,
+              "card_name": "Marincess Springirl",
+              "matched_structure": "Official Omega banishes one archetype monster from the GY as cost for an Ignition Effect that Special Summons its handler from the hand, with the same hand range, remove cost, summon target, and HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Normal or Special Summoned: You can Special Summon 1 WIND Insect monster from your hand. You can only use this effect of \"Wyvernal Myops\" once per turn.",
+          "lua_implementation": "A delayed optional EVENT_SUMMON_SUCCESS trigger is cloned for EVENT_SPSUMMON_SUCCESS. Both registrations share SetCountLimit(1,id+100), filter WIND Insect monsters in the hand, check an open Monster Zone, and Special Summon one face-up.",
+          "official_references": [
+            {
+              "script": "c7443908.lua",
+              "card_id": 7443908,
+              "card_name": "Hayate the Earth Star",
+              "matched_structure": "Official Omega clones Normal- and Special-Summon success handling for an optional summon trigger that Special Summons a specifically filtered monster from the hand."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is in your GY, and you control a \"Wyvernal\" Fusion monster (Quick Effect): You can banish this card from your GY and target 1 card your opponent controls; Negate its effects. You can only use this effect of \"Wyvernal Myops\" once per turn.",
+          "lua_implementation": "The executable implementation uses Omega's Auxiliary.NegateAnyFilter, whose utility.lua contract is specifically 'negate the effects of a face-up card', and applies EFFECT_DISABLE/EFFECT_DISABLE_EFFECT only while the target remains face-up, related, and disableable. This is the officially supported subset, but it narrows the printed target phrase.",
+          "official_references": [
+            {
+              "script": "c2674965.lua",
+              "card_id": 2674965,
+              "card_name": "Argostars - Home Stadium",
+              "matched_structure": "Official Omega uses aux.NegateAnyFilter for printed text that explicitly targets one face-up opponent card, then requires that target to remain face-up and related before registering EFFECT_DISABLE and EFFECT_DISABLE_EFFECT."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Ruling/text limitation: 'target 1 card your opponent controls' permits a face-down Monster or Set Spell/Trap by its written target criteria, but the text never states what 'negate its effects' must do while that card is face-down. Omega's official persistent-negation helpers and analogues only define face-up, disableable targets. Resolution needed: either errata the target to '1 face-up card your opponent controls' (the current safe behavior), or provide an authoritative ruling for face-down targets, after which distg/disop can be changed to that exact behavior. No unsupported face-down lingering negation was invented."
+        }
+      ],
+      "audit_note": "Adversarial review retained one ruling gap, not an engine gap. Omega's Auxiliary.NegateAnyFilter is explicitly a face-up-card filter and every official analogue cited for persistent single-card negation resolves only on a face-up, disableable card. The printed target phrase is broader and has no authoritative face-down ruling.",
+      "adversarial_completion_scope": {
+        "ordinals": "556-577",
+        "re_read": [
+          "full printed text",
+          "current canonical Lua",
+          "Omega utility.lua and constant.lua",
+          "official Omega database text",
+          "official Omega card scripts"
+        ],
+        "historical_checklists_used": false
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

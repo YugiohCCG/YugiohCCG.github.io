@@ -35,6 +35,9 @@ function s.initial_effect(c)
 	e5:SetCode(EVENT_BATTLE_DAMAGE)
 	e5:SetCondition(function(e,tp,eg,ep) return ep==1-tp end)
 	c:RegisterEffect(e5)
+	if type(aux.CCGGalacticaSummonEffects)~="table" then aux.CCGGalacticaSummonEffects={} end
+	aux.CCGGalacticaSummonEffects[e4]=true
+	aux.CCGGalacticaSummonEffects[e5]=true
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

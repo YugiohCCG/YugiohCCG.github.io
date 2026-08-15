@@ -66,11 +66,10 @@ function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=e:GetLabelObject()
 	if not (tc and tc:IsRelateToEffect(e) and s.efilter(tc)) then return end
 	local g=Duel.GetMatchingGroup(s.dgfilter,tp,LOCATION_MZONE,LOCATION_MZONE,nil,tc)
-	if #g>0 then
-		Duel.Destroy(g,REASON_EFFECT)
+	if #g>0 and Duel.Destroy(g,REASON_EFFECT)>0 then
 		Duel.BreakEffect()
-	end
-	if tc:IsOnField() then
-		Duel.Destroy(tc,REASON_EFFECT)
+		if tc:IsOnField() then
+			Duel.Destroy(tc,REASON_EFFECT)
+		end
 	end
 end

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 272,
+      "passcode": 259366507,
+      "name": "Aquila, Zephorion's Predictor",
+      "text_sha256": "9836aa4e9f51d62200c2ba5d3e3213cb9a94009ef915f5e61765c688c35ab507",
+      "script_sha256": "303733c6cdaa74b15df5f9351a074ade0d2e35d2dfe1d02971b371a5a96a0f0f",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If you control \"Eldora, the Intergalactic Empire\", you can Special Summon this card (from your hand).",
+          "lua_implementation": "An uncopyable hand procedure checks the exact code on the controller field and uses an oath procedure count {id,1}.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "hand EFFECT_SPSUMMON_PROC",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_COUNT_CODE_OATH",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "EVENT_SUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "TYPE_MONSTER",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Summoned: You can Set 1 \"Eldora\" and/or \"Verse IX\" \"Chapter II\" Spell/Trap directly from your Deck or GY.",
+          "lua_implementation": "The Summon triggers now Set an Eldora Spell/Trap from Deck/GY and no longer falsely include Chapter II Verse IV. The current 577-card catalog contains no card whose name matches both quoted fragments 'Verse IX' and 'Chapter II'.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "shared Normal/Special triggers",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_COUNT_CODE_OATH",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "EVENT_SUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "TYPE_MONSTER",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c80101899.lua",
+              "card_id": 80101899,
+              "card_name": "Trap Trick",
+              "matched_structure": "Set and activate that turn",
+              "official_effect_text": "[b]Banish[/b] 1 Normal Trap from your Deck, except \"Trap Trick\", [b]and if you do[/b], Set 1 card with the same name directly from your Deck. It can be activated this turn. [b]You can[/b] only activate 1 Trap Card for the rest of this turn after this card resolves. [b]You can[/b] only activate 1 \"Trap Trick\" [b]per turn[/b].",
+              "script_sha256": "8a54c4dadfd93abafbf971f9120b73a8198c8cbaff99df418663912a1f24fb0c",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SSet",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_COUNT_CODE_OATH",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "REASON_EFFECT",
+                "TYPE_TRAP",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "The quoted conjunction names no card in the current 577-card database: no Spell/Trap contains both 'Verse IX' and 'Chapter II'. Exact resolution requires adding/naming the intended card (for example Chapter II Verse IX) or correcting the printed quoted name; until then only the unambiguous Eldora branch can be implemented."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is destroyed by \"Eldora, the Intergalactic Empire\" or your opponent's card effect: You can add 1 monster that lists \"Eldora\" in its text from your GY to your hand, or, if \"Eldora, the Intergalactic Empire\" is in your GY, you can add it from your Deck instead.",
+          "lua_implementation": "A delayed REASON_EFFECT trigger checks the destroying effect handler or reason player. Option 1 uses aux.IsCodeListed against the Eldora code in GY; option 2 requires that code in GY and adds the exact Field Spell from Deck.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c6498706.lua",
+              "card_id": 6498706,
+              "card_name": "Fusion Deployment",
+              "matched_structure": "listed-name/material relation",
+              "official_effect_text": "Reveal 1 Fusion Monster in your Extra Deck [b]and[/b] Special Summon, from your hand or Deck, 1 of the Fusion Materials whose name is mentioned on that monster, [b]also[/b] you [b]cannot[/b] Special Summon from the Extra Deck, except Fusion Monsters, the turn you activate this card. [b]You can[/b] only activate 1 \"Fusion Deployment\" [b]per turn[/b].",
+              "script_sha256": "263cb3ed032a27eba94c3e9d07c6a134f1e876ce01a03f41bdea81311bb1829d",
+              "verified_shared_tokens": [
+                "Duel.ConfirmCards",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_COUNT_CODE_OATH",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_HAND",
+                "LOCATION_MZONE"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c4145852.lua",
+              "card_id": 4145852,
+              "card_name": "Zoodiac Ramram",
+              "matched_structure": "delayed EVENT_DESTROYED",
+              "official_effect_text": "If this card is destroyed by battle or card effect: [b]You can[/b] [b]target[/b] 1 \"Zoodiac\" monster in your GY, except \"Zoodiac Ramram\"; Special Summon it. An Xyz Monster whose original Type is Beast-Warrior [b]and[/b] has this card as material gains this effect.\n● [b]When[/b] your opponent activates a Trap Card or effect that targets this card ([b]Quick Effect[/b]): [b]You can[/b] detach 1 material from this card; [b]negate[/b] the activation.",
+              "script_sha256": "f03b9c3298ee7d4cd4b1a07306d36b516b84a3028e5c8d0718b87f6c4854280f",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_DESTROYED",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "TYPE_TRAP",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use each effect of \"Aquila, Zephorion's Predictor\" once per turn.",
+          "lua_implementation": "Procedure, Summon triggers and destruction trigger use distinct {id,1}/{id,2}/{id,3} hard codes.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "id-keyed hard/oath turn limits",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_COUNT_CODE_OATH",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "EVENT_SUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "TYPE_MONSTER",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Complete card override retained after re-reading every printed clause, current Lua registration/procedure, relevant engine helpers/constants, and each cited official Omega script/database record."
+      },
+      "overall_verdict": "CUSTOM_GAP",
+      "audit_note": "Adversarial completion review: effect 2 retained. Prior labels were not treated as evidence.",
+      "supersedes_batch": null
+    }
+  ],
+  "batch": "local-adversarial-custom-gap-review-217-432",
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 3,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

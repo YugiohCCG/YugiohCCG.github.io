@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 246,
+      "passcode": 232038002,
+      "name": "Shining Brigade - Forward Division",
+      "text_sha256": "a8a009d7cbd9f55b73379fbf3c9f7426d02057c54ff2ab371fa2b00404c8d181",
+      "script_sha256": "49cd3edd7683b74d786b93ada3ef9998388df298e5f6d51e627fc15e914dd343",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If this card is Normal or Special Summoned: You can add 1 \"Shining Brigade\" Spell from your Deck or GY to your hand.",
+          "lua_implementation": "Cloned delayed Summon triggers search a 0x7a34 Spell from Deck/GY under Necrovalley.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "shared Normal/Special triggers",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "EVENT_SUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "REASON_EFFECT",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You cannot Special Summon monsters the turn you use this effect, except \"Shining Brigade\" monsters.",
+          "lua_implementation": "A custom activity count rejects prior non-archetype Summons; target-time oath lock lasts through PHASE_END, and Normal/Special clones share id.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c44362883.lua",
+              "card_id": 44362883,
+              "card_name": "Branded Fusion",
+              "matched_structure": "full-turn activity/oath Summon lock",
+              "official_effect_text": "Fusion Summon 1 Fusion Monster that mentions \"Fallen of Albaz\" as material from your Extra Deck, using 2 monsters from your hand, Deck, or field. You [b]cannot[/b] Special Summon from the Extra Deck, except Fusion Monsters, the turn you activate this card. [b]You can[/b] only activate 1 \"Branded Fusion\" [b]per turn[/b].",
+              "script_sha256": "a78b719f2f7bef65a2afac1c29f75f917548fe6952d5dd2c3f1b92c39635c96a",
+              "verified_shared_tokens": [
+                "Duel.AddCustomActivityCounter",
+                "Duel.GetCustomActivityCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.RegisterEffect",
+                "Duel.SetOperationInfo",
+                "EFFECT_CANNOT_SPECIAL_SUMMON",
+                "EFFECT_FLAG_OATH",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "RESET_PHASE"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "id-keyed hard/oath turn limits",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "EVENT_SUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "REASON_EFFECT",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is Normal or Special Summoned: You can add 1 \"Shining Brigade\" Spell from your Deck or GY to your hand. You cannot Special Summon monsters the turn you use this effect, except \"Shining Brigade\" monsters. You can only use this effect of \"Shining Brigade - Forward Division\" once per turn. A \"Shining Brigade\" monster that has this card as material gains the following effect.\n● Each turn, negate the effect of your opponent's first Spell Card or effect that resolves.",
+          "lua_implementation": "An EFFECT_TYPE_XMATERIAL field continuous EVENT_CHAIN_SOLVING effect checks the holder is 0x7a34, opponent Spell active type and a per-turn flag, then Duel.NegateEffect.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c87769556.lua",
+              "card_id": 87769556,
+              "card_name": "Magician's Right Hand",
+              "matched_structure": "first resolving Spell negation",
+              "official_effect_text": "[b]Negate[/b] the effect of your opponent's first Spell Card or effect that resolves each turn while you control a Spellcaster monster, [b]and if you do[/b], or if it did not have an effect, [b]destroy[/b] that card.",
+              "script_sha256": "ad71bd1b96a2b653a4524fd2f4435884729afa61b3378d747c0d911c26c14873",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.NegateEffect",
+                "EFFECT_TYPE_CONTINUOUS",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_CHAIN_SOLVING",
+                "Effect.CreateEffect",
+                "REASON_EFFECT",
+                "TYPE_SPELL"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c4145852.lua",
+              "card_id": 4145852,
+              "card_name": "Zoodiac Ramram",
+              "matched_structure": "EFFECT_TYPE_XMATERIAL and overlay cost",
+              "official_effect_text": "If this card is destroyed by battle or card effect: [b]You can[/b] [b]target[/b] 1 \"Zoodiac\" monster in your GY, except \"Zoodiac Ramram\"; Special Summon it. An Xyz Monster whose original Type is Beast-Warrior [b]and[/b] has this card as material gains this effect.\n● [b]When[/b] your opponent activates a Trap Card or effect that targets this card ([b]Quick Effect[/b]): [b]You can[/b] detach 1 material from this card; [b]negate[/b] the activation.",
+              "script_sha256": "f03b9c3298ee7d4cd4b1a07306d36b516b84a3028e5c8d0718b87f6c4854280f",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EFFECT_TYPE_XMATERIAL",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The Summon search, its full-turn archetype lock, and the material-granted first-Spell negation (including the search HOPT) are three complete audit units."
+      }
+    }
+  ]
+}

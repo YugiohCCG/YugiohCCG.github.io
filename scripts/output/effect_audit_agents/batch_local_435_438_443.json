@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch7-reconciliation",
+  "ordinal_start": 435,
+  "ordinal_end": 443,
+  "cards": [
+    {
+      "ordinal": 435,
+      "passcode": 231088629,
+      "name": "Gravinity Spherix",
+      "text_sha256": "0b23600bcb23c6f641b350ee1cd08ba93a84dcedc7dc3925cf6505a15e3501a1",
+      "script_sha256": "3053353bd1d6355a389fdd44aaa23d1923caa238cb03c97604c500347ca473a6",
+      "overall_verdict": "CUSTOM_GAP",
+      "coverage_override": {
+        "expected_individual_effects": 7,
+        "reason": "Fresh manual segmentation counts every printed summoning procedure, condition, continuous clause, activated effect, follow-up clause, and explicit usage limit represented in this record."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "1 \"Gravinity\" Tuner + 1+ Cyberse Synchro",
+          "lua_implementation": "c231088629.lua implements this printed clause with 6 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,SET_GRAVINITY),aux.NonTuner(s.ntfilter),1) | e0:SetType(EFFECT_TYPE_SINGLE) | e0:SetCode(EFFECT_CANNOT_DISABLE_SPSUMMON) | e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS) | e1:SetCode(EVENT_SUMMON_SUCCESS) | e1:SetOperation(s.replaceop) | e2:SetCode(EVENT_SPSUMMON_SUCCESS)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c18300894.lua",
+              "card_id": 18300894,
+              "card_name": "Silk Bomb Moth",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_SINGLE, EFFECT_FLAG_CANNOT_DISABLE, EVENT_SUMMON_SUCCESS, LOCATION_MZONE, EVENT_SPSUMMON_SUCCESS, CATEGORY_TODECK."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Monsters",
+          "lua_implementation": "c231088629.lua implements this printed clause with 6 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,SET_GRAVINITY),aux.NonTuner(s.ntfilter),1) | e0:SetType(EFFECT_TYPE_SINGLE) | e0:SetCode(EFFECT_CANNOT_DISABLE_SPSUMMON) | e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS) | e1:SetCode(EVENT_SUMMON_SUCCESS) | e1:SetOperation(s.replaceop) | e2:SetCode(EVENT_SPSUMMON_SUCCESS)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c18300894.lua",
+              "card_id": 18300894,
+              "card_name": "Silk Bomb Moth",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_SINGLE, EFFECT_FLAG_CANNOT_DISABLE, EVENT_SUMMON_SUCCESS, LOCATION_MZONE, EVENT_SPSUMMON_SUCCESS, CATEGORY_TODECK."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "This card's Synchro Summon cannot be negated.",
+          "lua_implementation": "c231088629.lua implements this printed clause with 6 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,SET_GRAVINITY),aux.NonTuner(s.ntfilter),1) | e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE) | e0:SetCode(EFFECT_CANNOT_DISABLE_SPSUMMON) | --This continuous effect was not active before the handler itself was Summoned. | if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,true,false) end | function s.xyzmat(c,xc) return c:IsType(TYPE_MONSTER) and c:IsLevel(xc:GetRank()) and c:IsCanOverlay() end | if not c:IsRelateToEffect(e) or Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)==0 or not c:IsType(TYPE_XYZ) then return end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c2405631.lua",
+              "card_id": 2405631,
+              "card_name": "Guoglim, Spear of the Ghoti",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddSynchroProcedure, EFFECT_TYPE_SINGLE, EFFECT_FLAG_CANNOT_DISABLE, EFFECT_TYPE_FIELD, LOCATION_MZONE, RESET_EVENT."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If a player would Normal or Special Summon a monster (except from the Spell & Trap Zone), place that monster face-up in its owner's Spell & Trap Zone as a Continuous Trap instead, and if you do, it gains the following effect (even if this card leaves the field).",
+          "lua_implementation": "c231088629.lua implements this printed clause with 6 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,SET_GRAVINITY),aux.NonTuner(s.ntfilter),1) | e0:SetCode(EFFECT_CHANGE_TYPE) | e0:SetValue(TYPE_TRAP+TYPE_CONTINUOUS) | e1:SetRange(LOCATION_SZONE) | e1:SetCondition(function(te) return te:GetHandler():IsType(TYPE_TRAP) and Duel.IsMainPhase() end) | --This continuous effect was not active before the handler itself was Summoned. | if not tc:IsPreviousLocation(LOCATION_SZONE) and tc:IsLocation(LOCATION_MZONE) and Duel.GetLocationCount(p,LOCATION_SZONE)>0",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c72444406.lua",
+              "card_id": 72444406,
+              "card_name": "Enigmaster Packbit",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddSynchroProcedure, EFFECT_TYPE_SINGLE, EFFECT_FLAG_CANNOT_DISABLE, LOCATION_MZONE, EVENT_SPSUMMON_SUCCESS, EFFECT_TYPE_QUICK_O."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "The Lua reacts to EVENT_SUMMON_SUCCESS/EVENT_SPSUMMON_SUCCESS and moves the already-Summoned monster afterward. This cannot reproduce a true summon replacement: summon-success events and summon-triggered effects have already occurred, and a full Spell/Trap Zone prevents the printed replacement."
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "● During the Main Phase, if this card is a Continuous Trap: You can Special Summon this card, ignoring its summoning conditions, then, if this card is an Xyz Monster, you can attach the minimum number of monsters that can be used for this card's Xyz Summon from your GY to this card as material.",
+          "lua_implementation": "After the granted Ignition Effect Special Summons the handler, s.spop gathers Level-equal, overlay-eligible monsters from the controller's GY and overlays exactly two. Omega's Xyz helpers receive their material filter and min/max only inside each Extra Deck card's registered summon-procedure closures; the summoned card exposes no supported API that returns those values.",
+          "official_references": [
+            {
+              "script": "c29087919.lua",
+              "card_id": 29087919,
+              "card_name": "Geargia Change",
+              "matched_structure": "Official Omega constrained Xyz-Summon implementation passes a known material Group and explicit count to Card.IsXyzSummonable, demonstrating that the procedure parameters must be supplied by the caller rather than queried from an already-summoned Xyz Monster."
+            },
+            {
+              "script": "c72444406.lua",
+              "card_id": 72444406,
+              "card_name": "Enigmaster Packbit",
+              "matched_structure": "Official Omega precedent for granting a Monster Card in the Spell/Trap Zone an Ignition Effect that Special Summons it while it is a Continuous Trap."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Omega cannot generically recover an arbitrary Xyz Monster's printed minimum material count or material predicate after that card has already been Special Summoned to the field. Card.IsXyzSummonable can test a prospective Extra Deck summon but cannot extract the registered procedure from this already-summoned card. The current two same-Level attachments are therefore only an approximation and are not exact for level-free, variable-count, alternate, or non-Level procedures."
+        },
+        {
+          "effect_index": 6,
+          "printed_clause": "Each time a Monster Card is Special Summoned from the Spell/Trap Zone, place 1 Gravity Counter on this card (max. 2).",
+          "lua_implementation": "c231088629.lua implements this printed clause with 6 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,SET_GRAVINITY),aux.NonTuner(s.ntfilter),1) | --This continuous effect was not active before the handler itself was Summoned. | if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,true,false) end | function s.xyzmat(c,xc) return c:IsType(TYPE_MONSTER) and c:IsLevel(xc:GetRank()) and c:IsCanOverlay() end | if not c:IsRelateToEffect(e) or Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)==0 or not c:IsType(TYPE_XYZ) then return end | Duel.Overlay(c,g:Select(tp,2,2,nil))",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10602628.lua",
+              "card_id": 10602628,
+              "card_name": "Blackwing - Boreastorm the Wicked Wind",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddSynchroProcedure, EFFECT_TYPE_SINGLE, LOCATION_MZONE, EVENT_SPSUMMON_SUCCESS, RESET_EVENT, CATEGORY_SPECIAL_SUMMON."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 7,
+          "printed_clause": "(Quick Effect): You can remove 2 Gravity Counters from this card; shuffle 1 monster your opponent controls and 1 \"Gravinity\" Monster Card in the same column into their owners' Deck/Extra Deck.",
+          "lua_implementation": "c231088629.lua implements this printed clause with 6 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e4:SetCategory(CATEGORY_TODECK) | Duel.SetOperationInfo(0,CATEGORY_TODECK,nil,2,PLAYER_ALL,LOCATION_ONFIELD) | Duel.SendtoDeck(Group.FromCards(oc,gc),nil,SEQ_DECKSHUFFLE,REASON_EFFECT)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c1003840.lua",
+              "card_id": 1003840,
+              "card_name": "Starlight Junktion",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_FIELD, LOCATION_MZONE, EVENT_SPSUMMON_SUCCESS, CATEGORY_TODECK, EVENT_FREE_CHAIN, TYPE_SYNCHRO."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 438,
+      "passcode": 256831125,
+      "name": "Gravinity Axis Matter",
+      "text_sha256": "1098984290191f035286262fcf684111665c1c501c4a678f94fc03f17135d7ab",
+      "script_sha256": "c26df5daf8fd4e558616bf26ec9dfa24b8f6811184ceb1697a9bf121d817dbf0",
+      "overall_verdict": "CUSTOM_GAP",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Fresh manual segmentation counts every printed summoning procedure, condition, continuous clause, activated effect, follow-up clause, and explicit usage limit represented in this record."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Your opponent cannot target \"Gravinity\" Synchro Monster Cards with card effects.",
+          "lua_implementation": "c256831125.lua implements this printed clause with 10 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e1:SetTargetRange(LOCATION_ONFIELD,0) | e1:SetTarget(s.prottg) | e2:SetTargetRange(0,LOCATION_MZONE) | e2:SetTarget(s.coltg) | e5:SetTarget(s.copytg) | e1:SetTarget(s.sphsptg)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c41371602.lua",
+              "card_id": 41371602,
+              "card_name": "Stand Up Centur-Ion!",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_ACTIVATE, EVENT_FREE_CHAIN, EFFECT_TYPE_FIELD, LOCATION_FZONE, LOCATION_ONFIELD, EFFECT_TYPE_TRIGGER_O."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Reduce the Level/Rank/Link Rating of your opponent's monsters in the same column as a \"Gravinity\" monster by 1.",
+          "lua_implementation": "Field effects apply EFFECT_UPDATE_LEVEL and EFFECT_UPDATE_RANK with value -1 to opponent's Monster Zone cards whose columns contain a Gravinity monster in the controller's Monster Zone. No Link Rating effect is registered because Omega defines no update/change-Link constant.",
+          "official_references": [
+            {
+              "script": "c83566725.lua",
+              "card_id": 83566725,
+              "card_name": "The Phantom Knights of Doomed Soleret",
+              "matched_structure": "Official Omega uses separate EFFECT_UPDATE_LEVEL and EFFECT_UPDATE_RANK registrations; there is no corresponding supported Link Rating mutation in the official constants or scripts."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Fixed the concrete scope error: a Gravinity Monster Card in the Spell/Trap Zone no longer counts as a Gravinity monster for this clause. The Level and Rank reductions are exact. Link Rating reduction remains unsupported: Omega's constants provide EFFECT_UPDATE_LEVEL/RANK and EFFECT_CHANGE_LEVEL/RANK, but no EFFECT_UPDATE_LINK, EFFECT_CHANGE_LINK, or equivalent setter."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "During the Standby Phase: You can reveal 1 Level 11 \"Gravinity\" Synchro Monster in your Extra Deck; for the rest of this turn, this card gains the non-activated effects of the revealed monster.",
+          "lua_implementation": "The Standby Phase cost reveals a Level 11 Gravinity Synchro and stores its original code. For the complete current pool, copyop explicitly recreates Nebulix's resolution-addition effect or Spherix's summon reaction and Monster-Card counter effect until the End Phase. The Spherix counter condition now requires original Monster Card type.",
+          "official_references": [
+            {
+              "script": "c11522979.lua",
+              "card_id": 11522979,
+              "card_name": "Number C69: Heraldry Crest of Horror",
+              "matched_structure": "Official Omega generic copying uses Card.CopyEffect by script code and therefore copies the target script's registered effects as a unit, not only its non-activated effects."
+            },
+            {
+              "script": "c41371602.lua",
+              "card_id": 41371602,
+              "card_name": "Stand Up Centur-Ion!",
+              "matched_structure": "Official Omega Field Spell precedent for temporary field/trigger effects with location and phase-scoped registrations."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "The hard-coded branches cover both Level 11 Gravinity Synchro Monsters currently present and the copied Spherix counter test was corrected to exclude non-Monster Cards. The printed effect is still generic and cannot be implemented generically: Card.CopyEffect copies a card script wholesale, while Omega exposes no supported iterator/copier that selects only non-activated effects and safely rebinds arbitrary monster effects to a Field Spell. A future valid reveal requires a new explicit branch."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use this effect of \"Gravinity Axis Matter\" once per turn.",
+          "lua_implementation": "c256831125.lua implements this printed clause with 10 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e5:SetCountLimit(1,id) | e4:SetCountLimit(1)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c41371602.lua",
+              "card_id": 41371602,
+              "card_name": "Stand Up Centur-Ion!",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_ACTIVATE, EVENT_FREE_CHAIN, EFFECT_TYPE_FIELD, LOCATION_FZONE, LOCATION_ONFIELD, EFFECT_TYPE_TRIGGER_O."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 443,
+      "passcode": 248940511,
+      "name": "Flower Cardian Moonflare",
+      "text_sha256": "a80e557bbce629a0457e0e4666e4deefeca6624d02ec0196fbb52f17c5e00dfb",
+      "script_sha256": "9cf511e9d805e4f11d70ff3c70faa990443ea9cb368fc1426bacec76cbdfb6ed",
+      "overall_verdict": "CUSTOM_GAP",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "Fresh manual segmentation counts every printed summoning procedure, condition, continuous clause, activated effect, follow-up clause, and explicit usage limit represented in this record."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "1 Tuner + 3 non-Tuner monsters",
+          "lua_implementation": "c248940511.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),3,3) | e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) | e1:SetCode(EVENT_SPSUMMON_SUCCESS) | e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_SYNCHRO) end) | e1:SetTarget(s.tdtg) | e1:SetOperation(s.tdop) | e2:SetType(EFFECT_TYPE_QUICK_O)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c34235530.lua",
+              "card_id": 34235530,
+              "card_name": "Legendary Lord Six Samurai - Shi En",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddSynchroProcedure, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SPSUMMON_SUCCESS, EFFECT_FLAG_DELAY, SUMMON_TYPE_SYNCHRO."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Synchro Summoned: You can target 5 Spell Cards or \"Flower Cardian\" monsters in your GY; shuffle them into the Deck, then draw 1 card.",
+          "lua_implementation": "c248940511.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),3,3) | e1:SetCategory(CATEGORY_TODECK+CATEGORY_DRAW) | e1:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET) | e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_SYNCHRO) end) | e1:SetTarget(s.tdtg) | e2:SetTarget(s.negtg) | e3:SetTarget(s.syntg)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c601193.lua",
+              "card_id": 601193,
+              "card_name": "Virgil, Rock Star of the Burning Abyss",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddSynchroProcedure, CATEGORY_TODECK, CATEGORY_DRAW, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EFFECT_FLAG_DELAY."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "When your opponent activates a monster effect (Quick Effect): You can negate the activation, and if you do, destroy that card.",
+          "lua_implementation": "c248940511.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e2:SetCategory(CATEGORY_NEGATE+CATEGORY_DESTROY) | if Duel.NegateActivation(ev) and re:GetHandler():IsRelateToEffect(re) then Duel.Destroy(re:GetHandler(),REASON_EFFECT) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10443957.lua",
+              "card_id": 10443957,
+              "card_name": "Cyber Dragon Infinity",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_SINGLE, EFFECT_FLAG_CARD_TARGET, CATEGORY_NEGATE, CATEGORY_DESTROY, EFFECT_TYPE_QUICK_O, EVENT_CHAINING."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use this effect of \"Flower Cardian Moonflare\" once per turn.",
+          "lua_implementation": "c248940511.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e2:SetCountLimit(1,id)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c34235530.lua",
+              "card_id": 34235530,
+              "card_name": "Legendary Lord Six Samurai - Shi En",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddSynchroProcedure, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SPSUMMON_SUCCESS, EFFECT_FLAG_DELAY, SUMMON_TYPE_SYNCHRO."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "When this card is used as Synchro Material for the Synchro Summon of a \"Flower Cardian\" monster, you can treat it as 3 non-Tuner monsters.",
+          "lua_implementation": "No Lua effect is registered for this clause. The former EFFECT_SYNCHRO_MATERIAL_CUSTOM block was removed because that hook is Omega's custom-Tuner procedure and Duel.SetSynchroMaterial receives a Group of physical cards; selecting Moonflare alone neither contributes three non-Tuner count slots nor preserves the required Tuner/non-Tuner procedure.",
+          "official_references": [
+            {
+              "script": "c33541430.lua",
+              "card_id": 33541430,
+              "card_name": "Flower Cardian Moonflowerviewing",
+              "matched_structure": "Official Flower Cardian EFFECT_SYNCHRO_MATERIAL_CUSTOM implementation replaces the full material selection, counts physical Group members, and supports alternate Synchro Levels, not one card occupying multiple non-Tuner material-count slots."
+            },
+            {
+              "script": "c89818984.lua",
+              "card_id": 89818984,
+              "card_name": "Flower Cardian Willow with Calligrapher",
+              "matched_structure": "Official Flower Cardian custom-material precedent uses Duel.SetSynchroMaterial with a physical Group and changes Synchro Level interpretation rather than material multiplicity."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Omega supports custom Synchro material selection and alternate Synchro Levels, but not material-count multiplicity for one non-Tuner. Official EFFECT_SYNCHRO_MATERIAL_CUSTOM patterns still validate min/max using Group:GetCount and pass physical cards to Duel.SetSynchroMaterial. The previous code could expose an unintended custom-Tuner route while failing to count Moonflare as three non-Tuners, so that incorrect registration was removed. Exact support requires an engine material-count API or revised card text."
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "cards": 3,
+    "effects": 16,
+    "pass": 11,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 5
+  }
+}

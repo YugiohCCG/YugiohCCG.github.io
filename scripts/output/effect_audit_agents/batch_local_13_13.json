@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 13,
+  "ordinal_end": 13,
+  "cards": [
+    {
+      "ordinal": 13,
+      "passcode": 232449539,
+      "name": "Abstain from Light",
+      "text_sha256": "798ba9af1f9a3aaefa68a85e37e934eabd48c22cd2fc45c0fbbad566d9d36666",
+      "script_sha256": "da7f1d9f09cea168992997001329bd225be1c7abb5ba6c8c4a8b79047c57b3be",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Fusion Summon 1 \"Stain\" Fusion Monster from your Extra Deck using \"Stain\" monsters from your hand or field as material, also, for the rest of this turn after this card resolves, you cannot activate \"Abstain from Light\", or Special Summon monsters from the Extra Deck, except \"Stain\" monsters.",
+          "lua_implementation": "c232449539.lua uses Duel.SpecialSummon, SelectFusionMaterial; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c48130397.lua",
+              "card_id": 48130397,
+              "card_name": "Super Polymerization",
+              "matched_structure": "Fusion-material selection and Fusion Summon resolution.",
+              "official_effect_text": "[b]Discard[/b] 1 card; Fusion Summon 1 Fusion Monster from your Extra Deck, using monsters from either field. Neither player can activate cards or effects in response to this card's activation.",
+              "script_sha256": "7179a51a2fcb76e1ca13e859cc50135a7c2e0a8b9e5f9502e3b136161149e693",
+              "verified_shared_tokens": [
+                "CATEGORY_FUSION_SUMMON",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.BreakEffect",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectFusionMaterial",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_ACTIVATE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_EXTRA",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "REASON_FUSION",
+                "REASON_MATERIAL",
+                "SUMMON_TYPE_FUSION",
+                "TYPE_FUSION"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If your \"Stain\" monster was shuffled into either Deck this turn, you can also banish \"Stain\" monsters from face-up in your opponent's Deck as material, but return them to the GY during the End Phase.",
+          "lua_implementation": "A global EVENT_MOVE approximation flags Stain monsters moved from outside a Deck into a Deck by effect, enabling face-up opponent-Deck Stain monsters as Fusion material and scheduling used cards to return to the GY in the End Phase. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c27911549.lua",
+              "card_id": 27911549,
+              "card_name": "Parasite Paracide",
+              "matched_structure": "closest official opponent-Deck insertion and reversed-card structure.",
+              "official_effect_text": "FLIP: Shuffle this card face-up into your opponent's Deck.\nIf you draw this card after it was added to your Deck by its effect: Special Summon it in Defense Position, [b]and if you do[/b], take 1000 damage. All monsters controlled by the player that Summoned this card by its effect become Insect monsters.",
+              "script_sha256": "5b36b6ab4cef901df627b5343cad0d4df3959d355f9e6be61104dbd4f92fb35f",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.EnableGlobalFlag",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c48130397.lua",
+              "card_id": 48130397,
+              "card_name": "Super Polymerization",
+              "matched_structure": "Fusion-material selection and Fusion Summon resolution.",
+              "official_effect_text": "[b]Discard[/b] 1 card; Fusion Summon 1 Fusion Monster from your Extra Deck, using monsters from either field. Neither player can activate cards or effects in response to this card's activation.",
+              "script_sha256": "7179a51a2fcb76e1ca13e859cc50135a7c2e0a8b9e5f9502e3b136161149e693",
+              "verified_shared_tokens": [
+                "CATEGORY_FUSION_SUMMON",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.BreakEffect",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectFusionMaterial",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_ACTIVATE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_EXTRA",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "REASON_FUSION",
+                "REASON_MATERIAL",
+                "SUMMON_TYPE_FUSION",
+                "TYPE_FUSION"
+              ]
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "EVENT_MOVE does not identify whether movement into a Deck was a shuffle, and it cannot reliably cover cost-based or rule-based shuffles. The current REASON_EFFECT tracker is only an approximation. Resolution: rewrite the condition as 'If your Stain monster was moved into a Deck by a card effect this turn', or add a core shuffle event/reason and use it in c232449539.lua."
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_13_13.json",
+      "lua_effect_creations": 5,
+      "conservative_printed_clause_floor": 2,
+      "heuristic_printed_clause_floor": 1,
+      "source_batch": "batch_local_13_13.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 1,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

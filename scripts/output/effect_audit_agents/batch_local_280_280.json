@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 280,
+      "passcode": 211682274,
+      "name": "Aquamarine Pisaster Giga",
+      "text_sha256": "8721fe9983deb479711f5673e1f133568de9060c78ca7d667df6026230ae249e",
+      "script_sha256": "ce1d4619633ef2591310f509e19b3d895bd98035ff3aedbb52133303d9109e93",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If you control a WATER Aqua monster, you can Special Summon this card (from your hand). You can only Special Summon \"Aquamarine Pisaster Giga\" once per turn this way. You can only use each of the following effects of \"Aquamarine Pisaster Giga\" once per turn. You can Tribute this card; Special Summon 1 \"Aquamarine\" monster from your Deck, except \"Aquamarine Pisaster Giga\". If this card is banished from your GY: You can target 1 of your banished \"Aquamarine\" monsters, except \"Aquamarine Pisaster Giga\"; add it to your hand.",
+          "lua_implementation": "An uncopyable hand procedure checks a face-up WATER Aqua and uses id as the procedure count.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "hand EFFECT_SPSUMMON_PROC",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Duel.GetFirstTarget",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You can Tribute this card; Special Summon 1 \"Aquamarine\" monster from your Deck, except \"Aquamarine Pisaster Giga\".",
+          "lua_implementation": "An Ignition Effect releases the handler as cost, accounting for the freed zone, then summons a differently named archetype monster from Deck.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c5288597.lua",
+              "card_id": 5288597,
+              "card_name": "Transmodify",
+              "matched_structure": "filtered Deck Special Summon",
+              "official_effect_text": "Send 1 face-up monster you control to the GY; Special Summon from your Deck, 1 monster with the same Type [b]and[/b] Attribute as that monster in the GY, but 1 Level higher. [b]You can[/b] only activate 1 \"Transmodify\" [b]per turn[/b].",
+              "script_sha256": "7ab7390c817fe27b9beefc7cb86030950f9a4656f89d2544fc407f1d802b2bd9",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetFirstTarget",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "REASON_COST"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is banished from your GY: You can target 1 of your banished \"Aquamarine\" monsters, except \"Aquamarine Pisaster Giga\"; add it to your hand.",
+          "lua_implementation": "A delayed EVENT_REMOVE trigger checks previous GY, targets a different face-up banished archetype monster and adds the related target.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c51858306.lua",
+              "card_id": 51858306,
+              "card_name": "Eclipse Wyvern",
+              "matched_structure": "EVENT_REMOVE after GY",
+              "official_effect_text": "If this card is sent to the GY: [b]Banish[/b] 1 Level 7 or higher LIGHT or DARK Dragon monster from your Deck. If this card is banished from your GY: [b]You can[/b] add the monster banished by this card's effect to your hand.",
+              "script_sha256": "2b98189064141a1ba77c8832891109dbfe4f7966bdfa5735a76f31ed382fcdc0",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_REMOVE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use each of the following effects of \"Aquamarine Pisaster Giga\" once per turn.",
+          "lua_implementation": "The Tribute and banish triggers use id+1/id+2, while the separate Summon procedure uses id.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "id-keyed hard/oath turn limits",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Duel.GetFirstTarget",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "The hand Summon procedure with its procedure limit, Tribute/Deck Summon effect, banishment recovery trigger, and the latter effects' shared HOPT are four complete audit units."
+      }
+    }
+  ]
+}

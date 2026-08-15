@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch6-plus-gravinity-collateral",
+  "ordinal_start": 432,
+  "ordinal_end": 432,
+  "cards": [
+    {
+      "ordinal": 432,
+      "passcode": 212345347,
+      "name": "Gravinity Lapsix",
+      "text_sha256": "4b338ac90e7d583a77b42a1526c3ca68d5b94db32dd14591b8c07756451da660",
+      "script_sha256": "435597dd4360b8db0874a99b3287b898ed8c8f4f494edefd1cef6ffae48b7205",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "1 Tuner + 1 non-Tuner monster.",
+          "lua_implementation": "EnableReviveLimit and aux.AddSynchroProcedure require exactly one Tuner and one non-Tuner.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15982593.lua",
+              "card_id": 15982593,
+              "card_name": "Centur-Ion Legatia",
+              "matched_structure": "Standard one-Tuner plus one-or-more non-Tuner Synchro procedure; the CCG maximum is narrowed to one non-Tuner."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "For this card's Synchro Summon, you can use Gravinity Monster Cards in your Spell & Trap Zone as material.",
+          "lua_implementation": "Lapsix's distributed extra-material value now accepts only Lapsix and Galaxix as destination Synchro Monsters, matching the two cards that print this permission.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14507213.lua",
+              "card_id": 14507213,
+              "card_name": "Synchro Material",
+              "matched_structure": "EFFECT_EXTRA_SYNCHRO_MATERIAL makes a card outside ordinary controlled material rules usable for a Synchro Summon."
+            },
+            {
+              "script": "tmp/omega_scripts/c97682931.lua",
+              "card_id": 97682931,
+              "card_name": "Revolution Synchron",
+              "matched_structure": "Destination-filtered extra Synchro material plus material-use registration."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: EFFECT_EXTRA_SYNCHRO_MATERIAL is evaluated on the material with the destination Synchro card, so the predicate must encode the granting destination text precisely."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is Synchro Summoned, or Special Summoned from your Spell & Trap Zone: Take 1 Level 6 or lower Gravinity monster from GY or banishment, and either Special Summon it or place it face-up in a Spell & Trap Zone as a Continuous Trap.",
+          "lua_implementation": "A delayed Special Summon trigger checks SUMMON_TYPE_SYNCHRO or previous LOCATION_SZONE, selects a face-up-eligible Level 6-or-lower Gravinity from GY/banishment, then offers Special Summon or MoveToField+Continuous-Trap type according to current zone availability.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c40155014.lua",
+              "card_id": 40155014,
+              "card_name": "Centur-Ion Phalanx",
+              "matched_structure": "Special Summons from GY/banishment."
+            },
+            {
+              "script": "tmp/omega_scripts/c4160316.lua",
+              "card_id": 4160316,
+              "card_name": "Centur-Ion Bonds",
+              "matched_structure": "Places a GY/banished monster in the Spell & Trap Zone as a face-up Continuous Trap."
+            },
+            {
+              "script": "tmp/omega_scripts/c29423048.lua",
+              "card_id": 29423048,
+              "card_name": "Infernal Flame Banshee",
+              "matched_structure": "Offers alternative destinations for one selected card."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "During either player's turn, if this card is a Continuous Trap: You can draw 1 card, then you can Special Summon this card.",
+          "lua_implementation": "A free-chain Quick Effect in LOCATION_SZONE requires Trap type and ability to draw. Resolution draws one, then optionally Special Summons the related handler if a zone and summon legality remain.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15005145.lua",
+              "card_id": 15005145,
+              "card_name": "Centur-Ion Primera",
+              "matched_structure": "Continuous-Trap monster self-Special-Summon."
+            },
+            {
+              "script": "tmp/omega_scripts/c15982593.lua",
+              "card_id": 15982593,
+              "card_name": "Centur-Ion Legatia",
+              "matched_structure": "Draw followed by an optional subsequent operation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "You can only use each effect of Gravinity Lapsix once per turn.",
+          "lua_implementation": "The summon-triggered choice and Continuous-Trap Quick Effect use id and id+100 hard once-per-turn keys.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15005145.lua",
+              "card_id": 15005145,
+              "card_name": "Centur-Ion Primera",
+              "matched_structure": "Separate hard once-per-turn summon and Continuous-Trap effects."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "Five records cover Synchro materials, SZONE material permission, summon recovery choice, trap draw/summon effect, and per-effect HOPT."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 4,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

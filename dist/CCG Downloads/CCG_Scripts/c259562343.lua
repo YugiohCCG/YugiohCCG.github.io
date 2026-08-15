@@ -106,6 +106,19 @@ end
 function s.matfilter(c,e)
 	return not c:IsImmuneToEffect(e)
 end
+--Face-up Monster Cards in the Spell & Trap Zone are also cards on your field.
+--This follows the extra-material group used by "Vision Fusion".
+function s.szmatfilter(c,e)
+	return c:IsFaceup() and (c:GetOriginalType()&TYPE_MONSTER)~=0
+		and c:IsCanBeFusionMaterial() and c:IsAbleToGrave()
+		and not c:IsImmuneToEffect(e)
+end
+function s.getfusionmaterial(e,tp)
+	local mg=Duel.GetFusionMaterial(tp):Filter(s.matfilter,nil,e)
+	local sg=Duel.GetMatchingGroup(s.szmatfilter,tp,LOCATION_SZONE,0,nil,e)
+	mg:Merge(sg)
+	return mg
+end
 function s.fusfilter(c,e,tp,m,f,chkf)
 	return c:IsType(TYPE_FUSION) and (c:IsRace(RACE_DRAGON) or c:IsRace(RACE_WARRIOR) or c:IsRace(RACE_FIEND))
 		and (not f or f(c)) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false)
@@ -114,7 +127,7 @@ end
 function s.fustg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
 		local chkf=tp
-		local mg1=Duel.GetFusionMaterial(tp):Filter(s.matfilter,nil,e)
+		local mg1=s.getfusionmaterial(e,tp)
 		local res=Duel.IsExistingMatchingCard(s.fusfilter,tp,LOCATION_EXTRA,0,1,nil,e,tp,mg1,nil,chkf)
 		if not res then
 			local ce=Duel.GetChainMaterial(tp)
@@ -131,7 +144,7 @@ function s.fustg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 	local chkf=tp
-	local mg1=Duel.GetFusionMaterial(tp):Filter(s.matfilter,nil,e)
+	local mg1=s.getfusionmaterial(e,tp)
 	local sg1=Duel.GetMatchingGroup(s.fusfilter,tp,LOCATION_EXTRA,0,nil,e,tp,mg1,nil,chkf)
 	local mg2=nil
 	local sg2=nil

@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "batch": "batch-8c-local-reconciliation",
+  "ordinal_start": 548,
+  "ordinal_end": 548,
+  "cards": [
+    {
+      "ordinal": 548,
+      "passcode": 259241946,
+      "name": "Charmelia Pray",
+      "text_sha256": "65802fb5b1bee6e659aaa3b603d008addfdf53daf72c81e7649b98f760cb1cb1",
+      "script_sha256": "755e985c8f8b461ab3309dd477f4b47cafef019958ad2686eb039e2328b56c26",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Fresh semantic segmentation found 2 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "Ritual Summon a \"Charmelia\" Ritual from hand/GY using hand/Deck/field monsters whose Levels meet or exceed, and/or controlled face-up \"Charmelia\" Continuous Spell/Traps worth 4 Levels each; one activation per turn.",
+          "lua_implementation": "The custom greater-or-equal Ritual operation now requires IsAbleToGrave only for Deck monsters explicitly sent to the GY. Hand/MZONE monsters need Level and ritual-material legality and are released normally, so replacement effects can redirect those Tributes. Continuous S/T materials still require face-up, archetype/type, and GY legality.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c49721684.lua",
+              "card_id": 49721684,
+              "matched_structure": "Official greater-or-equal Ritual Summon from hand/GY uses ordinary Ritual Tributes.",
+              "card_name": "Mitsurugi Mirror"
+            },
+            {
+              "script": "tmp/omega_scripts/c81560239.lua",
+              "card_id": 81560239,
+              "matched_structure": "Separates ordinary Ritual material from Deck material and only applies Deck-to-GY eligibility to the Deck-material pool.",
+              "card_name": "Mitsurugi Ritual"
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the previous global IsAbleToGrave check rejected legal hand/field Ritual Tributes under Macro-Cosmos-like redirection. The check is now location-specific to Deck materials.",
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "For the rest of this turn after this card resolves, Extra Deck Special Summons are limited to Spellcaster or Fairy monsters.",
+          "lua_implementation": "ritop now executes the attempted Ritual operation and then always registers the End-Phase-reset Extra Deck Special Summon restriction for non-Spellcaster/non-Fairy monsters whenever the card's operation resolves.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c44362883.lua",
+              "card_id": 44362883,
+              "matched_structure": "Registers a turn-long Extra Deck Special Summon restriction as part of resolving/activating a summoning Spell.",
+              "card_name": "Branded Fusion"
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the restriction was previously conditional on a successful Ritual Summon, despite being printed as applying after this card resolves.",
+          "effect_index": 2
+        }
+      ],
+      "supersedes_batch": "batch_8c_539_555.json",
+      "reconciliation_note": "All batch_8c findings for this card were re-evaluated against current Lua and the cited official Omega references. Confirmed defects are patched; retained CUSTOM_GAP records explain the remaining engine/source limit."
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 0,
+    "fixed": 2,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

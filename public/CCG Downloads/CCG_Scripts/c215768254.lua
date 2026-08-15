@@ -2,6 +2,8 @@ local s,id=GetID()
 local STRING_ID=133768254
 local SET_GRAVINITY=0x760
 local TRANSFER_CALL=223505382
+local LAPSIX=212345347
+local GALAXIX=249454272
 function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -89,4 +91,4 @@ function s.mvop(e,tp)
 	if c:GetFlagEffect(TRANSFER_CALL)>0 then c:ResetFlagEffect(TRANSFER_CALL) s.setop(e,tp) end
 	s.domove(c,tp)
 end
-function s.matval(e,sc) return sc:IsSetCard(SET_GRAVINITY) and sc:IsType(TYPE_SYNCHRO) end
+function s.matval(e,sc) return sc:IsCode(LAPSIX,GALAXIX) end

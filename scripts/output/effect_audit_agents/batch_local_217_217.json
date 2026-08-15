@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 217,
+      "passcode": 252513554,
+      "name": "Guardian of Crying Chaos",
+      "text_sha256": "7d0e32a26cc67af3529ef82f47bc9e5f2b9a8ff908ed39d7168bfdeadb4b3b2e",
+      "script_sha256": "f6b8a3d49350926c4346459b2beb5d4808fe4c67d3b5597f38412b8c1af6d53e",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If you control a \"Crying Chaos\" monster with 2500 or more ATK, you can Special Summon this card (from your hand or GY).",
+          "lua_implementation": "e1 is an uncopyable EFFECT_SPSUMMON_PROC in hand/GY; its condition checks the 2500+ ATK Crying Chaos monster, zone availability, and Necrovalley for a GY procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "hand EFFECT_SPSUMMON_PROC",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.IsExistingMatchingCard",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c11335209.lua",
+              "card_id": 11335209,
+              "card_name": "Duamutef, Blessing of Horus",
+              "matched_structure": "GY EFFECT_SPSUMMON_PROC",
+              "official_effect_text": "If you control \"King's Sarcophagus\", [b]you can[/b] Special Summon this card (from your GY). [b]You can[/b] only Special Summon \"Duamutef, Blessing of Horus\" [b]once[/b] [b]per turn[/b] this way. Gains 1200 ATK/DEF for each \"Horus\" monster you control. If another card(s) you control leaves the field by an opponent's card effect, while this card is in your Monster Zone (except during the Damage Step): [b]You can[/b] draw cards equal to the number of monsters with different names in your Main Monster Zone. [b]You can[/b] only use this effect of \"Duamutef, Blessing of Horus\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "e3cc3c54b3b32d72d8b406c13775d76e0131f932c57088d38801e2fb45e5c552",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.IsExistingMatchingCard",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_NECRO_VALLEY",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Fixed: the self-Summon is now a non-activated inherent procedure instead of an Ignition Effect that starts a Chain."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Special Summoned: You can either increase or decrease this card's Level by 2 until the end of the turn.",
+          "lua_implementation": "e2 triggers on EVENT_SPSUMMON_SUCCESS; lvop offers +2 or -2 (only permitting -2 when Level > 2) and registers EFFECT_UPDATE_LEVEL through PHASE_END.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "shared Normal/Special triggers",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.IsExistingMatchingCard",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can only use this effect of \"Guardian of Crying Chaos\" once per turn.",
+          "lua_implementation": "e2 uses SetCountLimit(1,id+1); the separate self-Summon effect is not limited by this sentence.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "id-keyed hard/oath turn limits",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.IsExistingMatchingCard",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The inherent self-Summon procedure, the Level-change trigger, and that trigger's HOPT sentence are the three individual audit units."
+      }
+    }
+  ]
+}

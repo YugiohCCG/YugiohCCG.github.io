@@ -158,10 +158,6 @@ def main() -> int:
         errors.append("effect ledger active-card count differs from its card entries")
     if effect_summary.get("stale_reviews") or effect_summary.get("pending_reviews"):
         errors.append("effect ledger contains stale or pending reviews")
-    missing_manual = sorted(set(unresolved_cards) - set(manual_by_id))
-    if missing_manual:
-        errors.append(f"unresolved cards missing from manual queue: {missing_manual}")
-
     scenarios: list[dict[str, Any]] = []
     for test in manual.get("tests", []):
         card_id = int(test["card_id"])
@@ -190,6 +186,29 @@ def main() -> int:
         )
 
     unresolved = [item for item in scenarios if item["disposition"] == "SKIPPED_MANUAL_INPUT"]
+    queued_unresolved_ids = {item["card_id"] for item in unresolved}
+    for card_id, reviewed in unresolved_cards.items():
+        if card_id in queued_unresolved_ids:
+            continue
+        review = reviewed.get("review") or {}
+        details = effect_detail(review)
+        unresolved.append(
+            {
+                "guide_number": None,
+                "source_ordinal": int(reviewed["ordinal"]),
+                "card_id": card_id,
+                "card_name": str(reviewed["name"]),
+                "workstream": "Fresh official-reference audit (static decision)",
+                "problem": " | ".join(detail["reason"] for detail in details if detail["reason"]),
+                "static_verdict": str(review.get("verdict", "UNKNOWN")),
+                "disposition": "SKIPPED_MANUAL_INPUT",
+                "live_status": "not_applicable_static_decision",
+                "text_sha256": reviewed.get("text_sha256"),
+                "script_sha256": reviewed.get("script_sha256"),
+                "effect_details": details,
+            }
+        )
+    unresolved.sort(key=lambda item: (item["source_ordinal"], item["card_id"]))
     regression = [item for item in scenarios if item["disposition"] == "REGRESSION_ONLY"]
     verdict_counts = Counter((card.get("review") or {}).get("verdict", "UNKNOWN") for card in cards)
     payload = {

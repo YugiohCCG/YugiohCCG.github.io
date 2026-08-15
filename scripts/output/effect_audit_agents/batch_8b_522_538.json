@@ -1,0 +1,1317 @@
+{
+  "schema_version": 1,
+  "batch": "8b",
+  "ordinal_start": 522,
+  "ordinal_end": 538,
+  "cards": [
+    {
+      "ordinal": 522,
+      "passcode": 259459462,
+      "name": "Ganan, the Scarstech City",
+      "text_sha256": "a430692f1b22ac6ac5fc84a35af4acd46b293378ed6b3d0b9c5f6139861d2b95",
+      "script_sha256": "9e57c12558a7bf9d8adebb3920b61f76c160ccf92b6481eae15f4ec1dc684d9f",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The Link-material line, attack-target restriction, chain-resolution ATK gain, conditional all-damage prevention, and unique-control condition are the five independently implemented procedures/conditions; the direct-attack wording only explains the battle-target restriction."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2+ DARK monsters including a \"Scarstech\" monster.",
+          "lua_implementation": "aux.AddLinkProcedure requires at least two DARK Link Materials and s.lcheck requires at least one material with SET_SCARSTECH; EnableReviveLimit enforces proper Link Summoning.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c4280258.lua",
+              "card_id": 4280258,
+              "card_name": "Apollousa, Bow of the Goddess",
+              "matched_structure": "Official 2+ material Link procedure with an additional whole-material-group legality check and revive limit."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "This card cannot be targeted for attacks, but does not prevent your opponent from attacking you directly.",
+          "lua_implementation": "A single-range EFFECT_CANNOT_BE_BATTLE_TARGET with aux.imval1 makes Ganan an illegal attack target without installing any direct-attack prohibition.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c37617348.lua",
+              "card_id": 37617348,
+              "card_name": "Rescue-ACE Hydrant",
+              "matched_structure": "Official single-range EFFECT_CANNOT_BE_BATTLE_TARGET with aux.imval1; removing this monster from the legal attack-target set does not itself prohibit a direct attack."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "This card gains 300 ATK when a card or effect resolves.",
+          "lua_implementation": "A field continuous EVENT_CHAIN_SOLVED effect registers a persistent +300 EFFECT_UPDATE_ATTACK on the face-up handler for every resolved Chain Link.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10239627.lua",
+              "card_id": 10239627,
+              "card_name": "Magical Abductor",
+              "matched_structure": "Official EVENT_CHAIN_SOLVED continuous handling for an increment applied when an activated card resolves."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "While this card has 3000 or more ATK, you take no damage.",
+          "lua_implementation": "Player-targeting EFFECT_CHANGE_DAMAGE and EFFECT_NO_EFFECT_DAMAGE effects return 0 while the face-up handler's current ATK is at least 3000, covering battle and effect damage.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c17016362.lua",
+              "card_id": 17016362,
+              "card_name": "Performage Trapeze Magician",
+              "matched_structure": "Official player-targeted EFFECT_CHANGE_DAMAGE implementation that conditionally changes incoming damage to 0."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "You can only control 1 \"Ganan, the Scarstech City\".",
+          "lua_implementation": "SetUniqueOnField(1,0,id) enforces one copy on the controller's field.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c4280258.lua",
+              "card_id": 4280258,
+              "card_name": "Apollousa, Bow of the Goddess",
+              "matched_structure": "Official same-name one-per-field restriction registered with SetUniqueOnField."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 523,
+      "passcode": 259086544,
+      "name": "Qerets, the Scarstech Mother Ship",
+      "text_sha256": "7403f8f181071c81f3bf18da2044a3f3289d2ad905c0e0992546dcab504a5cc7",
+      "script_sha256": "fc7bd431ebcab99670b4f3a0571c7e03cd24d5211b61ce7cebdd7e37eaccdac1",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The Link procedure, battle-target restriction, field-wide resolved-chain ATK gain, targeting-response negate, and unique-control condition are five independent procedures/effects; the direct-attack phrase is explanatory."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "3+ DARK monsters.",
+          "lua_implementation": "aux.AddLinkProcedure accepts DARK Link Materials with a minimum of three and EnableReviveLimit enforces the Link procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10019086.lua",
+              "card_id": 10019086,
+              "card_name": "Tri-Brigade Arms Bucephalus II",
+              "matched_structure": "Official 3+ material Link procedure using an attribute/type-style material filter and revive limit."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "This card cannot be targeted for attacks, but does not prevent your opponent from attacking you directly.",
+          "lua_implementation": "A single-range EFFECT_CANNOT_BE_BATTLE_TARGET with aux.imval1 removes Qerets from legal attack targets without preventing direct attacks.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c37617348.lua",
+              "card_id": 37617348,
+              "card_name": "Rescue-ACE Hydrant",
+              "matched_structure": "Official single-range EFFECT_CANNOT_BE_BATTLE_TARGET with aux.imval1; the restriction removes a monster as an attack target without installing a direct-attack prohibition."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "\"Scarstech\" monsters you control gain 300 ATK when a card or effect resolves.",
+          "lua_implementation": "At each EVENT_CHAIN_SOLVED, s.atkop finds every face-up Scarstech monster in the controller's Monster Zone and registers a persistent +300 ATK update on each.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10239627.lua",
+              "card_id": 10239627,
+              "card_name": "Magical Abductor",
+              "matched_structure": "Official EVENT_CHAIN_SOLVED registration for an increment applied after a Chain Link resolves."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "When your opponent activates a card or effect that targets a Galaxy monster(s) you control (Quick Effect): You can make this card lose exactly 3000 ATK, then negate that activation.",
+          "lua_implementation": "An opponent-only EVENT_CHAINING Quick Effect checks a targeting Chain's target group for a controlled on-field Galaxy monster, requires at least 3000 current ATK and no reverse-update effect, applies -3000 ATK, then negates that activation.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c33837653.lua",
+              "card_id": 33837653,
+              "card_name": "Tenma the Sky Star",
+              "matched_structure": "Official response to an opponent's targeting activation that makes the handler lose an exact ATK amount before negating the activation."
+            },
+            {
+              "script": "tmp/omega_scripts/c4280258.lua",
+              "card_id": 4280258,
+              "card_name": "Apollousa, Bow of the Goddess",
+              "matched_structure": "Official exact-ATK-loss negate checks current ATK, relation, reverse-update state, and calls NegateActivation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "You can only control 1 \"Qerets, the Scarstech Mother Ship\".",
+          "lua_implementation": "SetUniqueOnField(1,0,id) enforces the printed one-copy control condition.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c4280258.lua",
+              "card_id": 4280258,
+              "card_name": "Apollousa, Bow of the Goddess",
+              "matched_structure": "Official unique-control condition registered with SetUniqueOnField."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 524,
+      "passcode": 259315827,
+      "name": "Adamantios, the Dark Armor",
+      "text_sha256": "83600406cdd50d487013b800e70227d7e28fca1b6cd145402b11c185a586e4ae",
+      "script_sha256": "91a6441ec572023b4f812b0f85d27d05be0d3d0dc3492d35349fd8fda6856736",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The Xyz procedure and two activated/replacement effects are the three independent clauses; detach/equip and the HOPT sentence belong to the same Quick Effect."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2+ Level 6 monsters.",
+          "lua_implementation": "aux.AddXyzProcedure uses Level 6 materials with a minimum of two and an explicit high maximum; EnableReviveLimit completes the Xyz procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10000030.lua",
+              "card_id": 10000030,
+              "card_name": "Magi Magi ☆ Magician Gal",
+              "matched_structure": "Official Level 6 Xyz procedure using aux.AddXyzProcedure and EnableReviveLimit."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "(Quick Effect): You can detach 1 material from this card; equip 1 Equip Spell from your hand, Deck, or GY to this card. You can only use this effect of \"Adamantios, the Dark Armor\" once per turn.",
+          "lua_implementation": "A free-chain Quick Effect with id HOPT detaches one overlay as cost, selects an unrestricted legal Equip Spell from hand/Deck/GY through Necrovalley, equips it to the face-up handler, and registers an equip limit to that handler.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c52022648.lua",
+              "card_id": 52022648,
+              "card_name": "Fairy Tail - Rella",
+              "matched_structure": "Official effect equips an Equip Spell from hand, Deck, or GY and checks zone, legality, Necrovalley, and equip relation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card would leave the field because of your opponent's card, you can destroy 1 Equip Spell you control instead.",
+          "lua_implementation": "EFFECT_DESTROY_REPLACE handles battle and opponent-effect destruction, while a field EFFECT_SEND_REPLACE handles other opponent-effect movements from the Monster Zone; both ask permission and destroy one face-up controlled Equip Spell with REASON_REPLACE.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15635751.lua",
+              "card_id": 15635751,
+              "card_name": "Camelot, Realm of Noble Knights and Noble Arms",
+              "matched_structure": "Official optional destruction replacement that destroys a controlled Equip Card with REASON_EFFECT+REASON_REPLACE."
+            },
+            {
+              "script": "tmp/omega_scripts/c14001430.lua",
+              "card_id": 14001430,
+              "card_name": "Madolche Chateau",
+              "matched_structure": "Official EFFECT_SEND_REPLACE field-continuous interception for a non-destruction destination change."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 525,
+      "passcode": 259023461,
+      "name": "Disciple of Fire",
+      "text_sha256": "1b003ed334bccd3f619d3fcc9f94ec3f2467da5bcd8ec1ea7c8ab12b39fd991f",
+      "script_sha256": "fa240c47e26b34ce8ab9a7601d4c5e9d3114f5899c4a897e487fd017b2b59a32",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The reveal/search action and the two separately selectable LP-payment branches are three independently limited effects; the shared LP-payment trigger and per-turn sentence are merged into the two branch records."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "You can reveal this card in your hand; add 1 \"Phlogistic Uprising!\" from your Deck to your .",
+          "lua_implementation": "A hand Ignition Effect with id HOPT reveals and reshuffles the handler, then searches passcode 257239133 from the Deck, sends it to the hand, and confirms it.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c26674724.lua",
+              "card_id": 26674724,
+              "card_name": "Nekroz of Brionac",
+              "matched_structure": "Official hand Ignition Effect with reveal/discard-style hand cost, Deck search, SendtoHand, confirmation, and HOPT structure."
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "The current printed clause is syntactically incomplete: it ends with 'from your Deck to your .' and specifies no destination. The Lua chooses the hand, but that behavior cannot be validated against the current text. Repair or authoritatively confirm the missing word (presumably 'hand'), then re-audit the search implementation."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If you pay LP while this card is in your GY: You can activate 1 of these effects. Once, while this card is in your GY: Discard 1 card, then add 1 FIRE monster from your GY to your hand. You can only use each effect of \"Disciple of Fire\" once per turn.",
+          "lua_implementation": "An optional delayed EVENT_PAY_LPCOST trigger in the GY offers this branch only if it has not been used during the card's current GY stay or this turn; resolution discards one card, adds a FIRE monster through Necrovalley, then sets both the per-stay card flag and per-turn player flag.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c35606858.lua",
+              "card_id": 35606858,
+              "card_name": "Masterking Archfiend",
+              "matched_structure": "Official optional EVENT_PAY_LPCOST trigger that responds for the player who paid LP and performs a filtered follow-up operation."
+            },
+            {
+              "script": "tmp/omega_scripts/c17827173.lua",
+              "card_id": 17827173,
+              "card_name": "Floowandereeze & Toccan",
+              "matched_structure": "Official once-per-turn retrieval from a non-Deck zone with relation/location checks and SendtoHand handling."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If you pay LP while this card is in your GY: You can activate 1 of these effects. Special Summon this card (but banish it when it leaves the field), and if you do, you can gain LP equal to half the LP you paid this turn while you controlled a \"Phlogiston Dragon\". You can only use each effect of \"Disciple of Fire\" once per turn.",
+          "lua_implementation": "The alternate EVENT_PAY_LPCOST branch Special Summons the related GY handler, gives it a leave-field banish redirect, applies a separate per-turn flag, and optionally recovers half the globally accumulated LP costs paid this turn at moments the player controlled face-up Phlogiston Dragon or its name-treated Horde form.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14318794.lua",
+              "card_id": 14318794,
+              "card_name": "Life Absorbing Machine",
+              "matched_structure": "Official global EVENT_PAY_LPCOST tracker accumulates paid LP by player, clears it by turn, and later recovers half the tracked total."
+            },
+            {
+              "script": "tmp/omega_scripts/c17827173.lua",
+              "card_id": 17827173,
+              "card_name": "Floowandereeze & Toccan",
+              "matched_structure": "Official leave-field banish redirect and turn-limited triggered movement structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 526,
+      "passcode": 259360287,
+      "name": "Sorceress of Fire",
+      "text_sha256": "8861d840a4e6ee52c2d777997530b2a17bf3ecd109865fd21f4e9b6d33685735",
+      "script_sha256": "4b10651d44e46c4596836be91750a7f38b2afa7a119736a98c22d3aa8e9c8e82",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The shuffle-as-cost self-Summon and the discard/LP/send Quick Effect are the two activated effects; the FIRE lock and HOPT sentence are consequences/limits of the second effect."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If this card is in your hand or GY: You can shuffle up to 2 \"Phlogist\" Spell/Trap Cards from your GY or banishment into the Deck; Special Summon this card.",
+          "lua_implementation": "A hand/GY Ignition Effect chooses one or two face-up eligible Phlogist Spell/Traps from GY/banishment and shuffles them as cost, then Special Summons the related handler with zone and Necrovalley checks.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c9485511.lua",
+              "card_id": 9485511,
+              "card_name": "U.A. Goalkeeper",
+              "matched_structure": "Official self-Special-Summon procedure paid by returning a controlled archetypal card, with location-count and once-way procedure checks."
+            },
+            {
+              "script": "tmp/omega_scripts/c14001430.lua",
+              "card_id": 14001430,
+              "card_name": "Madolche Chateau",
+              "matched_structure": "Official filtered movement from the GY back into the Deck through SendtoDeck and Necrovalley-aware handling."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "(Quick Effect): You can discard this card, then pay any amount of LP in multiples of 300; send 1 monster that lists \"Phlogiston Dragon\" in its text from your Deck to the GY. For the rest of this turn, you cannot Special Summon monsters, except FIRE monsters. You can only use this effect of \"Sorceress of Fire\" once per turn.",
+          "lua_implementation": "A hand free-chain Quick Effect with id HOPT discards itself and announces a payable positive multiple of 300 below the player's LP as cost, sends a monster whose metadata lists Phlogiston Dragon (including the Dragon/Horde cards themselves) from Deck to GY, and installs a rest-of-turn non-FIRE Special Summon lock.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c17956906.lua",
+              "card_id": 17956906,
+              "card_name": "Final Light",
+              "matched_structure": "Official LP cost chosen in fixed multiples and used to parameterize the resolving effect."
+            },
+            {
+              "script": "tmp/omega_scripts/c35606858.lua",
+              "card_id": 35606858,
+              "card_name": "Masterking Archfiend",
+              "matched_structure": "Official LP-payment effect followed by a filtered monster send from Deck to GY."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 527,
+      "passcode": 259366281,
+      "name": "Phlogiston's Roar!",
+      "text_sha256": "a8cd699ba06fd2215662df6a213b7e9e51fac59aa8e7042e7e330bbdb5a2fa34",
+      "script_sha256": "86c520f6d8f4bd91f68c9b41e2d75da6054bda0a77c25ce8f6c8878abb8b2640",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Set-turn activation permission, Trap activation/negation, and the GY Set trigger are three independent effects; the shared one-effect-per-turn sentence is represented by the common count code on the latter two activations."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "During your turn, you can activate this card the turn it was Set.",
+          "lua_implementation": "A cannot-disable/un-copyable EFFECT_TRAP_ACT_IN_SET_TURN applies only while the Trap is on field, has STATUS_SET_TURN, and its controller is the turn player.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c12541409.lua",
+              "card_id": 12541409,
+              "card_name": "Infernity Suppression",
+              "matched_structure": "Official conditional EFFECT_TRAP_ACT_IN_SET_TURN permission on a Normal Trap."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "When your opponent activates a monster effect and that monster has a higher ATK than a \"Phlogiston Dragon\" you control: You can pay any amount of LP in multiples of 300, also, after that, negate that effect.",
+          "lua_implementation": "The activation effect responds only to an opponent's negatable monster effect whose handler's current ATK exceeds a face-up controlled Phlogiston Dragon/Horde; it announces and pays a positive multiple of 300 as cost and calls Duel.NegateEffect at resolution.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c12541409.lua",
+              "card_id": 12541409,
+              "card_name": "Infernity Suppression",
+              "matched_structure": "Official Normal Trap activation chained to an opponent's monster effect and resolving with effect negation."
+            },
+            {
+              "script": "tmp/omega_scripts/c17956906.lua",
+              "card_id": 17956906,
+              "card_name": "Final Light",
+              "matched_structure": "Official user-selected LP payment in fixed multiples."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If you pay LP while this card is in your GY: You can Set this card, but banish it when it leaves the field. You can only use 1 effect of \"Phlogiston's Roar!\" per turn and only once that turn.",
+          "lua_implementation": "A delayed EVENT_PAY_LPCOST GY trigger for its controller Sets the related Trap through Necrovalley and gives it an un-disablable leave-field banish redirect; the same id count code as the activation effect enforces the shared one-effect-per-turn limit.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c35606858.lua",
+              "card_id": 35606858,
+              "card_name": "Masterking Archfiend",
+              "matched_structure": "Official optional EVENT_PAY_LPCOST trigger for the player who paid LP."
+            },
+            {
+              "script": "tmp/omega_scripts/c29649320.lua",
+              "card_id": 29649320,
+              "card_name": "Mirror Force Launcher",
+              "matched_structure": "Official effect Sets a Trap from the GY and checks Set legality/location before movement."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 528,
+      "passcode": 259794136,
+      "name": "Harpie Cyber Dancer",
+      "text_sha256": "dd087872665b4b1e9ae680e800a53c46081bb9a32f8c54636fc5f80e7f7f5744",
+      "script_sha256": "884c258bf1b0e615acf6f0eebd11860e2944d04cc92fee89df4cae909f595861",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Name treatment, inherent self-Summon, Deck-send/additional Normal Summon, and sent-to-GY Set trigger are four independent effects; each compound action remains one record."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "This card's name is treated as \"Harpie Lady\" while on the field or in the GY.",
+          "lua_implementation": "aux.EnableChangeCode gives the card code 76812113 in LOCATION_MZONE and LOCATION_GRAVE only.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c63261835.lua",
+              "card_id": 63261835,
+              "card_name": "Cyber Slash Harpie Lady",
+              "matched_structure": "Official Harpie card uses aux.EnableChangeCode to become Harpie Lady specifically in the Monster Zone and GY."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You can Special Summon this card (from your hand or GY) by returning 1 \"Harpie Lady\" monster you control to the hand. You can only use each effect of \"Harpie Cyber Dancer\" once per turn.",
+          "lua_implementation": "An uncopyable hand/GY EFFECT_SPSUMMON_PROC with oath HOPT returns one face-up controlled monster whose current/treated Harpie Lady identity is in the complete current code list, verifies the freed Monster Zone, and respects Necrovalley for a GY summon.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c9485511.lua",
+              "card_id": 9485511,
+              "card_name": "U.A. Goalkeeper",
+              "matched_structure": "Official inherent Special Summon by returning a face-up controlled archetypal monster to hand, with an oath once-per-turn procedure limit."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can send 1 \"Harpie\" monster from your Deck to the GY; Immediately after this effect resolves, Normal Summon 1 Winged Beast monster. You can only use each effect of \"Harpie Cyber Dancer\" once per turn.",
+          "lua_implementation": "A Monster Zone Ignition Effect with distinct HOPT sends one Harpie monster from Deck as cost, then selects a legally Normal Summonable Winged Beast in hand and performs Duel.Summon as an additional Normal Summon immediately in the resolving operation.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c51831560.lua",
+              "card_id": 51831560,
+              "card_name": "Gem-Knight Nepyrim",
+              "matched_structure": "Official activated effect performs an immediate additional Normal Summon after resolution, using summonability and player-summon checks."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If this card is sent from the field to the GY: You can Set 1 Spell/Trap that mentions \"Harpie Lady\" from your GY or 1 \"Harpies' Hunting Grounds\" from your Deck. You can only use each effect of \"Harpie Cyber Dancer\" once per turn.",
+          "lua_implementation": "A delayed EVENT_TO_GRAVE trigger with a prior-on-field condition and distinct HOPT merges Necrovalley-valid GY Spells/Traps whose metadata lists Harpie Lady with Hunting Ground in Deck, selects one, and Sets it if a Spell/Trap Zone is available.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c29649320.lua",
+              "card_id": 29649320,
+              "card_name": "Mirror Force Launcher",
+              "matched_structure": "Official sent/destroyed-card follow-up that Sets a specifically filtered Spell/Trap from Deck or GY with zone and relation checks."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 529,
+      "passcode": 259269774,
+      "name": "Harpie Lady Sisters - Phoenix Formation",
+      "text_sha256": "d4a628b0f39649ec4d4d62a78245a9bdc7ab606ce2aab38e956dbef72a2062e2",
+      "script_sha256": "6c5f03f9c921c014613c77febe4e15ee65fb4488274124aa8dbeefa2d7246768",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "The base/alternate-Tuner Synchro procedure, Synchro-Summon destruction trigger, Main Phase revival/return Quick Effect, and its delayed End Phase destruction consequence are four separately checked clauses; the two activated effects correctly share one count code."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "1 Tuner + non-tuner monsters. For this card's Synchro Summon, you can treat 1 \"Harpie\" monster you control as a Tuner.",
+          "lua_implementation": "aux.AddSynchroProcedure requires one tuner-filter material and one or more non-Tuners; s.tunerfilter accepts a real Tuner or any Harpie monster, reproducing the alternate-Tuner procedure, and EnableReviveLimit enforces proper Summoning.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c63261835.lua",
+              "card_id": 63261835,
+              "card_name": "Cyber Slash Harpie Lady",
+              "matched_structure": "Exact official Harpie Synchro procedure treating one Harpie monster as a Tuner in addition to ordinary Tuners."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Synchro Summoned: You can target any number of \"Harpie Lady\" monsters in your GY, then target that many face-up cards on the field; destroy those targets, and if you do, your opponent takes no damage from battles this turn.",
+          "lua_implementation": "A delayed Synchro-Summon trigger targets one or more valid Harpie Lady identities in the controller's GY and exactly the same number of face-up field cards. Resolution destroys the still-related face-up field targets only and, if at least one is destroyed, registers opponent battle damage as 0 through the End Phase.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c21648584.lua",
+              "card_id": 21648584,
+              "card_name": "Raidraptor - Readiness",
+              "matched_structure": "Official temporary player damage prevention registered through the End Phase after a resolving effect."
+            },
+            {
+              "script": "tmp/omega_scripts/c10515412.lua",
+              "card_id": 10515412,
+              "card_name": "Lightstorm Dragon",
+              "matched_structure": "Official summon trigger that targets and destroys a variable number of Spell/Trap cards based on a separately computed count."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "During the Main Phase (Quick Effect): You can target \"Harpie Lady\" monsters in your GY equal to the number of monsters used for this card's Synchro Summon, then Tribute this card; Special Summon those targets, then return cards from the field to the hand equal to the number of targets.",
+          "lua_implementation": "A Main-Phase Quick Effect reads GetMaterialCount, requires that exact number of GY Harpie Lady targets and enough zones after releasing the handler as cost, Special Summons the surviving targets together, then returns exactly the original target count of hand-returnable field cards when the summon succeeds.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c2434862.lua",
+              "card_id": 2434862,
+              "card_name": "Cubic Ascension",
+              "matched_structure": "Official effect Special Summons a variable group from hand/Deck/GY and performs a subsequent operation after a successful summon."
+            },
+            {
+              "script": "tmp/omega_scripts/c63261835.lua",
+              "card_id": 63261835,
+              "card_name": "Cyber Slash Harpie Lady",
+              "matched_structure": "Official Harpie identity filtering and field-to-hand operation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "During the End Phase, destroy cards you control equal to the number of \"Harpie Lady\" monsters you targeted to activate this effect.",
+          "lua_implementation": "After the preceding Special Summon succeeds, a one-shot End Phase continuous effect retains the original target count and destroys that many destructible controlled cards, or all available destructible cards if fewer remain.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c17016362.lua",
+              "card_id": 17016362,
+              "card_name": "Performage Trapeze Magician",
+              "matched_structure": "Official resolving effect registers a labeled End/Battle Phase continuous destruction operation with a phase reset."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 530,
+      "passcode": 259072169,
+      "name": "Mirage Formation Dragon",
+      "text_sha256": "c7cb8e8824c4c202d0adca84e6fc992c2fa02e227a635621301b77959de8d813",
+      "script_sha256": "3f2cf4e56432c2c8496efebeab9266c30242685b3768ad1705d4c30f6dac54b2",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "Xyz procedure, field/GY name, reveal-based Extra Deck summon, Extra Deck summon Set trigger, and opponent effect-Summon response are five independent procedures/effects; the conditional Quick timing and summon lock belong to the reveal effect."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2 Level 7 WIND monsters.",
+          "lua_implementation": "aux.AddXyzProcedure requires exactly two Level 7 WIND monsters and EnableReviveLimit enforces proper Xyz Summoning.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c17016362.lua",
+              "card_id": 17016362,
+              "card_name": "Performage Trapeze Magician",
+              "matched_structure": "Official attribute/race-filtered two-material Xyz procedure using aux.AddXyzProcedure and EnableReviveLimit."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "This card's name becomes \"Harpie Lady Sisters\" while on the field or in the GY.",
+          "lua_implementation": "aux.EnableChangeCode changes the current code to 12206212 only in the Monster Zone and GY.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c63261835.lua",
+              "card_id": 63261835,
+              "card_name": "Cyber Slash Harpie Lady",
+              "matched_structure": "Official Harpie monster name change limited to the field and GY via aux.EnableChangeCode."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can reveal this card in your Extra Deck and 1 \"Elegant Egotist\" in your hand; Special Summon this card and attach the revealed card from your hand as material, also until the end of the next turn, you cannot Special Summon monsters, except WIND Winged Beast and Dragon monsters. This is a Quick Effect if your opponent controls a monster. You can only use each effect of \"Mirage Formation Dragon\" once per turn.",
+          "lua_implementation": "Two clones sharing id HOPT expose the same Extra Deck effect as Ignition while the opponent has no monster and free-chain Quick while they do. Cost reveals this card and one overlay-eligible Elegant Egotist and preserves its relation; resolution Special Summons and completes this card, overlays that exact revealed card, and applies the WIND Winged Beast/Dragon lock through the next End Phase.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c2501624.lua",
+              "card_id": 2501624,
+              "card_name": "Dark Magician Girl the Magician's Apprentice",
+              "matched_structure": "Official alternate self-Special-Summon effect with hand cost, procedure completion, and hard once-per-turn handling."
+            },
+            {
+              "script": "tmp/omega_scripts/c12632096.lua",
+              "card_id": 12632096,
+              "card_name": "Neo Galaxy-Eyes Cipher Dragon",
+              "matched_structure": "Official Xyz effect uses Duel.Overlay to attach selected cards as material."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If this card is Special Summoned from the Extra Deck: You can Set Spells/Traps that mention \"Harpie Lady\" in their text with different names from your Deck up to the number of \"Harpie Lady\" monsters you control. You can only use each effect of \"Mirage Formation Dragon\" once per turn.",
+          "lua_implementation": "A delayed Special-Summon trigger checks LOCATION_EXTRA, counts face-up controlled current/treated Harpie Lady identities and available Spell/Trap Zones, selects one through that count of Deck Spells/Traps whose metadata lists Harpie Lady under aux.dncheck, and Sets the group.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10136446.lua",
+              "card_id": 10136446,
+              "card_name": "Darklord Eveningstar",
+              "matched_structure": "Official summon trigger Sets multiple differently typed/named archetypal Spells/Traps directly from the Deck."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "If your opponent Special Summons a monster by card effect: You can detach 1 material, then target 1 card you control and 1 face-up card your opponent controls; return both to the hand or destroy both. You can only use each effect of \"Mirage Formation Dragon\" once per turn.",
+          "lua_implementation": "A delayed EVENT_SPSUMMON_SUCCESS field trigger requires REASON_EFFECT and an opponent-summoned member, detaches one material as cost, targets a controlled field card and face-up opposing field card that share at least one legal operation, then at resolution offers return-both and/or destroy-both according to both targets' current legality.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10000030.lua",
+              "card_id": 10000030,
+              "card_name": "Magi Magi ☆ Magician Gal",
+              "matched_structure": "Official Xyz activated effect detaches material and selects between two target-dependent resolution branches."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 531,
+      "passcode": 259247807,
+      "name": "Glitchling Bitron",
+      "text_sha256": "5ca6081400cfee912fc6069fc03f835e9d697b5b092c656148b389a2cb2eacd3",
+      "script_sha256": "431169cd90e823517f4cee55fe290c4ba1bb9dd592caadaa908dc3aad54cbdf4",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Named Ritual permission, counter-based debuff, Ritual-Summon Bitron trigger, and Main-Phase activation-effect application are four independent clauses; the optional counter placement and shared summon lock remain parts of the fourth/trigger effects."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "You can Ritual Summon this card with \"Glitchling Data-Transfert\".",
+          "lua_implementation": "The script lists Data-Transfert, enables revive limit, and registers aux.ritlimit so the monster must be properly Ritual Summoned before later revival.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c20654247.lua",
+              "card_id": 20654247,
+              "card_name": "Blue-Eyes Chaos Dragon",
+              "matched_structure": "Official named-Ritual-Spell monster uses listed-name metadata, EnableReviveLimit, and a Ritual-only Special Summon condition."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Monsters your opponent controls lose 200 ATK/DEF for each Corruption Counter on them.",
+          "lua_implementation": "Two opponent-Monster-Zone field updates compute each affected monster's own Corruption Counter count times -200 for ATK and DEF.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c13235258.lua",
+              "card_id": 13235258,
+              "card_name": "Corrosive Scales",
+              "matched_structure": "Official field debuff makes each opposing monster lose ATK/DEF according to the number of counters on that monster."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is Ritual Summoned: You can Special Summon 1 \"Bitron\" from your hand, Deck, or GY. You can only use each effect of \"Glitchling Bitron\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "A delayed Ritual-Summon-success trigger with id HOPT and past-activity counter summons passcode 36211150 from hand/Deck/GY through Necrovalley and, on activation, applies an oath lock permitting Extra Deck summons, Glitchlings, and Cyberse Ritual/Normal monsters.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c2656842.lua",
+              "card_id": 2656842,
+              "card_name": "Beetrooper Scout Buggy",
+              "matched_structure": "Official summon trigger Special Summons one specifically named monster from hand, Deck, or GY under HOPT."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "During the Main Phase, if this card is in your hand or field (Quick Effect): You can discard 1 card, then send 1 \"Glitchling\" Spell/Trap Card from your Deck to the GY; apply that card's activation effect, then you can place 1 Corruption Counter on a card on the field. You can only use each effect of \"Glitchling Bitron\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "A Main-Phase hand/field Quick Effect with separate HOPT discards one card and sends an activation-capable current Glitchling Spell/Trap (Data-Transfert or Corruption) from Deck as cost, manually executes that card's activation operation, then optionally adds one Corruption Counter to a legal field card; the past/future summon oath is checked and registered at activation.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c2815176.lua",
+              "card_id": 2815176,
+              "card_name": "Zebufera, Vaalmonican Hallow Heathen",
+              "matched_structure": "Official Quick Effect applies the activation effect of a referenced Spell/Trap rather than merely copying its registered card effects."
+            },
+            {
+              "script": "tmp/omega_scripts/c10136446.lua",
+              "card_id": 10136446,
+              "card_name": "Darklord Eveningstar",
+              "matched_structure": "Official target-and-apply activation-effect implementation with HOPT and follow-up movement."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 532,
+      "passcode": 259156549,
+      "name": "Glitchling Protron",
+      "text_sha256": "a5bd6e4ad982002a4c2d8cc11614099cf4e573bdc45879032731becce248fb54",
+      "script_sha256": "e1dc218cb18afa342a4ee65bd7679481788c0b4062a744d86d3055ebaf8ded96",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Named Ritual permission, Ritual-Summon Protron trigger, continuous targeting protection, and tribute-to-Ritual-Summon Quick Effect are four independent clauses; optional counter placement and summon lock are merged with their parent effects."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "You can Ritual Summon this card with \"Glitchling Data-Transfert\".",
+          "lua_implementation": "Data-Transfert is listed, revive limit is enabled, and aux.ritlimit restricts improper Special Summons.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c20654247.lua",
+              "card_id": 20654247,
+              "card_name": "Blue-Eyes Chaos Dragon",
+              "matched_structure": "Official Ritual monster with named Ritual Spell metadata and Ritual-only Special Summon condition."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Ritual Summoned: You can Special Summon 1 \"Protron\" from your hand, Deck, or GY. You can only use each effect of \"Glitchling Protron\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "A delayed Ritual-Summon-success trigger with id HOPT summons passcode 24154052 from hand/Deck/GY through Necrovalley after checking the custom activity counter, and registers the printed oath restriction.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c2656842.lua",
+              "card_id": 2656842,
+              "card_name": "Beetrooper Scout Buggy",
+              "matched_structure": "Official HOPT summon trigger that Special Summons one named monster from hand, Deck, or GY."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "\"Glitchling\" monsters you control cannot be targeted by your opponent's card effects.",
+          "lua_implementation": "A field EFFECT_CANNOT_BE_EFFECT_TARGET covers face-up Glitchling monsters in the controller's Monster Zone, and aux.tgoval limits the prohibition to opposing effects.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10136446.lua",
+              "card_id": 10136446,
+              "card_name": "Darklord Eveningstar",
+              "matched_structure": "Official opponent-only card-effect targeting protection using EFFECT_CANNOT_BE_EFFECT_TARGET."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "During the Main Phase (Quick Effect): You can Tribute this card; Special Summon 1 \"Glitchling\" Ritual Monster from your hand, GY, or face-up Extra Deck, except \"Glitchling Protron\" (this is treated as a Ritual Summon), then you can place 1 Corruption Counter on a card on the field. You can only use each effect of \"Glitchling Protron\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "A Main-Phase Quick Effect with separate HOPT releases the handler as cost, then Ritual-Summons a different Glitchling Ritual from hand/GY/face-up Extra Deck without further material, completes its procedure, and optionally places one counter; custom activity history and an oath field effect enforce the summon restriction.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c36849933.lua",
+              "card_id": 36849933,
+              "card_name": "Megalith Och",
+              "matched_structure": "Official Main-Phase Quick Effect Ritual Summons another Ritual Monster and treats the Special Summon as a completed Ritual procedure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 533,
+      "passcode": 259678739,
+      "name": "Glitchling Witch",
+      "text_sha256": "abca2b9c89687a34efc5b22b7d8a7d8c1abb5e785a8e9cde12910b5145ee5ffa",
+      "script_sha256": "d7b2cbf97790e33699196363d1af1af5597f8e85a7cae0048b46bcbf6fc3b3cd",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Pendulum-zone tribute/material prohibition, named Ritual permission, hand reveal/search, and Special-Summon Ritual procedure are four independent effects/procedures; each list of prohibited material types is one continuous Pendulum effect."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Pendulum Effect: Face-up monsters your opponent controls with a Corruption Counter cannot be Tributed, or used as material for a Fusion, Synchro, Xyz, or Link Summon.",
+          "lua_implementation": "While in a Pendulum Zone, opponent face-up monsters with a Corruption Counter receive both Summon/non-Summon unreleasable effects and cannot be used as Fusion, Synchro, Xyz, or Link Material through the four corresponding effect codes.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c16366810.lua",
+              "card_id": 16366810,
+              "card_name": "Yellow Duston",
+              "matched_structure": "Official face-up monster prohibition combines unreleasability with Fusion, Synchro, and Xyz material restrictions."
+            },
+            {
+              "script": "tmp/omega_scripts/c11429811.lua",
+              "card_id": 11429811,
+              "card_name": "Warning Point",
+              "matched_structure": "Official effect applies all four Fusion/Synchro/Xyz/Link material prohibitions to affected face-up monsters."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Monster Effect: You can Ritual Summon this card with \"Glitchling Data-Transfert\".",
+          "lua_implementation": "The Ritual Spell is listed, revive limit is enabled, and aux.ritlimit is registered despite the Pendulum typing.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c13408726.lua",
+              "card_id": 13408726,
+              "card_name": "Nekroz of Metaltron",
+              "matched_structure": "Official Ritual Pendulum monster registers Pendulum support, revive limit, and Ritual Summon legality."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can reveal this card in your hand and 1 other Cyberse Ritual or Cyberse Normal monster; add 1 \"Glitchling\" monster from your Deck or face-up Extra Deck to your hand. You can only use each effect of \"Glitchling Witch\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "A hand Ignition Effect with id HOPT reveals the handler plus one other Cyberse Ritual/Normal monster as cost, checks past summon activity, installs the oath restriction, then adds one Glitchling monster from Deck or face-up Extra Deck and confirms it.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c26674724.lua",
+              "card_id": 26674724,
+              "card_name": "Nekroz of Brionac",
+              "matched_structure": "Official hand-activated Ritual monster search with HOPT and Deck-to-hand resolution."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If this card is Special Summoned: You can Ritual Summon 1 \"Glitchling\" Ritual Monster from your Deck or face-up Extra Deck by Tributing monsters from your hand or field whose total Levels equal or exceed the Level of the Ritual Monster. You can only use each effect of \"Glitchling Witch\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "A delayed Special-Summon trigger with separate HOPT selects a Glitchling Ritual in Deck/face-up Extra Deck, chooses legal hand/field Ritual Materials totaling at least its Level (including external Corruption-counter substitution), releases the materials, Ritual-Summons and completes the monster, and enforces the past/future summon oath.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c13386407.lua",
+              "card_id": 13386407,
+              "card_name": "Ravenous Vendread",
+              "matched_structure": "Official resolving effect selects a Ritual Monster and tributes a subgroup whose total Levels equal or exceed that Ritual Monster's Level."
+            },
+            {
+              "script": "tmp/omega_scripts/c5088741.lua",
+              "card_id": 5088741,
+              "card_name": "Code Igniter",
+              "matched_structure": "Official effect-based Ritual Summon performs material subgroup checks, SetMaterial, ReleaseRitualMaterial, SpecialSummon with SUMMON_TYPE_RITUAL, and CompleteProcedure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 534,
+      "passcode": 259961648,
+      "name": "Glitchling Data-Transfert",
+      "text_sha256": "9c423ce2730e69ff889a6f0bae25e4683d49e1544756eba1752c9f82afe117e7",
+      "script_sha256": "3689e7a82c57857fd9d45ae618d00316f8e8ac8ea17a82cdbf174c093ddfe11c",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Ritual Spell activation procedure and the separate GY-triggered immediate Pendulum Summon are the two effects; alternate Ritual locations and material requirements are conditions of the activation procedure."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "This card can be used to Ritual Summon any Cyberse Ritual Monster from your hand, OR, if you control \"Bitron\", \"Protron\", and/or \"Digitron\", you can also Ritual Summon it from your face-up Extra Deck or GY. You must also Tribute monsters from your hand or field whose total Levels equal or exceed the Level of the Ritual Monster.",
+          "lua_implementation": "The activation selects any Cyberse Ritual in hand, expanding to GY and face-up Extra Deck while a face-up controlled named Normal Monster exists; it selects hand/field Ritual Materials totaling at least the Level (plus legal external Corruption-counter substitution), handles freed/Extra Deck zones, releases materials, Ritual-Summons, and completes the procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c16494704.lua",
+              "card_id": 16494704,
+              "card_name": "Odd-Eyes Advent",
+              "matched_structure": "Official Ritual Spell can Ritual Summon from hand or GY and tributes hand/field materials totaling at least the Ritual Monster's Level."
+            },
+            {
+              "script": "tmp/omega_scripts/c5088741.lua",
+              "card_id": 5088741,
+              "card_name": "Code Igniter",
+              "matched_structure": "Official effect-based Ritual Summon uses subgroup Level totals, material assignment/release, SUMMON_TYPE_RITUAL, and CompleteProcedure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If your opponent Special Summons a monster from the Extra Deck, while this card is in your GY, and \"Glitchling Witch\" or \"Glitchling Mage\" are in your Pendulum Zone: You can banish this card from your GY; immediately after this effect resolves, Pendulum Summon a Cyberse monster. You can only use this effect of \"Glitchling Data-Transfert\" once per turn.",
+          "lua_implementation": "A delayed opponent Extra-Deck-Summon trigger with id HOPT and GY banish cost requires either named Pendulum monster face-up in a Pendulum Zone, constructs temporary extra-Pendulum-Summon permission, computes the two scales and legal Cyberse hand/face-up-Extra candidates, then currently lets the player select and Pendulum Summon one through every available zone count.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c6992184.lua",
+              "card_id": 6992184,
+              "card_name": "Pendulum Encore",
+              "matched_structure": "Official immediate Pendulum Summon implementation computes scales/zones, builds the Pendulum group, raises EVENT_SPSUMMON_SUCCESS_G_P, and uses SUMMON_TYPE_PENDULUM."
+            },
+            {
+              "script": "tmp/omega_scripts/c55795155.lua",
+              "card_id": 55795155,
+              "card_name": "Pendulum Evolution",
+              "matched_structure": "Official extra Pendulum Summon permission uses EFFECT_EXTRA_PENDULUM_SUMMON and Pendulum-procedure event handling."
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "The printed object is singular ('Pendulum Summon a Cyberse monster'), but penop calls SelectSubGroup with maximum math.min(#tg,ft), allowing multiple Cyberse monsters to be Pendulum Summoned. Restrict the selection maximum to 1 (while retaining normal Pendulum legality/event handling), or change the printed text to explicitly say monster(s) if multiple was intended."
+        }
+      ]
+    },
+    {
+      "ordinal": 535,
+      "passcode": 259927462,
+      "name": "Glitchling Octron",
+      "text_sha256": "bfb9e60f424591027b03d661b32a94365d91d12b593f7b23a9513d35ba5d71c8",
+      "script_sha256": "a4097b1671c787f4ed0a482e27f5aa1de1bc16c16639b873d5e4efc08dcd4e85",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Link procedure, Link-Summon recovery trigger, and GY counter-placement Quick Effect are three independent procedures/effects."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2 Cyberse monsters.",
+          "lua_implementation": "aux.AddLinkProcedure requires exactly two Cyberse Link Materials and EnableReviveLimit enforces proper Link Summoning.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c4280258.lua",
+              "card_id": 4280258,
+              "card_name": "Apollousa, Bow of the Goddess",
+              "matched_structure": "Official filtered Link procedure with explicit material count and revive limit."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Link Summoned: You can add up to 2 \"Glitchling\" cards from your GY, banishment, or face-up Extra Deck to your hand. You can only use each effect of \"Glitchling Octron\" once per turn.",
+          "lua_implementation": "A delayed Link-Summon trigger with id HOPT selects one or two Glitchling cards from GY, face-up banishment, or face-up Extra Deck through Necrovalley, sends them to hand, and confirms the group.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c93317313.lua",
+              "card_id": 93317313,
+              "card_name": "D/D Defense Soldier",
+              "matched_structure": "Official recovery effect adds an archetypal Pendulum Monster from face-up Extra Deck or GY to hand with HOPT."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "(Quick Effect): You can banish this card from your GY; place 1 Corruption Counter on the field up to the number of Cyberse Ritual Monsters and Cyberse Normal Monsters you control. You can only use each effect of \"Glitchling Octron\" once per turn.",
+          "lua_implementation": "A free-chain GY Quick Effect with separate HOPT banishes itself as cost, recounts face-up controlled Cyberse Ritual/Normal monsters, selects one through that many counter-eligible field cards, and adds one Corruption Counter to each selected card.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c13235258.lua",
+              "card_id": 13235258,
+              "card_name": "Corrosive Scales",
+              "matched_structure": "Official effect places a named counter on multiple face-up monsters and later reads each card's own counter count."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 536,
+      "passcode": 259494236,
+      "name": "Glitchling Digitron",
+      "text_sha256": "1836a01723f2e6bafa0fe74ad9a3b918926316ece100409eb1e8fb26dfacc195",
+      "script_sha256": "127692a09930f55c19cd3cd776bcbf840cc3938d245b6c86c909e20d26b86ed9",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Named Ritual permission, Ritual-Summon Digitron trigger, field-wide counter-based stat gain, and opponent-turn hand/GY negate are four independent effects/procedures."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "You can Ritual Summon this card with \"Glitchling Data-Transfert\".",
+          "lua_implementation": "The named Ritual Spell is listed, revive limit enabled, and aux.ritlimit registered.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c20654247.lua",
+              "card_id": 20654247,
+              "card_name": "Blue-Eyes Chaos Dragon",
+              "matched_structure": "Official named-Ritual-Spell metadata and Ritual-only Special Summon condition."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Ritual Summoned: You can Special Summon 1 \"Digitron\" from your hand, Deck, or GY. You can only use each effect of \"Glitchling Digitron\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "A delayed Ritual-Summon-success trigger with id HOPT and activity-history check summons passcode 32295838 from hand/Deck/GY through Necrovalley and registers the matching oath summon restriction.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c2656842.lua",
+              "card_id": 2656842,
+              "card_name": "Beetrooper Scout Buggy",
+              "matched_structure": "Official HOPT summon trigger Special Summons a specifically named monster from hand, Deck, or GY."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "\"Glitchling\" monsters you control gain 200 ATK/DEF for each Corruption Counter on the field.",
+          "lua_implementation": "Two field updates affect face-up controlled Glitchlings and return the total Corruption Counter count on both fields times 200 for ATK and DEF.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c17601919.lua",
+              "card_id": 17601919,
+              "card_name": "Pumprincess the Princess of Ghosts",
+              "matched_structure": "Official continuous ATK/DEF modifier derives its value from a live named-counter count."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "During your opponent's turn, when your opponent activates a monster effect in the hand or GY (Quick Effect): You can Tribute 1 Cyberse monster you control; negate that effect, also destroy that card, then you can place 1 Corruption Counter on a card on the field. You can only use each effect of \"Glitchling Digitron\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "An opponent-turn EVENT_CHAINING Quick Effect with separate HOPT checks the triggering location is exactly hand or GY, releases one controlled Cyberse as cost, verifies prior summon activity and applies the oath, negates the effect, destroys the still-related activated card, then optionally adds one Corruption Counter to a legal field card.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c27420823.lua",
+              "card_id": 27420823,
+              "card_name": "K9-17 \"Ripper\"",
+              "matched_structure": "Official Quick Effect inspects CHAININFO_TRIGGERING_LOCATION for an opponent's monster effect activated in hand or GY and negates that effect."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 537,
+      "passcode": 259072906,
+      "name": "Glitchling Mage",
+      "text_sha256": "3ae8f73afafa5cf4435a2f751d93b197558b036eb71e83f664b738dbb3bbd397",
+      "script_sha256": "7c8957cae511f8819294ea30828a72e0490f312543093a0eb9da94bc169c14e4",
+      "overall_verdict": "CUSTOM_GAP",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Pendulum-Summon replacement procedure, named Ritual permission, hand reveal/search, and Special-Summon Ritual effect are four independent procedures/effects; material/scale details and summon restrictions are merged into their parent records."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Pendulum Effect: If you would conduct a Pendulum Summon while you control another Cyberse Pendulum Monster in your Pendulum Zone, you can Ritual Summon any number of Cyberse Ritual Monsters from your hand or face-up Extra Deck with a Level between the Pendulum Scales of the 2 cards in your Pendulum Zones by Tributing Cyberse monsters you control whose total Levels equal or exceed the Levels of the Ritual Monsters.",
+          "lua_implementation": "The current approximation is a once-per-turn Pendulum-Zone Ignition Effect: while another Cyberse Pendulum is present, it selects any number of in-scale Cyberse Rituals from hand/face-up Extra Deck, releases face-up controlled Cyberse monsters whose summed Levels cover the selected Rituals' combined Levels and zones, and Ritual-Summons them with step/complete handling. It is not tied to, nor does it consume, the player's Pendulum Summon procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c55795155.lua",
+              "card_id": 55795155,
+              "card_name": "Pendulum Evolution",
+              "matched_structure": "Official script demonstrates engine-facing Pendulum Summon permission/procedure handling through EFFECT_EXTRA_PENDULUM_SUMMON and EVENT_SPSUMMON_SUCCESS_G_P."
+            },
+            {
+              "script": "tmp/omega_scripts/c5088741.lua",
+              "card_id": 5088741,
+              "card_name": "Code Igniter",
+              "matched_structure": "Official effect-based Ritual Summon demonstrates Level-total material checks, release, SUMMON_TYPE_RITUAL, and CompleteProcedure."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "The printed procedure replaces an attempted Pendulum Summon ('If you would conduct'), so it should only be available at that procedure timing and should consume that Pendulum Summon. The Lua exposes an independent Ignition Effect and leaves the ordinary Pendulum Summon available. No official Omega script provides a generic hook that replaces a player's Pendulum Summon with a multi-Ritual Summon; resolving this faithfully requires an engine-supported replacement/procedure hook or an authoritative redesign of the printed timing."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Monster Effect: You can Ritual Summon this card with \"Glitchling Data-Transfert\".",
+          "lua_implementation": "Data-Transfert is listed, revive limit and Pendulum support are enabled, and aux.ritlimit restricts improper revival.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c13408726.lua",
+              "card_id": 13408726,
+              "card_name": "Nekroz of Metaltron",
+              "matched_structure": "Official Ritual Pendulum monster combines Pendulum registration, revive limit, and Ritual Summon condition."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can reveal this card and 1 other Cyberse Ritual or Cyberse Normal Monster in your hand; add 1 \"Glitchling\" Spell/Trap from your Deck to your hand. You can only use each effect of \"Glitchling Mage\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "A hand Ignition Effect with distinct HOPT reveals this card plus another Cyberse Ritual/Normal, checks the custom activity counter, registers the oath restriction, and searches a Glitchling Spell/Trap from Deck to hand with confirmation.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c90444325.lua",
+              "card_id": 90444325,
+              "card_name": "Megalith Hagith",
+              "matched_structure": "Official Ritual monster effect searches an archetypal Spell/Trap from Deck to hand under HOPT."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If this card is Special Summoned: You can Ritual Summon 1 Cyberse Ritual Monster from your hand or face-up Extra Deck by Tributing Cyberse monsters from your hand or Deck whose total Levels equal or exceed the Ritual Monster. You can only use each effect of \"Glitchling Mage\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "A delayed Special-Summon trigger with separate HOPT and activity check selects a Cyberse Ritual from hand/face-up Extra Deck, selects Cyberse Ritual Materials from hand/Deck totaling at least its Level, releases hand materials and sends Deck materials with effect/material/Ritual reasons, then Ritual-Summons, completes procedure, and enforces the oath restriction.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c5088741.lua",
+              "card_id": 5088741,
+              "card_name": "Code Igniter",
+              "matched_structure": "Official Cyberse effect-based Ritual Summon uses subgroup Level totals, material assignment, release, SUMMON_TYPE_RITUAL, and CompleteProcedure."
+            },
+            {
+              "script": "tmp/omega_scripts/c13386407.lua",
+              "card_id": 13386407,
+              "card_name": "Ravenous Vendread",
+              "matched_structure": "Official effect selects a Ritual Monster and consumes specified nonstandard-location materials whose Levels meet or exceed its Level."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 538,
+      "passcode": 259873115,
+      "name": "Glitchling Leotron",
+      "text_sha256": "9921810c2a717864a80c34f20f5d187d1a733f0c08a10b9888276c732d66f68e",
+      "script_sha256": "815e15c9c57dd54732a2f435a56122f1003747644325fb9f421ada3f71d6f4fe",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Pendulum-zone Ritual Summon, named Ritual permission, Ritual-Summon two-stage Special Summon trigger, and Spell/Trap-effect negate are four independent effects/procedures; optional follow-ups and the shared summon restriction remain within their parent records."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Pendulum Effect: You can destroy this card, then Ritual Summon 1 \"Glitchling\" Ritual Monster from your hand, face-up Extra Deck, or GY, except \"Glitchling Leotron\", by Tributing monsters from your hand or field whose total Levels equal or exceed the Level of the Ritual Monster.",
+          "lua_implementation": "A Pendulum-Zone Ignition Effect with HOPT first destroys the handler, then selects a different Glitchling Ritual from hand/GY/face-up Extra Deck through Necrovalley, chooses legal hand/field materials meeting the Level (plus external Corruption substitution), releases them, Ritual-Summons and completes the procedure with destination-zone checks.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c16494704.lua",
+              "card_id": 16494704,
+              "card_name": "Odd-Eyes Advent",
+              "matched_structure": "Official Ritual Spell summons from hand or GY by tributing hand/field Pendulum materials totaling at least the Ritual Monster's Level."
+            },
+            {
+              "script": "tmp/omega_scripts/c5088741.lua",
+              "card_id": 5088741,
+              "card_name": "Code Igniter",
+              "matched_structure": "Official effect-based Ritual Summon material subgroup/release and CompleteProcedure sequence."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Monster Effect: You can Ritual Summon this card with \"Glitchling Data-Transfert\".",
+          "lua_implementation": "The script lists Data-Transfert, enables revive/Pendulum handling, and applies aux.ritlimit.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c13408726.lua",
+              "card_id": 13408726,
+              "card_name": "Nekroz of Metaltron",
+              "matched_structure": "Official Ritual Pendulum monster combines Pendulum registration, revive limit, and Ritual-only summon condition."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is Ritual Summoned: You can Special Summon 1 \"Bitron\", \"Protron\" or \"Digitron\" from your hand, Deck, or GY, then you can Special Summon 1 \"Glitchling\" monster from your face-up Extra Deck or GY that mentions the Summoned monster. You can only use each effect of \"Glitchling Leotron\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "A delayed Ritual-Summon trigger with id HOPT and activity check first summons one of the three exact Normal Monsters from hand/Deck/GY through Necrovalley; after success it optionally summons a current Glitchling from GY/face-up Extra Deck whose hard-coded current metadata mapping mentions that exact Normal Monster, while checking the appropriate Main/Extra Monster Zone, and registers the oath restriction.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c2656842.lua",
+              "card_id": 2656842,
+              "card_name": "Beetrooper Scout Buggy",
+              "matched_structure": "Official HOPT summon trigger Special Summons a specifically named monster from hand, Deck, or GY."
+            },
+            {
+              "script": "tmp/omega_scripts/c66787942.lua",
+              "card_id": 66787942,
+              "card_name": "Predaplant Bal Teah",
+              "matched_structure": "Official summon trigger Special Summons an archetypal monster from face-up Extra Deck or GY with location-sensitive legality."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "When your opponent activates a Spell/Trap Card or effect (Quick Effect): You can Tribute any number of other Cyberse Ritual Monsters and/or Cyberse Normal Monsters; negate that effect, and if you do, destroy Spell/Trap Cards your opponent controls up to the number of monsters Tributed to activate this effect. You can only use each effect of \"Glitchling Leotron\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "An opponent-only EVENT_CHAINING Quick Effect with separate HOPT responds to an active Spell/Trap card or effect, releases one or more other controlled Cyberse Ritual/Normal monsters as cost while storing the count, checks/registers the summon oath, negates that effect, then selects and destroys up to the stored count of destructible opposing Spell/Trap Zone cards.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c1174075.lua",
+              "card_id": 1174075,
+              "card_name": "Drytron Mu Beta Fafnir",
+              "matched_structure": "Official Ritual-support monster responds to a Spell/Trap activation, pays a monster/material cost, negates, and conditionally destroys."
+            },
+            {
+              "script": "tmp/omega_scripts/c33837653.lua",
+              "card_id": 33837653,
+              "card_name": "Tenma the Sky Star",
+              "matched_structure": "Official Quick Effect negates an opponent's activation and performs a conditional subsequent destruction."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    }
+  ]
+}

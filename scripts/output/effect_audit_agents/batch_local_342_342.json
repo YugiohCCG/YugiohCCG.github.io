@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 342,
+  "ordinal_end": 342,
+  "cards": [
+    {
+      "ordinal": 342,
+      "passcode": 258590942,
+      "name": "Arckcestial Meadow",
+      "text_sha256": "dbaa86ae17349f76480ef72bf0a8823e8207fa426d5c20d14b22b98d8216d8cc",
+      "script_sha256": "5bd73c1a789376d38c79f22e0aaed47a253041955ddf46b82eb54cb4488828d4",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "On activation optionally add an \"Arckcestial\", then discard 1, then LIGHT Spellcaster-only Special Summon lock; only 1 activation per turn.",
+          "lua_implementation": "Activation may decline the search; if accepted it adds/confirms/shuffles, discards, then registers the lock. Oath count applies to activation.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c85590798.lua",
+              "card_id": 85590798,
+              "card_name": "Starry Knight Ceremony",
+              "matched_structure": "Reveal/search/discard hand handling and continuous card activation once-per-turn structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Once per turn, if opponent Normal/Special Summons a non-LIGHT monster, except during Damage Step: target an \"Arckcestial\" in GY and Special Summon it.",
+          "lua_implementation": "Mandatory cloned Normal/Special Summon triggers detect an opponent-summoned non-LIGHT event monster, target a Necrovalley-legal Arckcestial in GY, and revive it. The effects do not carry EFFECT_FLAG_DAMAGE_STEP, so—as in the official reference—they are unavailable during the Damage Step; SetCountLimit(1) is the printed SOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10732060.lua",
+              "card_id": 10732060,
+              "card_name": "Hi-Speedroid Glider #2",
+              "matched_structure": "Official summon trigger with an explicit Damage Step exclusion in condition/property handling."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The activation search, discard, LIGHT Spellcaster lock, and activation HOPT form one compound activation effect. The opponent non-LIGHT Summon trigger, Damage Step exclusion, target/revival, and SOPT form the second."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

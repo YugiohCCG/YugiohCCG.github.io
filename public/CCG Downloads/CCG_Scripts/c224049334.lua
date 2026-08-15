@@ -30,10 +30,9 @@ function s.initial_effect(c)
 end
 function s.checkop(e,tp,eg,ep,ev,re,r,rp)
 	for tc in aux.Next(eg) do
-		local p=tc:GetPreviousControler()
 		if tc:IsType(TYPE_SPELL+TYPE_TRAP) and tc:IsPreviousLocation(LOCATION_ONFIELD)
-			and tc:IsReason(REASON_EFFECT) and rp==1-p and tc:IsLocation(LOCATION_GRAVE) then
-			tc:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,0,1)
+			and tc:IsReason(REASON_EFFECT) and (rp==0 or rp==1) and tc:IsLocation(LOCATION_GRAVE) then
+			tc:RegisterFlagEffect(id+rp,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,0,1)
 		end
 	end
 end
@@ -42,19 +41,19 @@ function s.setcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return c:IsAbleToRemoveAsCost() end
 	Duel.Remove(c,POS_FACEUP,REASON_COST)
 end
-function s.setfilter(c)
-	return c:GetFlagEffect(id)>0 and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()
+function s.setfilter(c,tp)
+	return c:GetFlagEffect(id+1-tp)>0 and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local ft=Duel.GetLocationCount(tp,LOCATION_SZONE)
 	if e:GetHandler():IsLocation(LOCATION_SZONE) then ft=ft+1 end
-	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,nil)
+	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,nil,tp)
 	if chk==0 then return ft>0 and #g>0 and #g<=ft end
 	Duel.SetOperationInfo(0,CATEGORY_LEAVE_GRAVE,g,#g,tp,0)
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local ft=Duel.GetLocationCount(tp,LOCATION_SZONE)
-	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,nil)
+	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,nil,tp)
 	if ft>0 and #g>0 and #g<=ft then
 		Duel.SSet(tp,g)
 	end

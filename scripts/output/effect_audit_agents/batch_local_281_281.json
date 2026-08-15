@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 281,
+      "passcode": 251191343,
+      "name": "Aquamarine Asthenosoma",
+      "text_sha256": "57176c7d84d31097cc4c5c198de8ea1180b80954b41964b1fc240cb54076eab1",
+      "script_sha256": "6118ef07dc3197cbca7e78bf14494aea29c152db8a970c061c3f1f65cca27c49",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If you control a WATER Aqua monster, you can Special Summon this card (from your GY). You can only Special Summon \"Aquamarine Asthenosoma\" once per turn this way. You can only use each of the following effects of \"Aquamarine Asthenosoma\" once per turn. You can discard this card; send 1 \"Aquamarine\" monster from your Deck to the GY, except \"Aquamarine Asthenosoma\". If this card is banished from your GY: You can target 1 of your Banished \"Aquamarine\" cards, except \"Aquamarine Asthenosoma\", return it to the GY.",
+          "lua_implementation": "An uncopyable GY EFFECT_SPSUMMON_PROC checks Necrovalley, zone and a face-up WATER Aqua; oath count limits the procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c11335209.lua",
+              "card_id": 11335209,
+              "card_name": "Duamutef, Blessing of Horus",
+              "matched_structure": "GY EFFECT_SPSUMMON_PROC",
+              "official_effect_text": "If you control \"King's Sarcophagus\", [b]you can[/b] Special Summon this card (from your GY). [b]You can[/b] only Special Summon \"Duamutef, Blessing of Horus\" [b]once[/b] [b]per turn[/b] this way. Gains 1200 ATK/DEF for each \"Horus\" monster you control. If another card(s) you control leaves the field by an opponent's card effect, while this card is in your Monster Zone (except during the Damage Step): [b]You can[/b] draw cards equal to the number of monsters with different names in your Main Monster Zone. [b]You can[/b] only use this effect of \"Duamutef, Blessing of Horus\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "e3cc3c54b3b32d72d8b406c13775d76e0131f932c57088d38801e2fb45e5c552",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_COUNT_CODE_OATH",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_NECRO_VALLEY",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You can discard this card; send 1 \"Aquamarine\" monster from your Deck to the GY, except \"Aquamarine Asthenosoma\".",
+          "lua_implementation": "A hand Ignition Effect discards the handler as cost and sends one differently named archetype monster from Deck.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c52350806.lua",
+              "card_id": 52350806,
+              "card_name": "Danger! Mothman!",
+              "matched_structure": "REASON_DISCARD",
+              "official_effect_text": "[b]You can[/b] reveal this card in your hand; your opponent randomly chooses 1 card from your entire hand, [b]then[/b] you [b]discard[/b] the chosen card. [b]Then[/b], if the discarded card was not \"Danger! Mothman!\", Special Summon 1 \"Danger! Mothman!\" from your hand, [b]and if you do[/b], draw 1 card. If this card is discarded: [b]You can[/b] have both players draw 1 card, [b]then[/b] both players [b]discard[/b] 1 card. [b]You can[/b] only use this effect of \"Danger! Mothman!\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "6bfb06667a354bcc14e432d322002c2e7fe538f7f13458b19f1cee7cd02d75e6",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_IGNITION",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_DISCARD",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is banished from your GY: You can target 1 of your Banished \"Aquamarine\" cards, except \"Aquamarine Asthenosoma\", return it to the GY.",
+          "lua_implementation": "A delayed targeted EVENT_REMOVE trigger checks previous GY, chooses a different face-up banished archetype card and sends it to GY with REASON_RETURN.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c51858306.lua",
+              "card_id": 51858306,
+              "card_name": "Eclipse Wyvern",
+              "matched_structure": "EVENT_REMOVE after GY",
+              "official_effect_text": "If this card is sent to the GY: [b]Banish[/b] 1 Level 7 or higher LIGHT or DARK Dragon monster from your Deck. If this card is banished from your GY: [b]You can[/b] add the monster banished by this card's effect to your hand.",
+              "script_sha256": "2b98189064141a1ba77c8832891109dbfe4f7966bdfa5735a76f31ed382fcdc0",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_REMOVE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use each of the following effects of \"Aquamarine Asthenosoma\" once per turn.",
+          "lua_implementation": "The discard/banish triggers use distinct id/id+100 hard limits; the procedure has its separately stated oath limit.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "id-keyed hard/oath turn limits",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "Duel.GetFirstTarget",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "EFFECT_COUNT_CODE_OATH",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "The GY Summon procedure with its procedure limit, discard/send effect, banishment return trigger, and the latter effects' shared HOPT are four complete audit units."
+      }
+    }
+  ]
+}

@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 266,
+      "passcode": 255048812,
+      "name": "Chrono-Saur Stegian",
+      "text_sha256": "7dd92839b17aeb3a0810222bc269879290a82ce6392be788f2142f1feb1feeb8",
+      "script_sha256": "77670d2d78f1855c2b30c8c93b982255893825777d7f5b41070207402f6854f7",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "You can discard this card; destroy 1 Dinosaur monster or 1 \"Chrono-Saur\" card you control, and if you do, draw 1 card, then shuffle 1 card from your hand into the Deck.",
+          "lua_implementation": "e1 discards itself as cost; at resolution it non-targetingly destroys an eligible controlled card, draws one after success, then returns one hand card to the shuffled Deck.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c52350806.lua",
+              "card_id": 52350806,
+              "card_name": "Danger! Mothman!",
+              "matched_structure": "REASON_DISCARD",
+              "official_effect_text": "[b]You can[/b] reveal this card in your hand; your opponent randomly chooses 1 card from your entire hand, [b]then[/b] you [b]discard[/b] the chosen card. [b]Then[/b], if the discarded card was not \"Danger! Mothman!\", Special Summon 1 \"Danger! Mothman!\" from your hand, [b]and if you do[/b], draw 1 card. If this card is discarded: [b]You can[/b] have both players draw 1 card, [b]then[/b] both players [b]discard[/b] 1 card. [b]You can[/b] only use this effect of \"Danger! Mothman!\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "6bfb06667a354bcc14e432d322002c2e7fe538f7f13458b19f1cee7cd02d75e6",
+              "verified_shared_tokens": [
+                "CATEGORY_DRAW",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.BreakEffect",
+                "Duel.Draw",
+                "Duel.GetLocationCount",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.IsPlayerCanDraw",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "Duel.ShuffleHand",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_IGNITION",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_DISCARD",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c20568404.lua",
+              "card_id": 20568404,
+              "card_name": "Jurrac Stego",
+              "matched_structure": "Duel.Destroy success gates continuation",
+              "official_effect_text": "During your Main Phase: You can destroy 1 card you control, and if you do, send 1 Dinosaur monster from your Deck to the GY, then you can Special Summon \"Jurrac\" monsters from your hand and/or Deck whose total Levels equal the sent monster's Level, except \"Jurrac Stego\", ignoring their Summoning conditions, also you cannot Special Summon for the rest of this turn, except Dinosaur monsters. You can only use this effect of \"Jurrac Stego\" once per turn. When this card is destroyed by battle: You can return 1 face-up card on the field to the hand.",
+              "script_sha256": "604ed1c4f242e1341e0a43bfdab4123bd918c7976f642b55fd3b06f74ac9aeab",
+              "verified_shared_tokens": [
+                "CATEGORY_DESTROY",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.BreakEffect",
+                "Duel.Destroy",
+                "Duel.GetLocationCount",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SelectYesNo",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_IGNITION",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "LOCATION_ONFIELD",
+                "REASON_EFFECT",
+                "TYPE_MONSTER",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c48712195.lua",
+              "card_id": 48712195,
+              "card_name": "Card Trader",
+              "matched_structure": "draw then return hand card",
+              "official_effect_text": "[b]Once[/b] [b]per turn[/b], during your [b]Standby Phase[/b]: [b]You can[/b] shuffle 1 card from your hand into the Deck; draw 1 card.",
+              "script_sha256": "74765d0b98c3db2175f9852ee58c59f67ec1eea0a7b4798b0ecd15d280e27148",
+              "verified_shared_tokens": [
+                "CATEGORY_DRAW",
+                "Duel.Draw",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.IsPlayerCanDraw",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoDeck",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "REASON_COST",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If your opponent control 2 or more monsters: You can Special Summon this card from hand, then you can destroy 1 card in your hand or field.",
+          "lua_implementation": "A hand Ignition Effect checks two opponent monsters and summons; after success an optional non-target selection destroys one destructible card in the controller hand/on-field.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c71278040.lua",
+              "card_id": 71278040,
+              "card_name": "Parallel eXceed",
+              "matched_structure": "hand Special Summon trigger",
+              "official_effect_text": "If this card is Special Summoned by the effect of \"Parallel eXceed\", its Level becomes 4 [b]and[/b] its original ATK/DEF become halved. [b]You can[/b] only use each of the following effects of \"Parallel eXceed\" [b]once[/b] [b]per turn[/b].\n● If you Link Summon: [b]You can[/b] Special Summon this card from your hand to your zone that Link Monster points to.\n● If this card is Normal or Special Summoned: [b]You can[/b] Special Summon 1 \"Parallel eXceed\" from your Deck.",
+              "script_sha256": "705dafba23679e45098378034cfa74f8c245a07f04e5ca5925e215308dfeff72",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c20568404.lua",
+              "card_id": 20568404,
+              "card_name": "Jurrac Stego",
+              "matched_structure": "destroy own card before dependent operation",
+              "official_effect_text": "During your Main Phase: You can destroy 1 card you control, and if you do, send 1 Dinosaur monster from your Deck to the GY, then you can Special Summon \"Jurrac\" monsters from your hand and/or Deck whose total Levels equal the sent monster's Level, except \"Jurrac Stego\", ignoring their Summoning conditions, also you cannot Special Summon for the rest of this turn, except Dinosaur monsters. You can only use this effect of \"Jurrac Stego\" once per turn. When this card is destroyed by battle: You can return 1 face-up card on the field to the hand.",
+              "script_sha256": "604ed1c4f242e1341e0a43bfdab4123bd918c7976f642b55fd3b06f74ac9aeab",
+              "verified_shared_tokens": [
+                "CATEGORY_DESTROY",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.BreakEffect",
+                "Duel.Destroy",
+                "Duel.GetLocationCount",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SelectYesNo",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_IGNITION",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "LOCATION_ONFIELD",
+                "REASON_EFFECT",
+                "TYPE_MONSTER",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is destroyed by card effect: You can Special Summon 1 \"Chrono-Saur\" monster from your hand or GY, except \"Chrono-Saur Stegian\".",
+          "lua_implementation": "A delayed REASON_EFFECT destruction trigger revives another archetype monster from hand/GY.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c4145852.lua",
+              "card_id": 4145852,
+              "card_name": "Zoodiac Ramram",
+              "matched_structure": "delayed EVENT_DESTROYED",
+              "official_effect_text": "If this card is destroyed by battle or card effect: [b]You can[/b] [b]target[/b] 1 \"Zoodiac\" monster in your GY, except \"Zoodiac Ramram\"; Special Summon it. An Xyz Monster whose original Type is Beast-Warrior [b]and[/b] has this card as material gains this effect.\n● [b]When[/b] your opponent activates a Trap Card or effect that targets this card ([b]Quick Effect[/b]): [b]You can[/b] detach 1 material from this card; [b]negate[/b] the activation.",
+              "script_sha256": "f03b9c3298ee7d4cd4b1a07306d36b516b84a3028e5c8d0718b87f6c4854280f",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_DESTROYED",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_COST",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use each effect of \"Chrono-Saur Stegian\" once per turn.",
+          "lua_implementation": "The three effects use distinct id/id+100/id+200 hard codes.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "id-keyed hard/oath turn limits",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "TYPE_MONSTER",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "The discard/destroy/draw effect, conditional hand Summon effect, destruction trigger, and shared each-effect HOPT are four complete audit units."
+      }
+    }
+  ]
+}

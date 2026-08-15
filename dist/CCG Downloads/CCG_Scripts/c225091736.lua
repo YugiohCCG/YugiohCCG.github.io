@@ -39,12 +39,12 @@ function s.faceupoppdeck(c,tp,reason)
 	end
 	return false
 end
-function s.costfilter(c,ec)
-	return c~=ec and c:IsDiscardable()
+function s.costfilter(c)
+	return c:IsDiscardable()
 end
 function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.costfilter,tp,LOCATION_HAND,0,1,nil,e:GetHandler()) end
-	Duel.DiscardHand(tp,s.costfilter,1,1,REASON_COST+REASON_DISCARD,nil,e:GetHandler())
+	if chk==0 then return Duel.IsExistingMatchingCard(s.costfilter,tp,LOCATION_HAND,0,1,nil) end
+	Duel.DiscardHand(tp,s.costfilter,1,1,REASON_COST+REASON_DISCARD,nil)
 end
 function s.thfilter(c)
 	return c:IsSetCard(SET_STAIN) and c:IsAbleToHand()
@@ -76,7 +76,6 @@ function s.ownstain(c,tp)
 	return c:IsControler(tp) and c:IsSetCard(SET_STAIN) and c:IsAbleToHand()
 end
 function s.botfilter(c,tp)
-	if c:IsLocation(LOCATION_REMOVED) and not c:IsFaceup() then return false end
 	if c:IsLocation(LOCATION_GRAVE) then
 		return (c:IsAbleToDeck() and aux.NecroValleyFilter(Card.IsAbleToDeck)(c))
 			or (s.ownstain(c,tp) and aux.NecroValleyFilter(Card.IsAbleToHand)(c))

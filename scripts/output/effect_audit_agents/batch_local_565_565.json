@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch8d-556-572",
+  "ordinal_start": 565,
+  "ordinal_end": 565,
+  "cards": [
+    {
+      "ordinal": 565,
+      "passcode": 259069729,
+      "name": "Eclipse Observer Nora",
+      "text_sha256": "fe0d56f77bc955c3fc185380772002c222b0d1b2e81a97b791990ffa62b8c003",
+      "script_sha256": "65a114a7d076fc98a74b75763631f43e9f2c865473d6f90b4f5020d240c1c233",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Normal- and Special-Summon registrations are event routes for one printed send effect, followed by one opponent-draw trigger; their HOPT clauses are merged."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If this card is Normal or Special Summoned: You can send 1 \"Eclipse\" Quick-Play Spell or 1 \"Eclipse Observer\" card from your Deck to the GY. You can only use this effect of \"Eclipse Observer Nora\" once per turn.",
+          "lua_implementation": "The Normal/Special Summon trigger's Deck filter now accepts Observer cards or an Eclipse Quick-Play Spell from custom set 0xf2f4, Book of Eclipse, or Book of Lunar Eclipse. Both official Eclipse Book IDs are included in AddCodeList/listed_names.",
+          "official_references": [
+            {
+              "script": "c1174075.lua",
+              "card_id": 1174075,
+              "card_name": "Drytron Mu Beta Fafnir",
+              "matched_structure": "Official Omega uses a summon-success trigger to select and send one specifically qualified archetype card from the Deck to the GY."
+            },
+            {
+              "script": "c31834488.lua",
+              "card_id": 31834488,
+              "card_name": "Book of Lunar Eclipse",
+              "matched_structure": "The official Omega DB and script identify Book of Lunar Eclipse as an existing Eclipse-named Quick-Play Spell that the CCG name-based filter must recognize."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the Deck send pool omitted Book of Lunar Eclipse (31834488)."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If your opponent draws 2 or more cards at the same time: You can draw 1 card. You can only use this effect of \"Eclipse Observer Nora\" once per turn.",
+          "lua_implementation": "A delayed field EVENT_DRAW trigger requires the opponent to be the drawing player and at least two cards in the draw group, checks the controller can draw one, and performs Duel.Draw(tp,1,REASON_EFFECT) under its own HOPT.",
+          "official_references": [
+            {
+              "script": "c87649699.lua",
+              "card_id": 87649699,
+              "card_name": "Naturia Ragweed",
+              "matched_structure": "Official Omega reacts to an opponent EVENT_DRAW outside normal ownership, checks the controller can draw, and resolves a follow-up draw with REASON_EFFECT."
+            },
+            {
+              "script": "c65726770.lua",
+              "card_id": 65726770,
+              "card_name": "Silent Magician Zero",
+              "matched_structure": "Official Omega reads the EVENT_DRAW group size and drawing player, validating the event-group quantity test used for simultaneous multi-card draws."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Added Book of Lunar Eclipse consistently to Nora's metadata and Deck send filter."
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 1,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

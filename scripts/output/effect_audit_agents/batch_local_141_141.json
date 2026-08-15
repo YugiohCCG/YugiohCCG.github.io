@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "batch": "local-reconciliation-122-144",
+  "batch": "local-custom-gap-adversarial-1-216",
   "ordinal_start": 141,
   "ordinal_end": 141,
   "cards": [
@@ -21,7 +21,21 @@
               "script": "tmp/omega_scripts/c10817524.lua",
               "card_id": 10817524,
               "card_name": "First of the Dragons",
-              "matched_structure": "First of the Dragons supplies repeated exact-two Fusion material structure."
+              "matched_structure": "First of the Dragons supplies repeated exact-two Fusion material structure.",
+              "official_effect_text": "2 Normal Monsters\nMust be Fusion Summoned [b]and[/b] [b]cannot[/b] be Special Summoned by other ways. [b]You can[/b] only control 1 \"First of the Dragons\". This card [b]cannot[/b] be destroyed by battle, except by battle with a Normal Monster, [b]and[/b] is [b]unaffected[/b] by other monsters' effects.",
+              "script_sha256": "aed66926ae26193bc9946df36ead4b60466fb4ea8d3ce0e683f8caf8674d01a3",
+              "verified_shared_tokens": [
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_SINGLE_RANGE",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_CONDITION",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "TYPE_MONSTER",
+                "aux.AddFusionProcFunRep",
+                "aux.fuslimit"
+              ]
             }
           ],
           "verdict": "PASS",
@@ -36,13 +50,38 @@
               "script": "tmp/omega_scripts/c79229522.lua",
               "card_id": 79229522,
               "card_name": "Chimeratech Fortress Dragon",
-              "matched_structure": "Chimeratech Fortress Dragon is an official no-Polymerization Extra Deck procedure."
+              "matched_structure": "Chimeratech Fortress Dragon is an official no-Polymerization Extra Deck procedure.",
+              "official_effect_text": "\"Cyber Dragon\" + 1+ Machine monsters\n[b]Cannot[/b] be used as Fusion Material. Must first be Special Summoned (from your Extra Deck) by sending the above cards from either field to the GY. The original ATK of this card becomes 1000 x the number of materials used for its Special Summon.",
+              "script_sha256": "fb7739d509adc4da0e2520efe22aba582086ee114f28b9c588b132e4d3131cac",
+              "verified_shared_tokens": [
+                "Duel.SendtoGrave",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_CONDITION",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_EXTRA",
+                "TYPE_MONSTER"
+              ]
             },
             {
               "script": "tmp/omega_scripts/c48686504.lua",
               "card_id": 48686504,
               "card_name": "Lonefire Blossom",
-              "matched_structure": "Lonefire Blossom supplies Tribute/release semantics."
+              "matched_structure": "Lonefire Blossom supplies Tribute/release semantics.",
+              "official_effect_text": "[b]Once[/b] [b]per turn[/b]: [b]You can[/b] Tribute 1 face-up Plant monster; Special Summon 1 Plant monster from your Deck.",
+              "script_sha256": "c482116b698dfeb850a24174ed0d636bf17d43721e51e36b56cbf7c2e6fd470e",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Release",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "aux.Stringid"
+              ]
             }
           ],
           "verdict": "PASS",
@@ -51,17 +90,28 @@
         {
           "effect_index": 3,
           "printed_clause": "If monster(s) loses ATK/DEF, this card gains ATK/DEF equal to amount lost.",
-          "lua_implementation": "Continuous UPDATE_ATTACK and UPDATE_DEFENSE values sum each current face-up monster's deficit from GetBaseAttack/GetBaseDefense.",
+          "lua_implementation": "Continuous UPDATE_ATTACK and UPDATE_DEFENSE values sum each current face-up monster's deficit from GetBaseAttack/GetBaseDefense. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "official_references": [
             {
               "script": "tmp/omega_scripts/c90263923.lua",
               "card_id": 90263923,
               "card_name": "Leeching the Light",
-              "matched_structure": "Leeching the Light demonstrates deriving a live ATK modification from current field monster stats."
+              "matched_structure": "Leeching the Light demonstrates deriving a live ATK modification from current field monster stats.",
+              "official_effect_text": "Select 1 face-up LIGHT monster your opponent controls. All face-up Attack Position monsters you control gain ATK equal to the ATK of the selected monster, until the [b]End Phase[/b].",
+              "script_sha256": "a60d7b6202de3bd11d962933b7b46799d4c13ac8033393f4783d7f2215a7373c",
+              "verified_shared_tokens": [
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_UPDATE_ATTACK",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE"
+              ]
             }
           ],
           "verdict": "CUSTOM_GAP",
-          "issue": "Unresolved design/engine gap: the printed event-like phrase does not define duration or accumulation, and Omega exposes no official ATK/DEF-loss event from which to record historical losses. The current script models live deficits only."
+          "issue": "Omega has no event reporting historical ATK/DEF loss. The text also omits whether gains accumulate, disappear when the losing monster leaves, or continuously track current deficits; the Lua currently models live deficits from base values. Resolution: state the duration and whether the gain is event-based or continuously recalculated. Then implement that ruling, adding an ATK/DEF-loss event to the engine if historical loss must be tracked."
         },
         {
           "effect_index": 4,
@@ -72,7 +122,14 @@
               "script": "tmp/omega_scripts/c96938777.lua",
               "card_id": 96938777,
               "card_name": "Machine Lord Ür",
-              "matched_structure": "Machine Lord Ür uses the exact attack-all-once-each implementation."
+              "matched_structure": "Machine Lord Ür uses the exact attack-all-once-each implementation.",
+              "official_effect_text": "This card can attack all monsters your opponent controls [b]once[/b] each. If this card attacks or is attacked, your opponent takes no battle damage.",
+              "script_sha256": "b56830fa031091fa15dd081505bc0953e28a49b804082d0c1f5d092ad48c76f3",
+              "verified_shared_tokens": [
+                "EFFECT_ATTACK_ALL",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect"
+              ]
             }
           ],
           "verdict": "PASS",
@@ -87,13 +144,52 @@
               "script": "tmp/omega_scripts/c40044918.lua",
               "card_id": 40044918,
               "card_name": "Elemental HERO Stratos",
-              "matched_structure": "Elemental HERO Stratos supplies summon-trigger Deck selection; Foolish Burial supplies send branch."
+              "matched_structure": "Elemental HERO Stratos supplies summon-trigger Deck selection; Foolish Burial supplies send branch.",
+              "official_effect_text": "[b]When[/b] this card is Normal or Special Summoned: [b]You can[/b] activate 1 of these effects;\n● [b]Destroy[/b] Spells/Traps on the field, up to the number of \"HERO\" monsters you control, except this card.\n● Add 1 \"HERO\" monster from your Deck to your hand.",
+              "script_sha256": "8b8530761fdf5572ab3760a22153eb21143b2a7a20ae46ec05b96e9b4c687a1b",
+              "verified_shared_tokens": [
+                "CATEGORY_SEARCH",
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SelectOption",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "TYPE_MONSTER",
+                "TYPE_SPELL",
+                "TYPE_TRAP",
+                "aux.Stringid"
+              ]
             },
             {
               "script": "tmp/omega_scripts/c81439173.lua",
               "card_id": 81439173,
               "card_name": "Foolish Burial",
-              "matched_structure": "Sends a selected monster from Deck to the GY; the alternative branch adds it to hand."
+              "matched_structure": "Sends a selected monster from Deck to the GY; the alternative branch adds it to hand.",
+              "official_effect_text": "Send 1 monster from your Deck to the GY.",
+              "script_sha256": "067f1d7b00e54da284e72ba69a6f408fc21aa0231e3ca5b905b9548f4f773634",
+              "verified_shared_tokens": [
+                "CATEGORY_TOGRAVE",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "REASON_EFFECT",
+                "TYPE_MONSTER"
+              ]
             }
           ],
           "verdict": "PASS",
@@ -108,13 +204,32 @@
               "script": "tmp/omega_scripts/c14558127.lua",
               "card_id": 14558127,
               "card_name": "Ash Blossom & Joyous Spring",
-              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure."
+              "matched_structure": "Ash Blossom & Joyous Spring supplies named HOPT structure.",
+              "official_effect_text": "[b]When[/b] a card or effect is activated that includes any of these effects ([b]Quick Effect[/b]): [b]You can[/b] [b]discard[/b] this card; [b]negate[/b] that effect.\n● Add a card from the Deck to the hand.\n● Special Summon from the Deck.\n● Send a card from the Deck to the GY.\n[b]You can[/b] only use this effect of \"Ash Blossom & Joyous Spring\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "fd4c7dd7e01c5ab227d539187369c7d37a9062b9fa5f9a93cf8c8344eb1a770b",
+              "verified_shared_tokens": [
+                "CATEGORY_SEARCH",
+                "CATEGORY_TOGRAVE",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "Effect.CreateEffect",
+                "LOCATION_DECK"
+              ]
             }
           ],
           "verdict": "PASS",
           "issue": null
         }
-      ]
+      ],
+      "supersedes_batch": "batch_local_141_141.json",
+      "lua_effect_creations": 5,
+      "conservative_printed_clause_floor": 6,
+      "heuristic_printed_clause_floor": 5,
+      "source_batch": "batch_local_141_141.json",
+      "coverage_override": {
+        "expected_individual_effects": 6,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      }
     }
   ],
   "summary": {

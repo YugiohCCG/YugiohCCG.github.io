@@ -32,8 +32,8 @@ function s.matfilter(c) return c:IsType(TYPE_EFFECT) and c:IsAttribute(ATTRIBUTE
 function s.regop(e)
 	local c=e:GetHandler()
 	local g=c:GetMaterial()
-	if g:IsExists(Card.IsAttribute,1,nil,ATTRIBUTE_LIGHT) then c:RegisterFlagEffect(id,0,0,1) end
-	if g:IsExists(Card.IsAttribute,1,nil,ATTRIBUTE_DARK) then c:RegisterFlagEffect(id+100,0,0,1) end
+	if g:IsExists(Card.IsAttribute,1,nil,ATTRIBUTE_LIGHT) then c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD,0,1) end
+	if g:IsExists(Card.IsAttribute,1,nil,ATTRIBUTE_DARK) then c:RegisterFlagEffect(id+100,RESET_EVENT+RESETS_STANDARD,0,1) end
 end
 function s.battlemonster(c,bc)
 	local ac=Duel.GetAttacker()

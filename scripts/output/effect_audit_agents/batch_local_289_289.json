@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 289,
+  "ordinal_end": 289,
+  "cards": [
+    {
+      "ordinal": 289,
+      "passcode": 249746105,
+      "name": "Aquamarine Physalia",
+      "text_sha256": "836d91c07d5e32839a435252bfb560ee2407ae5aac7522cd4cf8efcf92e61a84",
+      "script_sha256": "15dace16cc28e85d7e8e5c512be5c39549b17f4ffc60d557eec16a46da0352d5",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "1 \"Aquamarine\" Fusion monster + 1 \"Aquamarine\" monster.",
+          "lua_implementation": "EnableReviveLimit plus AddFusionProcMix requires one Aquamarine Fusion and one Aquamarine monster.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c84330567.lua",
+              "card_id": 84330567,
+              "card_name": "Tearlaments Rulkallos",
+              "matched_structure": "Fusion procedure with separately filtered named/archetypal materials."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "During the Main Phase (Quick Effect): banish 1 \"Aquamarine\" card from your GY; destroy 1 opponent card. Uses per turn up to your other Level 7+ \"Aquamarine\" monsters; with \"Aquamarine Glaucus\", the opponent cannot chain monster effects.",
+          "lua_implementation": "A Main-Phase Quick Effect banishes the archetypal GY card as cost, non-target-selects one destructible opponent card at resolution, counts other face-up Level 7+ Aquamarines through a turn flag, and installs a monster-effect chain limit when passcode 225161820 is controlled.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10497636.lua",
+              "card_id": 10497636,
+              "card_name": "War Rock Meteoragon",
+              "matched_structure": "Quick-effect timing, cost, operation, and turn-reset count structure."
+            },
+            {
+              "script": "tmp/omega_scripts/c17751597.lua",
+              "card_id": 17751597,
+              "card_name": "Branded Retribution",
+              "matched_structure": "Chain activation inspection and negation/response structure; Physalia uses SetChainLimit for the printed response lock."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Fusion material procedure is one audit unit. The Main-Phase Quick Effect, banish cost, destruction, dynamic per-turn ceiling, and Glaucus-dependent chain limit are one compound activated effect, fully covered by record 2."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

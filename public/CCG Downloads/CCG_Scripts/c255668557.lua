@@ -75,12 +75,13 @@ function s.rmcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.rmtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(Card.IsAbleToRemove),tp,0,LOCATION_GRAVE,1,nil) end
+	local res=Duel.TossDice(tp,1)
+	e:SetLabel(math.ceil(res/2))
 	Duel.SetOperationInfo(0,CATEGORY_DICE,nil,0,tp,1)
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,nil,1,1-tp,LOCATION_GRAVE)
 end
 function s.rmop(e,tp,eg,ep,ev,re,r,rp)
-	local res=Duel.TossDice(tp,1)
-	local ct=math.ceil(res/2)
+	local ct=e:GetLabel()
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(Card.IsAbleToRemove),tp,0,LOCATION_GRAVE,1,ct,nil)
 	if #g>0 then

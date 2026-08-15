@@ -26,7 +26,7 @@ function s.initial_effect(c)
 	e2:SetOperation(s.lkop)
 	c:RegisterEffect(e2)
 end
-function s.darkfilter(c) return c:IsFaceup() and not c:IsAttribute(ATTRIBUTE_DARK) end
+function s.darkfilter(c) return not c:IsAttribute(ATTRIBUTE_DARK) end
 function s.scarfilter(c) return c:IsFaceup() and c:IsSetCard(SET_SCARSTECH) end
 function s.spcon(e,tp,eg,ep,ev)
 	return ev>=3 and not Duel.IsExistingMatchingCard(s.darkfilter,tp,LOCATION_MZONE,0,1,nil)

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch3-coverage-reconciliation",
+  "ordinal_start": 198,
+  "ordinal_end": 198,
+  "cards": [
+    {
+      "ordinal": 198,
+      "passcode": 226645052,
+      "name": "Harmony Pearlwood & the Nautical Deepwaters",
+      "text_sha256": "08d10a51ee42677b052f2b2fd763d92cf8bef8a0ca004b8162f5c0a31b8f9508",
+      "script_sha256": "6fc2b1c2187428ba67dbaca1432b3f8f5b0f3c69e9b1ad4264f045f65363ed8b",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Cannot be Normal Summoned/Set.",
+          "lua_implementation": "Uncopyable, cannot-disable CANNOT_SUMMON and CANNOT_MSET single effects.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c32731036.lua",
+              "card_id": 32731036,
+              "card_name": "The Bystial Lubellion",
+              "matched_structure": "Cannot be Normal Summoned/Set restriction."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If opponent Normal/Special Summons: Special Summon this from hand, then optionally add Level 1 Aqua except itself; it cannot activate effects this turn. HOPT.",
+          "lua_implementation": "Opponent Normal/Special event triggers share HOPT; summons handler, optionally searches, then installs phase-only CANNOT_TRIGGER on the selected card so it follows zones through the turn.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c293542.lua",
+              "card_id": 293542,
+              "card_name": "T.G. Warwolf",
+              "matched_structure": "Hand trigger on another player's Special Summon and self Special Summon."
+            },
+            {
+              "script": "tmp/omega_scripts/c38339996.lua",
+              "card_id": 38339996,
+              "card_name": "Rescue-ACE Impulse",
+              "matched_structure": "Temporary CANNOT_TRIGGER restriction on a selected monster."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Normal Summon/Set prohibition is one procedure restriction and the opponent-Summon self-Summon/optional search/temporary effect lock plus HOPT is one activated effect."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

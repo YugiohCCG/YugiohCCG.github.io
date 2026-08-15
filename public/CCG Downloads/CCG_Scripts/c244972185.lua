@@ -22,14 +22,13 @@ function s.initial_effect(c)
 	e2:SetRange(LOCATION_ONFIELD+LOCATION_GRAVE)
 	e2:SetValue(CARD_ELDORA_FIELD)
 	c:RegisterEffect(e2)
-	--Destruction replacement
+	--Destroy this card after an opponent's effect that would destroy your monster resolves
 	local e3=Effect.CreateEffect(c)
-	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
-	e3:SetCode(EFFECT_DESTROY_REPLACE)
+	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e3:SetCode(EVENT_CHAIN_SOLVED)
 	e3:SetRange(LOCATION_SZONE)
-	e3:SetTarget(s.reptg)
-	e3:SetValue(s.repval)
-	e3:SetOperation(s.repop)
+	e3:SetCondition(s.descon)
+	e3:SetOperation(s.desop)
 	c:RegisterEffect(e3)
 end
 s.listed_series={SET_ELDORA}
@@ -88,19 +87,18 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 		end
 	end
 end
-function s.repfilter(c,tp)
-	return c:IsControler(tp) and c:IsLocation(LOCATION_MZONE) and c:IsReason(REASON_EFFECT) and not c:IsReason(REASON_REPLACE)
-		and c:GetReasonPlayer()==1-tp
+function s.desfilter(c,tp)
+	return (c:IsControler(tp) and c:IsLocation(LOCATION_MZONE))
+		or (c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE))
 end
-function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
+function s.descon(e,tp,eg,ep,ev,re,r,rp)
+	if rp==tp then return false end
+	local ex,g=Duel.GetOperationInfo(ev,CATEGORY_DESTROY)
+	return ex and g and g:IsExists(s.desfilter,1,nil,tp)
+end
+function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsDestructable(e) and not c:IsStatus(STATUS_DESTROY_CONFIRMED)
-		and eg:IsExists(s.repfilter,1,nil,tp) end
-	return Duel.SelectEffectYesNo(tp,c,aux.Stringid(STRING_ID,2))
-end
-function s.repval(e,c)
-	return s.repfilter(c,e:GetHandlerPlayer())
-end
-function s.repop(e,tp,eg,ep,ev,re,r,rp)
-	Duel.Destroy(e:GetHandler(),REASON_EFFECT+REASON_REPLACE)
+	if c:IsRelateToEffect(e) then
+		Duel.Destroy(c,REASON_EFFECT)
+	end
 end

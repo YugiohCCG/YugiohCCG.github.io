@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 308,
+  "ordinal_end": 308,
+  "cards": [
+    {
+      "ordinal": 308,
+      "passcode": 245452058,
+      "name": "Altergeist Pipesiren",
+      "text_sha256": "f2f56ed77a8d3b449c8b2a67c89a8e47c92a59044f727cec42fb82a7a91551a7",
+      "script_sha256": "ba2c8517198aa5c4646ea641ead0514d59f3171368a34f41008d7d656110ed6d",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If you Special Summon an \"Altergeist\": Special Summon this card from hand or GY; if from GY, banish it when it leaves; HOPT.",
+          "lua_implementation": "Field trigger from hand/GY detects an Altergeist Summoned by you, Special Summons this card, and if its previous location was GY registers an unresettable leave-field redirect; id HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c42790071.lua",
+              "card_id": 42790071,
+              "card_name": "Altergeist Multifaker",
+              "matched_structure": "Altergeist-triggered self Special Summon structure."
+            },
+            {
+              "script": "tmp/omega_scripts/c10560119.lua",
+              "card_id": 10560119,
+              "card_name": "Fishborg Doctor",
+              "matched_structure": "GY-origin Special Summon with leave-field banish redirect."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If Normal or Special Summoned: add a Trap from Deck that lists \"Altergeist\"; HOPT.",
+          "lua_implementation": "Cloned Normal/Special Summon triggers search Traps that are Altergeist, Personal Spoofing, or metadata-list an Altergeist name; separate HOPT key.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c23220533.lua",
+              "card_id": 23220533,
+              "card_name": "Starry Knight Rayel",
+              "matched_structure": "Archetype Spell/Trap search on summon."
+            },
+            {
+              "script": "tmp/omega_scripts/c47222536.lua",
+              "card_id": 47222536,
+              "card_name": "Dark Magical Circle",
+              "matched_structure": "Printed-name/list metadata filtering through aux.IsCodeListed-style support."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The self-Summon trigger includes both source locations, the GY leave-field redirect, and its HOPT. The Normal/Special Summon search and its separate HOPT are the second effect."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

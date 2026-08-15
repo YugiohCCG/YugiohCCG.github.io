@@ -3,6 +3,7 @@ local s,id=GetID()
 local STRING_ID=133106953
 local SET_STELLAER=0xe40d
 function s.initial_effect(c)
+	Duel.EnableGlobalFlag(GLOBALFLAG_DETACH_EVENT)
 	--Special Summon this card from your hand
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -18,7 +19,7 @@ function s.initial_effect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
-	e2:SetCode(EVENT_TO_GRAVE)
+	e2:SetCode(EVENT_DETACH_MATERIAL)
 	e2:SetCountLimit(1,id)
 	e2:SetCondition(s.xyzcon)
 	e2:SetTarget(s.lvtg)

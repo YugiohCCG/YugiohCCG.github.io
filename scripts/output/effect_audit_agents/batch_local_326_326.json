@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 326,
+  "ordinal_end": 326,
+  "cards": [
+    {
+      "ordinal": 326,
+      "passcode": 220538776,
+      "name": "Curryboh",
+      "text_sha256": "411060bdfea093696c52e92efaf552483f082f47aa3554d94175fa2c26bb2246",
+      "script_sha256": "9fe1015bfe57d2c78fbfd6cfd437efaf5ac3ede2f92e47db5f39208d869d8df9",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If you take damage: Special Summon this card from hand; for the rest of the turn, damage you would take becomes LP gain.",
+          "lua_implementation": "Delayed EVENT_DAMAGE trigger checks damaged player, summons from hand, then registers player-targeted EFFECT_REVERSE_DAMAGE through end turn.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c34002992.lua",
+              "card_id": 34002992,
+              "card_name": "Rainbow Life",
+              "matched_structure": "Near-exact all-damage-to-LP-gain replacement through end turn."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Banish from GY, target a monster, gain LP equal to its ATK; only one \"Curryboh\" effect per turn.",
+          "lua_implementation": "GY ignition banishes self as cost, targets a face-up monster, and recovers its resolution-time ATK; both effects share oath count code id.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c12298909.lua",
+              "card_id": 12298909,
+              "card_name": "Prime Material Dragon",
+              "matched_structure": "Damage/recovery replacement and recovery operation structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The damage trigger includes the self-Summon and turn-long reverse-damage follow-up. The GY banish/target/LP-gain effect is the second unit, and the shared choose-one-effect limit is represented in both records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

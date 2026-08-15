@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 338,
+  "ordinal_end": 338,
+  "cards": [
+    {
+      "ordinal": 338,
+      "passcode": 245354354,
+      "name": "Arckcestial Fireball",
+      "text_sha256": "d54e5c0d4c9dbc762aece58dfd30c5b7684cb2b69997efa5418eff952d9bf339",
+      "script_sha256": "2cc739671e508ca164e7520c93ffd15865fd539b4a48445a52b676d4de08684e",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If discarded to GY: Special Summon this card; HOPT.",
+          "lua_implementation": "Mandatory delayed EVENT_TO_GRAVE trigger checks REASON_DISCARD and Special Summons this handler; id HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c18282103.lua",
+              "card_id": 18282103,
+              "card_name": "The Fabled Ganashia",
+              "matched_structure": "Near-exact mandatory discard-to-GY self Special Summon."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "During your Main Phase: Special Summon an \"Arckcestial\" from hand, then discard 1; HOPT.",
+          "lua_implementation": "Ignition requires a summonable hand archetype monster and another discardable hand card, summons one, then discards after success; separate HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c42790071.lua",
+              "card_id": 42790071,
+              "card_name": "Altergeist Multifaker",
+              "matched_structure": "Archetype Special Summon operation followed by a hand action."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If sent as Synchro Material for a LIGHT monster: add an \"Arckcestial\" Spell/Trap, then discard; HOPT.",
+          "lua_implementation": "Delayed material trigger validates LIGHT Synchro reason, searches/confirm/shuffles hand, then discards under separate HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c9742784.lua",
+              "card_id": 9742784,
+              "card_name": "Jet Synchron",
+              "matched_structure": "Sent-as-Synchro-Material trigger and Deck search structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The discard-triggered self-Summon, Main-Phase hand Summon/then-discard, and LIGHT Synchro-material Spell/Trap search/then-discard are exactly three effects; their HOPTs are included."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 3,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

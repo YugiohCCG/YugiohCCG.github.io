@@ -90,15 +90,7 @@ end
 function s.plop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if not tc or not tc:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end
-	if Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then
-		local e1=Effect.CreateEffect(e:GetHandler())
-		e1:SetCode(EFFECT_CHANGE_TYPE)
-		e1:SetType(EFFECT_TYPE_SINGLE)
-		e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
-		e1:SetReset(RESET_EVENT+RESETS_STANDARD-RESET_TURN_SET)
-		e1:SetValue(TYPE_TRAP+TYPE_CONTINUOUS)
-		tc:RegisterEffect(e1)
-	end
+	Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true)
 end
 function s.atkfilter(c)
 	return c:IsFaceup() and (c:GetOriginalType()&TYPE_MONSTER)~=0

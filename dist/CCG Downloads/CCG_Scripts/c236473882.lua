@@ -8,6 +8,9 @@ function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) e1:SetCategory(CATEGORY_TOHAND) e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.thtg) e1:SetOperation(s.thop) c:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCountLimit(1,id+100) e2:SetTarget(s.sptg) e2:SetOperation(s.spop) c:RegisterEffect(e2)
 	local e3=e2:Clone() e3:SetCode(EVENT_BATTLE_DAMAGE) e3:SetCondition(function(e,tp,eg,ep) return ep==1-tp end) c:RegisterEffect(e3)
+	if type(aux.CCGGalacticaSummonEffects)~="table" then aux.CCGGalacticaSummonEffects={} end
+	aux.CCGGalacticaSummonEffects[e2]=true
+	aux.CCGGalacticaSummonEffects[e3]=true
 end
 function s.lcheck(g) return g:IsExists(Card.IsSetCard,1,nil,SET_GALACTICA) end
 function s.thfilter(c) return c:IsCode(FUSION_INTERGALACTICA) and c:IsAbleToHand() end

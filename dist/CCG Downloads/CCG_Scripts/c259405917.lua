@@ -32,7 +32,6 @@ function s.initial_effect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)
-	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e3:SetRange(LOCATION_MZONE)
 	e3:SetCountLimit(1,id+100)
 	e3:SetCondition(s.effcon2)
@@ -85,7 +84,7 @@ function s.effcon2(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetCounter(COUNTER_CURRENT) >= 2
 end
 function s.movefilter(tc,tp)
-	if not tc:IsControler(tp) or not tc:IsFaceup() then return false end
+	if not tc:IsControler(tp) then return false end
 	local colinked = Duel.GetMatchingGroup(function(c)
 		return c:IsFaceup() and c:GetMutualLinkedGroupCount() > 0
 	end, tp, LOCATION_MZONE, 0, nil)
@@ -100,16 +99,15 @@ function s.hasfreemzone(tp)
 	end
 	return false
 end
-function s.efftg2(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsLocation(LOCATION_MZONE) and s.movefilter(chkc,tp) end
+function s.efftg2(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return s.hasfreemzone(tp)
-		and Duel.IsExistingTarget(s.movefilter,tp,LOCATION_MZONE,0,1,nil,tp) end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
-	Duel.SelectTarget(tp,s.movefilter,tp,LOCATION_MZONE,0,1,1,nil,tp)
+		and Duel.IsExistingMatchingCard(s.movefilter,tp,LOCATION_MZONE,0,1,nil,tp) end
 end
 function s.effop2(e,tp,eg,ep,ev,re,r,rp)
-	local tc=Duel.GetFirstTarget()
-	if not tc or not tc:IsRelateToEffect(e) or tc:IsControler(1-tp) then return end
+	if not s.hasfreemzone(tp) then return end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SELECT)
+	local tc=Duel.SelectMatchingCard(tp,s.movefilter,tp,LOCATION_MZONE,0,1,1,nil,tp):GetFirst()
+	if not tc then return end
 	local free_zones = 0
 	for i=0,4 do
 		if Duel.CheckLocation(tp,LOCATION_MZONE,i) then

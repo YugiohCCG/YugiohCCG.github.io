@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch3-coverage-reconciliation",
+  "ordinal_start": 168,
+  "ordinal_end": 168,
+  "cards": [
+    {
+      "ordinal": 168,
+      "passcode": 222782750,
+      "name": "Ghost Doll & Midnight Manor",
+      "text_sha256": "019a7b6ab259f9497385f067c558ee3aefd47f1a768239de8d09f38e14591601",
+      "script_sha256": "51ad536b08efe39da9ad625b4e19a41c829bfa3e5a1e391b2987540edf279681",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "When an effect includes returning banished cards to hand/Deck/Extra, Special Summoning banished monsters, or banishing from Deck: discard; negate activation. HOPT.",
+          "lua_implementation": "Hand Quick Effect checks TOHAND/TODECK/TOEXTRA from removed, SPECIAL_SUMMON from removed, and REMOVE from Deck via operation metadata, discards, and NegateActivation; HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c73642296.lua",
+              "card_id": 73642296,
+              "card_name": "Ghost Belle & Haunted Mansion",
+              "matched_structure": "Exact hand-trap architecture: category/location checks, discard cost, activation negation, HOPT."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 1,
+        "reason": "The three bullet points are alternative operation classes checked by one discard-to-negate-activation hand effect, and the HOPT belongs to that same effect; record 1 covers the complete procedure."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 1,
+    "pass": 1,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

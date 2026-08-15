@@ -18,6 +18,9 @@ function s.initial_effect(c)
 	e1:SetCondition(s.protcon)
 	e1:SetValue(1)
 	c:RegisterEffect(e1)
+	local e1b=e1:Clone()
+	e1b:SetCode(EFFECT_INDESTRUCTABLE_BATTLE)
+	c:RegisterEffect(e1b)
 	-- Cannot banish Spells/Traps
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
@@ -92,7 +95,10 @@ function s.atop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.drcon(e,tp,eg,ep,ev,re,r,rp)
-	return rp==tp and re:GetHandler():IsSetCard(SET_SHINING_BRIGADE) and re:IsActiveType(TYPE_MONSTER)
+	local rc=re:GetHandler()
+	return rp==tp and re:IsActiveType(TYPE_MONSTER) and rc:IsSetCard(SET_SHINING_BRIGADE)
+		and rc:IsControler(tp) and rc:IsLocation(LOCATION_MZONE)
+		and re:GetActivateLocation()==LOCATION_MZONE
 end
 function s.drtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsPlayerCanDraw(tp,1) end

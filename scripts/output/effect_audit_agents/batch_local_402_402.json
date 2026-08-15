@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch6-plus-gravinity-collateral",
+  "ordinal_start": 402,
+  "ordinal_end": 402,
+  "cards": [
+    {
+      "ordinal": 402,
+      "passcode": 235687149,
+      "name": "Ghostrick Camella",
+      "text_sha256": "43011cbe51dab3f1eb70ddc8fd38a676616c2029d0c1ef0a3b95c8ad3cc0fcc0",
+      "script_sha256": "4507a2acb50ce1c80964fa780a0ea345532c98ec097f75e962145858ccc9edae",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2 Level 2 monsters, including a Ghostrick monster.",
+          "lua_implementation": "aux.AddXyzProcedureLevelFree requires exactly two Level 2 materials and xyzcheck verifies at least one Ghostrick; revive limit is enabled.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c53334641.lua",
+              "card_id": 53334641,
+              "card_name": "Ghostrick Angel of Mischief",
+              "matched_structure": "Ghostrick Xyz procedure with archetype material checks."
+            },
+            {
+              "script": "tmp/omega_scripts/c61307542.lua",
+              "card_id": 61307542,
+              "card_name": "Paleozoic Anomalocaris",
+              "matched_structure": "Filtered Xyz material procedure and revive limit."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Once per turn: You can detach 1 material; add 1 Ghostrick monster from your Deck to your hand.",
+          "lua_implementation": "A soft-once-per-turn ignition detaches one material as cost and searches/confirms a Ghostrick monster.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c53334641.lua",
+              "card_id": 53334641,
+              "card_name": "Ghostrick Angel of Mischief",
+              "matched_structure": "Detach-material ignition and Ghostrick Deck search."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is sent to the GY: You can target up to 2 Ghostrick cards in your banishment or GY, except Ghostrick Camella; attach them to a Ghostrick Xyz Monster you control.",
+          "lua_implementation": "The delayed GY trigger can target up to two eligible Ghostrick cards and attach them to a controlled Ghostrick Xyz Monster without an unprinted hard once-per-turn.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c13046291.lua",
+              "card_id": 13046291,
+              "card_name": "Evoltile Megachirella",
+              "matched_structure": "Targets and attaches up to two cards from GY/banishment as Xyz materials."
+            },
+            {
+              "script": "tmp/omega_scripts/c27068117.lua",
+              "card_id": 27068117,
+              "card_name": "Overlay Regen",
+              "matched_structure": "Attaches a card to a controlled Xyz Monster."
+            },
+            {
+              "script": "tmp/omega_scripts/c93777634.lua",
+              "card_id": 93777634,
+              "card_name": "Number 39: Utopia Rising",
+              "matched_structure": "Transfers/attaches multiple materials to another Xyz Monster."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the printed sent-to-GY effect has no count limit."
+        }
+      ],
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Three records cover Xyz materials, detach/search ignition effect, and sent-to-GY attach trigger."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 2,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

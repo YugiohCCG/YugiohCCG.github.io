@@ -128,6 +128,7 @@ function s.mattg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.rmtg(e,c)
 	return c==e:GetLabelObject() and c:GetOverlayTarget()==e:GetHandler()
+		and c:IsReason(REASON_COST+REASON_EFFECT) and not c:IsReason(REASON_RULE)
 end
 function s.matop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

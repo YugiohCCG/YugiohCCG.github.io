@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 336,
+  "ordinal_end": 336,
+  "cards": [
+    {
+      "ordinal": 336,
+      "passcode": 259366591,
+      "name": "Arckcestial Crystal Shards",
+      "text_sha256": "387d9afa982234180673bd6667a74dcdd63474faecd919bc12d4fa79b429ec1e",
+      "script_sha256": "14b99dfd8ddec52d7b0c3d9998903f647cd49edd74da1c9e444bdf31fae8311b",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Discard 1; Special Summon a Level 4 or lower \"Arckcestial\" from Deck in Defense, then LIGHT Spellcaster-only Special Summon lock; HOPT.",
+          "lua_implementation": "Ignition discards as cost, summons the filtered Deck monster in Defense, and registers the lock through end turn under id HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c42790071.lua",
+              "card_id": 42790071,
+              "card_name": "Altergeist Multifaker",
+              "matched_structure": "Archetype Deck Special Summon with rest-of-turn restriction."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If sent to GY as Synchro Material for a LIGHT monster: target a banished \"Arckcestial\", add it, then discard 1; HOPT.",
+          "lua_implementation": "Delayed EVENT_BE_MATERIAL confirms REASON_SYNCHRO and LIGHT reason card, targets a face-up removed Arckcestial, accounts for whether the returned card can itself be discarded, then adds and discards; separate HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c9742784.lua",
+              "card_id": 9742784,
+              "card_name": "Jet Synchron",
+              "matched_structure": "Exact sent-as-Synchro-Material trigger structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The discard/Deck Summon/LIGHT Spellcaster lock and the Synchro-material recovery/then-discard trigger are the two distinct compound effects, each including its HOPT."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

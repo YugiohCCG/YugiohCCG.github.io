@@ -83,7 +83,7 @@ end
 function s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.CheckReleaseGroup(tp,s.cfilter,1,nil,tp) end
 	local sg=Duel.SelectReleaseGroup(tp,s.cfilter,1,1,nil,tp)
-	local val=sg:GetFirst():GetTextAttack()+sg:GetFirst():GetTextDefense()
+	local val=sg:GetFirst():GetAttack()+sg:GetFirst():GetDefense()
 	if val<0 then val=0 end
 	e:SetLabel(val)
 	Duel.Release(sg,REASON_COST)

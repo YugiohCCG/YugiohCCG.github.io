@@ -113,7 +113,10 @@ end
 function s.cancounter(e,tp)
 	local c=e:GetHandler()
 	return c:IsRelateToEffect(e) and c:IsFaceup() and c:IsCanAddCounter(COUNTER_CORRUPTION,1)
-		and Duel.IsExistingMatchingCard(Card.IsRace,tp,LOCATION_MZONE,0,1,nil,RACE_CYBERSE)
+		and Duel.IsExistingMatchingCard(s.cybersefilter,tp,LOCATION_MZONE,0,1,nil)
+end
+function s.cybersefilter(c)
+	return c:IsFaceup() and c:IsRace(RACE_CYBERSE)
 end
 function s.trigtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return s.canritual(e,tp) or s.cancounter(e,tp) end
@@ -132,7 +135,7 @@ function s.trigop(e,tp,eg,ep,ev,re,r,rp)
 		s.ritualsummon(e,tp)
 	else
 		local c=e:GetHandler()
-		local ct=Duel.GetMatchingGroupCount(Card.IsRace,tp,LOCATION_MZONE,0,nil,RACE_CYBERSE)
+		local ct=Duel.GetMatchingGroupCount(s.cybersefilter,tp,LOCATION_MZONE,0,nil)
 		if ct>0 and c:IsRelateToEffect(e) and c:IsFaceup() and c:IsCanAddCounter(COUNTER_CORRUPTION,1) then
 			local opts={}
 			for i=1,ct do

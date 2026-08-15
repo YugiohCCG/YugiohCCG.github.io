@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "batch": "local-508-reconciliation",
+  "ordinal_start": 508,
+  "ordinal_end": 508,
+  "cards": [
+    {
+      "ordinal": 508,
+      "passcode": 259562343,
+      "name": "Red-Eyes Roar",
+      "text_sha256": "b961106e33a9a9a0edc41e82eaba7729fa90bf531b61a4634ece8c6b2f79f213",
+      "script_sha256": "f4243198ad0a8702cfb9c77a9926b92e76f14c379c4026dcca7357307fc2b913",
+      "overall_verdict": "FIXED",
+      "coverage_override": {"expected_individual_effects": 3, "reason": "The two selectable activation branches are separate because each has an independent per-turn flag; the GY Fusion Summon is the third effect. Corrupted source bullet glyphs do not add clauses."},
+      "effects": [
+        {"effect_index": 1, "printed_clause": "Activate 1 of these effects (but you can only use each effect of \"Red-Eyes Roar\" per turn): Add 1 \"Red-Eyes\" monster from your Deck to your hand.", "lua_implementation": "Branch 1 is available only while its id turn flag is unused and a Red-Eyes monster can be searched; the committed option registers that flag, then resolution adds and reveals one matching Deck monster.", "official_references": [{"script": "tmp/omega_scripts/c92353449.lua", "card_id": 92353449, "card_name": "Red-Eyes Insight", "matched_structure": "Official Red-Eyes Deck search adds an archetypal card to hand and confirms it."}], "verdict": "PASS", "issue": null},
+        {"effect_index": 2, "printed_clause": "Activate 1 of these effects (but you can only use each effect of \"Red-Eyes Roar\" per turn): Target 1 face-up monster on the field; equip 1 Level 4 or lower \"Red-Eyes\" monster from your hand, Deck, or GY to it.", "lua_implementation": "Branch 2 uses the independent id+100 turn flag, targets either player's face-up monster, selects a Level 4 or lower Red-Eyes monster from hand, Deck, or Necrovalley-valid GY, then equips it with a recipient-specific equip limit.", "official_references": [{"script": "tmp/omega_scripts/c21140872.lua", "card_id": 21140872, "card_name": "Red-Eyes Slash Dragon", "matched_structure": "Official Red-Eyes effect targets a face-up recipient, equips a selected monster with Duel.Equip, and installs its equip limit."}], "verdict": "PASS", "issue": null},
+        {"effect_index": 3, "printed_clause": "You can banish this card from your GY; Fusion Summon 1 Dragon, Warrior, or Fiend Fusion Monster from your Extra Deck by using Monster Cards in your hand or field as Fusion Material. You can only use this effect of \"Red-Eyes Roar\" once per turn.", "lua_implementation": "A GY Ignition effect with id+200 banishes this card as cost, then builds Duel.GetFusionMaterial and merges eligible face-up original Monster Cards from the controller's Spell/Trap Zone. It filters the three printed Fusion races, selects and sends material with Fusion reasons, Special Summons, completes the procedure, and preserves Chain Material support.", "official_references": [{"script": "tmp/omega_scripts/c57425061.lua", "card_id": 57425061, "card_name": "Vision Fusion", "matched_structure": "Official Fusion effect explicitly merges eligible face-up original Monster Cards from LOCATION_SZONE into the normal Fusion material group."}, {"script": "tmp/omega_scripts/c13258285.lua", "card_id": 13258285, "card_name": "Ukiyoe-P.U.N.K. Sharakusai", "matched_structure": "Official effect performs the standard hand/field Fusion selection, sends materials with Fusion reasons, Special Summons, and completes the procedure."}], "verdict": "FIXED", "issue": "Fixed: the hand-or-field material pool now includes eligible face-up Monster Cards occupying the controller's Spell/Trap Zone."}
+      ]
+    }
+  ]
+}

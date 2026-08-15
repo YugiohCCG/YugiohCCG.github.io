@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch3-coverage-reconciliation",
+  "ordinal_start": 215,
+  "ordinal_end": 215,
+  "cards": [
+    {
+      "ordinal": 215,
+      "passcode": 240976976,
+      "name": "Witch of Crying Chaos",
+      "text_sha256": "462da195c4a4364d586edf757bcddbc9ea063effad9606b06fcc4259369b069a",
+      "script_sha256": "eed87abafbc4414779ab9efb3e06753c4dfe65086545efdc40bb767976ae9f28",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If Normal/Special Summoned: send a Zombie from hand to GY; add Crying Chaos Spell/Trap from Deck.",
+          "lua_implementation": "Normal/Special triggers share one HOPT code, send an eligible hand Zombie as cost, and add/confirm a set Spell/Trap.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c36016907.lua",
+              "card_id": 36016907,
+              "card_name": "Jack-o-Bolan",
+              "matched_structure": "Sends/discards a Zombie from hand as activation cost."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If sent to GY as Link/Synchro Material: put this on Deck bottom; draw 1. Only one effect per turn.",
+          "lua_implementation": "EVENT_BE_MATERIAL delayed trigger checks GY and exact Link/Synchro reason; shared HOPT; sends handler to Deck bottom as cost, then draws.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c30012506.lua",
+              "card_id": 30012506,
+              "card_name": "A-Assault Core",
+              "matched_structure": "EVENT_BE_MATERIAL destination/reason check."
+            },
+            {
+              "script": "tmp/omega_scripts/c33420078.lua",
+              "card_id": 33420078,
+              "card_name": "Plaguespreader Zombie",
+              "matched_structure": "Places a card on Deck top/bottom as cost before resolving the benefit."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Summon-triggered hand send/search and the Link-or-Synchro-material Deck-bottom/draw trigger are the two distinct effects; both records include the shared choose-one-effect HOPT."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

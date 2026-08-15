@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 237,
+      "passcode": 256110263,
+      "name": "Windborne Eye of the Storm",
+      "text_sha256": "9db58e7d92e2775cc3736659f033d7e4aa1718cafba80b9625b26cfca293b01b",
+      "script_sha256": "aed4f2efaa4f910a44b35848686fe3973960e52a247ca41923bf0a5b335c2a1f",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Target 1 monster you control; banish it until the End Phase, then, if you added 3 or more \"Windborne\" cards from your Deck to your hand this turn, and you banished a WIND Synchro Monster by this effect, you can Special Summon 1 \"Windborne\" Synchro Monster with a different name from your Extra Deck (this is treated as a Synchro Summon using only \"Windborne\" monsters).",
+          "lua_implementation": "The activation targets an able controlled monster, removes it with REASON_TEMPORARY, flags it, and registers a PHASE_END Duel.ReturnToField effect.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c29301450.lua",
+              "card_id": 29301450,
+              "card_name": "S:P Little Knight",
+              "matched_structure": "temporary banish and return",
+              "official_effect_text": "2 Effect Monsters\nIf this card is Link Summoned using a Fusion, Synchro, Xyz, or Link Monster as material: [b]You can[/b] [b]target[/b] 1 card on the field or in either GY; [b]banish[/b] it, [b]also[/b] your monsters [b]cannot[/b] attack directly this turn. [b]When[/b] your opponent activates a card or effect ([b]Quick Effect[/b]): [b]You can[/b] [b]target[/b] 2 face-up monsters on the field, including a monster you control; [b]banish[/b] both until the [b]End Phase[/b]. [b]You can[/b] only use each effect of \"S:P Little Knight\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "8d5918ec712e1cf83b0746453c8def3a20fc3c5a562fff869a617b866df9b785",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "Card.IsAbleToRemove",
+                "Duel.GetFirstTarget",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.RegisterEffect",
+                "Duel.Remove",
+                "Duel.ReturnToField",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_CONTINUOUS",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_PHASE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "LOCATION_REMOVED",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "REASON_TEMPORARY",
+                "RESET_EVENT",
+                "RESET_PHASE",
+                "TYPE_SYNCHRO",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Target 1 monster you control; banish it until the End Phase, then, if you added 3 or more \"Windborne\" cards from your Deck to your hand this turn, and you banished a WIND Synchro Monster by this effect, you can Special Summon 1 \"Windborne\" Synchro Monster with a different name from your Extra Deck (this is treated as a Synchro Summon using only \"Windborne\" monsters).",
+          "lua_implementation": "The script checks the global add counter and removed card, Special Summons with SUMMON_TYPE_SYNCHRO, calls CompleteProcedure, and fabricates a one-card material group containing a created Janna token so later material checks see a Windborne card.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c29301450.lua",
+              "card_id": 29301450,
+              "card_name": "S:P Little Knight",
+              "matched_structure": "temporary banish and return",
+              "official_effect_text": "2 Effect Monsters\nIf this card is Link Summoned using a Fusion, Synchro, Xyz, or Link Monster as material: [b]You can[/b] [b]target[/b] 1 card on the field or in either GY; [b]banish[/b] it, [b]also[/b] your monsters [b]cannot[/b] attack directly this turn. [b]When[/b] your opponent activates a card or effect ([b]Quick Effect[/b]): [b]You can[/b] [b]target[/b] 2 face-up monsters on the field, including a monster you control; [b]banish[/b] both until the [b]End Phase[/b]. [b]You can[/b] only use each effect of \"S:P Little Knight\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "8d5918ec712e1cf83b0746453c8def3a20fc3c5a562fff869a617b866df9b785",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "Card.IsAbleToRemove",
+                "Duel.GetFirstTarget",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.RegisterEffect",
+                "Duel.Remove",
+                "Duel.ReturnToField",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_CONTINUOUS",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_PHASE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "LOCATION_REMOVED",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "REASON_TEMPORARY",
+                "RESET_EVENT",
+                "RESET_PHASE",
+                "TYPE_SYNCHRO",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c5800323.lua",
+              "card_id": 5800323,
+              "card_name": "Poplar of the White Forest",
+              "matched_structure": "Synchro procedure/Summon",
+              "official_effect_text": "1 Tuner + 1+ non-Tuner monsters\nIf this card is Special Summoned: You can target 2 \"White Forest\" monsters in your GY; place them face-up in their owners' Spell & Trap Zones as Continuous Spells. During your opponent's Main Phase, you can (Quick Effect): Immediately after this effect resolves, Synchro Summon using this card you control. You can only use each effect of \"Poplar of the White Forest\" once per turn.",
+              "script_sha256": "0db0eb90d44d85dbb976bffcaaa0b649383d545375d418859e7f64818197575a",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_EXTRA",
+                "LOCATION_MZONE",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Omega can mark a Special Summon as a Synchro Summon and store real material cards, but cannot create truthful material history saying an otherwise material-less Summon used only Windborne monsters. The fabricated Janna token gives false card identity. Exact resolution requires engine-supported virtual material metadata (at least archetype/type without a fake card), or revised text that removes the material-history clause or names real materials."
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "overall_verdict": "CUSTOM_GAP",
+      "audit_note": "Adversarial completion review: effect 2 retained. Prior labels were not treated as evidence.",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Complete card override retained after re-reading every printed clause, current Lua registration/procedure, relevant engine helpers/constants, and each cited official Omega script/database record."
+      },
+      "supersedes_batch": null
+    }
+  ],
+  "batch": "local-adversarial-custom-gap-review-217-432",
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 1,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch8d-556-572",
+  "ordinal_start": 568,
+  "ordinal_end": 568,
+  "cards": [
+    {
+      "ordinal": 568,
+      "passcode": 259721372,
+      "name": "Eclipse Observatory",
+      "text_sha256": "69024a47431c3cbe3b3d66e11d9137594f5c67f7fa02f8da7cf0817940e663d7",
+      "script_sha256": "99e83e80578f61d3230d243ab14fdbd1f6ae499fdb2e1fd32fc62c7d23eb5157",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The always-treated identity condition is audited independently from the optional activation search/draw and the opponent-Special-Summon trigger; each activation/HOPT restriction is included with its governed effect."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "(This card is always treated as an \"Eclipse Observer\" card.)",
+          "lua_implementation": "The behavior is data-driven rather than registered as an Effect: CCG_v1.db stores setcode bytes f4 f2 17 eb for this card, giving it both Eclipse (0xf2f4) and Eclipse Observer (0xeb17) membership. The Lua also publishes both values in listed_series.",
+          "official_references": [
+            {
+              "script": "c74335036.lua",
+              "card_id": 74335036,
+              "card_name": "Fusion Substitute",
+              "matched_structure": "Official Omega likewise represents an always-treated identity in card database metadata while the operational script contains the card's usable effects; no runtime identity-changing effect registration is required."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "When this card is activated: You can add 1 \"Eclipse Observer\" monster and 1 \"Eclipse\" Quick-Play Spell from your Deck to your hand, and if you do, your opponent draws 2 cards. You can only activate 1 \"Eclipse Observatory\" per turn.",
+          "lua_implementation": "The optional activation search now recognizes custom Eclipse Quick-Play Spells plus Book of Eclipse and Book of Lunar Eclipse. Both official IDs are included in AddCodeList/listed_names, and a successful two-card add still precedes the opponent's two-card draw.",
+          "official_references": [
+            {
+              "script": "c34773082.lua",
+              "card_id": 34773082,
+              "card_name": "Frightfur Patchwork",
+              "matched_structure": "Official Omega performs a simultaneous two-card Deck search with separate card qualifications, requires both selections, sends the merged group to hand, and confirms it."
+            },
+            {
+              "script": "c31834488.lua",
+              "card_id": 31834488,
+              "card_name": "Book of Lunar Eclipse",
+              "matched_structure": "The official Omega DB and script identify Book of Lunar Eclipse as an Eclipse-named Quick-Play Spell omitted by the CCG's manually enumerated official-name pool."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: Book of Lunar Eclipse (31834488) was omitted from the activation search pool."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If your opponent Special Summons a monster(s): You can target 1 of those monsters; negate its effects, and if you do, banish that monster, then your opponent draws 2 cards. You can only use this effect of \"Eclipse Observatory\" once per turn.",
+          "lua_implementation": "The delayed EVENT_SPSUMMON_SUCCESS trigger filters the event group with Card.IsSummonPlayer(1-tp), following official Shining Sarcophagus provenance handling. It can target a legal face-up monster the opponent actually Special Summoned regardless of its post-summon controller, then negates, banishes, and performs the dependent draw.",
+          "official_references": [
+            {
+              "script": "c79791878.lua",
+              "card_id": 79791878,
+              "card_name": "Shining Sarcophagus",
+              "matched_structure": "Official Omega handles 'your opponent Special Summons' by testing Card.IsSummonPlayer(1-tp) on the event group, then limits the target to one of those qualifying summoned monsters."
+            },
+            {
+              "script": "c52038441.lua",
+              "card_id": 52038441,
+              "card_name": "Ghost Mourner & Moonlit Chill",
+              "matched_structure": "Official Omega reacts to an opponent's Special Summon, targets one of the event monsters, and negates that monster's effects with a delayed summon-success trigger."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the prior filter used post-summon control instead of the player who performed the Special Summon."
+        }
+      ],
+      "audit_note": "Added Book of Lunar Eclipse to Observatory and corrected opponent Special Summon provenance."
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 1,
+    "fixed": 2,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

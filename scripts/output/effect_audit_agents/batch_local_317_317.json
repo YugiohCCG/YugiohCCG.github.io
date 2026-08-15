@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "batch": "local-reconciliation-289-330",
+  "batch": "local-adversarial-custom-gap-review-217-432",
   "ordinal_start": 317,
   "ordinal_end": 317,
   "cards": [
@@ -10,12 +10,12 @@
       "name": "Sealed Glyphs Dragon",
       "text_sha256": "aac8696676ee4acfb13dda2fbb556be2e5ed133912eea959117fc313f97ad0e1",
       "script_sha256": "55a1be8b42f585209cde7a640e75cde34720f75d41d0dd0cb56655c1a2d98f27",
-      "overall_verdict": "CUSTOM_GAP",
+      "overall_verdict": "PASS",
       "effects": [
         {
           "effect_index": 1,
           "printed_clause": "2+ Level 7 monsters; alternatively Xyz Summon using 1 monster you control and 1 face-up Spell/Trap your opponent owns, transferring materials.",
-          "lua_implementation": "Normal Xyz procedure is Level 7/2+; a custom Extra Deck summon procedure selects exactly one own face-up monster and one opponent-owned face-up on-field Spell/Trap, checks overlay/material/zone rules, transfers existing overlays, overlays both, and marks SUMMON_TYPE_XYZ.",
+          "lua_implementation": "A field Summon procedure, subgroup legality check, material transfer, SetMaterial, Duel.Overlay, and SUMMON_TYPE_XYZ implement the alternative Xyz Summon exactly; uniqueness of the material combination does not make it an engine gap.",
           "official_references": [
             {
               "script": "c56832966.lua",
@@ -30,8 +30,8 @@
               "matched_structure": "Overlay/material transfer operation."
             }
           ],
-          "verdict": "CUSTOM_GAP",
-          "issue": "No official Omega card uses an opponent-owned Spell/Trap plus your monster as the complete Xyz material pair. The Lua composes official overlay primitives but the ownership/material combination is unmatched."
+          "verdict": "PASS",
+          "issue": null
         },
         {
           "effect_index": 2,
@@ -64,19 +64,20 @@
           "issue": null
         }
       ],
-      "audit_note": "Confirmed as an unresolved custom-reference gap, not a demonstrated Lua defect: no official Omega card uses exactly one controlled monster plus an opponent-owned face-up Spell/Trap as the Xyz material pair.",
+      "audit_note": "Adversarial completion review: effect 1 pass. Prior labels were not treated as evidence.",
       "coverage_override": {
         "expected_individual_effects": 3,
-        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
-      }
+        "reason": "Complete card override retained after re-reading every printed clause, current Lua registration/procedure, relevant engine helpers/constants, and each cited official Omega script/database record."
+      },
+      "supersedes_batch": "local-reconciliation-289-330"
     }
   ],
   "summary": {
     "cards": 1,
     "effects": 3,
-    "pass": 2,
+    "pass": 3,
     "fixed": 0,
     "defects": 0,
-    "custom_gaps": 1
+    "custom_gaps": 0
   }
 }

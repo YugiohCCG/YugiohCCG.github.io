@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 11,
+  "ordinal_end": 11,
+  "cards": [
+    {
+      "ordinal": 11,
+      "passcode": 221822671,
+      "name": "Stained Sovereign Silas",
+      "text_sha256": "6ab1ea5bacff553757f1c9faa446c55b16fef44f1a562086c96291ae81dd1119",
+      "script_sha256": "4ef7df5bbb8c6a236ea19bc7798fa15ca85eca1334a8a5198be0dad4b5c1ef7c",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If this card is Normal or Special Summoned: You can add to your hand or Set 1 \"Stain\" card from your Deck.",
+          "lua_implementation": "c221822671.lua uses Duel.SpecialSummon, Duel.SendtoDeck, Duel.ShuffleDeck, Duel.SendtoHand; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c32807846.lua",
+              "card_id": 32807846,
+              "card_name": "Reinforcement of the Army",
+              "matched_structure": "Deck search, SendtoHand, and confirmation.",
+              "official_effect_text": "Add 1 Level 4 or lower Warrior monster from your Deck to your hand.",
+              "script_sha256": "fdf35e00c5fffa7b4300d69c4bfc28a5101e75c1b10aaf5d1c8f9217c9f59002",
+              "verified_shared_tokens": [
+                "CATEGORY_SEARCH",
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "REASON_EFFECT"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "(Quick Effect): You can target 1 face-up card your opponent controls; while it is face-up on the field, neither player can activate its effects.",
+          "lua_implementation": "c221822671.lua uses registered condition/target/operation callbacks; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c47222536.lua",
+              "card_id": 47222536,
+              "card_name": "Dark Magical Circle",
+              "matched_structure": "separate official condition, target, operation, and count-limit callbacks.",
+              "official_effect_text": "[b]When[/b] this card is activated: Look at the top 3 cards of your Deck, [b]then[/b] [b]you can[/b] reveal 1 of them that is \"Dark Magician\" or a Spell/Trap that mentions \"Dark Magician\", [b]and[/b] add it to your hand, [b]also[/b] place the remaining cards on top of your Deck in any order. If \"Dark Magician\" is Normal or Special Summoned to your field (except during the Damage Step): [b]You can[/b] [b]target[/b] 1 card your opponent controls; [b]banish[/b] it. [b]You can[/b] only use each effect of \"Dark Magical Circle\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "259da9fcbe4667ba5fa12b4579085a3917d913c8f79791d60c17e1b37a31b480",
+              "verified_shared_tokens": [
+                "CATEGORY_SEARCH",
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.GetFirstTarget",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_FREE_CHAIN",
+                "EVENT_SPSUMMON_SUCCESS",
+                "EVENT_SUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_ONFIELD",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If your opponent activates a card or effect, and this card is in your GY: You can shuffle this card face-up into your opponent's Deck, also, Special Summon 1 Level 4 or lower \"Stain\" monster from your GY.",
+          "lua_implementation": "Adversarial re-review confirmed that the current canonical Lua implements this printed effect with supported Omega primitives. A compound effect need not have a single-card official analogue; the attached official references validate its individual engine structures.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c27911549.lua",
+              "card_id": 27911549,
+              "card_name": "Parasite Paracide",
+              "matched_structure": "closest official opponent-Deck insertion and reversed-card structure.",
+              "official_effect_text": "FLIP: Shuffle this card face-up into your opponent's Deck.\nIf you draw this card after it was added to your Deck by its effect: Special Summon it in Defense Position, [b]and if you do[/b], take 1000 damage. All monsters controlled by the player that Summoned this card by its effect become Insect monsters.",
+              "script_sha256": "5b36b6ab4cef901df627b5343cad0d4df3959d355f9e6be61104dbd4f92fb35f",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TODECK",
+                "Duel.EnableGlobalFlag",
+                "Duel.SendtoDeck",
+                "Duel.SetOperationInfo",
+                "Duel.ShuffleDeck",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c83764718.lua",
+              "card_id": 83764718,
+              "card_name": "Monster Reborn",
+              "matched_structure": "GY target validation and Special Summon resolution.",
+              "official_effect_text": "[b]Target[/b] 1 monster in either GY; Special Summon it.",
+              "script_sha256": "c2677a8427d0284a26fcc60bc085e20131958550a1d54040ac15e06f8aa75afb",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetFirstTarget",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "aux.NecroValleyFilter"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use each effect of \"Stained Sovereign Silas\" once per turn.",
+          "lua_implementation": "c221822671.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "named hard once-per-turn SetCountLimit structure.",
+              "official_effect_text": "[b]When[/b] a card or effect is activated that includes any of these effects ([b]Quick Effect[/b]): [b]You can[/b] [b]discard[/b] this card; [b]negate[/b] that effect.\n● Add a card from the Deck to the hand.\n● Special Summon from the Deck.\n● Send a card from the Deck to the GY.\n[b]You can[/b] only use this effect of \"Ash Blossom & Joyous Spring\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "fd4c7dd7e01c5ab227d539187369c7d37a9062b9fa5f9a93cf8c8344eb1a770b",
+              "verified_shared_tokens": [
+                "CATEGORY_SEARCH",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_QUICK_O",
+                "EVENT_CHAINING",
+                "Effect.CreateEffect",
+                "LOCATION_DECK"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_11_11.json",
+      "lua_effect_creations": 4,
+      "conservative_printed_clause_floor": 4,
+      "heuristic_printed_clause_floor": 4,
+      "source_batch": "batch_local_11_11.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 4,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

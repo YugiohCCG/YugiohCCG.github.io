@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 26,
+  "ordinal_end": 26,
+  "cards": [
+    {
+      "ordinal": 26,
+      "passcode": 215034223,
+      "name": "Talismandrake Arms United",
+      "text_sha256": "4e33fa557d4913fdfb90f864fc33d6d1878f2fc814d6bc214268aa2103b59c40",
+      "script_sha256": "b71867edb179d29f9ad8b0b2d204d365ebd8efb9b81db43dd9fa6cf5313fba6a",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Discard 1 card; place up to 2 \"Talismandrake\" Pendulum Monsters from your Deck or face-up Extra Deck in your Pendulum Zones.",
+          "lua_implementation": "c215034223.lua uses registered condition/target/operation callbacks; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c47222536.lua",
+              "card_id": 47222536,
+              "card_name": "Dark Magical Circle",
+              "matched_structure": "separate official condition, target, operation, and count-limit callbacks.",
+              "official_effect_text": "[b]When[/b] this card is activated: Look at the top 3 cards of your Deck, [b]then[/b] [b]you can[/b] reveal 1 of them that is \"Dark Magician\" or a Spell/Trap that mentions \"Dark Magician\", [b]and[/b] add it to your hand, [b]also[/b] place the remaining cards on top of your Deck in any order. If \"Dark Magician\" is Normal or Special Summoned to your field (except during the Damage Step): [b]You can[/b] [b]target[/b] 1 card your opponent controls; [b]banish[/b] it. [b]You can[/b] only use each effect of \"Dark Magical Circle\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "259da9fcbe4667ba5fa12b4579085a3917d913c8f79791d60c17e1b37a31b480",
+              "verified_shared_tokens": [
+                "Duel.GetFirstTarget",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_FREE_CHAIN",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_SZONE",
+                "REASON_EFFECT",
+                "TYPE_SPELL",
+                "TYPE_TRAP",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If a Pyro Fusion Monster is Special Summoned to your field (except during the Damage Step): You can banish this card from your GY, then target 1 of those monsters; equip 1 \"Talismandrake Arms\" Spell/Trap from your Deck to it as if it were equipped by that Spell/Trap's effect.",
+          "lua_implementation": "The trigger equips one of the four supported Arms cards and recreates its equip effects. Sabre/Shield values now count only Equip Spells whose equip target is controlled by the equipped monster's controller; battle replacement is implemented, and Shield approximates leave-field replacement with destroy/send replacements. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c68679595.lua",
+              "card_id": 68679595,
+              "card_name": "Ultimate Leo Utopia Ray",
+              "matched_structure": "equipping another card and applying it as if equipped by its own effect.",
+              "official_effect_text": "3 Level 5 monsters\n(This card is always treated as \"Number C39: Utopia Ray\".)\n[b]Once[/b] [b]per turn[/b]: [b]You can[/b] detach 1 material from this card; equip 1 \"ZW -\" monster from your Deck or Extra Deck to this card as if it were equipped by that monster's effect. This effect's activation [b]and[/b] effect [b]cannot[/b] be negated. [b]Once[/b] [b]per turn[/b], while this card is equipped with a \"ZW -\" Monster Card ([b]Quick Effect[/b]): [b]You can[/b] [b]target[/b] 1 Effect Monster your opponent controls; [b]negate[/b] its effects, [b]and if you do[/b], halve its ATK.",
+              "script_sha256": "adc8c1d49c8aa550dc76fbb48f04485d6b46ed8968a364870aa4ef7201b2a08d",
+              "verified_shared_tokens": [
+                "Duel.GetFirstTarget",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_SINGLE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_EXTRA",
+                "LOCATION_MZONE",
+                "LOCATION_SZONE",
+                "REASON_COST",
+                "RESET_EVENT",
+                "TYPE_MONSTER",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c56747793.lua",
+              "card_id": 56747793,
+              "card_name": "United We Stand",
+              "matched_structure": "continuous Equip-derived ATK calculation.",
+              "official_effect_text": "The equipped monster gains 800 ATK/DEF for each face-up monster you control.",
+              "script_sha256": "c5310b50f63026a9cc67450edff10bd882c2e360197d2d7ab0af08b737b77429",
+              "verified_shared_tokens": [
+                "CATEGORY_EQUIP",
+                "Duel.Equip",
+                "Duel.GetFirstTarget",
+                "Duel.GetMatchingGroupCount",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "EFFECT_EQUIP_LIMIT",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_EQUIP",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_UPDATE_ATTACK",
+                "EFFECT_UPDATE_DEFENSE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c2006591.lua",
+              "card_id": 2006591,
+              "card_name": "Sinful Spoils Awakening",
+              "matched_structure": "leave-field tracking and destination/replacement handling.",
+              "official_effect_text": "If your opponent controls 3 or more monsters and you control a Level 5 or higher Illusion monster: Target up to 3 cards your opponent controls; return them to the hand. If you control a Level 5 or higher Illusion monster and this card is in your GY: You can Set this card, but banish it when it leaves the field. You can only use 1 \"Sinful Spoils Awakening\" effect per turn, and only once that turn.",
+              "script_sha256": "f4888b36852db0d1937720d7e66fd8ba5a316b184f1245606db1345cf9cb5a5a",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_SINGLE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Equipping Blaze Shield 'as if equipped by that card's effect' inherits its optional all-destination leave-field replacement. Omega only provides destroy/send replacement hooks, so return-to-hand, return-to-Deck, and banish departures are not replaced. Resolution: narrow Blaze Shield to destruction/sending, or add a generic optional leave-field replacement hook and use it in the recreated equip effects in c215034223.lua."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can only use each effect of \"Talismandrake Arms United\" once per turn.",
+          "lua_implementation": "c215034223.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "named hard once-per-turn SetCountLimit structure.",
+              "official_effect_text": "[b]When[/b] a card or effect is activated that includes any of these effects ([b]Quick Effect[/b]): [b]You can[/b] [b]discard[/b] this card; [b]negate[/b] that effect.\n● Add a card from the Deck to the hand.\n● Special Summon from the Deck.\n● Send a card from the Deck to the GY.\n[b]You can[/b] only use this effect of \"Ash Blossom & Joyous Spring\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "fd4c7dd7e01c5ab227d539187369c7d37a9062b9fa5f9a93cf8c8344eb1a770b",
+              "verified_shared_tokens": [
+                "Duel.SetOperationInfo",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_HAND",
+                "REASON_COST",
+                "REASON_DISCARD"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_26_26.json",
+      "lua_effect_creations": 12,
+      "conservative_printed_clause_floor": 3,
+      "heuristic_printed_clause_floor": 2,
+      "source_batch": "batch_local_26_26.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

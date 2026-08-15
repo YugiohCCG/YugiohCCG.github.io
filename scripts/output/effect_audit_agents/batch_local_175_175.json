@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch3-coverage-reconciliation",
+  "ordinal_start": 175,
+  "ordinal_end": 175,
+  "cards": [
+    {
+      "ordinal": 175,
+      "passcode": 226063408,
+      "name": "Grand Puppet of Wicked Puppeteer",
+      "text_sha256": "e85ae1de14fd8781a4bee6e0b0e4a90fbabd00ab651abb4291b49b33303834a5",
+      "script_sha256": "c2e28047185eab6955546d3e5fc34759fd636bc89cce51aa8276e46a39e2246a",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Main Phase while controlling Wicked Puppeteer Orchis: Tribute 1 monster; Special Summon this from hand/GY. HOPT.",
+          "lua_implementation": "Main-Phase Quick Effect checks either true/current Orchis code, Tributes another controlled monster with zone accounting, then summons the handler from hand/GY; HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c22865492.lua",
+              "card_id": 22865492,
+              "card_name": "Vision HERO Increase",
+              "matched_structure": "Tributes a controlled monster as cost and Special Summons the effect's handler from a nonstandard location."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If Summoned while controlling a Ritual Monster: target and destroy opponent card. HOPT.",
+          "lua_implementation": "Normal, Flip and Special Summon trigger clones share HOPT and target/destroy an opponent on-field card when a face-up Ritual is controlled.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c5133471.lua",
+              "card_id": 5133471,
+              "card_name": "Galaxy Cyclone",
+              "matched_structure": "Targets and destroys an opponent Spell/Trap/on-field card with relation checks."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Main-Phase self-Summon procedure and the on-Summon destruction trigger are the two distinct effects; the shared 'each effect' HOPT sentence is represented in both records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

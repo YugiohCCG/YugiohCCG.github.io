@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch6-plus-gravinity-collateral",
+  "ordinal_start": 384,
+  "ordinal_end": 384,
+  "cards": [
+    {
+      "ordinal": 384,
+      "passcode": 252496004,
+      "name": "Skewy! Pumpki-Pal",
+      "text_sha256": "5fa86539747eec06a0885321495e5fa4507594df5c4dab75a389a6da7c87204d",
+      "script_sha256": "005a5e2f1156e0b786b18e8a3fc0cd3ad8ef4491911720ab2f3be3c7409ebf94",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If your opponent controls more monsters than you do, you can Special Summon this card from your hand.",
+          "lua_implementation": "The inherent hand Special Summon procedure now has hard once-per-turn key id while retaining the opponent-more-monsters condition and free Monster Zone check.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c8814959.lua",
+              "card_id": 8814959,
+              "card_name": "Evilswarm Mandragora",
+              "matched_structure": "Exact official self-Special-Summon condition based on opponent controlling more monsters."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: official Dinowrestler Pankratops demonstrates SetCountLimit on this exact inherent summon procedure shape."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Normal or Special Summoned: Reveal the top card of your Deck; if it is a Skewy! card, add it to your hand, then if it is a monster you can Special Summon it. Otherwise, send it to the GY.",
+          "lua_implementation": "Mandatory delayed summon triggers confirm the Deck top. A Skewy able to be added is sent to hand and confirmed, then optionally Special Summoned if a monster; a non-Skewy able to be sent goes to GY.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c22796548.lua",
+              "card_id": 22796548,
+              "card_name": "Archfiend's Oath",
+              "matched_structure": "Reveals/excavates the top card, adds on a match, otherwise sends it to GY."
+            },
+            {
+              "script": "tmp/omega_scripts/c61307542.lua",
+              "card_id": 61307542,
+              "card_name": "Paleozoic Anomalocaris",
+              "matched_structure": "Excavates the top card and branches between add and send-to-GY."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is sent to the GY: You can place 1 Candy Counter on 1 face-up monster your opponent controls.",
+          "lua_implementation": "A delayed EVENT_TO_GRAVE trigger selects a face-up opponent monster able to receive one Candy Counter and adds it.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c17601919.lua",
+              "card_id": 17601919,
+              "card_name": "Pumprincess the Princess of Ghosts",
+              "matched_structure": "Counter-capacity check and AddCounter operation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use each effect of Skewy! Pumpki-Pal once per turn.",
+          "lua_implementation": "The summon procedure, summon-trigger effect, and GY trigger now use distinct hard once-per-turn keys id, id+100, and id+200; event clones still share the one key for the same effect.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c67225377.lua",
+              "card_id": 67225377,
+              "card_name": "Salamangreat Meer",
+              "matched_structure": "Official once-per-turn self-Special-Summon procedure/effect records a named count limit."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: 'each effect' includes the printed summon procedure but does not make separate printed effects share one usage key."
+        }
+      ],
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Four records cover the hand summon procedure, summon top-card effect, GY counter trigger, and the per-effect HOPT rule."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 2,
+    "fixed": 2,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

@@ -1,6 +1,6 @@
 # CCG Comprehensive Bug Test Report
 
-Generated: 2026-08-11T11:26:43+00:00
+Generated: 2026-08-14T16:37:33+00:00
 
 ## Result
 
@@ -14,9 +14,9 @@ Generated: 2026-08-11T11:26:43+00:00
 - Lua scripts: 578 (including compatibility scripts: [210678856])
 - SQLite rows: 1162
 - Primary archetypes: 85
-- Effect creations indexed: 1988
-- Callback functions indexed: 3617
-- Search/selection calls indexed: 2762
+- Effect creations indexed: 1993
+- Callback functions indexed: 3619
+- Search/selection calls indexed: 2771
 - Open semantic errors: 0
 - Open semantic review candidates: 0
 - Hash-pinned reviewed semantic findings: 14
@@ -29,26 +29,26 @@ Generated: 2026-08-11T11:26:43+00:00
 
 | Gate | Status | Seconds |
 |---|---:|---:|
-| Authoritative card manifest | PASS | 1.094 |
-| Lua compiler syntax | PASS | 10.453 |
-| Generated printed-text search pools | PASS | 0.765 |
-| Lua semantic and search-condition audit | PASS | 1.360 |
-| Omega runtime references | PASS | 1.187 |
-| Archetype interoperability | PASS | 1.563 |
-| Named-card runtime relationships | PASS | 0.547 |
-| Headless Omega registration | PASS | 5.593 |
-| Hash-pinned effect review ledger | PASS | 0.641 |
-| Omega callback smoke | PASS | 11.219 |
-| Message routes | PASS | 0.562 |
-| Script ZIP parity | PASS | 0.281 |
-| Public card data parity | PASS | 0.079 |
-| Omega test-deck coverage | PASS | 0.875 |
-| Live-test ledger integrity | PASS | 0.546 |
-| Manual-input skip report | PASS | 0.204 |
-| Website filter/search unit tests | PASS | 3.390 |
-| TypeScript/React lint | PASS | 4.438 |
-| Omega release integrity | PASS | 26.765 |
-| Production build | PASS | 17.188 |
+| Authoritative card manifest | PASS | 0.984 |
+| Lua compiler syntax | PASS | 11.703 |
+| Generated printed-text search pools | PASS | 1.063 |
+| Lua semantic and search-condition audit | PASS | 1.375 |
+| Omega runtime references | PASS | 1.093 |
+| Archetype interoperability | PASS | 1.516 |
+| Named-card runtime relationships | PASS | 0.500 |
+| Headless Omega registration | PASS | 5.656 |
+| Hash-pinned effect review ledger | PASS | 0.781 |
+| Omega callback smoke | PASS | 12.266 |
+| Message routes | PASS | 0.594 |
+| Script ZIP parity | PASS | 0.312 |
+| Public card data parity | PASS | 0.094 |
+| Omega test-deck coverage | PASS | 0.891 |
+| Live-test ledger integrity | PASS | 0.578 |
+| Manual-input skip report | PASS | 0.172 |
+| Website filter/search unit tests | PASS | 3.531 |
+| TypeScript/React lint | PASS | 5.172 |
+| Omega release integrity | PASS | 27.859 |
+| Production build | PASS | 17.969 |
 
 ## Interpretation
 

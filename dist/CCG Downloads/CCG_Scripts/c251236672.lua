@@ -75,7 +75,8 @@ end
 function s.atkcon(e,tp,eg,ep,ev,re,r,rp)
 	local tc=eg:GetFirst()
 	for tc in aux.Next(eg) do
-		if tc:IsPreviousControler(tp) and tc:IsPreviousLocation(LOCATION_ONFIELD+LOCATION_HAND) then
+		if tc:IsPreviousControler(tp) and tc:IsPreviousLocation(LOCATION_ONFIELD+LOCATION_HAND)
+			and tc:IsReason(REASON_BATTLE+REASON_EFFECT) then
 			return true
 		end
 	end

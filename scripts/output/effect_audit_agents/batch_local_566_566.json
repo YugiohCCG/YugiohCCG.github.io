@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch8d-556-572",
+  "ordinal_start": 566,
+  "ordinal_end": 566,
+  "cards": [
+    {
+      "ordinal": 566,
+      "passcode": 259487387,
+      "name": "Eclipse Observer Ella",
+      "text_sha256": "bb74e555ade20b94c03e886c7c8106ba3b85e8fc4761c8edd1046d35ccad5bdf",
+      "script_sha256": "07d8c9527d05aa11d5f89b42a2b3a6cff79fbf4eabf56aa25a57c146655488d7",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The hand/GY self-Summon, summon-triggered Set, and opponent-draw-triggered revival are three independent effects; cloned summon event routes and HOPT clauses are merged into their effects."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "(Quick Effect): You can Special Summon this card from your hand or GY, and if you do, your opponent draws 2 cards. You can only use this effect of \"Eclipse Observer Ella\" once per turn.",
+          "lua_implementation": "An EVENT_FREE_CHAIN Quick Effect operates in hand or GY, checks a Monster Zone, two-card opponent draw legality, Necrovalley when applicable, and handler summon legality. It Special Summons the related handler and only after successful summoning draws two for the opponent, under its own HOPT.",
+          "official_references": [
+            {
+              "script": "c91654806.lua",
+              "card_id": 91654806,
+              "card_name": "Cosmos Channelling",
+              "matched_structure": "Official Omega filters summonable monsters across hand and GY, applies NecrovalleyFilter to the GY path, checks an open Monster Zone, and Special Summons the selected card."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Normal or Special Summoned: You can Set 1 \"Eclipse\" Quick-Play Spell from your Deck or GY. You can only use this effect of \"Eclipse Observer Ella\" once per turn.",
+          "lua_implementation": "The Normal/Special Summon trigger now Sets a custom Eclipse Quick-Play Spell, Book of Eclipse, or Book of Lunar Eclipse from the Deck/GY. The two official IDs are consistently published through AddCodeList/listed_names and accepted by setfilter.",
+          "official_references": [
+            {
+              "script": "c80181649.lua",
+              "card_id": 80181649,
+              "card_name": "\"A Case for K9\"",
+              "matched_structure": "Official Omega filters and Sets an archetype Quick-Play Spell directly from the Deck or GY, including zone and Set legality."
+            },
+            {
+              "script": "c31834488.lua",
+              "card_id": 31834488,
+              "card_name": "Book of Lunar Eclipse",
+              "matched_structure": "The official Omega DB and script identify Book of Lunar Eclipse as an Eclipse-named Quick-Play Spell omitted by the CCG's explicit non-setcode name pool."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: Book of Lunar Eclipse (31834488) was absent from the Set pool."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If your opponent draws 2 or more cards at the same time, except by the effect of \"Eclipse Observer Ella\": You can Special Summon 1 \"Eclipse Observer\" monster from your GY. You can only use this effect of \"Eclipse Observer Ella\" once per turn.",
+          "lua_implementation": "A delayed field EVENT_DRAW trigger checks opponent ownership, draw-group size at least two, and excludes Ella as the reason-effect handler. It then checks an open zone and revives one Necrovalley-legal Observer monster from the controller's GY under a distinct HOPT.",
+          "official_references": [
+            {
+              "script": "c81866673.lua",
+              "card_id": 81866673,
+              "card_name": "Destiny HERO - Dasher",
+              "matched_structure": "Official Omega uses EVENT_DRAW to trigger a Special Summon operation after checking event ownership, zone availability, and summon legality."
+            },
+            {
+              "script": "c65726770.lua",
+              "card_id": 65726770,
+              "card_name": "Silent Magician Zero",
+              "matched_structure": "Official Omega uses the draw event group and drawing player in an EVENT_DRAW condition, matching the simultaneous multi-card event test."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Added Book of Lunar Eclipse consistently to Ella's metadata and Deck/GY Set filter."
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 2,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 245,
+      "passcode": 243194249,
+      "name": "Shining Brigade - Hope Division",
+      "text_sha256": "af26f24c046a905ff55c98afc95a98bb7c8f5cebecff2a00b38c7c8a2e34ff66",
+      "script_sha256": "f8c61a8578631128dac9f2a2fb19704ebe05a1bd11a7496ccdb92c2faba68a10",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If your opponent controls a monster, you can Special Summon this card (from your hand or GY). You can only Special Summon \"Shining Brigade - Hope Division\" once per turn this way.",
+          "lua_implementation": "An uncopyable hand/GY EFFECT_SPSUMMON_PROC checks an opponent monster, zone space and Necrovalley; an oath count keyed to id limits the procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "hand EFFECT_SPSUMMON_PROC",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_COUNT_CODE_OATH",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c11335209.lua",
+              "card_id": 11335209,
+              "card_name": "Duamutef, Blessing of Horus",
+              "matched_structure": "GY EFFECT_SPSUMMON_PROC",
+              "official_effect_text": "If you control \"King's Sarcophagus\", [b]you can[/b] Special Summon this card (from your GY). [b]You can[/b] only Special Summon \"Duamutef, Blessing of Horus\" [b]once[/b] [b]per turn[/b] this way. Gains 1200 ATK/DEF for each \"Horus\" monster you control. If another card(s) you control leaves the field by an opponent's card effect, while this card is in your Monster Zone (except during the Damage Step): [b]You can[/b] draw cards equal to the number of monsters with different names in your Main Monster Zone. [b]You can[/b] only use this effect of \"Duamutef, Blessing of Horus\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "e3cc3c54b3b32d72d8b406c13775d76e0131f932c57088d38801e2fb45e5c552",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_COUNT_CODE_OATH",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "(Quick Effect): You can Tribute this card; Special Summon 2 Level 2 \"Shining Brigade\" monsters from your Deck, except \"Shining Brigade - Hope Division\", but they cannot attack or activate their effects this turn.",
+          "lua_implementation": "e2 releases the handler as cost, requires two zones/two Deck candidates, SpecialSummonStep summons exactly two, and gives each EFFECT_CANNOT_ATTACK and EFFECT_CANNOT_TRIGGER through PHASE_END.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c99471856.lua",
+              "card_id": 99471856,
+              "card_name": "Crystron Tristaros",
+              "matched_structure": "paired Deck Summon",
+              "official_effect_text": "When your opponent activates a card or effect (Quick Effect): You can Special Summon 1 \"Crystron\" monster from your Deck, except \"Crystron Tristaros\", then immediately after this effect resolves, Synchro Summon 1 Machine Synchro Monster using monsters you control, including that monster. You can banish this card from your GY; destroy 1 Synchro Monster you control, and if you do, Special Summon 2 \"Crystron\" monsters from your Deck, also you cannot Special Summon from the Extra Deck for the rest of this turn, except Machine monsters. You can only use each effect of \"Crystron Tristaros\" once per turn.",
+              "script_sha256": "999d032093c85db501a171693e2d3b4ac659a19f1d488ece3d87541fd72e252d",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.GetMZoneCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.IsPlayerAffectedByEffect",
+                "Duel.RegisterEffect",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_CANNOT_SPECIAL_SUMMON",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_QUICK_O",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "RESET_PHASE",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c49299410.lua",
+              "card_id": 49299410,
+              "card_name": "The Black Goat Laughs",
+              "matched_structure": "PHASE_END reset",
+              "official_effect_text": "Declare 1 Monster Card name; this turn, neither player can Special Summon monsters with that original name, except from the GY. [b]You can[/b] [b]banish[/b] this card from the GY, [b]then[/b] declare 1 Monster Card name; this turn, neither player can activate the effects of monsters on the field with that original name. [b]You can[/b] only use 1 \"The Black Goat Laughs\" effect [b]per turn[/b], [b]and[/b] only [b]once[/b] that turn.",
+              "script_sha256": "bfb8be0e18b7eb2ba0e068e3e6dc89a536d7919a5c28f71399892d648970d969",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.RegisterEffect",
+                "Duel.SetOperationInfo",
+                "EFFECT_CANNOT_SPECIAL_SUMMON",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_QUICK_O",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "RESET_PHASE"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If your opponent controls a monster, you can Special Summon this card (from your hand or GY). You can only Special Summon \"Shining Brigade - Hope Division\" once per turn this way. (Quick Effect): You can Tribute this card; Special Summon 2 Level 2 \"Shining Brigade\" monsters from your Deck, except \"Shining Brigade - Hope Division\", but they cannot attack or activate their effects this turn. You can only use this effect of \"Shining Brigade - Hope Division\" once per turn. You cannot Special Summon monsters the turn you activate this effect, except \"Shining Brigade\" monsters.",
+          "lua_implementation": "A hard code {id,1}, prior-turn custom activity test, and oath EFFECT_CANNOT_SPECIAL_SUMMON enforce the full-turn archetype lock.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c44362883.lua",
+              "card_id": 44362883,
+              "card_name": "Branded Fusion",
+              "matched_structure": "full-turn activity/oath Summon lock",
+              "official_effect_text": "Fusion Summon 1 Fusion Monster that mentions \"Fallen of Albaz\" as material from your Extra Deck, using 2 monsters from your hand, Deck, or field. You [b]cannot[/b] Special Summon from the Extra Deck, except Fusion Monsters, the turn you activate this card. [b]You can[/b] only activate 1 \"Branded Fusion\" [b]per turn[/b].",
+              "script_sha256": "a78b719f2f7bef65a2afac1c29f75f917548fe6952d5dd2c3f1b92c39635c96a",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.AddCustomActivityCounter",
+                "Duel.GetCustomActivityCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.RegisterEffect",
+                "Duel.SetOperationInfo",
+                "EFFECT_CANNOT_SPECIAL_SUMMON",
+                "EFFECT_COUNT_CODE_OATH",
+                "EFFECT_FLAG_OATH",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "PHASE_END",
+                "RESET_PHASE"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "id-keyed hard/oath turn limits",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_COUNT_CODE_OATH",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The self-Summon procedure with its procedure limit, the Tribute/paired-Summon Quick Effect, and that effect's HOPT plus full-turn archetype lock are three complete audit units."
+      }
+    }
+  ]
+}

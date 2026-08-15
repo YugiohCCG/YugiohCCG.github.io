@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 261,
+      "passcode": 237692523,
+      "name": "Pixie Bot",
+      "text_sha256": "4bb73282b02e9af8a5c0b7f9026c7b42f0ac4ec976253108b6d0e9bc187d7b4e",
+      "script_sha256": "d842393e3f9ad57699bc8aacf769b7cd832923c17f75443c79104e15a5334655",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If you Link Summoned a monster this turn using a Normal Monster: You can Special Summon this card from your hand to your zone a Link Monster points to.",
+          "lua_implementation": "A duel-global EVENT_SPSUMMON_SUCCESS check inspects Link material groups for TYPE_NORMAL and flags the Summon player through PHASE_END; e1 computes all Link-pointed own Main Monster Zones and Special Summons into the chosen zone.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c29301450.lua",
+              "card_id": 29301450,
+              "card_name": "S:P Little Knight",
+              "matched_structure": "aux.AddLinkProcedure",
+              "official_effect_text": "2 Effect Monsters\nIf this card is Link Summoned using a Fusion, Synchro, Xyz, or Link Monster as material: [b]You can[/b] [b]target[/b] 1 card on the field or in either GY; [b]banish[/b] it, [b]also[/b] your monsters [b]cannot[/b] attack directly this turn. [b]When[/b] your opponent activates a card or effect ([b]Quick Effect[/b]): [b]You can[/b] [b]target[/b] 2 face-up monsters on the field, including a monster you control; [b]banish[/b] both until the [b]End Phase[/b]. [b]You can[/b] only use each effect of \"S:P Little Knight\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "8d5918ec712e1cf83b0746453c8def3a20fc3c5a562fff869a617b866df9b785",
+              "verified_shared_tokens": [
+                "Card.IsType",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.RegisterEffect",
+                "Duel.Remove",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_CONTINUOUS",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "RESET_PHASE",
+                "SUMMON_TYPE_LINK",
+                "TYPE_LINK",
+                "aux.Next",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c71278040.lua",
+              "card_id": 71278040,
+              "card_name": "Parallel eXceed",
+              "matched_structure": "hand Special Summon trigger",
+              "official_effect_text": "If this card is Special Summoned by the effect of \"Parallel eXceed\", its Level becomes 4 [b]and[/b] its original ATK/DEF become halved. [b]You can[/b] only use each of the following effects of \"Parallel eXceed\" [b]once[/b] [b]per turn[/b].\n● If you Link Summon: [b]You can[/b] Special Summon this card from your hand to your zone that Link Monster points to.\n● If this card is Normal or Special Summoned: [b]You can[/b] Special Summon 1 \"Parallel eXceed\" from your Deck.",
+              "script_sha256": "705dafba23679e45098378034cfa74f8c245a07f04e5ca5925e215308dfeff72",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_CONTINUOUS",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "SUMMON_TYPE_LINK",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You can banish 1 Link Monster from your GY; Special Summon Normal Monsters from your GY up to the Link-Rating of the banished monster.",
+          "lua_implementation": "e2 banishes an eligible Link as cost while storing its Link Rating, then summons 1..min(rating,free zones) Normal Monsters from GY.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c51858306.lua",
+              "card_id": 51858306,
+              "card_name": "Eclipse Wyvern",
+              "matched_structure": "EVENT_REMOVE after GY",
+              "official_effect_text": "If this card is sent to the GY: [b]Banish[/b] 1 Level 7 or higher LIGHT or DARK Dragon monster from your Deck. If this card is banished from your GY: [b]You can[/b] add the monster banished by this card's effect to your hand.",
+              "script_sha256": "2b98189064141a1ba77c8832891109dbfe4f7966bdfa5735a76f31ed382fcdc0",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.Remove",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Effect.CreateEffect",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c74845897.lua",
+              "card_id": 74845897,
+              "card_name": "Rekindling",
+              "matched_structure": "Summon many from GY",
+              "official_effect_text": "Special Summon from your GY as many FIRE monsters as possible with 200 DEF, but [b]banish[/b] them during the [b]End Phase[/b] of this turn.",
+              "script_sha256": "fe744179fd3751de3e523c74247421b3d1567cc9b4ae5b9295f01ec9723c040c",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.RegisterEffect",
+                "Duel.Remove",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_CONTINUOUS",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "RESET_PHASE"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can only use each effect of \"Pixie Bot\" once per turn.",
+          "lua_implementation": "e1/e2 use distinct hard id/id+100 codes.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "id-keyed hard/oath turn limits",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The hand Summon trigger, GY banish/mass-revival effect, and their shared each-effect HOPT sentence are three complete audit units."
+      }
+    }
+  ]
+}

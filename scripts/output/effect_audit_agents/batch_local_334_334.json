@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 334,
+  "ordinal_end": 334,
+  "cards": [
+    {
+      "ordinal": 334,
+      "passcode": 223770816,
+      "name": "Blazing Gaia the Spiral Knight",
+      "text_sha256": "66d9ae57a3fcd459a035c01018f900daabb4a7ea8e301dccf74e823a4450abc1",
+      "script_sha256": "e8621bca7b7972a66cf34ac3f19dc72d6696d9b2e68b5972010d630544b7151a",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "\"Gaia The Fierce Knight\" monster + Level 5 Dragon; name becomes \"Gaia the Dragon Champion\" on field.",
+          "lua_implementation": "Fusion procedure has the two exact filters; single-range EFFECT_CHANGE_CODE in MZONE uses official passcode 66889139.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15989522.lua",
+              "card_id": 15989522,
+              "card_name": "Gaia the Magical Knight of Dragons",
+              "matched_structure": "Near-exact official Gaia Fusion materials and field name change."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If Special Summoned: target a Gaia in GY/banishment and add it; HOPT.",
+          "lua_implementation": "Delayed targeted trigger accepts GY or face-up banishment with Necrovalley and adds one under id HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c1154611.lua",
+              "card_id": 1154611,
+              "card_name": "Paleozoic Leanchoilia",
+              "matched_structure": "GY/banished target return operation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If you Fusion Summon using a Normal Monster: the summoned monster can gain 2600 ATK; HOPT.",
+          "lua_implementation": "Field summon-success trigger inspects the summoned Fusion's material group for TYPE_NORMAL, targets one qualifying event monster, and grants permanent +2600 with separate HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c13647631.lua",
+              "card_id": 13647631,
+              "card_name": "Heavy Freight Train Derricrane",
+              "matched_structure": "Post-material trigger inspecting reason/material and applying a stat modification."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Main-Phase Quick Effect: target a \"Spiral\" Normal Spell/Trap in GY listing \"Gaia the Dragon Champion\"; apply its activation effect; HOPT.",
+          "lua_implementation": "Main-Phase Quick Effect targets an eligible Normal Spell/Trap, uses CheckActivateEffect to import target/category/property and execute its activation operation; separate HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10136446.lua",
+              "card_id": 10136446,
+              "card_name": "Darklord Eveningstar",
+              "matched_structure": "Near-exact official apply-a-GY-Spell/Trap-activation-effect implementation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "The Fusion materials and on-field name change are covered together as the card's procedure/static identity unit. The salvage, Normal-material ATK gain, and copied Spiral activation are the three activated effects, each with its HOPT."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 4,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

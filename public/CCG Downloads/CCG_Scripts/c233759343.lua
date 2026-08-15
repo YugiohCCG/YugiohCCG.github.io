@@ -42,15 +42,15 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		if Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
 			Duel.ConfirmCards(1-tp,g)
 		end
-		local e1=Effect.CreateEffect(e:GetHandler())
-		e1:SetType(EFFECT_TYPE_FIELD)
-		e1:SetCode(EFFECT_CANNOT_ATTACK_ANNOUNCE)
-		e1:SetProperty(EFFECT_FLAG_OATH)
-		e1:SetTargetRange(LOCATION_MZONE,0)
-		e1:SetTarget(s.atklimit)
-		e1:SetReset(RESET_PHASE+PHASE_END)
-		Duel.RegisterEffect(e1,tp)
 	end
+	local e1=Effect.CreateEffect(e:GetHandler())
+	e1:SetType(EFFECT_TYPE_FIELD)
+	e1:SetCode(EFFECT_CANNOT_ATTACK_ANNOUNCE)
+	e1:SetProperty(EFFECT_FLAG_OATH)
+	e1:SetTargetRange(LOCATION_MZONE,0)
+	e1:SetTarget(s.atklimit)
+	e1:SetReset(RESET_PHASE+PHASE_END)
+	Duel.RegisterEffect(e1,tp)
 end
 function s.atkfilter(c)
 	return c:IsFaceup()

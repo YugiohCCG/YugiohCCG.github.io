@@ -30,11 +30,13 @@ function s.mfilter2(c,e)
 	return c:IsLocation(LOCATION_GRAVE) and c:IsType(TYPE_MONSTER) and c:IsAbleToDeck()
 		and aux.NecroValleyFilter()(c) and not c:IsImmuneToEffect(e)
 end
-function s.ffilter(c,e,tp,m,f,chkf)
+function s.ffilter(c,e,tp,mat,f,chkf)
+	local available_materials=mat:Clone()
+	available_materials:RemoveCard(c)
 	return c:IsType(TYPE_FUSION) and c:IsAttribute(ATTRIBUTE_FIRE) and c:IsRace(RACE_DRAGON)
 		and (not f or f(c)) and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,c:IsLocation(LOCATION_GRAVE),false)
-		and c:CheckFusionMaterial(m,nil,chkf)
+		and c:CheckFusionMaterial(available_materials,nil,chkf)
 end
 function s.fzone(tp,mat,fc)
 	if fc:IsLocation(LOCATION_EXTRA) then
@@ -63,6 +65,7 @@ function s.fsop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.SelectMatchingCard(tp,s.ffilter,tp,LOCATION_GRAVE+LOCATION_EXTRA,0,1,1,nil,e,tp,mg1,nil,chkf)
 	local tc=g:GetFirst()
 	if tc then
+		mg1:RemoveCard(tc)
 		local mat1=Duel.SelectFusionMaterial(tp,tc,mg1,nil,chkf)
 		if not s.fzone(tp,mat1,tc) then return end
 		tc:SetMaterial(mat1)

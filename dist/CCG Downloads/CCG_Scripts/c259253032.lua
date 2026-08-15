@@ -89,9 +89,10 @@ function s.rmlimit(e,c,rp,r,re)
 end
 function s.normalfilter(c)
 	return c:IsCode(CARD_BITRON,CARD_PROTRON,CARD_DIGITRON)
+		and (not c:IsLocation(LOCATION_ONFIELD) or c:IsFaceup())
 end
 function s.tricount(tp)
-	local g=Duel.GetMatchingGroup(s.normalfilter,tp,LOCATION_MZONE+LOCATION_GRAVE,0,nil)
+	local g=Duel.GetMatchingGroup(s.normalfilter,tp,LOCATION_ONFIELD+LOCATION_GRAVE,0,nil)
 	return g:GetClassCount(Card.GetCode)
 end
 function s.ctcon(e,tp,eg,ep,ev,re,r,rp)

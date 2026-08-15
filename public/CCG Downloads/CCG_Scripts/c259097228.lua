@@ -20,7 +20,7 @@ function s.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_FIELD)
 	e2:SetCode(EFFECT_CHANGE_RACE)
 	e2:SetRange(LOCATION_MZONE)
-	e2:SetTargetRange(LOCATION_MZONE+LOCATION_GRAVE+LOCATION_REMOVED,LOCATION_MZONE+LOCATION_GRAVE+LOCATION_REMOVED)
+	e2:SetTargetRange(LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_REMOVED,LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_REMOVED)
 	e2:SetTarget(s.racetg)
 	e2:SetValue(RACE_BEAST)
 	c:RegisterEffect(e2)
@@ -42,7 +42,7 @@ s.listed_series={SET_AIP}
 function s.immval(e,re)
 	local rc=re:GetHandler()
 	return rc and rc:IsType(TYPE_MONSTER) and rc:IsRace(RACE_BEAST)
-		and re:GetOwnerPlayer()==1-e:GetHandlerPlayer()
+		and re:GetHandlerPlayer()==1-e:GetHandlerPlayer()
 		and re:GetActivateLocation()==LOCATION_MZONE
 end
 function s.matmatch(e,c)

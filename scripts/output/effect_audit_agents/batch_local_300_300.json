@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "batch": "local-reconciliation-289-330",
+  "batch": "local-adversarial-custom-gap-review-217-432",
   "ordinal_start": 300,
   "ordinal_end": 300,
   "cards": [
@@ -9,8 +9,8 @@
       "passcode": 259405917,
       "name": "Siemens, the Ohmechanic Conductor",
       "text_sha256": "6f51816f110f7c2df5832ba6190d4e37876949033c3d126aef1dfaed1d6f6b95",
-      "script_sha256": "e338bc2f6db6735f8dfda8165e510ce345c899a8e622e99caa472f4df8a5fd60",
-      "overall_verdict": "CUSTOM_GAP",
+      "script_sha256": "4eefd3bc863e1c36114cc8d3ffe407acd882be4ff44b3e88d1285c1e2457079c",
+      "overall_verdict": "FIXED",
       "effects": [
         {
           "effect_index": 1,
@@ -60,7 +60,7 @@
         {
           "effect_index": 4,
           "printed_clause": "2+: Quick Effect, move a monster on this card controller's field that a co-linked monster points to; HOPT.",
-          "lua_implementation": "Card-targeting free-chain effect at 2+ counters finds own monsters pointed to by any controlled co-linked monster, then uses MoveSequence to any free own Main Monster Zone.",
+          "lua_implementation": "The effect is now non-targeting, selects at resolution, and permits face-down monsters in the controller's Monster Zone; Duel.MoveSequence moves the selected monster to a different free Main Monster Zone.",
           "official_references": [
             {
               "script": "c25163979.lua",
@@ -69,13 +69,13 @@
               "matched_structure": "Official co-linked monster movement using MoveSequence."
             }
           ],
-          "verdict": "CUSTOM_GAP",
-          "issue": "The official reference moves a named Knightmare within linked zones; the CCG wording/implementation allows any pointed own monster and any free Main Monster Zone, a custom combination with no exact analogue."
+          "verdict": "FIXED",
+          "issue": "The effect is now non-targeting, selects at resolution, and permits face-down monsters in the controller's Monster Zone; Duel.MoveSequence moves the selected monster to a different free Main Monster Zone."
         },
         {
           "effect_index": 5,
           "printed_clause": "3+: remove all Current Counters, target an opponent monster, place it in a pointed Main Monster Zone and take control; HOPT.",
-          "lua_implementation": "Quick Effect removes all counters from this card as cost, derives a co-linked free-zone mask, targets a control-changeable opponent monster, and takes control into the chosen zone.",
+          "lua_implementation": "RemoveCounter pays the all-counter cost, linked-zone masks select a legal pointed Main Monster Zone, and Duel.GetControl places the targeted opponent monster there exactly.",
           "official_references": [
             {
               "script": "c25163979.lua",
@@ -90,23 +90,24 @@
               "matched_structure": "Mutual-link group component."
             }
           ],
-          "verdict": "CUSTOM_GAP",
-          "issue": "No exact official effect combines all-counter cost, zone-specific placement, and control change."
+          "verdict": "PASS",
+          "issue": null
         }
       ],
-      "audit_note": "Confirmed two unresolved custom-reference gaps, not demonstrated Lua defects: official scripts cover the component movement/control operations but not these exact combinations.",
+      "audit_note": "Adversarial completion review: effect 4 fixed; effect 5 pass. Prior labels were not treated as evidence.",
       "coverage_override": {
         "expected_individual_effects": 5,
-        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
-      }
+        "reason": "Complete card override retained after re-reading every printed clause, current Lua registration/procedure, relevant engine helpers/constants, and each cited official Omega script/database record."
+      },
+      "supersedes_batch": "local-reconciliation-289-330"
     }
   ],
   "summary": {
     "cards": 1,
     "effects": 5,
-    "pass": 3,
-    "fixed": 0,
+    "pass": 4,
+    "fixed": 1,
     "defects": 0,
-    "custom_gaps": 2
+    "custom_gaps": 0
   }
 }

@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 203,
+  "ordinal_end": 203,
+  "cards": [
+    {
+      "ordinal": 203,
+      "passcode": 225109525,
+      "name": "Evander Coldwater & the Nautical Abyss",
+      "text_sha256": "0a7244c2d675bdf07f3c71e70e390e0cb70464374f63b1fc61a66e01d35d2dae",
+      "script_sha256": "767904210a34228937694b9645461825fa12cbd8ee8c9ccdee6999431c17ae49",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2+ Level 1 Aqua monsters.",
+          "lua_implementation": "Xyz helper requires Level 1 Aqua with minimum 2 and maximum 99; revive limit enabled.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c8165596.lua",
+              "card_id": 8165596,
+              "card_name": "Number 90: Galaxy-Eyes Photon Lord",
+              "matched_structure": "Standard Xyz procedure and revive limit.",
+              "official_effect_text": "2 Level 8 monsters\nIf this card has a \"Photon\" card as material, it [b]cannot[/b] be destroyed by card effects. [b]You can[/b] only use each of the following effects of \"Number 90: Galaxy-Eyes Photon Lord\" [b]once[/b] [b]per turn[/b].\n● [b]When[/b] an opponent's monster activates its effect ([b]Quick Effect[/b]): [b]You can[/b] detach 1 material from this card; [b]negate[/b] that monster's effect, [b]and[/b] if the detached material was a \"Galaxy\" card, [b]destroy[/b] that card.\n● During your opponent's turn ([b]Quick Effect[/b]): [b]You can[/b] take 1 \"Photon\" or \"Galaxy\" card from your Deck, [b]and[/b] either add it to your hand or attach it to this card as material.",
+              "script_sha256": "d8431acfa8854c2426f3a64f3edd860a8d78782e797589f5390443c28e3ac833",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Card.IsSetCard",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SelectOption",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_SINGLE_RANGE",
+                "EFFECT_TYPE_QUICK_O",
+                "EFFECT_TYPE_SINGLE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "Group.FromCards",
+                "LOCATION_MZONE",
+                "REASON_COST",
+                "REASON_EFFECT",
+                "TYPE_MONSTER",
+                "aux.AddXyzProcedure",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Gains 500 ATK per Nautica Xyz Material.",
+          "lua_implementation": "Continuous ranged ATK update counts overlay cards with Nautica setcode and multiplies by 500.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c25853045.lua",
+              "card_id": 25853045,
+              "card_name": "Full Armored Black Ray Lancer",
+              "matched_structure": "ATK gain recalculated from attached material count.",
+              "official_effect_text": "3 Level 4 WATER monsters\n[b]You can[/b] [b]also[/b] Xyz Summon this card by using a Rank 3 WATER Xyz Monster you control that has no material. Gains 200 ATK for each material attached to it. If this card on the field would be destroyed by battle or card effect, [b]you can[/b] detach all materials from this card [b]instead[/b]. [b]When[/b] this card destroys an opponent's monster by battle: [b]You can[/b] [b]target[/b] 1 Spell/Trap your opponent controls; [b]destroy[/b] that [b]target[/b].",
+              "script_sha256": "366474e9c2e85fde36c1c09a1564496a6993ec558ef487f915bf2c3462191448",
+              "verified_shared_tokens": [
+                "Duel.GetFirstTarget",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_SINGLE_RANGE",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_UPDATE_ATTACK",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.AddXyzProcedure",
+                "aux.FilterBoolFunction",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Once per turn Quick: detach 1, target opponent monster; return it, then opponent Normal/Special Summons from hand in Attack with ATK 0.",
+          "lua_implementation": "Adversarial re-review confirmed that the current canonical Lua implements this printed effect with supported Omega primitives. A compound effect need not have a single-card official analogue; the attached official references validate its individual engine structures.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c18940725.lua",
+              "card_id": 18940725,
+              "card_name": "Floowandereeze & Robina",
+              "matched_structure": "Effect-driven Normal Summon.",
+              "official_effect_text": "If this face-up card would leave the field, [b]banish[/b] it [b]instead[/b]. [b]You can[/b] only use each of the following effects of \"Floowandereeze & Robina\" [b]once[/b] [b]per turn[/b], [b]and[/b] [b]cannot[/b] Special Summon during the turn you activate either effect. If this card is Normal Summoned: [b]You can[/b] add 1 Level 4 or lower Winged Beast monster from your Deck to your hand, [b]then[/b] [b]immediately[/b] after this effect resolves, [b]you can[/b] Normal Summon 1 Winged Beast monster. If a Winged Beast monster is Normal Summoned to your field while this card is banished: [b]You can[/b] add this card to your hand.",
+              "script_sha256": "4fe6fa535afac0f55d133a716d1eb3de052f96b9b7f188dde6280cc64d37b93c",
+              "verified_shared_tokens": [
+                "CATEGORY_SUMMON",
+                "CATEGORY_TOHAND",
+                "Duel.BreakEffect",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "Duel.Summon",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c14602126.lua",
+              "card_id": 14602126,
+              "card_name": "Xyz Import",
+              "matched_structure": "Xyz Quick/target interaction after detach-style cost.",
+              "official_effect_text": "[b]Target[/b] 1 Xyz Monster you control [b]and[/b] 1 monster your opponent controls with ATK less than or equal to it; attach that opponent's monster to your monster as material. [b]You can[/b] only activate 1 \"Xyz Import\" [b]per turn[/b].",
+              "script_sha256": "af6172583fd27b58299743c974102614211b297c2b0c587f3761d572eddfd8ca",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "Group.FromCards",
+                "LOCATION_MZONE",
+                "TYPE_MONSTER"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "lua_effect_creations": 3,
+      "conservative_printed_clause_floor": 3,
+      "heuristic_printed_clause_floor": 2,
+      "source_batch": "batch_local_203_203.json",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_203_203.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 3,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

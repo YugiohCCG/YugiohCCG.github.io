@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "batch": "batch-8c-local-reconciliation",
+  "ordinal_start": 540,
+  "ordinal_end": 540,
+  "cards": [
+    {
+      "ordinal": 540,
+      "passcode": 259253032,
+      "name": "Glitchling Hexatron",
+      "text_sha256": "d3d095becf9075edff6fd22b8f33948b6212685dfce9e64047f5271822f38981",
+      "script_sha256": "9f49a6b8158203a59ffa28c312ea784325ca5f3bf11de08373f45adf0c35f8cd",
+      "overall_verdict": "CUSTOM_GAP",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Fresh semantic segmentation found 4 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "Link Summoning procedure (no material line is present in the current printed text).",
+          "lua_implementation": "AddLinkProcedure requires 2 or 3 Cyberse monsters for this Link-3 monster, followed by EnableReviveLimit; the current printed text still supplies no material line against which that choice can be proven.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c30741503.lua",
+              "card_id": 30741503,
+              "matched_structure": "Official \"Orcust\" Link procedure requiring Effect Monsters and an archetype member.",
+              "card_name": "Galatea, the Orcust Automaton"
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Retained as a genuine source ambiguity: a Link Monster needs a material procedure, but the preserved printed text omits the material line entirely. No official reference can determine whether the intended requirement was 2+, exactly 3, Effect Monsters, Cyberse monsters, or an archetype-specific group. The existing 2-3 Cyberse procedure is playable, but cannot be semantically certified without changing or clarifying printed text.",
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "If Link Summoned: add 1 Cyberse Ritual Monster from Deck/face-up Extra Deck and 1 Ritual Spell or Cyberse Normal Monster from GY/face-up banishment; HOPT.",
+          "lua_implementation": "A delayed Link-Summon-success trigger with id count limit requires both pools, selects one from each, merges them, sends both to hand, and confirms them.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c3629090.lua",
+              "card_id": 3629090,
+              "matched_structure": "Summon-success search from Deck/GY with hand confirmation.",
+              "card_name": "Cyber Angel Idaten"
+            },
+            {
+              "script": "tmp/omega_scripts/c29596581.lua",
+              "card_id": 29596581,
+              "matched_structure": "Adds an eligible face-up banished or GY card to hand.",
+              "card_name": "Thunder Dragonroar"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        },
+        {
+          "printed_clause": "Cannot be banished or destroyed by the opponent's cards or effects.",
+          "lua_implementation": "A single-range EFFECT_INDESTRUCTABLE_EFFECT uses aux.indoval; a field EFFECT_CANNOT_REMOVE targets only this card when the reason is an opponent effect and not a redirect.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c975299.lua",
+              "card_id": 975299,
+              "matched_structure": "Opponent-effect destruction protection through aux.indoval.",
+              "card_name": "B.E.F. Zelos"
+            },
+            {
+              "script": "tmp/omega_scripts/c30459350.lua",
+              "card_id": 30459350,
+              "matched_structure": "Field-level EFFECT_CANNOT_REMOVE banishment prevention.",
+              "card_name": "Imperial Iron Wall"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 3
+        },
+        {
+          "printed_clause": "Quick Effect: remove all Corruption Counters from an opponent monster as cost; destroy 1 controlled \"Glitchling\" Monster Card or Cyberse Normal Monster, then negate that opponent monster and gain 200 ATK per removed counter; uses per turn up to differently named Bitron/Protron/Digitron in your field or GY.",
+          "lua_implementation": "The free-chain counter-removal effect is unchanged, but its per-turn cap now gathers the three exact named cards from LOCATION_ONFIELD+LOCATION_GRAVE, requires named cards on the field to be face-up, and counts different codes with GetClassCount.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c11155484.lua",
+              "card_id": 11155484,
+              "matched_structure": "Destroy a controlled named card, then negate/destroy the related opposing activation.",
+              "card_name": "Crystal Miracle"
+            },
+            {
+              "script": "tmp/omega_scripts/c28903523.lua",
+              "card_id": 28903523,
+              "matched_structure": "A per-turn use cap derived from a live field count and temporary effect negation.",
+              "card_name": "Eternal Sunshine"
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the old cap omitted face-up named cards in the Spell/Trap Zone and counted face-down Monster Zone cards. It now covers the full field plus GY while excluding face-down on-field identities.",
+          "effect_index": 4
+        }
+      ],
+      "supersedes_batch": "batch_8c_539_555.json",
+      "reconciliation_note": "All batch_8c findings for this card were re-evaluated against current Lua and the cited official Omega references. Confirmed defects are patched; retained CUSTOM_GAP records explain the remaining engine/source limit."
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 2,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

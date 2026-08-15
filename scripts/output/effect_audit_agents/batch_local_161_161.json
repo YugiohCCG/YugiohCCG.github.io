@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 161,
+  "ordinal_end": 161,
+  "cards": [
+    {
+      "ordinal": 161,
+      "passcode": 236239443,
+      "name": "Restoration of Azrynior",
+      "text_sha256": "9c4ff9e5b538a3cd1db0b1ba38a8437de601d719fd4a6c71fcd798d9bb01aa54",
+      "script_sha256": "2297f9ba9028b89ef7a4eb9ac1b3bce3827367a2726e0a44ef76c4962bfcfb93",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "While controlling Azrynior, Tribute a Protogenic Token, target a monster destroyed by the opponent's card effect this turn; revive it and all other monsters destroyed by the opponent's cards this turn sharing Type, Attribute, Level, ATK or DEF. HOPT.",
+          "lua_implementation": "Adversarial re-review confirmed that the current canonical Lua implements this printed effect with supported Omega primitives. A compound effect need not have a single-card official analogue; the attached official references validate its individual engine structures.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c89558743.lua",
+              "card_id": 89558743,
+              "card_name": "Small World",
+              "matched_structure": "Compares monster Type, Attribute, Level, ATK and DEF as independent characteristics.",
+              "official_effect_text": "Reveal 1 monster in your hand, choose 1 monster from your Deck that has exactly 1 of the same Type, Attribute, Level, ATK or DEF, [b]and[/b] [b]banish[/b] the revealed monster from your hand face-down. [b]Then[/b] add, from the Deck to your hand, 1 monster that has exactly 1 of the same Type, Attribute, Level, ATK or DEF as the monster chosen from your Deck, [b]and[/b] [b]banish[/b] the card chosen from the Deck face-down. [b]You can[/b] only activate 1 \"Small World\" [b]per turn[/b].",
+              "script_sha256": "d915cd79fe00789eb8fa1ad8d662d7c116cf371f9ab3e3791c812c5fea7b548f",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_ACTIVATE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "REASON_EFFECT",
+                "TYPE_MONSTER"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c23015896.lua",
+              "card_id": 23015896,
+              "card_name": "Fire King High Avatar Garunix",
+              "matched_structure": "Tracks destruction by card effect and performs a delayed follow-up.",
+              "official_effect_text": "[b]Once[/b] [b]per turn[/b], during the next [b]Standby Phase[/b] after this card was destroyed by card effect [b]and[/b] sent to the GY: Special Summon this card from the GY. If you do: [b]Destroy[/b] all other monsters on the field. [b]When[/b] this card is destroyed by battle [b]and[/b] sent to the GY: [b]You can[/b] Special Summon 1 \"Fire King\" monster from your Deck, except \"Fire King High Avatar Garunix\".",
+              "script_sha256": "5ac81b3ad6ebdf109b2cd2da7c5f07aa946e3755683d2437036e8ef4a6c5e348",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_CONTINUOUS",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "RESET_PHASE",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 1,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_161_161.json",
+      "lua_effect_creations": 3,
+      "conservative_printed_clause_floor": 1,
+      "heuristic_printed_clause_floor": 2,
+      "source_batch": "batch_local_161_161.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 1,
+    "pass": 1,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch6-plus-gravinity-collateral",
+  "ordinal_start": 383,
+  "ordinal_end": 383,
+  "cards": [
+    {
+      "ordinal": 383,
+      "passcode": 258576611,
+      "name": "Skewy! Candee-Hex",
+      "text_sha256": "9a101577b68d617bfe2daab83e2b1017942de369c3bf29a927ea1ef107836875",
+      "script_sha256": "36aa047dcbb5fe385063a48fcedf12540ce4bf2e300b5158a8aa6cc276f44c40",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If this card is Normal or Special Summoned: Place 1 Candy Counter on 1 face-up monster your opponent controls, or place 2 instead if you control another Skewy! monster.",
+          "lua_implementation": "The optional Normal/Special Summon trigger now uses TRIGGER_O, and both target and operation count two counters only when another face-up Skewy monster is controlled.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c17601919.lua",
+              "card_id": 17601919,
+              "card_name": "Pumprincess the Princess of Ghosts",
+              "matched_structure": "Counter capacity checking and exact counter placement."
+            },
+            {
+              "script": "tmp/omega_scripts/c15005145.lua",
+              "card_id": 15005145,
+              "card_name": "Centur-Ion Primera",
+              "matched_structure": "Cloned Normal/Special Summon triggers sharing a hard once-per-turn key."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: face-down monsters cannot satisfy the public archetype condition. The fresh review also corrected the unprinted mandatory trigger type."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Monsters your opponent controls with Candy Counters cannot activate their effects while you control a Skewy! monster.",
+          "lua_implementation": "The continuous activation lock is enabled only while the controller has a face-up Skewy monster, and applies to opposing monsters carrying Candy Counters.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c74717840.lua",
+              "card_id": 74717840,
+              "card_name": "Landoise's Luminous Moss",
+              "matched_structure": "Field EFFECT_CANNOT_TRIGGER prevents affected monsters from activating effects."
+            },
+            {
+              "script": "tmp/omega_scripts/c73599290.lua",
+              "card_id": 73599290,
+              "card_name": "Soul Drain",
+              "matched_structure": "Continuous monster-effect activation prohibition."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the prior Card.IsSetCard-only condition allowed a face-down monster to establish an archetype-qualified condition."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Also those monsters lose 300 ATK.",
+          "lua_implementation": "The cloned 300 ATK-loss effect shares the corrected face-up Skewy enabling condition and still applies only to opposing monsters with Candy Counters.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c74003290.lua",
+              "card_id": 74003290,
+              "card_name": "Lost Wind",
+              "matched_structure": "Applies a fixed ATK reduction alongside effect suppression."
+            },
+            {
+              "script": "tmp/omega_scripts/c44947065.lua",
+              "card_id": 44947065,
+              "card_name": "Burden of the Mighty",
+              "matched_structure": "Continuous field ATK reduction with a target predicate."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected with the shared condition used by the activation lock."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Quick Effect: You can remove exactly 2 Candy Counters from monsters your opponent controls; draw 1 card or Special Summon 1 Skewy! monster from your Deck in Defense Position, but its effects are negated until the end of this turn.",
+          "lua_implementation": "A free-chain Quick Effect removes exactly two counters from the opponent's Monster Zone as cost, chooses draw or Deck summon at activation, summons in face-up Defense Position, and applies EFFECT_DISABLE/EFFECT_DISABLE_EFFECT through the End Phase.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c18322364.lua",
+              "card_id": 18322364,
+              "card_name": "Big Whale",
+              "matched_structure": "Deck Special Summon with effects negated."
+            },
+            {
+              "script": "tmp/omega_scripts/c17601919.lua",
+              "card_id": 17601919,
+              "card_name": "Pumprincess the Princess of Ghosts",
+              "matched_structure": "Exact counter-removal cost."
+            },
+            {
+              "script": "tmp/omega_scripts/c14816688.lua",
+              "card_id": 14816688,
+              "card_name": "Shuffle Reborn",
+              "matched_structure": "Temporary effect negation with an End Phase reset."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "You can only use each effect of Skewy! Candee-Hex once per turn.",
+          "lua_implementation": "The summon-counter and Quick Effects use id and id+100 hard once-per-turn keys.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15005145.lua",
+              "card_id": 15005145,
+              "card_name": "Centur-Ion Primera",
+              "matched_structure": "Separate named hard once-per-turn effects."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "Five records cover summon counters, Candy-Counter activation lock, ATK loss, counter-removal choice effect, and per-effect HOPT."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 2,
+    "fixed": 3,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

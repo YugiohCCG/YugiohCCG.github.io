@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 248,
+      "passcode": 230812008,
+      "name": "Shining Brigade - Loving Division",
+      "text_sha256": "59167b3c93851eaa9f43d72da652f6415b1658f79ee46b4854eae4ce19419554",
+      "script_sha256": "9f2a13a351d28c0394201de95ae95aebb3eb6c793e8e90308764e02e60821f6d",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "During the Main Phase: You can target 1 \"Shining Brigade\" card in your GY; banish it, and if you do, Special Summon this card from your hand or GY. You can only use this effect of \"Shining Brigade - Loving Division\" once per turn. A \"Shining Brigade\" monster that has this card as material gains the following effect.",
+          "lua_implementation": "A hand/GY Ignition Effect inherently limits activation to the controller Main Phase, targets an archetype GY card, removes it, then Special Summons the related handler; id is a hard limit.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c51858306.lua",
+              "card_id": 51858306,
+              "card_name": "Eclipse Wyvern",
+              "matched_structure": "EVENT_REMOVE after GY",
+              "official_effect_text": "If this card is sent to the GY: [b]Banish[/b] 1 Level 7 or higher LIGHT or DARK Dragon monster from your Deck. If this card is banished from your GY: [b]You can[/b] add the monster banished by this card's effect to your hand.",
+              "script_sha256": "2b98189064141a1ba77c8832891109dbfe4f7966bdfa5735a76f31ed382fcdc0",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "Duel.Hint",
+                "Duel.Remove",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "id-keyed hard/oath turn limits",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "Duel.GetFirstTarget",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "During the Main Phase: You can target 1 \"Shining Brigade\" card in your GY; banish it, and if you do, Special Summon this card from your hand or GY. You can only use this effect of \"Shining Brigade - Loving Division\" once per turn. A \"Shining Brigade\" monster that has this card as material gains the following effect.\n● Once per turn: You can Set 1 \"Shining Brigade\" Trap from your Deck, GY, or banishment (that Set card can be activated this turn).",
+          "lua_implementation": "An EFFECT_TYPE_XMATERIAL Ignition Effect with soft count Sets one legal Trap from all three locations and grants EFFECT_TRAP_ACT_IN_SET_TURN.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c4145852.lua",
+              "card_id": 4145852,
+              "card_name": "Zoodiac Ramram",
+              "matched_structure": "EFFECT_TYPE_XMATERIAL and overlay cost",
+              "official_effect_text": "If this card is destroyed by battle or card effect: [b]You can[/b] [b]target[/b] 1 \"Zoodiac\" monster in your GY, except \"Zoodiac Ramram\"; Special Summon it. An Xyz Monster whose original Type is Beast-Warrior [b]and[/b] has this card as material gains this effect.\n● [b]When[/b] your opponent activates a Trap Card or effect that targets this card ([b]Quick Effect[/b]): [b]You can[/b] detach 1 material from this card; [b]negate[/b] the activation.",
+              "script_sha256": "f03b9c3298ee7d4cd4b1a07306d36b516b84a3028e5c8d0718b87f6c4854280f",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetFirstTarget",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_XMATERIAL",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "TYPE_TRAP",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c80101899.lua",
+              "card_id": 80101899,
+              "card_name": "Trap Trick",
+              "matched_structure": "Set and activate that turn",
+              "official_effect_text": "[b]Banish[/b] 1 Normal Trap from your Deck, except \"Trap Trick\", [b]and if you do[/b], Set 1 card with the same name directly from your Deck. It can be activated this turn. [b]You can[/b] only activate 1 Trap Card for the rest of this turn after this card resolves. [b]You can[/b] only activate 1 \"Trap Trick\" [b]per turn[/b].",
+              "script_sha256": "8a54c4dadfd93abafbf971f9120b73a8198c8cbaff99df418663912a1f24fb0c",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Remove",
+                "Duel.SSet",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_SET_AVAILABLE",
+                "EFFECT_TRAP_ACT_IN_SET_TURN",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_REMOVED",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "TYPE_TRAP",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Main-Phase banish/Summon effect with its HOPT and the material-granted Set-and-activate effect are the two printed effects."
+      }
+    }
+  ]
+}

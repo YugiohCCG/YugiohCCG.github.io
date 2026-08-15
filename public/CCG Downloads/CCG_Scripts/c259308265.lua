@@ -31,6 +31,9 @@ end
 function s.extratg(e,c)
 	return c:IsCode(CASTLE)
 end
+function s.handtribute(e,c)
+	return c:IsType(TYPE_MONSTER) and c:IsReleasable(REASON_SUMMON)
+end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end
@@ -45,4 +48,13 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetTarget(s.extratg)
 	e1:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e1,tp)
+	local e2=Effect.CreateEffect(c)
+	e2:SetType(EFFECT_TYPE_SINGLE)
+	e2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
+	e2:SetCode(EFFECT_ADD_EXTRA_TRIBUTE)
+	e2:SetTargetRange(LOCATION_HAND,0)
+	e2:SetTarget(s.handtribute)
+	e2:SetValue(POS_FACEUP_ATTACK)
+	e2:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
+	tc:RegisterEffect(e2)
 end

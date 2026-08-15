@@ -51,15 +51,8 @@ function s.chcon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.chcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then
-		return (c:IsLocation(LOCATION_HAND) and c:IsAbleToGraveAsCost())
-			or (c:IsLocation(LOCATION_MZONE) and c:IsReleasable())
-	end
-	if c:IsLocation(LOCATION_HAND) then
-		Duel.SendtoGrave(c,REASON_COST+REASON_RELEASE)
-	else
-		Duel.Release(c,REASON_COST)
-	end
+	if chk==0 then return c:IsReleasable() end
+	Duel.Release(c,REASON_COST)
 end
 function s.xyzfilter(c)
 	return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:IsAbleToGrave()

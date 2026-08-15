@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 339,
+  "ordinal_end": 339,
+  "cards": [
+    {
+      "ordinal": 339,
+      "passcode": 228860650,
+      "name": "Arckcestial Orb",
+      "text_sha256": "e4322635311248deb2dd45a1539060297fced31cf05c78d7c24dccd4a0c1551b",
+      "script_sha256": "99531aad16dfa63aa69d901da3d8fe66a27d6d653754a3c8142b6548bcb1b3a5",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "During Main Phase from hand: discard another \"Arckcestial\"; Special Summon this card, then LIGHT Spellcaster-only lock; HOPT.",
+          "lua_implementation": "Main-Phase Quick Effect discards an archetype card as cost, summons self, then registers an end-turn Special Summon filter; id HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10182251.lua",
+              "card_id": 10182251,
+              "card_name": "Lyrilusc - Beryl Canary",
+              "matched_structure": "Quick self-summon with archetype/Attribute rest-of-turn summon lock."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "From GY while controlling an \"Arckcestial\" Xyz: target one and attach this card as material; HOPT.",
+          "lua_implementation": "GY Quick Effect checks a face-up archetype Xyz, targets it, verifies overlay/Necrovalley legality, and overlays this handler; separate HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c6812770.lua",
+              "card_id": 6812770,
+              "card_name": "Performage Cup Tricker",
+              "matched_structure": "Target an archetype Xyz and attach this card as material."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The hand Quick Effect includes the discard, self-Summon, LIGHT Spellcaster lock, and HOPT. The GY Quick Effect includes its Xyz-control condition, attachment operation, and separate HOPT."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch3-coverage-reconciliation",
+  "ordinal_start": 171,
+  "ordinal_end": 171,
+  "cards": [
+    {
+      "ordinal": 171,
+      "passcode": 246496923,
+      "name": "Aldrez Grandmaster",
+      "text_sha256": "0bea3cbf3942d8c098d458a4cb94e8b8e77060c9811a2861b14640c7c9109432",
+      "script_sha256": "44d4fcc906b58dbbda73f6ffac0ccc7cb6d7cd1441aa79dc3407d8666b55c9c4",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "When an Aldrez battles, opponent cannot activate Spell/Trap Cards or effects through the Damage Step.",
+          "lua_implementation": "Field CANNOT_ACTIVATE effect is live while attacker or battle target is own face-up Aldrez and blocks opponent Spell/Trap active types.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c4810585.lua",
+              "card_id": 4810585,
+              "card_name": "Ancient Warriors Saga - Defense of Changban",
+              "matched_structure": "Field effect suppresses opponent Spell/Trap activations while an archetype monster battles through the Damage Step."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Main Phase: reveal hand Aldrez or target controlled Aldrez; Special Summon a different-name Aldrez from hand/banishment with the same Link/non-Link type. HOPT.",
+          "lua_implementation": "Ignition selects from hand or field, reveals/shuffles hand or targets field appropriately, records code and Link status, then Special Summons a face-up banished/hand different-name match; HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c6812770.lua",
+              "card_id": 6812770,
+              "card_name": "Performage Cup Tricker",
+              "matched_structure": "Reveal/record a card characteristic and later select a matching summon candidate."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The battle-time Spell/Trap activation lock is one continuous effect, while the reveal-or-target and same-Type Special Summon procedure plus HOPT form one activated effect."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

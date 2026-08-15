@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 306,
+  "ordinal_end": 306,
+  "cards": [
+    {
+      "ordinal": 306,
+      "passcode": 259434499,
+      "name": "Ohmen Powerload",
+      "text_sha256": "bbff55673b95d32d5b9e43f4dcc9eaa07b1d84bb17551225f874aefc305b5ebe",
+      "script_sha256": "484af90753a26412ace9c39eda553749b835982e85e82b971a61e2fff7163525",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Activate one: negate a targeted opponent Effect Monster, then optionally remove 2 Current Counters and destroy an opponent card; OR Special Summon an \"Ohmen\" from Deck.",
+          "lua_implementation": "Activation chooses a legal branch; branch one targets and continuously disables the monster, optionally removes exactly two distributed counters at resolution and non-target destroys; branch two Special Summons a filtered Deck Ohmen.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c1508649.lua",
+              "card_id": 1508649,
+              "card_name": "Altergeist Hexstia",
+              "matched_structure": "Target/effect negation and follow-up operation structure."
+            },
+            {
+              "script": "tmp/omega_scripts/c42790071.lua",
+              "card_id": 42790071,
+              "card_name": "Altergeist Multifaker",
+              "matched_structure": "Archetypal monster Special Summon from Deck."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Only 1 activation per turn, and after activation only Thunder monsters may be Special Summoned.",
+          "lua_implementation": "Oath count limit and custom activity counter forbid activation after a prior non-Thunder summon and register an end-turn non-Thunder Special Summon lock as activation cost.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10182251.lua",
+              "card_id": 10182251,
+              "card_name": "Lyrilusc - Beryl Canary",
+              "matched_structure": "All-turn summon-history check plus rest-of-turn type/archetype summon lock."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The two printed bullets are mutually exclusive branches of one activation effect and are fully covered together. The shared activation HOPT and Thunder-only Summon oath are covered by record 2."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 337,
+  "ordinal_end": 337,
+  "cards": [
+    {
+      "ordinal": 337,
+      "passcode": 241440521,
+      "name": "Arckcestial Feather",
+      "text_sha256": "d610410647d20d6f85eb98d3adf2045da80ca801bf0bf9a7d5cb30d6fca66ffe",
+      "script_sha256": "d9b513b7fb6f63b770ccc41a0841e61b0a5d1e5f5fee3195769c133c1f37badd",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If Normal/Special Summoned: add another \"Arckcestial\", then Normal/Special Summon only LIGHT Spellcasters for rest turn; HOPT.",
+          "lua_implementation": "Cloned summon triggers search another archetype card and always register both cannot-Normal-Summon and cannot-Special-Summon filters through end turn; id HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c40044918.lua",
+              "card_id": 40044918,
+              "card_name": "Elemental HERO Stratos",
+              "matched_structure": "Summon-triggered archetype search with HOPT."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If sent as Synchro Material for a LIGHT monster: target another Level 4 or lower \"Arckcestial\" in GY and add it; HOPT.",
+          "lua_implementation": "Delayed material trigger checks Synchro reason/LIGHT reason card, targets a Necrovalley-legal candidate, and returns it under separate HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c9742784.lua",
+              "card_id": 9742784,
+              "card_name": "Jet Synchron",
+              "matched_structure": "Sent-as-Synchro-Material search/recovery trigger."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Summon search plus Normal/Special Summon lock is one compound effect; the LIGHT Synchro-material GY recovery is the second, and both records include their HOPTs."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

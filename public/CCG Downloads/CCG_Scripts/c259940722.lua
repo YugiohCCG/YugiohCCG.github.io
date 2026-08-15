@@ -41,7 +41,7 @@ function s.initial_effect(c)
 	e4:SetCondition(s.con4)
 	e4:SetValue(s.immval)
 	c:RegisterEffect(e4)
-	--4+ materials: while this Fusion Summoned card is in its Summon turn, you cannot Special Summon
+	--While this Fusion Summoned card is in its Summon turn, you cannot Special Summon
 	local e5=Effect.CreateEffect(c)
 	e5:SetType(EFFECT_TYPE_FIELD)
 	e5:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
@@ -98,7 +98,7 @@ function s.immval(e,re)
 end
 function s.lockcon(e)
 	local c=e:GetHandler()
-	return c:IsSummonType(SUMMON_TYPE_FUSION) and c:IsStatus(STATUS_SPSUMMON_TURN) and s.matcount(c)>=4
+	return c:IsSummonType(SUMMON_TYPE_FUSION) and c:IsStatus(STATUS_SPSUMMON_TURN)
 end
 function s.descon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

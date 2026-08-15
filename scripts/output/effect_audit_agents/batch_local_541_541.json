@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "batch": "batch-8c-local-reconciliation",
+  "ordinal_start": 541,
+  "ordinal_end": 541,
+  "cards": [
+    {
+      "ordinal": 541,
+      "passcode": 259485374,
+      "name": "Heart of the Cards",
+      "text_sha256": "52db6de65e03663d632e2961aaa3a934e054db4dec3a414d2b6e14d2f52c53a3",
+      "script_sha256": "57cd49efff41bb3f0634c5c613ff96076e7984d7eb7e1656aae95502a17605c4",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 1,
+        "reason": "Fresh semantic segmentation found 1 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "Activate by declaring a card name; during the opponent's next End Phase they choose that named card and another card from your Deck, then put both on top in random order; one activation per turn.",
+          "lua_implementation": "The activation target function now announces and stores the card code at activation, following Akashic Magician's official CHAININFO_TARGET_PARAM pattern. The delayed opponent-End-Phase operation selects the declared and other card, randomly chooses their relative top order, calls DisableShuffleCheck, and moves only those two cards without shuffling the rest of the Deck.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c28776350.lua",
+              "card_id": 28776350,
+              "matched_structure": "Duel.AnnounceCard is performed in the target/activation-declaration function and stored as chain target data.",
+              "card_name": "Akashic Magician"
+            },
+            {
+              "script": "tmp/omega_scripts/c29107423.lua",
+              "card_id": 29107423,
+              "matched_structure": "Selects cards from the Deck and places selected cards on top without shuffling away the pre-existing Deck order as an unrelated action.",
+              "card_name": "Ruddy Rose Witch"
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: declaration formerly occurred at resolution and Duel.ShuffleDeck reordered the entire Deck. Declaration is now part of activation and only the chosen pair's order is randomized.",
+          "effect_index": 1
+        }
+      ],
+      "supersedes_batch": "batch_8c_539_555.json",
+      "reconciliation_note": "All batch_8c findings for this card were re-evaluated against current Lua and the cited official Omega references. Confirmed defects are patched; retained CUSTOM_GAP records explain the remaining engine/source limit."
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 1,
+    "pass": 0,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

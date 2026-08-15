@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "batch": "local-521-reconciliation",
+  "ordinal_start": 521,
+  "ordinal_end": 521,
+  "cards": [
+    {
+      "ordinal": 521,
+      "passcode": 259464700,
+      "name": "Scarstech Invader",
+      "text_sha256": "20fc4abcc476cd53c544cb67ec19c1af0458392a7335ac60257718c92649c48a",
+      "script_sha256": "3abadee2f43492e226475c94ec80db807e1efa92461b8bca5e6cab759f11a9a6",
+      "overall_verdict": "FIXED",
+      "coverage_override": {"expected_individual_effects": 2, "reason": "The send-self cost, temporary control, and type changes form one Chain-Link-3 Quick Effect; Chain-Link-5 and Scarstech activation are alternative conditions of one GY self-Summon effect."},
+      "effects": [
+        {"effect_index": 1, "printed_clause": "When a card or effect is activated as Chain Link 3 or higher (Quick Effect): You can send this card from your hand or field to the GY; take control of 1 monster your opponent controls until the End Phase, also it becomes a DARK Galaxy monster.", "lua_implementation": "The EVENT_CHAINING Quick Effect with id HOPT now has range LOCATION_HAND+LOCATION_MZONE+LOCATION_SZONE, so this original Monster Card can activate from either printed source. It requires current chain at least 3, sends itself to the GY as cost, non-target-selects a changeable opposing monster, takes control through the End Phase, and applies End-Phase-reset DARK attribute and Galaxy race changes. Target legality correctly accounts for a freed Monster Zone only when the handler began in MZONE.", "official_references": [{"script": "tmp/omega_scripts/c71801447.lua", "card_id": 71801447, "card_name": "Enneacraft - Atil.SPIA", "matched_structure": "Official EVENT_CHAINING Quick Effect checks Duel.GetCurrentChain()>2 for Chain Link 3 or higher."}, {"script": "tmp/omega_scripts/c10604644.lua", "card_id": 10604644, "card_name": "Therion \"King\" Regulus", "matched_structure": "Official Monster Card cost filter accepts original Monster Cards across LOCATION_HAND+LOCATION_ONFIELD and sends the selected card to the GY as cost."}, {"script": "tmp/omega_scripts/c98045062.lua", "card_id": 98045062, "card_name": "Enemy Controller", "matched_structure": "Official effect takes control of one opponent monster until the End Phase with Duel.GetControl."}], "verdict": "FIXED", "issue": "Fixed: the activation range now includes LOCATION_SZONE, so an on-field Scarstech Invader treated as a Spell/Trap can pay the printed 'hand or field' self-send cost."},
+        {"effect_index": 2, "printed_clause": "When a card or effect is activated as Chain Link 5 or higher, or when a \"Scarstech\" card or effect is activated while this card is in your GY (Quick Effect): You can Special Summon this card.", "lua_implementation": "A GY EVENT_CHAINING Quick Effect with id+100 accepts Duel.GetCurrentChain()>=5 or an activating handler with the Scarstech set code, excluding this handler itself. Target and operation both enforce Monster Zone capacity, Necrovalley, relatedness, and self-Summon legality before reviving it.", "official_references": [{"script": "tmp/omega_scripts/c19162134.lua", "card_id": 19162134, "card_name": "Dueltaining", "matched_structure": "Official chain-sensitive effect uses Duel.GetCurrentChain()>=5 to recognize Chain Link 5 or higher."}, {"script": "tmp/omega_scripts/c66102515.lua", "card_id": 66102515, "card_name": "Kurikurinku @Ignister", "matched_structure": "Official GY effect checks summon legality and Necrovalley before Special Summoning its handler."}], "verdict": "PASS", "issue": null}
+      ]
+    }
+  ]
+}

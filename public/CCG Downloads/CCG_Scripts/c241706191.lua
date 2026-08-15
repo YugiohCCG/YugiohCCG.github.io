@@ -162,14 +162,17 @@ function s.equip_atk(ec,val)
 	e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 	ec:RegisterEffect(e1)
 end
-function s.eqspellfilter(c)
-	return c:IsFaceup() and c:IsType(TYPE_EQUIP) and c:GetEquipTarget()~=nil
+function s.eqspellfilter(c,tp)
+	local tc=c:GetEquipTarget()
+	return c:IsFaceup() and c:IsType(TYPE_EQUIP) and tc and tc:IsControler(tp)
 end
 function s.sabreval(e,c)
-	return Duel.GetMatchingGroupCount(s.eqspellfilter,c:GetControler(),LOCATION_SZONE,0,nil)*500
+	local tp=c:GetControler()
+	return Duel.GetMatchingGroupCount(s.eqspellfilter,tp,LOCATION_SZONE,0,nil,tp)*500
 end
 function s.shieldval(e,c)
-	return Duel.GetMatchingGroupCount(s.eqspellfilter,c:GetControler(),LOCATION_SZONE,0,nil)*500
+	local tp=c:GetControler()
+	return Duel.GetMatchingGroupCount(s.eqspellfilter,tp,LOCATION_SZONE,0,nil,tp)*500
 end
 function s.battle_replace(ec)
 	local e1=Effect.CreateEffect(ec)

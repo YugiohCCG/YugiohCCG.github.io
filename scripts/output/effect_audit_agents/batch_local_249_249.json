@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 249,
+      "passcode": 220124524,
+      "name": "Shining Brigade - Heartbeat Division",
+      "text_sha256": "017abc72700123174621ad0737322981fa84c7a3fd10c723221843a75699bda6",
+      "script_sha256": "8983f21de227aea7ca4027bcffd6a5178e52bb35dd8b3ffd0ad41a3a9d79ec25",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If this card is Normal or Special Summoned: you can Special Summon 1 \"Shining Brigade\" monster from your hand.",
+          "lua_implementation": "Cloned delayed summon triggers perform the archetype hand Summon.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "shared Normal/Special triggers",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "EVENT_SUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "TYPE_MONSTER",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You cannot Special Summon monsters the turn you use this effect, except \"Shining Brigade\" monsters.",
+          "lua_implementation": "A custom activity counter checks prior Summons; an oath field restriction lasts through PHASE_END and the clones share id.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c44362883.lua",
+              "card_id": 44362883,
+              "card_name": "Branded Fusion",
+              "matched_structure": "full-turn activity/oath Summon lock",
+              "official_effect_text": "Fusion Summon 1 Fusion Monster that mentions \"Fallen of Albaz\" as material from your Extra Deck, using 2 monsters from your hand, Deck, or field. You [b]cannot[/b] Special Summon from the Extra Deck, except Fusion Monsters, the turn you activate this card. [b]You can[/b] only activate 1 \"Branded Fusion\" [b]per turn[/b].",
+              "script_sha256": "a78b719f2f7bef65a2afac1c29f75f917548fe6952d5dd2c3f1b92c39635c96a",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.AddCustomActivityCounter",
+                "Duel.GetCustomActivityCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.RegisterEffect",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_CANNOT_SPECIAL_SUMMON",
+                "EFFECT_FLAG_OATH",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "RESET_PHASE",
+                "TYPE_MONSTER"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "id-keyed hard/oath turn limits",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "EVENT_SUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "TYPE_MONSTER",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is Normal or Special Summoned: you can Special Summon 1 \"Shining Brigade\" monster from your hand. You cannot Special Summon monsters the turn you use this effect, except \"Shining Brigade\" monsters. You can only use this effect of \"Shining Brigade - Heartbeat Division\" once per turn. A \"Shining Brigade\" monster that has this card as material gains the following effect.\n● Once per turn, when your opponent activates a monster effect: You can detach 1 material from this card; banish that monster.",
+          "lua_implementation": "On EVENT_BE_MATERIAL for a 0x7a34 Xyz, efop registers a holder Quick Effect with soft count; it removes one overlay as cost and banishes the activating monster if still related.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c4145852.lua",
+              "card_id": 4145852,
+              "card_name": "Zoodiac Ramram",
+              "matched_structure": "EFFECT_TYPE_XMATERIAL and overlay cost",
+              "official_effect_text": "If this card is destroyed by battle or card effect: [b]You can[/b] [b]target[/b] 1 \"Zoodiac\" monster in your GY, except \"Zoodiac Ramram\"; Special Summon it. An Xyz Monster whose original Type is Beast-Warrior [b]and[/b] has this card as material gains this effect.\n● [b]When[/b] your opponent activates a Trap Card or effect that targets this card ([b]Quick Effect[/b]): [b]You can[/b] detach 1 material from this card; [b]negate[/b] the activation.",
+              "script_sha256": "f03b9c3298ee7d4cd4b1a07306d36b516b84a3028e5c8d0718b87f6c4854280f",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_QUICK_O",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_CHAINING",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "REASON_COST",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The Summon-triggered hand Summon, its full-turn archetype lock, and the material-granted monster-effect response (including the trigger HOPT) are three complete audit units."
+      }
+    }
+  ]
+}

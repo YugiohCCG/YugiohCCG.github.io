@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconcile-525",
+  "ordinal_start": 525,
+  "ordinal_end": 525,
+  "cards": [
+    {
+      "ordinal": 525,
+      "passcode": 259023461,
+      "name": "Disciple of Fire",
+      "text_sha256": "780808473dd826a0cc4ce5f4acb871764d2fc87a3dd136f368a7580722fd101d",
+      "script_sha256": "fa240c47e26b34ce8ab9a7601d4c5e9d3114f5899c4a897e487fd017b2b59a32",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The reveal/search effect and the two separately selectable LP-payment branches are three independently limited effects. The website's rendered source card at public/assets/cards/Disciple_of_Fire.png authoritatively supplies the omitted destination as the hand."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "You can reveal this card in your hand; add 1 \"Phlogistic Uprising!\" from your Deck to your hand.",
+          "lua_implementation": "A hand Ignition Effect with id HOPT reveals and reshuffles the handler, then searches passcode 257239133 from the Deck, sends it to the hand, and confirms it. The structured card text was corrected to 'hand' from the repository's rendered card image, rather than inferred from this Lua.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c26674724.lua",
+              "card_id": 26674724,
+              "card_name": "Nekroz of Brionac",
+              "matched_structure": "Official hand-activated Ritual-monster search uses a hand cost, Deck filtering, SendtoHand, confirmation, and hard once-per-turn structure."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "The structured text previously ended 'from your Deck to your .'. The independently rendered authoritative card image public/assets/cards/Disciple_of_Fire.png reads 'from your Deck to your hand'; src/data/cards.json and its public data mirror now match that source and the existing Lua."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If you pay LP while this card is in your GY: You can activate 1 of these effects. Once, while this card is in your GY: Discard 1 card, then add 1 FIRE monster from your GY to your hand. You can only use each effect of \"Disciple of Fire\" once per turn.",
+          "lua_implementation": "An optional delayed EVENT_PAY_LPCOST trigger in the GY offers this branch only if unused during the current GY stay and turn; resolution discards one card, adds a FIRE monster through Necrovalley, and sets both the per-stay card flag and per-turn player flag.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c35606858.lua",
+              "card_id": 35606858,
+              "card_name": "Masterking Archfiend",
+              "matched_structure": "Official optional EVENT_PAY_LPCOST trigger responds for the player who paid LP and performs a filtered follow-up operation."
+            },
+            {
+              "script": "tmp/omega_scripts/c17827173.lua",
+              "card_id": 17827173,
+              "card_name": "Floowandereeze & Toccan",
+              "matched_structure": "Official turn-limited retrieval from a non-Deck zone uses relation/location checks and SendtoHand handling."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If you pay LP while this card is in your GY: You can activate 1 of these effects. Special Summon this card (but banish it when it leaves the field), and if you do, you can gain LP equal to half the LP you paid this turn while you controlled a \"Phlogiston Dragon\". You can only use each effect of \"Disciple of Fire\" once per turn.",
+          "lua_implementation": "The alternate EVENT_PAY_LPCOST branch Special Summons the related GY handler, gives it a leave-field banish redirect, applies a separate per-turn flag, and optionally recovers half the LP costs globally accumulated this turn while the player controlled face-up Phlogiston Dragon or its name-treated Horde form.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14318794.lua",
+              "card_id": 14318794,
+              "card_name": "Life Absorbing Machine",
+              "matched_structure": "Official global EVENT_PAY_LPCOST tracker accumulates paid LP by player, clears it by turn, and later recovers half the tracked total."
+            },
+            {
+              "script": "tmp/omega_scripts/c17827173.lua",
+              "card_id": 17827173,
+              "card_name": "Floowandereeze & Toccan",
+              "matched_structure": "Official leave-field banish redirect and turn-limited triggered movement structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    }
+  ]
+}

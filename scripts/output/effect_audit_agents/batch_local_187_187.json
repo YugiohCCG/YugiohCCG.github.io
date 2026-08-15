@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 187,
+  "ordinal_end": 187,
+  "cards": [
+    {
+      "ordinal": 187,
+      "passcode": 244778917,
+      "name": "Vir Pedicae Mortis - Fearless Hunter",
+      "text_sha256": "ba99755903881365eb590702bf83a2b6244413fb7715e55bc51a384986b14a80",
+      "script_sha256": "a73ded1c7640d950ab57ab2479118ca3a7f05b8df3067e903326f832b6b98c09",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If Normal or Special Summoned: target opponent Spell/Trap; destroy it. HOPT.",
+          "lua_implementation": "Normal/Special trigger clones share HOPT, target a destructible opponent Spell/Trap and destroy it.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c5133471.lua",
+              "card_id": 5133471,
+              "card_name": "Galaxy Cyclone",
+              "matched_structure": "Targeted Spell/Trap destruction with relation/destructibility checks.",
+              "official_effect_text": "[b]Target[/b] 1 Set Spell/Trap on the field; [b]destroy[/b] it. During your [b]Main Phase[/b], except the turn this card was sent to the GY: [b]You can[/b] [b]banish[/b] this card from your GY, [b]then[/b] [b]target[/b] 1 face-up Spell/Trap on the field; [b]destroy[/b] it. [b]You can[/b] only use this effect of \"Galaxy Cyclone\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "7f53b7392c4b2074ad1ca8cae204c848f025d6c99c357d87c16e612aa2f83efa",
+              "verified_shared_tokens": [
+                "CATEGORY_DESTROY",
+                "Duel.Destroy",
+                "Duel.GetFirstTarget",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CARD_TARGET",
+                "Effect.CreateEffect",
+                "LOCATION_ONFIELD",
+                "REASON_EFFECT",
+                "TYPE_SPELL",
+                "TYPE_TRAP",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Can be treated as 2 materials when Link Summoning a Vir Pedicae Mortis monster.",
+          "lua_implementation": "Adversarial re-review confirmed that the current canonical Lua implements this printed effect with supported Omega primitives. A compound effect need not have a single-card official analogue; the attached official references validate its individual engine structures.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c98127546.lua",
+              "card_id": 98127546,
+              "card_name": "Underworld Goddess of the Closed World",
+              "matched_structure": "Custom Link material procedure alters ordinary material eligibility/count semantics.",
+              "official_effect_text": "4+ Effect Monsters\n[b]You can[/b] [b]also[/b] use 1 monster your opponent controls as material to Link Summon this card. If this card is Link Summoned: [b]You can[/b] [b]negate[/b] the effects of all face-up monsters your opponent currently controls. This Link Summoned card is [b]unaffected[/b] by your opponent's activated effects, unless they [b]target[/b] this card. [b]Once[/b] [b]per turn[/b], [b]when[/b] your opponent activates a card or effect that Special Summons a monster(s) from the GY ([b]Quick Effect[/b]): [b]You can[/b] [b]negate[/b] the activation.",
+              "script_sha256": "3d72041c290fdac3cdfc74a33c6ae8dffbdaa82edb47f0977e1eda811e06dcf4",
+              "verified_shared_tokens": [
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "lua_effect_creations": 2,
+      "conservative_printed_clause_floor": 2,
+      "heuristic_printed_clause_floor": 2,
+      "source_batch": "batch_local_187_187.json",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_187_187.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

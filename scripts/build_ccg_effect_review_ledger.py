@@ -8,6 +8,7 @@ and automatically reopens a review whenever either printed text or Lua changes.
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import io
 import json
@@ -24,8 +25,10 @@ SCRIPTS_DIR = ROOT / "public" / "CCG Downloads" / "CCG_Scripts"
 REVIEWS_PATH = ROOT / "scripts" / "ccg_effect_reviews.json"
 HISTORICAL_PATH = ROOT / "docs" / "lua-audit-2026-07-20-ultimate-fourth-pass.md"
 OUTPUT_PATH = ROOT / "scripts" / "output" / "ccg_effect_review_ledger.json"
+OFFICIAL_AUDIT_PATH = ROOT / "scripts" / "output" / "ccg_effect_by_effect_official_reference_audit.json"
 BASELINE_COMMIT = "52c2fd32d4519147c39cc9454d8273f568093494"
 HISTORICAL_ROW = re.compile(r"^\|\s*(\d+)\s*\|\s*(\d+)\s*\|.*?\|\s*(Pass|Fixed|Needs manual ruling)\s*\|$")
+UNRESOLVED_VERDICTS = {"MANUAL_RULING", "UNSUPPORTED"}
 
 
 def sha256_bytes(value: bytes) -> str:
@@ -62,7 +65,160 @@ def git_archive(paths: list[str]) -> dict[str, bytes]:
     return files
 
 
+def classify_custom_gap(issue: str, previous_verdict: str | None) -> str:
+    """Map a fresh CUSTOM_GAP to the legacy unresolved vocabulary.
+
+    A still-applicable hand-maintained unresolved classification wins. New
+    gaps are MANUAL_RULING when the fresh finding says the card text/ruling is
+    undefined; otherwise they are an engine/API limitation.
+    """
+    if previous_verdict in UNRESOLVED_VERDICTS:
+        return previous_verdict
+    lowered = issue.lower()
+    ruling_markers = (
+        "ambigu",
+        "authoritative ruling",
+        "ruling/text",
+        "does not identify",
+        "does not define",
+        "internally impossible",
+        "names no card",
+        "no printed link material",
+        "source-text",
+        "undefined",
+    )
+    return "MANUAL_RULING" if any(marker in lowered for marker in ruling_markers) else "UNSUPPORTED"
+
+
+def migrate_reviews_from_official_audit() -> dict[str, int]:
+    """Regenerate the legacy review source from the fresh official audit."""
+    cards = json.loads(CARDS_PATH.read_text(encoding="utf-8"))
+    official = json.loads(OFFICIAL_AUDIT_PATH.read_text(encoding="utf-8"))
+    previous_payload = json.loads(REVIEWS_PATH.read_text(encoding="utf-8"))
+    previous_is_migrated = int(previous_payload.get("schema_version", 1)) >= 2
+    previous_migration = previous_payload.get("migration", {})
+    previous_by_id = {
+        int(review["passcode"]): review for review in previous_payload.get("reviews", [])
+    }
+    fresh_cards = official.get("cards", [])
+    fresh_by_id = {int(card["passcode"]): card for card in fresh_cards}
+    summary = official.get("summary", {})
+    migration_errors: list[str] = []
+
+    if official.get("errors") or official.get("warnings"):
+        migration_errors.append("fresh official-reference audit contains errors or warnings")
+    if summary.get("audited_cards") != len(cards) or len(fresh_cards) != len(cards):
+        migration_errors.append("fresh official-reference audit does not cover every active card")
+    if set(fresh_by_id) != {int(card["passcode"]) for card in cards}:
+        migration_errors.append("fresh official-reference audit card set differs from active cards")
+    if migration_errors:
+        raise SystemExit("migration refused: " + "; ".join(migration_errors))
+
+    reviews: list[dict] = []
+    preserved_unresolved = int(previous_migration.get("preserved_unresolved_effect_verdicts", 0))
+    superseded_unresolved = int(previous_migration.get("superseded_unresolved_effect_verdicts", 0))
+    verdict_counts: dict[str, int] = {}
+    for card in cards:
+        passcode = int(card["passcode"])
+        fresh = fresh_by_id[passcode]
+        script_path = SCRIPTS_DIR / f"c{passcode}.lua"
+        text_hash = sha256_bytes(card.get("text", "").encode("utf-8"))
+        script_hash = sha256_bytes(script_path.read_bytes())
+        if fresh.get("text_sha256") != text_hash or fresh.get("script_sha256") != script_hash:
+            raise SystemExit(f"migration refused: stale fresh-audit hash for {passcode} ({card['name']})")
+
+        previous = previous_by_id.get(passcode) or {}
+        previous_effects = previous.get("effects", [])
+        migrated_effects: list[dict] = []
+        for index, effect in enumerate(fresh.get("effects", [])):
+            fresh_verdict = str(effect.get("verdict", ""))
+            previous_effect = previous_effects[index] if index < len(previous_effects) else {}
+            previous_verdict = str(previous_effect.get("verdict", "")) or None
+            if fresh_verdict == "CUSTOM_GAP":
+                verdict = classify_custom_gap(str(effect.get("issue") or ""), previous_verdict)
+                if previous_verdict in UNRESOLVED_VERDICTS and not previous_is_migrated:
+                    preserved_unresolved += 1
+            elif fresh_verdict in {"PASS", "FIXED"}:
+                verdict = fresh_verdict
+                if previous_verdict in UNRESOLVED_VERDICTS and not previous_is_migrated:
+                    superseded_unresolved += 1
+            else:
+                raise SystemExit(f"migration refused: unsupported fresh verdict {fresh_verdict!r} for {passcode}")
+
+            references = []
+            for reference in effect.get("official_references", []):
+                script = Path(str(reference.get("script", ""))).name
+                if script and script not in references:
+                    references.append(script)
+            migrated = {
+                "clause": str(effect.get("printed_clause", "")),
+                "lua": str(effect.get("lua_implementation", "")),
+                "official_omega": references,
+                "verdict": verdict,
+            }
+            if effect.get("issue"):
+                migrated["notes"] = str(effect["issue"])
+            migrated_effects.append(migrated)
+
+        effect_verdicts = {effect["verdict"] for effect in migrated_effects}
+        if "UNSUPPORTED" in effect_verdicts:
+            overall = "UNSUPPORTED"
+        elif "MANUAL_RULING" in effect_verdicts:
+            overall = "MANUAL_RULING"
+        elif "FIXED" in effect_verdicts:
+            overall = "FIXED"
+        else:
+            overall = "PASS"
+        verdict_counts[overall] = verdict_counts.get(overall, 0) + 1
+        reviews.append(
+            {
+                "passcode": passcode,
+                "text_sha256": text_hash,
+                "script_sha256": script_hash,
+                "verdict": overall,
+                "provenance": {
+                    "superseding_audit": OFFICIAL_AUDIT_PATH.relative_to(ROOT).as_posix(),
+                    "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
+                    "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit.",
+                },
+                "effects": migrated_effects,
+            }
+        )
+
+    migrated_payload = {
+        "schema_version": 2,
+        "verdicts": ["PASS", "FIXED", "UNSUPPORTED", "MANUAL_RULING"],
+        "migration": {
+            "source": OFFICIAL_AUDIT_PATH.relative_to(ROOT).as_posix(),
+            "preserved_unresolved_effect_verdicts": preserved_unresolved,
+            "superseded_unresolved_effect_verdicts": superseded_unresolved,
+        },
+        "reviews": reviews,
+    }
+    REVIEWS_PATH.write_text(
+        json.dumps(migrated_payload, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    return {
+        "reviews": len(reviews),
+        "effects": sum(len(review["effects"]) for review in reviews),
+        "preserved_unresolved": preserved_unresolved,
+        "superseded_unresolved": superseded_unresolved,
+        **{f"verdict_{key.lower()}": value for key, value in sorted(verdict_counts.items())},
+    }
+
+
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--migrate-from-official-audit",
+        action="store_true",
+        help="Regenerate ccg_effect_reviews.json from the current fresh official-reference audit before building the ledger.",
+    )
+    args = parser.parse_args()
+    if args.migrate_from_official_audit:
+        print(json.dumps({"migration": migrate_reviews_from_official_audit()}, indent=2))
+
     cards = json.loads(CARDS_PATH.read_text(encoding="utf-8"))
     review_payload = json.loads(REVIEWS_PATH.read_text(encoding="utf-8"))
     reviews = review_payload.get("reviews", [])

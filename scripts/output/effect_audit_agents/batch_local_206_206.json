@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 206,
+  "ordinal_end": 206,
+  "cards": [
+    {
+      "ordinal": 206,
+      "passcode": 248946297,
+      "name": "Exploring the Nautical Waters",
+      "text_sha256": "5416941dae03ca59145447b515352535f5ae5224d28003db966bb990e8ba5f1d",
+      "script_sha256": "65bffd60208a9911d01ff0778ad9d674665abe6892cb3470f7e8ae3a8dd1069c",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Add Nautica monster, then opponent Normal or Special Summons from hand/Deck in Attack with ATK 0; negate if Special Summoned from Deck.",
+          "lua_implementation": "Adversarial re-review confirmed that the current canonical Lua implements this printed effect with supported Omega primitives. A compound effect need not have a single-card official analogue; the attached official references validate its individual engine structures.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c18940725.lua",
+              "card_id": 18940725,
+              "card_name": "Floowandereeze & Robina",
+              "matched_structure": "Effect-driven Normal Summon.",
+              "official_effect_text": "If this face-up card would leave the field, [b]banish[/b] it [b]instead[/b]. [b]You can[/b] only use each of the following effects of \"Floowandereeze & Robina\" [b]once[/b] [b]per turn[/b], [b]and[/b] [b]cannot[/b] Special Summon during the turn you activate either effect. If this card is Normal Summoned: [b]You can[/b] add 1 Level 4 or lower Winged Beast monster from your Deck to your hand, [b]then[/b] [b]immediately[/b] after this effect resolves, [b]you can[/b] Normal Summon 1 Winged Beast monster. If a Winged Beast monster is Normal Summoned to your field while this card is banished: [b]You can[/b] add this card to your hand.",
+              "script_sha256": "4fe6fa535afac0f55d133a716d1eb3de052f96b9b7f188dde6280cc64d37b93c",
+              "verified_shared_tokens": [
+                "CATEGORY_SEARCH",
+                "CATEGORY_SUMMON",
+                "CATEGORY_TOHAND",
+                "Duel.BreakEffect",
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.RegisterEffect",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "Duel.Summon",
+                "EFFECT_CANNOT_SPECIAL_SUMMON",
+                "EFFECT_FLAG_OATH",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "RESET_PHASE",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c55465441.lua",
+              "card_id": 55465441,
+              "card_name": "Give and Take",
+              "matched_structure": "Special Summon under another player's control.",
+              "official_effect_text": "Special Summon 1 monster from your Graveyard to your opponent's side of the field in Defense Position, [b]and[/b] increase the Level of 1 monster you control by the Level of the Special Summoned monster, until the [b]End Phase[/b].",
+              "script_sha256": "23a226dd17e6699c761f949b244faf5cb3c1a39abaa429d68d6b1ad91fb87205",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_SINGLE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "RESET_EVENT",
+                "RESET_PHASE"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c21521304.lua",
+              "card_id": 21521304,
+              "card_name": "Number 39: Utopia Beyond",
+              "matched_structure": "Set ATK to 0.",
+              "official_effect_text": "2 Level 6 monsters\nIf this card is Xyz Summoned: The ATK of all monsters your opponent currently controls become 0. [b]Once[/b] [b]per turn[/b] ([b]Quick Effect[/b]): [b]You can[/b] detach 1 material from this card, [b]then[/b] [b]target[/b] 1 face-up Xyz Monster you control [b]and[/b] 1 \"Utopia\" monster in your GY; [b]banish[/b] the first [b]target[/b], [b]and if you do[/b], Special Summon the second [b]target[/b], [b]then[/b] gain 1250 LP.",
+              "script_sha256": "130a8ca617686eb55228619c0cb6afedf23a0fb2a0d8d9847381f49139b87be6",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.BreakEffect",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_SET_ATTACK_FINAL",
+                "EFFECT_TYPE_SINGLE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Cannot Special Summon non-WATER the turn you use this effect; only one activation per turn.",
+          "lua_implementation": "Custom activity counter rejects activation after any non-WATER Special Summon and activation cost immediately registers a non-WATER summon lock through End Phase; oath count.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c60268386.lua",
+              "card_id": 60268386,
+              "card_name": "Heraldic Beast Gryphon",
+              "matched_structure": "Turn-wide Special Summon restriction using a player effect.",
+              "official_effect_text": "[b]You can[/b] send 1 \"Heraldic Beast\" monster from your Deck to the GY, except \"Heraldic Beast Gryphon\"; Special Summon this card from your hand, [b]also[/b] you [b]cannot[/b] Special Summon from the Extra Deck for the rest of this turn, except by Xyz Summon that uses only monsters with \"Heraldic Beast\" or \"Number\" in their original names as material. Can be treated as 2 materials for the Xyz Summon of a \"Number\" Xyz Monster that requires 3 or more materials. [b]You can[/b] only use each effect of \"Heraldic Beast Gryphon\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "5d9cf5de03c38cf61ba10fcfed0464c6e2c73a48eeec52662ccb99e3dd9c9c4e",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.RegisterEffect",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_CANNOT_SPECIAL_SUMMON",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "RESET_PHASE",
+                "TYPE_MONSTER",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "lua_effect_creations": 4,
+      "conservative_printed_clause_floor": 2,
+      "heuristic_printed_clause_floor": 2,
+      "source_batch": "batch_local_206_206.json",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_206_206.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

@@ -165,14 +165,17 @@ function s.equip_atk(ec,val)
 	e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 	ec:RegisterEffect(e1)
 end
-function s.eqspellfilter(c)
-	return c:IsFaceup() and c:IsType(TYPE_EQUIP) and c:GetEquipTarget()~=nil
+function s.eqspellfilter(c,tp)
+	local tc=c:GetEquipTarget()
+	return c:IsFaceup() and c:IsType(TYPE_EQUIP) and tc and tc:IsControler(tp)
 end
 function s.sabreval(e,c)
-	return Duel.GetMatchingGroupCount(s.eqspellfilter,c:GetControler(),LOCATION_SZONE,0,nil)*500
+	local tp=c:GetControler()
+	return Duel.GetMatchingGroupCount(s.eqspellfilter,tp,LOCATION_SZONE,0,nil,tp)*500
 end
 function s.shieldval(e,c)
-	return Duel.GetMatchingGroupCount(s.eqspellfilter,c:GetControler(),LOCATION_SZONE,0,nil)*500
+	local tp=c:GetControler()
+	return Duel.GetMatchingGroupCount(s.eqspellfilter,tp,LOCATION_SZONE,0,nil,tp)*500
 end
 function s.battle_replace(ec)
 	local e1=Effect.CreateEffect(ec)
@@ -235,7 +238,7 @@ function s.tdcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(s.armseqfilter,tp,LOCATION_SZONE,LOCATION_SZONE,1,nil,tp)
 end
 function s.tdfilter(c)
-	return c:IsAbleToDeck() and (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup())
+	return c:IsAbleToDeck()
 end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then

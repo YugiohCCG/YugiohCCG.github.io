@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch3-coverage-reconciliation",
+  "ordinal_start": 169,
+  "ordinal_end": 169,
+  "cards": [
+    {
+      "ordinal": 169,
+      "passcode": 259290896,
+      "name": "Dominus Sentinel",
+      "text_sha256": "19a4fff5c892f4122fe13d9d79fe0b5bb10579cff2b7b76a74db6657f31dd365",
+      "script_sha256": "f63697268d41ff8e5d643674d4aa3480d5d72c3b03ad69f665754bf6413efd2d",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If the opponent controls a card, activate this Trap from hand.",
+          "lua_implementation": "EFFECT_TRAP_ACT_IN_HAND condition checks any opponent on-field card.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c40366667.lua",
+              "card_id": 40366667,
+              "card_name": "Dominus Impulse",
+              "matched_structure": "Official Dominus hand-activation permission while the opponent controls a card."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "When an effect targets a card you own: negate that effect, then if a Trap is in your GY destroy that card.",
+          "lua_implementation": "Activation condition inspects CHAININFO_TARGET_CARDS by owner; resolution NegateEffect then conditionally destroys the chain event card if a Trap remains in own GY.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c40366667.lua",
+              "card_id": 40366667,
+              "card_name": "Dominus Impulse",
+              "matched_structure": "Dominus negate-effect-then-conditional-destroy resolution."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If activated from hand, cannot activate NATURE, ELECTRIC, METAL or ICE monster effects for the rest of the Duel. Only 1 activation per turn.",
+          "lua_implementation": "Captures STATUS_ACT_FROM_HAND, registers a no-reset CANNOT_ACTIVATE field effect for the four custom attribute bits, and uses an oath activation count.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c40366667.lua",
+              "card_id": 40366667,
+              "card_name": "Dominus Impulse",
+              "matched_structure": "No-reset rest-of-Duel monster-attribute activation lock after hand activation and oath activation limit."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The hand-activation permission, negate/conditional-destroy activation, and persistent post-hand-activation Attribute lock are the three distinct audit units; the activation HOPT is covered with those linked activation semantics."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 3,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

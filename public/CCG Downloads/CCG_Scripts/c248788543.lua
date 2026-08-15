@@ -127,11 +127,13 @@ function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 	e4:SetReset(RESET_EVENT+RESETS_STANDARD)
 	c:RegisterEffect(e4)
 end
-function s.eqspellfilter(c)
-	return c:IsFaceup() and c:IsType(TYPE_EQUIP) and c:GetEquipTarget()~=nil
+function s.eqspellfilter(c,tp)
+	local tc=c:GetEquipTarget()
+	return c:IsFaceup() and c:IsType(TYPE_EQUIP) and tc and tc:IsControler(tp)
 end
 function s.atkval(e,c)
-	return Duel.GetMatchingGroupCount(s.eqspellfilter,c:GetControler(),LOCATION_SZONE,0,nil)*500
+	local tp=c:GetControler()
+	return Duel.GetMatchingGroupCount(s.eqspellfilter,tp,LOCATION_SZONE,0,nil,tp)*500
 end
 function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

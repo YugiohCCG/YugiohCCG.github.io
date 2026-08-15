@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 251,
+      "passcode": 243420199,
+      "name": "Shining Brigade - Melody Division",
+      "text_sha256": "4dd7bcf29adddaba5578b13c188a2d0e03ad44e2831a8a305c50a7899870d7a7",
+      "script_sha256": "0de6332202ad6b5359f7aa5c3192efc0c77418349bc747b1385f2102c0ab762e",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "During your Main Phase, you can Normal Summon/Set 1 \"Shining Brigade\" monster in addition to your Normal Summon/Set (You can only gain this effect once per turn).",
+          "lua_implementation": "A field EFFECT_EXTRA_SUMMON_COUNT targets 0x7a34 cards in hand/field with value 1; the engine’s shared extra-Summon count enforces gain once.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10719350.lua",
+              "card_id": 10719350,
+              "card_name": "Fire Formation - Tensu",
+              "matched_structure": "EFFECT_EXTRA_SUMMON_COUNT",
+              "official_effect_text": "During your [b]Main Phase[/b], [b]you can[/b] Normal Summon 1 Beast-Warrior monster in addition to your Normal Summon/Set. ([b]You can[/b] only gain this effect [b]once[/b] [b]per turn[/b].) All Beast-Warrior monsters you control gain 100 ATK.",
+              "script_sha256": "bc3f8ef1f720e2aad9ba836b09bda4e6ae8c614e2030d777fcc0778fac704d57",
+              "verified_shared_tokens": [
+                "EFFECT_EXTRA_SUMMON_COUNT",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "aux.Stringid",
+                "aux.TargetBoolFunction"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "During your Main Phase, you can Normal Summon/Set 1 \"Shining Brigade\" monster in addition to your Normal Summon/Set (You can only gain this effect once per turn). You can banish this card from your GY: Attach 1 \"Shining Brigade\" monster from your Deck or GY to a \"Shining Brigade\" Xyz Monster you control as material. You can only use this effect of \"Shining Brigade - Melody Division\" once per turn.",
+          "lua_implementation": "A GY Ignition Effect with aux.bfgcost and hard code {id,1} chooses a face-up controlled 0x7a34 Xyz at resolution, then overlays one archetype monster from Deck/GY.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c51858306.lua",
+              "card_id": 51858306,
+              "card_name": "Eclipse Wyvern",
+              "matched_structure": "EVENT_REMOVE after GY",
+              "official_effect_text": "If this card is sent to the GY: [b]Banish[/b] 1 Level 7 or higher LIGHT or DARK Dragon monster from your Deck. If this card is banished from your GY: [b]You can[/b] add the monster banished by this card's effect to your hand.",
+              "script_sha256": "2b98189064141a1ba77c8832891109dbfe4f7966bdfa5735a76f31ed382fcdc0",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.SelectMatchingCard",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c4145852.lua",
+              "card_id": 4145852,
+              "card_name": "Zoodiac Ramram",
+              "matched_structure": "EFFECT_TYPE_XMATERIAL and overlay cost",
+              "official_effect_text": "If this card is destroyed by battle or card effect: [b]You can[/b] [b]target[/b] 1 \"Zoodiac\" monster in your GY, except \"Zoodiac Ramram\"; Special Summon it. An Xyz Monster whose original Type is Beast-Warrior [b]and[/b] has this card as material gains this effect.\n● [b]When[/b] your opponent activates a Trap Card or effect that targets this card ([b]Quick Effect[/b]): [b]You can[/b] detach 1 material from this card; [b]negate[/b] the activation.",
+              "script_sha256": "f03b9c3298ee7d4cd4b1a07306d36b516b84a3028e5c8d0718b87f6c4854280f",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The additional Normal Summon permission and the GY banish/material-attachment effect with its HOPT are the two printed effects."
+      }
+    }
+  ]
+}

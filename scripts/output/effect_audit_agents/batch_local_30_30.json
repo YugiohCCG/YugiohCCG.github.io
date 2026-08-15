@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 30,
+  "ordinal_end": 30,
+  "cards": [
+    {
+      "ordinal": 30,
+      "passcode": 255832330,
+      "name": "Left Talismandrake Arms - Blaze Shield",
+      "text_sha256": "193d05cf4416908db85fb626c7043cb4591b0e0075055795bb64e6f82eb7db6f",
+      "script_sha256": "4086547e581d88840133f699ac0938b00b771e2b52d9d6e206352c5edbc3072c",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Special Summon 1 \"Talismandrake\" monster from your Deck, GY, or face-up Extra Deck to your Main Monster Zone.",
+          "lua_implementation": "c255832330.lua uses Duel.SpecialSummon; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c83764718.lua",
+              "card_id": 83764718,
+              "card_name": "Monster Reborn",
+              "matched_structure": "GY target validation and Special Summon resolution.",
+              "official_effect_text": "[b]Target[/b] 1 monster in either GY; Special Summon it.",
+              "script_sha256": "c2677a8427d0284a26fcc60bc085e20131958550a1d54040ac15e06f8aa75afb",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetFirstTarget",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_ACTIVATE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "aux.NecroValleyFilter"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "During either player's turn: You can target 1 DARK Pyro Fusion Monster you control; equip this card from your GY to it as an Equip Spell with the following effect.",
+          "lua_implementation": "c255832330.lua uses Duel.Equip, EFFECT_EQUIP_LIMIT; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c48130397.lua",
+              "card_id": 48130397,
+              "card_name": "Super Polymerization",
+              "matched_structure": "Fusion-material selection and Fusion Summon resolution.",
+              "official_effect_text": "[b]Discard[/b] 1 card; Fusion Summon 1 Fusion Monster from your Extra Deck, using monsters from either field. Neither player can activate cards or effects in response to this card's activation.",
+              "script_sha256": "7179a51a2fcb76e1ca13e859cc50135a7c2e0a8b9e5f9502e3b136161149e693",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_ACTIVATE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_EXTRA",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "TYPE_FUSION"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "● The equipped monster gains 500 DEF for each Equip Spell equipped to a monster you control, also, if it would leave the field by your opponent's card effect, you can destroy this card instead.",
+          "lua_implementation": "The equipped monster's DEF count now includes only Equip Spells attached to monsters its controller controls. Opponent-effect destroy/send departures can be replaced by destroying this card. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c56747793.lua",
+              "card_id": 56747793,
+              "card_name": "United We Stand",
+              "matched_structure": "continuous Equip-derived ATK calculation.",
+              "official_effect_text": "The equipped monster gains 800 ATK/DEF for each face-up monster you control.",
+              "script_sha256": "c5310b50f63026a9cc67450edff10bd882c2e360197d2d7ab0af08b737b77429",
+              "verified_shared_tokens": [
+                "CATEGORY_EQUIP",
+                "Duel.Equip",
+                "Duel.GetFirstTarget",
+                "Duel.GetMatchingGroupCount",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "EFFECT_EQUIP_LIMIT",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_EQUIP",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_UPDATE_DEFENSE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c2006591.lua",
+              "card_id": 2006591,
+              "card_name": "Sinful Spoils Awakening",
+              "matched_structure": "leave-field tracking and destination/replacement handling.",
+              "official_effect_text": "If your opponent controls 3 or more monsters and you control a Level 5 or higher Illusion monster: Target up to 3 cards your opponent controls; return them to the hand. If you control a Level 5 or higher Illusion monster and this card is in your GY: You can Set this card, but banish it when it leaves the field. You can only use 1 \"Sinful Spoils Awakening\" effect per turn, and only once that turn.",
+              "script_sha256": "f4888b36852db0d1937720d7e66fd8ba5a316b184f1245606db1345cf9cb5a5a",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_QUICK_O",
+                "EFFECT_TYPE_SINGLE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Omega has optional EFFECT_DESTROY_REPLACE and EFFECT_SEND_REPLACE hooks, but no optional replacement covering every return, banish, destroy, and send way the equipped monster can leave by an opponent's effect. Resolution: change the text to the supported destinations (for example, 'destroyed or sent to the GY'), or add a generic optional leave-field replacement hook and replace both partial hooks in c255832330.lua."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use 1 \"Left Talismandrake Arms - Blaze Shield\" per turn, and only once that turn.",
+          "lua_implementation": "c255832330.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "named hard once-per-turn SetCountLimit structure.",
+              "official_effect_text": "[b]When[/b] a card or effect is activated that includes any of these effects ([b]Quick Effect[/b]): [b]You can[/b] [b]discard[/b] this card; [b]negate[/b] that effect.\n● Add a card from the Deck to the hand.\n● Special Summon from the Deck.\n● Send a card from the Deck to the GY.\n[b]You can[/b] only use this effect of \"Ash Blossom & Joyous Spring\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "fd4c7dd7e01c5ab227d539187369c7d37a9062b9fa5f9a93cf8c8344eb1a770b",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_QUICK_O",
+                "Effect.CreateEffect",
+                "LOCATION_DECK"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_30_30.json",
+      "lua_effect_creations": 7,
+      "conservative_printed_clause_floor": 4,
+      "heuristic_printed_clause_floor": 3,
+      "source_batch": "batch_local_30_30.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 3,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

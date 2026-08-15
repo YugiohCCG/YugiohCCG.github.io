@@ -128,7 +128,7 @@ function s.resetextra(c,tp,ex)
 	Duel.RegisterEffect(e1,tp)
 end
 function s.handmatfilter(e,c)
-	return c:IsSetCard(SET_GRAYSCALE) and c:IsAttribute(ATTRIBUTE_LIGHT) and c:IsRace(RACE_FIEND)
+	return c:IsType(TYPE_MONSTER)
 end
 function s.extraval(e,lc,mg,c,tp)
 	if not lc:IsSetCard(SET_GRAYSCALE) then return false,nil end

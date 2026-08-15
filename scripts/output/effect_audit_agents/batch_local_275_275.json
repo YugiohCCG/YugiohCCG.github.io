@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 275,
+      "passcode": 244972185,
+      "name": "The Spires of Zephorion Prime",
+      "text_sha256": "172456b23452bf2f4c3987a0bf477f2a501a7b8dbe04a48b2a364ec61331832d",
+      "script_sha256": "ab3206430f46e2de53445508e0e8efb487e8d9e6fc179b3128d0cbbce570749e",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "(This card is always treated as an \"Eldora\" card.)",
+          "lua_implementation": "The card’s archetype/set metadata supplies 0x0738; listed_series records the relation, paralleling official always-treated-as cards whose set identity is database-backed.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c48486809.lua",
+              "card_id": 48486809,
+              "card_name": "Winged Kuriboh LV6",
+              "matched_structure": "database-backed always-treated-as identity",
+              "official_effect_text": "(This card is always treated as an \"Elemental HERO\" [b]and[/b] \"Favorite\" card.)\n[b]Cannot[/b] be Normal Summoned/Set. Must be Special Summoned (from your hand or GY) by banishing 1 \"Elemental HERO\" Fusion Monster or 1 \"Winged Kuriboh\" from your hand, face-up field, or GY. [b]You can[/b] only Special Summon \"Winged Kuriboh LV6\" [b]once[/b] [b]per turn[/b] this way. [b]When[/b] an opponent's monster declares an attack, or your opponent activates a monster effect on the field ([b]Quick Effect[/b]): [b]You can[/b] Tribute this card; [b]destroy[/b] that 1 monster, [b]and if you do[/b], inflict damage to your opponent equal to its original ATK.",
+              "script_sha256": "2b3af9b8d25e54387374b29c3d80407429aea491aeb71cc410697705720ca07d",
+              "verified_shared_tokens": [
+                "CATEGORY_DESTROY",
+                "Duel.Destroy",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "LOCATION_ONFIELD",
+                "REASON_EFFECT",
+                "TYPE_MONSTER"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "This card is also treated as \"Eldora, the Intergalactic Empire\" while it is face-up on the field or in your GY.",
+          "lua_implementation": "A ranged single EFFECT_ADD_CODE applies the exact Eldora code in LOCATION_ONFIELD+LOCATION_GRAVE.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c1784686.lua",
+              "card_id": 1784686,
+              "card_name": "The Eye of Timaeus",
+              "matched_structure": "ranged EFFECT_ADD_CODE",
+              "official_effect_text": "(This card is [b]also[/b] always treated as \"Legendary Dragon Timaeus\".)\n[b]Target[/b] 1 \"Dark Magician\" monster you control; Fusion Summon 1 Fusion Monster from your Extra Deck that mentions that monster on the field as material, using it as the Fusion Material. [b]You can[/b] only activate 1 \"The Eye of Timaeus\" [b]per turn[/b].",
+              "script_sha256": "9f8ef05e2e0bf6c33ce3faa8d237e9f82a716552674f2bd9c71a33749df96ee9",
+              "verified_shared_tokens": [
+                "Duel.BreakEffect",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoGrave",
+                "EFFECT_ADD_CODE",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_SINGLE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "REASON_EFFECT"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "When this card is activated: Activate 1 \"Eldora, the Intergalactic Empire\" from your Deck, or, if it is already face-up on your field, add 1 monster from your Deck to your hand that lists \"Eldora\" in its text.",
+          "lua_implementation": "target/operation choose between a Deck exact-code Field Spell with activatable activation effect or listed monster search; activation branch replaces the Field Zone card, moves the new Field Spell, consumes its activation count/cost and raises the activation event. Eldora’s own activation has no target/operation.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c89208725.lua",
+              "card_id": 89208725,
+              "card_name": "Metaverse",
+              "matched_structure": "activate a Field Spell directly from Deck",
+              "official_effect_text": "Take 1 Field Spell from your Deck, [b]and[/b] either activate it or add it to your hand.",
+              "script_sha256": "765c80b0e784f000f7f87c376d736fae13ef15dcd1f3c4becabac27567dd3f46",
+              "verified_shared_tokens": [
+                "CATEGORY_SEARCH",
+                "CATEGORY_TOHAND",
+                "Duel.BreakEffect",
+                "Duel.ConfirmCards",
+                "Duel.GetCurrentChain",
+                "Duel.GetFieldCard",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.MoveToField",
+                "Duel.RaiseEvent",
+                "Duel.SelectMatchingCard",
+                "Duel.SelectOption",
+                "Duel.SendtoGrave",
+                "Duel.SendtoHand",
+                "EFFECT_TYPE_ACTIVATE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_FZONE",
+                "REASON_EFFECT",
+                "REASON_RULE"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c6498706.lua",
+              "card_id": 6498706,
+              "card_name": "Fusion Deployment",
+              "matched_structure": "listed-name/material relation",
+              "official_effect_text": "Reveal 1 Fusion Monster in your Extra Deck [b]and[/b] Special Summon, from your hand or Deck, 1 of the Fusion Materials whose name is mentioned on that monster, [b]also[/b] you [b]cannot[/b] Special Summon from the Extra Deck, except Fusion Monsters, the turn you activate this card. [b]You can[/b] only activate 1 \"Fusion Deployment\" [b]per turn[/b].",
+              "script_sha256": "263cb3ed032a27eba94c3e9d07c6a134f1e876ce01a03f41bdea81311bb1829d",
+              "verified_shared_tokens": [
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "When your opponent's card effect that would destroy your monster resolves, you can destroy this card you control.",
+          "lua_implementation": "e3 now triggers on EVENT_CHAIN_SOLVED for an opponent's effect whose CATEGORY_DESTROY operation group contains a monster currently or previously controlled in the Monster Zone, then destroys only this face-up Spell.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10239627.lua",
+              "matched_structure": "EVENT_CHAIN_SOLVED continuous processing after the activating effect resolves"
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Fixed: removed the unprinted destruction replacement. The threatened monster is no longer protected; this card is destroyed only after the qualifying opponent effect resolves."
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows."
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch3-coverage-reconciliation",
+  "ordinal_start": 199,
+  "ordinal_end": 199,
+  "cards": [
+    {
+      "ordinal": 199,
+      "passcode": 228040066,
+      "name": "Melody Merheart & the Nautical Coral Reef",
+      "text_sha256": "1cf17d428b71de8ab7c32ad138a076adf07585244298ca5455b0f08bd9d6127d",
+      "script_sha256": "b45bacd77256be0c52aa62f897f2ad25d47a8a1afe9bcee002ffec6b5b38946d",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Cannot be Normal Summoned/Set.",
+          "lua_implementation": "CANNOT_SUMMON and CANNOT_MSET effects.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c32731036.lua",
+              "card_id": 32731036,
+              "card_name": "The Bystial Lubellion",
+              "matched_structure": "Cannot Normal Summon/Set restriction."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "On opponent Normal/Special Summon: Special Summon this from hand, then optionally add a different-name Nautica from GY. HOPT.",
+          "lua_implementation": "Opponent summon trigger clones share HOPT, self-Summon, then optionally retrieve a different-code set card through Necrovalley.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c293542.lua",
+              "card_id": 293542,
+              "card_name": "T.G. Warwolf",
+              "matched_structure": "Opponent/other summon-responsive hand Special Summon."
+            },
+            {
+              "script": "tmp/omega_scripts/c45184165.lua",
+              "card_id": 45184165,
+              "card_name": "Raidraptor - Skull Eagle",
+              "matched_structure": "Archetype GY card recovery."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Normal Summon/Set prohibition is one procedure restriction and the opponent-Summon self-Summon/optional GY recovery plus HOPT is one activated effect."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

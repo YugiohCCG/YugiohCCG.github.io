@@ -2852,7 +2852,7 @@
       "name": "Nemleria Big Eepy",
       "text_sha256": "f240bdbccbab840b271ab349e267e2b21acd6d38c4d22acaf28625cdbc302473",
       "script_sha256": "ebfc3f8778284f6a54ad0db4f59e0622974e51d0b94eac9a0ff7ecb76e30fcbc",
-      "overall_verdict": "DEFECT",
+      "overall_verdict": "PASS",
       "coverage_override": {
         "expected_individual_effects": 3,
         "reason": "Fresh manual segmentation counts every printed summoning procedure, condition, continuous clause, activated effect, follow-up clause, and explicit usage limit represented in this record."
@@ -2868,10 +2868,16 @@
               "card_id": 2390019,
               "card_name": "Ojamassimilation",
               "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including CATEGORY_TODECK, CATEGORY_SPECIAL_SUMMON, EFFECT_TYPE_ACTIVATE, EVENT_FREE_CHAIN, LOCATION_GRAVE, LOCATION_REMOVED."
+            },
+            {
+              "script": "tmp/omega_scripts/c17956906.lua",
+              "card_id": 17956906,
+              "card_name": "Final Light",
+              "matched_structure": "Official Omega requires an exact number of Special Summon targets for the printed '1 ... for every' multiplier; unlike cards printed with 'up to 1 ... for every', the player does not choose a smaller count."
             }
           ],
-          "verdict": "DEFECT",
-          "issue": "The Lua computes floor(shuffled/10) and requires exactly that many free zones and summonable Nemleria monsters. The optional printed summon permits choosing fewer, so the effect incorrectly summons none when the maximum cannot be met."
+          "verdict": "PASS",
+          "issue": null
         },
         {
           "effect_index": 2,

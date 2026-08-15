@@ -44,7 +44,7 @@ function s.initial_effect(c)
 end
 function s.prottg(e,c) return c:IsSetCard(SET_GRAVINITY) and (c:GetOriginalType()&TYPE_SYNCHRO)~=0 end
 function s.coltg(e,c)
-	return Duel.IsExistingMatchingCard(function(gc,oc) return gc:IsSetCard(SET_GRAVINITY) and (gc:GetOriginalType()&TYPE_MONSTER)~=0 and oc:GetColumnGroup():IsContains(gc) end,e:GetHandlerPlayer(),LOCATION_ONFIELD,0,1,nil,c)
+	return Duel.IsExistingMatchingCard(function(gc,oc) return gc:IsSetCard(SET_GRAVINITY) and oc:GetColumnGroup():IsContains(gc) end,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil,c)
 end
 function s.copyfilter(c) return c:IsSetCard(SET_GRAVINITY) and c:IsType(TYPE_SYNCHRO) and c:IsLevel(11) end
 function s.copycost(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -168,7 +168,7 @@ function s.sphspop(e,tp)
 	end
 end
 function s.sphctcon(e,tp,eg)
-	return eg:IsExists(Card.IsPreviousLocation,1,nil,LOCATION_SZONE)
+	return eg:IsExists(function(c) return (c:GetOriginalType()&TYPE_MONSTER)~=0 and c:IsPreviousLocation(LOCATION_SZONE) end,1,nil)
 		and e:GetHandler():GetCounter(COUNTER_GRAVITY)<2
 end
 function s.sphctop(e)

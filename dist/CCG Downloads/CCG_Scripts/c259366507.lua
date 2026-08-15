@@ -15,7 +15,8 @@ function s.initial_effect(c)
 	e1:SetCountLimit(1,{id,1},EFFECT_COUNT_CODE_OATH)
 	e1:SetCondition(s.spcon1)
 	c:RegisterEffect(e1)
-	--Set Eldora or Verse IX Chapter II
+	--Set an Eldora card (there is no current card matching both printed names
+	--"Verse IX" and "Chapter II")
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
@@ -55,7 +56,7 @@ function s.spcon1(e,c)
 end
 function s.setfilter(c)
 	if not c:IsType(TYPE_SPELL+TYPE_TRAP) or not c:IsSSetable() then return false end
-	return c:IsSetCard(SET_ELDORA) or c:IsCode(241957394) -- Chapter II Verse IV
+	return c:IsSetCard(SET_ELDORA)
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil) end

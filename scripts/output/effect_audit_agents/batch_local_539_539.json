@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "batch": "batch-8c-local-reconciliation",
+  "ordinal_start": 539,
+  "ordinal_end": 539,
+  "cards": [
+    {
+      "ordinal": 539,
+      "passcode": 259546637,
+      "name": "Glitchling Corruption",
+      "text_sha256": "37a566fb4e22e31b8e791dab9b65e9429c82a2f18fe8db2754b66de282d148bf",
+      "script_sha256": "e822e4908a6872c865cb7c2dc64fc7a6ea264b759edfdc39e856d41f4d9d3ade",
+      "overall_verdict": "CUSTOM_GAP",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Fresh semantic segmentation found 4 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "When activated: optionally add 1 \"Glitchling\" card from the Deck and/or face-up Extra Deck, except this card; only 1 activation per turn.",
+          "lua_implementation": "The activation effect has an oath count limit; at resolution it optionally selects one set card from Deck or face-up Extra Deck, excludes its own code, sends it to hand, and confirms it.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c975299.lua",
+              "card_id": 975299,
+              "matched_structure": "Optional search performed by a Spell activation with an activation count limit and hand confirmation.",
+              "card_name": "B.E.F. Zelos"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "If you would Ritual Summon a Cyberse Ritual Monster using hand/field Tributes, Corruption Counters from the field can satisfy up to its Level.",
+          "lua_implementation": "No field effect can expose a scalar counter value as material to every unrelated Ritual Summon procedure. Counter substitution remains implemented only inside this card's own triggered ritualsummon operation.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c20560620.lua",
+              "card_id": 20560620,
+              "matched_structure": "Official field effect exposes an additional Ritual-material source to Ritual procedures; its script is explicitly marked as a workaround/not fully implemented.",
+              "card_name": "Emperor Tanuki's Critter Count"
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Retained after reconciliation: Omega's EFFECT_EXTRA_RITUAL_MATERIAL exposes actual cards, not an abstract Level contribution. The official index contains 11 users of that effect, none counter-based, and the closest arbitrary-procedure workaround (Emperor Tanuki's Critter Count, c20560620.lua) is itself marked 'not fully implemented' and monkey-patches shared Ritual helpers. There is no safe card-local way to make Corruption Counters participate in every current and future Cyberse Ritual procedure.",
+          "effect_index": 2
+        },
+        {
+          "printed_clause": "Once per turn, if a Cyberse Ritual Monster is Tributed or used as Link Material: optionally Ritual Summon 1 \"Glitchling\" Ritual Monster from the GY/face-up Extra Deck using hand/field Tributes whose Levels meet or exceed its Level.",
+          "lua_implementation": "Shared-count EVENT_RELEASE and REASON_LINK/EVENT_BE_MATERIAL triggers offer the ritual option; the operation selects the GY/face-up Extra Deck Ritual, selects legal hand/field ritual materials, removes any permitted counter deficit, releases materials, Ritual Summons, and completes the procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15306543.lua",
+              "card_id": 15306543,
+              "matched_structure": "Field Spell ignition Ritual Summon using a greater-than-or-equal Level check and a nonstandard Ritual source.",
+              "card_name": "Stars Align Above the Shrine"
+            },
+            {
+              "script": "tmp/omega_scripts/c49721684.lua",
+              "card_id": 49721684,
+              "matched_structure": "Ritual Summon from hand or GY with greater-or-equal material handling and CompleteProcedure.",
+              "card_name": "Mitsurugi Mirror"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 3
+        },
+        {
+          "printed_clause": "Alternatively place Corruption Counters on this card up to the number of Cyberse monsters you control.",
+          "lua_implementation": "The alternate operation now uses a shared face-up Cyberse filter both for activation legality and resolution, counts only face-up Cyberse monsters in the controller's Monster Zone, and announces an addable counter amount.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c60258960.lua",
+              "card_id": 60258960,
+              "matched_structure": "Counts/places counters on a permitted card through EnableCounterPermit and AddCounter.",
+              "card_name": "Legendary Flame Lord"
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the previous Card.IsRace-only count included face-down monsters. The filter now requires Card.IsFaceup before testing RACE_CYBERSE.",
+          "effect_index": 4
+        }
+      ],
+      "supersedes_batch": "batch_8c_539_555.json",
+      "reconciliation_note": "All batch_8c findings for this card were re-evaluated against current Lua and the cited official Omega references. Confirmed defects are patched; retained CUSTOM_GAP records explain the remaining engine/source limit."
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 2,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

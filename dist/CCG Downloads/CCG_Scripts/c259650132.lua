@@ -62,7 +62,9 @@ function s.bfsop(e,tp,eg,ep,ev,re,r,rp)
 	if not c:IsRelateToEffect(e) then return end
 	
 	local visited = Group.CreateGroup()
+	local terminals = Group.CreateGroup()
 	local queue = {}
+	local depth = {}
 	
 	local g = Duel.GetMatchingGroup(function(tc)
 		return tc:IsControler(tp) and tc:IsType(TYPE_LINK) and tc:GetLinkedGroup():IsContains(c)
@@ -70,6 +72,7 @@ function s.bfsop(e,tp,eg,ep,ev,re,r,rp)
 	
 	for tc in aux.Next(g) do
 		visited:AddCard(tc)
+		depth[tc:GetFieldID()] = 0
 		table.insert(queue, tc)
 	end
 	
@@ -82,6 +85,7 @@ function s.bfsop(e,tp,eg,ep,ev,re,r,rp)
 			if tc:IsControler(tp) and tc:IsType(TYPE_LINK) and not visited:IsContains(tc) then
 				if tc:GetLinkedGroup():IsContains(curr) then
 					visited:AddCard(tc)
+					depth[tc:GetFieldID()] = depth[curr:GetFieldID()] + 1
 					table.insert(queue, tc)
 				end
 			end
@@ -94,13 +98,23 @@ function s.bfsop(e,tp,eg,ep,ev,re,r,rp)
 	for tc in aux.Next(visited) do
 		tc:AddCounter(COUNTER_CURRENT, 1)
 		ct = ct + 1
+		local tc_depth = depth[tc:GetFieldID()] or 0
+		local has_next = false
+		for mc in aux.Next(tc:GetLinkedGroup()) do
+			if visited:IsContains(mc) and mc:GetLinkedGroup():IsContains(tc)
+				and (depth[mc:GetFieldID()] or -1) > tc_depth then
+				has_next = true
+				break
+			end
+		end
+		if not has_next then terminals:AddCard(tc) end
 	end
 	
 	-- Register flag with count
 	c:RegisterFlagEffect(id, RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END, 0, 1, ct)
 	
 	local allowed_mask = 0
-	for tc in aux.Next(visited) do
+	for tc in aux.Next(terminals) do
 		allowed_mask = bit.bor(allowed_mask, tc:GetLinkedZone(tp))
 	end
 	allowed_mask = bit.band(allowed_mask, 0x1f)

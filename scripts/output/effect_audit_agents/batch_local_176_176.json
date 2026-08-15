@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch3-coverage-reconciliation",
+  "ordinal_start": 176,
+  "ordinal_end": 176,
+  "cards": [
+    {
+      "ordinal": 176,
+      "passcode": 259527622,
+      "name": "Knight Puppet of Wicked Puppeteer",
+      "text_sha256": "da8d3779235eae05ad003c5e006e883ebeee0aea1439d6739b6b86b7f7288aaf",
+      "script_sha256": "ed16b7e27c4bb8134f20cebcf9c40783950bb5e4eee6a84bc8511e80796a71b3",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Main Phase/Orchis Tribute Special Summon from hand or GY. HOPT.",
+          "lua_implementation": "Same conditioned Quick Effect, Tribute cost, zone release accounting and hand/GY self-Summon as Grand Puppet; HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c22865492.lua",
+              "card_id": 22865492,
+              "card_name": "Vision HERO Increase",
+              "matched_structure": "Tribute-cost self Special Summon."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If Summoned while controlling a Ritual Monster: your monsters cannot be destroyed by battle/effects this turn. HOPT.",
+          "lua_implementation": "Mandatory Normal/Flip/Special trigger clones share HOPT and register field battle/effect indestructibility through End Phase for all own MZONE monsters.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c12607053.lua",
+              "card_id": 12607053,
+              "card_name": "Waboku",
+              "matched_structure": "Turn-duration field protection from battle destruction."
+            },
+            {
+              "script": "tmp/omega_scripts/c27243130.lua",
+              "card_id": 27243130,
+              "card_name": "Forbidden Lance",
+              "matched_structure": "Registers temporary single/field protection effects with End Phase reset."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Main-Phase self-Summon procedure and the on-Summon turn-long battle/effect protection are the two distinct effects; the shared 'each effect' HOPT sentence is represented in both records."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

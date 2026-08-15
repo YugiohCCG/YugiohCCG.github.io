@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 292,
+  "ordinal_end": 292,
+  "cards": [
+    {
+      "ordinal": 292,
+      "passcode": 258260221,
+      "name": "Hiding \"C\"",
+      "text_sha256": "6e051c4324816133646445837008d3c2615bc6172f31408b31dafda49dfc1f2f",
+      "script_sha256": "8948198aab1f65663184a9dfdb4c5111d1d3b93c4a456f4b67c66054a2d7a3ba",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "When the opponent activates a monster effect including a Special Summon effect: Special Summon this card from hand; if Summoned this way, the opponent cannot banish cards while it remains face-up; HOPT.",
+          "lua_implementation": "EVENT_CHAINING checks opponent monster effects for CATEGORY_SPECIAL_SUMMON, Special Summons from hand, then registers opponent-player EFFECT_CANNOT_REMOVE while this card remains in the Monster Zone; id count limit is HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c46502744.lua",
+              "card_id": 46502744,
+              "card_name": "Retaliating \"C\"",
+              "matched_structure": "Near-exact reactive hand summon and conditional lingering field effect after that summon."
+            },
+            {
+              "script": "tmp/omega_scripts/c34267821.lua",
+              "card_id": 34267821,
+              "card_name": "Artifact Lancea",
+              "matched_structure": "Player-targeted cannot-banish effect structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If sent from field to GY: add an EARTH Insect with 1500 or less ATK except itself; HOPT.",
+          "lua_implementation": "Delayed EVENT_TO_GRAVE verifies previous on-field location and searches the exact Attribute/Race/ATK range with a separate HOPT key.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c46502744.lua",
+              "card_id": 46502744,
+              "card_name": "Retaliating \"C\"",
+              "matched_structure": "Near-exact sent-from-field EARTH Insect search trigger."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The hand response, self-Summon, conditional opponent banish prohibition, and first HOPT form one compound effect; the field-to-GY search and second HOPT form the other effect."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

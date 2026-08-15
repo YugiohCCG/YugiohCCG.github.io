@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 207,
+  "ordinal_end": 207,
+  "cards": [
+    {
+      "ordinal": 207,
+      "passcode": 218905439,
+      "name": "Nautical Adventures & Torrential Seas",
+      "text_sha256": "e3b3620d129c388d41cfdc6eda2f7bf0e2a67bbae3c31aff87f6d9f5a8f3ca02",
+      "script_sha256": "2514cad060df2c026238babb6251ae46edb6f8c95fcc3cdc0f947437a5ce697e",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Target your Nautica and an opponent monster; return both, then the opponent Normal or Special Summons a hand monster in Attack Position with ATK 0. HOPT.",
+          "lua_implementation": "Adversarial re-review confirmed that the current canonical Lua implements this printed effect with supported Omega primitives. A compound effect need not have a single-card official analogue; the attached official references validate its individual engine structures.",
+          "official_references": [
+            {
+              "script": "c18940725.lua",
+              "card_id": 18940725,
+              "card_name": "Floowandereeze & Robina",
+              "matched_structure": "Performs an effect-driven Normal Summon after a prior resolving action.",
+              "official_effect_text": "If this face-up card would leave the field, [b]banish[/b] it [b]instead[/b]. [b]You can[/b] only use each of the following effects of \"Floowandereeze & Robina\" [b]once[/b] [b]per turn[/b], [b]and[/b] [b]cannot[/b] Special Summon during the turn you activate either effect. If this card is Normal Summoned: [b]You can[/b] add 1 Level 4 or lower Winged Beast monster from your Deck to your hand, [b]then[/b] [b]immediately[/b] after this effect resolves, [b]you can[/b] Normal Summon 1 Winged Beast monster. If a Winged Beast monster is Normal Summoned to your field while this card is banished: [b]You can[/b] add this card to your hand.",
+              "script_sha256": "4fe6fa535afac0f55d133a716d1eb3de052f96b9b7f188dde6280cc64d37b93c",
+              "verified_shared_tokens": [
+                "CATEGORY_SUMMON",
+                "CATEGORY_TOHAND",
+                "Duel.BreakEffect",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "Duel.Summon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "LOCATION_REMOVED",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "c55465441.lua",
+              "card_id": 55465441,
+              "card_name": "Give and Take",
+              "matched_structure": "Performs an effect-driven Special Summon to a specified player's field.",
+              "official_effect_text": "Special Summon 1 monster from your Graveyard to your opponent's side of the field in Defense Position, [b]and[/b] increase the Level of 1 monster you control by the Level of the Special Summoned monster, until the [b]End Phase[/b].",
+              "script_sha256": "23a226dd17e6699c761f949b244faf5cb3c1a39abaa429d68d6b1ad91fb87205",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetChainInfo",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_SINGLE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "RESET_EVENT"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If your WATER Monster is Xyz Summoned while this is in the GY: attach this card as material, but banish it when detached. HOPT.",
+          "lua_implementation": "A delayed GY trigger targets a newly Xyz Summoned WATER Monster and overlays this card. The host receives an overlay-to-GY redirect limited to this exact material when its move reason is effect or cost and not REASON_RULE; ordinary material cleanup when the host leaves the field therefore no longer banishes it.",
+          "official_references": [
+            {
+              "script": "c26708437.lua",
+              "card_id": 26708437,
+              "card_name": "Xyz Reborn",
+              "matched_structure": "Attaches a Spell/Trap from the GY to an Xyz Monster as material.",
+              "official_effect_text": "[b]Target[/b] 1 Xyz Monster in your GY; Special Summon it, [b]and if you do[/b], attach this card to it as material.",
+              "script_sha256": "efc070574ed6ba5b32200d7ba97d6777c279ffad48683a2198a5d27f31948dd5",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetFirstTarget",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingTarget",
+                "Duel.Overlay",
+                "Duel.SelectTarget",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_CARD_TARGET",
+                "EFFECT_TYPE_ACTIVATE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "Group.FromCards",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "TYPE_XYZ"
+              ]
+            },
+            {
+              "script": "c34620088.lua",
+              "card_id": 34620088,
+              "card_name": "Gimmick Puppet Shadow Feeler",
+              "matched_structure": "Uses an overlay-zone EFFECT_TO_GRAVE_REDIRECT to banish a designated Xyz Material instead of sending it to the GY.",
+              "official_effect_text": "[b]Cannot[/b] be destroyed by battle. [b]When[/b] you take battle damage from an opponent's direct attack while this card is in your Graveyard: [b]You can[/b] Special Summon this card from your Graveyard in face-up Attack Position, [b]and if you do[/b], take 1000 damage. [b]You can[/b] only use this effect of \"Gimmick Puppet Shadow Feeler\" [b]once[/b] [b]per turn[/b]. If this card is an Xyz Material [b]and[/b] would be sent to the Graveyard, [b]banish[/b] it [b]instead[/b].",
+              "script_sha256": "d27779775a58e3b338895e81794ef7377bb7d023bf77bc3b716ca449b98f0e5f",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TO_GRAVE_REDIRECT",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "LOCATION_OVERLAY",
+                "LOCATION_REMOVED",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Fixed the demonstrated overreach: REASON_RULE material cleanup when the host Xyz leaves the field no longer triggers the detach-only banish redirect."
+        }
+      ],
+      "supersedes_batch": "batch_local_207_207.json",
+      "lua_effect_creations": 4,
+      "conservative_printed_clause_floor": 2,
+      "heuristic_printed_clause_floor": 2,
+      "source_batch": "batch_local_207_207.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 1,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

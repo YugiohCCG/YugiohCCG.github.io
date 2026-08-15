@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch8d-556-572",
+  "ordinal_start": 567,
+  "ordinal_end": 567,
+  "cards": [
+    {
+      "ordinal": 567,
+      "passcode": 259058125,
+      "name": "Eclipse Observer Maya",
+      "text_sha256": "bca7489581b4c8cbddfa3a1953f3996c9624afaa5458d65a2aa7d83dc727ea35",
+      "script_sha256": "fcb1f9cf76a02d421f4971e9b285312ecc8168876831472cc2ecd50af74d22eb",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The paired ATK/DEF modifiers implement one continuous printed effect, followed by two independently activated effects; the shared HOPT clause is merged into those activated effects."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Gains 300 ATK/DEF for each card in your opponent's hand.",
+          "lua_implementation": "A single-range EFFECT_UPDATE_ATTACK on the Monster Zone returns opponent hand count times 300, and a clone applies the same computed value as EFFECT_UPDATE_DEFENSE.",
+          "official_references": [
+            {
+              "script": "c10000020.lua",
+              "card_id": 10000020,
+              "card_name": "Slifer the Sky Dragon",
+              "matched_structure": "Official Omega computes a continuous hand-size-derived value with Duel.GetFieldGroupCount and applies cloned EFFECT_UPDATE_ATTACK and EFFECT_UPDATE_DEFENSE registrations."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "(Quick Effect): You can discard this card; Set 1 \"Eclipse\" Quick-Play Spell from your hand. It can be activated this turn. You can only use this effect of \"Eclipse Observer Maya\" once per turn.",
+          "lua_implementation": "After discarding Maya, the Quick Effect now Sets a custom Eclipse Quick-Play Spell, Book of Eclipse, or Book of Lunar Eclipse from the hand and grants EFFECT_QP_ACT_IN_SET_TURN after a successful Set. AddCodeList/listed_names contains both official IDs.",
+          "official_references": [
+            {
+              "script": "c97462632.lua",
+              "card_id": 97462632,
+              "card_name": "Griffoh",
+              "matched_structure": "Official Omega discards the handler for a Quick Effect, Sets one specifically qualified Quick-Play Spell, and grants EFFECT_QP_ACT_IN_SET_TURN to that Set card."
+            },
+            {
+              "script": "c31834488.lua",
+              "card_id": 31834488,
+              "card_name": "Book of Lunar Eclipse",
+              "matched_structure": "The official Omega DB and script identify Book of Lunar Eclipse as an Eclipse-named Quick-Play Spell that the printed name pool includes."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: Book of Lunar Eclipse (31834488) was missing from Maya's hand Set pool."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If your opponent draws 2 or more cards at the same time: You can Special Summon this card from your GY. You can only use this effect of \"Eclipse Observer Maya\" once per turn.",
+          "lua_implementation": "A delayed EVENT_DRAW trigger in the GY checks the opponent drew at least two cards in the event, then validates an open zone, Necrovalley, and self-summon legality before Special Summoning the related handler under a distinct HOPT.",
+          "official_references": [
+            {
+              "script": "c81866673.lua",
+              "card_id": 81866673,
+              "card_name": "Destiny HERO - Dasher",
+              "matched_structure": "Official Omega registers an EVENT_DRAW trigger while the handler is in the GY and Special Summons after validating event conditions, relation, and an open Monster Zone."
+            },
+            {
+              "script": "c65726770.lua",
+              "card_id": 65726770,
+              "card_name": "Silent Magician Zero",
+              "matched_structure": "Official Omega derives the drawing player and number of simultaneously drawn cards from EVENT_DRAW's ep and event group."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "audit_note": "Added Book of Lunar Eclipse consistently to Maya's metadata and hand Set filter."
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 2,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

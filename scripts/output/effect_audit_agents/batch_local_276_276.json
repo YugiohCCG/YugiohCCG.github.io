@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 276,
+      "passcode": 241957394,
+      "name": "Chapter II Verse IV",
+      "text_sha256": "eab3a49df177a82ebe81e1cf1cb518e7b14a537c650c574186c6656341b1eb65",
+      "script_sha256": "df0da9d760fd281956bd8e5d6429ab577a7a3d0f1bd789682335f33d6c20d3cd",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "(This card is also treated as \"The Hallowed Scripts of the Ataxia\".)",
+          "lua_implementation": "The treated-as identity is expected from card set/name metadata; the runtime script records its listed names but creates no separate name-change effect, matching database-backed official treated-as structure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c48486809.lua",
+              "card_id": 48486809,
+              "card_name": "Winged Kuriboh LV6",
+              "matched_structure": "database-backed always-treated-as identity",
+              "official_effect_text": "(This card is always treated as an \"Elemental HERO\" [b]and[/b] \"Favorite\" card.)\n[b]Cannot[/b] be Normal Summoned/Set. Must be Special Summoned (from your hand or GY) by banishing 1 \"Elemental HERO\" Fusion Monster or 1 \"Winged Kuriboh\" from your hand, face-up field, or GY. [b]You can[/b] only Special Summon \"Winged Kuriboh LV6\" [b]once[/b] [b]per turn[/b] this way. [b]When[/b] an opponent's monster declares an attack, or your opponent activates a monster effect on the field ([b]Quick Effect[/b]): [b]You can[/b] Tribute this card; [b]destroy[/b] that 1 monster, [b]and if you do[/b], inflict damage to your opponent equal to its original ATK.",
+              "script_sha256": "2b3af9b8d25e54387374b29c3d80407429aea491aeb71cc410697705720ca07d",
+              "verified_shared_tokens": [
+                "Duel.Destroy",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Release",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_CHAINING",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_EFFECT"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "When your opponent activates a card effect: You can show 1 \"Dysmandr, the Depraevity of Worlds\" in your Extra Deck and choose 1 Effect Monster you control; Send 1 \"Extinction of Dysmandr\" from your Deck to the GY (but shuffle it into the Deck during the End Phase), and if you do, your opponent's activated card effect becomes the sent card's effect that Tributes a \"Protogenic Essence Token\" to activate.",
+          "lua_implementation": "Activation responds to an opponent chain; cost confirms the exact Dysmandr from Extra Deck, target selects a face-up Effect Monster and preserves an effect relation.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c39552584.lua",
+              "card_id": 39552584,
+              "card_name": "Grapha, Dragon Overlord of Dark World",
+              "matched_structure": "Duel.ChangeChainOperation",
+              "official_effect_text": "\"Grapha, Dragon Lord of Dark World\" + 1 DARK monster\n[b]When[/b] your opponent activates a monster effect, or a Normal Spell/Trap Card, while you have a card(s) in your hand ([b]Quick Effect[/b]): [b]You can[/b] activate this effect; the activated effect becomes \"Your opponent discards 1 card\". [b]You can[/b] only use this effect of \"Grapha, Dragon Overlord of Dark World\" [b]once[/b] [b]per turn[/b]. If this Fusion Summoned card in its owner's control leaves the field because of an opponent's card: [b]You can[/b] Special Summon 1 of your \"Grapha, Dragon Lord of Dark World\" that is banished or in your GY, [b]then[/b] each player with a hand discards 1 card.",
+              "script_sha256": "653d506dff11b1c970e04de356b488fa19c8e37dfac356617c23dde031b1d6bd",
+              "verified_shared_tokens": [
+                "Duel.BreakEffect",
+                "Duel.ChangeChainOperation",
+                "Duel.ChangeTargetCard",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_ACTIVATE",
+                "EVENT_CHAINING",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c6498706.lua",
+              "card_id": 6498706,
+              "card_name": "Fusion Deployment",
+              "matched_structure": "Extra Deck reveal",
+              "official_effect_text": "Reveal 1 Fusion Monster in your Extra Deck [b]and[/b] Special Summon, from your hand or Deck, 1 of the Fusion Materials whose name is mentioned on that monster, [b]also[/b] you [b]cannot[/b] Special Summon from the Extra Deck, except Fusion Monsters, the turn you activate this card. [b]You can[/b] only activate 1 \"Fusion Deployment\" [b]per turn[/b].",
+              "script_sha256": "263cb3ed032a27eba94c3e9d07c6a134f1e876ce01a03f41bdea81311bb1829d",
+              "verified_shared_tokens": [
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.RegisterEffect",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_EXTRA",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "RESET_PHASE"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "When your opponent activates a card effect: You can show 1 \"Dysmandr, the Depraevity of Worlds\" in your Extra Deck and choose 1 Effect Monster you control; Send 1 \"Extinction of Dysmandr\" from your Deck to the GY (but shuffle it into the Deck during the End Phase), and if you do, your opponent's activated card effect becomes the sent card's effect that Tributes a \"Protogenic Essence Token\" to activate.",
+          "lua_implementation": "At resolution it sends exact code 242009896, flags it, and schedules a PHASE_END return to shuffled Deck under Necrovalley.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c67169062.lua",
+              "card_id": 67169062,
+              "card_name": "Pot of Avarice",
+              "matched_structure": "return GY cards to shuffled Deck",
+              "official_effect_text": "[b]Target[/b] 5 monsters in your GY; shuffle all 5 into the Deck, [b]then[/b] draw 2 cards.",
+              "script_sha256": "84240d6c1582a5ea848e403e21964eafa460cba1df8fa5819b026fd5519efa58",
+              "verified_shared_tokens": [
+                "Duel.BreakEffect",
+                "Duel.Hint",
+                "Duel.SendtoDeck",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_ACTIVATE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_EXTRA",
+                "LOCATION_GRAVE",
+                "REASON_EFFECT"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c49299410.lua",
+              "card_id": 49299410,
+              "card_name": "The Black Goat Laughs",
+              "matched_structure": "PHASE_END reset",
+              "official_effect_text": "Declare 1 Monster Card name; this turn, neither player can Special Summon monsters with that original name, except from the GY. [b]You can[/b] [b]banish[/b] this card from the GY, [b]then[/b] declare 1 Monster Card name; this turn, neither player can activate the effects of monsters on the field with that original name. [b]You can[/b] only use 1 \"The Black Goat Laughs\" effect [b]per turn[/b], [b]and[/b] only [b]once[/b] that turn.",
+              "script_sha256": "bfb8be0e18b7eb2ba0e068e3e6dc89a536d7919a5c28f71399892d648970d969",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.RegisterEffect",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "RESET_PHASE"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "When your opponent activates a card effect: You can show 1 \"Dysmandr, the Depraevity of Worlds\" in your Extra Deck and choose 1 Effect Monster you control; Send 1 \"Extinction of Dysmandr\" from your Deck to the GY (but shuffle it into the Deck during the End Phase), and if you do, your opponent's activated card effect becomes the sent card's effect that Tributes a \"Protogenic Essence Token\" to activate.",
+          "lua_implementation": "After the send, ChangeTargetCard changes the original chain target and ChangeChainOperation installs repop. repop asks the original activating player to release a Token during resolution, snapshots the chosen monster, destroys other matching Effect Monsters, then the chosen one.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c39552584.lua",
+              "card_id": 39552584,
+              "card_name": "Grapha, Dragon Overlord of Dark World",
+              "matched_structure": "Duel.ChangeChainOperation",
+              "official_effect_text": "\"Grapha, Dragon Lord of Dark World\" + 1 DARK monster\n[b]When[/b] your opponent activates a monster effect, or a Normal Spell/Trap Card, while you have a card(s) in your hand ([b]Quick Effect[/b]): [b]You can[/b] activate this effect; the activated effect becomes \"Your opponent discards 1 card\". [b]You can[/b] only use this effect of \"Grapha, Dragon Overlord of Dark World\" [b]once[/b] [b]per turn[/b]. If this Fusion Summoned card in its owner's control leaves the field because of an opponent's card: [b]You can[/b] Special Summon 1 of your \"Grapha, Dragon Lord of Dark World\" that is banished or in your GY, [b]then[/b] each player with a hand discards 1 card.",
+              "script_sha256": "653d506dff11b1c970e04de356b488fa19c8e37dfac356617c23dde031b1d6bd",
+              "verified_shared_tokens": [
+                "Duel.BreakEffect",
+                "Duel.ChangeChainOperation",
+                "Duel.ChangeTargetCard",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_ACTIVATE",
+                "EVENT_CHAINING",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c20568404.lua",
+              "card_id": 20568404,
+              "card_name": "Jurrac Stego",
+              "matched_structure": "Duel.Destroy success gates continuation",
+              "official_effect_text": "During your Main Phase: You can destroy 1 card you control, and if you do, send 1 Dinosaur monster from your Deck to the GY, then you can Special Summon \"Jurrac\" monsters from your hand and/or Deck whose total Levels equal the sent monster's Level, except \"Jurrac Stego\", ignoring their Summoning conditions, also you cannot Special Summon for the rest of this turn, except Dinosaur monsters. You can only use this effect of \"Jurrac Stego\" once per turn. When this card is destroyed by battle: You can return 1 face-up card on the field to the hand.",
+              "script_sha256": "604ed1c4f242e1341e0a43bfdab4123bd918c7976f642b55fd3b06f74ac9aeab",
+              "verified_shared_tokens": [
+                "CATEGORY_TOGRAVE",
+                "Duel.BreakEffect",
+                "Duel.Destroy",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.RegisterEffect",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "RESET_PHASE",
+                "aux.AddCodeList",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "ChangeChainOperation can replace a resolving operation, but it cannot retroactively apply another card's activation condition or Tribute cost after the Chain Link was activated. The current Token release therefore occurs during resolution as REASON_EFFECT and cannot exactly become the copied activation procedure. Exact resolution requires revised text that copies only Extinction's resolving operation (and explicitly places any Token release at resolution), or a source effect whose activation legality/cost is checked before this Chain Link is created."
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "overall_verdict": "CUSTOM_GAP",
+      "audit_note": "Adversarial completion review: effect 4 retained. Prior labels were not treated as evidence.",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Complete card override retained after re-reading every printed clause, current Lua registration/procedure, relevant engine helpers/constants, and each cited official Omega script/database record."
+      },
+      "supersedes_batch": null
+    }
+  ],
+  "batch": "local-adversarial-custom-gap-review-217-432",
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 3,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

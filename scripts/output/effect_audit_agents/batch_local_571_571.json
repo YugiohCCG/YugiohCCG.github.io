@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch8d-556-572",
+  "ordinal_start": 571,
+  "ordinal_end": 571,
+  "cards": [
+    {
+      "ordinal": 571,
+      "passcode": 259273851,
+      "name": "Manual of Eclipse",
+      "text_sha256": "0aeab24762484b8aa690274d67e7b849c53600e6b95f35464b986d75833c465e",
+      "script_sha256": "39a6a3df8337c91c866e97e4c99cc28035cba93e664c8ec7d47739810bedb240",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The immediate target/banish/draw operation and the independently worded End-Phase return applying to all opponent banished monsters are split so both resolution semantics are audited; the activation HOPT is merged with the activation."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Target up to 5 monsters in your opponent's GY; banish them, then your opponent draws cards equal to the number banished. You can only activate 1 \"Manual of Eclipse\" per turn.",
+          "lua_implementation": "Resolution filters the Chain's target group by continued relation, GY location, removal legality, and Necrovalley only; it no longer rechecks IsCanBeEffectTarget. It banishes the legal related group, counts cards that actually reached banishment, inserts the printed 'then' break, and draws that count for the opponent.",
+          "official_references": [
+            {
+              "script": "c23776077.lua",
+              "card_id": 23776077,
+              "card_name": "Hazy Flame Basiltrice",
+              "matched_structure": "Official Omega targets an opponent monster in the GY for banishment, but at resolution correctly checks only IsRelateToEffect before Duel.Remove; it does not re-test whether an already-targeted card can currently be selected as a target."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: gaining targeting protection after activation no longer makes an already-targeted monster evade the resolving effect."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "During the End Phase of this turn, return all your opponent's banished monsters to the GY.",
+          "lua_implementation": "Every resolving activation now registers the one-shot End Phase operation independently of whether any immediate target was successfully banished. At the End Phase it returns all identifiable face-up banished Monster Cards belonging to the opponent that can legally go to the GY.",
+          "official_references": [
+            {
+              "script": "c74586817.lua",
+              "card_id": 74586817,
+              "card_name": "PSY-Framelord Omega",
+              "matched_structure": "Official Omega registers and resolves a delayed phase operation for banished cards, retaining or querying the relevant banished population and moving legal cards back at the scheduled phase."
+            },
+            {
+              "script": "c35480699.lua",
+              "card_id": 35480699,
+              "card_name": "Book of Eclipse",
+              "matched_structure": "Official Omega schedules an End-Phase continuation of an activated Spell effect separately from the immediate operation, providing the phase-reset delayed-effect pattern."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the delayed global return was previously registered only after at least one immediate target reached banishment."
+        }
+      ],
+      "audit_note": "Removed the resolution-time targetability recheck and made the End Phase return registration unconditional."
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 0,
+    "fixed": 2,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

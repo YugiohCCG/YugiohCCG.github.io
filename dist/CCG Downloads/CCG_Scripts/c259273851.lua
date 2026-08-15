@@ -38,15 +38,23 @@ end
 function s.retfilter(c)
 	return c:IsFaceup() and c:IsType(TYPE_MONSTER) and c:IsAbleToGrave()
 end
+function s.rmopfilter(c,e)
+	return c:IsRelateToEffect(e) and c:IsLocation(LOCATION_GRAVE)
+		and c:IsAbleToRemove() and aux.NecroValleyFilter()(c)
+end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
-	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e)
-	g=g:Filter(aux.NecroValleyFilter(s.rmfilter),nil,e)
-	if #g==0 then return end
-	Duel.Remove(g,POS_FACEUP,REASON_EFFECT)
-	local rg=Duel.GetOperatedGroup():Filter(Card.IsLocation,nil,LOCATION_REMOVED)
-	local ct=#rg
-	if ct==0 then return end
-	Duel.Draw(1-tp,ct,REASON_EFFECT)
+	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(s.rmopfilter,nil,e)
+	if #g>0 then
+		Duel.Remove(g,POS_FACEUP,REASON_EFFECT)
+		local rg=Duel.GetOperatedGroup():Filter(Card.IsLocation,nil,LOCATION_REMOVED)
+		local ct=#rg
+		if ct>0 then
+			Duel.BreakEffect()
+			Duel.Draw(1-tp,ct,REASON_EFFECT)
+		end
+	end
+	--The End Phase clause applies to all of the opponent's banished monsters,
+	--even if none of this activation's targets were successfully banished.
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e1:SetCode(EVENT_PHASE+PHASE_END)

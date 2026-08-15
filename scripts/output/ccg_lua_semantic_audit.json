@@ -4,9 +4,9 @@
     "active_cards": 577,
     "scripts": 578,
     "parsed_scripts": 578,
-    "effect_creations": 1988,
-    "callback_functions": 3617,
-    "search_calls": 2762,
+    "effect_creations": 1993,
+    "callback_functions": 3619,
+    "search_calls": 2771,
     "accepted_replacement_target_callbacks": 3,
     "errors": 0,
     "review_candidates": 0,
@@ -102,7 +102,7 @@
       "script": "c242009896.lua",
       "line": 68,
       "detail": "e1: s.destg does not visibly guard s.desop's Duel.GetMatchingGroup(s.dgfilter|tp|LOCATION_MZONE|LOCATION_MZONE).",
-      "disposition": "The target callback chooses the reference monster. The operation's different predicate intentionally finds all other monsters sharing one of its characteristics."
+      "disposition": "False positive: the target callback guards and chooses the printed reference Effect Monster. The operation does not make a second selection; Duel.GetMatchingGroup intentionally enumerates the distinct printed group of all other face-up Effect Monsters sharing a characteristic with that chosen monster, so its dgfilter predicate must differ from the activation guard."
     },
     {
       "severity": "review",
@@ -349,7 +349,7 @@
       "card_name": "Cassiopeia of the Eldoran System",
       "script": "c212377618.lua",
       "parsed": true,
-      "effects": 1,
+      "effects": 0,
       "callbacks": 0,
       "searches": 0
     },
@@ -390,7 +390,7 @@
       "script": "c212737555.lua",
       "parsed": true,
       "effects": 2,
-      "callbacks": 6,
+      "callbacks": 4,
       "searches": 3
     },
     {
@@ -760,7 +760,7 @@
       "script": "c217174535.lua",
       "parsed": true,
       "effects": 4,
-      "callbacks": 9,
+      "callbacks": 10,
       "searches": 1
     },
     {
@@ -1841,7 +1841,7 @@
       "parsed": true,
       "effects": 2,
       "callbacks": 6,
-      "searches": 4
+      "searches": 5
     },
     {
       "ordinal": 44,
@@ -2360,7 +2360,7 @@
       "script": "c236721134.lua",
       "parsed": true,
       "effects": 3,
-      "callbacks": 7,
+      "callbacks": 8,
       "searches": 7
     },
     {
@@ -2990,7 +2990,7 @@
       "script": "c244972185.lua",
       "parsed": true,
       "effects": 3,
-      "callbacks": 5,
+      "callbacks": 4,
       "searches": 8
     },
     {
@@ -3359,8 +3359,8 @@
       "card_name": "Flower Cardian Moonflare",
       "script": "c248940511.lua",
       "parsed": true,
-      "effects": 3,
-      "callbacks": 7,
+      "effects": 2,
+      "callbacks": 5,
       "searches": 2
     },
     {
@@ -3619,7 +3619,7 @@
       "card_name": "Crewal Cursed Sea",
       "script": "c252249599.lua",
       "parsed": true,
-      "effects": 6,
+      "effects": 5,
       "callbacks": 8,
       "searches": 5
     },
@@ -3640,7 +3640,7 @@
       "script": "c252513554.lua",
       "parsed": true,
       "effects": 3,
-      "callbacks": 5,
+      "callbacks": 3,
       "searches": 1
     },
     {
@@ -3970,7 +3970,7 @@
       "script": "c257081514.lua",
       "parsed": true,
       "effects": 3,
-      "callbacks": 8,
+      "callbacks": 6,
       "searches": 10
     },
     {
@@ -4189,9 +4189,9 @@
       "card_name": "Glitchling Mage",
       "script": "c259072906.lua",
       "parsed": true,
-      "effects": 5,
+      "effects": 6,
       "callbacks": 9,
-      "searches": 14
+      "searches": 12
     },
     {
       "ordinal": 562,
@@ -4339,7 +4339,7 @@
       "card_name": "Dragon Protector of Nature",
       "script": "c259152704.lua",
       "parsed": true,
-      "effects": 3,
+      "effects": 4,
       "callbacks": 5,
       "searches": 3
     },
@@ -4401,7 +4401,7 @@
       "parsed": true,
       "effects": 4,
       "callbacks": 9,
-      "searches": 8
+      "searches": 9
     },
     {
       "ordinal": 574,
@@ -4471,7 +4471,7 @@
       "parsed": true,
       "effects": 4,
       "callbacks": 5,
-      "searches": 5
+      "searches": 7
     },
     {
       "ordinal": 269,
@@ -4709,8 +4709,8 @@
       "card_name": "Pumpqueen the Queen of Ghosts",
       "script": "c259308265.lua",
       "parsed": true,
-      "effects": 2,
-      "callbacks": 4,
+      "effects": 3,
+      "callbacks": 5,
       "searches": 3
     },
     {
@@ -4879,9 +4879,9 @@
       "card_name": "Pip in the Wild",
       "script": "c259394179.lua",
       "parsed": true,
-      "effects": 3,
-      "callbacks": 7,
-      "searches": 7
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 8
     },
     {
       "ordinal": 470,
@@ -5070,7 +5070,7 @@
       "script": "c259485374.lua",
       "parsed": true,
       "effects": 2,
-      "callbacks": 3,
+      "callbacks": 4,
       "searches": 4
     },
     {
@@ -5211,7 +5211,7 @@
       "parsed": true,
       "effects": 3,
       "callbacks": 6,
-      "searches": 10
+      "searches": 11
     },
     {
       "ordinal": 547,
@@ -5529,9 +5529,9 @@
       "card_name": "Tove in the Wild",
       "script": "c259718504.lua",
       "parsed": true,
-      "effects": 3,
-      "callbacks": 7,
-      "searches": 7
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 8
     },
     {
       "ordinal": 568,
@@ -5679,9 +5679,9 @@
       "card_name": "Nuwa in the Wild",
       "script": "c259796760.lua",
       "parsed": true,
-      "effects": 5,
-      "callbacks": 7,
-      "searches": 7
+      "effects": 6,
+      "callbacks": 8,
+      "searches": 8
     },
     {
       "ordinal": 406,
@@ -5799,9 +5799,9 @@
       "card_name": "Mylo in the Wild",
       "script": "c259911246.lua",
       "parsed": true,
-      "effects": 4,
-      "callbacks": 8,
-      "searches": 7
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 8
     },
     {
       "ordinal": 291,
@@ -5919,9 +5919,9 @@
       "card_name": "Bob, but Stronger!",
       "script": "c259944943.lua",
       "parsed": true,
-      "effects": 4,
-      "callbacks": 2,
-      "searches": 0
+      "effects": 5,
+      "callbacks": 5,
+      "searches": 2
     },
     {
       "ordinal": 534,

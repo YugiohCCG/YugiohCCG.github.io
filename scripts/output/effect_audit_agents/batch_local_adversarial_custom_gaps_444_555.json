@@ -1,0 +1,1976 @@
+{
+  "schema_version": 1,
+  "batch": "local-adversarial-custom-gaps-444-555",
+  "ordinal_start": 444,
+  "ordinal_end": 555,
+  "cards": [
+    {
+      "ordinal": 444,
+      "passcode": 231523659,
+      "name": "Stardust Comet",
+      "text_sha256": "e5cf7c23cd556e63db8553969ae5209a43305251412944bdc51aaa28f15049cb",
+      "script_sha256": "4f6cbe05ee61064c131685536d82e78d3a1a06cf91404036f710b04037d2c379",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Fresh manual segmentation counts every printed summoning procedure, condition, continuous clause, activated effect, follow-up clause, and explicit usage limit represented in this record."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "(Quick Effect): You can Tribute 1 \"Stardust\" monster from your Deck, except \"Stardust Comet\"; Special Summon this card from your hand.",
+          "lua_implementation": "The hand Quick Effect selects a different Stardust monster in the Deck and moves it with Duel.SendtoGrave using REASON_COST+REASON_RELEASE, then Special Summons this card from the hand. REASON_RELEASE preserves the observable Tribute reason even though Deck cards are outside the ordinary Duel.GetReleaseGroup/IsReleasable zone.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c66646087.lua",
+              "card_id": 66646087,
+              "card_name": "Red Familiar",
+              "matched_structure": "Official script selects a monster from the Deck and sends it to the GY as an activation cost."
+            },
+            {
+              "script": "tmp/omega_scripts/c19891131.lua",
+              "card_id": 19891131,
+              "card_name": "Crusadia Krawler",
+              "matched_structure": "Official script uses REASON_COST+REASON_RELEASE for a Tribute/release cost and exposes the release reason to later checks."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed implementation defect fixed: IsReleasable/Duel.Release cannot represent a Deck-zone Tribute. The supported Deck movement now carries both COST and RELEASE reason bits.",
+          "required_resolution": "None; retain the REASON_COST+REASON_RELEASE Deck movement and regression-test release-trigger interactions."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If you Normal or Special Summon a \"Stardust\" monster, except \"Stardust Comet\": You can, immediately after this effect resolves, Synchro Summon 1 \"Stardust\", \"Synchron\" or \"Warrior\" Synchro Monster using monsters you control, and if you do, you can increase or decrease its Level by 1.",
+          "lua_implementation": "c231523659.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end | if c:IsRelateToEffect(e) then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP) end | function s.evfilter(c,tp) return c:IsSummonPlayer(tp) and c:IsSetCard(SET_STARDUST) and not c:IsCode(id) end | function s.synfilter(c) return c:IsType(TYPE_SYNCHRO) and c:IsSetCard(SET_STARDUST,SET_SYNCHRON,SET_SYNCHRO_WARRIOR) and c:IsSynchroSummonable(nil) end | if chk==0 then return Duel.IsExistingMatchingCard(s.synfilter,tp,LOCATION_EXTRA,0,1,nil) end | Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA) | local sc=Duel.SelectMatchingCard(tp,s.synfilter,tp,LOCATION_EXTRA,0,1,1,nil):GetFirst()",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c65961304.lua",
+              "card_id": 65961304,
+              "card_name": "Kewl Tune B2B",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including CATEGORY_SPECIAL_SUMMON, EFFECT_TYPE_QUICK_O, LOCATION_HAND, EFFECT_TYPE_FIELD, LOCATION_MZONE, TYPE_MONSTER.",
+              "official_effect_text": "1 Tuner + 1+ Synchro Monsters\nThe Levels of monsters your opponent controls are increased by 2. Your Tuners can make a second attack during each [b]Battle Phase[/b]. [b]When[/b] your opponent activates a monster effect ([b]Quick Effect[/b]): [b]You can[/b] [b]target[/b] 1 Tuner in your GY or banishment, except a Level 10 Tuner; add it to your hand or Special Summon it, [b]then[/b] [b]immediately[/b] after this effect resolves, [b]you can[/b] Synchro Summon 1 Synchro Monster. [b]You can[/b] only use this effect of \"Kewl Tune B2B\" twice [b]per turn[/b].",
+              "script_sha256": "d49b636798f7323609852f8bb72c75e1dc28a679cc125f7eba31c7fa6c91337e",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.SelectYesNo",
+                "Duel.SendtoGrave",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "Duel.SynchroSummon",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_QUICK_O",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_UPDATE_LEVEL",
+                "Effect.CreateEffect",
+                "LOCATION_EXTRA",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "RESET_EVENT",
+                "TYPE_MONSTER",
+                "TYPE_SYNCHRO",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can only use each effect of \"Stardust Comet\" once per turn.",
+          "lua_implementation": "c231523659.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e1:SetCountLimit(1,id) | e2:SetCountLimit(1,id+100)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c29251488.lua",
+              "card_id": 29251488,
+              "card_name": "Chef de Nouvelles",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including CATEGORY_SPECIAL_SUMMON, EFFECT_TYPE_QUICK_O, EVENT_FREE_CHAIN, LOCATION_HAND, EFFECT_TYPE_FIELD, EFFECT_TYPE_TRIGGER_O.",
+              "official_effect_text": "P\nDuring your [b]Main Phase[/b], if this card was activated this turn: [b]You can[/b] add 1 non-Pendulum \"Nouvelles\" card from your Deck to your hand. If a monster(s) is Special Summoned to your opponent's field (except during the Damage Step): [b]You can[/b] Special Summon this card. [b]You can[/b] only use each effect of \"Chef de Nouvelles\" [b]once[/b] [b]per turn[/b].\nE\nIf this card on the field is Tributed [b]and[/b] added to the Extra Deck face-up: [b]You can[/b] place this card in your Pendulum Zone. You [b]cannot[/b] activate the following effects of \"Chef de Nouvelles\" in the same Chain. [b]Once[/b] [b]per turn[/b] ([b]Quick Effect[/b]): [b]You can[/b] [b]target[/b] 1 Effect Monster on the field; increase its Level by up to 3. [b]Once[/b] [b]per turn[/b], if your opponent Special Summons a monster(s) (except during the Damage Step): [b]You can[/b] [b]banish[/b] 1 \"Recipe\" Ritual Spell from your hand, Deck, or GY; apply that card's activation effect that Ritual Summons a monster.",
+              "script_sha256": "0621d21839ca1dda10fca7bca903edb1fb156ed52138700dc8c2115bc207498f",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_QUICK_O",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EFFECT_UPDATE_LEVEL",
+                "EVENT_FREE_CHAIN",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_EXTRA",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_COST",
+                "REASON_RELEASE",
+                "RESET_EVENT",
+                "TYPE_MONSTER",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "supersedes_batch": "batch_local_adversarial_custom_gaps_444_555.json",
+      "reconciliation_note": "Adversarial completion audit against current text/Lua, Omega procedure helpers and constants, official scripts, and the official Omega database. Historical checklist claims were not used."
+    },
+    {
+      "ordinal": 447,
+      "passcode": 234179728,
+      "name": "Galacticarina",
+      "text_sha256": "1776aab6a49707e89e967f45e6cc263456148f24152dc1fc051af06dd4ab3059",
+      "script_sha256": "ee615ac69f1283bd471b2661b00abecf8deac4ec0ed73bed5af6ed759f94af3c",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Fresh manual segmentation counts every printed summoning procedure, condition, continuous clause, activated effect, follow-up clause, and explicit usage limit represented in this record."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "All monsters your opponent controls must attack this card, if able.",
+          "lua_implementation": "c234179728.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e1:SetCode(EFFECT_MUST_ATTACK) | e2:SetCode(EFFECT_MUST_ATTACK_MONSTER) | e3:SetCode(EVENT_PHASE+PHASE_BATTLE_START) | e4:SetCode(EVENT_BATTLE_DESTROYING) | e5:SetCode(EVENT_BATTLE_DAMAGE) | if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_ATTACK) end | if c:IsRelateToEffect(e) then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP_ATTACK) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15613529.lua",
+              "card_id": 15613529,
+              "card_name": "Mystical Elf - White Lightning",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_FIELD, EFFECT_MUST_ATTACK, LOCATION_MZONE, EFFECT_MUST_ATTACK_MONSTER, CATEGORY_SPECIAL_SUMMON, PHASE_BATTLE_START.",
+              "official_effect_text": "[b]When[/b] a monster your opponent controls activates its effect, while you control a Level 5 or higher Normal Monster ([b]Quick Effect[/b]): [b]You can[/b] Special Summon this card from your hand, [b]and if you do[/b], [b]negate[/b] that effect. During your opponent's [b]Battle Phase[/b] ([b]Quick Effect[/b]): [b]You can[/b] [b]target[/b] 1 Normal Monster in either GY; Special Summon it to your field, [b]and if you do[/b], all monsters your opponent controls must attack that monster this turn, if able, while you control it. [b]You can[/b] only use each effect of \"Mystical Elf - White Lightning\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2b678b51fd8a8a3f3eac047dd1b442976a8ac320e4012c18def7b9c487a09bdd",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_MUST_ATTACK",
+                "EFFECT_MUST_ATTACK_MONSTER",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "PHASE_BATTLE_START",
+                "RESET_PHASE",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "At the start of the Battle Phase: You can Special Summon this card from your hand in Attack Position.",
+          "lua_implementation": "c234179728.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e1:SetCode(EFFECT_MUST_ATTACK) | e2:SetCode(EFFECT_MUST_ATTACK_MONSTER) | e3:SetCode(EVENT_PHASE+PHASE_BATTLE_START) | e3:SetRange(LOCATION_HAND) | e4:SetCode(EVENT_BATTLE_DESTROYING) | e5:SetCode(EVENT_BATTLE_DAMAGE) | if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_ATTACK) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15613529.lua",
+              "card_id": 15613529,
+              "card_name": "Mystical Elf - White Lightning",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_FIELD, EFFECT_MUST_ATTACK, LOCATION_MZONE, EFFECT_MUST_ATTACK_MONSTER, CATEGORY_SPECIAL_SUMMON, PHASE_BATTLE_START.",
+              "official_effect_text": "[b]When[/b] a monster your opponent controls activates its effect, while you control a Level 5 or higher Normal Monster ([b]Quick Effect[/b]): [b]You can[/b] Special Summon this card from your hand, [b]and if you do[/b], [b]negate[/b] that effect. During your opponent's [b]Battle Phase[/b] ([b]Quick Effect[/b]): [b]You can[/b] [b]target[/b] 1 Normal Monster in either GY; Special Summon it to your field, [b]and if you do[/b], all monsters your opponent controls must attack that monster this turn, if able, while you control it. [b]You can[/b] only use each effect of \"Mystical Elf - White Lightning\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2b678b51fd8a8a3f3eac047dd1b442976a8ac320e4012c18def7b9c487a09bdd",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_MUST_ATTACK",
+                "EFFECT_MUST_ATTACK_MONSTER",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "PHASE_BATTLE_START",
+                "RESET_PHASE",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card destroys a monster by battle, or inflicts battle damage to your opponent: You can shuffle 1 \"Galactica\" Spell/Trap from your banishment into the Deck; banish this card, then Special Summon 1 Level 2 \"Galactica\" monster from your Deck or banishment in Attack Position, except \"Galacticarina\".",
+          "lua_implementation": "c234179728.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e1:SetCode(EFFECT_MUST_ATTACK) | e2:SetCode(EFFECT_MUST_ATTACK_MONSTER) | e3:SetCode(EVENT_PHASE+PHASE_BATTLE_START) | e4:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) | e4:SetCode(EVENT_BATTLE_DESTROYING) | e5:SetCode(EVENT_BATTLE_DAMAGE) | if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_ATTACK) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c19942835.lua",
+              "card_id": 19942835,
+              "card_name": "Zombie Reborn",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including LOCATION_MZONE, CATEGORY_SPECIAL_SUMMON, CATEGORY_TODECK, CATEGORY_REMOVE, EFFECT_TYPE_SINGLE, Duel.SpecialSummon.",
+              "official_effect_text": "[b]Target[/b] 1 Zombie monster in either GY; [b]banish[/b] 1 monster with the same name from your Deck or Extra Deck, [b]and if you do[/b], Special Summon the targeted monster to your field. If this card is in your GY: [b]You can[/b] shuffle 1 of your banished Zombie monsters into the Deck, [b]and if you do[/b], Set this card, but [b]banish[/b] it [b]when[/b] it leaves the field. [b]You can[/b] only use 1 \"Zombie Reborn\" effect [b]per turn[/b], [b]and[/b] only [b]once[/b] that turn.",
+              "script_sha256": "4e49778619f4d9c8553ec1431d3263c5a2b47127c19e0a8d78f6c8ea637cb6a0",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TODECK",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Remove",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoDeck",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "LOCATION_REMOVED",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "supersedes_batch": "batch_local_adversarial_custom_gaps_444_555.json",
+      "reconciliation_note": "Adversarial completion audit against current text/Lua, Omega procedure helpers and constants, official scripts, and the official Omega database. Historical checklist claims were not used. This script's qualifying Damage Step summon Effect object is now registered for Galactican Battle Station; the printed behavior of this card is otherwise unchanged."
+    },
+    {
+      "ordinal": 448,
+      "passcode": 227335484,
+      "name": "Galacticassiopeia",
+      "text_sha256": "740b9b97303b551c8cc40cdc865388ee7419a677e02b522b02e141026c8cb65b",
+      "script_sha256": "f0305219325e67c9d210ac909181c6506f270d4065c765dd8a821a06157cd1c3",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Fresh manual segmentation counts every printed summoning procedure, condition, continuous clause, activated effect, follow-up clause, and explicit usage limit represented in this record."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "All monsters your opponent controls must attack this card, if able.",
+          "lua_implementation": "c227335484.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e1:SetCode(EFFECT_MUST_ATTACK) | e2:SetCode(EFFECT_MUST_ATTACK_MONSTER) | e3:SetCode(EVENT_PHASE+PHASE_BATTLE_START) | e4:SetCode(EVENT_BATTLE_DESTROYING) | e5:SetCode(EVENT_BATTLE_DAMAGE) | if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_ATTACK) end | function s.spop(e,tp) local c=e:GetHandler() if c:IsRelateToEffect(e) then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP_ATTACK) end end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15613529.lua",
+              "card_id": 15613529,
+              "card_name": "Mystical Elf - White Lightning",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_FIELD, EFFECT_MUST_ATTACK, LOCATION_MZONE, EFFECT_MUST_ATTACK_MONSTER, CATEGORY_SPECIAL_SUMMON, PHASE_BATTLE_START.",
+              "official_effect_text": "[b]When[/b] a monster your opponent controls activates its effect, while you control a Level 5 or higher Normal Monster ([b]Quick Effect[/b]): [b]You can[/b] Special Summon this card from your hand, [b]and if you do[/b], [b]negate[/b] that effect. During your opponent's [b]Battle Phase[/b] ([b]Quick Effect[/b]): [b]You can[/b] [b]target[/b] 1 Normal Monster in either GY; Special Summon it to your field, [b]and if you do[/b], all monsters your opponent controls must attack that monster this turn, if able, while you control it. [b]You can[/b] only use each effect of \"Mystical Elf - White Lightning\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2b678b51fd8a8a3f3eac047dd1b442976a8ac320e4012c18def7b9c487a09bdd",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_MUST_ATTACK",
+                "EFFECT_MUST_ATTACK_MONSTER",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "PHASE_BATTLE_START",
+                "RESET_PHASE",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "At the start of the Battle Phase: You can Special Summon this card from your hand in Attack Position.",
+          "lua_implementation": "c227335484.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e1:SetCode(EFFECT_MUST_ATTACK) | e2:SetCode(EFFECT_MUST_ATTACK_MONSTER) | e3:SetCode(EVENT_PHASE+PHASE_BATTLE_START) | e3:SetRange(LOCATION_HAND) | e4:SetCode(EVENT_BATTLE_DESTROYING) | e5:SetCode(EVENT_BATTLE_DAMAGE) | if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_ATTACK) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15613529.lua",
+              "card_id": 15613529,
+              "card_name": "Mystical Elf - White Lightning",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_FIELD, EFFECT_MUST_ATTACK, LOCATION_MZONE, EFFECT_MUST_ATTACK_MONSTER, CATEGORY_SPECIAL_SUMMON, PHASE_BATTLE_START.",
+              "official_effect_text": "[b]When[/b] a monster your opponent controls activates its effect, while you control a Level 5 or higher Normal Monster ([b]Quick Effect[/b]): [b]You can[/b] Special Summon this card from your hand, [b]and if you do[/b], [b]negate[/b] that effect. During your opponent's [b]Battle Phase[/b] ([b]Quick Effect[/b]): [b]You can[/b] [b]target[/b] 1 Normal Monster in either GY; Special Summon it to your field, [b]and if you do[/b], all monsters your opponent controls must attack that monster this turn, if able, while you control it. [b]You can[/b] only use each effect of \"Mystical Elf - White Lightning\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2b678b51fd8a8a3f3eac047dd1b442976a8ac320e4012c18def7b9c487a09bdd",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_MUST_ATTACK",
+                "EFFECT_MUST_ATTACK_MONSTER",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "PHASE_BATTLE_START",
+                "RESET_PHASE",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card destroys a monster by battle, or inflicts battle damage to your opponent: You can shuffle 1 \"Galactica\" Spell/Trap from your banishment into the Deck; banish this card, then Special Summon 1 Level 2 \"Galactica\" monster from your Deck or banishment in Attack Position, except \"Galacticassiopeia\".",
+          "lua_implementation": "c227335484.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e1:SetCode(EFFECT_MUST_ATTACK) | e2:SetCode(EFFECT_MUST_ATTACK_MONSTER) | e3:SetCode(EVENT_PHASE+PHASE_BATTLE_START) | e4:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) | e4:SetCode(EVENT_BATTLE_DESTROYING) | e5:SetCode(EVENT_BATTLE_DAMAGE) | if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_ATTACK) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c19942835.lua",
+              "card_id": 19942835,
+              "card_name": "Zombie Reborn",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including LOCATION_MZONE, CATEGORY_SPECIAL_SUMMON, CATEGORY_TODECK, CATEGORY_REMOVE, EFFECT_TYPE_SINGLE, Duel.SpecialSummon.",
+              "official_effect_text": "[b]Target[/b] 1 Zombie monster in either GY; [b]banish[/b] 1 monster with the same name from your Deck or Extra Deck, [b]and if you do[/b], Special Summon the targeted monster to your field. If this card is in your GY: [b]You can[/b] shuffle 1 of your banished Zombie monsters into the Deck, [b]and if you do[/b], Set this card, but [b]banish[/b] it [b]when[/b] it leaves the field. [b]You can[/b] only use 1 \"Zombie Reborn\" effect [b]per turn[/b], [b]and[/b] only [b]once[/b] that turn.",
+              "script_sha256": "4e49778619f4d9c8553ec1431d3263c5a2b47127c19e0a8d78f6c8ea637cb6a0",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TODECK",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Remove",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoDeck",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "LOCATION_REMOVED",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "supersedes_batch": "batch_local_adversarial_custom_gaps_444_555.json",
+      "reconciliation_note": "Adversarial completion audit against current text/Lua, Omega procedure helpers and constants, official scripts, and the official Omega database. Historical checklist claims were not used. This script's qualifying Damage Step summon Effect object is now registered for Galactican Battle Station; the printed behavior of this card is otherwise unchanged."
+    },
+    {
+      "ordinal": 449,
+      "passcode": 229021849,
+      "name": "Galacticanes Venatici",
+      "text_sha256": "deec926c2d09d4446194ac85bb5ada0f6200c385c2e7d19a7268fcacf350b6f8",
+      "script_sha256": "dfc97938b7b8727e42d66c425496b16dc3d974dfb43ffdc65d8f945b3d14e1d0",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Fresh manual segmentation counts every printed summoning procedure, condition, continuous clause, activated effect, follow-up clause, and explicit usage limit represented in this record."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If this card is Normal or Special Summoned in Attack Position: You can Special Summon 1 \"Galactican Machinator Token\" (Machine/LIGHT/Level 4/ATK 1000/DEF 0) in Attack Position.",
+          "lua_implementation": "c229021849.lua implements this printed clause with 2 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e3:SetCode(EVENT_BATTLE_DESTROYING) | e4:SetCode(EVENT_BATTLE_DAMAGE) | c:RegisterFlagEffect(id+100,RESET_PHASE+PHASE_DAMAGE,0,1) | if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsPlayerCanSpecialSummonMonster(tp,MACHINATOR_TOKEN,SET_GALACTICA,TYPE_TOKEN,1000,0,4,RACE_MACHINE,ATTRIBUTE_LIGHT) end | if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 or not Duel.IsPlayerCanSpecialSummonMonster(tp,MACHINATOR_TOKEN,SET_GALACTICA,TYPE_TOKEN,1000,0,4,RACE_MACHINE,ATTRIBUTE_LIGHT) then return end | Duel.SpecialSummon(tk,0,tp,tp,false,false,POS_FACEUP_ATTACK)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c42952160.lua",
+              "card_id": 42952160,
+              "card_name": "Split Mirror of the Underworld",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including CATEGORY_SPECIAL_SUMMON, EVENT_BATTLE_DAMAGE, RESET_PHASE, PHASE_DAMAGE, LOCATION_MZONE, Duel.SpecialSummon.",
+              "official_effect_text": "[b]When[/b] you take damage from your opponent's card effect or their monster's attack: Apply the appropriate effect based on the type of damage.\n● Battle: Special Summon 1 monster from your GY, with ATK less than or equal to the damage, [b]and if you do[/b], end the [b]Battle Phase[/b] after the Damage Step.\n● Effect: Inflict double the damage you took to your opponent.\n[b]You can[/b] only activate 1 \"Split Mirror of the Underworld\" [b]per turn[/b].",
+              "script_sha256": "7f48a8c8534af37c1dae242298a07f11f602ba4390ac522fb68b62b5e210890c",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EVENT_BATTLE_DAMAGE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "PHASE_DAMAGE",
+                "REASON_EFFECT",
+                "RESET_PHASE",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You can only use the previous effect of \"Galacticanes Venatici\" once per turn.",
+          "lua_implementation": "c229021849.lua implements this printed clause with 2 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e1:SetCountLimit(1,id) | c:RegisterFlagEffect(id+100,RESET_PHASE+PHASE_DAMAGE,0,1)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c19476824.lua",
+              "card_id": 19476824,
+              "card_name": "Metaphys Ragnarok",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including CATEGORY_SPECIAL_SUMMON, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SUMMON_SUCCESS, EFFECT_FLAG_DELAY, EVENT_SPSUMMON_SUCCESS.",
+              "official_effect_text": "If this card is Normal or Special Summoned: [b]You can[/b] [b]banish[/b] the top 3 cards of your Deck, [b]and if you do[/b], this card gains 300 ATK for each \"Metaphys\" card banished by this effect. [b]When[/b] this card inflicts battle damage to your opponent: [b]You can[/b] Special Summon 1 Level 5 or higher \"Metaphys\" monster from your Deck, but [b]banish[/b] it during the [b]End Phase[/b] of the next turn. [b]You can[/b] only use each effect of \"Metaphys Ragnarok\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "373138cf21c780cfe2d2495c110ec632dc536428cdbd1e94f22a7a33031be123",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Remove",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_BATTLE_DAMAGE",
+                "EVENT_SPSUMMON_SUCCESS",
+                "EVENT_SUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card destroys a monster by battle, or inflicts battle damage to your opponent: You can banish 1 \"Galactica\" card from your Deck.",
+          "lua_implementation": "c229021849.lua implements this printed clause with 2 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e3:SetCategory(CATEGORY_REMOVE) | e3:SetCode(EVENT_BATTLE_DESTROYING) | e4:SetCode(EVENT_BATTLE_DAMAGE) | c:RegisterFlagEffect(id+100,RESET_PHASE+PHASE_DAMAGE,0,1) | Duel.SpecialSummon(tk,0,tp,tp,false,false,POS_FACEUP_ATTACK) | function s.rmfilter(c) return c:IsSetCard(SET_GALACTICA) and c:IsAbleToRemove() end | if chk==0 then return Duel.IsExistingMatchingCard(s.rmfilter,tp,LOCATION_DECK,0,1,nil) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c92644052.lua",
+              "card_id": 92644052,
+              "card_name": "Performapal Duelist Extraordinaire",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, CATEGORY_REMOVE, EVENT_BATTLE_DAMAGE, RESET_PHASE, PHASE_DAMAGE.",
+              "official_effect_text": "P\n[b]Once[/b] [b]per turn[/b], at the start of the Damage Step, if a monster battles a monster: [b]You can[/b] [b]return[/b] this card to the hand, [b]and if you do[/b], [b]banish[/b] 1 Spell from your Deck. For that battle, your monster [b]cannot[/b] be destroyed, [b]also[/b] the battle damage you take is halved.\nE\n[b]When[/b] this card inflicts battle damage to your opponent: [b]You can[/b] add 1 \"Supreme King Dragon\" monster, \"Supreme King Gate\" monster, or \"Soul of the Supreme King\" from your Deck to your hand. [b]Once[/b] [b]per turn[/b], during the [b]Standby Phase[/b]: Activate this effect; each player can [b]banish[/b] 1 Spell from their Deck. [b]Once[/b] [b]per turn[/b], [b]when[/b] a monster declares an attack: Activate this effect; the attacked player can apply the following effect.\n● Add 1 of your banished Spells to your hand, [b]then[/b] [b]discard[/b] it, [b]and if you do[/b], [b]negate[/b] that attack.",
+              "script_sha256": "932ed03b7cd17c5e8c2a593e9fbca9349ee2d6fe73a1b237b428be14ed1021e1",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Remove",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_BATTLE_DAMAGE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "PHASE_DAMAGE",
+                "REASON_EFFECT",
+                "RESET_PHASE",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "supersedes_batch": "batch_local_adversarial_custom_gaps_444_555.json",
+      "reconciliation_note": "Adversarial completion audit against current text/Lua, Omega procedure helpers and constants, official scripts, and the official Omega database. Historical checklist claims were not used. This script's qualifying Damage Step summon Effect object is now registered for Galactican Battle Station; the printed behavior of this card is otherwise unchanged."
+    },
+    {
+      "ordinal": 454,
+      "passcode": 258934904,
+      "name": "Galactican Battle Station",
+      "text_sha256": "22ff6b33349088659157f76ab4bc2604376731b3fc61221204fda72938716610",
+      "script_sha256": "706963ea44677c51dcf3522b433636b3cbb72fc34da02bed9a9549bb1173ef0e",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Fresh manual segmentation counts every printed summoning procedure, condition, continuous clause, activated effect, follow-up clause, and explicit usage limit represented in this record."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Your monsters cannot attack directly, except \"Galactica\" monsters.",
+          "lua_implementation": "c258934904.lua implements this printed clause with 5 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: local e2=Effect.CreateEffect(c) e2:SetType(EFFECT_TYPE_FIELD) e2:SetCode(EFFECT_CANNOT_DIRECT_ATTACK) e2:SetRange(LOCATION_FZONE) e2:SetTargetRange(LOCATION_MZONE,0) e2:SetTarget(function(e,tc) return not tc:IsSetCard(SET_GALACTICA) end) c:RegisterEffect(e2) | local e3=Effect.CreateEffect(c) e3:SetType(EFFECT_TYPE_FIELD) e3:SetCode(EFFECT_DIRECT_ATTACK) e3:SetRange(LOCATION_FZONE) e3:SetTargetRange(LOCATION_MZONE,0) e3:SetTarget(function(e,tc) return tc:IsSetCard(SET_GALACTICA) end) c:RegisterEffect(e3) | if rp~=tp or (ph~=PHASE_DAMAGE and ph~=PHASE_DAMAGE_CAL)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c9024367.lua",
+              "card_id": 9024367,
+              "card_name": "Galaxy Dragon",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_SINGLE, EFFECT_TYPE_FIELD, EFFECT_CANNOT_DIRECT_ATTACK, LOCATION_MZONE, EFFECT_TYPE_CONTINUOUS, PHASE_DAMAGE.",
+              "official_effect_text": "This card [b]cannot[/b] attack directly, [b]and[/b] can only attack Dragon-Type monsters. If this card battles a Dragon-Type monster, this card gains 1000 ATK during the Damage Step only, [b]also[/b] that monster has its effects negated during this [b]Battle Phase[/b], as long as this card remains face-up on the field.",
+              "script_sha256": "cf900c48f597301614bc406d2544c9897bce914e7a50d75aba6481778db5bc2b",
+              "verified_shared_tokens": [
+                "Duel.GetCurrentPhase",
+                "EFFECT_CANNOT_DIRECT_ATTACK",
+                "EFFECT_TYPE_CONTINUOUS",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "PHASE_DAMAGE",
+                "PHASE_DAMAGE_CAL",
+                "RESET_PHASE"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "\"Galactica\" monsters you control can attack directly.",
+          "lua_implementation": "c258934904.lua implements this printed clause with 5 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: local e2=Effect.CreateEffect(c) e2:SetType(EFFECT_TYPE_FIELD) e2:SetCode(EFFECT_CANNOT_DIRECT_ATTACK) e2:SetRange(LOCATION_FZONE) e2:SetTargetRange(LOCATION_MZONE,0) e2:SetTarget(function(e,tc) return not tc:IsSetCard(SET_GALACTICA) end) c:RegisterEffect(e2) | local e3=Effect.CreateEffect(c) e3:SetType(EFFECT_TYPE_FIELD) e3:SetCode(EFFECT_DIRECT_ATTACK) e3:SetRange(LOCATION_FZONE) e3:SetTargetRange(LOCATION_MZONE,0) e3:SetTarget(function(e,tc) return tc:IsSetCard(SET_GALACTICA) end) c:RegisterEffect(e3) | if rp~=tp or (ph~=PHASE_DAMAGE and ph~=PHASE_DAMAGE_CAL)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c9024367.lua",
+              "card_id": 9024367,
+              "card_name": "Galaxy Dragon",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_SINGLE, EFFECT_TYPE_FIELD, EFFECT_CANNOT_DIRECT_ATTACK, LOCATION_MZONE, EFFECT_TYPE_CONTINUOUS, PHASE_DAMAGE.",
+              "official_effect_text": "This card [b]cannot[/b] attack directly, [b]and[/b] can only attack Dragon-Type monsters. If this card battles a Dragon-Type monster, this card gains 1000 ATK during the Damage Step only, [b]also[/b] that monster has its effects negated during this [b]Battle Phase[/b], as long as this card remains face-up on the field.",
+              "script_sha256": "cf900c48f597301614bc406d2544c9897bce914e7a50d75aba6481778db5bc2b",
+              "verified_shared_tokens": [
+                "Duel.GetCurrentPhase",
+                "EFFECT_CANNOT_DIRECT_ATTACK",
+                "EFFECT_TYPE_CONTINUOUS",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "PHASE_DAMAGE",
+                "PHASE_DAMAGE_CAL",
+                "RESET_PHASE"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Up to twice per turn, during the Damage Step, if you activate a monster effect that would Summon a \"Galactica\" monster, you can add this additional effect to that card's effect at resolution.",
+          "lua_implementation": "A field continuous EVENT_CHAINING effect now recognizes every current qualifying Galactica Damage Step monster effect through aux.CCGGalacticaSummonEffects, with a concrete operation-info group fallback. On consent it saves re:GetOperation(), calls Duel.ChangeChainOperation, runs the original operation, and appends the destruction inside that same resolving Chain Link. A player flag counts only accepted additions and caps them at two per turn.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c39552584.lua",
+              "card_id": 39552584,
+              "card_name": "Grapha, Dragon Overlord of Dark World",
+              "matched_structure": "Official script changes a currently activating effect through EVENT_CHAINING and Duel.ChangeChainOperation."
+            },
+            {
+              "script": "tmp/omega_scripts/c1082946.lua",
+              "card_id": 1082946,
+              "card_name": "Dark Deal",
+              "matched_structure": "Official script retrieves another effect's operation callback with Effect.GetOperation and executes it with the original callback arguments."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "The prior EVENT_CHAIN_SOLVED action was a separate post-resolution event and its concrete-group test missed current non-targeting Galactica summons. The operation is now augmented in-chain and all current qualifying effects are explicitly registered.",
+          "required_resolution": "None for the current CCG pool. Future Damage Step monster effects that Summon a Galactica monster must register their Effect object in aux.CCGGalacticaSummonEffects unless they publish a concrete Galactica group through Duel.SetOperationInfo."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "● Also after that, destroy 1 card on the field.",
+          "lua_implementation": "The replacement operation first invokes the saved original monster-effect operation, then selects and destroys exactly 1 destructible card on the field with REASON_EFFECT before that Chain Link finishes.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c39552584.lua",
+              "card_id": 39552584,
+              "card_name": "Grapha, Dragon Overlord of Dark World",
+              "matched_structure": "Official Duel.ChangeChainOperation callback establishes same-Chain-Link operation replacement semantics."
+            },
+            {
+              "script": "tmp/omega_scripts/c1082946.lua",
+              "card_id": 1082946,
+              "card_name": "Dark Deal",
+              "matched_structure": "Official Effect.GetOperation callback forwarding supports preserving the original operation before the appended action."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "The destruction is no longer delayed until EVENT_CHAIN_SOLVED; it is appended after the original operation in the modified Chain Link.",
+          "required_resolution": "None."
+        }
+      ],
+      "supersedes_batch": "batch_local_adversarial_custom_gaps_444_555.json",
+      "reconciliation_note": "Adversarial completion audit against current text/Lua, Omega procedure helpers and constants, official scripts, and the official Omega database. Historical checklist claims were not used."
+    },
+    {
+      "ordinal": 458,
+      "passcode": 256005703,
+      "name": "Galactican Jet Dasher",
+      "text_sha256": "3b316fcfbcf1a5a862029f30ecf0007e6488a8745003ea0ec81db30c841e4ed5",
+      "script_sha256": "013900aba7978fd569d949e4f2d75e5c3310b3e2da4742cb5df463443b616faa",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "Fresh manual segmentation counts every printed summoning procedure, condition, continuous clause, activated effect, follow-up clause, and explicit usage limit represented in this record."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2 monsters, including a Level 2 \"Galactica\" monster.",
+          "lua_implementation": "c256005703.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) if type(aux.CCGSetEffects)~=\"table\" then aux.CCGSetEffects={} end aux.CCGSetEffects[e1]=true e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.settg) e1:SetOperation(s.setop) c:RegisterEffect(e1) | function s.spfilter(c,e,tp,lc) return c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_LINK) and c:IsLink(2) and not c:IsCode(id)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c11516241.lua",
+              "card_id": 11516241,
+              "card_name": "Gouki The Powerload Ogre",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddLinkProcedure, LOCATION_MZONE, EFFECT_TYPE_SINGLE, SUMMON_TYPE_LINK, TYPE_LINK, REASON_EFFECT.",
+              "official_effect_text": "2+ Warrior monsters\nGains ATK equal to the combined Link Ratings of all other Link Monsters you control x 200. This Link Summoned card is [b]unaffected[/b] by other cards' effects. [b]You can[/b] Tribute 1 \"Gouki\" Link Monster, [b]then[/b] [b]target[/b] cards on the field, up to its Link Rating; [b]destroy[/b] them. [b]You can[/b] only use this effect of \"Gouki The Powerload Ogre\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "8ae2f5dbc954d45da63241225738ca12f75699e56e8ce4faec582666cba31143",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "SUMMON_TYPE_LINK",
+                "TYPE_LINK",
+                "aux.AddLinkProcedure",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You take no battle damage.",
+          "lua_implementation": "c256005703.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: local e0=Effect.CreateEffect(c) e0:SetType(EFFECT_TYPE_FIELD) e0:SetCode(EFFECT_AVOID_BATTLE_DAMAGE) e0:SetProperty(EFFECT_FLAG_PLAYER_TARGET) e0:SetRange(LOCATION_MZONE) e0:SetTargetRange(1,0) e0:SetValue(1) c:RegisterEffect(e0) | local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCost(s.btcost) e2:SetTarget(s.sptg) e2:SetOperation(s.spop) c:RegisterEffect(e2) | local e3=e2:Clone() e3:SetCode(EVENT_BATTLE_DAMAGE) e3:SetCondition(function(e,tp,eg,ep) return ep==1-tp end) c:RegisterEffect(e3) | function s.btcost(e,tp,eg,ep,ev,re,r,rp,chk) local c=e:GetHandler() if chk==0 then return c:GetFlagEffect(id)==0 end c:RegisterFlagEffect(id,RESET_PHASE+PHASE_DAMAGE,0,1) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c80896940.lua",
+              "card_id": 80896940,
+              "card_name": "Nirvana High Paladin",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_FIELD, EFFECT_AVOID_BATTLE_DAMAGE, LOCATION_MZONE, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SPSUMMON_SUCCESS.",
+              "official_effect_text": "P\nIf a Pendulum Monster you control attacks, for that battle, it [b]cannot[/b] be destroyed by battle, [b]also[/b] you take no battle damage. At the end of the Damage Step, if a Pendulum Monster you control attacked: All monsters your opponent currently controls lose ATK equal to that attacking monster's ATK, until the end of this turn.\nE\n1 Tuner + 1+ non-Tuner Synchro Monsters\nFor this card's Synchro Summon, [b]you can[/b] treat 1 Pendulum Summoned Pendulum Monster you control as a Tuner. If this card is Synchro Summoned using a Pendulum Summoned Pendulum Monster Tuner: [b]You can[/b] [b]target[/b] 1 card in your GY; add it to your hand. [b]When[/b] this card destroys an opponent's monster by battle: [b]You can[/b] halve your opponent's LP. If this card in the Monster Zone is destroyed by battle or card effect: [b]You can[/b] place this card in your Pendulum Zone.",
+              "script_sha256": "2997ec36c62f11a99b0e697be3a5f566df424e7ffd466044e7d8dec85adff450",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "EFFECT_AVOID_BATTLE_DAMAGE",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_BATTLE_DESTROYING",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "PHASE_DAMAGE",
+                "REASON_EFFECT",
+                "RESET_PHASE",
+                "aux.Stringid",
+                "aux.bdocon"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is Link Summoned: You can Set 1 banished \"Galactica\" Spell/Trap.",
+          "lua_implementation": "c256005703.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddLinkProcedure(c,nil,2,2,s.lcheck) | local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) if type(aux.CCGSetEffects)~=\"table\" then aux.CCGSetEffects={} end aux.CCGSetEffects[e1]=true e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.settg) e1:SetOperation(s.setop) c:RegisterEffect(e1) | local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCost(s.btcost) e2:SetTarget(s.sptg) e2:SetOperation(s.spop) c:RegisterEffect(e2) | function s.setfilter(c) return c:IsFaceup() and c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() end | function s.settg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_REMOVED,0,1,nil) end end | function s.setop(e,tp) if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET) local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_REMOVED,0,1,1,nil):GetFirst() if tc then Duel.SSet(tp,tc) end end | and Duel.GetLocationCountFromEx(tp,tp,lc,c)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c21639276.lua",
+              "card_id": 21639276,
+              "card_name": "Kashtira Preparations",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_FIELD, LOCATION_MZONE, EFFECT_TYPE_TRIGGER_O, EFFECT_FLAG_DELAY, CATEGORY_REMOVE, CATEGORY_SPECIAL_SUMMON.",
+              "official_effect_text": "During [b]either player's turn[/b]: [b]You can[/b] Special Summon 1 of your \"Kashtira\" monsters that is banished or in your hand. If your opponent activates a Trap Card or effect, you control a \"Kashtira\" monster, [b]and[/b] this card is already face-up in your Spell & Trap Zone: [b]You can[/b] look at your opponent's hand, [b]and if you do[/b], [b]banish[/b] 1 card from it face-down. [b]You can[/b] only use each effect of \"Kashtira Preparations\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "4339465c59b4aea992b946cd3d8ed777fea13bc135a5552d2771aea7dabc945e",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Remove",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "LOCATION_REMOVED",
+                "LOCATION_SZONE",
+                "REASON_EFFECT",
+                "TYPE_TRAP",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use the previous effect of \"Galactican Jet Dasher\" once per turn.",
+          "lua_implementation": "c256005703.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) if type(aux.CCGSetEffects)~=\"table\" then aux.CCGSetEffects={} end aux.CCGSetEffects[e1]=true e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.settg) e1:SetOperation(s.setop) c:RegisterEffect(e1) | function s.btcost(e,tp,eg,ep,ev,re,r,rp,chk) local c=e:GetHandler() if chk==0 then return c:GetFlagEffect(id)==0 end c:RegisterFlagEffect(id,RESET_PHASE+PHASE_DAMAGE,0,1) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c66736884.lua",
+              "card_id": 66736884,
+              "card_name": "Keel, Shipwright Fur Hire",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddLinkProcedure, EFFECT_TYPE_FIELD, EFFECT_FLAG_PLAYER_TARGET, LOCATION_MZONE, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O.",
+              "official_effect_text": "2 monsters with different Types\nIf this card is Link Summoned: [b]You can[/b] Set 1 Spell/Trap \"Fur Hire\" or 1 \"Fandora, the Flying Furtress\" from your Deck, [b]also[/b] you [b]cannot[/b] Special Summon for the rest of this turn, except monsters \"Fur Hire\". During your opponent's turn ([b]Quick Effect[/b]): [b]You can[/b] [b]banish[/b] this card from your GY, [b]and if you do[/b], Special Summon 1 monster \"Fur Hire\" from your hand, [b]then[/b] if your opponent controls a monster with the highest original ATK on the field (even if tied), [b]you can[/b] Special Summon 1 more such monster. [b]You can[/b] only use each effect of \"Keel, Shipwright Fur Hire\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "3ab9b54faff6a4f5d309857125752b8349d6fc4593eab02b03de2af6d40e8f4e",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Remove",
+                "Duel.SSet",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "RESET_PHASE",
+                "SUMMON_TYPE_LINK",
+                "TYPE_SPELL",
+                "TYPE_TRAP",
+                "aux.AddLinkProcedure",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "If this card destroys a monster by battle or inflicts battle damage to your opponent: You can return this card to the Extra Deck or banish it, then Special Summon 1 Link-2 \"Galactica\" monster from your Extra Deck, except \"Galactican Jet Dasher\".",
+          "lua_implementation": "c256005703.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddLinkProcedure(c,nil,2,2,s.lcheck) | local e0=Effect.CreateEffect(c) e0:SetType(EFFECT_TYPE_FIELD) e0:SetCode(EFFECT_AVOID_BATTLE_DAMAGE) e0:SetProperty(EFFECT_FLAG_PLAYER_TARGET) e0:SetRange(LOCATION_MZONE) e0:SetTargetRange(1,0) e0:SetValue(1) c:RegisterEffect(e0) | local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) if type(aux.CCGSetEffects)~=\"table\" then aux.CCGSetEffects={} end aux.CCGSetEffects[e1]=true e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.settg) e1:SetOperation(s.setop) c:RegisterEffect(e1) | local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCost(s.btcost) e2:SetTarget(s.sptg) e2:SetOperation(s.spop) c:RegisterEffect(e2) | local e3=e2:Clone() e3:SetCode(EVENT_BATTLE_DAMAGE) e3:SetCondition(function(e,tp,eg,ep) return ep==1-tp end) c:RegisterEffect(e3) | function s.settg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_REMOVED,0,1,nil) end end | function s.setop(e,tp) if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET) local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_REMOVED,0,1,1,nil):GetFirst() if tc then Duel.SSet(tp,tc) end end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c21848500.lua",
+              "card_id": 21848500,
+              "card_name": "Maliss <Q> Hearts Crypter",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddLinkProcedure, EFFECT_TYPE_FIELD, LOCATION_MZONE, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EFFECT_FLAG_DELAY.",
+              "official_effect_text": "3 monsters, including a \"Maliss\" monster\n(Quick Effect): You can target 1 of your banished \"Maliss\" cards; shuffle it into the Deck, and if you do, banish 1 card on the field (while this card points to a monster, this effect and its activation cannot be negated). If this card is banished: You can pay 900 LP; Special Summon it and double its ATK. You can only use each effect of \"Maliss <Q> Hearts Crypter\" once per turn.",
+              "script_sha256": "0095c7631ac871fc26d38ae5f06367806d107e2e86fed12d11031818eeff63d3",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TODECK",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Remove",
+                "Duel.SendtoDeck",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_EXTRA",
+                "LOCATION_MZONE",
+                "LOCATION_REMOVED",
+                "REASON_EFFECT",
+                "aux.AddLinkProcedure",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "supersedes_batch": "batch_local_adversarial_custom_gaps_444_555.json",
+      "reconciliation_note": "Adversarial completion audit against current text/Lua, Omega procedure helpers and constants, official scripts, and the official Omega database. Historical checklist claims were not used. This script's qualifying Damage Step summon Effect object is now registered for Galactican Battle Station; the printed behavior of this card is otherwise unchanged."
+    },
+    {
+      "ordinal": 459,
+      "passcode": 212837324,
+      "name": "Galactican Jet Drifter",
+      "text_sha256": "8bdb78659c7725672defe62a2985dbdd8723f289d4281890ffcbb63ada653204",
+      "script_sha256": "2ede31a941cbc34e75c80851b82e30e68fe718f8ea5e8f716e10500b16260183",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 6,
+        "reason": "Fresh manual segmentation counts every printed summoning procedure, condition, continuous clause, activated effect, follow-up clause, and explicit usage limit represented in this record."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2 monsters, including a Level 2 \"Galactica\" monster.",
+          "lua_implementation": "c212837324.lua implements this printed clause with 4 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) if type(aux.CCGSetEffects)~=\"table\" then aux.CCGSetEffects={} end aux.CCGSetEffects[e1]=true e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.settg) e1:SetOperation(s.setop) c:RegisterEffect(e1)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10547580.lua",
+              "card_id": 10547580,
+              "card_name": "Ancient Gear Ballista",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddLinkProcedure, LOCATION_MZONE, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SPSUMMON_SUCCESS, EFFECT_FLAG_DELAY.",
+              "official_effect_text": "2 EARTH Machine monsters\nIf this card is Link Summoned: [b]You can[/b] add 1 \"Ancient Gear\" monster or 1 \"Geartown\" from your Deck to your hand. [b]You can[/b] [b]target[/b] 1 Spell/Trap you control [b]and[/b] 1 face-up monster your opponent controls; [b]destroy[/b] that card you control, [b]and if you do[/b], change that opponent's monster's ATK/DEF to 0 until the end of the turn. [b]You can[/b] only use each effect of \"Ancient Gear Ballista\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "bbec5f5dbd0d6f977c5685fa75ba3265da72cddebbdcb66bab906c250ad5977f",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "RESET_PHASE",
+                "SUMMON_TYPE_LINK",
+                "TYPE_SPELL",
+                "TYPE_TRAP",
+                "aux.AddLinkProcedure",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You take no battle damage.",
+          "lua_implementation": "c212837324.lua implements this printed clause with 4 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: local e0=Effect.CreateEffect(c) e0:SetType(EFFECT_TYPE_FIELD) e0:SetCode(EFFECT_AVOID_BATTLE_DAMAGE) e0:SetProperty(EFFECT_FLAG_PLAYER_TARGET) e0:SetRange(LOCATION_MZONE) e0:SetTargetRange(1,0) e0:SetValue(1) c:RegisterEffect(e0) | local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCost(s.btcost) e2:SetTarget(s.sptg) e2:SetOperation(s.spop) c:RegisterEffect(e2) | local e3=e2:Clone() e3:SetCode(EVENT_BATTLE_DAMAGE) e3:SetCondition(function(e,tp,eg,ep) return ep==1-tp end) c:RegisterEffect(e3) | function s.btcost(e,tp,eg,ep,ev,re,r,rp,chk) local c=e:GetHandler() if chk==0 then return c:GetFlagEffect(id)==0 end c:RegisterFlagEffect(id,RESET_PHASE+PHASE_DAMAGE,0,1) end | function s.spfilter(c,e,tp) return c:IsSetCard(SET_GALACTICA) and c:IsLevel(2) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_ATTACK) end | Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON) local sc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil,e,tp):GetFirst() if sc then Duel.SpecialSummon(sc,0,tp,tp,false,false,POS_FACEUP_ATTACK) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c80896940.lua",
+              "card_id": 80896940,
+              "card_name": "Nirvana High Paladin",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_FIELD, EFFECT_AVOID_BATTLE_DAMAGE, LOCATION_MZONE, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SPSUMMON_SUCCESS.",
+              "official_effect_text": "P\nIf a Pendulum Monster you control attacks, for that battle, it [b]cannot[/b] be destroyed by battle, [b]also[/b] you take no battle damage. At the end of the Damage Step, if a Pendulum Monster you control attacked: All monsters your opponent currently controls lose ATK equal to that attacking monster's ATK, until the end of this turn.\nE\n1 Tuner + 1+ non-Tuner Synchro Monsters\nFor this card's Synchro Summon, [b]you can[/b] treat 1 Pendulum Summoned Pendulum Monster you control as a Tuner. If this card is Synchro Summoned using a Pendulum Summoned Pendulum Monster Tuner: [b]You can[/b] [b]target[/b] 1 card in your GY; add it to your hand. [b]When[/b] this card destroys an opponent's monster by battle: [b]You can[/b] halve your opponent's LP. If this card in the Monster Zone is destroyed by battle or card effect: [b]You can[/b] place this card in your Pendulum Zone.",
+              "script_sha256": "2997ec36c62f11a99b0e697be3a5f566df424e7ffd466044e7d8dec85adff450",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "EFFECT_AVOID_BATTLE_DAMAGE",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_BATTLE_DESTROYING",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "PHASE_DAMAGE",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "RESET_PHASE",
+                "aux.Stringid",
+                "aux.bdocon"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is Link Summoned: You can Set 1 banished \"Galactica\" Spell/Trap.",
+          "lua_implementation": "c212837324.lua implements this printed clause with 4 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddLinkProcedure(c,nil,2,2,s.lcheck) c:EnableReviveLimit() | local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) if type(aux.CCGSetEffects)~=\"table\" then aux.CCGSetEffects={} end aux.CCGSetEffects[e1]=true e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.settg) e1:SetOperation(s.setop) c:RegisterEffect(e1) | local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCost(s.btcost) e2:SetTarget(s.sptg) e2:SetOperation(s.spop) c:RegisterEffect(e2) | function s.setfilter(c) return c:IsFaceup() and c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() end | function s.settg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_REMOVED,0,1,nil) end end | function s.setop(e,tp) if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET) local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_REMOVED,0,1,1,nil):GetFirst() if tc and Duel.SSet(tp,tc)>0 and (tc:IsType(TYPE_TRAP) or tc:IsType(TYPE_QUICKPLAY)) then local te=Effect.CreateEffect(e:GetHandler()) te:SetType(EFFECT_TYPE_SINGLE) te:SetProperty(EFFECT_FLAG_SET_AVAILABLE) te:SetCode(tc:IsType(TYPE_TRAP) and EFFECT_TRAP_ACT_IN_SET_TURN or EFFECT_QP_ACT_IN_SET_TURN) te:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END) tc:RegisterEffect(te) end end | function s.spfilter(c,e,tp) return c:IsSetCard(SET_GALACTICA) and c:IsLevel(2) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_ATTACK) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c21639276.lua",
+              "card_id": 21639276,
+              "card_name": "Kashtira Preparations",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_FIELD, LOCATION_MZONE, EFFECT_TYPE_TRIGGER_O, EFFECT_FLAG_DELAY, CATEGORY_REMOVE, CATEGORY_SPECIAL_SUMMON.",
+              "official_effect_text": "During [b]either player's turn[/b]: [b]You can[/b] Special Summon 1 of your \"Kashtira\" monsters that is banished or in your hand. If your opponent activates a Trap Card or effect, you control a \"Kashtira\" monster, [b]and[/b] this card is already face-up in your Spell & Trap Zone: [b]You can[/b] look at your opponent's hand, [b]and if you do[/b], [b]banish[/b] 1 card from it face-down. [b]You can[/b] only use each effect of \"Kashtira Preparations\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "4339465c59b4aea992b946cd3d8ed777fea13bc135a5552d2771aea7dabc945e",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Remove",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "LOCATION_REMOVED",
+                "LOCATION_SZONE",
+                "REASON_EFFECT",
+                "TYPE_TRAP",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "It can be activated this turn.",
+          "lua_implementation": "c212837324.lua implements this printed clause with 4 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddLinkProcedure(c,nil,2,2,s.lcheck) c:EnableReviveLimit() | local e0=Effect.CreateEffect(c) e0:SetType(EFFECT_TYPE_FIELD) e0:SetCode(EFFECT_AVOID_BATTLE_DAMAGE) e0:SetProperty(EFFECT_FLAG_PLAYER_TARGET) e0:SetRange(LOCATION_MZONE) e0:SetTargetRange(1,0) e0:SetValue(1) c:RegisterEffect(e0) | local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) if type(aux.CCGSetEffects)~=\"table\" then aux.CCGSetEffects={} end aux.CCGSetEffects[e1]=true e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.settg) e1:SetOperation(s.setop) c:RegisterEffect(e1) | local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCost(s.btcost) e2:SetTarget(s.sptg) e2:SetOperation(s.spop) c:RegisterEffect(e2) | local e3=e2:Clone() e3:SetCode(EVENT_BATTLE_DAMAGE) e3:SetCondition(function(e,tp,eg,ep) return ep==1-tp end) c:RegisterEffect(e3) | function s.setop(e,tp) if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET) local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_REMOVED,0,1,1,nil):GetFirst() if tc and Duel.SSet(tp,tc)>0 and (tc:IsType(TYPE_TRAP) or tc:IsType(TYPE_QUICKPLAY)) then local te=Effect.CreateEffect(e:GetHandler()) te:SetType(EFFECT_TYPE_SINGLE) te:SetProperty(EFFECT_FLAG_SET_AVAILABLE) te:SetCode(tc:IsType(TYPE_TRAP) and EFFECT_TRAP_ACT_IN_SET_TURN or EFFECT_QP_ACT_IN_SET_TURN) te:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END) tc:RegisterEffect(te) end end | function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetMZoneCount(tp,e:GetHandler())>0 and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil,e,tp) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_DECK+LOCATION_GRAVE) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c66736884.lua",
+              "card_id": 66736884,
+              "card_name": "Keel, Shipwright Fur Hire",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddLinkProcedure, EFFECT_TYPE_FIELD, EFFECT_FLAG_PLAYER_TARGET, LOCATION_MZONE, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O.",
+              "official_effect_text": "2 monsters with different Types\nIf this card is Link Summoned: [b]You can[/b] Set 1 Spell/Trap \"Fur Hire\" or 1 \"Fandora, the Flying Furtress\" from your Deck, [b]also[/b] you [b]cannot[/b] Special Summon for the rest of this turn, except monsters \"Fur Hire\". During your opponent's turn ([b]Quick Effect[/b]): [b]You can[/b] [b]banish[/b] this card from your GY, [b]and if you do[/b], Special Summon 1 monster \"Fur Hire\" from your hand, [b]then[/b] if your opponent controls a monster with the highest original ATK on the field (even if tied), [b]you can[/b] Special Summon 1 more such monster. [b]You can[/b] only use each effect of \"Keel, Shipwright Fur Hire\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "3ab9b54faff6a4f5d309857125752b8349d6fc4593eab02b03de2af6d40e8f4e",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Remove",
+                "Duel.SSet",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "RESET_PHASE",
+                "SUMMON_TYPE_LINK",
+                "TYPE_SPELL",
+                "TYPE_TRAP",
+                "aux.AddLinkProcedure",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "You can only use the previous effect of \"Galactican Jet Drifter\" once per turn.",
+          "lua_implementation": "c212837324.lua implements this printed clause with 4 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) if type(aux.CCGSetEffects)~=\"table\" then aux.CCGSetEffects={} end aux.CCGSetEffects[e1]=true e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.settg) e1:SetOperation(s.setop) c:RegisterEffect(e1) | function s.btcost(e,tp,eg,ep,ev,re,r,rp,chk) local c=e:GetHandler() if chk==0 then return c:GetFlagEffect(id)==0 end c:RegisterFlagEffect(id,RESET_PHASE+PHASE_DAMAGE,0,1) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c66736884.lua",
+              "card_id": 66736884,
+              "card_name": "Keel, Shipwright Fur Hire",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddLinkProcedure, EFFECT_TYPE_FIELD, EFFECT_FLAG_PLAYER_TARGET, LOCATION_MZONE, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O.",
+              "official_effect_text": "2 monsters with different Types\nIf this card is Link Summoned: [b]You can[/b] Set 1 Spell/Trap \"Fur Hire\" or 1 \"Fandora, the Flying Furtress\" from your Deck, [b]also[/b] you [b]cannot[/b] Special Summon for the rest of this turn, except monsters \"Fur Hire\". During your opponent's turn ([b]Quick Effect[/b]): [b]You can[/b] [b]banish[/b] this card from your GY, [b]and if you do[/b], Special Summon 1 monster \"Fur Hire\" from your hand, [b]then[/b] if your opponent controls a monster with the highest original ATK on the field (even if tied), [b]you can[/b] Special Summon 1 more such monster. [b]You can[/b] only use each effect of \"Keel, Shipwright Fur Hire\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "3ab9b54faff6a4f5d309857125752b8349d6fc4593eab02b03de2af6d40e8f4e",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Remove",
+                "Duel.SSet",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "RESET_PHASE",
+                "SUMMON_TYPE_LINK",
+                "TYPE_SPELL",
+                "TYPE_TRAP",
+                "aux.AddLinkProcedure",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 6,
+          "printed_clause": "If this card destroys a monster by battle or inflicts battle damage to your opponent: You can return this card to the Extra Deck or banish it, then Special Summon 1 Level 2 \"Galactica\" monster from your Deck or GY in Attack Position.",
+          "lua_implementation": "c212837324.lua implements this printed clause with 4 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddLinkProcedure(c,nil,2,2,s.lcheck) c:EnableReviveLimit() | local e0=Effect.CreateEffect(c) e0:SetType(EFFECT_TYPE_FIELD) e0:SetCode(EFFECT_AVOID_BATTLE_DAMAGE) e0:SetProperty(EFFECT_FLAG_PLAYER_TARGET) e0:SetRange(LOCATION_MZONE) e0:SetTargetRange(1,0) e0:SetValue(1) c:RegisterEffect(e0) | local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) if type(aux.CCGSetEffects)~=\"table\" then aux.CCGSetEffects={} end aux.CCGSetEffects[e1]=true e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.settg) e1:SetOperation(s.setop) c:RegisterEffect(e1) | local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCost(s.btcost) e2:SetTarget(s.sptg) e2:SetOperation(s.spop) c:RegisterEffect(e2) | local e3=e2:Clone() e3:SetCode(EVENT_BATTLE_DAMAGE) e3:SetCondition(function(e,tp,eg,ep) return ep==1-tp end) c:RegisterEffect(e3) | function s.settg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_REMOVED,0,1,nil) end end | function s.setop(e,tp) if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET) local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_REMOVED,0,1,1,nil):GetFirst() if tc and Duel.SSet(tp,tc)>0 and (tc:IsType(TYPE_TRAP) or tc:IsType(TYPE_QUICKPLAY)) then local te=Effect.CreateEffect(e:GetHandler()) te:SetType(EFFECT_TYPE_SINGLE) te:SetProperty(EFFECT_FLAG_SET_AVAILABLE) te:SetCode(tc:IsType(TYPE_TRAP) and EFFECT_TRAP_ACT_IN_SET_TURN or EFFECT_QP_ACT_IN_SET_TURN) te:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END) tc:RegisterEffect(te) end end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c19942835.lua",
+              "card_id": 19942835,
+              "card_name": "Zombie Reborn",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including LOCATION_MZONE, EFFECT_TYPE_SINGLE, CATEGORY_TODECK, CATEGORY_REMOVE, CATEGORY_SPECIAL_SUMMON, LOCATION_REMOVED.",
+              "official_effect_text": "[b]Target[/b] 1 Zombie monster in either GY; [b]banish[/b] 1 monster with the same name from your Deck or Extra Deck, [b]and if you do[/b], Special Summon the targeted monster to your field. If this card is in your GY: [b]You can[/b] shuffle 1 of your banished Zombie monsters into the Deck, [b]and if you do[/b], Set this card, but [b]banish[/b] it [b]when[/b] it leaves the field. [b]You can[/b] only use 1 \"Zombie Reborn\" effect [b]per turn[/b], [b]and[/b] only [b]once[/b] that turn.",
+              "script_sha256": "4e49778619f4d9c8553ec1431d3263c5a2b47127c19e0a8d78f6c8ea637cb6a0",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TODECK",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Remove",
+                "Duel.SSet",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoDeck",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "LOCATION_REMOVED",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "supersedes_batch": "batch_local_adversarial_custom_gaps_444_555.json",
+      "reconciliation_note": "Adversarial completion audit against current text/Lua, Omega procedure helpers and constants, official scripts, and the official Omega database. Historical checklist claims were not used. This script's qualifying Damage Step summon Effect object is now registered for Galactican Battle Station; the printed behavior of this card is otherwise unchanged."
+    },
+    {
+      "ordinal": 464,
+      "passcode": 236473882,
+      "name": "Intergalactican Machine - No. R2-D30",
+      "text_sha256": "113fb8145f37c6a03a3e66c718ac670caac6b4fd1d4cb89d089fd1b8f0346dfd",
+      "script_sha256": "91c0a998cfa2afff70befe78ef3d3389423e975291bfda1e686eacec102265cc",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 6,
+        "reason": "Fresh manual segmentation counts every printed summoning procedure, condition, continuous clause, activated effect, follow-up clause, and explicit usage limit represented in this record."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2+ Effect",
+          "lua_implementation": "c236473882.lua implements this printed clause with 2 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddLinkProcedure(c,aux.FilterBoolFunction(Card.IsType,TYPE_EFFECT),2,3,s.lcheck) c:EnableReviveLimit() | local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) e1:SetCategory(CATEGORY_TOHAND) e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.thtg) e1:SetOperation(s.thop) c:RegisterEffect(e1) | local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCountLimit(1,id+100) e2:SetTarget(s.sptg) e2:SetOperation(s.spop) c:RegisterEffect(e2) | local e3=e2:Clone() e3:SetCode(EVENT_BATTLE_DAMAGE) e3:SetCondition(function(e,tp,eg,ep) return ep==1-tp end) c:RegisterEffect(e3)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c24484270.lua",
+              "card_id": 24484270,
+              "card_name": "Gem-Knight Phantom Quartz",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddLinkProcedure, CATEGORY_TOHAND, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SPSUMMON_SUCCESS, EFFECT_FLAG_DELAY.",
+              "official_effect_text": "2 \"Gem-\" monsters\nIf this card is Link Summoned: [b]You can[/b] add 1 \"Gem-Knight\" card from your Deck to your hand. [b]You can[/b] pay 1000 LP; Fusion Summon 1 \"Gem-Knight\" Fusion Monster from your Extra Deck, by shuffling its materials from your GY or banishment into the Deck, but it [b]cannot[/b] attack directly this turn. [b]You can[/b] only use each effect of \"Gem-Knight Phantom Quartz\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2e859c1b386e273997bf023218330b2548890d5b96789704b91e24f9f4c8c3b1",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TODECK",
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoDeck",
+                "Duel.SendtoHand",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_EXTRA",
+                "LOCATION_GRAVE",
+                "REASON_EFFECT",
+                "SUMMON_TYPE_LINK",
+                "aux.AddLinkProcedure",
+                "aux.FilterBoolFunction",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Monsters, including a \"Galactica\" monster.",
+          "lua_implementation": "c236473882.lua implements this printed clause with 2 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddLinkProcedure(c,aux.FilterBoolFunction(Card.IsType,TYPE_EFFECT),2,3,s.lcheck) c:EnableReviveLimit() | local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) e1:SetCategory(CATEGORY_TOHAND) e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.thtg) e1:SetOperation(s.thop) c:RegisterEffect(e1) | local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCountLimit(1,id+100) e2:SetTarget(s.sptg) e2:SetOperation(s.spop) c:RegisterEffect(e2) | local e3=e2:Clone() e3:SetCode(EVENT_BATTLE_DAMAGE) e3:SetCondition(function(e,tp,eg,ep) return ep==1-tp end) c:RegisterEffect(e3)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c24484270.lua",
+              "card_id": 24484270,
+              "card_name": "Gem-Knight Phantom Quartz",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddLinkProcedure, CATEGORY_TOHAND, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SPSUMMON_SUCCESS, EFFECT_FLAG_DELAY.",
+              "official_effect_text": "2 \"Gem-\" monsters\nIf this card is Link Summoned: [b]You can[/b] add 1 \"Gem-Knight\" card from your Deck to your hand. [b]You can[/b] pay 1000 LP; Fusion Summon 1 \"Gem-Knight\" Fusion Monster from your Extra Deck, by shuffling its materials from your GY or banishment into the Deck, but it [b]cannot[/b] attack directly this turn. [b]You can[/b] only use each effect of \"Gem-Knight Phantom Quartz\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2e859c1b386e273997bf023218330b2548890d5b96789704b91e24f9f4c8c3b1",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TODECK",
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoDeck",
+                "Duel.SendtoHand",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_EXTRA",
+                "LOCATION_GRAVE",
+                "REASON_EFFECT",
+                "SUMMON_TYPE_LINK",
+                "aux.AddLinkProcedure",
+                "aux.FilterBoolFunction",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is Link Summoned: You can add 1 \"Fusion Intergalactica\" from your Deck or GY to your hand.",
+          "lua_implementation": "c236473882.lua implements this printed clause with 2 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddLinkProcedure(c,aux.FilterBoolFunction(Card.IsType,TYPE_EFFECT),2,3,s.lcheck) c:EnableReviveLimit() | local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) e1:SetCategory(CATEGORY_TOHAND) e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.thtg) e1:SetOperation(s.thop) c:RegisterEffect(e1) | local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCountLimit(1,id+100) e2:SetTarget(s.sptg) e2:SetOperation(s.spop) c:RegisterEffect(e2) | function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.thfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil) end end | function s.thop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND) local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.thfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil):GetFirst() if tc and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,tc) end end | function s.spfilter(c,e,tp) return c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_LINK) and c:IsLink(2) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end | function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_EXTRA,0,1,nil,e,tp) end end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c24484270.lua",
+              "card_id": 24484270,
+              "card_name": "Gem-Knight Phantom Quartz",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddLinkProcedure, CATEGORY_TOHAND, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SPSUMMON_SUCCESS, EFFECT_FLAG_DELAY.",
+              "official_effect_text": "2 \"Gem-\" monsters\nIf this card is Link Summoned: [b]You can[/b] add 1 \"Gem-Knight\" card from your Deck to your hand. [b]You can[/b] pay 1000 LP; Fusion Summon 1 \"Gem-Knight\" Fusion Monster from your Extra Deck, by shuffling its materials from your GY or banishment into the Deck, but it [b]cannot[/b] attack directly this turn. [b]You can[/b] only use each effect of \"Gem-Knight Phantom Quartz\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2e859c1b386e273997bf023218330b2548890d5b96789704b91e24f9f4c8c3b1",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TODECK",
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoDeck",
+                "Duel.SendtoHand",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_EXTRA",
+                "LOCATION_GRAVE",
+                "REASON_EFFECT",
+                "SUMMON_TYPE_LINK",
+                "aux.AddLinkProcedure",
+                "aux.FilterBoolFunction",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If this card destroys a monster by battle or inflicts battle damage to your opponent: You can return this card to the Extra Deck or banish this card, then Special Summon 1 Link 2 \"Galactica\" monster from your Extra Deck.",
+          "lua_implementation": "c236473882.lua implements this printed clause with 2 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddLinkProcedure(c,aux.FilterBoolFunction(Card.IsType,TYPE_EFFECT),2,3,s.lcheck) c:EnableReviveLimit() | local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) e1:SetCategory(CATEGORY_TOHAND) e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.thtg) e1:SetOperation(s.thop) c:RegisterEffect(e1) | local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCountLimit(1,id+100) e2:SetTarget(s.sptg) e2:SetOperation(s.spop) c:RegisterEffect(e2) | local e3=e2:Clone() e3:SetCode(EVENT_BATTLE_DAMAGE) e3:SetCondition(function(e,tp,eg,ep) return ep==1-tp end) c:RegisterEffect(e3) | function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.thfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil) end end | function s.thop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND) local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.thfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil):GetFirst() if tc and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,tc) end end | function s.spfilter(c,e,tp) return c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_LINK) and c:IsLink(2) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c21848500.lua",
+              "card_id": 21848500,
+              "card_name": "Maliss <Q> Hearts Crypter",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddLinkProcedure, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EFFECT_FLAG_DELAY, CATEGORY_TODECK, CATEGORY_REMOVE.",
+              "official_effect_text": "3 monsters, including a \"Maliss\" monster\n(Quick Effect): You can target 1 of your banished \"Maliss\" cards; shuffle it into the Deck, and if you do, banish 1 card on the field (while this card points to a monster, this effect and its activation cannot be negated). If this card is banished: You can pay 900 LP; Special Summon it and double its ATK. You can only use each effect of \"Maliss <Q> Hearts Crypter\" once per turn.",
+              "script_sha256": "0095c7631ac871fc26d38ae5f06367806d107e2e86fed12d11031818eeff63d3",
+              "verified_shared_tokens": [
+                "CATEGORY_REMOVE",
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TODECK",
+                "Card.IsType",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.Remove",
+                "Duel.SendtoDeck",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_EXTRA",
+                "REASON_EFFECT",
+                "aux.AddLinkProcedure",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "You can only use each effect of \"Intergalactican Machine - No.",
+          "lua_implementation": "c236473882.lua implements this printed clause with 2 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) e1:SetCategory(CATEGORY_TOHAND) e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.thtg) e1:SetOperation(s.thop) c:RegisterEffect(e1) | local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCountLimit(1,id+100) e2:SetTarget(s.sptg) e2:SetOperation(s.spop) c:RegisterEffect(e2)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c24484270.lua",
+              "card_id": 24484270,
+              "card_name": "Gem-Knight Phantom Quartz",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddLinkProcedure, CATEGORY_TOHAND, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SPSUMMON_SUCCESS, EFFECT_FLAG_DELAY.",
+              "official_effect_text": "2 \"Gem-\" monsters\nIf this card is Link Summoned: [b]You can[/b] add 1 \"Gem-Knight\" card from your Deck to your hand. [b]You can[/b] pay 1000 LP; Fusion Summon 1 \"Gem-Knight\" Fusion Monster from your Extra Deck, by shuffling its materials from your GY or banishment into the Deck, but it [b]cannot[/b] attack directly this turn. [b]You can[/b] only use each effect of \"Gem-Knight Phantom Quartz\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2e859c1b386e273997bf023218330b2548890d5b96789704b91e24f9f4c8c3b1",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TODECK",
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoDeck",
+                "Duel.SendtoHand",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_EXTRA",
+                "LOCATION_GRAVE",
+                "REASON_EFFECT",
+                "SUMMON_TYPE_LINK",
+                "aux.AddLinkProcedure",
+                "aux.FilterBoolFunction",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 6,
+          "printed_clause": "R2-D30\" once per turn.",
+          "lua_implementation": "c236473882.lua implements this printed clause with 2 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) e1:SetCategory(CATEGORY_TOHAND) e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e1:SetCode(EVENT_SPSUMMON_SUCCESS) e1:SetProperty(EFFECT_FLAG_DELAY) e1:SetCountLimit(1,id) e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end) e1:SetTarget(s.thtg) e1:SetOperation(s.thop) c:RegisterEffect(e1) | local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_TODECK+CATEGORY_REMOVE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) e2:SetCode(EVENT_BATTLE_DESTROYING) e2:SetCondition(aux.bdocon) e2:SetCountLimit(1,id+100) e2:SetTarget(s.sptg) e2:SetOperation(s.spop) c:RegisterEffect(e2)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c24484270.lua",
+              "card_id": 24484270,
+              "card_name": "Gem-Knight Phantom Quartz",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddLinkProcedure, CATEGORY_TOHAND, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SPSUMMON_SUCCESS, EFFECT_FLAG_DELAY.",
+              "official_effect_text": "2 \"Gem-\" monsters\nIf this card is Link Summoned: [b]You can[/b] add 1 \"Gem-Knight\" card from your Deck to your hand. [b]You can[/b] pay 1000 LP; Fusion Summon 1 \"Gem-Knight\" Fusion Monster from your Extra Deck, by shuffling its materials from your GY or banishment into the Deck, but it [b]cannot[/b] attack directly this turn. [b]You can[/b] only use each effect of \"Gem-Knight Phantom Quartz\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2e859c1b386e273997bf023218330b2548890d5b96789704b91e24f9f4c8c3b1",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TODECK",
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoDeck",
+                "Duel.SendtoHand",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_EXTRA",
+                "LOCATION_GRAVE",
+                "REASON_EFFECT",
+                "SUMMON_TYPE_LINK",
+                "aux.AddLinkProcedure",
+                "aux.FilterBoolFunction",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "supersedes_batch": "batch_local_adversarial_custom_gaps_444_555.json",
+      "reconciliation_note": "Adversarial completion audit against current text/Lua, Omega procedure helpers and constants, official scripts, and the official Omega database. Historical checklist claims were not used. This script's qualifying Damage Step summon Effect object is now registered for Galactican Battle Station; the printed behavior of this card is otherwise unchanged."
+    },
+    {
+      "ordinal": 537,
+      "passcode": 259072906,
+      "name": "Glitchling Mage",
+      "text_sha256": "3ae8f73afafa5cf4435a2f751d93b197558b036eb71e83f664b738dbb3bbd397",
+      "script_sha256": "71b45b1a7ae737542beb3f2f0edf551f93b139fd8cc43c7b286eea817a385786",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Four independent printed units: the Pendulum-to-Ritual group summon replacement, named Ritual permission, hand reveal/search effect, and Special-Summon-triggered Ritual effect. The helper completion listener is part of the first procedure, not a fifth printed effect."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Pendulum Effect: If you would conduct a Pendulum Summon while you control another Cyberse Pendulum Monster in your Pendulum Zone, you can Ritual Summon any number of Cyberse Ritual Monsters from your hand or face-up Extra Deck with a Level between the Pendulum Scales of the 2 cards in your Pendulum Zones by Tributing Cyberse monsters you control whose total Levels equal or exceed the Levels of the Ritual Monsters.",
+          "lua_implementation": "The Pendulum Zone now registers an EFFECT_SPSUMMON_PROC_G procedure with SUMMON_TYPE_RITUAL. Its condition is available only while the normal Pendulum Summon opportunity is unused and the other Pendulum Zone holds a Cyberse Pendulum Monster. It selects any legal in-scale Cyberse Ritual group from hand/face-up Extra Deck, validates every chosen controlled Cyberse material against every Ritual Monster, releases materials, marks aux.PendulumChecklist as consumed, merges the Ritual group into the procedure summon group, and completes their summon procedures on success.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c31531170.lua",
+              "card_id": 31531170,
+              "card_name": "Harmonic Oscillation",
+              "matched_structure": "Official custom EFFECT_SPSUMMON_PROC_G implements an alternate Pendulum Summon procedure and consumes aux.PendulumChecklist."
+            },
+            {
+              "script": "tmp/omega_scripts/c5088741.lua",
+              "card_id": 5088741,
+              "card_name": "Code Igniter",
+              "matched_structure": "Official script validates greater-or-equal Ritual material Levels, releases Ritual Materials, uses SUMMON_TYPE_RITUAL, and completes the procedure."
+            },
+            {
+              "script": "tmp/omega_scripts/c55795155.lua",
+              "card_id": 55795155,
+              "card_name": "Pendulum Evolution",
+              "matched_structure": "Official script demonstrates Pendulum opportunity tracking and group summon handling around aux.PendulumChecklist."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "The previous independent Ignition Effect did not replace or consume a Pendulum Summon. Omega's official group summon procedure hook supports the printed replacement, and the Lua now uses it.",
+          "required_resolution": "None; runtime-regression-test multi-Ritual selection, Extra Deck zones, and material restrictions."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Monster Effect: You can Ritual Summon this card with \"Glitchling Data-Transfert\".",
+          "lua_implementation": "Data-Transfert is listed, revive limit and Pendulum support are enabled, and aux.ritlimit restricts improper revival.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c13408726.lua",
+              "card_id": 13408726,
+              "card_name": "Nekroz of Metaltron",
+              "matched_structure": "Official Ritual Pendulum monster combines Pendulum registration, revive limit, and Ritual Summon condition.",
+              "official_effect_text": "P\nIf your \"Nekroz\" card(s) is banished face-up (except during the Damage Step): You can target 1 Spell/Trap on the field; banish it. You can only use this effect of \"Nekroz of Metaltron\" once per turn.\nE\nYou can Ritual Summon this card with any \"Nekroz\" Ritual Spell. Must be Ritual Summoned, without using any Level 9 monsters. During the Main Phase (Quick Effect): You can target 1 face-up monster your opponent controls; banish this card (until the End Phase), and if you do, banish the targeted monster. You can only use this effect of \"Nekroz of Metaltron\" once per turn. Any monster destroyed by battle with your \"Nekroz\" monster is banished.",
+              "script_sha256": "de4512b39464c0a1bb62690348cfb5b5e2b1f16a7882b68f8098320af5ab6e71",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.RegisterEffect",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_CONDITION",
+                "EFFECT_TYPE_CONTINUOUS",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "LOCATION_PZONE",
+                "PHASE_END",
+                "REASON_EFFECT",
+                "RESET_PHASE",
+                "TYPE_SPELL",
+                "TYPE_TRAP",
+                "aux.EnablePendulumAttribute",
+                "aux.Stringid",
+                "aux.ritlimit"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can reveal this card and 1 other Cyberse Ritual or Cyberse Normal Monster in your hand; add 1 \"Glitchling\" Spell/Trap from your Deck to your hand. You can only use each effect of \"Glitchling Mage\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "A hand Ignition Effect with distinct HOPT reveals this card plus another Cyberse Ritual/Normal, checks the custom activity counter, registers the oath restriction, and searches a Glitchling Spell/Trap from Deck to hand with confirmation.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c90444325.lua",
+              "card_id": 90444325,
+              "card_name": "Megalith Hagith",
+              "matched_structure": "Official Ritual monster effect searches an archetypal Spell/Trap from Deck to hand under HOPT.",
+              "official_effect_text": "[b]You can[/b] Ritual Summon this card with a \"Megalith\" card. If this card is Ritual Summoned: [b]You can[/b] add 1 \"Megalith\" Spell/Trap from your Deck to your hand. During your [b]Main Phase[/b]: [b]You can[/b] activate this effect; Ritual Summon 1 Ritual Monster from your hand, by Tributing monsters from your hand or field, including this card on your field, whose total Levels equal or exceed the Level of the Ritual Monster. [b]You can[/b] only use this effect of \"Megalith Hagith\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "a722f804f19f92dce07a204092494089bb2706fd48bd2f40bc4d467b1dac0d0a",
+              "verified_shared_tokens": [
+                "CATEGORY_SEARCH",
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TOHAND",
+                "Card.GetLevel",
+                "Duel.BreakEffect",
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.ReleaseRitualMaterial",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_IGNITION",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "SUMMON_TYPE_RITUAL",
+                "TYPE_SPELL",
+                "TYPE_TRAP",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If this card is Special Summoned: You can Ritual Summon 1 Cyberse Ritual Monster from your hand or face-up Extra Deck by Tributing Cyberse monsters from your hand or Deck whose total Levels equal or exceed the Ritual Monster. You can only use each effect of \"Glitchling Mage\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "A delayed Special-Summon trigger with separate HOPT and activity check selects a Cyberse Ritual from hand/face-up Extra Deck, selects Cyberse Ritual Materials from hand/Deck totaling at least its Level, releases hand materials and sends Deck materials with effect/material/Ritual reasons, then Ritual Summons, completes procedure, and enforces the oath restriction.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c5088741.lua",
+              "card_id": 5088741,
+              "card_name": "Code Igniter",
+              "matched_structure": "Official Cyberse effect-based Ritual Summon uses subgroup Level totals, material assignment, release, SUMMON_TYPE_RITUAL, and CompleteProcedure.",
+              "official_effect_text": "2 Level 4 monsters\nIf this card is Xyz Summoned: [b]You can[/b] add 1 Cyberse Ritual Monster from your Deck to your hand. [b]You can[/b] detach 1 material from this card; Ritual Summon 1 Ritual Monster from your hand, by Tributing monsters from your hand or field whose total Levels equal or exceed its Level. If this card is sent to the GY as Link Material: [b]You can[/b] add 1 \"A.I.\" Trap from your Deck to your hand. [b]You can[/b] only use each effect of \"Code Igniter\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "5c186b37a850bf0648b1c8806906e248679c9df242e4274fdeaf5b7fb2ba4b87",
+              "verified_shared_tokens": [
+                "CATEGORY_SEARCH",
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_IGNITION",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "TYPE_RITUAL",
+                "TYPE_TRAP",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c13386407.lua",
+              "card_id": 13386407,
+              "card_name": "Ravenous Vendread",
+              "matched_structure": "Official effect selects a Ritual Monster and consumes specified materials whose Levels meet or exceed its Level.",
+              "official_effect_text": "Special Summon 1 \"Vendread\" monster from your hand, Deck, or GY in face-down Defense Position, except \"Vendread Scavenger\", [b]then[/b] apply the following effect.\n● Ritual Summon any 1 \"Vendread\" Ritual Monster from your hand or GY by Tributing monsters you control, including the monster Special Summoned by this card, whose total Levels equal or exceed the Level of the Ritual Monster.\n[b]You can[/b] only activate 1 \"Ravenous Vendread\" [b]per turn[/b].",
+              "script_sha256": "64b70206b4085d58b023b6a9dc7cb501d1c5c8af097e5ce48b04d23c8c4c38a8",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Card.GetLevel",
+                "Card.IsLocation",
+                "Duel.BreakEffect",
+                "Duel.ConfirmCards",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.ReleaseRitualMaterial",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "SUMMON_TYPE_RITUAL",
+                "aux.AddCodeList"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "supersedes_batch": "batch_local_adversarial_custom_gaps_444_555.json",
+      "reconciliation_note": "Adversarial completion audit against current text/Lua, Omega procedure helpers and constants, official scripts, and the official Omega database. Historical checklist claims were not used."
+    },
+    {
+      "ordinal": 539,
+      "passcode": 259546637,
+      "name": "Glitchling Corruption",
+      "text_sha256": "37a566fb4e22e31b8e791dab9b65e9429c82a2f18fe8db2754b66de282d148bf",
+      "script_sha256": "e822e4908a6872c865cb7c2dc64fc7a6ea264b759edfdc39e856d41f4d9d3ade",
+      "overall_verdict": "CUSTOM_GAP",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Fresh semantic segmentation found 4 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "When activated: optionally add 1 \"Glitchling\" card from the Deck and/or face-up Extra Deck, except this card; only 1 activation per turn.",
+          "lua_implementation": "The activation effect has an oath count limit; at resolution it optionally selects one set card from Deck or face-up Extra Deck, excludes its own code, sends it to hand, and confirms it.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c975299.lua",
+              "card_id": 975299,
+              "matched_structure": "Optional search performed by a Spell activation with an activation count limit and hand confirmation.",
+              "card_name": "B.E.F. Zelos",
+              "official_effect_text": "[b]When[/b] this card is activated: [b]You can[/b] add 1 \"Boss Rush\" from your Deck to your hand. \"B.E.S.\" monsters you control gain 500 ATK/DEF, your opponent [b]cannot[/b] [b]target[/b] them with card effects, [b]also[/b] they [b]cannot[/b] be destroyed by your opponent's card effects. [b]Once[/b] [b]per turn[/b]: [b]You can[/b] Special Summon 1 \"B.E.S.\" monster from your hand. If a \"B.E.S.\" monster(s) is Normal or Special Summoned to your field: Place 1 counter on it.",
+              "script_sha256": "9f72cf84f02df6dd673713af123566e304955dac977017722ed814eaaba0e9f1",
+              "verified_shared_tokens": [
+                "CATEGORY_COUNTER",
+                "CATEGORY_SEARCH",
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.GetLocationCount",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SelectYesNo",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "Duel.SpecialSummon",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "If you would Ritual Summon a Cyberse Ritual Monster using hand/field Tributes, Corruption Counters from the field can satisfy up to its Level.",
+          "lua_implementation": "The current Lua can spend counters only inside this card's own triggered Ritual operation. EFFECT_EXTRA_RITUAL_MATERIAL contributes actual Card objects; it cannot contribute a scalar Level amount or remove counters for every unrelated Ritual procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c20560620.lua",
+              "card_id": 20560620,
+              "matched_structure": "Official field effect exposes an additional Ritual-material source to Ritual procedures; its script is explicitly marked as a workaround/not fully implemented.",
+              "card_name": "Emperor Tanuki's Critter Count",
+              "official_effect_text": "[b]Cannot[/b] be Tributed while face-up in the Monster Zone. While this card is in the Monster Zone, [b]when[/b] you Ritual Summon, [b]you can[/b] [b]also[/b] send 1 monster from your Extra Deck to the GY as 1 of the monsters used for the Ritual Summon. [b]You can[/b] only use this effect of \"Emperor Tanuki's Critter Count\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "f9bc9a0ccf9bb645b1bdb81c1973e4d79a7b81cb74ff76e7e6f840b3df3162dd",
+              "verified_shared_tokens": [
+                "Duel.ReleaseRitualMaterial",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_EXTRA",
+                "LOCATION_MZONE"
+              ]
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Genuine engine limitation: Omega has no card-local, generic hook that adds a counter-derived scalar to all Cyberse Ritual Summon material checks and atomically removes the chosen counters. Monkey-patching shared Ritual helpers would miss bespoke Ritual scripts and affect unrelated cards globally.",
+          "effect_index": 2,
+          "required_resolution": "Add a core/shared Ritual API such as EFFECT_EXTRA_RITUAL_LEVEL whose value callback returns the maximum counter Level contribution and whose consume callback removes the selected counters, and update every Ritual procedure path to honor it. Alternatively rewrite the card so counters apply only to this card's own bullet Ritual Summon, which the current Lua already supports."
+        },
+        {
+          "printed_clause": "Once per turn, if a Cyberse Ritual Monster is Tributed or used as Link Material: optionally Ritual Summon 1 \"Glitchling\" Ritual Monster from the GY/face-up Extra Deck using hand/field Tributes whose Levels meet or exceed its Level.",
+          "lua_implementation": "Shared-count EVENT_RELEASE and REASON_LINK/EVENT_BE_MATERIAL triggers offer the ritual option; the operation selects the GY/face-up Extra Deck Ritual, selects legal hand/field ritual materials, removes any permitted counter deficit, releases materials, Ritual Summons, and completes the procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15306543.lua",
+              "card_id": 15306543,
+              "matched_structure": "Field Spell ignition Ritual Summon using a greater-than-or-equal Level check and a nonstandard Ritual source.",
+              "card_name": "Stars Align Above the Shrine",
+              "official_effect_text": "[b]Once[/b] [b]per turn[/b]: [b]You can[/b] Ritual Summon 1 WIND Ritual Monster from your Deck, by Tributing Spirit monsters [b]and[/b]/or \"Shinobird Token(s)\" from your field, whose total Levels equal or exceed the Ritual Monster's Level. Twice [b]per turn[/b], if a face-up WIND monster(s) you control is returned to your hand (except during the Damage Step): [b]You can[/b] activate 1 of these effects;\n● Add 1 of your Spirit monsters or Ritual Spells that is banished or in your GY to your hand.\n● Set 1 \"Stars Align across the Milky Way\" directly from your Deck.",
+              "script_sha256": "6eeb96c6fe4d8949f722a871fba6da1e91f13ad744f9896496878c4af32469c2",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c49721684.lua",
+              "card_id": 49721684,
+              "matched_structure": "Ritual Summon from hand or GY with greater-or-equal material handling and CompleteProcedure.",
+              "card_name": "Mitsurugi Mirror",
+              "official_effect_text": "This card can be used to Ritual Summon any Reptile Ritual Monster from your hand or GY. You must [b]also[/b] Tribute Reptile monsters from your hand or field whose total Levels equal or exceed the Level of the Ritual Monster. If \"Ame no Murakumo no Mitsurugi\", \"Futsu no Mitama no Mitsurugi\", or \"Ame no Habakiri no Mitsurugi\" you control is Tributed, while this card is in your GY: [b]You can[/b] shuffle this card into the Deck. [b]You can[/b] only use each effect of \"Mitsurugi Mirror\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "b4818f6067a9849d6316f59253bd5726c2e03612476bed9f03cc6573c85af943",
+              "verified_shared_tokens": [
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_RELEASE",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "REASON_EFFECT",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 3
+        },
+        {
+          "printed_clause": "Alternatively place Corruption Counters on this card up to the number of Cyberse monsters you control.",
+          "lua_implementation": "The alternate operation now uses a shared face-up Cyberse filter both for activation legality and resolution, counts only face-up Cyberse monsters in the controller's Monster Zone, and announces an addable counter amount.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c60258960.lua",
+              "card_id": 60258960,
+              "matched_structure": "Counts/places counters on a permitted card through EnableCounterPermit and AddCounter.",
+              "card_name": "Legendary Flame Lord",
+              "official_effect_text": "This card can only be Ritual Summoned with the Ritual Spell Card, \"Incandescent Ordeal\". You must [b]also[/b] Tribute monsters whose total Levels equal 7 or more from the field or your hand. Each time you or your opponent activates 1 Spell Card, put 1 Spell Counter on this card. Remove 3 Spell Counters from this card to [b]destroy[/b] all monsters on the field except this card.",
+              "script_sha256": "32940806dd23de8065e746fd4496b6ba5c7fcd250e51695d82f60ce9ee3abe9e",
+              "verified_shared_tokens": [
+                "Duel.GetMatchingGroup",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_TYPE_ACTIVATE",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the previous Card.IsRace-only count included face-down monsters. The filter now requires Card.IsFaceup before testing RACE_CYBERSE.",
+          "effect_index": 4
+        }
+      ],
+      "supersedes_batch": "batch_local_adversarial_custom_gaps_444_555.json",
+      "reconciliation_note": "Adversarial completion audit against current text/Lua, Omega procedure helpers and constants, official scripts, and the official Omega database. Historical checklist claims were not used."
+    },
+    {
+      "ordinal": 540,
+      "passcode": 259253032,
+      "name": "Glitchling Hexatron",
+      "text_sha256": "d3d095becf9075edff6fd22b8f33948b6212685dfce9e64047f5271822f38981",
+      "script_sha256": "9f49a6b8158203a59ffa28c312ea784325ca5f3bf11de08373f45adf0c35f8cd",
+      "overall_verdict": "CUSTOM_GAP",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Fresh semantic segmentation found 4 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "Link Summoning procedure (no material line is present in the current printed text).",
+          "lua_implementation": "AddLinkProcedure requires 2 or 3 Cyberse monsters for this Link-3 monster, followed by EnableReviveLimit; the current printed text still supplies no material line against which that choice can be proven.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c30741503.lua",
+              "card_id": 30741503,
+              "matched_structure": "Official \"Orcust\" Link procedure requiring Effect Monsters and an archetype member.",
+              "card_name": "Galatea, the Orcust Automaton",
+              "official_effect_text": "2 Effect Monsters, including an \"Orcust\" monster\nThis linked card [b]cannot[/b] be destroyed by battle. [b]You can[/b] [b]target[/b] 1 of your banished Machine monsters; shuffle it into the Deck, [b]then[/b] [b]you can[/b] Set 1 \"Orcust\" Spell/Trap from your Deck. [b]You can[/b] only use this effect of \"Galatea, the Orcust Automaton\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "917e4550585b31861c761289a54b5fab5de228e29e1f52347e4aab304ca39f46",
+              "verified_shared_tokens": [
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_SINGLE_RANGE",
+                "EFFECT_TYPE_QUICK_O",
+                "EFFECT_TYPE_SINGLE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_EXTRA",
+                "LOCATION_MZONE",
+                "LOCATION_REMOVED",
+                "REASON_EFFECT",
+                "TYPE_SPELL",
+                "aux.AddLinkProcedure",
+                "aux.FilterBoolFunction",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Genuine source-text ambiguity: this Link-3 monster has no printed Link Material line. The current 2-3 Cyberse implementation is executable, but text, helpers, official scripts, and DB contain no evidence that distinguishes it from exactly 3 Cyberse, 2+ Effect Monsters, or an archetype requirement.",
+          "effect_index": 1,
+          "required_resolution": "Authoritatively add the intended material line to cards.json/card assets, then make aux.AddLinkProcedure match it and regenerate this hash-pinned audit. No engine change is required."
+        },
+        {
+          "printed_clause": "If Link Summoned: add 1 Cyberse Ritual Monster from Deck/face-up Extra Deck and 1 Ritual Spell or Cyberse Normal Monster from GY/face-up banishment; HOPT.",
+          "lua_implementation": "A delayed Link-Summon-success trigger with id count limit requires both pools, selects one from each, merges them, sends both to hand, and confirms them.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c3629090.lua",
+              "card_id": 3629090,
+              "matched_structure": "Summon-success search from Deck/GY with hand confirmation.",
+              "card_name": "Cyber Angel Idaten",
+              "official_effect_text": "[b]You can[/b] Ritual Summon this card with \"Machine Angel Ritual\". If this card is Ritual Summoned: [b]You can[/b] add 1 Ritual Spell from your Deck or GY to your hand. If this card is Tributed: [b]You can[/b] make all Ritual Monsters you control gain 1000 ATK/DEF.",
+              "script_sha256": "3686daa2ebf59c9dfcde138c89963c74ca63f8e728c78ac62cc407823ae32ecd",
+              "verified_shared_tokens": [
+                "CATEGORY_ATKCHANGE",
+                "CATEGORY_SEARCH",
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EFFECT_UPDATE_ATTACK",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c29596581.lua",
+              "card_id": 29596581,
+              "matched_structure": "Adds an eligible face-up banished or GY card to hand.",
+              "card_name": "Thunder Dragonroar",
+              "official_effect_text": "[b]You can[/b] [b]discard[/b] this card; add to your hand, 1 of your \"Thunder Dragon\" cards that is banished or in your GY, except \"Thunder Dragonroar\". If this card is banished, or sent from the field to the GY: [b]You can[/b] Special Summon 1 \"Thunder Dragon\" monster from your Deck in Defense Position, but [b]return[/b] it to the hand during the [b]End Phase[/b]. [b]You can[/b] only use 1 \"Thunder Dragonroar\" effect [b]per turn[/b], [b]and[/b] only [b]once[/b] that turn.",
+              "script_sha256": "fe7e1670fcf1334582a8db959e8a99002ed4d886f44ee06681cb6d2ea06fbf2b",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "LOCATION_ONFIELD",
+                "LOCATION_REMOVED",
+                "PHASE_END",
+                "REASON_COST",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        },
+        {
+          "printed_clause": "Cannot be banished or destroyed by the opponent's cards or effects.",
+          "lua_implementation": "A single-range EFFECT_INDESTRUCTABLE_EFFECT uses aux.indoval; a field EFFECT_CANNOT_REMOVE targets only this card when the reason is an opponent effect and not a redirect.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c975299.lua",
+              "card_id": 975299,
+              "matched_structure": "Opponent-effect destruction protection through aux.indoval.",
+              "card_name": "B.E.F. Zelos",
+              "official_effect_text": "[b]When[/b] this card is activated: [b]You can[/b] add 1 \"Boss Rush\" from your Deck to your hand. \"B.E.S.\" monsters you control gain 500 ATK/DEF, your opponent [b]cannot[/b] [b]target[/b] them with card effects, [b]also[/b] they [b]cannot[/b] be destroyed by your opponent's card effects. [b]Once[/b] [b]per turn[/b]: [b]You can[/b] Special Summon 1 \"B.E.S.\" monster from your hand. If a \"B.E.S.\" monster(s) is Normal or Special Summoned to your field: Place 1 counter on it.",
+              "script_sha256": "9f72cf84f02df6dd673713af123566e304955dac977017722ed814eaaba0e9f1",
+              "verified_shared_tokens": [
+                "CATEGORY_SEARCH",
+                "CATEGORY_TOHAND",
+                "Duel.ConfirmCards",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_INDESTRUCTABLE_EFFECT",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_UPDATE_ATTACK",
+                "EVENT_FREE_CHAIN",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.AddCodeList",
+                "aux.Stringid",
+                "aux.indoval"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c30459350.lua",
+              "card_id": 30459350,
+              "matched_structure": "Field-level EFFECT_CANNOT_REMOVE banishment prevention.",
+              "card_name": "Imperial Iron Wall",
+              "official_effect_text": "Neither player can [b]banish[/b] cards.",
+              "script_sha256": "7c6f702429f7833c25f280fbb36ac451525d9868f31a231ea31b00dc57183fb8",
+              "verified_shared_tokens": [
+                "EFFECT_CANNOT_REMOVE",
+                "EFFECT_FLAG_PLAYER_TARGET",
+                "EFFECT_TYPE_FIELD",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 3
+        },
+        {
+          "printed_clause": "Quick Effect: remove all Corruption Counters from an opponent monster as cost; destroy 1 controlled \"Glitchling\" Monster Card or Cyberse Normal Monster, then negate that opponent monster and gain 200 ATK per removed counter; uses per turn up to differently named Bitron/Protron/Digitron in your field or GY.",
+          "lua_implementation": "The free-chain counter-removal effect is unchanged, but its per-turn cap now gathers the three exact named cards from LOCATION_ONFIELD+LOCATION_GRAVE, requires named cards on the field to be face-up, and counts different codes with GetClassCount.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c11155484.lua",
+              "card_id": 11155484,
+              "matched_structure": "Destroy a controlled named card, then negate/destroy the related opposing activation.",
+              "card_name": "Crystal Miracle",
+              "official_effect_text": "[b]When[/b] a Spell/Trap Card, or monster effect, is activated: [b]Destroy[/b] 1 \"Crystal Beast\" card you control, [b]and if you do[/b], [b]negate[/b] that activation, [b]and if you do[/b] that, [b]destroy[/b] that card. If a \"Crystal Beast\" card(s) is placed in your Spell & Trap Zone while this card is in your GY, even during the Damage Step: [b]You can[/b] [b]banish[/b] this card; place 1 \"Crystal Beast\" monster from your hand, Deck, or GY, face-up in your Spell & Trap Zone as a Continuous Spell. [b]You can[/b] only use this effect of \"Crystal Miracle\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "7532075cd95dece3c0f357f1421ad4d46f037cfd58420d6c53b9778562590eab",
+              "verified_shared_tokens": [
+                "CATEGORY_DESTROY",
+                "Duel.Destroy",
+                "Duel.GetMatchingGroup",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_CANNOT_DISABLE",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_QUICK_O",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_DECK",
+                "LOCATION_GRAVE",
+                "LOCATION_ONFIELD",
+                "REASON_EFFECT",
+                "RESET_EVENT",
+                "RESET_TURN_SET",
+                "TYPE_MONSTER",
+                "TYPE_SPELL",
+                "aux.NecroValleyFilter"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c28903523.lua",
+              "card_id": 28903523,
+              "matched_structure": "A per-turn use cap derived from a live field count and temporary effect negation.",
+              "card_name": "Eternal Sunshine",
+              "official_effect_text": "Monsters you control gain 500 DEF for each \"Ancient Fairy Dragon\", [b]and[/b] monsters that mention it, that you control. [b]Once[/b] per Chain: [b]You can[/b] [b]target[/b] 1 face-up monster your opponent controls; until the end of this turn, its ATK/DEF become halved, [b]also[/b] its effects are negated. [b]You can[/b] use this effect of \"Eternal Sunshine\" a number of times [b]per turn[/b], up to the number of \"Ancient Fairy Dragon\", [b]and[/b] monsters that mention it, that you control.",
+              "script_sha256": "345f690e9a4d37a80cfec830b996ed65038119fbfc785f6be1b9b3e340348db2",
+              "verified_shared_tokens": [
+                "CATEGORY_DISABLE",
+                "Duel.GetFlagEffect",
+                "Duel.Hint",
+                "Duel.NegateRelatedChain",
+                "Duel.RegisterFlagEffect",
+                "Duel.SetOperationInfo",
+                "EFFECT_DISABLE",
+                "EFFECT_DISABLE_EFFECT",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_QUICK_O",
+                "EFFECT_TYPE_SINGLE",
+                "EVENT_FREE_CHAIN",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "LOCATION_ONFIELD",
+                "PHASE_END",
+                "RESET_EVENT",
+                "RESET_PHASE",
+                "RESET_TURN_SET",
+                "TYPE_MONSTER",
+                "aux.AddCodeList",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the old cap omitted face-up named cards in the Spell/Trap Zone and counted face-down Monster Zone cards. It now covers the full field plus GY while excluding face-down on-field identities.",
+          "effect_index": 4
+        }
+      ],
+      "supersedes_batch": "batch_local_adversarial_custom_gaps_444_555.json",
+      "reconciliation_note": "Adversarial completion audit against current text/Lua, Omega procedure helpers and constants, official scripts, and the official Omega database. Historical checklist claims were not used."
+    }
+  ],
+  "summary": {
+    "cards": 11,
+    "effects": 45,
+    "pass": 37,
+    "fixed": 6,
+    "defects": 0,
+    "custom_gaps": 2
+  }
+}

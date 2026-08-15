@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "batch": "local-tail",
+  "batch": "local-adversarial-completion-tail-556-577",
   "ordinal_start": 574,
   "ordinal_end": 574,
   "cards": [
@@ -9,7 +9,7 @@
       "passcode": 259193076,
       "name": "Eclipse Observer Baleygr",
       "text_sha256": "a620f0d0f66eb68b82d387a59baf2f4de69b6ba997662811b0ef270e611999fb",
-      "script_sha256": "9ab6d2ed80f508937e183306cb0da010baca2a80fb810a1b262d33dec4552c5f",
+      "script_sha256": "7bfb2f3ad44436a9bb74c66a0dfe8b1d388355e68bad504f03d9d21f7dff4bba",
       "overall_verdict": "FIXED",
       "effects": [
         {
@@ -17,7 +17,12 @@
           "printed_clause": "1 Level 8 Eclipse Observer monster + 1 Spellcaster monster",
           "lua_implementation": "EnableReviveLimit and AddFusionProcFun2 combine a Level 8 Eclipse Observer monster filter with an unrestricted Spellcaster race filter and require two distinct materials.",
           "official_references": [
-            {"script":"c57157964.lua","card_id":57157964,"card_name":"Fossil Machine Skull Convoy","matched_structure":"Uses aux.AddFusionProcFun2 to combine two different functional material predicates, including Card.IsLevelAbove for a printed Level condition."}
+            {
+              "script": "c57157964.lua",
+              "card_id": 57157964,
+              "card_name": "Fossil Machine Skull Convoy",
+              "matched_structure": "Uses aux.AddFusionProcFun2 to combine two different functional material predicates, including Card.IsLevelAbove for a printed Level condition."
+            }
           ],
           "verdict": "PASS",
           "issue": null
@@ -26,7 +31,14 @@
           "effect_index": 2,
           "printed_clause": "Your Eclipse Observer cards on your field or in your GY are unaffected by the effects of Eclipse Quick-Play Spells.",
           "lua_implementation": "A field EFFECT_IMMUNE_EFFECT targets Eclipse Observer cards in the controller's on-field and GY locations, and accepts only effects whose handler is an Eclipse-named Quick-Play Spell. The audit added official Book of Lunar Eclipse to that source pool.",
-          "official_references": [{"script":"c55787576.lua","card_id":55787576,"card_name":"World Legacy - World Shield","matched_structure":"Uses EFFECT_IMMUNE_EFFECT with a value callback that examines the incoming effect and also applies archetype-filtered field protection through SetTargetRange."}],
+          "official_references": [
+            {
+              "script": "c55787576.lua",
+              "card_id": 55787576,
+              "card_name": "World Legacy - World Shield",
+              "matched_structure": "Uses EFFECT_IMMUNE_EFFECT with a value callback that examines the incoming effect and also applies archetype-filtered field protection through SetTargetRange."
+            }
+          ],
           "verdict": "FIXED",
           "issue": "Confirmed source-pool defect: effects of official Book of Lunar Eclipse (31834488) did not receive the printed immunity because only Book of Eclipse was explicitly recognized outside the CCG setcode."
         },
@@ -34,28 +46,68 @@
           "effect_index": 3,
           "printed_clause": "While your opponent has 3 or more cards in their hand, this card cannot be destroyed or targeted by card effects.",
           "lua_implementation": "Two cloned single effects share a live opponent-hand-count condition and register EFFECT_INDESTRUCTABLE_EFFECT plus EFFECT_CANNOT_BE_EFFECT_TARGET while the count is at least three.",
-          "official_references": [{"script":"c55787576.lua","card_id":55787576,"card_name":"World Legacy - World Shield","matched_structure":"Registers paired EFFECT_INDESTRUCTABLE_EFFECT and EFFECT_CANNOT_BE_EFFECT_TARGET protections from one shared filtered protection definition."}],
+          "official_references": [
+            {
+              "script": "c55787576.lua",
+              "card_id": 55787576,
+              "card_name": "World Legacy - World Shield",
+              "matched_structure": "Registers paired EFFECT_INDESTRUCTABLE_EFFECT and EFFECT_CANNOT_BE_EFFECT_TARGET protections from one shared filtered protection definition."
+            }
+          ],
           "verdict": "PASS",
           "issue": null
         },
         {
           "effect_index": 4,
           "printed_clause": "While your opponent has 6 or more cards in their hand, your opponent has no hand size limit.",
-          "lua_implementation": "A player-targeting EFFECT_HAND_LIMIT applies to the opponent while their current hand count is at least six and supplies a practical unlimited value of 99.",
-          "official_references": [{"script":"c94163677.lua","card_id":94163677,"card_name":"Infinite Cards","matched_structure":"Implements no hand size limit with player-targeting EFFECT_HAND_LIMIT and a high numeric value."}],
-          "verdict": "PASS",
-          "issue": null
+          "lua_implementation": "A player-targeting EFFECT_HAND_LIMIT applies to the opponent while their current hand count is at least six and now uses value 100, matching Omega's canonical Infinite Cards implementation.",
+          "official_references": [
+            {
+              "script": "c94163677.lua",
+              "card_id": 94163677,
+              "card_name": "Infinite Cards",
+              "matched_structure": "Implements no hand size limit with player-targeting EFFECT_HAND_LIMIT and a high numeric value."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the prior practical sentinel was 99, while official Omega c94163677.lua implements 'no hand size limit' with EFFECT_HAND_LIMIT value 100."
         },
         {
           "effect_index": 5,
           "printed_clause": "While your opponent has 9 or more cards in their hand, once per turn (Quick Effect): You can banish 1 Eclipse Quick-Play Spell from your GY; this effect becomes that card's activation effect.",
           "lua_implementation": "A hand-count-gated Quick Effect finds an activatable Eclipse-named Quick-Play Spell in the GY, banishes it as cost, captures its activation target/operation with CheckActivateEffect or the engine activation-effect fallback, and forwards target state and operation. SetCountLimit(1,id) supplies the once-per-turn limit. The source pool now includes both official Eclipse Books.",
-          "official_references": [{"script":"c10136446.lua","card_id":10136446,"card_name":"Darklord Eveningstar","matched_structure":"Uses CheckActivateEffect on a selected Spell/Trap in the GY, forwards its target callback and label state, then executes the captured activation operation as another monster's effect."}],
+          "official_references": [
+            {
+              "script": "c10136446.lua",
+              "card_id": 10136446,
+              "card_name": "Darklord Eveningstar",
+              "matched_structure": "Uses CheckActivateEffect on a selected Spell/Trap in the GY, forwards its target callback and label state, then executes the captured activation operation as another monster's effect."
+            }
+          ],
           "verdict": "FIXED",
           "issue": "Confirmed copy-pool defect: official Book of Lunar Eclipse was a legal Eclipse Quick-Play Spell by name but could not be selected before the audit added ID 31834488. The GetActivateEffect fallback remains a CCG compatibility extension for activations that CheckActivateEffect cannot snapshot."
         }
-      ]
+      ],
+      "audit_note": "Adversarial review confirmed the Fusion procedure, data-backed Observer membership, immunity, protection thresholds, and activation-effect copying. The hand-limit sentinel was aligned with Omega's Infinite Cards value 100.",
+      "adversarial_completion_scope": {
+        "ordinals": "556-577",
+        "re_read": [
+          "full printed text",
+          "current canonical Lua",
+          "Omega utility.lua and constant.lua",
+          "official Omega database text",
+          "official Omega card scripts"
+        ],
+        "historical_checklists_used": false
+      }
     }
   ],
-  "summary": {"cards":1,"effects":5,"pass":3,"fixed":2,"defects":0,"custom_gaps":0}
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 2,
+    "fixed": 3,
+    "defects": 0,
+    "custom_gaps": 0
+  }
 }

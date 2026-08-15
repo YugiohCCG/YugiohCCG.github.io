@@ -92,14 +92,14 @@ function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Remove(tc,POS_FACEDOWN,REASON_EFFECT)
 end
 function s.extrafilter(c)
-	return c:IsFaceup() and c:IsSummonLocation(LOCATION_EXTRA)
+	return c:IsSummonLocation(LOCATION_EXTRA)
 end
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsExistingMatchingCard(s.extrafilter,tp,0,LOCATION_MZONE,1,nil)
 end
 function s.spfilter(c,e,tp)
 	return c:IsSetCard(SET_CHARMELIA) and c:IsType(TYPE_RITUAL)
-		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true)
+		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,true,true)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
@@ -113,7 +113,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spfilter),tp,
 		LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil,e,tp):GetFirst()
-	if tc and Duel.SpecialSummon(tc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
+	if tc and Duel.SpecialSummon(tc,SUMMON_TYPE_RITUAL,tp,tp,true,true,POS_FACEUP)>0 then
 		tc:CompleteProcedure()
 	end
 end

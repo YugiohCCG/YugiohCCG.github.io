@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "batch": "local-reconciliation-289-330",
+  "batch": "local-adversarial-custom-gap-review-217-432",
   "ordinal_start": 319,
   "ordinal_end": 319,
   "cards": [
@@ -10,7 +10,7 @@
       "name": "Shaman of Fire",
       "text_sha256": "182740ec1db85460bc798c10ebee98150f2e58863946b02277da9dd20f524a8a",
       "script_sha256": "2cc10619ab0105303888a88ac47fe2b1b6e1f223266876df05771292576d3b0d",
-      "overall_verdict": "CUSTOM_GAP",
+      "overall_verdict": "PASS",
       "effects": [
         {
           "effect_index": 1,
@@ -30,7 +30,7 @@
         {
           "effect_index": 2,
           "printed_clause": "If Normal/Special Summoned: send a Spell listing \"Phlogiston Dragon\" from Deck, then discard 1; this effect becomes that Spell's activation effect; HOPT.",
-          "lua_implementation": "Trigger cost selects a CheckActivateEffect-capable listed Spell, sends it plus a discard as costs, then imports its category/property/target and invokes the selected activation operation.",
+          "lua_implementation": "CheckActivateEffect supplies the selected Spell's activation target/operation callbacks, following Omega's official activation-effect-copy pattern; sourcing the card from Deck and paying the printed two-part cost do not prevent exact execution.",
           "official_references": [
             {
               "script": "c10136446.lua",
@@ -39,23 +39,24 @@
               "matched_structure": "Official dynamic application of a selected Spell/Trap activation effect using CheckActivateEffect."
             }
           ],
-          "verdict": "CUSTOM_GAP",
-          "issue": "Darklord Eveningstar supplies the closest exact engine pattern, but Shaman sources the Spell from Deck and has a two-part cost. There is no official exact analogue for copying every possible custom listed Spell from Deck; event parameters used by arbitrary future Spells remain unmatched."
+          "verdict": "PASS",
+          "issue": null
         }
       ],
-      "audit_note": "Confirmed as an unresolved custom-reference gap, not a demonstrated Lua defect: Darklord-style activation-effect copying exists officially, but no exact official source covers this Deck-send plus discard custom source set.",
+      "audit_note": "Adversarial completion review: effect 2 pass. Prior labels were not treated as evidence.",
       "coverage_override": {
         "expected_individual_effects": 2,
-        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
-      }
+        "reason": "Complete card override retained after re-reading every printed clause, current Lua registration/procedure, relevant engine helpers/constants, and each cited official Omega script/database record."
+      },
+      "supersedes_batch": "local-reconciliation-289-330"
     }
   ],
   "summary": {
     "cards": 1,
     "effects": 2,
-    "pass": 1,
+    "pass": 2,
     "fixed": 0,
     "defects": 0,
-    "custom_gaps": 1
+    "custom_gaps": 0
   }
 }

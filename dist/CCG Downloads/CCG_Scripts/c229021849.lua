@@ -17,6 +17,9 @@ function s.initial_effect(c)
 	local e2=e1:Clone()
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
 	c:RegisterEffect(e2)
+	if type(aux.CCGGalacticaSummonEffects)~="table" then aux.CCGGalacticaSummonEffects={} end
+	aux.CCGGalacticaSummonEffects[e1]=true
+	aux.CCGGalacticaSummonEffects[e2]=true
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_REMOVE)

@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "ordinal": 247,
+      "passcode": 232100722,
+      "name": "Shining Brigade - Flowering Division",
+      "text_sha256": "4fec1fe50b6461e1f5a26887058f4583a4b3fe444388bba6039723a21e93f633",
+      "script_sha256": "6f57e9b09653f33fd4a7e0755c3b5998484ac860f2dccf36beef4a091a8dba5a",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "You can Special Summon this card (from your hand) by shuffling 1 \"Shining Brigade\" card from your banishment or GY into the Deck. You can only Special Summon \"Shining Brigade - Flowering Division\" once per turn this way. A \"Shining Brigade\" monster that has this card as material gains the following effect.",
+          "lua_implementation": "An uncopyable hand procedure selects an eligible face-up banished/GY 0x7a34 card during procedure targeting and returns it as Summon cost; oath count limits the procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c336601.lua",
+              "card_id": 336601,
+              "card_name": "Moon Gardna",
+              "matched_structure": "hand EFFECT_SPSUMMON_PROC",
+              "official_effect_text": "If your opponent controls 2 or more monsters, [b]you can[/b] Special Summon this card (from your hand). [b]You can[/b] only Special Summon \"Moon Gardna\" [b]once[/b] [b]per turn[/b] this way. If this card is Normal or Special Summoned [b]and[/b] your opponent controls a monster: [b]You can[/b] [b]target[/b] 1 Level 4 LIGHT monster in your GY, except \"Moon Gardna\"; add it to your hand. [b]You can[/b] only use this effect of \"Moon Gardna\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "2aab266aa282f02d3bec14a0cc7f7f058e71ecdeb7169d0ac2b4984eaee53ec9",
+              "verified_shared_tokens": [
+                "CATEGORY_TOHAND",
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SendtoHand",
+                "Duel.SetOperationInfo",
+                "EFFECT_COUNT_CODE_OATH",
+                "EFFECT_FLAG_UNCOPYABLE",
+                "EFFECT_SPSUMMON_PROC",
+                "EFFECT_TYPE_FIELD",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_HAND",
+                "LOCATION_MZONE",
+                "REASON_EFFECT",
+                "aux.NecroValleyFilter",
+                "aux.Stringid"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c67169062.lua",
+              "card_id": 67169062,
+              "card_name": "Pot of Avarice",
+              "matched_structure": "return GY cards to shuffled Deck",
+              "official_effect_text": "[b]Target[/b] 5 monsters in your GY; shuffle all 5 into the Deck, [b]then[/b] draw 2 cards.",
+              "script_sha256": "84240d6c1582a5ea848e403e21964eafa460cba1df8fa5819b026fd5519efa58",
+              "verified_shared_tokens": [
+                "Duel.Hint",
+                "Duel.SendtoDeck",
+                "Duel.SetOperationInfo",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "REASON_EFFECT"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You can Special Summon this card (from your hand) by shuffling 1 \"Shining Brigade\" card from your banishment or GY into the Deck. You can only Special Summon \"Shining Brigade - Flowering Division\" once per turn this way. A \"Shining Brigade\" monster that has this card as material gains the following effect.\n● Once per turn: You can add 1 \"Shining Brigade\" card from your GY or banishment to your hand.",
+          "lua_implementation": "An EFFECT_TYPE_XMATERIAL Ignition Effect, conditioned on a 0x7a34 holder, has a soft count and adds a GY/face-up banished archetype card.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c4145852.lua",
+              "card_id": 4145852,
+              "card_name": "Zoodiac Ramram",
+              "matched_structure": "EFFECT_TYPE_XMATERIAL and overlay cost",
+              "official_effect_text": "If this card is destroyed by battle or card effect: [b]You can[/b] [b]target[/b] 1 \"Zoodiac\" monster in your GY, except \"Zoodiac Ramram\"; Special Summon it. An Xyz Monster whose original Type is Beast-Warrior [b]and[/b] has this card as material gains this effect.\n● [b]When[/b] your opponent activates a Trap Card or effect that targets this card ([b]Quick Effect[/b]): [b]You can[/b] detach 1 material from this card; [b]negate[/b] the activation.",
+              "script_sha256": "f03b9c3298ee7d4cd4b1a07306d36b516b84a3028e5c8d0718b87f6c4854280f",
+              "verified_shared_tokens": [
+                "Duel.GetLocationCount",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_XMATERIAL",
+                "Effect.CreateEffect",
+                "LOCATION_GRAVE",
+                "LOCATION_MZONE",
+                "REASON_COST",
+                "REASON_EFFECT",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "review_note": "Independently reconciled against full printed text, canonical Lua, and the cited individual official Omega scripts/database rows.",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The shuffle-backed hand Summon procedure with its procedure limit and the material-granted recovery effect are the two printed effects."
+      }
+    }
+  ]
+}

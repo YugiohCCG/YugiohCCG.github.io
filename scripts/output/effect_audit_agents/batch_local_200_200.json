@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch3-coverage-reconciliation",
+  "ordinal_start": 200,
+  "ordinal_end": 200,
+  "cards": [
+    {
+      "ordinal": 200,
+      "passcode": 214349717,
+      "name": "Emma Oceannus & the Nautical Coastlines",
+      "text_sha256": "0d6f7ebc51434885955cf04cbb326a110487a54ab31bcf3782146b7c59e508fb",
+      "script_sha256": "473cf32d4d6775127d25af9ac33bcdcd455ac623a9efe36db68e1c3b256775dd",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Cannot be Normal Summoned/Set.",
+          "lua_implementation": "CANNOT_SUMMON and CANNOT_MSET effects.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c32731036.lua",
+              "card_id": 32731036,
+              "card_name": "The Bystial Lubellion",
+              "matched_structure": "Cannot Normal Summon/Set restriction."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "On opponent Normal/Special Summon: Special Summon this, then optionally immediately Xyz Summon a Nautica using your monsters.",
+          "lua_implementation": "Opponent summon triggers self-Summon; optional follow-up selects an independently Xyz-summonable Nautica and calls Duel.XyzSummon with normal material selection. No count limit, matching text.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c293542.lua",
+              "card_id": 293542,
+              "card_name": "T.G. Warwolf",
+              "matched_structure": "Hand self-Summon response."
+            },
+            {
+              "script": "tmp/omega_scripts/c73860462.lua",
+              "card_id": 73860462,
+              "card_name": "Wonder Xyz",
+              "matched_structure": "Immediate Xyz Summon by effect using controlled materials."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Normal Summon/Set prohibition is one procedure restriction and the opponent-Summon self-Summon/optional immediate Xyz Summon sequence is one activated effect; the text has no count limit."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

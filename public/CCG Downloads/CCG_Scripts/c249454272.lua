@@ -1,6 +1,8 @@
 local s,id=GetID()
 local STRING_ID=133454272
 local SET_GRAVINITY=0x760
+local LAPSIX=212345347
+local GALAXIX=249454272
 function s.initial_effect(c)
 	aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),1,1)
 	c:EnableReviveLimit()
@@ -32,7 +34,7 @@ function s.initial_effect(c)
 	e3:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
 	e3:SetCode(EFFECT_EXTRA_SYNCHRO_MATERIAL)
 	e3:SetRange(LOCATION_SZONE)
-	e3:SetValue(function(e,sc) return sc:IsSetCard(SET_GRAVINITY) and sc:IsType(TYPE_SYNCHRO) end)
+	e3:SetValue(function(e,sc) return sc:IsCode(LAPSIX,GALAXIX) end)
 	c:RegisterEffect(e3)
 end
 function s.setcon(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_SYNCHRO) or e:GetHandler():IsPreviousLocation(LOCATION_SZONE) end

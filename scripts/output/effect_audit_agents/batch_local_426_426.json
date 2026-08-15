@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch6-plus-gravinity-collateral",
+  "ordinal_start": 426,
+  "ordinal_end": 426,
+  "cards": [
+    {
+      "ordinal": 426,
+      "passcode": 235538173,
+      "name": "Gravinity Plasma",
+      "text_sha256": "266be1f7c5f474e504d8a6a54e56f8a33494a8f7c9f7ff9dcbd8dd25826ede70",
+      "script_sha256": "d0a6a7aa04a84d2b7b14dc3485efd335b12a59d6aeb5a6ebaa019d4d03692b34",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "During the Main Phase, if this card is in your hand (Quick Effect): Place it face-up in your Spell & Trap Zone as a Continuous Trap.",
+          "lua_implementation": "A hand Main Phase Quick Effect moves the handler face-up to an open Spell & Trap Zone and applies TYPE_TRAP+TYPE_CONTINUOUS.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c42493140.lua",
+              "card_id": 42493140,
+              "card_name": "Centur-Ion Trudea",
+              "matched_structure": "Main Phase monster-to-Continuous-Trap placement."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "While treated as a Continuous Trap: Place 1 Gravinity monster from your Deck, except Gravinity Plasma, face-up in your Spell & Trap Zone as a Continuous Trap.",
+          "lua_implementation": "A free-chain Quick Effect in the Spell & Trap Zone requires current Trap type/free zone, selects a non-self Gravinity monster from Deck, moves it face-up and trapifies it.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c77765207.lua",
+              "card_id": 77765207,
+              "card_name": "Emblema Oath",
+              "matched_structure": "Places an archetype monster from Deck as a face-up Continuous Trap."
+            },
+            {
+              "script": "tmp/omega_scripts/c42493140.lua",
+              "card_id": 42493140,
+              "card_name": "Centur-Ion Trudea",
+              "matched_structure": "Monster type conversion to Continuous Trap."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "While treated as a Continuous Trap: Move this card to another column.",
+          "lua_implementation": "A separate Quick Effect chooses an empty own Spell & Trap Zone and moves the handler by sequence.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c37480144.lua",
+              "card_id": 37480144,
+              "card_name": "Column Switch",
+              "matched_structure": "Moves a card to another legal column/zone."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "You can only use each effect of Gravinity Plasma once per turn.",
+          "lua_implementation": "The three effects use id/id+100/id+200 hard once-per-turn keys.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c42493140.lua",
+              "card_id": 42493140,
+              "card_name": "Centur-Ion Trudea",
+              "matched_structure": "Separate hard once-per-turn placement/Continuous-Trap effects."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "Support implementation for using this card as Gravinity Synchro material from the Spell & Trap Zone.",
+          "lua_implementation": "The extra Synchro material helper now returns true only for destination code Gravinity Lapsix or Gravinity Galaxix.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14507213.lua",
+              "card_id": 14507213,
+              "card_name": "Synchro Material",
+              "matched_structure": "Official extra Synchro material effect with destination filter."
+            },
+            {
+              "script": "tmp/omega_scripts/c97682931.lua",
+              "card_id": 97682931,
+              "card_name": "Revolution Synchron",
+              "matched_structure": "Extra-material value predicate."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: Nebulix and Spherix print no Spell & Trap Zone material permission."
+        }
+      ],
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "Five records cover hand placement, Deck placement choice, column movement choice, per-effect HOPT, and destination-scoped extra-material support."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 4,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

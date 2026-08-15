@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch3-coverage-reconciliation",
+  "ordinal_start": 179,
+  "ordinal_end": 179,
+  "cards": [
+    {
+      "ordinal": 179,
+      "passcode": 234178973,
+      "name": "The True Wicked Puppeteer, Orchis",
+      "text_sha256": "91ae934d1e9bcd89414863bb342e4125b0ebbc7339fe0810848524dcad3d68b5",
+      "script_sha256": "0e34ed36f13c1734b71bf44dfb5e8fab28afebe73bcb99288021f62459d2d411",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Treated as Wicked Puppeteer Orchis and a Ritual Monster while on the field.",
+          "lua_implementation": "MZONE single-range EFFECT_ADD_CODE and EFFECT_ADD_TYPE(TYPE_RITUAL) effects implement both identities.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c30312361.lua",
+              "card_id": 30312361,
+              "card_name": "Phantom of Chaos",
+              "matched_structure": "Adds/copies a card code and type/effect identity only while in a specified range."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If Normal Summoned: discard 1; add Orchis and Tragedy from Deck/GY/banishment. HOPT.",
+          "lua_implementation": "Normal-Summon trigger discards one, requires both exact cards, then selects/adds one of each from three locations; HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "Discard cost."
+            },
+            {
+              "script": "tmp/omega_scripts/c40005099.lua",
+              "card_id": 40005099,
+              "card_name": "Shiranui Style Synthesis",
+              "matched_structure": "Selects archetype cards across GY/banishment with Necrovalley and face-up checks."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If an original-name Orchis you control leaves due to opponent effect: Special Summon this from GY, then optionally summon a Puppet Token. HOPT.",
+          "lua_implementation": "GY delayed field trigger checks previous controller/location/face-up, original code and opponent effect reason; revives handler, then optionally creates the exact Token; HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c23015896.lua",
+              "card_id": 23015896,
+              "card_name": "Fire King High Avatar Garunix",
+              "matched_structure": "Delayed GY revival based on destruction/leave provenance."
+            },
+            {
+              "script": "tmp/omega_scripts/c73915051.lua",
+              "card_id": 73915051,
+              "card_name": "Scapegoat",
+              "matched_structure": "Creates a specified Token after a successful preceding action."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The on-field name-and-type treatment, Normal-Summon two-card search, and opponent-effect leave-field revival/optional Token sequence are the three distinct effects; both activated HOPTs are included."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 3,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

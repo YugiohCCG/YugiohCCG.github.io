@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconcile-537",
+  "ordinal_start": 537,
+  "ordinal_end": 537,
+  "cards": [
+    {
+      "ordinal": 537,
+      "passcode": 259072906,
+      "name": "Glitchling Mage",
+      "text_sha256": "3ae8f73afafa5cf4435a2f751d93b197558b036eb71e83f664b738dbb3bbd397",
+      "script_sha256": "7c8957cae511f8819294ea30828a72e0490f312543093a0eb9da94bc169c14e4",
+      "overall_verdict": "CUSTOM_GAP",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Pendulum-Summon replacement procedure, named Ritual permission, hand reveal/search, and Special-Summon Ritual effect are four independent procedures/effects. The first remains an explicitly documented engine approximation rather than being hidden by a PASS verdict."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Pendulum Effect: If you would conduct a Pendulum Summon while you control another Cyberse Pendulum Monster in your Pendulum Zone, you can Ritual Summon any number of Cyberse Ritual Monsters from your hand or face-up Extra Deck with a Level between the Pendulum Scales of the 2 cards in your Pendulum Zones by Tributing Cyberse monsters you control whose total Levels equal or exceed the Levels of the Ritual Monsters.",
+          "lua_implementation": "The current approximation is a once-per-turn Pendulum-Zone Ignition Effect: while another Cyberse Pendulum is present, it selects any number of in-scale Cyberse Rituals from hand/face-up Extra Deck, releases face-up controlled Cyberse monsters whose summed Levels cover the selected Rituals' combined Levels and zones, and Ritual Summons them with step/complete handling. It is not tied to, and does not consume, the player's Pendulum Summon procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c55795155.lua",
+              "card_id": 55795155,
+              "card_name": "Pendulum Evolution",
+              "matched_structure": "Official script demonstrates engine-facing extra Pendulum Summon permission through EFFECT_EXTRA_PENDULUM_SUMMON and EVENT_SPSUMMON_SUCCESS_G_P, but does not replace that procedure with a Ritual Summon."
+            },
+            {
+              "script": "tmp/omega_scripts/c5088741.lua",
+              "card_id": 5088741,
+              "card_name": "Code Igniter",
+              "matched_structure": "Official effect-based Ritual Summon demonstrates Level-total material checks, release, SUMMON_TYPE_RITUAL, and CompleteProcedure, but is an activated effect rather than a Pendulum-procedure replacement."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "The printed procedure replaces an attempted Pendulum Summon ('If you would conduct'), so it should exist only at that procedure timing and consume that Pendulum Summon. The current Lua instead exposes an independent Ignition Effect and leaves the ordinary Pendulum Summon available. The installed official Omega scripts provide extra/immediate Pendulum Summons and activated Ritual Summons, but no exact generic hook that replaces a player's Pendulum Summon with a multi-Ritual Summon. Preserve this approximation until engine support is added or the printed timing is authoritatively redesigned."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Monster Effect: You can Ritual Summon this card with \"Glitchling Data-Transfert\".",
+          "lua_implementation": "Data-Transfert is listed, revive limit and Pendulum support are enabled, and aux.ritlimit restricts improper revival.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c13408726.lua",
+              "card_id": 13408726,
+              "card_name": "Nekroz of Metaltron",
+              "matched_structure": "Official Ritual Pendulum monster combines Pendulum registration, revive limit, and Ritual Summon condition."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can reveal this card and 1 other Cyberse Ritual or Cyberse Normal Monster in your hand; add 1 \"Glitchling\" Spell/Trap from your Deck to your hand. You can only use each effect of \"Glitchling Mage\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "A hand Ignition Effect with distinct HOPT reveals this card plus another Cyberse Ritual/Normal, checks the custom activity counter, registers the oath restriction, and searches a Glitchling Spell/Trap from Deck to hand with confirmation.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c90444325.lua",
+              "card_id": 90444325,
+              "card_name": "Megalith Hagith",
+              "matched_structure": "Official Ritual monster effect searches an archetypal Spell/Trap from Deck to hand under HOPT."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If this card is Special Summoned: You can Ritual Summon 1 Cyberse Ritual Monster from your hand or face-up Extra Deck by Tributing Cyberse monsters from your hand or Deck whose total Levels equal or exceed the Ritual Monster. You can only use each effect of \"Glitchling Mage\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+          "lua_implementation": "A delayed Special-Summon trigger with separate HOPT and activity check selects a Cyberse Ritual from hand/face-up Extra Deck, selects Cyberse Ritual Materials from hand/Deck totaling at least its Level, releases hand materials and sends Deck materials with effect/material/Ritual reasons, then Ritual Summons, completes procedure, and enforces the oath restriction.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c5088741.lua",
+              "card_id": 5088741,
+              "card_name": "Code Igniter",
+              "matched_structure": "Official Cyberse effect-based Ritual Summon uses subgroup Level totals, material assignment, release, SUMMON_TYPE_RITUAL, and CompleteProcedure."
+            },
+            {
+              "script": "tmp/omega_scripts/c13386407.lua",
+              "card_id": 13386407,
+              "card_name": "Ravenous Vendread",
+              "matched_structure": "Official effect selects a Ritual Monster and consumes specified materials whose Levels meet or exceed its Level."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    }
+  ]
+}

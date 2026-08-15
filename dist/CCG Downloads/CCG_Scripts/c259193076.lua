@@ -4,8 +4,9 @@ local STRING_ID=133193076
 local SET_ECLIPSE=0xf2f4
 local SET_ECLIPSE_OBSERVER=0xeb17
 local CARD_BOOK_OF_ECLIPSE=35480699
+local CARD_BOOK_OF_LUNAR_ECLIPSE=31834488
 function s.initial_effect(c)
-	aux.AddCodeList(c,120222045)
+	aux.AddCodeList(c,120222045,CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE)
 	c:EnableReviveLimit()
 	aux.AddFusionProcFun2(c,s.fusmat1,aux.FilterBoolFunction(Card.IsRace,RACE_SPELLCASTER),true)
 	--"Eclipse Observer" cards are unaffected by "Eclipse" Quick-Play Spells
@@ -38,7 +39,7 @@ function s.initial_effect(c)
 	e4:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
 	e4:SetTargetRange(0,1)
 	e4:SetCondition(s.hand6con)
-	e4:SetValue(99)
+	e4:SetValue(100)
 	c:RegisterEffect(e4)
 	--Copy an "Eclipse" Quick-Play Spell's activation effect
 	local e5=Effect.CreateEffect(c)
@@ -54,7 +55,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e5)
 end
 s.listed_series={SET_ECLIPSE,SET_ECLIPSE_OBSERVER}
-s.listed_names={CARD_BOOK_OF_ECLIPSE}
+s.listed_names={CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE}
 function s.isobservermonster(c)
 	return c:IsType(TYPE_MONSTER) and c:IsSetCard(SET_ECLIPSE_OBSERVER)
 end
@@ -69,7 +70,7 @@ function s.immtg(e,c)
 end
 function s.immval(e,te)
 	local tc=te:GetHandler()
-	return (tc:IsSetCard(SET_ECLIPSE) or tc:IsCode(CARD_BOOK_OF_ECLIPSE)) and tc:IsType(TYPE_QUICKPLAY)
+	return (tc:IsSetCard(SET_ECLIPSE) or tc:IsCode(CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE)) and tc:IsType(TYPE_QUICKPLAY)
 end
 function s.hand3con(e)
 	return Duel.GetFieldGroupCount(e:GetHandlerPlayer(),0,LOCATION_HAND)>=3
@@ -94,7 +95,7 @@ function s.getcopyeffect(c,tp,use_count)
 	return te,test_group,tp,0,nil,0,tp
 end
 function s.cpfilter(c,tp)
-	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE)) and c:IsType(TYPE_QUICKPLAY)
+	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE)) and c:IsType(TYPE_QUICKPLAY)
 		and c:IsAbleToRemoveAsCost() and aux.NecroValleyFilter()(c)
 		and s.getcopyeffect(c,tp,false)~=nil
 end

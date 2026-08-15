@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconcile-534",
+  "ordinal_start": 534,
+  "ordinal_end": 534,
+  "cards": [
+    {
+      "ordinal": 534,
+      "passcode": 259961648,
+      "name": "Glitchling Data-Transfert",
+      "text_sha256": "9c423ce2730e69ff889a6f0bae25e4683d49e1544756eba1752c9f82afe117e7",
+      "script_sha256": "5722ac6ab25c54eda4893a755da4ae41c111f881b2d6864221ac8595a73a16d5",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Ritual Spell activation procedure and separate GY-triggered immediate Pendulum Summon are the two effects; alternate Ritual locations and material requirements are conditions of the activation procedure."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "This card can be used to Ritual Summon any Cyberse Ritual Monster from your hand, OR, if you control \"Bitron\", \"Protron\", and/or \"Digitron\", you can also Ritual Summon it from your face-up Extra Deck or GY. You must also Tribute monsters from your hand or field whose total Levels equal or exceed the Level of the Ritual Monster.",
+          "lua_implementation": "The activation selects any Cyberse Ritual in hand, expanding to GY and face-up Extra Deck while a face-up controlled named Normal Monster exists; it selects hand/field Ritual Materials totaling at least the Level, handles freed/Extra Deck zones, releases materials, Ritual Summons, and completes the procedure. External Glitchling Corruption counters are included only through that card's separately established material substitution.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c16494704.lua",
+              "card_id": 16494704,
+              "card_name": "Odd-Eyes Advent",
+              "matched_structure": "Official Ritual Spell can Ritual Summon from hand or GY and tributes hand/field materials totaling at least the Ritual Monster's Level."
+            },
+            {
+              "script": "tmp/omega_scripts/c5088741.lua",
+              "card_id": 5088741,
+              "card_name": "Code Igniter",
+              "matched_structure": "Official effect-based Ritual Summon uses subgroup Level totals, material assignment/release, SUMMON_TYPE_RITUAL, and CompleteProcedure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If your opponent Special Summons a monster from the Extra Deck, while this card is in your GY, and \"Glitchling Witch\" or \"Glitchling Mage\" are in your Pendulum Zone: You can banish this card from your GY; immediately after this effect resolves, Pendulum Summon a Cyberse monster. You can only use this effect of \"Glitchling Data-Transfert\" once per turn.",
+          "lua_implementation": "A delayed opponent Extra-Deck-Summon trigger with id HOPT and GY banish cost requires either named Pendulum monster face-up in a Pendulum Zone, constructs temporary extra-Pendulum-Summon permission, computes the scales/zones and legal Cyberse hand/face-up-Extra candidates, then uses Omega-style Pendulum subgroup validation with minimum and maximum both set to one before raising the Pendulum event and Special Summoning that single selected monster with SUMMON_TYPE_PENDULUM.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c6992184.lua",
+              "card_id": 6992184,
+              "card_name": "Pendulum Encore",
+              "matched_structure": "Official immediate Pendulum Summon computes scales/zones, validates a selected Pendulum group, raises EVENT_SPSUMMON_SUCCESS_G_P, and uses SUMMON_TYPE_PENDULUM. Data-Transfert now retains this pattern while bounding its subgroup to exactly one."
+            },
+            {
+              "script": "tmp/omega_scripts/c55795155.lua",
+              "card_id": 55795155,
+              "card_name": "Pendulum Evolution",
+              "matched_structure": "Official extra Pendulum Summon permission uses EFFECT_EXTRA_PENDULUM_SUMMON and the same Pendulum-procedure event handling."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Fixed the over-broad selection: penop previously allowed 1 through every available zone via math.min(#tg,ft); it now calls SelectSubGroup with bounds 1,1, so the printed singular Cyberse monster is enforced without bypassing Omega's Pendulum legality checks."
+        }
+      ]
+    }
+  ]
+}

@@ -83,12 +83,13 @@ function s.excfilter(c)
 	return s.niucard(c) and c:IsAbleToGrave()
 end
 function s.extg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)>0 end
-	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_DECK)
+	if chk==0 then return Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)>=3 end
+	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,3,tp,LOCATION_DECK)
 end
 function s.exop(e,tp,eg,ep,ev,re,r,rp)
-	local ct=math.min(3,Duel.GetFieldGroupCount(tp,LOCATION_DECK,0))
-	if ct<=0 then return end
+	local ct=Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)
+	if ct<3 then return end
+	ct=3
 	Duel.ConfirmDecktop(tp,ct)
 	local g=Duel.GetDecktopGroup(tp,ct)
 	local sg=g:Filter(s.excfilter,nil)

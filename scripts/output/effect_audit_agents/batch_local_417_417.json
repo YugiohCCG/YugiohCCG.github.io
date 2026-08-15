@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "ordinal_start": 417,
+  "ordinal_end": 417,
+  "cards": [
+    {
+      "ordinal": 417,
+      "passcode": 210175845,
+      "name": "Scarstech Principality",
+      "text_sha256": "610902fa21347512f62697e2185b029c7089ec8e3c489d5cb82cafda8f610c0a",
+      "script_sha256": "f989f9c1b1fd2c32f6bddb7e8f05e69b46cec7fb1e90750a301bd89f5878fa0e",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If you control another Scarstech monster (Quick Effect): You can send this face-up card to the GY; destroy a number of cards your opponent controls equal to the Chain Link number of this effect.",
+          "lua_implementation": "A free-chain Monster Zone Quick Effect requires another face-up Scarstech, sends the handler to GY as cost, calculates current chain+1 for legality/current chain once registered, requires exactly that many destructible opponent cards, then selects and destroys exactly the stored count.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c70491413.lua",
+              "card_id": 70491413,
+              "card_name": "Surprise Chain",
+              "matched_structure": "Scales an operation by this effect's Chain Link number using Duel.GetCurrentChain."
+            },
+            {
+              "script": "tmp/omega_scripts/c91623717.lua",
+              "card_id": 91623717,
+              "card_name": "Chain Strike",
+              "matched_structure": "Correct current-link capture during target registration."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "When a card or effect is activated as Chain Link 3 or higher while this card is in your GY (Quick Effect): You can Special Summon this card.",
+          "lua_implementation": "An EVENT_CHAINING Quick Effect in GY checks ev>=3, a free zone and Necrovalley-aware self-summon legality, then revives the handler.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c33776734.lua",
+              "card_id": 33776734,
+              "card_name": "Winged Kuriboh LV9",
+              "matched_structure": "Chain-Link-3-or-higher response condition."
+            },
+            {
+              "script": "tmp/omega_scripts/c83039608.lua",
+              "card_id": 83039608,
+              "card_name": "The Fabled Abanc",
+              "matched_structure": "Self-revival from GY."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can only use each effect of Scarstech Principality once per turn.",
+          "lua_implementation": "The destroy and self-revival effects use id and id+100 hard once-per-turn keys.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c83039608.lua",
+              "card_id": 83039608,
+              "card_name": "The Fabled Abanc",
+              "matched_structure": "Hard once-per-turn self-revival."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The three records separately cover the send-to-GY-cost destruction effect, the Chain-Link-3-or-higher self-revival effect, and both distinct once-per-turn limits. The heuristic double-counts the Special Summon performed by self-revival."
+      }
+    }
+  ]
+}

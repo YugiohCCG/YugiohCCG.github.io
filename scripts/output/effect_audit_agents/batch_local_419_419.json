@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "ordinal_start": 419,
+  "ordinal_end": 419,
+  "cards": [
+    {
+      "ordinal": 419,
+      "passcode": 239179363,
+      "name": "Scarstech Kaiser",
+      "text_sha256": "7d4743023a9d111fc51f9044af3918d2914c786e0bbdb2b8480b80dae148cee9",
+      "script_sha256": "3aa8c5dbaacd0961b738efdaa9a67817cc2abdc029abed863ffd5000a3b2ba68",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Cannot be Normal Summoned/Set. Must be Special Summoned from hand or GY by banishing 3 DARK monsters from your GY, including at least 2 Scarstech monsters with different names.",
+          "lua_implementation": "EnableReviveLimit, an aux.FALSE general Special Summon condition, and a hand/GY EFFECT_SPSUMMON_PROC require a three-card removable DARK GY subgroup whose Scarstech subset has at least two distinct codes; operation selects and banishes exactly that subgroup as summon cost.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c26746975.lua",
+              "card_id": 26746975,
+              "card_name": "Dark Guardian",
+              "matched_structure": "Official special-summon-only procedure coexisting with aux.FALSE general summon condition."
+            },
+            {
+              "script": "tmp/omega_scripts/c26400609.lua",
+              "card_id": 26400609,
+              "card_name": "Tidal, Dragon Ruler of Waterfalls",
+              "matched_structure": "Special Summons from hand/GY by banishing an exact monster group as cost."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "When a card or effect is activated as Chain Link 3 or higher, this card becomes unaffected by your opponent's card effects until the end of the Chain.",
+          "lua_implementation": "A continuous EVENT_CHAINING field effect checks ev>=3 and registers EFFECT_IMMUNE_EFFECT on the handler, filtering effects whose owner player is the opponent and resetting with RESET_CHAIN.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c56920308.lua",
+              "card_id": 56920308,
+              "card_name": "The Ultimate Creature of Destruction",
+              "matched_structure": "Registers immunity with an effect-source predicate."
+            },
+            {
+              "script": "tmp/omega_scripts/c23530726.lua",
+              "card_id": 23530726,
+              "card_name": "Surgical Striker - S.P.E.C.T.R.A.",
+              "matched_structure": "Chain-Link threshold handling."
+            },
+            {
+              "script": "tmp/omega_scripts/c91623717.lua",
+              "card_id": 91623717,
+              "card_name": "Chain Strike",
+              "matched_structure": "Current-chain event structure and RESET_CHAIN-scoped behavior."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "The following effects can only be activated as Chain Link 2 or higher.",
+          "lua_implementation": "Both Quick Effects require Duel.GetCurrentChain()>0 before activation, ensuring their new links are at least Chain Link 2.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c91623717.lua",
+              "card_id": 91623717,
+              "card_name": "Chain Strike",
+              "matched_structure": "Activation condition requires an existing Chain so the card becomes Chain Link 2 or higher."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Once per Chain (Quick Effect): Make all Scarstech monsters you control gain 200 ATK; if activated as Chain Link 5 or higher, you can destroy 1 opponent card.",
+          "lua_implementation": "A RESET_CHAIN handler flag enforces once per Chain. Target stores this effect's current Chain Link. Resolution applies persistent-until-standard-reset +200 ATK to all face-up controlled Scarstechs and, when label>=5, optionally destroys one opponent card.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c89086647.lua",
+              "card_id": 89086647,
+              "card_name": "Okiku's Dish Count",
+              "matched_structure": "Once-per-Chain response and effect scaling from this effect's Chain Link number."
+            },
+            {
+              "script": "tmp/omega_scripts/c91623717.lua",
+              "card_id": 91623717,
+              "card_name": "Chain Strike",
+              "matched_structure": "Captures this effect's Chain Link number."
+            },
+            {
+              "script": "tmp/omega_scripts/c71395725.lua",
+              "card_id": 71395725,
+              "card_name": "Man Beast of Ares",
+              "matched_structure": "Registers cumulative ATK updates after chain events."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "During your turn (Quick Effect): Target up to 2 Scarstech cards in your GY or banishment; add them to your hand.",
+          "lua_implementation": "A Quick Effect requires the controller's turn and an existing chain, targets one or two face-up-eligible Scarstech cards from GY/banishment through Necrovalley, then adds/confirms related targets.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c29596581.lua",
+              "card_id": 29596581,
+              "card_name": "Thunder Dragonroar",
+              "matched_structure": "Adds archetype cards from GY/banishment."
+            },
+            {
+              "script": "tmp/omega_scripts/c40155014.lua",
+              "card_id": 40155014,
+              "card_name": "Centur-Ion Phalanx",
+              "matched_structure": "Targets up to cards in GY/banishment with Necrovalley handling."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 6,
+          "printed_clause": "You can only use this effect of Scarstech Kaiser once per turn; you can only control 1 Scarstech Kaiser.",
+          "lua_implementation": "Only the add effect has SetCountLimit(1,id). SetUniqueOnField enforces one controlled copy; the ATK effect is separately once per Chain.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c4280258.lua",
+              "card_id": 4280258,
+              "card_name": "Apollousa, Bow of the Goddess",
+              "matched_structure": "Unique-on-field and once-per-Chain effect registration."
+            },
+            {
+              "script": "tmp/omega_scripts/c89086647.lua",
+              "card_id": 89086647,
+              "card_name": "Okiku's Dish Count",
+              "matched_structure": "Once-per-Chain versus once-per-turn separation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 6,
+        "reason": "The six records separately cover the Special Summon-only restriction/procedure, Chain-scoped immunity, the shared Chain-Link-2 activation requirement, the once-per-Chain ATK effect with its optional Chain-Link-5 destruction follow-up, the turn-restricted recovery effect, and its once-per-turn limit plus the unique-control restriction. No printed procedure, follow-up, or limit is omitted."
+      }
+    }
+  ]
+}

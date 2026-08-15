@@ -16,6 +16,7 @@ function s.initial_effect(c)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetCountLimit(1,id)
 	e1:SetCondition(s.sumnegcon)
+	e1:SetCost(s.negcost)
 	e1:SetTarget(s.sumnegtg)
 	e1:SetOperation(s.sumnegop)
 	c:RegisterEffect(e1)
@@ -28,6 +29,7 @@ function s.initial_effect(c)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetCountLimit(1,id)
 	e2:SetCondition(s.actnegcon)
+	e2:SetCost(s.negcost)
 	e2:SetTarget(s.actnegtg)
 	e2:SetOperation(s.actnegop)
 	c:RegisterEffect(e2)
@@ -66,6 +68,10 @@ function s.applylimit(e,tp)
 	e1:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e1,tp)
 end
+function s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return true end
+	s.applylimit(e,tp)
+end
 function s.sumnegcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetCurrentChain()==0 and Duel.GetCustomActivityCount(id,tp,ACTIVITY_CHAIN)==0
 end
@@ -77,7 +83,6 @@ end
 function s.sumnegop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.NegateSummon(eg)~=0 then
 		Duel.Destroy(eg,REASON_EFFECT)
-		s.applylimit(e,tp)
 	end
 end
 function s.actnegcon(e,tp,eg,ep,ev,re,r,rp)
@@ -96,7 +101,6 @@ function s.actnegop(e,tp,eg,ep,ev,re,r,rp)
 	local rc=re:GetHandler()
 	if Duel.NegateEffect(ev)~=0 then
 		if rc:IsRelateToEffect(re) then Duel.Destroy(rc,REASON_EFFECT) end
-		s.applylimit(e,tp)
 	end
 end
 function s.lookfilter(c,tp,sc)

@@ -26,7 +26,9 @@ function s.initial_effect(c)
 	e2:SetOperation(s.synop)
 	c:RegisterEffect(e2)
 end
-function s.rmfilter(c,tp) return c:IsPreviousControler(tp) end
+function s.rmfilter(c,tp)
+	return c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_ONFIELD)
+end
 function s.spcon(e,tp,eg) return eg:IsExists(s.rmfilter,1,nil,tp) end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

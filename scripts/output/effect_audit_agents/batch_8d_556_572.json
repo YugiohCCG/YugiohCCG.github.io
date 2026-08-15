@@ -1,0 +1,974 @@
+{
+  "schema_version": 1,
+  "batch": "8d",
+  "ordinal_start": 556,
+  "ordinal_end": 572,
+  "cards": [
+    {
+      "ordinal": 556,
+      "passcode": 259431066,
+      "name": "Wyvernal Myops",
+      "text_sha256": "30c3e2850c0b5f2544edb4d4cad063d27f84e489cffc0fc6a64720c9686d5bef",
+      "script_sha256": "94e840a831b998a378ae3d90c9bfdf831b2704d09b34a36ca88ae874c059d605",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Three independently usable printed effects are present; the shared once-per-turn sentence is merged into the three effect records it governs."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "You can banish 1 Insect monster from your GY; Special Summon this card from your hand. You can only use this effect of \"Wyvernal Myops\" once per turn.",
+          "lua_implementation": "An Ignition Effect in LOCATION_HAND uses SetCost(s.spcost) to select and face-up banish one Insect monster from the controller's GY as REASON_COST, then Special Summons the handler from the hand. SetCountLimit(1,id) supplies the effect's hard once per turn.",
+          "official_references": [
+            {
+              "script": "c21057444.lua",
+              "card_id": 21057444,
+              "card_name": "Marincess Springirl",
+              "matched_structure": "Official Omega banishes one archetype monster from the GY as cost for an Ignition Effect that Special Summons its handler from the hand, with the same hand range, remove cost, summon target, and HOPT structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Normal or Special Summoned: You can Special Summon 1 WIND Insect monster from your hand. You can only use this effect of \"Wyvernal Myops\" once per turn.",
+          "lua_implementation": "A delayed optional EVENT_SUMMON_SUCCESS trigger is cloned for EVENT_SPSUMMON_SUCCESS. Both registrations share SetCountLimit(1,id+100), filter WIND Insect monsters in the hand, check an open Monster Zone, and Special Summon one face-up.",
+          "official_references": [
+            {
+              "script": "c7443908.lua",
+              "card_id": 7443908,
+              "card_name": "Hayate the Earth Star",
+              "matched_structure": "Official Omega clones Normal- and Special-Summon success handling for an optional summon trigger that Special Summons a specifically filtered monster from the hand."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is in your GY, and you control a \"Wyvernal\" Fusion monster (Quick Effect): You can banish this card from your GY and target 1 card your opponent controls; Negate its effects. You can only use this effect of \"Wyvernal Myops\" once per turn.",
+          "lua_implementation": "A LOCATION_GRAVE Quick Effect checks for a face-up Wyvernal Fusion Monster, banishes the handler as cost, then targets an opponent's on-field card through aux.NegateAnyFilter. At resolution it additionally requires the target to be face-up and applies EFFECT_DISABLE, EFFECT_DISABLE_EFFECT, and Trap-Monster disabling with standard leave-field resets.",
+          "official_references": [
+            {
+              "script": "c2674965.lua",
+              "card_id": 2674965,
+              "card_name": "Argostars - Home Stadium",
+              "matched_structure": "Official Omega uses aux.NegateAnyFilter for printed text that explicitly targets one face-up opponent card, then requires that target to remain face-up and related before registering EFFECT_DISABLE and EFFECT_DISABLE_EFFECT."
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "The printed target is any card the opponent controls, but aux.NegateAnyFilter and the operation silently restrict it to a face-up negatable card. Official cards using this implementation say 'face-up card'. Resolve by adding 'face-up' to the printed target or by defining an intentional legal behavior for face-down targets; the current Lua does not implement the printed target range."
+        }
+      ]
+    },
+    {
+      "ordinal": 557,
+      "passcode": 259533644,
+      "name": "Wyvernal Crenata",
+      "text_sha256": "fd8396262258abefec0ec36e1b04ba7f711e3fa5c7da7e92e337d2798c0ef6b7",
+      "script_sha256": "10628e0d943b73d5ddd13a6fcf3012bfb8487ea4f59192bf6b5b25bdffac958f",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The inherent Special Summon procedure and its procedure limit form one record, followed by the two independently triggered effects; the final shared HOPT sentence is merged into those triggers."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "You can Special Summon this card (from your hand) by sending 1 Insect monster from your hand or field to the GY. You can only Special Summon \"Wyvernal Crenata\" once per turn this way.",
+          "lua_implementation": "An uncopyable EFFECT_SPSUMMON_PROC in the hand selects one other Insect monster from the hand or face-up Monster Zone that can be sent as cost and whose removal leaves a legal zone, sends it with REASON_COST, and uses an oath count limit for the procedure.",
+          "official_references": [
+            {
+              "script": "c72270339.lua",
+              "card_id": 72270339,
+              "card_name": "Diabellstar the Black Witch",
+              "matched_structure": "Official Omega implements the same inherent hand Special Summon procedure by sending an eligible card from hand or face-up field to the GY as the procedure operation, with a once-per-turn summon-procedure limit."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Normal or Special Summoned: You can Set 1 \"Wyvernal\" Spell/Trap from your Deck. You can only use this effect of \"Wyvernal Crenata\" once per turn.",
+          "lua_implementation": "A delayed optional Normal-Summon trigger cloned for Special Summon shares one HOPT code, verifies a free Spell/Trap Zone and a Settable Wyvernal Spell/Trap in the Deck, and uses Duel.SSet on one selected card.",
+          "official_references": [
+            {
+              "script": "c50486289.lua",
+              "card_id": 50486289,
+              "card_name": "Amazoness War Chief",
+              "matched_structure": "Official Omega registers Normal- and Special-Summon triggers that directly Set one archetype Spell/Trap from the Deck after checking a free Spell/Trap Zone and IsSSetable."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is sent to the GY as Fusion Material: You can draw 1 card. You can only use this effect of \"Wyvernal Crenata\" once per turn.",
+          "lua_implementation": "A delayed optional EVENT_TO_GRAVE trigger requires both REASON_MATERIAL and REASON_FUSION, checks that the controller can draw one, and draws one with REASON_EFFECT under its own HOPT code.",
+          "official_references": [
+            {
+              "script": "c12948099.lua",
+              "card_id": 12948099,
+              "card_name": "Old Entity Cthugua",
+              "matched_structure": "Official Omega checks Fusion-material use before resolving a one-card draw, providing the direct reference for the Fusion-material reason and draw operation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 558,
+      "passcode": 259348317,
+      "name": "Wyvernal Sphinx",
+      "text_sha256": "be53cc3d92687d53f43280e140c1917e1571fc16c0f121c0f3f95175ec96285b",
+      "script_sha256": "31ec62dd0d152a90a92d170cf6f021859615dbbf32af770beb64b94f0870945e",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Ignition/Quick timing switch is one printed Fusion-Summon effect implemented through mutually exclusive cloned registrations; the GY recovery is the second effect."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "You can reveal this card in your hand; Fusion Summon 1 \"Wyvernal\" Fusion Monster from your Extra Deck using monsters in your hand and/or field as Fusion Material. This is a Quick Effect if you control an Insect Fusion Monster. You can only use this effect of \"Wyvernal Sphinx\" once per turn.",
+          "lua_implementation": "One hand effect is registered as an Ignition Effect while no face-up Insect Fusion Monster is controlled and cloned as EVENT_FREE_CHAIN Quick Effect while one is controlled. Both share the same HOPT code and reveal/shuffle the handler as cost, then perform a standard hand/field Fusion Summon of a Wyvernal Fusion Monster, including legal Chain Material handling.",
+          "official_references": [
+            {
+              "script": "c29280589.lua",
+              "card_id": 29280589,
+              "card_name": "Edge Imp Scythe",
+              "matched_structure": "Official Omega reveals the handler in the hand as the cost of a Quick Fusion-Summon effect and selects hand/field Fusion Materials before sending them with REASON_MATERIAL and REASON_FUSION."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is sent to the GY, except by its own effect: You can banish 1 other card from your GY, and if you do, add this card to your hand. You can only use this effect of \"Wyvernal Sphinx\" once per turn.",
+          "lua_implementation": "A delayed EVENT_TO_GRAVE trigger rejects an event whose reason effect is handled by this card. It requires this card to be recoverable and another Necrovalley-legal GY card to be banishable, banishes one other card at resolution, and only then sends the still-related handler to the hand under a distinct HOPT code.",
+          "official_references": [
+            {
+              "script": "c29177818.lua",
+              "card_id": 29177818,
+              "card_name": "Rose Girl",
+              "matched_structure": "Official Omega supplies the self-recovery reference: an optional effect operating while its handler is in the GY checks that the handler is able to return and sends that same handler to the hand."
+            },
+            {
+              "script": "c21057444.lua",
+              "card_id": 21057444,
+              "card_name": "Marincess Springirl",
+              "matched_structure": "Official Omega supplies the GY banish-before-follow-up structure, selecting another eligible GY card and requiring successful removal before continuing."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 559,
+      "passcode": 259763531,
+      "name": "Wyvernal Lymantria",
+      "text_sha256": "ee63bd7f24c1e88055e4f058658caba13e11e698978284d54ded559ab565a519",
+      "script_sha256": "d6a34b4fab761451bcc8c48071a805545c7bb5018a24dd60c3720c855e65e0b1",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The Fusion material procedure is independently audited, followed by the two activated effects; each attached restriction is included with the effect it governs."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "1 \"Wyvernal\" monster + 1 Insect monster",
+          "lua_implementation": "aux.AddFusionProcFun2 requires one Fusion Material satisfying the Wyvernal set filter and a second satisfying the Insect Race filter, with the exact two-material requirement, followed by EnableReviveLimit.",
+          "official_references": [
+            {
+              "script": "c54757758.lua",
+              "card_id": 54757758,
+              "card_name": "Mudragon of the Swamp",
+              "matched_structure": "Official Omega uses a two-filter Fusion procedure for exactly two materials with separate qualifications and enables the Fusion Monster's revive limit."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Fusion Summoned: You can add 1 WIND Insect monster from your Deck to your hand, also you cannot Special Summon non-Insect monsters from the Extra Deck for the rest of the turn. You can only use this effect of \"Wyvernal Lymantria\" once per turn.",
+          "lua_implementation": "A delayed optional Special-Summon trigger requires SUMMON_TYPE_FUSION, searches one WIND Insect monster, and independently registers an End-Phase-reset player lock against Special Summoning non-Insects from LOCATION_EXTRA even if the search no longer succeeds. The trigger has its own HOPT code.",
+          "official_references": [
+            {
+              "script": "c39931513.lua",
+              "card_id": 39931513,
+              "card_name": "Tenpai Dragon Paidra",
+              "matched_structure": "Official Omega provides the delayed Normal/Special-Summon search pattern with a filtered Deck-to-hand operation and HOPT."
+            },
+            {
+              "script": "c58786132.lua",
+              "card_id": 58786132,
+              "card_name": "Lucius the Shadow Vassal",
+              "matched_structure": "Official Omega registers a rest-of-turn EFFECT_CANNOT_SPECIAL_SUMMON player restriction that tests the candidate's Extra Deck location and resets in the End Phase."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "During the Main Phase (Quick Effect): You can target 1 Insect monster in your GY; Special Summon it. You can only use this effect of \"Wyvernal Lymantria\" once per turn.",
+          "lua_implementation": "An EVENT_FREE_CHAIN Quick Effect on the field is gated by Duel.IsMainPhase, targets one Necrovalley-legal Insect monster in the controller's GY that can be Special Summoned, and revives the related target face-up under a separate HOPT code.",
+          "official_references": [
+            {
+              "script": "c27381364.lua",
+              "card_id": 27381364,
+              "card_name": "Spright Elf",
+              "matched_structure": "Official Omega implements a Main-Phase EVENT_FREE_CHAIN Quick Effect that targets a qualified monster in the controller's GY, applies Necrovalley legality, and Special Summons the still-related target."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 560,
+      "passcode": 259179054,
+      "name": "Wyvernal Megalopyge",
+      "text_sha256": "8a1449b29d9b70e213adb0d00de8b6f657bee40fd3aafd1f7fe65b809a2b7c78",
+      "script_sha256": "6a7b21ed6dbe11cb809e0143712a68a365010dba9e405d74dabbe3282e6d1181",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "The exact Fusion material procedure, two continuous protections, and two activated effects are independent records; their shared once-per-turn and same-Chain activation condition is audited inside both activated-effect records."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "3 WIND Insect monsters",
+          "lua_implementation": "aux.AddFusionProcFunRep requires exactly three materials for which IsFusionAttribute(WIND) and IsRace(INSECT) are both true, and EnableReviveLimit enforces proper Fusion Summoning.",
+          "official_references": [
+            {
+              "script": "c79864860.lua",
+              "card_id": 79864860,
+              "card_name": "Predaplant Triphyoverutum",
+              "matched_structure": "Official Omega uses a repeated Fusion-material predicate with an exact material count and revive limit for a three-material Fusion Monster."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Cannot be destroyed by card effect.",
+          "lua_implementation": "A single-card continuous EFFECT_INDESTRUCTABLE_EFFECT registration with value 1 applies while the monster remains face-up under standard single-effect behavior.",
+          "official_references": [
+            {
+              "script": "c42291297.lua",
+              "card_id": 42291297,
+              "card_name": "Flower Cardian Lightshower",
+              "matched_structure": "Official Omega uses EFFECT_INDESTRUCTABLE_EFFECT with value 1 to provide continuous card-effect destruction protection."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Cannot be targeted by your opponent's card effects.",
+          "lua_implementation": "A clone of the protection effect changes the code to EFFECT_CANNOT_BE_EFFECT_TARGET and uses aux.tgoval, whose player test limits targeting protection to opposing effects.",
+          "official_references": [
+            {
+              "script": "c42291297.lua",
+              "card_id": 42291297,
+              "card_name": "Flower Cardian Lightshower",
+              "matched_structure": "Official Omega clones an indestructibility registration into EFFECT_CANNOT_BE_EFFECT_TARGET and uses aux.tgoval for opponent-only effect targeting protection."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If this card is Fusion Summoned: You can add 1 \"Wyvernal\" card from your GY or banishment to your hand, then you can destroy 1 other card on the field. You can only use this effect once per turn, and cannot activate it in the same Chain as the following effect.",
+          "lua_implementation": "A delayed Fusion-Summon trigger selects one face-up-identifiable Wyvernal card from the GY or banishment through NecrovalleyFilter and adds it. After a successful add it separately offers the optional destruction of one other destructible on-field card. Its HOPT is distinct, while a shared RESET_CHAIN player flag prevents this and the Quick Effect from both activating in one Chain.",
+          "official_references": [
+            {
+              "script": "c2674965.lua",
+              "card_id": 2674965,
+              "card_name": "Argostars - Home Stadium",
+              "matched_structure": "Official Omega filters face-up-identifiable archetype cards across GY and banishment, applies NecrovalleyFilter, sends one to hand, and confirms it."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "During the Main Phase (Quick Effect): You can destroy 1 WIND Insect monster you control, and if you do, destroy all monsters your opponent controls. You can only use this effect once per turn, and cannot activate it in the same Chain as the previous effect.",
+          "lua_implementation": "A Main-Phase EVENT_FREE_CHAIN Quick Effect non-targetingly selects one face-up destructible WIND Insect in the controller's Monster Zone at resolution. Only if Duel.Destroy succeeds does it collect and destroy every destructible monster in the opponent's Monster Zone. It has a distinct HOPT and uses the same RESET_CHAIN flag as the Fusion-Summon trigger.",
+          "official_references": [
+            {
+              "script": "c2196767.lua",
+              "card_id": 2196767,
+              "card_name": "Gambler of Legend",
+              "matched_structure": "Official Omega provides both destruction branches used here: selecting and destroying a controller's card and collecting all opponent-controlled monsters for mass destruction."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 561,
+      "passcode": 259160760,
+      "name": "Wyvernal Sanctuary",
+      "text_sha256": "5af2139d7a997831128c98027c1f02875be430bb54083a547000f58622fc9825",
+      "script_sha256": "169b595765f59cc08f8ad15a3f1140fd5d23e60596b6ac292d283cc26336e64e",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Field Spell has two printed usable effects; its bare activation registration is engine plumbing rather than a third printed effect, and each HOPT sentence is merged with its governed effect."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "During your Main Phase: You can send 1 Insect monster you control to the GY; Special Summon 1 \"Wyvernal\" monster from your Deck. You can only use this effect of \"Wyvernal Sanctuary\" once per turn.",
+          "lua_implementation": "An Ignition Effect in the Field Zone sends one face-up Insect from the controller's Monster Zone to the GY as cost while accounting for the freed zone, then selects and Special Summons one Wyvernal monster from the Deck under its own HOPT.",
+          "official_references": [
+            {
+              "script": "c9674034.lua",
+              "card_id": 9674034,
+              "card_name": "Snake-Eye Ash",
+              "matched_structure": "Official Omega sends face-up controlled cards to the GY as activation cost, accounts for the zones those cards free, and then Special Summons an archetype monster from the Deck."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If an Insect monster is Special Summoned, except by this card's effect: You can Fusion Summon 1 Fusion Monster from your Extra Deck by shuffling Insect monsters from your hand, GY or banishment into the Deck as Fusion Material. You can only use this effect of \"Wyvernal Sanctuary\" once per turn.",
+          "lua_implementation": "A delayed field trigger on EVENT_SPSUMMON_SUCCESS requires at least one summoned Insect and rejects a reason effect handled by this Field Spell. It builds Necrovalley-legal, identifiable Insect Fusion Materials from hand, GY, and banishment, checks a legal Fusion Monster, shuffles selected materials into the Deck with Fusion-material reasons, and completes the Fusion Summon under a distinct HOPT.",
+          "official_references": [
+            {
+              "script": "c77124096.lua",
+              "card_id": 77124096,
+              "card_name": "Dark Contact",
+              "matched_structure": "Official Omega Fusion Summons by selecting Fusion Materials from nonstandard GY/banishment zones, shuffling them into the Deck with Fusion material reasons, then Special Summoning and completing the Fusion procedure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 562,
+      "passcode": 259073666,
+      "name": "Wyvernal Gathering",
+      "text_sha256": "8443efdf300349cd90c0a1c0912c9122417677f3323c746ce5f3b694eef1b389",
+      "script_sha256": "bfcd48af74e8c71be900127d5f980178efc31c2dbcd6666f33b6b774b64e55ca",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The activation effect and GY effect are the two independent effects; the shared 'only use 1' restriction is represented by their shared count-limit code rather than a separate record."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Take 2 \"Wyvernal\" monsters from your Deck, then add 1 of them to your hand and send the other to the GY. You can only use 1 \"Wyvernal Gathering\" effect per turn, and only once that turn.",
+          "lua_implementation": "The activation confirms that a two-card Wyvernal subgroup contains at least one hand-eligible and one GY-eligible monster, lets the player select exactly two, then selects one that can go to hand while its counterpart can go to the GY. It sends the chosen cards to their distinct destinations and shares SetCountLimit(1,id) with the GY effect.",
+          "official_references": [
+            {
+              "script": "c8775395.lua",
+              "card_id": 8775395,
+              "card_name": "Evil Eyes Unleashed",
+              "matched_structure": "Official Omega selects multiple specifically qualified archetype cards from the Deck and processes distinct selected members to hand and GY with separate operation categories."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You can banish this card from your GY and target up to 4 Insect monsters in your GY; shuffle them into the Deck, then draw 1 card for every 2 cards shuffled this way. You can only use 1 \"Wyvernal Gathering\" effect per turn, and only once that turn.",
+          "lua_implementation": "A GY Ignition Effect banishes the handler as cost, targets one to four Necrovalley-legal Insect monsters in the controller's GY, sends the still-related targets to the Deck, counts only operated cards that reached the Main or Extra Deck, and draws floor(actual_count/2). The shared id count code makes the two card effects mutually exclusive that turn.",
+          "official_references": [
+            {
+              "script": "c67169062.lua",
+              "card_id": 67169062,
+              "card_name": "Pot of Avarice",
+              "matched_structure": "Official Omega targets monsters in the GY, returns the still-related group to the Deck, derives success from the operated group, and performs the follow-up draw only after enough cards were actually returned."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 563,
+      "passcode": 259652372,
+      "name": "Eclipse Observer Aaliyah",
+      "text_sha256": "f26a0d37cbc2cc360cf46b425464dcf3d474f0cdf3d7a1060a39ff5ee4846afd",
+      "script_sha256": "9e2ec5bb30388b45725e77282b599522a8ba770653de8289ebcfa5bb53bcd968",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Three separately activated effects are printed; Normal- and Special-Summon registrations are two event routes for the same second printed effect, and the shared HOPT sentence is merged into all three."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If your opponent has 6 or more cards in their hand (Quick Effect): You can Special Summon this card from your hand. You can only use this effect of \"Eclipse Observer Aaliyah\" once per turn.",
+          "lua_implementation": "An EVENT_FREE_CHAIN Quick Effect in the hand checks the opponent's current hand count is at least six, verifies an open Monster Zone and summon legality, then Special Summons the still-related handler face-up under its own HOPT code.",
+          "official_references": [
+            {
+              "script": "c10236520.lua",
+              "card_id": 10236520,
+              "card_name": "Goe Goe the Gallant Ninja",
+              "matched_structure": "Official Omega uses Duel.GetFieldGroupCount against the opponent's hand as the condition threshold for an effect, establishing the hidden-zone count check used by the CCG condition."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Normal or Special Summoned: You can destroy 1 Spell/Trap your opponent controls. You can only use this effect of \"Eclipse Observer Aaliyah\" once per turn.",
+          "lua_implementation": "A delayed optional Normal-Summon trigger is cloned for Special Summon and shares one HOPT code. It non-targetingly checks for an opponent-controlled destructible Spell/Trap, selects one at resolution, and destroys it with REASON_EFFECT.",
+          "official_references": [
+            {
+              "script": "c4929256.lua",
+              "card_id": 4929256,
+              "card_name": "Mobius the Frost Monarch",
+              "matched_structure": "Official Omega handles a Summon-success effect that selects opponent-controlled Spell/Trap cards and destroys them with REASON_EFFECT."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If your opponent draws 2 or more cards at the same time: You can target 1 card in either GY; place it on the bottom of the Deck. You can only use this effect of \"Eclipse Observer Aaliyah\" once per turn.",
+          "lua_implementation": "A delayed field trigger on EVENT_DRAW checks ep is the opponent and the event group contains at least two cards, targets one Necrovalley-legal card in either GY, and sends the still-related target to SEQ_DECKBOTTOM under a distinct HOPT.",
+          "official_references": [
+            {
+              "script": "c12081875.lua",
+              "card_id": 12081875,
+              "card_name": "Thunder Dragon Thunderstormech",
+              "matched_structure": "Official Omega targets a qualified card in the GY or banishment and sends the still-related target to the bottom of the Deck with SEQ_DECKBOTTOM and REASON_EFFECT."
+            },
+            {
+              "script": "c65726770.lua",
+              "card_id": 65726770,
+              "card_name": "Silent Magician Zero",
+              "matched_structure": "Official Omega uses EVENT_DRAW, ep versus the controller, and the draw event-group size to react to and quantify cards drawn by the opponent."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 564,
+      "passcode": 259926839,
+      "name": "Eclipse Observer Riley",
+      "text_sha256": "59a61a058fdc4336b8f063e017b1dbaf592d80b868fa6f9deb3197b6cec52463",
+      "script_sha256": "22cbeabfe00b421d84b7f317d1bb9a9ffbba458c68240910574e6626260ef6c4",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Deck take/add-or-summon operation is one choice effect including its conditional draw, and the opponent-draw-triggered recovery is the second effect; their HOPT clauses are merged."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "During your Main Phase: You can take 1 \"Eclipse Observer\" card from your Deck and either add it to your hand or, if it is a Level 4 or lower monster, Special Summon it. If you Special Summon it, your opponent draws 2 cards. You can only use this effect of \"Eclipse Observer Riley\" once per turn.",
+          "lua_implementation": "A field Ignition Effect filters observer-series cards plus Eclipse Observatory in the Deck. At resolution it offers add-to-hand and, for a legal Level 4-or-lower monster with an open zone and two-card opponent draw available, Special Summon. It draws two for the opponent only after a successful summon and applies its own HOPT.",
+          "official_references": [
+            {
+              "script": "c20065322.lua",
+              "card_id": 20065322,
+              "card_name": "The Flute of Summoning Kuriboh",
+              "matched_structure": "Official Omega takes one specifically qualified monster from the Deck and branches between adding it to the hand and Special Summoning it after checking the selected card's summon and zone legality."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If your opponent draws 2 or more cards at the same time, except by the effect of \"Eclipse Observer Riley\": You can target 1 \"Eclipse\" Quick-Play Spell in your GY; add it to your hand. You can only use this effect of \"Eclipse Observer Riley\" once per turn.",
+          "lua_implementation": "A delayed EVENT_DRAW trigger checks an opponent draw group of at least two and rejects Riley as the reason-effect handler. It targets a Necrovalley-legal Quick-Play Spell in the GY only if IsSetCard(0xf2f4) or code 35480699 (Book of Eclipse), then returns it to hand under a distinct HOPT.",
+          "official_references": [
+            {
+              "script": "c63288573.lua",
+              "card_id": 63288573,
+              "card_name": "Sky Striker Ace - Kagari",
+              "matched_structure": "Official Omega targets a specifically qualified Spell in the controller's GY and adds the still-related, Necrovalley-legal target to the hand."
+            },
+            {
+              "script": "c31834488.lua",
+              "card_id": 31834488,
+              "card_name": "Book of Lunar Eclipse",
+              "matched_structure": "The official Omega DB and script identify Book of Lunar Eclipse as an existing Quick-Play Spell whose printed name contains the quoted Eclipse name, so it belongs to the intended name-based pool alongside Book of Eclipse."
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "The Eclipse Quick-Play filter includes custom set 0xf2f4 and Book of Eclipse (35480699), but omits official Book of Lunar Eclipse (31834488). Add a CARD_BOOK_OF_LUNAR_ECLIPSE constant, include it in aux.AddCodeList/listed_names, and accept it in qpfilter."
+        }
+      ]
+    },
+    {
+      "ordinal": 565,
+      "passcode": 259069729,
+      "name": "Eclipse Observer Nora",
+      "text_sha256": "fe0d56f77bc955c3fc185380772002c222b0d1b2e81a97b791990ffa62b8c003",
+      "script_sha256": "a9ea44d6538a1db46dbaecb206d52ff15d95bf97e9a3c22fce2fe6be82b33122",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Normal- and Special-Summon registrations are event routes for one printed send effect, followed by one opponent-draw trigger; their HOPT clauses are merged."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If this card is Normal or Special Summoned: You can send 1 \"Eclipse\" Quick-Play Spell or 1 \"Eclipse Observer\" card from your Deck to the GY. You can only use this effect of \"Eclipse Observer Nora\" once per turn.",
+          "lua_implementation": "A delayed optional Normal-Summon trigger cloned for Special Summon shares one HOPT. The Deck filter accepts Observer-series cards/Eclipse Observatory or a Quick-Play Spell that is custom Eclipse set 0xf2f4 or Book of Eclipse code 35480699, then sends one selected card to the GY.",
+          "official_references": [
+            {
+              "script": "c1174075.lua",
+              "card_id": 1174075,
+              "card_name": "Drytron Mu Beta Fafnir",
+              "matched_structure": "Official Omega uses a summon-success trigger to select and send one specifically qualified archetype card from the Deck to the GY."
+            },
+            {
+              "script": "c31834488.lua",
+              "card_id": 31834488,
+              "card_name": "Book of Lunar Eclipse",
+              "matched_structure": "The official Omega DB and script identify Book of Lunar Eclipse as an existing Eclipse-named Quick-Play Spell that the CCG name-based filter must recognize."
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "The printed Eclipse Quick-Play pool includes Book of Lunar Eclipse, but tgfilter only special-cases Book of Eclipse. Add code 31834488 to aux.AddCodeList/listed_names and to the Quick-Play branch of tgfilter."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If your opponent draws 2 or more cards at the same time: You can draw 1 card. You can only use this effect of \"Eclipse Observer Nora\" once per turn.",
+          "lua_implementation": "A delayed field EVENT_DRAW trigger requires the opponent to be the drawing player and at least two cards in the draw group, checks the controller can draw one, and performs Duel.Draw(tp,1,REASON_EFFECT) under its own HOPT.",
+          "official_references": [
+            {
+              "script": "c87649699.lua",
+              "card_id": 87649699,
+              "card_name": "Naturia Ragweed",
+              "matched_structure": "Official Omega reacts to an opponent EVENT_DRAW outside normal ownership, checks the controller can draw, and resolves a follow-up draw with REASON_EFFECT."
+            },
+            {
+              "script": "c65726770.lua",
+              "card_id": 65726770,
+              "card_name": "Silent Magician Zero",
+              "matched_structure": "Official Omega reads the EVENT_DRAW group size and drawing player, validating the event-group quantity test used for simultaneous multi-card draws."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 566,
+      "passcode": 259487387,
+      "name": "Eclipse Observer Ella",
+      "text_sha256": "bb74e555ade20b94c03e886c7c8106ba3b85e8fc4761c8edd1046d35ccad5bdf",
+      "script_sha256": "dd6309da782804d892168812150ee406728ce9bb9fff9897ded75b89a577ef11",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The hand/GY self-Summon, summon-triggered Set, and opponent-draw-triggered revival are three independent effects; cloned summon event routes and HOPT clauses are merged into their effects."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "(Quick Effect): You can Special Summon this card from your hand or GY, and if you do, your opponent draws 2 cards. You can only use this effect of \"Eclipse Observer Ella\" once per turn.",
+          "lua_implementation": "An EVENT_FREE_CHAIN Quick Effect operates in hand or GY, checks a Monster Zone, two-card opponent draw legality, Necrovalley when applicable, and handler summon legality. It Special Summons the related handler and only after successful summoning draws two for the opponent, under its own HOPT.",
+          "official_references": [
+            {
+              "script": "c91654806.lua",
+              "card_id": 91654806,
+              "card_name": "Cosmos Channelling",
+              "matched_structure": "Official Omega filters summonable monsters across hand and GY, applies NecrovalleyFilter to the GY path, checks an open Monster Zone, and Special Summons the selected card."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If this card is Normal or Special Summoned: You can Set 1 \"Eclipse\" Quick-Play Spell from your Deck or GY. You can only use this effect of \"Eclipse Observer Ella\" once per turn.",
+          "lua_implementation": "A delayed optional Normal-Summon trigger cloned for Special Summon shares one HOPT and sets a Necrovalley-legal, Settable Quick-Play Spell from Deck or GY only if it has custom Eclipse set 0xf2f4 or code 35480699 (Book of Eclipse).",
+          "official_references": [
+            {
+              "script": "c80181649.lua",
+              "card_id": 80181649,
+              "card_name": "\"A Case for K9\"",
+              "matched_structure": "Official Omega filters and Sets an archetype Quick-Play Spell directly from the Deck or GY, including zone and Set legality."
+            },
+            {
+              "script": "c31834488.lua",
+              "card_id": 31834488,
+              "card_name": "Book of Lunar Eclipse",
+              "matched_structure": "The official Omega DB and script identify Book of Lunar Eclipse as an Eclipse-named Quick-Play Spell omitted by the CCG's explicit non-setcode name pool."
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "setfilter omits Book of Lunar Eclipse (31834488), so the Lua cannot Set every official Eclipse-named Quick-Play Spell promised by the print. Add the code to aux.AddCodeList/listed_names and the code test."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If your opponent draws 2 or more cards at the same time, except by the effect of \"Eclipse Observer Ella\": You can Special Summon 1 \"Eclipse Observer\" monster from your GY. You can only use this effect of \"Eclipse Observer Ella\" once per turn.",
+          "lua_implementation": "A delayed field EVENT_DRAW trigger checks opponent ownership, draw-group size at least two, and excludes Ella as the reason-effect handler. It then checks an open zone and revives one Necrovalley-legal Observer monster from the controller's GY under a distinct HOPT.",
+          "official_references": [
+            {
+              "script": "c81866673.lua",
+              "card_id": 81866673,
+              "card_name": "Destiny HERO - Dasher",
+              "matched_structure": "Official Omega uses EVENT_DRAW to trigger a Special Summon operation after checking event ownership, zone availability, and summon legality."
+            },
+            {
+              "script": "c65726770.lua",
+              "card_id": 65726770,
+              "card_name": "Silent Magician Zero",
+              "matched_structure": "Official Omega uses the draw event group and drawing player in an EVENT_DRAW condition, matching the simultaneous multi-card event test."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 567,
+      "passcode": 259058125,
+      "name": "Eclipse Observer Maya",
+      "text_sha256": "bca7489581b4c8cbddfa3a1953f3996c9624afaa5458d65a2aa7d83dc727ea35",
+      "script_sha256": "6ff38ae6e1727c3528da29cbea254376618d9fb0a2322d70241cb523727b9948",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The paired ATK/DEF modifiers implement one continuous printed effect, followed by two independently activated effects; the shared HOPT clause is merged into those activated effects."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Gains 300 ATK/DEF for each card in your opponent's hand.",
+          "lua_implementation": "A single-range EFFECT_UPDATE_ATTACK on the Monster Zone returns opponent hand count times 300, and a clone applies the same computed value as EFFECT_UPDATE_DEFENSE.",
+          "official_references": [
+            {
+              "script": "c10000020.lua",
+              "card_id": 10000020,
+              "card_name": "Slifer the Sky Dragon",
+              "matched_structure": "Official Omega computes a continuous hand-size-derived value with Duel.GetFieldGroupCount and applies cloned EFFECT_UPDATE_ATTACK and EFFECT_UPDATE_DEFENSE registrations."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "(Quick Effect): You can discard this card; Set 1 \"Eclipse\" Quick-Play Spell from your hand. It can be activated this turn. You can only use this effect of \"Eclipse Observer Maya\" once per turn.",
+          "lua_implementation": "A Quick Effect in hand discards the handler as cost, then filters Settable Quick-Play Spells in hand to custom Eclipse set 0xf2f4 or Book of Eclipse code 35480699. After a successful Duel.SSet it registers EFFECT_QP_ACT_IN_SET_TURN until the End Phase, under its own HOPT.",
+          "official_references": [
+            {
+              "script": "c97462632.lua",
+              "card_id": 97462632,
+              "card_name": "Griffoh",
+              "matched_structure": "Official Omega discards the handler for a Quick Effect, Sets one specifically qualified Quick-Play Spell, and grants EFFECT_QP_ACT_IN_SET_TURN to that Set card."
+            },
+            {
+              "script": "c31834488.lua",
+              "card_id": 31834488,
+              "card_name": "Book of Lunar Eclipse",
+              "matched_structure": "The official Omega DB and script identify Book of Lunar Eclipse as an Eclipse-named Quick-Play Spell that the printed name pool includes."
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "setfilter explicitly recognizes Book of Eclipse but not Book of Lunar Eclipse. Add code 31834488 to the code list/listed names and filter so Maya can Set every official Eclipse Quick-Play Spell named by the effect."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If your opponent draws 2 or more cards at the same time: You can Special Summon this card from your GY. You can only use this effect of \"Eclipse Observer Maya\" once per turn.",
+          "lua_implementation": "A delayed EVENT_DRAW trigger in the GY checks the opponent drew at least two cards in the event, then validates an open zone, Necrovalley, and self-summon legality before Special Summoning the related handler under a distinct HOPT.",
+          "official_references": [
+            {
+              "script": "c81866673.lua",
+              "card_id": 81866673,
+              "card_name": "Destiny HERO - Dasher",
+              "matched_structure": "Official Omega registers an EVENT_DRAW trigger while the handler is in the GY and Special Summons after validating event conditions, relation, and an open Monster Zone."
+            },
+            {
+              "script": "c65726770.lua",
+              "card_id": 65726770,
+              "card_name": "Silent Magician Zero",
+              "matched_structure": "Official Omega derives the drawing player and number of simultaneously drawn cards from EVENT_DRAW's ep and event group."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 568,
+      "passcode": 259721372,
+      "name": "Eclipse Observatory",
+      "text_sha256": "69024a47431c3cbe3b3d66e11d9137594f5c67f7fa02f8da7cf0817940e663d7",
+      "script_sha256": "87f5f9daf603332e7585d4c8d029cd4e8e05c26940333341d40a3a3651762f42",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "The always-treated identity condition is audited independently from the optional activation search/draw and the opponent-Special-Summon trigger; each activation/HOPT restriction is included with its governed effect."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "(This card is always treated as an \"Eclipse Observer\" card.)",
+          "lua_implementation": "The behavior is data-driven rather than registered as an Effect: CCG_v1.db stores setcode bytes f4 f2 17 eb for this card, giving it both Eclipse (0xf2f4) and Eclipse Observer (0xeb17) membership. The Lua also publishes both values in listed_series.",
+          "official_references": [
+            {
+              "script": "c74335036.lua",
+              "card_id": 74335036,
+              "card_name": "Fusion Substitute",
+              "matched_structure": "Official Omega likewise represents an always-treated identity in card database metadata while the operational script contains the card's usable effects; no runtime identity-changing effect registration is required."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "When this card is activated: You can add 1 \"Eclipse Observer\" monster and 1 \"Eclipse\" Quick-Play Spell from your Deck to your hand, and if you do, your opponent draws 2 cards. You can only activate 1 \"Eclipse Observatory\" per turn.",
+          "lua_implementation": "The Field Spell activation is oath-limited once per turn and optionally selects one Observer monster plus one Quick-Play Spell from custom Eclipse set 0xf2f4 or Book of Eclipse code 35480699. It merges the two selections, requires both cards to reach hand, confirms them, then draws two for the opponent.",
+          "official_references": [
+            {
+              "script": "c34773082.lua",
+              "card_id": 34773082,
+              "card_name": "Frightfur Patchwork",
+              "matched_structure": "Official Omega performs a simultaneous two-card Deck search with separate card qualifications, requires both selections, sends the merged group to hand, and confirms it."
+            },
+            {
+              "script": "c31834488.lua",
+              "card_id": 31834488,
+              "card_name": "Book of Lunar Eclipse",
+              "matched_structure": "The official Omega DB and script identify Book of Lunar Eclipse as an Eclipse-named Quick-Play Spell omitted by the CCG's manually enumerated official-name pool."
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "thfilter2 only special-cases Book of Eclipse, omitting official Book of Lunar Eclipse (31834488). Add that code to aux.AddCodeList/listed_names and to thfilter2 so every quoted Eclipse Quick-Play Spell can be searched."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If your opponent Special Summons a monster(s): You can target 1 of those monsters; negate its effects, and if you do, banish that monster, then your opponent draws 2 cards. You can only use this effect of \"Eclipse Observatory\" once per turn.",
+          "lua_implementation": "A delayed field EVENT_SPSUMMON_SUCCESS trigger currently qualifies event members by their controller after the summon, targets one opponent-controlled negatable/banishable monster, applies standard disabling, and after successful banishment draws two for the opponent under an HOPT.",
+          "official_references": [
+            {
+              "script": "c79791878.lua",
+              "card_id": 79791878,
+              "card_name": "Shining Sarcophagus",
+              "matched_structure": "Official Omega handles 'your opponent Special Summons' by testing Card.IsSummonPlayer(1-tp) on the event group, then limits the target to one of those qualifying summoned monsters."
+            },
+            {
+              "script": "c52038441.lua",
+              "card_id": 52038441,
+              "card_name": "Ghost Mourner & Moonlit Chill",
+              "matched_structure": "Official Omega reacts to an opponent's Special Summon, targets one of the event monsters, and negates that monster's effects with a delayed summon-success trigger."
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "The print keys the trigger and target to who performed the Special Summon, but negfilter checks post-summon control instead. This can trigger on a monster you Special Summoned to the opponent's field and miss a monster the opponent Special Summoned to your field. Filter the event group by IsSummonPlayer(1-tp) (or preserve summon-player provenance) and select from that group; control may be an additional target requirement only if printed."
+        }
+      ]
+    },
+    {
+      "ordinal": 569,
+      "passcode": 259680842,
+      "name": "Grimoire of Eclipse",
+      "text_sha256": "873923f327da9087a691e69dbe6746eceb2619071d4138ce6e8422294ebd3cb5",
+      "script_sha256": "44da23d983b4b39025104097e586881615b405d27819e59823200e49a0ab4482",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 1,
+        "reason": "The one-Deck-material cap, conditional opponent draw, and activation HOPT are resolution clauses of the single Fusion-Summon activation effect, not independently activatable effects."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Fusion Summon 1 \"Eclipse Observer\" monster, using monsters from your hand or field and/or 1 monster from your Deck as material. If you use a monster from your Deck as material, your opponent draws 2 cards. You can only activate 1 \"Grimoire of Eclipse\" per turn.",
+          "lua_implementation": "An oath-limited activation builds normal hand/field Fusion Materials and, only when the opponent can draw two, merges eligible Deck monsters. aux.FCheckAdditional caps Deck materials at one while checking and selecting an Observer Fusion Monster. It sends selected materials with Fusion reasons, completes a successful Fusion Summon, and draws two for the opponent exactly when the selected group contained a Deck material; Chain Material remains supported.",
+          "official_references": [
+            {
+              "script": "c29062925.lua",
+              "card_id": 29062925,
+              "card_name": "Face Card Fusion",
+              "matched_structure": "Official Omega merges Deck monsters into ordinary hand/field Fusion Materials, uses aux.FCheckAdditional to cap Deck materials at one during both legality checks and selection, sends materials with Fusion reasons, and completes the Fusion Summon."
+            },
+            {
+              "script": "c7394770.lua",
+              "card_id": 7394770,
+              "card_name": "Brilliant Fusion",
+              "matched_structure": "Official Omega supplies the direct Deck-as-Fusion-Material reference and standard Fusion-Summon completion from LOCATION_DECK materials."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 570,
+      "passcode": 259614765,
+      "name": "Encyclopedia of Eclipse",
+      "text_sha256": "fcc7d4fb0d0104a2188d31c22dac3e7e09b1d2862abec3a732f76cd6df969b5d",
+      "script_sha256": "ced669df90a707fca8a54f001e0cfaf7e34908d4d56f8c1b82c33b432cd64db2",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 1,
+        "reason": "Mass negation, the dependent opponent draw, and the activation HOPT are all clauses of one Spell activation effect."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Negate the effects of all face-up monsters on the field until the End Phase, then your opponent draws cards equal to the number of face-up monsters they currently control. You can only activate 1 \"Encyclopedia of Eclipse\" per turn.",
+          "lua_implementation": "An oath-limited activation requires at least one currently negatable face-up monster and enough opponent draw capacity for the current opponent face-up count. At resolution it enumerates both Monster Zones, applies standard EFFECT_DISABLE/EFFECT_DISABLE_EFFECT registrations resetting in the End Phase to every eligible face-up monster, then recounts the opponent's currently face-up monsters and draws that many cards after at least one successful negation.",
+          "official_references": [
+            {
+              "script": "c21522601.lua",
+              "card_id": 21522601,
+              "card_name": "Witchcrafter Madame Verre",
+              "matched_structure": "Official Omega collects all face-up monsters in the affected range and registers temporary EFFECT_DISABLE and EFFECT_DISABLE_EFFECT effects that reset at the End Phase."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    },
+    {
+      "ordinal": 571,
+      "passcode": 259273851,
+      "name": "Manual of Eclipse",
+      "text_sha256": "0aeab24762484b8aa690274d67e7b849c53600e6b95f35464b986d75833c465e",
+      "script_sha256": "27b23d796293c331df86914b8c751f60652c97cd8a418e3bcd1abf2ed561e9b1",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The immediate target/banish/draw operation and the independently worded End-Phase return applying to all opponent banished monsters are split so both resolution semantics are audited; the activation HOPT is merged with the activation."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Target up to 5 monsters in your opponent's GY; banish them, then your opponent draws cards equal to the number banished. You can only activate 1 \"Manual of Eclipse\" per turn.",
+          "lua_implementation": "The oath-limited activation targets one to five opponent GY monsters, reducing the maximum to the largest quantity the opponent can draw. At resolution it takes related targets but then re-applies the original rmfilter, including IsCanBeEffectTarget, before banishing and draws the number that actually reached LOCATION_REMOVED.",
+          "official_references": [
+            {
+              "script": "c23776077.lua",
+              "card_id": 23776077,
+              "card_name": "Hazy Flame Basiltrice",
+              "matched_structure": "Official Omega targets an opponent monster in the GY for banishment, but at resolution correctly checks only IsRelateToEffect before Duel.Remove; it does not re-test whether an already-targeted card can currently be selected as a target."
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "The operation incorrectly rechecks IsCanBeEffectTarget through s.rmfilter. Targetability is checked when targets are chosen, not again at resolution; a target that gains targeting protection in the Chain must remain affected if it is still related and banishable. Filter the target group at resolution by relation, current GY/removal legality, and Necrovalley only, without IsCanBeEffectTarget."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "During the End Phase of this turn, return all your opponent's banished monsters to the GY.",
+          "lua_implementation": "The activation currently registers a one-shot End-Phase field effect only after at least one activation target was successfully banished. When registered, retop globally selects the opponent's face-up banished Monster Cards that can go to the GY and returns them with REASON_EFFECT+REASON_RETURN.",
+          "official_references": [
+            {
+              "script": "c74586817.lua",
+              "card_id": 74586817,
+              "card_name": "PSY-Framelord Omega",
+              "matched_structure": "Official Omega registers and resolves a delayed phase operation for banished cards, retaining or querying the relevant banished population and moving legal cards back at the scheduled phase."
+            },
+            {
+              "script": "c35480699.lua",
+              "card_id": 35480699,
+              "card_name": "Book of Eclipse",
+              "matched_structure": "Official Omega schedules an End-Phase continuation of an activated Spell effect separately from the immediate operation, providing the phase-reset delayed-effect pattern."
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "The delayed sentence applies to all opponent banished monsters and is not conditional on this effect successfully banishing a target. Current Lua fails to register it when every target leaves the GY or cannot be banished, so monsters banished later that turn are not returned. Register the End-Phase effect whenever this activation resolves, independently of ct; the End-Phase operation can naturally do nothing if no identifiable opponent banished monsters exist."
+        }
+      ]
+    },
+    {
+      "ordinal": 572,
+      "passcode": 259264449,
+      "name": "Spellbook of Eclipse",
+      "text_sha256": "afeecc4b8ce04046b1d9a2fe4e81b93f72dcb90bbb2ef163c6f62352d7cabfb5",
+      "script_sha256": "b14f7dd27c6d3f5e35619e45b262f4cb96b2aec38e03b0200a74eab5de80363c",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The target/use-as-material/Xyz/attach/draw sequence is one activation effect; the whole-turn Spellcaster-only Special Summon condition is audited separately, with the activation HOPT included in the first record."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "Target 1 Spellcaster monster you control; Special Summon 1 Spellcaster Xyz monster from your Extra Deck whose Rank is higher than or equal to the target's Level, by using that target as material (this is treated as an Xyz Summon), then attach this card to the Summoned monster as material, also your opponent draws cards equal to the difference between that target's Level and the Summoned monster's Rank. You can only activate 1 \"Spellbook of Eclipse\" per turn.",
+          "lua_implementation": "An oath-limited targeting activation selects one face-up Level-bearing Spellcaster the controller controls and applies MustMaterialCheck. It filters Spellcaster Xyz Monsters of Rank at least that Level, temporarily supplies EFFECT_XYZ_LEVEL only for higher-Rank eligibility checks, verifies material/summon/Extra-Zone legality, overlays the target, performs and completes the Xyz Summon, CancelToGrave/overlays this Spell if still related, and draws the nonnegative Rank-minus-original-target-Level difference for the opponent.",
+          "official_references": [
+            {
+              "script": "c67517351.lua",
+              "card_id": 67517351,
+              "card_name": "Hyper Rank-Up-Magic Utopiforce",
+              "matched_structure": "Official Omega targets a controlled monster, checks MustMaterialCheck and IsCanBeXyzMaterial, verifies GetLocationCountFromEx, overlays that target onto a selected Extra Deck Xyz Monster, Special Summons with SUMMON_TYPE_XYZ, and completes the procedure."
+            },
+            {
+              "script": "c24610207.lua",
+              "card_id": 24610207,
+              "card_name": "Star Drawing",
+              "matched_structure": "Official Omega uses EFFECT_XYZ_LEVEL to make a material count as the Xyz-appropriate Level, providing the engine reference for the temporary rank-matching eligibility adaptation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "You cannot Special Summon monsters the turn you activate this card, except Spellcaster monsters.",
+          "lua_implementation": "Duel.AddCustomActivityCounter records only Spellcaster Special Summons before activation. The activation cost requires a zero count, then registers an oath player EFFECT_CANNOT_SPECIAL_SUMMON through the End Phase whose target rejects every non-Spellcaster from every location.",
+          "official_references": [
+            {
+              "script": "c97476032.lua",
+              "card_id": 97476032,
+              "card_name": "Ice Doll",
+              "matched_structure": "Official Omega uses a custom Special Summon activity counter plus an oath EFFECT_CANNOT_SPECIAL_SUMMON registration to enforce a named-Race-only restriction both before and after activating an effect that turn."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "cards": 17,
+    "effects": 42,
+    "pass": 33,
+    "fixed": 0,
+    "defects": 9,
+    "custom_gaps": 0
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch6-plus-gravinity-collateral",
+  "ordinal_start": 416,
+  "ordinal_end": 416,
+  "cards": [
+    {
+      "ordinal": 416,
+      "passcode": 245837578,
+      "name": "Scarstech Beacon",
+      "text_sha256": "ac14037fe9dbf3f6f367becae6f6a4f87493b04b9ce224acd4a7b5fbf02bd615",
+      "script_sha256": "349e03284b16ec58eabb1f2d5ff74f76bf0e7527ed415fb6e871d979638cee41",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "When a card is activated as Chain Link 3 or higher while you control only DARK monsters, including at least 1 Scarstech monster (Quick Effect): You can Special Summon this card from your hand or GY.",
+          "lua_implementation": "The Chain Link 3-or-higher condition now treats every controlled monster that is not currently DARK—including a face-down monster—as disqualifying, while separately requiring a face-up Scarstech monster.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c33776734.lua",
+              "card_id": 33776734,
+              "card_name": "Winged Kuriboh LV9",
+              "matched_structure": "Chain-Link-3-or-higher hand activation condition."
+            },
+            {
+              "script": "tmp/omega_scripts/c69680031.lua",
+              "card_id": 69680031,
+              "card_name": "Dogmatika Fleurdelis, the Knighted",
+              "matched_structure": "Conditional hand Quick Effect self-Special-Summon."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: a face-down monster cannot prove the 'only DARK monsters' condition because it has no public/current DARK Attribute."
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If a card or effect is activated as Chain Link 3 or higher while this card is face-up: You can Link Summon 1 Galaxy monster using monsters you control as material.",
+          "lua_implementation": "An EVENT_CHAINING field trigger checks ev>=3, builds all face-up controlled monsters as material group, filters Galaxy Link Monsters with IsLinkSummonable, and calls Duel.LinkSummon.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c65741786.lua",
+              "card_id": 65741786,
+              "card_name": "I:P Masquerena",
+              "matched_structure": "Quick/triggered Link Summon using monsters the player controls."
+            },
+            {
+              "script": "tmp/omega_scripts/c33776734.lua",
+              "card_id": 33776734,
+              "card_name": "Winged Kuriboh LV9",
+              "matched_structure": "Chain-Link threshold condition."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can only use each effect of Scarstech Beacon once per turn.",
+          "lua_implementation": "The self-summon and Link Summon effects use id and id+100 hard once-per-turn keys.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c65741786.lua",
+              "card_id": 65741786,
+              "card_name": "I:P Masquerena",
+              "matched_structure": "Hard once-per-turn immediate Link Summon effect."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Three records cover Chain-3 self-Summon, Chain-3 Link Summon trigger, and per-effect HOPT."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 2,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

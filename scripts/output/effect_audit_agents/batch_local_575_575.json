@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "batch": "local-tail",
+  "batch": "local-adversarial-completion-tail-556-577",
   "ordinal_start": 575,
   "ordinal_end": 575,
   "cards": [
@@ -16,7 +16,14 @@
           "effect_index": 1,
           "printed_clause": "2 Level 8 Spellcaster monsters",
           "lua_implementation": "EnableReviveLimit and AddXyzProcedure require exactly two Level 8 Spellcaster materials.",
-          "official_references": [{"script":"c85551711.lua","card_id":85551711,"card_name":"Ebon High Magician","matched_structure":"Uses the identical race-filtered aux.AddXyzProcedure form for exactly two Spellcaster materials, with Level 7 instead of Chandra's Level 8."}],
+          "official_references": [
+            {
+              "script": "c85551711.lua",
+              "card_id": 85551711,
+              "card_name": "Ebon High Magician",
+              "matched_structure": "Uses the identical race-filtered aux.AddXyzProcedure form for exactly two Spellcaster materials, with Level 7 instead of Chandra's Level 8."
+            }
+          ],
           "verdict": "PASS",
           "issue": null
         },
@@ -25,8 +32,18 @@
           "printed_clause": "If your opponent draws 2 or more cards at the same time: You can detach 1 material from this card; excavate that many cards from the top of your Deck and add 2 of them to your hand, then shuffle the rest into the Deck. You can only use this effect of Eclipse Observer Chandra once per turn.",
           "lua_implementation": "An EVENT_DRAW field trigger verifies the opponent drew at least two cards in the event group, detaches one material as cost, confirms/excavates exactly that count, selects exactly two for the hand, and shuffles the remaining Deck. SetCountLimit(1,id) supplies the hard once-per-turn limit.",
           "official_references": [
-            {"script":"c81866673.lua","card_id":81866673,"card_name":"Destiny HERO - Dasher","matched_structure":"Uses EVENT_DRAW, the draw event player, and the event group containing the cards drawn to identify the relevant draw event."},
-            {"script":"c98645731.lua","card_id":98645731,"card_name":"Pot of Duality","matched_structure":"Uses ConfirmDecktop/GetDecktopGroup, selects an excavated card for the hand, confirms it, and ShuffleDeck returns/randomizes the remainder."}
+            {
+              "script": "c81866673.lua",
+              "card_id": 81866673,
+              "card_name": "Destiny HERO - Dasher",
+              "matched_structure": "Uses EVENT_DRAW, the draw event player, and the event group containing the cards drawn to identify the relevant draw event."
+            },
+            {
+              "script": "c98645731.lua",
+              "card_id": 98645731,
+              "card_name": "Pot of Duality",
+              "matched_structure": "Uses ConfirmDecktop/GetDecktopGroup, selects an excavated card for the hand, confirms it, and ShuffleDeck returns/randomizes the remainder."
+            }
           ],
           "verdict": "PASS",
           "issue": null
@@ -35,7 +52,14 @@
           "effect_index": 3,
           "printed_clause": "You can target up to 3 cards in your banishment; shuffle them into your Deck. You can only use this effect of Eclipse Observer Chandra once per turn.",
           "lua_implementation": "The Ignition Effect targets one to three of the controller's banished cards that can return to the Deck and sends the still-related targets to the Deck with shuffle sequencing. The audit removed the erroneous face-up-only and Necrovalley restrictions, so generic face-down banished cards are legal. SetCountLimit(1,id+100) is distinct.",
-          "official_references": [{"script":"c74586817.lua","card_id":74586817,"card_name":"PSY-Framelord Omega","matched_structure":"Its Standby Phase effect targets a generic card in LOCATION_REMOVED using no face-up/property filter, proving that wording which only says a banished card includes face-down banished cards."}],
+          "official_references": [
+            {
+              "script": "c74586817.lua",
+              "card_id": 74586817,
+              "card_name": "PSY-Framelord Omega",
+              "matched_structure": "Its Standby Phase effect targets a generic card in LOCATION_REMOVED using no face-up/property filter, proving that wording which only says a banished card includes face-down banished cards."
+            }
+          ],
           "verdict": "FIXED",
           "issue": "Confirmed target-pool defect: the prior Lua required c:IsFaceup() even though the printed effect targets generic cards in your banishment. It also applied an irrelevant Necrovalley wrapper to LOCATION_REMOVED. Both restrictions were removed."
         },
@@ -44,14 +68,43 @@
           "printed_clause": "If this card is sent to the GY: You can send cards your opponent controls to the GY, up to the number of Eclipse Quick-Play Spells with different names in your GY, and if you do, your opponent draws cards equal to the number sent. You can only use this effect of Eclipse Observer Chandra once per turn.",
           "lua_implementation": "EVENT_TO_GRAVE counts differently coded Eclipse-named Quick-Play Spells in the controller's GY, bounds selection by opponent cards and legal mandatory draws, sends one through that maximum to the GY, and draws exactly the successful send count. The official Book of Lunar Eclipse was added to the name pool. SetCountLimit(1,id+200) is distinct.",
           "official_references": [
-            {"script":"c93854893.lua","card_id":93854893,"card_name":"Dingirsu, the Orcust of the Evening Star","matched_structure":"Selects an opponent-controlled on-field card able to go to the GY and sends it through Duel.SendtoGrave as a non-destruction effect."},
-            {"script":"c11481610.lua","card_id":11481610,"card_name":"Performapal Popperup","matched_structure":"Bounds an up-to selection by mandatory draw legality, records the number actually sent to the GY, and draws that many cards."}
+            {
+              "script": "c93854893.lua",
+              "card_id": 93854893,
+              "card_name": "Dingirsu, the Orcust of the Evening Star",
+              "matched_structure": "Selects an opponent-controlled on-field card able to go to the GY and sends it through Duel.SendtoGrave as a non-destruction effect."
+            },
+            {
+              "script": "c11481610.lua",
+              "card_id": 11481610,
+              "card_name": "Performapal Popperup",
+              "matched_structure": "Bounds an up-to selection by mandatory draw legality, records the number actually sent to the GY, and draws that many cards."
+            }
           ],
           "verdict": "FIXED",
           "issue": "Confirmed name-pool defect: Book of Lunar Eclipse (official ID 31834488) is an Eclipse Quick-Play Spell but was omitted from the different-name count. It is now explicitly included alongside Book of Eclipse and the CCG Eclipse setcode."
         }
-      ]
+      ],
+      "audit_note": "Adversarial review confirmed all four records, including draw-event quantity, generic face-down banished targets, different-name counting, and mandatory draw legality. No engine or ruling limitation remains.",
+      "adversarial_completion_scope": {
+        "ordinals": "556-577",
+        "re_read": [
+          "full printed text",
+          "current canonical Lua",
+          "Omega utility.lua and constant.lua",
+          "official Omega database text",
+          "official Omega card scripts"
+        ],
+        "historical_checklists_used": false
+      }
     }
   ],
-  "summary": {"cards":1,"effects":4,"pass":2,"fixed":2,"defects":0,"custom_gaps":0}
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 2,
+    "fixed": 2,
+    "defects": 0,
+    "custom_gaps": 0
+  }
 }

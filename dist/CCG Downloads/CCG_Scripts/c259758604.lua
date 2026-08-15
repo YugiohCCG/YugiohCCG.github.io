@@ -74,7 +74,7 @@ function s.statfilter(e,c)
 end
 function s.plcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsReason(REASON_EFFECT) and re
-		and re:GetHandler():IsSetCard(SET_CHARMELIA) and re:GetHandler():IsType(TYPE_MONSTER)
+		and re:GetHandler():IsSetCard(SET_CHARMELIA) and re:IsActiveType(TYPE_MONSTER)
 end
 function s.pltg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

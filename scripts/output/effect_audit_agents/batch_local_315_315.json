@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "batch": "local-reconciliation-289-330",
+  "batch": "local-adversarial-custom-gap-review-217-432",
   "ordinal_start": 315,
   "ordinal_end": 315,
   "cards": [
@@ -10,12 +10,12 @@
       "name": "Rising Elemental",
       "text_sha256": "d793c563cd146b45af7326ab4fbd278618bf185b74868844415f851eeec7a6b7",
       "script_sha256": "90b6c2c2b57aa7cb16fa715fe9775ba2bbcf2ebed273564c2ecb4f5ffae87ca5",
-      "overall_verdict": "CUSTOM_GAP",
+      "overall_verdict": "FIXED",
       "effects": [
         {
           "effect_index": 1,
           "printed_clause": "3 Tuners with different Attributes + 3 non-Tuners with different Attributes.",
-          "lua_implementation": "AddSynchroMixProcedure requires exactly three Tuners and three non-Tuners; a group check requires three Attribute classes in each subgroup.",
+          "lua_implementation": "AddSynchroMixProcedure enforces exactly three Tuners and three non-Tuners, and the official GetClassCount(Card.GetAttribute) pattern independently enforces three different Attribute values in each subgroup.",
           "official_references": [
             {
               "script": "c4891376.lua",
@@ -24,8 +24,8 @@
               "matched_structure": "Mixed Tuner/non-Tuner Synchro procedure; the exact 3+3 per-subgroup Attribute uniqueness is custom."
             }
           ],
-          "verdict": "CUSTOM_GAP",
-          "issue": "No official Omega script has this exact six-material, independently distinct-Attribute composition; the Lua explicitly enforces it."
+          "verdict": "PASS",
+          "issue": null
         },
         {
           "effect_index": 2,
@@ -73,19 +73,20 @@
           "issue": "Confirmed and corrected: the previous immunity omitted re:IsActivated() and therefore also blocked continuous and other non-activated monster effects."
         }
       ],
-      "audit_note": "Confirmed and fixed the activated-effect immunity boundary. The exact six-material independently distinct-Attribute Synchro composition remains an unresolved custom-reference gap.",
+      "audit_note": "Adversarial completion review: effect 1 pass. Prior labels were not treated as evidence.",
       "coverage_override": {
         "expected_individual_effects": 4,
-        "reason": "All printed procedures, continuous clauses, activated/triggered effects, branches, and attached once-per-turn restrictions are represented in the listed semantic effect records."
-      }
+        "reason": "Complete card override retained after re-reading every printed clause, current Lua registration/procedure, relevant engine helpers/constants, and each cited official Omega script/database record."
+      },
+      "supersedes_batch": "local-reconciliation-289-330"
     }
   ],
   "summary": {
     "cards": 1,
     "effects": 4,
-    "pass": 2,
+    "pass": 3,
     "fixed": 1,
     "defects": 0,
-    "custom_gaps": 1
+    "custom_gaps": 0
   }
 }

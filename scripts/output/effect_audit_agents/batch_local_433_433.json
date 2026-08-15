@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch6-plus-gravinity-collateral",
+  "ordinal_start": 433,
+  "ordinal_end": 433,
+  "cards": [
+    {
+      "ordinal": 433,
+      "passcode": 249454272,
+      "name": "Gravinity Galaxix",
+      "text_sha256": "3b1be9ddc53bb9f417828d285592946e975403603f6e9179176f4093c5cce02d",
+      "script_sha256": "8f67837edd8912c59452a8d177a15f4c9233d219e13661a6e56a496f5be0661e",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 6,
+        "reason": "Six records cover Synchro materials, SZONE material permission, summon Set recovery, same-turn activation, trap draw/summon effect, and per-effect HOPT."
+      },
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "1 Tuner + 1 non-Tuner monster",
+          "lua_implementation": "c249454272.lua implements this printed clause with 4 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),1,1) | e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) | e1:SetCode(EVENT_SPSUMMON_SUCCESS) | e1:SetCondition(s.setcon) | e1:SetTarget(s.settg) | e1:SetOperation(s.setop) | e2:SetType(EFFECT_TYPE_QUICK_O)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c30983281.lua",
+              "card_id": 30983281,
+              "card_name": "Accel Synchro Stardust Dragon",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddSynchroProcedure, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SPSUMMON_SUCCESS, EFFECT_FLAG_DELAY, CATEGORY_SPECIAL_SUMMON."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "For this card's Synchro Summon, you can use \"Gravinity\" Monster Cards in your Spell & Trap Zones as material.",
+          "lua_implementation": "Galaxix's Spell & Trap Zone material helper now accepts only Lapsix or Galaxix as the destination Synchro Monster. Registered on Galaxix itself, it allows a Galaxix already in the Spell & Trap Zone to serve as material; the other eligible materials provide the same helper from their own scripts.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14507213.lua",
+              "card_id": 14507213,
+              "card_name": "Synchro Material",
+              "matched_structure": "Official Omega registers EFFECT_EXTRA_SYNCHRO_MATERIAL on the additional material card and evaluates a value function against the destination Synchro Monster."
+            },
+            {
+              "script": "tmp/omega_scripts/c97682931.lua",
+              "card_id": 97682931,
+              "card_name": "Revolution Synchron",
+              "matched_structure": "Official Omega registers an extra-location Synchro material effect on the material itself and restricts eligible destination Synchro Monsters in matval."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Collateral correction required by the batch-6 Gravinity fix: the batch-7 report incorrectly assumed this effect had to be registered on the Extra Deck destination. Omega's EFFECT_EXTRA_SYNCHRO_MATERIAL is registered on each extra-location material and receives the destination Synchro Monster in its value predicate."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is Synchro Summoned, or Special Summoned from your Spell & Trap Zone: You can Set 1 \"Gravinity\" Spell/Trap from your GY or banishment.",
+          "lua_implementation": "c249454272.lua implements this printed clause with 4 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),1,1) | e2:SetRange(LOCATION_SZONE) | e2:SetCondition(function(e) return e:GetHandler():IsType(TYPE_TRAP) end) | e3:SetRange(LOCATION_SZONE) | function s.setcon(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_SYNCHRO) or e:GetHandler():IsPreviousLocation(LOCATION_SZONE) end | function s.setfilter(c) return c:IsFaceupEx() and c:IsSetCard(SET_GRAVINITY) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() end | if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c10966439.lua",
+              "card_id": 10966439,
+              "card_name": "Marshmao☆Yummy",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SPSUMMON_SUCCESS, EFFECT_FLAG_DELAY, CATEGORY_SPECIAL_SUMMON, LOCATION_SZONE."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "It can be activated this turn.",
+          "lua_implementation": "c249454272.lua implements this printed clause with 4 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),1,1) | e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) | e1:SetCode(EVENT_SPSUMMON_SUCCESS) | e1:SetCondition(s.setcon) | e1:SetTarget(s.settg) | e1:SetOperation(s.setop) | e2:SetType(EFFECT_TYPE_QUICK_O)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c30983281.lua",
+              "card_id": 30983281,
+              "card_name": "Accel Synchro Stardust Dragon",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddSynchroProcedure, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SPSUMMON_SUCCESS, EFFECT_FLAG_DELAY, CATEGORY_SPECIAL_SUMMON."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "During either player's turn, if this card is a Continuous Trap: You can draw 1 card, then you can Special Summon this card.",
+          "lua_implementation": "c249454272.lua implements this printed clause with 4 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddSynchroProcedure(c,nil,aux.NonTuner(nil),1,1) | e2:SetCategory(CATEGORY_DRAW+CATEGORY_SPECIAL_SUMMON) | e2:SetRange(LOCATION_SZONE) | e2:SetCondition(function(e) return e:GetHandler():IsType(TYPE_TRAP) end) | e3:SetRange(LOCATION_SZONE) | function s.setcon(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_SYNCHRO) or e:GetHandler():IsPreviousLocation(LOCATION_SZONE) end | function s.setfilter(c) return c:IsFaceupEx() and c:IsSetCard(SET_GRAVINITY) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() end",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c54241725.lua",
+              "card_id": 54241725,
+              "card_name": "The Prime Monarch",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including CATEGORY_DRAW, CATEGORY_SPECIAL_SUMMON, EFFECT_TYPE_QUICK_O, EVENT_FREE_CHAIN, LOCATION_SZONE, TYPE_TRAP."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 6,
+          "printed_clause": "You can only use each effect of \"Gravinity Galaxix\" once per turn.",
+          "lua_implementation": "c249454272.lua implements this printed clause with 4 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e1:SetCountLimit(1,id) | e2:SetCountLimit(1,id+100)",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c30983281.lua",
+              "card_id": 30983281,
+              "card_name": "Accel Synchro Stardust Dragon",
+              "matched_structure": "Official Omega implementation sharing concrete structural primitives with this clause, including aux.AddSynchroProcedure, EFFECT_TYPE_SINGLE, EFFECT_TYPE_TRIGGER_O, EVENT_SPSUMMON_SUCCESS, EFFECT_FLAG_DELAY, CATEGORY_SPECIAL_SUMMON."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 6,
+    "pass": 5,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

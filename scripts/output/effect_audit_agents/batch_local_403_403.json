@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "batch": "local-adversarial-custom-gap-review-217-432",
+  "ordinal_start": 403,
+  "ordinal_end": 403,
+  "cards": [
+    {
+      "ordinal": 403,
+      "passcode": 228472690,
+      "name": "Ghostrick Cutifer",
+      "text_sha256": "31013865502d18d6ef24bf45667f376f76eca5d6a9f6bfd7df68e6dc5e2f3222",
+      "script_sha256": "8a7de890e6d61de4e46d8ca34202d7458390802d1357990a9f8bd572b130b81b",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "2+ Level 4 monsters.",
+          "lua_implementation": "aux.AddXyzProcedure requires Level 4 materials, minimum two and maximum 99, and enables revive limit.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c61307542.lua",
+              "card_id": 61307542,
+              "card_name": "Paleozoic Anomalocaris",
+              "matched_structure": "2+/3+ standard Xyz procedure using a maximum-count helper."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Once per turn, you can also Xyz Summon this card using a Rank 3 or lower Ghostrick Xyz Monster you control (transfer its materials).",
+          "lua_implementation": "The alternate procedure filters a face-up Rank 3-or-lower Ghostrick Xyz, transfers materials through the helper, and records an End-Phase oath flag to permit only one alternate summon per turn.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c40706444.lua",
+              "card_id": 40706444,
+              "card_name": "Argostars - Adventurous Arion",
+              "matched_structure": "Once-per-turn alternate Xyz Summon using one controlled Xyz/archetype monster and transferring materials."
+            },
+            {
+              "script": "tmp/omega_scripts/c93777634.lua",
+              "card_id": 93777634,
+              "card_name": "Number 39: Utopia Rising",
+              "matched_structure": "Transfers material groups in a successive Xyz operation."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "Once per turn: Detach 1 material, target 1 Set card your opponent controls; Set that card to your field; if it was a monster, it can be Flip Summoned this turn.",
+          "lua_implementation": "A soft-once-per-turn ignition detaches one material, targets a face-down opponent card with a corresponding free zone, moves it face-down to the controller's Monster or Spell & Trap Zone, and clears STATUS_SET_TURN for monsters.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c35871958.lua",
+              "card_id": 35871958,
+              "card_name": "Ghostrick Festival",
+              "matched_structure": "Ghostrick Set-card manipulation."
+            },
+            {
+              "script": "tmp/omega_scripts/c14087893.lua",
+              "card_id": 14087893,
+              "card_name": "Book of Moon",
+              "matched_structure": "Set/face-down monster positioning."
+            },
+            {
+              "script": "tmp/omega_scripts/c4031928.lua",
+              "card_id": 4031928,
+              "card_name": "Change of Heart",
+              "matched_structure": "Moves an opponent-controlled card to the effect controller."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Once per turn: Target 1 other Ghostrick monster you control; attach this card to it as material. Transfer this card's materials to that monster.",
+          "lua_implementation": "The implementation restricts the other controlled Ghostrick target to a face-up Xyz Monster, transfers this card's materials, then overlays this card onto it.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c72859417.lua",
+              "card_id": 72859417,
+              "card_name": "Lyrilusc - Bird Sanctuary",
+              "matched_structure": "Targets two Winged Beast Xyz Monsters, attaches one to the other, and transfers its materials."
+            },
+            {
+              "script": "tmp/omega_scripts/c27068117.lua",
+              "card_id": 27068117,
+              "card_name": "Overlay Regen",
+              "matched_structure": "Attaches a card as material."
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "Only Xyz Monsters can legally hold Xyz Materials, while the printed target is any other Ghostrick monster. The current Xyz-only restriction is executable but narrower than the text. Exact resolution requires changing the target to 'Ghostrick Xyz Monster' or adding unsupported engine/card-rule semantics that allow non-Xyz monsters to hold materials."
+        }
+      ],
+      "overall_verdict": "CUSTOM_GAP",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Complete card override retained after re-reading every printed clause, current Lua registration/procedure, relevant engine helpers/constants, and each cited official Omega script/database record."
+      },
+      "audit_note": "Adversarial completion review: effect 4 retained. Prior labels were not treated as evidence.",
+      "supersedes_batch": "local-reconciliation-batch6-plus-gravinity-collateral"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 3,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

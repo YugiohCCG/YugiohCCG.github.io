@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch3-coverage-reconciliation",
+  "ordinal_start": 188,
+  "ordinal_end": 188,
+  "cards": [
+    {
+      "ordinal": 188,
+      "passcode": 243144691,
+      "name": "Vir Pedicae Mortis - the Unhallowed Warden",
+      "text_sha256": "58a159caf71e1488da7646e75ae43f8e9e8e8082ab666dc11420c32436566f38",
+      "script_sha256": "8359e42fd144a6b8444a598b7a29767e795f5d327c52bfbad8b6ddaa1e093ca7",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "If Summoned: Tribute another own monster; shuffle an opponent monster into Deck. HOPT.",
+          "lua_implementation": "Normal/Special triggers share HOPT, Tribute excludes handler, then non-targetingly selects and sends an opponent monster to shuffled Deck.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c38339996.lua",
+              "card_id": 38339996,
+              "card_name": "Rescue-ACE Impulse",
+              "matched_structure": "Tribute cost with MZONE release accounting."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "If used as Link Material for Vir Pedicae and sent to GY/banished: Tribute own monster; Special Summon this. HOPT.",
+          "lua_implementation": "EVENT_BE_MATERIAL checks exact Link reason, destination and archetype Link reason card; Tribute cost frees a zone and handler Special Summons from GY/banishment; HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c30012506.lua",
+              "card_id": 30012506,
+              "card_name": "A-Assault Core",
+              "matched_structure": "EVENT_BE_MATERIAL trigger checks destination and reason card before recovering/summoning."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The Summon-triggered Tribute/shuffle effect and the Link-material destination-triggered Tribute/self-Summon effect are the two distinct effects; each record includes its HOPT."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

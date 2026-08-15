@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 316,
+  "ordinal_end": 316,
+  "cards": [
+    {
+      "ordinal": 316,
+      "passcode": 253152295,
+      "name": "Yummy Kuriboh",
+      "text_sha256": "91c7869bcf0259f9c61bc7e279d1f0e50a1403666069009a1571b08d25ee27f2",
+      "script_sha256": "581b60deab99746a111cac8d9cca6c69e846fc1251a7cd759c20afc1badf5ea4",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "When opponent attacks: Special Summon this card and a Level 1 from hand/GY, then negate the attack; HOPT.",
+          "lua_implementation": "Attack-announcement field trigger from hand/GY requires two zones, summons this card plus another Level 1 simultaneously, and negates the attack only if both summon; id HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c52927340.lua",
+              "card_id": 52927340,
+              "card_name": "Altergeist Kunquery",
+              "matched_structure": "Attack-triggered hand Special Summon and attack negation structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Level 1 monsters cannot be destroyed by battle.",
+          "lua_implementation": "Field battle-indestructibility targets Level 1 monsters on both fields, matching the unrestricted wording.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c13803864.lua",
+              "card_id": 13803864,
+              "card_name": "Mokey Mokey King",
+              "matched_structure": "Level-based field battle-protection structure."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "The attack trigger, two simultaneous Special Summons, conditional attack negate, and HOPT are one compound activated effect; Level 1 battle indestructibility is the second effect."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 2,
+    "pass": 2,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

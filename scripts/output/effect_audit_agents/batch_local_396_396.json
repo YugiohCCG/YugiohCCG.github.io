@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "batch": "local-reconciliation-batch6-plus-gravinity-collateral",
+  "ordinal_start": 396,
+  "ordinal_end": 396,
+  "cards": [
+    {
+      "ordinal": 396,
+      "passcode": 252249599,
+      "name": "Crewal Cursed Sea",
+      "text_sha256": "b6a294f23d6bb0a9201c3ee8d25a55b33a3645e05b7092de4c7110c40d7c531d",
+      "script_sha256": "24021bf677b9775160abe8536845301008eb4dfcd03c63eeb11cc3ac410a4f7c",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "3+ Level 4 Zombie monsters.",
+          "lua_implementation": "EnableReviveLimit and aux.AddXyzProcedure require Level 4 Zombies, minimum three and maximum 99.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c61307542.lua",
+              "card_id": 61307542,
+              "card_name": "Paleozoic Anomalocaris",
+              "matched_structure": "3+ material Xyz procedure with a type/filter requirement."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Once per turn you can also Xyz Summon this card the turn 2 or more monsters have been Special Summoned from your Spell & Trap Zone by using a Zombie monster you control as material.",
+          "lua_implementation": "A global EVENT_SPSUMMON_SUCCESS tracker counts each card previously in LOCATION_SZONE for its summon player through End Phase. The alternate Xyz filter requires a face-up Zombie and count>=2; xyzop sets a turn oath flag to one alternative summon.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c40706444.lua",
+              "card_id": 40706444,
+              "card_name": "Argostars - Adventurous Arion",
+              "matched_structure": "Once-per-turn alternate Xyz Summon using one archetype monster and transferring its materials."
+            },
+            {
+              "script": "tmp/omega_scripts/c1528054.lua",
+              "card_id": 1528054,
+              "card_name": "Silhouhatte Rabbit",
+              "matched_structure": "Detects cards Special Summoned from the Spell & Trap Zone."
+            },
+            {
+              "script": "tmp/omega_scripts/c93777634.lua",
+              "card_id": 93777634,
+              "card_name": "Number 39: Utopia Rising",
+              "matched_structure": "Transfers existing materials in an alternate/successive Xyz context."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If this card is Xyz Summoned: You can target 1 Zombie monster in your GY; place it in your Spell & Trap Zone.",
+          "lua_implementation": "The targeted Zombie is moved face-up from the GY to the Spell & Trap Zone without adding any Spell or Trap type-changing effect.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c7093411.lua",
+              "card_id": 7093411,
+              "card_name": "Crystal Beast Sapphire Pegasus",
+              "matched_structure": "Places a monster into the Spell & Trap Zone and assigns a continuous card type."
+            },
+            {
+              "script": "tmp/omega_scripts/c4160316.lua",
+              "card_id": 4160316,
+              "card_name": "Centur-Ion Bonds",
+              "matched_structure": "Places a GY monster in the Spell & Trap Zone as a face-up Continuous Trap."
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: unlike adjacent Crewal clauses, this exact clause does not say 'as a Continuous Trap'. Official Crystal Beast placement establishes MoveToField as the placement primitive and adds type only when the text does."
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "Gains 1000 ATK for each Monster Card in your Spell & Trap Zone.",
+          "lua_implementation": "A single-range EFFECT_UPDATE_ATTACK counts face-up cards in the controller's Spell & Trap Zone whose original type includes Monster and returns count*1000.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c46508640.lua",
+              "card_id": 46508640,
+              "card_name": "Dweller in the Depths",
+              "matched_structure": "Continuous ATK gain per continuous/qualified card in the Spell & Trap Zone."
+            },
+            {
+              "script": "tmp/omega_scripts/c70410002.lua",
+              "card_id": 70410002,
+              "card_name": "The Accumulator",
+              "matched_structure": "Dynamic count-to-ATK value function."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "Your opponent cannot target this card for attacks or with card effects.",
+          "lua_implementation": "The handler receives EFFECT_CANNOT_BE_BATTLE_TARGET value 1 and EFFECT_CANNOT_BE_EFFECT_TARGET with aux.tgoval.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c12977245.lua",
+              "card_id": 12977245,
+              "card_name": "Altergeist Fifinellag",
+              "matched_structure": "Combines attack-target and card-effect-target protection."
+            },
+            {
+              "script": "tmp/omega_scripts/c79698395.lua",
+              "card_id": 79698395,
+              "card_name": "Realm of Danger!",
+              "matched_structure": "Card-effect target protection plus battle-target rules."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 6,
+          "printed_clause": "During your opponent's turn (Quick Effect): You can Special Summon 1 monster from your Spell & Trap Zone.",
+          "lua_implementation": "A free-chain Quick Effect checks the opponent is turn player, then Special Summons any face-up original Monster Card from the controller's Spell & Trap Zone.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c19186123.lua",
+              "card_id": 19186123,
+              "card_name": "Vision Release",
+              "matched_structure": "Special Summons a Monster Card from the Spell & Trap Zone."
+            },
+            {
+              "script": "tmp/omega_scripts/c24649931.lua",
+              "card_id": 24649931,
+              "card_name": "Materialization",
+              "matched_structure": "Face-up Monster Card in a Spell & Trap Zone as the operation subject."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 7,
+          "printed_clause": "You can only use each effect of Crewal Cursed Sea once per turn.",
+          "lua_implementation": "The Xyz-Summon placement and opponent-turn Quick Effect use id and id+100 hard once-per-turn keys; the alternate Xyz procedure has its own once-per-turn flag.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c40706444.lua",
+              "card_id": 40706444,
+              "card_name": "Argostars - Adventurous Arion",
+              "matched_structure": "Separate once-per-turn alternate Xyz procedure and activated effect limits."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 7,
+        "reason": "Seven records cover materials, alternate Xyz procedure, GY placement, ATK gain, two targeting protections, opponent-turn summon, and HOPT as segmented in the audit."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 7,
+    "pass": 6,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

@@ -50,10 +50,10 @@
   },
   {
     "script": "c242009896.lua",
-    "script_sha256": "4fcb78197930005452f6a71e81296f187b2ffa58c23093cc8e093f137b685628",
+    "script_sha256": "dabf4ab0f296d3d1c481573f09a52326fc2ef54189a74400c5effb00b32d19e4",
     "kind": "target-operation-search-mismatch",
     "line": 68,
-    "reason": "The target callback chooses the reference monster. The operation's different predicate intentionally finds all other monsters sharing one of its characteristics."
+    "reason": "False positive: the target callback guards and chooses the printed reference Effect Monster. The operation does not make a second selection; Duel.GetMatchingGroup intentionally enumerates the distinct printed group of all other face-up Effect Monsters sharing a characteristic with that chosen monster, so its dgfilter predicate must differ from the activation guard."
   },
   {
     "script": "c244816828.lua",

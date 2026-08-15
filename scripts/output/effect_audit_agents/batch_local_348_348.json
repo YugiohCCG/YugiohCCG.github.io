@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "batch": "local-batch5-coverage-reconciliation",
+  "ordinal_start": 348,
+  "ordinal_end": 348,
+  "cards": [
+    {
+      "ordinal": 348,
+      "passcode": 257176166,
+      "name": "Malphiel, Arckcestial of Protection",
+      "text_sha256": "c525a297c51c59bd9396da39cef8f1d425d9faec9d2951a2bc6f508b0096eab1",
+      "script_sha256": "95701e27b1fe513aa4bd3d876e2bcbf31feb7b10e07863a6c1508b6365a10568",
+      "overall_verdict": "PASS",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "1 LIGHT Tuner + 1+ non-Tuners including an \"Arckcestial\".",
+          "lua_implementation": "Synchro mix procedure requires LIGHT Tuner, non-Tuners, and a material-group Arckcestial.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c4891376.lua",
+              "card_id": 4891376,
+              "card_name": "Zalen the Shackled Dragon",
+              "matched_structure": "Filtered Tuner plus non-Tuner Synchro procedure with subgroup condition."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "Opponent cannot target other LIGHT monsters you control.",
+          "lua_implementation": "Field cannot-target effect excludes this handler, targets LIGHT monsters, and returns true only for opponent effects.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c94292987.lua",
+              "card_id": 94292987,
+              "card_name": "Fabled Gamygyn",
+              "matched_structure": "Exact opponent-only protection for other archetypal/qualified monsters."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "If Synchro Summoned: Level becomes 4 until end turn; HOPT.",
+          "lua_implementation": "Delayed summon trigger checks SUMMON_TYPE_SYNCHRO and registers EFFECT_CHANGE_LEVEL=4 through PHASE_END under id HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c16020923.lua",
+              "card_id": 16020923,
+              "card_name": "Pikari @Ignister",
+              "matched_structure": "Target/handler Level becomes 4 until end turn."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If detached from an \"Arckcestial\" Xyz to activate its effect: target a face-up field card and send it to GY; HOPT.",
+          "lua_implementation": "Delayed EVENT_MOVE checks prior overlay, REASON_COST, activated Xyz effect, and archetype handler, then targets and sends a face-up card under separate HOPT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c32696942.lua",
+              "card_id": 32696942,
+              "card_name": "Big Belly Knight",
+              "matched_structure": "Near-exact detached-as-Xyz-effect-cost trigger using previous overlay and reason checks."
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "The LIGHT-Tuner/non-Tuner/Arckcestial material requirement is one Synchro procedure. The other-Light targeting protection, temporary Level-change trigger, and detached-material send trigger are the three effects; both activated HOPTs are included."
+      }
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 4,
+    "pass": 4,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

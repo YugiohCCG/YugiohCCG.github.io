@@ -6,7 +6,7 @@ local SET_SYNCHRO_WARRIOR=0x66
 function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
-	e1:SetCategory(CATEGORY_TOGRAVE+CATEGORY_SPECIAL_SUMMON)
+	e1:SetCategory(CATEGORY_RELEASE+CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_QUICK_O)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetRange(LOCATION_HAND)
@@ -31,12 +31,16 @@ function s.initial_effect(c)
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
 	c:RegisterEffect(e3)
 end
-function s.costfilter(c) return c:IsSetCard(SET_STARDUST) and not c:IsCode(id) and c:IsType(TYPE_MONSTER) and c:IsReleasable() end
+function s.costfilter(c)
+	return c:IsSetCard(SET_STARDUST) and not c:IsCode(id) and c:IsType(TYPE_MONSTER)
+end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.costfilter,tp,LOCATION_DECK,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 	local tc=Duel.SelectMatchingCard(tp,s.costfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
-	Duel.Release(tc,REASON_COST)
+	--Cards in the Deck are outside the engine's ordinary release group, so mark the
+	--Deck-to-GY cost with REASON_RELEASE to preserve the printed Tribute semantics.
+	Duel.SendtoGrave(tc,REASON_COST+REASON_RELEASE)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

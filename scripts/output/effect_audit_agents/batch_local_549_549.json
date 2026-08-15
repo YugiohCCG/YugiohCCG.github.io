@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "batch": "batch-8c-local-reconciliation",
+  "ordinal_start": 549,
+  "ordinal_end": 549,
+  "cards": [
+    {
+      "ordinal": 549,
+      "passcode": 259758604,
+      "name": "Charmelia Deal",
+      "text_sha256": "b01838f6ae61d15d40006101292fdfb4aff04985d2c51eaa29290b1c5b004186",
+      "script_sha256": "0df3eb78871441ceca7ca94cb62664b0db2db5db63a68037e8ef18cf7a1da9c7",
+      "overall_verdict": "FIXED",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Fresh semantic segmentation found 3 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "When activated: optionally add 1 \"Charmelia\" Ritual Monster and/or 1 \"Charmelia\" Ritual Spell from Deck; HOPT.",
+          "lua_implementation": "The activation count uses id; resolution selects a subgroup of one or two where at most one is a Ritual Monster and at most one is an eligible Ritual Spell, then adds/confirms them.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c975299.lua",
+              "card_id": 975299,
+              "matched_structure": "Optional search performed when a persistent Spell is activated.",
+              "card_name": "B.E.F. Zelos"
+            },
+            {
+              "script": "tmp/omega_scripts/c3629090.lua",
+              "card_id": 3629090,
+              "matched_structure": "Ritual Spell search and Deck-to-hand confirmation.",
+              "card_name": "Cyber Angel Idaten"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "All \"Charmelia\" monsters you control gain 400 ATK/DEF.",
+          "lua_implementation": "Paired field EFFECT_UPDATE_ATTACK/DEFENSE effects target face-up Charmelia monsters in the controller's Monster Zone and apply +400.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c975299.lua",
+              "card_id": 975299,
+              "matched_structure": "Paired archetype-wide field ATK/DEF updates on a persistent Spell.",
+              "card_name": "B.E.F. Zelos"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        },
+        {
+          "printed_clause": "If sent to the GY by the effect of a \"Charmelia\" monster: place this card face-up in your S/T Zone; HOPT.",
+          "lua_implementation": "The delayed EVENT_TO_GRAVE trigger still requires REASON_EFFECT and a Charmelia handler, but now identifies the causing effect as a monster effect with re:IsActiveType(TYPE_MONSTER) before moving this card face-up from GY.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c59805313.lua",
+              "card_id": 59805313,
+              "matched_structure": "EVENT_TO_GRAVE trigger that later places a qualifying Continuous Spell/Trap face-up with MoveToField.",
+              "card_name": "Volcanic Rimfire"
+            },
+            {
+              "script": "tmp/omega_scripts/c79582540.lua",
+              "card_id": 79582540,
+              "matched_structure": "Uses re:IsActiveType/trigger semantics for identifying the type of the effect that caused a movement event.",
+              "card_name": "Ancient Warriors - Savage Don Ying"
+            }
+          ],
+          "verdict": "FIXED",
+          "issue": "Confirmed and corrected: the old condition inspected the handler's current type after movement/state changes. It now tests the active type captured for the effect that actually sent this card.",
+          "effect_index": 3
+        }
+      ],
+      "supersedes_batch": "batch_8c_539_555.json",
+      "reconciliation_note": "All batch_8c findings for this card were re-evaluated against current Lua and the cited official Omega references. Confirmed defects are patched; retained CUSTOM_GAP records explain the remaining engine/source limit."
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 3,
+    "pass": 2,
+    "fixed": 1,
+    "defects": 0,
+    "custom_gaps": 0
+  }
+}

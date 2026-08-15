@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "batch": "local-custom-gap-adversarial-1-216",
+  "ordinal_start": 56,
+  "ordinal_end": 56,
+  "cards": [
+    {
+      "ordinal": 56,
+      "passcode": 213266433,
+      "name": "The Hanging Frute",
+      "text_sha256": "def7ca7c5586ebdf2cdfaf65e78f42ad0a7e5a29132a7558ea9cf1c2e2924b25",
+      "script_sha256": "c92c6e0702fb0b15383a57f03b7d6e1b16940ae57d5ec580e0f07b21795f936b",
+      "overall_verdict": "CUSTOM_GAP",
+      "effects": [
+        {
+          "effect_index": 1,
+          "printed_clause": "You can Ritual Summon this card with “Fruteification”.",
+          "lua_implementation": "c213266433.lua uses registered condition/target/operation callbacks; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c77235086.lua",
+              "card_id": 77235086,
+              "card_name": "Cyber Angel Benten",
+              "matched_structure": "Official Ritual Monster with the same printed 'You can Ritual Summon this card with ...' convention and revive-limit registration on the monster.",
+              "official_effect_text": "[b]You can[/b] Ritual Summon this card with \"Machine Angel Ritual\". If this card destroys a monster by battle [b]and[/b] sends it to the GY: Inflict damage to your opponent equal to that monster's original DEF in the GY. If this card is Tributed: [b]You can[/b] add 1 LIGHT Fairy monster from your Deck to your hand.",
+              "script_sha256": "c732d5c997f719ad2aa870d7dd64a60d0de6f64555d63dd3777e10e2c640e774",
+              "verified_shared_tokens": [
+                "Duel.GetChainInfo",
+                "Duel.Hint",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SelectMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_SINGLE",
+                "EFFECT_TYPE_TRIGGER_O",
+                "Effect.CreateEffect",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 2,
+          "printed_clause": "\"Frute\" monsters you control can attack all face-down Defense Position monsters your opponent controls, once each.",
+          "lua_implementation": "The Lua directly implements granting every Frute one attack on each face-down Defense monster only using custom location/filter/event handling; that bespoke component remains unmatched. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15894048.lua",
+              "card_id": 15894048,
+              "card_name": "Ultimate Tyranno",
+              "matched_structure": "attack-all-monsters procedure and attack bookkeeping.",
+              "official_effect_text": "This card can attack all monsters your opponent controls, [b]once[/b] each. During your [b]Battle Phase[/b], if you control an \"Ultimate Tyranno\" that can attack, monsters other than \"Ultimate Tyranno\" [b]cannot[/b] attack.",
+              "script_sha256": "e81a8236f0f832098c9186da6e1b2436c907f31dc881eaec9882aadde26f89a0",
+              "verified_shared_tokens": [
+                "Duel.IsExistingMatchingCard",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_SINGLE",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE"
+              ]
+            },
+            {
+              "script": "tmp/omega_scripts/c56294501.lua",
+              "card_id": 56294501,
+              "card_name": "Junk Sleep",
+              "matched_structure": "complete face-down Defense Position monster group processing.",
+              "official_effect_text": "If your opponent Normal or Special Summons a monster(s): [b]You can[/b] change all face-down Defense Position monsters you control to face-up Attack Position. During the [b]End Phase[/b]: [b]You can[/b] change all monsters you control to face-down Defense Position. [b]You can[/b] only use each effect of \"Junk Sleep\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "68092ec7f44e3ab9947293b0af34a3891419d4a37b58907ac94963987f014e15",
+              "verified_shared_tokens": [
+                "CATEGORY_POSITION",
+                "Duel.ChangePosition",
+                "Duel.GetMatchingGroup",
+                "Duel.IsExistingMatchingCard",
+                "Duel.SetOperationInfo",
+                "EFFECT_FLAG_DELAY",
+                "EFFECT_TYPE_FIELD",
+                "EFFECT_TYPE_TRIGGER_O",
+                "EVENT_SPSUMMON_SUCCESS",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE",
+                "PHASE_END",
+                "aux.Stringid"
+              ]
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "The text does not resolve whether each Frute retains one ordinary attack against a non-qualifying monster in addition to attacks on every face-down Defense Position monster. The current first-attack tracker also cannot preserve exact once-each identity if a battled monster changes position and is Set again. Resolution: issue a ruling for the ordinary-attack interaction and change the text to match it; then replace c213266433.lua's approximation with a ruling-specific attack procedure (or add filtered attack-all bookkeeping to the engine)."
+        },
+        {
+          "effect_index": 3,
+          "printed_clause": "You can only use each of the following effects of “The Hanging Frute” once per turn.",
+          "lua_implementation": "c213266433.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14558127.lua",
+              "card_id": 14558127,
+              "card_name": "Ash Blossom & Joyous Spring",
+              "matched_structure": "named hard once-per-turn SetCountLimit structure.",
+              "official_effect_text": "[b]When[/b] a card or effect is activated that includes any of these effects ([b]Quick Effect[/b]): [b]You can[/b] [b]discard[/b] this card; [b]negate[/b] that effect.\n● Add a card from the Deck to the hand.\n● Special Summon from the Deck.\n● Send a card from the Deck to the GY.\n[b]You can[/b] only use this effect of \"Ash Blossom & Joyous Spring\" [b]once[/b] [b]per turn[/b].",
+              "script_sha256": "fd4c7dd7e01c5ab227d539187369c7d37a9062b9fa5f9a93cf8c8344eb1a770b",
+              "verified_shared_tokens": [
+                "CATEGORY_SPECIAL_SUMMON",
+                "Duel.SetOperationInfo",
+                "EFFECT_TYPE_QUICK_O",
+                "EVENT_CHAINING",
+                "Effect.CreateEffect",
+                "LOCATION_HAND",
+                "REASON_COST"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 4,
+          "printed_clause": "If this card is Special Summoned: You can Special Summon 1 \"Frute\" monster from your GY in face-down Defense Position.",
+          "lua_implementation": "c213266433.lua uses Duel.SpecialSummon, Duel.ChangePosition; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14087893.lua",
+              "card_id": 14087893,
+              "card_name": "Book of Moon",
+              "matched_structure": "targeted face-down Defense Position change.",
+              "official_effect_text": "[b]Target[/b] 1 face-up monster on the field; change that [b]target[/b] to face-down Defense Position.",
+              "script_sha256": "86d4707c3d28fdae90617d617be2456ab0c14de8122ce273c1257fb90131c206",
+              "verified_shared_tokens": [
+                "CATEGORY_POSITION",
+                "Duel.ChangePosition",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        },
+        {
+          "effect_index": 5,
+          "printed_clause": "When your opponent activates a card or effect (Quick Effect): You can Tribute 1 other WATER monster from your hand or field; for the rest of this turn, monsters you control are unaffected by effects previously activated in this Chain, then, if you activated this effect in response to an opponent's monster effect on the field, change it to face-down Defense Position.",
+          "lua_implementation": "c213266433.lua uses Duel.ChangePosition; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c14087893.lua",
+              "card_id": 14087893,
+              "card_name": "Book of Moon",
+              "matched_structure": "targeted face-down Defense Position change.",
+              "official_effect_text": "[b]Target[/b] 1 face-up monster on the field; change that [b]target[/b] to face-down Defense Position.",
+              "script_sha256": "86d4707c3d28fdae90617d617be2456ab0c14de8122ce273c1257fb90131c206",
+              "verified_shared_tokens": [
+                "CATEGORY_POSITION",
+                "Duel.ChangePosition",
+                "Duel.Hint",
+                "Duel.SetOperationInfo",
+                "Effect.CreateEffect",
+                "LOCATION_MZONE"
+              ]
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null
+        }
+      ],
+      "coverage_override": {
+        "expected_individual_effects": 5,
+        "reason": "Complete adversarial effect-by-effect re-review of every former CUSTOM_GAP on this card against current printed text, canonical Lua, Omega constants/helpers, and official database/scripts; all other PASS/FIXED records were preserved."
+      },
+      "supersedes_batch": "batch_local_56_56.json",
+      "lua_effect_creations": 6,
+      "conservative_printed_clause_floor": 5,
+      "heuristic_printed_clause_floor": 4,
+      "source_batch": "batch_local_56_56.json"
+    }
+  ],
+  "summary": {
+    "cards": 1,
+    "effects": 5,
+    "pass": 4,
+    "fixed": 0,
+    "defects": 0,
+    "custom_gaps": 1
+  }
+}

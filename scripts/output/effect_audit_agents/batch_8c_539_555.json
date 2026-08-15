@@ -1,0 +1,1126 @@
+{
+  "schema_version": 1,
+  "batch": "8c",
+  "ordinal_start": 539,
+  "ordinal_end": 555,
+  "method": "Fresh card-by-card semantic comparison; checklist Markdown and historical verdicts were not consulted.",
+  "cards": [
+    {
+      "ordinal": 539,
+      "passcode": 259546637,
+      "name": "Glitchling Corruption",
+      "text_sha256": "37a566fb4e22e31b8e791dab9b65e9429c82a2f18fe8db2754b66de282d148bf",
+      "script_sha256": "0a441a1e48ad62e9cfa7d850b5bfb8a38d64d6c8f2af61385f67b8951cd809d4",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Fresh semantic segmentation found 4 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "When activated: optionally add 1 \"Glitchling\" card from the Deck and/or face-up Extra Deck, except this card; only 1 activation per turn.",
+          "lua_implementation": "The activation effect has an oath count limit; at resolution it optionally selects one set card from Deck or face-up Extra Deck, excludes its own code, sends it to hand, and confirms it.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c975299.lua",
+              "card_id": 975299,
+              "matched_structure": "Optional search performed by a Spell activation with an activation count limit and hand confirmation.",
+              "card_name": "B.E.F. Zelos"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "If you would Ritual Summon a Cyberse Ritual Monster using hand/field Tributes, Corruption Counters from the field can satisfy up to its Level.",
+          "lua_implementation": "No field effect exposes Corruption Counters as material to other Ritual Summon effects. Counter substitution exists only inside this card's own triggered ritualsummon function.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c20560620.lua",
+              "card_id": 20560620,
+              "matched_structure": "Official field effect exposes an additional Ritual-material source to Ritual procedures; its script is explicitly marked as a workaround/not fully implemented.",
+              "card_name": "Emperor Tanuki's Critter Count"
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "The printed replacement applies to arbitrary Cyberse Ritual Summons, but the Lua cannot inject counters into unrelated Ritual procedures; only this card's own Ritual option sees them.",
+          "effect_index": 2
+        },
+        {
+          "printed_clause": "Once per turn, if a Cyberse Ritual Monster is Tributed or used as Link Material: optionally Ritual Summon 1 \"Glitchling\" Ritual Monster from the GY/face-up Extra Deck using hand/field Tributes whose Levels meet or exceed its Level.",
+          "lua_implementation": "Shared-count EVENT_RELEASE and REASON_LINK/EVENT_BE_MATERIAL triggers offer the ritual option; the operation selects the GY/face-up Extra Deck Ritual, selects legal hand/field ritual materials, removes any permitted counter deficit, releases materials, Ritual Summons, and completes the procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15306543.lua",
+              "card_id": 15306543,
+              "matched_structure": "Field Spell ignition Ritual Summon using a greater-than-or-equal Level check and a nonstandard Ritual source.",
+              "card_name": "Stars Align Above the Shrine"
+            },
+            {
+              "script": "tmp/omega_scripts/c49721684.lua",
+              "card_id": 49721684,
+              "matched_structure": "Ritual Summon from hand or GY with greater-or-equal material handling and CompleteProcedure.",
+              "card_name": "Mitsurugi Mirror"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 3
+        },
+        {
+          "printed_clause": "Alternatively place Corruption Counters on this card up to the number of Cyberse monsters you control.",
+          "lua_implementation": "The alternate operation counts Card.IsRace(RACE_CYBERSE) in the controller's Monster Zone and lets the player announce an addable amount from 1 through that count.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c60258960.lua",
+              "card_id": 60258960,
+              "matched_structure": "Counts/places counters on a permitted card through EnableCounterPermit and AddCounter.",
+              "card_name": "Legendary Flame Lord"
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "The count filter lacks Card.IsFaceup, so face-down monsters can be counted as Cyberse even though face-down cards do not have a usable Race for this effect.",
+          "effect_index": 4
+        }
+      ]
+    },
+    {
+      "ordinal": 540,
+      "passcode": 259253032,
+      "name": "Glitchling Hexatron",
+      "text_sha256": "d3d095becf9075edff6fd22b8f33948b6212685dfce9e64047f5271822f38981",
+      "script_sha256": "522445abaf423acb64d72991b0f3f8582225c5a9378992ce81d274874d472160",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Fresh semantic segmentation found 4 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "Link Summoning procedure (no material line is present in the current printed text).",
+          "lua_implementation": "AddLinkProcedure nevertheless requires 2 or 3 Cyberse monsters for this Link-3 monster, followed by EnableReviveLimit.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c30741503.lua",
+              "card_id": 30741503,
+              "matched_structure": "Official \"Orcust\" Link procedure requiring Effect Monsters and an archetype member.",
+              "card_name": "Galatea, the Orcust Automaton"
+            }
+          ],
+          "verdict": "CUSTOM_GAP",
+          "issue": "The card is a Link Monster but its printed text has no Link-material line, so the Lua's 2-3 Cyberse-material procedure cannot be verified against a printed requirement.",
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "If Link Summoned: add 1 Cyberse Ritual Monster from Deck/face-up Extra Deck and 1 Ritual Spell or Cyberse Normal Monster from GY/face-up banishment; HOPT.",
+          "lua_implementation": "A delayed Link-Summon-success trigger with id count limit requires both pools, selects one from each, merges them, sends both to hand, and confirms them.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c3629090.lua",
+              "card_id": 3629090,
+              "matched_structure": "Summon-success search from Deck/GY with hand confirmation.",
+              "card_name": "Cyber Angel Idaten"
+            },
+            {
+              "script": "tmp/omega_scripts/c29596581.lua",
+              "card_id": 29596581,
+              "matched_structure": "Adds an eligible face-up banished or GY card to hand.",
+              "card_name": "Thunder Dragonroar"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        },
+        {
+          "printed_clause": "Cannot be banished or destroyed by the opponent's cards or effects.",
+          "lua_implementation": "A single-range EFFECT_INDESTRUCTABLE_EFFECT uses aux.indoval; a field EFFECT_CANNOT_REMOVE targets only this card when the reason is an opponent effect and not a redirect.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c975299.lua",
+              "card_id": 975299,
+              "matched_structure": "Opponent-effect destruction protection through aux.indoval.",
+              "card_name": "B.E.F. Zelos"
+            },
+            {
+              "script": "tmp/omega_scripts/c30459350.lua",
+              "card_id": 30459350,
+              "matched_structure": "Field-level EFFECT_CANNOT_REMOVE banishment prevention.",
+              "card_name": "Imperial Iron Wall"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 3
+        },
+        {
+          "printed_clause": "Quick Effect: remove all Corruption Counters from an opponent monster as cost; destroy 1 controlled \"Glitchling\" Monster Card or Cyberse Normal Monster, then negate that opponent monster and gain 200 ATK per removed counter; uses per turn up to differently named Bitron/Protron/Digitron in your field or GY.",
+          "lua_implementation": "The free-chain Quick Effect removes all counters from one face-up opponent monster as cost, tracks activations with a turn flag, destroys one eligible controlled on-field card at resolution, disables the counter-bearing monster through the End Phase, and gives this card a persistent 200-per-counter ATK update. The cap counts the three exact codes only in MZONE+GY without a face-up test.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c11155484.lua",
+              "card_id": 11155484,
+              "matched_structure": "Destroy a controlled named card, then negate/destroy the related opposing activation.",
+              "card_name": "Crystal Miracle"
+            },
+            {
+              "script": "tmp/omega_scripts/c28903523.lua",
+              "card_id": 28903523,
+              "matched_structure": "A per-turn use cap derived from a live field count and temporary effect negation.",
+              "card_name": "Eternal Sunshine"
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "The printed cap says the named cards in your field or GY, but tricount omits the Spell/Trap Zone and also counts face-down Monster Zone cards by code. Face-up named cards in the S/T Zone should count, while face-down cards should not.",
+          "effect_index": 4
+        }
+      ]
+    },
+    {
+      "ordinal": 541,
+      "passcode": 259485374,
+      "name": "Heart of the Cards",
+      "text_sha256": "52db6de65e03663d632e2961aaa3a934e054db4dec3a414d2b6e14d2f52c53a3",
+      "script_sha256": "2ae92cbc6218f18e3cbccabe491e586f6265cc1f29cb7cef15181cb896330359",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 1,
+        "reason": "Fresh semantic segmentation found 1 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "Activate by declaring a card name; during the opponent's next End Phase they choose that named card and another card from your Deck, then put both on top in random order; one activation per turn.",
+          "lua_implementation": "The activation has an oath count limit, but Duel.AnnounceCard is called in the resolving operation. A two-End-Phase-reset continuous effect stores the code; on the opponent End Phase it lets the opponent select the two cards, random-selects which is top, calls Duel.ShuffleDeck, then moves both to the top.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c28776350.lua",
+              "card_id": 28776350,
+              "matched_structure": "Duel.AnnounceCard is performed in the target/activation-declaration function and stored as chain target data.",
+              "card_name": "Akashic Magician"
+            },
+            {
+              "script": "tmp/omega_scripts/c29107423.lua",
+              "card_id": 29107423,
+              "matched_structure": "Selects cards from the Deck and places selected cards on top without shuffling away the pre-existing Deck order as an unrelated action.",
+              "card_name": "Ruddy Rose Witch"
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "The name is declared only when the Trap resolves instead of when it is activated, and Duel.ShuffleDeck randomly reorders every other card in the Deck even though the text randomizes only the order of the two chosen cards.",
+          "effect_index": 1
+        }
+      ]
+    },
+    {
+      "ordinal": 542,
+      "passcode": 259576196,
+      "name": "The Orcustograph",
+      "text_sha256": "fa39af59dade0a0388e05b10252b3412ff19acbe7b9f72080aae030707a489cb",
+      "script_sha256": "e54129e42321b74af99c75f80bd9bffbe681e66388d436045f24a61d7f0ddddd",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Fresh semantic segmentation found 3 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "1 DARK Tuner + 1 non-Tuner DARK monster.",
+          "lua_implementation": "AddSynchroProcedure requires exactly one DARK Tuner and exactly one DARK non-Tuner, and EnableReviveLimit applies.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c88643579.lua",
+              "card_id": 88643579,
+              "matched_structure": "DARK-restricted Synchro material filtering through AddSynchroProcedure and aux.NonTuner.",
+              "card_name": "Dark End Dragon"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "If Synchro Summoned: target 1 of your banished \"Orcust\" monsters; Special Summon it; HOPT.",
+          "lua_implementation": "A delayed summon-success trigger checks SUMMON_TYPE_SYNCHRO, targets one face-up banished Orcust monster that can be summoned, and Special Summons it if still related and a zone is available.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c39778366.lua",
+              "card_id": 39778366,
+              "matched_structure": "Targets face-up banished Machine monsters and Special Summons them with zone checks.",
+              "card_name": "Union Scramble"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        },
+        {
+          "printed_clause": "Banish this card from the GY; negate the effects of 1 face-up opponent card until the End Phase; HOPT separate from the first effect.",
+          "lua_implementation": "A GY ignition effect banishes itself as cost, non-target-selects one negatable face-up opponent card at resolution, applies disable/disable-effect (and trap-monster disable) through the End Phase, and uses a distinct id+100 count code.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c28903523.lua",
+              "card_id": 28903523,
+              "matched_structure": "Applies disable and disable-effect registrations to a face-up opposing card until the End Phase.",
+              "card_name": "Eternal Sunshine"
+            },
+            {
+              "script": "tmp/omega_scripts/c98431356.lua",
+              "card_id": 98431356,
+              "matched_structure": "GY banish cost with a separate targeted follow-up effect and once-per-turn handling.",
+              "card_name": "Phantom Knights' Wing"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 3
+        }
+      ]
+    },
+    {
+      "ordinal": 543,
+      "passcode": 259646610,
+      "name": "Galatea-2, the Orcust Divider",
+      "text_sha256": "4a5fe1645391ceca0995416a6935be546053c8b05d8fcc90a7d66a27ca40ff72",
+      "script_sha256": "33d7f598f8ffefe9e3e1eeaef1b4cc4f1ab36819726b56783fc38b531d1df45e",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Fresh semantic segmentation found 3 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "2+ Effect Monsters, including an \"Orcust\" monster.",
+          "lua_implementation": "AddLinkProcedure accepts 2 or 3 Effect Monsters and lcheck requires at least one Link-material card in the Orcust set; EnableReviveLimit applies.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c30741503.lua",
+              "card_id": 30741503,
+              "matched_structure": "Exact official Orcust Link-material group check requiring an Orcust member.",
+              "card_name": "Galatea, the Orcust Automaton"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "While you control this linked card, \"Orcustrated Babel\" is unaffected by the opponent's activated effects.",
+          "lua_implementation": "A field immunity effect is active while the handler IsLinkState; it targets face-up Orcustrated Babel and rejects activated effects owned by the opponent.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c24151924.lua",
+              "card_id": 24151924,
+              "matched_structure": "Link-state-dependent immunity for linked/co-linked cards against opponent activated effects.",
+              "card_name": "G Golem Invalid Dolmen"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        },
+        {
+          "printed_clause": "Target 1 of your banished \"Orcust\" cards; return it to the GY; HOPT.",
+          "lua_implementation": "An ignition effect targets one face-up banished Orcust card able to go to GY, then sends it with REASON_EFFECT+REASON_RETURN if it remains related.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c1154611.lua",
+              "card_id": 1154611,
+              "matched_structure": "Targets a banished card and returns it to the GY with REASON_RETURN.",
+              "card_name": "Paleozoic Leanchoilia"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 3
+        }
+      ]
+    },
+    {
+      "ordinal": 544,
+      "passcode": 259614449,
+      "name": "Charmelia Kiana",
+      "text_sha256": "7a6448e98be5b7a7e07e445db100afcf8c8a46c97f3397d577d538d5537d82da",
+      "script_sha256": "469226e6a8781cc1ea7b382bc8f6e5f8f264b7be8325150b9e315a32642155b4",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Fresh semantic segmentation found 2 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "When Normal or Special Summoned: activate 1 \"Charmelia\" Continuous Spell/Trap from hand, Deck, or GY; HOPT.",
+          "lua_implementation": "Cloned non-delay summon-success triggers find an activatable archetypal Continuous Spell/Trap, move it face-up to the S/T Zone, consume its activation count/cost, and raise the engine activation event.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c22499034.lua",
+              "card_id": 22499034,
+              "matched_structure": "Official True Draco operation obtains GetActivateEffect, moves a Continuous Spell from Deck face-up, and executes its activation cost.",
+              "card_name": "Ignis Heat, the True Dracowarrior"
+            },
+            {
+              "script": "tmp/omega_scripts/c79582540.lua",
+              "card_id": 79582540,
+              "matched_structure": "Cloned Normal/Special Summon success triggers with a shared hard once-per-turn code.",
+              "card_name": "Ancient Warriors - Savage Don Ying"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "If Tributed for a Ritual Summon: draw 1; HOPT.",
+          "lua_implementation": "A delayed EVENT_RELEASE trigger requires REASON_RITUAL, checks draw legality, and draws one with a distinct id+100 count code.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c23160024.lua",
+              "card_id": 23160024,
+              "matched_structure": "EVENT_RELEASE field trigger that draws one after qualifying Tributes.",
+              "card_name": "Amorphous Persona"
+            },
+            {
+              "script": "tmp/omega_scripts/c42600274.lua",
+              "card_id": 42600274,
+              "matched_structure": "EVENT_RELEASE trigger conditioned on REASON_RITUAL.",
+              "card_name": "Cyber Tutubon"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        }
+      ]
+    },
+    {
+      "ordinal": 545,
+      "passcode": 259790247,
+      "name": "Charmelia Hanabi",
+      "text_sha256": "1dcd5a09c1440b615e5491aa698babc73445678843b60adcab8de0cecc51481e",
+      "script_sha256": "cdeaf7b9b1b92aed2e225e25a5746ee8d77cb7150ce017da4c15703d86898f99",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Fresh semantic segmentation found 2 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "From hand, discard another \"Charmelia\" monster; Special Summon this card and a Deck/GY \"Charmelia\" monster whose name differs from the discarded card; HOPT.",
+          "lua_implementation": "The ignition cost selects/discards another archetypal monster only if a differently named Deck/GY summon candidate exists, stores its code, requires two zones, then SpecialSummonSteps this card and one legal differently named candidate before SpecialSummonComplete.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c29925614.lua",
+              "card_id": 29925614,
+              "matched_structure": "Discard another monster as cost to Special Summon the handler from hand.",
+              "card_name": "Chaos Allure Queen"
+            },
+            {
+              "script": "tmp/omega_scripts/c39778366.lua",
+              "card_id": 39778366,
+              "matched_structure": "Group/multiple Special Summon operation with zone-count validation.",
+              "card_name": "Union Scramble"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "If Tributed for a Ritual Summon: activate 1 \"Charmelia\" Continuous Spell/Trap from Deck or GY; HOPT.",
+          "lua_implementation": "A delayed EVENT_RELEASE trigger checks REASON_RITUAL, finds an activatable archetypal Continuous Spell/Trap through Necrovalley filtering, moves it face-up, consumes its activation count/cost, and raises the activation event.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c42600274.lua",
+              "card_id": 42600274,
+              "matched_structure": "EVENT_RELEASE condition for being Tributed as part of a Ritual Summon.",
+              "card_name": "Cyber Tutubon"
+            },
+            {
+              "script": "tmp/omega_scripts/c22499034.lua",
+              "card_id": 22499034,
+              "matched_structure": "Activates a Continuous Spell directly from Deck through GetActivateEffect and MoveToField.",
+              "card_name": "Ignis Heat, the True Dracowarrior"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        }
+      ]
+    },
+    {
+      "ordinal": 546,
+      "passcode": 259288669,
+      "name": "Charmelia Elysia",
+      "text_sha256": "a1a16451612fd8b88009cff6a498cc0d6f3f0b88febc95186a89e4edd7d067b6",
+      "script_sha256": "2787c5edcb5d620fdf8a23d063beba77b4876900e5408f4ab439588da45ae374",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Fresh semantic segmentation found 2 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "During either Main Phase, discard this card; Ritual Summon a hand \"Charmelia\" Ritual using hand/Deck/field monsters (Levels meet or exceed) and/or controlled face-up \"Charmelia\" Continuous Spell/Traps worth 4 Levels each; HOPT.",
+          "lua_implementation": "A Main-Phase Quick Effect discards itself as cost, builds legal monster materials from hand/MZONE/Deck plus face-up continuous archetypal S/T materials, values each S/T at 4, checks zones and a greater-or-equal subgroup, releases hand/field monsters, sends Deck monsters and S/T cards with Ritual material reasons, then Ritual Summons and completes procedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c81560239.lua",
+              "card_id": 81560239,
+              "matched_structure": "Custom Ritual operation merges standard Ritual materials with Deck materials, selects a Level-valid subgroup, and completes the Ritual Summon.",
+              "card_name": "Mitsurugi Ritual"
+            },
+            {
+              "script": "tmp/omega_scripts/c49721684.lua",
+              "card_id": 49721684,
+              "matched_structure": "Greater-or-equal Ritual procedure and CompleteProcedure handling.",
+              "card_name": "Mitsurugi Mirror"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "If Tributed for a Ritual Summon: place this card on the Deck bottom, then Special Summon 1 \"Charmelia\" monster from hand or GY; HOPT.",
+          "lua_implementation": "A delayed REASON_RITUAL release trigger requires this card to be returnable through Necrovalley and a summon candidate; it sends itself to SEQ_DECKBOTTOM, then after a break selects and summons one archetypal hand/GY monster.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c42600274.lua",
+              "card_id": 42600274,
+              "matched_structure": "REASON_RITUAL EVENT_RELEASE trigger with a GY follow-up.",
+              "card_name": "Cyber Tutubon"
+            },
+            {
+              "script": "tmp/omega_scripts/c29596581.lua",
+              "card_id": 29596581,
+              "matched_structure": "Sequential zone movement followed by an archetypal Special Summon with Necrovalley handling.",
+              "card_name": "Thunder Dragonroar"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        }
+      ]
+    },
+    {
+      "ordinal": 547,
+      "passcode": 259568843,
+      "name": "Charmelia Robin",
+      "text_sha256": "4296bf36fc9ef43cea92efe06ed7fe50cdba21eba359ec31daf919a98f7feeff",
+      "script_sha256": "98fd12f7b4b7b05e46b50134c63ff9bb50f1e567c58ec5151a3b7642ab4e5422",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Fresh semantic segmentation found 2 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "When the opponent chains to your \"Charmelia\" card/effect: discard this card from hand or banish it from GY; Special Summon 1 \"Charmelia\" monster from hand/GY; HOPT.",
+          "lua_implementation": "An EVENT_CHAINING Quick Effect verifies the opponent made the current chain link and the immediately preceding triggering effect was the controller's Charmelia effect; location-dependent cost discards or banishes this card, then the operation summons one archetypal hand/GY monster.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c56322832.lua",
+              "card_id": 56322832,
+              "matched_structure": "Inspects the immediately preceding chain link and triggering player/handler to respond to an opponent chain made against an archetypal effect.",
+              "card_name": "Tensei Ryu-Ge Anva"
+            },
+            {
+              "script": "tmp/omega_scripts/c98431356.lua",
+              "card_id": 98431356,
+              "matched_structure": "GY banish cost followed by a GY Special Summon effect.",
+              "card_name": "Phantom Knights' Wing"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "If Tributed for a Ritual Summon: add 1 \"Charmelia\" card from Deck or GY; HOPT.",
+          "lua_implementation": "A delayed EVENT_RELEASE trigger requires REASON_RITUAL, searches one archetypal Deck/GY card through Necrovalley filtering, sends it to hand, and confirms it, using id+100.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c42600274.lua",
+              "card_id": 42600274,
+              "matched_structure": "REASON_RITUAL EVENT_RELEASE trigger that recovers a Ritual-related card from GY.",
+              "card_name": "Cyber Tutubon"
+            },
+            {
+              "script": "tmp/omega_scripts/c3629090.lua",
+              "card_id": 3629090,
+              "matched_structure": "Deck/GY add-to-hand operation with hand confirmation.",
+              "card_name": "Cyber Angel Idaten"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        }
+      ]
+    },
+    {
+      "ordinal": 548,
+      "passcode": 259241946,
+      "name": "Charmelia Pray",
+      "text_sha256": "65802fb5b1bee6e659aaa3b603d008addfdf53daf72c81e7649b98f760cb1cb1",
+      "script_sha256": "91939e549e916302b588038cbd625647abe79d7ad11588646cceafc993dfe98e",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Fresh semantic segmentation found 2 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "Ritual Summon a \"Charmelia\" Ritual from hand/GY using hand/Deck/field monsters whose Levels meet or exceed, and/or controlled face-up \"Charmelia\" Continuous Spell/Traps worth 4 Levels each; one activation per turn.",
+          "lua_implementation": "The activation builds a custom greater-or-equal material group, but monmatfilter requires IsAbleToGrave for every monster in hand, Deck, or MZONE; after selection it releases hand/field monsters, sends Deck monsters/S/T cards, and Ritual Summons from hand/GY.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c49721684.lua",
+              "card_id": 49721684,
+              "matched_structure": "Official greater-or-equal Ritual Summon from hand/GY uses ordinary Ritual Tributes.",
+              "card_name": "Mitsurugi Mirror"
+            },
+            {
+              "script": "tmp/omega_scripts/c81560239.lua",
+              "card_id": 81560239,
+              "matched_structure": "Separates ordinary Ritual material from Deck material and only applies Deck-to-GY eligibility to the Deck-material pool.",
+              "card_name": "Mitsurugi Ritual"
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "IsAbleToGrave is incorrectly required for hand/field monsters that are Tributed. Under a replacement such as Macro Cosmos, legal hand/field Tributes are rejected even though they can be released and banished instead; only Deck/S/T cards explicitly sent to the GY need that check.",
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "For the rest of this turn after this card resolves, Extra Deck Special Summons are limited to Spellcaster or Fairy monsters.",
+          "lua_implementation": "register_lock creates an End-Phase-reset EFFECT_CANNOT_SPECIAL_SUMMON for non-Spellcaster/non-Fairy Extra Deck monsters, but ritop calls it only when ritualsummon returns true after a successful Special Summon.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c44362883.lua",
+              "card_id": 44362883,
+              "matched_structure": "Registers a turn-long Extra Deck Special Summon restriction as part of resolving/activating a summoning Spell.",
+              "card_name": "Branded Fusion"
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "The printed restriction is tied to this card resolving, not to successfully Ritual Summoning. If the legal activation resolves without a summon because its materials/target disappear, the Lua applies no restriction.",
+          "effect_index": 2
+        }
+      ]
+    },
+    {
+      "ordinal": 549,
+      "passcode": 259758604,
+      "name": "Charmelia Deal",
+      "text_sha256": "b01838f6ae61d15d40006101292fdfb4aff04985d2c51eaa29290b1c5b004186",
+      "script_sha256": "7a37014a61008c344d05d45637b82223d717c89743030fd9d58867adcc404404",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Fresh semantic segmentation found 3 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "When activated: optionally add 1 \"Charmelia\" Ritual Monster and/or 1 \"Charmelia\" Ritual Spell from Deck; HOPT.",
+          "lua_implementation": "The activation count uses id; resolution selects a subgroup of one or two where at most one is a Ritual Monster and at most one is an eligible Ritual Spell, then adds/confirms them.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c975299.lua",
+              "card_id": 975299,
+              "matched_structure": "Optional search performed when a persistent Spell is activated.",
+              "card_name": "B.E.F. Zelos"
+            },
+            {
+              "script": "tmp/omega_scripts/c3629090.lua",
+              "card_id": 3629090,
+              "matched_structure": "Ritual Spell search and Deck-to-hand confirmation.",
+              "card_name": "Cyber Angel Idaten"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "All \"Charmelia\" monsters you control gain 400 ATK/DEF.",
+          "lua_implementation": "Paired field EFFECT_UPDATE_ATTACK/DEFENSE effects target face-up Charmelia monsters in the controller's Monster Zone and apply +400.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c975299.lua",
+              "card_id": 975299,
+              "matched_structure": "Paired archetype-wide field ATK/DEF updates on a persistent Spell.",
+              "card_name": "B.E.F. Zelos"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        },
+        {
+          "printed_clause": "If sent to the GY by the effect of a \"Charmelia\" monster: place this card face-up in your S/T Zone; HOPT.",
+          "lua_implementation": "A delayed EVENT_TO_GRAVE trigger requires REASON_EFFECT and checks the resolving effect handler is currently both Charmelia and TYPE_MONSTER, then moves this card face-up from GY if a zone remains.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c59805313.lua",
+              "card_id": 59805313,
+              "matched_structure": "EVENT_TO_GRAVE trigger that later places a qualifying Continuous Spell/Trap face-up with MoveToField.",
+              "card_name": "Volcanic Rimfire"
+            },
+            {
+              "script": "tmp/omega_scripts/c79582540.lua",
+              "card_id": 79582540,
+              "matched_structure": "Uses re:IsActiveType/trigger semantics for identifying the type of the effect that caused a movement event.",
+              "card_name": "Ancient Warriors - Savage Don Ying"
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "The condition tests re:GetHandler():IsType(TYPE_MONSTER) at trigger processing instead of re:IsActiveType(TYPE_MONSTER). If the Charmelia monster-effect handler changes type or becomes face-down before this trigger is checked, the printed cause is lost even though the causing effect was activated as a monster effect.",
+          "effect_index": 3
+        }
+      ]
+    },
+    {
+      "ordinal": 550,
+      "passcode": 259226799,
+      "name": "Charmelia Beast",
+      "text_sha256": "14317fd892d86d6057e3014d91c07ab35f7e02fb918b7f2d5f136fa34932de00",
+      "script_sha256": "2dbad3d03f8276cb541a408c56adbbcac1ed73d31c7dcc2d517b8cf66483f023",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 3,
+        "reason": "Fresh semantic segmentation found 3 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "While you control a \"Charmelia\" Ritual Monster, the opponent cannot target your \"Charmelia\" monsters with card effects.",
+          "lua_implementation": "A field target-protection effect is conditional on a face-up Charmelia Ritual in the controller's MZONE, targets face-up Charmelia monsters, and uses opponent-only aux.tgoval.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c975299.lua",
+              "card_id": 975299,
+              "matched_structure": "Conditional/archetypal opponent-only effect-target protection through EFFECT_CANNOT_BE_EFFECT_TARGET and aux.tgoval.",
+              "card_name": "B.E.F. Zelos"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "Once per turn, the first time a \"Charmelia\" monster you control would be destroyed by battle or card effect, it is not destroyed.",
+          "lua_implementation": "A field EFFECT_INDESTRUCTABLE_COUNT targets face-up Charmelia monsters, has a shared count limit of one, and accepts REASON_BATTLE or REASON_EFFECT.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c35815783.lua",
+              "card_id": 35815783,
+              "matched_structure": "Field EFFECT_INDESTRUCTABLE_COUNT for the first qualifying battle/effect destruction.",
+              "card_name": "Magikey World"
+            },
+            {
+              "script": "tmp/omega_scripts/c15543940.lua",
+              "card_id": 15543940,
+              "matched_structure": "Counted battle-or-effect destruction prevention using the destruction reason mask.",
+              "card_name": "Tyrant Dino Fusion"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        },
+        {
+          "printed_clause": "If sent to GY by a \"Charmelia\" card effect: add this card, then draw equal to your controlled \"Charmelia\" Ritual Monsters; HOPT.",
+          "lua_implementation": "A delayed EVENT_TO_GRAVE trigger requires REASON_EFFECT and a Charmelia effect handler; it returns itself through Necrovalley, recomputes the face-up Ritual count after the successful add, breaks the effect, and draws that many.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c79582540.lua",
+              "card_id": 79582540,
+              "matched_structure": "A movement trigger performs a first operation and conditionally draws after that operation succeeds.",
+              "card_name": "Ancient Warriors - Savage Don Ying"
+            },
+            {
+              "script": "tmp/omega_scripts/c29596581.lua",
+              "card_id": 29596581,
+              "matched_structure": "Face-up/GY archetype filtering and Necrovalley-aware movement to hand.",
+              "card_name": "Thunder Dragonroar"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 3
+        }
+      ]
+    },
+    {
+      "ordinal": 551,
+      "passcode": 259402105,
+      "name": "Magical Girl Explosion!",
+      "text_sha256": "56b84e1a5967cdb369d16b056810b0121af85fe233c5e5014544119a31599f19",
+      "script_sha256": "ed584cc0c857b1269b85dc5458b15e8f0e2b5eea3aa89b719b063df5a89b869d",
+      "overall_verdict": "DEFECT",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Fresh semantic segmentation found 4 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "(This card is always treated as a \"Charmelia\" card.)",
+          "lua_implementation": "The current CCG database row stores both the card's own setcode and Charmelia setcode 0x12b1 (hex blob D2EBB112); listed_series also exposes Charmelia to script tooling.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c28306253.lua",
+              "card_id": 28306253,
+              "matched_structure": "Official always-treated-as naming/archetype classification is database/list metadata rather than an activated Lua effect.",
+              "card_name": "Angry Burger"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "If the opponent controls more cards, they cannot respond to this card's effect activations.",
+          "lua_implementation": "Each activated effect calls protect_chain during target setup; if the opponent's on-field count exceeds the controller's, SetChainLimit permits only the controller to add the next chain link.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c48130397.lua",
+              "card_id": 48130397,
+              "matched_structure": "Sets a chain limit during activation targeting so the opponent cannot respond.",
+              "card_name": "Super Polymerization"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        },
+        {
+          "printed_clause": "Once per turn during either Main Phase: Tribute a hand/face-up-field \"Charmelia\" monster; non-target-select an opponent monster, negate it, and if successful banish it face-down.",
+          "lua_implementation": "A Main-Phase Quick Effect releases one eligible hand/MZONE monster as cost, non-target-selects a negatable opposing monster at resolution, registers disable effects, then removes it face-down without a sequential break; id count limit applies.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c24224830.lua",
+              "card_id": 24224830,
+              "matched_structure": "Banishes a monster and applies effect negation to the selected card.",
+              "card_name": "Called by the Grave"
+            },
+            {
+              "script": "tmp/omega_scripts/c11155484.lua",
+              "card_id": 11155484,
+              "matched_structure": "Cost followed by negation and a dependent removal/destruction operation.",
+              "card_name": "Crystal Miracle"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 3
+        },
+        {
+          "printed_clause": "If the opponent controls an Extra-Deck-Summoned monster: Special Summon a \"Charmelia\" Ritual from hand/Deck/GY ignoring conditions, treated as a Ritual Summon; HOPT.",
+          "lua_implementation": "The condition searches only face-up opponent monsters with Extra Deck summon location. The summon filter uses IsCanBeSpecialSummoned with nocheck=false,nolimit=true; the operation summons with SUMMON_TYPE_RITUAL and CompleteProcedure.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c60303688.lua",
+              "card_id": 60303688,
+              "matched_structure": "Official Extra-Deck-summoned-monster condition checks IsSummonLocation without requiring face-up.",
+              "card_name": "Dogmatika Ecclesia, the Virtuous"
+            },
+            {
+              "script": "tmp/omega_scripts/c14094090.lua",
+              "card_id": 14094090,
+              "matched_structure": "Ignoring Summoning conditions uses IsCanBeSpecialSummoned/Duel.SpecialSummon with nocheck=true.",
+              "card_name": "Super Soldier Ritual"
+            },
+            {
+              "script": "tmp/omega_scripts/c8454126.lua",
+              "card_id": 8454126,
+              "matched_structure": "Special Summon treated as a Ritual Summon through SUMMON_TYPE_RITUAL and CompleteProcedure.",
+              "card_name": "Conductor of Nephthys"
+            }
+          ],
+          "verdict": "DEFECT",
+          "issue": "Two printed cases are excluded: extrafilter wrongly requires the opponent's Extra-Deck-Summoned monster to remain face-up, and the summon uses nocheck=false even though the text explicitly ignores Summoning Conditions.",
+          "effect_index": 4
+        }
+      ]
+    },
+    {
+      "ordinal": 552,
+      "passcode": 259489283,
+      "name": "Charmelia Fairy Kyubey",
+      "text_sha256": "30cca646530813d1d888f0e217e29e5a25eb4c7d4b8dc7cd511cc1587089cc35",
+      "script_sha256": "9b7293663d9464824d13c21556ac4b81bad3c6152e9e2f84c8c62de333706a3b",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Fresh semantic segmentation found 4 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "Can be Ritual Summoned with a \"Charmelia\" card.",
+          "lua_implementation": "EnableReviveLimit plus an uncopyable aux.ritlimit Special Summon condition permits proper Ritual Summoning; Charmelia Ritual effects provide the matching archetypal summon routes.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c3629090.lua",
+              "card_id": 3629090,
+              "matched_structure": "Official Ritual Monster revive-limit/proper Ritual Summon structure.",
+              "card_name": "Cyber Angel Idaten"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "Cannot be destroyed by battle.",
+          "lua_implementation": "A single-range EFFECT_INDESTRUCTABLE_BATTLE on the Monster Zone has constant value 1.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c15610297.lua",
+              "card_id": 15610297,
+              "matched_structure": "Unconditional battle indestructibility through EFFECT_INDESTRUCTABLE_BATTLE.",
+              "card_name": "Vijam the Cubic Seed"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        },
+        {
+          "printed_clause": "Reveal from hand; shuffle this card into the Deck, then Special Summon 1 \"Charmelia\" monster from Deck; HOPT.",
+          "lua_implementation": "The ignition cost confirms this non-public card; resolution sends it to SEQ_DECKSHUFFLE, requires it to reach Deck, then after a break selects and Special Summons one archetypal Deck monster.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c95365081.lua",
+              "card_id": 95365081,
+              "matched_structure": "Exact reveal/shuffle-self-into-Deck then archetypal Deck Special Summon sequence.",
+              "card_name": "Hecahands Ibtel"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 3
+        },
+        {
+          "printed_clause": "Once per turn (Quick Effect): target an opponent monster; place it face-up in your S/T Zone as a Continuous Spell.",
+          "lua_implementation": "A free-chain target effect requires a face-up target and controller S/T capacity; resolution moves the still-related nonimmune target to the controller's S/T Zone and registers TYPE_SPELL+TYPE_CONTINUOUS.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c24081957.lua",
+              "card_id": 24081957,
+              "matched_structure": "Targets a face-up monster, MoveToField places it in an S/T Zone, and EFFECT_CHANGE_TYPE makes it a Continuous Spell.",
+              "card_name": "Sinful Spoils of Subversion - Snake-Eye"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 4
+        }
+      ]
+    },
+    {
+      "ordinal": 553,
+      "passcode": 259753109,
+      "name": "Charmelia Fairy Morningstar",
+      "text_sha256": "6f163442b2cc4f6658a8f97158227b43f7a855a4d1957bd2b0a8f1c9674ed7db",
+      "script_sha256": "e07e875916393d414301faa40d366a97a5b25c692cdde468806009a5b2f09a26",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 4,
+        "reason": "Fresh semantic segmentation found 4 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "Can be Ritual Summoned with a \"Charmelia\" card.",
+          "lua_implementation": "EnableReviveLimit and an uncopyable aux.ritlimit Special Summon condition enforce a proper Ritual Summon route.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c3629090.lua",
+              "card_id": 3629090,
+              "matched_structure": "Official Ritual Monster proper-summon/revive-limit structure.",
+              "card_name": "Cyber Angel Idaten"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "You can only control 1 \"Charmelia Fairy Morningstar\".",
+          "lua_implementation": "SetUniqueOnField(1,0,id) registers the one-per-controller uniqueness rule when the engine method is available.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c93860227.lua",
+              "card_id": 93860227,
+              "matched_structure": "Official one-copy-on-field monster uniqueness procedure.",
+              "card_name": "Necroquip Princess"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        },
+        {
+          "printed_clause": "Once per turn (Quick Effect): send a Continuous Spell/Trap from hand/face-up field to GY, target up to 2 opponent cards, negate then destroy them; a Monster Card paid cannot trigger in GY this turn.",
+          "lua_implementation": "The Quick Effect sends an eligible card as cost; original/current Monster Cards receive EFFECT_CANNOT_TRIGGER through End Phase. It targets one or two negatable opponent cards, disables still-face-up valid targets, then after a break destroys the successfully disabled group; id count limit applies.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c32422602.lua",
+              "card_id": 32422602,
+              "matched_structure": "Sends a face-up Continuous Spell/Trap as activation cost for a negation effect.",
+              "card_name": "Ancient Warriors - Ingenious Zhuge Kong"
+            },
+            {
+              "script": "tmp/omega_scripts/c11155484.lua",
+              "card_id": 11155484,
+              "matched_structure": "Negation followed by dependent destruction.",
+              "card_name": "Crystal Miracle"
+            },
+            {
+              "script": "tmp/omega_scripts/c10515412.lua",
+              "card_id": 10515412,
+              "matched_structure": "Applies EFFECT_CANNOT_TRIGGER to prevent a moved monster's effects.",
+              "card_name": "Lightstorm Dragon"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 3
+        },
+        {
+          "printed_clause": "If sent to GY: target up to 2 \"Charmelia\" cards in GY/face-up banishment; add them to hand; HOPT.",
+          "lua_implementation": "A delayed targeted EVENT_TO_GRAVE effect selects one or two archetypal GY/face-up-banished cards through Necrovalley filtering, rechecks relation/filter, sends them to hand, and confirms them; id+100 count applies.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c29596581.lua",
+              "card_id": 29596581,
+              "matched_structure": "Recovers archetypal cards from GY or face-up banishment through a Necrovalley-aware filter.",
+              "card_name": "Thunder Dragonroar"
+            },
+            {
+              "script": "tmp/omega_scripts/c15306543.lua",
+              "card_id": 15306543,
+              "matched_structure": "GY/banishment retrieval into hand with face-up-banished filtering.",
+              "card_name": "Stars Align Above the Shrine"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 4
+        }
+      ]
+    },
+    {
+      "ordinal": 554,
+      "passcode": 259599798,
+      "name": "Wyvernal Luna",
+      "text_sha256": "d67a480ace356112e288fb36c376bd4f2bfc590ddbbdeb87155f2f524f05a019",
+      "script_sha256": "54e47665c9b86bd3d01530fdd408f0da19fe9bcd5f869e7eead44983450b0715",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Fresh semantic segmentation found 2 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "During your Main Phase: target 1 WIND Insect in your GY; add it to hand; HOPT.",
+          "lua_implementation": "A Monster Zone ignition effect targets one WIND Insect monster in the controller's GY through Necrovalley, then returns it if still related and able.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c42600274.lua",
+              "card_id": 42600274,
+              "matched_structure": "Targeted GY recovery to hand with relation checking.",
+              "card_name": "Cyber Tutubon"
+            },
+            {
+              "script": "tmp/omega_scripts/c29596581.lua",
+              "card_id": 29596581,
+              "matched_structure": "Necrovalley-aware add-to-hand operation from GY.",
+              "card_name": "Thunder Dragonroar"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "If sent to GY: Special Summon this card, then if sent from hand/field optionally send 1 \"Wyvernal\" monster from Deck to GY; HOPT.",
+          "lua_implementation": "A delayed EVENT_TO_GRAVE trigger checks self-revival legality; operation snapshots the previous hand/on-field location, Special Summons itself through Necrovalley, and only after success optionally selects/sends one archetypal Deck monster.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c73956664.lua",
+              "card_id": 73956664,
+              "matched_structure": "EVENT_TO_GRAVE self-revival followed by a dependent send-to-GY operation.",
+              "card_name": "Tearlaments Reinoheart"
+            },
+            {
+              "script": "tmp/omega_scripts/c60242223.lua",
+              "card_id": 60242223,
+              "matched_structure": "Delayed sent-to-GY trigger that sends an archetypal Deck card to GY.",
+              "card_name": "Bystial Saronir"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        }
+      ]
+    },
+    {
+      "ordinal": 555,
+      "passcode": 259783008,
+      "name": "Wyvernal Caudina",
+      "text_sha256": "35fda8b8a155bff4d1fee59bc03df785125885f151e22f04df0893a9be72d15f",
+      "script_sha256": "99b312d59ea4201079e4a892ecf53c453a5e2231fa41aff647cab5a1d5ff4586",
+      "overall_verdict": "PASS",
+      "coverage_override": {
+        "expected_individual_effects": 2,
+        "reason": "Fresh semantic segmentation found 2 individual printed procedure/effect records. Conjunctions, choices, dependent 'then/and if you do' steps, and their HOPT/use-cap text are kept with the single Lua effect that resolves them; separately functioning procedures, continuous rules, and activated/triggered effects are separate records."
+      },
+      "effects": [
+        {
+          "printed_clause": "Reveal this card in hand; Special Summon another \"Wyvernal\" from hand/Deck, then discard this card; HOPT.",
+          "lua_implementation": "The hand ignition cost reveals/confirms this non-public card; resolution selects and Special Summons a non-self-code archetypal hand/Deck monster, then after a break discards the still-related handler with REASON_DISCARD; id count applies.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c13332685.lua",
+              "card_id": 13332685,
+              "matched_structure": "Reveal-in-hand operation that Special Summons an archetypal monster from Deck before a mandatory follow-up action.",
+              "card_name": "Ame no Habakiri no Mitsurugi"
+            },
+            {
+              "script": "tmp/omega_scripts/c95365081.lua",
+              "card_id": 95365081,
+              "matched_structure": "Reveal-hand cost and sequential Deck Special Summon structure.",
+              "card_name": "Hecahands Ibtel"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 1
+        },
+        {
+          "printed_clause": "If Normal or Special Summoned: send exactly 2 same-name \"Wyvernal\" monsters from Deck to GY; HOPT.",
+          "lua_implementation": "Cloned delayed Normal/Special Summon triggers share id+100; target legality requires two sendable same-code archetypal Deck monsters, and resolution selects one then a second with that code and sends the two-card group.",
+          "official_references": [
+            {
+              "script": "tmp/omega_scripts/c23812568.lua",
+              "card_id": 23812568,
+              "matched_structure": "Validates/selects exactly two same-code cards from the Deck and sends a two-card group to the GY.",
+              "card_name": "Additional Mirror Level 7"
+            },
+            {
+              "script": "tmp/omega_scripts/c1050186.lua",
+              "card_id": 1050186,
+              "matched_structure": "Normal/Special Summon trigger that sends an archetypal monster from Deck to GY.",
+              "card_name": "Satellarknight Unukalhai"
+            }
+          ],
+          "verdict": "PASS",
+          "issue": null,
+          "effect_index": 2
+        }
+      ]
+    }
+  ]
+}

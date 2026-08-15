@@ -9,7 +9,7 @@
       "passcode": 255668557,
       "name": "Shining Brigade - Joyous Division",
       "text_sha256": "b16fe40185ab0a8cc6fa483bba5ae1cdb65f54aa7a6641818793e77c282b9a37",
-      "script_sha256": "ba55d190324f626896afca80d13279a3114645230b6f1d97ab43661fc6daaa16",
+      "script_sha256": "c0aad990272ba32a723a9f8c6206c8a6d9ab77aa7eeb82fbb5cc4d8c62cd775e",
       "overall_verdict": "FIXED",
       "coverage_override": {
         "expected_individual_effects": 2,
@@ -30,13 +30,13 @@
         {
           "effect_index": 2,
           "printed_clause": "A Shining Brigade monster that has this card as material gains: Once per turn, during the Main Phase (Quick Effect): You can roll a 6-sided die; banish cards from your opponent's GY up to half the number rolled (rounded up).",
-          "lua_implementation": "EVENT_BE_MATERIAL grants the qualifying Xyz Monster a Main Phase Quick Effect. Its target step declares the dice/removal categories; its operation rolls the die and then lets the controller banish between one and ceil(result/2) eligible opposing GY cards.",
+          "lua_implementation": "EVENT_BE_MATERIAL grants the qualifying Xyz Monster a Main Phase Quick Effect. After the activation-legality check, its target callback rolls the die before the Chain can continue and stores ceil(result/2) on the granted effect. Resolution uses that saved cap without rerolling and lets the controller banish between one and that many eligible opposing GY cards.",
           "official_references": [
             {"script":"c4145852.lua","card_id":4145852,"card_name":"Zoodiac Ramram","matched_structure":"Registers an effect associated with a card used as Xyz Material."},
-            {"script":"c3549275.lua","card_id":3549275,"card_name":"Dice Jar","matched_structure":"Calls Duel.TossDice during the resolving operation, after players had the opportunity to respond."}
+            {"script":"c3549275.lua","card_id":3549275,"card_name":"Dice Jar","matched_structure":"Uses Duel.TossDice and carries the resulting integer into the bounded effect operation; Joyous Division places that call in its activation callback because its printed roll precedes the semicolon."}
           ],
           "verdict": "FIXED",
-          "issue": "Fixed: the die roll was moved from target declaration to resolution, so its result is not exposed before the Chain resolves."
+          "issue": "Fixed: the printed die roll precedes the semicolon and therefore belongs to activation. The old Lua rolled only during resolution; it now rolls during target declaration and resolves from the stored result."
         }
       ]
     }
