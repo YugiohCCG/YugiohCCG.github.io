@@ -17,7 +17,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	--Main Phase: send 1 Equip Card; negate 1 opponent monster
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(STRING_ID,2))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_DISABLE)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_FREE_CHAIN)

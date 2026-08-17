@@ -54,9 +54,10 @@ TYPE_BITS = {
 # 210m-259m custom-card range always overflows. Current Omega builds then route
 # negative keys to the system-string branch instead of card localization.
 #
-# Mirror Omega's own "Strings Placeholder" token rows: each real CCG card gets
-# a hidden, signed-safe prompt carrier whose str1..str16 values duplicate the
-# real card's strings. The 132m-133m range is empty in the current official DB.
+# Each real CCG card gets a hidden, signed-safe prompt carrier whose str1..str16
+# values duplicate the real card's strings. Omega displays the carrier name in
+# activation prompts, so carriers deliberately use the source card's real name.
+# The 132m-133m range is empty in the current official DB.
 MESSAGE_CARRIER_BASE = 132_000_000
 MESSAGE_CARRIER_MODULUS = 2_000_000
 MAX_SIGNED_STRING_CARD_ID = (2**31 - 1) // 16
@@ -339,21 +340,21 @@ EXTRA_TOKEN_CARDS = [
 
 CARD_STRING_OVERRIDES = {
     "altergeistregissae": ["Negate 1 face-up card's effects", "Set 1 Altergeist Trap from the GY", "Tribute from the hand"],
-    "altergeistifritware": ['Special Summon 1 "Altergeist" monster from your GY', 'Negate the monster effect, then add 1 "Altergeist" Trap from your GY', "Negate activation"],
+    "altergeistifritware": ['Special Summon 1 "Altergeist" monster from your GY', 'Negate the monster effect, then add 1 "Altergeist" Trap from your GY'],
     "dragonprotectorofnature": ["Special Summon 1 Level 4 or lower NATURE monster"],
     "transcendthependulum": ["Destroy all Spells/Traps, then place 2 Pendulum Monsters in your Pendulum Zones", "Pendulum Summon Pendulum Monsters in Defense Position"],
     "strikingmirrorforce": ["Destroy attack position monsters"],
     "risingelemental": ["Banish 1 monster from your GY; banish opponent monsters with the same Attribute"],
     "yummykuriboh": ["Special Summon this card and 1 Level 1 monster"],
     "sealedglyphsdragon": ["Become unaffected by the opponent's Spell/Trap effects"],
-    "devoteeoffire": ["Send 1 Dragon from the Extra Deck to the GY", "Set 1 card that lists Phlogiston Dragon", "Negate a Spell/Trap activation"],
+    "devoteeoffire": ['Send 1 Dragon from the Extra Deck to the GY, then Set 1 Spell/Trap that lists "Phlogiston Dragon"', "Negate a Spell/Trap activation"],
     "shamanoffire": ["Send and copy a Spell that lists Phlogiston Dragon"],
     "guardianoffire": ['Send this card and discard 1 card; add a monster that lists "Phlogiston Dragon"'],
     "phlogisticuprising": ['Shuffle "Phlogiston Dragon" into the Deck; Set this card from your GY'],
     "phlogisticignition": ["Make your FIRE monsters gain ATK", "Set this card from your GY"],
     "phlogistonswake": ['Give 1 "Phlogiston Dragon" additional attacks', 'Make your opponent\'s monsters attack 1 "Phlogiston Dragon"', "Pay LP in multiples of 300?", "Banish this card; Special Summon 1 FIRE monster from your GY"],
     "phlogistondragon": ['Send up to 2 cards that list "Phlogiston Dragon" from your Deck to the GY'],
-    "phlogisticscorchingdragonhorde": ["Destroy opponent cards based on the LP you paid", 'Send 3 monsters that list "Phlogiston Dragon" from your Deck or Extra Deck to the GY', 'Also send 1 "Phlogiston Dragon" you control to the GY?'],
+    "phlogisticscorchingdragonhorde": ["Destroy opponent cards based on the LP you paid", 'Send 3 monsters that list "Phlogiston Dragon" from your Deck or Extra Deck to the GY'],
     "curryboh": ["Special Summon this card from your hand and convert damage into LP gain", "Banish this card; gain LP equal to 1 monster's ATK"],
     "starryknightarcenciel": ["Negate and destroy a DARK monster's effect", 'Return this card to the hand; Normal Summon 1 "Starry Knight" monster'],
     "starryknightnebriel": ["Special Summon this card", "Special Summon a Level 7 LIGHT Dragon or Starry Knight", "Reveal a Level 7 LIGHT Dragon; add 1 LIGHT Fairy"],
@@ -406,7 +407,6 @@ CARD_STRING_OVERRIDES = {
     "toprotoousia": [
         "Special Summon 1 Protogenic Essence Token",
         "Banish this card; add 1 face-up banished monster",
-        "Draw 1 card",
     ],
     "toprotoarchegoni": [
         "Discard 1 card; add 1 listed Spell/Trap",
@@ -414,8 +414,6 @@ CARD_STRING_OVERRIDES = {
     ],
     "protogenesis": [
         'Reveal 1 "To Proto" monster',
-        "Special Summon it",
-        "Banish it",
     ],
     "thebeginning": [
         'Banish 1 monster; add 1 "To Proto" monster',
@@ -699,7 +697,6 @@ CARD_STRING_OVERRIDES = {
     ],
     "bobbiebluefinthenauticalnocturnes": [
         "Special Summon this card",
-        "Opponent summons 1 monster from their hand",
     ],
     "scarletseareefthenauticalcreatures": [
         'Add "Exploring the Nautical Waters"',
@@ -1414,7 +1411,6 @@ CARD_STRING_OVERRIDES = {
     ],
     "grimoireofeclipse": [
         'Fusion Summon 1 "Eclipse Observer" monster',
-        'Use 1 Level 8 "Eclipse Observer" monster and 1 Spellcaster monster as Fusion Material?',
     ],
     "encyclopediaofeclipse": [
         "Negate all face-up monsters, then opponent draws",
@@ -1628,7 +1624,6 @@ CARD_STRING_OVERRIDES = {
     ],
     "redeyesboosterdragon": [
         'If Fusion Summoned: add 1 "Red-Eyes" monster during this End Phase',
-        'End Phase: add 1 "Red-Eyes" monster from Deck/GY',
         "Main Phase: send 1 Equip Card; negate 1 opponent monster",
     ],
     "heraldofwhitelight": [
@@ -2331,8 +2326,6 @@ CARD_STRING_OVERRIDES = {
     "jannawindbornegoddessofclementwinds": [
         "Return up to 2 opponent cards to the hand, then shuffle cards from your hand",
         'Target 1 "Windborne" Spell in your GY to add during your next Standby Phase',
-        'Reveal up to 2 "Windborne" Spells',
-        'Shuffle or Set another "Windborne" card from your GY',
     ],
     "maryamwindbornecaretakerofthetemple": [
         "Special Summon this card",
@@ -2476,7 +2469,6 @@ CARD_STRING_OVERRIDES = {
     "thespiresofzephorionprime": [
         'Activate "Eldora, the Intergalactic Empire"',
         'Add a monster that lists "Eldora"',
-        "Destroy this card instead",
     ],
     "chapteriiverseiv": [
         "Rewrite the activated effect",
@@ -3080,21 +3072,29 @@ def upsert_message_carriers(
     cards: list[dict[str, Any]],
 ) -> dict[int, int]:
     mapping = build_message_carrier_map(cards)
-    expected_names = {
-        carrier_id: f"CCG Strings Placeholder {card_id}"
+    cards_by_id = {int(card["passcode"]): card for card in cards}
+    expected_rows = {
+        carrier_id: (
+            canonical_display_name(cards_by_id[card_id].get("name")),
+            f"CCG prompt carrier for {card_id}.",
+        )
         for card_id, carrier_id in mapping.items()
     }
-    for carrier_id, expected_name in expected_names.items():
+    for carrier_id, (expected_name, expected_desc) in expected_rows.items():
         existing = conn.execute(
             """
-            select d.id, t.name
+            select d.id, d.type, t.name, t.desc
             from datas d
             left join texts t using(id)
             where d.id=?
             """,
             (carrier_id,),
         ).fetchone()
-        if existing is not None and existing["name"] != expected_name:
+        if existing is not None and (
+            existing["name"] != expected_name
+            or existing["desc"] != expected_desc
+            or int(existing["type"]) != MESSAGE_CARRIER_TYPE
+        ):
             raise RuntimeError(
                 f"Message carrier {carrier_id} is already occupied by "
                 f"{existing['name'] or '<unnamed card>'!r}"
@@ -3109,8 +3109,8 @@ def upsert_message_carriers(
         carrier_text = {
             **source_text,
             "id": carrier_id,
-            "name": expected_names[carrier_id],
-            "desc": f"Prompt storage for {source_text['name']} ({card_id}).",
+            "name": source_text["name"],
+            "desc": f"CCG prompt carrier for {card_id}.",
         }
         conn.execute(
             """

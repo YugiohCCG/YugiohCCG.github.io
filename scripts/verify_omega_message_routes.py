@@ -30,6 +30,7 @@ CONSTANT_RE = re.compile(r"^\s*local\s+([A-Za-z_]\w*)\s*=\s*(\d+)\s*$", re.MULTI
 STRING_CALL_RE = re.compile(
     r"aux\.Stringid\s*\(\s*([A-Za-z_]\w*|\d+)\s*,\s*(\d+)\s*\)"
 )
+PLACEHOLDER_RE = re.compile(r"\b(?:placeholder|todo|tbd|fixme)\b", re.IGNORECASE)
 
 
 def main() -> int:
@@ -42,6 +43,7 @@ def main() -> int:
     args = parser.parse_args()
 
     cards = json.loads(args.cards.read_text(encoding="utf-8-sig"))
+    card_names = {int(card["passcode"]): str(card.get("name")) for card in cards}
     carrier_map = build_message_carrier_map(cards)
     carrier_to_owner = {carrier: owner for owner, carrier in carrier_map.items()}
     errors: list[str] = []
@@ -134,10 +136,12 @@ def main() -> int:
                 card_calls.append(
                     {
                         "source_card_id": owner_id,
+                        "source_card_name": card_names[owner_id],
                         "carrier_id": base_id,
                         "slot": slot,
                         "database_column": column,
                         "description_key": description,
+                        "message": source["value"],
                     }
                 )
             manifest_cards.append(
@@ -150,13 +154,49 @@ def main() -> int:
                 }
             )
 
-        carrier_rows = conn.execute(
-            "select id from texts where name like 'CCG Strings Placeholder %'"
-        ).fetchall()
-        if len(carrier_rows) != len(carrier_map):
-            errors.append(
-                f"carrier row count {len(carrier_rows)} does not match mapping {len(carrier_map)}"
-            )
+        for owner_id, carrier_id in carrier_map.items():
+            source = conn.execute(
+                "select name, str1, str2, str3, str4, str5, str6, str7, str8, "
+                "str9, str10, str11, str12, str13, str14, str15, str16 "
+                "from texts where id=?",
+                (owner_id,),
+            ).fetchone()
+            carrier = conn.execute(
+                "select d.type, t.name, t.desc, t.str1, t.str2, t.str3, t.str4, "
+                "t.str5, t.str6, t.str7, t.str8, t.str9, t.str10, t.str11, "
+                "t.str12, t.str13, t.str14, t.str15, t.str16 "
+                "from datas d join texts t using(id) where d.id=?",
+                (carrier_id,),
+            ).fetchone()
+            if source is None or carrier is None:
+                errors.append(f"carrier {carrier_id} for {owner_id} is missing")
+                continue
+            if int(carrier["type"]) != MESSAGE_CARRIER_TYPE:
+                errors.append(f"carrier {carrier_id} for {owner_id} is not a hidden Token")
+            if carrier["name"] != source["name"]:
+                errors.append(
+                    f"carrier {carrier_id} exposes {carrier['name']!r}, expected {source['name']!r}"
+                )
+            expected_desc = f"CCG prompt carrier for {owner_id}."
+            if carrier["desc"] != expected_desc:
+                errors.append(
+                    f"carrier {carrier_id} has invalid marker description {carrier['desc']!r}"
+                )
+            for slot in range(16):
+                column = f"str{slot + 1}"
+                value = source[column]
+                if value != carrier[column]:
+                    errors.append(f"carrier {carrier_id} {column} differs from {owner_id}")
+                if value is None or value == "":
+                    continue
+                if value != value.strip():
+                    errors.append(f"source {owner_id} {column} has surrounding whitespace")
+                if PLACEHOLDER_RE.search(value):
+                    errors.append(f"source {owner_id} {column} contains placeholder text: {value!r}")
+                if any(ord(char) < 32 for char in value):
+                    errors.append(f"source {owner_id} {column} contains a control character")
+                if (carrier_id, slot) not in pairs:
+                    errors.append(f"source {owner_id} {column} is nonblank but unused")
     finally:
         conn.close()
 

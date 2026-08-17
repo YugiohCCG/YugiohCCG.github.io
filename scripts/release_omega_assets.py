@@ -240,6 +240,10 @@ def run_release_audit() -> None:
             "verify_omega_archetypes.py",
         ),
         (
+            "all routed CCG effect-message strings",
+            "verify_omega_message_routes.py",
+        ),
+        (
             "installer payloads and folder layout",
             "verify_omega_release.py",
         ),

@@ -4,6 +4,7 @@ local STRING_ID=133118040
 function s.initial_effect(c)
 	--Special Summon from hand
 	local e1=Effect.CreateEffect(c)
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetCode(EFFECT_SPSUMMON_PROC)
 	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE)

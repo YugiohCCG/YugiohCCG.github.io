@@ -30,7 +30,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 	-- negate spell/trap
 	local e6=Effect.CreateEffect(c)
-	e6:SetDescription(aux.Stringid(STRING_ID,2))
+	e6:SetDescription(aux.Stringid(STRING_ID,1))
 	e6:SetCategory(CATEGORY_NEGATE)
 	e6:SetType(EFFECT_TYPE_QUICK_O)
 	e6:SetCode(EVENT_CHAINING)

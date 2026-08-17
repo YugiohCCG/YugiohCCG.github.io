@@ -639,8 +639,8 @@ def audit_database(audit: Audit, cards: list[dict], active_ids: set[int]) -> set
                 source_text = build_text_row(card_id, card)
                 expected_carrier = {
                     **source_text,
-                    "name": f"CCG Strings Placeholder {card_id}",
-                    "desc": f"Prompt storage for {source_text['name']} ({card_id}).",
+                    "name": source_text["name"],
+                    "desc": f"CCG prompt carrier for {card_id}.",
                 }
                 changed = [
                     column
