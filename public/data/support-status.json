@@ -1,0 +1,5211 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-23T12:59:26.636237+00:00",
+  "summary": {
+    "active_cards": 620,
+    "verdicts": {
+      "FIXED": 117,
+      "MANUAL_RULING": 8,
+      "PASS": 468,
+      "UNSUPPORTED": 27
+    },
+    "unresolved_cards": 35
+  },
+  "cards": [
+    {
+      "passcode": 245265629,
+      "name": "Stardrake of Gravitic Coils",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 241056746,
+      "name": "Reactor Shocker",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 221321849,
+      "name": "The Condescender",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 2,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "(Quick Effect): You can send this card from your hand to the GY, then target 1 face-up monster on the field; declare a number from 1 to 3, then reduce that monster's Level, Rank, or Link Rating by the declared number until the end of the next turn.",
+          "notes": "Omega exposes EFFECT_UPDATE_LEVEL and EFFECT_UPDATE_RANK but no effect code that changes a Link Rating. The Lua therefore cannot offer or resolve the printed Link Rating branch. Resolution: either change the card text to 'Level or Rank', or add an engine-supported Link Rating change API and then add the Link branch to c221321849.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "If a monster whose Level, Rank, or Link Rating is lower than its original value is on the field: You can Special Summon this card from your GY, but banish it when it leaves the field.",
+          "notes": "Omega exposes original/current Level and Rank comparisons but no mutable/current Link Rating counterpart. The Lua therefore cannot detect the printed reduced-Link-Rating state. Resolution: either remove 'Link Rating' from this condition, or add engine APIs for changing and comparing Link Rating and then extend c221321849.lua."
+        }
+      ]
+    },
+    {
+      "passcode": 225091736,
+      "name": "Stained Bird Bria",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 216958556,
+      "name": "Stained Deer Dante",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247499445,
+      "name": "Stained Fox Feness",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 224822244,
+      "name": "Stained Raptor Rollo",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259475154,
+      "name": "Stained Solitaire",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 218685316,
+      "name": "Stargazer of the Stained",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244408495,
+      "name": "Stained Scioness Silia",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 221822671,
+      "name": "Stained Sovereign Silas",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 256608976,
+      "name": "Stained Silhouette",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 232449539,
+      "name": "Abstain from Light",
+      "verdict": "MANUAL_RULING",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "If your \"Stain\" monster was shuffled into either Deck this turn, you can also banish \"Stain\" monsters from face-up in your opponent's Deck as material, but return them to the GY during the End Phase.",
+          "notes": "EVENT_MOVE does not identify whether movement into a Deck was a shuffle, and it cannot reliably cover cost-based or rule-based shuffles. The current REASON_EFFECT tracker is only an approximation. Resolution: rewrite the condition as 'If your Stain monster was moved into a Deck by a card effect this turn', or add a core shuffle event/reason and use it in c232449539.lua."
+        }
+      ]
+    },
+    {
+      "passcode": 248453205,
+      "name": "Shattering Sustained",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244790302,
+      "name": "Stained Avatar",
+      "verdict": "PASS",
+      "review_state": "stale",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247789143,
+      "name": "Stained Sorceress Silphia",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247580036,
+      "name": "Distained Druid Dragar",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 217174535,
+      "name": "Stainless Kaleidragon",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259365935,
+      "name": "Aetherstorm Zenith Wire-Tailed Sypharion",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 224274662,
+      "name": "Armored Nova Mecha-Scaled Xyrion",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 224049334,
+      "name": "Solemn Rebirth",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 230947464,
+      "name": "Talismandrake Spark",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 256928871,
+      "name": "Talismandrake Embers",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 210506870,
+      "name": "Talismandrake Heat",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 245935439,
+      "name": "Talismandrake Sear",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 215034223,
+      "name": "Talismandrake Arms United",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "If a Pyro Fusion Monster is Special Summoned to your field (except during the Damage Step): You can banish this card from your GY, then target 1 of those monsters; equip 1 \"Talismandrake Arms\" Spell/Trap from your Deck to it as if it were equipped by that Spell/Trap's effect.",
+          "notes": "Equipping Blaze Shield 'as if equipped by that card's effect' inherits its optional all-destination leave-field replacement. Omega only provides destroy/send replacement hooks, so return-to-hand, return-to-Deck, and banish departures are not replaced. Resolution: narrow Blaze Shield to destruction/sending, or add a generic optional leave-field replacement hook and use it in the recreated equip effects in c215034223.lua."
+        }
+      ]
+    },
+    {
+      "passcode": 238136421,
+      "name": "Left Talismandrake Arms - Blaze Suppressor",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 215921734,
+      "name": "Right Talismandrake Arms - Blaze Halberd",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 248788543,
+      "name": "Right Talismandrake Arms - Blaze Sabre",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 255832330,
+      "name": "Left Talismandrake Arms - Blaze Shield",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "● The equipped monster gains 500 DEF for each Equip Spell equipped to a monster you control, also, if it would leave the field by your opponent's card effect, you can destroy this card instead.",
+          "notes": "Omega has optional EFFECT_DESTROY_REPLACE and EFFECT_SEND_REPLACE hooks, but no optional replacement covering every return, banish, destroy, and send way the equipped monster can leave by an opponent's effect. Resolution: change the text to the supported destinations (for example, 'destroyed or sent to the GY'), or add a generic optional leave-field replacement hook and replace both partial hooks in c255832330.lua."
+        }
+      ]
+    },
+    {
+      "passcode": 227362839,
+      "name": "Talismandrake Pyre",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 253552927,
+      "name": "Talismandrake Cremation",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "If this card is Special Summoned: You can add 1 \"Talismandrake Arms\" Spell/Trap from your Deck or GY to your hand, or equip it to a DARK Pyro monster you control as if it were equipped by that Spell/Trap's effect.",
+          "notes": "The copied Blaze Shield behavior is incomplete for return-to-hand, return-to-Deck, and banish departures because Omega has no generic optional all-destination leave-field replacement hook. Resolution: narrow Blaze Shield's text, or add a generic optional leave-field replacement hook and use it in c253552927.lua's recreated Shield effects."
+        }
+      ]
+    },
+    {
+      "passcode": 241706191,
+      "name": "Talismandrake Enkindle",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "If this card is Special Summoned: You can add 1 \"Talismandrake Arms\" Spell/Trap from your Deck or GY to your hand, or equip it to a DARK Pyro monster you control as if it were equipped by that Spell/Trap's effect.",
+          "notes": "The copied Blaze Shield behavior is incomplete for return-to-hand, return-to-Deck, and banish departures because Omega has no generic optional all-destination leave-field replacement hook. Resolution: narrow Blaze Shield's text, or add a generic optional leave-field replacement hook and use it in c241706191.lua's recreated Shield effects."
+        }
+      ]
+    },
+    {
+      "passcode": 218142234,
+      "name": "Maiden of Talismandrakes Seraphina",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 2,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Pendulum Effect: You can shuffle 3 \"Talismandrake\" monsters with different names from your face-up Extra Deck, field, and/or GY into the Deck; Special Summon this card from your Pendulum Zone, then you can equip 1 \"Talismandrake Arms\" Spell/Trap from your GY to this card as if it was equipped by that Spell/Trap's effect.",
+          "notes": "If this effect equips Blaze Shield, its recreated optional leave-field replacement cannot cover return-to-hand, return-to-Deck, or banish departures with current Omega hooks. Resolution: narrow Blaze Shield's text, or add a generic optional leave-field replacement hook and use it in c218142234.lua's recreated Shield effects."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "If this card is Fusion Summoned, or if your opponent activates a card or effect: You can target 1 \"Talismandrake Arms\" Spell/Trap in your GY; add it to your hand or equip it to this card as if it were equipped by that Spell/Trap's effect.",
+          "notes": "If this effect equips Blaze Shield, its recreated optional leave-field replacement cannot cover return-to-hand, return-to-Deck, or banish departures with current Omega hooks. Resolution: narrow Blaze Shield's text, or add a generic optional leave-field replacement hook and use it in c218142234.lua's recreated Shield effects."
+        }
+      ]
+    },
+    {
+      "passcode": 228926678,
+      "name": "Bishop of Aldrez",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 235448944,
+      "name": "Pawn of Aldrez",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 231892575,
+      "name": "Queen of Aldrez",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 233759343,
+      "name": "Aldrez Battery",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 217700538,
+      "name": "Aldrez Blitz",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 210923192,
+      "name": "Aldrez Opening",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 250508903,
+      "name": "Checked in Aldrez",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 213849997,
+      "name": "Checkmate in Aldrez",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238282350,
+      "name": "Knight of Aldrez",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 231129918,
+      "name": "Rook of Aldrez",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 252210718,
+      "name": "King of Aldrez",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 236158052,
+      "name": "The Blue Frute",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 235607781,
+      "name": "The Yellow Frute",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 246216813,
+      "name": "The Red Frute",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 227745087,
+      "name": "The Green Frute",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 220916791,
+      "name": "The White Frute",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 246830897,
+      "name": "Fruteonia",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 216140411,
+      "name": "Fruteopia",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247458749,
+      "name": "Fruteaching",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 256930605,
+      "name": "Fruteification",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 236179696,
+      "name": "The Flying Frute",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 213266433,
+      "name": "The Hanging Frute",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "\"Frute\" monsters you control can attack all face-down Defense Position monsters your opponent controls, once each.",
+          "notes": "The text does not resolve whether each Frute retains one ordinary attack against a non-qualifying monster in addition to attacks on every face-down Defense Position monster. The current first-attack tracker also cannot preserve exact once-each identity if a battled monster changes position and is Set again. Resolution: issue a ruling for the ordinary-attack interaction and change the text to match it; then replace c213266433.lua's approximation with a ruling-specific attack procedure (or add filtered attack-all bookkeeping to the engine)."
+        }
+      ]
+    },
+    {
+      "passcode": 248290754,
+      "name": "The Fruteful Moon",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 213615627,
+      "name": "The Fruted Warrior",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 236542835,
+      "name": "Sacred Treasure - Bojin",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 229499914,
+      "name": "Sacred Treasure - Chunyin",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 246421842,
+      "name": "Sacred Treasure - Huangjin",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 218600459,
+      "name": "NiuHao - Bauba",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 235789995,
+      "name": "NiuHao - Hikam",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 232232676,
+      "name": "NiuHao - Oro",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 227043533,
+      "name": "NiuHao - Lokaeo",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 215629896,
+      "name": "NiuHao - Zaoka",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 231825514,
+      "name": "NiuHao - Koai",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 250556612,
+      "name": "NiuHao - Zao",
+      "verdict": "PASS",
+      "review_state": "stale",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259377794,
+      "name": "Pip, the Domesticated",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259737127,
+      "name": "Tove, the Domesticated",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259264881,
+      "name": "Domestica Praerie",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259337739,
+      "name": "Domestica Anjelie",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259245149,
+      "name": "Domestica Lunalie",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259201342,
+      "name": "Domestication",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259265448,
+      "name": "Domestic Underworld",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259668626,
+      "name": "Domestica in the Underworld",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259410628,
+      "name": "Domestica in the Wild",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259670933,
+      "name": "Domestica Kyrie",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259394179,
+      "name": "Pip in the Wild",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259718504,
+      "name": "Tove in the Wild",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 216620496,
+      "name": "Remembrance of the Melody",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 255277197,
+      "name": "Chaos Fusion",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 245378354,
+      "name": "Ursarctic Mikailus",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 218837030,
+      "name": "Ursarctic Megailus",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247831166,
+      "name": "Ursarctic Leoship",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 235051048,
+      "name": "Ursarctic Octantis",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244921711,
+      "name": "Ursarctic Hextanius",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "For the Special Summon of any Ursarctic Synchro, this card can be Level 7 or 8 and a non-Tuner.",
+          "notes": "Official Ursarctic Extra Deck monsters use bespoke non-Synchro EFFECT_SPSUMMON_PROC scripts that read card Levels directly and expose no material-side hook for Hextanius to become Level 7/8 and a non-Tuner. Only the CCG procedures that explicitly call Hextanius-aware helpers can honor the text. Resolution: update every Ursarctic summon procedure that must recognize Hextanius (including official scripts), or revise the text to limit the substitution to named CCG Ursarctic monsters."
+        }
+      ]
+    },
+    {
+      "passcode": 249093610,
+      "name": "Ursarctic Nordbar",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 228686743,
+      "name": "Carina of the Eldoran System",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 222257685,
+      "name": "Branching to Guidance",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 215853847,
+      "name": "Rigel the Thousand-Armed",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 229327103,
+      "name": "Prophecy of Infernos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 251058567,
+      "name": "Prophecy of Waterfalls",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 223558392,
+      "name": "Prophecy of Boulders",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 223592011,
+      "name": "Prophecy of Storms",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244920555,
+      "name": "Prophecy of Rays",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 243920845,
+      "name": "Prophecy of Shadows",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259586445,
+      "name": "Stellaer of the Swamp",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 219419648,
+      "name": "Sustained Succubus Saria",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 245970073,
+      "name": "A Stainless Story",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "This effect becomes that monster’s effect if it is Normal or Special Summoned.",
+          "notes": "CheckActivateEffect can reproduce activatable Spell/Trap effects, but Omega has no generic API that selects and rebinds an arbitrary monster's Normal/Special Summon trigger, event group, targets, labels, and operation. The Lua manually mirrors only the currently listed Stain monsters. Resolution: enumerate the supported monster names in the printed text and maintain the manual map, or add a core trigger-copy API and replace the hard-coded branches in c245970073.lua."
+        }
+      ]
+    },
+    {
+      "passcode": 259686203,
+      "name": "Mylo, the Domesticated",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259135917,
+      "name": "Nuwa, the Domesticated",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259911246,
+      "name": "Mylo in the Wild",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259796760,
+      "name": "Nuwa in the Wild",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 217713649,
+      "name": "Onibi",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 214371067,
+      "name": "Enra",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 229399508,
+      "name": "Kokeshisa",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 228033609,
+      "name": "Shishi",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247378501,
+      "name": "Muramasa",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 248801935,
+      "name": "Kanmuriyama",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 229996802,
+      "name": "Takama No Hara",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Banish this from GY, target a Spirit you control; it cannot return to hand by card effect until End Phase.",
+          "notes": "EFFECT_CANNOT_TO_HAND is reason-agnostic, so the current Lua also blocks returning the target as a cost. Master Rule Omega has no EFFECT_CANNOT_TO_HAND_EFFECT equivalent that limits the prohibition to card effects. Resolution: remove 'by card effect' from the text, or add an effect-only hand-return prohibition to the engine and use it in c229996802.lua."
+        }
+      ]
+    },
+    {
+      "passcode": 246393365,
+      "name": "Rei-Tachi Ga Kita Hi",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 221855414,
+      "name": "Otakemaru the Accuser",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "If Special Summoned: other Spirit monsters cannot return to hand or Extra Deck by card effect during this turn’s End Phase.",
+          "notes": "EFFECT_CANNOT_TO_HAND and EFFECT_CANNOT_TO_DECK are reason-agnostic, so the current Lua also blocks costs and other non-effect movement during the End Phase. EFFECT_SPIRIT_DONOT_RETURN would cover only the built-in Spirit return and not arbitrary card effects. Resolution: remove 'by card effect', narrow the text to built-in Spirit returns, or add effect-only hand/Extra-Deck return prohibitions and use them in c221855414.lua."
+        }
+      ]
+    },
+    {
+      "passcode": 259429721,
+      "name": "Champion of the Grand Blue",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259500899,
+      "name": "Diving Daughters of the Grand Blue",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259369909,
+      "name": "Serene Mermaid of the Grand Blue",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "After the Fusion Summon, for the rest of the turn you may only Special Summon from Extra Deck using Grand Blue monsters as materials.",
+          "notes": "Omega's prospective Extra Deck Special Summon restriction callback does not expose the material group. The Lua instead prohibits non-Grand Blue cards from being Fusion, Synchro, Xyz, or Link Material, which does not reject materialless or nonstandard Extra Deck procedures. Resolution: rewrite the restriction as four material prohibitions matching the Lua, or add a summon-limit API that receives the prospective material group and replace the approximation in c259369909.lua."
+        }
+      ]
+    },
+    {
+      "passcode": 259934756,
+      "name": "Jelly Lass of the Grand Blue",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259273394,
+      "name": "Jelly Miss of the Grand Blue",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259417461,
+      "name": "Brilliance of the Grand Blue",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259679619,
+      "name": "City Within the Grand Blue",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259177849,
+      "name": "Grand Blue Princess",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259578863,
+      "name": "Oracle of the Grand Blue",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259093260,
+      "name": "Grand Blue Matriarch",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259937946,
+      "name": "Grand Blue Prince",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259028576,
+      "name": "Stellaer of the Lightning Runes",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 211964444,
+      "name": "Priestess of Nephthys",
+      "verdict": "MANUAL_RULING",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Then apply that destroyed card’s Standby Phase-activated effect.",
+          "notes": "'That destroyed card's Standby Phase-activated effect' does not identify which effect to apply when the monster has multiple Standby Phase triggers. Omega also has no API for invoking one arbitrary trigger outside its event while preserving its event data and targeting semantics. Resolution: identify the intended effect by exact text/index or restrict the eligible monsters to an enumerated list, then script those operations; otherwise add a core trigger-invocation API."
+        }
+      ]
+    },
+    {
+      "passcode": 216532402,
+      "name": "Sacred Feather of Nephthys",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259581666,
+      "name": "Stellaer of the Frozen",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 256287781,
+      "name": "Rage of Nephthys",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 240299292,
+      "name": "To Proto Ousia",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 245400676,
+      "name": "To Proto Archegoni",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 246524183,
+      "name": "Protogenesis",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 234729347,
+      "name": "The Beginning",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 232706629,
+      "name": "Protogenic Astral Cycle",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244013196,
+      "name": "To Proto Chrono",
+      "verdict": "MANUAL_RULING",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "If the gain occurs, increase all effects’ turn count by 1.",
+          "notes": "Omega stores some Card TurnCounter values but has no enumerable 'turn count' for every active effect or reset duration. The phrase 'all effects' turn count' also does not define which players, cards, locations, counters, or durations are included. Resolution: define the exact counters/effects and locations to advance, or replace the clause with a supported operation such as Pyro Clock of Destiny's global turn-count advance."
+        }
+      ]
+    },
+    {
+      "passcode": 246380598,
+      "name": "To Proto Taxis",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259219942,
+      "name": "Stellaer of the Plants",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 224225695,
+      "name": "To Proto Ataxia",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 217332244,
+      "name": "To Proto Psychi",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Quick Effect: Tribute a Token, then pay any amount of LP.",
+          "notes": "The finite AnnounceNumber UI accepts an explicit option list and has no unrestricted integer-entry prompt. Enumerating every integer from 1 to LP-1 is not a supported/practical Omega selection, so the Lua currently offers 100-LP increments plus LP-1. Resolution: change 'any amount' to 'any amount in multiples of 100 (or all but 1 LP)', or add an integer-range prompt to Omega and use it in c217332244.lua."
+        }
+      ]
+    },
+    {
+      "passcode": 241543138,
+      "name": "To Proto Eisodos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 254065048,
+      "name": "Polemistis gia Ataxia",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "If monster(s) loses ATK/DEF, this card gains ATK/DEF equal to amount lost.",
+          "notes": "Omega has no event reporting historical ATK/DEF loss. The text also omits whether gains accumulate, disappear when the losing monster leaves, or continuously track current deficits; the Lua currently models live deficits from base values. Resolution: state the duration and whether the gain is event-based or continuously recalculated. Then implement that ruling, adding an ATK/DEF-loss event to the engine if historical loss must be tracked."
+        }
+      ]
+    },
+    {
+      "passcode": 212684822,
+      "name": "Ektelestis gia Taxis",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259057226,
+      "name": "Stellaer of the Cold",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 234455260,
+      "name": "Stellaer of the Night",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 226903348,
+      "name": "Stellaer of the Sea",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 225106953,
+      "name": "Stellaer of the Gems",
+      "verdict": "MANUAL_RULING",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "If detached from a Stellaer Xyz to activate its effect: target 2 cards you control, declare Level 8-10; they become that Level until end of turn. HOPT.",
+          "notes": "The text targets any two cards you control, but Spell/Trap Cards and many monsters cannot have a Level. Literal resolution is undefined for those legal printed targets; the Lua restricts selection to two face-up monsters with Levels. Resolution: change the target to '2 face-up monsters you control with Levels' (or specify how non-Level cards behave), then align c225106953.lua to that ruling."
+        }
+      ]
+    },
+    {
+      "passcode": 230998543,
+      "name": "Stellaer of the Breeze",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 230132786,
+      "name": "Stellaer of the Volcanos",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 236551669,
+      "name": "Pride of the Stellaers",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 257549955,
+      "name": "A Stellaer Is Reborn",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259214334,
+      "name": "Stellaer's Pain",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259655976,
+      "name": "Stellaer of Lighting",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 212184534,
+      "name": "Stellaer of the Flames",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 215445495,
+      "name": "Stellaer of the Waters",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 216505735,
+      "name": "Stellaer of the Air",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 231400558,
+      "name": "Stellaer of the Darkness",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 214226989,
+      "name": "Stellaer of Purity",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 219905997,
+      "name": "Stellaer of the Ground",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239245471,
+      "name": "Birth of Azrynior",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 224751741,
+      "name": "Fall of Azrynior",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 236239443,
+      "name": "Restoration of Azrynior",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 245099829,
+      "name": "Azrynior, the Abundaence of Purity",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 223512283,
+      "name": "Dysmandr, the Depraevity of Worlds",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 242009896,
+      "name": "Extinction of Dysmandr",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 214552846,
+      "name": "Eldora, the Intergalactic Empire",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "When an opponent effect that would destroy two or more monsters you control resolves, destroy this card, then negate that effect.",
+          "notes": "The printed trigger says 'when ... resolves', but chains cannot be started during another effect's resolution. The Lua necessarily responds at activation and predicts destruction from CATEGORY_DESTROY metadata, which cannot identify effects whose victims/count are chosen only while resolving. Resolution: rewrite this as 'When your opponent activates a card or effect that would destroy 2 or more monsters you control' and accept category-based prediction, or define a new engine replacement/interception event before destruction resolves."
+        }
+      ]
+    },
+    {
+      "passcode": 229786055,
+      "name": "Eldora in Depraevity",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 222676270,
+      "name": "Frozen Girl & Blood Moon",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "When an effect includes face-up placement from hand/Deck/GY, placing monsters in SZONE, or Setting from hand/Deck/GY: discard this card; negate that effect. HOPT.",
+          "notes": "Omega has no universal categories for face-up Spell/Trap placement, placing Monster Cards in the Spell & Trap Zone, or every Set from hand/Deck/GY. CATEGORY_LEAVE_GRAVE is overbroad, while custom markers only cover scripts that opt in. Resolution: narrow the three bullets to engine-detectable categories, require all relevant scripts to publish dedicated placement/Set markers, or add core operation categories and update c222676270.lua to use them."
+        }
+      ]
+    },
+    {
+      "passcode": 222782750,
+      "name": "Ghost Doll & Midnight Manor",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259290896,
+      "name": "Dominus Sentinel",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 210716547,
+      "name": "Clock of Aldrez",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 246496923,
+      "name": "Aldrez Grandmaster",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 219047593,
+      "name": "Phantasm Spiral Resurgence",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 237917359,
+      "name": "Phantasm Spiral Shrine",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 222875833,
+      "name": "Phantasm Spiral Ensnarement",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 226063408,
+      "name": "Grand Puppet of Wicked Puppeteer",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259527622,
+      "name": "Knight Puppet of Wicked Puppeteer",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 233659599,
+      "name": "Minion Puppets of Wicked Puppeteer",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 257464336,
+      "name": "Guardian of Wicked Puppeteer",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 234178973,
+      "name": "The True Wicked Puppeteer, Orchis",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 236818346,
+      "name": "Wicked Puppeteer, Orchis",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 243306841,
+      "name": "Wicked Puppeteer Tragedy",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 219150610,
+      "name": "Wicked Puppeteery",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244959812,
+      "name": "Divine Phoenix of Nephthys",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 234818744,
+      "name": "Primite Dragon Citrine",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 241868535,
+      "name": "Pedicae's Papa",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 215984744,
+      "name": "Vir Pedicae Mortis - Entity's Happy Servant",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244778917,
+      "name": "Vir Pedicae Mortis - Fearless Hunter",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 243144691,
+      "name": "Vir Pedicae Mortis - the Unhallowed Warden",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 233103500,
+      "name": "Vir Pedicae Mortis - True Nightmare",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 236744343,
+      "name": "Entity's Realm - Pedicae Estate",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 211086520,
+      "name": "Recollection: Static, Lead, and Nerve",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 234984156,
+      "name": "Recollection: a Lesson in Iron",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 231872299,
+      "name": "Recollection: the Mine",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 241447408,
+      "name": "Recollection: Kaboom Papa",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 229875953,
+      "name": "Teleum Mortis",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 251699681,
+      "name": "Bear Trap",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 219543855,
+      "name": "Securitake Agent",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 226645052,
+      "name": "Harmony Pearlwood & the Nautical Deepwaters",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 228040066,
+      "name": "Melody Merheart & the Nautical Coral Reef",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 214349717,
+      "name": "Emma Oceannus & the Nautical Coastlines",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259114562,
+      "name": "Bobbie Bluefin & the Nautical Nocturnes",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 220749574,
+      "name": "Scarlet Seareef & the Nautical Creatures",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 225109525,
+      "name": "Evander Coldwater & the Nautical Abyss",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 223158720,
+      "name": "Nautical Backwashing & Oceanic Waves",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238711686,
+      "name": "Melissa Oceanheart & the Nautical Seabed",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 248946297,
+      "name": "Exploring the Nautical Waters",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 218905439,
+      "name": "Nautical Adventures & Torrential Seas",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259722826,
+      "name": "Bob",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259944943,
+      "name": "Bob, but Stronger!",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 221047295,
+      "name": "Bookkeeper of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 233436485,
+      "name": "Crow of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 217118040,
+      "name": "Plague Doctor of Crying Chaos",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 218261525,
+      "name": "Scarecrow of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 236017388,
+      "name": "Slug of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 240976976,
+      "name": "Witch of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 240511702,
+      "name": "Hunter of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 252513554,
+      "name": "Guardian of Crying Chaos",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 224943273,
+      "name": "Goat of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 227610954,
+      "name": "Zenatil, Criminal Bookkeeper of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239725695,
+      "name": "Zebra of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 249018041,
+      "name": "Ram of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 220305422,
+      "name": "Natir, the Swords Master of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 234296128,
+      "name": "Revelation of Crying Chaos",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "When your opponent activates a card or effect that would make a card you control leave the field (Quick Effect): You can Tribute 1 \"Crying Chaos\" monster you control; Negate that effect, and if you do, this card gains ATK equal to the Tributed monster's combined ATK and DEF until the end of this turn.",
+          "notes": "Omega can inspect declared operation-info categories and chain targets, but arbitrary Lua operations need not declare either, so the engine cannot determine every effect that would make a controlled card leave the field. Exact resolution requires an engine API exposing the resolving operation's affected cards/destinations, or card text restricted to declared targets and enumerated leave-field categories."
+        }
+      ]
+    },
+    {
+      "passcode": 241880822,
+      "name": "Chrono-Saur Raptor",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 233499093,
+      "name": "Dragon of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247779405,
+      "name": "Windborne Swiftsurfer",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 258241424,
+      "name": "Light Within the Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 217029078,
+      "name": "Windborne Cloudwing",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 216294702,
+      "name": "A Throne of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 255953418,
+      "name": "A World of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 221759221,
+      "name": "Windborne Cartographer",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 253472430,
+      "name": "A Whisper of Crying Chaos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 215068354,
+      "name": "Janna, Windborne Goddess of the Temple",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 257794541,
+      "name": "Maryam, Windborne Caretaker of the Temple",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 251571153,
+      "name": "Sunken Temple of the Windborne",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 231273040,
+      "name": "Windborne Howling Gale",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 256110263,
+      "name": "Windborne Eye of the Storm",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Target 1 monster you control; banish it until the End Phase, then, if you added 3 or more \"Windborne\" cards from your Deck to your hand this turn, and you banished a WIND Synchro Monster by this effect, you can Special Summon 1 \"Windborne\" Synchro Monster with a different name from your Extra Deck (this is treated as a Synchro Summon using only \"Windborne\" monsters).",
+          "notes": "Omega can mark a Special Summon as a Synchro Summon and store real material cards, but cannot create truthful material history saying an otherwise material-less Summon used only Windborne monsters. The fabricated Janna token gives false card identity. Exact resolution requires engine-supported virtual material metadata (at least archetype/type without a fake card), or revised text that removes the material-history clause or names real materials."
+        }
+      ]
+    },
+    {
+      "passcode": 238064522,
+      "name": "Windborne Galesong Flock",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 233212369,
+      "name": "Windborne Divine Whirlwind",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 215006791,
+      "name": "Muntith, Windborne Skydragon of the Shining Sun",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 237684285,
+      "name": "Janna, Windborne Goddess of Clement Winds",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 224774049,
+      "name": "Pot of Gambling",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 255686110,
+      "name": "Iscylla, Windborne Kraken of Sunken Depths",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 215885404,
+      "name": "Pot of Fortune",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 243194249,
+      "name": "Shining Brigade - Hope Division",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 232038002,
+      "name": "Shining Brigade - Forward Division",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 232100722,
+      "name": "Shining Brigade - Flowering Division",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 230812008,
+      "name": "Shining Brigade - Loving Division",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 220124524,
+      "name": "Shining Brigade - Heartbeat Division",
+      "verdict": "PASS",
+      "review_state": "stale",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 255668557,
+      "name": "Shining Brigade - Joyous Division",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 243420199,
+      "name": "Shining Brigade - Melody Division",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 236616849,
+      "name": "Shining Brigade - Revenge Division",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 223750159,
+      "name": "Shining Brigade Armada",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244986323,
+      "name": "Shining Brigade Origins",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 232824319,
+      "name": "Shining Brigade - Companion Team",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 241504188,
+      "name": "Shining Brigade - Absolute Supremacy",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238841732,
+      "name": "Let's Go, Shining Brigade!",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 226827770,
+      "name": "The One Called Forth",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "At the start of your Main Phase 1: Declare the name of 1 monster you do not control; for the rest of this turn, the activation of your cards and effects that include an effect that Summons a monster with that name cannot be negated, also your opponent cannot activate cards or effects when that monster is Summoned.",
+          "notes": "Omega exposes effect categories, listed card codes, handlers, and current targets, but cannot introspect every future monster choice made inside an arbitrary Lua operation. Exact resolution requires engine operation introspection for possible Summoned codes, or wording limited to effects that target/list the declared monster or another mechanically enumerable pool."
+        }
+      ]
+    },
+    {
+      "passcode": 215142357,
+      "name": "Shining Brigade - Stand Together!",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238976759,
+      "name": "We're the Shining Brigade!",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 237692523,
+      "name": "Pixie Bot",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 249629457,
+      "name": "Shining Brigade - Last Stand",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 234507067,
+      "name": "Chrono-Saur Brachio",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 235637994,
+      "name": "Chrono-Saur Dactylus",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259235389,
+      "name": "Chrono-Saur Tricera",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 255048812,
+      "name": "Chrono-Saur Stegian",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 236898203,
+      "name": "Chrono-Saur Rex",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 251236672,
+      "name": "Chrono-Saur Laplace Plesio",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259226793,
+      "name": "Chrono-Saur Force",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 213530841,
+      "name": "Chrono-Saur Counter",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 253928485,
+      "name": "Aqua Whirlpool",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259366507,
+      "name": "Aquila, Zephorion's Predictor",
+      "verdict": "MANUAL_RULING",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "If this card is Summoned: You can Set 1 \"Eldora\" and/or \"Verse IX\" \"Chapter II\" Spell/Trap directly from your Deck or GY.",
+          "notes": "The quoted conjunction names no card in the current 577-card database: no Spell/Trap contains both 'Verse IX' and 'Chapter II'. Exact resolution requires adding/naming the intended card (for example Chapter II Verse IX) or correcting the printed quoted name; until then only the unambiguous Eldora branch can be implemented."
+        }
+      ]
+    },
+    {
+      "passcode": 257081514,
+      "name": "Auriga of the Eldoran Empire",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 213990492,
+      "name": "Eridani, Squire of Zephorion Prime",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244972185,
+      "name": "The Spires of Zephorion Prime",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 241957394,
+      "name": "Chapter II Verse IV",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "When your opponent activates a card effect: You can show 1 \"Dysmandr, the Depraevity of Worlds\" in your Extra Deck and choose 1 Effect Monster you control; Send 1 \"Extinction of Dysmandr\" from your Deck to the GY (but shuffle it into the Deck during the End Phase), and if you do, your opponent's activated card effect becomes the sent card's effect that Tributes a \"Protogenic Essence Token\" to activate.",
+          "notes": "ChangeChainOperation can replace a resolving operation, but it cannot retroactively apply another card's activation condition or Tribute cost after the Chain Link was activated. The current Token release therefore occurs during resolution as REASON_EFFECT and cannot exactly become the copied activation procedure. Exact resolution requires revised text that copies only Extinction's resolving operation (and explicitly places any Token release at resolution), or a source effect whose activation legality/cost is checked before this Chain Link is created."
+        }
+      ]
+    },
+    {
+      "passcode": 212737555,
+      "name": "Aqua Droplet",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238035167,
+      "name": "Aquamarine Moon Aurelia",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 220150285,
+      "name": "Aquamarine Plate Montipora",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 211682274,
+      "name": "Aquamarine Pisaster Giga",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 251191343,
+      "name": "Aquamarine Asthenosoma",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 221509060,
+      "name": "Aquamarine Calling",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259998396,
+      "name": "Treasure of the Cosmic Ocean",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 227035644,
+      "name": "Aqua Fusion",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 255082735,
+      "name": "Aquamarine Bubble Surge",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 250339529,
+      "name": "Aquamarine Planktonites",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 241976572,
+      "name": "Aquamarine Nautilus",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 216258796,
+      "name": "Aquamarine Actinia",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 249746105,
+      "name": "Aquamarine Physalia",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 225161820,
+      "name": "Aquamarine Glaucus",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259920959,
+      "name": "Aquamarine Reef Hapalochlaena",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 258260221,
+      "name": "Hiding \"C\"",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259174227,
+      "name": "Farad, the Purple Ohmen",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259726853,
+      "name": "Volt, the Green Ohmen",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259650132,
+      "name": "Ampere, the Yellow Ohmen",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259107906,
+      "name": "Siemens, the Blue Ohmen",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259881255,
+      "name": "Coulomb, the White Ohmen",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259780273,
+      "name": "Carcel, the Dark Ohmen",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259869259,
+      "name": "Ohmen Surge",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259405917,
+      "name": "Siemens, the Ohmechanic Conductor",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259350270,
+      "name": "Farad, the Ohmechanic Capacitor",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259519336,
+      "name": "Volt, the Ohmechanic Chocker",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259841490,
+      "name": "Coulomb, the Ohmechanic Charger",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259479044,
+      "name": "Ampere, the Ohmechanic Intensity",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259033429,
+      "name": "Carcel, the Ohmechanic Light",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259434499,
+      "name": "Ohmen Powerload",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259650969,
+      "name": "Ohmen Beacon",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 245452058,
+      "name": "Altergeist Pipesiren",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 211873618,
+      "name": "Altergeist Regissae",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 252552954,
+      "name": "Altergeist Ifritware",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259152704,
+      "name": "Dragon Protector of Nature",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 212055290,
+      "name": "Advent of Cosmic Beings",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259225324,
+      "name": "Transcend the Pendulum",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 250902476,
+      "name": "Striking Mirror Force",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 228464260,
+      "name": "Rising Elemental",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 253152295,
+      "name": "Yummy Kuriboh",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 256207361,
+      "name": "Sealed Glyphs Dragon",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 236721134,
+      "name": "Devotee of Fire",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 224811863,
+      "name": "Shaman of Fire",
+      "verdict": "PASS",
+      "review_state": "stale",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 240104048,
+      "name": "Guardian of Fire",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 257239133,
+      "name": "Phlogistic Uprising!",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 219714894,
+      "name": "Phlogistic Ignition",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 236815197,
+      "name": "Phlogiston's Wake",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 242094473,
+      "name": "Phlogiston Dragon",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 230303021,
+      "name": "Phlogistic Scorching Dragon Horde",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 220538776,
+      "name": "Curryboh",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 249805098,
+      "name": "Starry Knight Arc-En-Ciel",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238241974,
+      "name": "Starry Knight Nebriel",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 248760718,
+      "name": "Starry Knight Starry Queen",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 221924008,
+      "name": "Chamroshes' Aegis",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 212413422,
+      "name": "Gaia, the Iron Clad Knight",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238256111,
+      "name": "Cursed Dragon of the Knight",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 222476063,
+      "name": "Gaia the Magnificent Knight",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 223770816,
+      "name": "Blazing Gaia the Spiral Knight",
+      "verdict": "PASS",
+      "review_state": "stale",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 256469525,
+      "name": "Dynatos, the Challenger",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259366591,
+      "name": "Arckcestial Crystal Shards",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 241440521,
+      "name": "Arckcestial Feather",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 245354354,
+      "name": "Arckcestial Fireball",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 228860650,
+      "name": "Arckcestial Orb",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 214511076,
+      "name": "Arckcestial Prism",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 258328859,
+      "name": "Arckcestial Descend",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 258590942,
+      "name": "Arckcestial Meadow",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 235051716,
+      "name": "Arckcestial Pillar of Heavens",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 228635967,
+      "name": "Rank-Up-Magic Key of Arck Celestial Force",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 235612490,
+      "name": "Urphiel's Feather Downpour",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239235967,
+      "name": "Arckcestial Burning",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 219995840,
+      "name": "Light Illusion of Vazagiel",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 257176166,
+      "name": "Malphiel, Arckcestial of Protection",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 228386117,
+      "name": "Vazagiel, Arckcestial of Secrets",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 237089049,
+      "name": "Azeriel, Arckcestial of Demise",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 251710981,
+      "name": "Ophiel, Arckcestial of Wisdom",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 231089172,
+      "name": "Sarifiel, Arckcestial of Moonlight",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 215105971,
+      "name": "Urphiel, the High Arckcestial",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 220856437,
+      "name": "Bauy Magician",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 250047045,
+      "name": "Dreaming Bau",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 219826457,
+      "name": "Ro-Bau",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 221511784,
+      "name": "Bau",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 237444604,
+      "name": "Winged Bauy Fenrir",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 256462992,
+      "name": "Starfury Bauy Dragon",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 228169392,
+      "name": "Bael, Demon Incarnate",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 226950506,
+      "name": "Bauy World",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 254215159,
+      "name": "Bauy Spellcasting",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 225358630,
+      "name": "Rai-Bau",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 223366685,
+      "name": "Bauy Emergency Room!",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259072745,
+      "name": "Bhodi, the Corrupted Halloween Tree",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 233957828,
+      "name": "Toddler Pumpkien",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259471193,
+      "name": "Dreadful Soul Drain",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 212822164,
+      "name": "Bray, Shell of the Ghoti",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 235352857,
+      "name": "Shekup, Sting of the Ghoti",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 240575550,
+      "name": "Ghoti from a Deeper Depth Than the Deepest Deep",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 255283389,
+      "name": "Myutant EL-51",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244816828,
+      "name": "Myutant Evolution",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 211699737,
+      "name": "Myutant Amalgamate",
+      "verdict": "MANUAL_RULING",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "And if you do, this effect becomes that monster's original effect.",
+          "notes": "The text does not identify which of an arbitrary monster's effects is meant or provide that effect's event, activation condition, cost, target, or parameters. CopyEffect grants the card's copyable effects for a duration; it cannot make this already-resolving effect become and execute an unspecified original effect. Exact resolution requires wording that grants copied effects for a stated duration, or selection of one specifically activatable effect with defined cost/target semantics."
+        }
+      ]
+    },
+    {
+      "passcode": 259308265,
+      "name": "Pumpqueen the Queen of Ghosts",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239028111,
+      "name": "Pumprince the Prince of Ghosts",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 230749983,
+      "name": "Hallo, the Giver of Tricks",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 250262550,
+      "name": "Ween, Guidance to Treats",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 231331942,
+      "name": "Hallo, the Hollow Trickster",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 224800873,
+      "name": "Hallo-Ween! Basket of Treats",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 255977900,
+      "name": "Happy Hallo-Ween!",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 215621622,
+      "name": "A Night of Fright on Hallo-Ween!",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 221672256,
+      "name": "Skewy! Boo-Boo",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 258576611,
+      "name": "Skewy! Candee-Hex",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 252496004,
+      "name": "Skewy! Pumpki-Pal",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 234592047,
+      "name": "Skewy! Twick-or-Tweat",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 217632789,
+      "name": "Skewy! Pawty Tyme",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 254375894,
+      "name": "Crewal Cap'n",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 237269434,
+      "name": "Crewal Crew",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 215730767,
+      "name": "Crewal Helmsman",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 250792632,
+      "name": "Crewal Sailor",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 210628767,
+      "name": "Morbydrip the Crewal Whale",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 222654570,
+      "name": "Crewal Booty",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 210366076,
+      "name": "Crewal Meeting",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 217645912,
+      "name": "Crewal Tide",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 219783132,
+      "name": "Crewal Attack",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 252249599,
+      "name": "Crewal Cursed Sea",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 234599395,
+      "name": "Melville the Crewal Vessel",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 227531376,
+      "name": "Ghostrick Bat",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 212052682,
+      "name": "Ghostrick Djinn",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 257677549,
+      "name": "Ghostrick Slime",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 241540236,
+      "name": "Ghostrick Haunt",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 235687149,
+      "name": "Ghostrick Camella",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 228472690,
+      "name": "Ghostrick Cutifer",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Once per turn: Target 1 other Ghostrick monster you control; attach this card to it as material. Transfer this card's materials to that monster.",
+          "notes": "Only Xyz Monsters can legally hold Xyz Materials, while the printed target is any other Ghostrick monster. The current Xyz-only restriction is executable but narrower than the text. Exact resolution requires changing the target to 'Ghostrick Xyz Monster' or adding unsupported engine/card-rule semantics that allow non-Xyz monsters to hold materials."
+        }
+      ]
+    },
+    {
+      "passcode": 239335848,
+      "name": "Ghostrick Oni",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 2,
+      "issues": [
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Then immediately after this effect resolves Xyz Summon 1 Rank 3 or lower Ghostrick monster you control using this card as material (transfer this card's materials).",
+          "notes": "An already-controlled monster cannot be Xyz Summoned, so 'Xyz Summon ... monster you control' is internally impossible. Exact resolution requires selecting the Xyz Monster from the Extra Deck and defining its legal materials, or replacing 'Xyz Summon' with an attach/transfer instruction matching the current controlled-monster approximation."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Also, it can activate its effects as Quick Effects this turn.",
+          "notes": "Omega has no generic runtime API that changes every arbitrary ignition/trigger effect registered on a selected monster into a Quick Effect for one turn; an inert flag cannot do so. Exact resolution requires engine support for temporary effect-type conversion, or revised text granting one specifically scripted Quick Effect."
+        }
+      ]
+    },
+    {
+      "passcode": 259851064,
+      "name": "Ghostrick Pastrygeist",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259815138,
+      "name": "Vampire Avenger",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259524916,
+      "name": "Vampire Lugat",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259552732,
+      "name": "Vampire Reptilian",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259479818,
+      "name": "Vampire Traveler",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259144144,
+      "name": "Vampire Estrie",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 224467692,
+      "name": "Scarstech Prologue",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 232104829,
+      "name": "Scarstech Crusader",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 240768497,
+      "name": "Scarstech Dragon",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 248884592,
+      "name": "Scarstech Swarmer",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 233502817,
+      "name": "Scarstech Sniper",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 245837578,
+      "name": "Scarstech Beacon",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 210175845,
+      "name": "Scarstech Principality",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 253934904,
+      "name": "Scarstech Stagger",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239179363,
+      "name": "Scarstech Kaiser",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244009988,
+      "name": "Scarstech Invasion",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 248891593,
+      "name": "Scarstech Circuit",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 224235021,
+      "name": "Scarstech Deployment",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 243488958,
+      "name": "Scarstech Blaster",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 249680945,
+      "name": "Gravinity Orbit",
+      "verdict": "FIXED",
+      "review_state": "stale",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 254894701,
+      "name": "Nifal, the Scarstech War Machine",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 235538173,
+      "name": "Gravinity Plasma",
+      "verdict": "FIXED",
+      "review_state": "stale",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 242838495,
+      "name": "Ratsach, the Scarstech Cruiser",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 256172827,
+      "name": "Gravinity Pulse",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 213611313,
+      "name": "Scarstech Crawler",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 248638801,
+      "name": "Chaos Honest",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 215768254,
+      "name": "Gravinity Star",
+      "verdict": "FIXED",
+      "review_state": "stale",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 212345347,
+      "name": "Gravinity Lapsix",
+      "verdict": "FIXED",
+      "review_state": "stale",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 249454272,
+      "name": "Gravinity Galaxix",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 212429024,
+      "name": "Gravinity Nebulix",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "When a \"Gravinity\" Spell/Trap effect resolves, you can also add this additional effect to that card's effect at resolution.",
+          "notes": "The Lua waits for EVENT_CHAIN_SOLVED and performs a second operation after the original chain link has resolved. Omega exposes no general API for injecting arbitrary text into another resolving effect, so this is only an approximation of adding the bullet at resolution."
+        }
+      ]
+    },
+    {
+      "passcode": 231088629,
+      "name": "Gravinity Spherix",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 2,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "If a player would Normal or Special Summon a monster (except from the Spell & Trap Zone), place that monster face-up in its owner's Spell & Trap Zone as a Continuous Trap instead, and if you do, it gains the following effect (even if this card leaves the field).",
+          "notes": "The Lua reacts to EVENT_SUMMON_SUCCESS/EVENT_SPSUMMON_SUCCESS and moves the already-Summoned monster afterward. This cannot reproduce a true summon replacement: summon-success events and summon-triggered effects have already occurred, and a full Spell/Trap Zone prevents the printed replacement."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "● During the Main Phase, if this card is a Continuous Trap: You can Special Summon this card, ignoring its summoning conditions, then, if this card is an Xyz Monster, you can attach the minimum number of monsters that can be used for this card's Xyz Summon from your GY to this card as material.",
+          "notes": "Omega cannot generically recover an arbitrary Xyz Monster's printed minimum material count or material predicate after that card has already been Special Summoned to the field. Card.IsXyzSummonable can test a prospective Extra Deck summon but cannot extract the registered procedure from this already-summoned card. The current two same-Level attachments are therefore only an approximation and are not exact for level-free, variable-count, alternate, or non-Level procedures."
+        }
+      ]
+    },
+    {
+      "passcode": 223505382,
+      "name": "Gravinity Transfer Call",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247919552,
+      "name": "Gravinity Gravity Protection",
+      "verdict": "PASS",
+      "review_state": "stale",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 256831125,
+      "name": "Gravinity Axis Matter",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 2,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Reduce the Level/Rank/Link Rating of your opponent's monsters in the same column as a \"Gravinity\" monster by 1.",
+          "notes": "Fixed the concrete scope error: a Gravinity Monster Card in the Spell/Trap Zone no longer counts as a Gravinity monster for this clause. The Level and Rank reductions are exact. Link Rating reduction remains unsupported: Omega's constants provide EFFECT_UPDATE_LEVEL/RANK and EFFECT_CHANGE_LEVEL/RANK, but no EFFECT_UPDATE_LINK, EFFECT_CHANGE_LINK, or equivalent setter."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "During the Standby Phase: You can reveal 1 Level 11 \"Gravinity\" Synchro Monster in your Extra Deck; for the rest of this turn, this card gains the non-activated effects of the revealed monster.",
+          "notes": "The hard-coded branches cover both Level 11 Gravinity Synchro Monsters currently present and the copied Spherix counter test was corrected to exclude non-Monster Cards. The printed effect is still generic and cannot be implemented generically: Card.CopyEffect copies a card script wholesale, while Omega exposes no supported iterator/copier that selects only non-activated effects and safely rebinds arbitrary monster effects to a Field Spell. A future valid reveal requires a new explicit branch."
+        }
+      ]
+    },
+    {
+      "passcode": 238184015,
+      "name": "Gravinity Sonic Scream",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "If you activate the effect of a \"Gravinity\" Synchro Monster Card: You can banish this card from your GY; this effect becomes that card's activated effect.",
+          "notes": "The Lua directly invokes the prior Effect operation with mismatched effect/context arguments. Generic effect replacement/copying is engine-sensitive and this does not reproduce target, cost, label, category, or chain metadata for every possible Gravinity Synchro effect."
+        }
+      ]
+    },
+    {
+      "passcode": 246900181,
+      "name": "Unbinding the Soul",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 251331463,
+      "name": "Eclipse Summoning",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 225260657,
+      "name": "Lowkey Lowkey",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 248940511,
+      "name": "Flower Cardian Moonflare",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 231523659,
+      "name": "Stardust Comet",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 253128790,
+      "name": "Interwire Dimensquid",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247298564,
+      "name": "Oracle of the Herald",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 234179728,
+      "name": "Galacticarina",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 227335484,
+      "name": "Galacticassiopeia",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 229021849,
+      "name": "Galacticanes Venatici",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 220148485,
+      "name": "Galacticanes Auriga",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 226902471,
+      "name": "Galataxian Battle Tactics",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239127930,
+      "name": "Galataxian Battle Formation",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 210696007,
+      "name": "Galataxian Battle Preparation",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 258934904,
+      "name": "Galactican Battle Station",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 250829750,
+      "name": "Galactican Battle Grounds",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 245395343,
+      "name": "Fusion Intergalactica",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259307285,
+      "name": "Attack on Gravity",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 256005703,
+      "name": "Galactican Jet Dasher",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 212837324,
+      "name": "Galactican Jet Drifter",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259482393,
+      "name": "Carina, Forgotten of Eldora",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 250917339,
+      "name": "Cassiopeia, Forgotten of Eldora",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259230000,
+      "name": "Aeloria in Depraevity",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 253520299,
+      "name": "Galactican Machine - No. G2-X38",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 236473882,
+      "name": "Intergalactican Machine - No. R2-D30",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 212377618,
+      "name": "Cassiopeia of the Eldoran System",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 219002796,
+      "name": "Intergalacticanes Majoris",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 221827483,
+      "name": "To Protogenis Intergalataxiakos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259924331,
+      "name": "Pray for Your Life!",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259607933,
+      "name": "Gladiator Beast Sabearius",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259395418,
+      "name": "Gladiator Beast Attrocitar",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259363148,
+      "name": "Gladiator Beast Satyrius",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259766646,
+      "name": "Night Night, Nemleria",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259605536,
+      "name": "Pyjama Party of Happy Nemleria",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259883971,
+      "name": "Nemleria Big Eepy",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259017109,
+      "name": "Nemleria's Nightmare",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259090287,
+      "name": "Nemleria's Dream Bedroom",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259392825,
+      "name": "Nemleria Dream Creator - Pyjama",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259472680,
+      "name": "Nemleria Dream Devourer - Soleil",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259898110,
+      "name": "Nemleria Dream Creator - Veilleuse",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259934043,
+      "name": "Grayling the Grayscale Imp",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259341133,
+      "name": "Graysentry the Guard of Grayscale",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259937399,
+      "name": "Grayrover the Wandering Grayscale",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259724129,
+      "name": "Graylock the Sorcerer of Grayscale",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259688514,
+      "name": "Grayhex the Chanter of Grayscale",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259632020,
+      "name": "Grayseer the Grayscale Spy",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259624110,
+      "name": "Grayterror the Grayscale Beast",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259245496,
+      "name": "Graydimm the Grayscale Shadow",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259626409,
+      "name": "Grayshade the Phantom of Grayscale",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259229055,
+      "name": "Graydeux, the Eternal Grayscale Entity",
+      "verdict": "PASS",
+      "review_state": "stale",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259923860,
+      "name": "Grayscale Awakening: Revelation!",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259203522,
+      "name": "Grayscale Awakening: Eclipse!",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259269688,
+      "name": "Grayscale Awakening: Nullbind!",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259275822,
+      "name": "The Misstakes of the A.I.P Experience",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259609997,
+      "name": "A.I.P Ex Larva",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259664027,
+      "name": "A.I.P Ex Shrieker",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259137697,
+      "name": "A.I.P Ex Claw",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259522807,
+      "name": "A.I.P Ex Maw",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259121126,
+      "name": "A.I.P Ex Predator",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259943152,
+      "name": "A.I.P Lab",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259883029,
+      "name": "Failures of the A.I.P",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259630851,
+      "name": "A.I.P Ex Assimilation",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259499577,
+      "name": "A.I.P Ex Hive Mind",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259465391,
+      "name": "Caller of the A.I.P Ex",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259097228,
+      "name": "Zero Mother of the A.I.P Ex",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259466138,
+      "name": "Red-Eyes Gearfried, the Iron Knight",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259992800,
+      "name": "Red-Eyes Moon Dragon",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259184310,
+      "name": "Red-Eyes Meteor Metal Dragon",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259562343,
+      "name": "Red-Eyes Roar",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259114673,
+      "name": "Red-Eyes Turbo Dragon",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259628203,
+      "name": "Red-Eyes Booster Dragon",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259755133,
+      "name": "Rush at the Gnome",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259825991,
+      "name": "Calcu Leet",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259138193,
+      "name": "Digita Leet",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259940722,
+      "name": "Virtua Leet",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259688676,
+      "name": "Herald of White Light",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259352030,
+      "name": "Thunder Dragon Behemoth",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259889864,
+      "name": "Aurelion — Divine Illumination",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259373017,
+      "name": "Lance — Luminar Justiciar",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259304399,
+      "name": "Scarstech Draco",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259531370,
+      "name": "Scarstech Wyvern",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259464700,
+      "name": "Scarstech Invader",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259459462,
+      "name": "Ganan, the Scarstech City",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259086544,
+      "name": "Qerets, the Scarstech Mother Ship",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259315827,
+      "name": "Adamantios, the Dark Armor",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259023461,
+      "name": "Disciple of Fire",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259360287,
+      "name": "Sorceress of Fire",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259366281,
+      "name": "Phlogiston's Roar!",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259794136,
+      "name": "Harpie Cyber Dancer",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259269774,
+      "name": "Harpie Lady Sisters - Phoenix Formation",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259072169,
+      "name": "Mirage Formation Dragon",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259247807,
+      "name": "Glitchling Bitron",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259156549,
+      "name": "Glitchling Protron",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259678739,
+      "name": "Glitchling Witch",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259961648,
+      "name": "Glitchling Data-Transfert",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259927462,
+      "name": "Glitchling Octron",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259494236,
+      "name": "Glitchling Digitron",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259072906,
+      "name": "Glitchling Mage",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259873115,
+      "name": "Glitchling Leotron",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259546637,
+      "name": "Glitchling Corruption",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "If you would Ritual Summon a Cyberse Ritual Monster using hand/field Tributes, Corruption Counters from the field can satisfy up to its Level.",
+          "notes": "Genuine engine limitation: Omega has no card-local, generic hook that adds a counter-derived scalar to all Cyberse Ritual Summon material checks and atomically removes the chosen counters. Monkey-patching shared Ritual helpers would miss bespoke Ritual scripts and affect unrelated cards globally."
+        }
+      ]
+    },
+    {
+      "passcode": 259253032,
+      "name": "Glitchling Hexatron",
+      "verdict": "MANUAL_RULING",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Link Summoning procedure (no material line is present in the current printed text).",
+          "notes": "Genuine source-text ambiguity: this Link-3 monster has no printed Link Material line. The current 2-3 Cyberse implementation is executable, but text, helpers, official scripts, and DB contain no evidence that distinguishes it from exactly 3 Cyberse, 2+ Effect Monsters, or an archetype requirement."
+        }
+      ]
+    },
+    {
+      "passcode": 259485374,
+      "name": "Heart of the Cards",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259576196,
+      "name": "The Orcustograph",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259646610,
+      "name": "Galatea-2, the Orcust Divider",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259614449,
+      "name": "Charmelia Kiana",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259790247,
+      "name": "Charmelia Hanabi",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259288669,
+      "name": "Charmelia Elysia",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259568843,
+      "name": "Charmelia Robin",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259241946,
+      "name": "Charmelia Pray",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259758604,
+      "name": "Charmelia Deal",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259226799,
+      "name": "Charmelia Beast",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259402105,
+      "name": "Magical Girl Explosion!",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259489283,
+      "name": "Charmelia Fairy Kyubey",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259753109,
+      "name": "Charmelia Fairy Morningstar",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259599798,
+      "name": "Wyvernal Luna",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259783008,
+      "name": "Wyvernal Caudina",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259431066,
+      "name": "Wyvernal Myops",
+      "verdict": "MANUAL_RULING",
+      "review_state": "current",
+      "issue_count": 1,
+      "issues": [
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "If this card is in your GY, and you control a \"Wyvernal\" Fusion monster (Quick Effect): You can banish this card from your GY and target 1 card your opponent controls; Negate its effects. You can only use this effect of \"Wyvernal Myops\" once per turn.",
+          "notes": "Ruling/text limitation: 'target 1 card your opponent controls' permits a face-down Monster or Set Spell/Trap by its written target criteria, but the text never states what 'negate its effects' must do while that card is face-down. Omega's official persistent-negation helpers and analogues only define face-up, disableable targets. Resolution needed: either errata the target to '1 face-up card your opponent controls' (the current safe behavior), or provide an authoritative ruling for face-down targets, after which distg/disop can be changed to that exact behavior. No unsupported face-down lingering negation was invented."
+        }
+      ]
+    },
+    {
+      "passcode": 259533644,
+      "name": "Wyvernal Crenata",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259348317,
+      "name": "Wyvernal Sphinx",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259763531,
+      "name": "Wyvernal Lymantria",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259179054,
+      "name": "Wyvernal Megalopyge",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259160760,
+      "name": "Wyvernal Sanctuary",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259073666,
+      "name": "Wyvernal Gathering",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259652372,
+      "name": "Eclipse Observer Aaliyah",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259926839,
+      "name": "Eclipse Observer Riley",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259069729,
+      "name": "Eclipse Observer Nora",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259487387,
+      "name": "Eclipse Observer Ella",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259058125,
+      "name": "Eclipse Observer Maya",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259721372,
+      "name": "Eclipse Observatory",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259680842,
+      "name": "Grimoire of Eclipse",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259614765,
+      "name": "Encyclopedia of Eclipse",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259273851,
+      "name": "Manual of Eclipse",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259264449,
+      "name": "Spellbook of Eclipse",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259303191,
+      "name": "Tome of Eclipse",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259193076,
+      "name": "Eclipse Observer Baleygr",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259126370,
+      "name": "Eclipse Observer Chandra",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259612312,
+      "name": "Eclipse Observer Seara",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259223502,
+      "name": "Ether Mademoiselle",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259792415,
+      "name": "The Intergalataxian",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259384841,
+      "name": "Divinity to Infinity",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259844716,
+      "name": "Yurei",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259560506,
+      "name": "Hannya",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259635008,
+      "name": "Abe no Seimei",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259221974,
+      "name": "Melantha, Keeper of Lamentations",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259797813,
+      "name": "Nautica Musicale",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259941091,
+      "name": "Nautica Oceanica",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259454809,
+      "name": "Raven the Lightning II Aerocat",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259767503,
+      "name": "Glint the Blackbird Aerocat",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259113182,
+      "name": "Vik the Chinook Aerocat",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259548744,
+      "name": "Navi the NAV Hawk Aerocat",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259615843,
+      "name": "Shade the Aigalon Aerocat",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259095349,
+      "name": "Goliath the Airship Aerocat",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259748623,
+      "name": "Argalia the Gripen Aerocat",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259446105,
+      "name": "Aerocat Lightning Shot",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259391738,
+      "name": "Aerocat Recon",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259754412,
+      "name": "Dinomorphia Ankylos",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259640854,
+      "name": "Dinomorphia Triceron",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259826112,
+      "name": "Dinomorphia Provocation",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259935441,
+      "name": "Dinomorphia Hideout",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259481543,
+      "name": "Krawler Astrocyte",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259774818,
+      "name": "Krawler Lamina",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259322868,
+      "name": "Krawler of the World Legacy",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259669838,
+      "name": "Krawler Plexus",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259944344,
+      "name": "World Legacy Surfacing",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259187643,
+      "name": "World Legacy Calamities",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259247853,
+      "name": "Machina X-Krawler",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259296151,
+      "name": "Aerocat Blast Fist",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259687425,
+      "name": "Retaliation Rebound",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259100752,
+      "name": "Pot of Rage",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259928966,
+      "name": "Pot of Longevity",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259024242,
+      "name": "Devotee of the Pyre",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259820516,
+      "name": "Expulsion of the Pyre",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259883230,
+      "name": "Release of the Pyre",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259542408,
+      "name": "Lord of the Pyre",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259295979,
+      "name": "Land of the Pyre",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259882493,
+      "name": "Vaylantz Destroyer Patrician",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259537607,
+      "name": "Arktos X - Vaylantz Game Master",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259253329,
+      "name": "Vaylantz Duality",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259464064,
+      "name": "Egg of the Ashened Demise",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259758294,
+      "name": "Ashened Face Off",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 259181235,
+      "name": "World Legacy Crusadia Counter",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    }
+  ]
+}

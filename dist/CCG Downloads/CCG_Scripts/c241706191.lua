@@ -101,14 +101,14 @@ end
 function s.equipcard(e,tp,ec,tc)
 	if not (ec and tc and s.equiparmsfilter(ec) and s.eqmonster(tc) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0) then return false end
 	if not Duel.Equip(tp,ec,tc) then return false end
-	local e1=Effect.CreateEffect(e:GetHandler())
+	local e1=Effect.CreateEffect(ec)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_CHANGE_TYPE)
 	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 	e1:SetValue(TYPE_SPELL+TYPE_EQUIP)
 	e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 	ec:RegisterEffect(e1)
-	local e2=Effect.CreateEffect(e:GetHandler())
+	local e2=Effect.CreateEffect(ec)
 	e2:SetType(EFFECT_TYPE_SINGLE)
 	e2:SetCode(EFFECT_EQUIP_LIMIT)
 	e2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
@@ -186,7 +186,8 @@ end
 function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	local tc=c:GetEquipTarget()
-	if chk==0 then return tc and eg:IsContains(tc) and r&REASON_BATTLE~=0 and not c:IsStatus(STATUS_DESTROY_CONFIRMED) end
+	if chk==0 then return tc and eg:IsContains(tc) and r&REASON_BATTLE~=0 and not tc:IsReason(REASON_REPLACE)
+		and c:IsDestructable(e) and not c:IsStatus(STATUS_DESTROY_CONFIRMED) end
 	return Duel.SelectEffectYesNo(tp,c,96)
 end
 function s.repop(e,tp,eg,ep,ev,re,r,rp)
@@ -214,14 +215,14 @@ function s.shdreptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	local tc=c:GetEquipTarget()
 	if chk==0 then return tc and eg:IsContains(tc) and r&REASON_EFFECT~=0 and rp==1-tp
-		and not c:IsStatus(STATUS_DESTROY_CONFIRMED) end
+		and not tc:IsReason(REASON_REPLACE) and c:IsDestructable(e) and not c:IsStatus(STATUS_DESTROY_CONFIRMED) end
 	return Duel.SelectEffectYesNo(tp,c,96)
 end
 function s.shdsendt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	local tc=c:GetEquipTarget()
 	if chk==0 then return tc and eg:IsContains(tc) and r&REASON_EFFECT~=0 and rp==1-tp
-		and not c:IsStatus(STATUS_DESTROY_CONFIRMED) end
+		and not tc:IsReason(REASON_REPLACE) and c:IsDestructable(e) and not c:IsStatus(STATUS_DESTROY_CONFIRMED) end
 	return Duel.SelectEffectYesNo(tp,c,96)
 end
 function s.shdsendv(e,c)

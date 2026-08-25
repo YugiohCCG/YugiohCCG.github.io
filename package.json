@@ -30,13 +30,16 @@
     "vitest": "^3.2.7"
   },
   "scripts": {
-    "predev": "node scripts/sync-public-cards.cjs",
+    "predev": "python -B scripts/generate_archetype_catalog.py && python -B scripts/generate_website_metadata.py && node scripts/sync-public-cards.cjs",
     "dev": "vite",
-    "prebuild": "node scripts/sync-public-cards.cjs",
+    "prebuild": "python -B scripts/generate_archetype_catalog.py && python -B scripts/generate_website_metadata.py && node scripts/sync-public-cards.cjs",
     "build": "tsc --noEmit && vite build",
     "postbuild": "node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
     "preview": "vite preview",
     "sync:public-cards": "node scripts/sync-public-cards.cjs",
+    "sync:website-metadata": "python -B scripts/generate_website_metadata.py",
+    "sync:archetypes": "python -B scripts/generate_archetype_catalog.py",
+    "sync:yugioh-catalog": "python -B scripts/sync_yugioh_catalog.py",
     "verify:public-cards": "node scripts/sync-public-cards.cjs --check",
     "lint": "eslint src --ext .ts,.tsx",
     "format": "prettier --check .",

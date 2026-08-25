@@ -234,6 +234,12 @@ def mirror_export_to_omega(source_dir: Path, omega_dir: Path) -> None:
 
 
 def run_release_audit() -> None:
+    metadata = subprocess.run(
+        [sys.executable, "-B", str(SCRIPTS_DIR / "generate_website_metadata.py")],
+        check=False,
+    )
+    if metadata.returncode != 0:
+        raise SystemExit(f"generate_website_metadata.py failed (exit {metadata.returncode})")
     audits = (
         (
             "archetype interoperability against official Omega",

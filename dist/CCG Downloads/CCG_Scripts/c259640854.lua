@@ -1,0 +1,18 @@
+--Dinomorphia Triceron
+--Omega references: Dinomorphia Rexterm (c92798873), Dinomorphia Kentregina (c48832775)
+local s,id=GetID(); local SET_DINOMORPHIA=0x173; local MSG_ID=133640854
+function s.initial_effect(c)
+ c:EnableReviveLimit(); aux.AddFusionProcFun2(c,function(x) return x:IsSetCard(SET_DINOMORPHIA) and x:IsType(TYPE_FUSION) end,function(x) return x:IsSetCard(SET_DINOMORPHIA) end,true)
+ local e0=Effect.CreateEffect(c); e0:SetType(EFFECT_TYPE_FIELD); e0:SetCode(EFFECT_TRAP_ACT_IN_SET_TURN); e0:SetRange(LOCATION_MZONE); e0:SetTargetRange(LOCATION_SZONE,0); e0:SetCondition(function(e) return Duel.GetLP(e:GetHandlerPlayer())<=2000 end); e0:SetTarget(function(e,c) return c:IsSetCard(SET_DINOMORPHIA) end); c:RegisterEffect(e0)
+ local e1=Effect.CreateEffect(c); e1:SetDescription(aux.Stringid(MSG_ID,0)); e1:SetCategory(CATEGORY_DESTROY+CATEGORY_TODECK); e1:SetType(EFFECT_TYPE_QUICK_O); e1:SetCode(EVENT_FREE_CHAIN); e1:SetRange(LOCATION_MZONE); e1:SetProperty(EFFECT_FLAG_CARD_TARGET); e1:SetCountLimit(1,id); e1:SetCost(s.lpcost); e1:SetTarget(s.destg); e1:SetOperation(s.desop); c:RegisterEffect(e1)
+ local e2=Effect.CreateEffect(c); e2:SetDescription(aux.Stringid(MSG_ID,1)); e2:SetCategory(CATEGORY_SPECIAL_SUMMON); e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O); e2:SetCode(EVENT_DESTROYED); e2:SetProperty(EFFECT_FLAG_DELAY); e2:SetCountLimit(1,id+100); e2:SetTarget(s.sptg); e2:SetOperation(s.spop); c:RegisterEffect(e2)
+end
+function s.lpcost(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return true end Duel.PayLPCost(tp,math.floor(Duel.GetLP(tp)/2)) end
+function s.own(c) return c:IsFaceup() and c:IsSetCard(SET_DINOMORPHIA) and c:IsType(TYPE_MONSTER) and c:IsDestructable() end
+function s.opp(c) return c:IsDestructable() end
+function s.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return false end if chk==0 then return Duel.IsExistingTarget(s.own,tp,LOCATION_MZONE,0,1,e:GetHandler()) and Duel.IsExistingTarget(s.opp,tp,0,LOCATION_ONFIELD,1,nil) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY); local a=Duel.SelectTarget(tp,s.own,tp,LOCATION_MZONE,0,1,1,e:GetHandler()); Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY); local b=Duel.SelectTarget(tp,s.opp,tp,0,LOCATION_ONFIELD,1,1,nil); a:Merge(b); Duel.SetOperationInfo(0,CATEGORY_DESTROY,a,2,0,0) end
+function s.rdf(c) return c:IsSetCard(SET_DINOMORPHIA) and c:IsTrap() and c:IsAbleToDeck() end
+function s.desop(e,tp) local g=Duel.GetTargetCards(e):Filter(Card.IsRelateToEffect,nil,e); if Duel.Destroy(g,REASON_EFFECT)==2 and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.rdf),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then Duel.BreakEffect(); Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK); local rg=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.rdf),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,3,nil); Duel.SendtoDeck(rg,nil,SEQ_DECKSHUFFLE,REASON_EFFECT) end end
+function s.spf(c,e,tp) return c:IsSetCard(SET_DINOMORPHIA) and c:IsLevelBelow(6) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end
+function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spf),tp,LOCATION_GRAVE,0,1,nil,e,tp) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_GRAVE) end
+function s.spop(e,tp) if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON); local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spf),tp,LOCATION_GRAVE,0,1,1,nil,e,tp); Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP) end

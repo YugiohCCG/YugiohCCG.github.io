@@ -26,7 +26,13 @@ DEFAULT_OFFICIAL_DB = Path(
     r"C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Bundles\db"
 )
 
-CONSTANT_RE = re.compile(r"^\s*local\s+([A-Za-z_]\w*)\s*=\s*(\d+)\s*$", re.MULTILINE)
+# Card scripts often keep small numeric routing constants on the same physical
+# line as ``local s,id=GetID()``.  Match a declaration at the start of a line or
+# immediately after a statement separator so those constants are audited too.
+CONSTANT_RE = re.compile(
+    r"(?:^|;)\s*local\s+([A-Za-z_]\w*)\s*=\s*(\d+)\s*(?=;|$)",
+    re.MULTILINE,
+)
 STRING_CALL_RE = re.compile(
     r"aux\.Stringid\s*\(\s*([A-Za-z_]\w*|\d+)\s*,\s*(\d+)\s*\)"
 )

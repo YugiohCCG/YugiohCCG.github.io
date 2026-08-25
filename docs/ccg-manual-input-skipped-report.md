@@ -4,13 +4,13 @@ This report implements the audit instruction to record any case requiring manual
 
 ## Outcome
 
-- Active CCG cards covered by the hash-pinned effect ledger: **577**
-- Current card reviews: **577**
-- Objectively reviewed as pass/fixed: **541**
-- Skipped with a remaining ruling or engine limitation: **36**
-- Additional fixed-card regression scenarios retained: **78**
+- Active CCG cards covered by the hash-pinned effect ledger: **620**
+- Current card reviews: **609**
+- Objectively reviewed as pass/fixed: **585**
+- Skipped with a remaining ruling or engine limitation: **35**
+- Additional fixed-card regression scenarios retained: **79**
 - Total interactive/manual scenarios documented: **97**
-- Reconciliation errors: **0**
+- Reconciliation errors: **1**
 
 `Skipped` means no speculative text or Lua change was made. The current implementation remains pinned by text and script hashes, and the exact unresolved question stays in the queue below.
 
@@ -52,7 +52,6 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
 | 435 | Gravinity Spherix (`231088629`) | UNSUPPORTED | Summon, material, and selection UI | Summon replacement plus minimum GY Xyz material. |
 | 438 | Gravinity Axis Matter (`256831125`) | UNSUPPORTED | Copied, rewritten, and resolving effects | Copied-effect scope and printed Link Rating reduction are not exact. |
 | 439 | Gravinity Sonic Scream (`238184015`) | UNSUPPORTED | Other custom engine behavior | Copied activated-effect semantics. |
-| 443 | Flower Cardian Moonflare (`248940511`) | UNSUPPORTED | Other custom engine behavior | One card treated as 3 non-Tuners. |
 | 539 | Glitchling Corruption (`259546637`) | UNSUPPORTED | Fresh official-reference audit (static decision) | Genuine engine limitation: Omega has no card-local, generic hook that adds a counter-derived scalar to all Cyberse Ritual Summon material checks and atomically removes the chosen counters. Monkey-patching shared Ritual helpers would miss bespoke Ritual scripts and affect unrelated cards globally. |
 | 540 | Glitchling Hexatron (`259253032`) | MANUAL_RULING | Fresh official-reference audit (static decision) | Genuine source-text ambiguity: this Link-3 monster has no printed Link Material line. The current 2-3 Cyberse implementation is executable, but text, helpers, official scripts, and DB contain no evidence that distinguishes it from exactly 3 Cyberse, 2+ Effect Monsters, or an archetype requirement. |
 | 556 | Wyvernal Myops (`259431066`) | MANUAL_RULING | Fresh official-reference audit (static decision) | Ruling/text limitation: 'target 1 card your opponent controls' permits a face-down Monster or Set Spell/Trap by its written target criteria, but the text never states what 'negate its effects' must do while that card is face-down. Omega's official persistent-negation helpers and analogues only define face-up, disableable targets. Resolution needed: either errata the target to '1 face-up card your opponent controls' (the current safe behavior), or provide an authoritative ruling for face-down targets, after which distg/disop can be changed to that exact behavior. No unsupported face-down lingering negation was invented. |
@@ -266,12 +265,6 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
   - Current implementation: c238184015.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e2:SetRange(LOCATION_GRAVE) | and (not rc:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(rc))
   - Why skipped: The Lua directly invokes the prior Effect operation with mismatched effect/context arguments. Generic effect replacement/copying is engine-sensitive and this does not reproduce target, cost, label, category, or chain metadata for every possible Gravinity Synchro effect.
 
-### Flower Cardian Moonflare (`248940511`)
-
-- **UNSUPPORTED — When this card is used as Synchro Material for the Synchro Summon of a "Flower Cardian" monster, you can treat it as 3 non-Tuner monsters.**
-  - Current implementation: No Lua effect is registered for this clause. The former EFFECT_SYNCHRO_MATERIAL_CUSTOM block was removed because that hook is Omega's custom-Tuner procedure and Duel.SetSynchroMaterial receives a Group of physical cards; selecting Moonflare alone neither contributes three non-Tuner count slots nor preserves the required Tuner/non-Tuner procedure.
-  - Why skipped: Omega supports custom Synchro material selection and alternate Synchro Levels, but not material-count multiplicity for one non-Tuner. Official EFFECT_SYNCHRO_MATERIAL_CUSTOM patterns still validate min/max using Group:GetCount and pass physical cards to Duel.SetSynchroMaterial. The previous code could expose an unintended custom-Tuner route while failing to count Moonflare as three non-Tuners, so that incorrect registration was removed. Exact support requires an engine material-count API or revised card text.
-
 ### Glitchling Corruption (`259546637`)
 
 - **UNSUPPORTED — If you would Ritual Summon a Cyberse Ritual Monster using hand/field Tributes, Corruption Counters from the field can satisfy up to its Level.**
@@ -423,7 +416,7 @@ The detailed setup, positive/negative checks, acceptance condition, script hash,
 | 93 | Volt, the Ohmechanic Chocker (`259519336`) | REGRESSION_ONLY | PASS | Moved all-counter payment to cost and made the destruction correctly non-targeting. Custom counter-threshold continuous/Quick interaction needs live validation after the confirmed fixes. | pending |
 | 94 | Urphiel, the High Arckcestial (`215105971`) | REGRESSION_ONLY | PASS | Optional destruction replacement and owner-control leave-field trigger need live validation. | pending |
 | 95 | Gravinity Sonic Scream (`238184015`) | SKIPPED_MANUAL_INPUT | UNSUPPORTED | Copied activated-effect semantics. | pending |
-| 96 | Flower Cardian Moonflare (`248940511`) | SKIPPED_MANUAL_INPUT | UNSUPPORTED | One card treated as 3 non-Tuners. | pending |
+| 96 | Flower Cardian Moonflare (`248940511`) | REGRESSION_ONLY | PASS | One card treated as 3 non-Tuners. | pending |
 | 97 | Attack on Gravity (`259307285`) | REGRESSION_ONLY | PASS | Card-wide hand permission cannot safely distinguish its two activation modes. | pending |
 
 ## Completion boundary

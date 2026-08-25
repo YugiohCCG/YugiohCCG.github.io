@@ -1,6 +1,7 @@
 ﻿import { Link } from "react-router-dom";
 import sets from "../data/sets.json";
 import { asset } from "../utils/assets";
+import usePageMeta from "../hooks/usePageMeta";
 
 const RELEASE_TONE_ROTATION = ["story-tone-blue", "story-tone-mint", "story-tone-orange", "story-tone-violet", "story-tone-red", "story-tone-slate"];
 
@@ -14,6 +15,7 @@ const RELEASE_TONES_BY_CODE: Record<string, string> = {
 };
 
 export default function Releases() {
+  usePageMeta("Set Releases", "Browse Yu-Gi-Oh! CCG set releases and release dates.");
   return (
     <div className="space-y-5">
       <section className="card anim-rise">

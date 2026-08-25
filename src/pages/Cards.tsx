@@ -16,8 +16,10 @@ import FiltersPanel from "../components/FiltersPanel";
 import CardsToolbar from "../components/CardsToolbar";
 import VirtualizedCardList from "../components/VirtualizedCardList";
 import CardTile from "../components/CardTile";
+import usePageMeta from "../hooks/usePageMeta";
 
 export default function Cards() {
+  usePageMeta("Card Database", "Search and browse the complete Yu-Gi-Oh! CCG custom card database.");
   const { cards, loading, error } = useCards({
     includeTCG: false,
     includeCustom: true,
@@ -112,7 +114,7 @@ export default function Cards() {
       <section className="card anim-rise">
         <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-slate-500">Collection Browser</p>
         <h2 className="font-display text-4xl leading-none">Card Database</h2>
-        <p className="mt-2 text-sm text-slate-600">
+        <p className="mt-2 text-sm text-slate-600" aria-live="polite">
           Filter by set, type, archetype, stats, and legality. Current results: {results.length.toLocaleString()} cards.
         </p>
       </section>

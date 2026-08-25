@@ -121,7 +121,7 @@ function s.xyzwithmat(c,tp,e)
 	return s.xyzgray(c) and Duel.IsExistingMatchingCard(s.fieldmat,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil,c,e)
 end
 function s.chtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.xyzwithmat,tp,LOCATION_MZONE,0,1,nil,tp,re) end
+	if chk==0 then return Duel.IsExistingMatchingCard(s.xyzwithmat,tp,LOCATION_MZONE,0,1,nil,tp,e) end
 end
 function s.chop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.ChangeTargetCard(ev,Group.CreateGroup())

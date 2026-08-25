@@ -54,10 +54,10 @@ function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local tg=te:GetTarget()
 	local op=te:GetOperation()
 	if tg then
-		tg(te,tp,ceg,cep,cev,cre,cr,crp,1)
+		tg(e,tp,ceg,cep,cev,cre,cr,crp,1)
 	end
 	if op then
-		op(te,tp,ceg,cep,cev,cre,cr,crp)
+		op(e,tp,ceg,cep,cev,cre,cr,crp)
 	end
 end
 function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)

@@ -1,5 +1,5 @@
 // src/hooks/useCards.ts
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import type { Card, SetInfo } from "../types/card";
 import { cardMatches, type Query } from "../utils/filters";
@@ -22,8 +22,6 @@ function isVisible(c: Card): boolean {
 }
 // Bundled data
 import customCards from "../data/cards.json";
-import tcgCards from "../data/tcg-cards.json";
-import testCards from "../data/cards - test.json";
 import setsData from "../data/sets.json";
 
 export type UseCardsOptions = {
@@ -136,6 +134,22 @@ export default function useCards(
 ): UseCardsResult {
   const [params] = useSearchParams();
   const query = useMemo(() => buildQuery(params), [params]);
+  const [tcgCards, setTcgCards] = useState<Card[]>([]);
+  const [testCards, setTestCards] = useState<Card[]>([]);
+  const [loadingOptional, setLoadingOptional] = useState(Boolean(opts.includeTCG || opts.includeTest));
+  const [loadError, setLoadError] = useState<unknown | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    const loads: Promise<void>[] = [];
+    setLoadError(null);
+    if (opts.includeTCG) loads.push(import("../data/tcg-cards.json").then((module) => { if (active) setTcgCards(module.default as unknown as Card[]); }));
+    if (opts.includeTest) loads.push(import("../data/cards - test.json").then((module) => { if (active) setTestCards(module.default as unknown as Card[]); }));
+    if (!loads.length) { setLoadingOptional(false); return () => { active = false; }; }
+    setLoadingOptional(true);
+    Promise.all(loads).catch((reason) => { if (active) setLoadError(reason); }).finally(() => { if (active) setLoadingOptional(false); });
+    return () => { active = false; };
+  }, [opts.includeTCG, opts.includeTest]);
 
   // Compose dataset based on options (UNFILTERED source)
   const sourceCards: Card[] = useMemo(() => {
@@ -190,5 +204,5 @@ export default function useCards(
     return { setsByCode, setsList: sets, archetypes, monsterTypes };
   }, [sets, sourceCards]);
 
-  return { cards, sets, indexes, query, loading: false, error: null };
+  return { cards, sets, indexes, query, loading: loadingOptional, error: loadError };
 }

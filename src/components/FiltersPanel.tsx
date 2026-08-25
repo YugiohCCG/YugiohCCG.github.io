@@ -127,6 +127,7 @@ function Chip({
       type="button"
       title={title}
       onClick={onClick}
+      aria-pressed={active}
       className={`filter-pill ${active ? "active" : ""}`}
     >
       {children}

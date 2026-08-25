@@ -76,9 +76,22 @@ function s.applyeffect(e,tp,tc)
 	if not (tc:IsFaceup() and tc:IsLocation(LOCATION_REMOVED)) then return end
 	local te,ceg,cep,cev,cre,cr,crp=tc:CheckActivateEffect(false,true,true)
 	if not te then return end
+	e:SetProperty(te:GetProperty())
+	e:SetLabel(te:GetLabel())
+	e:SetLabelObject(te:GetLabelObject())
+	Duel.ClearTargetCard()
 	local tg=te:GetTarget()
 	if tg then tg(e,tp,ceg,cep,cev,cre,cr,crp,1) end
+	te:SetLabel(e:GetLabel())
+	te:SetLabelObject(e:GetLabelObject())
+	e:SetLabelObject(te)
 	local op=te:GetOperation()
-	if op then op(e,tp,ceg,cep,cev,cre,cr,crp) end
+	if op then
+		e:SetLabel(te:GetLabel())
+		e:SetLabelObject(te:GetLabelObject())
+		op(e,tp,ceg,cep,cev,cre,cr,crp)
+		te:SetLabel(e:GetLabel())
+		te:SetLabelObject(e:GetLabelObject())
+	end
 	Duel.ClearOperationInfo(0)
 end

@@ -119,7 +119,7 @@ function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	local tc=c:GetEquipTarget()
 	if chk==0 then return tc and eg:IsContains(tc) and r&REASON_EFFECT~=0 and rp==1-tp
-		and not c:IsStatus(STATUS_DESTROY_CONFIRMED) end
+		and not tc:IsReason(REASON_REPLACE) and c:IsDestructable(e) and not c:IsStatus(STATUS_DESTROY_CONFIRMED) end
 	return Duel.SelectEffectYesNo(tp,c,96)
 end
 function s.repop(e,tp,eg,ep,ev,re,r,rp)
@@ -129,7 +129,7 @@ function s.sendt(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	local tc=c:GetEquipTarget()
 	if chk==0 then return tc and eg:IsContains(tc) and r&REASON_EFFECT~=0 and rp==1-tp
-		and not c:IsStatus(STATUS_DESTROY_CONFIRMED) end
+		and not tc:IsReason(REASON_REPLACE) and c:IsDestructable(e) and not c:IsStatus(STATUS_DESTROY_CONFIRMED) end
 	return Duel.SelectEffectYesNo(tp,c,96)
 end
 function s.sendv(e,c)

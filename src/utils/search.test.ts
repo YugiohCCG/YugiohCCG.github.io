@@ -26,12 +26,35 @@ const card = (name: string, archetype: string): Card => ({
 });
 
 describe("makeFuse", () => {
-  it("returns close misspellings instead of requiring an exact substring", () => {
+  it("uses a strict literal match when genuine results exist", () => {
+    const fishMonster = {
+      ...card("Jelly Lass", "Grand Blue"),
+      monsterType: ["Fish"],
+      text: "If this card is Normal Summoned: draw 1 card.",
+    };
+    const fishSupport = {
+      ...card("Cosmic Ocean", "Ghoti"),
+      monsterType: null,
+      text: "Add 1 Fish monster from your Deck to your hand.",
+    };
+    const unrelated = {
+      ...card("Unrelated Card", "Other"),
+      text: "If this card is Special Summoned: draw 1 card.",
+    };
+
+    const results = makeFuse([fishMonster, fishSupport, unrelated])
+      .search("Fish")
+      .map((result) => result.item.name);
+
+    expect(results).toEqual(["Jelly Lass", "Cosmic Ocean"]);
+  });
+
+  it("returns close misspellings when there are no literal matches", () => {
     const fuse = makeFuse([
       card("Stardrake of Gravitic Coils", "Stardrake"),
       card("Unrelated Card", "Other"),
     ]);
-    expect(fuse.search("Stardrak").map((result) => result.item.name)).toContain(
+    expect(fuse.search("Stardrkae").map((result) => result.item.name)).toContain(
       "Stardrake of Gravitic Coils",
     );
   });

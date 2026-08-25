@@ -1,0 +1,1 @@
+function a(t){if(!t)return t;const s=t.toLowerCase();if(s.startsWith("http://")||s.startsWith("https://")||s.startsWith("data:")||s.startsWith("blob:"))return t;const e="/".trim(),r=e.endsWith("/")?e.slice(0,-1):e,n=t.replace(/^\/+/,"");return`${r}/${n}`}export{a};

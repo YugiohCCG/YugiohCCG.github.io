@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import shutil
@@ -53,12 +54,14 @@ INSTALLER_PATH = DOWNLOADS / "CCG_Omega_Addon_Setup.exe"
 INSTALLER_SOURCE = REPO_ROOT / "scripts" / "ccg-omega-installer.iss"
 INSTALLER_BUILD_PATH = REPO_ROOT / "scripts" / "output" / "CCG_Omega_Addon_Setup.exe"
 DOWNLOADS_PAGE_SOURCE = REPO_ROOT / "src" / "pages" / "Downloads.tsx"
+RELEASE_MANIFEST_PATH = REPO_ROOT / "public" / "data" / "release-manifest.json"
 CIRCUIT_SCRIPT_PATH = SCRIPTS_DIR / "c248891593.lua"
 CIRCUIT_WIN_REASON = 0x24
 CIRCUIT_VICTORY_LINE = (
     '!victory 0x24 Victory by the effect of "Scarstech Circuit"'
 )
 HOLOGRAM_SIZE = (512, 512)
+HOLOGRAM_SUPPORTED_SIZES = {(512, 512), (624, 624)}
 MONSTER_ATTRIBUTES = {
     "DARK",
     "DIVINE",
@@ -402,6 +405,7 @@ def audit_holograms_from_arts(
     wrong_mode: list[int] = []
     wrong_size: list[int] = []
     transparent: list[int] = []
+    fully_transparent: list[int] = []
     mismatched_pixels: list[int] = []
 
     try:
@@ -449,7 +453,7 @@ def audit_holograms_from_arts(
                         hologram_image.load()
                         if hologram_image.mode != "RGBA":
                             wrong_mode.append(card_id)
-                        if hologram_image.size != HOLOGRAM_SIZE:
+                        if hologram_image.size not in HOLOGRAM_SUPPORTED_SIZES:
                             wrong_size.append(card_id)
                             continue
                         hologram = hologram_image.convert("RGBA")
@@ -462,9 +466,12 @@ def audit_holograms_from_arts(
                     invalid_images.append(card_id)
                     continue
 
-                if hologram.getchannel("A").getextrema() != (255, 255):
+                alpha_extrema = hologram.getchannel("A").getextrema()
+                if alpha_extrema == (0, 0):
+                    fully_transparent.append(card_id)
+                elif alpha_extrema != (255, 255):
                     transparent.append(card_id)
-                if hologram.convert("RGB").tobytes() != expected.tobytes():
+                elif hologram.size != HOLOGRAM_SIZE or hologram.convert("RGB").tobytes() != expected.tobytes():
                     mismatched_pixels.append(card_id)
     except (OSError, zipfile.BadZipFile) as exc:
         audit.errors.append(f"Holograms: cannot compare against primary Arts: {exc}")
@@ -475,9 +482,9 @@ def audit_holograms_from_arts(
         (missing_hologram, "monster IDs have no Hologram"),
         (invalid_images, "images could not be decoded"),
         (wrong_mode, "Holograms are not RGBA"),
-        (wrong_size, "Holograms are not 512x512"),
-        (transparent, "Holograms are not fully opaque"),
-        (mismatched_pixels, "Holograms do not match resized primary Arts"),
+        (wrong_size, "Holograms are not a supported square size (512 or 624)"),
+        (fully_transparent, "Holograms have no visible pixels"),
+        (mismatched_pixels, "opaque fallback Holograms do not match resized primary Arts"),
     ]:
         audit.require(not ids, f"Holograms: {message}: {summarize(ids)}")
 
@@ -488,13 +495,14 @@ def audit_holograms_from_arts(
             invalid_images,
             wrong_mode,
             wrong_size,
-            transparent,
+            fully_transparent,
             mismatched_pixels,
         ]
     ):
         audit.note(
-            f"Holograms: {len(monster_ids)} opaque primary Arts images at "
-            f"{HOLOGRAM_SIZE[0]}x{HOLOGRAM_SIZE[1]}"
+            f"Holograms: {len(monster_ids)} valid images; "
+            f"{len(transparent)} transparent cutouts and "
+            f"{len(monster_ids) - len(transparent)} opaque fallbacks"
         )
 
 
@@ -781,36 +789,45 @@ def audit_website_downloads(audit: Audit, groups: dict[str, list[Path]]) -> None
         audit.errors.append(f"website downloads: cannot read source: {exc}")
         return
 
-    advertised = {
-        "Arts": {
-            int(value)
-            for value in re.findall(r"YGO_Omega_Images_v(\d+)\.zip", source)
-        },
-        "Pics": {
-            int(value)
-            for value in re.findall(r"YGO_Omega_Pics_v(\d+)\.zip", source)
-        },
-        "Holograms": {
-            int(value)
-            for value in re.findall(r"YGO_Omega_Holograms_v(\d+)\.zip", source)
-        },
+    audit.require(
+        'useRemoteJson<ReleaseManifest>("data/release-manifest.json")' in source,
+        "website downloads: page does not consume the generated release manifest",
+    )
+    audit.require(
+        "function DownloadButton" in source and "fetch(asset(file.path))" in source,
+        "website downloads: generated artifact paths are not used for downloads",
+    )
+    audit.require(sum(len(parts) for parts in groups.values()) > 0, "website downloads: image archives are missing")
+    audit.note("website downloads: generated release manifest drives installer and manual links")
+
+
+def audit_release_manifest(audit: Audit, groups: dict[str, list[Path]]) -> None:
+    try:
+        payload = json.loads(RELEASE_MANIFEST_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        audit.errors.append(f"release manifest: cannot read metadata: {exc}")
+        return
+    expected = {
+        INSTALLER_PATH,
+        DB_PATH,
+        SCRIPTS_ZIP_PATH,
+        BANLIST_PATH,
+        *groups["Arts"],
+        *groups["Pics"],
+        *groups["Holograms"],
     }
-    for label, parts in groups.items():
-        expected = set(range(1, len(parts) + 1))
-        audit.require(
-            advertised[label] == expected,
-            f"website downloads: {label} links {sorted(advertised[label])}, "
-            f"expected {sorted(expected)}",
-        )
-    audit.require(
-        "CCG%20Downloads/CCG_Omega_Addon_Setup.exe" in source,
-        "website downloads: installer button does not target the published EXE",
-    )
-    audit.require(
-        'download="CCG_Omega_Addon_Setup.exe"' in source,
-        "website downloads: installer link does not explicitly request a download",
-    )
-    audit.note("website downloads: installer and manual part links match the release")
+    rows = payload.get("files", [])
+    actual = {REPO_ROOT / "public" / str(row.get("path")) for row in rows}
+    audit.require(actual == expected, "release manifest: artifact membership differs from release")
+    for row in rows:
+        path = REPO_ROOT / "public" / str(row.get("path"))
+        if not path.is_file():
+            audit.errors.append(f"release manifest: missing {path.name}")
+            continue
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        audit.require(int(row.get("bytes", -1)) == path.stat().st_size, f"release manifest: stale size for {path.name}")
+        audit.require(row.get("sha256") == digest, f"release manifest: stale SHA-256 for {path.name}")
+    audit.note(f"release manifest: {len(rows)} downloadable artifacts have current sizes and hashes")
 
 
 def smoke_extract(
@@ -1021,6 +1038,7 @@ def main() -> int:
     audit_circuit_victory_string(audit)
     audit_installer_constants(audit, groups)
     audit_website_downloads(audit, groups)
+    audit_release_manifest(audit, groups)
 
     if not args.no_smoke and not audit.errors:
         smoke_extract(audit, active_ids, monster_ids, expected_db_ids, groups)
