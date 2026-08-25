@@ -39,7 +39,7 @@ function s.thop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND) local g=Duel.
 function s.rdf(c,e) return c~=e:GetHandler() and c:IsSetCard(SET_AEROCAT) and c:IsAbleToDeck() and (c:IsLocation(LOCATION_REMOVED) or aux.NecroValleyFilter(Card.IsAbleToDeck)(c,e)) end
 function s.one(c) return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:GetOverlayCount()==1 end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return s.rdf(chkc,e) end if chk==0 then return Duel.IsExistingTarget(s.rdf,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,e) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK) local g=Duel.SelectTarget(tp,s.rdf,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,3,nil,e) Duel.SetOperationInfo(0,CATEGORY_TODECK,g,#g,0,0) end
-function s.tdop(e,tp) local g=Duel.GetTargetCards(e):Filter(s.rdf,nil,e) if #g>0 and Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and Duel.IsExistingMatchingCard(s.one,tp,LOCATION_MZONE,0,1,nil) and Duel.IsPlayerCanDraw(tp,1) and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then Duel.BreakEffect(); Duel.Draw(tp,1,REASON_EFFECT) end end
+function s.tdop(e,tp) local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(s.rdf,nil,e) if #g>0 and Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and Duel.IsExistingMatchingCard(s.one,tp,LOCATION_MZONE,0,1,nil) and Duel.IsPlayerCanDraw(tp,1) and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then Duel.BreakEffect(); Duel.Draw(tp,1,REASON_EFFECT) end end
 ''')
 
 add(259296151, r'''
@@ -156,7 +156,7 @@ end
 function s.pyro(c) return c:IsFaceup() and c:IsRace(RACE_PYRO) end
 function s.opp(c) return c:IsDestructable() end
 function s.tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and s.pyro(chkc) or chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_ONFIELD) and s.opp(chkc) end if chk==0 then return Duel.IsExistingTarget(s.pyro,tp,LOCATION_MZONE,0,1,nil) and Duel.IsExistingTarget(s.opp,tp,0,LOCATION_ONFIELD,1,nil) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY); local a=Duel.SelectTarget(tp,s.pyro,tp,LOCATION_MZONE,0,1,1,nil); Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY); local b=Duel.SelectTarget(tp,s.opp,tp,0,LOCATION_ONFIELD,1,1,nil); a:Merge(b); Duel.SetOperationInfo(0,CATEGORY_DESTROY,a,2,0,0) end
-function s.op(e) local g=Duel.GetTargetCards(e):Filter(Card.IsRelateToEffect,nil,e); Duel.Destroy(g,REASON_EFFECT) end
+function s.op(e) local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e); Duel.Destroy(g,REASON_EFFECT) end
 function s.repfilter(c,tp) return c:IsFaceup() and c:IsControler(tp) and c:IsLocation(LOCATION_MZONE) and c:IsRace(RACE_PYRO) and c:IsReason(REASON_BATTLE+REASON_EFFECT) and not c:IsReason(REASON_REPLACE) end
 function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return eg:IsExists(s.repfilter,1,nil,tp) and e:GetHandler():IsAbleToRemove() end return Duel.SelectYesNo(tp,96) end
 function s.repval(e,c) return s.repfilter(c,e:GetHandlerPlayer()) end
@@ -198,7 +198,7 @@ function s.costf(c) return c:IsFaceup() and c:IsType(TYPE_PENDULUM) and c:IsDest
 function s.thf(c) return c:IsSetCard(SET_VAYLANTZ) and c:IsAbleToHand() end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(s.costf,tp,LOCATION_ONFIELD,0,1,nil) and Duel.IsExistingMatchingCard(s.thf,tp,LOCATION_DECK,0,1,nil) end Duel.SetOperationInfo(0,CATEGORY_DESTROY,nil,1,tp,LOCATION_ONFIELD); Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK) end
 function s.thop(e,tp) if not e:GetHandler():IsRelateToEffect(e) then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY); local tc=Duel.SelectMatchingCard(tp,s.costf,tp,LOCATION_ONFIELD,0,1,1,nil):GetFirst(); if tc and Duel.Destroy(tc,REASON_EFFECT)>0 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); local g=Duel.SelectMatchingCard(tp,s.thf,tp,LOCATION_DECK,0,1,1,nil); if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT); Duel.ConfirmCards(1-tp,g) end end end
-function s.mvcon(e,tp,eg) return not Duel.IsDamageStep() and eg:IsExists(function(c) return c:IsLocation(LOCATION_MZONE) and c:GetPreviousLocation()==LOCATION_MZONE and c:GetPreviousSequence()~=c:GetSequence() end,1,nil) end
+function s.mvcon(e,tp,eg) local ph=Duel.GetCurrentPhase() return ph~=PHASE_DAMAGE and ph~=PHASE_DAMAGE_CAL and eg:IsExists(function(c) return c:IsLocation(LOCATION_MZONE) and c:GetPreviousLocation()==LOCATION_MZONE and c:GetPreviousSequence()~=c:GetSequence() end,1,nil) end
 function s.mvop(e,tp,eg) local seqs={} for tc in aux.Next(eg) do if tc:IsLocation(LOCATION_MZONE) and tc:GetPreviousLocation()==LOCATION_MZONE and tc:GetPreviousSequence()~=tc:GetSequence() then local seq=tc:GetSequence(); if tc:IsControler(tp) then seq=4-seq end; seqs[seq]=true end end local g=Duel.GetMatchingGroup(function(c,t) return t[c:GetSequence()] end,tp,0,LOCATION_ONFIELD,nil,seqs); if #g>0 then Duel.Destroy(g,REASON_EFFECT) end end
 ''')
 
@@ -311,7 +311,7 @@ function s.settg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistin
 function s.setop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET); local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.sf),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil); if #g>0 then Duel.SSet(tp,g) end end
 function s.rdf(c) return not c:IsCode(id) and (c:IsSetCard(SET_PYRE) and c:IsSpell() or c:IsRace(RACE_PYRO)) and c:IsAbleToDeck() end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return s.rdf(chkc) end if chk==0 then return Duel.IsExistingTarget(s.rdf,tp,LOCATION_REMOVED,0,3,nil) and Duel.IsPlayerCanDraw(tp,1) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK); local g=Duel.SelectTarget(tp,s.rdf,tp,LOCATION_REMOVED,0,3,3,nil); Duel.SetOperationInfo(0,CATEGORY_TODECK,g,3,0,0); Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1) end
-function s.tdop(e,tp) local g=Duel.GetTargetCards(e):Filter(Card.IsRelateToEffect,nil,e); if #g==3 and Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==3 then Duel.BreakEffect(); Duel.Draw(tp,1,REASON_EFFECT) end end
+function s.tdop(e,tp) local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e); if #g==3 and Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==3 then Duel.BreakEffect(); Duel.Draw(tp,1,REASON_EFFECT) end end
 function s.rf(c,tp) return c:IsFaceup() and c:IsControler(tp) and c:IsLocation(LOCATION_MZONE) and c:IsRace(RACE_PYRO) and c:IsReason(REASON_BATTLE+REASON_EFFECT) and not c:IsReason(REASON_REPLACE) end
 function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return eg:IsExists(s.rf,1,nil,tp) and e:GetHandler():IsAbleToRemove() end return Duel.SelectYesNo(tp,96) end
 function s.repval(e,c) return s.rf(c,e:GetHandlerPlayer()) end
@@ -537,7 +537,7 @@ function s.own(c) return c:IsFaceup() and c:IsSetCard(SET_DINOMORPHIA) and c:IsT
 function s.opp(c) return c:IsDestructable() end
 function s.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return false end if chk==0 then return Duel.IsExistingTarget(s.own,tp,LOCATION_MZONE,0,1,e:GetHandler()) and Duel.IsExistingTarget(s.opp,tp,0,LOCATION_ONFIELD,1,nil) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY); local a=Duel.SelectTarget(tp,s.own,tp,LOCATION_MZONE,0,1,1,e:GetHandler()); Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY); local b=Duel.SelectTarget(tp,s.opp,tp,0,LOCATION_ONFIELD,1,1,nil); a:Merge(b); Duel.SetOperationInfo(0,CATEGORY_DESTROY,a,2,0,0) end
 function s.rdf(c) return c:IsSetCard(SET_DINOMORPHIA) and c:IsTrap() and c:IsAbleToDeck() end
-function s.desop(e,tp) local g=Duel.GetTargetCards(e):Filter(Card.IsRelateToEffect,nil,e); if Duel.Destroy(g,REASON_EFFECT)==2 and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.rdf),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then Duel.BreakEffect(); Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK); local rg=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.rdf),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,3,nil); Duel.SendtoDeck(rg,nil,SEQ_DECKSHUFFLE,REASON_EFFECT) end end
+function s.desop(e,tp) local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e); if Duel.Destroy(g,REASON_EFFECT)==2 and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.rdf),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then Duel.BreakEffect(); Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK); local rg=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.rdf),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,3,nil); Duel.SendtoDeck(rg,nil,SEQ_DECKSHUFFLE,REASON_EFFECT) end end
 function s.spf(c,e,tp) return c:IsSetCard(SET_DINOMORPHIA) and c:IsLevelBelow(6) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spf),tp,LOCATION_GRAVE,0,1,nil,e,tp) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_GRAVE) end
 function s.spop(e,tp) if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON); local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spf),tp,LOCATION_GRAVE,0,1,1,nil,e,tp); Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP) end
@@ -616,7 +616,7 @@ end
 function s.own(c) return c:IsAbleToHand() end
 function s.opp(c) return c:IsAbleToHand() end
 function s.rtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return false end if chk==0 then return Duel.IsExistingTarget(s.own,tp,LOCATION_ONFIELD,0,1,nil) and Duel.IsExistingTarget(s.opp,tp,0,LOCATION_ONFIELD,1,nil) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND); local a=Duel.SelectTarget(tp,s.own,tp,LOCATION_ONFIELD,0,1,1,nil); Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND); local b=Duel.SelectTarget(tp,s.opp,tp,0,LOCATION_ONFIELD,1,1,nil); a:Merge(b); Duel.SetOperationInfo(0,CATEGORY_TOHAND,a,2,0,0) end
-function s.rop(e) local g=Duel.GetTargetCards(e):Filter(Card.IsRelateToEffect,nil,e); Duel.SendtoHand(g,nil,REASON_EFFECT) end
+function s.rop(e) local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e); Duel.SendtoHand(g,nil,REASON_EFFECT) end
 function s.dcost(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return e:GetHandler():IsDiscardable() end Duel.SendtoGrave(e:GetHandler(),REASON_COST+REASON_DISCARD) end
 function s.spf(c,e,tp) return c:IsSetCard(SET_KRAWLER) and not c:IsCode(id) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENSE+POS_FACEDOWN_DEFENSE) end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spf),tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,e,tp) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED) end
@@ -710,7 +710,7 @@ function s.cpop(e,tp)
  elseif code==51205763 then if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON); local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.glial),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,1,nil,e,tp); local tc=g:GetFirst(); if tc then local pos=Duel.SelectPosition(tp,tc,POS_FACEUP_ATTACK+POS_FACEDOWN_DEFENSE); if Duel.SpecialSummon(tc,0,tp,tp,false,false,pos)>0 and tc:IsFacedown() then Duel.ConfirmCards(1-tp,tc) end end
  elseif code==83293307 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); local g=Duel.SelectMatchingCard(tp,s.receptor,tp,LOCATION_DECK,0,1,1,nil); if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT); Duel.ConfirmCards(1-tp,g) end
  elseif code==46083111 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE); local g=Duel.SelectMatchingCard(tp,s.dendrite,tp,LOCATION_DECK,0,1,1,nil); Duel.SendtoGrave(g,REASON_EFFECT)
- elseif code==10698416 then local g=Duel.GetTargetCards(e):Filter(aux.NecroValleyFilter(s.ranvier),nil); if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT) end end
+ elseif code==10698416 then local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(aux.NecroValleyFilter(s.ranvier),nil); if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT) end end
 end
 function s.thf(c) return (c:IsSetCard(SET_KRAWLER) and c:IsType(TYPE_MONSTER) or c:IsSetCard(SET_WORLD_LEGACY) and c:IsSpellTrap()) and not c:IsCode(id) and c:IsAbleToHand() end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.thf),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) end Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_GRAVE+LOCATION_REMOVED) end

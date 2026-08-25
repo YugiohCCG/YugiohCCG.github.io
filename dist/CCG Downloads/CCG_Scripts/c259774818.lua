@@ -9,7 +9,7 @@ end
 function s.own(c) return c:IsAbleToHand() end
 function s.opp(c) return c:IsAbleToHand() end
 function s.rtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return false end if chk==0 then return Duel.IsExistingTarget(s.own,tp,LOCATION_ONFIELD,0,1,nil) and Duel.IsExistingTarget(s.opp,tp,0,LOCATION_ONFIELD,1,nil) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND); local a=Duel.SelectTarget(tp,s.own,tp,LOCATION_ONFIELD,0,1,1,nil); Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND); local b=Duel.SelectTarget(tp,s.opp,tp,0,LOCATION_ONFIELD,1,1,nil); a:Merge(b); Duel.SetOperationInfo(0,CATEGORY_TOHAND,a,2,0,0) end
-function s.rop(e) local g=Duel.GetTargetCards(e):Filter(Card.IsRelateToEffect,nil,e); Duel.SendtoHand(g,nil,REASON_EFFECT) end
+function s.rop(e) local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e); Duel.SendtoHand(g,nil,REASON_EFFECT) end
 function s.dcost(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return e:GetHandler():IsDiscardable() end Duel.SendtoGrave(e:GetHandler(),REASON_COST+REASON_DISCARD) end
 function s.spf(c,e,tp) return c:IsSetCard(SET_KRAWLER) and not c:IsCode(id) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENSE+POS_FACEDOWN_DEFENSE) end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spf),tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,e,tp) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED) end

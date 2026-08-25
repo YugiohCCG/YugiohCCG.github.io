@@ -13,7 +13,7 @@ function s.settg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistin
 function s.setop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET); local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.sf),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil); if #g>0 then Duel.SSet(tp,g) end end
 function s.rdf(c) return not c:IsCode(id) and (c:IsSetCard(SET_PYRE) and c:IsSpell() or c:IsRace(RACE_PYRO)) and c:IsAbleToDeck() end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return s.rdf(chkc) end if chk==0 then return Duel.IsExistingTarget(s.rdf,tp,LOCATION_REMOVED,0,3,nil) and Duel.IsPlayerCanDraw(tp,1) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK); local g=Duel.SelectTarget(tp,s.rdf,tp,LOCATION_REMOVED,0,3,3,nil); Duel.SetOperationInfo(0,CATEGORY_TODECK,g,3,0,0); Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1) end
-function s.tdop(e,tp) local g=Duel.GetTargetCards(e):Filter(Card.IsRelateToEffect,nil,e); if #g==3 and Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==3 then Duel.BreakEffect(); Duel.Draw(tp,1,REASON_EFFECT) end end
+function s.tdop(e,tp) local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e); if #g==3 and Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==3 then Duel.BreakEffect(); Duel.Draw(tp,1,REASON_EFFECT) end end
 function s.rf(c,tp) return c:IsFaceup() and c:IsControler(tp) and c:IsLocation(LOCATION_MZONE) and c:IsRace(RACE_PYRO) and c:IsReason(REASON_BATTLE+REASON_EFFECT) and not c:IsReason(REASON_REPLACE) end
 function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return eg:IsExists(s.rf,1,nil,tp) and e:GetHandler():IsAbleToRemove() end return Duel.SelectYesNo(tp,96) end
 function s.repval(e,c) return s.rf(c,e:GetHandlerPlayer()) end
