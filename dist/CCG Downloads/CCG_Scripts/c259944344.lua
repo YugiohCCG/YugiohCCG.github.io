@@ -38,7 +38,7 @@ function s.cpop(e,tp)
  elseif code==51205763 then if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON); local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.glial),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,1,nil,e,tp); local tc=g:GetFirst(); if tc then local pos=Duel.SelectPosition(tp,tc,POS_FACEUP_ATTACK+POS_FACEDOWN_DEFENSE); if Duel.SpecialSummon(tc,0,tp,tp,false,false,pos)>0 and tc:IsFacedown() then Duel.ConfirmCards(1-tp,tc) end end
  elseif code==83293307 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); local g=Duel.SelectMatchingCard(tp,s.receptor,tp,LOCATION_DECK,0,1,1,nil); if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT); Duel.ConfirmCards(1-tp,g) end
  elseif code==46083111 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE); local g=Duel.SelectMatchingCard(tp,s.dendrite,tp,LOCATION_DECK,0,1,1,nil); Duel.SendtoGrave(g,REASON_EFFECT)
- elseif code==10698416 then local g=Duel.GetTargetCards(e):Filter(aux.NecroValleyFilter(s.ranvier),nil); if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT) end end
+ elseif code==10698416 then local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(aux.NecroValleyFilter(s.ranvier),nil); if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT) end end
 end
 function s.thf(c) return (c:IsSetCard(SET_KRAWLER) and c:IsType(TYPE_MONSTER) or c:IsSetCard(SET_WORLD_LEGACY) and c:IsSpellTrap()) and not c:IsCode(id) and c:IsAbleToHand() end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.thf),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) end Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_GRAVE+LOCATION_REMOVED) end
