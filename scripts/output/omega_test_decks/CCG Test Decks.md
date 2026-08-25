@@ -49,6 +49,53 @@ File: `CCG Test - A.I.P.ydk`
 - 3× Crossout Designator (`65681983`) — official side-deck option (Crossout Designator)
 - 3× Droll & Lock Bird (`94145021`) — official side-deck option (Droll & Lock Bird)
 
+## Aerocat
+
+File: `CCG Test - Aerocat.ydk`
+
+### Main (40)
+
+- 3× Vik the Chinook Aerocat (`259113182`) — engine
+- 3× Glint the Blackbird Aerocat (`259767503`) — engine
+- 3× Aerocat Recon (`259391738`) — engine
+- 3× Argalia the Gripen Aerocat (`259748623`) — engine
+- 3× Raven the Lightning II Aerocat (`259454809`) — engine
+- 3× Shade the Aigalon Aerocat (`259615843`) — engine
+- 3× Aerocat Lightning Shot (`259446105`) — engine
+- 3× Aerocat Blast Fist (`259296151`) — engine
+- 2× Remembrance of the Melody (`216620496`) — custom side-deck test option
+- 2× Interwire Dimensquid (`253128790`) — custom side-deck test option
+- 1× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option
+- 1× Ghost Doll & Midnight Manor (`222782750`) — custom side-deck test option
+- 1× Dominus Sentinel (`259290896`) — custom side-deck test option
+- 1× Rush at the Gnome (`259755133`) — custom non-engine
+- 1× Unbinding the Soul (`246900181`) — custom non-engine
+- 1× Dreadful Soul Drain (`259471193`) — custom non-engine
+- 1× The One Called Forth (`226827770`) — custom non-engine
+- 1× Curryboh (`220538776`) — custom non-engine
+- 3× Ash Blossom & Joyous Spring (`14558127`) — official consistency/interaction (Ash Blossom & Joyous Spring)
+- 1× Infinite Impermanence (`10045474`) — official consistency/interaction (Infinite Impermanence)
+
+### Extra (7)
+
+- 3× Goliath the Airship Aerocat (`259095349`) — engine Extra Deck
+- 3× Navi the NAV Hawk Aerocat (`259548744`) — engine Extra Deck
+- 1× Rigel the Thousand-Armed (`215853847`) — custom generic Extra Deck option
+
+### Side (15)
+
+- 1× Remembrance of the Melody (`216620496`) — custom side-deck test option
+- 1× Branching to Guidance (`222257685`) — custom side-deck test option
+- 1× Interwire Dimensquid (`253128790`) — custom side-deck test option
+- 1× Toddler Pumpkien (`233957828`) — custom side-deck test option
+- 1× Solemn Rebirth (`224049334`) — custom side-deck test option
+- 1× Primite Dragon Citrine (`234818744`) — custom side-deck test option
+- 1× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option
+- 1× Ghost Doll & Midnight Manor (`222782750`) — custom side-deck test option
+- 1× Dominus Sentinel (`259290896`) — custom side-deck test option
+- 3× Crossout Designator (`65681983`) — official side-deck option (Crossout Designator)
+- 3× Droll & Lock Bird (`94145021`) — official side-deck option (Droll & Lock Bird)
+
 ## Aldrez
 
 File: `CCG Test - Aldrez.ydk`
@@ -241,6 +288,42 @@ File: `CCG Test - Arckcestial.ydk`
 - 1× Dominus Sentinel (`259290896`) — custom side-deck test option
 - 3× Crossout Designator (`65681983`) — official side-deck option (Crossout Designator)
 - 3× Droll & Lock Bird (`94145021`) — official side-deck option (Droll & Lock Bird)
+
+## Ashened
+
+File: `CCG Test - Ashened.ydk`
+
+### Main (40)
+
+- 3× Egg of the Ashened Demise (`259464064`) — engine
+- 3× Ashened Face Off (`259758294`) — engine
+- 3× Remembrance of the Melody (`216620496`) — custom non-engine
+- 3× Interwire Dimensquid (`253128790`) — custom non-engine
+- 3× Frozen Girl & Blood Moon (`222676270`) — custom non-engine
+- 3× Ghost Doll & Midnight Manor (`222782750`) — custom non-engine
+- 3× Dominus Sentinel (`259290896`) — custom non-engine
+- 3× Rush at the Gnome (`259755133`) — custom non-engine
+- 3× Unbinding the Soul (`246900181`) — custom non-engine
+- 3× Dreadful Soul Drain (`259471193`) — custom non-engine
+- 3× The One Called Forth (`226827770`) — custom non-engine
+- 3× Curryboh (`220538776`) — custom non-engine
+- 3× Ash Blossom & Joyous Spring (`14558127`) — official consistency/interaction (Ash Blossom & Joyous Spring)
+- 1× Infinite Impermanence (`10045474`) — official consistency/interaction (Infinite Impermanence)
+
+### Extra (0)
+
+- None
+
+### Side (15)
+
+- 1× Branching to Guidance (`222257685`) — custom side-deck test option
+- 1× Toddler Pumpkien (`233957828`) — custom side-deck test option
+- 1× Solemn Rebirth (`224049334`) — custom side-deck test option
+- 1× Primite Dragon Citrine (`234818744`) — custom side-deck test option
+- 3× Crossout Designator (`65681983`) — official side-deck option (Crossout Designator)
+- 3× Droll & Lock Bird (`94145021`) — official side-deck option (Droll & Lock Bird)
+- 3× Terraforming (`73628505`) — official side-deck option (Terraforming)
+- 2× Foolish Burial (`81439173`) — official side-deck option (Foolish Burial)
 
 ## Bau
 
@@ -517,6 +600,45 @@ File: `CCG Test - Crying Chaos.ydk`
 - 1× Dominus Sentinel (`259290896`) — custom side-deck test option
 - 3× Crossout Designator (`65681983`) — official side-deck option (Crossout Designator)
 - 3× Droll & Lock Bird (`94145021`) — official side-deck option (Droll & Lock Bird)
+
+## Dinomorphia
+
+File: `CCG Test - Dinomorphia.ydk`
+
+### Main (40)
+
+- 3× Dinomorphia Ankylos (`259754412`) — engine
+- 3× Dinomorphia Hideout (`259935441`) — engine
+- 3× Dinomorphia Provocation (`259826112`) — engine
+- 3× Remembrance of the Melody (`216620496`) — custom non-engine
+- 3× Interwire Dimensquid (`253128790`) — custom non-engine
+- 3× Frozen Girl & Blood Moon (`222676270`) — custom non-engine
+- 3× Ghost Doll & Midnight Manor (`222782750`) — custom non-engine
+- 3× Dominus Sentinel (`259290896`) — custom non-engine
+- 3× Rush at the Gnome (`259755133`) — custom non-engine
+- 3× Unbinding the Soul (`246900181`) — custom non-engine
+- 2× Dreadful Soul Drain (`259471193`) — custom side-deck test option
+- 2× The One Called Forth (`226827770`) — custom side-deck test option
+- 2× Curryboh (`220538776`) — custom side-deck test option
+- 3× Ash Blossom & Joyous Spring (`14558127`) — official consistency/interaction (Ash Blossom & Joyous Spring)
+- 1× Infinite Impermanence (`10045474`) — official consistency/interaction (Infinite Impermanence)
+
+### Extra (3)
+
+- 3× Dinomorphia Triceron (`259640854`) — engine Extra Deck
+
+### Side (15)
+
+- 1× Branching to Guidance (`222257685`) — custom side-deck test option
+- 1× Toddler Pumpkien (`233957828`) — custom side-deck test option
+- 1× Solemn Rebirth (`224049334`) — custom side-deck test option
+- 1× Primite Dragon Citrine (`234818744`) — custom side-deck test option
+- 1× Dreadful Soul Drain (`259471193`) — custom side-deck test option
+- 1× The One Called Forth (`226827770`) — custom side-deck test option
+- 1× Curryboh (`220538776`) — custom side-deck test option
+- 3× Crossout Designator (`65681983`) — official side-deck option (Crossout Designator)
+- 3× Droll & Lock Bird (`94145021`) — official side-deck option (Droll & Lock Bird)
+- 2× Terraforming (`73628505`) — official side-deck option (Terraforming)
 
 ## Domestica
 
@@ -798,11 +920,12 @@ File: `CCG Test - Galactica.ydk`
 
 ### Main (40)
 
-- 3× Galataxian Battle Formation (`239127930`) — engine
-- 3× Galacticanes Venatici (`229021849`) — engine
+- 2× Galataxian Battle Formation (`239127930`) — engine
+- 2× Galacticanes Venatici (`229021849`) — engine
 - 2× Galacticarina (`234179728`) — engine
 - 2× Galacticassiopeia (`227335484`) — engine
 - 2× Attack on Gravity (`259307285`) — engine
+- 2× The Intergalataxian (`259792415`) — engine
 - 2× Carina of the Eldoran System (`228686743`) — engine
 - 2× Cassiopeia of the Eldoran System (`212377618`) — engine
 - 2× Galacticanes Auriga (`220148485`) — engine
@@ -1287,6 +1410,50 @@ File: `CCG Test - Herald.ydk`
 - 3× Terraforming (`73628505`) — official side-deck option (Terraforming)
 - 2× Foolish Burial (`81439173`) — official side-deck option (Foolish Burial)
 
+## Krawler
+
+File: `CCG Test - Krawler.ydk`
+
+### Main (40)
+
+- 3× Krawler Astrocyte (`259481543`) — engine
+- 3× Krawler Lamina (`259774818`) — engine
+- 3× Krawler of the World Legacy (`259322868`) — engine
+- 3× World Legacy Surfacing (`259944344`) — custom related support
+- 3× World Legacy Calamities (`259187643`) — custom related support
+- 3× Remembrance of the Melody (`216620496`) — custom non-engine
+- 2× Interwire Dimensquid (`253128790`) — custom side-deck test option
+- 2× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option
+- 2× Ghost Doll & Midnight Manor (`222782750`) — custom side-deck test option
+- 2× Dominus Sentinel (`259290896`) — custom side-deck test option
+- 2× Rush at the Gnome (`259755133`) — custom side-deck test option
+- 2× Unbinding the Soul (`246900181`) — custom non-engine
+- 2× Dreadful Soul Drain (`259471193`) — custom non-engine
+- 2× The One Called Forth (`226827770`) — custom non-engine
+- 2× Curryboh (`220538776`) — custom non-engine
+- 3× Ash Blossom & Joyous Spring (`14558127`) — official consistency/interaction (Ash Blossom & Joyous Spring)
+- 1× Infinite Impermanence (`10045474`) — official consistency/interaction (Infinite Impermanence)
+
+### Extra (7)
+
+- 3× Krawler Plexus (`259669838`) — engine Extra Deck
+- 3× Machina X-Krawler (`259247853`) — engine Extra Deck
+- 1× Rigel the Thousand-Armed (`215853847`) — custom generic Extra Deck option
+
+### Side (15)
+
+- 1× Branching to Guidance (`222257685`) — custom side-deck test option
+- 1× Interwire Dimensquid (`253128790`) — custom side-deck test option
+- 1× Toddler Pumpkien (`233957828`) — custom side-deck test option
+- 1× Solemn Rebirth (`224049334`) — custom side-deck test option
+- 1× Primite Dragon Citrine (`234818744`) — custom side-deck test option
+- 1× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option
+- 1× Ghost Doll & Midnight Manor (`222782750`) — custom side-deck test option
+- 1× Dominus Sentinel (`259290896`) — custom side-deck test option
+- 1× Rush at the Gnome (`259755133`) — custom side-deck test option
+- 3× Crossout Designator (`65681983`) — official side-deck option (Crossout Designator)
+- 3× Droll & Lock Bird (`94145021`) — official side-deck option (Droll & Lock Bird)
+
 ## Leet
 
 File: `CCG Test - Leet.ydk`
@@ -1371,10 +1538,12 @@ File: `CCG Test - Nautica.ydk`
 - 3× Exploring the Nautical Waters (`248946297`) — engine
 - 3× Scarlet Seareef & the Nautical Creatures (`220749574`) — engine
 - 3× Bobbie Bluefin & the Nautical Nocturnes (`259114562`) — engine
+- 3× Nautica Oceanica (`259941091`) — engine
+- 3× Nautica Musicale (`259797813`) — engine
 - 3× Emma Oceannus & the Nautical Coastlines (`214349717`) — engine
-- 3× Nautical Adventures & Torrential Seas (`218905439`) — engine
-- 3× Nautical Backwashing & Oceanic Waves (`223158720`) — engine
-- 2× Remembrance of the Melody (`216620496`) — custom side-deck test option
+- 2× Nautical Adventures & Torrential Seas (`218905439`) — engine
+- 2× Nautical Backwashing & Oceanic Waves (`223158720`) — engine
+- 1× Remembrance of the Melody (`216620496`) — custom side-deck test option
 - 1× Interwire Dimensquid (`253128790`) — custom side-deck test option
 - 1× Treasure of the Cosmic Ocean (`259998396`) — custom non-engine
 - 1× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option
@@ -1382,9 +1551,6 @@ File: `CCG Test - Nautica.ydk`
 - 1× Dominus Sentinel (`259290896`) — custom side-deck test option
 - 1× Rush at the Gnome (`259755133`) — custom non-engine
 - 1× Unbinding the Soul (`246900181`) — custom non-engine
-- 1× Dreadful Soul Drain (`259471193`) — custom non-engine
-- 1× The One Called Forth (`226827770`) — custom non-engine
-- 1× Curryboh (`220538776`) — custom non-engine
 - 3× Ash Blossom & Joyous Spring (`14558127`) — official consistency/interaction (Ash Blossom & Joyous Spring)
 - 1× Infinite Impermanence (`10045474`) — official consistency/interaction (Infinite Impermanence)
 
@@ -1726,18 +1892,20 @@ File: `CCG Test - Pot.ydk`
 
 - 3× Pot of Gambling (`224774049`) — engine
 - 3× Pot of Fortune (`215885404`) — engine
+- 3× Pot of Longevity (`259928966`) — engine
+- 3× Pot of Rage (`259100752`) — engine
+- 3× Remembrance of the Melody (`216620496`) — custom non-engine
+- 3× Interwire Dimensquid (`253128790`) — custom non-engine
 - 3× Frozen Girl & Blood Moon (`222676270`) — custom non-engine
 - 3× Ghost Doll & Midnight Manor (`222782750`) — custom non-engine
-- 3× Dominus Sentinel (`259290896`) — custom non-engine
-- 3× Rush at the Gnome (`259755133`) — custom non-engine
-- 3× Unbinding the Soul (`246900181`) — custom non-engine
-- 3× Dreadful Soul Drain (`259471193`) — custom non-engine
-- 3× The One Called Forth (`226827770`) — custom non-engine
-- 3× Curryboh (`220538776`) — custom non-engine
+- 2× Dominus Sentinel (`259290896`) — custom side-deck test option
+- 2× Rush at the Gnome (`259755133`) — custom side-deck test option
+- 2× Unbinding the Soul (`246900181`) — custom side-deck test option
+- 2× Dreadful Soul Drain (`259471193`) — custom side-deck test option
+- 2× The One Called Forth (`226827770`) — custom side-deck test option
+- 2× Curryboh (`220538776`) — custom non-engine
 - 3× Ash Blossom & Joyous Spring (`14558127`) — official consistency/interaction (Ash Blossom & Joyous Spring)
-- 3× Infinite Impermanence (`10045474`) — official consistency/interaction (Infinite Impermanence)
-- 2× Effect Veiler (`97268402`) — official consistency/interaction (Effect Veiler)
-- 2× Ghost Belle & Haunted Mansion (`73642296`) — official consistency/interaction (Ghost Belle & Haunted Mansion)
+- 1× Infinite Impermanence (`10045474`) — official consistency/interaction (Infinite Impermanence)
 
 ### Extra (0)
 
@@ -1745,15 +1913,17 @@ File: `CCG Test - Pot.ydk`
 
 ### Side (15)
 
-- 1× Remembrance of the Melody (`216620496`) — custom side-deck test option
 - 1× Branching to Guidance (`222257685`) — custom side-deck test option
-- 1× Interwire Dimensquid (`253128790`) — custom side-deck test option
 - 1× Toddler Pumpkien (`233957828`) — custom side-deck test option
 - 1× Solemn Rebirth (`224049334`) — custom side-deck test option
 - 1× Primite Dragon Citrine (`234818744`) — custom side-deck test option
+- 1× Dominus Sentinel (`259290896`) — custom side-deck test option
+- 1× Rush at the Gnome (`259755133`) — custom side-deck test option
+- 1× Unbinding the Soul (`246900181`) — custom side-deck test option
+- 1× Dreadful Soul Drain (`259471193`) — custom side-deck test option
+- 1× The One Called Forth (`226827770`) — custom side-deck test option
 - 3× Crossout Designator (`65681983`) — official side-deck option (Crossout Designator)
 - 3× Droll & Lock Bird (`94145021`) — official side-deck option (Droll & Lock Bird)
-- 3× Terraforming (`73628505`) — official side-deck option (Terraforming)
 
 ## Prophecy
 
@@ -1836,6 +2006,48 @@ File: `CCG Test - Pumpkin.ydk`
 - 3× Droll & Lock Bird (`94145021`) — official side-deck option (Droll & Lock Bird)
 - 3× Terraforming (`73628505`) — official side-deck option (Terraforming)
 - 1× Foolish Burial (`81439173`) — official side-deck option (Foolish Burial)
+
+## Pyre
+
+File: `CCG Test - Pyre.ydk`
+
+### Main (40)
+
+- 3× Devotee of the Pyre (`259024242`) — engine
+- 3× Release of the Pyre (`259883230`) — engine
+- 3× Expulsion of the Pyre (`259820516`) — engine
+- 3× Land of the Pyre (`259295979`) — engine
+- 3× Remembrance of the Melody (`216620496`) — custom non-engine
+- 3× Interwire Dimensquid (`253128790`) — custom non-engine
+- 3× Frozen Girl & Blood Moon (`222676270`) — custom non-engine
+- 3× Ghost Doll & Midnight Manor (`222782750`) — custom non-engine
+- 2× Dominus Sentinel (`259290896`) — custom side-deck test option
+- 2× Rush at the Gnome (`259755133`) — custom side-deck test option
+- 2× Unbinding the Soul (`246900181`) — custom side-deck test option
+- 2× Dreadful Soul Drain (`259471193`) — custom side-deck test option
+- 2× The One Called Forth (`226827770`) — custom side-deck test option
+- 2× Curryboh (`220538776`) — custom non-engine
+- 3× Ash Blossom & Joyous Spring (`14558127`) — official consistency/interaction (Ash Blossom & Joyous Spring)
+- 1× Infinite Impermanence (`10045474`) — official consistency/interaction (Infinite Impermanence)
+
+### Extra (4)
+
+- 3× Lord of the Pyre (`259542408`) — engine Extra Deck
+- 1× Talismandrake Pyre (`227362839`) — custom related Extra Deck support
+
+### Side (15)
+
+- 1× Branching to Guidance (`222257685`) — custom side-deck test option
+- 1× Toddler Pumpkien (`233957828`) — custom side-deck test option
+- 1× Solemn Rebirth (`224049334`) — custom side-deck test option
+- 1× Primite Dragon Citrine (`234818744`) — custom side-deck test option
+- 1× Dominus Sentinel (`259290896`) — custom side-deck test option
+- 1× Rush at the Gnome (`259755133`) — custom side-deck test option
+- 1× Unbinding the Soul (`246900181`) — custom side-deck test option
+- 1× Dreadful Soul Drain (`259471193`) — custom side-deck test option
+- 1× The One Called Forth (`226827770`) — custom side-deck test option
+- 3× Crossout Designator (`65681983`) — official side-deck option (Crossout Designator)
+- 3× Droll & Lock Bird (`94145021`) — official side-deck option (Droll & Lock Bird)
 
 ## Red-Eyes
 
@@ -2036,31 +2248,30 @@ File: `CCG Test - Spirit.ydk`
 ### Main (40)
 
 - 3× Onibi (`217713649`) — engine
+- 3× Yurei (`259844716`) — engine
 - 3× Enra (`214371067`) — engine
+- 3× Hannya (`259560506`) — engine
 - 3× Kokeshisa (`229399508`) — engine
 - 3× Shishi (`228033609`) — engine
 - 3× Muramasa (`247378501`) — engine
 - 3× Kanmuriyama (`248801935`) — engine
 - 3× Takama No Hara (`229996802`) — engine
 - 3× Hallo, the Hollow Trickster (`231331942`) — custom related support
-- 3× Rei-Tachi Ga Kita Hi (`246393365`) — custom related support
+- 2× Rei-Tachi Ga Kita Hi (`246393365`) — custom related support
 - 1× Remembrance of the Melody (`216620496`) — custom side-deck test option
 - 1× Interwire Dimensquid (`253128790`) — custom side-deck test option
+- 1× Toddler Pumpkien (`233957828`) — custom side-deck test option
 - 1× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option
-- 1× Ghost Doll & Midnight Manor (`222782750`) — custom side-deck test option
-- 1× Dominus Sentinel (`259290896`) — custom side-deck test option
-- 1× Rush at the Gnome (`259755133`) — custom non-engine
-- 1× Unbinding the Soul (`246900181`) — custom non-engine
-- 1× Dreadful Soul Drain (`259471193`) — custom non-engine
-- 1× The One Called Forth (`226827770`) — custom non-engine
 - 3× Ash Blossom & Joyous Spring (`14558127`) — official consistency/interaction (Ash Blossom & Joyous Spring)
 - 1× Infinite Impermanence (`10045474`) — official consistency/interaction (Infinite Impermanence)
 
-### Extra (5)
+### Extra (9)
 
 - 3× Otakemaru the Accuser (`221855414`) — engine Extra Deck
+- 3× Abe no Seimei (`259635008`) — engine Extra Deck
 - 1× Rigel the Thousand-Armed (`215853847`) — custom generic Extra Deck option
 - 1× Chaos Honest (`248638801`) — custom generic Extra Deck option
+- 1× Bhodi, the Corrupted Halloween Tree (`259072745`) — custom generic Extra Deck option
 
 ### Side (15)
 
@@ -2407,6 +2618,43 @@ File: `CCG Test - Vampire.ydk`
 - 3× Crossout Designator (`65681983`) — official side-deck option (Crossout Designator)
 - 3× Droll & Lock Bird (`94145021`) — official side-deck option (Droll & Lock Bird)
 
+## Vaylantz
+
+File: `CCG Test - Vaylantz.ydk`
+
+### Main (40)
+
+- 3× Vaylantz Duality (`259253329`) — engine
+- 3× Arktos X - Vaylantz Game Master (`259537607`) — engine
+- 3× Frozen Girl & Blood Moon (`222676270`) — custom non-engine
+- 3× Ghost Doll & Midnight Manor (`222782750`) — custom non-engine
+- 3× Dominus Sentinel (`259290896`) — custom non-engine
+- 3× Rush at the Gnome (`259755133`) — custom non-engine
+- 3× Unbinding the Soul (`246900181`) — custom non-engine
+- 3× Dreadful Soul Drain (`259471193`) — custom non-engine
+- 3× The One Called Forth (`226827770`) — custom non-engine
+- 3× Curryboh (`220538776`) — custom non-engine
+- 3× Ash Blossom & Joyous Spring (`14558127`) — official consistency/interaction (Ash Blossom & Joyous Spring)
+- 3× Infinite Impermanence (`10045474`) — official consistency/interaction (Infinite Impermanence)
+- 2× Effect Veiler (`97268402`) — official consistency/interaction (Effect Veiler)
+- 2× Ghost Belle & Haunted Mansion (`73642296`) — official consistency/interaction (Ghost Belle & Haunted Mansion)
+
+### Extra (3)
+
+- 3× Vaylantz Destroyer Patrician (`259882493`) — engine Extra Deck
+
+### Side (15)
+
+- 1× Remembrance of the Melody (`216620496`) — custom side-deck test option
+- 1× Branching to Guidance (`222257685`) — custom side-deck test option
+- 1× Interwire Dimensquid (`253128790`) — custom side-deck test option
+- 1× Toddler Pumpkien (`233957828`) — custom side-deck test option
+- 1× Solemn Rebirth (`224049334`) — custom side-deck test option
+- 1× Primite Dragon Citrine (`234818744`) — custom side-deck test option
+- 3× Crossout Designator (`65681983`) — official side-deck option (Crossout Designator)
+- 3× Droll & Lock Bird (`94145021`) — official side-deck option (Droll & Lock Bird)
+- 3× Terraforming (`73628505`) — official side-deck option (Terraforming)
+
 ## Vir Pedicae Mortis
 
 File: `CCG Test - Vir Pedicae Mortis.ydk`
@@ -2551,6 +2799,49 @@ File: `CCG Test - Windborne.ydk`
 - 3× Crossout Designator (`65681983`) — official side-deck option (Crossout Designator)
 - 3× Droll & Lock Bird (`94145021`) — official side-deck option (Droll & Lock Bird)
 
+## World Legacy
+
+File: `CCG Test - World Legacy.ydk`
+
+### Main (40)
+
+- 3× World Legacy Crusadia Counter (`259181235`) — engine
+- 3× World Legacy Surfacing (`259944344`) — engine
+- 3× World Legacy Calamities (`259187643`) — engine
+- 3× Krawler Astrocyte (`259481543`) — custom related support
+- 3× Krawler Lamina (`259774818`) — custom related support
+- 3× Krawler of the World Legacy (`259322868`) — custom related support
+- 2× Remembrance of the Melody (`216620496`) — custom side-deck test option
+- 2× Interwire Dimensquid (`253128790`) — custom side-deck test option
+- 2× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option
+- 2× Ghost Doll & Midnight Manor (`222782750`) — custom side-deck test option
+- 2× Dominus Sentinel (`259290896`) — custom side-deck test option
+- 2× Rush at the Gnome (`259755133`) — custom non-engine
+- 2× Unbinding the Soul (`246900181`) — custom non-engine
+- 2× Dreadful Soul Drain (`259471193`) — custom non-engine
+- 1× The One Called Forth (`226827770`) — custom non-engine
+- 1× Curryboh (`220538776`) — custom non-engine
+- 3× Ash Blossom & Joyous Spring (`14558127`) — official consistency/interaction (Ash Blossom & Joyous Spring)
+- 1× Infinite Impermanence (`10045474`) — official consistency/interaction (Infinite Impermanence)
+
+### Extra (0)
+
+- None
+
+### Side (15)
+
+- 1× Remembrance of the Melody (`216620496`) — custom side-deck test option
+- 1× Branching to Guidance (`222257685`) — custom side-deck test option
+- 1× Interwire Dimensquid (`253128790`) — custom side-deck test option
+- 1× Toddler Pumpkien (`233957828`) — custom side-deck test option
+- 1× Solemn Rebirth (`224049334`) — custom side-deck test option
+- 1× Primite Dragon Citrine (`234818744`) — custom side-deck test option
+- 1× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option
+- 1× Ghost Doll & Midnight Manor (`222782750`) — custom side-deck test option
+- 1× Dominus Sentinel (`259290896`) — custom side-deck test option
+- 3× Crossout Designator (`65681983`) — official side-deck option (Crossout Designator)
+- 3× Droll & Lock Bird (`94145021`) — official side-deck option (Droll & Lock Bird)
+
 ## Wyvernal
 
 File: `CCG Test - Wyvernal.ydk`
@@ -2603,8 +2894,9 @@ File: `CCG Test - Standalone and Non-Engine Lab.ydk`
 
 ### Main (40)
 
-- 3× Hiding "C" (`258260221`) — standalone/custom non-engine coverage
-- 3× Lance — Luminar Justiciar (`259373017`) — standalone/custom non-engine coverage
+- 2× Hiding "C" (`258260221`) — standalone/custom non-engine coverage
+- 2× Lance — Luminar Justiciar (`259373017`) — standalone/custom non-engine coverage
+- 2× Melantha, Keeper of Lamentations (`259221974`) — standalone/custom non-engine coverage
 - 2× Yummy Kuriboh (`253152295`) — standalone/custom non-engine coverage
 - 2× Aurelion — Divine Illumination (`259889864`) — standalone/custom non-engine coverage
 - 2× Pixie Bot (`237692523`) — standalone/custom non-engine coverage
@@ -2617,9 +2909,11 @@ File: `CCG Test - Standalone and Non-Engine Lab.ydk`
 - 2× Restoration of Azrynior (`236239443`) — standalone/custom non-engine coverage
 - 2× Lowkey Lowkey (`225260657`) — standalone/custom non-engine coverage
 - 2× Reactor Shocker (`241056746`) — standalone/custom non-engine coverage
-- 2× Chaos Fusion (`255277197`) — standalone/custom non-engine coverage
-- 2× Heart of the Cards (`259485374`) — standalone/custom non-engine coverage
-- 2× Striking Mirror Force (`250902476`) — standalone/custom non-engine coverage
+- 2× Retaliation Rebound (`259687425`) — standalone/custom non-engine coverage
+- 1× Chaos Fusion (`255277197`) — standalone/custom non-engine coverage
+- 1× Divinity to Infinity (`259384841`) — standalone/custom non-engine coverage
+- 1× Heart of the Cards (`259485374`) — standalone/custom non-engine coverage
+- 1× Striking Mirror Force (`250902476`) — standalone/custom non-engine coverage
 - 3× Ash Blossom & Joyous Spring (`14558127`) — official consistency/interaction (Ash Blossom & Joyous Spring)
 - 1× Infinite Impermanence (`10045474`) — official consistency/interaction (Infinite Impermanence)
 

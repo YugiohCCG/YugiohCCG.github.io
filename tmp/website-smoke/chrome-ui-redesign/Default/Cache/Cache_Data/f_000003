@@ -1,0 +1,178 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/main.tsx");import.meta.env = {"BASE_URL": "/", "DEV": true, "MODE": "development", "PROD": false, "SSR": false};import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=e7c0bb45"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=e7c0bb45"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react; const Suspense = __vite__cjsImport3_react["Suspense"]; const lazy = __vite__cjsImport3_react["lazy"];
+import __vite__cjsImport4_reactDom_client from "/node_modules/.vite/deps/react-dom_client.js?v=e7c0bb45"; const ReactDOM = __vite__cjsImport4_reactDom_client.__esModule ? __vite__cjsImport4_reactDom_client.default : __vite__cjsImport4_reactDom_client;
+import { createBrowserRouter, RouterProvider } from "/node_modules/.vite/deps/react-router-dom.js?v=e7c0bb45";
+import "/src/index.css";
+import App from "/src/App.tsx";
+const Home = lazy(_c = () => import("/src/pages/Home.tsx"));
+_c2 = Home;
+const Releases = lazy(_c3 = () => import("/src/pages/Releases.tsx"));
+_c4 = Releases;
+const Cards = lazy(_c5 = () => import("/src/pages/Cards.tsx"));
+_c6 = Cards;
+const CardDetail = lazy(_c7 = () => import("/src/pages/CardDetail.tsx"));
+_c8 = CardDetail;
+const Archetypes = lazy(_c9 = () => import("/src/pages/Archetypes.tsx"));
+_c0 = Archetypes;
+const BanList = lazy(_c1 = () => import("/src/pages/BanList.tsx"));
+_c10 = BanList;
+const Downloads = lazy(_c11 = () => import("/src/pages/Downloads.tsx"));
+_c12 = Downloads;
+const Draft = lazy(_c13 = () => import("/src/pages/Draft.tsx"));
+_c14 = Draft;
+const DeckBuilder = lazy(_c15 = () => import("/src/pages/DeckBuilder.tsx"));
+_c16 = DeckBuilder;
+const SupportStatus = lazy(_c17 = () => import("/src/pages/SupportStatus.tsx"));
+_c18 = SupportStatus;
+const NotFound = lazy(_c19 = () => import("/src/pages/NotFound.tsx"));
+_c20 = NotFound;
+const page = (element) => /* @__PURE__ */ jsxDEV(Suspense, { fallback: /* @__PURE__ */ jsxDEV("div", { className: "card", role: "status", children: "Loading page…" }, void 0, false, {
+  fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+  lineNumber: 38,
+  columnNumber: 64
+}, this), children: element }, void 0, false, {
+  fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+  lineNumber: 38,
+  columnNumber: 44
+}, this);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: /* @__PURE__ */ jsxDEV(App, {}, void 0, false, {
+        fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+        lineNumber: 44,
+        columnNumber: 14
+      }, this),
+      children: [
+        { index: true, element: page(/* @__PURE__ */ jsxDEV(Home, {}, void 0, false, {
+          fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+          lineNumber: 46,
+          columnNumber: 34
+        }, this)) },
+        { path: "releases", element: page(/* @__PURE__ */ jsxDEV(Releases, {}, void 0, false, {
+          fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+          lineNumber: 47,
+          columnNumber: 39
+        }, this)) },
+        { path: "cards", element: page(/* @__PURE__ */ jsxDEV(Cards, {}, void 0, false, {
+          fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+          lineNumber: 48,
+          columnNumber: 36
+        }, this)) },
+        { path: "cards/:cardId", element: page(/* @__PURE__ */ jsxDEV(CardDetail, {}, void 0, false, {
+          fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+          lineNumber: 49,
+          columnNumber: 44
+        }, this)) },
+        { path: "archetypes", element: page(/* @__PURE__ */ jsxDEV(Archetypes, {}, void 0, false, {
+          fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+          lineNumber: 50,
+          columnNumber: 41
+        }, this)) },
+        { path: "archetypes/:name", element: page(/* @__PURE__ */ jsxDEV(Archetypes, {}, void 0, false, {
+          fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+          lineNumber: 51,
+          columnNumber: 47
+        }, this)) },
+        { path: "banlist", element: page(/* @__PURE__ */ jsxDEV(BanList, {}, void 0, false, {
+          fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+          lineNumber: 52,
+          columnNumber: 38
+        }, this)) },
+        { path: "downloads", element: page(/* @__PURE__ */ jsxDEV(Downloads, {}, void 0, false, {
+          fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+          lineNumber: 53,
+          columnNumber: 40
+        }, this)) },
+        { path: "draft", element: page(/* @__PURE__ */ jsxDEV(Draft, {}, void 0, false, {
+          fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+          lineNumber: 54,
+          columnNumber: 36
+        }, this)) },
+        { path: "deck-builder", element: page(/* @__PURE__ */ jsxDEV(DeckBuilder, {}, void 0, false, {
+          fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+          lineNumber: 55,
+          columnNumber: 43
+        }, this)) },
+        { path: "support", element: page(/* @__PURE__ */ jsxDEV(SupportStatus, {}, void 0, false, {
+          fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+          lineNumber: 56,
+          columnNumber: 38
+        }, this)) },
+        { path: "*", element: page(/* @__PURE__ */ jsxDEV(NotFound, {}, void 0, false, {
+          fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+          lineNumber: 57,
+          columnNumber: 32
+        }, this)) }
+      ]
+    }
+  ],
+  // IMPORTANT: picks up "/" from vite.config.ts in production
+  { basename: import.meta.env.BASE_URL }
+);
+ReactDOM.createRoot(document.getElementById("root")).render(
+  /* @__PURE__ */ jsxDEV(React.StrictMode, { children: /* @__PURE__ */ jsxDEV(RouterProvider, { router }, void 0, false, {
+    fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+    lineNumber: 67,
+    columnNumber: 5
+  }, this) }, void 0, false, {
+    fileName: "C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx",
+    lineNumber: 66,
+    columnNumber: 3
+  }, this)
+);
+var _c, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c0, _c1, _c10, _c11, _c12, _c13, _c14, _c15, _c16, _c17, _c18, _c19, _c20;
+$RefreshReg$(_c, "Home$lazy");
+$RefreshReg$(_c2, "Home");
+$RefreshReg$(_c3, "Releases$lazy");
+$RefreshReg$(_c4, "Releases");
+$RefreshReg$(_c5, "Cards$lazy");
+$RefreshReg$(_c6, "Cards");
+$RefreshReg$(_c7, "CardDetail$lazy");
+$RefreshReg$(_c8, "CardDetail");
+$RefreshReg$(_c9, "Archetypes$lazy");
+$RefreshReg$(_c0, "Archetypes");
+$RefreshReg$(_c1, "BanList$lazy");
+$RefreshReg$(_c10, "BanList");
+$RefreshReg$(_c11, "Downloads$lazy");
+$RefreshReg$(_c12, "Downloads");
+$RefreshReg$(_c13, "Draft$lazy");
+$RefreshReg$(_c14, "Draft");
+$RefreshReg$(_c15, "DeckBuilder$lazy");
+$RefreshReg$(_c16, "DeckBuilder");
+$RefreshReg$(_c17, "SupportStatus$lazy");
+$RefreshReg$(_c18, "SupportStatus");
+$RefreshReg$(_c19, "NotFound$lazy");
+$RefreshReg$(_c20, "NotFound");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Manual Files/Applications/YugiohCCG.github.io/src/main.tsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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b0MsYUFBQWxDLEtBQUE7QUFBQWtDLGFBQUFqQyxLQUFBO0FBQUFpQyxhQUFBL0IsS0FBQTtBQUFBK0IsYUFBQTlCLE1BQUE7QUFBQThCLGFBQUE1QixNQUFBO0FBQUE0QixhQUFBM0IsTUFBQTtBQUFBMkIsYUFBQXpCLE1BQUE7QUFBQXlCLGFBQUF4QixNQUFBO0FBQUF3QixhQUFBdEIsTUFBQTtBQUFBc0IsYUFBQXJCLE1BQUE7QUFBQXFCLGFBQUFuQixNQUFBO0FBQUFtQixhQUFBbEIsTUFBQTtBQUFBa0IsYUFBQWhCLE1BQUE7QUFBQWdCLGFBQUFmLE1BQUEiLCJuYW1lcyI6WyJSZWFjdCIsIlN1c3BlbnNlIiwibGF6eSIsIlJlYWN0RE9NIiwiY3JlYXRlQnJvd3NlclJvdXRlciIsIlJvdXRlclByb3ZpZGVyIiwiQXBwIiwiSG9tZSIsIl9jIiwiX2MyIiwiUmVsZWFzZXMiLCJfYzMiLCJfYzQiLCJDYXJkcyIsIl9jNSIsIl9jNiIsIkNhcmREZXRhaWwiLCJfYzciLCJfYzgiLCJBcmNoZXR5cGVzIiwiX2M5IiwiX2MwIiwiQmFuTGlzdCIsIl9jMSIsIl9jMTAiLCJEb3dubG9hZHMiLCJfYzExIiwiX2MxMiIsIkRyYWZ0IiwiX2MxMyIsIl9jMTQiLCJEZWNrQnVpbGRlciIsIl9jMTUiLCJfYzE2IiwiU3VwcG9ydFN0YXR1cyIsIl9jMTciLCJfYzE4IiwiTm90Rm91bmQiLCJfYzE5IiwiX2MyMCIsInBhZ2UiLCJlbGVtZW50Iiwicm91dGVyIiwicGF0aCIsImNoaWxkcmVuIiwiaW5kZXgiLCJiYXNlbmFtZSIsImltcG9ydCIsImVudiIsIkJBU0VfVVJMIiwiY3JlYXRlUm9vdCIsImRvY3VtZW50IiwiZ2V0RWxlbWVudEJ5SWQiLCJyZW5kZXIiLCIkUmVmcmVzaFJlZyQiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsibWFpbi50c3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IFN1c3BlbnNlLCBsYXp5IH0gZnJvbSBcInJlYWN0XCI7XG5pbXBvcnQgUmVhY3RET00gZnJvbSBcInJlYWN0LWRvbS9jbGllbnRcIjtcbmltcG9ydCB7IGNyZWF0ZUJyb3dzZXJSb3V0ZXIsIFJvdXRlclByb3ZpZGVyIH0gZnJvbSBcInJlYWN0LXJvdXRlci1kb21cIjtcbmltcG9ydCBcIi4vaW5kZXguY3NzXCI7XG5cbmltcG9ydCBBcHAgZnJvbSBcIi4vQXBwXCI7XG5jb25zdCBIb21lID0gbGF6eSgoKSA9PiBpbXBvcnQoXCIuL3BhZ2VzL0hvbWVcIikpO1xuY29uc3QgUmVsZWFzZXMgPSBsYXp5KCgpID0+IGltcG9ydChcIi4vcGFnZXMvUmVsZWFzZXNcIikpO1xuY29uc3QgQ2FyZHMgPSBsYXp5KCgpID0+IGltcG9ydChcIi4vcGFnZXMvQ2FyZHNcIikpO1xuY29uc3QgQ2FyZERldGFpbCA9IGxhenkoKCkgPT4gaW1wb3J0KFwiLi9wYWdlcy9DYXJkRGV0YWlsXCIpKTtcbmNvbnN0IEFyY2hldHlwZXMgPSBsYXp5KCgpID0+IGltcG9ydChcIi4vcGFnZXMvQXJjaGV0eXBlc1wiKSk7XG5jb25zdCBCYW5MaXN0ID0gbGF6eSgoKSA9PiBpbXBvcnQoXCIuL3BhZ2VzL0Jhbkxpc3RcIikpO1xuY29uc3QgRG93bmxvYWRzID0gbGF6eSgoKSA9PiBpbXBvcnQoXCIuL3BhZ2VzL0Rvd25sb2Fkc1wiKSk7XG5jb25zdCBEcmFmdCA9IGxhenkoKCkgPT4gaW1wb3J0KFwiLi9wYWdlcy9EcmFmdFwiKSk7XG5jb25zdCBEZWNrQnVpbGRlciA9IGxhenkoKCkgPT4gaW1wb3J0KFwiLi9wYWdlcy9EZWNrQnVpbGRlclwiKSk7XG5jb25zdCBTdXBwb3J0U3RhdHVzID0gbGF6eSgoKSA9PiBpbXBvcnQoXCIuL3BhZ2VzL1N1cHBvcnRTdGF0dXNcIikpO1xuY29uc3QgTm90Rm91bmQgPSBsYXp5KCgpID0+IGltcG9ydChcIi4vcGFnZXMvTm90Rm91bmRcIikpO1xuXG5jb25zdCBwYWdlID0gKGVsZW1lbnQ6IFJlYWN0LlJlYWN0Tm9kZSkgPT4gPFN1c3BlbnNlIGZhbGxiYWNrPXs8ZGl2IGNsYXNzTmFtZT1cImNhcmRcIiByb2xlPVwic3RhdHVzXCI+TG9hZGluZyBwYWdl4oCmPC9kaXY+fT57ZWxlbWVudH08L1N1c3BlbnNlPjtcblxuY29uc3Qgcm91dGVyID0gY3JlYXRlQnJvd3NlclJvdXRlcihcbiAgW1xuICAgIHtcbiAgICAgIHBhdGg6IFwiL1wiLFxuICAgICAgZWxlbWVudDogPEFwcCAvPixcbiAgICAgIGNoaWxkcmVuOiBbXG4gICAgICAgIHsgaW5kZXg6IHRydWUsIGVsZW1lbnQ6IHBhZ2UoPEhvbWUgLz4pIH0sXG4gICAgICAgIHsgcGF0aDogXCJyZWxlYXNlc1wiLCBlbGVtZW50OiBwYWdlKDxSZWxlYXNlcyAvPikgfSxcbiAgICAgICAgeyBwYXRoOiBcImNhcmRzXCIsIGVsZW1lbnQ6IHBhZ2UoPENhcmRzIC8+KSB9LFxuICAgICAgICB7IHBhdGg6IFwiY2FyZHMvOmNhcmRJZFwiLCBlbGVtZW50OiBwYWdlKDxDYXJkRGV0YWlsIC8+KSB9LFxuICAgICAgICB7IHBhdGg6IFwiYXJjaGV0eXBlc1wiLCBlbGVtZW50OiBwYWdlKDxBcmNoZXR5cGVzIC8+KSB9LFxuICAgICAgICB7IHBhdGg6IFwiYXJjaGV0eXBlcy86bmFtZVwiLCBlbGVtZW50OiBwYWdlKDxBcmNoZXR5cGVzIC8+KSB9LFxuICAgICAgICB7IHBhdGg6IFwiYmFubGlzdFwiLCBlbGVtZW50OiBwYWdlKDxCYW5MaXN0IC8+KSB9LFxuICAgICAgICB7IHBhdGg6IFwiZG93bmxvYWRzXCIsIGVsZW1lbnQ6IHBhZ2UoPERvd25sb2FkcyAvPikgfSxcbiAgICAgICAgeyBwYXRoOiBcImRyYWZ0XCIsIGVsZW1lbnQ6IHBhZ2UoPERyYWZ0IC8+KSB9LFxuICAgICAgICB7IHBhdGg6IFwiZGVjay1idWlsZGVyXCIsIGVsZW1lbnQ6IHBhZ2UoPERlY2tCdWlsZGVyIC8+KSB9LFxuICAgICAgICB7IHBhdGg6IFwic3VwcG9ydFwiLCBlbGVtZW50OiBwYWdlKDxTdXBwb3J0U3RhdHVzIC8+KSB9LFxuICAgICAgICB7IHBhdGg6IFwiKlwiLCBlbGVtZW50OiBwYWdlKDxOb3RGb3VuZCAvPikgfSxcbiAgICAgIF0sXG4gICAgfSxcbiAgXSxcbiAgLy8gSU1QT1JUQU5UOiBwaWNrcyB1cCBcIi9cIiBmcm9tIHZpdGUuY29uZmlnLnRzIGluIHByb2R1Y3Rpb25cbiAgeyBiYXNlbmFtZTogaW1wb3J0Lm1ldGEuZW52LkJBU0VfVVJMIH1cbik7XG5cblJlYWN0RE9NLmNyZWF0ZVJvb3QoZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJyb290XCIpISkucmVuZGVyKFxuICA8UmVhY3QuU3RyaWN0TW9kZT5cbiAgICA8Um91dGVyUHJvdmlkZXIgcm91dGVyPXtyb3V0ZXJ9IC8+XG4gIDwvUmVhY3QuU3RyaWN0TW9kZT5cbik7XG4iXSwiZmlsZSI6IkM6L01hbnVhbCBGaWxlcy9BcHBsaWNhdGlvbnMvWXVnaW9oQ0NHLmdpdGh1Yi5pby9zcmMvbWFpbi50c3gifQ==

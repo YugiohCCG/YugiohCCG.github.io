@@ -87,8 +87,11 @@ function s.copytg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if not te then return end
 	e:SetCategory(te:GetCategory())
 	e:SetProperty(te:GetProperty())
+	e:SetLabel(te:GetLabel())
+	e:SetLabelObject(te:GetLabelObject())
 	local tg=te:GetTarget()
 	if tg then tg(e,tp,ceg,cep,cev,cre,cr,crp,1) end
+	te:SetLabel(e:GetLabel())
 	te:SetLabelObject(e:GetLabelObject())
 	e:SetLabelObject(te)
 	Duel.ClearOperationInfo(0)
@@ -97,6 +100,11 @@ function s.copyop(e,tp,eg,ep,ev,re,r,rp)
 	local te=e:GetLabelObject()
 	if not te then return end
 	e:SetLabelObject(te:GetLabelObject())
+	e:SetLabel(te:GetLabel())
 	local op=te:GetOperation()
-	if op then op(e,tp,eg,ep,ev,re,r,rp) end
+	if op then
+		op(e,tp,eg,ep,ev,re,r,rp)
+		te:SetLabel(e:GetLabel())
+		te:SetLabelObject(e:GetLabelObject())
+	end
 end

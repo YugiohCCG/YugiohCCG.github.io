@@ -1,26 +1,28 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-17T19:01:32.282026+00:00",
+  "generated_at": "2026-08-23T12:59:26.636237+00:00",
   "sources": [
     "scripts/output/ccg_effect_review_ledger.json",
     "scripts/output/omega_manual_test_ledger.json"
   ],
   "summary": {
-    "active_cards": 577,
-    "current_reviews": 577,
-    "objectively_resolved": 541,
-    "unresolved_skips": 36,
-    "regression_only": 78,
+    "active_cards": 620,
+    "current_reviews": 609,
+    "objectively_resolved": 585,
+    "unresolved_skips": 35,
+    "regression_only": 79,
     "manual_scenarios": 97,
     "static_verdicts": {
       "FIXED": 117,
       "MANUAL_RULING": 8,
-      "PASS": 424,
-      "UNSUPPORTED": 28
+      "PASS": 468,
+      "UNSUPPORTED": 27
     },
-    "errors": 0
+    "errors": 1
   },
-  "errors": [],
+  "errors": [
+    "effect ledger contains stale or pending reviews"
+  ],
   "unresolved": [
     {
       "guide_number": 42,
@@ -33,7 +35,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "75542f0b52ea3af5fd7dc754ca0a6c0f5b39fe730dce4c7ffb72460c44d5c9cb",
-      "script_sha256": "c6ba6ad90b1d986468b21ca92a6570f33e347acbe81162518be4e69234659f7f",
+      "script_sha256": "8ae78bc5ac379c8edc84c6486aa339052071c74ba1073242fa2313432c284e77",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -81,7 +83,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "not_applicable_static_decision",
       "text_sha256": "4e33fa557d4913fdfb90f864fc33d6d1878f2fc814d6bc214268aa2103b59c40",
-      "script_sha256": "b71867edb179d29f9ad8b0b2d204d365ebd8efb9b81db43dd9fa6cf5313fba6a",
+      "script_sha256": "6f84d0cd6f7193e73956957524eac9a54fc66f5c198c08835c710b181016c744",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -102,7 +104,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "not_applicable_static_decision",
       "text_sha256": "193d05cf4416908db85fb626c7043cb4591b0e0075055795bb64e6f82eb7db6f",
-      "script_sha256": "4086547e581d88840133f699ac0938b00b771e2b52d9d6e206352c5edbc3072c",
+      "script_sha256": "963629994577e7d175d2e696dab4fb3bbe3d2b753d4b47a63fcb5c806eedd329",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -123,7 +125,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "not_applicable_static_decision",
       "text_sha256": "54dc82789fad42a41903c7d3fd490d706de238e485af8f2dcb6264fe044530f1",
-      "script_sha256": "65ce1a0b0b7d6e62f2690bf0646c037b6d5faa6ec43739a2942c9b312f3396d6",
+      "script_sha256": "336cb6eb29be246dab0076b39aff35c1c29485bb049bfeb699f40a49e180e5d1",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -144,7 +146,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "not_applicable_static_decision",
       "text_sha256": "e37c65fbbd73613999bb2a78a4dccbd678b4a8c688d868536ae0bcd03811b76c",
-      "script_sha256": "6a39d38b1927c5e67f0b110cdad51357145f3d25c3420b17eefb505e7bec3659",
+      "script_sha256": "8522fc1f08fa8af259f114699b6bcb4e9a364f7a2189ae6f702210716ee59663",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -165,7 +167,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "not_applicable_static_decision",
       "text_sha256": "30a01388d8914cb14dc057779d815554cb5e3d3a5b8a489dc4c05dba071212ec",
-      "script_sha256": "510d50eea883f006fe43309fe25df7f937a25a53d626107fbff2c0e61141c3f8",
+      "script_sha256": "56a270f23f366cbe0eac6431e88e531694be275cf6d75c60b53667e1062c4cb3",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -255,7 +257,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "not_applicable_static_decision",
       "text_sha256": "eaf79d5572b9bd8f1eeae1b78b32a544fa3f54ee388bbf7f143a17416262ee96",
-      "script_sha256": "8f03d8f3b5fcee8f726180131c09d29feeb369b46d266429d7115c614683cce0",
+      "script_sha256": "16337484b59e8c8a1e15b239284e7f50a0fa18487f10bcc5adeadfd3626f8d78",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -318,7 +320,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "1163b4f44d667447a493e787bab5373a968472d3468d9a9d936dcdcac48c19af",
-      "script_sha256": "790518b146cd2240d8fc7b0b88baef90d97a3fe47162ec23b45548f89c2b197a",
+      "script_sha256": "188b5824f7f4bd4f6c6ed65e1dbf6d0572b5dfd62068c212b99133e004205c2c",
       "effect_details": [
         {
           "verdict": "MANUAL_RULING",
@@ -444,7 +446,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "da97e0afe745141d2c3cb191c2116e3b9fe28df05246cc228807674f59f90cba",
-      "script_sha256": "0e5e4fdb77ba311e6de2fd8a808d9c121da7fb419f6d7ba306404dfc852c1cc2",
+      "script_sha256": "e5c7252ddee671e613ba039e5471240504cb8b7b1a146bf08889ca7bd5a55694",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -570,7 +572,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "fdc6efcad5dd3bc12c2d58b947f191731812a7bb2a56c4851ab843a965281a9b",
-      "script_sha256": "3c005782a4fea983d3a6feae29b73d5092c48b55490379b1759d084edf17d06e",
+      "script_sha256": "6187e701d8ebb70b261d205d9cd13f5e4a97b11586c19a5ee8b4751c58339067",
       "effect_details": [
         {
           "verdict": "MANUAL_RULING",
@@ -660,7 +662,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "0b23600bcb23c6f641b350ee1cd08ba93a84dcedc7dc3925cf6505a15e3501a1",
-      "script_sha256": "3053353bd1d6355a389fdd44aaa23d1923caa238cb03c97604c500347ca473a6",
+      "script_sha256": "a64693dbd99554bb567b66e84627192f772d4a9c11e951be300c6dcd7848f0ba",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -714,34 +716,13 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "53c1369012a0ccb2b24dc7c9e7d9affb54bd916dd47a85e42934c04e5eb4c871",
-      "script_sha256": "ce03a5e5c192c1a12611ae7bb18e3ee05f501b4863e8f80e0db9fa7e1087db75",
+      "script_sha256": "2e343cb26301b091e96df4c4cb623f0dc1d923d647141c546d9235da972718df",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If you activate the effect of a \"Gravinity\" Synchro Monster Card: You can banish this card from your GY; this effect becomes that card's activated effect.",
           "implementation": "c238184015.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e2:SetRange(LOCATION_GRAVE) | and (not rc:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(rc))",
           "reason": "The Lua directly invokes the prior Effect operation with mismatched effect/context arguments. Generic effect replacement/copying is engine-sensitive and this does not reproduce target, cost, label, category, or chain metadata for every possible Gravinity Synchro effect."
-        }
-      ]
-    },
-    {
-      "guide_number": 96,
-      "source_ordinal": 443,
-      "card_id": 248940511,
-      "card_name": "Flower Cardian Moonflare",
-      "workstream": "Other custom engine behavior",
-      "problem": "One card treated as 3 non-Tuners.",
-      "static_verdict": "UNSUPPORTED",
-      "disposition": "SKIPPED_MANUAL_INPUT",
-      "live_status": "pending",
-      "text_sha256": "a80e557bbce629a0457e0e4666e4deefeca6624d02ec0196fbb52f17c5e00dfb",
-      "script_sha256": "9cf511e9d805e4f11d70ff3c70faa990443ea9cb368fc1426bacec76cbdfb6ed",
-      "effect_details": [
-        {
-          "verdict": "UNSUPPORTED",
-          "clause": "When this card is used as Synchro Material for the Synchro Summon of a \"Flower Cardian\" monster, you can treat it as 3 non-Tuner monsters.",
-          "implementation": "No Lua effect is registered for this clause. The former EFFECT_SYNCHRO_MATERIAL_CUSTOM block was removed because that hook is Omega's custom-Tuner procedure and Duel.SetSynchroMaterial receives a Group of physical cards; selecting Moonflare alone neither contributes three non-Tuner count slots nor preserves the required Tuner/non-Tuner procedure.",
-          "reason": "Omega supports custom Synchro material selection and alternate Synchro Levels, but not material-count multiplicity for one non-Tuner. Official EFFECT_SYNCHRO_MATERIAL_CUSTOM patterns still validate min/max using Group:GetCount and pass physical cards to Duel.SetSynchroMaterial. The previous code could expose an unintended custom-Tuner route while failing to count Moonflare as three non-Tuners, so that incorrect registration was removed. Exact support requires an engine material-count API or revised card text."
         }
       ]
     },
@@ -1889,6 +1870,20 @@
       "effect_details": []
     },
     {
+      "guide_number": 96,
+      "source_ordinal": 443,
+      "card_id": 248940511,
+      "card_name": "Flower Cardian Moonflare",
+      "workstream": "Other custom engine behavior",
+      "problem": "One card treated as 3 non-Tuners.",
+      "static_verdict": "PASS",
+      "disposition": "REGRESSION_ONLY",
+      "live_status": "pending",
+      "text_sha256": "a80e557bbce629a0457e0e4666e4deefeca6624d02ec0196fbb52f17c5e00dfb",
+      "script_sha256": "69f0d2a412ef72cf46dc3b67c4698618e03ea94cb3f8871b02762182079eb9c2",
+      "effect_details": []
+    },
+    {
       "guide_number": 97,
       "source_ordinal": 457,
       "card_id": 259307285,
@@ -1964,7 +1959,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "da97e0afe745141d2c3cb191c2116e3b9fe28df05246cc228807674f59f90cba",
-      "script_sha256": "0e5e4fdb77ba311e6de2fd8a808d9c121da7fb419f6d7ba306404dfc852c1cc2",
+      "script_sha256": "e5c7252ddee671e613ba039e5471240504cb8b7b1a146bf08889ca7bd5a55694",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -2034,7 +2029,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "fdc6efcad5dd3bc12c2d58b947f191731812a7bb2a56c4851ab843a965281a9b",
-      "script_sha256": "3c005782a4fea983d3a6feae29b73d5092c48b55490379b1759d084edf17d06e",
+      "script_sha256": "6187e701d8ebb70b261d205d9cd13f5e4a97b11586c19a5ee8b4751c58339067",
       "effect_details": [
         {
           "verdict": "MANUAL_RULING",
@@ -2502,7 +2497,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "1163b4f44d667447a493e787bab5373a968472d3468d9a9d936dcdcac48c19af",
-      "script_sha256": "790518b146cd2240d8fc7b0b88baef90d97a3fe47162ec23b45548f89c2b197a",
+      "script_sha256": "188b5824f7f4bd4f6c6ed65e1dbf6d0572b5dfd62068c212b99133e004205c2c",
       "effect_details": [
         {
           "verdict": "MANUAL_RULING",
@@ -2565,7 +2560,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "75542f0b52ea3af5fd7dc754ca0a6c0f5b39fe730dce4c7ffb72460c44d5c9cb",
-      "script_sha256": "c6ba6ad90b1d986468b21ca92a6570f33e347acbe81162518be4e69234659f7f",
+      "script_sha256": "8ae78bc5ac379c8edc84c6486aa339052071c74ba1073242fa2313432c284e77",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -3270,7 +3265,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "0b23600bcb23c6f641b350ee1cd08ba93a84dcedc7dc3925cf6505a15e3501a1",
-      "script_sha256": "3053353bd1d6355a389fdd44aaa23d1923caa238cb03c97604c500347ca473a6",
+      "script_sha256": "a64693dbd99554bb567b66e84627192f772d4a9c11e951be300c6dcd7848f0ba",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -3374,7 +3369,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "53c1369012a0ccb2b24dc7c9e7d9affb54bd916dd47a85e42934c04e5eb4c871",
-      "script_sha256": "ce03a5e5c192c1a12611ae7bb18e3ee05f501b4863e8f80e0db9fa7e1087db75",
+      "script_sha256": "2e343cb26301b091e96df4c4cb623f0dc1d923d647141c546d9235da972718df",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -3391,19 +3386,12 @@
       "card_name": "Flower Cardian Moonflare",
       "workstream": "Other custom engine behavior",
       "problem": "One card treated as 3 non-Tuners.",
-      "static_verdict": "UNSUPPORTED",
-      "disposition": "SKIPPED_MANUAL_INPUT",
+      "static_verdict": "PASS",
+      "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "a80e557bbce629a0457e0e4666e4deefeca6624d02ec0196fbb52f17c5e00dfb",
-      "script_sha256": "9cf511e9d805e4f11d70ff3c70faa990443ea9cb368fc1426bacec76cbdfb6ed",
-      "effect_details": [
-        {
-          "verdict": "UNSUPPORTED",
-          "clause": "When this card is used as Synchro Material for the Synchro Summon of a \"Flower Cardian\" monster, you can treat it as 3 non-Tuner monsters.",
-          "implementation": "No Lua effect is registered for this clause. The former EFFECT_SYNCHRO_MATERIAL_CUSTOM block was removed because that hook is Omega's custom-Tuner procedure and Duel.SetSynchroMaterial receives a Group of physical cards; selecting Moonflare alone neither contributes three non-Tuner count slots nor preserves the required Tuner/non-Tuner procedure.",
-          "reason": "Omega supports custom Synchro material selection and alternate Synchro Levels, but not material-count multiplicity for one non-Tuner. Official EFFECT_SYNCHRO_MATERIAL_CUSTOM patterns still validate min/max using Group:GetCount and pass physical cards to Duel.SetSynchroMaterial. The previous code could expose an unintended custom-Tuner route while failing to count Moonflare as three non-Tuners, so that incorrect registration was removed. Exact support requires an engine material-count API or revised card text."
-        }
-      ]
+      "script_sha256": "69f0d2a412ef72cf46dc3b67c4698618e03ea94cb3f8871b02762182079eb9c2",
+      "effect_details": []
     },
     {
       "guide_number": 97,

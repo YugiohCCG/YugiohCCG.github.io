@@ -139,6 +139,7 @@ Duel=lazy_namespace(function(key)
 		return function() return group end
 	end
 	if key=="GetChainMaterial" then return function() return effect end end
+	if key=="GetSynchroMaterial" then return function() return group end end
 	if key=="GetFirstTarget" or key=="GetFieldCard" or key=="CreateToken"
 		or key=="GetAttacker" or key=="GetAttackTarget" then return function() return card end end
 	if key:match("^Is") or key:match("^Check") then return function() return true end end

@@ -1,0 +1,13 @@
+--Goliath the Airship Aerocat
+--Omega references: Number 38: Hope Harbinger Dragon Titanic Galaxy (c63767246), Firewall Dragon Darkfluid (c68934651)
+local s,id=GetID(); local SET_AEROCAT=0x3de1; local STRING_ID=133095349
+function s.initial_effect(c)
+ c:EnableReviveLimit(); aux.AddXyzProcedure(c,nil,6,2)
+ local e0=Effect.CreateEffect(c); e0:SetType(EFFECT_TYPE_FIELD); e0:SetCode(EFFECT_CANNOT_SELECT_BATTLE_TARGET); e0:SetRange(LOCATION_MZONE); e0:SetTargetRange(0,LOCATION_MZONE); e0:SetValue(function(e,c) return c~=e:GetHandler() end); c:RegisterEffect(e0)
+ local e1=Effect.CreateEffect(c); e1:SetDescription(aux.Stringid(STRING_ID,0)); e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH); e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O); e1:SetCode(EVENT_SPSUMMON_SUCCESS); e1:SetProperty(EFFECT_FLAG_DELAY); e1:SetCountLimit(1,id); e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_XYZ) end); e1:SetOperation(s.op); c:RegisterEffect(e1)
+end
+function s.af(c) return c:IsSetCard(SET_AEROCAT) and c:IsAbleToHand() end
+function s.diff(g,c) return not g:IsExists(Card.IsType,1,nil,c:GetType()&(TYPE_MONSTER+TYPE_SPELL+TYPE_TRAP)) end
+function s.xyz(c) return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:IsRank(6) end
+function s.ovf(c) return c:IsSetCard(SET_AEROCAT) and c:IsAbleToOverlay() end
+function s.op(e,tp) local c=e:GetHandler(); local ct=c:GetOverlayCount(); if ct>0 and c:RemoveOverlayCard(tp,ct,ct,REASON_EFFECT)~=ct then return end if Duel.IsExistingMatchingCard(s.af,tp,LOCATION_DECK,0,1,nil) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); local sg=Duel.SelectMatchingCard(tp,s.af,tp,LOCATION_DECK,0,1,1,nil); local tc=sg:GetFirst(); local kind=tc:GetType()&(TYPE_MONSTER+TYPE_SPELL+TYPE_TRAP); local df=function(c,k) return s.af(c) and c:GetType()&(TYPE_MONSTER+TYPE_SPELL+TYPE_TRAP)~=k end; if Duel.IsExistingMatchingCard(df,tp,LOCATION_DECK,0,1,nil,kind) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); sg:Merge(Duel.SelectMatchingCard(tp,df,tp,LOCATION_DECK,0,1,1,nil,kind)) end Duel.SendtoHand(sg,nil,REASON_EFFECT); Duel.ConfirmCards(1-tp,sg) end if Duel.IsExistingMatchingCard(s.xyz,tp,LOCATION_MZONE,0,1,nil) and Duel.IsExistingMatchingCard(s.ovf,tp,LOCATION_GRAVE,0,1,nil) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL); local x=Duel.SelectMatchingCard(tp,s.xyz,tp,LOCATION_MZONE,0,1,1,nil):GetFirst(); local g=Duel.SelectMatchingCard(tp,s.ovf,tp,LOCATION_GRAVE,0,1,1,nil); Duel.Overlay(x,g) end end

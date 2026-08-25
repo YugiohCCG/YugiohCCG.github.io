@@ -32,14 +32,14 @@ function s.lvcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return c:IsAbleToGraveAsCost() end
 	Duel.SendtoGrave(c,REASON_COST)
 end
-function s.lvfilter(c)
-	return c:IsFaceup() and (c:GetLevel()>0 or c:GetRank()>0)
+function s.lvfilter(c,e)
+	return c:IsFaceup() and c:IsCanBeEffectTarget(e) and (c:GetLevel()>0 or c:GetRank()>0)
 end
 function s.lvtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
-	if chkc then return chkc:IsOnField() and s.lvfilter(chkc) end
-	if chk==0 then return Duel.IsExistingTarget(s.lvfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) end
+	if chkc then return chkc:IsOnField() and s.lvfilter(chkc,e) end
+	if chk==0 then return Duel.IsExistingTarget(s.lvfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
-	local g=Duel.SelectTarget(tp,s.lvfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,1,nil)
+	local g=Duel.SelectTarget(tp,s.lvfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,1,nil,e)
 end
 function s.lvop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()

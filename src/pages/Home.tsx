@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import news from "../data/news.json";
 import sets from "../data/sets.json";
-import { useMemo, useState } from "react";
+import cardsData from "../data/cards.json";
+import { useMemo, useRef, useState } from "react";
 import useCards from "../hooks/useCards";
-import useBanlistCards from "../hooks/useBanlistCards";
+import useRemoteJson from "../hooks/useRemoteJson";
 import { useImageViewer } from "../components/ImageViewer";
 import { legalStatus } from "../components/LegalityBadge";
 import type { Card } from "../types/card";
+import type { ReleaseManifest } from "../types/website";
 import { asset } from "../utils/assets";
+import usePageMeta from "../hooks/usePageMeta";
 
 const fmt = (iso: string) => {
   const d = new Date(iso);
@@ -56,6 +59,7 @@ function buildCarouselOffsets(total: number) {
 }
 
 export default function Home() {
+  usePageMeta("Home", "Latest custom card releases, news, format updates, and YGO Omega tools.");
   const { open } = useImageViewer();
   const { cards: customVisible } = useCards({
     includeTCG: false,
@@ -63,20 +67,14 @@ export default function Home() {
     includeTest: false,
   });
 
-  const { cards: allSource } = useCards({
-    includeTCG: true,
-    includeCustom: true,
-    includeTest: false,
-  });
-
-  const { withLegal } = useBanlistCards("TCG");
-  const allWithLegal = withLegal(allSource as any);
-
-  const bannedCount = allWithLegal.filter((c: any) => c.legal?.banned).length;
-  const limitedCount = allWithLegal.filter(
+  const { data: releaseManifest } = useRemoteJson<ReleaseManifest>("data/release-manifest.json");
+  const { data: banlistCards } = useRemoteJson<Card[]>("data/banlist-cards.json");
+  const cardCount = releaseManifest?.card_count ?? cardsData.length;
+  const bannedCount = banlistCards?.filter((c: any) => c.legal?.banned).length;
+  const limitedCount = banlistCards?.filter(
     (c: any) => c.legal?.limited && !c.legal?.banned
   ).length;
-  const semiCount = allWithLegal.filter(
+  const semiCount = banlistCards?.filter(
     (c: any) => c.legal?.semiLimited && !c.legal?.limited && !c.legal?.banned
   ).length;
 
@@ -89,6 +87,7 @@ export default function Home() {
     [customVisible]
   );
   const [activeLatest, setActiveLatest] = useState(0);
+  const touchStartX = useRef<number | null>(null);
   const [visibleNewsCount, setVisibleNewsCount] = useState(
     Math.min(NEWS_BATCH_SIZE, sortedNews.length)
   );
@@ -130,29 +129,30 @@ export default function Home() {
             </p>
             <h2 className="font-display text-4xl leading-none">Latest CCG Stories and Releases</h2>
             <p className="mt-2 max-w-2xl text-sm text-slate-600">
+              Browse new sets, recently added cards, format updates, and the latest Omega package.
             </p>
           </div>
 
           <div className="home-metrics">
             <div className="home-metric home-metric-cards">
               <div className="home-metric-label">Cards</div>
-              <div className="home-metric-value">{customVisible.length}</div>
+              <div className="home-metric-value">{cardCount}</div>
             </div>
             <div className="home-metric home-metric-sets">
               <div className="home-metric-label">Sets</div>
               <div className="home-metric-value">{sortedSets.length}</div>
             </div>
             <div className="home-metric home-metric-banned">
-              <div className="home-metric-label">Banned</div>
-              <div className="home-metric-value home-metric-value-status">{bannedCount}</div>
+              <div className="home-metric-label">Forbidden</div>
+              <div className="home-metric-value home-metric-value-status">{bannedCount ?? "—"}</div>
             </div>
             <div className="home-metric home-metric-limited">
               <div className="home-metric-label">Limited</div>
-              <div className="home-metric-value home-metric-value-status">{limitedCount}</div>
+              <div className="home-metric-value home-metric-value-status">{limitedCount ?? "—"}</div>
             </div>
             <div className="home-metric home-metric-semi">
               <div className="home-metric-label">Semi-Limited</div>
-              <div className="home-metric-value home-metric-value-status">{semiCount}</div>
+              <div className="home-metric-value home-metric-value-status">{semiCount ?? "—"}</div>
             </div>
           </div>
         </div>
@@ -200,7 +200,7 @@ export default function Home() {
                 <div className="story-tile-body story-tone-violet">
                   <div className="story-meta">Omega Setup</div>
                   <h3 className="story-title-small mt-1">INSTALL CCG ON OMEGA</h3>
-                  <p className="mt-0.5 text-sm opacity-95">Autamtic & Manual Instillation</p>
+                  <p className="mt-0.5 text-sm opacity-95">Automatic and manual installation</p>
                 </div>
               </Link>
             )}
@@ -297,7 +297,7 @@ export default function Home() {
       )}
 
       {latestCards.length > 0 && (
-        <section className="latest-carousel anim-rise" aria-label="Latest releases carousel">
+        <section className="latest-carousel anim-rise" aria-label="Latest releases carousel" tabIndex={0} onKeyDown={(event) => { if (event.key === "ArrowLeft") cycleLatest(-1); if (event.key === "ArrowRight") cycleLatest(1); }} onTouchStart={(event) => { touchStartX.current = event.touches[0]?.clientX ?? null; }} onTouchEnd={(event) => { if (touchStartX.current == null) return; const delta = event.changedTouches[0]?.clientX - touchStartX.current; if (Math.abs(delta) > 45) cycleLatest(delta > 0 ? -1 : 1); touchStartX.current = null; }}>
           <h3 className="latest-carousel-title">Latest Releases</h3>
           <button
             type="button"
@@ -334,6 +334,10 @@ export default function Home() {
           >
             <span aria-hidden="true">&gt;</span>
           </button>
+          <div className="mt-3 flex flex-wrap justify-center gap-1" aria-label="Choose latest card">
+            {latestCards.map((card, index) => <button key={card.id} type="button" className={`h-2.5 w-2.5 rounded-full ${index === activeLatest ? "bg-accent" : "bg-slate-300"}`} aria-label={`Show ${card.name}`} aria-current={index === activeLatest ? "true" : undefined} onClick={() => setActiveLatest(index)} />)}
+          </div>
+          <p className="sr-only" aria-live="polite">Showing {latestCards[activeLatest]?.name}</p>
         </section>
       )}
 

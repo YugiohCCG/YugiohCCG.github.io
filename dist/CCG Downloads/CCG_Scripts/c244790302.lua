@@ -95,10 +95,15 @@ function s.cptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then return Duel.IsExistingTarget(aux.NecroValleyFilter(s.cpfilter),tp,LOCATION_GRAVE,0,1,nil) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
 	local tc=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.cpfilter),tp,LOCATION_GRAVE,0,1,1,nil):GetFirst()
+	tc:CreateEffectRelation(e)
 	local te,ceg,cep,cev,cre,cr,crp=tc:CheckActivateEffect(true,true,true)
 	e:SetProperty(te:GetProperty()+EFFECT_FLAG_CARD_TARGET)
+	Duel.ClearTargetCard()
+	e:SetLabel(te:GetLabel())
+	e:SetLabelObject(te:GetLabelObject())
 	local tg=te:GetTarget()
 	if tg then tg(e,tp,ceg,cep,cev,cre,cr,crp,1) end
+	te:SetLabel(te:GetLabel())
 	te:SetLabelObject(e:GetLabelObject())
 	e:SetLabelObject(te)
 	Duel.ClearOperationInfo(0)
@@ -108,6 +113,11 @@ function s.cpop(e,tp,eg,ep,ev,re,r,rp)
 	local te=e:GetLabelObject()
 	if not (tc and te and tc:IsRelateToEffect(e) and aux.NecroValleyFilter()(tc)) then return end
 	e:SetLabelObject(te:GetLabelObject())
+	e:SetLabel(te:GetLabel())
 	local op=te:GetOperation()
-	if op then op(e,tp,eg,ep,ev,re,r,rp) end
+	if op then
+		op(e,tp,eg,ep,ev,re,r,rp)
+		te:SetLabel(e:GetLabel())
+		te:SetLabelObject(e:GetLabelObject())
+	end
 end

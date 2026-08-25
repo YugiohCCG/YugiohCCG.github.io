@@ -61,6 +61,7 @@ export default function CardsToolbar({ total }: { total: number }) {
                     : "bg-transparent text-slate-600 hover:bg-slate-100")
                 }
                 title={`Sort by ${s.label}`}
+                aria-pressed={sort === s.key}
               >
                 {s.label}
                 {arrow(s.key)}
@@ -73,6 +74,7 @@ export default function CardsToolbar({ total }: { total: number }) {
               type="button"
               className={`rounded-md px-3 py-1.5 text-xs font-bold uppercase tracking-wide ${view === "grid" ? "bg-accent text-white" : "text-slate-600 hover:bg-slate-100"}`}
               onClick={() => setView("grid")}
+              aria-pressed={view === "grid"}
             >
               Grid
             </button>
@@ -80,6 +82,7 @@ export default function CardsToolbar({ total }: { total: number }) {
               type="button"
               className={`rounded-md px-3 py-1.5 text-xs font-bold uppercase tracking-wide ${view === "list" ? "bg-accent text-white" : "text-slate-600 hover:bg-slate-100"}`}
               onClick={() => setView("list")}
+              aria-pressed={view === "list"}
             >
               List
             </button>

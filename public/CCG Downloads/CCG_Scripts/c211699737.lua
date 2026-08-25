@@ -74,7 +74,7 @@ function s.cpop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local tc=Duel.SelectMatchingCard(tp,s.rmfilter,tp,LOCATION_DECK,0,1,1,nil,code):GetFirst()
 	if tc and Duel.Remove(tc,POS_FACEUP,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_REMOVED) then
-		e:GetHandler():CopyEffect(code,RESET_EVENT+RESETS_STANDARD)
+		e:GetHandler():CopyEffect(code,RESET_EVENT+RESETS_STANDARD,1)
 	end
 end
 function s.rmfilter(c,code)

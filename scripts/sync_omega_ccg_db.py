@@ -159,6 +159,13 @@ OFFICIAL_SHARED_SET_CODES = {
     "thunderdragon": 0x11C,
     "ursarctic": 0x163,
     "vampire": 0x8E,
+    "ashened": 0x1AD,
+    "crusadia": 0x116,
+    "dinomorphia": 0x173,
+    "krawler": 0x104,
+    "machina": 0x36,
+    "vaylantz": 0x17D,
+    "worldlegacy": 0xFE,
 }
 
 OMEGA_SET_CODES = {
@@ -207,6 +214,8 @@ OMEGA_SET_CODES = {
     "talismandrakearms": 0x452F,
     "aipex": 0x715B,
     "recollection": 0x6167,
+    "aerocat": 0x3DE1,
+    "pyre": 0x3135,
 }
 
 # These named sub-series share a broader primary archetype in cards.json but
@@ -220,6 +229,9 @@ NAME_BASED_ARCHETYPE_PATTERNS = (
     ("talismandrakearms", r"\bTalismandrake Arms\b"),
     ("aipex", r"\bA\.I\.P Ex\b"),
     ("recollection", r"\bRecollection\b"),
+    ("crusadia", r"\bCrusadia\b"),
+    ("machina", r"\bMachina\b"),
+    ("worldlegacy", r"\bWorld Legacy\b"),
 )
 
 # "Chapter II Verse IV" is explicitly included by the Ataxia support card,
@@ -252,6 +264,18 @@ RELEASE_EXCLUDED_LEGACY_IDS = {
 }
 
 EXTRA_TOKEN_CARDS = [
+    {
+        "id": 239823001,
+        "name": "Pyre Token",
+        "desc": 'Special Summoned by the effect of "Devotee of the Pyre".',
+        "setcode": 0,
+        "type": TYPE_BITS["Monster"] | TYPE_BITS["Normal"] | TYPE_BITS["Token"],
+        "atk": 0,
+        "def": 0,
+        "level": 1,
+        "race": RACE_BITS["Pyro"],
+        "attribute": ATTRIBUTE_BITS["FIRE"],
+    },
     {
         "id": 98090004,
         "name": "Grayscale Token",
@@ -339,6 +363,75 @@ EXTRA_TOKEN_CARDS = [
 ]
 
 CARD_STRING_OVERRIDES = {
+    "theintergalataxian": [
+        'Send and apply 1 "Galactica" Spell, then Special Summon this card',
+        "End the Battle Phase",
+        "Return this card to the hand",
+    ],
+    "divinitytoinfinity": ["Banish and apply 1 opponent Spell/Trap from their GY"],
+    "yurei": [
+        "Reveal this card and Tribute 1 Spirit monster; negate the effect",
+        "Normal Summon this card and double the battling Spirit monster's ATK",
+        "Return this card to the hand",
+    ],
+    "hannya": [
+        "Tribute this card; Normal Summon 1 Spirit monster",
+        "Banish this card; add 2 Spirit monsters with different Levels and Attributes",
+    ],
+    "abenoseimei": [
+        "Make your hand size limit 7 until the end of your opponent's next turn",
+        "Change a Spirit monster's Level by 1 and gain its original ATK",
+        "Return this card to the Extra Deck, then Special Summon 2 Spirit monsters",
+    ],
+    "melanthakeeperoflamentations": [
+        "Special Summon this card from your hand",
+        "Shuffle 1 card from your hand into the Deck",
+        "Send the Extra Deck Summoned monster(s) to the GY",
+    ],
+    "nauticamusicale": [
+        'Add 1 "Nautica" monster from your Deck or GY',
+        "Apply the draw, opponent search, hand-bottom, LP gain, and name lock effect",
+    ],
+    "nauticaoceanica": [
+        'Add the appropriate "Nautica Oceanica" effect to the resolving effect',
+    ],
+    "raventhelightningiiaerocat": [
+        'Reveal another "Aerocat" card; Special Summon this card',
+        'Special Summon 1 "Aerocat" monster from your hand, GY, or Xyz Material',
+        "Attach this card to a Rank 6 WIND Xyz Monster",
+    ],
+    "glinttheblackbirdaerocat": [
+        'Discard this card; add 1 "Aerocat" Spell/Trap',
+        'Special Summon this card and give an "Aerocat" monster 500 ATK',
+        "Attach this card to a Rank 6 WIND Xyz Monster",
+    ],
+    "vikthechinookaerocat": [
+        'Reveal 1 "Aerocat" Xyz Monster; Normal Summon without Tributing',
+        'Add 1 "Aerocat" monster from your Deck',
+        "Attach this card to a Rank 6 WIND Xyz Monster",
+    ],
+    "navithenavhawkaerocat": [
+        "Apply any number of the Xyz Summon effects in sequence",
+        "Negate and destroy the opponent's monster effect",
+        "Detach materials and shuffle the same number of cards from the GYs",
+        "Attach 1 card from your GY or banishment",
+    ],
+    "shadetheaigalonaerocat": [
+        "Detach 1 material from a Rank 6 Xyz Monster; Special Summon this card",
+        'Attach 1 card on the field to an "Aerocat" Xyz Monster',
+    ],
+    "goliaththeairshipaerocat": [
+        "Detach all materials, then apply any number of the listed effects",
+        'Add up to 2 "Aerocat" cards with different card types',
+        'Attach 1 "Aerocat" card from your GY to a Rank 6 monster',
+        'Add a second "Aerocat" card with a different card type',
+    ],
+    "argaliathegripenaerocat": [
+        'Special Summon this card while you have an "Aerocat" monster',
+        "Destroy 1 opponent monster, then optionally attach from their GY",
+        "Attach this card to a Rank 6 WIND Xyz Monster",
+        "Attach 1 card from your opponent's GY",
+    ],
     "altergeistregissae": ["Negate 1 face-up card's effects", "Set 1 Altergeist Trap from the GY", "Tribute from the hand"],
     "altergeistifritware": ['Special Summon 1 "Altergeist" monster from your GY', 'Negate the monster effect, then add 1 "Altergeist" Trap from your GY'],
     "dragonprotectorofnature": ["Special Summon 1 Level 4 or lower NATURE monster"],
@@ -1821,6 +1914,17 @@ CARD_STRING_OVERRIDES = {
         'Add 1 "Wyvernal" monster from Deck and send another to GY',
         "Banish this card; shuffle up to 4 Insect monsters from GY into Deck, then draw",
     ],
+    "devoteeofthepyre": [
+        'Add 1 "Pyre" Spell from your Deck to your hand',
+    ],
+    "vaylantzdestroyerpatrician": [
+        "Special Summon this card to the Main Monster Zone in its same column",
+        "Move 1 monster to an adjacent Main Monster Zone",
+    ],
+    "arktosxvaylantzgamemaster": [
+        "Special Summon this card to the Main Monster Zone in its same column",
+        "Move 1 monster you control to another Main Monster Zone",
+    ],
     # July 2026 batch: explicit aux.Stringid messages audited against every
     # script call site. Keep descriptions, prompts, and options in slot order.
     "starfurybauydragon": [
@@ -2608,6 +2712,75 @@ CARD_STRING_OVERRIDES = {
     "altergeistpipesiren": [
         "Special Summon this card",
         'Add 1 "Altergeist" Trap',
+    ],
+    # August 2026 VEIL-125--138: carrier-safe effect descriptions and choices.
+    "aerocatlightningshot": [
+        "Negate the opponent's activation",
+        'Detach 1 material from an "Aerocat" Xyz Monster and shuffle the negated card into the Deck?',
+    ],
+    "aerocatrecon": [
+        'Add 1 "Aerocat" monster from your Deck or GY to your hand',
+        'Banish this card; shuffle up to 3 other "Aerocat" cards into the Deck',
+        "Draw 1 card?",
+    ],
+    "dinomorphiaankylos": [
+        "Pay half your LP; Special Summon this card",
+        'Set 1 "Dinomorphia" Trap from your GY or banishment',
+        'Banish 1 Trap; Special Summon 1 Level 4 "Dinomorphia" monster',
+    ],
+    "dinomorphiatriceron": [
+        'Pay half your LP; destroy 1 other "Dinomorphia" monster and 1 opponent card',
+        'Special Summon 1 Level 6 or lower "Dinomorphia" monster from your GY',
+        'Shuffle up to 3 "Dinomorphia" Traps into the Deck?',
+    ],
+    "dinomorphiaprovocation": [
+        'Pay half your LP; Set 1 "Dinomorphia" Trap from your Deck',
+        'Banish this card and pay half your LP; send 1 "Dinomorphia" card from Deck to GY',
+        'Fusion Summon 1 "Dinomorphia" monster?',
+    ],
+    "dinomorphiahideout": [
+        'Send 1 "Dinomorphia" Normal Trap from Deck to GY and copy its activated effect',
+    ],
+    "krawlerastrocyte": [
+        'Special Summon 1 Level 2 "Krawler" from your Deck face-down',
+        'Discard 1 "Krawler" or "World Legacy" card; Special Summon this card face-down',
+        'Special Summon 2 differently named "Krawler" monsters from your Deck face-down',
+        "Change 1 face-down monster you control to face-up Defense Position?",
+    ],
+    "krawlerlamina": [
+        "Return 1 card from each field to the hand",
+        'Discard this card; Special Summon 1 "Krawler" monster',
+        'Banish this card; place or Set 1 "World Legacy" Continuous Spell/Trap',
+        "Place the selected card face-up",
+        "Set the selected card",
+    ],
+    "krawleroftheworldlegacy": [
+        "Tribute 1 face-down card on the field; Special Summon this card",
+        'Special Summon 1 "Krawler" monster from your hand or GY face-down',
+        "Change 1 monster on the field to face-up or face-down Defense Position",
+    ],
+    "krawlerplexus": [
+        'Special Summon 1 "Krawler" monster from your GY or banishment face-down',
+        'Shuffle this card and 2 other "Krawler" monsters into the Deck; all "Krawlers" gain 300 ATK/DEF',
+        "Discard 1 card when activating this effect?",
+        "Change 1 face-down monster you control to face-up Defense Position?",
+    ],
+    "worldlegacysurfacing": [
+        'Reveal 1 Level 2 or lower "Krawler" and apply its FLIP effect',
+        'Banish this card; add a "Krawler" monster and/or "World Legacy" Spell/Trap',
+        "Add 1 card from the other category too?",
+    ],
+    "worldlegacycalamities": [
+        'Add or send 1 "World Legacy" Spell/Trap from your Deck',
+        "Change 1 face-down monster you control to face-up Defense Position",
+    ],
+    "machinaxkrawler": [
+        "Change the opponent's Spell/Trap effect so you send 1 monster you control to the GY",
+        'Special Summon 2 differently named "Krawler" Link Monsters from your Extra Deck',
+    ],
+    "aerocatblastfist": [
+        "Detach Xyz Materials; destroy that many opponent monsters",
+        "Shuffle cards from your opponent's GY into the Deck?",
     ],
 }
 

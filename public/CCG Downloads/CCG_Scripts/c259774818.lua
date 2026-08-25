@@ -1,0 +1,21 @@
+--Krawler Lamina
+--Omega references: Krawler Ranvier (c10698416), World Legacy Pawns (c89320376)
+local s,id=GetID(); local SET_KRAWLER=0x104; local SET_WORLD_LEGACY=0xfe; local MSG_ID=133774818
+function s.initial_effect(c)
+ local e1=Effect.CreateEffect(c); e1:SetDescription(aux.Stringid(MSG_ID,0)); e1:SetCategory(CATEGORY_TOHAND); e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_FLIP+EFFECT_TYPE_TRIGGER_O); e1:SetCode(EVENT_FLIP); e1:SetProperty(EFFECT_FLAG_CARD_TARGET); e1:SetCountLimit(1,id); e1:SetTarget(s.rtg); e1:SetOperation(s.rop); c:RegisterEffect(e1)
+ local e2=Effect.CreateEffect(c); e2:SetDescription(aux.Stringid(MSG_ID,1)); e2:SetCategory(CATEGORY_SPECIAL_SUMMON); e2:SetType(EFFECT_TYPE_QUICK_O); e2:SetCode(EVENT_FREE_CHAIN); e2:SetRange(LOCATION_HAND); e2:SetCountLimit(1,id+100); e2:SetCost(s.dcost); e2:SetTarget(s.sptg); e2:SetOperation(s.spop); c:RegisterEffect(e2)
+ local e3=Effect.CreateEffect(c); e3:SetDescription(aux.Stringid(MSG_ID,2)); e3:SetCategory(CATEGORY_REMOVE); e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O); e3:SetCode(EVENT_SPSUMMON_SUCCESS); e3:SetRange(LOCATION_GRAVE); e3:SetProperty(EFFECT_FLAG_DELAY); e3:SetCountLimit(1,id+200); e3:SetCondition(s.lkcon); e3:SetCost(aux.bfgcost); e3:SetTarget(s.pltg); e3:SetOperation(s.plop); c:RegisterEffect(e3)
+end
+function s.own(c) return c:IsAbleToHand() end
+function s.opp(c) return c:IsAbleToHand() end
+function s.rtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return false end if chk==0 then return Duel.IsExistingTarget(s.own,tp,LOCATION_ONFIELD,0,1,nil) and Duel.IsExistingTarget(s.opp,tp,0,LOCATION_ONFIELD,1,nil) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND); local a=Duel.SelectTarget(tp,s.own,tp,LOCATION_ONFIELD,0,1,1,nil); Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND); local b=Duel.SelectTarget(tp,s.opp,tp,0,LOCATION_ONFIELD,1,1,nil); a:Merge(b); Duel.SetOperationInfo(0,CATEGORY_TOHAND,a,2,0,0) end
+function s.rop(e) local g=Duel.GetTargetCards(e):Filter(Card.IsRelateToEffect,nil,e); Duel.SendtoHand(g,nil,REASON_EFFECT) end
+function s.dcost(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return e:GetHandler():IsDiscardable() end Duel.SendtoGrave(e:GetHandler(),REASON_COST+REASON_DISCARD) end
+function s.spf(c,e,tp) return c:IsSetCard(SET_KRAWLER) and not c:IsCode(id) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENSE+POS_FACEDOWN_DEFENSE) end
+function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spf),tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,e,tp) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED) end
+function s.spop(e,tp) if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON); local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spf),tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil,e,tp); local tc=g:GetFirst(); if tc then local pos=Duel.SelectPosition(tp,tc,POS_FACEUP_DEFENSE+POS_FACEDOWN_DEFENSE); Duel.SpecialSummon(tc,0,tp,tp,false,false,pos); if pos==POS_FACEDOWN_DEFENSE then Duel.ConfirmCards(1-tp,tc) end end end
+function s.lkcon(e,tp,eg) return eg:IsExists(Card.IsType,1,nil,TYPE_LINK) end
+function s.face(c,tp) return not c:IsForbidden() and c:CheckUniqueOnField(tp) end
+function s.wlf(c,tp) return c:IsSetCard(SET_WORLD_LEGACY) and c:IsType(TYPE_CONTINUOUS) and c:IsSpellTrap() and (c:IsSSetable() or s.face(c,tp)) end
+function s.pltg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingMatchingCard(s.wlf,tp,LOCATION_HAND+LOCATION_DECK,0,1,nil,tp) end end
+function s.plop(e,tp) if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD); local tc=Duel.SelectMatchingCard(tp,s.wlf,tp,LOCATION_HAND+LOCATION_DECK,0,1,1,nil,tp):GetFirst(); if not tc then return end local face=s.face(tc,tp); local set=tc:IsSSetable(); if face and set then if Duel.SelectOption(tp,aux.Stringid(MSG_ID,3),aux.Stringid(MSG_ID,4))==0 then Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) else Duel.SSet(tp,tc) end elseif face then Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) else Duel.SSet(tp,tc) end end

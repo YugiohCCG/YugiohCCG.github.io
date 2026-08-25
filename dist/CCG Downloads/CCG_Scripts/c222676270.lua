@@ -38,7 +38,6 @@ end
 function s.discon(e,tp,eg,ep,ev,re,r,rp)
 	if not Duel.IsChainDisablable(ev) then return false end
 	return s.setcheck(ev,re) or s.eqcheck(ev)
-		or s.loccheck(ev,CATEGORY_LEAVE_GRAVE,LOCATION_GRAVE)
 end
 function s.discost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

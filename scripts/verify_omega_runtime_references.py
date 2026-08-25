@@ -26,7 +26,8 @@ DEFAULT_OFFICIAL_DB = Path(
 DEFAULT_OFFICIAL_SCRIPTS = ROOT / "tmp" / "omega_scripts"
 
 CONSTANT_RE = re.compile(
-    r"^\s*local\s+([A-Za-z_]\w*)\s*=\s*(\d+)\s*$", re.MULTILINE
+    r"(?:^|;)\s*local\s+([A-Za-z_]\w*)\s*=\s*(\d+)\s*(?=;|$)",
+    re.MULTILINE,
 )
 SETCODE_CONSTANT_RE = re.compile(
     r"^\s*local\s+(SET_[A-Z0-9_]+)\s*=\s*"
