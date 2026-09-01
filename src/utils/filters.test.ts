@@ -76,6 +76,16 @@ describe("cardMatches", () => {
     expect(matches({ legal: ["Forbidden"] })).toBe(false);
     expect(matches({ legal: ["Forbidden"] }, { ...baseCard, legal: { banned: true } })).toBe(true);
   });
+
+  it("treats unreleased cards as To Be Released and excludes them from Legal", () => {
+    const unreleased = { ...baseCard, legal: { tobereleased: false } };
+    expect(matches({ legal: ["To Be Released"] }, unreleased)).toBe(true);
+    expect(matches({ legal: ["Legal"] }, unreleased)).toBe(false);
+
+    const released = { ...baseCard, legal: { tobereleased: true } };
+    expect(matches({ legal: ["Legal"] }, released)).toBe(true);
+    expect(matches({ legal: ["To Be Released"] }, released)).toBe(false);
+  });
 });
 
 describe("sortCards", () => {

@@ -1,17 +1,19 @@
 import clsx from "clsx";
 import type React from "react";
 
-export type LegalityStatus = "banned" | "limited" | "semi";
+export type LegalityStatus = "banned" | "limited" | "semi" | "tobereleased";
 
 type LegalLike = {
   banned?: boolean;
   limited?: boolean;
   semiLimited?: boolean;
+  tobereleased?: boolean;
 } | null | undefined;
 
 /** Resolve a card's legal status to the badge variant we display. */
 export function legalStatus(legal: LegalLike): LegalityStatus | null {
   if (!legal) return null;
+  if (legal.tobereleased === false) return "tobereleased";
   if (legal.banned) return "banned";
   if (legal.limited) return "limited";
   if (legal.semiLimited) return "semi";
@@ -22,6 +24,7 @@ const LABEL: Record<LegalityStatus, string> = {
   banned: "Banned",
   limited: "Limited",
   semi: "Semi-Limited",
+  tobereleased: "To Be Released",
 };
 
 type Props = {
@@ -72,22 +75,43 @@ function renderIcon(status: LegalityStatus) {
     );
   }
 
-  const number = status === "limited" ? "1" : "2";
+  if (status === "semi" || status === "limited") {
+    return (
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        {outer}
+        <text
+          x="32"
+          y="42"
+          textAnchor="middle"
+          fontSize="30"
+          fontWeight="800"
+          fill="#f7d300"
+          fontFamily="'Barlow Condensed', 'Trebuchet MS', 'Segoe UI', sans-serif"
+        >
+          {status === "limited" ? "1" : "2"}
+        </text>
+      </svg>
+    );
+  }
 
-  return (
-    <svg viewBox="0 0 64 64" aria-hidden="true">
-      {outer}
-      <text
-        x="32"
-        y="42"
-        textAnchor="middle"
-        fontSize="30"
-        fontWeight="800"
-        fill="#f7d300"
-        fontFamily="'Barlow Condensed', 'Trebuchet MS', 'Segoe UI', sans-serif"
-      >
-        {number}
-      </text>
-    </svg>
-  );
+  if (status === "tobereleased") {
+    return (
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        {outer}
+        <text
+          x="42"
+          y="32"
+          textAnchor="middle"
+          fontSize="30"
+          fontWeight="800"
+          fill="#f7d300"
+          fontFamily="'Barlow Condensed', 'Trebuchet MS', 'Segoe UI', sans-serif"
+        >
+          TBR
+        </text>
+      </svg>
+    );
+  }
+
+  return null;
 }
