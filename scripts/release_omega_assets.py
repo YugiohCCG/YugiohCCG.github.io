@@ -214,6 +214,31 @@ def run_db_sync(db_path: Path, full_sync: bool) -> None:
         raise SystemExit(f"sync_omega_ccg_db.py failed (exit {proc.returncode})")
 
 
+def sync_cards_release_flags(*, mark_all_released: bool = False) -> None:
+    """Update legal.tobereleased in cards.json from the shipped Omega DB."""
+    from sync_release_cards import sync_release_flags
+
+    print("\n[cards] syncing legal.tobereleased in cards.json")
+    result = sync_release_flags(
+        cards_path=CARDS_JSON_PATH,
+        db_path=REPO_DB_PATH,
+        mark_all_released=mark_all_released,
+    )
+    print(
+        "  [cards] "
+        f"changed={result['changed']} "
+        f"released_true={result['released_true']} "
+        f"released_false={result['released_false']}"
+    )
+    if result["written"]:
+        proc = subprocess.run(
+            ["node", str(SCRIPTS_DIR / "sync-public-cards.cjs")],
+            check=False,
+        )
+        if proc.returncode != 0:
+            raise SystemExit("sync-public-cards.cjs failed after cards.json update")
+
+
 def build_scripts_package() -> None:
     cmd = [sys.executable, str(SCRIPTS_DIR / "package_omega_ccg_scripts.py")]
     print("\n[scripts] rebuilding card-only CCG_Scripts.zip")
@@ -531,6 +556,8 @@ def main() -> int:
                         print(f"  mirrored {OMEGA_DB_PATH.name} -> {REPO_DB_PATH.relative_to(REPO_ROOT)}")
                     zip_repo_db()
                     db_zipped = True
+
+                    sync_cards_release_flags(mark_all_released=True)
             except SystemExit as exc:
                 print(f"  [db] aborted: {exc}")
                 failures.append(("db", str(exc)))
