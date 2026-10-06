@@ -20,7 +20,7 @@ export default function CardRow({ card }: { card: Card }) {
   const imgW = 96;
   const imgH = Math.round(imgW * RATIO);
   const { open } = useImageViewer();
-  const status = legalStatus((card as any).legal);
+  const status = legalStatus(card.legal);
   const imgSrc = asset(card.image);
 
   return (
@@ -98,17 +98,22 @@ export default function CardRow({ card }: { card: Card }) {
             <div className="text-xs text-slate-500">Spell / Trap</div>
           )}
 
-          {card.legal?.banned && (
+          {card.legal?.tobereleased === false && (
+            <span className="rounded-md border border-sky-400 bg-sky-50 px-2 py-0.5 text-[11px] font-bold text-sky-700">
+              TO BE RELEASED
+            </span>
+          )}
+          {card.legal?.tobereleased !== false && card.legal?.banned && (
             <span className="rounded-md border border-red-400 bg-red-50 px-2 py-0.5 text-[11px] font-bold text-red-700">
               BANNED
             </span>
           )}
-          {!card.legal?.banned && card.legal?.limited && (
+          {card.legal?.tobereleased !== false && !card.legal?.banned && card.legal?.limited && (
             <span className="rounded-md border border-orange-400 bg-orange-50 px-2 py-0.5 text-[11px] font-bold text-orange-700">
               LIMITED
             </span>
           )}
-          {!card.legal?.banned && !card.legal?.limited && card.legal?.semiLimited && (
+          {card.legal?.tobereleased !== false && !card.legal?.banned && !card.legal?.limited && card.legal?.semiLimited && (
             <span className="rounded-md border border-yellow-400 bg-yellow-50 px-2 py-0.5 text-[11px] font-bold text-yellow-700">
               SEMI
             </span>

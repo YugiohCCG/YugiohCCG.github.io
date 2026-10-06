@@ -90,6 +90,7 @@ const LEGALITY_ICON: Record<string, string> = {
   Banned: "banned",
   Limited: "limited",
   "Semi-Limited": "semi",
+  "To Be Released": "tobereleased",
 };
 
 const LEVELS = Array.from({ length: 14 }, (_, i) => i); // 0..13
@@ -508,7 +509,7 @@ export default function FiltersPanel() {
 
             <Section title="Legality" onClear={legal.length ? () => setLegal([]) : undefined}>
               <div className="flex flex-wrap gap-1.5">
-                {["Banned", "Limited", "Semi-Limited", "Legal"].map((v) => (
+                {["Banned", "Limited", "Semi-Limited", "Legal", "To Be Released"].map((v) => (
                   <Chip key={v} active={legal.includes(v)} onClick={() => toggle(legal, setLegal, v)}>
                     {LEGALITY_ICON[v] ? (
                       <span className="flex items-center gap-1">

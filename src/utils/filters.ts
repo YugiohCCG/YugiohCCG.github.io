@@ -184,15 +184,21 @@ export function cardMatches(card: Card, q: Query): boolean {
     if (!hasAny(kinds, q.cardTypes)) return false;
   }
 
-  // legality (banned/limited/semi/Legal)
+  // legality (banned/limited/semi/Legal/to-be-released)
   if (q.legal?.length) {
     const l = (C.legal || {}) as any;
+    const released = l.tobereleased !== false;
     const match = (s: string) => {
       const v = up(s);
-      if (v === "BANNED" || v === "FORBIDDEN") return !!l.banned;
-      if (v === "LIMITED" || v === "LIMIT") return !!l.limited;
-      if (v === "SEMI" || v === "SEMILIMITED" || v === "SEMI-LIMITED") return !!l.semiLimited;
-      if (v === "LEGAL" || v === "UNLIMITED") return !l.banned && !l.limited && !l.semiLimited;
+      if (v === "TO BE RELEASED" || v === "TOBERELEASED" || v === "TBR") {
+        return l.tobereleased === false;
+      }
+      if (v === "BANNED" || v === "FORBIDDEN") return released && !!l.banned;
+      if (v === "LIMITED" || v === "LIMIT") return released && !!l.limited;
+      if (v === "SEMI" || v === "SEMILIMITED" || v === "SEMI-LIMITED") return released && !!l.semiLimited;
+      if (v === "LEGAL" || v === "UNLIMITED") {
+        return released && !l.banned && !l.limited && !l.semiLimited;
+      }
       return false;
     };
     if (!q.legal.some(match)) return false;

@@ -3,33 +3,12 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-
-from PIL import Image
-
+from card_art_crop import crop_card_art_bytes
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CARDS_PATH = REPO_ROOT / "src" / "data" / "cards.json"
 DEFAULT_ARTS_PATH = Path(r"C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Arts")
 DEFAULT_SOURCE_ASSETS = REPO_ROOT / "public" / "assets" / "cards"
-
-# Derived from existing working CCG Omega art exports.
-ART_X_RATIO = 168 / 1388
-ART_Y_RATIO = 372 / 2026
-ART_SIDE_RATIO = 1052 / 1388
-OUTPUT_SIZE = 624
-
-
-def crop_card_art(image: Image.Image) -> Image.Image:
-    rgb = image.convert("RGB")
-    width, height = rgb.size
-    left = round(width * ART_X_RATIO)
-    top = round(height * ART_Y_RATIO)
-    side = round(width * ART_SIDE_RATIO)
-    side = min(side, width - left, height - top)
-    return rgb.crop((left, top, left + side, top + side)).resize(
-        (OUTPUT_SIZE, OUTPUT_SIZE),
-        Image.Resampling.LANCZOS,
-    )
 
 
 def export_missing_arts(cards_path: Path, assets_dir: Path, arts_dir: Path, overwrite: bool) -> tuple[int, int]:
@@ -60,9 +39,7 @@ def export_missing_arts(cards_path: Path, assets_dir: Path, arts_dir: Path, over
             skipped += 1
             continue
 
-        with Image.open(source_path) as source_image:
-            cropped = crop_card_art(source_image)
-            cropped.save(output_path, format="JPEG", quality=92, optimize=True)
+        output_path.write_bytes(crop_card_art_bytes(source_path))
         exported += 1
 
     return exported, skipped

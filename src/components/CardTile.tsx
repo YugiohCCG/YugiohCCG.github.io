@@ -9,7 +9,7 @@ type Props = { card: Card; imageHeight?: number; detailsEnabled?: boolean };
 export default function CardTile({ card, imageHeight, detailsEnabled = true }: Props) {
   const { open } = useImageViewer();
   const imgSrc = asset(card.image);
-  const status = legalStatus((card as any).legal);
+  const status = legalStatus(card.legal);
 
   return (
     <div className="relative h-full w-full">

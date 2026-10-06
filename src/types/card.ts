@@ -4,6 +4,7 @@ export type Legal = {
   semiLimited?: boolean; // true if semi-limited
   limited?: boolean; // true if limited
   banned?: boolean; // true if forbidden
+  tobereleased?: boolean; // true when synced to Omega DB; false for website-only preview
 };
 
 // ---------- Timestamps ----------
@@ -137,8 +138,17 @@ export function atkDef(c: Card): string | null {
   return `ATK ${atk} / DEF ${def}`;
 }
 
-export function legalLabel(l?: Legal | null): "Forbidden" | "Limited" | "Semi-Limited" | null {
+export function isReleasedToOmega(l?: Legal | null): boolean {
+  return l?.tobereleased !== false;
+}
+
+export function isUnreleasedPreview(l?: Legal | null): boolean {
+  return l?.tobereleased === false;
+}
+
+export function legalLabel(l?: Legal | null): "Forbidden" | "Limited" | "Semi-Limited" | "To Be Released" | null {
   if (!l) return null;
+  if (isUnreleasedPreview(l)) return "To Be Released";
   if (l.banned) return "Forbidden";
   if (l.limited) return "Limited";
   if (l.semiLimited) return "Semi-Limited";

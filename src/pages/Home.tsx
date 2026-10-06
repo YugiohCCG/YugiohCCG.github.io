@@ -316,7 +316,7 @@ export default function Home() {
                 type="button"
                 className="latest-carousel-card"
                 data-offset={offset}
-                onClick={() => open(asset(card.image || ""), card.name, legalStatus((card as any).legal))}
+                onClick={() => open(asset(card.image || ""), card.name, legalStatus(card.legal))}
                 title={card.name}
                 aria-label={`Open ${card.name} image`}
               >
