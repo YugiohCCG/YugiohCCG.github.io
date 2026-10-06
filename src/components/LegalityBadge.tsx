@@ -99,8 +99,8 @@ function renderIcon(status: LegalityStatus) {
       <svg viewBox="0 0 64 64" aria-hidden="true">
         {outer}
         <text
-          x="42"
-          y="32"
+          x="32"
+          y="42"
           textAnchor="middle"
           fontSize="30"
           fontWeight="800"
