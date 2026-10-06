@@ -1,0 +1,376 @@
+{
+  "scope": "All711 pinned texts searched; Galaxy/Celestial Warrior keyword subset source evidence. Named aliases/complex predicates require manual reading; no full-card certification.",
+  "mapping_source": "scripts/sync_omega_ccg_db.py",
+  "expected_races": {
+    "Galaxy": "0x80000000",
+    "Celestial Warrior": "0x40000000"
+  },
+  "results": [
+    {
+      "passcode": 212055290,
+      "name": "Advent of Cosmic Beings",
+      "text": "Add 1 Level 4 or lower Galaxy or Celestial Warrior monster from your Deck to your hand. You can only activate 1 \"Advent of Cosmic Beings\" per turn.",
+      "script_sha256": "8d409a5f2f55e9ca52cd4fa3338cb8809cba27b793f69f2978489c357bf31ba4",
+      "race_evidence": [
+        {
+          "line": 15,
+          "text": "\treturn c:IsLevelBelow(4) and (c:IsRace(0x80000000) or c:IsRace(0x40000000)) and c:IsAbleToHand()"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 213611313,
+      "name": "Scarstech Crawler",
+      "text": "2 \"Scarstech\" monsters\nThis card gains 300 ATK when a card or effect resolves. During the Main Phase (Quick Effect): You can discard 1 card; Special Summon 1 Galaxy monster from your hand. You can only use this effect of \"Scarstech Crawler\" once per turn. If a card was activated as Chain Link 5 or higher while this card is in your GY (Quick Effect): You can Special Summon this card. You can only control 1 \"Scarstech Crawler\".",
+      "script_sha256": "0da7b707452f34e723c1652ce0015d65b371171ca9cdf4451c8cc46ea858ff2e",
+      "race_evidence": [
+        {
+          "line": 4,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 50,
+          "text": "function s.handfilter(c,e,tp) return c:IsRace(RACE_GALAXY) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 221827483,
+      "name": "To Protogenis Intergalataxiakos",
+      "text": "(This card is also treated as a \"Galactica\" card.) 1 Level 2 \"Galactica\" monster + 1 LIGHT Galaxy monster. Must be Fusion Summoned using \"Fusion Intergalactica\". Your opponent cannot declare an attack. If this card destroys a monster by battle or inflicts battle damage to your opponent: It becomes unaffected by your opponent's card effects until the start of your next Battle Phase. If this card is banished from the field: You can banish 1 card on the field, also Special Summon this card during your next Standby Phase.",
+      "script_sha256": "c6d90489a6733cb1c0633c945a4a2954b95ab4121f9958d04c3fd12b1dcca1b5",
+      "race_evidence": [
+        {
+          "line": 5,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 9,
+          "text": "\taux.AddFusionProcFun2(c,function(mc) return mc:IsFusionSetCard(SET_GALACTICA) and mc:IsLevel(2) end,function(mc) return mc:IsFusionAttribute(ATTRIBUTE_LIGHT) and mc:IsRace(RACE_GALAXY) end,true) c:EnableReviveLimit()"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 223512283,
+      "name": "Dysmandr, the Depraevity of Worlds",
+      "text": "(This card is always treated as a \"Stellar\" card.)\n1 Rank/Level 9 LIGHT Dragon Monster + 1 \"Protogenic Essence Token\"\nCannot be destroyed by battle, also, this card gains 3000 ATK/DEF. During the Main Phase, or, if this card is Fusion Summoned: You can place 1 \"Dysmandr\" Continuous Spell/Trap from your hand, Deck, or GY, face-up in your Spell & Trap Zone. During the End Phase, if a monster was destroyed this turn: You can Special Summon 1 \"Protogenic Essence Token\" (Galaxy/DARK/Level 1/ATK 0/DEF 0), but that Token cannot be used as Link Material. You can only use each effect of \"Dysmandr, the Depraevity of Worlds\" once per turn.",
+      "script_sha256": "fa9f802eb7c0b3e4a96dd1fc06de957f861642d0446ec47b1320e30feb00a085",
+      "race_evidence": [
+        {
+          "line": 7,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 114,
+          "text": "\t\tand Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_DARK) end"
+        },
+        {
+          "line": 121,
+          "text": "\t\tor not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_DARK) then return end"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 224751741,
+      "name": "Fall of Azrynior",
+      "text": "(This card is also treated as a \"Taxis\" card.)\nSpecial Summon 1 \"Protogenic Essence Token\" (Galaxy/DARK/Level 1/ATK 0/DEF 0), but that Token cannot be used as Link Material, then Fusion Summon 1 \"Dysmandr, the Depraevity of Worlds\" from your Extra Deck by using monsters in your hand and/or field as Fusion Material. If \"Dysmandr, the Depraevity of Worlds\" leaves the field because of your opponent's card: You can also shuffle 1 LIGHT or DARK Dragon Monster from your GY or banishment into the Deck to activate this effect; add this card from your GY to your hand. You can only use the previous effect of \"Fall of Azrynior\" once per turn.",
+      "script_sha256": "85e543f8c13bd8f6eb025d95329724769d675941be63f3b8c038b01c4b5fe44f",
+      "race_evidence": [
+        {
+          "line": 7,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 63,
+          "text": "\t\tand Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_DARK)"
+        },
+        {
+          "line": 73,
+          "text": "\tif not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_DARK) then return end"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 232706629,
+      "name": "Protogenic Astral Cycle",
+      "text": "Neither player can Summon Effect Monsters to Main Monster Zones in this card's column. Once per turn: You can Special Summon 1 \"Protogenic Essence Token\" (Galaxy/LIGHT/Level 1/ATK 0/DEF 0). If your opponent activates a card effect: You can Special Summon 1 \"To Proto\" monster from your hand or GY ignoring its Summoning conditions by banishing 1 Effect Monster you control. You can only use the previous effect of \"Protogenic Astral Cycle\" once per turn.",
+      "script_sha256": "d94c5f295e5b62059c1f1edfe9e9bd1134fce3e6856a77b9058d5a82f49d91f6",
+      "race_evidence": [
+        {
+          "line": 6,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 58,
+          "text": "\t\tand Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT) end"
+        },
+        {
+          "line": 64,
+          "text": "\tif not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT) then return end"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 233502817,
+      "name": "Scarstech Sniper",
+      "text": "When a card or effect is activated (Quick Effect): You can send this card from your hand or field to the GY; Special Summon 1 Level 4 or lower Galaxy monster from your GY. If this card is Normal or Special Summoned: Special Summon 1 Level 4 or lower DARK monster from your hand or GY. You can only use each effect of \"Scarstech Sniper\" once per turn.",
+      "script_sha256": "47a26f92d7671c82bfe226f6cef03a1f5ee6521b04d2255c9574ed53892daee5",
+      "race_evidence": [
+        {
+          "line": 3,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 36,
+          "text": "\treturn c:IsRace(RACE_GALAXY) and c:IsLevelBelow(4) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 234729347,
+      "name": "The Beginning",
+      "text": "While you control a token, your opponent cannot target Effect Monsters you control for attacks or with card effects. During the Main Phase: You can banish 1 monster from your hand, then add 1 \"To Proto\" monster from your Deck to your hand. If you Special Summon a Level 11 \"To Proto\" monster from your hand or GY: Special Summon 1 \"Protogenic Essence Token\" (Galaxy/ LIGHT/ Level 1/ ATK 0/ DEF 0). You can only use each effect of \"The Beginning\" once per turn.",
+      "script_sha256": "5d36bd79913dc273af9446fa808a44c00340ffd971aa336b8c6d6ee0ab5736be",
+      "race_evidence": [
+        {
+          "line": 6,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 100,
+          "text": "\tif not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT) then return end"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 239245471,
+      "name": "Birth of Azrynior",
+      "text": "(This card is also treated as a \"Ataxia\" card.)\nSpecial Summon 1 \"Protogenic Essence Token\" (Galaxy/LIGHT/Level 1/ATK 0/DEF 0), but that Token cannot be used as Link Material, and if you do, Fusion Summon 1 \"Azrynior, the Abundaence of Purity\" from your Extra Deck by using monsters in your hand and/or field as Fusion Material. If \"Azrynior, the Abundaence of Purity\" leaves the field because of your opponent's card: You can also shuffle 1 LIGHT or DARK Dragon Monster from your GY or banishment into the Deck; add this card from your GY to your hand. You can only use the previous effect of \"Birth of Azrynior\" once per turn.",
+      "script_sha256": "f40f2550809cdb331126de046fc24c11bbd5296cd37c9e0d9dac07474421064e",
+      "race_evidence": [
+        {
+          "line": 7,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 63,
+          "text": "\t\tand Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT)"
+        },
+        {
+          "line": 73,
+          "text": "\tif not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT) then return end"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 240299292,
+      "name": "To Proto Ousia",
+      "text": "If this card is Normal or Special Summoned: You can Special Summon 1 \"Protogenic Essence Token\" (Galaxy/ LIGHT/ Level 1/ ATK 0/ DEF 0). If this card is in your GY, because it was used as material for the Link Summon of a \"To Proto\" monster: You can banish this card; add 1 of your face-up banished monsters to your hand, then, if you added a \"To Proto\" monster, you can draw 1 card. You can only use each effect of \"To Proto Ousia\" once per turn.",
+      "script_sha256": "f292ea2a326ed897daaf29db790569cd222b5c8c1a4f21901cac635cbe892c50",
+      "race_evidence": [
+        {
+          "line": 6,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 43,
+          "text": "\t\tand Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT) end"
+        },
+        {
+          "line": 49,
+          "text": "\tif not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT) then return end"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 241543138,
+      "name": "To Proto Eisodos",
+      "text": "2 Effect Monsters with different names\nIf this card is banished from the field: You can Special Summon 2 \"Protogenic Essence Tokens\" (Galaxy/LIGHT/Level 1/ATK 0/DEF 0). During your opponent's turn (Quick Effect): You can target 1 Effect Monster you control; banish that target and 1 \"To Proto\" monster from your Deck, then Special Summon this banished card, or return it to the Extra Deck. You can only use each effect of \"To Proto Eisodos\" once per turn.",
+      "script_sha256": "bac0b247217a456610866a6f8457f209396434fe63c8de9ba9bf69648db2de4c",
+      "race_evidence": [
+        {
+          "line": 6,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 50,
+          "text": "\t\tand Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT) end"
+        },
+        {
+          "line": 56,
+          "text": "\tif not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT) then return end"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 242838495,
+      "name": "Ratsach, the Scarstech Cruiser",
+      "text": "2 or more Galaxy monsters\nThis card cannot be targeted for attacks, but does not prevent your opponent from attacking you directly. This card gains 300 ATK when a card or effect resolves. Once per Chain (Quick Effect): You can make this card lose exactly 3000 ATK, and if you do, add 1 \"Scarstech\" Trap from your Deck to your hand. You can only control 1 \"Ratsach, The Scarstech Cruiser\".",
+      "script_sha256": "a614e2749baafee1e8b78aa6e5024fe4d6c6757e3406743c9a3f58f8f399c1d7",
+      "race_evidence": [
+        {
+          "line": 4,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 6,
+          "text": "\taux.AddLinkProcedure(c,aux.FilterBoolFunction(Card.IsRace,RACE_GALAXY),2,3)"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 245099829,
+      "name": "Azrynior, the Abundaence of Purity",
+      "text": "(This card is always treated as a \"Stellaer\" card.)\n1 Rank/Level 9 LIGHT Dragon Monster + 1 \"Protogenic Essence Token\"\nCannot be destroyed by card effects, also, this card gains 3000 ATK/DEF. During the Main Phase, or, if this card is Fusion Summoned: You can place 1 \"Azrynior\" Continuous Spell/Trap from your hand, Deck, or GY, face-up in your Spell & Trap Zone. During the End Phase, if a \"Protogenic Essence Token\" was Tributed this turn: You can Special Summon 1 \"Protogenic Essence Token\" (Galaxy/LIGHT/Level 1/ATK 0/DEF 0), but that Token cannot be used as Link Material. You can only use each effect of \"Azrynior, the Abundaence of Purity\" once per turn.",
+      "script_sha256": "34cfe579b8348b899c9a2f98c590e7e6561730c915d409ba525dc79ffe85d8ff",
+      "race_evidence": [
+        {
+          "line": 8,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 115,
+          "text": "\t\tand Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT) end"
+        },
+        {
+          "line": 122,
+          "text": "\t\tor not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT) then return end"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 245400676,
+      "name": "To Proto Archegoni",
+      "text": "1 \"Protogenic Essence Token\"\nYou can only Link Summon \"To Proto Archegoni\" once per turn. If this card is Link Summoned: You can discard 1 card; add 1 Spell/Trap from your Deck or GY to your hand that lists \"To Proto\" in its text or name. (Quick Effect): You can banish this card from your field or GY, then target 1 Galaxy Monster you control; that target cannot be destroyed by battle or your opponent's card effects until the end of this turn.",
+      "script_sha256": "0a94f3256978e4b814b55e625a864361bc1c92b11055087af7cde6ab643299dc",
+      "race_evidence": [
+        {
+          "line": 6,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 97,
+          "text": "\treturn c:IsFaceup() and c:IsRace(RACE_GALAXY)"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 245837578,
+      "name": "Scarstech Beacon",
+      "text": "When a card is activated as Chain Link 3 or higher while you control only DARK monsters, including at least 1 \"Scarstech\" monster (Quick Effect): You can Special Summon this card from your hand or GY. If a card or effect is activated as Chain Link 3 or higher while this card is face-up on the field: You can Link Summon 1 Galaxy monster using monsters you control as material. You can only use each effect of \"Scarstech Beacon\" once per turn.",
+      "script_sha256": "349e03284b16ec58eabb1f2d5ff74f76bf0e7527ed415fb6e871d979638cee41",
+      "race_evidence": [
+        {
+          "line": 4,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 47,
+          "text": "function s.lkfilter(c,mg) return c:IsRace(RACE_GALAXY) and c:IsLinkSummonable(mg) end"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 248884592,
+      "name": "Scarstech Swarmer",
+      "text": "During your Main Phase (Quick Effect): You can Special Summon this card from your hand or GY, and if you do, you cannot Special Summon for the rest of this turn, except Galaxy monsters. (Quick Effect): You can Special Summon 1 \"Scarstech\" monster from your Deck with a Level equal to or lower than the Chain Link number of this effect, except \"Scarstech Swarmer\". You cannot Special Summon for the rest of this turn, except \"Scarstech\" monsters. You can only use each effect of \"Scarstech Swarmer\" once per turn.",
+      "script_sha256": "4b8e4cee97aba23b7e069b32d6cd1ad10ba888aeb8477d6740fac24a6a31f70a",
+      "race_evidence": [
+        {
+          "line": 4,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 29,
+          "text": "function s.galaxylimit(e,c) return not c:IsRace(RACE_GALAXY) end"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 259086544,
+      "name": "Qerets, the Scarstech Mother Ship",
+      "text": "3+ DARK monsters This card cannot be targeted for attacks, but does not prevent your opponent from attacking you directly. \"Scarstech\" monsters you control gain 300 ATK when a card or effect resolves. When your opponent activates a card or effect that targets a Galaxy monster(s) you control (Quick Effect): You can make this card lose exactly 3000 ATK, then negate that activation. You can only control 1 \"Qerets, the Scarstech Mother Ship\".",
+      "script_sha256": "fc7bd431ebcab99670b4f3a0571c7e03cd24d5211b61ce7cebdd7e37eaccdac1",
+      "race_evidence": [
+        {
+          "line": 5,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 57,
+          "text": "\treturn c:IsControler(tp) and c:IsOnField() and c:IsRace(RACE_GALAXY)"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    },
+    {
+      "passcode": 259464700,
+      "name": "Scarstech Invader",
+      "text": "When a card or effect is activated as Chain Link 3 or higher (Quick Effect): You can send this card from your hand or field to the GY; Take control of 1 monster your opponent controls until the End Phase, also it become a DARK Galaxy monster. When a card or effect is activated as a Chain Link 5 or higher or when a \"Scarstech\" card or effect is activated while this card is in your GY (Quick Effect): You can Special Summon this card. You can only use each effect of \"Scarstech Invader\" once per turn.",
+      "script_sha256": "3abadee2f43492e226475c94ec80db807e1efa92461b8bca5e6cab759f11a9a6",
+      "race_evidence": [
+        {
+          "line": 5,
+          "text": "local RACE_GALAXY=0x80000000"
+        },
+        {
+          "line": 64,
+          "text": "\t\te2:SetValue(RACE_GALAXY)"
+        }
+      ],
+      "literal_galaxy_archetype_gate": false,
+      "status": "source_review_only",
+      "remaining": "Full effects/material procedures/token metadata and runtime behavior not certified by this scan."
+    }
+  ]
+}

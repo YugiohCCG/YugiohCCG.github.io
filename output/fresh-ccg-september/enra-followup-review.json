@@ -1,0 +1,12 @@
+{
+  "status": "PUBLIC_ENGINE_FOLLOWUP_TIMING_FAILURE",
+  "scope": "Full canonical Enra source actual ownSpirit NormalSummon -> Enra Hand trigger -> actual Enra NormalSummon. Followup positive fails, decline/nonSpirit/absent negatives pass. No adapters or summon bypass. Not native Omega proof; excluded from PASS batch.",
+  "script_sha256": "74c88be5758854a6e1c477faa45854c9235fe4c8e44009946fc32fdbd9731254",
+  "harness_sha256": "26f6914b38a2cfe33be8d85cce64ed00684a44b3f345cee6dee3430d3e9898c3",
+  "diagnostic_sha256": "0ce50f948e64cd9f05c33898375fe266544040d73d6ed8b65696be431f2d0e80",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "chain_end_trace_index": 21,
+  "enra_summoning_trace_index": 25,
+  "findings": "Duel.Summon queues Enra until after chain end in public engine; immediately following c:IsLocation(MZONE) returns false, so follow-up selection never runs. Omega reference normal summon calls inspected, no exact double immediate-summon reference identified. Production unchanged pending compatible timing implementation/native verification.",
+  "superseded_by": "enra-batch.json successful continuation repair; original source retained enra-before-continuation.lua and reproduced enra-followup-old-timing.json"
+}

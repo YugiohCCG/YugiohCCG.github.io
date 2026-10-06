@@ -1,0 +1,144 @@
+{
+  "scope": "13 focused reveal/send/banish/copy cases and six exact mutation checks. Seeded source, neutral copied ignition markers; actual official copied effects, semantics and native Omega remain open",
+  "script_sha256": "117fb88327bbf598ffce5f7f49799fb2235ae7761140ff7b4e7445032d69ca2a",
+  "harness_sha256": "f740610bd1983808b349f4172a7d0ae93f4cd857de569e8337e9dfda8148caea",
+  "runs": [
+    {
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "7caf2213be7ba2e5b806764d13f0f17bbed7b1371666fd1851afc5b05420425b"
+    },
+    {
+      "control": "wrong-branch",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "spell": true
+        },
+        {
+          "trap": true
+        },
+        {
+          "missingBoss": true
+        },
+        {
+          "count": true
+        },
+        {
+          "missingBoss": true,
+          "trap": true
+        },
+        {
+          "selfReveal": true,
+          "pair": true
+        },
+        {
+          "targetLost": true
+        },
+        {
+          "revealLost": true
+        }
+      ],
+      "artifact_sha256": "54ad5a7533fa88b2bdbf4485ff08d362a316a95cf3b8e29c4b317bb1f9092dc5"
+    },
+    {
+      "control": "no-send",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "spell": true
+        },
+        {
+          "trap": true
+        },
+        {
+          "count": true
+        },
+        {
+          "selfReveal": true,
+          "pair": true
+        },
+        {
+          "targetLost": true
+        }
+      ],
+      "artifact_sha256": "d7a3792abd46ae1da10891dc7b509a8e3f65bcc9aa8af9281185fb334b200dc2"
+    },
+    {
+      "control": "no-banish",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "spell": true
+        },
+        {
+          "trap": true
+        },
+        {
+          "count": true
+        },
+        {
+          "selfReveal": true,
+          "pair": true
+        }
+      ],
+      "artifact_sha256": "be344fadbb6963386c6f2182acbb5d57c8a00fb945a52ba4f5e2c2bd1fdb0098"
+    },
+    {
+      "control": "no-copy",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "spell": true
+        },
+        {
+          "trap": true
+        },
+        {
+          "count": true
+        },
+        {
+          "selfReveal": true,
+          "pair": true
+        }
+      ],
+      "artifact_sha256": "041691239d443bd5e1176b7db16bb4e6a3d21e3403286eb5b7166814bff7fa84"
+    },
+    {
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {
+          "count": true
+        }
+      ],
+      "artifact_sha256": "752d00bacc695c5fac1e7c8fb9e533338c2c267b00960a5a54ebe9a6c4a7310d"
+    },
+    {
+      "control": "allow-missing",
+      "status": 1,
+      "expected_failures": [
+        {
+          "missingBoss": true
+        },
+        {
+          "missingBoss": true,
+          "spell": true
+        },
+        {
+          "missingBoss": true,
+          "trap": true
+        },
+        {
+          "selfReveal": true
+        }
+      ],
+      "artifact_sha256": "1c8f5411b101e3e53d31ccb51fe5f603dc01e6324209e792935038deed1e99e5"
+    }
+  ]
+}

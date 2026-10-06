@@ -1,0 +1,1434 @@
+{
+  "scope": "Full production source and canonical target scripts. Actual fixture-effect Special Summon and Deck search accepted/declined. Shared no-search mutation must fail positive only. Other effects, locks/count/filter edges and native Omega open.",
+  "harness_sha256": "1b75bb6bb7b8a91452d7e22c7d50a4bcd193a264883e7e28b85b86ed7c865f88",
+  "batch_script_sha256": "edf5220384b20003d7644c0f8828ca75b232d4aa7b38ae521375d7696dd93f1f",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "public/CCG Downloads/CCG_Scripts/c231331942.lua": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067"
+  },
+  "runs": [
+    {
+      "source": 230749983,
+      "target": 215621622,
+      "control": null,
+      "source_sha256": "d12495e36b09934c902cc5f1d805f25dae207d750b3cc71b5ed2cd8d60acad99",
+      "target_sha256": "4f6e82a380a1f62e28ebce8b732e20abc87446b3407a69fecc4ad46ce704147e",
+      "artifact_sha256": "bd8ed46f1894e358591ac1891c696e1d9e6dd6aebe29882462df91124c01596f",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 230749983,
+      "target": 215621622,
+      "control": "no-search",
+      "source_sha256": "d12495e36b09934c902cc5f1d805f25dae207d750b3cc71b5ed2cd8d60acad99",
+      "target_sha256": "4f6e82a380a1f62e28ebce8b732e20abc87446b3407a69fecc4ad46ce704147e",
+      "artifact_sha256": "2e7248ecea83c820583fab0fad5f87e1aac77399035171cb20c8b28045d756f5",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 230749983,
+      "target": 215621622,
+      "control": "any-search-filter",
+      "source_sha256": "d12495e36b09934c902cc5f1d805f25dae207d750b3cc71b5ed2cd8d60acad99",
+      "target_sha256": "4f6e82a380a1f62e28ebce8b732e20abc87446b3407a69fecc4ad46ce704147e",
+      "artifact_sha256": "28e8fa017842e0d9c91719ef0a625f97319d54f88f1e894e1b50e7b16164a4cb",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 230749983,
+      "target": 215621622,
+      "control": "no-special-trigger",
+      "source_sha256": "d12495e36b09934c902cc5f1d805f25dae207d750b3cc71b5ed2cd8d60acad99",
+      "target_sha256": "4f6e82a380a1f62e28ebce8b732e20abc87446b3407a69fecc4ad46ce704147e",
+      "artifact_sha256": "fab9690ae94a3c46278999afa6367a9ba1ccb9abc74be18051ca40ea7bdb63a4",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 237269434,
+      "target": 210366076,
+      "control": null,
+      "source_sha256": "ecddfde9337fd982bdc2336842980ac5f623d100c35fd45a3ee44ef27e038a77",
+      "target_sha256": "5216fe074c14746ad0a3f354afbc59d386b5cf883cd37fb17ba92ac67bc9b0a7",
+      "artifact_sha256": "2756f0d092553fd7e060ddb0804a6108b6f86cb8200112efcd38da00467039b8",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 237269434,
+      "target": 210366076,
+      "control": "no-search",
+      "source_sha256": "ecddfde9337fd982bdc2336842980ac5f623d100c35fd45a3ee44ef27e038a77",
+      "target_sha256": "5216fe074c14746ad0a3f354afbc59d386b5cf883cd37fb17ba92ac67bc9b0a7",
+      "artifact_sha256": "a0ed8b631ce3967b7330de72310a10ee3f52f40dc35b609ebf4539146fce1714",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 237269434,
+      "target": 210366076,
+      "control": "any-search-filter",
+      "source_sha256": "ecddfde9337fd982bdc2336842980ac5f623d100c35fd45a3ee44ef27e038a77",
+      "target_sha256": "5216fe074c14746ad0a3f354afbc59d386b5cf883cd37fb17ba92ac67bc9b0a7",
+      "artifact_sha256": "78d3dda8b7dfe92a6d5232760256662d6bb2bd3e757da71476226429b1b1033a",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 237269434,
+      "target": 210366076,
+      "control": "no-special-trigger",
+      "source_sha256": "ecddfde9337fd982bdc2336842980ac5f623d100c35fd45a3ee44ef27e038a77",
+      "target_sha256": "5216fe074c14746ad0a3f354afbc59d386b5cf883cd37fb17ba92ac67bc9b0a7",
+      "artifact_sha256": "7157735c0b05032b0b821f5db4d51c2a94cbd4b55a7680ab6ca9341f7f53ce89",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 232232676,
+      "target": 229499914,
+      "control": null,
+      "source_sha256": "03fa56764c7aef4ab3f4c26f85317e1a994592415fe83aa85547f3da1eab352d",
+      "target_sha256": "6220ec1b841d0d4b4c32359277fa444558f7a7e05d2ba4513cb3480488de7842",
+      "artifact_sha256": "8d74d78f2467d916f1498f910b80b7446b060f30ae2105a190a99563424e04fb",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 232232676,
+      "target": 229499914,
+      "control": "no-search",
+      "source_sha256": "03fa56764c7aef4ab3f4c26f85317e1a994592415fe83aa85547f3da1eab352d",
+      "target_sha256": "6220ec1b841d0d4b4c32359277fa444558f7a7e05d2ba4513cb3480488de7842",
+      "artifact_sha256": "2d14a45edb41bb05417085bc962063fde48d40db44d86e8a8e3e11ccac35a0b5",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 232232676,
+      "target": 229499914,
+      "control": "any-search-filter",
+      "source_sha256": "03fa56764c7aef4ab3f4c26f85317e1a994592415fe83aa85547f3da1eab352d",
+      "target_sha256": "6220ec1b841d0d4b4c32359277fa444558f7a7e05d2ba4513cb3480488de7842",
+      "artifact_sha256": "b8449089b38c5800fe66a900190e624ec2a8b2a8a2afe8b9d833e1a0bc5c3ed0",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 232232676,
+      "target": 229499914,
+      "control": "no-special-trigger",
+      "source_sha256": "03fa56764c7aef4ab3f4c26f85317e1a994592415fe83aa85547f3da1eab352d",
+      "target_sha256": "6220ec1b841d0d4b4c32359277fa444558f7a7e05d2ba4513cb3480488de7842",
+      "artifact_sha256": "cff5338b06dd499a07de41c446e62fc47ecabd976fe529737d330e8682c34a10",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 220150285,
+      "target": 238035167,
+      "control": null,
+      "source_sha256": "4dff860979df6ec6b0aefb8a9935ce0ae1c2c2beb3a59aff42118b1206f549c4",
+      "target_sha256": "0c703c5a185316c5e8b0a7c085cfa14ffe3ab92de029a98862c117f1c305b458",
+      "artifact_sha256": "4a3d6313568ecc64b6b7d465fe357832da3024e8e0033dd365dccf65f6c34fd3",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 220150285,
+      "target": 238035167,
+      "control": "no-search",
+      "source_sha256": "4dff860979df6ec6b0aefb8a9935ce0ae1c2c2beb3a59aff42118b1206f549c4",
+      "target_sha256": "0c703c5a185316c5e8b0a7c085cfa14ffe3ab92de029a98862c117f1c305b458",
+      "artifact_sha256": "d3a621d5099e08c9defce189951eec71664a09a47e52e33411010cd8e95de8c9",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 220150285,
+      "target": 238035167,
+      "control": "any-search-filter",
+      "source_sha256": "4dff860979df6ec6b0aefb8a9935ce0ae1c2c2beb3a59aff42118b1206f549c4",
+      "target_sha256": "0c703c5a185316c5e8b0a7c085cfa14ffe3ab92de029a98862c117f1c305b458",
+      "artifact_sha256": "e27aa8e75c8043d05d64a8953fa30574364dca8f06a81f34ef40a6e194f6021d",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 220150285,
+      "target": 238035167,
+      "control": "no-special-trigger",
+      "source_sha256": "4dff860979df6ec6b0aefb8a9935ce0ae1c2c2beb3a59aff42118b1206f549c4",
+      "target_sha256": "0c703c5a185316c5e8b0a7c085cfa14ffe3ab92de029a98862c117f1c305b458",
+      "artifact_sha256": "e44c84a7fa87e57bf066c10a535c2250a91f0a067956daf9fa272f7182d6817b",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 238272434,
+      "target": 238272435,
+      "control": null,
+      "source_sha256": "632b065e2bf2fcbf8369f0977f78738b245738ee57b1bffb35fac033814f8be0",
+      "target_sha256": "1dfba5fd7ee88f8bf20abdfc0f52a8daaa6b4348190cedd043f8baf42908c8ac",
+      "artifact_sha256": "b29afa2cc3aa1d6a10eb570ddce9b73d7cfef821ca974fa0142b1615327ab59a",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 238272434,
+      "target": 238272435,
+      "control": "no-search",
+      "source_sha256": "632b065e2bf2fcbf8369f0977f78738b245738ee57b1bffb35fac033814f8be0",
+      "target_sha256": "1dfba5fd7ee88f8bf20abdfc0f52a8daaa6b4348190cedd043f8baf42908c8ac",
+      "artifact_sha256": "e8f48e136aa7ad45461b31cde4ff129024b768c38ca8fa45cc0ca7ffaa9fac68",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 238272434,
+      "target": 238272435,
+      "control": "any-search-filter",
+      "source_sha256": "632b065e2bf2fcbf8369f0977f78738b245738ee57b1bffb35fac033814f8be0",
+      "target_sha256": "1dfba5fd7ee88f8bf20abdfc0f52a8daaa6b4348190cedd043f8baf42908c8ac",
+      "artifact_sha256": "aa58e9f4c99c34bcf1cc33792d1166b6068858ce752a5815999771408a7ce7fa",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 238272434,
+      "target": 238272435,
+      "control": "no-special-trigger",
+      "source_sha256": "632b065e2bf2fcbf8369f0977f78738b245738ee57b1bffb35fac033814f8be0",
+      "target_sha256": "1dfba5fd7ee88f8bf20abdfc0f52a8daaa6b4348190cedd043f8baf42908c8ac",
+      "artifact_sha256": "33ce8576c39937333c8b9642699e3cafc346608059cd9cd3082a3c6762470ebf",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 241440521,
+      "target": 214511076,
+      "control": null,
+      "source_sha256": "d9b513b7fb6f63b770ccc41a0841e61b0a5d1e5f5fee3195769c133c1f37badd",
+      "target_sha256": "c2531dee368bc58c86c96a26f1b94e789cc31a920f1509fceeb24865aed8b0d9",
+      "artifact_sha256": "075e58bf1dd5b44f6e343fc89eb915aaa24b534e92fd31b5835f8f590cead76f",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 241440521,
+      "target": 214511076,
+      "control": "no-search",
+      "source_sha256": "d9b513b7fb6f63b770ccc41a0841e61b0a5d1e5f5fee3195769c133c1f37badd",
+      "target_sha256": "c2531dee368bc58c86c96a26f1b94e789cc31a920f1509fceeb24865aed8b0d9",
+      "artifact_sha256": "daf6e14315bc119b62148717432b61bb35d6c2e06ee0ceea87f66967b2f7796a",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 241440521,
+      "target": 214511076,
+      "control": "any-search-filter",
+      "source_sha256": "d9b513b7fb6f63b770ccc41a0841e61b0a5d1e5f5fee3195769c133c1f37badd",
+      "target_sha256": "c2531dee368bc58c86c96a26f1b94e789cc31a920f1509fceeb24865aed8b0d9",
+      "artifact_sha256": "94e8f635dc0e1fc9bd503bf7a15348d1b85f74606c799b92c5bed906bae5f2f7",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 241440521,
+      "target": 214511076,
+      "control": "no-special-trigger",
+      "source_sha256": "d9b513b7fb6f63b770ccc41a0841e61b0a5d1e5f5fee3195769c133c1f37badd",
+      "target_sha256": "c2531dee368bc58c86c96a26f1b94e789cc31a920f1509fceeb24865aed8b0d9",
+      "artifact_sha256": "32f7ac064670c0a57450700392edd9ee1db48c3344abade41fe4f0dabb94fa17",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 241868535,
+      "target": 231872299,
+      "control": null,
+      "source_sha256": "f11e3ff728b89273c6455263f1202d618999ac75a8ff1ae953ac39c296ad7608",
+      "target_sha256": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+      "artifact_sha256": "672f2881cfe8e5d8c970e7519ab1484cde63d10f0ea52a78b2aac531413ae65a",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 241868535,
+      "target": 231872299,
+      "control": "no-search",
+      "source_sha256": "f11e3ff728b89273c6455263f1202d618999ac75a8ff1ae953ac39c296ad7608",
+      "target_sha256": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+      "artifact_sha256": "08888f8755c4afe6c444970efea2de8051973ea4a7e07ba3f38842f9bc665172",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 241868535,
+      "target": 231872299,
+      "control": "no-special-trigger",
+      "source_sha256": "f11e3ff728b89273c6455263f1202d618999ac75a8ff1ae953ac39c296ad7608",
+      "target_sha256": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+      "artifact_sha256": "160d4fb1714bf5926437255c9ca15fa534f4d88179b8e3ef590e9cac40eb80c4",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 254375894,
+      "target": 210366076,
+      "control": null,
+      "source_sha256": "f2324e12dc5c3c9c487d21e59c729566970c17ebb451198af7a2979cdb06a2c9",
+      "target_sha256": "5216fe074c14746ad0a3f354afbc59d386b5cf883cd37fb17ba92ac67bc9b0a7",
+      "artifact_sha256": "045041c80fbd93e9bb342a35f64feb105830d73e40578a1ba12bd36e3cc2f96e",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 254375894,
+      "target": 210366076,
+      "control": "no-search",
+      "source_sha256": "f2324e12dc5c3c9c487d21e59c729566970c17ebb451198af7a2979cdb06a2c9",
+      "target_sha256": "5216fe074c14746ad0a3f354afbc59d386b5cf883cd37fb17ba92ac67bc9b0a7",
+      "artifact_sha256": "acaec4880d36c4f0eff31491a6bfead312b03125c2b1ae463ab64c0763dc40da",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 254375894,
+      "target": 210366076,
+      "control": "any-search-filter",
+      "source_sha256": "f2324e12dc5c3c9c487d21e59c729566970c17ebb451198af7a2979cdb06a2c9",
+      "target_sha256": "5216fe074c14746ad0a3f354afbc59d386b5cf883cd37fb17ba92ac67bc9b0a7",
+      "artifact_sha256": "6901a5260d3d074ddb9792d73aa13a996470a8254edec1076be490a906a0cdf1",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 254375894,
+      "target": 210366076,
+      "control": "no-special-trigger",
+      "source_sha256": "f2324e12dc5c3c9c487d21e59c729566970c17ebb451198af7a2979cdb06a2c9",
+      "target_sha256": "5216fe074c14746ad0a3f354afbc59d386b5cf883cd37fb17ba92ac67bc9b0a7",
+      "artifact_sha256": "e2567a2f270a8183046e897adef6a191ac8817d51253c1430786ce2bead1a45c",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 259466138,
+      "target": 259562343,
+      "control": null,
+      "source_sha256": "8dbe72ec11af70f33de25b97f59e6e1184f6832191c7b48c8efba457bd29838c",
+      "target_sha256": "f4243198ad0a8702cfb9c77a9926b92e76f14c379c4026dcca7357307fc2b913",
+      "artifact_sha256": "5e91d460205ef549a38513351df3f6a19af2632ec0be5ca1edfe3428691911ed",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 259466138,
+      "target": 259562343,
+      "control": "no-search",
+      "source_sha256": "8dbe72ec11af70f33de25b97f59e6e1184f6832191c7b48c8efba457bd29838c",
+      "target_sha256": "f4243198ad0a8702cfb9c77a9926b92e76f14c379c4026dcca7357307fc2b913",
+      "artifact_sha256": "20816c6e2e85cd3e77a9c2fe427cb4c19a4b8a269c285dca2cd93a6bd2b18800",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 259466138,
+      "target": 259562343,
+      "control": "any-search-filter",
+      "source_sha256": "8dbe72ec11af70f33de25b97f59e6e1184f6832191c7b48c8efba457bd29838c",
+      "target_sha256": "f4243198ad0a8702cfb9c77a9926b92e76f14c379c4026dcca7357307fc2b913",
+      "artifact_sha256": "25ff47053b1eebd3e38f3cae9ca713aa1edd7ffaa771336b82bf2c20c1db1873",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 259466138,
+      "target": 259562343,
+      "control": "no-special-trigger",
+      "source_sha256": "8dbe72ec11af70f33de25b97f59e6e1184f6832191c7b48c8efba457bd29838c",
+      "target_sha256": "f4243198ad0a8702cfb9c77a9926b92e76f14c379c4026dcca7357307fc2b913",
+      "artifact_sha256": "06d4733cf1aec62553b1c84a9b8354b329c29c68ec529007ce6def16f7d6b362",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 228926678,
+      "target": 233759343,
+      "control": null,
+      "source_sha256": "7a1cf6dc9cbd4d4d3916a3bc8cb4b12ba39056e8008d640f4306f5dc597729a1",
+      "target_sha256": "ff34c868992a475f127356f1043688d8d20a33c041b407f0c66c385c0e8e76f5",
+      "artifact_sha256": "82b0542c435aff253a784f5117f7eff4c44df562714c55a4cbc43b556bb50638",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 228926678,
+      "target": 233759343,
+      "control": "no-search",
+      "source_sha256": "7a1cf6dc9cbd4d4d3916a3bc8cb4b12ba39056e8008d640f4306f5dc597729a1",
+      "target_sha256": "ff34c868992a475f127356f1043688d8d20a33c041b407f0c66c385c0e8e76f5",
+      "artifact_sha256": "996430345dea6aec5b609f51615ab313bc7de752992bfef42d0f80078d247a23",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 228926678,
+      "target": 233759343,
+      "control": "any-search-filter",
+      "source_sha256": "7a1cf6dc9cbd4d4d3916a3bc8cb4b12ba39056e8008d640f4306f5dc597729a1",
+      "target_sha256": "ff34c868992a475f127356f1043688d8d20a33c041b407f0c66c385c0e8e76f5",
+      "artifact_sha256": "b426679d39e94ddd3359eea4883944b312ee46f92f6c9a50d305fdd508f58444",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 228926678,
+      "target": 233759343,
+      "control": "no-special-trigger",
+      "source_sha256": "7a1cf6dc9cbd4d4d3916a3bc8cb4b12ba39056e8008d640f4306f5dc597729a1",
+      "target_sha256": "ff34c868992a475f127356f1043688d8d20a33c041b407f0c66c385c0e8e76f5",
+      "artifact_sha256": "373a8abfeac400562e6f58ecbfb1ce58344d550e5887d72955129b3cccdd77d2",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 230947464,
+      "target": 210506870,
+      "control": null,
+      "source_sha256": "cceccccf58a4914de681a2a3e7def9463c7cf13e29b873225b9990b49c0087c2",
+      "target_sha256": "75e90572fedf94ea98f2d5d71173c0fbd13736765830883419d767334a87af3c",
+      "artifact_sha256": "dd1cd2c459c9745077a9c8353bb41fadf00920f53a9817d4b9f419a208730b8f",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 230947464,
+      "target": 210506870,
+      "control": "no-search",
+      "source_sha256": "cceccccf58a4914de681a2a3e7def9463c7cf13e29b873225b9990b49c0087c2",
+      "target_sha256": "75e90572fedf94ea98f2d5d71173c0fbd13736765830883419d767334a87af3c",
+      "artifact_sha256": "b6e4a32296d206c4b513dd5f0d1aa8c703435f90f73d41eb775f9875593001eb",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 230947464,
+      "target": 210506870,
+      "control": "any-search-filter",
+      "source_sha256": "cceccccf58a4914de681a2a3e7def9463c7cf13e29b873225b9990b49c0087c2",
+      "target_sha256": "75e90572fedf94ea98f2d5d71173c0fbd13736765830883419d767334a87af3c",
+      "artifact_sha256": "d5b2eb28f5e49636c116340acfc1388d95f30b24aaf897631cc94b508ef7080f",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 230947464,
+      "target": 210506870,
+      "control": "no-special-trigger",
+      "source_sha256": "cceccccf58a4914de681a2a3e7def9463c7cf13e29b873225b9990b49c0087c2",
+      "target_sha256": "75e90572fedf94ea98f2d5d71173c0fbd13736765830883419d767334a87af3c",
+      "artifact_sha256": "4fec2311c41c9d7710703e92563f4d58d905344f2383f46b7d2b87f0e09416eb",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 232104829,
+      "target": 224235021,
+      "control": null,
+      "source_sha256": "d842bd5f1691a74506ba7bd33abf7236faa19b385dcf113eaba5acbe8740cffb",
+      "target_sha256": "57f5a4d562ffcbb062194c5081c126dd47841218d4a3df36f27794547a061332",
+      "artifact_sha256": "08e2ebd229d8bc3784d3752b2549ab11a8bbabd1e2d67a73027bbd2e2c8ec679",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 232104829,
+      "target": 224235021,
+      "control": "no-search",
+      "source_sha256": "d842bd5f1691a74506ba7bd33abf7236faa19b385dcf113eaba5acbe8740cffb",
+      "target_sha256": "57f5a4d562ffcbb062194c5081c126dd47841218d4a3df36f27794547a061332",
+      "artifact_sha256": "86bf09088ff0724f970be345e22881716517a0423dd795c0cf860342a0360036",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 232104829,
+      "target": 224235021,
+      "control": "any-search-filter",
+      "source_sha256": "d842bd5f1691a74506ba7bd33abf7236faa19b385dcf113eaba5acbe8740cffb",
+      "target_sha256": "57f5a4d562ffcbb062194c5081c126dd47841218d4a3df36f27794547a061332",
+      "artifact_sha256": "28160d89d8d4e143713a89689f90bc0637a76cc50c773e2f0d94c4e2c0c845b8",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 232104829,
+      "target": 224235021,
+      "control": "no-special-trigger",
+      "source_sha256": "d842bd5f1691a74506ba7bd33abf7236faa19b385dcf113eaba5acbe8740cffb",
+      "target_sha256": "57f5a4d562ffcbb062194c5081c126dd47841218d4a3df36f27794547a061332",
+      "artifact_sha256": "437d69aeed1b792ba158d9655465cba849c137454f808171c1def8e65880ddf8",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 240768497,
+      "target": 224235021,
+      "control": null,
+      "source_sha256": "99ed19c905901d4bec8b22899776aea5f95e6aaa69e71e1b61194f8dc5cc8b0f",
+      "target_sha256": "57f5a4d562ffcbb062194c5081c126dd47841218d4a3df36f27794547a061332",
+      "artifact_sha256": "da68fb8581841193ffb65fa38b57305bedc4d2c2b73e8384ca981d35d1112d13",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 240768497,
+      "target": 224235021,
+      "control": "no-search",
+      "source_sha256": "99ed19c905901d4bec8b22899776aea5f95e6aaa69e71e1b61194f8dc5cc8b0f",
+      "target_sha256": "57f5a4d562ffcbb062194c5081c126dd47841218d4a3df36f27794547a061332",
+      "artifact_sha256": "72abfe63c9ad768df12b85e464a4992667751b80125d3ec6f1cc97064034c7ad",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 240768497,
+      "target": 224235021,
+      "control": "any-search-filter",
+      "source_sha256": "99ed19c905901d4bec8b22899776aea5f95e6aaa69e71e1b61194f8dc5cc8b0f",
+      "target_sha256": "57f5a4d562ffcbb062194c5081c126dd47841218d4a3df36f27794547a061332",
+      "artifact_sha256": "02708bb64052bbcb191d89ffb93e2136be879ef71e44609329521ea8087c1ebe",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 240768497,
+      "target": 224235021,
+      "control": "no-special-trigger",
+      "source_sha256": "99ed19c905901d4bec8b22899776aea5f95e6aaa69e71e1b61194f8dc5cc8b0f",
+      "target_sha256": "57f5a4d562ffcbb062194c5081c126dd47841218d4a3df36f27794547a061332",
+      "artifact_sha256": "eefac73af5312dc2aa61bb31c247b30c33b08b69a0d818dbb77c664142fe245a",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 241880822,
+      "target": 234507067,
+      "control": null,
+      "source_sha256": "5e3cb4e7d1387d3335eba68ac22b4a8c32e2450d8b4841f775978626f2947276",
+      "target_sha256": "29f92197df34e762dfd60d075225e266e8962c3cb8bdbc2598a41851ece20aae",
+      "artifact_sha256": "a4c803ba17f846d9924405cb358a9e07e5b6fd1453a9cc0abfeaec6599b77df2",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 241880822,
+      "target": 234507067,
+      "control": "no-search",
+      "source_sha256": "5e3cb4e7d1387d3335eba68ac22b4a8c32e2450d8b4841f775978626f2947276",
+      "target_sha256": "29f92197df34e762dfd60d075225e266e8962c3cb8bdbc2598a41851ece20aae",
+      "artifact_sha256": "5031b44fb3140eee2806d62cdd427d3fdeed066d4f4107c326e027da05aca020",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 241880822,
+      "target": 234507067,
+      "control": "any-search-filter",
+      "source_sha256": "5e3cb4e7d1387d3335eba68ac22b4a8c32e2450d8b4841f775978626f2947276",
+      "target_sha256": "29f92197df34e762dfd60d075225e266e8962c3cb8bdbc2598a41851ece20aae",
+      "artifact_sha256": "0906c0d19b660c61595ad868077dbf1464e4c29054a7034d78782127ae036cce",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 241880822,
+      "target": 234507067,
+      "control": "no-special-trigger",
+      "source_sha256": "5e3cb4e7d1387d3335eba68ac22b4a8c32e2450d8b4841f775978626f2947276",
+      "target_sha256": "29f92197df34e762dfd60d075225e266e8962c3cb8bdbc2598a41851ece20aae",
+      "artifact_sha256": "5239efc461f64f9cf71bd79d637653505e800288c32d3248e4929d2851ef1a60",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    }
+  ]
+}

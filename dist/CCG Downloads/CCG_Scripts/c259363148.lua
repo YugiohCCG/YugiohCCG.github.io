@@ -10,6 +10,7 @@ local TEST_MONSTERS={
 }
 function s.initial_effect(c)
 	c:EnableReviveLimit()
+	aux.AddFusionProcMix(c,false,true,s.matfilter,s.matfilter)
 	--Special Summon from the Extra Deck by returning 2 "Gladiator Beast" and/or "Test" monsters
 	local e0=Effect.CreateEffect(c)
 	e0:SetDescription(aux.Stringid(STRING_ID,2))
@@ -74,7 +75,7 @@ function s.matfilter(c,fc,sumtype,tp)
 	return s.isgb(c) or s.istest(c)
 end
 function s.contactfilter(c)
-	return s.matfilter(c) and c:IsAbleToDeckAsCost()
+	return s.matfilter(c) and c:IsAbleToDeckOrExtraAsCost()
 end
 function s.contactcheck(g,tp,c)
 	return Duel.GetLocationCountFromEx(tp,tp,g,c)>0

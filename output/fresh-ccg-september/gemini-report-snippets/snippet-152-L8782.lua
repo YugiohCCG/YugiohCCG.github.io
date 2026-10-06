@@ -1,0 +1,1 @@
+     e4:SetCategory(CATEGORY_SPECIAL_SUMMON)

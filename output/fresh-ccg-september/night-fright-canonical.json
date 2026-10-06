@@ -1,0 +1,122 @@
+{
+  "scope": "Full Night script and actual candidate metadata; full Ween and Hollow scripts; native cost and summons from hand/Deck; revive-limit locations require actual prior proper summon. Full support effects, phase/count/negative cases and native Omega remain open",
+  "public_target_param_adapter": false,
+  "supporting_scripts_sha256": {
+    "231331942": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067",
+    "250262550": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526"
+  },
+  "supporting_script_sha256": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067",
+  "recipient": null,
+  "script_sha256": "4f6e82a380a1f62e28ebce8b732e20abc87446b3407a69fecc4ad46ce704147e",
+  "results": [
+    {
+      "test": {
+        "source": "hand"
+      },
+      "failure": "Night activation available",
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            231331942
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 250262550,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ],
+      "logs": []
+    },
+    {
+      "test": {
+        "source": "deck"
+      },
+      "failure": "Night activation available",
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 250262550,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ],
+      "logs": []
+    }
+  ]
+}

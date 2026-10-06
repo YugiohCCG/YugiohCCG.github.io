@@ -7,7 +7,7 @@ function s.initial_effect(c)
  local e3=Effect.CreateEffect(c); e3:SetDescription(aux.Stringid(STRING_ID,2)); e3:SetType(EFFECT_TYPE_QUICK_O); e3:SetCode(EVENT_FREE_CHAIN); e3:SetRange(LOCATION_HAND+LOCATION_GRAVE); e3:SetProperty(EFFECT_FLAG_CARD_TARGET); e3:SetCountLimit(1,id+100); e3:SetTarget(s.ovtg); e3:SetOperation(s.ovop); c:RegisterEffect(e3)
 end
 function s.spcon(e,c) if c==nil then return true end return Duel.GetLocationCount(c:GetControler(),LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(function(x) return x:IsSetCard(SET_AEROCAT) and x:IsType(TYPE_MONSTER) end,c:GetControler(),LOCATION_MZONE+LOCATION_GRAVE,0,1,nil) end
-function s.df(c) return c:IsMonster() and c:IsDestructable() end
+function s.df(c) return c:IsType(TYPE_MONSTER) and c:IsDestructable() end
 function s.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_MZONE) and s.df(chkc) end if chk==0 then return Duel.IsExistingTarget(s.df,tp,0,LOCATION_MZONE,1,nil) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY); local g=Duel.SelectTarget(tp,s.df,tp,0,LOCATION_MZONE,1,1,nil); Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0) end
 function s.xyz(c) return c:IsFaceup() and c:IsType(TYPE_XYZ) end
 function s.oppgy(c) return c:IsCanBeXyzMaterial() end

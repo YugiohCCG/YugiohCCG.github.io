@@ -10,7 +10,7 @@ function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,1))
 	e1:SetCategory(CATEGORY_TOHAND)
-	e1:SetType(EFFECT_TYPE_QUICK_O)
+	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetHintTiming(0,TIMINGS_CHECK_MONSTER+TIMING_MAIN_END)
@@ -39,7 +39,7 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_STELLAER}
 function s.xyzctrl(c)
-	return c:IsType(TYPE_XYZ)
+	return c:IsFaceup() and c:IsType(TYPE_XYZ)
 end
 function s.xyzalt(c,e,tp,xyzc)
 	return c:IsFaceup() and c:IsSetCard(SET_STELLAER) and c:IsLevel(9)
@@ -86,6 +86,7 @@ function s.drop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not (c:IsRelateToEffect(e) and c:GetOverlayCount()==0 and c:IsDestructable(e)) then return end
 	if Duel.Destroy(c,REASON_EFFECT)>0 then
+		Duel.BreakEffect()
 		Duel.Draw(tp,1,REASON_EFFECT)
 	end
 end

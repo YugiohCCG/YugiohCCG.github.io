@@ -1,0 +1,3 @@
+     local g=Duel.GetDecktopGroup(tp,3)
+     Duel.ConfirmCards(tp,g)
+     ...

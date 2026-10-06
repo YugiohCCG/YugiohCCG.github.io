@@ -1,0 +1,456 @@
+{
+  "scope": "Eridani full source Hand Quick8/attacklock8/lockmovement2/opponent5/count2/interrupt3/destroytrigger5/eldoradestruction2/protection2/expiry2/handprotection2/battleprotection2/declarationcount2 with canonical Eldora metadata neutral effects. Protection test-only declaration/chaininfo adapters; no summon bypass; Eldora integration/count/protection/native Omega open",
+  "script_sha256": "4f5a44ec334caaccc04acbd0b2bea7f83921dee92ff909c0fef7409cb167e533",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "runs": [
+    {
+      "harness": "summon",
+      "harness_sha256": "762a4621fed0542d41c9382b54d4c0544e49f49bf5e11bf200fc1cb3ed2cc23c",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "eba5720dd20d26099c811bce28ffc66ce260125fd3fb7505ae4b3d66bf7cd089"
+    },
+    {
+      "harness": "summon",
+      "harness_sha256": "762a4621fed0542d41c9382b54d4c0544e49f49bf5e11bf200fc1cb3ed2cc23c",
+      "control": "any-controller",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true
+        },
+        {
+          "grave": true,
+          "opponent": true
+        }
+      ],
+      "artifact_sha256": "eb016b0850ab6504a085cd52ee607263ff3f77b046c6f0edfa6f084266012648"
+    },
+    {
+      "harness": "summon",
+      "harness_sha256": "762a4621fed0542d41c9382b54d4c0544e49f49bf5e11bf200fc1cb3ed2cc23c",
+      "control": "any-position",
+      "status": 1,
+      "expected_failures": [
+        {
+          "facedown": true
+        }
+      ],
+      "artifact_sha256": "57296e5769a1f575211aaf6c45b6461180485322d1d98de95a5f5e4b42e3a765"
+    },
+    {
+      "harness": "summon",
+      "harness_sha256": "762a4621fed0542d41c9382b54d4c0544e49f49bf5e11bf200fc1cb3ed2cc23c",
+      "control": "no-summon",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "grave": true
+        }
+      ],
+      "artifact_sha256": "bc848b99c6dadf75127212e208869055ba14fb07c4d29ecd550b8650ea197507"
+    },
+    {
+      "harness": "attack_lock",
+      "harness_sha256": "7c45190a570b3dbfffce2a715218483fda71627962bb0dd57db5da4dd7959d4b",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "17e0a8e98f518a06a5685a0c37b1a76259c6a766c2d5b21ac6b0847204037a40"
+    },
+    {
+      "harness": "attack_lock",
+      "harness_sha256": "7c45190a570b3dbfffce2a715218483fda71627962bb0dd57db5da4dd7959d4b",
+      "control": "no-lock",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "d56726e99853209ad57c293faaf72d9dd8876523b32f63e4d4a3e93d19cee0a3"
+    },
+    {
+      "harness": "attack_lock",
+      "harness_sha256": "7c45190a570b3dbfffce2a715218483fda71627962bb0dd57db5da4dd7959d4b",
+      "control": "any-controller",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true
+        }
+      ],
+      "artifact_sha256": "3ba18f133e931d085331063aea45007c2e96188c3659517ba136358eb6b5067e"
+    },
+    {
+      "harness": "attack_lock",
+      "harness_sha256": "7c45190a570b3dbfffce2a715218483fda71627962bb0dd57db5da4dd7959d4b",
+      "control": "field-too",
+      "status": 1,
+      "expected_failures": [
+        {
+          "field": true
+        }
+      ],
+      "artifact_sha256": "39a366958450f4b9cd731fb474034b9ad45ded6df8af6174b5c083c08b9d2845"
+    },
+    {
+      "harness": "lock_movement",
+      "harness_sha256": "d45601592d5698e8e24bb6c6d3d027cf140452026213abd0e3f851b42c4c9339",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "930349d02d65d39300150f9e8de05865fedce2e29e14755e16a2d5c00c47f711"
+    },
+    {
+      "harness": "lock_movement",
+      "harness_sha256": "d45601592d5698e8e24bb6c6d3d027cf140452026213abd0e3f851b42c4c9339",
+      "control": "always-lock",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "3e6a8b26e631ad5dd53c5294cea0a0eaba520b9fa4c3e28161ae79b997c80d15"
+    },
+    {
+      "harness": "lock_movement",
+      "harness_sha256": "d45601592d5698e8e24bb6c6d3d027cf140452026213abd0e3f851b42c4c9339",
+      "control": "no-lock",
+      "status": 1,
+      "expected_failures": [
+        {
+          "return": true
+        }
+      ],
+      "artifact_sha256": "328f0add08144da058f5b2fabffb06bf4f59f23841c861f5c7d4e1a5beaa2cb8"
+    },
+    {
+      "harness": "lock_movement",
+      "harness_sha256": "d45601592d5698e8e24bb6c6d3d027cf140452026213abd0e3f851b42c4c9339",
+      "control": "no-movement",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "af31ea5136cf41607ce485a77d3958cdfd70bd7ca0de0bd25a1b431c4b0863ba"
+    },
+    {
+      "harness": "opponent",
+      "harness_sha256": "53d460cfb5f19c3631a8ceebdd154ee0e19c339d4ed3bb36560441cec02fbd87",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "38d93b5a90df6e7321847683df7721c598251beaf487580ee2c9cc974e45ad6d"
+    },
+    {
+      "harness": "opponent",
+      "harness_sha256": "53d460cfb5f19c3631a8ceebdd154ee0e19c339d4ed3bb36560441cec02fbd87",
+      "control": "slow-effect",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "grave": true
+        }
+      ],
+      "artifact_sha256": "e59961314c5df18cfa2761ecae405b501c1f2f0f1e6d045d22a897d1517d4ae2"
+    },
+    {
+      "harness": "opponent",
+      "harness_sha256": "53d460cfb5f19c3631a8ceebdd154ee0e19c339d4ed3bb36560441cec02fbd87",
+      "control": "no-summon",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "grave": true
+        }
+      ],
+      "artifact_sha256": "0fc9ac8a30611c8d871326e30614e536afa55d07a075cfd3661f8f3f170c868e"
+    },
+    {
+      "harness": "count",
+      "harness_sha256": "9616a1139a18f032cddc09c501f8dc30814fe246f253f78a9266d6bddce21925",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "3e266022866d6f29849b39a59c52196bcb8ffb7f4de33c9babea6ac3274b922e"
+    },
+    {
+      "harness": "count",
+      "harness_sha256": "9616a1139a18f032cddc09c501f8dc30814fe246f253f78a9266d6bddce21925",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "6235d7dcc5951579b82baa835750418e765562a299339cff63531ff656daceab"
+    },
+    {
+      "harness": "count",
+      "harness_sha256": "9616a1139a18f032cddc09c501f8dc30814fe246f253f78a9266d6bddce21925",
+      "control": "no-renewal",
+      "status": 1,
+      "expected_failures": [
+        {
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "3aa5e25292bb3698000323ec345fdf6ceb8a4ef9a5ae66d027c4673d1c41630b"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "55cda47be27894f1115aa0ac53056e8ed0173a806827aa9c349e9d7e421b6d6b",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "9323ffe09f958f0196fb3cbb0080f83195206572d355508306350464fb4de4d6"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "55cda47be27894f1115aa0ac53056e8ed0173a806827aa9c349e9d7e421b6d6b",
+      "control": "no-relation",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "leave"
+        },
+        {
+          "mode": "return"
+        }
+      ],
+      "artifact_sha256": "2fe2b0b6cdbbcbf2b51bbe219c290602319d28ba4fe5e3d95cf0eda0e1c1643a"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "55cda47be27894f1115aa0ac53056e8ed0173a806827aa9c349e9d7e421b6d6b",
+      "control": "no-interruption",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "leave"
+        },
+        {
+          "mode": "return"
+        },
+        {
+          "mode": "negate"
+        }
+      ],
+      "artifact_sha256": "77f4cc13def87f32cff2821dc7a62db6aa709592f5d7d922c792bed2b19fc3e6"
+    },
+    {
+      "harness": "destroy_trigger",
+      "harness_sha256": "5364f087d2a65a762c71b3b68e033592bc2ec3c08f7dea8951c39c4e53108f42",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "e018b8470214052c137e11db84b23da2c181ad4f6ce9ba72d8bb74de27e96941"
+    },
+    {
+      "harness": "destroy_trigger",
+      "harness_sha256": "5364f087d2a65a762c71b3b68e033592bc2ec3c08f7dea8951c39c4e53108f42",
+      "control": "any-controller",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "bb96892f0130af7063249ab8f10724106fbb395b8afe2d702f6a19266a691882"
+    },
+    {
+      "harness": "destroy_trigger",
+      "harness_sha256": "5364f087d2a65a762c71b3b68e033592bc2ec3c08f7dea8951c39c4e53108f42",
+      "control": "any-reason",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true,
+          "cost": true
+        }
+      ],
+      "artifact_sha256": "06e44efc674dfdfd32600a7c3a4cf4b9dd8d215c5fe357311ac94941bf427035"
+    },
+    {
+      "harness": "eldora_destruction",
+      "harness_sha256": "12e6118e3c825a521f82e0fad965506110856913177a497e8df3e4c69c1e37e9",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "ffcc5c4416c36ba8fe7affe61d2722b6677e3831497e4599727817ea4da8ac6d"
+    },
+    {
+      "harness": "eldora_destruction",
+      "harness_sha256": "12e6118e3c825a521f82e0fad965506110856913177a497e8df3e4c69c1e37e9",
+      "control": "no-eldora-branch",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "2d4a148cb03689f61cf89798e4a6f1cebdbb2dd7b684bb0c006850148a083d30"
+    },
+    {
+      "harness": "protection",
+      "harness_sha256": "3c54fe679bf53898f0c81592f5829cbd31dcfa260a28d68472e69351e56bc726",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "e4a8b7de108b1fda55f2701501d5f77d8d0bcb75d55414aa62311ac5f6305010"
+    },
+    {
+      "harness": "protection",
+      "harness_sha256": "3c54fe679bf53898f0c81592f5829cbd31dcfa260a28d68472e69351e56bc726",
+      "control": "no-protection",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true
+        },
+        {
+          "opponent": true,
+          "recipientOpponent": true
+        }
+      ],
+      "artifact_sha256": "067fdb776ed00b6154de47f02a9148154bb39dd76974bc72f0509f4bcd699248"
+    },
+    {
+      "harness": "protection_expiry",
+      "harness_sha256": "b570eee51750f8072afa9ad912f34926de0e1da54132a5725c5304b255b7cc78",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "c15d4ad839c2055190949d80df5a64e2d20c9dabe1c239396f1d93d1ad218890"
+    },
+    {
+      "harness": "protection_expiry",
+      "harness_sha256": "b570eee51750f8072afa9ad912f34926de0e1da54132a5725c5304b255b7cc78",
+      "control": "no-expiry",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true,
+          "expiry": true
+        }
+      ],
+      "artifact_sha256": "0df3eba6e9bafa25acd8d27418dd78515d1c7fc5cd64dd9c98a016b82487abd5"
+    },
+    {
+      "harness": "protection_expiry",
+      "harness_sha256": "b570eee51750f8072afa9ad912f34926de0e1da54132a5725c5304b255b7cc78",
+      "control": "any-name",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true,
+          "wrongName": true
+        }
+      ],
+      "artifact_sha256": "5ff3a5c079fc354341a22c8a81f400d11ed51cb4ee6fd11af7f6f947d56bfe87"
+    },
+    {
+      "harness": "protection_hand",
+      "harness_sha256": "bc8ecb56edb7aabc8235b5286e005e96fd4ddf3482cbbfc81e29dda7ea8e0c1f",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "38fd7571e3a4bb85e2ae1ebf1383e893d73a6028d9e9eded2a7bf7a05a778431"
+    },
+    {
+      "harness": "protection_hand",
+      "harness_sha256": "bc8ecb56edb7aabc8235b5286e005e96fd4ddf3482cbbfc81e29dda7ea8e0c1f",
+      "control": "field-only",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true
+        },
+        {
+          "opponent": true,
+          "recipientOpponent": true
+        }
+      ],
+      "artifact_sha256": "65a515a76130c19744aa47c3a0252ffbb63ebb4b999a6303a43e4128becc0f5c"
+    },
+    {
+      "harness": "protection_hand",
+      "harness_sha256": "bc8ecb56edb7aabc8235b5286e005e96fd4ddf3482cbbfc81e29dda7ea8e0c1f",
+      "control": "no-protection",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true
+        },
+        {
+          "opponent": true,
+          "recipientOpponent": true
+        }
+      ],
+      "artifact_sha256": "75bd438bb09f35dc8ae48a6f5df652253defd2ffcd7ec5c39f3d296b8a00ce02"
+    },
+    {
+      "harness": "protection_battle",
+      "harness_sha256": "fedea7874c994c6b0510f24efc528569a7a83cda02ce49e7a5e880439aefb092",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "2c7b7b60f745bdc6b0b1d4ba467e1086be0820fc214162e051df5fa784c51ec4"
+    },
+    {
+      "harness": "protection_battle",
+      "harness_sha256": "fedea7874c994c6b0510f24efc528569a7a83cda02ce49e7a5e880439aefb092",
+      "control": "no-battle-protection",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true
+        }
+      ],
+      "artifact_sha256": "4bf7d7971f44176ac167e17b76c23003f108e59a969760b866b81c24b576a8a0"
+    },
+    {
+      "harness": "protection_battle",
+      "harness_sha256": "fedea7874c994c6b0510f24efc528569a7a83cda02ce49e7a5e880439aefb092",
+      "control": "any-name",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true,
+          "wrongName": true
+        }
+      ],
+      "artifact_sha256": "3ff57e6b332d9287b4357afc01e9c468c796107557a925ac5eb2f7150f992ad4"
+    },
+    {
+      "harness": "declaration_count",
+      "harness_sha256": "999167906b358a75eee21a46bad8f951afb90ea4bcba82d09b898e469ab3df56",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "b684a2cd6c171181b7a9cb6c94df71a47411467b2731809b43538a13471a7a85"
+    },
+    {
+      "harness": "declaration_count",
+      "harness_sha256": "999167906b358a75eee21a46bad8f951afb90ea4bcba82d09b898e469ab3df56",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true
+        }
+      ],
+      "artifact_sha256": "44efc269fd8acb74c252ba3d644e927dad1231430a0b4fe980d9f55b4ad7849f"
+    },
+    {
+      "harness": "declaration_count",
+      "harness_sha256": "999167906b358a75eee21a46bad8f951afb90ea4bcba82d09b898e469ab3df56",
+      "control": "no-renewal",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true,
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "08d6785c9913869325f924da05074729447144b061b2661bd426ecb94b83e9fc"
+    }
+  ]
+}

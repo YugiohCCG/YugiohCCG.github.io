@@ -1,0 +1,42 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),{pathToFileURL}=require('node:url'),{DatabaseSync}=require('node:sqlite');
+const ROOT=path.resolve(__dirname,'..'),CUSTOM=path.join(ROOT,'public/CCG Downloads/CCG_Scripts'),OMEGA=path.join(ROOT,'tmp/omega_scripts');
+async function main(){
+ const mod=await import(pathToFileURL(path.join(path.dirname(require.resolve('@n1xx1/ocgcore-wasm')),'dist/index.js')).href);
+ const {OcgMessageType:M,OcgResponseType:R,OcgLocation:L,OcgPosition:P,OcgProcessResult:S,SelectIdleCMDAction:A,OcgQueryFlags:Q}=mod;
+ const core=await mod.default({sync:true,print(){},printErr(){}}),fern=284639719,field=900000451,spell=900000452,filler=900000453;
+ const db=new DatabaseSync(path.join(ROOT,'output/fresh-ccg-september/candidate-CCG_v1.db'),{readOnly:true}),r=db.prepare('select * from datas where id=?').get(fern);db.close();
+ const base={alias:0,setcodes:[],type:33,level:4,attribute:2,race:0x400n,attack:1000,defense:1000,lscale:0,rscale:0,link_marker:0};
+ const cards=new Map([[fern,{...base,code:fern,setcodes:[0xA122],type:Number(r.type),level:Number(r.level),attribute:Number(r.attribute),race:BigInt(r.race),attack:Number(r.atk),defense:Number(r.def)}],[field,{...base,code:field,type:0x80002,level:0,attribute:0,race:0n,attack:0,defense:0}],[spell,{...base,code:spell,type:2,level:0,attribute:0,race:0n,attack:0,defense:0}],[filler,{...base,code:filler}]]);
+ const results=[];
+ for(const test of [{actor:1,mode:'destroy',accept:true},{actor:1,mode:'banish',accept:true},{actor:0,mode:'destroy',accept:true},{actor:1,mode:'destroy',accept:false}]){
+  const trace=[],logs=[],action=test.mode==='destroy'?'Duel.Destroy(g,REASON_EFFECT)':'Duel.Remove(g,POS_FACEUP,REASON_EFFECT)';
+  const spellScript=`local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_FREE_CHAIN) e:SetOperation(function(e,tp) local c=Duel.GetFieldCard(0,LOCATION_FZONE,0) if c then local g=Group.FromCards(c) ${action} end end) c:RegisterEffect(e) end`;
+  const reader=name=>{if(name===`c${spell}.lua`)return spellScript;if(name===`c${field}.lua`)return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_FREE_CHAIN) c:RegisterEffect(e) end';if(name===`c${filler}.lua`)return 'local s,id=GetID() function s.initial_effect(c) end';if(name==='c0.lua')return '';const file=[path.join(CUSTOM,name),path.join(OMEGA,name)].find(f=>fs.existsSync(f));if(!file)throw Error('Missing '+name);return fs.readFileSync(file,'utf8')};
+  const duel=core.createDuel({flags:mod.OcgDuelMode.MODE_MR5|mod.OcgDuelMode.PSEUDO_SHUFFLE,seed:[1n,2n,3n,4n],team1:{startingLP:8000,startingDrawCount:0,drawCountPerTurn:0},team2:{startingLP:8000,startingDrawCount:0,drawCountPerTurn:0},cardReader:code=>{if(!cards.has(code))throw Error('Missing card '+code);return cards.get(code)},scriptReader:reader,errorHandler:(type,message)=>logs.push({type,message})});
+  let failure=null,placed=false,fieldPlaced=false,activated=false,offered=false,done=false;
+  try{
+   for(const name of ['constant.lua','utility.lua','procedure.lua'])if(!core.loadScript(duel,name,reader(name)))throw Error('Support '+name);
+   const add=(code,location,player=0)=>core.duelNewCard(duel,{team:player,duelist:0,code,controller:player,location,sequence:0,position:P.FACEUP_ATTACK});
+   add(fern,L.HAND);add(field,L.HAND);add(spell,L.HAND,test.actor);for(const player of [0,1])for(let i=0;i<5;i++)add(filler,L.DECK,player);
+   core.startDuel(duel);
+   for(let step=0;step<140&&!done;step++){
+    const state=core.duelProcess(duel),messages=core.duelGetMessage(duel);trace.push(...messages);
+    if(logs.some(l=>l.type===0))throw Error(logs.filter(l=>l.type===0).map(l=>l.message).join('; '));
+    if(state===S.END)throw Error('Duel ended');if(state!==S.WAITING)continue;
+    const p=messages.at(-1);if(!p)throw Error('Missing prompt');
+    if(p.type===M.SELECT_IDLECMD){if(!placed){const index=p.activates.findIndex(c=>c.code===fern&&c.location===L.HAND);if(index<0)throw Error('Could not place Sword Fern');placed=true;core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});}else if(!fieldPlaced){const index=p.activates.findIndex(c=>c.code===field&&c.location===L.HAND);if(index<0)throw Error('Could not activate Field Spell');fieldPlaced=true;core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});}else if(p.player!==test.actor)core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.TO_EP});else if(!activated){const zones=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:L.SZONE}),f=zones.some(c=>c?.code===field);if(!f)throw Error('Test Field Zone card missing before effect: '+JSON.stringify(zones));const index=p.activates.findIndex(c=>c.code===spell);if(index<0)throw Error('Test spell unavailable');activated=true;core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});}else{const f=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:L.SZONE}).some(c=>c?.code===field),z=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:L.SZONE}).some(c=>c?.code===fern);if(test.actor===1&&test.accept){if(!offered||!f||z)throw Error(`Replacement failed: offered=${offered} field=${f} fernInPZone=${z}`);}else{if(offered!==(test.actor===1)||f||!z)throw Error(`Incorrect replacement: offered=${offered} field=${f} fernInPZone=${z}`);}done=true;}}
+    else if(p.type===M.SELECT_EFFECTYN){offered=true;if(test.actor!==1)throw Error('Replacement offered against own effect');core.duelSetResponse(duel,{type:R.SELECT_EFFECTYN,yes:test.accept});}
+    else if(p.type===M.SELECT_YESNO){offered=true;if(test.actor!==1)throw Error('Replacement offered against own effect');core.duelSetResponse(duel,{type:R.SELECT_YESNO,yes:test.accept});}
+    else if(p.type===M.SELECT_PLACE){const seq=[0,4,1,2,3,5].find(i=>(p.field_mask&(1<<(8+i)))===0);if(seq===undefined)throw Error('No Spell/Pendulum zone');core.duelSetResponse(duel,{type:R.SELECT_PLACE,places:[{player:p.player,location:L.SZONE,sequence:seq}]});}
+    else if(p.type===M.SELECT_CHAIN)core.duelSetResponse(duel,{type:R.SELECT_CHAIN,index:null});
+    else throw Error('Unhandled '+JSON.stringify(p,(_,v)=>typeof v==='bigint'?String(v):v));
+   }
+   if(!done)throw Error('Step limit');
+  }catch(error){failure=error.message}finally{core.destroyDuel(duel)}
+  results.push({test,status:failure?'FAIL':'PASS',failure,offered,trace,logs});console.log(`${failure?'FAIL':'PASS'} ${JSON.stringify(test)}${failure?': '+failure:''}`);
+ }
+ fs.writeFileSync(path.join(ROOT,'output/fresh-ccg-september/terrarumian-sword-fern-replacement.json'),JSON.stringify({engine:'public OCGCore with Omega Lua; not native Omega',results},(_,v)=>typeof v==='bigint'?String(v):v,2)+'\n');
+ if(results.some(r=>r.failure))process.exitCode=1;
+}
+main().catch(error=>{console.error(error);process.exitCode=1});

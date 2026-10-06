@@ -99,7 +99,10 @@ function s.paytg(e,tp,eg,ep,ev,re,r,rp,chk)
 		op=1
 	end
 	e:SetLabel(op)
+	--Each selected effect is used when activated, even if it is negated or fails.
+	Duel.RegisterFlagEffect(tp,id+100+op,RESET_PHASE+PHASE_END,0,1)
 	if op==0 then
+		c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD,0,1)
 		Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_GRAVE)
 	else
 		Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,tp,LOCATION_GRAVE)
@@ -111,15 +114,12 @@ end
 function s.payop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if e:GetLabel()==0 then
-		if c:GetFlagEffect(id)>0 then return end
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD)
 		local dg=Duel.SelectMatchingCard(tp,Card.IsDiscardable,tp,LOCATION_HAND,0,1,1,nil,REASON_EFFECT+REASON_DISCARD)
 		if #dg==0 or Duel.SendtoGrave(dg,REASON_EFFECT+REASON_DISCARD)==0 then return end
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.firefilter),tp,LOCATION_GRAVE,0,1,1,nil)
 		if #g>0 then
-			c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD,0,1)
-			Duel.RegisterFlagEffect(tp,id+100,RESET_PHASE+PHASE_END,0,1)
 			Duel.SendtoHand(g,nil,REASON_EFFECT)
 			Duel.ConfirmCards(1-tp,g)
 		end
@@ -127,7 +127,6 @@ function s.payop(e,tp,eg,ep,ev,re,r,rp)
 		if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 or not c:IsRelateToEffect(e)
 			or not aux.NecroValleyFilter()(c) then return end
 		if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 then
-			Duel.RegisterFlagEffect(tp,id+101,RESET_PHASE+PHASE_END,0,1)
 			local e1=Effect.CreateEffect(c)
 			e1:SetType(EFFECT_TYPE_SINGLE)
 			e1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)
@@ -136,7 +135,7 @@ function s.payop(e,tp,eg,ep,ev,re,r,rp)
 			e1:SetValue(LOCATION_REMOVED)
 			c:RegisterEffect(e1,true)
 			local val=math.floor(s[tp]/2)
-			if val>0 then
+			if val>0 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 				Duel.Recover(tp,val,REASON_EFFECT)
 			end
 		end

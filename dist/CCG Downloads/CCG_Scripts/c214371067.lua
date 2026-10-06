@@ -50,8 +50,19 @@ end
 function s.sumop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not (c:IsRelateToEffect(e) and c:IsSummonable(true,nil)) then return end
+	--The immediate Normal Summon completes after the resolving chain.
+	--Continue only when this particular summon succeeds.
+	local follow=Effect.CreateEffect(c)
+	follow:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
+	follow:SetCode(EVENT_SUMMON_SUCCESS)
+	follow:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+	follow:SetReset(RESET_EVENT+RESETS_STANDARD-RESET_TOFIELD+RESET_PHASE+PHASE_END)
+	follow:SetOperation(s.followop)
+	c:RegisterEffect(follow)
 	Duel.Summon(tp,c,true,nil)
-	if not c:IsLocation(LOCATION_MZONE) then return end
+end
+function s.followop(e,tp,eg,ep,ev,re,r,rp)
+	e:Reset()
 	if Duel.IsExistingMatchingCard(s.spiritfilter,tp,LOCATION_HAND,0,1,nil)
 		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SUMMON)

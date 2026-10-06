@@ -5,7 +5,7 @@ local SET_WYVERNAL=0x4714
 function s.initial_effect(c)
 	--Fusion Summon procedure
 	aux.AddFusionProcFun2(c,aux.FilterBoolFunction(Card.IsFusionSetCard,SET_WYVERNAL),
-		aux.FilterBoolFunction(Card.IsRace,RACE_INSECT),true)
+		function(c) return c:IsFusionSetCard(SET_WYVERNAL) or c:IsRace(RACE_INSECT) end,true)
 	c:EnableReviveLimit()
 	--If Fusion Summoned: add 1 WIND Insect monster
 	local e1=Effect.CreateEffect(c)
@@ -39,7 +39,7 @@ function s.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_FUSION)
 end
 function s.thfilter(c)
-	return c:IsAttribute(ATTRIBUTE_WIND) and c:IsRace(RACE_INSECT) and c:IsType(TYPE_MONSTER)
+	return c:IsAttribute(ATTRIBUTE_WIND) and (c:IsSetCard(SET_WYVERNAL) or c:IsRace(RACE_INSECT)) and c:IsType(TYPE_MONSTER)
 		and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -47,7 +47,7 @@ function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
 end
 function s.exlimit(e,c)
-	return c:IsLocation(LOCATION_EXTRA) and not c:IsRace(RACE_INSECT)
+	return c:IsLocation(LOCATION_EXTRA) and not (c:IsSetCard(SET_WYVERNAL) or c:IsRace(RACE_INSECT))
 end
 function s.register_lock(e,tp)
 	local e1=Effect.CreateEffect(e:GetHandler())
@@ -72,7 +72,7 @@ function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.IsMainPhase()
 end
 function s.spfilter(c,e,tp)
-	return c:IsRace(RACE_INSECT) and c:IsType(TYPE_MONSTER)
+	return (c:IsSetCard(SET_WYVERNAL) or c:IsRace(RACE_INSECT)) and c:IsType(TYPE_MONSTER)
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)

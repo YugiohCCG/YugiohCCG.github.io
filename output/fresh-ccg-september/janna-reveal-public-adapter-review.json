@@ -1,0 +1,13 @@
+{
+  "status": "PARTIAL_PUBLIC_ADAPTER_DIAGNOSTIC",
+  "scope": "One-card reveal/search/Set/actual same-turn QuickPlay activation PASS with explicit constant-only test adapter 359->19. Two-card case remains EOF decoder failure after two actual Set events. Not batch passing evidence, not native Omega proof. Production unchanged.",
+  "sha256": {
+    "scripts/fresh_janna_reveal.cjs": "261d7b3d793cb032b20660494e73ae4573fe4db0e7da5eedb27cba8ec068a00d",
+    "public/CCG Downloads/CCG_Scripts/c215068354.lua": "613edb88ad57af67776c7d2ad4a329cca2c7794a7889ba88a41fdeb0c7c93998",
+    "output/fresh-ccg-september/janna-reveal-public-qp-adapter.json": "7f163e6e84610f2ff7441b7a8a27d0e2a6ac1d0948dd037cc497010aa5b2a4dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js.map": "351a32cb05c81eeeaca138650e28ca280296622301242666f56e485be7774237"
+  },
+  "primary_reference": "https://github.com/edo9300/ygopro-core/blob/master/effect_constants.h",
+  "next_action": "Inspect emitted SHUFFLE_SET_CARD message structure versus public wrapper parser, without changing production SSet semantics."
+}

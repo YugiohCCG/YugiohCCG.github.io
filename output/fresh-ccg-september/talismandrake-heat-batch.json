@@ -1,0 +1,237 @@
+{
+  "scope": "Focused public-core Heat suites and exact mutation-failure checks. No full-card, full-roster, or native Omega certification.",
+  "script_sha256": "75e90572fedf94ea98f2d5d71173c0fbd13736765830883419d767334a87af3c",
+  "results": [
+    {
+      "suite": "hand",
+      "args": [],
+      "valid": true,
+      "exit_code": 0,
+      "expected_failures": [],
+      "actual_failures": [],
+      "cases": 8,
+      "harness_sha256": "15368d3049718d12dedc3ce61f24b7e96ae955e933a13a1110feb537fc5b1c0d",
+      "artifact_sha256": "b44f9b69f4e9c48149e7bceff7dfd04c4abfcac5053026dc7b5210bef2f31a5d",
+      "stdout": "PASS {}\nPASS {\"absent\":true}\nPASS {\"wrongRace\":true}\nPASS {\"wrongAttribute\":true}\nPASS {\"facedown\":true}\nPASS {\"full\":true}\nPASS {\"count\":true}\nPASS {\"opponent\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "hand",
+      "args": [
+        "--no-count"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"count\":true}"
+      ],
+      "actual_failures": [
+        "{\"count\":true}"
+      ],
+      "cases": 8,
+      "harness_sha256": "15368d3049718d12dedc3ce61f24b7e96ae955e933a13a1110feb537fc5b1c0d",
+      "artifact_sha256": "fa68bd546602b53d745efc89793967b5c313ab084bfd7c4d65e24ffb93a16190",
+      "stdout": "PASS {}\nPASS {\"absent\":true}\nPASS {\"wrongRace\":true}\nPASS {\"wrongAttribute\":true}\nPASS {\"facedown\":true}\nPASS {\"full\":true}\nFAIL {\"count\":true}: Shared hand-summon limit blocks second copy\nPASS {\"opponent\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "pendulum-return",
+      "args": [],
+      "valid": true,
+      "exit_code": 0,
+      "expected_failures": [],
+      "actual_failures": [],
+      "cases": 9,
+      "harness_sha256": "ad4de7ad2789bc0a8d3cc26ecb7777bc11978acaec63ef35ea7efb6d0db9ef4f",
+      "artifact_sha256": "81ac850287f5b965895421d305c6c226d0ef865cb9358e5e9ca425eb7da60a05",
+      "stdout": "PASS {}\nPASS {\"absent\":true}\nPASS {\"wrongRace\":true}\nPASS {\"wrongAttribute\":true}\nPASS {\"wrongType\":true}\nPASS {\"opponent\":true}\nPASS {\"targetLost\":true}\nPASS {\"targetReturned\":true}\nPASS {\"sourceLost\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "pendulum-return",
+      "args": [
+        "--no-return"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{}"
+      ],
+      "actual_failures": [
+        "{}"
+      ],
+      "cases": 9,
+      "harness_sha256": "ad4de7ad2789bc0a8d3cc26ecb7777bc11978acaec63ef35ea7efb6d0db9ef4f",
+      "artifact_sha256": "9472479b67bdbfddb116966e029919519d6ddeb3f43c84ab1a038fe642cb36ac",
+      "stdout": "FAIL {}: Source actually returned Hand\nPASS {\"absent\":true}\nPASS {\"wrongRace\":true}\nPASS {\"wrongAttribute\":true}\nPASS {\"wrongType\":true}\nPASS {\"opponent\":true}\nPASS {\"targetLost\":true}\nPASS {\"targetReturned\":true}\nPASS {\"sourceLost\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "pendulum-return",
+      "args": [
+        "--ignore-relation"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"targetLost\":true}",
+        "{\"targetReturned\":true}"
+      ],
+      "actual_failures": [
+        "{\"targetLost\":true}",
+        "{\"targetReturned\":true}"
+      ],
+      "cases": 9,
+      "harness_sha256": "ad4de7ad2789bc0a8d3cc26ecb7777bc11978acaec63ef35ea7efb6d0db9ef4f",
+      "artifact_sha256": "4c3ac1bf24a8b7b277ebd8268958154432d3cb5caa3b4677666e64ba69f40afc",
+      "stdout": "PASS {}\nPASS {\"absent\":true}\nPASS {\"wrongRace\":true}\nPASS {\"wrongAttribute\":true}\nPASS {\"wrongType\":true}\nPASS {\"opponent\":true}\nFAIL {\"targetLost\":true}: Source retained Pendulum Zone after lost target\nFAIL {\"targetReturned\":true}: Source retained Pendulum Zone after lost target\nPASS {\"sourceLost\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "attack",
+      "args": [],
+      "valid": true,
+      "exit_code": 0,
+      "expected_failures": [],
+      "actual_failures": [],
+      "cases": 6,
+      "harness_sha256": "b315617177f22f0b8ab8b177081371b1debdbed2ea9e4ee298220ae66342a301",
+      "artifact_sha256": "76de1f891714edbc67a61a9c7ae384bfc9e1e32802f53f5bc688cae06949bb31",
+      "stdout": "PASS {\"count\":0}\nPASS {\"count\":1}\nPASS {\"count\":2}\nPASS {\"count\":1,\"wrongSet\":true}\nPASS {\"count\":0,\"unequipped\":true}\nPASS {\"count\":1,\"opponent\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "attack",
+      "args": [
+        "--wrong-value"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"count\":1}",
+        "{\"count\":2}"
+      ],
+      "actual_failures": [
+        "{\"count\":1}",
+        "{\"count\":2}"
+      ],
+      "cases": 6,
+      "harness_sha256": "b315617177f22f0b8ab8b177081371b1debdbed2ea9e4ee298220ae66342a301",
+      "artifact_sha256": "92590cf70d189a74c854d16faa0fe726c04d482bbec4d0bd7354570ca4675f91",
+      "stdout": "PASS {\"count\":0}\nFAIL {\"count\":1}: Printed 200 per own qualifying equipped Spell\n\n1500 !== 1600\n\nFAIL {\"count\":2}: Printed 200 per own qualifying equipped Spell\n\n1600 !== 1800\n\nPASS {\"count\":1,\"wrongSet\":true}\nPASS {\"count\":0,\"unequipped\":true}\nPASS {\"count\":1,\"opponent\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "attack",
+      "args": [
+        "--no-equip-gate"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"count\":0,\"unequipped\":true}"
+      ],
+      "actual_failures": [
+        "{\"count\":0,\"unequipped\":true}"
+      ],
+      "cases": 6,
+      "harness_sha256": "b315617177f22f0b8ab8b177081371b1debdbed2ea9e4ee298220ae66342a301",
+      "artifact_sha256": "19aa7b9f482626a87096a0a9db23e8fc55fcb04cb99ceecc6a7c86a0d6b085f4",
+      "stdout": "PASS {\"count\":0}\nPASS {\"count\":1}\nPASS {\"count\":2}\nPASS {\"count\":1,\"wrongSet\":true}\nFAIL {\"count\":0,\"unequipped\":true}: Initial printed ATK\n\n1600 !== 1400\n\nPASS {\"count\":1,\"opponent\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "fusion",
+      "args": [],
+      "valid": true,
+      "exit_code": 0,
+      "expected_failures": [],
+      "actual_failures": [],
+      "cases": 11,
+      "harness_sha256": "de3685bf91286be6a3f518e7802331fa90b28d32cd810252eecf77d4fc1ca865",
+      "artifact_sha256": "aee511c65942d6bf5f596fa77f50a7fa1a4b26396f8ac0bdf872a1d05bbcb1b0",
+      "stdout": "PASS {}\nPASS {\"field\":true}\nPASS {\"wrongRace\":true}\nPASS {\"wrongAttribute\":true}\nPASS {\"absent\":true}\nPASS {\"opponent\":true}\nPASS {\"grave\":true}\nPASS {\"field\":true,\"facedown\":true}\nPASS {\"count\":true}\nPASS {\"materialLost\":true}\nPASS {\"sourceLost\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "fusion",
+      "args": [
+        "--no-count"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"count\":true}"
+      ],
+      "actual_failures": [
+        "{\"count\":true}"
+      ],
+      "cases": 11,
+      "harness_sha256": "de3685bf91286be6a3f518e7802331fa90b28d32cd810252eecf77d4fc1ca865",
+      "artifact_sha256": "9b3990cea027769bb25139aab1a36f056b2a72eaeb047d51ede16d2429242054",
+      "stdout": "PASS {}\nPASS {\"field\":true}\nPASS {\"wrongRace\":true}\nPASS {\"wrongAttribute\":true}\nPASS {\"absent\":true}\nPASS {\"opponent\":true}\nPASS {\"grave\":true}\nPASS {\"field\":true,\"facedown\":true}\nFAIL {\"count\":true}: Shared Fusion HOPT blocks both copies\nPASS {\"materialLost\":true}\nPASS {\"sourceLost\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "fusion",
+      "args": [
+        "--no-material-send"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{}",
+        "{\"field\":true}",
+        "{\"field\":true,\"facedown\":true}",
+        "{\"count\":true}",
+        "{\"sourceLost\":true}"
+      ],
+      "actual_failures": [
+        "{}",
+        "{\"field\":true}",
+        "{\"field\":true,\"facedown\":true}",
+        "{\"count\":true}",
+        "{\"sourceLost\":true}"
+      ],
+      "cases": 11,
+      "harness_sha256": "de3685bf91286be6a3f518e7802331fa90b28d32cd810252eecf77d4fc1ca865",
+      "artifact_sha256": "3c1d1b3c779ef7f36416bddcfc53563d0b69af72fb9375f7acf84e49a0a9d8d2",
+      "stdout": "FAIL {}: Actual Fusion material in GY\nFAIL {\"field\":true}: Actual Fusion material in GY\nPASS {\"wrongRace\":true}\nPASS {\"wrongAttribute\":true}\nPASS {\"absent\":true}\nPASS {\"opponent\":true}\nPASS {\"grave\":true}\nFAIL {\"field\":true,\"facedown\":true}: Actual Fusion material in GY\nFAIL {\"count\":true}: Actual Fusion material in GY\nPASS {\"materialLost\":true}\nFAIL {\"sourceLost\":true}: Actual Fusion material in GY\n",
+      "stderr": ""
+    },
+    {
+      "suite": "pendulum-summon",
+      "args": [],
+      "valid": true,
+      "exit_code": 0,
+      "expected_failures": [],
+      "actual_failures": [],
+      "cases": 3,
+      "harness_sha256": "49750660462f54623f1410d57d93c6271b5fb7caba61abd718273caba2ef0061",
+      "artifact_sha256": "b4e4613e6a0f50d312262cbe2d7455913b0fa73beb41382fc8c2ac8c9b5a6a94",
+      "stdout": "PASS {}\nPASS {\"wrongRace\":true}\nPASS {\"mixed\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "pendulum-summon",
+      "args": [
+        "--no-lock"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"wrongRace\":true}",
+        "{\"mixed\":true}"
+      ],
+      "actual_failures": [
+        "{\"wrongRace\":true}",
+        "{\"mixed\":true}"
+      ],
+      "cases": 3,
+      "harness_sha256": "49750660462f54623f1410d57d93c6271b5fb7caba61abd718273caba2ef0061",
+      "artifact_sha256": "9e9c992a8d2a14626e91e90c70f200731144a890f6c7b4d166ca7fca56e65590",
+      "stdout": "PASS {}\nFAIL {\"wrongRace\":true}: Actual Pendulum procedure availability\n\ntrue !== false\n\nFAIL {\"mixed\":true}: NonPyro excluded from native Pendulum choice\n",
+      "stderr": ""
+    }
+  ]
+}

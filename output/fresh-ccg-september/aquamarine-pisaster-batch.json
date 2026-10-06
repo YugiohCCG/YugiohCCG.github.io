@@ -1,0 +1,186 @@
+{
+  "scope": "Focused public-core Pisaster suites and exact mutation-failure checks. No full-card, full-roster, or native Omega certification.",
+  "script_sha256": "281974e292561adb8ac343beded96168c08f2a18239c04529798810ee1521b1b",
+  "results": [
+    {
+      "suite": "hand",
+      "args": [],
+      "valid": true,
+      "exit_code": 0,
+      "expected_failures": [],
+      "actual_failures": [],
+      "cases": 7,
+      "harness_sha256": "80318e60e857057cd3068fb0510a10c98080fd30c57cc789d384189dd4fb01b7",
+      "artifact_sha256": "b3707731609b88e355ea6fd260fd3ef72b5eae9875c37450b4df977311d7a16d",
+      "stdout": "PASS {}\nPASS {\"absent\":true}\nPASS {\"wrongRace\":true}\nPASS {\"wrongAttribute\":true}\nPASS {\"facedown\":true}\nPASS {\"full\":true}\nPASS {\"count\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "hand",
+      "args": [
+        "--no-count"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"count\":true}"
+      ],
+      "actual_failures": [
+        "{\"count\":true}"
+      ],
+      "cases": 7,
+      "harness_sha256": "80318e60e857057cd3068fb0510a10c98080fd30c57cc789d384189dd4fb01b7",
+      "artifact_sha256": "94ca8e522b674ed17756c134134143b6bbc84d2cadc9af4c54f2051c7a577cb0",
+      "stdout": "PASS {}\nPASS {\"absent\":true}\nPASS {\"wrongRace\":true}\nPASS {\"wrongAttribute\":true}\nPASS {\"facedown\":true}\nPASS {\"full\":true}\nFAIL {\"count\":true}: Shared hand-summon limit blocks second copy\n",
+      "stderr": ""
+    },
+    {
+      "suite": "tribute",
+      "args": [],
+      "valid": true,
+      "exit_code": 0,
+      "expected_failures": [],
+      "actual_failures": [],
+      "cases": 6,
+      "harness_sha256": "dafc3145acf9fefd5473170e3a067032d032389fd313791cc468f41766caa558",
+      "artifact_sha256": "51fb29585fded2091b0f0e4af17096e8a1df0830e637e03b47a3f1910d2d724e",
+      "stdout": "PASS {}\nPASS {\"full\":true}\nPASS {\"wrongSet\":true}\nPASS {\"absent\":true}\nPASS {\"selfTarget\":true}\nPASS {\"count\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "tribute",
+      "args": [
+        "--no-cost"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{}",
+        "{\"full\":true}",
+        "{\"count\":true}"
+      ],
+      "actual_failures": [
+        "{}",
+        "{\"full\":true}",
+        "{\"count\":true}"
+      ],
+      "cases": 6,
+      "harness_sha256": "dafc3145acf9fefd5473170e3a067032d032389fd313791cc468f41766caa558",
+      "artifact_sha256": "375f1da892254ed6c8641d22051c0ea341eac48967887b0e6e197bf74da0b8e1",
+      "stdout": "FAIL {}: Actual source Tributed to GY\nFAIL {\"full\":true}: Actual source Tributed to GY\nPASS {\"wrongSet\":true}\nPASS {\"absent\":true}\nPASS {\"selfTarget\":true}\nFAIL {\"count\":true}: Actual source Tributed to GY\n",
+      "stderr": ""
+    },
+    {
+      "suite": "tribute",
+      "args": [
+        "--no-count"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"count\":true}"
+      ],
+      "actual_failures": [
+        "{\"count\":true}"
+      ],
+      "cases": 6,
+      "harness_sha256": "dafc3145acf9fefd5473170e3a067032d032389fd313791cc468f41766caa558",
+      "artifact_sha256": "2c4ff39f6a3f83508515f5e80a55380c78c74b3396cc69da245856e95b0c89fa",
+      "stdout": "PASS {}\nPASS {\"full\":true}\nPASS {\"wrongSet\":true}\nPASS {\"absent\":true}\nPASS {\"selfTarget\":true}\nFAIL {\"count\":true}: Shared Tribute limit blocks second copy with legal Deck target\n",
+      "stderr": ""
+    },
+    {
+      "suite": "recovery",
+      "args": [],
+      "valid": true,
+      "exit_code": 0,
+      "expected_failures": [],
+      "actual_failures": [],
+      "cases": 12,
+      "harness_sha256": "b3eda13beae8fe23e04319bc80ed032184862b6515fe963c047b3f507bd54aa6",
+      "artifact_sha256": "53f98d6c8bbbeef31c15062471c99700d2633676ad443b282044dfdda3ce187e",
+      "stdout": "PASS {}\nPASS {\"spell\":true}\nPASS {\"trap\":true}\nPASS {\"wrongSet\":true}\nPASS {\"selfTarget\":true}\nPASS {\"facedown\":true}\nPASS {\"fromHand\":true}\nPASS {\"fromField\":true}\nPASS {\"targetLost\":true}\nPASS {\"targetReturned\":true}\nPASS {\"count\":true}\nPASS {\"independent\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "recovery",
+      "args": [
+        "--allow-spell"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"spell\":true}",
+        "{\"trap\":true}"
+      ],
+      "actual_failures": [
+        "{\"spell\":true}",
+        "{\"trap\":true}"
+      ],
+      "cases": 12,
+      "harness_sha256": "b3eda13beae8fe23e04319bc80ed032184862b6515fe963c047b3f507bd54aa6",
+      "artifact_sha256": "837b564d6d69d6f90d4c503eff5f6f087dea4822d71a0d233bef8dc9c619c5ad",
+      "stdout": "PASS {}\nFAIL {\"spell\":true}: Native recovery trigger eligibility\n\ntrue !== false\n\nFAIL {\"trap\":true}: Native recovery trigger eligibility\n\ntrue !== false\n\nPASS {\"wrongSet\":true}\nPASS {\"selfTarget\":true}\nPASS {\"facedown\":true}\nPASS {\"fromHand\":true}\nPASS {\"fromField\":true}\nPASS {\"targetLost\":true}\nPASS {\"targetReturned\":true}\nPASS {\"count\":true}\nPASS {\"independent\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "recovery",
+      "args": [
+        "--ignore-relation"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"targetLost\":true}",
+        "{\"targetReturned\":true}"
+      ],
+      "actual_failures": [
+        "{\"targetLost\":true}",
+        "{\"targetReturned\":true}"
+      ],
+      "cases": 12,
+      "harness_sha256": "b3eda13beae8fe23e04319bc80ed032184862b6515fe963c047b3f507bd54aa6",
+      "artifact_sha256": "e66b2a35e53d78691dbd7969141221b00bb01bb04f6a9b3c936218cb5962372c",
+      "stdout": "PASS {}\nPASS {\"spell\":true}\nPASS {\"trap\":true}\nPASS {\"wrongSet\":true}\nPASS {\"selfTarget\":true}\nPASS {\"facedown\":true}\nPASS {\"fromHand\":true}\nPASS {\"fromField\":true}\nFAIL {\"targetLost\":true}: Interrupted target retained outside Hand\nFAIL {\"targetReturned\":true}: Interrupted target retained outside Hand\nPASS {\"count\":true}\nPASS {\"independent\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "recovery",
+      "args": [
+        "--no-count"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"count\":true}"
+      ],
+      "actual_failures": [
+        "{\"count\":true}"
+      ],
+      "cases": 12,
+      "harness_sha256": "b3eda13beae8fe23e04319bc80ed032184862b6515fe963c047b3f507bd54aa6",
+      "artifact_sha256": "bd1634939488ef72f114ee899783c938c6e815b1ad35034d06264bbb52b31627",
+      "stdout": "PASS {}\nPASS {\"spell\":true}\nPASS {\"trap\":true}\nPASS {\"wrongSet\":true}\nPASS {\"selfTarget\":true}\nPASS {\"facedown\":true}\nPASS {\"fromHand\":true}\nPASS {\"fromField\":true}\nPASS {\"targetLost\":true}\nPASS {\"targetReturned\":true}\nFAIL {\"count\":true}: Shared recovery HOPT across simultaneously banished copies\n\n2 !== 1\n\nPASS {\"independent\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "recovery",
+      "args": [
+        "--shared-effects"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"independent\":true}"
+      ],
+      "actual_failures": [
+        "{\"independent\":true}"
+      ],
+      "cases": 12,
+      "harness_sha256": "b3eda13beae8fe23e04319bc80ed032184862b6515fe963c047b3f507bd54aa6",
+      "artifact_sha256": "3476cd538be7e296942b63506bbe7ff81ebd154052fb0fb9361ae41488f1180f",
+      "stdout": "PASS {}\nPASS {\"spell\":true}\nPASS {\"trap\":true}\nPASS {\"wrongSet\":true}\nPASS {\"selfTarget\":true}\nPASS {\"facedown\":true}\nPASS {\"fromHand\":true}\nPASS {\"fromField\":true}\nPASS {\"targetLost\":true}\nPASS {\"targetReturned\":true}\nPASS {\"count\":true}\nFAIL {\"independent\":true}: Native recovery trigger eligibility\n\nfalse !== true\n\n",
+      "stderr": ""
+    }
+  ]
+}

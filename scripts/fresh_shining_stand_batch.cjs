@@ -1,0 +1,35 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict'),{execFileSync}=require('node:child_process');
+const root=path.resolve(__dirname,'..'),out=path.join(root,'output/fresh-ccg-september'),source=path.join(root,'public/CCG Downloads/CCG_Scripts/c215142357.lua');
+const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const plans=[{control:null,failed:[]},{control:'no-protection',failed:[{count:2},{count:2,banish:true},{count:2,opponentEffect:true},{count:2,opponentEffect:true,banish:true}]},{control:'any-set',failed:[{count:2,wrongSet:true}]}].map(p=>({...p,h:'protection',artifact:'protection',cases:11}));
+// Regenerate the isolated decoder from the current wrapper before recording evidence.
+const adapterGeneration=JSON.parse(execFileSync('python',[path.join(__dirname,'fresh_public_set_message_adapter.py')],{cwd:root,encoding:'utf8',timeout:10000}));
+const runtimeDir=path.join(path.dirname(require.resolve('@n1xx1/ocgcore-wasm')),'dist');
+const dependencyFiles=[...['constant.lua','utility.lua','procedure.lua'].map(n=>path.join(root,'tmp/omega_scripts',n)),...fs.readdirSync(runtimeDir).filter(n=>/\.(js|wasm)$/.test(n)).map(n=>path.join(runtimeDir,n)),path.join(out,'public-core-set-message-adapter.mjs'),path.join(__dirname,'fresh_public_set_message_adapter.py')];
+dependencyFiles.push(path.join(root,'public/CCG Downloads/CCG_Scripts/c232038002.lua'));
+const dependencies=Object.fromEntries(dependencyFiles.map(f=>[path.relative(root,f).replaceAll('\\','/'),hash(f)]));
+const verifyDependencies=()=>{for(const [relative,sha] of Object.entries(dependencies))assert.equal(hash(path.join(root,relative)),sha,'Runtime dependency changed during batch: '+relative);};
+assert.equal(adapterGeneration.source_sha256,hash(path.join(runtimeDir,'index.js')));
+assert.equal(adapterGeneration.adapter_sha256,hash(path.join(out,'public-core-set-message-adapter.mjs')));
+plans.push({control:'any-controller',failed:[{count:2,opponentCard:true},{count:2,opponentCard:true,banish:true}],h:'protection',artifact:'protection',cases:11});
+plans.push(...[{control:null,failed:[]},{control:'no-draw',failed:[{},{selfCost:true}]},{control:'any-set',failed:[{wrongSet:true}]},{control:'any-location',failed:[{hand:true}]},{control:'any-controller',failed:[{opponent:true}]}].map(p=>({...p,h:'draw',artifact:'draw-public-target-param',cases:7,args:['--public-target-param']})));
+plans.push(...[{control:null,failed:[]},{control:'no-limit',failed:[{}]},{control:'per-copy-limit',failed:[{}]}].map(p=>({...p,h:'draw_count',artifact:'draw-count-public-target-param',cases:1,args:['--public-target-param']})));
+plans.push(...[{control:null,failed:[]},{control:'no-renewal',failed:[{}]}].map(p=>({...p,h:'draw_renewal',artifact:'draw-renewal-public-target-param',cases:1,args:['--public-target-param']})));
+plans.push(...[{control:null,failed:[]},{control:'no-attach',failed:[{},{grave:true}]},{control:'any-set',failed:[{wrongSet:true}]}].map(p=>({...p,h:'attach',artifact:'attach',cases:9})));
+plans.push(...[{control:'any-xyz-set',failed:[{wrongXyzSet:true}]},{control:'any-position',failed:[{facedown:true}]}].map(p=>({...p,h:'attach',artifact:'attach',cases:9})));
+plans.push(...[{control:null,failed:[]},{control:'no-limit',failed:[{},{grave:true}]},{control:'shared-limit',failed:[{},{grave:true}]}].map(p=>({...p,h:'attach_count',artifact:'attach-count',cases:2})));
+plans.push(...[{control:null,failed:[]},{control:'no-renewal',failed:[{}]}].map(p=>({...p,h:'attach_renewal',artifact:'attach-renewal',cases:1})));
+plans.push(...[{control:null,failed:[]},{control:'no-draw',failed:[{}]}].map(p=>({...p,h:'canonical_draw',artifact:'canonical-draw-public-target-param',cases:2,args:['--public-target-param'],support:232038002})));
+const database=path.join(out,'candidate-CCG_v1.db'),databaseHash=hash(database);
+const sourceHash=hash(source),runs=[];
+for(const plan of plans){
+ verifyDependencies();
+ const harness=path.join(__dirname,'fresh_shining_stand_'+plan.h+'.cjs'),harnessHash=hash(harness);
+ const started=Date.now(),args=['--no-warnings',harness,...(plan.args||[]),...(plan.control?['--'+plan.control]:[])];let status=0;
+ try{execFileSync(process.execPath,args,{cwd:root,timeout:30000,stdio:'pipe'});}catch(e){assert.equal(e.signal,null,'Timed out/terminated child');status=e.status;}
+ const file=path.join(out,'shining-stand-'+(plan.artifact||plan.h)+(plan.control?'-'+plan.control:'')+'.json');assert(fs.statSync(file).mtimeMs>=started-2000,'Stale result');const result=JSON.parse(fs.readFileSync(file,'utf8'));
+ assert.equal(result.script_sha256,sourceHash);if(plan.support)assert.equal(result.supporting_script_sha256,hash(path.join(root,'public/CCG Downloads/CCG_Scripts/c'+plan.support+'.lua')));if(plan.args&&plan.args.includes('--official'))assert.equal(result.supporting_script_sha256,hash(path.join(root,'public/CCG Downloads/CCG_Scripts/c246380598.lua')));if(plan.args?.includes('--canonical-arms')){assert.equal(result.canonical_arms,true);assert.deepEqual(Object.keys(result.supporting_scripts_sha256).sort(),[...new Set(result.results.map(r=>String(r.test.arm)))].sort());for(const [code,sha] of Object.entries(result.supporting_scripts_sha256))assert.equal(sha,hash(path.join(root,'public/CCG Downloads/CCG_Scripts/c'+code+'.lua')));}if(plan.h==='reveal'){assert.equal(result.public_qp_adapter,true);assert.equal(result.public_set_message_adapter,true);assert.equal(result.set_message_adapter_sha256,hash(path.join(out,'public-core-set-message-adapter.mjs')));}if(plan.h==='canonical_recovery'){assert.deepEqual(Object.keys(result.supporting_scripts_sha256).sort(),['217029078','233212369']);for(const [code,sha] of Object.entries(result.supporting_scripts_sha256))assert.equal(sha,hash(path.join(root,'public/CCG Downloads/CCG_Scripts/c'+code+'.lua')));}if(['draw','draw_count','draw_renewal','canonical_draw'].includes(plan.h))assert.equal(result.public_target_param_adapter,true);assert.equal(result.results.length,plan.cases);assert.deepEqual(result.results.filter(r=>r.failure).map(r=>r.test),plan.failed);assert.equal(status,plan.failed.length?1:0);assert.equal(hash(source),sourceHash);assert.equal(hash(harness),harnessHash);
+ verifyDependencies();assert.equal(hash(database),databaseHash);runs.push({harness:plan.h,harness_sha256:harnessHash,control:plan.control,status,expected_failures:plan.failed,artifact_sha256:hash(file)});
+}
+fs.writeFileSync(path.join(out,'shining-stand-batch.json'),JSON.stringify({scope:'StandTogether field protection eleven native destruction/banish/ownership scenarios plus six conditional draw cases and one shared drawHOPT case and actual ownturn3renewal with explicit public chaininfo adapter; detach/draw/native Omega open',script_sha256:sourceHash,candidate_database_sha256:databaseHash,runtime_dependencies_sha256:dependencies,adapter_generation:adapterGeneration,runs},null,2)+'\n');console.log(JSON.stringify({runs:runs.length,baseline_cases:34,status:'PASS'}));

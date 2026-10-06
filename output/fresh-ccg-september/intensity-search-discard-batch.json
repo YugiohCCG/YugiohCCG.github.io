@@ -1,0 +1,52 @@
+{
+  "scope": "Canonical Intensity actual one-counter ignition searches canonical Farad from Deck then discards selected neutral hand card. Wrong-set/no-counter negatives and no-search/no-discard mutations. Initial placement and actual neutral counter setup; HOPT, target/response interactions and native Omega remain open",
+  "script_sha256": "0a1568b7c650c9e929505252e880052bccd1831e3337ab99a86f9984cbaa30fd",
+  "harness_sha256": "e3bef1d383ce1683efb134732b7041cad4aa89cd8bd6c61e41b1afddf78b9137",
+  "batch_script_sha256": "a77bbe3d4280c8b0ad816de40b8c1eabbb406972d904f9e09202f07dc04958f5",
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "public/CCG Downloads/CCG_Scripts/c231331942.lua": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067",
+    "output/fresh-ccg-september/public-core-card-data-adapter.mjs": "3df84e0cb3521c725a9d049409473c6a8506aca0d30a10ab8ed623efc2fe67c1",
+    "scripts/fresh_public_card_data_adapter.py": "aad6bba96d8eace5ccc5750deefc7e183d53024413e8aa0840bf7f2c653e58a2"
+  },
+  "runs": [
+    {
+      "card_data_adapter": true,
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact": "intensity-search-discard-259479044-259174227-card-data-adapter.json",
+      "artifact_sha256": "5f3f8f2b1c1422b51578e20124954e4f931605034f4b576aee0b181f00e9101f"
+    },
+    {
+      "card_data_adapter": true,
+      "control": "no-search",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "intensity-search-discard-259479044-259174227-card-data-adapter-no-search.json",
+      "artifact_sha256": "a5300b2948feb489310c0604478a41aae2cbe47528d2a6c80fb6e769318d041e"
+    },
+    {
+      "card_data_adapter": true,
+      "control": "no-discard",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "intensity-search-discard-259479044-259174227-card-data-adapter-no-discard.json",
+      "artifact_sha256": "a54a0302d0034e358b3cfaf1b68656e8ad689998357cc444dd0d4c6ecd81e93a"
+    }
+  ]
+}

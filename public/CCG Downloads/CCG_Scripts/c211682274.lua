@@ -69,7 +69,7 @@ function s.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsPreviousLocation(LOCATION_GRAVE)
 end
 function s.thfilter2(c)
-	return c:IsSetCard(SET_AQUAMARINE) and not c:IsCode(id) and c:IsFaceupEx() and c:IsAbleToHand()
+	return c:IsSetCard(SET_AQUAMARINE) and c:IsType(TYPE_MONSTER) and not c:IsCode(id) and c:IsFaceupEx() and c:IsAbleToHand()
 end
 function s.thtg2(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_REMOVED) and chkc:IsControler(tp) and aux.NecroValleyFilter(s.thfilter2)(chkc) end

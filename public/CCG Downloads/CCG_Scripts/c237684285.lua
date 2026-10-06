@@ -11,7 +11,7 @@ function s.initial_effect(c)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetCode(EFFECT_CANNOT_BE_EFFECT_TARGET)
 	e1:SetCondition(s.indcon)
-	e1:SetValue(aux.tgoval)
+	e1:SetValue(s.targetlimit)
 	c:RegisterEffect(e1)
 	--return to hand and shuffle
 	local e3=Effect.CreateEffect(c)
@@ -44,7 +44,7 @@ function s.indcon(e)
 end
 function s.rtcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	return c:IsSummonType(SUMMON_TYPE_SYNCHRO) and c:GetMaterial():FilterCount(aux.NOT(Card.IsSetCard),nil,0x21fc)==0
+	return c:IsSummonType(SUMMON_TYPE_SYNCHRO) and #c:GetMaterial()>0 and c:GetMaterial():FilterCount(aux.NOT(Card.IsSetCard),nil,0x21fc)==0
 end
 function s.rttg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(1-tp) and chkc:IsOnField() and chkc:IsAbleToHand() end
@@ -58,9 +58,13 @@ function s.rtop(e,tp,eg,ep,ev,re,r,rp)
 	local tg=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e)
 	if #tg>0 and Duel.SendtoHand(tg,nil,REASON_EFFECT)>0 then
 		local og=Duel.GetOperatedGroup()
-		if og:FilterCount(Card.IsLocation,nil,LOCATION_HAND)>0 then
+		local returned=og:FilterCount(Card.IsLocation,nil,LOCATION_HAND)
+		local available=Duel.GetMatchingGroupCount(Card.IsAbleToDeck,tp,LOCATION_HAND,0,nil)
+		local ct=math.min(returned,available)
+		if ct>0 then
+			Duel.BreakEffect()
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-			local sg=Duel.SelectMatchingCard(tp,Card.IsAbleToDeck,tp,LOCATION_HAND,0,1,99,nil)
+			local sg=Duel.SelectMatchingCard(tp,Card.IsAbleToDeck,tp,LOCATION_HAND,0,ct,ct,nil)
 			if #sg>0 then
 				local ct=Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
 				if ct>0 then
@@ -137,4 +141,8 @@ function s.delayop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.SendtoHand(tc,nil,REASON_EFFECT)
 		Duel.ConfirmCards(1-tp,tc)
 	end
+end
+
+function s.targetlimit(e,re,rp)
+    return rp~=e:GetHandlerPlayer() or not re:GetHandler():IsSetCard(0x21fc)
 end

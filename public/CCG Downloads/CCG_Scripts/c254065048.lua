@@ -15,7 +15,7 @@ function s.initial_effect(c)
 	e0:SetType(EFFECT_TYPE_SINGLE)
 	e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e0:SetCode(EFFECT_SPSUMMON_CONDITION)
-	e0:SetValue(aux.fuslimit)
+	e0:SetValue(s.splimit)
 	c:RegisterEffect(e0)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -59,6 +59,9 @@ function s.initial_effect(c)
 	c:RegisterEffect(e5)
 end
 s.listed_names={TOKEN_PROTOGENIC,CARD_TO_PROTO_ATAXIA}
+function s.splimit(e,se,sp,st)
+	return not e:GetHandler():IsLocation(LOCATION_EXTRA)
+end
 function s.matfilter(c,fc)
 	return c:IsCode(TOKEN_PROTOGENIC) and c:IsLevelAbove(1)
 end
@@ -66,7 +69,7 @@ function s.ctrlfilter(c)
 	return c:IsFaceup() and c:IsCode(CARD_TO_PROTO_ATAXIA)
 end
 function s.spfilter(c,fc)
-	return s.matfilter(c,fc) and c:IsCanBeFusionMaterial(fc,SUMMON_TYPE_SPECIAL)
+	return c:IsControler(fc:GetControler()) and s.matfilter(c,fc) and c:IsCanBeFusionMaterial(fc,SUMMON_TYPE_SPECIAL)
 end
 function s.spcheck(g,tp,fc)
 	return Duel.GetLocationCountFromEx(tp,tp,g,fc)>0

@@ -1,0 +1,1 @@
+   function s.rmtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return (e:GetHandler():IsAbleToDeck() or e:GetHandler():IsAbleToRemove()) and Duel.IsExistingMatchingCard(s.rmfilter,tp,LOCATION_DECK,0,1,nil) end end

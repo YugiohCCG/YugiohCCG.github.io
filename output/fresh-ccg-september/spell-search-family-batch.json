@@ -1,0 +1,1082 @@
+{
+  "scope": "Full production source and canonical target scripts. Actual Spell activation and Deck search positive/wrong-set. Shared no-search mutation must fail positive only. Other effects, locks/count/filter edges and native Omega open.",
+  "harness_sha256": "348d0046915acd5a7ce813dbe8a02052398b05b6ce557f6fab783889137438cb",
+  "batch_script_sha256": "5d459aa9f54355a82c97efe53fcb2655766f1dd006b8c8f105b4a503038ff2cb",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "public/CCG Downloads/CCG_Scripts/c231331942.lua": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067"
+  },
+  "runs": [
+    {
+      "source": 221509060,
+      "target": 220150285,
+      "control": null,
+      "source_sha256": "21fe57fa3c6f6830ead82656f8ab6998c6e5856b11c4278c878abdaa06892d0f",
+      "target_sha256": "4dff860979df6ec6b0aefb8a9935ce0ae1c2c2beb3a59aff42118b1206f549c4",
+      "artifact_sha256": "c413f54095888f7ece8091f68f3240cca072b575cb734b4a9a1ed99533f71641",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 221509060,
+      "target": 220150285,
+      "control": "no-search",
+      "source_sha256": "21fe57fa3c6f6830ead82656f8ab6998c6e5856b11c4278c878abdaa06892d0f",
+      "target_sha256": "4dff860979df6ec6b0aefb8a9935ce0ae1c2c2beb3a59aff42118b1206f549c4",
+      "artifact_sha256": "0749ca96555f1d5303b1ce4ccf82f5d5bf86bbd6636dcfd5f7ae84d544b5e400",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 221509060,
+      "target": 220150285,
+      "control": "any-search-filter",
+      "source_sha256": "21fe57fa3c6f6830ead82656f8ab6998c6e5856b11c4278c878abdaa06892d0f",
+      "target_sha256": "4dff860979df6ec6b0aefb8a9935ce0ae1c2c2beb3a59aff42118b1206f549c4",
+      "artifact_sha256": "eeeb07608ce9a42e36a2d90e93e6df4f444ff6d42c6b7525242f6249804ae817",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Spell search activation eligibility\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 233759343,
+      "target": 228926678,
+      "control": null,
+      "source_sha256": "ff34c868992a475f127356f1043688d8d20a33c041b407f0c66c385c0e8e76f5",
+      "target_sha256": "7a1cf6dc9cbd4d4d3916a3bc8cb4b12ba39056e8008d640f4306f5dc597729a1",
+      "artifact_sha256": "1489f8dbcccd299ca18a50dcf1e9040257013e1053280a0662c23ffd17111f79",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 233759343,
+      "target": 228926678,
+      "control": "no-search",
+      "source_sha256": "ff34c868992a475f127356f1043688d8d20a33c041b407f0c66c385c0e8e76f5",
+      "target_sha256": "7a1cf6dc9cbd4d4d3916a3bc8cb4b12ba39056e8008d640f4306f5dc597729a1",
+      "artifact_sha256": "cfb186c4786d64672eabffc10293b4c0a0f610ddf08f9447c7b97e1de8ab1a24",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 233759343,
+      "target": 228926678,
+      "control": "any-search-filter",
+      "source_sha256": "ff34c868992a475f127356f1043688d8d20a33c041b407f0c66c385c0e8e76f5",
+      "target_sha256": "7a1cf6dc9cbd4d4d3916a3bc8cb4b12ba39056e8008d640f4306f5dc597729a1",
+      "artifact_sha256": "eb588166904fef1acba323ef28c876119ef474c75eae48e948375c386685870e",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Spell search activation eligibility\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 259391738,
+      "target": 259113182,
+      "control": null,
+      "source_sha256": "fcd9c4431fe367e198ae8e1b5e26786a0aabac2518f3ec8b40846cf8735d9e34",
+      "target_sha256": "96eab00c027c21707acd9b86b68469dfe4222a3289a4bc2969a6142229bed1e1",
+      "artifact_sha256": "d5251090e2e91e28b1e31063eaebe99a2a0e4ff58a6e801dd2f31a6c2f279577",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 259391738,
+      "target": 259113182,
+      "control": "no-search",
+      "source_sha256": "fcd9c4431fe367e198ae8e1b5e26786a0aabac2518f3ec8b40846cf8735d9e34",
+      "target_sha256": "96eab00c027c21707acd9b86b68469dfe4222a3289a4bc2969a6142229bed1e1",
+      "artifact_sha256": "f7f8c7759d117da5e99b5b51912c34209a0697b76e992ab437776ddc24ac3594",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 259391738,
+      "target": 259113182,
+      "control": "any-search-filter",
+      "source_sha256": "fcd9c4431fe367e198ae8e1b5e26786a0aabac2518f3ec8b40846cf8735d9e34",
+      "target_sha256": "96eab00c027c21707acd9b86b68469dfe4222a3289a4bc2969a6142229bed1e1",
+      "artifact_sha256": "c52b8a455747160c226a8ca935ff2fe3be1b664463d397dac61fddcb6bcee9a8",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Spell search activation eligibility\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 259417461,
+      "target": 259679619,
+      "control": null,
+      "source_sha256": "aeb2c8075c0c0b62d611b4944c4a68fc874f7ed76b06e4a1f031df2325997a3e",
+      "target_sha256": "49df75a3b346cc05e4af57e70bba003d56c87eefad178548d9821b97925a22f1",
+      "artifact_sha256": "87ad814c009d25ec3e1144d25e531b74433fa271f80a340fa0dbbc2415f5b6e5",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 259417461,
+      "target": 259679619,
+      "control": "no-search",
+      "source_sha256": "aeb2c8075c0c0b62d611b4944c4a68fc874f7ed76b06e4a1f031df2325997a3e",
+      "target_sha256": "49df75a3b346cc05e4af57e70bba003d56c87eefad178548d9821b97925a22f1",
+      "artifact_sha256": "f526fe5a3607122f633f23f8fc57dc1cafa747b5f94f78f0beacc2210956a92d",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 259417461,
+      "target": 259679619,
+      "control": "any-search-filter",
+      "source_sha256": "aeb2c8075c0c0b62d611b4944c4a68fc874f7ed76b06e4a1f031df2325997a3e",
+      "target_sha256": "49df75a3b346cc05e4af57e70bba003d56c87eefad178548d9821b97925a22f1",
+      "artifact_sha256": "3300b8953e5827440308b87eea5d1678a3708d7e64ed475ddec7e763cd039fb5",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Spell search activation eligibility\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 259679619,
+      "target": 259273394,
+      "control": null,
+      "source_sha256": "49df75a3b346cc05e4af57e70bba003d56c87eefad178548d9821b97925a22f1",
+      "target_sha256": "a70f71d124767d576efbbbc6bff586a4e4c2a15b0c88460cfa90fa0a623c91c3",
+      "artifact_sha256": "fc6a576e6216fc20e86bba734003b8b4a0cdce7c7c49539d4f3eeafadf8c516e",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 259679619,
+      "target": 259273394,
+      "control": "no-search",
+      "source_sha256": "49df75a3b346cc05e4af57e70bba003d56c87eefad178548d9821b97925a22f1",
+      "target_sha256": "a70f71d124767d576efbbbc6bff586a4e4c2a15b0c88460cfa90fa0a623c91c3",
+      "artifact_sha256": "7496b11cc7e4831d8b811cb4c3a8f9e767b3b7acd9ff4aaf035dc3903d6f1d5e",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 259679619,
+      "target": 259273394,
+      "control": "any-search-filter",
+      "source_sha256": "49df75a3b346cc05e4af57e70bba003d56c87eefad178548d9821b97925a22f1",
+      "target_sha256": "a70f71d124767d576efbbbc6bff586a4e4c2a15b0c88460cfa90fa0a623c91c3",
+      "artifact_sha256": "34d46fb7e422b4d159af0056944ec0f8b3d080b0b941bee8baaa179a857ba13e",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 247831166,
+      "target": 218837030,
+      "control": null,
+      "source_sha256": "641a889cdd4b2a2d60fb062459aae043d1b45995801336610ddfcf662ef26e26",
+      "target_sha256": "b7fb1d8e1ed553419cfbbb4286a593dd8ed4f5087553b94e45cfaeef9a8d0ab9",
+      "artifact_sha256": "9a2035a465defe217e4bbcbc49d1ca835a1be85dcf737553c55cd07972246c17",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 247831166,
+      "target": 218837030,
+      "control": "no-search",
+      "source_sha256": "641a889cdd4b2a2d60fb062459aae043d1b45995801336610ddfcf662ef26e26",
+      "target_sha256": "b7fb1d8e1ed553419cfbbb4286a593dd8ed4f5087553b94e45cfaeef9a8d0ab9",
+      "artifact_sha256": "8d4882453568884372c15ebeeeb76eefce8cc133c3ff23e489461e81f65950b2",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 247831166,
+      "target": 218837030,
+      "control": "any-search-filter",
+      "source_sha256": "641a889cdd4b2a2d60fb062459aae043d1b45995801336610ddfcf662ef26e26",
+      "target_sha256": "b7fb1d8e1ed553419cfbbb4286a593dd8ed4f5087553b94e45cfaeef9a8d0ab9",
+      "artifact_sha256": "c524eca7e9846e23408ca1e63b901b43410b17f533591f5461fa1e6e33237c47",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 255953418,
+      "target": 240976976,
+      "control": null,
+      "source_sha256": "b195d2945fdc6a9b15b5d90b0569db1a2f2fc317a4df9f0b3ebfa12466996fea",
+      "target_sha256": "eed87abafbc4414779ab9efb3e06753c4dfe65086545efdc40bb767976ae9f28",
+      "artifact_sha256": "4b6715f5428c9d24fbc180c10e9a3d60208cfb6a0ccb40099becee615d02a43a",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 255953418,
+      "target": 240976976,
+      "control": "no-search",
+      "source_sha256": "b195d2945fdc6a9b15b5d90b0569db1a2f2fc317a4df9f0b3ebfa12466996fea",
+      "target_sha256": "eed87abafbc4414779ab9efb3e06753c4dfe65086545efdc40bb767976ae9f28",
+      "artifact_sha256": "5c2d86d9aa130641d5380af595316eeadb5ce3ea0b0c0026256101ec5c0b2c99",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 255953418,
+      "target": 240976976,
+      "control": "any-search-filter",
+      "source_sha256": "b195d2945fdc6a9b15b5d90b0569db1a2f2fc317a4df9f0b3ebfa12466996fea",
+      "target_sha256": "eed87abafbc4414779ab9efb3e06753c4dfe65086545efdc40bb767976ae9f28",
+      "artifact_sha256": "8df38ae98e78ea953f07d149ccb59f4997fde96ed445b102277f863e244b68f5",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 244816828,
+      "target": 255283389,
+      "control": null,
+      "source_sha256": "a9f116b07c42c19fd39ae6f49afab6b4ab7d5fa7b5af33922074c0f26facd49b",
+      "target_sha256": "711b634b0b2fa815350847f43e3ae642962711922d9c8666a3a3242c795f9f29",
+      "artifact_sha256": "80dc8da00d4907ae52302a6384cf00fea6fdb1c5190a19dc104b09e85fe92fab",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 244816828,
+      "target": 255283389,
+      "control": "no-search",
+      "source_sha256": "a9f116b07c42c19fd39ae6f49afab6b4ab7d5fa7b5af33922074c0f26facd49b",
+      "target_sha256": "711b634b0b2fa815350847f43e3ae642962711922d9c8666a3a3242c795f9f29",
+      "artifact_sha256": "07ae8be21323ecdb79aafbf31376020a123bfae2e267d30879170ad81928967d",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 244816828,
+      "target": 255283389,
+      "control": "any-search-filter",
+      "source_sha256": "a9f116b07c42c19fd39ae6f49afab6b4ab7d5fa7b5af33922074c0f26facd49b",
+      "target_sha256": "711b634b0b2fa815350847f43e3ae642962711922d9c8666a3a3242c795f9f29",
+      "artifact_sha256": "5827eb28c820108acd760a2c002de56e4f5c5aa43a413ba7d583f5c6d0b3ee69",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 211086520,
+      "target": 215984744,
+      "control": null,
+      "source_sha256": "bbcbbe99a7006a8bb2e812d1d24f23907d78f3d3966f45d82d88c06a35b01b23",
+      "target_sha256": "2c15ccbaa2b8a6384236ea3836d96c6b0bb30288fd2ffb390faf890a1133711e",
+      "artifact_sha256": "8ebd8cd721d4d5327ec9c685f92b01ef79bfc67bd0cb2eb554f1469530e7601f",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 211086520,
+      "target": 215984744,
+      "control": "no-search",
+      "source_sha256": "bbcbbe99a7006a8bb2e812d1d24f23907d78f3d3966f45d82d88c06a35b01b23",
+      "target_sha256": "2c15ccbaa2b8a6384236ea3836d96c6b0bb30288fd2ffb390faf890a1133711e",
+      "artifact_sha256": "a57084c82167aa79847cde61c50b771d29a9dd066d93a32745cd6434b41ebbdc",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 211086520,
+      "target": 215984744,
+      "control": "any-search-filter",
+      "source_sha256": "bbcbbe99a7006a8bb2e812d1d24f23907d78f3d3966f45d82d88c06a35b01b23",
+      "target_sha256": "2c15ccbaa2b8a6384236ea3836d96c6b0bb30288fd2ffb390faf890a1133711e",
+      "artifact_sha256": "13502ec949997657904d6eb5b4a6b4b432762a576c0faadd23de4d350042f0b2",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Spell search activation eligibility\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 211086520,
+      "target": 215984744,
+      "control": "no-discard",
+      "source_sha256": "bbcbbe99a7006a8bb2e812d1d24f23907d78f3d3966f45d82d88c06a35b01b23",
+      "target_sha256": "2c15ccbaa2b8a6384236ea3836d96c6b0bb30288fd2ffb390faf890a1133711e",
+      "artifact_sha256": "ffb5f0d2053ba3703447219db2195764ba39090ac2db1de1c8611ac6cdfb29f9",
+      "results": [
+        {
+          "test": {},
+          "failure": "Actual effect discard after search\n\n0 !== 1\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 258590942,
+      "target": 214511076,
+      "control": null,
+      "source_sha256": "5bd73c1a789376d38c79f22e0aaed47a253041955ddf46b82eb54cb4488828d4",
+      "target_sha256": "c2531dee368bc58c86c96a26f1b94e789cc31a920f1509fceeb24865aed8b0d9",
+      "artifact_sha256": "56cb17accabe03cffa42dfada3cd4efd5b1801dbc88f2f14cf53a0b4d663e868",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 258590942,
+      "target": 214511076,
+      "control": "no-search",
+      "source_sha256": "5bd73c1a789376d38c79f22e0aaed47a253041955ddf46b82eb54cb4488828d4",
+      "target_sha256": "c2531dee368bc58c86c96a26f1b94e789cc31a920f1509fceeb24865aed8b0d9",
+      "artifact_sha256": "d40bb1a9a65a78b131dc0cf3b763f0171dbdd99da92af96f562880171cc6153e",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 258590942,
+      "target": 214511076,
+      "control": "any-search-filter",
+      "source_sha256": "5bd73c1a789376d38c79f22e0aaed47a253041955ddf46b82eb54cb4488828d4",
+      "target_sha256": "c2531dee368bc58c86c96a26f1b94e789cc31a920f1509fceeb24865aed8b0d9",
+      "artifact_sha256": "f6e1113489a95ebdfabefefc052d654b5804d5803d1cf033f12faa20e4de9347",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 258590942,
+      "target": 214511076,
+      "control": "no-discard",
+      "source_sha256": "5bd73c1a789376d38c79f22e0aaed47a253041955ddf46b82eb54cb4488828d4",
+      "target_sha256": "c2531dee368bc58c86c96a26f1b94e789cc31a920f1509fceeb24865aed8b0d9",
+      "artifact_sha256": "7aec215d281fb9f4c0c74464dae519512798917c6d1a3e1ad61998f6ac4b2c1b",
+      "results": [
+        {
+          "test": {},
+          "failure": "Actual effect discard after search\n\n0 !== 1\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 236744343,
+      "target": 215984744,
+      "control": null,
+      "source_sha256": "26666a68f4f3236b06131995dc2114aa62b3c7560014e2793964a7ce23e940b4",
+      "target_sha256": "2c15ccbaa2b8a6384236ea3836d96c6b0bb30288fd2ffb390faf890a1133711e",
+      "artifact_sha256": "fe5bd0d02fa5802fa98e7ef3b0625516688a6855829714a4fe94d28d8ce1c025",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 236744343,
+      "target": 215984744,
+      "control": "no-search",
+      "source_sha256": "26666a68f4f3236b06131995dc2114aa62b3c7560014e2793964a7ce23e940b4",
+      "target_sha256": "2c15ccbaa2b8a6384236ea3836d96c6b0bb30288fd2ffb390faf890a1133711e",
+      "artifact_sha256": "15ceee501d302cab3d4f6acfaf9d0b508e93dca738e842da47b286364ccaa19f",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 236744343,
+      "target": 215984744,
+      "control": "any-search-filter",
+      "source_sha256": "26666a68f4f3236b06131995dc2114aa62b3c7560014e2793964a7ce23e940b4",
+      "target_sha256": "2c15ccbaa2b8a6384236ea3836d96c6b0bb30288fd2ffb390faf890a1133711e",
+      "artifact_sha256": "d05f1dc36e28f45dd2821e8fbf6b55f267db6f94e67878ffd7fcb199fdd2d59f",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Spell search activation eligibility\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 258241424,
+      "target": 240976976,
+      "control": null,
+      "source_sha256": "49d176050b18c8ba43879dc1e9605d8af22de4dc0e3ef5212101d0f289afb6d1",
+      "target_sha256": "eed87abafbc4414779ab9efb3e06753c4dfe65086545efdc40bb767976ae9f28",
+      "artifact_sha256": "b03748a86d2ca5c581d64281d006b214fabafa97f43dfc2f402115d1df0a541c",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 258241424,
+      "target": 240976976,
+      "control": "no-search",
+      "source_sha256": "49d176050b18c8ba43879dc1e9605d8af22de4dc0e3ef5212101d0f289afb6d1",
+      "target_sha256": "eed87abafbc4414779ab9efb3e06753c4dfe65086545efdc40bb767976ae9f28",
+      "artifact_sha256": "95802282eccbdffbab5d5745b7e74162d286920f5b8d066ff2882fc72c32a7cf",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 258241424,
+      "target": 240976976,
+      "control": "any-search-filter",
+      "source_sha256": "49d176050b18c8ba43879dc1e9605d8af22de4dc0e3ef5212101d0f289afb6d1",
+      "target_sha256": "eed87abafbc4414779ab9efb3e06753c4dfe65086545efdc40bb767976ae9f28",
+      "artifact_sha256": "b34bd88a76c9802868498060a49eb66c8a29e01a78d3ec495bf7f95a0f82b5d7",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Spell search activation eligibility\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 212055290,
+      "target": 224467692,
+      "control": null,
+      "source_sha256": "8d409a5f2f55e9ca52cd4fa3338cb8809cba27b793f69f2978489c357bf31ba4",
+      "target_sha256": "a8c393023f3689c77171a3c55b4b76b1d0977ff5781df41deafc7a12c1897011",
+      "artifact_sha256": "3d4e10cda2291cd343dede48a054512d9ff93b0100da658ed244c9e7db399174",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongRace": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 212055290,
+      "target": 224467692,
+      "control": "no-search",
+      "source_sha256": "8d409a5f2f55e9ca52cd4fa3338cb8809cba27b793f69f2978489c357bf31ba4",
+      "target_sha256": "a8c393023f3689c77171a3c55b4b76b1d0977ff5781df41deafc7a12c1897011",
+      "artifact_sha256": "f1c5152a9bfa8cd30dd4989ed1a9c6c0d04d4c36f2bf772a58c097638ced2613",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongRace": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 212055290,
+      "target": 224467692,
+      "control": "any-search-filter",
+      "source_sha256": "8d409a5f2f55e9ca52cd4fa3338cb8809cba27b793f69f2978489c357bf31ba4",
+      "target_sha256": "a8c393023f3689c77171a3c55b4b76b1d0977ff5781df41deafc7a12c1897011",
+      "artifact_sha256": "d83431141fb91a0098fa684b11c9ed05f813f60726659726c3a1d56808e8fae3",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongRace": true
+          },
+          "failure": "Spell search activation eligibility\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 234592047,
+      "target": 221672256,
+      "control": null,
+      "source_sha256": "427b70d8f2a3e7aa2a06290dc17e10fdcdb0ebb5d6804e188a0ee7d1b3224580",
+      "target_sha256": "d457c9761e3d240f3a6ed29c3bbc18553774111178472184af2d163e895499c4",
+      "artifact_sha256": "d69fdfd84d3f6d3e72e0403ca8c929415df2f56ccff38527b5947572015f4bfa",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 234592047,
+      "target": 221672256,
+      "control": "no-search",
+      "source_sha256": "427b70d8f2a3e7aa2a06290dc17e10fdcdb0ebb5d6804e188a0ee7d1b3224580",
+      "target_sha256": "d457c9761e3d240f3a6ed29c3bbc18553774111178472184af2d163e895499c4",
+      "artifact_sha256": "30af4da4912fcc7760b5f9003777c525f4094906e3fbad352f5a5b40f4fbbf4c",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 234592047,
+      "target": 221672256,
+      "control": "any-search-filter",
+      "source_sha256": "427b70d8f2a3e7aa2a06290dc17e10fdcdb0ebb5d6804e188a0ee7d1b3224580",
+      "target_sha256": "d457c9761e3d240f3a6ed29c3bbc18553774111178472184af2d163e895499c4",
+      "artifact_sha256": "0de9d758a2108e556212817f067be4363e997a465d1d94a1ae7a411b7cfb2cf0",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Spell search activation eligibility\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 236551669,
+      "target": 225106953,
+      "control": null,
+      "source_sha256": "16d1ed237cc29fa2054a5596c1c4a0b6420ec22ad14c58f0b7f0d68d0ddb23ad",
+      "target_sha256": "4827f7cbee3cad793cdade437ee67ef6cb5be180ed81acbe216e0889de109263",
+      "artifact_sha256": "c51b79eb149fbfc93ea80a406266fd454ff8a2842ce13d23b18808f1d0a00923",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 236551669,
+      "target": 225106953,
+      "control": "no-search",
+      "source_sha256": "16d1ed237cc29fa2054a5596c1c4a0b6420ec22ad14c58f0b7f0d68d0ddb23ad",
+      "target_sha256": "4827f7cbee3cad793cdade437ee67ef6cb5be180ed81acbe216e0889de109263",
+      "artifact_sha256": "797efd2c8585f1dec2a82e6cd2dab52096b452491550a6d5c76c9b761a62a87e",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 236551669,
+      "target": 225106953,
+      "control": "any-search-filter",
+      "source_sha256": "16d1ed237cc29fa2054a5596c1c4a0b6420ec22ad14c58f0b7f0d68d0ddb23ad",
+      "target_sha256": "4827f7cbee3cad793cdade437ee67ef6cb5be180ed81acbe216e0889de109263",
+      "artifact_sha256": "512adb2b902606e6b157fc122f1043542156fcdb5b72d204ddc5e2ab3bbbe823",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Spell search activation eligibility\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 284636586,
+      "target": 284639717,
+      "control": null,
+      "source_sha256": "9b7b3dc7d69aa3a57f7375c3342e266a4d21db632fd0a8c6ea7e9d040f420556",
+      "target_sha256": "6ecf88d64e1bea15bd1c5ea7f89bb9fe043401ff6f18436f711f5c9eff3e25bf",
+      "artifact_sha256": "6d524da5c69968208ca2b21fa5783cb5285bc56d501a17ae6a974ce43386d111",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 284636586,
+      "target": 284639717,
+      "control": "no-search",
+      "source_sha256": "9b7b3dc7d69aa3a57f7375c3342e266a4d21db632fd0a8c6ea7e9d040f420556",
+      "target_sha256": "6ecf88d64e1bea15bd1c5ea7f89bb9fe043401ff6f18436f711f5c9eff3e25bf",
+      "artifact_sha256": "4091c48f8246cc97c55062f44c5a61a744b7729e060357c2afc3bda0adde91ba",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 284636586,
+      "target": 284639717,
+      "control": "any-search-filter",
+      "source_sha256": "9b7b3dc7d69aa3a57f7375c3342e266a4d21db632fd0a8c6ea7e9d040f420556",
+      "target_sha256": "6ecf88d64e1bea15bd1c5ea7f89bb9fe043401ff6f18436f711f5c9eff3e25bf",
+      "artifact_sha256": "471d6cbb5c1820de5b1499b2264ac183c5c05bc1081c95eda9fde1c816fb8e03",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 259758604,
+      "target": 259489283,
+      "control": null,
+      "source_sha256": "0df3eb78871441ceca7ca94cb62664b0db2db5db63a68037e8ef18cf7a1da9c7",
+      "target_sha256": "9b7293663d9464824d13c21556ac4b81bad3c6152e9e2f84c8c62de333706a3b",
+      "artifact_sha256": "6d0a3859cc016471c31443fe2fa64ed455581367f125b9be2a8989c03b0379bc",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 259758604,
+      "target": 259489283,
+      "control": "no-search",
+      "source_sha256": "0df3eb78871441ceca7ca94cb62664b0db2db5db63a68037e8ef18cf7a1da9c7",
+      "target_sha256": "9b7293663d9464824d13c21556ac4b81bad3c6152e9e2f84c8c62de333706a3b",
+      "artifact_sha256": "5fde7d2a2d573918ff205fb092e68a98147f90016e552c9bffdce3fa5ab64dd7",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 259758604,
+      "target": 259489283,
+      "control": "any-search-filter",
+      "source_sha256": "0df3eb78871441ceca7ca94cb62664b0db2db5db63a68037e8ef18cf7a1da9c7",
+      "target_sha256": "9b7293663d9464824d13c21556ac4b81bad3c6152e9e2f84c8c62de333706a3b",
+      "artifact_sha256": "2e92b8267720d1a754eefd0d08c38eff9b79c09faa06e20297219caf793da755",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Spell search activation eligibility\n\ntrue !== false\n"
+        }
+      ]
+    }
+  ]
+}

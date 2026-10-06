@@ -19,6 +19,14 @@ end
 function s.counterfilter(c)
 	return c:IsRace(RACE_SPELLCASTER)
 end
+--Keep Omega's native check where available; the fallback follows the original
+--core's card::is_capable_overlay(playerid), without bypassing its restrictions.
+function s.canoverlay(c,tp)
+	if Card.IsCanOverlay then return c:IsCanOverlay(tp) end
+	return (c:GetOriginalType()&TYPE_TOKEN)==0
+		and (c:IsLocation(LOCATION_ONFIELD) or not c:IsStatus(STATUS_FORBIDDEN))
+		and (c:IsControler(tp) or not c:IsHasEffect(EFFECT_CANNOT_CHANGE_CONTROL))
+end
 function s.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0 end
 	local e1=Effect.CreateEffect(e:GetHandler())
@@ -73,7 +81,7 @@ function s.tgfilter(c,e,tp)
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and s.tgfilter(chkc,e,tp) end
-	if chk==0 then return e:GetHandler():IsCanOverlay()
+	if chk==0 then return s.canoverlay(e:GetHandler(),tp)
 		and Duel.IsExistingTarget(s.tgfilter,tp,LOCATION_MZONE,0,1,nil,e,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local g=Duel.SelectTarget(tp,s.tgfilter,tp,LOCATION_MZONE,0,1,1,nil,e,tp)
@@ -101,7 +109,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Overlay(sc,Group.FromCards(tc))
 	if Duel.SpecialSummon(sc,SUMMON_TYPE_XYZ,tp,tp,false,false,POS_FACEUP)>0 then
 		sc:CompleteProcedure()
-		if c:IsRelateToEffect(e) and c:IsCanOverlay() then
+		if c:IsRelateToEffect(e) and s.canoverlay(c,tp) then
 			c:CancelToGrave()
 			Duel.Overlay(sc,c)
 		end

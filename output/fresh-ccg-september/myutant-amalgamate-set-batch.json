@@ -1,0 +1,76 @@
+{
+  "scope": "13 focused Set cases and four exact mutation checks; fixture Fusion summon bypasses material procedure, documented public visibility adapter, native Omega and copy effect remain open",
+  "script_sha256": "117fb88327bbf598ffce5f7f49799fb2235ae7761140ff7b4e7445032d69ca2a",
+  "harness_sha256": "80ffa7d393601c2bca3017adaaa2d09e259b1e16063f321b13334b27de026771",
+  "runs": [
+    {
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "123d2a543ced84a9772ba277104a4aac9782cfd6004212e9163120aea1873231"
+    },
+    {
+      "control": "no-set",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "trap": true
+        },
+        {
+          "grave": true
+        },
+        {
+          "removed": true
+        },
+        {
+          "removed": true,
+          "trap": true
+        },
+        {
+          "count": true
+        },
+        {
+          "count": true,
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "1adbe7cb38819766396917751bc5acc80297d00a0e9b99e6cb939f488d1a7faa"
+    },
+    {
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {
+          "count": true
+        },
+        {
+          "count": true,
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "783daff586515eed5ed2bb4e296ed0cbf3c25cfe02f6306c443036c7e3419a41"
+    },
+    {
+      "control": "any-summon",
+      "status": 1,
+      "expected_failures": [
+        {
+          "nonFusion": true
+        }
+      ],
+      "artifact_sha256": "b70e46f4743ad410052c9af1bf2b4b47ca7654e1e5e891c19c999e73f7ea8e5f"
+    },
+    {
+      "control": "allow-facedown",
+      "status": 1,
+      "expected_failures": [
+        {
+          "removed": true,
+          "facedown": true
+        }
+      ],
+      "artifact_sha256": "98511bc77ca4b43ddbf252cf9f41adbd72a1aec4f9819c2bc26385cd37572c78"
+    }
+  ]
+}

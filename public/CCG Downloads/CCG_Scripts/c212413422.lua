@@ -67,10 +67,15 @@ end
 function s.drgfilter2(c)
 	return (c:IsFaceup() or c:IsLocation(LOCATION_GRAVE)) and c:IsRace(RACE_DRAGON) and c:IsAbleToRemove()
 end
+-- Legacy Omega Gaia Fusion scripts omit material_setcode despite their printed materials.
+function s.gaiafusion(c)
+ local code=c:GetOriginalCode()
+ return aux.IsMaterialListSetCard(c,0xbd) or code==15989522 or code==2519690 or code==66889139
+end
 function s.ffilter(c,e,tp,mg)
 	return c:IsType(TYPE_FUSION) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 		and (mg==nil or Duel.GetLocationCountFromEx(tp,tp,mg,c)>0)
-		and aux.IsMaterialListSetCard(c,0xbd)
+		and s.gaiafusion(c)
 end
 function s.drgfilter3(c,e,tp,hc)
 	if not aux.NecroValleyFilter(s.drgfilter2)(c) then return false end
@@ -83,13 +88,14 @@ function s.sptg2(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 		and Duel.IsExistingTarget(s.drgfilter3,tp,LOCATION_ONFIELD+LOCATION_GRAVE,LOCATION_ONFIELD+LOCATION_GRAVE,1,c,e,tp,c) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local g=Duel.SelectTarget(tp,s.drgfilter3,tp,LOCATION_ONFIELD+LOCATION_GRAVE,LOCATION_ONFIELD+LOCATION_GRAVE,1,1,c,e,tp,c)
+	e:SetLabel(c:GetFieldID())
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,Group.FromCards(c,g:GetFirst()),2,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 end
 function s.spop2(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if c:IsRelateToEffect(e) and tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter()(tc) then
+	if c:IsRelateToEffect(e) and c:GetFieldID()==e:GetLabel() and tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter()(tc) then
 		local rg=Group.FromCards(c,tc)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 		local g=Duel.SelectMatchingCard(tp,s.ffilter,tp,LOCATION_EXTRA,0,1,1,nil,e,tp,rg)
@@ -107,7 +113,7 @@ function s.spop2(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.banishfilter(c,hc)
-	return c:IsSetCard(0xbd) and c~=hc
+	return c:IsFaceup() and c:IsType(TYPE_MONSTER) and c:IsSetCard(0xbd) and c~=hc
 end
 function s.recon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

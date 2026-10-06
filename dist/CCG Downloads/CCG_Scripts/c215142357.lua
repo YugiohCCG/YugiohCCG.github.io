@@ -97,7 +97,6 @@ end
 function s.drcon(e,tp,eg,ep,ev,re,r,rp)
 	local rc=re:GetHandler()
 	return rp==tp and re:IsActiveType(TYPE_MONSTER) and rc:IsSetCard(SET_SHINING_BRIGADE)
-		and rc:IsControler(tp) and rc:IsLocation(LOCATION_MZONE)
 		and re:GetActivateLocation()==LOCATION_MZONE
 end
 function s.drtg(e,tp,eg,ep,ev,re,r,rp,chk)

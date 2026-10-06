@@ -1,0 +1,52 @@
+{
+  "scope": "Canonical Ampere actual linked summon/movement then exact-Level-one search of canonical Farad from Deck. Wrong-set/Level controls, disabled search/lock controls and native Ohmen/non-Ohmen same-turn summon eligibility queries after search. Multicard sums, larger networks, lock expiry and native Omega remain open.",
+  "script_sha256": "089434f6cbf499bd344a16a0c98e64ff9114e06faba3d182ee8cbf5d5aecb699",
+  "harness_sha256": "e2e41705250fde8954e66a684ee530b7f120910cb5a99cc2288b994a82ea0ed9",
+  "batch_script_sha256": "e759f14f760a06aca8ddc0f47a84095f891a6d3db7f2a04bd340dd83e81e49ce",
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "public/CCG Downloads/CCG_Scripts/c231331942.lua": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067",
+    "output/fresh-ccg-september/public-core-card-data-adapter.mjs": "3df84e0cb3521c725a9d049409473c6a8506aca0d30a10ab8ed623efc2fe67c1",
+    "scripts/fresh_public_card_data_adapter.py": "aad6bba96d8eace5ccc5750deefc7e183d53024413e8aa0840bf7f2c653e58a2"
+  },
+  "runs": [
+    {
+      "card_data_adapter": true,
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact": "ampere-linked-search-259650132-259174227-card-data-adapter.json",
+      "artifact_sha256": "3a114ba0d0cb1b4b5400c3550dad8b3be2a9ef76a54445b07d407c39a373442e"
+    },
+    {
+      "card_data_adapter": true,
+      "control": "no-search",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "ampere-linked-search-259650132-259174227-card-data-adapter-no-search.json",
+      "artifact_sha256": "5d7ac49dfab9b5b94726f1425ad474bb258389d05327d0299fda169adfe86777"
+    },
+    {
+      "card_data_adapter": true,
+      "control": "no-search-lock",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "ampere-linked-search-259650132-259174227-card-data-adapter-no-search-lock.json",
+      "artifact_sha256": "392d11811a331c48dd544866b0f52f52d0947d65e105dda9bb7e647390267838"
+    }
+  ]
+}

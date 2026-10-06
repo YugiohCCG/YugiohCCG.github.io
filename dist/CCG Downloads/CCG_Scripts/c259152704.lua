@@ -48,10 +48,10 @@ function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return mg and mg:IsExists(s.matfilter,1,nil)
 end
 function s.matfilter(c)
-	return c:IsType(TYPE_TUNER) and c:IsAttribute(0x80)
+	return c:IsType(TYPE_TUNER) and c:IsRace(RACE_PLANT+RACE_INSECT+RACE_BEAST)
 end
 function s.spfilter(c,e,tp)
-	return c:IsAttribute(0x80) and c:IsLevelBelow(4) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return c:IsRace(RACE_PLANT+RACE_INSECT+RACE_BEAST) and c:IsLevelBelow(4) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
@@ -68,7 +68,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.tgtg(e,c)
-	return c:IsAttribute(0x80)
+	return c:IsRace(RACE_PLANT+RACE_INSECT+RACE_BEAST)
 end
 function s.atkval(e,c)
 	return c==e:GetHandler()

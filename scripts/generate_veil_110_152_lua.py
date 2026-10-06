@@ -39,7 +39,7 @@ function s.thop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND) local g=Duel.
 function s.rdf(c,e) return c~=e:GetHandler() and c:IsSetCard(SET_AEROCAT) and c:IsAbleToDeck() and (c:IsLocation(LOCATION_REMOVED) or aux.NecroValleyFilter(Card.IsAbleToDeck)(c,e)) end
 function s.one(c) return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:GetOverlayCount()==1 end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return s.rdf(chkc,e) end if chk==0 then return Duel.IsExistingTarget(s.rdf,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,e) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK) local g=Duel.SelectTarget(tp,s.rdf,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,3,nil,e) Duel.SetOperationInfo(0,CATEGORY_TODECK,g,#g,0,0) end
-function s.tdop(e,tp) local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(s.rdf,nil,e) if #g>0 and Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and Duel.IsExistingMatchingCard(s.one,tp,LOCATION_MZONE,0,1,nil) and Duel.IsPlayerCanDraw(tp,1) and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then Duel.BreakEffect(); Duel.Draw(tp,1,REASON_EFFECT) end end
+function s.tdop(e,tp) local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e):Filter(s.rdf,nil,e) if #g>0 and Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and Duel.IsExistingMatchingCard(s.one,tp,LOCATION_MZONE,0,1,nil) and Duel.IsPlayerCanDraw(tp,1) and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then Duel.BreakEffect(); Duel.Draw(tp,1,REASON_EFFECT) end end
 ''')
 
 add(259296151, r'''
@@ -242,9 +242,9 @@ function s.initial_effect(c)
  local e2=Effect.CreateEffect(c); e2:SetDescription(aux.Stringid(MSG_ID,1)); e2:SetCategory(CATEGORY_POSITION); e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O); e2:SetCode(EVENT_SPSUMMON_SUCCESS); e2:SetRange(LOCATION_SZONE); e2:SetProperty(EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_DELAY); e2:SetCountLimit(1,id+100); e2:SetTarget(s.postg); e2:SetOperation(s.posop); c:RegisterEffect(e2)
  local e3=e2:Clone(); e3:SetCode(EVENT_MSET); c:RegisterEffect(e3)
 end
-function s.chainfilter(re) return not re:IsActiveType(TYPE_SPELL+TYPE_TRAP) or re:GetHandler():IsSetCard(SET_WORLD_LEGACY) end
+function s.chainfilter(re) return not re:IsHasType(EFFECT_TYPE_ACTIVATE) or re:GetHandler():IsSetCard(SET_WORLD_LEGACY) end
 function s.wlf(c) return c:IsSetCard(SET_WORLD_LEGACY) and c:IsSpellTrap() and not c:IsCode(id) and (c:IsAbleToHand() or c:IsAbleToGrave()) end
-function s.lock(e,tp) local ex=Effect.CreateEffect(e:GetHandler()); ex:SetType(EFFECT_TYPE_FIELD); ex:SetCode(EFFECT_CANNOT_ACTIVATE); ex:SetProperty(EFFECT_FLAG_PLAYER_TARGET); ex:SetTargetRange(1,0); ex:SetValue(function(e,re) return re:IsActiveType(TYPE_SPELL+TYPE_TRAP) and not re:GetHandler():IsSetCard(SET_WORLD_LEGACY) end); ex:SetReset(RESET_PHASE+PHASE_END); Duel.RegisterEffect(ex,tp) end
+function s.lock(e,tp) local ex=Effect.CreateEffect(e:GetHandler()); ex:SetType(EFFECT_TYPE_FIELD); ex:SetCode(EFFECT_CANNOT_ACTIVATE); ex:SetProperty(EFFECT_FLAG_PLAYER_TARGET); ex:SetTargetRange(1,0); ex:SetValue(function(e,re) return re:IsHasType(EFFECT_TYPE_ACTIVATE) and not re:GetHandler():IsSetCard(SET_WORLD_LEGACY) end); ex:SetReset(RESET_PHASE+PHASE_END); Duel.RegisterEffect(ex,tp) end
 function s.acttg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_CHAIN)==0 and Duel.IsExistingMatchingCard(s.wlf,tp,LOCATION_DECK,0,1,nil) end s.lock(e,tp) end
 function s.actop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SELECT); local g=Duel.SelectMatchingCard(tp,s.wlf,tp,LOCATION_DECK,0,1,1,nil); local tc=g:GetFirst(); if not tc then return end local op=0; if tc:IsAbleToHand() and tc:IsAbleToGrave() then op=Duel.SelectOption(tp,1190,1191) elseif tc:IsAbleToGrave() then op=1 end if op==0 then Duel.SendtoHand(tc,nil,REASON_EFFECT); Duel.ConfirmCards(1-tp,tc) else Duel.SendtoGrave(tc,REASON_EFFECT) end end
 function s.pf(c) return c:IsFacedown() and c:IsCanChangePosition() end
@@ -685,8 +685,8 @@ function s.dendrite(c) return c:IsType(TYPE_MONSTER) and c:IsAbleToGrave() end
 function s.ranvier(c) return c:IsSetCard(SET_KRAWLER) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand() end
 function s.flipok(c,e,tp)
  local code=c:GetCode()
- if code==88316955 then return Duel.IsExistingMatchingCard(aux.TRUE,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) end
- if code==15710054 then return Duel.IsExistingMatchingCard(Card.IsSpellTrap,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
+ if code==88316955 then return Duel.IsExistingTarget(aux.TRUE,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) end
+ if code==15710054 then return Duel.IsExistingTarget(Card.IsSpellTrap,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil) end
  if code==51205763 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.glial),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil,e,tp) end
  if code==83293307 then return Duel.IsExistingMatchingCard(s.receptor,tp,LOCATION_DECK,0,1,nil) end
  if code==46083111 then return Duel.IsExistingMatchingCard(s.dendrite,tp,LOCATION_DECK,0,1,nil) end
@@ -700,6 +700,7 @@ function s.cptg(e,tp,eg,ep,ev,re,r,rp,chk)
  if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_CHAIN)==0 and Duel.IsExistingMatchingCard(s.rf,tp,loc,0,1,nil,e,tp) end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM); local g=Duel.SelectMatchingCard(tp,s.rf,tp,loc,0,1,1,nil,e,tp); Duel.ConfirmCards(1-tp,g)
  local code=g:GetFirst():GetCode(); e:SetLabel(code); s.lock(e,tp)
+ e:SetProperty((code==88316955 or code==15710054 or code==10698416) and EFFECT_FLAG_CARD_TARGET or 0)
  if code==88316955 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY); local tg=Duel.SelectTarget(tp,aux.TRUE,tp,LOCATION_MZONE,LOCATION_MZONE,1,1,nil); Duel.SetOperationInfo(0,CATEGORY_DESTROY,tg,1,0,0)
  elseif code==15710054 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY); local tg=Duel.SelectTarget(tp,Card.IsSpellTrap,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil); Duel.SetOperationInfo(0,CATEGORY_DESTROY,tg,1,0,0)
  elseif code==10698416 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); local tg=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.ranvier),tp,LOCATION_GRAVE,0,1,2,nil); Duel.SetOperationInfo(0,CATEGORY_TOHAND,tg,#tg,0,0) end
@@ -710,7 +711,7 @@ function s.cpop(e,tp)
  elseif code==51205763 then if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON); local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.glial),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,1,nil,e,tp); local tc=g:GetFirst(); if tc then local pos=Duel.SelectPosition(tp,tc,POS_FACEUP_ATTACK+POS_FACEDOWN_DEFENSE); if Duel.SpecialSummon(tc,0,tp,tp,false,false,pos)>0 and tc:IsFacedown() then Duel.ConfirmCards(1-tp,tc) end end
  elseif code==83293307 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); local g=Duel.SelectMatchingCard(tp,s.receptor,tp,LOCATION_DECK,0,1,1,nil); if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT); Duel.ConfirmCards(1-tp,g) end
  elseif code==46083111 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE); local g=Duel.SelectMatchingCard(tp,s.dendrite,tp,LOCATION_DECK,0,1,1,nil); Duel.SendtoGrave(g,REASON_EFFECT)
- elseif code==10698416 then local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(aux.NecroValleyFilter(s.ranvier),nil); if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT) end end
+ elseif code==10698416 then local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e):Filter(aux.NecroValleyFilter(s.ranvier),nil); if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT) end end
 end
 function s.thf(c) return (c:IsSetCard(SET_KRAWLER) and c:IsType(TYPE_MONSTER) or c:IsSetCard(SET_WORLD_LEGACY) and c:IsSpellTrap()) and not c:IsCode(id) and c:IsAbleToHand() end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.thf),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) end Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_GRAVE+LOCATION_REMOVED) end

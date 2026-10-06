@@ -1,0 +1,5 @@
+   local e4=Effect.CreateEffect(c)
+   e4:SetType(EFFECT_TYPE_SINGLE)
+   e4:SetCode(EFFECT_TRAP_ACT_IN_SET_TURN)
+   e4:SetCondition(function(e) return Duel.GetFlagEffect(e:GetHandlerPlayer(),id)>0 end)
+   c:RegisterEffect(e4)

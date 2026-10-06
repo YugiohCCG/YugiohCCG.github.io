@@ -5,7 +5,7 @@ function s.initial_effect(c)
  local e=Effect.CreateEffect(c); e:SetDescription(aux.Stringid(STRING_ID,0)); e:SetType(EFFECT_TYPE_ACTIVATE); e:SetCode(EVENT_FREE_CHAIN); e:SetProperty(EFFECT_FLAG_CARD_TARGET); e:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH); e:SetTarget(s.tg); e:SetOperation(s.op); c:RegisterEffect(e)
  local e2=Effect.CreateEffect(c); e2:SetType(EFFECT_TYPE_SINGLE); e2:SetCode(EFFECT_TRAP_ACT_IN_HAND); e2:SetCondition(function(e) return Duel.GetTurnPlayer()==e:GetHandlerPlayer() end); c:RegisterEffect(e2)
 end
-function s.filter(c) return c:IsSpellTrap() and c:GetTurnID()~=Duel.GetTurnCount() and c:IsAbleToRemove() and c:CheckActivateEffect(false,true,false)~=nil end
+function s.filter(c) return c:IsType(TYPE_SPELL+TYPE_TRAP) and c:GetTurnID()~=Duel.GetTurnCount() and c:IsAbleToRemove() and c:CheckActivateEffect(false,true,false)~=nil end
 function s.tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
  if chkc then local te=e:GetLabelObject(); local tg=te and te:GetTarget(); return tg and tg(e,tp,eg,ep,ev,re,r,rp,0,chkc) end
  if chk==0 then return Duel.IsExistingTarget(s.filter,tp,0,LOCATION_GRAVE,1,nil) end

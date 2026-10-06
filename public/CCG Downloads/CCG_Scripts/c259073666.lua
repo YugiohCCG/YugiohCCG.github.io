@@ -62,7 +62,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	if #gg>0 then Duel.SendtoGrave(gg,REASON_EFFECT) end
 end
 function s.tdfilter(c,e)
-	return c:IsRace(RACE_INSECT) and c:IsType(TYPE_MONSTER) and c:IsAbleToDeck()
+	return (c:IsSetCard(SET_WYVERNAL) or c:IsRace(RACE_INSECT)) and c:IsType(TYPE_MONSTER) and c:IsAbleToDeck()
 		and c:IsCanBeEffectTarget(e)
 end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)

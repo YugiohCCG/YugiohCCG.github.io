@@ -14,7 +14,7 @@ function s.initial_effect(c)
 	e0:SetType(EFFECT_TYPE_SINGLE)
 	e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e0:SetCode(EFFECT_SPSUMMON_CONDITION)
-	e0:SetValue(aux.fuslimit)
+	e0:SetValue(s.splimit)
 	c:RegisterEffect(e0)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -27,20 +27,13 @@ function s.initial_effect(c)
 	e1:SetOperation(s.spop)
 	c:RegisterEffect(e1)
 	--Opponent takes half the battle damage you would have taken
-	local e2=Effect.CreateEffect(c)
-	e2:SetType(EFFECT_TYPE_SINGLE)
-	e2:SetCode(EFFECT_REFLECT_BATTLE_DAMAGE)
-	e2:SetValue(1)
-	c:RegisterEffect(e2)
-	local e3=Effect.CreateEffect(c)
-	e3:SetType(EFFECT_TYPE_FIELD)
-	e3:SetCode(EFFECT_CHANGE_BATTLE_DAMAGE)
-	e3:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
-	e3:SetRange(LOCATION_MZONE)
-	e3:SetTargetRange(1,0)
-	e3:SetCondition(s.damcon)
-	e3:SetValue(HALF_DAMAGE)
-	c:RegisterEffect(e3)
+ local e2=Effect.CreateEffect(c)
+ e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+ e2:SetCode(EVENT_PRE_BATTLE_DAMAGE)
+ e2:SetRange(LOCATION_MZONE)
+ e2:SetCondition(s.damcon)
+ e2:SetOperation(s.damop)
+ c:RegisterEffect(e2)
 	--If Special Summoned from the Extra Deck: add or send 1 "Taxis" Spell/Trap
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(STRING_ID,1))
@@ -55,6 +48,9 @@ function s.initial_effect(c)
 	c:RegisterEffect(e4)
 end
 s.listed_names={TOKEN_PROTOGENIC,CARD_TO_PROTO_TAXIS}
+function s.splimit(e,se,sp,st)
+	return not e:GetHandler():IsLocation(LOCATION_EXTRA)
+end
 function s.matfilter(c,fc)
 	return c:IsCode(TOKEN_PROTOGENIC) and c:IsLevelAbove(1)
 end
@@ -62,7 +58,7 @@ function s.ctrlfilter(c)
 	return c:IsFaceup() and c:IsCode(CARD_TO_PROTO_TAXIS)
 end
 function s.spfilter(c,fc)
-	return s.matfilter(c,fc) and c:IsCanBeFusionMaterial(fc,SUMMON_TYPE_SPECIAL)
+	return c:IsControler(fc:GetControler()) and s.matfilter(c,fc) and c:IsCanBeFusionMaterial(fc,SUMMON_TYPE_SPECIAL)
 end
 function s.spcheck(g,tp,fc)
 	return Duel.GetLocationCountFromEx(tp,tp,g,fc)>0
@@ -92,8 +88,12 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	Duel.Release(g,REASON_SPSUMMON+REASON_MATERIAL)
 	g:DeleteGroup()
 end
-function s.damcon(e)
-	return e:GetHandler():GetBattleTarget()~=nil
+function s.damcon(e,tp,eg,ep)
+ return ep==tp and e:GetHandler():GetBattleTarget()~=nil
+end
+function s.damop(e,tp,eg,ep,ev)
+ Duel.ChangeBattleDamage(tp,0)
+ Duel.ChangeBattleDamage(1-tp,math.floor(ev/2),false)
 end
 function s.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonLocation(LOCATION_EXTRA)

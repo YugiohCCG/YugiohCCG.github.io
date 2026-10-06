@@ -113,16 +113,22 @@ RACE_BITS = {
 
 LINK_ARROW_BITS = {
     "BL": 0x1,
+    "down-left": 0x1,
     "B": 0x2,
+    "down": 0x2,
     "BR": 0x4,
+    "down-right": 0x4,
     "L": 0x8,
     "Left": 0x8,
     "R": 0x20,
     "Right": 0x20,
     "TL": 0x40,
+    "up-left": 0x40,
     "T": 0x80,
+    "up": 0x80,
     "Top": 0x80,
     "TR": 0x100,
+    "up-right": 0x100,
 }
 
 TREATED_AS_RE = re.compile(
@@ -131,6 +137,8 @@ TREATED_AS_RE = re.compile(
 )
 
 OFFICIAL_SHARED_SET_CODES = {
+    "symphonicwarrior": 0x1066,
+    "sylvan": 0x90,
     "gladiator": 0x19,
     "gladiatorbeast": 0x1019,
     "altergeist": 0x103,
@@ -170,6 +178,15 @@ OFFICIAL_SHARED_SET_CODES = {
 
 OMEGA_SET_CODES = {
     **OFFICIAL_SHARED_SET_CODES,
+    "rroot": 0xA110,
+    "underroot": 0xA111,
+    "overroot": 0xA112,
+    "afterroot": 0xA113,
+    "killamity": 0xA120,
+    "kaliyuga": 0xA121,
+    "terrarumian": 0xA122,
+    "darkswamp": 0xA123,
+    "hydra": 0xA124,
     "grayscale": 0x575D,
     "leet": 0xFE88,
     "scarstech": 0x52F8,
@@ -222,6 +239,18 @@ OMEGA_SET_CODES = {
 # are independently referenced by card text. Giving them a secondary setcode
 # avoids closed card-code lists and automatically supports future members.
 NAME_BASED_ARCHETYPE_PATTERNS = (
+    ("symphonicwarrior", r"\bSymphonic Warrior\b"),
+    ("nephthys", r"\bNephthys\b"),
+    ("sylvan", r"\bSylvan\b"),
+    ("rroot", r"\b(?:Underroot|Overroot|Afterroot)\b"),
+    ("underroot", r"\bUnderroot\b"),
+    ("overroot", r"\bOverroot\b"),
+    ("afterroot", r"\bAfterroot\b"),
+    ("killamity", r"\bKillamity\b"),
+    ("kaliyuga", r"\bKali Yuga\b"),
+    ("terrarumian", r"\bTerrarumian\b"),
+    ("darkswamp", r"\bDark Swamp\b"),
+    ("hydra", r"\bHydra\b"),
     ("rankupmagic", r"\bRank-Up-Magic\b"),
     ("eclipseobserver", r"\bEclipse Observer\b"),
     ("azrynior", r"\bAzrynior\b"),
@@ -237,12 +266,33 @@ NAME_BASED_ARCHETYPE_PATTERNS = (
 # "Chapter II Verse IV" is explicitly included by the Ataxia support card,
 # while retaining "The Hallowed Scripts" as its primary series.
 ADDITIONAL_CARD_SET_CODES = {
+    **{code: (0xA123,) for code in range(239935093, 239935103)},
+    284636661: (0x0F3C,),  # Aquamarine Seagrass Zostera
+    284636662: (0x0F3C,),  # Aquamarine Coral Krait
+    284636663: (0x0F3C,),  # Aquamarine Seafan Gorgonia
+    284636664: (0x0F3C,),  # Aquamarine Sand Clypeasteria
+    284636665: (0x0F3C,),  # Aquamarine Aquasanctuary
+    284636666: (0x0F3C,),  # Aquamarine Bubble Colony
+    244161941: (0x195,),  # Vanquish Soul Brawl
+    238274857: (0x30,),  # Vylon Chevron
+    238274858: (0x30,),  # Vylon Glome
+    238274859: (0x30,),  # Vylon Volt
+    238274860: (0x30,),  # Vylon Torus
+    238274861: (0x30, 0x53),  # Vylon's Aid: also Constellar (source says "alway")
+    238274862: (0x30,),  # Vylon Observatory
+    238274863: (0x30,),  # Vylon Eta
     241957394: (0x7398,),
     257549955: (0xE40D,),
     259214334: (0xE40D,),
     254065048: (0x7398,),
     248638801: (0x00CF,),
     251331463: (0xF2F4,),
+}
+
+TRAP_MONSTER_DATA_OVERRIDES = {
+    # A Trap's database type stays Trap; AddMonsterAttribute reads these stats
+    # when its activation Special Summons it as a monster.
+    284636661: {"atk": 500, "def": 2300, "level": 6, "race": RACE_BITS["Aqua"], "attribute": ATTRIBUTE_BITS["WATER"]},
 }
 
 # Alternate passcodes retained for backwards-compatible decks and replays. These
@@ -264,6 +314,18 @@ RELEASE_EXCLUDED_LEGACY_IDS = {
 }
 
 EXTRA_TOKEN_CARDS = [
+    {
+        "id": 239935103,
+        "name": "Hydra Head Token",
+        "desc": 'Special Summoned by the effect of "Terrifying Hydra".',
+        "setcode": OMEGA_SET_CODES["hydra"],
+        "type": TYPE_BITS["Monster"] | TYPE_BITS["Normal"] | TYPE_BITS["Token"],
+        "atk": 0,
+        "def": 0,
+        "level": 1,
+        "race": RACE_BITS["Reptile"],
+        "attribute": ATTRIBUTE_BITS["WATER"],
+    },
     {
         "id": 239823001,
         "name": "Pyre Token",
@@ -363,6 +425,127 @@ EXTRA_TOKEN_CARDS = [
 ]
 
 CARD_STRING_OVERRIDES = {
+    "terrifyinghydra": ["Summon Hydra Head Tokens or revive in the center zone", "Destroy all opponent field cards"],
+    "kaliyugajakarta": ["Negate an opponent Spell/Trap effect", "Banish a card from either GY", "Take 2000 damage", "Banish this card face-down"],
+    "azalethesylvanhighsovereign": ["Detach materials; excavate and revive Sylvans", "Excavate until a non-Plant; destroy opponent cards", "Select excavated cards to keep on top"],
+    "rubykillamityconvergence": ["Negate all opponent face-up cards", "Attach up to 4 own cards including a Killamity monster", "Attach opponent Monster, Spell and/or Trap cards?"],
+    "moltenzoictristegsaurus": ["Destroy your monster and an opponent card; summon from each GY", "Revive this card at the next Battle Phase"],
+    "skullunderseamelanocetus": ["Banish a Fish; draw 1", "Banish an opponent field card?", "Tribute a Fish; revive and banish an opponent GY card"],
+    "killamitypine": ["Special Summon this card from hand", "Xyz Summon a Rank 12 monster?", "Revive this card and a Rank 12 Xyz; negate their effects"],
+    "killamityazure": ["Discard 1 card; revive this card", "Return an opponent monster to hand", "Detach 1 material instead of Level/Rank 12 destruction?"],
+    "killamitygoldenrod": ["Special Summon this card from hand", "Set a Killamity Spell/Trap from Deck", "Attach this card to a Rank 12 Xyz", "Grant the Deck summon effect?", "Detach a monster; summon a different-Attribute Killamity monster"],
+    "killamityash": ["Send a Level 12 Deck monster; Special Summon this card", "Special Summon a Killamity monster from hand or GY"],
+    "killamitycrimson": ["Reveal a Rank 12 Xyz; Special Summon this card", "Add another Killamity monster from Deck"],
+    "killamityshowdown": ["Attach a matching opponent monster to a Rank 12 Xyz", "Banish this card; negate an opponent face-up card this turn"],
+    "killamityapparition": ["Reveal a monster; search a different-Attribute Killamity monster", "Banish this card and detach 1 Rank 12 material; draw", "Draw 1 more card?"],
+    "perseveranceofthehydrasheart": ["Revive or place a WATER Reptile; destroy your WATER Reptile card", "Special Summon the selected monster", "Place as Continuous Spell", "Banish this card instead of your WATER Reptile card?"],
+    "terrifyingfogofthedarkswamp": ["Negate the effect; destroy its card and your WATER Reptile card", "Banish 2 GY cards; recover a Dark Swamp Spell"],
+    "threeheadedsnakeoftheswamp": ["Place a WATER Reptile; add a low-Level Swamp-mentioning monster", "Recover a banished WATER Reptile after Fusion material banishment", "Add the selected monster to hand", "Place the selected monster as Continuous Spell"],
+    "heartofthehydra": ["Send another Deck WATER Reptile; place this card as Continuous Spell", "Add a Dark Swamp Spell/Trap from Deck"],
+    "terrifyingdarkswamp": ["Place a Deck WATER Reptile as a Continuous Spell", "Destroy a battling Hydra", "Change the opponent monster ATK/DEF to 0?", "Shuffle up to 2 banished WATER Reptiles into Deck"],
+    "rageoftheterrifyingdarkswamp": ["Destroy a WATER Reptile from hand, field or Deck", "Destroy another field card?", "Banish this card instead of losing Terrifying Dark Swamp?"],
+    "kaliyugaahimsakajustijhn": ["Xyz Summon using a FIRE Xyz revived this turn", "Draw 1 card; gain 1000 LP", "Revive after Kali Yuga effect destruction", "Shuffle a FIRE monster with a Level into Deck?"],
+    "kaliyugajarita": ["Detach 1 material; place a Kali Yuga Continuous Spell/Trap", "Destroy your Kali Yuga card or Spell/Trap; revive this card", "Attach an opponent Spell/Trap?"],
+    "kaliyugamurugan": ["Revive a Kali Yuga monster; Summon this card from hand", "Return this card after your Kali Yuga monster is destroyed", "Destroy a card in your hand or field", "Pay 2000 LP"],
+    "kaliyugasampati": ["Pay 1000 LP; negate a monster effect activation, then destroy another card", "Revive after Kali Yuga effect destruction"],
+    "kaliyugabheki": ["Destroy a Kali Yuga monster in Deck; inflict 400 damage", "Destroy a Kali Yuga card; return this card and gain 400 LP"],
+    "kaliyugakarkotaka": ["Summon after a Kali Yuga monster was destroyed this turn", "Declare Level 4 to 8 for a Kali Yuga monster"],
+    "kaliyugamayavada": ["Destroy an opponent face-up card?", "Banish a FIRE monster; place this card from GY", "Destroy another Kali Yuga card", "Discard 1 card"],
+    "kaliyugaangulimala": ["Destroy another Kali Yuga card; Summon this card", "Take a Kali Yuga card from Deck", "Destroy an opponent Spell/Trap?", "Add the selected card to hand", "Send the selected card to GY"],
+    "kaliyugadukkha": ["Add a Kali Yuga monster from Deck?", "Summon a Kali Yuga monster from hand or GY", "Destroy a card in your hand or field", "Pay 2000 LP"],
+    "kaliyugayajna": ["Destroy a Kali Yuga card from hand or field; draw 1", "Destroy a Kali Yuga card you control; Set this card from GY"],
+    "kaliyugavritra": ["Destroy this card; Summon a Kali Yuga monster from Deck in Attack Position", "Revive this card; discard if destroyed by Vritra"],
+    "lunalophosaur": ["Discard this card; add Lost World from Deck or GY", "Banish this card; destroy a Level 3 or lower Dinosaur you control", "Summon a Jurraegg Token to each field?"],
+    "wingedsnakeoftheswamp": ["Banish a card from your opponent\'s GY", "Set a Dark Swamp Spell/Trap from Deck or banishment"],
+    "sparklingsnakeoftheswamp": ["Discard this card; send another WATER Reptile from Deck to GY", "Destroy a monster on the field"],
+    "fiercesnakeoftheswamp": ["Discard this card; send another WATER Reptile from Deck to GY", "Destroy a Spell/Trap on the field"],
+    "terrorblossomfromunderroot": ["Add an Underroot card from your Deck", "Move up to 3 opponent cards between GY and banishment", "Send the monster this card battles to GY, then revive a different monster"],
+    "terrorblossomfromoverroot": ["Set an Overroot Trap from your Deck", "Attach a field card, then place a card from its controller's GY or banishment", "Send the monster this card battles to GY, then revive a different monster", "Special Summon the rroot monster face-up instead of Setting it?"],
+    "terrorblossomfromafterroot": ["Set an Afterroot Trap from your Deck", "Banish an opponent's Extra Deck monster, then offer a negated GY revival", "Send the monster this card battles to GY, then revive a different monster", "Special Summon the targeted monster with its effects negated?"],
+    "symphonicwarriorspeeaker": ["Destroy this Pendulum; place another Symphonic Warrior Pendulum from Deck", "Increase a Symphonic Warrior's Level; Special Summon this card", "Special Summon a Symphonic Warrior from hand, Deck, or face-up Extra Deck"],
+    "symphonicwarriormettronomo": ["Tribute a Symphonic Warrior; Summon different names with equal total Level", "Banish this card; change a Symphonic Warrior's Level", "Increase Level by 1", "Decrease Level by 1"],
+    "incarnationofnephthys": [
+        "Reveal this card and a Nephthys Ritual; send a Ritual Spell and copy its Ritual effect",
+        "Banish this card; destroy opponent cards based on Tributed Ritual materials",
+        "Shuffle 2 Nephthys monsters into the Deck during your next Standby Phase",
+    ],
+    "apostleofnephthys": [
+        "Reveal this card; destroy another hand card and Special Summon this card",
+        "Destroy an opponent's monster after Summon",
+        "Revive this card during your next Standby Phase",
+        "Add a Nephthys Spell from Deck or GY?",
+    ],
+    "scionofnephthys": [
+        "Reveal this card; destroy a Nephthys monster and Special Summon this card",
+        "Add a Ritual or Level 8 Nephthys monster from Deck",
+        "Recover a Nephthys card during your next Standby Phase",
+        "Special Summon this card after Sacred Phoenix activated this turn?",
+    ],
+    "brazierofnephthys": [
+        "Destroy another card; add a low-Level and a high-Level Nephthys monster",
+        "Destroy an opponent's card after a Nephthys card is destroyed",
+    ],
+    "symphonicwarriormegastaar": [
+        "Tribute a WIND Machine Synchro; Special Summon this Pendulum",
+        "Remove Symphonic Counters; banish up to that many opponent cards",
+        "Place this card in your Pendulum Zone",
+    ],
+    "symphonicwarriordisccs": [
+        "Return a card to hand; Special Summon this Pendulum",
+        "Add a Symphonic Warrior or a card mentioning Symphonic Counters",
+        "Return this card to hand; Special Summon a Symphonic Warrior",
+        "Remove 3 Symphonic Counters; Special Summon a Symphonic Warrior",
+    ],
+    "symphonicwarriorddj": [
+        "Flip a face-down Symphonic Warrior to face-up Defense Position",
+        "Return this Pendulum to hand; Special Summon a Symphonic Warrior from your Pendulum Zone",
+        "Special Summon a Level 4 or lower Symphonic Warrior face-down; apply the WIND Extra Deck restriction",
+        "Special Summon this card from hand, then optionally Synchro Summon",
+        "Add a Symphonic Warrior monster from Deck to hand",
+        "Synchro Summon using monsters you control, including this card?",
+    ],
+    "blossomskullfromunderroot": ["Discard this card; return an Extra Deck monster and offer its owner a replacement", "Decrease this card's Level, then Summon an rroot Fusion/Synchro/Xyz monster", "Special Summon this card after it is banished or returned to GY", "Special Summon a different same-Type and same-Level/Rank/Link monster?"],
+    "terrorskullfromunderroot": ["Add an Underroot monster from your Deck", "Decrease this card's Level, then Summon an rroot Fusion/Synchro/Xyz monster", "Add this returned or banished card to your hand", "Add another Underroot card from the same location?"],
+    "netherskullfromunderroot": ["Move a monster between GY and banishment; Special Summon this card", "Send an Underroot monster from Deck to GY, then banish a GY card", "Banish this card; shuffle rroot cards into the Deck"],
+    "overskullfromunderroot": ["Banish this card; Special Summon an Underroot monster from your Deck", "Decrease this card's Level and optionally treat it as non-Tuner", "Special Summon this card after it returns from banishment", "Treat this card as non-Tuner for an rroot Synchro Summon?"],
+    "terrarumiantrumpetpitchers": ["Destroy another Terrarumian; Special Summon this card in Defense Position", "Special Summon this card from your hand after your Pendulum is destroyed", "Destroy an opponent's monster and gain its original DEF", "Special Summon a face-up Terrarumian Pendulum from your Extra Deck?"],
+    "terrarumiansundew": ["Destroy up to 2 Terrarumian cards; Special Summon in Defense Position", "Special Summon a Terrarumian Pendulum Monster from Deck, then destroy a card", "Shuffle face-up Extra Deck monsters into the Deck", "Destroy a second Terrarumian card?", "Add a face-up Terrarumian Pendulum Monster from your Extra Deck?"],
+    "terrarumianivy": ["Destroy another Terrarumian card; Special Summon this card", "Revive a Terrarumian or negate an opponent's Special Summoned monster", "Special Summon a Terrarumian Pendulum Monster from your GY?", "Special Summon a Terrarumian monster from your GY with its effects negated", "Negate the effects of an opponent's Special Summoned monster"],
+    "terrarumianstaghornfern": ["Negate an opponent's response effect and destroy this card", "Destroy another Terrarumian card; Special Summon this card", "Send a Terrarumian from Deck or an opponent's monster to the GY", "Special Summon another Terrarumian Pendulum Monster from your hand?", "Send a Terrarumian monster from Deck to the GY", "Target an opponent's Level 6 or lower monster; send it to the GY"],
+    "terrarumiannerveplant": ["Destroy another Terrarumian card; Special Summon this card", "Destroy a Spell/Trap on the field", "Set a Terrarumian Spell/Trap from your GY?"],
+    "terrarumianswordfern": ["Destroy another Terrarumian card; Special Summon and place a Pendulum", "Set a Terrarumian Spell/Trap from your Deck"],
+    "terrarumiancoinplant": ["Destroy another Terrarumian card; Special Summon and place a Pendulum", "Banish a card from the opponent's GY or temporarily from their hand", "Banish a random card from your opponent's hand instead?"],
+    "terrarumiancushionmoss": ["Destroy another Terrarumian card; Special Summon and place a Pendulum", "Add a Terrarumian monster from your Deck"],
+    "terrarumiangrowth": ["Destroy another Terrarumian card; place a Pendulum Monster from Deck", "Banish this card; Set a Terrarumian Spell/Trap from your GY"],
+    "terrarumianvenusflytrap": [
+        'Destroy 1 "Terrarumian" card; draw 1 card',
+        'Destroy a pointed "Terrarumian" monster and another card',
+    ],
+    "terrarumiantillandsia": [
+        'Add 1 "Terrarumian" card from your Deck',
+        'Destroy another card you control?',
+        'Special Summon this card from your GY',
+    ],
+    "terrarumianterrarium": ["Take a Terrarumian Pendulum Monster from your Deck?", "Add it to your hand", "Destroy it"],
+    "terrarumianspores": ["Negate the activation and destroy that card", "Tribute a Terrarumian monster; Set this card", "Destroy a Terrarumian card you control?"],
+    "aquamarinebubblecolony": ["Special Summon by banishing different-name Aquamarine monsters from your GY"],
+    "aquamarinecoralkrait": ["Target a face-up card; send it to the GY", "Special Summon an Aquamarine Fusion Monster from your Extra Deck"],
+    "aquamarinesandclypeasteria": ["Special Summon this card from your hand", "Fusion Summon using banished materials returned to the GY", "Banish another Aquamarine card; Special Summon this card"],
+    "aquamarineseagrasszostera": ["Special Summon this card as a Trap Monster", "Discard an Aquamarine card to activate this Set turn", "Banish an Aquamarine card from your GY", "Send a low-Level Aquamarine from Deck and banish another from GY?"],
+    "aquamarineseafangorgonia": ["Special Summon this card from your hand", "Set an Aquamarine Spell/Trap from Deck", "Add Aquamarine Aquasanctuary, then discard 1"],
+    "aquamarineaquasanctuary": ["Add an Aquamarine card, then discard 1", "Special Summon an Aquamarine monster from your GY", "Add an Aquamarine card from your Deck?"],
+    "heavyarmouredballistabahariasaurus": ["Summon a Dinosaur from your GY to your opponent's field, then destroy adjacent cards", "Send a Spell to the GY; Special Summon this destroyed card"],
+    "mevalkagnaeyeofzenith": ["Banish 3 different Type/Attribute monsters; Special Summon this card", "Lose 1000 ATK; take control of a matching monster", "Destroy all monsters that battled this turn"],
+    "vanquishsoulbrawl": ["Reveal a monster; Summon a differently attributed Vanquish Soul", "Return this and 2 other Vanquish Soul cards to the Deck bottom"],
+    "vylonobservatory": ["Special Summon a Vylon Tuner from your Deck", "Equip destroyed-card replacements from GY", "Special Summon a Vylon Tuner?"],
+    "vylonchevron": ["Send a Vylon card to the GY; Summon a Level 4 or lower Vylon from Deck", "Synchro Summon a LIGHT Synchro Monster", "Pay 500 LP; equip this card to a face-up monster"],
+    "vylontorus": ["Destroy a Vylon card, then Special Summon this card", "Add a Vylon monster and Spell, then discard 1", "Special Summon a Vylon monster from hand or GY"],
+    "vylonvolt": ["Reveal another Vylon monster; Special Summon both", "Equip a Vylon Union monster from Deck or GY"],
+    "vylonglome": ["Equip this card to a Vylon monster", "Unequip and Special Summon this card", "Add a Vylon monster from your Deck", "Special Summon a non-Tuner Vylon monster from your GY"],
+    "vylonsaid": ["Special Summon 2 LIGHT monsters from your GY", "Banish this and a Vylon Synchro Monster; add an Equip Spell"],
+    "vyloneta": ["Add 1 Vylon Equip Spell from Deck or GY to your hand", "Equip this card to a Vylon Synchro Monster you control", "Destroy this Equip card instead?"],
+    "machinamegaframe": ["Add 1 Machina monster from your Deck to your hand", "Send 1 Level 10 Machina monster from Deck to GY, then Special Summon this card"],
+    "machinatrailblazer": ["Special Summon this card from your hand", "Set 1 Machina Spell/Trap from your Deck", "Destroy 1 monster on the field?"],
     "theintergalataxian": [
         'Send and apply 1 "Galactica" Spell, then Special Summon this card',
         "End the Battle Phase",
@@ -724,6 +907,41 @@ CARD_STRING_OVERRIDES = {
     "wickedpuppeteery": [
         'Add 1 "Wicked Puppeteer" monster',
         'Add "Tragedy" and 1 monster',
+    ],
+    "ginkthesylvanhighchampion": [
+        'Add 1 "Sylvan" monster; excavate the top card',
+        'Detach materials; excavate and negate a Spell/Trap effect',
+    ],
+    "sylvanduchessprout": [
+        'Excavate the top 2 cards of your Deck',
+        'Banish this card; declare a Level for 1 "Sylvan" monster',
+    ],
+    "sylvanblast": [
+        'Place "Sylvan" monsters from Deck or GY on top of your Deck?',
+        'Tribute 1 Plant monster; excavate its Level/Rank/Link Rating',
+    ],
+    "sylvangreetings": [
+        'Excavate 5 cards; add up to 2 "Sylvan" Spell/Trap Cards',
+        'Add excavated "Sylvan" Spell/Trap Cards to your hand?',
+        'Special Summon 1 "Sylvan" monster from hand or GY',
+    ],
+    "sylvanflamioak": [
+        'Choose 1 to 3; excavate that many cards',
+        'Special Summon this card from hand or GY',
+        'Add 1 "Sylvan" Spell/Trap from Deck or GY',
+    ],
+    "sylvangoleaf": [
+        'Place 1 "Sylvan" monster on top of your Deck',
+        'Excavate 1 card; send a Plant and change Level',
+        'Special Summon 1 targeted "Sylvan" monster from your GY',
+    ],
+    "sylvanflamushroomo": [
+        'Reveal "Sylvan" cards; excavate the same number of cards',
+        'Special Summon 1 "Sylvan" monster from hand or GY',
+    ],
+    "prayerofnephthys": [
+        'Destroy 1 Level 8 "Nephthys" monster; Special Summon 2 Level 2 monsters',
+        'Banish this card; add 1 "Nephthys" Spell/Trap or "Phoenix Wing Wind Blast"',
     ],
     "divinephoenixofnephthys": [
         'Destroy 1 "Nephthys" monster; Special Summon',
@@ -2988,7 +3206,9 @@ def build_def(card: dict[str, Any]) -> int:
         return -2 if defense is None else int(defense)
     arrows = 0
     for arrow in card.get("linkArrows") or []:
-        arrows |= LINK_ARROW_BITS.get(str(arrow), 0)
+        if str(arrow) not in LINK_ARROW_BITS:
+            raise ValueError(f"Unknown Link Arrow {arrow!r} for {card.get('name')!r}")
+        arrows |= LINK_ARROW_BITS[str(arrow)]
     return arrows
 
 
@@ -3172,7 +3392,7 @@ def build_existing_setcode_map(cards: list[dict[str, Any]], rows: list[sqlite3.R
         if not card or not codes:
             continue
         tags: list[str] = []
-        if card.get("archetype"):
+        if card.get("archetype") and normalize_name(card["archetype"]) not in {"existing", "new"}:
             tags.append(canonical_display_name(card["archetype"]))
         tags.extend(extract_treated_as_names(card.get("text")))
         if not tags:
@@ -3371,7 +3591,7 @@ def build_data_row(
 ) -> dict[str, Any]:
     tags: list[str] = []
     archetype = canonical_display_name(card.get("archetype"))
-    if archetype:
+    if archetype and normalize_name(archetype) not in {"existing", "new"}:
         tags.append(archetype)
     tags.extend(extract_treated_as_names(card.get("text")))
     tags.extend(extract_name_based_archetype_names(card.get("name")))
@@ -3393,7 +3613,7 @@ def build_data_row(
         if code not in seen_codes:
             seen_codes.add(code)
             setcodes.append(code)
-    return {
+    row = {
         "id": card_id,
         "ot": infer_primary_ot(existing_row["ot"] if existing_row else None),
         "alias": int(existing_row["alias"]) if existing_row else 0,
@@ -3413,6 +3633,8 @@ def build_data_row(
         "script": bytes(existing_row["script"]) if existing_row and existing_row["script"] is not None else b"",
         "support": bytes(existing_row["support"]) if existing_row and existing_row["support"] is not None else b"\x00",
     }
+    row.update(TRAP_MONSTER_DATA_OVERRIDES.get(card_id, {}))
+    return row
 
 
 def upsert_card_rows(

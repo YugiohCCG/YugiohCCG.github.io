@@ -1,0 +1,41 @@
+{
+  "scope": "Cassiopeia Normal Summon/Set and native membership/type/stats in five locations; two database metadata mutations. No adapters. Native Omega remains unverified",
+  "script_sha256": "a8c393023f3689c77171a3c55b4b76b1d0977ff5781df41deafc7a12c1897011",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "runs": [
+    {
+      "harness": "normal",
+      "harness_sha256": "ef871d7a5bdaac20b878c562d18cc549076bf40198aed8448cde30ccaa7950c6",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "afd360058550adefc262ad6ab33ca3e5a65a73c574a12f7fe5fca00feb88784e"
+    },
+    {
+      "harness": "normal",
+      "harness_sha256": "ef871d7a5bdaac20b878c562d18cc549076bf40198aed8448cde30ccaa7950c6",
+      "control": "no-membership",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "set": true
+        }
+      ],
+      "artifact_sha256": "62e466c6c185b8b2a1e54502559847a2670c4f25aef2f0e5aa9715bb82f0bfb7"
+    },
+    {
+      "harness": "normal",
+      "harness_sha256": "ef871d7a5bdaac20b878c562d18cc549076bf40198aed8448cde30ccaa7950c6",
+      "control": "wrong-type",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "set": true
+        }
+      ],
+      "artifact_sha256": "ef058dd93140d1b12f62b5b127235b5966c5f1db69dfb433ccae1c02fc6bfb17"
+    }
+  ]
+}

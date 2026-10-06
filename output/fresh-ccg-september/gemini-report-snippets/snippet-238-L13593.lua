@@ -1,0 +1,1 @@
+    Duel.SendtoGrave(tc,REASON_EFFECT+REASON_RETURN)

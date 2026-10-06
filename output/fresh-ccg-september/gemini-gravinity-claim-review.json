@@ -1,0 +1,377 @@
+{
+  "report_sha256": "3dd2ba767ed0155d599a5237ff3a21ba7f0d4a3a22a79337a5b61547b41026a3",
+  "scope": "All numbered card-specific Group D claims given explicit evidence-scoped verdicts. Not completed card audits or installed fixes.",
+  "diagnostic_sha256": "f350219a4d7805b11b239ab95be969bf08fa06afc2556818096e7cf01d1311f2",
+  "claims": [
+    {
+      "passcode": 212345347,
+      "name": "Gravinity Lapsix",
+      "report_line": 2753,
+      "source_sha256": "5ba1398b3e0a3fae63e6caa966d97cbf295ac7f0f9a1c2ab50ec54527daa448b",
+      "verdict": "PARTLY_SUPPORTED_SCOPE_GAP",
+      "reason": "Source registers the permission on the prospective material while it is in SZONE. Calling that intrinsically wrong ignores the engine material-side permission mechanism. However this alone does not grant permission to every Gravinity Monster Card placed there by other effects. A complete destination/material test is required; do not remove all material-side effects as unprinted extras.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 249454272,
+      "name": "Gravinity Galaxix",
+      "report_line": 3688,
+      "source_sha256": "8f67837edd8912c59452a8d177a15f4c9233d219e13661a6e56a496f5be0661e",
+      "verdict": "PARTLY_SUPPORTED_SCOPE_GAP",
+      "reason": "Source registers the permission on the prospective material while it is in SZONE. Calling that intrinsically wrong ignores the engine material-side permission mechanism. However this alone does not grant permission to every Gravinity Monster Card placed there by other effects. A complete destination/material test is required; do not remove all material-side effects as unprinted extras.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 212345347,
+      "name": "Gravinity Lapsix",
+      "report_line": 2764,
+      "source_sha256": "5ba1398b3e0a3fae63e6caa966d97cbf295ac7f0f9a1c2ab50ec54527daa448b",
+      "verdict": "SUPPORTED_SOURCE_GAP",
+      "reason": "Previous SZONE alone is checked without previous controller. Printed your Spell & Trap Zone requires the previous controller distinction; test opponent-controlled SZONE transfer separately.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 212429024,
+      "name": "Gravinity Nebulix",
+      "report_line": 2917,
+      "source_sha256": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921",
+      "verdict": "SUPPORTED_SOURCE_GAP",
+      "reason": "Previous SZONE alone is checked without previous controller. Printed your Spell & Trap Zone requires the previous controller distinction; test opponent-controlled SZONE transfer separately.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 249454272,
+      "name": "Gravinity Galaxix",
+      "report_line": 3690,
+      "source_sha256": "8f67837edd8912c59452a8d177a15f4c9233d219e13661a6e56a496f5be0661e",
+      "verdict": "SUPPORTED_SOURCE_GAP",
+      "reason": "Previous SZONE alone is checked without previous controller. Printed your Spell & Trap Zone requires the previous controller distinction; test opponent-controlled SZONE transfer separately.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 212345347,
+      "name": "Gravinity Lapsix",
+      "report_line": 2769,
+      "source_sha256": "5ba1398b3e0a3fae63e6caa966d97cbf295ac7f0f9a1c2ab50ec54527daa448b",
+      "verdict": "PARTLY_SUPPORTED_PREDICATE",
+      "reason": "IsType(TYPE_TRAP) does not explicitly require Continuous Trap. Requiring both Trap and Continuous type bits is sufficient; strict GetType equality is stronger than the printed requirement if extra type bits can exist. No observed failure supplied.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 249454272,
+      "name": "Gravinity Galaxix",
+      "report_line": 3692,
+      "source_sha256": "8f67837edd8912c59452a8d177a15f4c9233d219e13661a6e56a496f5be0661e",
+      "verdict": "PARTLY_SUPPORTED_PREDICATE",
+      "reason": "IsType(TYPE_TRAP) does not explicitly require Continuous Trap. Requiring both Trap and Continuous type bits is sufficient; strict GetType equality is stronger than the printed requirement if extra type bits can exist. No observed failure supplied.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 212345347,
+      "name": "Gravinity Lapsix",
+      "report_line": 2774,
+      "source_sha256": "5ba1398b3e0a3fae63e6caa966d97cbf295ac7f0f9a1c2ab50ec54527daa448b",
+      "verdict": "SUPPORTED_SOURCE_TIMING_GAP",
+      "reason": "The printed then separates events. Current successful draw->summon or return->draw path has no BreakEffect. Preserve success dependence and optionality when inserting timing separation; full operation cases remain required.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 249454272,
+      "name": "Gravinity Galaxix",
+      "report_line": 3694,
+      "source_sha256": "8f67837edd8912c59452a8d177a15f4c9233d219e13661a6e56a496f5be0661e",
+      "verdict": "SUPPORTED_SOURCE_TIMING_GAP",
+      "reason": "The printed then separates events. Current successful draw->summon or return->draw path has no BreakEffect. Preserve success dependence and optionality when inserting timing separation; full operation cases remain required.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 212429024,
+      "name": "Gravinity Nebulix",
+      "report_line": 2919,
+      "source_sha256": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921",
+      "verdict": "SUPPORTED_SOURCE_TIMING_GAP",
+      "reason": "The printed then separates events. Current successful draw->summon or return->draw path has no BreakEffect. Preserve success dependence and optionality when inserting timing separation; full operation cases remain required.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 212429024,
+      "name": "Gravinity Nebulix",
+      "report_line": 2915,
+      "source_sha256": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921",
+      "verdict": "SUPPORTED_SOURCE_GAP",
+      "reason": "Cannot-disable-Special-Summon effect is unconditioned although printed protection is only for Synchro Summon. A permitted other inherent summon can expose the wider protection; summons during chain resolution already cannot be negated, so the GY-effect example alone does not prove an exploit.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 231088629,
+      "name": "Gravinity Spherix",
+      "report_line": 3240,
+      "source_sha256": "a64693dbd99554bb567b66e84627192f772d4a9c11e951be300c6dcd7848f0ba",
+      "verdict": "SUPPORTED_SOURCE_GAP",
+      "reason": "Cannot-disable-Special-Summon effect is unconditioned although printed protection is only for Synchro Summon. A permitted other inherent summon can expose the wider protection; summons during chain resolution already cannot be negated, so the GY-effect example alone does not prove an exploit.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 212429024,
+      "name": "Gravinity Nebulix",
+      "report_line": 2921,
+      "source_sha256": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921",
+      "verdict": "SUPPORTED_SOURCE_DIFFERENCE",
+      "reason": "Type-change effect lacks CANNOT_DISABLE and includes TURN_SET reset, unlike the established family trapification implementation. Verify actual disable/set persistence and intended leave-field reset before applying the family pattern.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 238184015,
+      "name": "Gravinity Sonic Scream",
+      "report_line": 3567,
+      "source_sha256": "2e343cb26301b091e96df4c4cb623f0dc1d923d647141c546d9235da972718df",
+      "verdict": "SUPPORTED_SOURCE_DIFFERENCE",
+      "reason": "Type-change effect lacks CANNOT_DISABLE and includes TURN_SET reset, unlike the established family trapification implementation. Verify actual disable/set persistence and intended leave-field reset before applying the family pattern.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 212429024,
+      "name": "Gravinity Nebulix",
+      "report_line": 2923,
+      "source_sha256": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921",
+      "verdict": "NEEDS_EVENT_TRACE",
+      "reason": "EVENT_CHAIN_SOLVED handling lacks a negation guard. The relationship between chain-solved dispatch and activation/effect negation must be tested before declaring every negated resolution triggers this effect.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 215768254,
+      "name": "Gravinity Star",
+      "report_line": 3064,
+      "source_sha256": "d5d3b775c6eb710209f5f97982722aa7ecefc2ee094589aeb6dc0b2a2d4fe005",
+      "verdict": "SUPPORTED_SOURCE_GAP",
+      "reason": "Two bullets of one named once-per-turn effect are registered with distinct id+100/id+200 counters, allowing separate uses. Sharing a counter repairs the restriction; a single modal effect is not inherently required. Transfer Call overriding branch execution must remain supported.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 235538173,
+      "name": "Gravinity Plasma",
+      "report_line": 3422,
+      "source_sha256": "7edfdc113441b9dc252035ebd2ed041e193f569fe18ff7b30db75cfd9af7e212",
+      "verdict": "SUPPORTED_SOURCE_GAP",
+      "reason": "Two bullets of one named once-per-turn effect are registered with distinct id+100/id+200 counters, allowing separate uses. Sharing a counter repairs the restriction; a single modal effect is not inherently required. Transfer Call overriding branch execution must remain supported.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 249680945,
+      "name": "Gravinity Orbit",
+      "report_line": 3816,
+      "source_sha256": "1e6df60518adde19b5a27e5075c45c39a61cd43ec625b3536dd6b4011d5ef669",
+      "verdict": "SUPPORTED_SOURCE_GAP",
+      "reason": "Two bullets of one named once-per-turn effect are registered with distinct id+100/id+200 counters, allowing separate uses. Sharing a counter repairs the restriction; a single modal effect is not inherently required. Transfer Call overriding branch execution must remain supported.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 256172827,
+      "name": "Gravinity Pulse",
+      "report_line": 3964,
+      "source_sha256": "7026487c1f7b2ac50539b9c7281fbb446491f84f76e22795084dea9eaf354fdc",
+      "verdict": "SUPPORTED_SOURCE_GAP",
+      "reason": "Two bullets of one named once-per-turn effect are registered with distinct id+100/id+200 counters, allowing separate uses. Sharing a counter repairs the restriction; a single modal effect is not inherently required. Transfer Call overriding branch execution must remain supported.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 215768254,
+      "name": "Gravinity Star",
+      "report_line": 3066,
+      "source_sha256": "d5d3b775c6eb710209f5f97982722aa7ecefc2ee094589aeb6dc0b2a2d4fe005",
+      "verdict": "SUPPORTED_SELECTION_GAP",
+      "reason": "SelectDisableField receives zero explicit exclusion mask and only checks CheckLocation after choice. This allows a selection that produces no movement rather than offering only another valid column. Actual selection-mask evidence is still required; MoveSequence legality is not itself bypassed.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 235538173,
+      "name": "Gravinity Plasma",
+      "report_line": 3423,
+      "source_sha256": "7edfdc113441b9dc252035ebd2ed041e193f569fe18ff7b30db75cfd9af7e212",
+      "verdict": "SUPPORTED_SELECTION_GAP",
+      "reason": "SelectDisableField receives zero explicit exclusion mask and only checks CheckLocation after choice. This allows a selection that produces no movement rather than offering only another valid column. Actual selection-mask evidence is still required; MoveSequence legality is not itself bypassed.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 249680945,
+      "name": "Gravinity Orbit",
+      "report_line": 3817,
+      "source_sha256": "1e6df60518adde19b5a27e5075c45c39a61cd43ec625b3536dd6b4011d5ef669",
+      "verdict": "SUPPORTED_SELECTION_GAP",
+      "reason": "SelectDisableField receives zero explicit exclusion mask and only checks CheckLocation after choice. This allows a selection that produces no movement rather than offering only another valid column. Actual selection-mask evidence is still required; MoveSequence legality is not itself bypassed.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 256172827,
+      "name": "Gravinity Pulse",
+      "report_line": 3965,
+      "source_sha256": "7026487c1f7b2ac50539b9c7281fbb446491f84f76e22795084dea9eaf354fdc",
+      "verdict": "SUPPORTED_SELECTION_GAP",
+      "reason": "SelectDisableField receives zero explicit exclusion mask and only checks CheckLocation after choice. This allows a selection that produces no movement rather than offering only another valid column. Actual selection-mask evidence is still required; MoveSequence legality is not itself bypassed.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 215768254,
+      "name": "Gravinity Star",
+      "report_line": 3068,
+      "source_sha256": "d5d3b775c6eb710209f5f97982722aa7ecefc2ee094589aeb6dc0b2a2d4fe005",
+      "verdict": "REJECTED_BLANKET_REMOVAL",
+      "reason": "Material-side permission is used to implement Lapsix/Galaxix printed SZONE material allowance. Removing it as an unprinted bonus without providing a tested replacement permission mechanism would break an intended mechanic.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 235538173,
+      "name": "Gravinity Plasma",
+      "report_line": 3424,
+      "source_sha256": "7edfdc113441b9dc252035ebd2ed041e193f569fe18ff7b30db75cfd9af7e212",
+      "verdict": "REJECTED_BLANKET_REMOVAL",
+      "reason": "Material-side permission is used to implement Lapsix/Galaxix printed SZONE material allowance. Removing it as an unprinted bonus without providing a tested replacement permission mechanism would break an intended mechanic.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 249680945,
+      "name": "Gravinity Orbit",
+      "report_line": 3818,
+      "source_sha256": "1e6df60518adde19b5a27e5075c45c39a61cd43ec625b3536dd6b4011d5ef669",
+      "verdict": "REJECTED_BLANKET_REMOVAL",
+      "reason": "Material-side permission is used to implement Lapsix/Galaxix printed SZONE material allowance. Removing it as an unprinted bonus without providing a tested replacement permission mechanism would break an intended mechanic.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 256172827,
+      "name": "Gravinity Pulse",
+      "report_line": 3966,
+      "source_sha256": "7026487c1f7b2ac50539b9c7281fbb446491f84f76e22795084dea9eaf354fdc",
+      "verdict": "REJECTED_BLANKET_REMOVAL",
+      "reason": "Material-side permission is used to implement Lapsix/Galaxix printed SZONE material allowance. Removing it as an unprinted bonus without providing a tested replacement permission mechanism would break an intended mechanic.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 215768254,
+      "name": "Gravinity Star",
+      "report_line": 3070,
+      "source_sha256": "d5d3b775c6eb710209f5f97982722aa7ecefc2ee094589aeb6dc0b2a2d4fe005",
+      "verdict": "UI_TIMING_IMPROVEMENT_NOT_PROVEN_DEFECT",
+      "reason": "Hint timing improves prompts, but its absence is not evidence the legal Main Phase Quick Effect cannot activate.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 235538173,
+      "name": "Gravinity Plasma",
+      "report_line": 3425,
+      "source_sha256": "7edfdc113441b9dc252035ebd2ed041e193f569fe18ff7b30db75cfd9af7e212",
+      "verdict": "NEEDS_FORBIDDEN_CASE",
+      "reason": "Deck-to-SZONE target predicate omits IsForbidden. Test the actual prohibition/placement rules and MoveToField behavior rather than certify an illegal play from the omission alone.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 238184015,
+      "name": "Gravinity Sonic Scream",
+      "report_line": 3565,
+      "source_sha256": "2e343cb26301b091e96df4c4cb623f0dc1d923d647141c546d9235da972718df",
+      "verdict": "SUPPORTED_TARGET_PREPARATION_GAP",
+      "reason": "copytg never delegates original target checks/selection/properties, yet copyop delegates the original operation. It may miss targets or parameters. e:GetHandler itself is not nil: it is Sonic Scream. Monster effect copying needs tested event/handler semantics, not blindly transplanting CheckActivateEffect for Trap activation.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 231088629,
+      "name": "Gravinity Spherix",
+      "report_line": 3229,
+      "source_sha256": "a64693dbd99554bb567b66e84627192f772d4a9c11e951be300c6dcd7848f0ba",
+      "verdict": "REPRODUCED_PUBLIC_ENGINE",
+      "reason": "Actual neutral Spell Special Summon with full canonical Spherix fails interception; isolated removal of only IsRelateToEffect(e) passes. Diagnostic source/harness hashes and native SPSUMMONED/MOVE trace captured. Initial Spherix placement, neutral recipient and public engine are explicit boundaries.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 231088629,
+      "name": "Gravinity Spherix",
+      "report_line": 3234,
+      "source_sha256": "a64693dbd99554bb567b66e84627192f772d4a9c11e951be300c6dcd7848f0ba",
+      "verdict": "SUPPORTED_SOURCE_GAP",
+      "reason": "Attachment count is fixed at two. Printed minimum Xyz material count depends on the individual Xyz monster and procedure; hardcoding two does not generally satisfy it. Determine the Omega-supported way to evaluate procedure requirements rather than inventing a GetMinMaterials API.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 231088629,
+      "name": "Gravinity Spherix",
+      "report_line": 3236,
+      "source_sha256": "a64693dbd99554bb567b66e84627192f772d4a9c11e951be300c6dcd7848f0ba",
+      "verdict": "SUPPORTED_SOURCE_GAP",
+      "reason": "After Special Summon, source automatically overlays two eligible cards without the printed optional choice or then timing break.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 231088629,
+      "name": "Gravinity Spherix",
+      "report_line": 3238,
+      "source_sha256": "a64693dbd99554bb567b66e84627192f772d4a9c11e951be300c6dcd7848f0ba",
+      "verdict": "SUPPORTED_SOURCE_GAP",
+      "reason": "Opponent shuffle predicate requires face-up although text allows one opponent monster without that qualifier. Need a face-down recipient case and column-mate checks.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 256831125,
+      "name": "Gravinity Axis Matter",
+      "report_line": 4109,
+      "source_sha256": "c26df5daf8fd4e558616bf26ec9dfa24b8f6811184ceb1697a9bf121d817dbf0",
+      "verdict": "PARTLY_SUPPORTED_SCOPE_QUESTION",
+      "reason": "coltg only scans own MZONE. Printed Gravinity monster may differ from Gravinity Monster Card when cards are treated as Continuous Traps. Source metadata/original-type interpretation must be settled before broadening to every archetype Spell/Trap on field. Blind LOCATION_ONFIELD replacement also includes ordinary Gravinity Spells/Traps.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 256831125,
+      "name": "Gravinity Axis Matter",
+      "report_line": 4111,
+      "source_sha256": "c26df5daf8fd4e558616bf26ec9dfa24b8f6811184ceb1697a9bf121d817dbf0",
+      "verdict": "NOT_ESTABLISHED_BLANKET_SCOPE",
+      "reason": "Omission of an explicit on-field phrase does not by itself prove every GY/banished card is protected by a Field Spell. Report supplies no comparable official scope or legal off-field targeting scenario. Do not add hidden information locations blindly.",
+      "implemented": false,
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 256831125,
+      "name": "Gravinity Axis Matter",
+      "report_line": 4113,
+      "source_sha256": "c26df5daf8fd4e558616bf26ec9dfa24b8f6811184ceb1697a9bf121d817dbf0",
+      "verdict": "SUPPORTED_SHARED_SOURCE_PATTERN",
+      "reason": "Copied summon interceptor contains the same relation check reproduced as failing in Spherix. Axis Matter activation/reveal/copy case remains untested; shared pattern is evidence, not a completed copied-effect scenario.",
+      "implemented": false,
+      "native_omega_verified": false
+    }
+  ]
+}

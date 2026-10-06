@@ -1,0 +1,115 @@
+{
+  "scope": "12 focused actual copied Omega response cases; four exact controls including raw public incompatibility. Neutral official stats and supporting cards; Mist-only in-memory ChainInfo enum adaptation. Native Omega, protection/destruction/reset effects and printed CopyEffect interpretation remain open",
+  "script_sha256": "117fb88327bbf598ffce5f7f49799fb2235ae7761140ff7b4e7445032d69ca2a",
+  "harness_sha256": "af97da6b3369a2c0e743d457bda888b8daabb2d0655c847fec7d3c9292143c03",
+  "official_sources": [
+    {
+      "code": 34695290,
+      "sha256": "6534b4ae7dedbebc643f297abb2bac86b23e288b56b2ef9c49508ed33ace9057"
+    },
+    {
+      "code": 61089209,
+      "sha256": "fae8155427c16c5cdad556141db78e66185a519b208e8f67110b7f16fefd36e0"
+    },
+    {
+      "code": 7574904,
+      "sha256": "f7acb54da50c4de42977312a0e48ae27106bb39c69301ac3d1c469747e7e2a6d"
+    }
+  ],
+  "runs": [
+    {
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "9a28863aa3942439934bbb0d8d6eedb166255087c946e2b1134045b9cdbea50c"
+    },
+    {
+      "control": "no-copy",
+      "status": 1,
+      "expected_failures": [
+        {
+          "branch": "beast",
+          "test": {
+            "incoming": "spell"
+          }
+        },
+        {
+          "branch": "mist",
+          "test": {
+            "incoming": "trap"
+          }
+        },
+        {
+          "branch": "arsenal",
+          "test": {
+            "incoming": "monster"
+          }
+        }
+      ],
+      "artifact_sha256": "08b909ce28e70c363a739ade52061dbd3577a9b18e3ad6bf0de6765c94a68fd8"
+    },
+    {
+      "control": "no-cost",
+      "status": 1,
+      "expected_failures": [
+        {
+          "branch": "beast",
+          "test": {
+            "incoming": "spell"
+          }
+        },
+        {
+          "branch": "mist",
+          "test": {
+            "incoming": "trap"
+          }
+        },
+        {
+          "branch": "arsenal",
+          "test": {
+            "incoming": "monster"
+          }
+        }
+      ],
+      "artifact_sha256": "e672cec82556301b07997e909f95648de5ffba9fe3aecd621827b1d8863902ba"
+    },
+    {
+      "control": "no-result",
+      "status": 1,
+      "expected_failures": [
+        {
+          "branch": "beast",
+          "test": {
+            "incoming": "spell"
+          }
+        },
+        {
+          "branch": "mist",
+          "test": {
+            "incoming": "trap"
+          }
+        },
+        {
+          "branch": "arsenal",
+          "test": {
+            "incoming": "monster"
+          }
+        }
+      ],
+      "artifact_sha256": "a7903b27ffa76f96decbe03da38199225a1a3e772f503df608f483d201e5a613"
+    },
+    {
+      "control": "raw-omega",
+      "status": 1,
+      "expected_failures": [
+        {
+          "branch": "mist",
+          "test": {
+            "incoming": "trap"
+          }
+        }
+      ],
+      "artifact_sha256": "b747ccd50e4caaa43cc32a54cacf2abdaaf0b76254ff462b8089f4f89ca34a02"
+    }
+  ]
+}

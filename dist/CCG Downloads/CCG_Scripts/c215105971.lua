@@ -93,7 +93,7 @@ end
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	return c:IsPreviousPosition(POS_FACEUP) and c:IsPreviousLocation(LOCATION_MZONE) and c:IsSummonType(SUMMON_TYPE_XYZ)
-		and rp==1-tp and c:GetPreviousControler()==tp
+		and c:GetReasonPlayer()==1-tp and c:GetPreviousControler()==tp and c:GetOwner()==tp
 end
 function s.spfilter(c,e,tp)
 	return c:IsSetCard(0x4ac0) and not c:IsCode(id) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)

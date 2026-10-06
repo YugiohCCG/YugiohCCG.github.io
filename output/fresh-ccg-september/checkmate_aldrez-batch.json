@@ -1,0 +1,403 @@
+{
+  "scope": "Checkmate full source native GY/faceupbanishment revive8 and setTrap support/negation5/massdestroy6/hand6/interrupt4/revive-interrupt3/count2/oath2; test-only IsFaceupEx and OATH registration adapters. Native Omega open",
+  "script_sha256": "f5cd8a7c0a615b4add7964705a4edb586c5239bfcfa2387a57af4488cd52e6cb",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "runs": [
+    {
+      "harness": "revive",
+      "harness_sha256": "fb057b553f31d4342f30ad7648fdc98940d82ebb90b42f739486e2e7f817d8b2",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "89f6df72b1f89c24d840c04874cab333602cd099c93c48a07ffe27b2b2ac65c1"
+    },
+    {
+      "harness": "revive",
+      "harness_sha256": "fb057b553f31d4342f30ad7648fdc98940d82ebb90b42f739486e2e7f817d8b2",
+      "control": "any-set",
+      "status": 1,
+      "expected_failures": [
+        {
+          "wrongSet": true
+        }
+      ],
+      "artifact_sha256": "31faeb4cafaf89e53c74e412d9c020b760f59efab5fb5a9de0330ff0fae8a897"
+    },
+    {
+      "harness": "revive",
+      "harness_sha256": "fb057b553f31d4342f30ad7648fdc98940d82ebb90b42f739486e2e7f817d8b2",
+      "control": "any-controller",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true
+        }
+      ],
+      "artifact_sha256": "5f11e77a9c630da19256b26681caaa352dd6166b84f9babd3dbe90efb69c76fc"
+    },
+    {
+      "harness": "revive",
+      "harness_sha256": "fb057b553f31d4342f30ad7648fdc98940d82ebb90b42f739486e2e7f817d8b2",
+      "control": "no-summon",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "banished": true
+        }
+      ],
+      "artifact_sha256": "5e3fd72f96e453e45bdcdd635e7ac4a11ab14346997ac2f5a440ea8c5acbafab"
+    },
+    {
+      "harness": "negate",
+      "harness_sha256": "72d2a546be23759966a41f79184761604e3931469577de1e82ab0a245f642970",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "d561572d93682b080afb72b2c39aca797f5eec1c089d5938e05b830b2ac7ac9d"
+    },
+    {
+      "harness": "negate",
+      "harness_sha256": "72d2a546be23759966a41f79184761604e3931469577de1e82ab0a245f642970",
+      "control": "any-set",
+      "status": 1,
+      "expected_failures": [
+        {
+          "wrongSet": true
+        }
+      ],
+      "artifact_sha256": "8481aecfbc2b4d97320e3d89372ae34eb07ba082cd35e992f74b8dde7bdbaf02"
+    },
+    {
+      "harness": "negate",
+      "harness_sha256": "72d2a546be23759966a41f79184761604e3931469577de1e82ab0a245f642970",
+      "control": "any-controller",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true
+        }
+      ],
+      "artifact_sha256": "20c4c62952953ef61020ad962ff84c241ec9d56e624a43653d4bc39b400e277d"
+    },
+    {
+      "harness": "negate",
+      "harness_sha256": "72d2a546be23759966a41f79184761604e3931469577de1e82ab0a245f642970",
+      "control": "any-position",
+      "status": 1,
+      "expected_failures": [
+        {
+          "facedown": true
+        }
+      ],
+      "artifact_sha256": "42e80608cdbaaa331a5d8f7a4b414bae2264355276f8ababadf51b07ca5db0fc"
+    },
+    {
+      "harness": "negate",
+      "harness_sha256": "72d2a546be23759966a41f79184761604e3931469577de1e82ab0a245f642970",
+      "control": "no-negate",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "6f870d92fd4f02de74656c28e50409b379d4489a92de2efffe3d2e1b8c205b4c"
+    },
+    {
+      "harness": "destroy",
+      "harness_sha256": "53e1efbfbf6ca4bbcebfc78e1cdc3900384a386793c78ef121be5fb2f4a6468b",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "ff111eda400831708e5630c7de60e74d833b14f46a302d723dd60214e478ae57"
+    },
+    {
+      "harness": "destroy",
+      "harness_sha256": "53e1efbfbf6ca4bbcebfc78e1cdc3900384a386793c78ef121be5fb2f4a6468b",
+      "control": "always-highest",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponentHighest": true
+        }
+      ],
+      "artifact_sha256": "d96633a8fd4cdee7bfad929090bde8feb3018e31d4077234087350a0765fa497"
+    },
+    {
+      "harness": "destroy",
+      "harness_sha256": "53e1efbfbf6ca4bbcebfc78e1cdc3900384a386793c78ef121be5fb2f4a6468b",
+      "control": "exclude-tie",
+      "status": 1,
+      "expected_failures": [
+        {
+          "tie": true
+        }
+      ],
+      "artifact_sha256": "96bfa98187509adfb364a6fa2a57c90ad98ff2f6a6aea8c28b6a96931fb7084b"
+    },
+    {
+      "harness": "destroy",
+      "harness_sha256": "53e1efbfbf6ca4bbcebfc78e1cdc3900384a386793c78ef121be5fb2f4a6468b",
+      "control": "destroy-target",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "tie": true
+        },
+        {
+          "facedownOther": true
+        }
+      ],
+      "artifact_sha256": "3363f8d696323914a554a9abbfb07d7e95010d6d9180e48aea1909cc32104caf"
+    },
+    {
+      "harness": "destroy",
+      "harness_sha256": "53e1efbfbf6ca4bbcebfc78e1cdc3900384a386793c78ef121be5fb2f4a6468b",
+      "control": "no-destroy",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "tie": true
+        },
+        {
+          "facedownOther": true
+        },
+        {
+          "ownTarget": true
+        }
+      ],
+      "artifact_sha256": "5ee0878c760eff0a3e80a7b80092a8d86747f28e885e8dc1c0cec496048ceca7"
+    },
+    {
+      "harness": "hand",
+      "harness_sha256": "60dad1ff0d289690316a820ce7e606cbac62357c3f6c7a0908869700e5bd6002",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "d33a02e5b0f4a943b90f8215604b1ffd0932db04c0c6d9c1c8ddf9e569f41176"
+    },
+    {
+      "harness": "hand",
+      "harness_sha256": "60dad1ff0d289690316a820ce7e606cbac62357c3f6c7a0908869700e5bd6002",
+      "control": "any-set",
+      "status": 1,
+      "expected_failures": [
+        {
+          "wrongSet": true
+        }
+      ],
+      "artifact_sha256": "0f76a680bc954ffd0eca3991adf6f253c1649bbe8ae92ea58aaec3dd99303221"
+    },
+    {
+      "harness": "hand",
+      "harness_sha256": "60dad1ff0d289690316a820ce7e606cbac62357c3f6c7a0908869700e5bd6002",
+      "control": "any-controller",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true
+        }
+      ],
+      "artifact_sha256": "4966f6c2dfafd0934618a3af0c507888d801262d36afadf04d605599fb05afff"
+    },
+    {
+      "harness": "hand",
+      "harness_sha256": "60dad1ff0d289690316a820ce7e606cbac62357c3f6c7a0908869700e5bd6002",
+      "control": "any-position",
+      "status": 1,
+      "expected_failures": [
+        {
+          "facedown": true
+        }
+      ],
+      "artifact_sha256": "9bc6185d86e8c07e5de50cde1eba2ca14dc84c504b3dc9b53a3107fd7d07bcf6"
+    },
+    {
+      "harness": "hand",
+      "harness_sha256": "60dad1ff0d289690316a820ce7e606cbac62357c3f6c7a0908869700e5bd6002",
+      "control": "any-monster",
+      "status": 1,
+      "expected_failures": [
+        {
+          "notXyz": true
+        },
+        {
+          "wrongSet": true
+        },
+        {
+          "opponent": true
+        },
+        {
+          "facedown": true
+        },
+        {
+          "absent": true
+        }
+      ],
+      "artifact_sha256": "9f6bf9d89775979a3d31760eac2aa716d13cc35994527dedbe5d73f4d9be5da0"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "c38358ff89188bd6309d73a6a9a5e9bf700c624262d222f0cc23dac596870615",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "fc6fc1662a565df8547cab1bd6b22df7ad90d955276e01e0e90717ea18ab5476"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "c38358ff89188bd6309d73a6a9a5e9bf700c624262d222f0cc23dac596870615",
+      "control": "no-relation",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "leave"
+        },
+        {
+          "mode": "return"
+        }
+      ],
+      "artifact_sha256": "ee0b2aad5ca09e8316634fdccd21be6ba55b8d0e4ad7f081a1fc51c921977e15"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "c38358ff89188bd6309d73a6a9a5e9bf700c624262d222f0cc23dac596870615",
+      "control": "no-interruption",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "leave"
+        },
+        {
+          "mode": "return"
+        },
+        {
+          "mode": "facedown"
+        },
+        {
+          "mode": "negate"
+        }
+      ],
+      "artifact_sha256": "17e6508900cf0f254fd5ad82ddb2e9bdc8012fe6d60b8437210ac81db8351ad2"
+    },
+    {
+      "harness": "revive_interrupt",
+      "harness_sha256": "e51e819fd627093a144674b7d71c7770f94cadbdaa38711113d2aabbae6b57fb",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "f0edc990341cbeff31430b367ce6fc8698b1582fc8895e5f8a4efba5b9141f14"
+    },
+    {
+      "harness": "revive_interrupt",
+      "harness_sha256": "e51e819fd627093a144674b7d71c7770f94cadbdaa38711113d2aabbae6b57fb",
+      "control": "no-relation",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "leave"
+        },
+        {
+          "mode": "return"
+        }
+      ],
+      "artifact_sha256": "a19bf3bc8b45a3abbbd7faef26498a0793e9fd870608c9bb181620362da619c5"
+    },
+    {
+      "harness": "revive_interrupt",
+      "harness_sha256": "e51e819fd627093a144674b7d71c7770f94cadbdaa38711113d2aabbae6b57fb",
+      "control": "no-interruption",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "leave"
+        },
+        {
+          "mode": "return"
+        },
+        {
+          "mode": "negate"
+        }
+      ],
+      "artifact_sha256": "50d5a3962293896ed0adee54d78116ae4f4d22dd533ea874180b3b78a0245e6c"
+    },
+    {
+      "harness": "count",
+      "harness_sha256": "09c616d6ad2ea79f8e25d7dd425f7a92b35fb0e1a5f8935bbd1049177dd4acd4",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "3edb155c91aec7e0f16f8bf8cf488f82091fef06dcb9145c27f22da78087f3c3"
+    },
+    {
+      "harness": "count",
+      "harness_sha256": "09c616d6ad2ea79f8e25d7dd425f7a92b35fb0e1a5f8935bbd1049177dd4acd4",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "8a07a1ffa267afa1152d07c4d06717e7fa618d0f159217b11f3f256bbc3f09ee"
+    },
+    {
+      "harness": "count",
+      "harness_sha256": "09c616d6ad2ea79f8e25d7dd425f7a92b35fb0e1a5f8935bbd1049177dd4acd4",
+      "control": "no-renewal",
+      "status": 1,
+      "expected_failures": [
+        {
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "654c162d9a9290e8946118e4d03d7dc09b41b769f43ec888cbb2a93e01bcab9d"
+    },
+    {
+      "harness": "oath",
+      "harness_sha256": "099a43e11a6ebe824e79b4fdb21bf28524885bd3fc5c77dbbe5bf7cea239c0ef",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "2d7119ebb65f537a4fe191556e8346e117f657ab87061a66690e01df0376f58b"
+    },
+    {
+      "harness": "oath",
+      "harness_sha256": "099a43e11a6ebe824e79b4fdb21bf28524885bd3fc5c77dbbe5bf7cea239c0ef",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "effect"
+        }
+      ],
+      "artifact_sha256": "b48fe3b1c253674d4553eab1c7e40ad3e2effab32956e8c4492e8ddc65efd74b"
+    },
+    {
+      "harness": "oath",
+      "harness_sha256": "099a43e11a6ebe824e79b4fdb21bf28524885bd3fc5c77dbbe5bf7cea239c0ef",
+      "control": "no-oath",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "activation"
+        }
+      ],
+      "artifact_sha256": "12de07eb228e11875d6715e6001528ba76f90ce4f1d2b7f4c886d0a314084fbc"
+    },
+    {
+      "harness": "oath",
+      "harness_sha256": "099a43e11a6ebe824e79b4fdb21bf28524885bd3fc5c77dbbe5bf7cea239c0ef",
+      "control": "no-negation",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "effect"
+        },
+        {
+          "mode": "activation"
+        }
+      ],
+      "artifact_sha256": "e741bc5604bc09c7269db94c53087d508b3d8a4443733e240186a2f9febf5324"
+    }
+  ]
+}

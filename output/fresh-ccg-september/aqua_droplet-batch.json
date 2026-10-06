@@ -1,0 +1,249 @@
+{
+  "scope": "Aqua Droplet native GY summon6/banished shuffle-draw7/summon sharedcount-renewal2/banish sharedcount-renewal/independence3 and interruptions3 with actual canonical source, neutral WATER support and exact eligibility mutations; count/banished trigger/native Omega open",
+  "script_sha256": "52d1068783559f92cb3b94bbc9500766cd5646934841d819593c70e40dfa29ab",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "runs": [
+    {
+      "harness": "summon",
+      "harness_sha256": "022745496a87dea5d8a796d35e7933f7f909667092049154d560dbe8e0ace4fb",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "f51aba90572ba7658cff6ad87a0c00491c58c5c0806aabf8f475b8ecca3d4583"
+    },
+    {
+      "harness": "summon",
+      "harness_sha256": "022745496a87dea5d8a796d35e7933f7f909667092049154d560dbe8e0ace4fb",
+      "control": "no-water",
+      "status": 1,
+      "expected_failures": [
+        {
+          "wrongAttribute": true
+        },
+        {
+          "facedown": true
+        }
+      ],
+      "artifact_sha256": "4b9d3dc93212d7f3c59cb0ae9095a07a4bbac7dd388c5a7e76c84ba506890d6c"
+    },
+    {
+      "harness": "summon",
+      "harness_sha256": "022745496a87dea5d8a796d35e7933f7f909667092049154d560dbe8e0ace4fb",
+      "control": "any-controller",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true
+        }
+      ],
+      "artifact_sha256": "720c5f0f424f06e459ce18e9e2cfc3f71535393bbdd99db9518d0b90fd143f61"
+    },
+    {
+      "harness": "summon",
+      "harness_sha256": "022745496a87dea5d8a796d35e7933f7f909667092049154d560dbe8e0ace4fb",
+      "control": "any-position",
+      "status": 1,
+      "expected_failures": [
+        {
+          "facedown": true
+        }
+      ],
+      "artifact_sha256": "0101f04e4fc1cf9a379d72de657c9660d7db675f09e8f92612d2308ce764feb4"
+    },
+    {
+      "harness": "banish",
+      "harness_sha256": "ac42976e666f987965bc5b66c2f6dfbc757c86a61190a6d51128366a01eead55",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "61b32758f1899701f4a4f2450ad7dda6d610f3502422b6484be6c30d4b0fbe0c"
+    },
+    {
+      "harness": "banish",
+      "harness_sha256": "ac42976e666f987965bc5b66c2f6dfbc757c86a61190a6d51128366a01eead55",
+      "control": "any-set",
+      "status": 1,
+      "expected_failures": [
+        {
+          "wrongSet": true
+        },
+        {
+          "monster": true
+        },
+        {
+          "opponent": true
+        },
+        {
+          "absent": true
+        }
+      ],
+      "artifact_sha256": "8ee6a7e40dd8e0bee227198771a12234f73724f5b1b157e64de9270bb65be08a"
+    },
+    {
+      "harness": "banish",
+      "harness_sha256": "ac42976e666f987965bc5b66c2f6dfbc757c86a61190a6d51128366a01eead55",
+      "control": "any-type",
+      "status": 1,
+      "expected_failures": [
+        {
+          "monster": true
+        }
+      ],
+      "artifact_sha256": "db1f4c0ffe6d9a0d96c6ad5f8d38aba2c3c3d9268a1d20b05031c27e46c1defe"
+    },
+    {
+      "harness": "banish",
+      "harness_sha256": "ac42976e666f987965bc5b66c2f6dfbc757c86a61190a6d51128366a01eead55",
+      "control": "any-origin",
+      "status": 1,
+      "expected_failures": [
+        {
+          "fieldOrigin": true
+        }
+      ],
+      "artifact_sha256": "65d16fe6770db854f0f41db012631c5a9c4af255424ce2ff83309310a7761159"
+    },
+    {
+      "harness": "banish",
+      "harness_sha256": "ac42976e666f987965bc5b66c2f6dfbc757c86a61190a6d51128366a01eead55",
+      "control": "no-draw",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "trap": true
+        }
+      ],
+      "artifact_sha256": "176940a85f900ffb8792dc90693a1f03129acad56ac80e03d00618e80f3075a0"
+    },
+    {
+      "harness": "banish",
+      "harness_sha256": "ac42976e666f987965bc5b66c2f6dfbc757c86a61190a6d51128366a01eead55",
+      "control": "no-shuffle",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "trap": true
+        }
+      ],
+      "artifact_sha256": "627accf448cca6ad745891988011f9f35a2ce0d4b4f7c033b573adf92f3c7073"
+    },
+    {
+      "harness": "summon_count",
+      "harness_sha256": "ba739a2958dae41f67bb44e8b29faa0f8461aefe819608450215a5c9f603b327",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "6c2d50d966dbfc6b8f12e510206e2e7fda65a4afcb8dd176d7518d28fd4bf0ae"
+    },
+    {
+      "harness": "summon_count",
+      "harness_sha256": "ba739a2958dae41f67bb44e8b29faa0f8461aefe819608450215a5c9f603b327",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "5859ff2d7018b6daa6cdaa3b90e453995c33fab6a66034adffc5c6943c7305d0"
+    },
+    {
+      "harness": "summon_count",
+      "harness_sha256": "ba739a2958dae41f67bb44e8b29faa0f8461aefe819608450215a5c9f603b327",
+      "control": "no-renewal",
+      "status": 1,
+      "expected_failures": [
+        {
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "39400e850b34ca3d7b2317acd58529f783b1e126ab7d728da5b4c44fd095e479"
+    },
+    {
+      "harness": "banish_count",
+      "harness_sha256": "90124bca50b7b687496d3c5dcecba1ec50f0ce6ab46685b654d0bd1ecad2716f",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "25223da81383f83fc23e6b62e2bf8d6373ace2fd1102adff10eb09bf94df0526"
+    },
+    {
+      "harness": "banish_count",
+      "harness_sha256": "90124bca50b7b687496d3c5dcecba1ec50f0ce6ab46685b654d0bd1ecad2716f",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "9a9945b4d9e6145c924232b1b655f3f5c53473326db3128efc948399c44c715b"
+    },
+    {
+      "harness": "banish_count",
+      "harness_sha256": "90124bca50b7b687496d3c5dcecba1ec50f0ce6ab46685b654d0bd1ecad2716f",
+      "control": "no-renewal",
+      "status": 1,
+      "expected_failures": [
+        {
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "4cbbcd7963dba251c5f2af18aa0025990e81f02f4246f3023392b61e18702301"
+    },
+    {
+      "harness": "banish_count",
+      "harness_sha256": "90124bca50b7b687496d3c5dcecba1ec50f0ce6ab46685b654d0bd1ecad2716f",
+      "control": "shared-id",
+      "status": 1,
+      "expected_failures": [
+        {
+          "independence": true
+        }
+      ],
+      "artifact_sha256": "c9172dadaae7240d279fd52d1e1b46a80cacd7f0961f6d079882a37b1b767e81"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "2fe2bba0d28a10c8af635ad3972e0275e46098be7c8bebe17cf8daeb05f39e16",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "e656c31cfd4bb3deaaba072b070ef6de7415c2e9f72df8ec35184c4d2bd70912"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "2fe2bba0d28a10c8af635ad3972e0275e46098be7c8bebe17cf8daeb05f39e16",
+      "control": "no-relation",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "leave"
+        },
+        {
+          "mode": "return"
+        }
+      ],
+      "artifact_sha256": "082f60b48ce6b25315aec72aae09705afb16b98985c242e29050b92b4f664634"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "2fe2bba0d28a10c8af635ad3972e0275e46098be7c8bebe17cf8daeb05f39e16",
+      "control": "no-interruption",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "leave"
+        },
+        {
+          "mode": "return"
+        },
+        {
+          "mode": "negate"
+        }
+      ],
+      "artifact_sha256": "98b770e7d2bb44c127d37a1a87600b73ea6b6cdec76ee62c1875c7bb5708a946"
+    }
+  ]
+}
