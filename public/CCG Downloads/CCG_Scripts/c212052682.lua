@@ -35,7 +35,7 @@ function s.initial_effect(c)
 	e5:SetDescription(aux.Stringid(STRING_ID,2))
 	e5:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e5:SetCode(EVENT_FLIP)
-	e5:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e5:SetProperty(EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_DELAY)
 	e5:SetTarget(s.lvtg)
 	e5:SetOperation(s.lvop)
 	c:RegisterEffect(e5)
@@ -54,7 +54,10 @@ function s.sumcon(e)
 	return not Duel.IsExistingMatchingCard(function(c) return c:IsFaceup() and c:IsSetCard(SET_GHOSTRICK) end,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil)
 end
 function s.poscon(e) return e:GetHandler():IsFaceup() and e:GetHandler():IsCanTurnSet() end
-function s.postg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return e:GetHandler():IsCanTurnSet() end end
+function s.postg(e,tp,eg,ep,ev,re,r,rp,chk) local c=e:GetHandler()
+	if chk==0 then return c:IsCanTurnSet() and c:GetFlagEffect(id)==0 end
+	c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD-RESET_TURN_SET+RESET_PHASE+PHASE_END,0,1)
+end
 function s.posop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) and c:IsFaceup() then Duel.ChangePosition(c,POS_FACEDOWN_DEFENSE) end

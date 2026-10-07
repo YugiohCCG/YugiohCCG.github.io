@@ -68,7 +68,7 @@ end
 function s.fstg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
 		local chkf=tp
-		local m=Duel.GetFusionMaterial(tp)
+		local m=Duel.GetFusionMaterial(tp):Filter(s.ffilter1,nil,e)
 		local res=Duel.IsExistingMatchingCard(s.ffilter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,m,nil,chkf)
 		if not res then
 			local ce=Duel.GetChainMaterial(tp)
@@ -85,7 +85,7 @@ function s.fstg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.fsop(e,tp,eg,ep,ev,re,r,rp)
 	local chkf=tp
-	local m=Duel.GetFusionMaterial(tp)
+	local m=Duel.GetFusionMaterial(tp):Filter(s.ffilter1,nil,e)
 	local sg1=Duel.GetMatchingGroup(s.ffilter2,tp,LOCATION_EXTRA,0,nil,e,tp,m,nil,chkf)
 	local mg3=nil
 	local filter=nil

@@ -1,0 +1,378 @@
+{
+  "scope": "42 focused Normal Summon/Set, hand summon, self-Set/reset, flip Level and Xyz material effect cases; test-only flip API adapters, neutral supporting cards. Legal summon procedures and native Omega remain open.",
+  "script_sha256": "b6b31117eba95283f631bb19b173cea11f55be75f380405953e98caf6c524d72",
+  "runs": [
+    {
+      "harness": "renewal",
+      "harness_sha256": "b01e72f1d355292120b15e7e9b284236285a118d4d1c6c17aaaac97c7651fd18",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "246694581edb54544e7e52a678660b1ebf6ff4b83f0db415c69bc066b032da60"
+    },
+    {
+      "harness": "renewal",
+      "harness_sha256": "b01e72f1d355292120b15e7e9b284236285a118d4d1c6c17aaaac97c7651fd18",
+      "control": "no-renewal",
+      "status": 1,
+      "expected_failures": [
+        {
+          "count": true
+        }
+      ],
+      "artifact_sha256": "929bab5b9d42d249ab955d86ff0ba934dc13e9ff20af501467026f613dfe1c23"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "5349f9613b4eb8c4d0d8d581e1a8ebf8984a62e8a1f5e61616d69ada07501eb3",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "2dda6b447eaacdcb2287481b028e4ab85ab087052f4382270598e86ef9aa0495"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "5349f9613b4eb8c4d0d8d581e1a8ebf8984a62e8a1f5e61616d69ada07501eb3",
+      "control": "ignore-relation",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "return"
+        }
+      ],
+      "artifact_sha256": "f97912bfa4cb460ca1bc685ccb646390c5e7952970bfbcce1f945557afbab8ad"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "5349f9613b4eb8c4d0d8d581e1a8ebf8984a62e8a1f5e61616d69ada07501eb3",
+      "control": "no-cost",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "leave"
+        },
+        {
+          "mode": "return"
+        },
+        {
+          "mode": "face-down"
+        },
+        {
+          "mode": "host-leave"
+        },
+        {
+          "mode": "negate"
+        }
+      ],
+      "artifact_sha256": "865242a516fae07c249df9af8cf8f065cd6812490367e09b14dad9b1470c8315"
+    },
+    {
+      "harness": "quick",
+      "harness_sha256": "5334ba8237c1060f7dc477a8ff1f50a77df1c164a1b39b894cab3977ac93f4f1",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "2922cb700169d63eda23cef3fcfd4ec79feae3c1f7f190ab0f98578322c33e91"
+    },
+    {
+      "harness": "quick",
+      "harness_sha256": "5334ba8237c1060f7dc477a8ff1f50a77df1c164a1b39b894cab3977ac93f4f1",
+      "control": "ignition",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "29f045f5211dbd73f7a17e88acbfb9a6c2bdfd973ab322c2a76d0206fdf39cb0"
+    },
+    {
+      "harness": "quick",
+      "harness_sha256": "5334ba8237c1060f7dc477a8ff1f50a77df1c164a1b39b894cab3977ac93f4f1",
+      "control": "no-cost",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "aa37043127cfef11559de0aae9b175020ed1b9aa56098f4a0ca8aff5dabef4a8"
+    },
+    {
+      "harness": "quick",
+      "harness_sha256": "5334ba8237c1060f7dc477a8ff1f50a77df1c164a1b39b894cab3977ac93f4f1",
+      "control": "no-position",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "4e7a64d1c9757cd16fe556a5a7126f0b6e4b9c0e648527785fcde6520db5682e"
+    },
+    {
+      "harness": "material",
+      "harness_sha256": "8851cd9a52f45539c1b1916923fa89657369857f285b2c690597568c36157083",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "7e763d0050c43eb8b98b885cf511ad0d40187f9dd4296565ea526696832fc7e6"
+    },
+    {
+      "harness": "material",
+      "harness_sha256": "8851cd9a52f45539c1b1916923fa89657369857f285b2c690597568c36157083",
+      "control": "no-grant",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "count": true
+        }
+      ],
+      "artifact_sha256": "6aa4bc3ca9f0b9aec2d4eee879a1484ec4449feb4927001185dae6b782badcdb"
+    },
+    {
+      "harness": "material",
+      "harness_sha256": "8851cd9a52f45539c1b1916923fa89657369857f285b2c690597568c36157083",
+      "control": "no-cost",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "count": true
+        }
+      ],
+      "artifact_sha256": "5b47f0667ed05a6d7ae6500519a525e8ea0a300ae15aa21273236b5e63e488b3"
+    },
+    {
+      "harness": "material",
+      "harness_sha256": "8851cd9a52f45539c1b1916923fa89657369857f285b2c690597568c36157083",
+      "control": "no-position",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "count": true
+        }
+      ],
+      "artifact_sha256": "4373382066cd39ad4f06c4a8ca44e84ba091d49129b6a8f150c39eb0ca8d6024"
+    },
+    {
+      "harness": "material",
+      "harness_sha256": "8851cd9a52f45539c1b1916923fa89657369857f285b2c690597568c36157083",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {
+          "count": true
+        }
+      ],
+      "artifact_sha256": "0c7ee98891b5feea244b9c2b460b7558d40f3a992995383614ec022c6f0dc67a"
+    },
+    {
+      "harness": "self_set",
+      "harness_sha256": "9e4bac6890faf3f63da468927bf91852a78dc8219b4d370cd13be337720fd065",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "92083688f62f88618af4f63c4040ee7ad0dbb910e3c071f67c0e262501204283"
+    },
+    {
+      "harness": "self_set",
+      "harness_sha256": "9e4bac6890faf3f63da468927bf91852a78dc8219b4d370cd13be337720fd065",
+      "control": "no-set",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "reflip": true
+        }
+      ],
+      "artifact_sha256": "b6b3009b840bb28edf94515aae80f1a422b494f1b79216517ab0a80ae12a673d"
+    },
+    {
+      "harness": "self_set",
+      "harness_sha256": "9e4bac6890faf3f63da468927bf91852a78dc8219b4d370cd13be337720fd065",
+      "control": "hard-count",
+      "status": 1,
+      "expected_failures": [
+        {
+          "reflip": true
+        }
+      ],
+      "artifact_sha256": "93f0a6db403212e14ec43e79ec66b9aede84059dac3e3ad4ca3be6bd7319e7e1"
+    },
+    {
+      "harness": "normal",
+      "harness_sha256": "086df6f2b294d726ed7cd3981780e1e67f4e66d965b9c0e3f464b9514060ce0f",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "c97a07371f83846a26650ab7d879a1a22ed83e66c5e7d310b78b4d67d299755e"
+    },
+    {
+      "harness": "normal",
+      "harness_sha256": "086df6f2b294d726ed7cd3981780e1e67f4e66d965b9c0e3f464b9514060ce0f",
+      "control": "no-restriction",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "ally": true,
+          "facedown": true
+        },
+        {
+          "ally": true,
+          "wrongSet": true
+        },
+        {
+          "ally": true,
+          "opponent": true
+        }
+      ],
+      "artifact_sha256": "7e578bf4c67657da1ff4c92707071396ebec4408b6f20f951d046d0df6103d27"
+    },
+    {
+      "harness": "normal",
+      "harness_sha256": "086df6f2b294d726ed7cd3981780e1e67f4e66d965b9c0e3f464b9514060ce0f",
+      "control": "allow-facedown",
+      "status": 1,
+      "expected_failures": [
+        {
+          "ally": true,
+          "facedown": true
+        }
+      ],
+      "artifact_sha256": "768111c41e689eb2e01d27000648974ebf5c27e56102790b3ad1e75461739f77"
+    },
+    {
+      "harness": "normal",
+      "harness_sha256": "086df6f2b294d726ed7cd3981780e1e67f4e66d965b9c0e3f464b9514060ce0f",
+      "control": "any-set",
+      "status": 1,
+      "expected_failures": [
+        {
+          "ally": true,
+          "wrongSet": true
+        }
+      ],
+      "artifact_sha256": "492635eda617843f069d5f59040dbe749f33366109d59260a34171c46f71a239"
+    },
+    {
+      "harness": "hand",
+      "harness_sha256": "c4c25f7c9db84bdfd968b14388955e17f53dc301001339f96cd843c3a9444156",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "f6b820e3ff9827220b9e0f081bdf1b22b04e2ee7a1e34f97dee4462721ee986a"
+    },
+    {
+      "harness": "hand",
+      "harness_sha256": "c4c25f7c9db84bdfd968b14388955e17f53dc301001339f96cd843c3a9444156",
+      "control": "no-summon",
+      "status": 1,
+      "expected_failures": [
+        {
+          "set": true
+        },
+        {
+          "special": true
+        },
+        {
+          "special": true,
+          "facedown": true
+        },
+        {
+          "set": true,
+          "wrongSet": true
+        },
+        {
+          "set": true,
+          "multiple": true
+        },
+        {
+          "special": true,
+          "multiple": true
+        }
+      ],
+      "artifact_sha256": "fa551158b61150668092dc9f688ac936fbda31badfa404dfe1e4336bca0c927f"
+    },
+    {
+      "harness": "hand",
+      "harness_sha256": "c4c25f7c9db84bdfd968b14388955e17f53dc301001339f96cd843c3a9444156",
+      "control": "any-player",
+      "status": 1,
+      "expected_failures": [
+        {
+          "set": true,
+          "opponent": true
+        },
+        {
+          "special": true,
+          "opponent": true
+        }
+      ],
+      "artifact_sha256": "17abc665aa36864769ca3c67c4bf4158be7a82a069e9db7ce9a6dea304a07089"
+    },
+    {
+      "harness": "hand",
+      "harness_sha256": "c4c25f7c9db84bdfd968b14388955e17f53dc301001339f96cd843c3a9444156",
+      "control": "any-set",
+      "status": 1,
+      "expected_failures": [
+        {
+          "special": true,
+          "wrongSet": true
+        }
+      ],
+      "artifact_sha256": "cdf65bb15f98272cac5953422a4222932d16881783654b9c952a5b4fb37f4316"
+    },
+    {
+      "harness": "flip",
+      "harness_sha256": "8c93159046cf247e9004217246c656cfa7df5d7b1e514aaeb097db82add09434",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "5cc7e5bbe37bb9801344c2dac82b62f04957805eb45e7ef6198885a045a806e2"
+    },
+    {
+      "harness": "flip",
+      "harness_sha256": "8c93159046cf247e9004217246c656cfa7df5d7b1e514aaeb097db82add09434",
+      "control": "no-level",
+      "status": 1,
+      "expected_failures": [
+        {
+          "level": 1
+        },
+        {
+          "level": 2,
+          "multiple": true
+        },
+        {
+          "level": 3,
+          "wrongSet": true
+        },
+        {
+          "level": 3,
+          "xyz": true
+        },
+        {
+          "level": 3,
+          "link": true
+        },
+        {
+          "level": 3,
+          "facedown": true
+        }
+      ],
+      "artifact_sha256": "39e0ef077fd302e2e44b22247e68a5d868693043a0f59616ca30705e26927354"
+    },
+    {
+      "harness": "flip",
+      "harness_sha256": "8c93159046cf247e9004217246c656cfa7df5d7b1e514aaeb097db82add09434",
+      "control": "any-set",
+      "status": 1,
+      "expected_failures": [
+        {
+          "level": 3,
+          "wrongSet": true
+        }
+      ],
+      "artifact_sha256": "66facf13922f45bd9ad3237d01ca868d9b9ef8bab029266fb2ba05a61cce11eb"
+    }
+  ]
+}

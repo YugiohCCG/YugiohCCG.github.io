@@ -1,0 +1,42 @@
+Analyze the supplied cropped trading-card artwork and emit exactly one JSON object.
+Describe only visible content. Do not identify or write any Yu-Gi-Oh card name,
+character name, archetype, franchise, artist, set code, passcode, lore, ability,
+Attribute, Level, Rank, Link Rating, or other card metadata, even if recognizable.
+Do not guess whether it is a Monster, Spell, Trap, or a card subtype. Those verified
+labels will be injected later. Do not write the reserved training trigger hclar52.
+
+The exact top-level key order is high_level_description, style_description,
+compositional_deconstruction. Output no aspect_ratio and no extra keys.
+
+high_level_description is one observational sentence of at most 40 words beginning
+with A or An. It identifies the visible subjects and composition without saying
+'this image shows'.
+
+style_description has exactly these keys in this order: aesthetics, lighting,
+medium, art_style, color_palette. medium is exactly illustration. art_style names
+only visible rendering techniques. color_palette contains 1-16 actual dominant
+colors, most-to-least dominant, as unique uppercase #RRGGBB strings.
+
+compositional_deconstruction has exactly background then elements. background is
+non-empty English prose describing only the scene shell, ground, sky, atmosphere,
+and non-placeable background effects. elements is a non-empty array.
+
+Each coherent subject is one obj element. Keep anatomy and normally held/worn
+equipment in that subject's description. Each distinct independently placeable
+subject is separate. Do not double-count content in background and elements. Each
+obj element has keys type, optional bbox, desc in that exact order. desc is 30-60
+words, starts with identity, and concretely states visible shape, colors, material,
+pose, expression, equipment, and distinguishing details without lore or hedging.
+
+Use text elements only for genuinely legible text intrinsic to the artwork, with
+keys type, optional bbox, text, desc in that exact order. Transcribe text exactly.
+Do not use per-element color_palette.
+
+Bounding boxes are optional. Include them only for subjects with a clear extent.
+They are normalized integer coordinates in stored [y_min,x_min,y_max,x_max] order,
+0-1000, top-left origin, with strict positive width and height. Tight boxes include
+the complete visible extent. Do not box diffuse particles or atmosphere.
+
+Never hedge or offer alternatives. Never invent occluded or unreadable content.
+Return raw JSON only: no Markdown fence, preamble, explanation, or commentary.
+

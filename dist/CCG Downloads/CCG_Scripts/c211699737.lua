@@ -52,10 +52,18 @@ end
 function s.revfilter(c)
 	return c:IsSetCard(SET_MYUTANT) and c:IsAbleToGrave()
 end
+function s.copycode(c)
+ local typ=c:GetOriginalType()
+ return (typ&TYPE_MONSTER)~=0 and BEAST or ((typ&TYPE_SPELL)~=0 and MIST or ARSENAL)
+end
+function s.costfilter(c,tp)
+ local code=s.copycode(c)
+ return s.revfilter(c) and Duel.IsExistingMatchingCard(s.rmfilter,tp,LOCATION_DECK,0,1,c,code)
+end
 function s.cpcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.revfilter,tp,LOCATION_DECK,0,1,nil) end
+	if chk==0 then return Duel.IsExistingMatchingCard(s.costfilter,tp,LOCATION_DECK,0,1,nil,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
-	local rc=Duel.SelectMatchingCard(tp,s.revfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
+	local rc=Duel.SelectMatchingCard(tp,s.costfilter,tp,LOCATION_DECK,0,1,1,nil,tp):GetFirst()
 	Duel.ConfirmCards(1-tp,rc)
 	rc:CreateEffectRelation(e)
 	e:SetLabelObject(rc)
@@ -68,13 +76,13 @@ end
 function s.cpop(e,tp,eg,ep,ev,re,r,rp)
 	local rc=e:GetLabelObject()
 	if not (rc and rc:IsRelateToEffect(e) and rc:IsLocation(LOCATION_DECK) and s.revfilter(rc)) then return end
-	local typ=rc:GetOriginalType()
-	local code=(typ&TYPE_MONSTER)~=0 and BEAST or ((typ&TYPE_SPELL)~=0 and MIST or ARSENAL)
+	local code=s.copycode(rc)
 	if Duel.SendtoGrave(rc,REASON_EFFECT)==0 or not rc:IsLocation(LOCATION_GRAVE) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local tc=Duel.SelectMatchingCard(tp,s.rmfilter,tp,LOCATION_DECK,0,1,1,nil,code):GetFirst()
 	if tc and Duel.Remove(tc,POS_FACEUP,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_REMOVED) then
-		e:GetHandler():CopyEffect(code,RESET_EVENT+RESETS_STANDARD,1)
+		--Keep the copied destruction trigger through the move to the GY.
+		e:GetHandler():CopyEffect(code,RESET_EVENT+(RESETS_STANDARD&~(RESET_LEAVE+RESET_TOGRAVE)),1)
 	end
 end
 function s.rmfilter(c,code)

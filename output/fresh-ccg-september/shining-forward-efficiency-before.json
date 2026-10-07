@@ -1,0 +1,329 @@
+{
+  "scope": "Forward Division: 27 focused cases covering Normal/Special Summon search, eligible Spell filters, prior and later summon restrictions, restriction expiry, shared search count, and next-turn renewal. Includes actual material attachment to a neutral Xyz and opponent Spell damage negation with wrong-archetype/missing-material negatives. Public engine evidence; proper Xyz Summon, multiple-host scope and native Omega verification remain open.",
+  "script_sha256": "49cd3edd7683b74d786b93ada3ef9998388df298e5f6d51e627fc15e914dd343",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "output/fresh-ccg-september/public-core-set-message-adapter.mjs": "3c3542aa99d9e0bd6db7ab7e4042b29cd614376a3f3464d500843e6ceb7bab1e",
+    "scripts/fresh_public_set_message_adapter.py": "1486aa5cfb5c9a05339011821363cd517dc1db7a85fbf7308a1062daf73a74b8",
+    "public/CCG Downloads/CCG_Scripts/c215142357.lua": "10aef71ab5e476d27a79877ef120a9631c2a3204a7b66b4bd38852b049314995"
+  },
+  "adapter_generation": {
+    "source_sha256": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "adapter_sha256": "3c3542aa99d9e0bd6db7ab7e4042b29cd614376a3f3464d500843e6ceb7bab1e",
+    "production_changed": false
+  },
+  "runs": [
+    {
+      "harness": "search",
+      "harness_sha256": "3c57995201e45990888821fed9212249a18b4296c6638796dd54eaa8549e2bcf",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "f0a03966b4b022a6f3919abcf7cefcba1ac362203567c9490733ec2caa727a7b"
+    },
+    {
+      "harness": "search",
+      "harness_sha256": "3c57995201e45990888821fed9212249a18b4296c6638796dd54eaa8549e2bcf",
+      "control": "no-search",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "grave": true
+        }
+      ],
+      "artifact_sha256": "9825f105ede21f267528df3630e7055821bb0d715262987c25e8a6d3850da022"
+    },
+    {
+      "harness": "search",
+      "harness_sha256": "3c57995201e45990888821fed9212249a18b4296c6638796dd54eaa8549e2bcf",
+      "control": "any-set",
+      "status": 1,
+      "expected_failures": [
+        {
+          "wrongSet": true
+        },
+        {
+          "monster": true
+        },
+        {
+          "trap": true
+        }
+      ],
+      "artifact_sha256": "a6f494013408cbebdd48a6ae5746ac4c113f9ef899591fa464719435203021dd"
+    },
+    {
+      "harness": "search",
+      "harness_sha256": "3c57995201e45990888821fed9212249a18b4296c6638796dd54eaa8549e2bcf",
+      "control": "any-type",
+      "status": 1,
+      "expected_failures": [
+        {
+          "monster": true
+        },
+        {
+          "trap": true
+        }
+      ],
+      "artifact_sha256": "a1e9169d0aecd9d2ad92f1eff68a15db1675d44980915f53e4d3a53a63ddb3e6"
+    },
+    {
+      "harness": "special_search",
+      "harness_sha256": "90d4fe14b26595527b881a187bb8ed255e323ff325c3e058893ff7c7ddd601f4",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "fa377a1292c8d55c12ff40d9f22d66ee57c370e42b128619c70afbba90208786"
+    },
+    {
+      "harness": "special_search",
+      "harness_sha256": "90d4fe14b26595527b881a187bb8ed255e323ff325c3e058893ff7c7ddd601f4",
+      "control": "no-search",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "grave": true
+        }
+      ],
+      "artifact_sha256": "664f05e3faeec34659e9ac686e359dbdc80f36471f63e2009321720769293c7c"
+    },
+    {
+      "harness": "special_search",
+      "harness_sha256": "90d4fe14b26595527b881a187bb8ed255e323ff325c3e058893ff7c7ddd601f4",
+      "control": "no-special-trigger",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "grave": true
+        }
+      ],
+      "artifact_sha256": "00af2b2a13428fd644a86a07ec25c348fcdee3ebfe3b860f0d5a38e50df2062f"
+    },
+    {
+      "harness": "prior_summon",
+      "harness_sha256": "3f35c700c0157d625b37c3d3117f3ce775a2e16530b94cc556e65a4f5502198e",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "5722601299062ac252a6c1d4c9fe7852e70db70be1f37ba58665bffceb1fdc69"
+    },
+    {
+      "harness": "prior_summon",
+      "harness_sha256": "3f35c700c0157d625b37c3d3117f3ce775a2e16530b94cc556e65a4f5502198e",
+      "control": "ignore-prior-summon",
+      "status": 1,
+      "expected_failures": [
+        {
+          "archetype": false
+        }
+      ],
+      "artifact_sha256": "054d110f9e64360704a6910ba1c2a1756c488b68d95a8daacf6c6e20f7eac225"
+    },
+    {
+      "harness": "later_summon",
+      "harness_sha256": "354d059082323cd1cb42726ca7291f5ff5b8e3d1b6bc9a5de5f6d83129c14411",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "95d37d71d6bde6a8baa0fcb3c1c772f9ce9fcfd70c4998240adc76d3dc42028f"
+    },
+    {
+      "harness": "later_summon",
+      "harness_sha256": "354d059082323cd1cb42726ca7291f5ff5b8e3d1b6bc9a5de5f6d83129c14411",
+      "control": "no-lock",
+      "status": 1,
+      "expected_failures": [
+        {
+          "archetype": false
+        }
+      ],
+      "artifact_sha256": "afba28357a733da46b0981c7b1a19b3034b97e9c6d938438b47db35826a71946"
+    },
+    {
+      "harness": "later_summon",
+      "harness_sha256": "354d059082323cd1cb42726ca7291f5ff5b8e3d1b6bc9a5de5f6d83129c14411",
+      "control": "lock-all",
+      "status": 1,
+      "expected_failures": [
+        {
+          "archetype": true
+        }
+      ],
+      "artifact_sha256": "5744fe17011eeee9555271a4713937bc5ec701e53b81b41af6fca2442a8da9be"
+    },
+    {
+      "harness": "lock_expiry",
+      "harness_sha256": "b1428f1e1ed0d064f02cfaceb46a01f2ef9271acfc7e82d8eb5ca3cb1c92fee2",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "a8e4bcec4cb5e4b703273783e4086e02da41983ee98620c2f782b471ecb44c13"
+    },
+    {
+      "harness": "lock_expiry",
+      "harness_sha256": "b1428f1e1ed0d064f02cfaceb46a01f2ef9271acfc7e82d8eb5ca3cb1c92fee2",
+      "control": "no-expiry",
+      "status": 1,
+      "expected_failures": [
+        {
+          "archetype": false
+        }
+      ],
+      "artifact_sha256": "096e5883fa39c382190ea237bedc49eeeedaaf65ec6b32a1d0b96a634a9017f2"
+    },
+    {
+      "harness": "count",
+      "harness_sha256": "dd55ad032b96c0cc442a480bca8b8e8d415f65a788abbd33efc301e98d33536b",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "d6f7a5c5ef41787264127a9a712b8b14b8f561a3dbcc68345c7be067aca97f14"
+    },
+    {
+      "harness": "count",
+      "harness_sha256": "dd55ad032b96c0cc442a480bca8b8e8d415f65a788abbd33efc301e98d33536b",
+      "control": "no-limit",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "eb80930d0a7c4851b8ec949fc753b7e9b8ed1b254628afaa24f0944eabdd90d9"
+    },
+    {
+      "harness": "count",
+      "harness_sha256": "dd55ad032b96c0cc442a480bca8b8e8d415f65a788abbd33efc301e98d33536b",
+      "control": "per-copy-limit",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "293ce2460037b6485ca6d0849bd01b43d7a912b7eaeb8de0cbf19c751ea29a54"
+    },
+    {
+      "harness": "renewal",
+      "harness_sha256": "86b1236d7202b39868707e0a4829a023527a11b7e5955225698292fb95f783c5",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "6108d39434e028f4d60642f8f5c98b4bf182052a9b5b54108d376526344034f9"
+    },
+    {
+      "harness": "renewal",
+      "harness_sha256": "86b1236d7202b39868707e0a4829a023527a11b7e5955225698292fb95f783c5",
+      "control": "no-renewal",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "31c75fdd8b8ffc3f7e79e867515357403a8f4ee6c05515c2ad15999f81033c59"
+    },
+    {
+      "harness": "material",
+      "harness_sha256": "60ca1cde024afa73ea1b1911d91875d73ba7ae4eea31a91140e64196fdd321ea",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "d71897509474fe1ccad641fd7f83db809ab5f443db6a65b112cf6bfc1b9513a0"
+    },
+    {
+      "harness": "material",
+      "harness_sha256": "60ca1cde024afa73ea1b1911d91875d73ba7ae4eea31a91140e64196fdd321ea",
+      "control": "no-grant",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "707d5c69e0c0b82e2fc4d3ed53dd744af970eb14333b10b515d9e3cc0f0a6bc7"
+    },
+    {
+      "harness": "material_count",
+      "harness_sha256": "e6abb1d87cf9b36eabccb531eb28e8572d9d346c165ce829ee2cc49caf271c77",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "3eeb10e324f71e28037dfb9eb4ff3099c2207daf9f7863e327f6d0b9e3cb5adc"
+    },
+    {
+      "harness": "material_count",
+      "harness_sha256": "e6abb1d87cf9b36eabccb531eb28e8572d9d346c165ce829ee2cc49caf271c77",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "b82556e40dcd2f55dfb7e4810d81af8d81f50357c31ae66d9e7f45a6e1c7fbd6"
+    },
+    {
+      "harness": "material_renewal",
+      "harness_sha256": "7d9c5fca910e4cc1aff0097bb626c5b3b7092afa98db3cedfa3e715bc41372c2",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "1fea41ec09d194b08c5d5fe110bf7833b7d1745c542db363f20b7040922d6011"
+    },
+    {
+      "harness": "material_renewal",
+      "harness_sha256": "7d9c5fca910e4cc1aff0097bb626c5b3b7092afa98db3cedfa3e715bc41372c2",
+      "control": "no-renewal",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "5559e1d93877b2e5682112149c4ce3eed8a8afc52d5553a585553622a9937c18"
+    },
+    {
+      "harness": "material_grave",
+      "harness_sha256": "cdc33dd506d8abdd1e8ed2465a6288ad3dc93fa840727d72f5f5758b57f59d94",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "e1a54cc7e58bbe42da0364eabc6142f04ee51a919d78f3c2ab684a44babad26e"
+    },
+    {
+      "harness": "material_grave",
+      "harness_sha256": "cdc33dd506d8abdd1e8ed2465a6288ad3dc93fa840727d72f5f5758b57f59d94",
+      "control": "no-grant",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "0fcd9c0d8da8c9b8d817cbf9aad19fc964d237bb7dda41a182304f82dca57193"
+    },
+    {
+      "harness": "material_copies",
+      "harness_sha256": "d8b4023897b8b5398876175cb57481e5bd88d9d388712ce95788f54016e97aae",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "a2f7c050962ea56395669c289e8fe345da5e5eace4bd56106da537db174eae25"
+    },
+    {
+      "harness": "material_copies",
+      "harness_sha256": "d8b4023897b8b5398876175cb57481e5bd88d9d388712ce95788f54016e97aae",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {
+          "copies": true
+        },
+        {
+          "copies": true,
+          "hosts": true
+        }
+      ],
+      "artifact_sha256": "c13f9483a0395d31a9f730b83ac05e897f4b2b8d11b8f13e516a206692ab2346"
+    }
+  ]
+}

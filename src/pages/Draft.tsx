@@ -10,6 +10,8 @@ import {
   TOTAL_DRAFT_PICKS,
   applyDraftPick,
   createDraftSession,
+  draftCardIdentity,
+  draftCardInsight,
   downloadDecklist,
   summarizeDraftSections,
 } from "../utils/draft";
@@ -29,7 +31,7 @@ function cardTag(card: DraftPoolCard): string | null {
   return card.archetype || null;
 }
 
-function DraftChoice({ card, index, onPick }: { card: DraftPoolCard; index: number; onPick: () => void }) {
+function DraftChoice({ card, index, insight, onPick }: { card: DraftPoolCard; index: number; insight: string; onPick: () => void }) {
   const { open } = useImageViewer();
   const tag = cardTag(card);
   return <article
@@ -49,6 +51,7 @@ function DraftChoice({ card, index, onPick }: { card: DraftPoolCard; index: numb
     <span className="draft-choice-copy">
       <strong>{card.name}</strong>
       <span>{card.category}{card.archetype ? ` · ${card.archetype}` : ""}</span>
+      <em>{insight}</em>
     </span>
     <div className="draft-choice-footer">
       {tag ? <span className="draft-choice-tag">{tag}</span> : <span />}
@@ -134,7 +137,7 @@ export default function Draft() {
   const restartDraft = () => { setAnnouncement(""); setSession(createDraftSession(snapshot.cards)); };
   const pickCard = (card: DraftPoolCard) => {
     setAnnouncement(`${card.name} added to ${session?.meta ? SECTION_LABEL[session.meta.section] : "your deck"}.`);
-    setSession((current) => current ? applyDraftPick(current, card.id, snapshot.cards) : current);
+    setSession((current) => current ? applyDraftPick(current, draftCardIdentity(card), snapshot.cards) : current);
   };
 
   if (!session) return <div className="draft-game"><DraftLobby loading={loading} cardCount={snapshot.cards.length} ccgCount={snapshot.meta.ccgCount} tcgCount={snapshot.meta.tcgCount} featuredCards={snapshot.cards.filter((card) => Boolean(card.image)).slice(0, 3)} onBegin={beginDraft} />{error && <p className="draft-load-warning">Full pool unavailable: {error}</p>}</div>;
@@ -154,7 +157,7 @@ export default function Draft() {
       <main className="draft-table">
         <div className="draft-table-mark" aria-hidden="true"><i /><span>CCG</span></div>
         <div className="draft-table-heading"><p>Current offer</p><h1>Choose one card</h1><span>Inspect any card before making your pick</span></div>
-        <div className="draft-offer-grid" key={session.meta?.pickNumber}>{session.offer.map((card, index) => <DraftChoice key={card.id} card={card} index={index} onPick={() => pickCard(card)} />)}</div>
+        <div className="draft-offer-grid" key={session.meta?.pickNumber}>{session.offer.map((card, index) => <DraftChoice key={draftCardIdentity(card)} card={card} index={index} insight={draftCardInsight(card, session.picks, session.meta?.section ?? "main")} onPick={() => pickCard(card)} />)}</div>
         <div className="draft-announcement" aria-live="polite">{announcement}</div>
       </main>
       <DeckRail session={session} />

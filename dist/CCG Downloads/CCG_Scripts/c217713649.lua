@@ -3,7 +3,15 @@ local s,id=GetID()
 local STRING_ID=133713649
 function s.initial_effect(c)
 	--Spirit return
-	aux.EnableSpiritReturn(c,EVENT_SUMMON_SUCCESS,EVENT_FLIP)
+	local er=Effect.CreateEffect(c)
+    er:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
+    er:SetCode(EVENT_SUMMON_SUCCESS)
+    er:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+    er:SetOperation(s.spiritreg)
+    c:RegisterEffect(er)
+    local erf=er:Clone()
+    erf:SetCode(EVENT_FLIP)
+    c:RegisterEffect(erf)
 	--Cannot be Special Summoned
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
@@ -82,4 +90,25 @@ function s.sumop(e,tp,eg,ep,ev,re,r,rp)
 			Duel.ConfirmCards(1-tp,g)
 		end
 	end
+end
+
+function s.spiritreg(e,tp)
+    local c=e:GetHandler()
+    local er=Effect.CreateEffect(c)
+    er:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
+    er:SetDescription(1104)
+    er:SetCategory(CATEGORY_TOHAND)
+    er:SetCode(EVENT_PHASE+PHASE_END)
+    er:SetRange(LOCATION_MZONE)
+    er:SetCountLimit(1,{id,1})
+    er:SetReset(RESET_EVENT+0xd7e0000+RESET_PHASE+PHASE_END)
+    er:SetCondition(aux.SpiritReturnConditionForced)
+    er:SetTarget(aux.SpiritReturnTargetForced)
+    er:SetOperation(aux.SpiritReturnOperation)
+    c:RegisterEffect(er)
+    local eo=er:Clone()
+    eo:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+    eo:SetCondition(aux.SpiritReturnConditionOptional)
+    eo:SetTarget(aux.SpiritReturnTargetOptional)
+    c:RegisterEffect(eo)
 end

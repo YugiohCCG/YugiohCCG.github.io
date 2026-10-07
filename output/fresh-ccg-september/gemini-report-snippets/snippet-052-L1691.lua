@@ -1,0 +1,1 @@
+  Duel.SkipPhase(1-tp, PHASE_BATTLE, RESET_PHASE+PHASE_BATTLE, 1)

@@ -1,0 +1,156 @@
+{
+  "scope": "Emma fullsource native NormalSummon trigger3/SpecialSummon trigger3/FlipSummon exclusion2/interrupt3/zoneinterrupt2 and NormalSummon/Set restrictions. No adapters/summon bypass. Nautica Xyz/interruptions/native Omega open",
+  "script_sha256": "473cf32d4d6775127d25af9ac33bcdcd455ac623a9efe36db68e1c3b256775dd",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "runs": [
+    {
+      "harness": "normal_trigger",
+      "harness_sha256": "05194678ac9707615cb59dda0efcc020fd18d3ee93af6fdab15e1e42adb2638d",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "75d96f6fa9571536ceac183c326abc7a11a0ea290c7b570a295dc0d557c858eb"
+    },
+    {
+      "harness": "normal_trigger",
+      "harness_sha256": "05194678ac9707615cb59dda0efcc020fd18d3ee93af6fdab15e1e42adb2638d",
+      "control": "any-player",
+      "status": 1,
+      "expected_failures": [
+        {
+          "own": true
+        }
+      ],
+      "artifact_sha256": "44404a9a9e09eee6ee4f630fccc631b56a9c6614ae93009220317390764f16b8"
+    },
+    {
+      "harness": "normal_trigger",
+      "harness_sha256": "05194678ac9707615cb59dda0efcc020fd18d3ee93af6fdab15e1e42adb2638d",
+      "control": "no-summon",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "e0c109bc755c42f0c6d9bc749d3be8669c58903a46bc94efd0a6ce47d7d84c7c"
+    },
+    {
+      "harness": "special_trigger",
+      "harness_sha256": "127dc37444706dd8a708c099cacf5e497bc16691776442c76bff32d0fcfd857d",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "350fea4e2988caaf82f378971a4c76ea5931502b8852421b0bafbd80e27ae36e"
+    },
+    {
+      "harness": "special_trigger",
+      "harness_sha256": "127dc37444706dd8a708c099cacf5e497bc16691776442c76bff32d0fcfd857d",
+      "control": "any-player",
+      "status": 1,
+      "expected_failures": [
+        {
+          "own": true
+        }
+      ],
+      "artifact_sha256": "4116469d90bc6cee949387b6b29c6660367f830a4158d4be1ee12416ec359699"
+    },
+    {
+      "harness": "special_trigger",
+      "harness_sha256": "127dc37444706dd8a708c099cacf5e497bc16691776442c76bff32d0fcfd857d",
+      "control": "no-summon",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "27ea873154e4d21283d3ef0a6b5f394c064ff8cbd9371cb3ffdd2da5da5c1c23"
+    },
+    {
+      "harness": "flip_exclusion",
+      "harness_sha256": "b15368e3c870ecb07195238568015d19c88f26443dfc6c4133a596199dee0768",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "7047a81498f57d9c682bd2a9119c43cf9d69872c1d28161e7e1d032df014ddba"
+    },
+    {
+      "harness": "flip_exclusion",
+      "harness_sha256": "b15368e3c870ecb07195238568015d19c88f26443dfc6c4133a596199dee0768",
+      "control": "flip-trigger",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "a7b99bef9a9288207ed0194a4464c5cc32a982fea902d749bc972214af820c6f"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "af50ed53812a001f90be778bae295d08fdb8eba9d71d07adc865f913a86ef995",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "aadb974554764ecde3a513ff3ea9cc57eac5fb9e3ae8d538b14e6fbace3688b5"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "af50ed53812a001f90be778bae295d08fdb8eba9d71d07adc865f913a86ef995",
+      "control": "no-relation",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "leave"
+        },
+        {
+          "mode": "return"
+        }
+      ],
+      "artifact_sha256": "44e09dab2b3e74b78f952750a5f77bbb449e0b7f3affcce941e78daa8c486c96"
+    },
+    {
+      "harness": "interrupt",
+      "harness_sha256": "af50ed53812a001f90be778bae295d08fdb8eba9d71d07adc865f913a86ef995",
+      "control": "no-interruption",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "leave"
+        },
+        {
+          "mode": "return"
+        },
+        {
+          "mode": "negate"
+        }
+      ],
+      "artifact_sha256": "80e4c37cc8e53d7988f955e0f16e3e7e06a31c10487e7906a9d26dfde605fa0a"
+    },
+    {
+      "harness": "zone_interrupt",
+      "harness_sha256": "f76089e1dffd164eec0aaa3b34ddc7fd855540542ce86a9cd99245569e040a6e",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "ca2788703e98d12dc520738c8675c7f966495ca551ef06ee0a911e45c99d15a7"
+    },
+    {
+      "harness": "zone_interrupt",
+      "harness_sha256": "f76089e1dffd164eec0aaa3b34ddc7fd855540542ce86a9cd99245569e040a6e",
+      "control": "no-fill",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "8c3b6163b7feef1e59ee640abeffe7aa88ecdf2c52f2e869401075899ea0a77a"
+    },
+    {
+      "harness": "zone_interrupt",
+      "harness_sha256": "f76089e1dffd164eec0aaa3b34ddc7fd855540542ce86a9cd99245569e040a6e",
+      "control": "keep-filled",
+      "status": 1,
+      "expected_failures": [
+        {
+          "freeAgain": true
+        }
+      ],
+      "artifact_sha256": "6ed316b9d4a91444133e95bcdc515c509e470aceed8508a089416a96700f23f2"
+    }
+  ]
+}

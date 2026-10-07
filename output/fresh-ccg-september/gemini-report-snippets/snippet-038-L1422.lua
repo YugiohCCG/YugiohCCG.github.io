@@ -1,0 +1,4 @@
+   -- Lines 36-38:
+   e5:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+   e5:SetCode(EVENT_FLIP)
+   e5:SetProperty(EFFECT_FLAG_CARD_TARGET)

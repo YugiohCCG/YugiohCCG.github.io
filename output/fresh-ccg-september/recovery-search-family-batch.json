@@ -1,0 +1,334 @@
+{
+  "scope": "Full production source and canonical target scripts. Actual legal Normal Summon and GY or face-up banishment recovery accepted/declined. Shared no-search mutation must fail positive only. Other effects, locks/count/filter edges and native Omega open.",
+  "harness_sha256": "1b75bb6bb7b8a91452d7e22c7d50a4bcd193a264883e7e28b85b86ed7c865f88",
+  "batch_script_sha256": "e68dec31398225441ead81e05b67bcd371cc096508fefba6c8f5f974abdce315",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "public/CCG Downloads/CCG_Scripts/c231331942.lua": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067"
+  },
+  "runs": [
+    {
+      "source": 215629896,
+      "target": 229499914,
+      "control": null,
+      "source_sha256": "c9c633382e64429d9a8ac6f4b299032646327e79a117e8914dba50ef0d5d6e97",
+      "target_sha256": "6220ec1b841d0d4b4c32359277fa444558f7a7e05d2ba4513cb3480488de7842",
+      "artifact_sha256": "a08a0b19b7f5779ba38bb70bcfb062c56308f6e4755f00c6247a9a94e26eee02",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 215629896,
+      "target": 229499914,
+      "control": "no-search",
+      "source_sha256": "c9c633382e64429d9a8ac6f4b299032646327e79a117e8914dba50ef0d5d6e97",
+      "target_sha256": "6220ec1b841d0d4b4c32359277fa444558f7a7e05d2ba4513cb3480488de7842",
+      "artifact_sha256": "c859974adb8e6c598de0ee84cc3189d120c1bcfc9455b432a9959d96862a911d",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 215629896,
+      "target": 229499914,
+      "control": "any-search-filter",
+      "source_sha256": "c9c633382e64429d9a8ac6f4b299032646327e79a117e8914dba50ef0d5d6e97",
+      "target_sha256": "6220ec1b841d0d4b4c32359277fa444558f7a7e05d2ba4513cb3480488de7842",
+      "artifact_sha256": "c89372b49937aeba90e0b74e10b02edc155f273fdf629f52f7b0330a678ae281",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 215629896,
+      "target": 229499914,
+      "control": null,
+      "source_sha256": "c9c633382e64429d9a8ac6f4b299032646327e79a117e8914dba50ef0d5d6e97",
+      "target_sha256": "6220ec1b841d0d4b4c32359277fa444558f7a7e05d2ba4513cb3480488de7842",
+      "artifact_sha256": "7ec253599d25f5c401c247e22836350db1d36536090773de5e78e117b7db948b",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 215629896,
+      "target": 229499914,
+      "control": "no-search",
+      "source_sha256": "c9c633382e64429d9a8ac6f4b299032646327e79a117e8914dba50ef0d5d6e97",
+      "target_sha256": "6220ec1b841d0d4b4c32359277fa444558f7a7e05d2ba4513cb3480488de7842",
+      "artifact_sha256": "c859974adb8e6c598de0ee84cc3189d120c1bcfc9455b432a9959d96862a911d",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 215629896,
+      "target": 229499914,
+      "control": "any-search-filter",
+      "source_sha256": "c9c633382e64429d9a8ac6f4b299032646327e79a117e8914dba50ef0d5d6e97",
+      "target_sha256": "6220ec1b841d0d4b4c32359277fa444558f7a7e05d2ba4513cb3480488de7842",
+      "artifact_sha256": "23003fcc78d525c5472cef65d29bdc1870b3865ec988ec34b33ecdfb0902a056",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 228926678,
+      "target": 233759343,
+      "control": null,
+      "source_sha256": "7a1cf6dc9cbd4d4d3916a3bc8cb4b12ba39056e8008d640f4306f5dc597729a1",
+      "target_sha256": "ff34c868992a475f127356f1043688d8d20a33c041b407f0c66c385c0e8e76f5",
+      "artifact_sha256": "7f9490bda1a6b7b3a81736537b4e050214b9d498952dc4002e0ceb91bfe37e28",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 228926678,
+      "target": 233759343,
+      "control": "no-search",
+      "source_sha256": "7a1cf6dc9cbd4d4d3916a3bc8cb4b12ba39056e8008d640f4306f5dc597729a1",
+      "target_sha256": "ff34c868992a475f127356f1043688d8d20a33c041b407f0c66c385c0e8e76f5",
+      "artifact_sha256": "c4cd2ad70754a7d906bccf9cb1f0fac851f684ae2ed674c13af5fd4fd1ec58aa",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 228926678,
+      "target": 233759343,
+      "control": "any-search-filter",
+      "source_sha256": "7a1cf6dc9cbd4d4d3916a3bc8cb4b12ba39056e8008d640f4306f5dc597729a1",
+      "target_sha256": "ff34c868992a475f127356f1043688d8d20a33c041b407f0c66c385c0e8e76f5",
+      "artifact_sha256": "95672b8d48e1453155cdc80dbd34f5b4573ba1ee258e29e920e5bebec3ca64b6",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    },
+    {
+      "source": 232038002,
+      "target": 215142357,
+      "control": null,
+      "source_sha256": "49cd3edd7683b74d786b93ada3ef9998388df298e5f6d51e627fc15e914dd343",
+      "target_sha256": "10aef71ab5e476d27a79877ef120a9631c2a3204a7b66b4bd38852b049314995",
+      "artifact_sha256": "558b043c65aa964b976fdc1229ed4e558cfaa4e2e96ae8066028a497215d2f10",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 232038002,
+      "target": 215142357,
+      "control": "no-search",
+      "source_sha256": "49cd3edd7683b74d786b93ada3ef9998388df298e5f6d51e627fc15e914dd343",
+      "target_sha256": "10aef71ab5e476d27a79877ef120a9631c2a3204a7b66b4bd38852b049314995",
+      "artifact_sha256": "459bceaf17929e4b30a26fe71fec5d2a4859a651e72a8e4ff4be019b74538094",
+      "results": [
+        {
+          "test": {},
+          "failure": "Canonical ShiningSpell actually searched\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": null
+        }
+      ]
+    },
+    {
+      "source": 232038002,
+      "target": 215142357,
+      "control": "any-search-filter",
+      "source_sha256": "49cd3edd7683b74d786b93ada3ef9998388df298e5f6d51e627fc15e914dd343",
+      "target_sha256": "10aef71ab5e476d27a79877ef120a9631c2a3204a7b66b4bd38852b049314995",
+      "artifact_sha256": "0b1d4d8e84057f4284e6ab8e1207adec69cbfca120d79699cc784e3c07f664d7",
+      "results": [
+        {
+          "test": {},
+          "failure": null
+        },
+        {
+          "test": {
+            "decline": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "wrongSet": true
+          },
+          "failure": "Canonical ShiningSpell actually searched\n\ntrue !== false\n"
+        }
+      ]
+    }
+  ]
+}

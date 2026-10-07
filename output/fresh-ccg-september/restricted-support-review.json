@@ -1,0 +1,1131 @@
+{
+  "scope": "Manual source routing of 26 static candidates. Clearing a literal-reference alert is not completing the card. Proper procedure presence is not runtime proof. No production changes.",
+  "counts": {
+    "reviewed_candidates": 26,
+    "reference_only": 8,
+    "procedure_branch": 6,
+    "priority_interactions": 12
+  },
+  "queue_sha256": "329aa132891e79e1dc5057d1c400e8f90df448c69891a05a565fdf450c558794",
+  "cards": [
+    {
+      "passcode": 212345347,
+      "name": "Gravinity Lapsix",
+      "classification": "restricted support interaction remains priority",
+      "reason": "Direct or broad eligible target interaction requires full-support runtime checks; do not infer a defect from references.",
+      "script_sha256": "5ba1398b3e0a3fae63e6caa966d97cbf295ac7f0f9a1c2ab50ec54527daa448b",
+      "supporting_scripts": [
+        {
+          "passcode": 249454272,
+          "name": "Gravinity Galaxix",
+          "script_sha256": "8f67837edd8912c59452a8d177a15f4c9233d219e13661a6e56a496f5be0661e"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 36,
+          "text": "e3:SetValue(function(e,sc) return sc:IsCode(LAPSIX,GALAXIX) end)"
+        },
+        {
+          "line": 42,
+          "text": "and ((Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false))"
+        },
+        {
+          "line": 62,
+          "text": "local b1=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 66,
+          "text": "if op==0 then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)"
+        },
+        {
+          "line": 76,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,4)) then"
+        },
+        {
+          "line": 77,
+          "text": "Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 215621622,
+      "name": "A Night of Fright on Hallo-Ween!",
+      "classification": "restricted support interaction remains priority",
+      "reason": "Direct or broad eligible target interaction requires full-support runtime checks; do not infer a defect from references.",
+      "script_sha256": "4f6e82a380a1f62e28ebce8b732e20abc87446b3407a69fecc4ad46ce704147e",
+      "supporting_scripts": [
+        {
+          "passcode": 231331942,
+          "name": "Hallo, the Hollow Trickster",
+          "script_sha256": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 23,
+          "text": "return c:IsCode(WEEN) and c:IsAbleToGraveAsCost() and Duel.GetMZoneCount(tp,c)>0"
+        },
+        {
+          "line": 32,
+          "text": "return c:IsCode(HOLLOW) and (c:IsFaceup() or not c:IsLocation(LOCATION_REMOVED))"
+        },
+        {
+          "line": 33,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 43,
+          "text": "if tc then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP) end"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 224751741,
+      "name": "Fall of Azrynior",
+      "classification": "proper procedure branch present; runtime review remains",
+      "reason": "Dysmandr Fusion branch uses SUMMON_TYPE_FUSION and CompleteProcedure.",
+      "script_sha256": "85e543f8c13bd8f6eb025d95329724769d675941be63f3b8c038b01c4b5fe44f",
+      "supporting_scripts": [
+        {
+          "passcode": 223512283,
+          "name": "Dysmandr, the Depraevity of Worlds",
+          "script_sha256": "fa9f802eb7c0b3e4a96dd1fc06de957f861642d0446ec47b1320e30feb00a085"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 42,
+          "text": "return c:IsCode(TOKEN_PROTOGENIC)"
+        },
+        {
+          "line": 58,
+          "text": "return c:IsCode(CARD_DYSMANDR) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false)"
+        },
+        {
+          "line": 63,
+          "text": "and Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_DARK)"
+        },
+        {
+          "line": 73,
+          "text": "if not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_DARK) then return end"
+        },
+        {
+          "line": 75,
+          "text": "if Duel.SpecialSummon(token,0,tp,tp,false,false,POS_FACEUP)==0 then return end"
+        },
+        {
+          "line": 99,
+          "text": "fc:SetMaterial(mat)"
+        },
+        {
+          "line": 102,
+          "text": "if Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then"
+        },
+        {
+          "line": 103,
+          "text": "fc:CompleteProcedure()"
+        },
+        {
+          "line": 107,
+          "text": "return c:IsCode(CARD_DYSMANDR) and c:IsPreviousControler(tp)"
+        },
+        {
+          "line": 133,
+          "text": "and Duel.SendtoHand(c,nil,REASON_EFFECT)>0 then"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 224800873,
+      "name": "Hallo-Ween! Basket of Treats",
+      "classification": "restricted support interaction remains priority",
+      "reason": "Direct or broad eligible target interaction requires full-support runtime checks; do not infer a defect from references.",
+      "script_sha256": "0e85d62db270a8358ddccba74b3ab733013c0d2269d77556a73511a8880af29e",
+      "supporting_scripts": [
+        {
+          "passcode": 231331942,
+          "name": "Hallo, the Hollow Trickster",
+          "script_sha256": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 31,
+          "text": "return c:IsCode(HALLO_GIVER,HALLO_HOLLOW)"
+        },
+        {
+          "line": 34,
+          "text": "return c:IsCode(WEEN)"
+        },
+        {
+          "line": 37,
+          "text": "if op==1 then return s.isween(c) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end"
+        },
+        {
+          "line": 38,
+          "text": "return s.ishallo(c) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 65,
+          "text": "if tc then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP) end"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 226063408,
+      "name": "Grand Puppet of Wicked Puppeteer",
+      "classification": "reference is cost/search/condition rather than directly summoned identity",
+      "reason": "Orchis is release-cost identity; summon operation summons handler.",
+      "script_sha256": "c2e28047185eab6955546d3e5fc34759fd636bc89cce51aa8276e46a39e2246a",
+      "supporting_scripts": [
+        {
+          "passcode": 236818346,
+          "name": "Wicked Puppeteer, Orchis",
+          "script_sha256": "982309154bb9adbffa5fd2c2d999c8a53354b93511d796e7f767bdba640cebdc"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 43,
+          "text": "return c:IsFaceup() and c:IsCode(CARD_TRUE_ORCHIS,CARD_ORCHIS)"
+        },
+        {
+          "line": 61,
+          "text": "return c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 72,
+          "text": "Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 233659599,
+      "name": "Minion Puppets of Wicked Puppeteer",
+      "classification": "reference is cost/search/condition rather than directly summoned identity",
+      "reason": "Orchis is release-cost identity; summon operation summons handler.",
+      "script_sha256": "09ab8b0f3ab8c385a4a64789fe00d60a984aae8c6bfb80a845f6e57c84cc8929",
+      "supporting_scripts": [
+        {
+          "passcode": 236818346,
+          "name": "Wicked Puppeteer, Orchis",
+          "script_sha256": "982309154bb9adbffa5fd2c2d999c8a53354b93511d796e7f767bdba640cebdc"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 37,
+          "text": "return c:IsFaceup() and c:IsCode(CARD_TRUE_ORCHIS,CARD_ORCHIS)"
+        },
+        {
+          "line": 54,
+          "text": "return c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 65,
+          "text": "Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 234178973,
+      "name": "The True Wicked Puppeteer, Orchis",
+      "classification": "reference is cost/search/condition rather than directly summoned identity",
+      "reason": "Orchis is searched to hand; summon operations summon handler and Puppet Token.",
+      "script_sha256": "0e34ed36f13c1734b71bf44dfb5e8fab28afebe73bcb99288021f62459d2d411",
+      "supporting_scripts": [
+        {
+          "passcode": 236818346,
+          "name": "Wicked Puppeteer, Orchis",
+          "script_sha256": "982309154bb9adbffa5fd2c2d999c8a53354b93511d796e7f767bdba640cebdc"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 55,
+          "text": "return c:IsCode(code) and c:IsAbleToHand()"
+        },
+        {
+          "line": 73,
+          "text": "if Duel.SendtoHand(g1,nil,REASON_EFFECT)>0 then"
+        },
+        {
+          "line": 86,
+          "text": "return c:IsCanBeSpecialSummoned(e,0,tp,false,false) and aux.NecroValleyFilter()(c)"
+        },
+        {
+          "line": 90,
+          "text": "and Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PUPPET,SET_WICKED_PUPPETEER,TYPES_TOKEN_MONSTER,1500,200,4,RACE_WARRIOR,ATTRIBUTE_DARK,POS_FACEUP_DEFENSE)"
+        },
+        {
+          "line": 102,
+          "text": "if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 and s.cantoken(tp)"
+        },
+        {
+          "line": 106,
+          "text": "Duel.SpecialSummon(token,0,tp,tp,false,false,POS_FACEUP_DEFENSE)"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 235051048,
+      "name": "Ursarctic Octantis",
+      "classification": "restricted support interaction remains priority",
+      "reason": "Direct or broad eligible target interaction requires full-support runtime checks; do not infer a defect from references.",
+      "script_sha256": "f8ecd4df0acaa993c38bc6631720eef258467418f05162911f156faae1ee0b5d",
+      "supporting_scripts": [
+        {
+          "passcode": 244921711,
+          "name": "Ursarctic Hextanius",
+          "script_sha256": "f8cb036b595c5f005f96c2f3ccd9e08fad2dc2547a23f8ef8b63a13a02172e82"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 54,
+          "text": "if c:IsCode(CARD_HEXTANIUS) and sc:IsSetCard(SET_URSARCTIC) and sc:IsType(TYPE_SYNCHRO) then"
+        },
+        {
+          "line": 71,
+          "text": "return not c:IsType(TYPE_TUNER) or c:IsCode(CARD_HEXTANIUS) and sc:IsSetCard(SET_URSARCTIC) and sc:IsType(TYPE_SYNCHRO)"
+        },
+        {
+          "line": 119,
+          "text": "and Duel.GetLocationCountFromEx(tp,tp,g,c)>0 and c:IsCanBeSpecialSummoned(e,0,tp,true,false)"
+        },
+        {
+          "line": 153,
+          "text": "Duel.SpecialSummon(tc,0,tp,tp,true,false,POS_FACEUP)"
+        },
+        {
+          "line": 169,
+          "text": "return c:IsSetCard(SET_URSARCTIC) and c:IsType(TYPE_MONSTER) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 181,
+          "text": "Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 236239443,
+      "name": "Restoration of Azrynior",
+      "classification": "reference is cost/search/condition rather than directly summoned identity",
+      "reason": "Azrynior is field condition; revival targets ordinary eligible GY group.",
+      "script_sha256": "2297f9ba9028b89ef7a4eb9ac1b3bce3827367a2726e0a44ef76c4962bfcfb93",
+      "supporting_scripts": [
+        {
+          "passcode": 245099829,
+          "name": "Azrynior, the Abundaence of Purity",
+          "script_sha256": "34cfe579b8348b899c9a2f98c590e7e6561730c915d409ba525dc79ffe85d8ff"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 55,
+          "text": "return c:IsFaceup() and c:IsCode(CARD_AZRYNIOR)"
+        },
+        {
+          "line": 61,
+          "text": "return c:IsCode(TOKEN_PROTOGENIC) and c:IsReleasable()"
+        },
+        {
+          "line": 71,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false) and aux.NecroValleyFilter()(c)"
+        },
+        {
+          "line": 110,
+          "text": "Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 236815197,
+      "name": "Phlogiston's Wake",
+      "classification": "restricted support interaction remains priority",
+      "reason": "Direct or broad eligible target interaction requires full-support runtime checks; do not infer a defect from references.",
+      "script_sha256": "0ca03b38bae90a0efc3ef733e14f0fe0f009dbfa236cd638d1aaad554d8e1524",
+      "supporting_scripts": [
+        {
+          "passcode": 242094473,
+          "name": "Phlogiston Dragon",
+          "script_sha256": "a6dc62c7a63591c0f1158b525228bf688167e9bbf6fbfd156beef1b469e58659"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 42,
+          "text": "if chk==0 then return Duel.IsExistingMatchingCard(aux.AND(Card.IsFaceup,Card.IsCode),tp,LOCATION_ONFIELD,0,1,nil,242094473) end"
+        },
+        {
+          "line": 49,
+          "text": "local g=Duel.SelectMatchingCard(tp,aux.AND(Card.IsFaceup,Card.IsCode),tp,LOCATION_ONFIELD,0,1,1,nil,242094473)"
+        },
+        {
+          "line": 89,
+          "text": "return c:IsAttribute(ATTRIBUTE_FIRE) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENSE)"
+        },
+        {
+          "line": 103,
+          "text": "Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP_DEFENSE)"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 238273770,
+      "name": "Symphonic Warrior Disccs",
+      "classification": "restricted support interaction remains priority",
+      "reason": "Direct or broad eligible target interaction requires full-support runtime checks; do not infer a defect from references.",
+      "script_sha256": "7a7f0eefd77ec74e110a2d8640752fd8d6685d683236539d36e7e28fe7613ccd",
+      "supporting_scripts": [
+        {
+          "passcode": 238273772,
+          "name": "Symphonic Warrior Mega Staar",
+          "script_sha256": "dd3c2101699086b4d3b578ec7ab7439899393660a9392fa6f703a1c6a5e7c33d"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 75,
+          "text": "Duel.SendtoHand(g,nil,REASON_COST)"
+        },
+        {
+          "line": 79,
+          "text": "and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false) end"
+        },
+        {
+          "line": 84,
+          "text": "if c:IsRelateToEffect(e) and c:IsLocation(LOCATION_PZONE) then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP) end"
+        },
+        {
+          "line": 104,
+          "text": "return not c:IsCode(id) and c:IsAbleToHand()"
+        },
+        {
+          "line": 105,
+          "text": "and (c:IsSetCard(SET_SYMPHONIC) and c:IsType(TYPE_MONSTER) or c:IsCode(82735249,75304793,5399521,238273772))"
+        },
+        {
+          "line": 114,
+          "text": "if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT) Duel.ConfirmCards(1-tp,g) end"
+        },
+        {
+          "line": 119,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 127,
+          "text": "Duel.SendtoHand(c,nil,REASON_COST)"
+        },
+        {
+          "line": 134,
+          "text": "and Duel.IsPlayerCanSpecialSummonMonster(tp,id,SET_SYMPHONIC,TYPE_MONSTER+TYPE_EFFECT+TYPE_TUNER+TYPE_PENDULUM,300,200,1,RACE_MACHINE,ATTRIBUTE_WIND)"
+        },
+        {
+          "line": 142,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 149,
+          "text": "if tc then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP) end"
+        },
+        {
+          "line": 168,
+          "text": "if tc then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP) end"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 239245471,
+      "name": "Birth of Azrynior",
+      "classification": "proper procedure branch present; runtime review remains",
+      "reason": "Azrynior Fusion branch uses SUMMON_TYPE_FUSION and CompleteProcedure.",
+      "script_sha256": "f40f2550809cdb331126de046fc24c11bbd5296cd37c9e0d9dac07474421064e",
+      "supporting_scripts": [
+        {
+          "passcode": 245099829,
+          "name": "Azrynior, the Abundaence of Purity",
+          "script_sha256": "34cfe579b8348b899c9a2f98c590e7e6561730c915d409ba525dc79ffe85d8ff"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 42,
+          "text": "return c:IsCode(TOKEN_PROTOGENIC)"
+        },
+        {
+          "line": 58,
+          "text": "return c:IsCode(CARD_AZRYNIOR) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false)"
+        },
+        {
+          "line": 63,
+          "text": "and Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT)"
+        },
+        {
+          "line": 73,
+          "text": "if not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT) then return end"
+        },
+        {
+          "line": 75,
+          "text": "if Duel.SpecialSummon(token,0,tp,tp,false,false,POS_FACEUP)==0 then return end"
+        },
+        {
+          "line": 95,
+          "text": "fc:SetMaterial(mat)"
+        },
+        {
+          "line": 98,
+          "text": "if Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then"
+        },
+        {
+          "line": 99,
+          "text": "fc:CompleteProcedure()"
+        },
+        {
+          "line": 103,
+          "text": "return c:IsCode(CARD_AZRYNIOR) and c:IsPreviousControler(tp)"
+        },
+        {
+          "line": 132,
+          "text": "if c:IsRelateToEffect(e) and Duel.SendtoHand(c,nil,REASON_EFFECT)>0 then"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 249093610,
+      "name": "Ursarctic Nordbar",
+      "classification": "restricted support interaction remains priority",
+      "reason": "Direct or broad eligible target interaction requires full-support runtime checks; do not infer a defect from references.",
+      "script_sha256": "dc111a23ee61f33cbcd95a41c47bd1a93a6873fd18b63e58fe1eff7cfd62fdc4",
+      "supporting_scripts": [
+        {
+          "passcode": 244921711,
+          "name": "Ursarctic Hextanius",
+          "script_sha256": "f8cb036b595c5f005f96c2f3ccd9e08fad2dc2547a23f8ef8b63a13a02172e82"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 63,
+          "text": "if c:IsCode(CARD_HEXTANIUS) and sc:IsSetCard(SET_URSARCTIC) and sc:IsType(TYPE_SYNCHRO) then"
+        },
+        {
+          "line": 90,
+          "text": "or c:IsCode(CARD_HEXTANIUS) and sc:IsSetCard(SET_URSARCTIC) and sc:IsType(TYPE_SYNCHRO))"
+        },
+        {
+          "line": 123,
+          "text": "return c:IsSetCard(SET_URSARCTIC) and c:IsType(TYPE_MONSTER) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 135,
+          "text": "Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)"
+        },
+        {
+          "line": 153,
+          "text": "Duel.SendtoHand(g,nil,REASON_EFFECT)"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 249454272,
+      "name": "Gravinity Galaxix",
+      "classification": "restricted support interaction remains priority",
+      "reason": "Direct or broad eligible target interaction requires full-support runtime checks; do not infer a defect from references.",
+      "script_sha256": "8f67837edd8912c59452a8d177a15f4c9233d219e13661a6e56a496f5be0661e",
+      "supporting_scripts": [
+        {
+          "passcode": 212345347,
+          "name": "Gravinity Lapsix",
+          "script_sha256": "5ba1398b3e0a3fae63e6caa966d97cbf295ac7f0f9a1c2ab50ec54527daa448b"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 37,
+          "text": "e3:SetValue(function(e,sc) return sc:IsCode(LAPSIX,GALAXIX) end)"
+        },
+        {
+          "line": 66,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then"
+        },
+        {
+          "line": 67,
+          "text": "Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 250262550,
+      "name": "Ween, Guidance to Treats",
+      "classification": "restricted support interaction remains priority",
+      "reason": "Direct or broad eligible target interaction requires full-support runtime checks; do not infer a defect from references.",
+      "script_sha256": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+      "supporting_scripts": [
+        {
+          "passcode": 231331942,
+          "name": "Hallo, the Hollow Trickster",
+          "script_sha256": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 37,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 51,
+          "text": "if tc and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 then"
+        },
+        {
+          "line": 62,
+          "text": "return s.hallo_monster_codes[c:GetCode()] and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 73,
+          "text": "if tc then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP) end"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 255977900,
+      "name": "Happy Hallo-Ween!",
+      "classification": "restricted support interaction remains priority",
+      "reason": "Direct or broad eligible target interaction requires full-support runtime checks; do not infer a defect from references.",
+      "script_sha256": "31c1606d5cc070e1aeb9037089d697e1eefb17b75222eb50ee77c9f65ef0bd06",
+      "supporting_scripts": [
+        {
+          "passcode": 231331942,
+          "name": "Hallo, the Hollow Trickster",
+          "script_sha256": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 53,
+          "text": "return s.hallo_ween_monster_codes[c:GetCode()] and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 64,
+          "text": "if tc then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP) end"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 256831125,
+      "name": "Gravinity Axis Matter",
+      "classification": "restricted support interaction remains priority",
+      "reason": "Direct or broad eligible target interaction requires full-support runtime checks; do not infer a defect from references.",
+      "script_sha256": "c26df5daf8fd4e558616bf26ec9dfa24b8f6811184ceb1697a9bf121d817dbf0",
+      "supporting_scripts": [
+        {
+          "passcode": 212429024,
+          "name": "Gravinity Nebulix",
+          "script_sha256": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921"
+        },
+        {
+          "passcode": 231088629,
+          "name": "Gravinity Spherix",
+          "script_sha256": "a64693dbd99554bb567b66e84627192f772d4a9c11e951be300c6dcd7848f0ba"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 107,
+          "text": "and ((Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false))"
+        },
+        {
+          "line": 123,
+          "text": "local b1=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 129,
+          "text": "Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)"
+        },
+        {
+          "line": 155,
+          "text": "if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,true,false) end"
+        },
+        {
+          "line": 163,
+          "text": "if not c:IsRelateToEffect(e) or Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)==0 or not c:IsType(TYPE_XYZ) then return end"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 259023461,
+      "name": "Disciple of Fire",
+      "classification": "reference is cost/search/condition rather than directly summoned identity",
+      "reason": "Dragon/Horde are field conditions; revival operation summons handler.",
+      "script_sha256": "9d358e26ff8915efbd0054c484a8e2b6b5da6ad683909ad96406b93ae25d13b9",
+      "supporting_scripts": [
+        {
+          "passcode": 230303021,
+          "name": "Phlogistic Scorching Dragon Horde",
+          "script_sha256": "d6fd0e61154173a43752cf2db011aed3234760fbc0be1daa7dd9d246ad5cc9fb"
+        },
+        {
+          "passcode": 242094473,
+          "name": "Phlogiston Dragon",
+          "script_sha256": "a6dc62c7a63591c0f1158b525228bf688167e9bbf6fbfd156beef1b469e58659"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 49,
+          "text": "return c:IsFaceup() and c:IsCode(CARD_PHLOGISTON_DRAGON,CARD_PHLOGISTIC_HORDE)"
+        },
+        {
+          "line": 61,
+          "text": "return c:IsCode(CARD_PHLOGISTIC_UPRISING) and c:IsAbleToHand()"
+        },
+        {
+          "line": 77,
+          "text": "Duel.SendtoHand(g,nil,REASON_EFFECT)"
+        },
+        {
+          "line": 93,
+          "text": "and aux.NecroValleyFilter()(c) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 123,
+          "text": "Duel.SendtoHand(g,nil,REASON_EFFECT)"
+        },
+        {
+          "line": 129,
+          "text": "if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 then"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 259024242,
+      "name": "Devotee of the Pyre",
+      "classification": "reference is cost/search/condition rather than directly summoned identity",
+      "reason": "Lord is field condition for search; summons are Pyre Tokens.",
+      "script_sha256": "d64caaaae910eb667a61277077e92e42b0a3b6a246e25128eb337e348a033a40",
+      "supporting_scripts": [
+        {
+          "passcode": 259542408,
+          "name": "Lord of the Pyre",
+          "script_sha256": "aee54c0f922530a56374cb3095d46a2cdfc4c4674e1ea491fe57d319a2b8cf6c"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 13,
+          "text": "function s.tg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>1 and Duel.IsPlayerCanSpecialSummonMonster(tp,239823001,SET_PYRE,TYPES_TOKEN,0,0,1,RACE_PYRO,ATTRIBUTE_FIRE) end Duel.SetOperationInfo(0,CATEGORY_TOKEN,nil,2,tp,0) end"
+        },
+        {
+          "line": 14,
+          "text": "function s.lord(c) return c:IsFaceup() and c:IsCode(LORD) end"
+        },
+        {
+          "line": 15,
+          "text": "function s.op(e,tp) if Duel.GetLocationCount(tp,LOCATION_MZONE)<2 or not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PYRE,SET_PYRE,TYPES_TOKEN,0,0,1,RACE_PYRO,ATTRIBUTE_FIRE) then return end for i=1,2 do local tc=Duel.CreateToken(tp,TOKEN_PYRE); Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP); local ex=Effect.CreateEffect(e:GetHandler()); ex:SetType(EFFECT_TYPE_SINGLE); ex:SetCode(EFFECT_UNRELEASABLE_SUM); ex:SetValue(function(e,c) return not c:IsRace(RACE_PYRO) end); ex:SetReset(RESET_EVENT+RESETS_STANDARD); tc:RegisterEffect(ex); local exn=ex:Clone(); exn:SetCode(EFFECT_UNRELEASABLE_NONSUM); exn:SetValue(1); tc:RegisterEffect(exn); local ex2=Effect.CreateEffect(e:GetHandler()); ex2:SetType(EFFECT_TYPE_SINGLE); ex2:SetCode(EFFECT_CANNOT_BE_LINK_MATERIAL); ex2:SetValue(function(e,c) return not c:IsRace(RACE_PYRO) end); ex2:SetReset(RESET_EVENT+RESETS_STANDARD); tc:RegisterEffect(ex2) end Duel.SpecialSummonComplete(); if Duel.IsExistingMatchingCard(s.lord,tp,LOCATION_MZONE,0,1,nil) and Duel.IsExistingMatchingCard(s.search,tp,LOCATION_DECK,0,1,nil) and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,0)) then Duel.BreakEffect(); Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); local g=Duel.SelectMatchingCard(tp,s.search,tp,LOCATION_DECK,0,1,1,nil); Duel.SendtoHand(g,nil,REASON_EFFECT); Duel.ConfirmCards(1-tp,g) end end"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 259273394,
+      "name": "Jelly Miss of the Grand Blue",
+      "classification": "proper procedure branch present; runtime review remains",
+      "reason": "Grand Blue Fusion branch sets materials and completes Fusion procedure.",
+      "script_sha256": "a70f71d124767d576efbbbc6bff586a4e4c2a15b0c88460cfa90fa0a623c91c3",
+      "supporting_scripts": [
+        {
+          "passcode": 259177849,
+          "name": "Grand Blue Princess",
+          "script_sha256": "e0069769b810f3a9f4851359186840a9e73123669ac53b1c00dcd74e9d547382"
+        },
+        {
+          "passcode": 259937946,
+          "name": "Grand Blue Prince",
+          "script_sha256": "c7edf515e555ccfc56005e9735d7c1867899f6d163b0d7442eb0eb0560fd40a4"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 35,
+          "text": "return c:IsFaceup() and (c:IsCode(CARD_UMI) or c:IsCode(CARD_CITY_GRAND_BLUE))"
+        },
+        {
+          "line": 40,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 47,
+          "text": "if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end"
+        },
+        {
+          "line": 98,
+          "text": "return #g==2 and g:IsContains(sc) and g:IsExists(Card.IsCode,1,nil,CARD_GRAND_BLUE_PRINCESS)"
+        },
+        {
+          "line": 104,
+          "text": "and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false)) then return false end"
+        },
+        {
+          "line": 105,
+          "text": "if c:IsCode(CARD_GRAND_BLUE_PRINCESS) then return mg:CheckSubGroup(s.princesscheck,2,2,sc,tp,c) end"
+        },
+        {
+          "line": 106,
+          "text": "if c:IsCode(CARD_GRAND_BLUE_PRINCE) then return mg:CheckSubGroup(s.princecheck,2,2,sc,tp,c) end"
+        },
+        {
+          "line": 126,
+          "text": "local check=fc:IsCode(CARD_GRAND_BLUE_PRINCESS) and s.princesscheck or s.princecheck"
+        },
+        {
+          "line": 130,
+          "text": "fc:SetMaterial(mat)"
+        },
+        {
+          "line": 134,
+          "text": "if Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then"
+        },
+        {
+          "line": 135,
+          "text": "fc:CompleteProcedure()"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 259360287,
+      "name": "Sorceress of Fire",
+      "classification": "reference is cost/search/condition rather than directly summoned identity",
+      "reason": "Dragon/Horde are Deck-to-GY identities; summon operation summons handler.",
+      "script_sha256": "4b10651d44e46c4596836be91750a7f38b2afa7a119736a98c22d3aa8e9c8e82",
+      "supporting_scripts": [
+        {
+          "passcode": 230303021,
+          "name": "Phlogistic Scorching Dragon Horde",
+          "script_sha256": "d6fd0e61154173a43752cf2db011aed3234760fbc0be1daa7dd9d246ad5cc9fb"
+        },
+        {
+          "passcode": 242094473,
+          "name": "Phlogiston Dragon",
+          "script_sha256": "a6dc62c7a63591c0f1158b525228bf688167e9bbf6fbfd156beef1b469e58659"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 50,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 58,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false) then"
+        },
+        {
+          "line": 59,
+          "text": "Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)"
+        },
+        {
+          "line": 81,
+          "text": "and (c:IsCode(CARD_PHLOGISTON_DRAGON,CARD_PHLOGISTIC_HORDE) or aux.IsCodeListed(c,CARD_PHLOGISTON_DRAGON))"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 259369909,
+      "name": "Serene Mermaid of the Grand Blue",
+      "classification": "proper procedure branch present; runtime review remains",
+      "reason": "Grand Blue Fusion branch sets materials and completes Fusion procedure.",
+      "script_sha256": "0e7289e269953b367fb6bb8b8f5711003a5d690ca351e8506be83e90e7f734dc",
+      "supporting_scripts": [
+        {
+          "passcode": 259177849,
+          "name": "Grand Blue Princess",
+          "script_sha256": "e0069769b810f3a9f4851359186840a9e73123669ac53b1c00dcd74e9d547382"
+        },
+        {
+          "passcode": 259937946,
+          "name": "Grand Blue Prince",
+          "script_sha256": "c7edf515e555ccfc56005e9735d7c1867899f6d163b0d7442eb0eb0560fd40a4"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 36,
+          "text": "return c:IsFaceup() and (c:IsCode(CARD_UMI) or c:IsCode(CARD_CITY_GRAND_BLUE))"
+        },
+        {
+          "line": 41,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 49,
+          "text": "Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)"
+        },
+        {
+          "line": 64,
+          "text": "return #g==2 and g:IsExists(Card.IsCode,1,nil,CARD_GRAND_BLUE_PRINCESS)"
+        },
+        {
+          "line": 70,
+          "text": "and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false)) then return false end"
+        },
+        {
+          "line": 71,
+          "text": "if c:IsCode(CARD_GRAND_BLUE_PRINCESS) then return mg:CheckSubGroup(s.princesscheck,2,2,tp,c) end"
+        },
+        {
+          "line": 72,
+          "text": "if c:IsCode(CARD_GRAND_BLUE_PRINCE) then return mg:CheckSubGroup(s.princecheck,2,2,tp,c) end"
+        },
+        {
+          "line": 93,
+          "text": "local check=fc:IsCode(CARD_GRAND_BLUE_PRINCESS) and s.princesscheck or s.princecheck"
+        },
+        {
+          "line": 97,
+          "text": "fc:SetMaterial(mat)"
+        },
+        {
+          "line": 101,
+          "text": "if Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then"
+        },
+        {
+          "line": 102,
+          "text": "fc:CompleteProcedure()"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 259527622,
+      "name": "Knight Puppet of Wicked Puppeteer",
+      "classification": "reference is cost/search/condition rather than directly summoned identity",
+      "reason": "Orchis is release-cost identity; summon operation summons handler.",
+      "script_sha256": "ed16b7e27c4bb8134f20cebcf9c40783950bb5e4eee6a84bc8511e80796a71b3",
+      "supporting_scripts": [
+        {
+          "passcode": 236818346,
+          "name": "Wicked Puppeteer, Orchis",
+          "script_sha256": "982309154bb9adbffa5fd2c2d999c8a53354b93511d796e7f767bdba640cebdc"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 41,
+          "text": "return c:IsFaceup() and c:IsCode(CARD_TRUE_ORCHIS,CARD_ORCHIS)"
+        },
+        {
+          "line": 59,
+          "text": "return c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 70,
+          "text": "Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 259873115,
+      "name": "Glitchling Leotron",
+      "classification": "proper procedure branch present; runtime review remains",
+      "reason": "Glitchling Ritual branch sets materials and completes Ritual procedure; separate revival branch still needs review.",
+      "script_sha256": "815e15c9c57dd54732a2f435a56122f1003747644325fb9f421ada3f71d6f4fe",
+      "supporting_scripts": [
+        {
+          "passcode": 259156549,
+          "name": "Glitchling Protron",
+          "script_sha256": "e1dc218cb18afa342a4ee65bd7679481788c0b4062a744d86d3055ebaf8ded96"
+        },
+        {
+          "passcode": 259247807,
+          "name": "Glitchling Bitron",
+          "script_sha256": "431169cd90e823517f4cee55fe290c4ba1bb9dd592caadaa908dc3aad54cbdf4"
+        },
+        {
+          "passcode": 259253032,
+          "name": "Glitchling Hexatron",
+          "script_sha256": "9f49a6b8158203a59ffa28c312ea784325ca5f3bf11de08373f45adf0c35f8cd"
+        },
+        {
+          "passcode": 259494236,
+          "name": "Glitchling Digitron",
+          "script_sha256": "127692a09930f55c19cd3cd776bcbf840cc3938d245b6c86c909e20d26b86ed9"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 88,
+          "text": "return c:IsFaceup() and c:IsCode(CARD_CORRUPTION)"
+        },
+        {
+          "line": 112,
+          "text": "if c:IsCode(id) then return false end"
+        },
+        {
+          "line": 115,
+          "text": "and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true)) then return false end"
+        },
+        {
+          "line": 153,
+          "text": "rc:SetMaterial(mat)"
+        },
+        {
+          "line": 156,
+          "text": "if Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then"
+        },
+        {
+          "line": 157,
+          "text": "rc:CompleteProcedure()"
+        },
+        {
+          "line": 164,
+          "text": "return c:IsCode(CARD_BITRON,CARD_PROTRON,CARD_DIGITRON) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 175,
+          "text": "return c:IsCode(CARD_GLITCHLING_BITRON,id,CARD_GLITCHLING_HEXATRON)"
+        },
+        {
+          "line": 177,
+          "text": "return c:IsCode(CARD_GLITCHLING_PROTRON,id,CARD_GLITCHLING_HEXATRON)"
+        },
+        {
+          "line": 179,
+          "text": "return c:IsCode(CARD_GLITCHLING_DIGITRON,id,CARD_GLITCHLING_HEXATRON)"
+        },
+        {
+          "line": 186,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 193,
+          "text": "if tc and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 then"
+        },
+        {
+          "line": 203,
+          "text": "Duel.SpecialSummon(sc,0,tp,tp,false,false,POS_FACEUP)"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 259934756,
+      "name": "Jelly Lass of the Grand Blue",
+      "classification": "proper procedure branch present; runtime review remains",
+      "reason": "Grand Blue Fusion branch sets materials and completes Fusion procedure.",
+      "script_sha256": "ff9a8512626b94fc3809f5672c1ed22e31b6ba2ccdef1acb9db5060e15e182c4",
+      "supporting_scripts": [
+        {
+          "passcode": 259177849,
+          "name": "Grand Blue Princess",
+          "script_sha256": "e0069769b810f3a9f4851359186840a9e73123669ac53b1c00dcd74e9d547382"
+        },
+        {
+          "passcode": 259937946,
+          "name": "Grand Blue Prince",
+          "script_sha256": "c7edf515e555ccfc56005e9735d7c1867899f6d163b0d7442eb0eb0560fd40a4"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 44,
+          "text": "return c:IsFaceup() and (c:IsCode(CARD_UMI) or c:IsCode(CARD_CITY_GRAND_BLUE))"
+        },
+        {
+          "line": 49,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false)"
+        },
+        {
+          "line": 56,
+          "text": "Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)"
+        },
+        {
+          "line": 68,
+          "text": "return #g==2 and g:IsExists(Card.IsCode,1,nil,CARD_GRAND_BLUE_PRINCESS)"
+        },
+        {
+          "line": 74,
+          "text": "and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false)) then return false end"
+        },
+        {
+          "line": 75,
+          "text": "if c:IsCode(CARD_GRAND_BLUE_PRINCESS) then return mg:CheckSubGroup(s.princesscheck,2,2,tp,c) end"
+        },
+        {
+          "line": 76,
+          "text": "if c:IsCode(CARD_GRAND_BLUE_PRINCE) then return mg:CheckSubGroup(s.princecheck,2,2,tp,c) end"
+        },
+        {
+          "line": 91,
+          "text": "local check=fc:IsCode(CARD_GRAND_BLUE_PRINCESS) and s.princesscheck or s.princecheck"
+        },
+        {
+          "line": 95,
+          "text": "fc:SetMaterial(mat)"
+        },
+        {
+          "line": 99,
+          "text": "if Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then"
+        },
+        {
+          "line": 100,
+          "text": "fc:CompleteProcedure()"
+        },
+        {
+          "line": 108,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENSE)"
+        },
+        {
+          "line": 127,
+          "text": "Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP_DEFENSE)"
+        }
+      ],
+      "effect_audit": "OPEN"
+    },
+    {
+      "passcode": 259937946,
+      "name": "Grand Blue Prince",
+      "classification": "restricted support interaction remains priority",
+      "reason": "Direct or broad eligible target interaction requires full-support runtime checks; do not infer a defect from references.",
+      "script_sha256": "c7edf515e555ccfc56005e9735d7c1867899f6d163b0d7442eb0eb0560fd40a4",
+      "supporting_scripts": [
+        {
+          "passcode": 259177849,
+          "name": "Grand Blue Princess",
+          "script_sha256": "e0069769b810f3a9f4851359186840a9e73123669ac53b1c00dcd74e9d547382"
+        }
+      ],
+      "evidence_lines": [
+        {
+          "line": 58,
+          "text": "and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENSE)"
+        },
+        {
+          "line": 72,
+          "text": "if Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP_DEFENSE)>0 then"
+        }
+      ],
+      "effect_audit": "OPEN"
+    }
+  ]
+}

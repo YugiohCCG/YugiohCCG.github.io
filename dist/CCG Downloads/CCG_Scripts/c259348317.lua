@@ -37,7 +37,7 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_WYVERNAL}
 function s.insectfusion(c)
-	return c:IsFaceup() and c:IsRace(RACE_INSECT) and c:IsType(TYPE_FUSION)
+	return c:IsFaceup() and (c:IsSetCard(SET_WYVERNAL) or c:IsRace(RACE_INSECT)) and c:IsType(TYPE_FUSION)
 end
 function s.igncon(e,tp,eg,ep,ev,re,r,rp)
 	return not Duel.IsExistingMatchingCard(s.insectfusion,tp,LOCATION_MZONE,0,1,nil)

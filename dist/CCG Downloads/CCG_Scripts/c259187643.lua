@@ -8,7 +8,7 @@ function s.initial_effect(c)
  local e3=e2:Clone(); e3:SetCode(EVENT_MSET); c:RegisterEffect(e3)
 end
 function s.chainfilter(re) return not re:IsActiveType(TYPE_SPELL+TYPE_TRAP) or re:GetHandler():IsSetCard(SET_WORLD_LEGACY) end
-function s.wlf(c) return c:IsSetCard(SET_WORLD_LEGACY) and c:IsSpellTrap() and not c:IsCode(id) and (c:IsAbleToHand() or c:IsAbleToGrave()) end
+function s.wlf(c) return c:IsSetCard(SET_WORLD_LEGACY) and c:IsType(TYPE_SPELL+TYPE_TRAP) and not c:IsCode(id) and (c:IsAbleToHand() or c:IsAbleToGrave()) end
 function s.lock(e,tp) local ex=Effect.CreateEffect(e:GetHandler()); ex:SetType(EFFECT_TYPE_FIELD); ex:SetCode(EFFECT_CANNOT_ACTIVATE); ex:SetProperty(EFFECT_FLAG_PLAYER_TARGET); ex:SetTargetRange(1,0); ex:SetValue(function(e,re) return re:IsActiveType(TYPE_SPELL+TYPE_TRAP) and not re:GetHandler():IsSetCard(SET_WORLD_LEGACY) end); ex:SetReset(RESET_PHASE+PHASE_END); Duel.RegisterEffect(ex,tp) end
 function s.acttg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_CHAIN)==0 and Duel.IsExistingMatchingCard(s.wlf,tp,LOCATION_DECK,0,1,nil) end s.lock(e,tp) end
 function s.actop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SELECT); local g=Duel.SelectMatchingCard(tp,s.wlf,tp,LOCATION_DECK,0,1,1,nil); local tc=g:GetFirst(); if not tc then return end local op=0; if tc:IsAbleToHand() and tc:IsAbleToGrave() then op=Duel.SelectOption(tp,1190,1191) elseif tc:IsAbleToGrave() then op=1 end if op==0 then Duel.SendtoHand(tc,nil,REASON_EFFECT); Duel.ConfirmCards(1-tp,tc) else Duel.SendtoGrave(tc,REASON_EFFECT) end end

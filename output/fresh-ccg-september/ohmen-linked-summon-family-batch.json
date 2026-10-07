@@ -1,0 +1,109 @@
+{
+  "scope": "Canonical Siemens/Farad/Volt/Ampere inherent Special Summon and mandatory network movement with a neutral single Link terminal; no-Link negative case and disabled operation control. Search, multi-Link traversal, native Omega and full audit remain open.",
+  "source_scripts_sha256": {
+    "259107906": "1f970473a5518b00ba096a37bf0a2d1afa0c198126ef568d1a3f7a5a37762b10",
+    "259174227": "7e93e2cfed82b65a52b8fab4f0ead565340f9decd67947f08c12a6ae60fb448d",
+    "259726853": "085a8a7d43c58e11cb52319321f5df94ff0bc9c01cf94097d03a295d60b22fe8",
+    "259650132": "089434f6cbf499bd344a16a0c98e64ff9114e06faba3d182ee8cbf5d5aecb699"
+  },
+  "harness_sha256": "ceae5b88dc2f5e3caf2949b40900b7a44fc547ee83aa9f9313b8e23beeb603f7",
+  "batch_script_sha256": "20e9f8cccb9a36ccb46c38c247689f35c10891512ce7e9b66b7930f9cfdecb9a",
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "public/CCG Downloads/CCG_Scripts/c231331942.lua": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067",
+    "output/fresh-ccg-september/public-core-card-data-adapter.mjs": "3df84e0cb3521c725a9d049409473c6a8506aca0d30a10ab8ed623efc2fe67c1",
+    "scripts/fresh_public_card_data_adapter.py": "aad6bba96d8eace5ccc5750deefc7e183d53024413e8aa0840bf7f2c653e58a2"
+  },
+  "runs": [
+    {
+      "passcode": 259107906,
+      "card_data_adapter": true,
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact": "ohmen-linked-summon-259107906-259295979-card-data-adapter.json",
+      "artifact_sha256": "e864ac41664e6b741f5fd78c250f72b36875eae35b66593ebdcc3ea281407376"
+    },
+    {
+      "passcode": 259107906,
+      "card_data_adapter": true,
+      "control": "no-network-trigger",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "ohmen-linked-summon-259107906-259295979-card-data-adapter-no-network-trigger.json",
+      "artifact_sha256": "0b8a3ac1f9d27abcf4096984b034652e12455b36bf29fce12a0160db01e076ec"
+    },
+    {
+      "passcode": 259174227,
+      "card_data_adapter": true,
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact": "ohmen-linked-summon-259174227-259295979-card-data-adapter.json",
+      "artifact_sha256": "d5c7e3a93e995ee7e52079aacdde54228cb6f7fb9564418857d8896f8088f99c"
+    },
+    {
+      "passcode": 259174227,
+      "card_data_adapter": true,
+      "control": "no-network-trigger",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "ohmen-linked-summon-259174227-259295979-card-data-adapter-no-network-trigger.json",
+      "artifact_sha256": "d06d922cd5412a7ef6fa2de446303539883c51711ce436030a4c50f6c49edde2"
+    },
+    {
+      "passcode": 259726853,
+      "card_data_adapter": true,
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact": "ohmen-linked-summon-259726853-259295979-card-data-adapter.json",
+      "artifact_sha256": "1aafce68d460ba71ab856e516df7dbf80c8a6501d5fcf87a7fe9140a89b2e0ca"
+    },
+    {
+      "passcode": 259726853,
+      "card_data_adapter": true,
+      "control": "no-network-trigger",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "ohmen-linked-summon-259726853-259295979-card-data-adapter-no-network-trigger.json",
+      "artifact_sha256": "0852dbdfb6b1e0844718672fccd8a7a3a4c2902106a1dfd1a93d8afaba745e0e"
+    },
+    {
+      "passcode": 259650132,
+      "card_data_adapter": true,
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact": "ohmen-linked-summon-259650132-259295979-card-data-adapter.json",
+      "artifact_sha256": "94b862aa5cab986bdc68453ba1b621caea1fc6791cf90ff9291eab11a6f75266"
+    },
+    {
+      "passcode": 259650132,
+      "card_data_adapter": true,
+      "control": "no-network-trigger",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "ohmen-linked-summon-259650132-259295979-card-data-adapter-no-network-trigger.json",
+      "artifact_sha256": "37385d5daacd9b98f2e6a5c07c7003ddddedd86faa35fd325e2d07b84c9877bb"
+    }
+  ]
+}

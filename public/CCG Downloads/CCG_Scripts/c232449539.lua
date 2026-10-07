@@ -27,7 +27,7 @@ function s.initial_effect(c)
 end
 function s.checkfilter(c)
 	return c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and c:IsLocation(LOCATION_DECK)
-		and not c:IsPreviousLocation(LOCATION_DECK) and c:IsReason(REASON_EFFECT)
+		and not c:IsPreviousLocation(LOCATION_DECK)
 end
 function s.checkop(e,tp,eg,ep,ev,re,r,rp)
 	for tc in aux.Next(eg) do

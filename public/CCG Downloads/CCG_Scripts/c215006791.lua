@@ -47,7 +47,7 @@ function s.indcon(e)
 end
 function s.rmcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	return c:IsSummonType(SUMMON_TYPE_SYNCHRO) and c:GetMaterial():FilterCount(aux.NOT(Card.IsSetCard),nil,0x21fc)==0
+	return c:IsSummonType(SUMMON_TYPE_SYNCHRO) and #c:GetMaterial()>0 and c:GetMaterial():FilterCount(aux.NOT(Card.IsSetCard),nil,0x21fc)==0
 end
 function s.rmtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsAbleToRemove,tp,0,LOCATION_MZONE,1,nil) end

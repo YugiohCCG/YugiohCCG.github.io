@@ -1,0 +1,333 @@
+{
+  "scope": "18 native copied target-protection cases and 15 native copied destruction-recovery cases; exact mutation checks and prior-reset regression control. Neutral official stats/support and seeded source; no adapters; native Omega remains unverified",
+  "script_sha256": "117fb88327bbf598ffce5f7f49799fb2235ae7761140ff7b4e7445032d69ca2a",
+  "official_sources": [
+    {
+      "code": 34695290,
+      "sha256": "6534b4ae7dedbebc643f297abb2bac86b23e288b56b2ef9c49508ed33ace9057"
+    },
+    {
+      "code": 61089209,
+      "sha256": "fae8155427c16c5cdad556141db78e66185a519b208e8f67110b7f16fefd36e0"
+    },
+    {
+      "code": 7574904,
+      "sha256": "f7acb54da50c4de42977312a0e48ae27106bb39c69301ac3d1c469747e7e2a6d"
+    }
+  ],
+  "runs": [
+    {
+      "harness": "protection",
+      "harness_sha256": "02665f5a975797a193157bbadcb3b7839f5acb6063be9c66b054a9ec97379d4f",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "d8c1d4e3b9df501b5c43ff9ed0182e1b07eefb47637a715367804b62bc85d34d"
+    },
+    {
+      "harness": "protection",
+      "harness_sha256": "02665f5a975797a193157bbadcb3b7839f5acb6063be9c66b054a9ec97379d4f",
+      "control": "no-copy",
+      "status": 1,
+      "expected_failures": [
+        {
+          "branch": "beast",
+          "test": {
+            "incoming": "monster"
+          }
+        },
+        {
+          "branch": "mist",
+          "test": {
+            "incoming": "spell"
+          }
+        },
+        {
+          "branch": "arsenal",
+          "test": {
+            "incoming": "trap"
+          }
+        }
+      ],
+      "artifact_sha256": "492c7ffa7a943b64debd584d9152393c6ab2c1ed9ebb2e2c7087fa8e3d70c0db"
+    },
+    {
+      "harness": "protection",
+      "harness_sha256": "02665f5a975797a193157bbadcb3b7839f5acb6063be9c66b054a9ec97379d4f",
+      "control": "no-protection",
+      "status": 1,
+      "expected_failures": [
+        {
+          "branch": "beast",
+          "test": {
+            "incoming": "monster"
+          }
+        },
+        {
+          "branch": "mist",
+          "test": {
+            "incoming": "spell"
+          }
+        },
+        {
+          "branch": "arsenal",
+          "test": {
+            "incoming": "trap"
+          }
+        }
+      ],
+      "artifact_sha256": "ad4628fe5818c4cbbce6c0e10159427d108ba6adff8deece109f85a2c533c505"
+    },
+    {
+      "harness": "protection",
+      "harness_sha256": "02665f5a975797a193157bbadcb3b7839f5acb6063be9c66b054a9ec97379d4f",
+      "control": "any-type",
+      "status": 1,
+      "expected_failures": [
+        {
+          "branch": "beast",
+          "test": {
+            "incoming": "spell"
+          }
+        },
+        {
+          "branch": "beast",
+          "test": {
+            "incoming": "trap"
+          }
+        },
+        {
+          "branch": "mist",
+          "test": {
+            "incoming": "trap"
+          }
+        },
+        {
+          "branch": "mist",
+          "test": {
+            "incoming": "monster"
+          }
+        },
+        {
+          "branch": "arsenal",
+          "test": {
+            "incoming": "spell"
+          }
+        },
+        {
+          "branch": "arsenal",
+          "test": {
+            "incoming": "monster"
+          }
+        }
+      ],
+      "artifact_sha256": "fc3c45dba7dfea4d7f042e2df388db47b064f3129f48f74fdfd162248a4ce7ac"
+    },
+    {
+      "harness": "protection",
+      "harness_sha256": "02665f5a975797a193157bbadcb3b7839f5acb6063be9c66b054a9ec97379d4f",
+      "control": "any-player",
+      "status": 1,
+      "expected_failures": [
+        {
+          "branch": "beast",
+          "test": {
+            "incoming": "monster",
+            "own": true
+          }
+        },
+        {
+          "branch": "mist",
+          "test": {
+            "incoming": "spell",
+            "own": true
+          }
+        },
+        {
+          "branch": "arsenal",
+          "test": {
+            "incoming": "trap",
+            "own": true
+          }
+        }
+      ],
+      "artifact_sha256": "ee55972b0f58965c3bf6e46f05d710e049d9dc1caa0308f9c184ea51f29091d4"
+    },
+    {
+      "harness": "protection",
+      "harness_sha256": "02665f5a975797a193157bbadcb3b7839f5acb6063be9c66b054a9ec97379d4f",
+      "control": "no-reset",
+      "status": 1,
+      "expected_failures": [
+        {
+          "branch": "beast",
+          "test": {
+            "incoming": "monster",
+            "reset": "grave"
+          }
+        },
+        {
+          "branch": "beast",
+          "test": {
+            "incoming": "monster",
+            "reset": "banish"
+          }
+        },
+        {
+          "branch": "mist",
+          "test": {
+            "incoming": "spell",
+            "reset": "grave"
+          }
+        },
+        {
+          "branch": "mist",
+          "test": {
+            "incoming": "spell",
+            "reset": "banish"
+          }
+        },
+        {
+          "branch": "arsenal",
+          "test": {
+            "incoming": "trap",
+            "reset": "grave"
+          }
+        },
+        {
+          "branch": "arsenal",
+          "test": {
+            "incoming": "trap",
+            "reset": "banish"
+          }
+        }
+      ],
+      "artifact_sha256": "4c395dc98a205fba3bf9d453b3a75f40aee2ad8131b05cec5f46d0156425980d"
+    },
+    {
+      "harness": "destruction",
+      "harness_sha256": "65f1ac470df2b83ff7a4a052261b744da74d275fdfd3b1f5eab75b9080a08c56",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "75a8b86f4e4042138c0498ccea21041dfbb860813889cb04d02956829fc768c4"
+    },
+    {
+      "harness": "destruction",
+      "harness_sha256": "65f1ac470df2b83ff7a4a052261b744da74d275fdfd3b1f5eab75b9080a08c56",
+      "control": "old-reset",
+      "status": 1,
+      "expected_failures": [
+        {
+          "branch": "beast",
+          "test": {}
+        },
+        {
+          "branch": "mist",
+          "test": {}
+        },
+        {
+          "branch": "arsenal",
+          "test": {}
+        }
+      ],
+      "artifact_sha256": "dfd903391f7ce5bbaaeeac00e0dad8363884759f3947f4b14c983cef67bd0ba7"
+    },
+    {
+      "harness": "destruction",
+      "harness_sha256": "65f1ac470df2b83ff7a4a052261b744da74d275fdfd3b1f5eab75b9080a08c56",
+      "control": "no-copy",
+      "status": 1,
+      "expected_failures": [
+        {
+          "branch": "beast",
+          "test": {}
+        },
+        {
+          "branch": "mist",
+          "test": {}
+        },
+        {
+          "branch": "arsenal",
+          "test": {}
+        }
+      ],
+      "artifact_sha256": "3fa809660ebeadccbd535a8ef30e84f5cd676fa6275b9357b7337ed84c5e6125"
+    },
+    {
+      "harness": "destruction",
+      "harness_sha256": "65f1ac470df2b83ff7a4a052261b744da74d275fdfd3b1f5eab75b9080a08c56",
+      "control": "no-return",
+      "status": 1,
+      "expected_failures": [
+        {
+          "branch": "beast",
+          "test": {}
+        },
+        {
+          "branch": "mist",
+          "test": {}
+        },
+        {
+          "branch": "arsenal",
+          "test": {}
+        }
+      ],
+      "artifact_sha256": "c271fdbebc23a811ba4eb75f67e9f366ff5afddca539ae46550f44ce8a302776"
+    },
+    {
+      "harness": "destruction",
+      "harness_sha256": "65f1ac470df2b83ff7a4a052261b744da74d275fdfd3b1f5eab75b9080a08c56",
+      "control": "any-player",
+      "status": 1,
+      "expected_failures": [
+        {
+          "branch": "beast",
+          "test": {
+            "own": true
+          }
+        },
+        {
+          "branch": "mist",
+          "test": {
+            "own": true
+          }
+        },
+        {
+          "branch": "arsenal",
+          "test": {
+            "own": true
+          }
+        }
+      ],
+      "artifact_sha256": "77195a103fc91d14f5c346af7c56ba03ca8c3c31087f32cfbb52eab473a0e940"
+    },
+    {
+      "harness": "destruction",
+      "harness_sha256": "65f1ac470df2b83ff7a4a052261b744da74d275fdfd3b1f5eab75b9080a08c56",
+      "control": "any-type",
+      "status": 1,
+      "expected_failures": [
+        {
+          "branch": "beast",
+          "test": {
+            "wrongType": true
+          }
+        },
+        {
+          "branch": "mist",
+          "test": {
+            "wrongType": true
+          }
+        },
+        {
+          "branch": "arsenal",
+          "test": {
+            "wrongType": true
+          }
+        }
+      ],
+      "artifact_sha256": "8e42b2f00d378b6586564d781298ffdcf59dcd84a46770849e8f1de85df0911b"
+    }
+  ]
+}

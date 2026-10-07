@@ -1,0 +1,542 @@
+{
+  "scope": "Gaia62 baseline cases: hand9/recovery7/neutral Fusion9 plus actual official Fusion scripts8 each for3 recipients with neutral stats. Recovery target-group adapter only. Exact mutations, DB/source/harness/official hashes and freshness. Effect independence/native Omega remain open",
+  "script_sha256": "59c982ecb695bc9187b3acb76d9005f15432e7a2103c7feec23d34adde6c76ae",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "official_script_hashes": {
+    "2519690": "1fc49b62d3f552d780a812659f44d51846e68959bf36b7aee973a3104f3f155d",
+    "15989522": "dc37237947ae9f5a2a9df5e0d7ba8f921fd3806d99db9f60939df89ee26f363b",
+    "66889139": "c14e3e2c525801f2f0008103d12ab478a6615b11381a617fc63347ff98658c50"
+  },
+  "runs": [
+    {
+      "recipient": null,
+      "harness": "hand",
+      "harness_sha256": "8418e6743dc6a17ec0ba8de4da94487a5bd691f531e53641f85761cc3de69e7f",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "c14cee2bd63de7f641f21e18fe9805e48b1435abfdca1bc377cf30745d08fd0d"
+    },
+    {
+      "recipient": null,
+      "harness": "hand",
+      "harness_sha256": "8418e6743dc6a17ec0ba8de4da94487a5bd691f531e53641f85761cc3de69e7f",
+      "control": "no-summon",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "opponent": true
+        },
+        {
+          "count": true
+        },
+        {
+          "count": true,
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "522ea64454b697be55ed83624d42645ca1eab3d24c676a59890e17a2906fc3f6"
+    },
+    {
+      "recipient": null,
+      "harness": "hand",
+      "harness_sha256": "8418e6743dc6a17ec0ba8de4da94487a5bd691f531e53641f85761cc3de69e7f",
+      "control": "any-race",
+      "status": 1,
+      "expected_failures": [
+        {
+          "wrongRace": true
+        }
+      ],
+      "artifact_sha256": "45a7299f6d322a047ed0fc80d3b9b0880d79735761870e9812aa41102e83b9b6"
+    },
+    {
+      "recipient": null,
+      "harness": "hand",
+      "harness_sha256": "8418e6743dc6a17ec0ba8de4da94487a5bd691f531e53641f85761cc3de69e7f",
+      "control": "allow-facedown",
+      "status": 1,
+      "expected_failures": [
+        {
+          "facedown": true
+        },
+        {
+          "opponent": true,
+          "facedown": true
+        }
+      ],
+      "artifact_sha256": "5711cb617f6f8461b7c4924f48a7387c48555566b5c93e9448834a02091cf919"
+    },
+    {
+      "recipient": null,
+      "harness": "hand",
+      "harness_sha256": "8418e6743dc6a17ec0ba8de4da94487a5bd691f531e53641f85761cc3de69e7f",
+      "control": "own-only",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponent": true
+        }
+      ],
+      "artifact_sha256": "362da9f7adbd98016e84f0728e8ff52b2c59e82dd51ba8be0aea666499f373ea"
+    },
+    {
+      "recipient": null,
+      "harness": "hand",
+      "harness_sha256": "8418e6743dc6a17ec0ba8de4da94487a5bd691f531e53641f85761cc3de69e7f",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {
+          "count": true
+        },
+        {
+          "count": true,
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "517ef29808b597c043c24507d4989a57ef845e063e9093d3ef36c4047e73cf31"
+    },
+    {
+      "recipient": null,
+      "harness": "return",
+      "harness_sha256": "8e516951d81810bfdde004079a1eb7e22a8262534c1aa4f94d3d692abff3e5c7",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "5d9eab233899afeac5d45c2a1c8593a578736509b8907488d96f344abc28841a"
+    },
+    {
+      "recipient": null,
+      "harness": "return",
+      "harness_sha256": "8e516951d81810bfdde004079a1eb7e22a8262534c1aa4f94d3d692abff3e5c7",
+      "control": "no-cost",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "opponent": true
+        },
+        {
+          "multiple": true
+        }
+      ],
+      "artifact_sha256": "636ca8365afce6f58b05f6a5a67960d1af9490a694801600b3a439153e81c29d"
+    },
+    {
+      "recipient": null,
+      "harness": "return",
+      "harness_sha256": "8e516951d81810bfdde004079a1eb7e22a8262534c1aa4f94d3d692abff3e5c7",
+      "control": "no-return",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "opponent": true
+        },
+        {
+          "multiple": true
+        }
+      ],
+      "artifact_sha256": "e59831710f4f0dc0d8afbcdc8ab29afc28817acef30b74f86ffa28324b2f2a01"
+    },
+    {
+      "recipient": null,
+      "harness": "return",
+      "harness_sha256": "8e516951d81810bfdde004079a1eb7e22a8262534c1aa4f94d3d692abff3e5c7",
+      "control": "any-set",
+      "status": 1,
+      "expected_failures": [
+        {
+          "wrongSet": true
+        }
+      ],
+      "artifact_sha256": "0eeaaa9d23e1cf82bdb5fb687165ff378c470a6fd9e66253934205f559c2c023"
+    },
+    {
+      "recipient": null,
+      "harness": "return",
+      "harness_sha256": "8e516951d81810bfdde004079a1eb7e22a8262534c1aa4f94d3d692abff3e5c7",
+      "control": "allow-facedown",
+      "status": 1,
+      "expected_failures": [
+        {
+          "facedown": true
+        }
+      ],
+      "artifact_sha256": "776a00ba150cebeb1a01052cdaa0e2e2ce8fa7a5913796bfb6d9cabe032f5cfc"
+    },
+    {
+      "recipient": null,
+      "harness": "return",
+      "harness_sha256": "8e516951d81810bfdde004079a1eb7e22a8262534c1aa4f94d3d692abff3e5c7",
+      "control": "any-type",
+      "status": 1,
+      "expected_failures": [
+        {
+          "spell": true
+        }
+      ],
+      "artifact_sha256": "a2b4d26d863b6b07e6607092710a05dcb6549150e43f6976e3180cfebf709d49"
+    },
+    {
+      "recipient": null,
+      "harness": "fusion",
+      "harness_sha256": "498b44c87cdb13c889044c7b6f182007d135cad4d5f79f8e8ae711b0674fd6a8",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "8db61c86dcc820acc7e94fe28b355ff8dee2bb9b7cf143fc2953f991744eeb9e"
+    },
+    {
+      "recipient": null,
+      "harness": "fusion",
+      "harness_sha256": "498b44c87cdb13c889044c7b6f182007d135cad4d5f79f8e8ae711b0674fd6a8",
+      "control": "no-banish",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "opponent": true
+        },
+        {
+          "grave": true
+        },
+        {
+          "grave": true,
+          "opponent": true
+        },
+        {
+          "expiry": true
+        }
+      ],
+      "artifact_sha256": "7bc4cabb528a186666bc2cac33730bc665a45b9d8c2e1630aeab785af6db15a7"
+    },
+    {
+      "recipient": null,
+      "harness": "fusion",
+      "harness_sha256": "498b44c87cdb13c889044c7b6f182007d135cad4d5f79f8e8ae711b0674fd6a8",
+      "control": "no-summon",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "opponent": true
+        },
+        {
+          "grave": true
+        },
+        {
+          "grave": true,
+          "opponent": true
+        },
+        {
+          "expiry": true
+        }
+      ],
+      "artifact_sha256": "c352a79b1faf557d00934acb9ff21ecf1e2981ffdef9f3ffb10d9711e85af1ec"
+    },
+    {
+      "recipient": null,
+      "harness": "fusion",
+      "harness_sha256": "498b44c87cdb13c889044c7b6f182007d135cad4d5f79f8e8ae711b0674fd6a8",
+      "control": "no-boost",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "opponent": true
+        },
+        {
+          "grave": true
+        },
+        {
+          "grave": true,
+          "opponent": true
+        },
+        {
+          "expiry": true
+        }
+      ],
+      "artifact_sha256": "3fce83094f7d7da1e2e380bfb8ed928d12765164ed1a761abbc2e3ec7b2a8636"
+    },
+    {
+      "recipient": null,
+      "harness": "fusion",
+      "harness_sha256": "498b44c87cdb13c889044c7b6f182007d135cad4d5f79f8e8ae711b0674fd6a8",
+      "control": "no-expiry",
+      "status": 1,
+      "expected_failures": [
+        {
+          "expiry": true
+        }
+      ],
+      "artifact_sha256": "b739bff806cc029c6c8956d6cacc349d0493591f835703528a233c8c87e5a409"
+    },
+    {
+      "recipient": null,
+      "harness": "fusion",
+      "harness_sha256": "498b44c87cdb13c889044c7b6f182007d135cad4d5f79f8e8ae711b0674fd6a8",
+      "control": "any-fusion",
+      "status": 1,
+      "expected_failures": [
+        {
+          "wrongMaterial": true
+        }
+      ],
+      "artifact_sha256": "d29dbf74cb3e2e4bc2d9088b2c072b14728e902f956ca50c8fe20cc2d4820792"
+    },
+    {
+      "recipient": 15989522,
+      "harness": "fusion",
+      "harness_sha256": "498b44c87cdb13c889044c7b6f182007d135cad4d5f79f8e8ae711b0674fd6a8",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "fc01f382273869a0c7d5181ea8bee2df74bfc60d9b0cfdf7c0f0a48ee8a107c9"
+    },
+    {
+      "recipient": 15989522,
+      "harness": "fusion",
+      "harness_sha256": "498b44c87cdb13c889044c7b6f182007d135cad4d5f79f8e8ae711b0674fd6a8",
+      "control": "no-legacy",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "opponent": true
+        },
+        {
+          "grave": true
+        },
+        {
+          "grave": true,
+          "opponent": true
+        },
+        {
+          "expiry": true
+        }
+      ],
+      "artifact_sha256": "1d7f92aed49b69533038dfd3a957746c5f2ca8b42fab6e670a2406ca85ee6b9c"
+    },
+    {
+      "recipient": 2519690,
+      "harness": "fusion",
+      "harness_sha256": "498b44c87cdb13c889044c7b6f182007d135cad4d5f79f8e8ae711b0674fd6a8",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "f51f87247a65975e2b3ee3dc82ea824a19d63824226652f95314b30a882bfc5e"
+    },
+    {
+      "recipient": 2519690,
+      "harness": "fusion",
+      "harness_sha256": "498b44c87cdb13c889044c7b6f182007d135cad4d5f79f8e8ae711b0674fd6a8",
+      "control": "no-legacy",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "opponent": true
+        },
+        {
+          "grave": true
+        },
+        {
+          "grave": true,
+          "opponent": true
+        },
+        {
+          "expiry": true
+        }
+      ],
+      "artifact_sha256": "e0f76a23ac4733650a8c00f5d79f7e65dcbe75ffe8f19432a829d3e80e7e96cc"
+    },
+    {
+      "recipient": 66889139,
+      "harness": "fusion",
+      "harness_sha256": "498b44c87cdb13c889044c7b6f182007d135cad4d5f79f8e8ae711b0674fd6a8",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "7986a941c9ec2be9254a0205a77b3bf1f7193d201e1971afb70dc186849afa8a"
+    },
+    {
+      "recipient": 66889139,
+      "harness": "fusion",
+      "harness_sha256": "498b44c87cdb13c889044c7b6f182007d135cad4d5f79f8e8ae711b0674fd6a8",
+      "control": "no-legacy",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "opponent": true
+        },
+        {
+          "grave": true
+        },
+        {
+          "grave": true,
+          "opponent": true
+        },
+        {
+          "expiry": true
+        }
+      ],
+      "artifact_sha256": "691f6f70a806bb89bf398feb30472b65f3955837629cf652b08fa188705858ce"
+    },
+    {
+      "recipient": null,
+      "harness": "fusion_interrupt",
+      "harness_sha256": "ab5471d0a59bde3c5017e1f7518787df1e4a56f6536c4a17fc90de077704b488",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "1b3ec25ffe62d8188ef1a60b54eb16767716906bdaa599920eabc744394c8220"
+    },
+    {
+      "recipient": null,
+      "harness": "fusion_interrupt",
+      "harness_sha256": "ab5471d0a59bde3c5017e1f7518787df1e4a56f6536c4a17fc90de077704b488",
+      "control": "ignore-target",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "target-leave"
+        },
+        {
+          "mode": "target-return"
+        }
+      ],
+      "artifact_sha256": "17cecd0ac8bbe8a61682e37ac9562e3ca41c76645859254e283bc2b3ab1ffc64"
+    },
+    {
+      "recipient": null,
+      "harness": "fusion_interrupt",
+      "harness_sha256": "ab5471d0a59bde3c5017e1f7518787df1e4a56f6536c4a17fc90de077704b488",
+      "control": "ignore-instance",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "source-return"
+        }
+      ],
+      "artifact_sha256": "579a4010807a627d4f15498d1120fd31b87e25408faa7f069741874cb3a4e346"
+    },
+    {
+      "recipient": null,
+      "harness": "return_interrupt",
+      "harness_sha256": "06440caa9c7409db2640462710a353a9936f94e1883db1f74ebe466162f07425",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "02f1135c7159cd0ee49b37087f283e26d3e71423003cd4b1d22c4515c548eda0"
+    },
+    {
+      "recipient": null,
+      "harness": "return_interrupt",
+      "harness_sha256": "06440caa9c7409db2640462710a353a9936f94e1883db1f74ebe466162f07425",
+      "control": "ignore-relation",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "return"
+        }
+      ],
+      "artifact_sha256": "2c3c506c6039cdeb86714a6605eb1c14057eb7a519086bf6e37cc19c506173d6"
+    },
+    {
+      "recipient": null,
+      "harness": "return_interrupt",
+      "harness_sha256": "06440caa9c7409db2640462710a353a9936f94e1883db1f74ebe466162f07425",
+      "control": "no-cost",
+      "status": 1,
+      "expected_failures": [
+        {
+          "mode": "leave"
+        },
+        {
+          "mode": "return"
+        },
+        {
+          "mode": "negate"
+        },
+        {
+          "mode": "leave",
+          "multiple": true
+        }
+      ],
+      "artifact_sha256": "b5f5580014b7f038de49fc60189fad75c873841db83fcc9b9ccc249bc1ee201c"
+    },
+    {
+      "recipient": null,
+      "harness": "return_count",
+      "harness_sha256": "ffae9dd3a77b09b54f52b2d40ca116679f9ca380ac6741c1bc9ff96884908882",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "a1711e992dccdcdfb87fdbd28e16d69bfdb3ef12e46f85069260757a8d802361"
+    },
+    {
+      "recipient": null,
+      "harness": "return_count",
+      "harness_sha256": "ffae9dd3a77b09b54f52b2d40ca116679f9ca380ac6741c1bc9ff96884908882",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "20181fd2a4612da985ac4dc23bbfd47c282f9bf461201e71bbc56e98bd1dd716"
+    },
+    {
+      "recipient": null,
+      "harness": "return_count",
+      "harness_sha256": "ffae9dd3a77b09b54f52b2d40ca116679f9ca380ac6741c1bc9ff96884908882",
+      "control": "no-renewal",
+      "status": 1,
+      "expected_failures": [
+        {
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "788b22756266271b3b06710da99ce61509081b1bfa3a9968399f68368670a3c6"
+    },
+    {
+      "recipient": null,
+      "harness": "fusion_count",
+      "harness_sha256": "b650c9b817ef45383abd035f8db72fe0367c272605eb1a9d27e9bf7948c20cc0",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "8ec46c970f3bbae77a678dea40deec3a6c0ee8461dbc465e7b4ad5a71b098128"
+    },
+    {
+      "recipient": null,
+      "harness": "fusion_count",
+      "harness_sha256": "b650c9b817ef45383abd035f8db72fe0367c272605eb1a9d27e9bf7948c20cc0",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "6ee524cb8ef40d59f134a6a5d644fb7a6df214e3824a62b5480968bea5d36934"
+    },
+    {
+      "recipient": null,
+      "harness": "fusion_count",
+      "harness_sha256": "b650c9b817ef45383abd035f8db72fe0367c272605eb1a9d27e9bf7948c20cc0",
+      "control": "no-renewal",
+      "status": 1,
+      "expected_failures": [
+        {
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "a0626e5b9a1dfb694891a366bc6b9f34a0e0c5dab30abfa718212b4d675b65fd"
+    }
+  ]
+}

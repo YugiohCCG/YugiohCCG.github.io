@@ -1,0 +1,3676 @@
+{
+  "baseline": false,
+  "engine": "EDOPro public OCGCore WASM, Omega Lua support; not native Omega",
+  "version": [
+    11,
+    0
+  ],
+  "results": [
+    {
+      "scenario": "Surfacing copies Spine",
+      "variant": "omega-reference",
+      "protectedTarget": false,
+      "available": true,
+      "status": "PASS",
+      "failure": null,
+      "loaded": {
+        "constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+        "utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+        "procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+        "c88316955.lua": "9ed30ef4c739e365b24ada0137007ef2113cfeca95d25d6afb7abe93e64dcfb8"
+      },
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            88316955,
+            900000001
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "activates": [
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "description": "0",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "900000001"
+        },
+        {
+          "type": 18,
+          "player": 0,
+          "count": 1,
+          "field_mask": 4294959359
+        },
+        {
+          "type": 50,
+          "card": 900000001,
+          "from": {
+            "controller": 0,
+            "location": 2,
+            "sequence": 1,
+            "position": 10
+          },
+          "to": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 70,
+          "code": 900000001,
+          "controller": 0,
+          "location": 8,
+          "sequence": 0,
+          "position": 5,
+          "triggering_controller": 0,
+          "triggering_location": 8,
+          "triggering_sequence": 0,
+          "description": "0",
+          "chain_size": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "502"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 900000002,
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 83,
+          "cards": [
+            {
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 50,
+          "card": 900000002,
+          "from": {
+            "controller": 1,
+            "location": 4,
+            "sequence": 0,
+            "position": 1
+          },
+          "to": {
+            "controller": 1,
+            "location": 16,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 50,
+          "card": 900000001,
+          "from": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 0,
+            "position": 5
+          },
+          "to": {
+            "controller": 0,
+            "location": 16,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 74
+        }
+      ]
+    },
+    {
+      "scenario": "Surfacing copies Spine",
+      "variant": "ccg",
+      "protectedTarget": false,
+      "available": true,
+      "status": "PASS",
+      "failure": null,
+      "loaded": {
+        "constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+        "utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+        "procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+        "c88316955.lua": "9ed30ef4c739e365b24ada0137007ef2113cfeca95d25d6afb7abe93e64dcfb8",
+        "c259944344.lua": "88417f50f378ba021e029bd5ec504549365a6b219d9b8e28fbdf6aceab690422"
+      },
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            88316955,
+            259944344
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "20"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 1,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 2,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "activates": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "259944344"
+        },
+        {
+          "type": 18,
+          "player": 0,
+          "count": 1,
+          "field_mask": 4294959359
+        },
+        {
+          "type": 50,
+          "card": 259944344,
+          "from": {
+            "controller": 0,
+            "location": 2,
+            "sequence": 1,
+            "position": 10
+          },
+          "to": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 70,
+          "code": 259944344,
+          "controller": 0,
+          "location": 8,
+          "sequence": 0,
+          "position": 5,
+          "triggering_controller": 0,
+          "triggering_location": 8,
+          "triggering_sequence": 0,
+          "description": "2143109504",
+          "chain_size": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "526"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0,
+              "position": 10
+            }
+          ]
+        },
+        {
+          "type": 31,
+          "player": 1,
+          "cards": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ]
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "502"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 900000002,
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 83,
+          "cards": [
+            {
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 50,
+          "card": 900000002,
+          "from": {
+            "controller": 1,
+            "location": 4,
+            "sequence": 0,
+            "position": 1
+          },
+          "to": {
+            "controller": 1,
+            "location": 16,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 50,
+          "card": 259944344,
+          "from": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 0,
+            "position": 5
+          },
+          "to": {
+            "controller": 0,
+            "location": 16,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 74
+        }
+      ]
+    },
+    {
+      "scenario": "Surfacing copies Spine",
+      "variant": "omega-reference",
+      "protectedTarget": true,
+      "available": false,
+      "status": "PASS",
+      "failure": null,
+      "loaded": {
+        "constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+        "utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+        "procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+        "c88316955.lua": "9ed30ef4c739e365b24ada0137007ef2113cfeca95d25d6afb7abe93e64dcfb8"
+      },
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            88316955,
+            900000001
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        }
+      ]
+    },
+    {
+      "scenario": "Surfacing copies Spine",
+      "variant": "ccg",
+      "protectedTarget": true,
+      "available": false,
+      "status": "PASS",
+      "failure": null,
+      "loaded": {
+        "constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+        "utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+        "procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+        "c88316955.lua": "9ed30ef4c739e365b24ada0137007ef2113cfeca95d25d6afb7abe93e64dcfb8",
+        "c259944344.lua": "88417f50f378ba021e029bd5ec504549365a6b219d9b8e28fbdf6aceab690422"
+      },
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            88316955,
+            259944344
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        }
+      ]
+    },
+    {
+      "scenario": "Surfacing prior Spell activation restriction",
+      "prior": {
+        "cardActivation": false,
+        "worldLegacy": false
+      },
+      "variant": "ccg",
+      "protectedTarget": false,
+      "available": true,
+      "status": "PASS",
+      "failure": null,
+      "loaded": {
+        "constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+        "utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+        "procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+        "c88316955.lua": "9ed30ef4c739e365b24ada0137007ef2113cfeca95d25d6afb7abe93e64dcfb8",
+        "c259944344.lua": "88417f50f378ba021e029bd5ec504549365a6b219d9b8e28fbdf6aceab690422"
+      },
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            88316955,
+            259944344
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "20"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 1,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 2,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "activates": [
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 8,
+              "sequence": 0,
+              "description": "0",
+              "client_mode": 0
+            },
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        },
+        {
+          "type": 70,
+          "code": 900000001,
+          "controller": 0,
+          "location": 8,
+          "sequence": 0,
+          "position": 1,
+          "triggering_controller": 0,
+          "triggering_location": 8,
+          "triggering_sequence": 0,
+          "description": "0",
+          "chain_size": 1
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 1,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 74
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "activates": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "259944344"
+        },
+        {
+          "type": 18,
+          "player": 0,
+          "count": 1,
+          "field_mask": 4294959615
+        },
+        {
+          "type": 50,
+          "card": 259944344,
+          "from": {
+            "controller": 0,
+            "location": 2,
+            "sequence": 1,
+            "position": 10
+          },
+          "to": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 1,
+            "position": 5
+          }
+        },
+        {
+          "type": 70,
+          "code": 259944344,
+          "controller": 0,
+          "location": 8,
+          "sequence": 1,
+          "position": 5,
+          "triggering_controller": 0,
+          "triggering_location": 8,
+          "triggering_sequence": 1,
+          "description": "2143109504",
+          "chain_size": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "526"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0,
+              "position": 10
+            }
+          ]
+        },
+        {
+          "type": 31,
+          "player": 1,
+          "cards": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ]
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "502"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 900000002,
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 83,
+          "cards": [
+            {
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 50,
+          "card": 900000002,
+          "from": {
+            "controller": 1,
+            "location": 4,
+            "sequence": 0,
+            "position": 1
+          },
+          "to": {
+            "controller": 1,
+            "location": 16,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 50,
+          "card": 259944344,
+          "from": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 1,
+            "position": 5
+          },
+          "to": {
+            "controller": 0,
+            "location": 16,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 74
+        }
+      ]
+    },
+    {
+      "scenario": "Surfacing prior Spell activation restriction",
+      "prior": {
+        "cardActivation": false,
+        "worldLegacy": true
+      },
+      "variant": "ccg",
+      "protectedTarget": false,
+      "available": true,
+      "status": "PASS",
+      "failure": null,
+      "loaded": {
+        "constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+        "utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+        "procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+        "c88316955.lua": "9ed30ef4c739e365b24ada0137007ef2113cfeca95d25d6afb7abe93e64dcfb8",
+        "c259944344.lua": "88417f50f378ba021e029bd5ec504549365a6b219d9b8e28fbdf6aceab690422"
+      },
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            88316955,
+            259944344
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "20"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 1,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 2,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "activates": [
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 8,
+              "sequence": 0,
+              "description": "0",
+              "client_mode": 0
+            },
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        },
+        {
+          "type": 70,
+          "code": 900000001,
+          "controller": 0,
+          "location": 8,
+          "sequence": 0,
+          "position": 1,
+          "triggering_controller": 0,
+          "triggering_location": 8,
+          "triggering_sequence": 0,
+          "description": "0",
+          "chain_size": 1
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 1,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 74
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "activates": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "259944344"
+        },
+        {
+          "type": 18,
+          "player": 0,
+          "count": 1,
+          "field_mask": 4294959615
+        },
+        {
+          "type": 50,
+          "card": 259944344,
+          "from": {
+            "controller": 0,
+            "location": 2,
+            "sequence": 1,
+            "position": 10
+          },
+          "to": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 1,
+            "position": 5
+          }
+        },
+        {
+          "type": 70,
+          "code": 259944344,
+          "controller": 0,
+          "location": 8,
+          "sequence": 1,
+          "position": 5,
+          "triggering_controller": 0,
+          "triggering_location": 8,
+          "triggering_sequence": 1,
+          "description": "2143109504",
+          "chain_size": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "526"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0,
+              "position": 10
+            }
+          ]
+        },
+        {
+          "type": 31,
+          "player": 1,
+          "cards": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ]
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "502"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 900000002,
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 83,
+          "cards": [
+            {
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 50,
+          "card": 900000002,
+          "from": {
+            "controller": 1,
+            "location": 4,
+            "sequence": 0,
+            "position": 1
+          },
+          "to": {
+            "controller": 1,
+            "location": 16,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 50,
+          "card": 259944344,
+          "from": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 1,
+            "position": 5
+          },
+          "to": {
+            "controller": 0,
+            "location": 16,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 74
+        }
+      ]
+    },
+    {
+      "scenario": "Surfacing prior Spell activation restriction",
+      "prior": {
+        "cardActivation": true,
+        "worldLegacy": false
+      },
+      "variant": "ccg",
+      "protectedTarget": false,
+      "available": false,
+      "status": "PASS",
+      "failure": null,
+      "loaded": {
+        "constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+        "utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+        "procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+        "c88316955.lua": "9ed30ef4c739e365b24ada0137007ef2113cfeca95d25d6afb7abe93e64dcfb8",
+        "c259944344.lua": "88417f50f378ba021e029bd5ec504549365a6b219d9b8e28fbdf6aceab690422"
+      },
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            88316955,
+            259944344,
+            900000001
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "20"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 1,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 2,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 2
+            }
+          ],
+          "activates": [
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 2,
+              "description": "0",
+              "client_mode": 0
+            },
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "900000001"
+        },
+        {
+          "type": 18,
+          "player": 0,
+          "count": 1,
+          "field_mask": 4294959359
+        },
+        {
+          "type": 50,
+          "card": 900000001,
+          "from": {
+            "controller": 0,
+            "location": 2,
+            "sequence": 2,
+            "position": 10
+          },
+          "to": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 70,
+          "code": 900000001,
+          "controller": 0,
+          "location": 8,
+          "sequence": 0,
+          "position": 5,
+          "triggering_controller": 0,
+          "triggering_location": 8,
+          "triggering_sequence": 0,
+          "description": "0",
+          "chain_size": 1
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 50,
+          "card": 900000001,
+          "from": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 0,
+            "position": 5
+          },
+          "to": {
+            "controller": 0,
+            "location": 16,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 74
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 8421376,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 8421376,
+          "selects": []
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        }
+      ]
+    },
+    {
+      "scenario": "Surfacing prior Spell activation restriction",
+      "prior": {
+        "cardActivation": true,
+        "worldLegacy": true
+      },
+      "variant": "ccg",
+      "protectedTarget": false,
+      "available": true,
+      "status": "PASS",
+      "failure": null,
+      "loaded": {
+        "constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+        "utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+        "procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+        "c88316955.lua": "9ed30ef4c739e365b24ada0137007ef2113cfeca95d25d6afb7abe93e64dcfb8",
+        "c259944344.lua": "88417f50f378ba021e029bd5ec504549365a6b219d9b8e28fbdf6aceab690422"
+      },
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            88316955,
+            259944344,
+            900000001
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "20"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 1,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 2,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 2
+            }
+          ],
+          "activates": [
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 2,
+              "description": "0",
+              "client_mode": 0
+            },
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "900000001"
+        },
+        {
+          "type": 18,
+          "player": 0,
+          "count": 1,
+          "field_mask": 4294959359
+        },
+        {
+          "type": 50,
+          "card": 900000001,
+          "from": {
+            "controller": 0,
+            "location": 2,
+            "sequence": 2,
+            "position": 10
+          },
+          "to": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 70,
+          "code": 900000001,
+          "controller": 0,
+          "location": 8,
+          "sequence": 0,
+          "position": 5,
+          "triggering_controller": 0,
+          "triggering_location": 8,
+          "triggering_sequence": 0,
+          "description": "0",
+          "chain_size": 1
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 1,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 50,
+          "card": 900000001,
+          "from": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 0,
+            "position": 5
+          },
+          "to": {
+            "controller": 0,
+            "location": 16,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 74
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 8421376,
+          "hint_timing_other": 32768,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 8421376,
+          "selects": []
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "activates": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "description": "2143109504",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "259944344"
+        },
+        {
+          "type": 18,
+          "player": 0,
+          "count": 1,
+          "field_mask": 4294959359
+        },
+        {
+          "type": 50,
+          "card": 259944344,
+          "from": {
+            "controller": 0,
+            "location": 2,
+            "sequence": 1,
+            "position": 10
+          },
+          "to": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 70,
+          "code": 259944344,
+          "controller": 0,
+          "location": 8,
+          "sequence": 0,
+          "position": 5,
+          "triggering_controller": 0,
+          "triggering_location": 8,
+          "triggering_sequence": 0,
+          "description": "2143109504",
+          "chain_size": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "526"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0,
+              "position": 10
+            }
+          ]
+        },
+        {
+          "type": 31,
+          "player": 1,
+          "cards": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ]
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "502"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 900000002,
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 83,
+          "cards": [
+            {
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 50,
+          "card": 900000002,
+          "from": {
+            "controller": 1,
+            "location": 4,
+            "sequence": 0,
+            "position": 1
+          },
+          "to": {
+            "controller": 1,
+            "location": 16,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 50,
+          "card": 259944344,
+          "from": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 0,
+            "position": 5
+          },
+          "to": {
+            "controller": 0,
+            "location": 16,
+            "sequence": 1,
+            "position": 5
+          }
+        },
+        {
+          "type": 74
+        }
+      ]
+    },
+    {
+      "scenario": "Surfacing ongoing Spell activation restriction",
+      "future": {
+        "cardActivation": false,
+        "worldLegacy": false
+      },
+      "variant": "ccg",
+      "protectedTarget": false,
+      "available": true,
+      "status": "PASS",
+      "failure": null,
+      "loaded": {
+        "constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+        "utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+        "procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+        "c88316955.lua": "9ed30ef4c739e365b24ada0137007ef2113cfeca95d25d6afb7abe93e64dcfb8",
+        "c259944344.lua": "88417f50f378ba021e029bd5ec504549365a6b219d9b8e28fbdf6aceab690422"
+      },
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            88316955,
+            259944344
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "20"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 1,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 8,
+              "sequence": 0,
+              "position": 1,
+              "description": "0",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 2,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 8,
+              "sequence": 0,
+              "position": 1,
+              "description": "0",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "activates": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "description": "2143109504",
+              "client_mode": 0
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 8,
+              "sequence": 0,
+              "description": "0",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "259944344"
+        },
+        {
+          "type": 18,
+          "player": 0,
+          "count": 1,
+          "field_mask": 4294959615
+        },
+        {
+          "type": 50,
+          "card": 259944344,
+          "from": {
+            "controller": 0,
+            "location": 2,
+            "sequence": 1,
+            "position": 10
+          },
+          "to": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 1,
+            "position": 5
+          }
+        },
+        {
+          "type": 70,
+          "code": 259944344,
+          "controller": 0,
+          "location": 8,
+          "sequence": 1,
+          "position": 5,
+          "triggering_controller": 0,
+          "triggering_location": 8,
+          "triggering_sequence": 1,
+          "description": "2143109504",
+          "chain_size": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "526"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0,
+              "position": 10
+            }
+          ]
+        },
+        {
+          "type": 31,
+          "player": 1,
+          "cards": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ]
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "502"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 900000002,
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 83,
+          "cards": [
+            {
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 1,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 8,
+              "sequence": 0,
+              "position": 1,
+              "description": "0",
+              "client_mode": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "Surfacing ongoing Spell activation restriction",
+      "future": {
+        "cardActivation": false,
+        "worldLegacy": true
+      },
+      "variant": "ccg",
+      "protectedTarget": false,
+      "available": true,
+      "status": "PASS",
+      "failure": null,
+      "loaded": {
+        "constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+        "utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+        "procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+        "c88316955.lua": "9ed30ef4c739e365b24ada0137007ef2113cfeca95d25d6afb7abe93e64dcfb8",
+        "c259944344.lua": "88417f50f378ba021e029bd5ec504549365a6b219d9b8e28fbdf6aceab690422"
+      },
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            88316955,
+            259944344
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "20"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 1,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 8,
+              "sequence": 0,
+              "position": 1,
+              "description": "0",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 2,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 8,
+              "sequence": 0,
+              "position": 1,
+              "description": "0",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "activates": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "description": "2143109504",
+              "client_mode": 0
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 8,
+              "sequence": 0,
+              "description": "0",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "259944344"
+        },
+        {
+          "type": 18,
+          "player": 0,
+          "count": 1,
+          "field_mask": 4294959615
+        },
+        {
+          "type": 50,
+          "card": 259944344,
+          "from": {
+            "controller": 0,
+            "location": 2,
+            "sequence": 1,
+            "position": 10
+          },
+          "to": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 1,
+            "position": 5
+          }
+        },
+        {
+          "type": 70,
+          "code": 259944344,
+          "controller": 0,
+          "location": 8,
+          "sequence": 1,
+          "position": 5,
+          "triggering_controller": 0,
+          "triggering_location": 8,
+          "triggering_sequence": 1,
+          "description": "2143109504",
+          "chain_size": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "526"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0,
+              "position": 10
+            }
+          ]
+        },
+        {
+          "type": 31,
+          "player": 1,
+          "cards": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ]
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "502"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 900000002,
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 83,
+          "cards": [
+            {
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 1,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 8,
+              "sequence": 0,
+              "position": 1,
+              "description": "0",
+              "client_mode": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "Surfacing ongoing Spell activation restriction",
+      "future": {
+        "cardActivation": true,
+        "worldLegacy": false
+      },
+      "variant": "ccg",
+      "protectedTarget": false,
+      "available": true,
+      "status": "PASS",
+      "failure": null,
+      "loaded": {
+        "constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+        "utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+        "procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+        "c88316955.lua": "9ed30ef4c739e365b24ada0137007ef2113cfeca95d25d6afb7abe93e64dcfb8",
+        "c259944344.lua": "88417f50f378ba021e029bd5ec504549365a6b219d9b8e28fbdf6aceab690422"
+      },
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            88316955,
+            259944344,
+            900000001
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "20"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 1,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 2,
+              "position": 10,
+              "description": "0",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 2,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 2,
+              "position": 10,
+              "description": "0",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 2
+            }
+          ],
+          "activates": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "description": "2143109504",
+              "client_mode": 0
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 2,
+              "description": "0",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "259944344"
+        },
+        {
+          "type": 18,
+          "player": 0,
+          "count": 1,
+          "field_mask": 4294959359
+        },
+        {
+          "type": 50,
+          "card": 259944344,
+          "from": {
+            "controller": 0,
+            "location": 2,
+            "sequence": 1,
+            "position": 10
+          },
+          "to": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 70,
+          "code": 259944344,
+          "controller": 0,
+          "location": 8,
+          "sequence": 0,
+          "position": 5,
+          "triggering_controller": 0,
+          "triggering_location": 8,
+          "triggering_sequence": 0,
+          "description": "2143109504",
+          "chain_size": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "526"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0,
+              "position": 10
+            }
+          ]
+        },
+        {
+          "type": 31,
+          "player": 1,
+          "cards": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ]
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "502"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 900000002,
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 83,
+          "cards": [
+            {
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        }
+      ]
+    },
+    {
+      "scenario": "Surfacing ongoing Spell activation restriction",
+      "future": {
+        "cardActivation": true,
+        "worldLegacy": true
+      },
+      "variant": "ccg",
+      "protectedTarget": false,
+      "available": true,
+      "status": "PASS",
+      "failure": null,
+      "loaded": {
+        "constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+        "utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+        "procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+        "c88316955.lua": "9ed30ef4c739e365b24ada0137007ef2113cfeca95d25d6afb7abe93e64dcfb8",
+        "c259944344.lua": "88417f50f378ba021e029bd5ec504549365a6b219d9b8e28fbdf6aceab690422"
+      },
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            88316955,
+            259944344,
+            900000001
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "20"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 1,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 2,
+              "position": 10,
+              "description": "0",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 2,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "2143109504",
+              "client_mode": 0
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 2,
+              "position": 10,
+              "description": "0",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 2
+            }
+          ],
+          "activates": [
+            {
+              "code": 259944344,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "description": "2143109504",
+              "client_mode": 0
+            },
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 2,
+              "description": "0",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "259944344"
+        },
+        {
+          "type": 18,
+          "player": 0,
+          "count": 1,
+          "field_mask": 4294959359
+        },
+        {
+          "type": 50,
+          "card": 259944344,
+          "from": {
+            "controller": 0,
+            "location": 2,
+            "sequence": 1,
+            "position": 10
+          },
+          "to": {
+            "controller": 0,
+            "location": 8,
+            "sequence": 0,
+            "position": 5
+          }
+        },
+        {
+          "type": 70,
+          "code": 259944344,
+          "controller": 0,
+          "location": 8,
+          "sequence": 0,
+          "position": 5,
+          "triggering_controller": 0,
+          "triggering_location": 8,
+          "triggering_sequence": 0,
+          "description": "2143109504",
+          "chain_size": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "526"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0,
+              "position": 10
+            }
+          ]
+        },
+        {
+          "type": 31,
+          "player": 1,
+          "cards": [
+            {
+              "code": 88316955,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ]
+        },
+        {
+          "type": 2,
+          "hint_type": 3,
+          "player": 0,
+          "hint": "502"
+        },
+        {
+          "type": 15,
+          "player": 0,
+          "can_cancel": false,
+          "min": 1,
+          "max": 1,
+          "selects": [
+            {
+              "code": 900000002,
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 83,
+          "cards": [
+            {
+              "controller": 1,
+              "location": 4,
+              "sequence": 0,
+              "position": 1
+            }
+          ]
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 1,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 900000001,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1,
+              "position": 10,
+              "description": "0",
+              "client_mode": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

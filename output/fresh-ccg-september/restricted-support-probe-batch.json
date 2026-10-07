@@ -1,0 +1,354 @@
+{
+  "scope": "Diagnostic generic summon-type-zero eligibility with unregistered source-handler effect. Full scripts loaded. Extra Deck cards use Extra/GY/banishment; no actual proper summon before GY/banishment. No actual source activation, cost, summon or procedure. Public engine only. Successful probe execution is not card PASS/fix/completion.",
+  "harness_sha256": "c3d37e1548f6e0f2de281701e42bf07a4f82eee570e1817935ebd2932c484cab",
+  "batch_script_sha256": "a1a2d05b06d2fc96ab4ec80f7470f456b7db8eb4f6feffc1d58713a96c9d52df",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "public/CCG Downloads/CCG_Scripts/c231331942.lua": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067"
+  },
+  "runs": [
+    {
+      "source": 212345347,
+      "target": 249454272,
+      "source_sha256": "5ba1398b3e0a3fae63e6caa966d97cbf295ac7f0f9a1c2ab50ec54527daa448b",
+      "target_sha256": "8f67837edd8912c59452a8d177a15f4c9233d219e13661a6e56a496f5be0661e",
+      "artifact_sha256": "32f9c950c2776780d4cb0fb9c6381200c88fcaa1d2d9ae1fbff1e68c34eeb402",
+      "results": [
+        {
+          "location": "extra",
+          "failure": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>; [string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>; [string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')",
+          "eligible": null
+        },
+        {
+          "location": "grave",
+          "failure": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>; [string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')",
+          "eligible": null
+        },
+        {
+          "location": "removed",
+          "failure": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>; [string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')",
+          "eligible": null
+        }
+      ]
+    },
+    {
+      "source": 215621622,
+      "target": 231331942,
+      "source_sha256": "4f6e82a380a1f62e28ebce8b732e20abc87446b3407a69fecc4ad46ce704147e",
+      "target_sha256": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067",
+      "artifact_sha256": "851bc645adf342ac8264caef9d667b766a46c66cd3f65560cabd32abd7705d7f",
+      "results": [
+        {
+          "location": "hand",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "deck",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "grave",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "removed",
+          "failure": null,
+          "eligible": false
+        }
+      ]
+    },
+    {
+      "source": 224800873,
+      "target": 231331942,
+      "source_sha256": "0e85d62db270a8358ddccba74b3ab733013c0d2269d77556a73511a8880af29e",
+      "target_sha256": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067",
+      "artifact_sha256": "3accf0d552af621aba40ebeb2ebbeb53300261374d510535535364a541ba1dce",
+      "results": [
+        {
+          "location": "hand",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "deck",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "grave",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "removed",
+          "failure": null,
+          "eligible": false
+        }
+      ]
+    },
+    {
+      "source": 235051048,
+      "target": 244921711,
+      "source_sha256": "f8ecd4df0acaa993c38bc6631720eef258467418f05162911f156faae1ee0b5d",
+      "target_sha256": "f8cb036b595c5f005f96c2f3ccd9e08fad2dc2547a23f8ef8b63a13a02172e82",
+      "artifact_sha256": "a844b2e8d33a33caaa648ecf607213a194ea7f8f626cef404defb38881d266cc",
+      "results": [
+        {
+          "location": "extra",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "grave",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "removed",
+          "failure": null,
+          "eligible": false
+        }
+      ]
+    },
+    {
+      "source": 236815197,
+      "target": 242094473,
+      "source_sha256": "0ca03b38bae90a0efc3ef733e14f0fe0f009dbfa236cd638d1aaad554d8e1524",
+      "target_sha256": "a6dc62c7a63591c0f1158b525228bf688167e9bbf6fbfd156beef1b469e58659",
+      "artifact_sha256": "37446a004cf3b1373950fe57b8c99a72daa6a3874b601a9872c1167c960dbd20",
+      "results": [
+        {
+          "location": "extra",
+          "failure": null,
+          "eligible": true
+        },
+        {
+          "location": "grave",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "removed",
+          "failure": null,
+          "eligible": false
+        }
+      ]
+    },
+    {
+      "source": 238273770,
+      "target": 238273772,
+      "source_sha256": "7a7f0eefd77ec74e110a2d8640752fd8d6685d683236539d36e7e28fe7613ccd",
+      "target_sha256": "dd3c2101699086b4d3b578ec7ab7439899393660a9392fa6f703a1c6a5e7c33d",
+      "artifact_sha256": "4eac2209ef48d68de897c9720018a567d5f98a76a7bf4e49f1816f2656ba4e71",
+      "results": [
+        {
+          "location": "extra",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "grave",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "removed",
+          "failure": null,
+          "eligible": false
+        }
+      ]
+    },
+    {
+      "source": 249093610,
+      "target": 244921711,
+      "source_sha256": "dc111a23ee61f33cbcd95a41c47bd1a93a6873fd18b63e58fe1eff7cfd62fdc4",
+      "target_sha256": "f8cb036b595c5f005f96c2f3ccd9e08fad2dc2547a23f8ef8b63a13a02172e82",
+      "artifact_sha256": "cc4ba154cd663fcfdca5910f42c3b60a25b49cef64e0443f2972670caa36dc9c",
+      "results": [
+        {
+          "location": "extra",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "grave",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "removed",
+          "failure": null,
+          "eligible": false
+        }
+      ]
+    },
+    {
+      "source": 249454272,
+      "target": 212345347,
+      "source_sha256": "8f67837edd8912c59452a8d177a15f4c9233d219e13661a6e56a496f5be0661e",
+      "target_sha256": "5ba1398b3e0a3fae63e6caa966d97cbf295ac7f0f9a1c2ab50ec54527daa448b",
+      "artifact_sha256": "20cab5e4282e398243b4fcd3b5c5e55cc3a10eeaa84d53978d396f0ffdcbb9d6",
+      "results": [
+        {
+          "location": "extra",
+          "failure": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>; [string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>; [string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')",
+          "eligible": null
+        },
+        {
+          "location": "grave",
+          "failure": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>; [string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')",
+          "eligible": null
+        },
+        {
+          "location": "removed",
+          "failure": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>; [string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')",
+          "eligible": null
+        }
+      ]
+    },
+    {
+      "source": 250262550,
+      "target": 231331942,
+      "source_sha256": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+      "target_sha256": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067",
+      "artifact_sha256": "6f8b8ff3c3aa6391c06a5b77c05acccaa6c6fe222a90a28918d37fa9be4c9d89",
+      "results": [
+        {
+          "location": "hand",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "deck",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "grave",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "removed",
+          "failure": null,
+          "eligible": false
+        }
+      ]
+    },
+    {
+      "source": 255977900,
+      "target": 231331942,
+      "source_sha256": "31c1606d5cc070e1aeb9037089d697e1eefb17b75222eb50ee77c9f65ef0bd06",
+      "target_sha256": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067",
+      "artifact_sha256": "49f71195dd72a0a8276bc5377a86c5113ec23a2f1cc1fd442a1ad758fbe98f63",
+      "results": [
+        {
+          "location": "hand",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "deck",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "grave",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "removed",
+          "failure": null,
+          "eligible": false
+        }
+      ]
+    },
+    {
+      "source": 256831125,
+      "target": 212429024,
+      "source_sha256": "c26df5daf8fd4e558616bf26ec9dfa24b8f6811184ceb1697a9bf121d817dbf0",
+      "target_sha256": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921",
+      "artifact_sha256": "b99845b9577fdc69ab0302e46e06286c90b3442f8322022fc187bb758833c1b9",
+      "results": [
+        {
+          "location": "extra",
+          "failure": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>; [string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')",
+          "eligible": null
+        },
+        {
+          "location": "grave",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "removed",
+          "failure": null,
+          "eligible": false
+        }
+      ]
+    },
+    {
+      "source": 256831125,
+      "target": 231088629,
+      "source_sha256": "c26df5daf8fd4e558616bf26ec9dfa24b8f6811184ceb1697a9bf121d817dbf0",
+      "target_sha256": "a64693dbd99554bb567b66e84627192f772d4a9c11e951be300c6dcd7848f0ba",
+      "artifact_sha256": "b26d8b84b30b6f5bdd4f66c78e2a8a5f7f45e27c55d3b671bae49011f9db7d04",
+      "results": [
+        {
+          "location": "extra",
+          "failure": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>; [string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')",
+          "eligible": null
+        },
+        {
+          "location": "grave",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "removed",
+          "failure": null,
+          "eligible": false
+        }
+      ]
+    },
+    {
+      "source": 259937946,
+      "target": 259177849,
+      "source_sha256": "c7edf515e555ccfc56005e9735d7c1867899f6d163b0d7442eb0eb0560fd40a4",
+      "target_sha256": "e0069769b810f3a9f4851359186840a9e73123669ac53b1c00dcd74e9d547382",
+      "artifact_sha256": "d649073a078f9307e7b691ec35fb3dd644d7c21730315de3baa03c9b80dda817",
+      "results": [
+        {
+          "location": "extra",
+          "failure": null,
+          "eligible": true
+        },
+        {
+          "location": "grave",
+          "failure": null,
+          "eligible": false
+        },
+        {
+          "location": "removed",
+          "failure": null,
+          "eligible": false
+        }
+      ]
+    }
+  ]
+}

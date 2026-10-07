@@ -9,7 +9,7 @@ function s.initial_effect(c)
  e:SetCost(s.cost); e:SetTarget(s.tg); e:SetOperation(s.op); c:RegisterEffect(e)
 end
 function s.xf(c) return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:IsRank(6) and c:GetOverlayCount()>0 end
-function s.df(c) return c:IsMonster() and c:IsDestructable() end
+function s.df(c) return c:IsType(TYPE_MONSTER) and c:IsDestructable() end
 function s.cost(e,tp,eg,ep,ev,re,r,rp,chk)
  local g=Duel.GetMatchingGroup(s.xf,tp,LOCATION_MZONE,0,nil)
  local max=math.min(g:GetSum(Card.GetOverlayCount),Duel.GetMatchingGroupCount(s.df,tp,0,LOCATION_MZONE,nil))

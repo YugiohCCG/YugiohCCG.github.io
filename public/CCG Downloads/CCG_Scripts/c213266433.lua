@@ -3,7 +3,6 @@ local s,id=GetID()
 local STRING_ID=133266433
 local SET_FRUTE=0x813
 local CARD_FRUTEIFICATION=256930605
-local RESET_CHAIN_COMPAT=RESET_CHAIN or (RESET_PHASE+PHASE_END)
 function s.initial_effect(c)
 	aux.AddCodeList(c,256930605)
 	c:EnableReviveLimit()
@@ -45,13 +44,21 @@ function s.fddef(c)
 	return c:IsFacedown() and c:IsDefensePos()
 end
 function s.atklimit(e,c)
-	return not s.fddef(c)
+	if not s.fddef(c) then return true end
+	local fid=e:GetHandler():GetFieldID()
+	for _,label in ipairs({c:GetFlagEffectLabel(id)}) do
+		if label==fid then return true end
+	end
+	return false
 end
 function s.atkop(e,tp,eg,ep,ev,re,r,rp)
 	local ac=Duel.GetAttacker()
 	local bc=ac and ac:GetBattleTarget()
 	if not (ac and bc and ac:IsControler(tp) and ac:IsFaceup() and ac:IsSetCard(SET_FRUTE)
-		and bc:IsControler(1-tp) and s.fddef(bc) and ac:GetFlagEffect(id)==0) then return end
+		and bc:IsControler(1-tp) and s.fddef(bc)) then return end
+	--Position changes do not permit attacking this defender again.
+	bc:RegisterFlagEffect(id,RESET_EVENT+(RESETS_STANDARD&~RESET_TURN_SET)+RESET_PHASE+PHASE_BATTLE,0,1,ac:GetFieldID())
+	if ac:GetFlagEffect(id)>0 then return end
 	local ct=Duel.GetMatchingGroupCount(s.fddef,tp,0,LOCATION_MZONE,nil)-1
 	ac:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_BATTLE,0,1)
 	if ct<=0 then return end
@@ -106,23 +113,25 @@ function s.immtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_POSITION,nil,1,1-tp,LOCATION_MZONE)
 end
 function s.immfilter(e,re)
-	for i=1,e:GetLabel() do
-		local te=Duel.GetChainInfo(i,CHAININFO_TRIGGERING_EFFECT)
-		if te==re then return true end
-	end
-	return false
+	return e:GetLabelObject()==re
 end
 function s.immop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	local e1=Effect.CreateEffect(c)
-	e1:SetType(EFFECT_TYPE_FIELD)
-	e1:SetProperty(EFFECT_FLAG_SET_AVAILABLE)
-	e1:SetCode(EFFECT_IMMUNE_EFFECT)
-	e1:SetTargetRange(LOCATION_MZONE,0)
-	e1:SetValue(s.immfilter)
-	e1:SetLabel(ev)
-	e1:SetReset(RESET_CHAIN_COMPAT)
-	Duel.RegisterEffect(e1,tp)
+	--Keep the previously activated effects after this chain ends.
+	for i=1,ev do
+		local te=Duel.GetChainInfo(i,CHAININFO_TRIGGERING_EFFECT)
+		if te then
+			local e1=Effect.CreateEffect(c)
+			e1:SetType(EFFECT_TYPE_FIELD)
+			e1:SetProperty(EFFECT_FLAG_SET_AVAILABLE)
+			e1:SetCode(EFFECT_IMMUNE_EFFECT)
+			e1:SetTargetRange(LOCATION_MZONE,0)
+			e1:SetValue(s.immfilter)
+			e1:SetLabelObject(te)
+			e1:SetReset(RESET_PHASE+PHASE_END)
+			Duel.RegisterEffect(e1,tp)
+		end
+	end
 	local rc=re:GetHandler()
 	if re:IsActiveType(TYPE_MONSTER) and rc:IsControler(1-tp) and rc:IsLocation(LOCATION_MZONE)
 		and rc:IsFaceup() and rc:IsRelateToEffect(re) and rc:IsCanTurnSet()

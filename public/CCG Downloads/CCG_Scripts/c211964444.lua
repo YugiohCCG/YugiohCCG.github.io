@@ -49,15 +49,18 @@ function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	if not (tc and tc:IsRelateToEffect(e) and tc:IsLocation(LOCATION_DECK) and s.desfilter(tc,e)) then return end
 	if Duel.Destroy(tc,REASON_EFFECT,LOCATION_GRAVE)==0 then return end
 	Duel.BreakEffect()
-	local te,ceg,cep,cev,cre,cr,crp=tc:CheckActivateEffect(true,true,true)
-	if not te then return end
-	local tg=te:GetTarget()
-	local op=te:GetOperation()
-	if tg then
-		tg(e,tp,ceg,cep,cev,cre,cr,crp,1)
-	end
-	if op then
-		op(e,tp,ceg,cep,cev,cre,cr,crp)
+	--Apply the destroyed monster's Standby effect with its own handler.
+	for _,te in ipairs{tc:GetCardEffect()} do
+		if te:GetCode()==EVENT_PHASE+PHASE_STANDBY then
+			local tg=te:GetTarget()
+			local op=te:GetOperation()
+			if tg and not tg(te,tp,eg,ep,ev,re,r,rp,0) then return end
+			tc:CreateEffectRelation(te)
+			if tg then tg(te,tp,eg,ep,ev,re,r,rp,1) end
+			if op then op(te,tp,eg,ep,ev,re,r,rp) end
+			tc:ReleaseEffectRelation(te)
+			return
+		end
 	end
 end
 function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)

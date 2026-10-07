@@ -35,7 +35,7 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_WYVERNAL}
 function s.costfilter(c,tp)
-	return c:IsFaceup() and c:IsRace(RACE_INSECT) and c:IsType(TYPE_MONSTER)
+	return c:IsFaceup() and (c:IsSetCard(SET_WYVERNAL) or c:IsRace(RACE_INSECT)) and c:IsType(TYPE_MONSTER)
 		and c:IsAbleToGraveAsCost() and Duel.GetMZoneCount(tp,c)>0
 end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -59,7 +59,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if #g>0 then Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP) end
 end
 function s.summonedinsect(c)
-	return c:IsRace(RACE_INSECT) and c:IsType(TYPE_MONSTER)
+	return (c:IsSetCard(SET_WYVERNAL) or c:IsRace(RACE_INSECT)) and c:IsType(TYPE_MONSTER)
 end
 function s.fuscon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(s.summonedinsect,1,nil)
@@ -67,7 +67,7 @@ function s.fuscon(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.matfilter(c)
 	return (c:IsLocation(LOCATION_HAND+LOCATION_GRAVE) or c:IsFaceup())
-		and c:IsRace(RACE_INSECT) and c:IsType(TYPE_MONSTER) and c:IsCanBeFusionMaterial()
+		and (c:IsSetCard(SET_WYVERNAL) or c:IsRace(RACE_INSECT)) and c:IsType(TYPE_MONSTER) and c:IsCanBeFusionMaterial()
 		and c:IsAbleToDeck()
 end
 function s.matfilter2(c,e)

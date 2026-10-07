@@ -1,0 +1,58 @@
+{
+  "scope": "Actual canonical Conductor Link Summon using canonical Carcel/Farad; Carcel optional material trigger targets new Conductor and places counters equal to remaining Ohmen (2 or1 including Conductor). Wrong-recipient-set negative and no-op/count mutations. Explicit missing-public-API adapters: empty must-material set, IsLinkType equals unmodified IsType on these fixtures. Other material reasons, HOPT and native Omega remain open",
+  "script_sha256": "9b058123a25f2511dad3e895da18a15872644ea3184f5e27804683bffd0a2ab8",
+  "harness_sha256": "4bb74eea7f217e9fb566ef646a146e35bf0ef6c561d83940f198b3320140d888",
+  "batch_script_sha256": "5cfd5bd11e014597304e7de8ac748878764dc85818041cd37f074bed590c9709",
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "public/CCG Downloads/CCG_Scripts/c231331942.lua": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067",
+    "output/fresh-ccg-september/public-core-card-data-adapter.mjs": "3df84e0cb3521c725a9d049409473c6a8506aca0d30a10ab8ed623efc2fe67c1",
+    "scripts/fresh_public_card_data_adapter.py": "aad6bba96d8eace5ccc5750deefc7e183d53024413e8aa0840bf7f2c653e58a2"
+  },
+  "runs": [
+    {
+      "card_data_adapter": true,
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact": "carcel-link-material-259780273-259174227-card-data-adapter-public-link-fixture-adapter.json",
+      "artifact_sha256": "6a9b0ed4189acc508485c45c871a78c720e9a0713f6ab9d421009303a6d9bcb6"
+    },
+    {
+      "card_data_adapter": true,
+      "control": "no-material-trigger",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "noRemainingOhmen": true
+        }
+      ],
+      "artifact": "carcel-link-material-259780273-259174227-card-data-adapter-public-link-fixture-adapter-no-material-trigger.json",
+      "artifact_sha256": "44ec68fbc50976282182a404f0c85eb8c8e66ffb8450d4fc4f08a04277513b66"
+    },
+    {
+      "card_data_adapter": true,
+      "control": "wrong-counter-total",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "noRemainingOhmen": true
+        }
+      ],
+      "artifact": "carcel-link-material-259780273-259174227-card-data-adapter-public-link-fixture-adapter-wrong-counter-total.json",
+      "artifact_sha256": "dce0ead243222464bec6883c5be0f959e650cba5fa68b68c163fa51e16ecbd59"
+    }
+  ]
+}

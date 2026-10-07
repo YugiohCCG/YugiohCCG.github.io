@@ -1,0 +1,55 @@
+{
+  "scope": "Canonical Beacon actual movement of canonical Farad followed by exact native counters on canonical co-linked Intensity and Conductor. Broken graph gives zero counters; full field/all-face-down block movement. Disabled movement/counter mutations. Initial field placement; targeting protection, responses/count/native Omega remain open",
+  "script_sha256": "a19bdb4d4c2fedfc455897d5f57fd30e6e52aed764e375368937f0ad1d111ce8",
+  "harness_sha256": "faa1fb5673be9245287888810c08932987007447e420056632d45a5e8824da3d",
+  "batch_script_sha256": "31a6c1c3a8b2767346535e3ac999da50097f8fa1ceefaec78919b5e45bf6dbd9",
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "public/CCG Downloads/CCG_Scripts/c231331942.lua": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067",
+    "output/fresh-ccg-september/public-core-card-data-adapter.mjs": "3df84e0cb3521c725a9d049409473c6a8506aca0d30a10ab8ed623efc2fe67c1",
+    "scripts/fresh_public_card_data_adapter.py": "aad6bba96d8eace5ccc5750deefc7e183d53024413e8aa0840bf7f2c653e58a2"
+  },
+  "runs": [
+    {
+      "card_data_adapter": true,
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact": "beacon-movement-counters-259650969-259174227-card-data-adapter.json",
+      "artifact_sha256": "d977afc15d7782db12f7af181c18c4c48f0109ab9b89a260f58fa1c1ed3153a9"
+    },
+    {
+      "card_data_adapter": true,
+      "control": "no-movement",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "noCoLink": true
+        }
+      ],
+      "artifact": "beacon-movement-counters-259650969-259174227-card-data-adapter-no-movement.json",
+      "artifact_sha256": "f70f5551e68b2e763d382d5b6cf51e663732cbba8e39a8838b4016eacc0f57d6"
+    },
+    {
+      "card_data_adapter": true,
+      "control": "no-post-move-counters",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "beacon-movement-counters-259650969-259174227-card-data-adapter-no-post-move-counters.json",
+      "artifact_sha256": "a881d85c37bf39a9dcc14347d41e9925773a7d8042bfbed98274489a8159886f"
+    }
+  ]
+}

@@ -1,0 +1,333 @@
+{
+  "scope": "Focused public-core Clock suites and exact mutation-failure checks. No full-card, full-roster, or native Omega certification.",
+  "script_sha256": "1b9bd3c4847c58bf60a86b505aaf53e6b2f9aab7565babd63263783ae4a833f4",
+  "results": [
+    {
+      "suite": "summon",
+      "args": [],
+      "valid": true,
+      "exit_code": 0,
+      "expected_failures": [],
+      "actual_failures": [],
+      "cases": 8,
+      "harness_sha256": "6042a2c8d0a724af1eb3ddf1aba0893a215a5a635c9c36838d649d7a799dd856",
+      "artifact_sha256": "612abe993eeb8086125e41cb575e35a67340506003a847a01bda8064298a2489",
+      "stdout": "PASS {}\nPASS {\"normal\":true}\nPASS {\"spell\":true}\nPASS {\"trap\":true}\nPASS {\"wrongSet\":true}\nPASS {\"absent\":true}\nPASS {\"count\":true}\nPASS {\"count\":true,\"normalFirst\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "summon",
+      "args": [
+        "--no-count"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"count\":true}",
+        "{\"count\":true,\"normalFirst\":true}"
+      ],
+      "actual_failures": [
+        "{\"count\":true}",
+        "{\"count\":true,\"normalFirst\":true}"
+      ],
+      "cases": 8,
+      "harness_sha256": "6042a2c8d0a724af1eb3ddf1aba0893a215a5a635c9c36838d649d7a799dd856",
+      "artifact_sha256": "fbb3c5c30737a919e46e021106f3eaa08fa54b3eeb033345dfec9affd84015a2",
+      "stdout": "PASS {}\nPASS {\"normal\":true}\nPASS {\"spell\":true}\nPASS {\"trap\":true}\nPASS {\"wrongSet\":true}\nPASS {\"absent\":true}\nFAIL {\"count\":true}: Legal Deck remainder after send\n\n0 !== 1\n\nFAIL {\"count\":true,\"normalFirst\":true}: Legal Deck remainder after send\n\n0 !== 1\n\n",
+      "stderr": ""
+    },
+    {
+      "suite": "summon",
+      "args": [
+        "--no-send"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{}",
+        "{\"normal\":true}",
+        "{\"spell\":true}",
+        "{\"trap\":true}",
+        "{\"count\":true}",
+        "{\"count\":true,\"normalFirst\":true}"
+      ],
+      "actual_failures": [
+        "{}",
+        "{\"normal\":true}",
+        "{\"spell\":true}",
+        "{\"trap\":true}",
+        "{\"count\":true}",
+        "{\"count\":true,\"normalFirst\":true}"
+      ],
+      "cases": 8,
+      "harness_sha256": "6042a2c8d0a724af1eb3ddf1aba0893a215a5a635c9c36838d649d7a799dd856",
+      "artifact_sha256": "5515a5d8fdc5ac2f94f80120e0034b0a2b5d552ab63f40a369b7d9e089c7ecbe",
+      "stdout": "FAIL {}: Actual selected Aldrez sent Deck to GY as effect\nFAIL {\"normal\":true}: Actual selected Aldrez sent Deck to GY as effect\nFAIL {\"spell\":true}: Actual selected Aldrez sent Deck to GY as effect\nFAIL {\"trap\":true}: Actual selected Aldrez sent Deck to GY as effect\nPASS {\"wrongSet\":true}\nPASS {\"absent\":true}\nFAIL {\"count\":true}: Actual selected Aldrez sent Deck to GY as effect\nFAIL {\"count\":true,\"normalFirst\":true}: Actual selected Aldrez sent Deck to GY as effect\n",
+      "stderr": ""
+    },
+    {
+      "suite": "rewrite",
+      "args": [],
+      "valid": true,
+      "exit_code": 0,
+      "expected_failures": [],
+      "actual_failures": [],
+      "cases": 10,
+      "harness_sha256": "0207197c68f97f567cfd17256ef9de99390156f27c821936d0c2f70ef6afcf91",
+      "artifact_sha256": "5aefcb1f6856369bf269f389b1e7babe6fae45025ce536325a86a7d3821bb65a",
+      "stdout": "PASS {}\nPASS {\"field\":true}\nPASS {\"absent\":true}\nPASS {\"facedown\":true}\nPASS {\"notXyz\":true}\nPASS {\"trap\":true}\nPASS {\"monster\":true}\nPASS {\"own\":true}\nPASS {\"spellEffect\":true}\nPASS {\"trapEffect\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "rewrite",
+      "args": [
+        "--no-cost"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{}",
+        "{\"field\":true}",
+        "{\"trap\":true}",
+        "{\"spellEffect\":true}",
+        "{\"trapEffect\":true}"
+      ],
+      "actual_failures": [
+        "{}",
+        "{\"field\":true}",
+        "{\"trap\":true}",
+        "{\"spellEffect\":true}",
+        "{\"trapEffect\":true}"
+      ],
+      "cases": 10,
+      "harness_sha256": "0207197c68f97f567cfd17256ef9de99390156f27c821936d0c2f70ef6afcf91",
+      "artifact_sha256": "61212eecd515bccc62a8b330115b0297e6d54869660b61b97669a56a16fc7fa6",
+      "stdout": "FAIL {}: Actual Clock Tribute paid as release cost before Xyz choice\nFAIL {\"field\":true}: Actual Clock Tribute paid as release cost before Xyz choice\nPASS {\"absent\":true}\nPASS {\"facedown\":true}\nPASS {\"notXyz\":true}\nFAIL {\"trap\":true}: Actual Clock Tribute paid as release cost before Xyz choice\nPASS {\"monster\":true}\nPASS {\"own\":true}\nFAIL {\"spellEffect\":true}: Actual Clock Tribute paid as release cost before Xyz choice\nFAIL {\"trapEffect\":true}: Actual Clock Tribute paid as release cost before Xyz choice\n",
+      "stderr": ""
+    },
+    {
+      "suite": "rewrite",
+      "args": [
+        "--no-rewrite"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{}",
+        "{\"field\":true}",
+        "{\"trap\":true}",
+        "{\"spellEffect\":true}",
+        "{\"trapEffect\":true}"
+      ],
+      "actual_failures": [
+        "{}",
+        "{\"field\":true}",
+        "{\"trap\":true}",
+        "{\"spellEffect\":true}",
+        "{\"trapEffect\":true}"
+      ],
+      "cases": 10,
+      "harness_sha256": "0207197c68f97f567cfd17256ef9de99390156f27c821936d0c2f70ef6afcf91",
+      "artifact_sha256": "0bf03275c571afcc4e2f62fec2fe2b0735ae086af4a6fbf38c983c6f4ae4146d",
+      "stdout": "FAIL {}: Original damage operation suppressed\nFAIL {\"field\":true}: Original damage operation suppressed\nPASS {\"absent\":true}\nPASS {\"facedown\":true}\nPASS {\"notXyz\":true}\nFAIL {\"trap\":true}: Original damage operation suppressed\nPASS {\"monster\":true}\nPASS {\"own\":true}\nFAIL {\"spellEffect\":true}: Original damage operation suppressed\nFAIL {\"trapEffect\":true}: Original damage operation suppressed\n",
+      "stderr": ""
+    },
+    {
+      "suite": "rewrite",
+      "args": [
+        "--no-negation"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{}",
+        "{\"field\":true}",
+        "{\"trap\":true}",
+        "{\"spellEffect\":true}",
+        "{\"trapEffect\":true}"
+      ],
+      "actual_failures": [
+        "{}",
+        "{\"field\":true}",
+        "{\"trap\":true}",
+        "{\"spellEffect\":true}",
+        "{\"trapEffect\":true}"
+      ],
+      "cases": 10,
+      "harness_sha256": "0207197c68f97f567cfd17256ef9de99390156f27c821936d0c2f70ef6afcf91",
+      "artifact_sha256": "d3efca8d22e8640527e0fe00515f748138f359832b751b79acae0f8d9e5c1857",
+      "stdout": "FAIL {}: Native disabled source on opponent field\nFAIL {\"field\":true}: Native disabled source on opponent field\nPASS {\"absent\":true}\nPASS {\"facedown\":true}\nPASS {\"notXyz\":true}\nFAIL {\"trap\":true}: Native disabled source on opponent field\nPASS {\"monster\":true}\nPASS {\"own\":true}\nFAIL {\"spellEffect\":true}: Native disabled source on opponent field\nFAIL {\"trapEffect\":true}: Native disabled source on opponent field\n",
+      "stderr": ""
+    },
+    {
+      "suite": "rewrite",
+      "args": [
+        "--any-type"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"monster\":true}"
+      ],
+      "actual_failures": [
+        "{\"monster\":true}"
+      ],
+      "cases": 10,
+      "harness_sha256": "0207197c68f97f567cfd17256ef9de99390156f27c821936d0c2f70ef6afcf91",
+      "artifact_sha256": "2c9e39a06dc28b971df679b20d2e77a73ab1cc512cae123d3cef782185d6441b",
+      "stdout": "PASS {}\nPASS {\"field\":true}\nPASS {\"absent\":true}\nPASS {\"facedown\":true}\nPASS {\"notXyz\":true}\nPASS {\"trap\":true}\nFAIL {\"monster\":true}: Native rewrite activation availability\n\ntrue !== false\n\nPASS {\"own\":true}\nPASS {\"spellEffect\":true}\nPASS {\"trapEffect\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "rewrite",
+      "args": [
+        "--any-player"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"own\":true}"
+      ],
+      "actual_failures": [
+        "{\"own\":true}"
+      ],
+      "cases": 10,
+      "harness_sha256": "0207197c68f97f567cfd17256ef9de99390156f27c821936d0c2f70ef6afcf91",
+      "artifact_sha256": "628340052b76f992eca8f0c1f054c02c40b9ed026fcc5e9657b94ba8cab4a859",
+      "stdout": "PASS {}\nPASS {\"field\":true}\nPASS {\"absent\":true}\nPASS {\"facedown\":true}\nPASS {\"notXyz\":true}\nPASS {\"trap\":true}\nPASS {\"monster\":true}\nFAIL {\"own\":true}: Native rewrite activation availability\n\ntrue !== false\n\nPASS {\"spellEffect\":true}\nPASS {\"trapEffect\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "lock",
+      "args": [],
+      "valid": true,
+      "exit_code": 0,
+      "expected_failures": [],
+      "actual_failures": [],
+      "cases": 5,
+      "harness_sha256": "1476cdc0650d64ededd8adf51331dcccd1edf89939819cd1cc5950617b56ed3e",
+      "artifact_sha256": "f1e95f5b0d8a0b7d77ae9ef773ffd994ce054a0679c9b424fe16570986c5a247",
+      "stdout": "PASS {\"allowed\":\"aldrez\"}\nPASS {\"allowed\":\"hand\"}\nPASS {\"allowed\":\"grave\"}\nPASS {\"allowed\":\"aldrez\",\"renewal\":true}\nPASS {\"allowed\":\"aldrez\",\"sourceLost\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "lock",
+      "args": [
+        "--no-lock"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"allowed\":\"aldrez\"}",
+        "{\"allowed\":\"hand\"}",
+        "{\"allowed\":\"grave\"}",
+        "{\"allowed\":\"aldrez\",\"renewal\":true}",
+        "{\"allowed\":\"aldrez\",\"sourceLost\":true}"
+      ],
+      "actual_failures": [
+        "{\"allowed\":\"aldrez\"}",
+        "{\"allowed\":\"hand\"}",
+        "{\"allowed\":\"grave\"}",
+        "{\"allowed\":\"aldrez\",\"renewal\":true}",
+        "{\"allowed\":\"aldrez\",\"sourceLost\":true}"
+      ],
+      "cases": 5,
+      "harness_sha256": "1476cdc0650d64ededd8adf51331dcccd1edf89939819cd1cc5950617b56ed3e",
+      "artifact_sha256": "74a892f70e6166e88ef510ae7657b1ab69890767aa6e9c115367928d0ea13278",
+      "stdout": "FAIL {\"allowed\":\"aldrez\"}: NonAldrez field effect blocked\nFAIL {\"allowed\":\"hand\"}: NonAldrez field effect blocked\nFAIL {\"allowed\":\"grave\"}: NonAldrez field effect blocked\nFAIL {\"allowed\":\"aldrez\",\"renewal\":true}: NonAldrez field effect blocked\nFAIL {\"allowed\":\"aldrez\",\"sourceLost\":true}: NonAldrez field effect blocked\n",
+      "stderr": ""
+    },
+    {
+      "suite": "lock",
+      "args": [
+        "--no-exception"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"allowed\":\"aldrez\"}",
+        "{\"allowed\":\"hand\"}",
+        "{\"allowed\":\"grave\"}",
+        "{\"allowed\":\"aldrez\",\"renewal\":true}",
+        "{\"allowed\":\"aldrez\",\"sourceLost\":true}"
+      ],
+      "actual_failures": [
+        "{\"allowed\":\"aldrez\"}",
+        "{\"allowed\":\"hand\"}",
+        "{\"allowed\":\"grave\"}",
+        "{\"allowed\":\"aldrez\",\"renewal\":true}",
+        "{\"allowed\":\"aldrez\",\"sourceLost\":true}"
+      ],
+      "cases": 5,
+      "harness_sha256": "1476cdc0650d64ededd8adf51331dcccd1edf89939819cd1cc5950617b56ed3e",
+      "artifact_sha256": "a3abef3f45f022985883176be23cf76beddc1dedaf09273c01d391915ca2fc47",
+      "stdout": "FAIL {\"allowed\":\"aldrez\"}: Aldrez field and nonAldrez Hand/GY effects remain available\nFAIL {\"allowed\":\"hand\"}: Aldrez field and nonAldrez Hand/GY effects remain available\nFAIL {\"allowed\":\"grave\"}: Aldrez field and nonAldrez Hand/GY effects remain available\nFAIL {\"allowed\":\"aldrez\",\"renewal\":true}: Aldrez field and nonAldrez Hand/GY effects remain available\nFAIL {\"allowed\":\"aldrez\",\"sourceLost\":true}: Aldrez field and nonAldrez Hand/GY effects remain available\n",
+      "stderr": ""
+    },
+    {
+      "suite": "lock",
+      "args": [
+        "--all-locations"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"allowed\":\"aldrez\"}",
+        "{\"allowed\":\"hand\"}",
+        "{\"allowed\":\"grave\"}",
+        "{\"allowed\":\"aldrez\",\"renewal\":true}",
+        "{\"allowed\":\"aldrez\",\"sourceLost\":true}"
+      ],
+      "actual_failures": [
+        "{\"allowed\":\"aldrez\"}",
+        "{\"allowed\":\"hand\"}",
+        "{\"allowed\":\"grave\"}",
+        "{\"allowed\":\"aldrez\",\"renewal\":true}",
+        "{\"allowed\":\"aldrez\",\"sourceLost\":true}"
+      ],
+      "cases": 5,
+      "harness_sha256": "1476cdc0650d64ededd8adf51331dcccd1edf89939819cd1cc5950617b56ed3e",
+      "artifact_sha256": "c1fff9febd7c1927401bf6fb4f4c25becd555675547f9a7d6412a962d8722609",
+      "stdout": "FAIL {\"allowed\":\"aldrez\"}: Aldrez field and nonAldrez Hand/GY effects remain available\nFAIL {\"allowed\":\"hand\"}: Aldrez field and nonAldrez Hand/GY effects remain available\nFAIL {\"allowed\":\"grave\"}: Aldrez field and nonAldrez Hand/GY effects remain available\nFAIL {\"allowed\":\"aldrez\",\"renewal\":true}: Aldrez field and nonAldrez Hand/GY effects remain available\nFAIL {\"allowed\":\"aldrez\",\"sourceLost\":true}: Aldrez field and nonAldrez Hand/GY effects remain available\n",
+      "stderr": ""
+    },
+    {
+      "suite": "lock",
+      "args": [
+        "--no-expiry"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"allowed\":\"aldrez\",\"renewal\":true}"
+      ],
+      "actual_failures": [
+        "{\"allowed\":\"aldrez\",\"renewal\":true}"
+      ],
+      "cases": 5,
+      "harness_sha256": "1476cdc0650d64ededd8adf51331dcccd1edf89939819cd1cc5950617b56ed3e",
+      "artifact_sha256": "288f3ea14adb56d1921c55faa6ab0c59f517030fd86a66a9de654ee222f509e1",
+      "stdout": "PASS {\"allowed\":\"aldrez\"}\nPASS {\"allowed\":\"hand\"}\nPASS {\"allowed\":\"grave\"}\nFAIL {\"allowed\":\"aldrez\",\"renewal\":true}: Field restriction expired at previous End Phase\nPASS {\"allowed\":\"aldrez\",\"sourceLost\":true}\n",
+      "stderr": ""
+    },
+    {
+      "suite": "lock",
+      "args": [
+        "--lock-on-revival"
+      ],
+      "valid": true,
+      "exit_code": 1,
+      "expected_failures": [
+        "{\"allowed\":\"aldrez\",\"sourceLost\":true}"
+      ],
+      "actual_failures": [
+        "{\"allowed\":\"aldrez\",\"sourceLost\":true}"
+      ],
+      "cases": 5,
+      "harness_sha256": "1476cdc0650d64ededd8adf51331dcccd1edf89939819cd1cc5950617b56ed3e",
+      "artifact_sha256": "c484b2df8c1cdfac3b8e69b5e31013af063fd834dcce4bccb566446646415bae",
+      "stdout": "PASS {\"allowed\":\"aldrez\"}\nPASS {\"allowed\":\"hand\"}\nPASS {\"allowed\":\"grave\"}\nPASS {\"allowed\":\"aldrez\",\"renewal\":true}\nFAIL {\"allowed\":\"aldrez\",\"sourceLost\":true}: NonAldrez field effect blocked\n",
+      "stderr": ""
+    }
+  ]
+}

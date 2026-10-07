@@ -4,6 +4,7 @@ function s.initial_effect(c)
 	c:SetUniqueOnField(1,0,id)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
+	e1:SetCategory(CATEGORY_DESTROY)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e1:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
 	e1:SetCode(EVENT_SUMMON_SUCCESS)
@@ -27,7 +28,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function s.tgfilter(c)
-	return c:IsFaceup() and (c:GetOriginalType()&TYPE_MONSTER)~=0 and not c:IsForbidden()
+	return (c:GetOriginalType()&TYPE_MONSTER)~=0 and not c:IsForbidden()
 end
 function s.pltg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_MZONE) and s.tgfilter(chkc) end
@@ -46,7 +47,9 @@ function s.maketrap(c,owner)
 end
 function s.moveincolumn(c,tp,seq)
 	local p=c:GetOwner()
-	local sq=c:GetControler()==p and seq or 4-seq
+	local col=seq
+	if c:IsLocation(LOCATION_MZONE) and seq>=5 then col=seq==5 and 1 or 3 end
+	local sq=c:GetControler()==p and col or 4-col
 	local oc=Duel.GetFieldCard(p,LOCATION_SZONE,sq)
 	if oc then Duel.Destroy(oc,REASON_EFFECT) end
 	if Duel.GetLocationCount(p,LOCATION_SZONE)<=0 or not Duel.MoveToField(c,tp,p,LOCATION_SZONE,POS_FACEUP,true) then return false end
@@ -68,7 +71,7 @@ function s.colfilter(c,tp,col)
 end
 function s.spcon(e,tp,eg)
 	local c=e:GetHandler()
-	return c:IsAllTypes(TYPE_TRAP+TYPE_CONTINUOUS) and eg:IsExists(s.colfilter,1,nil,tp,aux.GetColumn(c))
+	return c:IsType(TYPE_TRAP) and c:IsType(TYPE_CONTINUOUS) and eg:IsExists(s.colfilter,1,nil,tp,aux.GetColumn(c))
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -89,6 +92,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetDescription(aux.Stringid(STRING_ID,2))
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
 	e1:SetCode(EVENT_PHASE+PHASE_END)
+	e1:SetCountLimit(1)
 	e1:SetReset(RESET_PHASE+PHASE_END)
 	e1:SetOperation(s.epop)
 	Duel.RegisterEffect(e1,tp)

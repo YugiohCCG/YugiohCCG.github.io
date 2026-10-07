@@ -18,6 +18,7 @@ const paths = {
   tcgCards: path.join(repoRoot, "src", "data", "tcg-cards.json"),
   idMap: path.join(repoRoot, "scripts", "output", "CCG_v1_id_map.json"),
   draftPool: path.join(repoRoot, "public", "data", "ygo-draft-pool.json"),
+  update: path.join(repoRoot, "src", "data", "banlist-update.json"),
 };
 
 // The website source keeps this legacy shorthand while Omega needs the card passcode.
@@ -81,6 +82,7 @@ function buildTcgRows(cards, draftPoolByName) {
 
     const passcode =
       TCG_PASSCODE_OVERRIDES.get(String(card.id || "")) ??
+      (card.passcode ? String(card.passcode) : null) ??
       imagePasscode(card) ??
       draftPoolPasscodes[0];
 
@@ -145,6 +147,7 @@ function buildBanlist() {
 
   const lines = [
     "!CCG Banlist",
+    `# Effective ${readJson(paths.update).effectiveDate}`,
     ...renderSection("forbidden", rows, STATUS.forbidden),
     ...renderSection("limited", rows, STATUS.limited),
     ...renderSection("semi-limited", rows, STATUS.semiLimited),

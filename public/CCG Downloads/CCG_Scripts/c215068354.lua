@@ -118,14 +118,16 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local ct2 = lbl >> 16
 	Duel.Hint(HINT_CARD,0,id)
 	local g=Duel.GetMatchingGroup(s.addfilter,tp,LOCATION_DECK,0,nil)
-	if #g>=ct1 then
+	ct1=math.min(ct1,#g)
+	if ct1>0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local sg=g:Select(tp,ct1,ct1,nil)
 		if Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then
 			Duel.ConfirmCards(1-tp,sg)
 			if ct2>0 then
 				local sg2=Duel.GetMatchingGroup(s.setfilter,tp,LOCATION_DECK,0,nil)
-				if #sg2>=ct2 then
+				ct2=math.min(ct2,#sg2)
+				if ct2>0 then
 					Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
 					local setg=sg2:Select(tp,ct2,ct2,nil)
 					if #setg>0 then

@@ -4,6 +4,7 @@ import useRemoteJson from "../hooks/useRemoteJson";
 import type { Card } from "../types/card";
 import usePageMeta from "../hooks/usePageMeta";
 import { banlistGroup, banlistComparator, orderBanlistCards } from "../utils/banlistOrder";
+import banlistUpdate from "../data/banlist-update.json";
 
 function Section({ title, items }: { title: string; items: Card[] }) {
   const ordered = orderBanlistCards(items);
@@ -69,6 +70,9 @@ export default function BanList() {
       <section className="card anim-rise">
         <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-slate-500">Format Rules</p>
         <h2 className="font-display text-4xl leading-none">Ban List</h2>
+        <p className="mt-2 text-sm text-slate-600">
+          Effective {new Date(`${banlistUpdate.effectiveDate}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })}
+        </p>
         <p className="mt-2 text-sm text-slate-600">
           Forbidden: {bannedFiltered.length} | Limited: {limitedFiltered.length} | Semi-Limited: {semiFiltered.length}
         </p>

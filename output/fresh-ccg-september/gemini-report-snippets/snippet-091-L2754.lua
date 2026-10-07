@@ -1,0 +1,7 @@
+   local e3=Effect.CreateEffect(c)
+   e3:SetType(EFFECT_TYPE_SINGLE)
+   e3:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
+   e3:SetCode(EFFECT_EXTRA_SYNCHRO_MATERIAL)
+   e3:SetRange(LOCATION_SZONE)
+   e3:SetValue(function(e,sc) return sc:IsCode(LAPSIX,GALAXIX) end)
+   c:RegisterEffect(e3)

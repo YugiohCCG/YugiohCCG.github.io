@@ -99,7 +99,8 @@ function s.ritop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 		mat=deckmg:Select(tp,1,1,nil)
 		rc:SetMaterial(mat)
-		if Duel.Release(mat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL)==0 then return end
+		--Deck Tributes require explicit RELEASE reason; this also raises EVENT_RELEASE.
+		if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_RELEASE+REASON_MATERIAL+REASON_RITUAL)==0 then return end
 	else
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 		mat=mg:SelectSubGroup(tp,s.matcheck,true,1,lv,lv,tp)
@@ -108,7 +109,8 @@ function s.ritop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.ReleaseRitualMaterial(mat)
 	end
 	Duel.BreakEffect()
-	if rc:IsRelateToEffect(e) and Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
+	--The Ritual monster is selected during resolution, not targeted by this effect.
+	if rc:IsLocation(LOCATION_HAND) and Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
 		rc:CompleteProcedure()
 	end
 end

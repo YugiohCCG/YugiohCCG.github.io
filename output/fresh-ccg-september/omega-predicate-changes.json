@@ -1,0 +1,140 @@
+{
+  "scope": "Omega reference predicate substitutions; native runtime unverified",
+  "cards": [
+    {
+      "passcode": 238274862,
+      "name": "Vylon Observatory"
+    },
+    {
+      "passcode": 239935100,
+      "name": "Perseverance of the Hydra's Heart"
+    },
+    {
+      "passcode": 239935102,
+      "name": "Terrifying Fog of the Dark Swamp"
+    },
+    {
+      "passcode": 259024242,
+      "name": "Devotee of the Pyre"
+    },
+    {
+      "passcode": 259095349,
+      "name": "Goliath the Airship Aerocat"
+    },
+    {
+      "passcode": 259187643,
+      "name": "World Legacy Calamities"
+    },
+    {
+      "passcode": 259296151,
+      "name": "Aerocat Blast Fist"
+    },
+    {
+      "passcode": 259384841,
+      "name": "Divinity to Infinity"
+    },
+    {
+      "passcode": 259542408,
+      "name": "Lord of the Pyre"
+    },
+    {
+      "passcode": 259548744,
+      "name": "Navi the NAV Hawk Aerocat"
+    },
+    {
+      "passcode": 259635008,
+      "name": "Abe no Seimei"
+    },
+    {
+      "passcode": 259640854,
+      "name": "Dinomorphia Triceron"
+    },
+    {
+      "passcode": 259748623,
+      "name": "Argalia the Gripen Aerocat"
+    },
+    {
+      "passcode": 259754412,
+      "name": "Dinomorphia Ankylos"
+    },
+    {
+      "passcode": 259767503,
+      "name": "Glint the Blackbird Aerocat"
+    },
+    {
+      "passcode": 259774818,
+      "name": "Krawler Lamina"
+    },
+    {
+      "passcode": 259792415,
+      "name": "The Intergalataxian"
+    },
+    {
+      "passcode": 259820516,
+      "name": "Expulsion of the Pyre"
+    },
+    {
+      "passcode": 259826112,
+      "name": "Dinomorphia Provocation"
+    },
+    {
+      "passcode": 259882493,
+      "name": "Vaylantz Destroyer Patrician"
+    },
+    {
+      "passcode": 259883230,
+      "name": "Release of the Pyre"
+    },
+    {
+      "passcode": 259935441,
+      "name": "Dinomorphia Hideout"
+    },
+    {
+      "passcode": 259944344,
+      "name": "World Legacy Surfacing"
+    }
+  ],
+  "references": [
+    {
+      "replacement": "IsCanOverlay",
+      "reference": "tmp/omega_scripts/c63767246.lua",
+      "line": 55
+    },
+    {
+      "replacement": "IsHasLevel",
+      "reference": "tmp/omega_scripts/c24892828.lua",
+      "line": 27
+    },
+    {
+      "replacement": "GetOriginalType bit mask",
+      "reference": "tmp/omega_scripts/c76075139.lua",
+      "function": "thfilter"
+    },
+    {
+      "replacement": "GetPreviousTypeOnField bit mask",
+      "reference": "tmp/omega_scripts/c11074235.lua",
+      "line": 21
+    },
+    {
+      "replacement": "IsSummonType after leaving field",
+      "reference": "tmp/omega_scripts/c40680521.lua",
+      "function": "pencon"
+    },
+    {
+      "replacement": "GetType()==TYPE_TRAP for Normal Trap",
+      "reference": "tmp/omega_scripts/c6351147.lua",
+      "function": "filter"
+    },
+    {
+      "replacement": "IsType(TYPE_SPELL+TYPE_TRAP)",
+      "reference": "tmp/omega_scripts/c10019086.lua",
+      "line": 49
+    }
+  ],
+  "validation": {
+    "syntax": "711 PASS",
+    "isolated_filter_cases": "25 PASS; fixtures, not native behavior",
+    "selected_public_load": "19 PASS / 4 procedure API failures",
+    "native_omega_verified": false
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "scope": "ChronoSaurCounter full-source native negate/optional handler destruction6/hand activation5, native opponentturn2 exact mutations. Hand activation/draw/sharedcount/native Omega open",
+  "script_sha256": "9cebda9e6b4f6f0a735d9afbbec39176c4fbf19c2dccf8fc326c83d27e5464e0",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "runs": [
+    {
+      "harness": "negate",
+      "harness_sha256": "a32b81972b6ae1b1334dcb4d862c6b1af60da4d43fb6f61ba350958a00bbd41b",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "e1b3f4291612514f16c170551e0d43c7bcba4b407f8a36bf553249a5e6bf7565"
+    },
+    {
+      "harness": "negate",
+      "harness_sha256": "a32b81972b6ae1b1334dcb4d862c6b1af60da4d43fb6f61ba350958a00bbd41b",
+      "control": "no-negate",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "decline": true
+        }
+      ],
+      "artifact_sha256": "86ac78f0c28a47ae3bb0b40e4e39e052081dd73986feeffbf54604c0cd9d2b31"
+    },
+    {
+      "harness": "negate",
+      "harness_sha256": "a32b81972b6ae1b1334dcb4d862c6b1af60da4d43fb6f61ba350958a00bbd41b",
+      "control": "any-set",
+      "status": 1,
+      "expected_failures": [
+        {
+          "wrongSet": true
+        }
+      ],
+      "artifact_sha256": "334655c41927dcb40bafbc24f3c4040b3b879782884e77a9b0cffcdc62e95fa7"
+    },
+    {
+      "harness": "negate",
+      "harness_sha256": "a32b81972b6ae1b1334dcb4d862c6b1af60da4d43fb6f61ba350958a00bbd41b",
+      "control": "any-effect",
+      "status": 1,
+      "expected_failures": [
+        {
+          "spellEffect": true
+        }
+      ],
+      "artifact_sha256": "aa635fd06ade69bb9a878a62d01867bf63f808ab5ddd011ec3ff13f2066d8b4e"
+    },
+    {
+      "harness": "hand",
+      "harness_sha256": "a4c919a94ebf531ecf2d0334e5a583ede13cba9f947e4e97f57903785597677f",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "c323230aaeb2de709a7c1a922ffce60ad790bb622305a040871b1aa281277228"
+    },
+    {
+      "harness": "hand",
+      "harness_sha256": "a4c919a94ebf531ecf2d0334e5a583ede13cba9f947e4e97f57903785597677f",
+      "control": "any-turn",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponentTurn": true
+        }
+      ],
+      "artifact_sha256": "f5e673b4d29dd1d859ef3822209f7ba20d63ccf469c91c7e8f5357edc8cebd44"
+    },
+    {
+      "harness": "hand",
+      "harness_sha256": "a4c919a94ebf531ecf2d0334e5a583ede13cba9f947e4e97f57903785597677f",
+      "control": "one-monster",
+      "status": 1,
+      "expected_failures": [
+        {
+          "oneEnemy": true
+        }
+      ],
+      "artifact_sha256": "22513dcd3a7ecb83a4ebd3c638f9f4acbee5f754d45a3cc63e4df8342a2319fb"
+    },
+    {
+      "harness": "draw",
+      "harness_sha256": "560527974747f6aaa47c058ac07aeff7677eb2296c44fdff4ba25884be4aa9d2",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "9c9aa3dffcf9426a8a2869162456b97f2a08d5e7f8741f9747b679bfe504f8f5"
+    },
+    {
+      "harness": "draw",
+      "harness_sha256": "560527974747f6aaa47c058ac07aeff7677eb2296c44fdff4ba25884be4aa9d2",
+      "control": "any-reason",
+      "status": 1,
+      "expected_failures": [
+        {
+          "cost": true
+        }
+      ],
+      "artifact_sha256": "3d344187cfed398d5e2d20826f88226603ebb877f0d693332033af25c741eb15"
+    },
+    {
+      "harness": "draw",
+      "harness_sha256": "560527974747f6aaa47c058ac07aeff7677eb2296c44fdff4ba25884be4aa9d2",
+      "control": "no-draw",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "handOrigin": true
+        }
+      ],
+      "artifact_sha256": "1d31c95b66114613d55b225ce4244b9454ce2faa50440574425678e7425365a1"
+    },
+    {
+      "harness": "destroy_choice",
+      "harness_sha256": "74bb3a7f64f6c32ded484fad60ecb99d525f545fb8caab2b190bb911fae66815",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "53a8a046e5335bca8e42533581571fe64050e06ddaa9950b1b7a57467b7fdf42"
+    },
+    {
+      "harness": "destroy_choice",
+      "harness_sha256": "74bb3a7f64f6c32ded484fad60ecb99d525f545fb8caab2b190bb911fae66815",
+      "control": "handler-only",
+      "status": 1,
+      "expected_failures": [
+        {
+          "choice": "hand"
+        },
+        {
+          "choice": "field"
+        },
+        {
+          "choice": "self"
+        }
+      ],
+      "artifact_sha256": "cbe6a2d64aed337a5ec0e3e781fd3ecdd1ae197fd304868764a089854d09d098"
+    },
+    {
+      "harness": "destroy_choice",
+      "harness_sha256": "74bb3a7f64f6c32ded484fad60ecb99d525f545fb8caab2b190bb911fae66815",
+      "control": "no-draw",
+      "status": 1,
+      "expected_failures": [
+        {
+          "choice": "self"
+        }
+      ],
+      "artifact_sha256": "df00256883a16e88345958644a625a022eb2c4b421649077d0f35a30f279049e"
+    },
+    {
+      "harness": "draw_count",
+      "harness_sha256": "358a6141a89fd73fff6bede0b2fb0ddd3e58a5d9ae5714d51364a2d789e068c1",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "95912ecccb89adb6caf87d73d5cb3d8e1366d0c6d41d65c31e4ed6bdd9611941"
+    },
+    {
+      "harness": "draw_count",
+      "harness_sha256": "358a6141a89fd73fff6bede0b2fb0ddd3e58a5d9ae5714d51364a2d789e068c1",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "f5ab59315fd30715f5772881bd2eca156b08bbe8f2473ad5d069049ddb280fe6"
+    },
+    {
+      "harness": "draw_count",
+      "harness_sha256": "358a6141a89fd73fff6bede0b2fb0ddd3e58a5d9ae5714d51364a2d789e068c1",
+      "control": "no-renewal",
+      "status": 1,
+      "expected_failures": [
+        {
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "acba3d686118e1f8b2b996958ea32e1f4b8124ceea56f4ef219f602f90ad6f49"
+    },
+    {
+      "harness": "destroy_choice",
+      "harness_sha256": "74bb3a7f64f6c32ded484fad60ecb99d525f545fb8caab2b190bb911fae66815",
+      "control": "shared-id",
+      "status": 1,
+      "expected_failures": [
+        {
+          "choice": "self"
+        }
+      ],
+      "artifact_sha256": "14d975f9c921dabb19ede28dfb2dfd31448f1ce12bc4716879fc946cee9fb069"
+    },
+    {
+      "harness": "negate_count",
+      "harness_sha256": "51deefcc86e15121af5a68e574bea7eaf0c6c6da38325d5df17b7e32d710cd1b",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "300eb89218386c655ac29a7eb27ef690cb5452c2efd9177b5f709f6113cd3a7c"
+    },
+    {
+      "harness": "negate_count",
+      "harness_sha256": "51deefcc86e15121af5a68e574bea7eaf0c6c6da38325d5df17b7e32d710cd1b",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "948a35bdc8dd8c140ff4a2ce2cd9a29b7cdd133a497824a135d1b311ce94ab58"
+    },
+    {
+      "harness": "negate_count",
+      "harness_sha256": "51deefcc86e15121af5a68e574bea7eaf0c6c6da38325d5df17b7e32d710cd1b",
+      "control": "no-renewal",
+      "status": 1,
+      "expected_failures": [
+        {
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "8150a6c1f81cd6220b724ede1865c26bed4a6ca305c294e440b3f0162ff5fa0e"
+    }
+  ]
+}

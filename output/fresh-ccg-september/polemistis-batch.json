@@ -1,0 +1,155 @@
+{
+  "scope": "Polemistis actual native tribute8/restrictions4/properrevival2/searchintegration4. Real Token/ToProtoAtaxia metadata with neutral initial effects. ZeroLevel seeded Token clamps1. Stat gains/attack-all/fullsupport/native Omega open",
+  "script_sha256": "8d8e6feb96af58338c8270644db55224de7bf9efede25de5482479f2b54c7882",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "runs": [
+    {
+      "harness": "tribute",
+      "harness_sha256": "c9e8c5c247c74793130434d497412782953e554affecef5f534b8ed1431ea2bd",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "7c7cbe4dd71bd0e82a9737d13ebf2286f0fd15ee8338884ab300d4c53b064fbd"
+    },
+    {
+      "harness": "tribute",
+      "harness_sha256": "c9e8c5c247c74793130434d497412782953e554affecef5f534b8ed1431ea2bd",
+      "control": "no-proto",
+      "status": 1,
+      "expected_failures": [
+        {
+          "noProto": true
+        },
+        {
+          "protoFacedown": true
+        }
+      ],
+      "artifact_sha256": "53c1ba61bd75e81da2f59efd2fa34a21a355da9f3f865f19b7b79209e01dbd84"
+    },
+    {
+      "harness": "tribute",
+      "harness_sha256": "c9e8c5c247c74793130434d497412782953e554affecef5f534b8ed1431ea2bd",
+      "control": "any-token",
+      "status": 1,
+      "expected_failures": [
+        {
+          "oneToken": true
+        },
+        {
+          "wrongToken": true
+        },
+        {
+          "opponentToken": true
+        }
+      ],
+      "artifact_sha256": "61b137a8ea18d4032f0c9fc7c0c9c9fce4c6f8d153a71c08fb1ece7800099b13"
+    },
+    {
+      "harness": "tribute",
+      "harness_sha256": "c9e8c5c247c74793130434d497412782953e554affecef5f534b8ed1431ea2bd",
+      "control": "no-release",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "zeroLevel": true
+        },
+        {
+          "full": true
+        }
+      ],
+      "artifact_sha256": "e838f3a252a547a65349090ddb062d71107fb4b2c283aabde88154f6c73b6a1b"
+    },
+    {
+      "harness": "tribute",
+      "harness_sha256": "c9e8c5c247c74793130434d497412782953e554affecef5f534b8ed1431ea2bd",
+      "control": "any-controller",
+      "status": 1,
+      "expected_failures": [
+        {
+          "opponentToken": true
+        }
+      ],
+      "artifact_sha256": "a28d5a9cf676e37e53cc5ca59ca0e8b1d9aa4bcc54ae146633fd18c0e55238cf"
+    },
+    {
+      "harness": "summon_limit",
+      "harness_sha256": "135dc7d16ea22a451c381f45b9d0841a3ec94db5ed7a8affc821e73c593b1062",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "1c3252dba0f2989fc64fac33a9ba1b15360a56b9329453e450653902ad068719"
+    },
+    {
+      "harness": "summon_limit",
+      "harness_sha256": "135dc7d16ea22a451c381f45b9d0841a3ec94db5ed7a8affc821e73c593b1062",
+      "control": "old-limit",
+      "status": 1,
+      "expected_failures": [
+        {
+          "fusion": true
+        }
+      ],
+      "artifact_sha256": "06f87fd12179f47781da0523386faae94cf0fda6280565f72c7ebd6b32da2a54"
+    },
+    {
+      "harness": "revival",
+      "harness_sha256": "0bb46c1320d3ed7fc9da9d7a13903464d2dd4ac02812818970729d6ff1389a05",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "e8bcb0e71c3c5bcbddea578b42c723f62f1999168bd3a1b7e5ced02fd4de4db6"
+    },
+    {
+      "harness": "revival",
+      "harness_sha256": "0bb46c1320d3ed7fc9da9d7a13903464d2dd4ac02812818970729d6ff1389a05",
+      "control": "old-limit",
+      "status": 1,
+      "expected_failures": [
+        {}
+      ],
+      "artifact_sha256": "65bc290c017af403a15f5688247119c0ea794e2dd858d74b8c7d1d8d06fb60c1"
+    },
+    {
+      "harness": "revival",
+      "harness_sha256": "0bb46c1320d3ed7fc9da9d7a13903464d2dd4ac02812818970729d6ff1389a05",
+      "control": "no-revival",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "fusion": true
+        }
+      ],
+      "artifact_sha256": "ca9fbedc6431f37317a6095e1070e5f06540f543d02ff51cf07d702192739b85"
+    },
+    {
+      "harness": "tribute_search",
+      "harness_sha256": "5a707c5e27af798a67832a6fec7ae8353d5b571059cfebc6726a96f530206264",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "d86863d00a2bd1f4b9f29a0ca1691dd6e12544296897d1b694bcdc7dccc5d8c2"
+    },
+    {
+      "harness": "tribute_search",
+      "harness_sha256": "5a707c5e27af798a67832a6fec7ae8353d5b571059cfebc6726a96f530206264",
+      "control": "no-search",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "trap": true
+        },
+        {
+          "send": true
+        },
+        {
+          "send": true,
+          "trap": true
+        }
+      ],
+      "artifact_sha256": "19dc4913c59448de735685b74e4281a45a8931dbe9e7cafdc81b1d9d4156f5a7"
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "scope": "Diagnostic only: full source/target scripts, neutral activated probe creates unregistered effect with source card handler and queries generic summon-type0 eligibility from four seeded locations. Does not invoke actual source effect or pay its cost, perform summons, complete procedures, or prove card behavior.. Full support effects, phase/count/negative cases and native Omega remain open",
+  "public_target_param_adapter": false,
+  "supporting_scripts_sha256": {
+    "249454272": "8f67837edd8912c59452a8d177a15f4c9233d219e13661a6e56a496f5be0661e",
+    "250262550": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526"
+  },
+  "supporting_script_sha256": "8f67837edd8912c59452a8d177a15f4c9233d219e13661a6e56a496f5be0661e",
+  "recipient": null,
+  "script_sha256": "5ba1398b3e0a3fae63e6caa966d97cbf295ac7f0f9a1c2ab50ec54527daa448b",
+  "results": [
+    {
+      "test": {
+        "source": "extra"
+      },
+      "failure": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>; [string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>; [string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')",
+      "eligibility_hints": [
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        }
+      ],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [],
+          "spell_sets": [
+            {
+              "code": 900001211,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "activates": [
+            {
+              "code": 900001211,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0,
+              "description": "0",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ],
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')"
+        }
+      ]
+    },
+    {
+      "test": {
+        "source": "grave"
+      },
+      "failure": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>; [string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')",
+      "eligibility_hints": [
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        }
+      ],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [],
+          "spell_sets": [
+            {
+              "code": 900001211,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "activates": [
+            {
+              "code": 900001211,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0,
+              "description": "0",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ],
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')"
+        }
+      ]
+    },
+    {
+      "test": {
+        "source": "removed"
+      },
+      "failure": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>; [string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')",
+      "eligibility_hints": [
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        }
+      ],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [],
+          "spell_sets": [
+            {
+              "code": 900001211,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "activates": [
+            {
+              "code": 900001211,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0,
+              "description": "0",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ],
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:88: in function <[string \"procedure.lua\"]:76>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')"
+        }
+      ]
+    }
+  ]
+}

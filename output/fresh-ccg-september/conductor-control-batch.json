@@ -1,0 +1,58 @@
+{
+  "scope": "Actual canonical Conductor three-counter targeted capture of opposing canonical Farad into free linked MMZ2, then native zero-counter cost/zero-ATK probe. Two-counter, non-co-linked and occupied linked zone negatives. No-control/keep-counters mutations. Neutral Link and counter placement; target loss/immunity, HOPT/reset and native Omega remain open",
+  "script_sha256": "4eefd3bc863e1c36114cc8d3ffe407acd882be4ff44b3e88d1285c1e2457079c",
+  "harness_sha256": "87974694cfa6123fc1f63fca85554763392537a675424da227276b99192d7b94",
+  "batch_script_sha256": "74a2c34868f4a62a69e541f989f7ade27a2637aeb2956284fc5fcfe8ba044bee",
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "public/CCG Downloads/CCG_Scripts/c231331942.lua": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067",
+    "output/fresh-ccg-september/public-core-card-data-adapter.mjs": "3df84e0cb3521c725a9d049409473c6a8506aca0d30a10ab8ed623efc2fe67c1",
+    "scripts/fresh_public_card_data_adapter.py": "aad6bba96d8eace5ccc5750deefc7e183d53024413e8aa0840bf7f2c653e58a2"
+  },
+  "runs": [
+    {
+      "card_data_adapter": true,
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact": "conductor-control-259405917-259174227-card-data-adapter.json",
+      "artifact_sha256": "68ee0685562b0525de137e173b16497a35f995a5f89fd05b12f9c7b0265f3572"
+    },
+    {
+      "card_data_adapter": true,
+      "control": "no-control",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "fourCounters": true
+        }
+      ],
+      "artifact": "conductor-control-259405917-259174227-card-data-adapter-no-control.json",
+      "artifact_sha256": "b03cc91a28474e29a565200de05d1ba8f0d63fd69077494a8be0ca5cfa485d3c"
+    },
+    {
+      "card_data_adapter": true,
+      "control": "keep-counters",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "fourCounters": true
+        }
+      ],
+      "artifact": "conductor-control-259405917-259174227-card-data-adapter-keep-counters.json",
+      "artifact_sha256": "eec2f15e28f36d4a772d25a65df2c9687ac3266bc70ec0bdd64442a3a86de595"
+    }
+  ]
+}

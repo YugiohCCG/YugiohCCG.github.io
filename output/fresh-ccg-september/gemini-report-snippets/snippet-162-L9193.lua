@@ -1,0 +1,7 @@
+     local e2=Effect.CreateEffect(c)
+     e2:SetType(EFFECT_TYPE_IGNITION)
+     e2:SetRange(LOCATION_MZONE)
+     e2:SetCountLimit(1)
+     e2:SetTarget(s.postg)
+     e2:SetOperation(s.posop)
+     c:RegisterEffect(e2)

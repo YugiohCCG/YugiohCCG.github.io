@@ -1,0 +1,41 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{pathToFileURL}=require('node:url'),{candidateCard}=require('./fresh_candidate_card.cjs');
+const ROOT=path.resolve(__dirname,'..');
+async function main(){
+ const mod=await import(pathToFileURL(path.join(path.dirname(require.resolve('@n1xx1/ocgcore-wasm')),'dist/index.js')).href);
+ const {OcgMessageType:M,OcgResponseType:R,OcgLocation:L,OcgPosition:P,OcgProcessResult:S,SelectIdleCMDAction:A,OcgQueryFlags:Q}=mod;
+ const core=await mod.default({sync:true,print(){},printErr(){}}),boss=210506870,lab=900001191,filler=900001192,spellCost=900001193,recipient=900001194,results=[];
+ const control=process.argv.includes('--no-return')?'no-return':process.argv.includes('--ignore-relation')?'ignore-relation':null;
+ for(const test of [{},{absent:true},{wrongRace:true},{wrongAttribute:true},{wrongType:true},{opponent:true},{targetLost:true},{targetReturned:true},{sourceLost:true}]){
+  const logs=[],trace=[],base={alias:0,setcodes:[],type:17,level:2,attribute:1,race:1n,attack:100,defense:100,lscale:0,rscale:0,link_marker:0};
+  const cards=new Map([[boss,candidateCard(boss)],[lab,{...base,code:lab,type:test.wrongType?33:65,race:test.wrongRace?1n:128n,attribute:test.wrongAttribute?1:32}],[filler,{...base,code:filler}]]);
+  cards.set(recipient,{...base,code:recipient,type:33});
+  const reader=name=>{
+   if((test.targetLost||test.targetReturned||test.sourceLost)&&name==='c'+recipient+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_QUICK_O) e:SetRange(LOCATION_MZONE) e:SetCode(EVENT_CHAINING) e:SetCountLimit(1) e:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode('+boss+') and re:IsHasType(EFFECT_TYPE_IGNITION) end) e:SetOperation(function(e,tp) local c=Duel.GetMatchingGroup(Card.IsCode,tp,0,'+(test.sourceLost?'LOCATION_SZONE':'LOCATION_GRAVE')+',nil,'+(test.sourceLost?boss:lab)+'):GetFirst() Duel.Remove(c,POS_FACEUP,REASON_EFFECT) '+(test.targetReturned?'Duel.SendtoGrave(c,REASON_EFFECT)':'')+' end) c:RegisterEffect(e) end';
+   if([lab,filler,spellCost,recipient].some(c=>name==='c'+c+'.lua'))return 'local s,id=GetID() function s.initial_effect(c) end';if(name==='c0.lua')return '';
+   const file=[path.join(ROOT,'public/CCG Downloads/CCG_Scripts',name),path.join(ROOT,'tmp/omega_scripts',name)].find(f=>fs.existsSync(f));if(!file)throw Error('Missing '+name);let lua=fs.readFileSync(file,'utf8');if(name==='c'+boss+'.lua'){
+    if(control==='ignore-relation')lua=lua.replace('tc:IsRelateToEffect(e)','true');
+    if(control==='no-return')lua=lua.replace('Duel.SendtoHand(c,nil,REASON_EFFECT)','do end');
+   }return lua;
+  };
+  const duel=core.createDuel({flags:mod.OcgDuelMode.MODE_MR5|mod.OcgDuelMode.PSEUDO_SHUFFLE,seed:[1n,2n,3n,4n],team1:{startingLP:8000,startingDrawCount:0,drawCountPerTurn:0},team2:{startingLP:8000,startingDrawCount:0,drawCountPerTurn:0},cardReader:code=>cards.get(code),scriptReader:reader,errorHandler:(type,message)=>logs.push({type,message})});
+  let failure=null,activated=false,done=false,turn=0,secondary=false,placementStarted=false,placementFinished=false;
+  try{
+   for(const name of ['constant.lua','utility.lua','procedure.lua'])core.loadScript(duel,name,reader(name));
+   const add=(code,location,player=0,position=P.FACEDOWN_DEFENSE,sequence=0)=>core.duelNewCard(duel,{team:player,duelist:0,code,controller:player,location,sequence,position});
+   if(test.targetLost||test.targetReturned||test.sourceLost)add(recipient,L.MZONE,1,P.FACEUP_ATTACK);
+   add(boss,L.HAND);if(!test.absent)add(lab,L.GRAVE,test.opponent?1:0,P.FACEUP_ATTACK);for(const player of [0,1])for(let i=0;i<8;i++)add(filler,L.DECK,player);core.startDuel(duel);
+   const query=location=>core.duelQueryLocation(duel,{flags:Q.CODE|Q.REASON,controller:0,location}).filter(Boolean);
+   for(let step=0;step<260&&!done;step++){
+    const state=core.duelProcess(duel),messages=core.duelGetMessage(duel);trace.push(...messages);for(const m of messages)if(m.type===M.NEW_TURN)turn++;if(logs.some(x=>x.type===0))throw Error(logs.map(x=>x.message).join('; '));assert(state!==S.END);if(state!==S.WAITING)continue;const p=messages.at(-1);
+    if(p.type===M.SELECT_IDLECMD){if(!placementStarted){const index=p.activates.findIndex(c=>c.code===boss&&c.location===L.HAND);assert(index>=0,'Actual Pendulum activation available');placementStarted=true;core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});continue;}const index=p.activates.findIndex(c=>c.code===boss&&c.location===L.SZONE&&String(c.description)===String(132506870n*16n));if(!activated){assert(query(L.SZONE).some(c=>c.code===boss),'Source actually placed in Pendulum Zone');assert.equal(index>=0,!test.absent&&!test.wrongRace&&!test.wrongAttribute&&!test.wrongType&&!test.opponent,'Pendulum return availability');if(index<0){done=true;continue;}activated=true;core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});continue;}if(test.sourceLost){assert(trace.some(m=>m.type===M.CHAINING&&m.code===recipient&&m.chain_size===2),'Actual source-loss CL2');assert(query(L.REMOVED).some(c=>c.code===boss),'Source actually remains banished');assert(query(L.GRAVE).some(c=>c.code===lab),'Target stays GY when Pendulum source leaves field');assert(!query(L.EXTRA).some(c=>c.code===lab),'Public engine suppresses departed Pendulum source effect');assert(!query(L.HAND).some(c=>c.code===boss),'Lost source not returned Hand');done=true;continue;}if(test.targetLost||test.targetReturned){assert(trace.some(m=>m.type===M.CHAINING&&m.code===recipient&&m.chain_size===2),'Actual opponent interruption CL2');assert(trace.some(m=>m.type===M.MOVE&&m.card===lab&&m.from.location===L.GRAVE&&m.to.location===L.REMOVED),'Actual target banishment');if(test.targetReturned)assert(trace.some(m=>m.type===M.MOVE&&m.card===lab&&m.from.location===L.REMOVED&&m.to.location===L.GRAVE),'Actual GY return');assert(query(L.SZONE).some(c=>c.code===boss),'Source retained Pendulum Zone after lost target');assert(query(test.targetReturned?L.GRAVE:L.REMOVED).some(c=>c.code===lab),'Interrupted target retained');assert(!query(L.HAND).some(c=>c.code===boss),'No source return after failed target recovery');done=true;continue;}assert(query(L.EXTRA).some(c=>c.code===lab),'Actual Fusion returned to Extra');assert(!query(L.GRAVE).some(c=>c.code===lab),'Target left GY');assert(query(L.HAND).some(c=>c.code===boss),'Source actually returned Hand');assert(!query(L.SZONE).some(c=>c.code===boss),'Source left Pendulum Zone');done=true;}
+    else if(p.type===M.SELECT_CARD){const index=p.selects.findIndex(c=>c.code===lab);assert(index>=0,'Actual GY target selected');core.duelSetResponse(duel,{type:R.SELECT_CARD,indicies:[index]});}
+    else if(p.type===M.SELECT_POSITION)core.duelSetResponse(duel,{type:R.SELECT_POSITION,position:P.FACEUP_ATTACK});
+    else if(p.type===M.SELECT_PLACE){const sequence=[0,4].find(i=>(p.field_mask&(1<<(8+i)))===0);core.duelSetResponse(duel,{type:R.SELECT_PLACE,places:[{player:0,location:L.SZONE,sequence}]});}
+    else if(p.type===M.SELECT_CHAIN){const index=p.player===1&&(test.targetLost||test.targetReturned||test.sourceLost)?p.selects.findIndex(c=>c.code===recipient):-1;core.duelSetResponse(duel,{type:R.SELECT_CHAIN,index:index>=0?index:p.forced?0:null});}
+    else throw Error('Unhandled '+JSON.stringify(p,(_,v)=>typeof v==='bigint'?String(v):v));
+   }assert(done,'Step limit');
+  }catch(e){failure=e.message;}finally{core.destroyDuel(duel);}results.push({test,failure,trace,logs});console.log((failure?'FAIL':'PASS')+' '+JSON.stringify(test)+(failure?': '+failure:''));
+ }
+ fs.writeFileSync(path.join(ROOT,'output/fresh-ccg-september/talismandrake-heat-pendulum-return'+(control?'-'+control:'')+'.json'),JSON.stringify({adapter:null,engine:'Public OCGCore, full production Talismandrake Heat/candidate metadata; neutral supporting cards. Actual Pendulum activation then production recovery of neutral DARK Pyro Fusion seeded GY; no Fusion procedure certificate; native Omega unverified; no native Omega certification.',control,results},(_,v)=>typeof v==='bigint'?String(v):v,2)+'\n');if(results.some(c=>c.failure))process.exitCode=1;
+}main().catch(e=>{console.error(e);process.exitCode=1;});

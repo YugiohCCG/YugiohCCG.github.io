@@ -1,0 +1,41 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{pathToFileURL}=require('node:url'),{candidateCard}=require('./fresh_candidate_card.cjs');
+const ROOT=path.resolve(__dirname,'..');
+async function main(){
+ const mod=await import(pathToFileURL(path.join(path.dirname(require.resolve('@n1xx1/ocgcore-wasm')),'dist/index.js')).href);
+ const {OcgMessageType:M,OcgResponseType:R,OcgLocation:L,OcgPosition:P,OcgProcessResult:S,SelectIdleCMDAction:A,OcgQueryFlags:Q}=mod;
+ const core=await mod.default({sync:true,print(){},printErr(){}}),boss=210716547,lab=900001191,filler=900001192,spellCost=900001193,recipient=900001194,results=[];
+ const control=process.argv.includes('--no-rewrite')?'no-rewrite':process.argv.includes('--no-negation')?'no-negation':process.argv.includes('--no-cost')?'no-cost':process.argv.includes('--any-type')?'any-type':process.argv.includes('--any-player')?'any-player':null;
+ for(const test of [{},{field:true},{absent:true},{facedown:true},{notXyz:true},{trap:true},{monster:true},{own:true},{spellEffect:true},{trapEffect:true}]){
+  const logs=[],trace=[],base={alias:0,setcodes:[],type:17,level:2,attribute:1,race:1n,attack:100,defense:100,lscale:0,rscale:0,link_marker:0};
+  const cards=new Map([[boss,candidateCard(boss)],[lab,{...base,code:lab,type:test.notXyz?33:0x800021,level:4}],[filler,{...base,code:filler}],[recipient,{...base,code:recipient,type:test.trap||test.trapEffect?4:test.monster?33:2}]]);
+  const reader=name=>{
+   if(name==='c'+recipient+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType('+(test.monster||test.spellEffect||test.trapEffect?'EFFECT_TYPE_IGNITION':'EFFECT_TYPE_ACTIVATE')+') e:SetCode(EVENT_FREE_CHAIN) '+(test.monster?'e:SetRange(LOCATION_MZONE)':test.spellEffect||test.trapEffect?'e:SetRange(LOCATION_GRAVE)':'')+' e:SetOperation(function(e,tp) Duel.Damage(1-tp,777,REASON_EFFECT) end) c:RegisterEffect(e) local g=Effect.CreateEffect(c) g:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS) g:SetCode(EVENT_ADJUST) g:SetOperation(function(e,tp) local c=Duel.GetMatchingGroup(Card.IsCode,0,LOCATION_MZONE,LOCATION_MZONE,nil,'+boss+'):GetFirst() if c and c:GetControler()==1 and c:IsDisabled() then Duel.Hint(HINT_NUMBER,0,701) end end) Duel.RegisterEffect(g,0) end';
+   if([lab,filler,spellCost,recipient].some(c=>name==='c'+c+'.lua'))return 'local s,id=GetID() function s.initial_effect(c) end';if(name==='c0.lua')return '';
+   const file=[path.join(ROOT,'public/CCG Downloads/CCG_Scripts',name),path.join(ROOT,'tmp/omega_scripts',name)].find(f=>fs.existsSync(f));if(!file)throw Error('Missing '+name);let lua=fs.readFileSync(file,'utf8');if(name==='c'+boss+'.lua'){
+    if(control==='any-type')lua=lua.replace('and re:IsActiveType(TYPE_SPELL+TYPE_TRAP)','');if(control==='any-player')lua=lua.replace('rp==1-tp and','');
+    if(control==='no-cost')lua=lua.replace('Duel.Release(c,REASON_COST)','do end');
+    if(control==='no-rewrite')lua=lua.replace('Duel.ChangeChainOperation(ev,s.repop)','do end');if(control==='no-negation')lua=lua.replace('e1:SetCode(EFFECT_DISABLE)','e1:SetCode(EFFECT_UPDATE_ATTACK)').replace('e2:SetCode(EFFECT_DISABLE_EFFECT)','e2:SetCode(EFFECT_UPDATE_ATTACK)');
+   }return lua;
+  };
+  const duel=core.createDuel({flags:mod.OcgDuelMode.MODE_MR5|mod.OcgDuelMode.PSEUDO_SHUFFLE,seed:[1n,2n,3n,4n],team1:{startingLP:8000,startingDrawCount:0,drawCountPerTurn:0},team2:{startingLP:8000,startingDrawCount:0,drawCountPerTurn:0},cardReader:code=>cards.get(code),scriptReader:reader,errorHandler:(type,message)=>logs.push({type,message})});
+  let failure=null,activated=false,done=false,turn=0,secondary=false,placementStarted=false,placementFinished=false;
+  try{
+   for(const name of ['constant.lua','utility.lua','procedure.lua'])core.loadScript(duel,name,reader(name));
+   const add=(code,location,player=0,position=P.FACEDOWN_DEFENSE,sequence=0)=>core.duelNewCard(duel,{team:player,duelist:0,code,controller:player,location,sequence,position});
+   add(boss,test.field?L.MZONE:L.HAND,0,P.FACEUP_ATTACK);add(recipient,test.trap?L.SZONE:test.monster?L.MZONE:test.spellEffect||test.trapEffect?L.GRAVE:L.HAND,test.own?0:1,test.trap?P.FACEDOWN_DEFENSE:P.FACEUP_ATTACK);if(!test.absent)add(lab,L.MZONE,0,test.facedown?P.FACEDOWN_DEFENSE:P.FACEUP_ATTACK,1);for(const player of [0,1])for(let i=0;i<8;i++)add(filler,L.DECK,player);core.startDuel(duel);
+   const query=(location,controller=0)=>core.duelQueryLocation(duel,{flags:Q.CODE|Q.REASON,controller,location}).filter(Boolean);
+   for(let step=0;step<260&&!done;step++){
+    const state=core.duelProcess(duel),messages=core.duelGetMessage(duel);trace.push(...messages);for(const m of messages)if(m.type===M.NEW_TURN)turn++;if(logs.some(x=>x.type===0))throw Error(logs.map(x=>x.message).join('; '));assert(state!==S.END);if(state!==S.WAITING)continue;const p=messages.at(-1);
+    if(p.type===M.SELECT_IDLECMD){if(turn<(test.own?1:2)){core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.TO_EP});continue;}if(!activated){const index=p.activates.findIndex(c=>c.code===recipient);assert(index>=0,'Actual opponent Spell activation');activated=true;core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});continue;}const eligible=!test.absent&&!test.facedown&&!test.notXyz&&!test.monster&&!test.own;assert.equal(trace.some(m=>m.type===M.CHAINING&&m.code===boss&&m.chain_size===2),eligible,'Native rewrite activation availability');if(eligible){assert(!trace.some(m=>m.type===M.DAMAGE),'Original damage operation suppressed');const sent=query(L.GRAVE).find(c=>c.code===lab);assert(sent&&(sent.reason&0x40),'Actual own Xyz sent GY as effect');const revived=query(L.MZONE,1).find(c=>c.code===boss);assert(revived,'Actual source revived to opponent field');assert(!query(L.MZONE).some(c=>c.code===boss),'Source not revived to own field');assert(trace.some(m=>m.type===M.HINT&&String(m.hint)==='701'),'Native disabled source on opponent field');}else assert(trace.some(m=>m.type===M.DAMAGE&&m.amount===777),'Unrewritten original damage resolves');done=true;}
+    else if(p.type===M.SELECT_CARD){const cost=query(L.GRAVE).find(c=>c.code===boss);assert(cost&&(cost.reason&2)&&(cost.reason&0x80),'Actual Clock Tribute paid as release cost before Xyz choice');assert.equal(p.player,1,'Opponent chooses own-controller Xyz under rewritten operation');const index=p.selects.findIndex(c=>c.code===lab);assert(index>=0,'Actual Xyz selection');core.duelSetResponse(duel,{type:R.SELECT_CARD,indicies:[index]});}
+    else if(p.type===M.SELECT_EFFECTYN)core.duelSetResponse(duel,{type:R.SELECT_EFFECTYN,yes:true});
+    else if(p.type===M.SELECT_POSITION)core.duelSetResponse(duel,{type:R.SELECT_POSITION,position:P.FACEUP_ATTACK});
+    else if(p.type===M.SELECT_PLACE){const own=(p.field_mask&0x1f)!==0x1f;const monster=own||((p.field_mask>>>16)&0x1f)!==0x1f;let side=0,shift=monster?0:8;if((p.field_mask&(0x1f<<shift))===(0x1f<<shift)){side=1;shift+=16;}const player=side?1-p.player:p.player;const sequence=[0,1,2,3,4].find(i=>(p.field_mask&(1<<(shift+i)))===0);core.duelSetResponse(duel,{type:R.SELECT_PLACE,places:[{player,location:monster?L.MZONE:L.SZONE,sequence}]});}
+    else if(p.type===M.SELECT_CHAIN){const index=p.selects.findIndex(c=>c.code===boss);core.duelSetResponse(duel,{type:R.SELECT_CHAIN,index:index>=0?index:p.forced?0:null});}
+    else throw Error('Unhandled '+JSON.stringify(p,(_,v)=>typeof v==='bigint'?String(v):v));
+   }assert(done,'Step limit');
+  }catch(e){failure=e.message;}finally{core.destroyDuel(duel);}results.push({test,failure,trace,logs});console.log((failure?'FAIL':'PASS')+' '+JSON.stringify(test)+(failure?': '+failure:''));
+ }
+ fs.writeFileSync(path.join(ROOT,'output/fresh-ccg-september/clock-aldrez-rewrite'+(control?'-'+control:'')+'.json'),JSON.stringify({adapter:null,engine:'Public OCGCore, full production Clock of Aldrez/candidate metadata; neutral supporting cards. Actual opponent Spell and production rewrite/revival; neutral seeded Xyz, no Xyz procedure coverage; native Omega unverified; no native Omega certification.',control,results},(_,v)=>typeof v==='bigint'?String(v):v,2)+'\n');if(results.some(c=>c.failure))process.exitCode=1;
+}main().catch(e=>{console.error(e);process.exitCode=1;});

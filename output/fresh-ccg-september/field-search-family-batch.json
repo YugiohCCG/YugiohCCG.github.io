@@ -1,0 +1,128 @@
+{
+  "scope": "Full production source/canonical target Lua and metadata. Actual field ignition search, wrong-set/field/face-down/opponent negatives. Vaylantz verifies Pendulum destruction into Extra Deck. Other effects, counts/locks/native Omega open.",
+  "harness_sha256": "a908c6e0aa41dee9c33fcea6170dbae5d7e06c4941c544d6af53bb5b01ec668a",
+  "batch_script_sha256": "83943a0e06d3c53f225644d34716188ef2bb5ab91e9f483247730861d1f74940",
+  "candidate_database_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "public/CCG Downloads/CCG_Scripts/c231331942.lua": "35a5cebd43ba69b0c29990f8edcada22dce99e0bb14484b1c860f4fed5e02067"
+  },
+  "runs": [
+    {
+      "source": 259883230,
+      "target": 259295979,
+      "control": null,
+      "source_sha256": "6a76f01e9980b1e87525e967bd586903b42119686ee5e1d56e6b0d5dedd983f1",
+      "target_sha256": "24016556502437ca8b5a9ac6d9535867986359249ea339dc358609e86a0e28b5",
+      "artifact": "field-search-259883230-259295979.json",
+      "artifact_sha256": "d46ccc7f07d9f266c4ead10517490040be0a43798cf3fc3336081d58d2be4424",
+      "expected_failures": [],
+      "status": 0
+    },
+    {
+      "source": 259883230,
+      "target": 259295979,
+      "control": "no-search",
+      "source_sha256": "6a76f01e9980b1e87525e967bd586903b42119686ee5e1d56e6b0d5dedd983f1",
+      "target_sha256": "24016556502437ca8b5a9ac6d9535867986359249ea339dc358609e86a0e28b5",
+      "artifact": "field-search-259883230-259295979-no-search.json",
+      "artifact_sha256": "5e7f1dba1ddbf09892519bcf03fcbfdaae4dd252890996ea7d6e6351e70417cc",
+      "expected_failures": [
+        {}
+      ],
+      "status": 1
+    },
+    {
+      "source": 259883230,
+      "target": 259295979,
+      "control": "any-search-filter",
+      "source_sha256": "6a76f01e9980b1e87525e967bd586903b42119686ee5e1d56e6b0d5dedd983f1",
+      "target_sha256": "24016556502437ca8b5a9ac6d9535867986359249ea339dc358609e86a0e28b5",
+      "artifact": "field-search-259883230-259295979-any-search-filter.json",
+      "artifact_sha256": "da1fc1b5c03f751b78f821f9fe7cdaa8d595d21b5b11e4becaa5a4a7070056d7",
+      "expected_failures": [
+        {
+          "wrongSet": true
+        }
+      ],
+      "status": 1
+    },
+    {
+      "source": 259883230,
+      "target": 259295979,
+      "control": "old-field-condition",
+      "source_sha256": "6a76f01e9980b1e87525e967bd586903b42119686ee5e1d56e6b0d5dedd983f1",
+      "target_sha256": "24016556502437ca8b5a9ac6d9535867986359249ea339dc358609e86a0e28b5",
+      "artifact": "field-search-259883230-259295979-old-field-condition.json",
+      "artifact_sha256": "7431178848beb049d0aa61f508a715e316678bdff75fe809183391d80367472c",
+      "expected_failures": [
+        {
+          "facedownField": true
+        }
+      ],
+      "status": 1
+    },
+    {
+      "source": 259253329,
+      "target": 259537607,
+      "control": null,
+      "source_sha256": "6fb796ed4c4ab3ab8a9e0e4b401424142cfa8b9e698e81c6abc455f929f67334",
+      "target_sha256": "c30f328a2434457712bef60eb8d374621a81d9c5c9a8c95595ef8b511ef7c3a4",
+      "artifact": "field-search-259253329-259537607.json",
+      "artifact_sha256": "b6baad57e6a9fb497e55f7d1cf865df5ac01858203c4e2fc493ae04978ae3d6b",
+      "expected_failures": [],
+      "status": 0
+    },
+    {
+      "source": 259253329,
+      "target": 259537607,
+      "control": "no-search",
+      "source_sha256": "6fb796ed4c4ab3ab8a9e0e4b401424142cfa8b9e698e81c6abc455f929f67334",
+      "target_sha256": "c30f328a2434457712bef60eb8d374621a81d9c5c9a8c95595ef8b511ef7c3a4",
+      "artifact": "field-search-259253329-259537607-no-search.json",
+      "artifact_sha256": "ef19c158a334a087bf89ad3c14d16f9e23226653d0e7ea0f5a90a87c82fcb360",
+      "expected_failures": [
+        {}
+      ],
+      "status": 1
+    },
+    {
+      "source": 259253329,
+      "target": 259537607,
+      "control": "any-search-filter",
+      "source_sha256": "6fb796ed4c4ab3ab8a9e0e4b401424142cfa8b9e698e81c6abc455f929f67334",
+      "target_sha256": "c30f328a2434457712bef60eb8d374621a81d9c5c9a8c95595ef8b511ef7c3a4",
+      "artifact": "field-search-259253329-259537607-any-search-filter.json",
+      "artifact_sha256": "a046ffec9e38dd765ca8d10e8e43a4ac6f692c3d8c7a623e1193311406e42d77",
+      "expected_failures": [
+        {
+          "wrongSet": true
+        }
+      ],
+      "status": 1
+    },
+    {
+      "source": 259253329,
+      "target": 259537607,
+      "control": "no-destroy",
+      "source_sha256": "6fb796ed4c4ab3ab8a9e0e4b401424142cfa8b9e698e81c6abc455f929f67334",
+      "target_sha256": "c30f328a2434457712bef60eb8d374621a81d9c5c9a8c95595ef8b511ef7c3a4",
+      "artifact": "field-search-259253329-259537607-no-destroy.json",
+      "artifact_sha256": "6450de363151953adff925fc74b448ec4fbd9dea9ae74012cbd2b328201e30b9",
+      "expected_failures": [
+        {}
+      ],
+      "status": 1
+    }
+  ]
+}

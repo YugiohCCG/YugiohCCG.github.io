@@ -1,0 +1,166 @@
+{
+  "scope": "16 focused Priestess search/Standby cases and exact controls; real Omega c52904476 self-summon integration, neutral recipient stats/supporting cards and summon ignoring revive conditions; native Omega/Ritual procedure and other Nephthys integrations remain open",
+  "script_sha256": "7fb544cd6217a8d451ffe878f0210bbecb7d995cb8dca51cb13dc8ceaf990eed",
+  "official_script_sha256": "2aa525c8daab30dd0d577602b56267e6033a3e536525df9f5329fcda9aac5347",
+  "runs": [
+    {
+      "harness": "search",
+      "harness_sha256": "2bcb5a2b2f3cf7eb8fdf51767b055591553e666bef6c07432273d5a7c07635c9",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "3b311bfddf8372b1e92ece7d9d22b45ae202868f98e09da1a20341896bb2f282"
+    },
+    {
+      "harness": "search",
+      "harness_sha256": "2bcb5a2b2f3cf7eb8fdf51767b055591553e666bef6c07432273d5a7c07635c9",
+      "control": "no-cost",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "trap": true
+        },
+        {
+          "grave": true
+        },
+        {
+          "grave": true,
+          "trap": true
+        },
+        {
+          "count": true
+        },
+        {
+          "count": true,
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "51da263ce37946cbd092e585760b2524c7511bc34bbd08e00e23bfe8da92e055"
+    },
+    {
+      "harness": "search",
+      "harness_sha256": "2bcb5a2b2f3cf7eb8fdf51767b055591553e666bef6c07432273d5a7c07635c9",
+      "control": "no-search",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "trap": true
+        },
+        {
+          "grave": true
+        },
+        {
+          "grave": true,
+          "trap": true
+        },
+        {
+          "count": true
+        },
+        {
+          "count": true,
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "345c3e4a511d4bf9f6cc722d9b163d95a5913ea241b8ec4b3714e2950ea85009"
+    },
+    {
+      "harness": "search",
+      "harness_sha256": "2bcb5a2b2f3cf7eb8fdf51767b055591553e666bef6c07432273d5a7c07635c9",
+      "control": "no-count",
+      "status": 1,
+      "expected_failures": [
+        {
+          "count": true
+        },
+        {
+          "count": true,
+          "renewal": true
+        }
+      ],
+      "artifact_sha256": "de6b401aae681df91fb4a3a5175b51ee834acb5e034214e3445dd84a0bf7f61e"
+    },
+    {
+      "harness": "standby",
+      "harness_sha256": "60fff106559d32a4ba6785f96e41fc430d7ea837ee3ce3c81f2a593cfac56a00",
+      "control": null,
+      "status": 0,
+      "expected_failures": [],
+      "artifact_sha256": "b8acc8b9246b6219a2e8a098e11213277c3dbc1d42cf30983ce7ddeaa81fc870"
+    },
+    {
+      "harness": "standby",
+      "harness_sha256": "60fff106559d32a4ba6785f96e41fc430d7ea837ee3ce3c81f2a593cfac56a00",
+      "control": "old-query",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "official": true
+        }
+      ],
+      "artifact_sha256": "6f7b9c543f228cb36d3fd115d984a6d8233596d22799d2bdf29d7b5adaae1e2b"
+    },
+    {
+      "harness": "standby",
+      "harness_sha256": "60fff106559d32a4ba6785f96e41fc430d7ea837ee3ce3c81f2a593cfac56a00",
+      "control": "wrong-handler",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "official": true
+        }
+      ],
+      "artifact_sha256": "317a7b357d066441e180e58c51c13368a0d3b08f537b543f27647c7f79400979"
+    },
+    {
+      "harness": "standby",
+      "harness_sha256": "60fff106559d32a4ba6785f96e41fc430d7ea837ee3ce3c81f2a593cfac56a00",
+      "control": "no-destroy",
+      "status": 1,
+      "expected_failures": [
+        {},
+        {
+          "official": true
+        },
+        {
+          "official": true,
+          "noSpace": true
+        },
+        {
+          "otherEffect": true
+        }
+      ],
+      "artifact_sha256": "e9c50ec2a2fb9c6ce5381ae6a406e08e099b2eaf33b2acbdd8128a16b5e3d9ce"
+    },
+    {
+      "harness": "standby",
+      "harness_sha256": "60fff106559d32a4ba6785f96e41fc430d7ea837ee3ce3c81f2a593cfac56a00",
+      "control": "no-relation",
+      "status": 1,
+      "expected_failures": [
+        {
+          "official": true
+        }
+      ],
+      "artifact_sha256": "ccc3b99abf37f4fe38e68bd799253a1b8759840b2db91e0f5bcd60cca61ab254"
+    },
+    {
+      "harness": "standby",
+      "harness_sha256": "60fff106559d32a4ba6785f96e41fc430d7ea837ee3ce3c81f2a593cfac56a00",
+      "control": "any-event",
+      "status": 1,
+      "expected_failures": [
+        {
+          "official": true
+        },
+        {
+          "otherEffect": true
+        }
+      ],
+      "artifact_sha256": "e796de74dc4cc9200ab43f0b5a6e87c531af0a55b5f74ffc062d133d8cb486bc"
+    }
+  ]
+}

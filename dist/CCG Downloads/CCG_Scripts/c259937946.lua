@@ -12,7 +12,7 @@ function s.initial_effect(c)
 	e0:SetType(EFFECT_TYPE_SINGLE)
 	e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e0:SetCode(EFFECT_SPSUMMON_CONDITION)
-	e0:SetValue(aux.fuslimit)
+	e0:SetValue(s.splimit)
 	c:RegisterEffect(e0)
 	--If Special Summoned: Special Summon 1 WATER monster from the GY
 	local e1=Effect.CreateEffect(c)
@@ -41,6 +41,9 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_GRAND_BLUE}
 s.listed_names={CARD_GRAND_BLUE_PRINCESS}
+function s.splimit(e,se,sp,st)
+	return not e:GetHandler():IsLocation(LOCATION_EXTRA) or aux.fuslimit(e,se,sp,st)
+end
 function s.ownmat(c,fc)
 	return c:IsControler(fc:GetControler())
 end

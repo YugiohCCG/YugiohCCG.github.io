@@ -1,6 +1,16 @@
 local s,id=GetID()
 local STRING_ID=133520299
 local SET_GALACTICA=0x9c9
+--Recheck alternatives at resolution because restrictions can change in the Chain.
+function s.leavechoice(c,tp)
+	local deck=c:IsAbleToDeck()
+	local remove=c:IsAbleToRemove()
+	if deck and remove then
+		return Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))
+	elseif deck then return 0
+	elseif remove then return 1 end
+	return -1
+end
 local FUSION_INTERGALACTICA=245395343
 function s.initial_effect(c)
 	aux.AddCodeList(c,245395343)
@@ -14,5 +24,5 @@ function s.thfilter(c) return c:IsCode(FUSION_INTERGALACTICA) and c:IsAbleToHand
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.thfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil) end Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK+LOCATION_GRAVE) end
 function s.thop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND) local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.thfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil):GetFirst() if tc and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,tc) end end
 function s.rmfilter(c) return c:IsSetCard(SET_GALACTICA) and c:IsAbleToRemove() end
-function s.rmtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(s.rmfilter,tp,LOCATION_DECK,0,1,nil) end end
-function s.rmop(e,tp) local c=e:GetHandler() if not c:IsRelateToEffect(e) then return end local op=Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3)) local ok=op==0 and Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 or Duel.Remove(c,POS_FACEUP,REASON_EFFECT)>0 if ok then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE) local tc=Duel.SelectMatchingCard(tp,s.rmfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst() if tc then Duel.Remove(tc,POS_FACEUP,REASON_EFFECT) end end end
+function s.rmtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return (e:GetHandler():IsAbleToDeck() or e:GetHandler():IsAbleToRemove()) and Duel.IsExistingMatchingCard(s.rmfilter,tp,LOCATION_DECK,0,1,nil) end end
+function s.rmop(e,tp) local c=e:GetHandler() if not c:IsRelateToEffect(e) then return end local op=s.leavechoice(c,tp) if op<0 then return end local ok if op==0 then ok=Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 else ok=Duel.Remove(c,POS_FACEUP,REASON_EFFECT)>0 end if ok then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE) local tc=Duel.SelectMatchingCard(tp,s.rmfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst() if tc then Duel.Remove(tc,POS_FACEUP,REASON_EFFECT) end end end

@@ -65,6 +65,8 @@ const EXCLUDE_FRAGMENTS = draftTagOverrides.excludeNameFragments.map((name) =>
   normalizeName(name)
 );
 const TCG_OMEGA_IDS: Record<string, string> = tcgOmegaIds;
+const CARD_ARCHETYPE_KEY_CACHE = new WeakMap<DraftPoolCard, string[]>();
+const MATERIAL_LINE_CACHE = new WeakMap<DraftPoolCard, string>();
 
 export const DRAFT_TARGETS: Record<DraftDeckSection, number> = {
   main: 40,
@@ -119,6 +121,8 @@ type MaterialProfile = {
   monsters: DraftPoolCard[];
   monsterCount: number;
   effectMonsterCount: number;
+  fusionEnablerCount: number;
+  mainCategoryCounts: Map<string, number>;
   nameCounts: Map<string, number>;
   archetypeCounts: Map<string, number>;
   levelCounts: Map<number, number>;
@@ -126,6 +130,12 @@ type MaterialProfile = {
   raceCounts: Map<string, number>;
   maxSameAttributeCount: number;
   maxSameRaceCount: number;
+};
+
+type ExtraDeckAssessment = {
+  multiplier: number;
+  playable: boolean;
+  label: string;
 };
 type XyzMaterialNeed = {
   level: number;
@@ -155,9 +165,32 @@ type DraftIndexes = {
     side: Record<DraftSource, DraftPoolCard[]>;
   };
 };
+const DRAFT_INDEX_CACHE = new WeakMap<DraftPoolCard[], DraftIndexes>();
 
 function normalizeName(value: string): string {
   return value.trim().toLowerCase();
+}
+
+export function draftCardIdentity(card: Pick<DraftPoolCard, "id" | "source">): string {
+  return `${card.source}:${card.id}`;
+}
+
+function cardArchetypeKeys(card: DraftPoolCard): string[] {
+  const cached = CARD_ARCHETYPE_KEY_CACHE.get(card);
+  if (cached) return cached;
+  const keys = [card.archetype, ...(card.archetypes ?? []), ...(card.treatedAs ?? [])]
+    .filter((value): value is string => typeof value === "string" && value.trim().length > 0)
+    .map(normalizeName)
+    .filter((value, index, values) => values.indexOf(value) === index);
+  CARD_ARCHETYPE_KEY_CACHE.set(card, keys);
+  return keys;
+}
+
+function maximumDraftCopies(card: DraftPoolCard): number {
+  if (card.legal?.banned || card.legal?.tobereleased === false) return 0;
+  if (card.legal?.limited) return 1;
+  if (card.legal?.semiLimited) return 2;
+  return 3;
 }
 
 function canonicalMaterialToken(value: string | null | undefined): string | null {
@@ -259,6 +292,7 @@ function buildDraftIndexes(cards: DraftPoolCard[]): DraftIndexes {
   };
 
   for (const card of cards) {
+    if (maximumDraftCopies(card) === 0) continue;
     const source = card.source;
     if (card.isExtraDeck) {
       indexes.extra[source].push(card);
@@ -279,10 +313,19 @@ function buildDraftIndexes(cards: DraftPoolCard[]): DraftIndexes {
   return indexes;
 }
 
+function indexesForCards(cards: DraftPoolCard[]): DraftIndexes {
+  const cached = DRAFT_INDEX_CACHE.get(cards);
+  if (cached) return cached;
+  const indexes = buildDraftIndexes(cards);
+  DRAFT_INDEX_CACHE.set(cards, indexes);
+  return indexes;
+}
+
 function countById(picks: DraftPick[]): Map<string, number> {
   const counts = new Map<string, number>();
   for (const pick of picks) {
-    counts.set(pick.card.id, (counts.get(pick.card.id) ?? 0) + 1);
+    const key = draftCardIdentity(pick.card);
+    counts.set(key, (counts.get(key) ?? 0) + 1);
   }
   return counts;
 }
@@ -290,9 +333,10 @@ function countById(picks: DraftPick[]): Map<string, number> {
 function countByArchetype(picks: DraftPick[]): Map<string, number> {
   const counts = new Map<string, number>();
   for (const pick of picks) {
-    if (!pick.card.archetype) continue;
-    const key = normalizeName(pick.card.archetype);
-    counts.set(key, (counts.get(key) ?? 0) + 1);
+    if (pick.section === "side") continue;
+    for (const key of cardArchetypeKeys(pick.card)) {
+      counts.set(key, (counts.get(key) ?? 0) + 1);
+    }
   }
   return counts;
 }
@@ -315,7 +359,7 @@ function weightedRandomIndex(weights: number[]): number {
 }
 
 function cardMatchesArchetype(card: DraftPoolCard, archetypeKey: string): boolean {
-  return typeof card.archetype === "string" && normalizeName(card.archetype) === archetypeKey;
+  return cardArchetypeKeys(card).includes(archetypeKey);
 }
 
 function hasMonsterType(card: DraftPoolCard, type: string): boolean {
@@ -374,16 +418,25 @@ function buildMaterialProfile(picks: DraftPick[]): MaterialProfile {
   const levelCounts = new Map<number, number>();
   const attributeCounts = new Map<string, number>();
   const raceCounts = new Map<string, number>();
+  const mainCategoryCounts = new Map<string, number>();
   let effectMonsterCount = 0;
+  let fusionEnablerCount = 0;
 
   for (const pick of picks) {
     const card = pick.card;
-    if (card.isExtraDeck || card.category !== "Monster") continue;
+    if (pick.section !== "main" || card.isExtraDeck) continue;
+    incrementCount(mainCategoryCounts, card.category);
+    if (
+      /Fusion Summon|Polymerization/i.test(`${card.name}\n${card.text ?? ""}`)
+    ) {
+      fusionEnablerCount += 1;
+    }
+    if (card.category !== "Monster") continue;
     monsters.push(card);
     incrementCount(nameCounts, normalizeName(card.name));
 
-    if (card.archetype) {
-      incrementCount(archetypeCounts, normalizeName(card.archetype));
+    for (const archetype of cardArchetypeKeys(card)) {
+      incrementCount(archetypeCounts, archetype);
     }
     if (typeof card.level === "number") {
       incrementCount(levelCounts, card.level);
@@ -407,6 +460,8 @@ function buildMaterialProfile(picks: DraftPick[]): MaterialProfile {
     monsters,
     monsterCount: monsters.length,
     effectMonsterCount,
+    fusionEnablerCount,
+    mainCategoryCounts,
     nameCounts,
     archetypeCounts,
     levelCounts,
@@ -418,10 +473,14 @@ function buildMaterialProfile(picks: DraftPick[]): MaterialProfile {
 }
 
 function materialLine(card: DraftPoolCard): string {
-  return String(card.text ?? "")
+  const cached = MATERIAL_LINE_CACHE.get(card);
+  if (cached !== undefined) return cached;
+  const line = String(card.text ?? "")
     .split(/\r?\n/)
     .map((line) => line.trim())
     .find(Boolean) ?? "";
+  MATERIAL_LINE_CACHE.set(card, line);
+  return line;
 }
 
 function countMonsterTokenMatches(profile: MaterialProfile, token: string): number {
@@ -481,6 +540,19 @@ function exactQuotedRequirementMultiplier(
     addRequirement(token, 1, false);
   }
 
+  for (const match of requirementLine.matchAll(
+    /"([^"]+)"(?:\s+[A-Za-z-]+)*\s+monster/gi
+  )) {
+    const [raw, token] = match;
+    const start = match.index ?? 0;
+    const end = start + raw.length;
+    const covered = consumedRanges.some(([rangeStart, rangeEnd]) => start >= rangeStart && end <= rangeEnd);
+    if (!covered) {
+      consumedRanges.push([start, end]);
+      addRequirement(token, 1, false);
+    }
+  }
+
   for (const match of requirementLine.matchAll(/"([^"]+)"/g)) {
     const [raw, token] = match;
     const start = match.index ?? 0;
@@ -526,6 +598,87 @@ function countMonstersByToken(
   }, 0);
 }
 
+function xyzRank(card: DraftPoolCard): number | null {
+  if (typeof card.rank === "number") return card.rank;
+  // The generated YGO draft snapshot currently places Xyz ranks in `level`.
+  return hasMonsterType(card, "Xyz") && typeof card.level === "number" ? card.level : null;
+}
+
+function requiredMonsterCount(requirementLine: string): number {
+  const leadingCount = requirementLine.match(/^(\d+)\+?\s+/);
+  return leadingCount ? Number(leadingCount[1]) : 1;
+}
+
+function typedMaterialRequirementMultiplier(
+  requirementLine: string,
+  profile: MaterialProfile
+): number {
+  const matches = [...requirementLine.matchAll(
+    new RegExp(`(?:^|\\+\\s*)(\\d+)\\+?\\s+(?:Level\\s+\\d+\\s+)?(${MATERIAL_TOKEN_PATTERN})(?:-Type)?(?:\\s+(?:Effect|Normal|Pendulum|Tuner|non-Tuner))*\\s+monsters?`, "gi")
+  )];
+
+  for (const match of matches) {
+    const required = Number(match[1]);
+    const token = canonicalMaterialToken(match[2]);
+    if (token && countMonstersByToken(profile, null, token) < required) return 0.02;
+  }
+  return matches.length ? 1.2 : 1;
+}
+
+function fusionNeedsEnabler(card: DraftPoolCard): boolean {
+  const text = String(card.text ?? "");
+  return !(
+    /do not use "?Polymerization"?/i.test(text) ||
+    /Must (?:first )?be Special Summoned[\s\S]{0,180}?\bby (?:banishing|sending|tributing)/i.test(text) ||
+    /Special Summoned[\s\S]{0,120}?\bby (?:banishing|sending|tributing)/i.test(text)
+  );
+}
+
+function synchroRequirementIsReachable(
+  card: DraftPoolCard,
+  profile: MaterialProfile
+): boolean {
+  if (typeof card.level !== "number") return true;
+  const line = materialLine(card);
+  const namedTuner = normalizeName(line.match(/^"([^"]+)"\s*\+/)?.[1] ?? "");
+  const tunerToken = canonicalMaterialToken(
+    line.match(new RegExp(`^\\d+\\s+(${MATERIAL_TOKEN_PATTERN})(?:-Type)?\\s+Tuner`, "i"))?.[1]
+  );
+  const nonTunerToken = canonicalMaterialToken(
+    line.match(new RegExp(`non-Tuner\\s+(${MATERIAL_TOKEN_PATTERN})(?:-Type)?\\s+monsters?`, "i"))?.[1]
+  );
+  const requiredNonTuners = Number(line.match(/(\d+)\+?\s+non-Tuner/i)?.[1] ?? 1);
+
+  const tuners = profile.monsters.filter((monster) => {
+    if (!hasMonsterType(monster, "Tuner") || typeof monster.level !== "number") return false;
+    if (namedTuner && normalizeName(monster.name) !== namedTuner) return false;
+    return !tunerToken || cardMatchesMaterialToken(monster, tunerToken);
+  });
+  const nonTuners = profile.monsters.filter(
+    (monster) =>
+      !hasMonsterType(monster, "Tuner") &&
+      typeof monster.level === "number" &&
+      (!nonTunerToken || cardMatchesMaterialToken(monster, nonTunerToken))
+  );
+
+  for (const tuner of tuners) {
+    const target = card.level - (tuner.level ?? 0);
+    if (target <= 0) continue;
+    const reachable = Array.from({ length: target + 1 }, () => new Set<number>());
+    reachable[0]!.add(0);
+    for (const monster of nonTuners) {
+      const level = monster.level ?? 0;
+      for (let sum = target; sum >= level; sum -= 1) {
+        for (const count of reachable[sum - level]!) {
+          reachable[sum]!.add(count + 1);
+        }
+      }
+    }
+    if ([...reachable[target]!].some((count) => count >= requiredNonTuners)) return true;
+  }
+  return false;
+}
+
 function extraDeckSummonabilityMultiplier(
   card: DraftPoolCard,
   profile: MaterialProfile,
@@ -534,17 +687,30 @@ function extraDeckSummonabilityMultiplier(
   const requirementLine = materialLine(card);
   let multiplier = exactQuotedRequirementMultiplier(requirementLine, profile);
   if (multiplier <= 0.02) return multiplier;
+  multiplier *= typedMaterialRequirementMultiplier(requirementLine, profile);
+  if (multiplier <= 0.03) return multiplier;
+  if (
+    /with different names/i.test(requirementLine) &&
+    profile.nameCounts.size < requiredMonsterCount(requirementLine)
+  ) {
+    return 0.03;
+  }
 
   if (hasMonsterType(card, "Synchro")) {
     if (synchroProfile.tunerCount === 0 || synchroProfile.nonTunerCount === 0) {
       return 0.04;
     }
     if (typeof card.level === "number") {
-      multiplier *= synchroProfile.exactLevels.has(card.level) ? 2.1 : 0.18;
+      multiplier *=
+        synchroProfile.exactLevels.has(card.level) &&
+        synchroRequirementIsReachable(card, profile)
+          ? 2.1
+          : 0.18;
     }
   }
 
-  if (hasMonsterType(card, "Xyz") && typeof card.rank === "number") {
+  const rank = xyzRank(card);
+  if (hasMonsterType(card, "Xyz") && rank !== null) {
     const xyzCountMatch = requirementLine.match(
       new RegExp(
         `^(\\d+)\\+?\\s+Level\\s+(\\d+)(?:\\s+(${MATERIAL_TOKEN_PATTERN}))?\\s+monsters?`,
@@ -552,7 +718,7 @@ function extraDeckSummonabilityMultiplier(
       )
     );
     const requiredCount = xyzCountMatch ? Number(xyzCountMatch[1]) : 2;
-    const requiredLevel = xyzCountMatch ? Number(xyzCountMatch[2]) : card.rank;
+    const requiredLevel = xyzCountMatch ? Number(xyzCountMatch[2]) : rank;
     const token = xyzCountMatch?.[3] ?? null;
     const matchingCount = countMonstersByToken(profile, requiredLevel, token);
     if (matchingCount < requiredCount) {
@@ -576,6 +742,8 @@ function extraDeckSummonabilityMultiplier(
         if (profile.monsterCount < requiredCount) {
           return 0.05;
         }
+      } else if (profile.monsterCount < requiredMonsterCount(requirementLine)) {
+        return 0.05;
       }
     }
 
@@ -583,9 +751,14 @@ function extraDeckSummonabilityMultiplier(
       new RegExp(`including an?\\s+(${MATERIAL_TOKEN_PATTERN})\\s+monster`, "i")
     );
     if (typeIncludeMatch) {
-      const race = canonicalMaterialToken(typeIncludeMatch[1]);
-      if (race && RACE_NAMES.has(race) && (profile.raceCounts.get(race) ?? 0) === 0) {
-        return 0.05;
+      const token = canonicalMaterialToken(typeIncludeMatch[1]);
+      if (token) {
+        if (RACE_NAMES.has(token) && (profile.raceCounts.get(token) ?? 0) === 0) {
+          return 0.05;
+        }
+        if (ATTRIBUTE_NAMES.has(token) && (profile.attributeCounts.get(token) ?? 0) === 0) {
+          return 0.05;
+        }
       }
     }
 
@@ -598,6 +771,9 @@ function extraDeckSummonabilityMultiplier(
   }
 
   if (hasMonsterType(card, "Fusion")) {
+    if (fusionNeedsEnabler(card) && profile.fusionEnablerCount === 0) {
+      return 0.03;
+    }
     const racePairMatch = requirementLine.match(
       new RegExp(`^(\\d+)\\s+(${MATERIAL_TOKEN_PATTERN})\\s+monsters?`, "i")
     );
@@ -624,32 +800,113 @@ function extraDeckSummonabilityMultiplier(
   return multiplier;
 }
 
+function assessExtraDeckCardFromProfiles(
+  card: DraftPoolCard,
+  profile: MaterialProfile,
+  synchroProfile: SynchroLevelProfile
+): ExtraDeckAssessment {
+  const multiplier = extraDeckSummonabilityMultiplier(card, profile, synchroProfile);
+  const playable = multiplier >= 0.75;
+  const line = materialLine(card);
+  let method = "materials available";
+  if (hasMonsterType(card, "Xyz")) {
+    const rank = xyzRank(card);
+    method = rank == null ? "Xyz materials available" : `Rank ${rank} materials available`;
+  } else if (hasMonsterType(card, "Synchro")) {
+    method = typeof card.level === "number" ? `Level ${card.level} reachable` : "Synchro line available";
+  } else if (hasMonsterType(card, "Link")) {
+    method = `${requiredMonsterCount(line)}+ Link materials available`;
+  } else if (hasMonsterType(card, "Fusion")) {
+    method = fusionNeedsEnabler(card)
+      ? "materials and Fusion effect available"
+      : "contact materials available";
+  }
+  return {
+    multiplier,
+    playable,
+    label: playable ? `Summonable now · ${method}` : `Setup needed · ${method}`,
+  };
+}
+
+export function assessExtraDeckCard(
+  card: DraftPoolCard,
+  picks: DraftPick[]
+): ExtraDeckAssessment {
+  return assessExtraDeckCardFromProfiles(
+    card,
+    buildMaterialProfile(picks),
+    buildSynchroLevelProfile(picks.filter((pick) => pick.section === "main"))
+  );
+}
+
+export function draftCardInsight(
+  card: DraftPoolCard,
+  picks: DraftPick[],
+  section: DraftDeckSection
+): string {
+  if (section === "extra") return assessExtraDeckCard(card, picks).label;
+
+  const archetypeCounts = countByArchetype(picks);
+  const strongestArchetype = cardArchetypeKeys(card)
+    .map((key) => ({ key, count: archetypeCounts.get(key) ?? 0 }))
+    .sort((left, right) => right.count - left.count)[0];
+  if (strongestArchetype && strongestArchetype.count > 0) {
+    return `Engine fit · ${card.archetype ?? strongestArchetype.key}`;
+  }
+
+  if (section === "main") {
+    const materials = buildMaterialProfile(picks);
+    const extraCards = picks
+      .filter((pick) => pick.section === "extra")
+      .map((pick) => pick.card);
+    const support = buildExtraDeckSupportProfile(extraCards, materials);
+    if (extraDeckMaterialSupportMultiplier(card, support, materials) >= 1.5) {
+      return "Unlocks your Extra Deck";
+    }
+  }
+
+  if (card.draftTags.boardBreaker) return "Breaks established boards";
+  if (card.draftTags.handTrap) return "Early-turn interaction";
+  if (card.draftTags.spellTrapNonEngine) return "Flexible interaction";
+  return section === "side" ? "Matchup option" : "Wildcard lane";
+}
+
 function filterExtraPoolBySummonability(
   cards: DraftPoolCard[],
   profile: MaterialProfile,
-  synchroProfile: SynchroLevelProfile
+  synchroProfile: SynchroLevelProfile,
+  scoreCache: Map<string, number>
 ): DraftPoolCard[] {
   if (cards.length <= OFFER_SIZE) return cards;
-  const cardsWithScores = cards.map((card) => ({
-    card,
-    score: extraDeckSummonabilityMultiplier(card, profile, synchroProfile),
-  }));
+  const cardsWithScores = cards.map((card) => {
+    const key = draftCardIdentity(card);
+    let score = scoreCache.get(key);
+    if (score === undefined) {
+      score = assessExtraDeckCardFromProfiles(card, profile, synchroProfile).multiplier;
+      scoreCache.set(key, score);
+    }
+    return { card, score };
+  });
   const playableNow = cardsWithScores
-    .filter(({ score }) => score >= 0.1)
+    .filter(({ score }) => score >= 0.75)
     .map(({ card }) => card);
   if (playableNow.length >= OFFER_SIZE) return playableNow;
 
   const draftableMaterials = cardsWithScores
-    .filter(({ score }) => score >= 0.04)
+    .filter(({ score }) => score >= 0.15)
     .map(({ card }) => card);
   return draftableMaterials.length >= OFFER_SIZE ? draftableMaterials : cards;
 }
 
 function shouldPreferExistingArchetype(
   archetypeCounts: Map<string, number>,
-  section: DraftDeckSection
+  section: DraftDeckSection,
+  slotIndex: number
 ): boolean {
   if (!archetypeCounts.size) return false;
+  // Preserve one wildcard lane so every offer is not simply three versions of
+  // the same obvious engine pick.
+  if (slotIndex === OFFER_SIZE - 1) return false;
   const rate =
     section === "extra" ? EXTRA_ARCHETYPE_SLOT_RATE : EXISTING_ARCHETYPE_SLOT_RATE;
   return Math.random() < rate;
@@ -806,7 +1063,8 @@ function buildExtraDeckSupportProfile(
       profile.synchroLevels.add(extraCard.level);
     }
 
-    if (hasMonsterType(extraCard, "Xyz") && typeof extraCard.rank === "number") {
+    const rank = xyzRank(extraCard);
+    if (hasMonsterType(extraCard, "Xyz") && rank !== null) {
       const xyzCountMatch = requirementLine.match(
         new RegExp(
           `^(\\d+)\\+?\\s+Level\\s+(\\d+)(?:\\s+(${MATERIAL_TOKEN_PATTERN}))?\\s+monsters?`,
@@ -814,7 +1072,7 @@ function buildExtraDeckSupportProfile(
         )
       );
       const requiredCount = xyzCountMatch ? Number(xyzCountMatch[1]) : 2;
-      const level = xyzCountMatch ? Number(xyzCountMatch[2]) : extraCard.rank;
+      const level = xyzCountMatch ? Number(xyzCountMatch[2]) : rank;
       const token = canonicalMaterialToken(xyzCountMatch?.[3] ?? null);
       profile.xyzNeeds.push({
         level,
@@ -925,20 +1183,53 @@ function extraDeckMaterialSupportMultiplier(
 function weightForCard(
   card: DraftPoolCard,
   archetypeCounts: Map<string, number>,
+  pickedCounts: Map<string, number>,
   materialProfile: MaterialProfile,
   synchroProfile: SynchroLevelProfile,
   extraDeckSupportProfile: ExtraDeckSupportProfile,
   section: DraftDeckSection,
-  specialRound: boolean
+  specialRound: boolean,
+  currentOffer: DraftPoolCard[],
+  extraScoreCache: Map<string, number>
 ): number {
   let weight = 1;
 
+  const copies = pickedCounts.get(draftCardIdentity(card)) ?? 0;
+  weight *= copies === 0 ? 1 : copies === 1 ? 0.58 : 0.24;
+
   if (card.archetype) {
-    const picksInArchetype = archetypeCounts.get(normalizeName(card.archetype)) ?? 0;
+    const picksInArchetype = Math.max(
+      0,
+      ...cardArchetypeKeys(card).map((key) => archetypeCounts.get(key) ?? 0)
+    );
     if (picksInArchetype > 0) {
       const archetypeCap = section === "extra" ? 1.5 : 1.2;
       const archetypeScale = section === "extra" ? 0.7 : 0.5;
       weight *= 1 + Math.min(archetypeCap, archetypeScale * Math.sqrt(picksInArchetype));
+    }
+  }
+
+  if (section === "main" && materialProfile.mainCategoryCounts.size > 0) {
+    const draftedMain = [...materialProfile.mainCategoryCounts.values()].reduce(
+      (sum, count) => sum + count,
+      0
+    );
+    const targetShare = card.category === "Monster" ? 0.55 : card.category === "Spell" ? 0.27 : 0.18;
+    const current = materialProfile.mainCategoryCounts.get(card.category) ?? 0;
+    const deficit = targetShare * (draftedMain + 1) - current;
+    weight *= Math.max(0.72, Math.min(1.45, 1 + deficit * 0.09));
+  }
+
+  if (currentOffer.length > 0) {
+    const sameCategory = currentOffer.filter((offered) => offered.category === card.category).length;
+    weight *= Math.pow(section === "extra" ? 0.88 : 0.78, sameCategory);
+
+    if (section === "extra") {
+      const method = [...EXTRA_TYPES].find((type) => hasMonsterType(card, type));
+      const sameMethod = currentOffer.filter((offered) =>
+        method ? hasMonsterType(offered, method) : false
+      ).length;
+      weight *= Math.pow(0.68, sameMethod);
     }
   }
 
@@ -964,7 +1255,9 @@ function weightForCard(
   }
 
   if (section === "extra") {
-    weight *= extraDeckSummonabilityMultiplier(card, materialProfile, synchroProfile);
+    weight *=
+      extraScoreCache.get(draftCardIdentity(card)) ??
+      extraDeckSummonabilityMultiplier(card, materialProfile, synchroProfile);
   } else if (section === "main") {
     weight *= extraDeckMaterialSupportMultiplier(
       card,
@@ -979,22 +1272,28 @@ function weightForCard(
 function randomFromWeightedPool(
   cards: DraftPoolCard[],
   archetypeCounts: Map<string, number>,
+  pickedCounts: Map<string, number>,
   materialProfile: MaterialProfile,
   synchroProfile: SynchroLevelProfile,
   extraDeckSupportProfile: ExtraDeckSupportProfile,
   section: DraftDeckSection,
-  specialRound: boolean
+  specialRound: boolean,
+  currentOffer: DraftPoolCard[],
+  extraScoreCache: Map<string, number>
 ): DraftPoolCard | null {
   if (!cards.length) return null;
   const weights = cards.map((card) =>
     weightForCard(
       card,
       archetypeCounts,
+      pickedCounts,
       materialProfile,
       synchroProfile,
       extraDeckSupportProfile,
       section,
-      specialRound
+      specialRound,
+      currentOffer,
+      extraScoreCache
     )
   );
   const index = weightedRandomIndex(weights);
@@ -1018,7 +1317,10 @@ function chooseSource(
       specialRound && section !== "extra"
         ? indexes.special[section][source]
         : indexes[section][source];
-    return pool.some((card) => (pickedCounts.get(card.id) ?? 0) < 3 && !pickedThisOffer.has(card.id));
+    return pool.some((card) =>
+      (pickedCounts.get(draftCardIdentity(card)) ?? 0) < maximumDraftCopies(card) &&
+      !pickedThisOffer.has(draftCardIdentity(card))
+    );
   });
 
   if (!available.length) return "TCG";
@@ -1032,8 +1334,8 @@ function chooseSource(
           : indexes[section][source];
       return pool.some(
         (card) =>
-          (pickedCounts.get(card.id) ?? 0) < 3 &&
-          !pickedThisOffer.has(card.id) &&
+          (pickedCounts.get(draftCardIdentity(card)) ?? 0) < maximumDraftCopies(card) &&
+          !pickedThisOffer.has(draftCardIdentity(card)) &&
           preferredFilter(card)
       );
     });
@@ -1091,10 +1393,15 @@ function buildOffer(
   );
   const pickedThisOffer = new Set<string>();
   const offer: DraftPoolCard[] = [];
+  const extraScoreCache = new Map<string, number>();
 
   while (offer.length < OFFER_SIZE) {
     const utilityFocus = utilityFocusForSlot(section, specialRound, offer.length);
-    const preferredArchetype = shouldPreferExistingArchetype(archetypeCounts, section)
+    const preferredArchetype = shouldPreferExistingArchetype(
+      archetypeCounts,
+      section,
+      offer.length
+    )
       ? choosePreferredArchetype(archetypeCounts)
       : null;
     const utilityFilter = utilityFocus
@@ -1116,20 +1423,38 @@ function buildOffer(
       preferredFilter
     );
     const sourcePool = poolForRound(indexes, section, source, specialRound).filter((card) => {
-      if ((pickedCounts.get(card.id) ?? 0) >= 3) return false;
-      return !pickedThisOffer.has(card.id);
+      const key = draftCardIdentity(card);
+      if ((pickedCounts.get(key) ?? 0) >= maximumDraftCopies(card)) return false;
+      return !pickedThisOffer.has(key);
     });
     const fallbackPool = (["CCG", "TCG"] as const)
       .flatMap((fallbackSource) => poolForRound(indexes, section, fallbackSource, specialRound))
-      .filter((card) => (pickedCounts.get(card.id) ?? 0) < 3 && !pickedThisOffer.has(card.id));
-    const refinedSourcePool =
+      .filter((card) => {
+        const key = draftCardIdentity(card);
+        return (
+          (pickedCounts.get(key) ?? 0) < maximumDraftCopies(card) &&
+          !pickedThisOffer.has(key)
+        );
+      });
+    let refinedFallbackPool =
       section === "extra"
-        ? filterExtraPoolBySummonability(sourcePool, materialProfile, synchroProfile)
-        : sourcePool;
-    const refinedFallbackPool =
-      section === "extra"
-        ? filterExtraPoolBySummonability(fallbackPool, materialProfile, synchroProfile)
+        ? filterExtraPoolBySummonability(fallbackPool, materialProfile, synchroProfile, extraScoreCache)
         : fallbackPool;
+    let refinedSourcePool =
+      section === "extra"
+        ? filterExtraPoolBySummonability(sourcePool, materialProfile, synchroProfile, extraScoreCache)
+        : sourcePool;
+    if (section === "extra") {
+      const playableFallback = refinedFallbackPool.filter(
+        (card) => (extraScoreCache.get(draftCardIdentity(card)) ?? 0) >= 0.75
+      );
+      if (playableFallback.length >= OFFER_SIZE - offer.length) {
+        refinedFallbackPool = playableFallback;
+        refinedSourcePool = refinedSourcePool.filter(
+          (card) => (extraScoreCache.get(draftCardIdentity(card)) ?? 0) >= 0.75
+        );
+      }
+    }
     const jointSourcePool = preferredFilter
       ? refinedSourcePool.filter((card) => preferredFilter(card))
       : [];
@@ -1165,15 +1490,18 @@ function buildOffer(
                     ? refinedSourcePool
                     : refinedFallbackPool,
       archetypeCounts,
+      pickedCounts,
       materialProfile,
       synchroProfile,
       extraDeckSupportProfile,
       section,
-      specialRound
+      specialRound,
+      offer,
+      extraScoreCache
     );
     if (!nextCard) break;
     offer.push(nextCard);
-    pickedThisOffer.add(nextCard.id);
+    pickedThisOffer.add(draftCardIdentity(nextCard));
   }
 
   return {
@@ -1188,7 +1516,7 @@ function buildOffer(
 }
 
 export function createDraftSession(cards: DraftPoolCard[]): DraftSession {
-  const indexes = buildDraftIndexes(cards);
+  const indexes = indexesForCards(cards);
   const next = buildOffer(indexes, []);
   return {
     picks: [],
@@ -1200,11 +1528,13 @@ export function createDraftSession(cards: DraftPoolCard[]): DraftSession {
 
 export function applyDraftPick(
   session: DraftSession,
-  selectedCardId: string,
+  selectedCardIdentity: string,
   cards: DraftPoolCard[]
 ): DraftSession {
   if (session.completed || !session.meta) return session;
-  const card = session.offer.find((entry) => entry.id === selectedCardId);
+  const card = session.offer.find(
+    (entry) => draftCardIdentity(entry) === selectedCardIdentity
+  );
   if (!card) return session;
 
   const nextPicks: DraftPick[] = [
@@ -1226,7 +1556,7 @@ export function applyDraftPick(
     };
   }
 
-  const indexes = buildDraftIndexes(cards);
+  const indexes = indexesForCards(cards);
   const next = buildOffer(indexes, nextPicks);
   return {
     picks: nextPicks,

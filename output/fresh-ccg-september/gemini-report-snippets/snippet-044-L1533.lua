@@ -1,0 +1,4 @@
+  e3:SetType(EFFECT_TYPE_FIELD)
+  e3:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+  e3:SetCode(EFFECT_CANNOT_ACTIVATE)
+  e3:SetTargetRange(0,1)

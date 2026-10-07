@@ -1,0 +1,236 @@
+{
+  "scope": "Actual production Lua filter calls with explicit table fixtures, executed in public Lua runtime. IsCanOverlay/IsHasLevel return values are fixtures; no native method or full effect certification.",
+  "results": [
+    {
+      "passcode": 238274862,
+      "filter": "destroyed",
+      "fields": {
+        "previous": 2
+      },
+      "expected": true,
+      "script_sha256": "9c2706a5b1031c834896daf12bde88b672e01dd05f6b1660192da40a9ece7663"
+    },
+    {
+      "passcode": 238274862,
+      "filter": "destroyed",
+      "fields": {
+        "previous": 4
+      },
+      "expected": true,
+      "script_sha256": "9c2706a5b1031c834896daf12bde88b672e01dd05f6b1660192da40a9ece7663"
+    },
+    {
+      "passcode": 238274862,
+      "filter": "destroyed",
+      "fields": {
+        "previous": 1
+      },
+      "expected": false,
+      "script_sha256": "9c2706a5b1031c834896daf12bde88b672e01dd05f6b1660192da40a9ece7663"
+    },
+    {
+      "passcode": 238274862,
+      "filter": "destroyed",
+      "fields": {
+        "previous": 1,
+        "current": 2
+      },
+      "expected": false,
+      "script_sha256": "9c2706a5b1031c834896daf12bde88b672e01dd05f6b1660192da40a9ece7663"
+    },
+    {
+      "passcode": 239935100,
+      "filter": "destroyfilter",
+      "fields": {
+        "original": 1,
+        "current": 2
+      },
+      "expected": true,
+      "script_sha256": "d6204d7f8f6335e93fa2146a1afc96352d475b54de3706f07978dedf72a522f1"
+    },
+    {
+      "passcode": 239935100,
+      "filter": "destroyfilter",
+      "fields": {
+        "original": 2,
+        "current": 1
+      },
+      "expected": false,
+      "script_sha256": "d6204d7f8f6335e93fa2146a1afc96352d475b54de3706f07978dedf72a522f1"
+    },
+    {
+      "passcode": 239935102,
+      "filter": "watercard",
+      "fields": {
+        "original": 1,
+        "current": 2
+      },
+      "expected": true,
+      "script_sha256": "84f6e08eca08e0db36713e16b1b037f666a40a962a61666287f5f69960208d7e"
+    },
+    {
+      "passcode": 239935102,
+      "filter": "watercard",
+      "fields": {
+        "original": 2,
+        "current": 1
+      },
+      "expected": false,
+      "script_sha256": "84f6e08eca08e0db36713e16b1b037f666a40a962a61666287f5f69960208d7e"
+    },
+    {
+      "passcode": 259024242,
+      "filter": "search",
+      "fields": {
+        "current": 2
+      },
+      "expected": true,
+      "script_sha256": "d64caaaae910eb667a61277077e92e42b0a3b6a246e25128eb337e348a033a40"
+    },
+    {
+      "passcode": 259024242,
+      "filter": "search",
+      "fields": {
+        "current": 65538
+      },
+      "expected": true,
+      "script_sha256": "d64caaaae910eb667a61277077e92e42b0a3b6a246e25128eb337e348a033a40"
+    },
+    {
+      "passcode": 259024242,
+      "filter": "search",
+      "fields": {
+        "current": 4
+      },
+      "expected": false,
+      "script_sha256": "d64caaaae910eb667a61277077e92e42b0a3b6a246e25128eb337e348a033a40"
+    },
+    {
+      "passcode": 259024242,
+      "filter": "search",
+      "fields": {
+        "current": 1
+      },
+      "expected": false,
+      "script_sha256": "d64caaaae910eb667a61277077e92e42b0a3b6a246e25128eb337e348a033a40"
+    },
+    {
+      "passcode": 259095349,
+      "filter": "ovf",
+      "fields": {
+        "overlay": true
+      },
+      "expected": true,
+      "script_sha256": "6d3f9fff17c7d8f8e77e5faec1d050f8dec5852d9c2253f05e02df08e24f673a"
+    },
+    {
+      "passcode": 259095349,
+      "filter": "ovf",
+      "fields": {
+        "overlay": false
+      },
+      "expected": false,
+      "script_sha256": "6d3f9fff17c7d8f8e77e5faec1d050f8dec5852d9c2253f05e02df08e24f673a"
+    },
+    {
+      "passcode": 259548744,
+      "filter": "ovf",
+      "fields": {
+        "overlay": true
+      },
+      "expected": true,
+      "script_sha256": "d369fa6b154bfd3e83f37d353ea479119b68be704b6d5a3ec6e97d55f7d621e6"
+    },
+    {
+      "passcode": 259548744,
+      "filter": "ovf",
+      "fields": {
+        "overlay": false
+      },
+      "expected": false,
+      "script_sha256": "d369fa6b154bfd3e83f37d353ea479119b68be704b6d5a3ec6e97d55f7d621e6"
+    },
+    {
+      "passcode": 259635008,
+      "filter": "lvf",
+      "fields": {
+        "haslevel": true
+      },
+      "expected": true,
+      "script_sha256": "bf339564c4b907ca0d474066a7e886dde54fffb632c785df15ce0dfa050a260d"
+    },
+    {
+      "passcode": 259635008,
+      "filter": "lvf",
+      "fields": {
+        "haslevel": false
+      },
+      "expected": false,
+      "script_sha256": "bf339564c4b907ca0d474066a7e886dde54fffb632c785df15ce0dfa050a260d"
+    },
+    {
+      "passcode": 259935441,
+      "filter": "cpf",
+      "fields": {
+        "current": 4
+      },
+      "expected": true,
+      "script_sha256": "94b4926bd5d71f8c93682a252ad798046fce94ca062373d5f9de4e73f66d8ca1"
+    },
+    {
+      "passcode": 259935441,
+      "filter": "cpf",
+      "fields": {
+        "current": 1048580
+      },
+      "expected": false,
+      "script_sha256": "94b4926bd5d71f8c93682a252ad798046fce94ca062373d5f9de4e73f66d8ca1"
+    },
+    {
+      "passcode": 259935441,
+      "filter": "cpf",
+      "fields": {
+        "current": 131076
+      },
+      "expected": false,
+      "script_sha256": "94b4926bd5d71f8c93682a252ad798046fce94ca062373d5f9de4e73f66d8ca1"
+    },
+    {
+      "passcode": 259935441,
+      "filter": "cpf",
+      "fields": {
+        "current": 2
+      },
+      "expected": false,
+      "script_sha256": "94b4926bd5d71f8c93682a252ad798046fce94ca062373d5f9de4e73f66d8ca1"
+    },
+    {
+      "passcode": 259882493,
+      "filter": "vst",
+      "fields": {
+        "current": 2
+      },
+      "expected": true,
+      "script_sha256": "b674d116672ee58d3ffbc78e0d6eb004dd446018cabeab8e29d3fda558550c53"
+    },
+    {
+      "passcode": 259882493,
+      "filter": "vst",
+      "fields": {
+        "current": 4
+      },
+      "expected": true,
+      "script_sha256": "b674d116672ee58d3ffbc78e0d6eb004dd446018cabeab8e29d3fda558550c53"
+    },
+    {
+      "passcode": 259882493,
+      "filter": "vst",
+      "fields": {
+        "current": 1
+      },
+      "expected": false,
+      "script_sha256": "b674d116672ee58d3ffbc78e0d6eb004dd446018cabeab8e29d3fda558550c53"
+    }
+  ],
+  "logs": []
+}
