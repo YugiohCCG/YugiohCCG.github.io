@@ -66,7 +66,7 @@ function s.replaceop(e,tp,eg)
 	for tc in aux.Next(eg) do
 		local p=tc:GetOwner()
 		if not tc:IsPreviousLocation(LOCATION_SZONE) and tc:IsLocation(LOCATION_MZONE) and Duel.GetLocationCount(p,LOCATION_SZONE)>0
-			and tc:IsRelateToEffect(e) and Duel.MoveToField(tc,tp,p,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end
+			and Duel.MoveToField(tc,tp,p,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end
 	end
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -79,7 +79,7 @@ function s.spop(e,tp)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) or Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)==0 or not c:IsType(TYPE_XYZ) then return end
 	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.xyzmat),tp,LOCATION_GRAVE,0,nil,c)
-	if #g>=2 then
+	if #g>=2 and Duel.SelectYesNo(tp,94) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
 		Duel.Overlay(c,g:Select(tp,2,2,nil))
 	end
@@ -90,7 +90,7 @@ function s.tdcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsCanRemoveCounter(tp,COUNTER_GRAVITY,2,REASON_COST) end
 	e:GetHandler():RemoveCounter(tp,COUNTER_GRAVITY,2,REASON_COST)
 end
-function s.oppfilter(c) return c:IsFaceup() and c:IsType(TYPE_MONSTER) and c:IsAbleToDeck() end
+function s.oppfilter(c) return c:IsType(TYPE_MONSTER) and c:IsAbleToDeck() end
 function s.ownfilter(c,oc) return c:IsSetCard(SET_GRAVINITY) and (c:GetOriginalType()&TYPE_MONSTER)~=0 and c:IsAbleToDeck() and oc:GetColumnGroup():IsContains(c) end
 function s.pairfilter(c,tp)
 	return s.oppfilter(c) and Duel.IsExistingMatchingCard(s.ownfilter,tp,LOCATION_ONFIELD,0,1,nil,c)

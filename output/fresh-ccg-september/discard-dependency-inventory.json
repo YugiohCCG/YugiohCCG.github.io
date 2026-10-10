@@ -1,0 +1,462 @@
+{
+  "scope": "Read-only711-card current-text/source scan. Textual co-occurrence may span effects; no automatic bugs or completed-card claims. Discarding can create legal GY recipients, so an other-card rule is not universal.",
+  "scripts_scanned": 711,
+  "discard_source_cards": [
+    211086520,
+    213611313,
+    215034223,
+    215984744,
+    220749574,
+    221047295,
+    222676270,
+    222782750,
+    224811863,
+    225091736,
+    228386117,
+    229996802,
+    231089172,
+    231872299,
+    234178973,
+    235607781,
+    236542835,
+    238272435,
+    238274860,
+    238282350,
+    238976759,
+    239935095,
+    239935096,
+    240104048,
+    244161756,
+    244163202,
+    244408495,
+    245354354,
+    245400676,
+    247298564,
+    247755864,
+    247755870,
+    251191343,
+    251710981,
+    255048812,
+    257464336,
+    258590942,
+    259023461,
+    259058125,
+    259203522,
+    259247807,
+    259288669,
+    259341133,
+    259352030,
+    259360287,
+    259366591,
+    259392825,
+    259417461,
+    259471193,
+    259479044,
+    259481543,
+    259568843,
+    259632020,
+    259669838,
+    259688514,
+    259688676,
+    259724129,
+    259767503,
+    259774818,
+    259790247,
+    259898110,
+    259923860,
+    259934043,
+    259937399,
+    259998396,
+    284636661,
+    284636663,
+    284636665
+  ],
+  "printed_candidates": 16,
+  "candidate_database_sha256": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+  "roster_sha256": "fdeeeb95ee58576324d348ef962438dda7e35c6ea29f51b474a2a39a2b8601f9",
+  "scanner_sha256": "0386d0213832f7961f5f4f4d39cb23192c606867934f4be8ab01cdef362a50b3",
+  "cards": [
+    {
+      "passcode": 213611313,
+      "name": "Scarstech Crawler",
+      "script_sha256": "fe145a5c230464a3606b94511335b995f80b83426d09ca48f01068e5e408b939",
+      "printed_clauses": [
+        "During the Main Phase (Quick Effect): You can discard 1 card; Special Summon 1 Galaxy monster from your hand"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 23,
+          "source": "e2:SetCost(s.spcost1)"
+        },
+        {
+          "line": 47,
+          "source": "function s.spcost1(e,tp,eg,ep,ev,re,r,rp,chk)"
+        },
+        {
+          "line": 49,
+          "source": "Duel.DiscardHand(tp,function(c) return s.discardfilter(c,e,tp) end,1,1,REASON_COST+REASON_DISCARD)"
+        },
+        {
+          "line": 52,
+          "source": "return c:IsDiscardable() and Duel.IsExistingMatchingCard(s.handfilter,tp,LOCATION_HAND,0,1,c,e,tp)"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 215984744,
+      "name": "Vir Pedicae Mortis - Entity's Happy Servant",
+      "script_sha256": "2c15ccbaa2b8a6384236ea3836d96c6b0bb30288fd2ffb390faf890a1133711e",
+      "printed_clauses": [
+        "If this card is Normal or Special Summoned: You can discard 1 card or send 1 \"Recollection\" card you control to the GY; add 1 \"Recollection\" card and 1 \"Bear Trap\" or 1 \"Mortis\" card from your Deck to your hand"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 22,
+          "source": "e1:SetCost(s.thcost)"
+        },
+        {
+          "line": 60,
+          "source": "local b1=Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil)"
+        },
+        {
+          "line": 73,
+          "source": "Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_COST+REASON_DISCARD)"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 228860650,
+      "name": "Arckcestial Orb",
+      "script_sha256": "99531aad16dfa63aa69d901da3d8fe66a27d6d653754a3c8142b6548bcb1b3a5",
+      "printed_clauses": [
+        "During the Main Phase, if this card is in your hand (Quick Effect): You can discard 1 other \"Arckcestial\" card to the GY, and if you do, Special Summon this card, also you cannot Special Summon for the rest of this turn, except LIGHT Spellcaster monsters. If this card is in your GY and you control an \"Arckcestial\" Xyz Monster (Quick Effect): You can target 1 \"Arckcestial\" Xyz Monster you control; attach this card to it as material"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 14,
+          "source": "e1:SetCost(s.spcost1)"
+        },
+        {
+          "line": 39,
+          "source": "function s.spcost1(e,tp,eg,ep,ev,re,r,rp,chk)"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 231872299,
+      "name": "Recollection: the Mine",
+      "script_sha256": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+      "printed_clauses": [
+        "Once per turn: You can banish 1 card from your GY, then discard 1 card; Special Summon 1 \"Pedicae's Papa\" or 1 \"Vir Pedicae Mortis\" monster from your Deck, then add 1 \"Recollection: Kaboom Papa\" from your Deck to your hand"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 30,
+          "source": "e3:SetCost(s.spcost)"
+        },
+        {
+          "line": 46,
+          "source": "function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)"
+        },
+        {
+          "line": 48,
+          "source": "and Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil) end"
+        },
+        {
+          "line": 52,
+          "source": "Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_COST+REASON_DISCARD)"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 238282350,
+      "name": "Knight of Aldrez",
+      "script_sha256": "db1cc18ce81710a43a7f4862dfeb9a7883c55ad19efb976113caff2137bf06d9",
+      "printed_clauses": [
+        "During the Main Phase (Quick Effect): You can discard 1 card; take 1 \"Aldrez\" card from your Deck, and either add it to your hand, or if it is a monster, you can Special Summon it"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 26,
+          "source": "e1:SetCost(s.deckcost)"
+        },
+        {
+          "line": 40,
+          "source": "e2:SetCost(aux.bfgcost)"
+        },
+        {
+          "line": 57,
+          "source": "if chk==0 then return Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil) end"
+        },
+        {
+          "line": 58,
+          "source": "Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_COST+REASON_DISCARD,nil)"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 238976759,
+      "name": "We're the Shining Brigade!",
+      "script_sha256": "4cf7d4ba5835a9d759cbe22e4fd08d0343a1d831942546ef42c2f59ca3df875e",
+      "printed_clauses": [
+        "During your Main Phase: You can discard any number of cards from your hand (min 2); Special Summon 1 \"Shining Brigade\" Xyz Monster from your Extra Deck, then you can attach \"Shining Brigade\" monsters from your GY or banishment to that monster as material"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 21,
+          "source": "e2:SetCost(s.xyzcost)"
+        },
+        {
+          "line": 48,
+          "source": "if chk==0 then return Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,2,nil) end"
+        },
+        {
+          "line": 50,
+          "source": "local g=Duel.SelectMatchingCard(tp,Card.IsDiscardable,tp,LOCATION_HAND,0,2,99,nil)"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 244161756,
+      "name": "Lunalophosaur",
+      "script_sha256": "78a984e32be18bc2bb12d92ea4858905c6e19754c6ae69a67063a933318c669d",
+      "printed_clauses": [
+        "You can discard this card; add 1 \"Lost World\" from your Deck or GY to your hand, then if you control a Dinosaur monster, you can Special Summon 1 \"Jurraegg Token\" (Dinosaur/EARTH/Level 1/ATK 0/DEF 0) to each field in Defense Position"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 14,
+          "source": "e1:SetCost(s.cost)"
+        },
+        {
+          "line": 24,
+          "source": "e2:SetCost(aux.bfgcost)"
+        },
+        {
+          "line": 31,
+          "source": "if chk==0 then return e:GetHandler():IsDiscardable() end"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 258590942,
+      "name": "Arckcestial Meadow",
+      "script_sha256": "5bd73c1a789376d38c79f22e0aaed47a253041955ddf46b82eb54cb4488828d4",
+      "printed_clauses": [
+        "When this card is activated: You can add 1 \"Arckcestial\" monster from your Deck to your hand, then discard 1 card, also you cannot Special Summon for the rest of this turn, except LIGHT Spellcaster monsters. Once per turn, if your opponent Normal or Special Summons a non-LIGHT monster(s) (except during the Damage Step): You target 1 \"Arckcestial\" monster in your GY; Special Summon it"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 52,
+          "source": "Duel.DiscardHand(tp,nil,1,1,REASON_EFFECT+REASON_DISCARD)"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 259392825,
+      "name": "Nemleria Dream Creator - Pyjama",
+      "script_sha256": "473233b92a1c78bdf20338c3559926a284ee0bd7108375eed4d16bb83b51acbd",
+      "printed_clauses": [
+        "(Quick Effect) : You can discard 1 \"Nemleria\" card; add 1 \"Dreaming Nemleria\" from your Deck to your Extra Deck face-up and Special Summon this card from your hand, then you can return 1 card your opponent controls that began the Duel in the Main Deck to the hand"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 18,
+          "source": "e1:SetCost(s.spcost)"
+        },
+        {
+          "line": 32,
+          "source": "e2:SetCost(s.immcost)"
+        },
+        {
+          "line": 38,
+          "source": "return c:IsSetCard(SET_NEMLERIA) and c:IsDiscardable()"
+        },
+        {
+          "line": 40,
+          "source": "function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)"
+        },
+        {
+          "line": 43,
+          "source": "Duel.DiscardHand(tp,s.costfilter,1,1,REASON_COST+REASON_DISCARD,c)"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 259481543,
+      "name": "Krawler Astrocyte",
+      "script_sha256": "e785566cdbeef30b8a7c532665f6c40babf0df96539e3bb638bdf587b1dae8c7",
+      "printed_clauses": [
+        "You can discard 1 \"Krawler\" or \"World Legacy\" card; Special Summon this card from your hand in face-down Defense Position, then you can change 1 monster you control to face-up Defense Position"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 6,
+          "source": "local e2=Effect.CreateEffect(c); e2:SetDescription(aux.Stringid(MSG_ID,1)); e2:SetCategory(CATEGORY_SPECIAL_SUMMON+CATEGORY_POSITION); e2:SetType(EFFECT_TYPE_IGNITION); e2:SetRange(LOCATION_HAND); e2:SetCountLimit(1,id+100); e2:SetCost(s.dcost); e2:SetTarget(s.selftg); e2:SetOperation(s.selfop); c:RegisterEffect(e2)"
+        },
+        {
+          "line": 12,
+          "source": "function s.disf(c) return (c:IsSetCard(SET_KRAWLER) or c:IsSetCard(SET_WORLD_LEGACY)) and c:IsDiscardable() end"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 259568843,
+      "name": "Charmelia Robin",
+      "script_sha256": "98fd12f7b4b7b05e46b50134c63ff9bb50f1e567c58ec5151a3b7642ab4e5422",
+      "printed_clauses": [
+        "When your opponent activates a card or effect in response to the activation of your \"Charmelia\" card or effect (Quick Effect): You can discard this card, or banish it from your GY; Special Summon 1 \"Charmelia\" monster from your hand or GY"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 15,
+          "source": "e1:SetCost(s.spcost)"
+        },
+        {
+          "line": 38,
+          "source": "function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)"
+        },
+        {
+          "line": 41,
+          "source": "if chk==0 then return c:IsDiscardable() end"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 259774818,
+      "name": "Krawler Lamina",
+      "script_sha256": "b0c3b4e34b5663f2ed0618a13cc75031d4e72a11859a619366a6e446043983ec",
+      "printed_clauses": [
+        "(Quick Effect): You can discard this card; Special Summon 1 \"Krawler\" monster from your hand, GY, or that is banished, in face-up or face-down Defense Position, except \"Krawler Lamina\""
+      ],
+      "source_cost_calls": [
+        {
+          "line": 6,
+          "source": "local e2=Effect.CreateEffect(c); e2:SetDescription(aux.Stringid(MSG_ID,1)); e2:SetCategory(CATEGORY_SPECIAL_SUMMON); e2:SetType(EFFECT_TYPE_QUICK_O); e2:SetCode(EVENT_FREE_CHAIN); e2:SetRange(LOCATION_HAND); e2:SetCountLimit(1,id+100); e2:SetCost(s.dcost); e2:SetTarget(s.sptg); e2:SetOperation(s.spop); c:RegisterEffect(e2)"
+        },
+        {
+          "line": 7,
+          "source": "local e3=Effect.CreateEffect(c); e3:SetDescription(aux.Stringid(MSG_ID,2)); e3:SetCategory(CATEGORY_REMOVE); e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O); e3:SetCode(EVENT_SPSUMMON_SUCCESS); e3:SetRange(LOCATION_GRAVE); e3:SetProperty(EFFECT_FLAG_DELAY); e3:SetCountLimit(1,id+200); e3:SetCondition(s.lkcon); e3:SetCost(aux.bfgcost); e3:SetTarget(s.pltg); e3:SetOperation(s.plop); c:RegisterEffect(e3)"
+        },
+        {
+          "line": 13,
+          "source": "function s.dcost(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return e:GetHandler():IsDiscardable() end Duel.SendtoGrave(e:GetHandler(),REASON_COST+REASON_DISCARD) end"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 259790247,
+      "name": "Charmelia Hanabi",
+      "script_sha256": "3cdea8546d404c67e983469c4688ed62c52e538e4d06518f4a12fe23b4f77751",
+      "printed_clauses": [
+        "If this card is in your hand: You can discard 1 other \"Charmelia\" monster; Special Summon this card from your hand and 1 \"Charmelia\" monster from your Deck or GY with a different name from the discarded card"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 13,
+          "source": "e1:SetCost(s.spcost)"
+        },
+        {
+          "line": 31,
+          "source": "return c:IsSetCard(SET_CHARMELIA) and c:IsType(TYPE_MONSTER) and c:IsDiscardable()"
+        },
+        {
+          "line": 34,
+          "source": "function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 259898110,
+      "name": "Nemleria Dream Creator - Veilleuse",
+      "script_sha256": "f622b43145c67278137477044a78ad080bb8b78b6174cd6bbd8551b7b5d7a491",
+      "printed_clauses": [
+        "(Quick Effect): You can discard 1 \"Nemleria\" card; add 1 \"Dreaming Nemleria\" from your Deck to your Extra Deck face-up, then Special Summon this card from your hand, then you can destroy 1 card your opponent controls"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 16,
+          "source": "e1:SetCost(s.spcost)"
+        },
+        {
+          "line": 27,
+          "source": "e2:SetCost(s.thcost)"
+        },
+        {
+          "line": 43,
+          "source": "return c:IsSetCard(SET_NEMLERIA) and c:IsDiscardable()"
+        },
+        {
+          "line": 45,
+          "source": "function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)"
+        },
+        {
+          "line": 48,
+          "source": "Duel.DiscardHand(tp,s.costfilter,1,1,REASON_COST+REASON_DISCARD,c)"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 259923860,
+      "name": "Grayscale Awakening: Revelation!",
+      "script_sha256": "2fb76940e57ffa36f12e7c3c3c8c0483e16d0a85669f98808f3ac8474755edc9",
+      "printed_clauses": [
+        "Reveal 1 \"Grayscale\" monster in your hand; add 1 \"Grayscale\" monster with a different name from your Deck to your hand, then discard 1 card. If you control a \"Grayscale\" monster: You can banish this card from your GY; Special Summon 1 \"Grayscale Token\" (Fiend LIGHT Level 4/ATK 800 DEF 800) in Defense Position, but it cannot be used as material for a Fusion, Synchro, or Link Summon, except for a \"Grayscale\" monster"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 13,
+          "source": "e1:SetCost(s.thcost)"
+        },
+        {
+          "line": 25,
+          "source": "e2:SetCost(s.tkcost)"
+        },
+        {
+          "line": 64,
+          "source": "Duel.DiscardHand(tp,aux.TRUE,1,1,REASON_EFFECT+REASON_DISCARD)"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    },
+    {
+      "passcode": 284636665,
+      "name": "Aquamarine Aquasanctuary",
+      "script_sha256": "5ca5b438f9d88be8e72c28be4ce043e80a825263b9edda9cc6cca2ee3b514408",
+      "printed_clauses": [
+        "When this card is activated: You can add 1 \"Aquamarine\" card from your Deck to your hand, except \"Aquamarine Aquasanctuary\", then discard 1 card. While you control a Level 7 or higher \"Aquamarine\" Fusion Monster, your opponent\u2019s monsters can only target them for attacks. Once per turn, if an \"Aquamarine\" Fusion Monster is Fusion Summoned to your field (except during the Damage Step): You can target 1 \"Aquamarine\" monster in your GY; Special Summon it"
+      ],
+      "source_cost_calls": [
+        {
+          "line": 49,
+          "source": "if Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil) then"
+        },
+        {
+          "line": 50,
+          "source": "Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_EFFECT+REASON_DISCARD)"
+        }
+      ],
+      "status": "OPEN: static co-occurrence only; resolve same-effect cost/recipient locations and effect dependencies before native testing"
+    }
+  ],
+  "reviewed_notes": {
+    "213611313": "Repaired independent discard/Hand Galaxy recipient; native4-case evidence in current-crawler-hand-summon-batch.json.",
+    "259898110": "Source spcost explicitly excludes handler from Nemleria Hand cost at eligibility/selection; source-only review, not native effect certificate.",
+    "221047295": "Self discard creates GY card before targeting; do not apply generic other-card exclusion without considering eligibility and printed text.",
+    "259790247": "Printed cost requires other Charmelia; native discarded-name dependent Deck/GY recipient selection remains separate audit work."
+  }
+}

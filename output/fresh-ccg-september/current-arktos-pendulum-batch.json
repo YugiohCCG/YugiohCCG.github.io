@@ -1,0 +1,62 @@
+{
+  "scope": "Canonical Arktos X Pendulum effect native Hand activation to left/right Pendulum Zone, neutral faceup Vaylantz Fusion support, actual same-column summon. Wrong set/type/facedown/occupied column exclude. No adapters/ignored limits. Proper Fusion support procedure, named limits/late relation/native Omega open.",
+  "baseline_cases": 6,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c41802073.lua": "f4f1a5ed79d6439d1ff98ad14f3c5e07dd80dcdcd964b7305d757abb170adb2e",
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_arktos_pendulum_batch.py": "195f637dd846d0ec3d6c459a35c09ca69580200b01e0eb41b622216717d5af8b",
+    "scripts/fresh_current_arktos_pendulum.cjs": "1ca3c523f66214fc8a69a128df6e1cebcd43a65b8a6292f74cb09c9b84c771fc",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c259537607.lua": "c7b87d72ed24774cc0239acb1be3ab5cba59ec83242126f49238da03fa29376d",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-arktos-pendulum.json",
+      "artifact_sha256": "7cb4585e6c263b4ed39e57291847905e931f68ef3f9b47e5d36897e42090373e"
+    },
+    {
+      "control": "old-zone-argument",
+      "expected_failures": [
+        {},
+        {
+          "right": true
+        }
+      ],
+      "artifact": "current-arktos-pendulum-old-zone-argument.json",
+      "artifact_sha256": "47b89c94a4ae9845db6874392724da0d5e4ca878f02f0ccf2aed4d17e8027ce5"
+    },
+    {
+      "control": "ignore-fusion",
+      "expected_failures": [
+        {
+          "notFusion": true
+        }
+      ],
+      "artifact": "current-arktos-pendulum-ignore-fusion.json",
+      "artifact_sha256": "d4653869407e8478d739cfc821d06f8d3a4f68cc6bdc6e41c646e21e05c42454"
+    },
+    {
+      "control": "ignore-set",
+      "expected_failures": [
+        {
+          "wrongSet": true
+        }
+      ],
+      "artifact": "current-arktos-pendulum-ignore-set.json",
+      "artifact_sha256": "345a7748e3cbebf7bfc44aa0da319ffcaa5456682e75444ee484faf80ae4c548"
+    }
+  ]
+}

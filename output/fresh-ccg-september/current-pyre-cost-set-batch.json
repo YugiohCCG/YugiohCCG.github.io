@@ -1,0 +1,67 @@
+{
+  "scope": "Actual Expulsion sends controlled Pyro to GY as cost then Sets Pyre Spell Deck/GY; wrong race/set and Trap excluded. No adapters. Recycling/replacement/interruptions/limits/nativeOmegaOPEN",
+  "baseline_cases": 5,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_pyre_cost_set_batch.py": "465c077b5b58def1ae7f83dcec4382093a8459c276440732eaf1c86945b83834",
+    "scripts/fresh_current_pyre_cost_set.cjs": "d60a4e603147a10f8caf20c549498d1c4f669c0db9b5c42ccca5279f6b7ed0e9",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c259820516.lua": "199af4a4895d0be0530479281b59664df139e1db970604cd606317b2f9aff602",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-pyre-cost-set.json",
+      "artifact_sha256": "57290c770f093145bc8d192c589e6c57e068967599914296a5d9c93bba31d1e8"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        {
+          "grave": false
+        },
+        {
+          "grave": true
+        }
+      ],
+      "artifact": "current-pyre-cost-set-no-cost.json",
+      "artifact_sha256": "e06eb9d47df8e139610f3ee873cb43d66662ed32d5878b210047c61e796b300c"
+    },
+    {
+      "control": "no-set",
+      "expected_failures": [
+        {
+          "grave": false
+        },
+        {
+          "grave": true
+        }
+      ],
+      "artifact": "current-pyre-cost-set-no-set.json",
+      "artifact_sha256": "788f1edf419908261650c8275d45cef2b3d91d9e07e320d32f635c6928990fde"
+    },
+    {
+      "control": "ignore-race",
+      "expected_failures": [
+        {
+          "grave": false,
+          "wrongRace": true
+        }
+      ],
+      "artifact": "current-pyre-cost-set-ignore-race.json",
+      "artifact_sha256": "8e0aa50e06931c285ed1980a4ebc23221984c75d65aceba4b3a590e6ab2f69a2"
+    }
+  ]
+}

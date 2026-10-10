@@ -1,0 +1,68 @@
+{
+  "scope": "Canonical Navi opposing monster activation negation/destruction; neutral other Xyz host with actual effect attachment supplies exactly one material, while Navi has none. Other host rank/attribute immaterial; two materials/facedown/Spell activation block. Initial Navi/host field fixtures, original proper Xyz/on-summon effects, copies/reset, damage step and native Omega open.",
+  "baseline_cases": 6,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_navi_negation_batch.py": "c55203ed2d37dc723ac90628f3f24d3bd9b782568aed0a262106c57a013eac63",
+    "scripts/fresh_current_navi_negation.cjs": "bf9565936f6a3c6c426c251bab43f9aa37611532d3e0a1e99dfdad99416b06fb",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c259548744.lua": "f34a95740f6466b0ea4f561dab8875e454a6c6b1c2925e568651234250b4ed76",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-navi-negation.json",
+      "artifact_sha256": "042b18ed7016fa3f7200eec2936bf5aee50cc6516a316d0ccbf1ddea77f24b0b"
+    },
+    {
+      "control": "no-negate",
+      "expected_failures": [
+        {},
+        {
+          "wrongRank": true
+        },
+        {
+          "wrongAttribute": true
+        }
+      ],
+      "artifact": "current-navi-negation-no-negate.json",
+      "artifact_sha256": "8993e4aee7b94f2e58f2d1adeacad545d571990dcde7cdaf3aa4e71846eeec35"
+    },
+    {
+      "control": "any-effect",
+      "expected_failures": [
+        {
+          "spellEffect": true
+        }
+      ],
+      "artifact": "current-navi-negation-any-effect.json",
+      "artifact_sha256": "ddbeb0ba152b49ae590083ba346a0a4fc6dbdd6ed363ec1631cb6d51b8850c93"
+    },
+    {
+      "control": "no-destroy",
+      "expected_failures": [
+        {},
+        {
+          "wrongRank": true
+        },
+        {
+          "wrongAttribute": true
+        }
+      ],
+      "artifact": "current-navi-negation-no-destroy.json",
+      "artifact_sha256": "7369a53b9f99e96026b5a1d4fcaa351c0fb086ec28d0a0615664e61162d70e83"
+    }
+  ]
+}

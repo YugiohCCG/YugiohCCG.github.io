@@ -1,0 +1,61 @@
+{
+  "scope": "Advent native Deck Level4 Galaxy/CelestialWarrior search to Hand; wrongrace/Level5/nativeCANNOT_TO_HAND exclude. No adapters. Activation limit/interruption/nativeOmega OPEN",
+  "baseline_cases": 5,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_advent_cosmic_search_batch.py": "e796802a6e8a2ad7e40751e8d285baf90800554009f88ba63ef536315c396703",
+    "scripts/fresh_current_advent_cosmic_search.cjs": "c75c47594477188e4b364a0abab42ccb662533952d5e881add0b2d13f6992c91",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c212055290.lua": "8d409a5f2f55e9ca52cd4fa3338cb8809cba27b793f69f2978489c357bf31ba4",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-advent-cosmic-search.json",
+      "artifact_sha256": "e21c1c9b6bd33b1e8bff19d40da659c3d153924e5ad5cfd52b2f3397777910dd"
+    },
+    {
+      "control": "no-add",
+      "expected_failures": [
+        {},
+        {
+          "celestial": true
+        }
+      ],
+      "artifact": "current-advent-cosmic-search-no-add.json",
+      "artifact_sha256": "16f309505cb1d35f0ccd0a9f9d07f86e950a69d33673d1401c15c6e4efad47db"
+    },
+    {
+      "control": "ignore-race",
+      "expected_failures": [
+        {
+          "wrongRace": true
+        }
+      ],
+      "artifact": "current-advent-cosmic-search-ignore-race.json",
+      "artifact_sha256": "a604723bd4af1e88890da1819b4dcdcc948995310e3f01a822c2f5ad4df0116e"
+    },
+    {
+      "control": "ignore-level",
+      "expected_failures": [
+        {
+          "highLevel": true
+        }
+      ],
+      "artifact": "current-advent-cosmic-search-ignore-level.json",
+      "artifact_sha256": "5e02e58d803d84afa64d22ab2654ddd6930127fb893d580ca7fce2fd21d1837d"
+    }
+  ]
+}

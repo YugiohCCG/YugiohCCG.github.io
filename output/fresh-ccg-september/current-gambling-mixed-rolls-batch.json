@@ -1,0 +1,932 @@
+{
+  "scope": "Native die seed sweep24 seeds with8 mixed Deck match positions each. Actual roll/reveal count; exactly1 Hand add only if declared name excavated, otherwise2000LP loss. Explicit TARGET_PARAM adapter; no forced die result. Native Omega open",
+  "baseline_cases": 192,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_gambling_mixed_rolls_batch.py": "3642a30fffeb4b476445401ad6068472be92f361b6b8c96a6eee77f273288a4c",
+    "scripts/fresh_current_gambling_mixed_rolls.cjs": "023e9fbc54a16dfa3494d6066fab4863dc6488a04605be3b7395fda36d260669",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c224774049.lua": "b885bee99ead112ec299380e94b75735f3336bd0331eca14272790b9bfd4a97a",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-gambling-mixed-rolls.json",
+      "artifact_sha256": "0cf48d3c1d4fd5f5a322ff45b2c746d89d789dec786e32a7578947c3601a2e30"
+    },
+    {
+      "control": "no-add",
+      "expected_failures": [
+        {
+          "seed": 1,
+          "matchPosition": 5
+        },
+        {
+          "seed": 1,
+          "matchPosition": 6
+        },
+        {
+          "seed": 1,
+          "matchPosition": 7
+        },
+        {
+          "seed": 1,
+          "matchPosition": 8
+        },
+        {
+          "seed": 2,
+          "matchPosition": 6
+        },
+        {
+          "seed": 2,
+          "matchPosition": 7
+        },
+        {
+          "seed": 2,
+          "matchPosition": 8
+        },
+        {
+          "seed": 3,
+          "matchPosition": 7
+        },
+        {
+          "seed": 3,
+          "matchPosition": 8
+        },
+        {
+          "seed": 4,
+          "matchPosition": 8
+        },
+        {
+          "seed": 5,
+          "matchPosition": 5
+        },
+        {
+          "seed": 5,
+          "matchPosition": 6
+        },
+        {
+          "seed": 5,
+          "matchPosition": 7
+        },
+        {
+          "seed": 5,
+          "matchPosition": 8
+        },
+        {
+          "seed": 6,
+          "matchPosition": 6
+        },
+        {
+          "seed": 6,
+          "matchPosition": 7
+        },
+        {
+          "seed": 6,
+          "matchPosition": 8
+        },
+        {
+          "seed": 7,
+          "matchPosition": 7
+        },
+        {
+          "seed": 7,
+          "matchPosition": 8
+        },
+        {
+          "seed": 8,
+          "matchPosition": 8
+        },
+        {
+          "seed": 9,
+          "matchPosition": 5
+        },
+        {
+          "seed": 9,
+          "matchPosition": 6
+        },
+        {
+          "seed": 9,
+          "matchPosition": 7
+        },
+        {
+          "seed": 9,
+          "matchPosition": 8
+        },
+        {
+          "seed": 10,
+          "matchPosition": 6
+        },
+        {
+          "seed": 10,
+          "matchPosition": 7
+        },
+        {
+          "seed": 10,
+          "matchPosition": 8
+        },
+        {
+          "seed": 11,
+          "matchPosition": 7
+        },
+        {
+          "seed": 11,
+          "matchPosition": 8
+        },
+        {
+          "seed": 12,
+          "matchPosition": 5
+        },
+        {
+          "seed": 12,
+          "matchPosition": 6
+        },
+        {
+          "seed": 12,
+          "matchPosition": 7
+        },
+        {
+          "seed": 12,
+          "matchPosition": 8
+        },
+        {
+          "seed": 13,
+          "matchPosition": 8
+        },
+        {
+          "seed": 14,
+          "matchPosition": 3
+        },
+        {
+          "seed": 14,
+          "matchPosition": 4
+        },
+        {
+          "seed": 14,
+          "matchPosition": 5
+        },
+        {
+          "seed": 14,
+          "matchPosition": 6
+        },
+        {
+          "seed": 14,
+          "matchPosition": 7
+        },
+        {
+          "seed": 14,
+          "matchPosition": 8
+        },
+        {
+          "seed": 15,
+          "matchPosition": 4
+        },
+        {
+          "seed": 15,
+          "matchPosition": 5
+        },
+        {
+          "seed": 15,
+          "matchPosition": 6
+        },
+        {
+          "seed": 15,
+          "matchPosition": 7
+        },
+        {
+          "seed": 15,
+          "matchPosition": 8
+        },
+        {
+          "seed": 16,
+          "matchPosition": 5
+        },
+        {
+          "seed": 16,
+          "matchPosition": 6
+        },
+        {
+          "seed": 16,
+          "matchPosition": 7
+        },
+        {
+          "seed": 16,
+          "matchPosition": 8
+        },
+        {
+          "seed": 17,
+          "matchPosition": 8
+        },
+        {
+          "seed": 18,
+          "matchPosition": 3
+        },
+        {
+          "seed": 18,
+          "matchPosition": 4
+        },
+        {
+          "seed": 18,
+          "matchPosition": 5
+        },
+        {
+          "seed": 18,
+          "matchPosition": 6
+        },
+        {
+          "seed": 18,
+          "matchPosition": 7
+        },
+        {
+          "seed": 18,
+          "matchPosition": 8
+        },
+        {
+          "seed": 19,
+          "matchPosition": 4
+        },
+        {
+          "seed": 19,
+          "matchPosition": 5
+        },
+        {
+          "seed": 19,
+          "matchPosition": 6
+        },
+        {
+          "seed": 19,
+          "matchPosition": 7
+        },
+        {
+          "seed": 19,
+          "matchPosition": 8
+        },
+        {
+          "seed": 20,
+          "matchPosition": 5
+        },
+        {
+          "seed": 20,
+          "matchPosition": 6
+        },
+        {
+          "seed": 20,
+          "matchPosition": 7
+        },
+        {
+          "seed": 20,
+          "matchPosition": 8
+        },
+        {
+          "seed": 21,
+          "matchPosition": 8
+        },
+        {
+          "seed": 22,
+          "matchPosition": 3
+        },
+        {
+          "seed": 22,
+          "matchPosition": 4
+        },
+        {
+          "seed": 22,
+          "matchPosition": 5
+        },
+        {
+          "seed": 22,
+          "matchPosition": 6
+        },
+        {
+          "seed": 22,
+          "matchPosition": 7
+        },
+        {
+          "seed": 22,
+          "matchPosition": 8
+        },
+        {
+          "seed": 23,
+          "matchPosition": 4
+        },
+        {
+          "seed": 23,
+          "matchPosition": 5
+        },
+        {
+          "seed": 23,
+          "matchPosition": 6
+        },
+        {
+          "seed": 23,
+          "matchPosition": 7
+        },
+        {
+          "seed": 23,
+          "matchPosition": 8
+        },
+        {
+          "seed": 24,
+          "matchPosition": 8
+        }
+      ],
+      "artifact": "current-gambling-mixed-rolls-no-add.json",
+      "artifact_sha256": "45a5e5a9025578ad5b0ac913aa3f634b6ca382581021b746452318ef4b7fa2ff"
+    },
+    {
+      "control": "one-card",
+      "expected_failures": [
+        {
+          "seed": 1,
+          "matchPosition": 1
+        },
+        {
+          "seed": 1,
+          "matchPosition": 2
+        },
+        {
+          "seed": 1,
+          "matchPosition": 3
+        },
+        {
+          "seed": 1,
+          "matchPosition": 4
+        },
+        {
+          "seed": 1,
+          "matchPosition": 5
+        },
+        {
+          "seed": 1,
+          "matchPosition": 6
+        },
+        {
+          "seed": 1,
+          "matchPosition": 7
+        },
+        {
+          "seed": 1,
+          "matchPosition": 8
+        },
+        {
+          "seed": 2,
+          "matchPosition": 1
+        },
+        {
+          "seed": 2,
+          "matchPosition": 2
+        },
+        {
+          "seed": 2,
+          "matchPosition": 3
+        },
+        {
+          "seed": 2,
+          "matchPosition": 4
+        },
+        {
+          "seed": 2,
+          "matchPosition": 5
+        },
+        {
+          "seed": 2,
+          "matchPosition": 6
+        },
+        {
+          "seed": 2,
+          "matchPosition": 7
+        },
+        {
+          "seed": 2,
+          "matchPosition": 8
+        },
+        {
+          "seed": 3,
+          "matchPosition": 1
+        },
+        {
+          "seed": 3,
+          "matchPosition": 2
+        },
+        {
+          "seed": 3,
+          "matchPosition": 3
+        },
+        {
+          "seed": 3,
+          "matchPosition": 4
+        },
+        {
+          "seed": 3,
+          "matchPosition": 5
+        },
+        {
+          "seed": 3,
+          "matchPosition": 6
+        },
+        {
+          "seed": 3,
+          "matchPosition": 7
+        },
+        {
+          "seed": 3,
+          "matchPosition": 8
+        },
+        {
+          "seed": 5,
+          "matchPosition": 1
+        },
+        {
+          "seed": 5,
+          "matchPosition": 2
+        },
+        {
+          "seed": 5,
+          "matchPosition": 3
+        },
+        {
+          "seed": 5,
+          "matchPosition": 4
+        },
+        {
+          "seed": 5,
+          "matchPosition": 5
+        },
+        {
+          "seed": 5,
+          "matchPosition": 6
+        },
+        {
+          "seed": 5,
+          "matchPosition": 7
+        },
+        {
+          "seed": 5,
+          "matchPosition": 8
+        },
+        {
+          "seed": 6,
+          "matchPosition": 1
+        },
+        {
+          "seed": 6,
+          "matchPosition": 2
+        },
+        {
+          "seed": 6,
+          "matchPosition": 3
+        },
+        {
+          "seed": 6,
+          "matchPosition": 4
+        },
+        {
+          "seed": 6,
+          "matchPosition": 5
+        },
+        {
+          "seed": 6,
+          "matchPosition": 6
+        },
+        {
+          "seed": 6,
+          "matchPosition": 7
+        },
+        {
+          "seed": 6,
+          "matchPosition": 8
+        },
+        {
+          "seed": 7,
+          "matchPosition": 1
+        },
+        {
+          "seed": 7,
+          "matchPosition": 2
+        },
+        {
+          "seed": 7,
+          "matchPosition": 3
+        },
+        {
+          "seed": 7,
+          "matchPosition": 4
+        },
+        {
+          "seed": 7,
+          "matchPosition": 5
+        },
+        {
+          "seed": 7,
+          "matchPosition": 6
+        },
+        {
+          "seed": 7,
+          "matchPosition": 7
+        },
+        {
+          "seed": 7,
+          "matchPosition": 8
+        },
+        {
+          "seed": 9,
+          "matchPosition": 1
+        },
+        {
+          "seed": 9,
+          "matchPosition": 2
+        },
+        {
+          "seed": 9,
+          "matchPosition": 3
+        },
+        {
+          "seed": 9,
+          "matchPosition": 4
+        },
+        {
+          "seed": 9,
+          "matchPosition": 5
+        },
+        {
+          "seed": 9,
+          "matchPosition": 6
+        },
+        {
+          "seed": 9,
+          "matchPosition": 7
+        },
+        {
+          "seed": 9,
+          "matchPosition": 8
+        },
+        {
+          "seed": 10,
+          "matchPosition": 1
+        },
+        {
+          "seed": 10,
+          "matchPosition": 2
+        },
+        {
+          "seed": 10,
+          "matchPosition": 3
+        },
+        {
+          "seed": 10,
+          "matchPosition": 4
+        },
+        {
+          "seed": 10,
+          "matchPosition": 5
+        },
+        {
+          "seed": 10,
+          "matchPosition": 6
+        },
+        {
+          "seed": 10,
+          "matchPosition": 7
+        },
+        {
+          "seed": 10,
+          "matchPosition": 8
+        },
+        {
+          "seed": 11,
+          "matchPosition": 1
+        },
+        {
+          "seed": 11,
+          "matchPosition": 2
+        },
+        {
+          "seed": 11,
+          "matchPosition": 3
+        },
+        {
+          "seed": 11,
+          "matchPosition": 4
+        },
+        {
+          "seed": 11,
+          "matchPosition": 5
+        },
+        {
+          "seed": 11,
+          "matchPosition": 6
+        },
+        {
+          "seed": 11,
+          "matchPosition": 7
+        },
+        {
+          "seed": 11,
+          "matchPosition": 8
+        },
+        {
+          "seed": 12,
+          "matchPosition": 1
+        },
+        {
+          "seed": 12,
+          "matchPosition": 2
+        },
+        {
+          "seed": 12,
+          "matchPosition": 3
+        },
+        {
+          "seed": 12,
+          "matchPosition": 4
+        },
+        {
+          "seed": 12,
+          "matchPosition": 5
+        },
+        {
+          "seed": 12,
+          "matchPosition": 6
+        },
+        {
+          "seed": 12,
+          "matchPosition": 7
+        },
+        {
+          "seed": 12,
+          "matchPosition": 8
+        },
+        {
+          "seed": 14,
+          "matchPosition": 1
+        },
+        {
+          "seed": 14,
+          "matchPosition": 2
+        },
+        {
+          "seed": 14,
+          "matchPosition": 3
+        },
+        {
+          "seed": 14,
+          "matchPosition": 4
+        },
+        {
+          "seed": 14,
+          "matchPosition": 5
+        },
+        {
+          "seed": 14,
+          "matchPosition": 6
+        },
+        {
+          "seed": 14,
+          "matchPosition": 7
+        },
+        {
+          "seed": 14,
+          "matchPosition": 8
+        },
+        {
+          "seed": 15,
+          "matchPosition": 1
+        },
+        {
+          "seed": 15,
+          "matchPosition": 2
+        },
+        {
+          "seed": 15,
+          "matchPosition": 3
+        },
+        {
+          "seed": 15,
+          "matchPosition": 4
+        },
+        {
+          "seed": 15,
+          "matchPosition": 5
+        },
+        {
+          "seed": 15,
+          "matchPosition": 6
+        },
+        {
+          "seed": 15,
+          "matchPosition": 7
+        },
+        {
+          "seed": 15,
+          "matchPosition": 8
+        },
+        {
+          "seed": 16,
+          "matchPosition": 1
+        },
+        {
+          "seed": 16,
+          "matchPosition": 2
+        },
+        {
+          "seed": 16,
+          "matchPosition": 3
+        },
+        {
+          "seed": 16,
+          "matchPosition": 4
+        },
+        {
+          "seed": 16,
+          "matchPosition": 5
+        },
+        {
+          "seed": 16,
+          "matchPosition": 6
+        },
+        {
+          "seed": 16,
+          "matchPosition": 7
+        },
+        {
+          "seed": 16,
+          "matchPosition": 8
+        },
+        {
+          "seed": 18,
+          "matchPosition": 1
+        },
+        {
+          "seed": 18,
+          "matchPosition": 2
+        },
+        {
+          "seed": 18,
+          "matchPosition": 3
+        },
+        {
+          "seed": 18,
+          "matchPosition": 4
+        },
+        {
+          "seed": 18,
+          "matchPosition": 5
+        },
+        {
+          "seed": 18,
+          "matchPosition": 6
+        },
+        {
+          "seed": 18,
+          "matchPosition": 7
+        },
+        {
+          "seed": 18,
+          "matchPosition": 8
+        },
+        {
+          "seed": 19,
+          "matchPosition": 1
+        },
+        {
+          "seed": 19,
+          "matchPosition": 2
+        },
+        {
+          "seed": 19,
+          "matchPosition": 3
+        },
+        {
+          "seed": 19,
+          "matchPosition": 4
+        },
+        {
+          "seed": 19,
+          "matchPosition": 5
+        },
+        {
+          "seed": 19,
+          "matchPosition": 6
+        },
+        {
+          "seed": 19,
+          "matchPosition": 7
+        },
+        {
+          "seed": 19,
+          "matchPosition": 8
+        },
+        {
+          "seed": 20,
+          "matchPosition": 1
+        },
+        {
+          "seed": 20,
+          "matchPosition": 2
+        },
+        {
+          "seed": 20,
+          "matchPosition": 3
+        },
+        {
+          "seed": 20,
+          "matchPosition": 4
+        },
+        {
+          "seed": 20,
+          "matchPosition": 5
+        },
+        {
+          "seed": 20,
+          "matchPosition": 6
+        },
+        {
+          "seed": 20,
+          "matchPosition": 7
+        },
+        {
+          "seed": 20,
+          "matchPosition": 8
+        },
+        {
+          "seed": 22,
+          "matchPosition": 1
+        },
+        {
+          "seed": 22,
+          "matchPosition": 2
+        },
+        {
+          "seed": 22,
+          "matchPosition": 3
+        },
+        {
+          "seed": 22,
+          "matchPosition": 4
+        },
+        {
+          "seed": 22,
+          "matchPosition": 5
+        },
+        {
+          "seed": 22,
+          "matchPosition": 6
+        },
+        {
+          "seed": 22,
+          "matchPosition": 7
+        },
+        {
+          "seed": 22,
+          "matchPosition": 8
+        },
+        {
+          "seed": 23,
+          "matchPosition": 1
+        },
+        {
+          "seed": 23,
+          "matchPosition": 2
+        },
+        {
+          "seed": 23,
+          "matchPosition": 3
+        },
+        {
+          "seed": 23,
+          "matchPosition": 4
+        },
+        {
+          "seed": 23,
+          "matchPosition": 5
+        },
+        {
+          "seed": 23,
+          "matchPosition": 6
+        },
+        {
+          "seed": 23,
+          "matchPosition": 7
+        },
+        {
+          "seed": 23,
+          "matchPosition": 8
+        }
+      ],
+      "artifact": "current-gambling-mixed-rolls-one-card.json",
+      "artifact_sha256": "429540bf61f0454de05957091e4ebb6fa92fed8de5bffbbbf4d78617ced96791"
+    }
+  ]
+}

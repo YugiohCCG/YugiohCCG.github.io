@@ -1,0 +1,28 @@
+{
+  "scope": "Mock Effect/Card boundaries; canonical legacy chain registration/threshold and300ATK callback only. Not actual chaining, revival, once-per-chain enforcement or native Omega.",
+  "assertions": 18,
+  "dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_crawler_callbacks.py": "27cb7976cfe1ab1d1510a02c792cfe5862a6c9bb059c1d487a10ceb96dd7c41d",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_crawler_callbacks.lua": "ecc840b725add7314bbc037a2f52b9aedadd562f7eefd7f7d9eac7ce6711d0ca",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c213611313.lua": "fe145a5c230464a3606b94511335b995f80b83426d09ca48f01068e5e408b939",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Users\\hclar\\AppData\\Local\\Microsoft\\WinGet\\Packages\\DEVCOM.Lua_Microsoft.Winget.Source_8wekyb3d8bbwe\\bin\\lua.EXE": "72f5ea9275f816c421450fd81ba7d32fc42c0abca1d087d450db0bf644379fb8"
+  },
+  "runs": [
+    {
+      "control": null,
+      "stdout": "PASS 18 bounded Crawler assertions\n",
+      "stderr": ""
+    },
+    {
+      "control": "no-chain-flag",
+      "stdout": "",
+      "stderr": "lua: scripts/fresh_current_crawler_callbacks.lua:11: Legacy chain count flag\nstack traceback:\n\t[C]: in function 'assert'\n\tscripts/fresh_current_crawler_callbacks.lua:11: in local 'check'\n\tscripts/fresh_current_crawler_callbacks.lua:15: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "low-threshold",
+      "stdout": "",
+      "stderr": "lua: scripts/fresh_current_crawler_callbacks.lua:11: Exact Chain Link5 threshold\nstack traceback:\n\t[C]: in function 'assert'\n\tscripts/fresh_current_crawler_callbacks.lua:11: in local 'check'\n\tscripts/fresh_current_crawler_callbacks.lua:19: in main chunk\n\t[C]: in ?\n"
+    }
+  ]
+}

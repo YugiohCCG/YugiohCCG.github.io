@@ -83,7 +83,7 @@ function s.exop(e,tp,eg,ep,ev,re,r,rp)
 	if ct<=0 then return end
 	Duel.ConfirmDecktop(tp,ct)
 	local g=Duel.GetDecktopGroup(tp,ct)
-	local ft=math.min(2,Duel.GetLocationCount(tp,LOCATION_MZONE))
+	local ft=math.min(Duel.IsPlayerAffectedByEffect(tp,59822133) and 1 or 2,Duel.GetLocationCount(tp,LOCATION_MZONE))
 	local sg=g:Filter(s.spfilter,nil,e,tp)
 	if ft>0 and #sg>0 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 		if Duel.DisableShuffleCheck then
@@ -122,7 +122,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.negcon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetFlagEffect(tp,FLAG_ID)>=5
+	return Duel.GetFlagEffect(e:GetHandlerPlayer(),FLAG_ID)>=5
 end
 function s.prottg(e,c)
 	return c:IsControler(e:GetHandlerPlayer())

@@ -1,3 +1,1613 @@
+## 2026-10-10 — Gravinity Transfer Call placement/type/protection
+
+- GravinityTransferCall223505382 four native initialSet activation cases: actual DeckGravinitymonster to faceupSZONE, native recipient GetType confirms ContinuousTrap, actual neutral helper Destroy returns0 preserving recipient. Wrongset/Spell/full5SZONE occupancy exclude. Native MOVE and helper assertions verify type/protection; public query incremental flags were unsuitable for repeated identity assertion and replaced by stronger native checks before freeze.
+- Frozen current-gravinity-transfer-placement-batch.json4cases4controls detects missing Move/protection/set/type eligibility. No adapters or production changes. EndPhase protectionexpiry/actual Gravinity recipient all-listed-effects flag/sharedlimit/interruption/nativeOmega OPEN. Previous turn Advent oath compatibility; this turn new card placement evidence. Full711 goal active; next recipient flag/protectionexpiry batch. Confirmed repairs64,fullyaudited0.
+
+## 2026-10-10 — Advent activationnegation compatibility diagnostic
+
+- Native CL2 helper NegateActivation versus NegateEffect with two Set Advent copies and two eligible Deck targets. Unadapted current legacy SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH) keeps public-engine shared counter after activationnegation (retry assertion fails); effectnegation exclusion passes. No production change: this is public runtime compatibility, nativeOmega unresolved.
+- Explicit in-memory modern-oath probe translates only that countlimit to SetCountLimit(1,id,1). Both cases pass: activationnegation leaves both Decktargets and permits same-turn second-copy actual Handsearch; effectnegation leaves targets but prevents retry. Probe noNegate fails both cases, probe noAdd fails retry case. Frozen current-advent-cosmic-negation-batch.json diagnostic pins original/probe/control artifacts and source/install/dependencies.
+- Counts170conservativepartial/711,64confirmedrepairs,0full. Activationnegation is verified only with explicit public adapter, not production/nativeOmega certification. Prior turn empty-at-resolution; this turn distinguishes legacy-vs-modern oath behavior. Full goal active; move to next card, avoid spending time on engine compatibility.
+
+## 2026-10-10 — Advent search pool removed at resolution
+
+- Two native cases: ordinary Advent212055290 activation actually searches eligible Galaxy monster; opposing CL2 neutral helper actually banishes sole eligible Deck monster, then Advent resolves to GY without Handadd or unrelated Spell selection. No adapters/sourcechange.
+- Frozen current-advent-cosmic-interruption-batch.json2cases2controls detects missing normal search and removed eligibility filter (unrelated Spells enter choice pool in both cases). Initial expected filter-control failure set corrected to include reference case, reflecting broadened pool. Activationnegation/nativeOmega remain OPEN; search/eligibility/sharedlimit/reset/empty-at-resolution focused tested. Conservative170partial/711,64repairs,0full; full goal active. Previous turn sharedlimit/reset; this turn concrete interruption evidence. Next remaining card/activationnegation batch.
+
+## 2026-10-10 — Advent shared activation limit and next-turn reset
+
+- Two native cases start two Set Advent212055290 copies and two eligible Deck monsters. First actual search leaves one eligible Deck target and second copy Set, but second copy cannot activate same turn. Reset case progresses native EndPhase/opponentturn/nextownturn3, then second copy actually activates and searches remaining monster; both Spells finishGY.
+- Frozen current-advent-cosmic-limit-batch.json2cases2controls detects removed shared limit and missing search in both cases. No adapters/sourcechange. Initial fixture phase-response enum corrected before canonical freeze; no production defect. Advent activationnegation/interruption/nativeOmega OPEN. Conservative170partial/711,64confirmedrepairs,0full remains; identical sourcehash counter excludes Advent while individual evidence pins it. Full711 goal active. Previous turn search/Hauntzones; this turn sharedlimit/reset evidence. Next compact effect/card batch.
+
+## 2026-10-10 — Haunt Set space and Advent search
+
+- Haunt native selfSet with one free SpellTrap zone succeeds; five occupied zones preserve HauntGY and all occupants. Frozen current-ghostrick-haunt-set-space-batch.json2cases1control verifies successful Set and full-zone exclusion, no adapters/sourcechange.
+- Advent of Cosmic Beings212055290 five native initialSet Spell activation cases: actual Deck Level4 Galaxy race0x80000000 or CelestialWarrior race0x40000000 Handsearch; wrongrace/Level5/nativeCANNOT_TO_HAND exclude. Frozen current-advent-cosmic-search-batch.json5cases3controls verifies add/race/level eligibility. Printed currentDB text inspected. No adapters/production changes; activationlimit/interruption/nativeOmega OPEN.
+- Conservative progress counter remains170partial because identical-script hashes are excluded from identity assignment; Advent has individually pinned new evidence regardless. Confirmed repairs64,fullyaudited0; full711 goal active. Previous turn Haunt redirects; this turn new zone-capacity and search evidence. Next Advent limit/interruption or remaining card batch.
+
+## 2026-10-10 — Ghostrick Haunt leave-field redirect routes
+
+- Three native cases selfSet Haunt from GY through real Level1Ghostrick Hand chain, then neutral native Destroy/SendtoHand/SendtoDeck action. All routes actually banish recovered Haunt; assertions exclude source remaining in SZONE/GY/Hand/Deck. No adapters or production changes.
+- Frozen current-ghostrick-haunt-redirect-batch.json3cases2controls detects missing selfSet and redirect on every route. Progress170focusedpartial/711,64confirmedrepairs,0fullyaudited. Haunt destruction/Hand/Deck redirect routes now verified; redirect reset/fullzones/other interruption/nativeOmega still OPEN. Full711 goal active. Previous turn verified resolution recheck/once-per-turn; this turn broadens real leave-field evidence.
+
+## 2026-10-10 — Ghostrick Haunt resolution interruption and repeat limit
+
+- Two native cases: uninterrupted Haunt flips own neutral monster facedown and optionally returns opposing neutral monster to ownerHand; actual opposing CL2 effect destroys sole supporting faceup Ghostrick Spell, so Haunt performs neither action at resolution. Positive reference also confirms Haunt effect unavailable again same turn while valid supporting Ghostrick and position target remain.
+- Frozen current-ghostrick-haunt-interruption-batch.json2cases3controls detects removed resolution recheck, missing return, and removed once-per-turn limit. No adapters/source edits. Progress170focusedpartial/711,64confirmedrepairs,0fullyaudited. Haunt resolution condition and same-turn limit now focused tested; limit reset/other interruption routes/nativeOmega OPEN. Repair64 remains pinned by existing suites. Full711 goal active; next remaining-effect/card batch.
+
+## 2026-10-10 — Repair64 Ghostrick Haunt delayed Graveyard trigger
+
+- Added e2:SetProperty(EFFECT_FLAG_DELAY) to source and installed c241540236.lua after EVENT_CHAINING registration. Original exact-byte source/install and five-case failing baseline/candidate reproduction preserved in haunt-before-delay-fix. Native Level1Ghostrick Hand activation now offers optional GYselfSet after resolution; subsequent actual destruction banishes recovered Haunt.
+- Frozen current-ghostrick-haunt-self-set-batch.json5cases4controls (noSet/noRedirect/noDelay/ignoreLevel). Original behavior reproduced by noDelay. Current position-return5cases3controls regression also frozen on repaired source. No adapters. Decline/wrongset/level2/fieldactivation exclusions pass.
+- Broad refresh: all711 syntax pass, source/install mismatch0, stale syntax/load0. Selected77 initialization51pass/26known legacyAPI compatibility failures; Ohmen38baseline/28runs pass. Fusion/discard/simultaneous inventories refreshed. Ledger64 CURRENT_EVIDENCE_VERIFIED SHA3405242b801262a381e2f051be7db778f96e1ff070a82bcb63d2376cb4eb7548. Progress170partial/711,64confirmedrepairs,0fullyaudited. Interruption/other leavefieldroutes/limits/nativeOmega remain OPEN; publicDB91missingrows unchanged. No commit/push/deploy. Full711 goal active; next compact remaining-effect/card batch.
+
+## 2026-10-10 — Ghostrick Haunt missing-delay reproduction (repair pending)
+
+- Current production Haunt241540236 GY EVENT_CHAINING optional trigger lacks EFFECT_FLAG_DELAY: native own Level1Ghostrick Hand ignition creates real chain and recovers100LP, but Haunt never offers selfSet. Baseline positive fails, four exclusions (decline/wrongset/level2/fieldactivation) pass.
+- In-memory candidate adds e2:SetProperty(EFFECT_FLAG_DELAY) after e2:SetCode(EVENT_CHAINING). All5cases pass: actual native selfSet and subsequent native Destroy redirects recovered Haunt to banishment. No production edits yet. Frozen current-ghostrick-haunt-self-set-batch.json diagnostic pins source/install/dependencies/artifacts and expected original failure versus candidate pass. Diagnostic is NOT a verified production repair or nativeOmega certification.
+- NEXT apply minimal delay flag to source+installed with exact backups; convert candidate fixture into baseline and noSet/noRedirect/noDelay controls; run required broad refresh/ledger repair64 only after successful verification. Full711 goal active; counts remain170partial/63repairs/0full. Previous turn progress Haunt position; this turn evidence identifies concrete missing-delay defect.
+
+## 2026-10-10 — Ghostrick Haunt position/return
+
+- Ghostrick Haunt241540236 five native cases: actual own faceup monster flips facedownDefense or own facedown monster flips faceupDefense with another faceup Ghostrick Spell supporting eligibility; optional opponent monster returns to its ownerHand. Decline preserves opponent monster; wrongset and no faceup supporting Ghostrick exclude activation. Three mutation controls verify return/position/Ghostrick condition. No adapters, production unchanged.
+- Frozen current-ghostrick-haunt-position-batch.json pins current source/install/dependencies/artifacts. Progress170focusedpartial/711,63confirmedrepairs,0fullyaudited. Resolution interruption/GYselfSet/leavefieldredirect/turnlimits/nativeOmega remain OPEN. Previous turn verified Fog recovery; this turn adds Haunt evidence. Continue remaining Haunt effects or next card with compact batches; full goal active.
+
+## 2026-10-10 — Terrifying Fog recovery
+
+- Terrifying Fog of the Dark Swamp239935102: seven native cases verify actual source+otherGYcard banish cost and DarkSwampSpell GY/faceupbanishment Hand recovery. Wrongset/Trap/facedownbanishment/missingothercost/nativeCANNOT_TO_HAND exclude. Three mutation controls verify recovery/cost/set restriction; set control admits only the neutral target, avoiding incidental cost-card eligibility. No adapters or production changes.
+- Frozen current-dark-swamp-fog-recover-batch.json verifies source/install/dependency/artifact hashes. Progress169focusedpartial/711,63confirmedrepairs,0fullyaudited. Negation/Handactivation/interruption/sharedlimit/nativeOmega remain OPEN. User requests faster, token-efficient work: compact focused batches; broad checks only after production changes. Full711 goal remains active.
+
+## 2026-10-10 — Formation monster search
+
+- GalataxianFormation239127930 five native initialSet NormalSpell cases: actual Deck/GYGalactica monsterHandadd, wrongset/Spell/nativeCANNOT_TO_HAND exclude. Three controls verify add/set/type eligibility. No adapters/sourceunchanged. Initial noAdd mutation was invalidstatement insideconditional; corrected zero-return mutation before canonical freeze.
+- Frozen current-formation-monster-search-batch.json5cases3controls verifies source-install/dependency/artifact hashes. Progress168focusedpartial/63repairs/0full/full711active. SummontriggerLink/delayedBattleSS/interruption/countlimits/nativeOmegaOPEN. Prior turn verified new evidence. Next compactcardbatch; no broadrefresh needed without sourcechange.
+
+## 2026-10-10 — Brazier destruction trigger
+
+- Five native faceupsource cases: ownHand/opposingfield Nephthys card effectdestroyed =>optional targetopposingTrap actualdestroyGY. Wrongset/ordinarySendGY/decline no retaliation. Three controls verify destruction/setrestriction and printed anyplayerNephthys (own-only mutation failsopponentcase). No adapters/sourceunchanged.
+- Frozen current-brazier-destruction-trigger-batch.json5cases3controls verifies source/install/dependency/artifact hashes. Progress167focusedpartial/63repairs/0full/full711active; Braziercoverageexpanded. Battle/turncountlimits/immunity/interruption/nativeOmegaOPEN. Prior turn verified new effects. Next compactcardbatch; no broadrefresh without source changes.
+
+## 2026-10-10 — Brazier optional destruction/pair search
+
+- Brazier238276251 six native activation cases optionallydestroy ownHandcard then actual pairNephthyslow2/high8 Deck/GY/mixed Handsearch; destroyed lowNephthysvictim can supply missing GYlowsearch. Decline and invalidLevels3/7 skip destruction/search. Three controls verify destruction/add/levelrequirements. No adapters/productionunchanged.
+- Frozen current-brazier-destroy-search-batch.json6cases3controls verifies current source/install/dependency/artifact hashes. Progress167focusedpartial/63repairs/0full/full711active. Ownfieldvictim/destructiontrigger/redirect/interruption/countlimits/nativeOmegaOPEN. Prior turn verified new effects. Next compactcardbatch; no broadrefresh with unchanged source.
+
+## 2026-10-10 — Vylon Aid future LIGHT lock and expiry
+
+- Two native cases actual2monsterrevival then neutral HandSS probe: LIGHT eligible and actuallysummons same turn; nonLIGHT effect excluded same turn, becomeseligible next ownturn3 after EndPhase and actuallysummons. Three controls verify lock/expiry/LIGHT exemption. TARGET_CARDS8 constant only; no production changes.
+- Frozen current-vylon-aid-light-lock-batch.json2cases3controls verifies source-install/dependency/artifact hashes. Progress166focusedpartial/63repairs/0full/full711active; Vylonfuturelock nowfocusedtested. Interruptedrevival/Spirit/countlimits/nativeOmegaOPEN. Prior turn new verified evidence. Next compactcardbatch; no broadrefresh without sourcechanges.
+
+## 2026-10-10 — Vylon Aid two-LIGHT revival/negation
+
+- Five native cases: targetexact2 ownGYLIGHTeffectmonsters, actual SpecialSummonStep/Complete summons both and negates their continuous300ATK bonuses (400->100). Only1/nonLIGHT/onefreeMonsterzone/nativeCANNOT_SPECIAL_SUMMON excludeactivation. Three controls verify summons/negation/LIGHTeligibility. TARGET_CARDS8 constant only; source unchanged.
+- Frozen current-vylon-aid-revival-batch.json5cases3controls verifies current source/install/dependency/artifact hashes. Progress166focusedpartial/63repairs/0full/full711active; Vyloncoverageexpanded. FutureLIGHTlock/responseinterruption/Spirit/nativeOmegaOPEN. Prior turn verified new effects. Next compactcardbatch; broadrefresh unnecessary without production changes.
+
+## 2026-10-10 — Vylon Aid Equip search
+
+- VylonAid238274861 six native GYignition cases: source+VylonSynchro actually banished as costs, EquipSpell DeckHand. Wrongset/nonSynchro/nonEquip/noothercost/nativeCANNOT_TO_HAND exclude. Three controls verify search/cost/Synchrorequirement. No adapters/productionunchanged.
+- Frozen current-vylon-aid-equip-search-batch.json6cases3controls verifies current source/install/dependency/artifact hashes. Progress166focusedpartial/63repairs/0full/full711active. TwoLIGHTrevival/negation/LIGHTlock/interruption/limits/nativeOmegaOPEN. Prior turn verified new evidence. Next compact effects batch; no broadrefresh without production changes.
+
+## 2026-10-10 — Beginning and WereBrigade searches
+
+- Beginning234729347 five native faceupField ignition cases banishHandmonster as cost/searchDeckToProto monster. Spellcost/wrongset/Spelltarget/nativeCANNOT_TO_HAND exclude. Three controls verify add/cost/setrestriction. Token protection/creation/activation/interruption/limits/nativeOmegaOPEN.
+- WereBrigade238976759 five native HandFieldSpell activation cases optional DeckBrigade monster search; decline/wrongset/Spell/nativeCANNOT_TO_HAND noadd. Three controls verify add/optionalchoice/setrestriction. Xyzsummon/attachment/interruption/limits/nativeOmegaOPEN.
+- No adapters/productionunchanged. Frozen current-beginning-banish-search-batch.json/current-were-brigade-search-batch.json verify source-install/dependency/artifact hashes. Progress165focusedpartial/63repairs/0full/full711active. Prior turn verified two new effects. Next compactcardbatch; broadrefresh unnecessary without source change.
+
+## 2026-10-10 — Arck Celestial Key recovery trigger
+
+- Key228635967 five native cases neutral helper actually SpecialSummons Extra LIGHTRank6Xyz toownfield=>sourceGYHand recovery. Rank5/nonLIGHT/Synchro/opponent recipient excluded. Three controls verify add/rank/attribute conditions. Recipient neutral summon explicitly ignores procedures to isolate printed success trigger; actual recipient procedure/RUM branch not verified.
+- No adapters/sourceunchanged. Frozen current-arck-key-recovery-batch.json5cases3controls verifies source/install/dependency/artifact hashes. Progress163focusedpartial/63repairs/0full/full711active. RankUp/materialtransfer/properprocedure/DamageStep/interruption/countlimits/nativeOmegaOPEN. Prior turn new verified evidence. Next compact effects batch; no broadrefresh required without source change.
+
+## 2026-10-10 — Recollection Mine costs/summon/search/ATK
+
+- Mine231872299 six native faceupField ignition cases: actual GYcard banish/Handdiscard costs, DeckVir monster or neutral Papa identity summon, then neutral Kaboom identity DeckHand search. Native opponent1000ATK->500 only for ownVir summon; Papa leaves1000. Wrongset/missingGYcost/missingHandcost/missingKaboom excludes. Four controls verify add/summon/banishcost/ATK. No adapters; real recipient effects not loaded (explicit neutral identity fixtures).
+- Initial fieldseed used LOCATION_FZONE unsupported by public newCard entrypoint; corrected SZONEsequence5 before canonical verification. Source unchanged. Frozen current-mine-summon-search-batch.json6cases4controls verifies current source/install/dependencies/artifacts.
+- Progress162focusedpartial/63repairs/0full/full711active. Realrecipient behavior/fullzones/interruption/countlimits/activation/nativeOmegaOPEN. Prior turn yielded verified new effects. Next compactcardbatch; broadrefresh unnecessary with unchanged source.
+
+## 2026-10-10 — Divine Whirlwind immediate Set and next-Standby recovery
+
+- DivineWhirlwind233212369 four native canonical cases: own GYWindborne Spell immediatelySet1 facedown, or retain1/2 targetedcardsGY until next nativeStandby then actualHandadd; wrongset excluded. Three controls verify Set/add/delayedtiming (earlyadd failsbothdelayed). TARGET_CARDS8 constant only; source unchanged.
+- Two-card simultaneousSet probe reached nativeSZONE SetMOVE bothcards, then public wrapper EOF on SHUFFLE_SET_CARD31. Preserved failing fulltrace in divine-whirlwind-two-set-public-eof.json. This branch NOT verified; keepOPEN for protocol/nativeOmega investigation rather than production fix based on wrapper failure.
+- Frozen current-divine-whirlwind-recovery-batch.json4cases3controls verifies source/install/dependency/artifact hashes. Progress161focusedpartial/63repairs/0full/full711active. TwoSet/monster targets/threeDeckaddhistory/conditionalSS/interruption/nativeOmegaOPEN. Prior turn yielded verified new evidence and specific compatibilityfinding. Next compact effects batch, e.g. Recollection Mine costs/summon/search. Broadrefresh unnecessary without source change.
+
+## 2026-10-10 — Takama discard and different-Level search
+
+- Takama229996802 five native initialSet activation cases. Actual effect discards2 Handcards includingSpirit (effectreason/notcost asserted); native SelectSubGroup then searches2 DeckSpirits differentlevels, or1whenbothsamelevel. NoHandSpirit/oneHandcard/noDeckSpirit excludes activation. Three controls verify add/differentlevels/HandSpirit requirement. No adapters/productionunchanged.
+- Frozen current-takama-discard-search-batch.json verifies source-install/dependency/artifact hashes. Progress160focusedpartial/63repairs/0full/full711active. GYreturnprevention/interruption/countlimits/nativeOmegaOPEN. Prior turn verified new evidence. Next compact effects batch; broadrefresh unnecessary without source change.
+
+## 2026-10-10 — Howling Gale two-side bounce
+
+- Windborne Howling Gale231273040 four native cases actual own/opponent targetselection and respective ownerHand returns; bothfieldempty/no unearned summon at0Deckadds. Missing own/opponent or nativeCANNOT_TO_HAND own monster excludeactivation. Two controls verify return/own-targetrequirement (latter fails bothmissingown andblockedown).
+- Frozen current-howling-gale-bounce-batch.json verifies current source/install/dependency/artifact hashes. TARGET_CARDS8 legacy constant only; productionunchanged. Progress159focusedpartial/63repairs/0full/full711active. ThreeDeckaddhistory/conditionalSS/levelrestriction/interruption/nativeOmegaOPEN.
+- Prior turn verified new evidence. Next Takama No Hara search/levels or compact newcard effects; no broadrefresh needed with unchanged production.
+
+## 2026-10-10 — Galataxian banished Set and actual same-turn activation
+
+- Eight native cases Set1/3 own faceupbanished Galactica normalSpell/Trap/Quickplay, then actually activate one same turn and resolve neutralRecover100. Wrongset/facedown/opponent/monster exclude. Three controls verify Set/sameturnpermission/setrestriction.
+- Initial Quickplay fail was pinned legacy EFFECT_QP_ACT_IN_SET_TURN359 vs publiccore19; existing fresh_galataxian_battle_preparation_set.cjs already documents19 mapping. Explicit test-only mapping19 plus TARGET_CARDS8; no production changes. NativeOmega verification remainsOPEN.
+- Frozen current-galataxian-set-activate-batch.json8cases3controls verifies source/install/dependency/artifact hashes. Progress158partial/63repairs/0full/full711active; Galataxian coverageexpanded. Zonecapacity/selfexclusion/interruption/sharedlimitOPEN. Prior turn new verified effects. Next freshcardbatch; no broadrefresh needed with unchanged production.
+
+## 2026-10-10 — Galataxian Deck modes
+
+- Galataxian Battle Preparation210696007 five native GYignition cases. Actual source+other SpellTrap banishcost (nativeREASON_COST both asserted), DeckGalacticaSpell chosen Hand/GY destination. Wrongset/monster/noothercost excluded. Three controls verify add/send/bothcosts. No adapters/sourceunchanged.
+- Frozen current-galataxian-deck-modes-batch.json verifies source/install/dependency/artifact hashes. Progress158focusedpartial/63repairs/0full/full711active. BanishedSet/sameturnactivationpermission/sharedlimit/interruptions/nativeOmegaOPEN. Prior turn verified new evidence; next compact effects batch. No broadrefresh necessary with unchanged production.
+
+## 2026-10-10 — Booty optional search; Bau World take/banish
+
+- Booty222654570 six actual initialSet activation cases optional Decklevel4CrewalmonsterHandadd; decline/level5/wrongset/Spell/nativeCANNOT_TO_HAND noadd. Three controls verify add/optionalchoice/levelcap. No adapters. Placement/summon branch/sharedlimits/nativeOmegaOPEN.
+- BauWorld226950506 four native cases actual activation then sameTurn MainPhase ignition: DeckBaumonster add orbanish followedactual Handbanish. InitiallyemptyHand addthenbanishsamecard verified; wrongset excludes. Three controls verify add/mandatoryHandbanish/setrestriction. No adapters. LinkATK/lifetimeLinklock/turnwindow/interruption/limits/nativeOmegaOPEN.
+- Frozen current-crewal-booty-search-batch.json/current-bau-world-deck-modes-batch.json verify source-install/dependency/artifact hashes. Production unchanged. Progress157partial/63repairs/0full/full711active. Prior turn verified new effects. Next compact effects batch, broadrefresh unnecessary with unchanged source.
+
+## 2026-10-10 — Meeting recovery and Remembrance return
+
+- Meeting210366076 five cases native GYsourcebanishcost and targetZombie monster/CrewalSpell recoveryHand; wrongset/race, nativeCANNOT_TO_HAND and onlysource excluded. Two controls verify add/eligibility. No adapters. Initial eligibility mutation hit placementfilter; corrected to exact recoveryfilter before canonical validation. ContinuousTrap placement/interruption/limits/nativeOmegaOPEN.
+- Remembrance216620496 five cases native initial Set activation returns1/3 own faceupbanished Spell/Trap toGY; monster/facedown/opponent excluded. Two controls verify return/type condition. TARGET_CARDS8 constant only. Selfexclusion/banishtrigger/interruption/sharedlimit/nativeOmegaOPEN.
+- Frozen current-crewal-meeting-recover-batch.json/current-remembrance-banish-return-batch.json verify source-install/dependencies/artifact hashes. Production unchanged. Progress155focusedpartial/63repairs/0full/full711active. Prior turn verified new evidence. Next compact effects batch; no broadrefresh without production changes.
+
+## 2026-10-10 — Burning and Pillar self-Set trigger expansions
+
+- Burning239235967 four native cases: actual DiscardHand effect/cost discards trigger facedownSet; ordinary Hand/field SendGY do not. Actual intermediate GYmove asserted. Two controls verify Set/discard condition. Initial noSet mutation numeric statement produced invalidLua; corrected to valid no-op before canonical batch. Production unchanged.
+- Pillar235051716 five native cases: Hand/GY/field faceup banish by neutral Arckcestial effect triggers actual facedownSet. Wrongset reason source and costbanish excluded. Three controls verify Set/setrestriction/reason. Actual intermediate banishMOVE asserted.
+- No adapters for either trigger suite. Frozen current-burning-discard-set-batch.json/current-pillar-banish-set-batch.json verify current source/install/dependency/artifact hashes. Progress153partial/63repairs/0full; broader evidence on alreadycounted cards. Full711active; sourceeligibility/interruptions/countlimits/nativeOmegaOPEN. Prior turn new verified effects; next untouchedcard batches. No broadrefresh with unchanged production.
+
+## 2026-10-10 — Burning bounce/damage
+
+- Arckcestial Burning239235967 five cases. Native initial Set Trap activation targets1/2 opposing fieldmonsters, actual ownerHand returns and opponent500/1000DAMAGE. Target cap from own LIGHTSpellcaster SynchroGY or Xyzfield+GY. Wrongattribute/race/type exclude. Three controls verify return/damage/attribute restriction. TARGET_CARDS8 legacy constant only; production unchanged.
+- Initial fixture attempted Hand activation of Trap and wrong Xyz type8021; corrected to source metadata Set Trap and authoritative TYPE_XYZ800000 before canonical verification. Frozen current-burning-bounce-damage-batch.json verifies source-install parity and dependency/artifact hashes.
+- Progress153partial/63repairs/0full/full711active. Own-target/Extra destination, discardSet/interruptions/limits/nativeOmegaOPEN. Prior turn verified new evidence. Next compact effects batch; no broadrefresh needed without source changes.
+
+## 2026-10-10 — Pillar banished-card return
+
+- Pillar235051716 five cases actual ignition returns1/2 own faceupbanished Arckcestial monster/Spell cards toGY; wrongset/facedown/opponent excluded. Two failure controls verify return/set restriction. Test-only unavailable GetTargetsRelateToChain mapped to native chain target/relation query and TARGET_CARDS8. Production unchanged.
+- Frozen current-pillar-banish-return-batch.json verifies dependencies/artifacts/source-install parity. Progress152 focused partial/63repairs/0full/full711active. SelfSet/interruptions/limits/nativeOmegaOPEN. Prior turn verified new evidence. Next Arckcestial Burning bounce/damage or source trigger tests; broadrefresh unnecessary without source changes.
+
+## 2026-10-10 — Domestica Set/protection; Grayscale modes
+
+- Domestica259668626 four native cases HandGY effect/rule sends optionallySet facedown, actual subsequent neutral effectDestroy preserves protected Set source. FieldGY and decline exclude Set. Three controls verify Set/origin/protection. No adapters. HandTribute/recycletrigger/limits/nativeOmegaOPEN.
+- Grayscale259203522 five cases actual discard cost then native draw1 or targetedGYSpell/Trap Set; wrongset pools excluded. Native ownLIGHTFiend1000ATK unchanged/opposingnonLIGHTFiend1000->200. Three controls verify draw/Set/ATK. No adapters. Initial test selectedtwo after discardedeligibleSpell joinedGYpool; fixed response to selectone intended target before canonical tests. Production unchanged; bothavailablemodechoice/interruption/limits/nativeOmegaOPEN.
+- Frozen current-domestica-self-set-batch.json/current-grayscale-discard-modes-batch.json verify current source/install and dependency/artifact hashes. Progress151 focused partial/63repairs/0full; full711 active. Prior turn verified new effects. Next compact effects batch; broadrefresh unnecessary with unchanged production.
+
+## 2026-10-10 — Last Stand End Phase; Pyre recycling expansion
+
+- Last Stand249629457: five native EndPhase recycling cases1..3 own GY/faceupbanished cards; Brigade counts0/1/2. Exact actual DeckMOVE counts, native draw only when2Brigade returned. NonBrigade legal; own facedownbanished/opponentGY excluded. Three controls verify recycle/draw/threshold; no adapters.
+- Expulsion259820516 expanded beyond cost/Set: five cases GYsourcebanishcost, targetexact3 own banished Pyro/PyreSpells/mixed then native Deckreturn/draw1. Wrongrace/set and only2 exclude. Two controls verify shuffle/draw; TARGET_CARDS8 legacy constant only.
+- Frozen current-last-stand-end-recycle-batch.json and current-pyre-banish-recycle-batch.json verify source/install parity and dependencies/artifacts. Production unchanged. Progress149partial/63repaired/0full/full711active. LastStand negation and Pyre replacement/interruption/limits/nativeOmegaOPEN. Prior turn produced new verified evidence; next compact effects batch. No broadrefresh necessary without source changes.
+
+## 2026-10-10 — Failures AIP recycling and Yajna destruction/draw
+
+- Failures259883029: four native cases sourceGY banishcost/other AIPTrap recycleDeck/draw1; wrongset/Spell/only source excluded. Three controls verify shuffle/draw/set restriction. No adapters. Attachment/interruption/sharedlimit/nativeOmegaOPEN.
+- Yajna247755867: two cases destroy selected own Kali card from Hand/field and actual draw1. Native own field Kali ATK/DEF100->400; own wrongset and opponent Kali remain100. Three controls verify destruction/draw/boost. No adapters. GYSet/leavefieldbanish/interruption/limits/nativeOmegaOPEN.
+- Frozen current-failures-aip-recycle-batch.json and current-yajna-destroy-draw-batch.json verify dependencies/artifacts/current source-install parity. Production unchanged. Progress148 focused partial/63 repairs/0full; full711 active. Prior turn new verified evidence. Next compact unchecked effects, e.g. Last Stand End Phase recycling. No broadrefresh needed without production changes.
+
+## 2026-10-10 — Nautica optional search repair63
+
+- Printed Nautica Musicale259797813 activation search is optional; original script forced Deck/GY monster search. Native accept/decline reproduction failed both decline cases. Exact source/install byte backups and failing original reproduction saved in nautica-before-optional-search-fix.
+- Production and installed source now check eligible pool and ask SelectYesNo before search. Frozen current-nautica-optional-search-batch.json4cases2controls: bothlocations accept=>actualHand and decline=>retained origin; no-add fails accepts/mandatory oldguard-removal fails declines. No adapters. Fullcard/nativeOmega/chainfollowup/uniquenessOPEN.
+- Broad refresh completed: all711 syntax pass/sourceinstall parity; Ohmen38cases28runs pass; selected76 load50pass/26same missinglegacyAPIs. Specdrift0stales/0paritydiff; fusion/discard/simultaneous inventories refreshed. Ledger63 verified; SHA69331c06132104ded8d2721dcdb3955df35f109e3dc669ca3d1c98937330ad5f.
+- Progress146 focused partial/63repaired/0full; full711 active. Initial fixture attempted Hand continuous Trap activation; corrected to initially Set trap before reproducing/promoting repair. Next unchecked Failures AIP259883029 GYrecycle or compact new effects batch. Prior goal turn produced verified repair; no blocker.
+
+## 2026-10-10 — Pyre cost/Set and Hive Mind own recycle
+
+- Expulsion259820516: five cases native controlled Pyro sendGY cost (REASON_COST asserted), actual Pyre Spell Set from Deck/GY; wrongrace/wrongset/Trap exclude. Three controls verify cost/Set/race condition. Initial fixture used incorrect Pyro race4; corrected to authoritative constant128 before frozen batch. Production unchanged.
+- HiveMind259499577: three cases own GYmonster actually recycles Deck/draw1; Spell and opposing GYmonster without summonable ExXyz excluded. Three controls verify shuffle/draw/type condition. Opposing Xyz branch remains OPEN.
+- Both no adapters. Frozen current-pyre-cost-set-batch.json and current-hive-mind-own-recycle-batch.json verify dependencies/artifacts/source-install parity. Progress145 focused partial/62 repaired/0fullyaudited/full711active. Pyre recycling/replacement, interruptions, limits and nativeOmegaOPEN. Next compact effects batch. No broad refresh required without source changes.
+
+## 2026-10-10 — Chrono Force and Charmelia Beast triggers
+
+- Chrono Force259226793: three actual native Hand destination cases. Effect destruction draws1; ordinary effect SendGY and rule destruction do not draw. Two controls verify draw/reason condition. TARGET_PLAYER9/PARAM10 legacy constants only. Negation/optional destruction/Hand activation/limits remain OPEN.
+- Charmelia Beast259226799: four actual HandGY send cases by neutral Charmelia ignition. Source recovers toHand then actual draw0/1/2 equal faceup own Charmelia Ritual count; wrongset reason effect excluded. No adapters. Three controls verify recovery/draw/set condition. Protection/firstdestruction/eligibility/limits remain OPEN.
+- Frozen current-chrono-force-destroy-draw-batch.json and current-charmelia-beast-recover-batch.json verify current dependencies/artifacts/source-install bytes. Source unchanged. Progress143 focused partial/62 repairs/0full; full711 active/nativeOmegaOPEN.
+- Prior turn yielded new verified evidence. Next compact new effects batch; broadrefresh unnecessary without production changes.
+
+## 2026-10-10 — Manual and Rei-Tachi focused effects
+
+- Manual259273851: three native cases target1/3/5 opposing GYmonsters, banish and exact opponent draw, End Phase return all opposing faceup banished monsters including previously banished one. Opposing facedown monster/Spell and own monster remain banished. Three failure controls verify banish/draw/return. TARGET_CARDS8 compatibility constant; source unchanged.
+- Rei-Tachi246393365: three cases onfield ignition recycles1/2/3 own GYSpirits and draws1, continuous source remains field. Two failure controls verify recycle/draw. Explicit test-only missing GetTargetsRelateToChain substitution uses native target/relation query and TARGET_CARDS8. Production unchanged.
+- Frozen current-manual-eclipse-return-batch.json and current-rei-tachi-recycle-batch.json verify dependencies/artifacts/source-install byte parity. Progress141 focused partial/62 repaired/0 fully audited, full711 goal active. Eligibility/interruptions/limits, Rei uniqueness/Tribute additional attacks, and native Omega remain OPEN.
+- Next compact unchecked effects batch. No broad refresh needed; prior turn yielded verified new evidence.
+
+## 2026-10-10 — Tome and Encyclopedia native effect sequences
+
+- Tome259303191: three own/opposing/mixed field Spell/Trap cases. Actual banish excludes source, opponent draws exact banished count, End Phase returns opposing owned cards to GY while own cards remain banished. Three failure controls verify banish/draw/return; no adapters.
+- Encyclopedia259614765: three own/opposing/mixed effect monster cases. Native continuous ATK300 bonus disabled (400->100), opponent draws own faceup monster count0/1/2, End Phase reset restores400. Three controls verify disable/draw/expiry; no adapters.
+- Frozen current-tome-eclipse-field-batch.json and current-encyclopedia-eclipse-negate-batch.json pin current sources, DB, fixtures and engine dependencies. Installed bytes match. Production unchanged; eligibility, interruptions, immunity/redirects, count limits and native Omega remain OPEN.
+- Progress139 focused partial/62 repaired/0 full. Full711 goal active. Continue compact effects batches; previous turn yielded verified new evidence. No broad refresh needed for unchanged production.
+
+## 2026-10-10 — Shrine recycling; efficiency steering
+
+- User requested faster, token efficient progress. Prioritize compact new effect batches; park compatibility edge investigations.
+- Phantasm Spiral Shrine237917359: five cases recycle1..5 cards (Normal monsters, Spiral Spells and Traps), actual GY banish cost/Deck moves/draw1. Two failure controls fail all five cases. Frozen current-spiral-shrine-recycle-batch.json; source/install parity checked, production unchanged.
+- Public engine lacks GetTargetsRelateToChain. Explicit test-only substitution uses native chain targets filtered by relation, plus TARGET_CARDS8. Native Omega, Umi placement/protection, eligibility/interruptions/limits remain OPEN.
+- Progress137 focused partial/62 repaired/0 fully audited; full711 goal active. Next compact new-card batch; no broad refresh needed for unchanged production source.
+
+## 2026-10-10 — Arckcestial Descend Deck modes audit
+
+- Five production nativecases actualDeckmonster Handadd/GYsend; Level5/wrongset/Spell excluded. Native IsLevelBelow alreadyexcludesSpell, explicitMonster candidatehadnoeffect; nofixnecessary. Canonical current-descend-deck-batch.json5cases3controls noAddpositive/noSendpositive/ignoreLevelhighLevelfail. No adapters. Sourceunchanged.
+- Progress136partial/62repaired/0full/full711active. RestturnLightSpellcasterlock/GYrevival/discardSet/limits/nativeOmegaOPEN. NEXT freshbatchcards, no broadrefreshsourceunchanged.
+
+## 2026-10-10 — Shining Brigade summon focused audit
+
+- Six production nativecases ownemptyfield andopponentfieldbothallow actualLIGHTBrigade DeckSS toownfield/completion; ownfield/wrongset/Spell/nativeSINGLECANNOT_SPECIAL_SUMMON excludeactivation. No adapters. Frozen current-shining-brigade-summon-batch.json6cases3controls noSS2positivesfail/ignoreConditionownFieldfail/ignoreSetwrongSetfail.
+- Progress135partial/62repaired/0full; sourceunchanged/full711active. GYsearch/entireturnhistory/futureLIGHTlock/sharedlimit/nativeOmegaOPEN. NEXT freshcardbatch; optionalnativeGYsearch efficientifsharedfixture. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Dreadful Soul Drain primary bounce audit
+
+- Three production native initialMainPhase1 cases Handcount1/2/3; 1excludesactivation,2/3 actualdiscard2neutralSpells thenown/opposing seededmonsters returnrespectiveownerHands; fieldempty/extracostcardretained asserted. No adapters/sourceinstallparityverified. Frozen current-soul-drain-bounce-batch.json3cases1control noBouncefails2positives.
+- Progress134partial/62repaired/0full; sourceunchanged/full711active. LateMainPhase1 exclusion/responseblock/faceupGYdraw/nativeOmegaOPEN. NEXT otheruntouchedcards or quicktimingresponse fixture; no broadrefreshsourceunchanged.
+
+## 2026-10-10 — Wyvernal recycle focused audit
+
+- Four production nativecases actualGYsourcebanishcost then target/recycle1..4 Wyvernalmonsters. ActualMOVE GY->Deck countasserted despite shuffledcardspossiblydrawn subsequently; targetGYempty/sourcebanished/actualHanddrawcount0,1,1,2verified. Explicitlegacy CHAININFO_TARGET_CARDS8 adapter.
+- Frozen current-wyvernal-recycle-batch.json4cases2controls noShufflefailsall4/noDrawfailscounts2..4. Sourceunchanged. Progress133partial/62repaired/0full/full711active. Deckpairsearch-send/eligibility/interruptions/limits/nativeOmegaOPEN. NEXT newcards or nativepaircheckifquick; no broadrefreshsourceunchanged.
+
+## 2026-10-10 — Chunyin position focused audit
+
+- Five production nativecases own/opposing selectedneutralmonster actualfacedownDefense; wrongset/facedown/opponent NiuHaosupport excludesactivation. NeutralDeckSpellfillers ensure otherDeckbanishmode unavailable. No adapters. Frozen current-chunyin-position-batch.json5cases2controls noPosition2positivesfail/ignoreSetwrongSetfail. Correctpasscode229499914 (initial readtypo pathmissing, no mutation).
+- Progress132partial/62repaired/0full; sourceunchanged/full711active. Deckpairdifferentnames/pairedTreasuretrigger/limits/nativeOmegaOPEN. NEXT freshcardbatch or sharedSacredTreasurebanish triggers ifquick; no broadrefreshsourceunchanged.
+
+## 2026-10-10 — Cosmic Ocean discard/search focused audit
+
+- Eight production cases Aqua/Fish/SeaSerpent WATER Level4 actualDeck->Hand, actualdiscardcostneutralSpellHand->GY; wrongAttribute/wrongRace/Level5/noDiscard/nativeCANNOT_TO_HAND excluded. No adapters/sourceinstallparityverified. Frozen current-cosmic-ocean-search-batch.json8cases3controls noAdd3positivesfail/ignoreRacewrongRacefail/ignoreLevelhighLevelfail.
+- Progress131partial/62repaired/0full; sourceunchanged/full711active. Entireturnhistory/futureNormalSSlock/OATHsharedlimit/nativeOmegaOPEN. NEXT primarynewcards or reusableCosmicOceanhistorylock ifquick; no broadrefreshsourceunchanged.
+
+## 2026-10-10 — Huangjin primary modes focused audit
+
+- Six production nativecases actualopposingSpell destruction/ownGYoropponentGY cardbanish; wrongset/facedown/opponent NiuHao support excludesactivation. Bothmodes selectednative menu; actualdestinations/REASON_EFFECT confirmed. Selectionpool alsolegallycontains sourceSpell, fixturechoosesneutralopposingSpell. No adapters.
+- Frozen current-huangjin-activation-batch.json6cases3controls: noDestroypositivefails/noBanish2positivesfail/ignoreSetwrongsetfails. Progress130partial/62repaired/0full; sourceunchanged/full711active. Pairedbanishdraw/Necrovalley/limits/nativeOmegaOPEN.
+- NEXT Chunyin primarymodes or CosmicOcean search; preserveefficientnew-card progress, no broadrefreshsourceunchanged.
+
+## 2026-10-10 — Bojin primary modes focused audit
+
+- Five production nativecases actualmonsterdestruction and HandNiuHaoSS; wrongset/facedown/opponent support excludes activation. Neutral fixtures, sourcepreserved; opposing destroyedmonsteractualGY/REASON_EFFECT64, SSactualownfield/completion. No adapters. NoDestroy/noSS/ignoreSet controls eachfailrespective case. Frozen current-bojin-activation-batch.json5cases3controls.
+- Progress129partial/62repaired/0full; sourceunchanged/full711active. BanishpairedTreasuretrigger/activationlimits/nativeOmegaOPEN. Reviewed otherSacredTreasurefamily/sourceprimary clauses while selecting, notclaimedfullytested.
+- NEXT efficient familybatch primary modes Chunyin/Huangjin or CosmicOceansearch; prioritizenewcards/provenbugs. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Domestication reveal focused audit
+
+- Six production cases neutral listed-material Fusion Beast/WingedBeast actualreveal pairedwithDeckmonster thenFusionGY/materialremainsDeck. Native CONFIRM_CARDS includesboth. NegativeswrongRace/unlisted/materialSpell/nativeCANNOT_TO_GRAVE excluded. No adapters; neutral materialtable fixtureexplicit, fullproductionSpell. Source/installparityverified.
+- Frozen current-domestication-reveal-batch.json6cases3controls noSendfails2positives/ignoreRacewrongRacefails/ignoreMaterialunlistedfails. Progress128partial/62repaired/0full; sourceunchanged/full711active. PipWild specialmaterial/Handsendreplacement/limits/nativeOmegaOPEN.
+- NEXT freshbatchcards or quickDomesticationHandsendreplacement (effectnotcost), prioritizeconcretebugs. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Protogenesis outcomes focused audit
+
+- Four production native Hand/Deck ×normal/special-only ToProto monster cases actualSSnormal orbanishspecial, then actualEP LP loss400normal/200banish fromoriginal100ATK100DEF percontrolledmonster includingneutralally. No DAMAGEevent. No adapters. NoSS/noBanish branchcontrols fail2each/noLossfailsall4. Mutation initially invalid expression doend corrected to0 beforefrozen batch. current-protogenesis-outcomes-batch.json4cases3controls pinned.
+- Progress127partial/62repaired/0full; sourceunchanged, full711active. Interruption/future eligibility/countlimit/nativeOmegaOPEN. NEXT Domestication primaryeffect or batchfreshcards. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Phlogistic repair62 installed/validated
+
+- Exactbyte source/install backups phlogistic-before-actual-damage-fix verifiedequal before/after. Capture actual=Duel.Damage(...) and buff floor(actual/2), preserving intendeddamage calculation/optional FIRE Dragon check. Native2000LPcost→1000normal or500reduceddamage→500/250ATK gain passes. Canonical current-phlogistic-damage-batch.json2cases2controls oldformula reducedfails/noBoost bothfails. No adapters.
+- All711syntax/sourceinstallparity current; Ohmen38baseline28runs pass; selected75load49pass/26knownmissinglegacyAPIs; drift0stale; inventories refreshed. Ledger62verified SHA66855299e9cac250b4199e929d74812ff2ba1d0ef7139fb552fa5645e1164c84. Progress126partial/62repaired/0full, full711active. GYsetting/limits/nativeOmegaOPEN.
+- NEXT advance Protogenesis/Domestication or freshbatch primaryeffects; don'trepeatpassedPhlogisticdamageedges withoutnewconcern. No commit/push/deploy.
+
+## 2026-10-10 — Phlogistic actual-damage ATK bug confirmed
+
+- Batch source-review currentprinted/source Protogenesis246524183/Domestication259201342/Phlogistic219714894. Phlogistic printed halfdamageinflicted but sourceuses intendeddamage forbuff. Native neutral actual2000LPcost triggerssourceglobaltracking; actualdamage1000normal/500native FIELD CHANGE_DAMAGE halving, FIRE Dragon ATK expected600/350. Originalnormalpasses/reducedfailsactual600instead350.
+- Source-only candidate captures actual=Duel.Damage return and uses floor(actual/2); bothnativecasespass/noadapters. Frozen current-phlogistic-damage-batch.json2cases original1expectedfailure/candidateallpass. Productionunchanged, prior counts125partial61repaired/full0; full711active.
+- NEXT apply confirmed actual-damage fix source/install exactbytesbackup, canonical oldformula/noDamagecontrols, broadenroutinechecksonce andledgerrepair62. FurtherProto/ Domestication review notcomplete/nativepending. User efficiency request: prioritize thisprovenbug overextraunrelatededgecases.
+
+## 2026-10-10 — Longevity delayed phases verified
+
+- Two production native cases actual turn1 activation and turn3 normal Draw Phase draws3; requestBattlePhase leads toturn4 withnoBattlecommand (skipBattlePhase also noMP2). Menu to_bp remainsavailable, so validated actualtransition ratherthanmenu. Ownmorefield true/false controls conditional Hand->Deckbottom, uniquelycoded initialHand helper3 selected; actualbottomDeckslot0 identity andHandcount asserted. No adapters.
+- Frozen current-longevity-phases-batch.json2cases3controls: normaldraw/noSkipfailboth, noBottomfailsownMore. Progress125partial/61repaired/0full; sourceunchanged. Reset/shortDeck/negation/sharedlimit/nativeOmegaOPEN. Full711goalactive.
+- NEXT newcards batchsource comparison/nativeprimarybehavior; avoidexpandingpassed phaseedges withoutclearbug. Sourceunchanged no broadrefresh.
+
+## 2026-10-10 — Throne native pair summon focused audit
+
+- Seven production cases own/mixed/opponent-only banished Zombie matchingLevel pair actualsummon both toownfield withnativecompletion; negatives second differentLevel/wrongRace/facedown/onlyonefreeMainZone excluded. Explicit bounded public CHAININFO_TARGET_CARDS=8 legacyconstant adapter; no production edits.
+- Frozen current-throne-summon-batch.json7cases3controls: noSummonfails3positive, ignoreLevelfailsdifferentLevel, ignoreRacefailswrongRace. Runtime/DB/source/harness/artifacts pinned. Progress124partial/61repaired/0full; full711active. Leavefield bottomDeck redirect/targetinterruption/sharedactivationlimit/nativeOmegaOPEN.
+- NEXT Longevity nextDraw/battleSkip native phase fixture, or Throne bottomDeck redirect if quick reusablefixture; prioritizeconfirmedbugs/remainingcards over exhaustiveedge enumeration. Nemleria repair61 installed, Reborn parked.
+
+## 2026-10-10 — Killamity search native focused audit
+
+- Six production cases actual Spell activation revealHandmonster then native differentAttribute KillamityDeck->Hand. Negative sameAttribute/wrongSet/noReveal/revealSpell/native CANNOT_TO_HAND excluded. RevealedmonsterremainsHand, addedcardactualHand/notDeck, SpellGY asserted. No adapters; installedsourceparity verified.
+- Frozen current-killamity-search-batch.json6cases3controls: noAddpositivefails, ignoreAttribute sameAttributefails,ignoreSet wrongsetfails; deps/artifacts pinned. No production edit. Progress123partial/61repaired/0full; full711active. GY Rank12 material draw/countlimits/nativeOmegaOPEN.
+- NEXT advance Throne/Longevity or additional batch source-review candidates. Nemleria repair61 installed; Reborn parked. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Night Night Nemleria repair61 installed/validated
+
+- Exactbyte source/install backups output/fresh-ccg-september/nemleria-before-extra-eligibility-fix; both matched before/after. exfilter now requires c:IsAbleToExtra(), guarding initial activation and resolution selection. Hand/Deck Dreaming with native CANNOT_TO_DECK excluded; legal actualfaceupExtra plusNemleriaSpellSet preserved.
+- Converted eligibility suite canonical4cases2controls: old-filter fails2blocked, no-set fails2positives; allbaselinepass. Ledger row61 pins batch/deps/artifacts/source/install. Native Omega/fullcardOPEN. Prior diagnosis candidate report superseded by canonical current batch.
+- All711syntaxpass/sourceinstallparity; Ohmen38baseline28runs pass; selectedload74=48pass/26knownlegacy missingAPIs; drift0stales; fusion/discard/simultaneous inventories refreshed. Ledger61 current; progress122partial/61repaired/0full. LedgerSHA5085986c1387d5a626052e0113a0a74e7dd283eabb5a7896cc0a38106e82193f.
+- NEXT efficient batch advance source-review cards Throne/Longevity/Killamity or fresh candidates; focus concrete discrepancy native tests, avoid repeatingpassededge suites. Reborn candidate parked. No commit/push/deploy; full711goalactive.
+
+## 2026-10-10 — Night Night Nemleria Extra eligibility gap confirmed
+
+- New fresh_current_nemleria_eligibility harness/batch4native cases Dreaming70155677 neutral Pendulum fromHand/Deck ×native single CANNOT_TO_DECK. Production permitsactivation blocked2 despite impossible first step; unblocked2 actualfaceupExtra+actualNemleriaSpellset pass. Source-only exfilter IsAbleToExtra addition excludesblocked and preservespositive; all4pass. No adapters. Diagnostic original2expectedfailures/candidateallpass frozen current-nemleria-eligibility-batch.json. Production unchanged.
+- NEXT apply confirmed exfilter eligibility repair to source/install with exactbytes backup/parity; convert corrected script suite canonical with oldfilter/noSet controls, then normal broad source refresh/ledgerrepair61. Do notclaim repaired untilinstalled andvalidation done. Printed/source review evidence queuedthisboundary, nowreproduced.
+- Progress121partial/60repaired/0full before countsrefresh; full711goalactive. Reborn compatibility candidate remains parked.
+
+## 2026-10-10 — Efficiency change: five-card source review; Recollection native activation
+
+- Reviewed current DB printed effects against source/install for Throne216294702, Longevity259928966, Recollection234984156, NightNight259766646, Killamity244163204. Saved current-five-spell-source-review.json hashes/install parity/exactprint/notes; static review not full/native effect certification. NightNight exfilter lacks explicit Extra eligibility; test native send prohibition before any repair. Other reviewed clauses present, native scheduling/protection/material edges remainOPEN.
+- New Recollection production native6cases3controls: actual1000LP cost/500ATK gain; exact1000LP legal,999LP/wrongset/opponent/facedown excluded. No-boost/no-cost fail2positives;ignore-set failswrongset. Frozen current-recollection-activation-batch.json pins currentDB/source/runtime/harness. No adapters; protection/expiry/nativeOmegaOPEN. Production unchanged; repaired60/full0. Focused count expected121 after current progress refresh.
+- NEXT NightNight targeted Extra send eligibility test, then efficient batch advance other cards. Reborn destination candidate parked separately; do not repeat extensive passed edge suites without source/helper changes. Preserve full711goal.
+
+## 2026-10-10 — Stellaer Reborn late revival eligibility verified; next-card handoff
+
+- Two production-script native cases legal CL1 own Stellaer target, opposing actual CL2 fills last own Main Zone (actual SS helper from own GY) or registers native SINGLE CANNOT_SPECIAL_SUMMON on target. Target remains related/GY but not revived. Zone case actual five Main Zones and completed helper SS asserted. No adapters. No-response control failsboth.
+- Initial cross-player place fixture incorrectly used unshifted placement mask, corrected relative opponent mask16 and absolute controller0 before freeze. current-stellaer-reborn-revival-late-batch.json2cases1control frozen. Canonical coverage46cases25controls across10suites hashes/source/install match. Production unchanged120partial/60repaired/0full; full711active.
+- Destination candidate remains separate46passingcases11controls plus playerGY4case2control expectedfailure diagnostic. Do notpromote while public-core/native Omega playerGY behavior and Extra-player permission unresolved; confirmed production mismatch retained clearly. NEXT move to next untouched current-spec card to advance711 scope; retain Reborn OPEN, with all native Omega certification absent. Source unchanged so no broadrefreshneeded.
+
+## 2026-10-10 — Stellaer Reborn Normal Spell metadata correction/native setting verified
+
+- Authoritative current DB candidateCard(257549955) type2 (Normal Spell), not Trap. Prior narrative called it Trap incorrectly; actual existing runtime used correct unchanged type2 throughout, so prior case outcomes remain valid. Corrected canonical harness scope labels and coverage limitation. No production/DB edits. Historical Trap descriptions superseded by this note.
+- New native set-turn2cases2controls: actual Hand->set ownturn1, same-turn activation menu available only valid own Stellaer GY target; no opponent turn2 activation; actual ownturn3 set activation revives target, wrong-set stays GY/source set. No-summon failspositive; ignore-set failsnegative. Frozen batch and all8 prior canonical batches refreshed after scope label changes.
+- Canonical coverage44cases24controls across9suites, all runtime/source/install/artifact hashes current. Production unchanged120partial/60repaired/0full; full711active. Destination candidate46passingcases11controls plus playerGY diagnostic remains separate/unresolved.
+- NEXT late-zone/SS prohibition revival, then next card. Native Omega/playerGY/Extra-player compatibility needed before destination candidate promotion. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Stellaer Reborn revival relation/Necrovalley verified
+
+- Revival relation2cases2controls: native Trap CL1 target own Stellaer, opposing neutral actual CL2 sends target GY->Hand optionallyHand->GY. Both lose original relation, no actual SS; target stays actualHand/GY. Ignore-relation and no-response each failboth. No adapters.
+- Revival Necrovalley2cases2controls: full pinned c47355498 initially active excludes activation, actual CL2 moves Valley Hand->FZONE and protects still-related GY target at resolution/noSS. Ignore-Valley failsinitialactivation negative; no-response failsarrival. Nativeenginealso enforcesarrival protection. No adapters.
+- Both batches frozen hashes/artifacts/deps. Canonical coverage now42cases22controls across8suites; source/install parity verified. Production unchanged120partial/60repaired/0full; full711active. Candidate46passingcases11controls plus separate playerGY expected-failure diagnostic unchanged.
+- NEXT actual prior-turn Hand setting, late-zone/SS prohibition revival; then next card while destination candidate kept separate pending native Omega/playerGY/Extra-player permission. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Stellaer Reborn replacement Necrovalley verified
+
+- Six production-script cases full pinned c47355498 Necrovalley absent/present/departed ×controller0/1. Native ignition destroys Necrovalley first if departed, then threatened Stellaer. Active Valley blocks replacement/source remains GY/monster actual GY. Destroyed Valley actual GY before monster enables accepted replacement/source actually banished/monster survives. No adapters.
+- Initial fixture used invalid FZONE sequence0, corrected actual SZONE slot5 before validation. Frozen current-stellaer-reborn-replacement-necrovalley-batch.json6cases3controls. Ignore-both-guards/no-Valley each fail present cases; no-departure fails departed cases. Canonical coverage now38cases18controls, hashes/source/install match. Production unchanged120partial/60repaired/0full; full711active.
+- Source-only destination candidate46passingcases11controls; separate playerGY diagnostic unresolved. NEXT revival relation/Necrovalley and actual prior-turn setting, then move to next untested card with destination candidate retained separately until native Omega compatibility resolved. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Stellaer Reborn source banish permission verified
+
+- Eight production-script cases native FIELD CANNOT_REMOVE restriction targeted only Reborn in GY: none/card-target/PLAYER_TARGET own-player/opponent-player ×accept/decline. Own card/player restrictions deny replacement so threatened monster actually GY/source retained; opponent-only restriction leaves accepted replacement legal/source actually banished. No adapters, native effect destruction.
+- Frozen current-stellaer-reborn-banish-permission-batch.json8cases3controls. No-replacement fails none/opponent-player accepted; ignore-permission and no-restriction each fail card/own-player accepted. Canonical coverage now32cases15controls; all source/install/dependency/artifact hashes verified. Production unchanged120partial/60repaired/0full; full711active.
+- Candidate still46passingcases11controls plus separate player-GY compatibility diagnostic. NEXT replacement/revival Necrovalley, revival relation/prior-turn setting; player-specific Extra permission and native Omega destination compatibility remainOPEN. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Stellaer Reborn battle replacement verified
+
+- Six production-script cases actual neutral opponent turn2 attack2000 vs100 seeded Stellaer: ordinary/wrong-set/facedown defender ×accept/decline. Own eligible faceup and battle-flipped facedown Stellaer survives/source actually banished if accepted; wrong-set/decline actual GY with battle reason. Actual attack/BATTLE trace confirmed, attack-position defenders still take1900damage; no effect-destruction substitute/adapters.
+- Frozen current-stellaer-reborn-battle-batch.json6cases3controls. No-replacement and no-battle-reason each fail ordinary/facedown accepted; ignore-set fails wrong-set accepted. Canonical coverage now24cases12controls across revival/replacement/group/battle, hashes/source/install match. Production unchanged120partial/60repaired/0full; full711active.
+- Candidate still46passingcases11controls plus separate player-GY compatibility4cases2controls/1expected baseline failure. NEXT revival target relation/Necrovalley, replacement source CANNOT_REMOVE/Necrovalley, prior-turn setting; player-specific Extra permission/native Omega candidate resolution remainOPEN. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Stellaer Reborn simultaneous replacement verified
+
+- Eight new production-script native cases simultaneous effect destruction of two seeded monsters: both eligible, second wrong-set, second facedown, second opponent ×accept/decline. Accept banishes one Reborn source and protects all eligible monsters; ineligible second monster actually GY. Decline both actually GY/source retained. No adapters/production changes.
+- Frozen current-stellaer-reborn-group-batch.json8cases4controls. No-replacement fails all4accepted; ignore-set/ignore-faceup/ignore-controller each fail respective accepted negative. Controller mutation initially matched chkc revival branch only; corrected replaceAll before freeze. Canonical coverage now18cases9controls across revival/replacement/group, source/install/dependency/artifact hashes verified. Progress120partial/60repaired/0full; full711active.
+- Source-only destination candidate remains46passingcases11controls plus separate Grave permission4case2control expected-failure diagnostic. Native Omega/playerGY compatibility unresolved; production unchanged. NEXT battle replacement and player-specific Extra permission; consider moving audit to next card while Omega-only compatibility remains separately tracked. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Stellaer Reborn intrinsic destinations verified
+
+- Eight source-only cases ordinary/Pendulum/Pendulum with native single CANNOT_TO_DECK/Token ×accept/decline. Previous shared helper incorrectly protected unblocked Pendulum and Token; actual declines prove Pendulum goes faceup Extra, Token disappears, Deck-blocked Pendulum instead reaches GY. Candidate rejects Token and Pendulum with c:IsAbleToExtra(), preserving ordinary/blocked-Pendulum protection. No adapters; seeded neutral field fixtures, native effect destruction.
+- Shared candidate updated; all five prior passing batches refreshed38cases9controls; intrinsic batch8cases2controls verified. Remove-candidate fails unblocked Pendulum/Token accepted; ignore-extra-eligibility fails blocked-Pendulum accepted. Total passing candidate46cases11controls; separate Grave permission4case2control diagnostic retains1expected baseline failure. All pinned same current helper/source. Production unchanged/canonical10cases5controls,120partial/60repaired/0full; full711active.
+- Primary https://raw.githubusercontent.com/edo9300/ygopro-core/master/field.cpp lines385-392 confirms Pendulum GY-to-Extra requires native is_capable_send_to_extra; avoids blanket Pendulum rejection. NEXT battle/multiple-threat replacement and player-specific Extra permission (IsAbleToExtra current reasonplayer vs eventual owner), then resolve player-GY public-core/native Omega compatibility before promotion. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Stellaer Reborn Grave permission runtime difference
+
+- New source-only grave_permission_candidate harness/batch: first GY redirect then banish, matching PLAYER_TARGET CANNOT_TO_GRAVE on player0 with target(e,c,tp,reason) checks actual lab/player0/REASON_EFFECT, enabled/disabled ×accept/decline. Removed inherited lab CANNOT_REMOVE fixture after initial misleading double-block. Declined blocked monster actually reaches GY in pinned public core, despite current upstream card.cpp destination_redirect checking player Grave permission before selecting first GY redirect.
+- Frozen current-stellaer-reborn-grave-permission-candidate-batch.json4cases2controls, diagnostic/candidate:true. Baseline expected1failure blockedaccepted: candidate denies protection though native actual destination GY. Ignore-Grave-permission mutation all4pass actual runtime; ignore-priority bothacceptedfail. Not canonical coverage or green candidate increase. Existing38candidatecases9controls remain unchanged. Production unchanged120partial/60repaired/0full; full711active.
+- Primary current upstream https://raw.githubusercontent.com/edo9300/ygopro-core/master/card.cpp lines2200-2210 and field.cpp lines2981-2994. Do not infer current upstream equals pinned WASM or installed Omega. NEXT intrinsic Pendulum/token destination checks, battle/multiple-threat replacement; reconcile native Omega player-GY behavior before promoting helper. Canonical10/5 unchanged. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Stellaer Reborn all player restrictions/no-target verified
+
+- Sixsourceonlycases player1 Deckrestriction multiple(firstnonmatching/latermatching), no-target, onlynonmatching ×accept/decline. Previous IsPlayerAffectedByEffect iterator missedlatermatching, failedacceptedmultiple. Primary libduel.cpp confirms returnsoneeffect; GetPlayerEffect returnsallvarargs. Sharedhelper nowusesDuel.GetPlayerEffect(tp,code). Native runtime supportsAPI, all6pass actualdestinations/replacement; no-target prohibits and nonmatchingtarget permitsredirect.
+- First-effect-only mutation failsmultipleaccepted; ignore-no-target failsnoTargetaccepted. Frozen current-stellaer-reborn-multiple-permission-candidate-batch.json6cases2controls. Prior4candidatebatches refreshedsamehelper total38cases9controls pass (8banish+16HandDeck+4priority+4player+6multiple). Productionunchanged/canonical10/5;120partial/60repaired/0full; full711active.
+- Primary https://raw.githubusercontent.com/edo9300/ygopro-core/master/libduel.cpp lines3567-3596. NEXT candidate playerGYredirectpermission priority and intrinsic Pendulum/token sent-toGY boundary; multiple-threat replacement/battle. Beforeinstallvalidateall relevantdestinations and ensure no nativeOmega-onlyAPI assumption beyondpinnedrefs. GetPlayerEffect support provenpublicruntime, nativeOmega stillOPEN. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Stellaer Reborn correct redirect-player permission candidate verified
+
+- Shared helper Deck/GY checks now s.playercanreceive(c,redirecthandlerplayer,code): reject native cardrestriction then iterate Duel.IsPlayerAffectedByEffect(player,code); GetTarget callback(e,c,player,REASON_EFFECT) or missingcallback prohibits. Corrects4differingplayercases (redirectowner1 vsdestroyplayer0), actualdeclineddestinations preserved. Old-player-check control restores2acceptedfailures.
+- Frozen current-stellaer-reborn-player-permission-candidate-batch.json4cases1control. Allsharedcandidateexisting3suites refreshed:8banish+16HandDeck+4priority=28cases6controls, total32cases7controls. Old diagnosis saved against exactpriorhelper output/fresh-ccg-september/stellaer-reborn-before-player-permission-candidate.lua and re-frozen expected2failures. Productionunchanged/canonical10/5;120partial/60repaired/0full; full711active.
+- Primary upstream field.cpp is_player_can_send_to_deck iteratesallplayerrestrictions andtarget(e,c,player); is_player_can_send_to_grave target addsreason, no-target prohibits. https://raw.githubusercontent.com/edo9300/ygopro-core/master/field.cpp lines2981-3025. NEXT ensure Duel.IsPlayerAffectedByEffect returnsallapplicableeffects, with firstnonmatching/latermatchingtarget and no-target restrictions; validate playerGYpriority too. Beforeproduction need token/Pendulum intrinsicdestination/battle nuance; nativeOmegaOPEN. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Stellaer Reborn differing-player Deck permission gap confirmed
+
+- Fourcases sourceonlysharedcandidate. Own neutral destructionplayer0, opponent neutralredirectcontroller1 pushes threatenedmonsterDeck; native PLAYER_TARGET CANNOT_TO_DECK onplayer0 or1 targets labonly. Decline actualDeck whenplayer0blocked, actualGY whenplayer1blocked, proving redirectpermissionusescontroller1. Acceptedcandidate failsboth: consults currentreasonplayer0 c:IsAbleToDeck and chooseswrongreplacementoutcome. No productionedit.
+- Frozen current-stellaer-reborn-player-permission-diagnosis-batch.json4cases expected2acceptedfailures, pins sharedhelper and2officialplayerrestrictionreferences; excludedcanonical10/5. Production unchanged120partial/60repaired/0full; full711active.
+- NEXT replacecandidate Deck/GY eligibility with native cardrestriction+appropriate redirectcontrollerplayer-effect targetevaluation. Inspect primary field.cpp is_player_can_send_to_deck/grave, Duel.IsPlayerAffectedByEffect varargs and Effect.GetTarget callback signatures. Do notuse IsAbleToDeck(player) (ignoresarg), do notchange reasonplayer/globalcontext. Rerun28candidatecases+permission4 beforeproduction. Needfuturemulti-effect target/no-target coverage and playerGYearlypriority; nativeOmega/battleOPEN.
+
+## 2026-10-10 — Stellaer Reborn shared redirect candidate consolidated
+
+- Added scripts/stellaer_reborn_destination_candidate.lua source-only common s.gydestination: pendingGY/leavefield, static/function affectedredirectvalues, Hand explicitredirecthandlerplayer eligibility, Deck currentreasonplayer eligibility, banishCANNOT_REMOVE+IsPlayerCanRemove, firsteffectiveGY priority. Three harnesses nowappendexactsharedhelper insteaddivergentinline candidates.
+- All3batches refreshed/pinhelperhash: blockedbanish8cases2controls, HandDeck16cases2controls, competing4cases2controls=28cases6controls passsameimplementation. Regexreplacement newlineescape initiallyinvalidJS corrected beforeallruns. Productionunchanged/canonical10/5;120partial/60repaired/0full; full711active.
+- NEXT differingredirecthandlerplayer/currentreasonplayer permissions. Pinned EFFECT_CANNOT_TO_DECK references found c365213.lua,c4130270.lua,c72883039.lua,c75047173.lua; inspect PLAYER_TARGET examples tobuildnativeplayerrestriction. IsAbleToDeck/Grave APIs usecurrentreasonplayer (upstream), candidatecannotfullymirrorredirecthandlerplayer unlessmanualplayereffectcheck or alternativeverifiedAPI. Beforeproductioninstallresolve/prove thisboundary, alsoPendulum/tokensleavefielddestnuance/battle/nativeOmegaOPEN. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Stellaer Reborn competing redirect priority verified
+
+- Sourceonly4cases two actual EFFECT_TO_GRAVE_REDIRECT effects registerGYthenREMOVED or reverse, accept/decline. Declinedactualdestinations confirmfirstapplicableeffectwins: GYfirstactualGY, banishfirstactualREMOVED. Priorcandidate wronglydeniesGYfirstaccepted bycheckinglaterbanish. Refinedprioritycandidate returnsallow when firsteffectiveGY value has c:IsAbleToGrave(REASON_EFFECT), beforelater effects. All4passsourcebanished/protectedonlyGYfirstaccepted.
+- Remove-candidate failsbanishfirstaccepted; ignore-priority failsGYfirstaccepted. Frozen current-stellaer-reborn-competing-candidate-batch.json4cases2controls diagnostic/candidate:true, excludedcanonical10/5. Production unchanged120partial/60repaired/0full; full711active.
+- NEXT consolidate sourceonlycandidate from Hand/Deck candidate (legalchecks) plus priority-aware firsteffectiveGY. Competingcandidate derived fromblockedbanish predecessor, so doesNOTinclude Hand/Deck legality improvement. Verifyallthree suites after sharedcandidateconsolidation. Playerpermission/currentreasonplayer mismatch stillOPEN especiallyDeck/GY APIs lacking explicitplayer; avoidcosteligibility surrogate. NativeOmega/battle remainOPEN. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Stellaer Reborn Hand/Deck redirect legality candidate verified
+
+- Sourceonlycandidate16cases HAND/DECK ×static/functionvalue ×single CANNOT_TO_HAND/DECK blocked/unblocked ×accept/decline. Legalredirect destroys monster toactualHand/Deck; source staysGY. Blockedredirect accepted allowsreplacement/sourcebanished; declineactualmonsterGY. Handcheck c:IsAbleToHand(re:GetHandlerPlayer()); Deckcheck c:IsAbleToDeck(). Banishlegality logic frompriorcandidate retained.
+- Remove-candidate fails4unblockedaccepted; ignore-block fails4blockedaccepted. Frozen current-stellaer-reborn-hand-deck-candidate-batch.json16cases2controls diagnostic/candidate:true excludedcanonical10/5. Production unchanged120partial/60repaired/0full; full711active.
+- Primary libcard.cpp upstream IsAbleToHand acceptsplayer, IsAbleToDeck usescore.reason_player and ignoresplayerargs; https://raw.githubusercontent.com/edo9300/ygopro-core/master/libcard.cpp lines1465-1472. libduel.cpp no IsPlayerCanSendtoHand/Deck functions. NEXT differing redirecteffecthandlerplayer vs currentreasonplayer with player-only send restrictions; competing redirects (first effective GY vs laterbanish mustnotnaivelyrejectlater). Needverifiedgenerallegality/priority beforeinstall. NativeOmega/battle/otherrevivalOPEN. No broadrefreshsourceunchanged.
+
+## 2026-10-10 — Stellaer Reborn blocked banish candidate verified
+
+- Expanded valuecandidate to8cases static/function banish ×accept/decline ×native single EFFECT_CANNOT_REMOVE on threatenedmonster. Originalvaluecandidate wronglydenied2blockedaccepted cases; actual declinedblockeddestructiongoesGY proving redirectinapplicable. Sourceonlycandidate nowrequires banishflag AND not CANNOT_REMOVE AND Duel.IsPlayerCanRemove(redirecteffecthandlerplayer,c,REASON_EFFECT) toexclude. All8pass, preservevalidreplacementsourcebanishmentwhenmonsterbanishblocked.
+- Remove-candidate fails2unblockedaccepted; ignore-block fails2blockedaccepted. Frozen current-stellaer-reborn-blocked-redirect-candidate-batch.json8cases2controls, diagnostic/candidate:true excludedcanonical10/5. Production unchanged120partial/60repaired/0full; full711active.
+- Primary upstream card.cpp destination_redirect lines2200-2210 explicitlychecks eachredirectflag and applicabledestination/playerpermission; https://raw.githubusercontent.com/edo9300/ygopro-core/master/card.cpp. NEXT Hand/Deck redirects legality and competingredirectpriority; currentcandidate Hand/Deckflagsstillunconditionallyexclude, canoverrestrictblockedflags. Verifytheninstallonlycompletefilter. Alsoleavefielddest extra nuancePendulum/token notcovered; nativeOmega/battle remainOPEN. No broadrefreshneeded sourceunchanged.
+
+## 2026-10-10 — Stellaer Reborn redirect API/value candidate progress
+
+- Native diagnostic repfilter logs GetDestination16(GY), GetLeaveFieldDest0, IsHasEffect(EFFECT_TO_GRAVE_REDIRECT) returnsEffect withGetValue32(REMOVED). Thus candidate prior check missesglobalredirect. Source-only redirect-value candidate evaluates allaffectedredirecteffects via IsHasEffect varargs, staticvalue or callback(re,c,c:GetReason()), excludes HAND/DECK/REMOVED flags alongside originaldest/leavefieldchecks. Fourcases static/function banish ×accept/decline passspecnegative; remove-candidate fails2acceptcases.
+- Frozen current-stellaer-reborn-redirect-value-candidate-batch.json4cases1control, diagnostic/candidate:true, excluded canonical10/5. Production remains exact original;120partial/60repaired/0full; full711active. APIprobe artifact available current-stellaer-reborn-redirect-api-probe.json (notfrozen, messageincludesuserdataaddresses).
+- Primary upstream https://raw.githubusercontent.com/edo9300/ygopro-core/master/libcard.cpp GetDestination returns sendto_param.location, GetLeaveFieldDest callsleave_field_redirect. https://raw.githubusercontent.com/edo9300/ygopro-core/master/card.cpp destination_redirect evaluates EFFECT_TO_GRAVE_REDIRECT values withcard/reason then checkslegalrecipientdestination. Candidate not yetproduction-ready: mustaccount cannotbanish/Hand/Deck restrictions, effecthandlerplayer eligibility, competing redirectpriority, callbackreason. NEXT native blockedbanish fixture should show noactualredirect then replacement remainsallowed; current candidate likelyoverrestricts. Validate beforeinstall. NativeOmega/battle remainOPEN.
+
+## 2026-10-10 — Stellaer Reborn destination candidate rejected/restored
+
+- Pinned references c49514333.repfilter uses GetDestination()==GY plus GetLeaveFieldDest()==0; c59509952.recon GetDestination()==GY. Installed/source exact parity backed in stellaer-reborn-before-destination-fix. Spec redirectnegative firstfailsacceptedcase. Candidate production destination==GY alone didNOT preventreplacement underglobal EFFECT_TO_GRAVE_REDIRECT; source-only candidate addsGetLeaveFieldDest()==0 stillfailsacceptedcase. Both candidate/runtime observations mean pending destination access does not reflect this global redirect at replacement callback here.
+- Restored source/install exactbackup bytes; doNOTcount repair61. Kept source-only failed candidate with diagnostic:true: current-stellaer-reborn-destination-candidate-batch.json freezes2cases expectedacceptedfailure, pins2officialreferences/runtime/source. Deleted unverified canonicalredirect harness/batch; historical redirectdiagnosis remains. Canonicalrevival5/2 and replacement5/3 refreshed; coverage10/5. All711syntax/parity,Ohmen38/28,driftzero source/install/load/syntaxstale,ledger60/progress120partial/0full reverified. Selectedinit73=47/26knowncompat unchanged. Full711active.
+- NEXT inspect Card.IsHasEffect(EFFECT_TO_GRAVE_REDIRECT)/effect target-value handling and core pending redirect timing; verify redirect-aware filter via source-only candidate beforeinstall. Avoid naive IsAbleToGraveAsCost (cost restrictions differ). Printed sent-to-GY mismatch unresolved; nativeOmega/battle/otherrevival checksOPEN. No approved repair left installed.
+
+## 2026-10-10 — Stellaer Reborn sent-to-GY redirect mismatch reproduced
+
+- Diagnostic two cases neutral actualeffect destruction with native global EFFECT_TO_GRAVE_REDIRECT targetrange0xff/0xff valueLOCATION_REMOVED. Decline leads actualmonsterbanished, sourceGY proving redirectactive. Accept current source still banishessource/preservesmonster despite printed replacement requires monster destroyedand sentGY. Current repfilter lacks destinationcheck. Observedacceptedbehavior is not speccorrect proof.
+- No-redirectfixturecontrol failsdecline case (actualmonsterGY), acceptedcase unchanged. Frozen current-stellaer-reborn-redirect-diagnosis-batch.json2cases1control diagnostic:true excluded canonical10/5. Production unchanged120partial/60repaired/0full; full711active.
+- NEXT reproduce specnegative expectation sourceGY/monsterbanished regardlessaccept; repair repfilter with actualpendingdestination GY check using compatible Card.GetDestination API (first probe callback availability/value). Backup source/install beforefix; installparity then focusedrevival/replacement/redirect and broad syntax/Ohmen/selectedload/spec/inventories/ledger/progress refresh; new unique repair61. No pinned IsDestination(LOCATION_GRAVE) matches found in local refs, do not inventAPI. NativeOmega/battle/interruption remainOPEN.
+
+## 2026-10-10 — Stellaer Reborn actual effect destruction replacement verified
+
+- Five cases neutral ownmonster actual ignition destroys own/opposing target byREASON_EFFECT. Accepted ownfaceupStellaer survives and Reborn actuallybanished; decline,wrongset,facedown,opposingmonster destruction proceeds to actualGY with sourcekeptGY. No adapters.
+- No-replacement failpositive; ignore-set wrongset; ignore-faceup facedown. Initial ignore-set mutation hitrevivalfilteronly and wasno-op forreplacement; corrected replaceAll source setchecks thenverified expectedfailure. Frozen current-stellaer-reborn-replacement-batch.json5cases3controls; coverage10cases5controls source/install/runtime/artifacts verified. Production unchanged120partial/60repaired/0full; full711active.
+- Next actualbattle replacement, multiple simultaneous eligible monsters, banish-destination replacement printed sent-to-GY boundary; revival relation/Necrovalley/nativeOmega remainOPEN. No global refresh needed without source edit.
+
+## 2026-10-10 — A Stellaer Is Reborn257549955 revival targets verified
+
+- Five native cases initially-set Trap actually revives own neutral Stellaer monster GY->MZONE and actualSPSUMMONED; wrongset, Spell, opposingGYtarget, full5MainZones exclude activation. No adapters/ignored limits.
+- No-summon mutation failspositive; ignore-set failswrongset. Frozen current-stellaer-reborn-revival-batch.json5cases2controls; coverage source/install/runtime/artifact hashes verified. Production unchanged; progress120partial/60repaired/0full. Full711active.
+- Next GY destruction replacement actualeffect/battle, decline/faceDown/opponent/nonStellaer boundaries; printed sent-to-GY requirement needs checking against destination replacement (MacroCosmos/banish). Current repfilter only faceup/type/set/controller/reason, no explicit eventualGYcheck. Revival relation/Necrovalley/native setting/nativeOmega remainOPEN. No broad refresh needed without source edit.
+
+## 2026-10-10 — Pot Fortune prior negated monster history verified
+
+- Actual ownmonsterignition CL1 then opposingCL2 successful NegateActivation/NegateEffect; no prior damage. Activation-negated prior effect permits Fortune and actual five-targetshuffle/draw2; effect-negated prior activation still excludes Fortune/staysHand. Explicit targetchaininfo8 adapter.
+- Ignore-history mutation failseffectnegationnegative; no-responsefixturefailsboth. Frozen current-fortune-negated-history-batch.json2cases2controls. Seven suites coverage17cases13controls source/install/runtime/artifacts verified. Production unchanged119partial/60repaired/0full; full711active/nativeOmegaOPEN.
+- Next uncovered Solemn Rebirth224049334 or A Stellaer Is Reborn257549955, or late shuffle-prevention eligibility PotFortune. No broad refresh needed without source edit.
+
+## 2026-10-10 — Pot Fortune negated activation/effect restriction verified
+
+- Two actual CL2 successful Duel.NegateActivation/Fortune or Duel.NegateEffect. Both prevent5targetshuffle/draw, sourceGY. Native activation negation releases EFFECT_FLAG_OATH monster activation lock, actual ownmonsterignition damage1000; effectnegation retains lock, ignitionexcluded/nodamage. Targetchaininfo8 adapter retained, no OATHadapter needed for this registered-effect flag.
+- No-lock mutation failseffectnegationcase; no-responsefixturefailsboth. Frozen current-fortune-negation-batch.json2cases2controls; coverage15cases11controls source/install/runtime/artifacts verified. Production unchanged119partial/60repaired/0full; full711active.
+- Next prior monster activation negation history boundary; nativeOmegaOPEN. No broad refresh required without source edit.
+
+## 2026-10-10 — Pot Fortune full Necrovalley initial/arrival verified
+
+- Two cases full pinned c47355498.lua initialfield prevents Fortune activation despite5ownGYSpelltargets; actual opposingCL2 moves fullNecrovalley Hand->FZONE, source resolvesGY but targetsall5stayGY/no partialshuffle/no draw. Explicit targetchaininfo8 adapter.
+- Ignore-valley mutation failsinitialprotection but arrival STILLpasses due independentnativechainhandling; do notclaim resolutionfilter necessity. No-responsefixturefailsarrival. Frozen current-fortune-necrovalley-batch.json2cases2controls includesofficialfixturehash. Coverage13cases9controls source/install/runtime/artifacts verified. Production unchanged119partial/60repaired/0full; full711active.
+- Next negated Fortune activation/effect and resulting monster-effect lock; prior monster activation negation/history boundary. NativeOmegaOPEN. No broad refresh needed without source edit.
+
+## 2026-10-10 — Pot Fortune five-target relation interruption verified
+
+- Two actual opposingCL2 cases send1of5 targetedGYSpells Hand, optionallyactualreturnGY before resolution. Source actually resolvesGY but all4remaining/5withreturned stayGY, no partialshuffle/no DRAW, departedHandtarget preserved. Explicittargetchaininfo8 adapter.
+- Ignore-relation mutation failsboth because shuffled/drew despitedepartedtarget; no-responsefixturefailsboth. Frozen current-fortune-relation-batch.json2cases2controls; coverage11cases7controls hashes/source/install verified. Production unchanged119partial/60repaired/0full; full711active.
+- Next Necrovalley activation/arrival, late recipient eligibility, negated prior activity/Fortune activation and nativeOmegaOPEN. No broad refresh needed without source edit.
+
+## 2026-10-10 — Pot Fortune future lock/reset verified
+
+- Three actual Fortune activation/resolution cases: neutral ownmonster ignition excluded afterward; neutral ownSpell remainsavailable and actualdamage1000 resolves; reset case excludedturn1, native EP/opponentturn2EP/ownturn3 monster ignition nowavailable and actualdamage1000 resolves. Source actualGY, no monster effect damage while locked. Explicit targetchaininfo8 adapter.
+- No-lock mutation failsmonster+reset; no-reset failsrenewal. Frozen current-fortune-lock-batch.json3cases2controls; coverage9cases5controls current source/install/runtime/artifacts verified. Production unchanged119partial/60repaired/0full. Full711active.
+- Next target departure/partial5 resolution, Necrovalley, negated prior activation/Fortune activation. NativeOmegaOPEN. No broad refresh needed without source edit.
+
+## 2026-10-10 — Pot Fortune prior activation history verified
+
+- Two actual prior effect activations each resolve damage1000: own monster ignition makes Fortune unavailable and staysHand; own Spell activation leaves Fortune available, then actual five-target shuffle/draw2 resolves. Prior Spell additionalGYtarget deliberately not selected; five named neutralSpelltargets chosen. Explicit targetchaininfo8 adapter.
+- Ignore-history source mutation failsmonsternegative. Frozen current-fortune-history-batch.json2cases1control; coverage6cases3controls current source/install/runtime/artifacts verified. Production unchanged119partial/60repaired/0full. Full711active.
+- Next future monster-effect lock/reset (native post-Fortune monster ignition excluded, Spell permitted; nextownturn3 effect resumes). Negated prior activity/target interruption/Necrovalley/nativeOmega remainOPEN. No global refresh required without production edit.
+
+## 2026-10-10 — Pot Fortune215885404 shuffle/draw target suite verified
+
+- Selected next uncovered effect from current DB/progress; printed5 own GY Spell/Trap shuffleall then draw2, no monster effects wholeturn. Four cases: actual Hand activation selects5(allSpell/mixed4Spell1Trap), all5 actually leaveGY into Deck/actualdrawnHand, DRAW.drawn length2 and actualHand2;4eligible and opponent-only5excluded. Neutral ownmonster remainsGY/opponent5Spells untouched. Explicit legacy targetchaininfo8 adapter.
+- No-draw fails2positives; four-target activation mutation failsfournegative. Frozen current-fortune-shuffle-batch.json4cases2controls; coverage hashes/source/install verified. Production unchanged; progress refreshed119partial/60repaired/0full. Full711active.
+- Next activity history/lock/reset using neutral monster/Spell actual activations; target interruption/partial5resolution/Necrovalley and nativeOmega OPEN. No broad refresh needed without source edit.
+
+## 2026-10-10 — Rebound chain-origin boundary verified
+
+- Two actual chains CL1 own/opponent monster ignition then opposing Counter negation CL2. Own-origin Hand Rebound works and originaldamage1000; opponent-origin set Rebound excluded despite legal opponentturn2 set window and opposing3 vsown1fieldcounts; opponent negates own effect and actualdamage0. Source own-origin GY/opponent-origin staysSZONE, actual CL2 selected, originalmonster survives. Explicit triggeringplayer adapter.
+- Ignore-origin mutation failsopponentnegative; no-negate failsownpositive. Frozen current-rebound-origin-batch.json2cases2controls; seven suites coverage18cases14controls source/install/runtime/artifacts verified. Production unchanged118partial/60repaired/0full. Full711active/nativeOmegaOPEN.
+- Next choose another uncovered roster card (query progress focused_evidence keys vs current DB names/text) or Rebound late-count change/chain interruption. No broad refresh needed without source edit.
+
+## 2026-10-10 — Rebound native Special/Flip Summon-negation verified
+
+- Special suite3 cases native Hand EFFECT_SPSUMMON_PROC (neutral no recipe), opposing Counter EVENT_SPSUMMON CATEGORY_DISABLE_SUMMON negates/sends summoning monster GY. Rebound Hand succeeds positive preserves actual SPSUMMONED/MZONE; equal/fewer exclude and no completion/GY. No-negate/no-summon-branch controls each failpositive. Frozen current-rebound-special-summon-batch.json3/2.
+- Flip suite3 cases initially facedown MZONE monster actual native SELECT_POS_CHANGE Flip Summon, opposing Counter EVENT_FLIP_SUMMON; Rebound positive preserves actual FLIPSUMMONED/MZONE, equal/fewer exclude leads actual GY/no completion. Pending Flip monster excluded from established field count: equal fixture own1remaining/opp1, fewerown2/opp1, positiveown0/opp2. Initial equal fixture incorrectly counted flipping monster, corrected after actual wrongly-offered result; no production edit. Same2 controls failpositive. Frozen current-rebound-flip-summon-batch.json3/2.
+- Sixsuites coverage16cases12controls current source/install/runtime/artifacts verified. Explicit triggering-player adapter loaded though summon branches do notconsult it. Production unchanged118partial/60repaired/0full. Full711active. Native Omega remainsOPEN; no claim complete. Next chain-origin boundary (opponent negate earlier opponent effect must not allow Rebound) or new uncovered card. No broad refresh needed without source edit.
+
+## 2026-10-10 — Rebound native Normal Summon-negation verified
+
+- Three cases actual native Normal Summon Hand monster, opposing Counter EVENT_SUMMON CATEGORY_DISABLE_SUMMON activation. Rebound Hand counters when opposing fieldcount greater, actual SUMMONED completion/sourceMZONE survives; equal/fewer exclude and actual opposing Duel.NegateSummon +SendtoGrave removes summoning monster without SUMMONED. Summoning monster not treated as established fieldcard in count fixture; equal own1/opp1, fewerown2/opp1, positiveown0/opp2.
+- No-negate and no-summon-branch controls each failpositive. Frozen current-rebound-normal-summon-batch.json3cases2controls. Coverage10cases8controls hashes/source/install verified. Explicit triggeringplayer adapter loaded but summon branch returns before chaininfo lookup. Production unchanged118partial/60repaired/0full; full711active.
+- Next Special/Flip Summon-negation branches via native summon procedures/Flip command. Native Omega stillOPEN. No global refresh required without production edit.
+
+## 2026-10-10 — Rebound opponent-turn Hand/set boundary verified
+
+- Two actual opponentturn2 chains: own neutral Quick CL1, opposing Counter negation CL2, own Rebound Hand excluded/or actual prior-ownturn1 set Rebound CL3 allowed. Opponent3fieldcards vsown1Handcase/2setcase guarantees strictcount. Native set command/source placement, actual Quick selection, opposing counterresponse, originaldamage0Handcase/1000setcase and source Hand/GY asserted. Explicit triggering-player adapter.
+- Any-turn-Hand mutation failsHandnegative; no-negate failssetpositive. Frozen current-rebound-opponent-turn-batch.json2cases2controls; coverage7cases6controls source/install/runtime/artifacts verified. Production unchanged118partial/60repaired/0full. Full711active.
+- Next summon-negation branch using actual native Normal/Special summon attempt and valid opposing Counter EVENT_SUMMON/EVENT_SPSUMMON CATEGORY_DISABLE_SUMMON calls Duel.NegateSummon; native Omega stillOPEN. No broad refresh needed without source edit.
+
+## 2026-10-10 — Rebound effect-disable/category boundary verified
+
+- Two native cases: actual opposing CL2 CATEGORY_DISABLE calls NegateEffect on own CL1; Rebound actual Hand CL3 negates it and originaldamage1000 resolves. Opposing unrelated CL2 damage200 without negate/disable category excludes Rebound; actual originaldamage1000+unrelated200 bothresolve, source staysHand. Explicit TRIGGERING_PLAYER=2 adapter retained.
+- No-negate failspositive; ignore-category failsunrelated. Frozen current-rebound-disable-batch.json2cases2controls. Coverage5cases4controls verifies source/install/runtime/artifact hashes. Production unchanged118partial/60repaired/0full. Full711active.
+- Next opponent-turn Hand exclusion/set activation or summon-negation branch. NativeOmega open. No broad refresh required without source edit.
+
+## 2026-10-10 — Retaliation Rebound259687425 own-turn Hand/count verified
+
+- Current printed opponent negates own activated effect/Summon with more cards, negateactivation; ownturn Hand activation. Actual own monster ignition CL1, opponent neutral Counter negation CL2, native Rebound Hand CL3. Own1/opponent2 fieldcards allows and original actualdamage1000 resolves; equal1/1 and fewer2/1 exclude Hand counter and original negation stopsdamage. Source actual Hand/GY outcomes, opponent response selected and original handler preserved asserted.
+- Explicit constant-only legacy CHAININFO_TRIGGERING_PLAYER=2 adapter. Threecases/twocontrols: no-negate failspositive; ignore-count failsequal/fewer. Frozen current-rebound-count-batch.json/current-rebound-coverage.json source/install/runtime/artifact verified. Production unchanged. Progress118 partial/60 repaired/0full.
+- Full711 goal active. Next opponentturn Hand exclusion/native set activation, effect-disable CATEGORY_DISABLE branch or summon-negation branch. Native Omega stillOPEN. No global refresh needed without production edit.
+
+## 2026-10-10 — Pot Gambling all6 native rolls/mixed Deck boundaries verified
+
+- Native seed sweep24 deterministically varied4word seeds (64bit multiples),8 initial match positions per8card Deck=192 baseline cases. No forcedroll/Lua dice adapter. Native rolls coverall1..6. Known top boundary `matchPosition>8-roll` independently agrees with actual revealed card names/count. Exactly1 declared Hand add for78 cases, noadd/LP6000 for114; source resolves GY, no DAMAGE. Explicit legacy TARGET_PARAM=10 adapter only.
+- No-add mutation fails78 matching cases; one-card excavation mutation failscases with native roll>1. Frozen current-gambling-mixed-rolls-batch.json192cases2controls including source/runtime/artifact hashes; coverage now199cases6controls across3suites source/install verified. Initial tiny seed sweep producedonlyroll1 and nohits; discarded as inadequate, replaced varied64bit seeds and8 positions.
+- Production unchanged this turn;117 partial/60 repaired/0 full; broad refresh from prior repair remains current. Full711 active. Native Omega/full card remainOPEN. Next uncovered Retaliation Rebound259687425 or other roster card. Keep distinction192 fixture cases versus full-card completion.
+
+## 2026-10-10 — Pot Gambling empty-at-resolution LP repair60 verified
+
+- First spec test reproduced emptyDeck LP8000!=6000 after actual CL2 sends8 Deck cards GY. Backed source/install in output/fresh-ccg-september/gambling-before-empty-resolution-fix and asserted before/after parity. c224774049.lua emptyDeck resolution branch now SetLP(current-2000) before return; no zero-card excavation. Installed same script. Diagnostic historical result superseded by current canonical suite.
+- Canonical interruption2 cases2 controls: blocked Deck-to-Hand/emptied Deck both noadd and LP6000; no-response failsboth; old-empty-return failsonlyemptied. Ordinary outcome5 cases2 controls refreshed; no-loss mutation now replaces both loss sites. Coverage7 cases4 controls current hashes verified. Explicit TARGET_PARAM=10 compatibility adapter; native Omega/all6roll/mixedDeck open.
+- Broad:711 syntaxpass and source/install parity; Ohmen38 baseline/28runs pass; current selected73 initialization47pass26knownlegacyAPI failures. Load runner intentionally exits1 for known compatibility failures; wrapper expected0 assertion was inappropriate, actual output/spec reconciler validate47/26 and zero loadstale. Spec drift12printed/25spec changes; public91missing, installed metadata/text matches. Fusion/discard/simultaneous inventories refreshed. Ledger60 repaired unique, SHA b93978f44ef8fdb9ee70a9094e19b0af93f296e84e69b3296710b7203085fdc7. Progress117 partial/60 repaired/0full.
+- Full711 goal active. Next native seed sweep/mixedDeck boundary PotGambling or uncovered Retaliation Rebound259687425. Production edit invalidated global source dependencies; required broad refresh completed. No commit/push/publish.
+
+## 2026-10-10 — Pot Gambling chained empty Deck mismatch reproduced
+
+- Actual opponent CL2 neutral monster Quick either registers native EFFECT_CANNOT_TO_HAND for own Deck or sends all8 own Deck cards GY. Source actual activation/name declaration/roll. Blocked add: no Hand card, still actual roll/excavation, LP6000. Emptied Deck:8 actual GY,0 Deck, native roll still occurs, no excavation/Hand add, LP8000 because source early-return. Printed text explicitly if no card added lose2000LP; empty-at-resolution early-return appears inconsistent and needs repair. Production unchanged this turn.
+- Diagnostic current-gambling-interruption-diagnosis-batch.json freezes2 observed cases/1 no-response fixture control (failsboth). Marked diagnostic:true, explicit TARGET_PARAM adapter, excluded canonical coverage5/2. Do not count observed empty outcome as spec-correct.117 partial/59 repaired/0 full; goal active.
+- NEXT: turn diagnosis into spec expected6000 empty test (will fail), back up/verify source/install parity, repair emptyDeck branch to lose2000 before return (avoid ConfirmDecktop0), install and rerun gambling baseline/interruption, broad checks + repair ledger integration for new unique repair60. Source c224774049.lua exact branch `if Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)==0 then return end`. Then refresh Ohmen/current selected init/spec drift/inventories/ledger/progress; handoff details general workflow earlier. Native Omega/all6roll/mixedDeck remain OPEN.
+
+## 2026-10-10 — Pot of Gambling224774049 native outcome tests verified
+
+- Current DB text declaration/d6/excavate equalroll/add1declared, else lose2000LP. Five cases native Hand activation/name declaration/TossDice: allmatch8card Deck adds exactly1; allmiss loses2000LP; short1card hit/miss revealonly1; emptyDeckactivationexcluded. Native die result1..6 and reveal count min(roll,Decksize), actual sourceGY, Hand and LPUPDATE6000/8000, no DAMAGE asserted. Explicit constant-only legacy CHAININFO_TARGET_PARAM=10 adapter.
+- No-add mutation fails2 hit cases; no-loss fails2 miss cases. Frozen current-gambling-outcomes-batch.json5 cases/2 controls; coverage verifies source/install/runtime/artifacts. Production unchanged. Progress refreshed117 focused partial/59 repaired/0 full.
+- Full711 active. Remaining all6 native die results/mixed Deck exactboundary, Deck emptied during chain, blocked add and native Omega. Next expand with varied native seeds and mixed top Deck while preserving actual rolls (do not silently force roll), or chained no-Hand-add/emptyDeck fixture. No broad refresh needed without source edit.
+
+## 2026-10-10 — Stellaer Pain valid CL3 Counter interruption verified
+
+- Two actual three-link chains: CL1 opposing monster ignition, CL2 Pain actual Counter activation, CL3 opposing neutral Counter Trap (type0x100004, ACTIVATE EVENT_CHAINING) either removes own supporting Stellaer Xyz to GY or successfully NegateActivation Pain. Late support removal preserves original negation and handler destruction; Pain activation negation allows actual original damage1000 and handler remains field. Actual CL3 response, support departure, counter GY, damage and destruction reasons asserted. No adapters.
+- No-response fixture control failsboth. Frozen current-stellaer-pain-interruption-batch.json2 cases/1 control. Five suites coverage16 cases/10 controls verifies source/install/runtime/artifact hashes. Production unchanged116 focused partial/59 repaired/0 full.
+- Full711 active. Remaining proper Xyz support and native Omega; full audit remains OPEN. Next uncovered Pot Gambling224774049 or Retaliation Rebound259687425, or proper support fixture. No broad refresh needed without production edit.
+
+## 2026-10-10 — Stellaer Pain departed handler and actual setting verified
+
+- Relation suite2 cases: actual opponent monster ignition cost self sends Hand, optionally actually SpecialSummons self back field. Counter still negates actual damage but handler remains Hand/returnedMZONE. Ignore-relation mutation destroysboth wrongly; no-negate damage control failsboth. Frozen current-stellaer-pain-relation-batch.json2 cases/2 controls. No adapters.
+- Native-set suite2 cases: source initially Hand, actual own turn1 set via native set action; actual opponent turn2 monster ignition/Hand Spell activation countered, damage0 and handler actual destruction reason asserted. No-negate control failsboth. Frozen current-stellaer-pain-native-set-batch.json2 cases/1 control.
+- Four suites coverage14 cases/9 controls reconcile source/install/runtime/artifacts. Production unchanged116 focused partial/59 repaired/0 full. Full711 active. Proper Xyz support/native Omega, valid Counter CL3 late support departure/negation interruption remain OPEN. Next CL3 neutral Counter fixture or new uncovered card; no global refresh needed without source edit.
+
+## 2026-10-10 — Stellaer Pain destruction-protected handlers verified
+
+- Two cases actual opponent monster ignition/Spell activation with native SINGLE EFFECT_INDESTRUCTABLE_EFFECT. Counter still negates actual damage; protected monster survives MZONE; protected Spell goes GY through negated activation rule without destruction reason. Source counter actually resolves GY. No adapters.
+- No-protection fixture control failsboth destination/destruction-reason assertions; no-negate source mutation failsboth damage assertions. Frozen current-stellaer-pain-protection-batch.json2 cases/2 controls; coverage10 cases/6 controls current source/install/runtime/artifact verified. Production unchanged116 partial/59 repaired/0 full.
+- Full711 active. Next handler leaves MZONE as actual activation cost (SendtoHand, optionally SpecialSummon return) to exercise handler relation guard; counter-speed CL3 interruption needs valid Counter fixture. Actual set/proper Xyz materials/native Omega remain OPEN. No global refresh required without production edit.
+
+## 2026-10-10 — Stellaer's Pain259214334 negation/support verified
+
+- Current printed text opponent activates card/effect while own Stellaer Xyz: negate activation, if successful destroy. Eight native baseline cases: actual opposing neutral monster ignition and Spell Hand activation negated (damage0), handler GY with actual destruction reason; wrong set, non-Xyz, facedown, opponent-only support, no support and own-effect excluded (actual damage1000). Initially seeded set Counter Trap and Xyz, no adapters/ignored limits.
+- Four verified controls: no-negate fails2 positives; ignore-set wrongSet; ignore-type notXyz; any-player ownEffect. Frozen current-stellaer-pain-negation-batch.json8/4 and coverage current source/install/runtime/artifact hashes. Production unchanged. Progress refreshed116 focused partial/59 repaired/0 full.
+- Full711 active. Stellaer Pain actual set/proper Xyz materials, handler departure/indestructibility/negation interruption and native Omega OPEN. Next handler departure or protection/late support suite; no broad source refresh required.
+
+## 2026-10-10 — Unbinding full Necrovalley activation/arrival verified
+
+- Four cases using full pinned c47355498.lua: initially field Necrovalley prevents Unbinding activation targeting own/opponent GY monster; actual opponent CL2 moves Necrovalley Hand->FZONE, selected own/opponent GY monster remains GY and never enters Deck. Response selection/field arrival/sourceGY/destination asserted. Explicit target-chaininfo adapter retained.
+- Ignore-valley mutation fails2 initial-protection cases, while2 arrival cases STILL PASS (native chain-negation independently protects; do not claim resolution-filter necessity). No-field-change fixture control fails2 arrival cases. Frozen current-unbinding-necrovalley-batch.json4 cases/2 controls includes official fixture hash. Coverage15 cases/6 controls verifies current source/install/runtime/artifacts. Production unchanged115 partial/59 repaired/0 full.
+- Full711 active. Unbinding native Omega and changed target eligibility remain OPEN; resolution filter necessity unproven though current combined arrival behavior proven. Next another uncovered card e.g. Stellaer Pain259214334 or Pot Gambling224774049, or Unbinding immunity/eligibility boundary. No global refresh required without production edit.
+
+## 2026-10-10 — Unbinding target relation/partial resolution verified
+
+- Four cases: actual opponent CL2 sends targeted own GY monster Hand, optionally actual Hand->GY return; select either single target or pair. Departed monster remains Hand/returned GY, never shuffled by old chain; second related monster still actually enters owner Deck in pair cases. Chained response selection, spell resolution and destination queries asserted. Explicit legacy target-chaininfo adapter retained.
+- Remove source IsRelateToEffect guard failsall4 (departed target wrongly shuffled including from Hand). No-response fixture control failsall4. Frozen current-unbinding-relation-batch.json4 cases/2 controls. Coverage11 cases/4 controls verified with current source/install/runtime/artifact hashes; production unchanged115 partial/59 repaired/0 full.
+- Full711 goal active; Unbinding Necrovalley activation/resolution and native Omega remain OPEN. Next Necrovalley suite using pinned c47355498.lua (Argalia fixtures demonstrate full field protection), or another uncovered card.
+
+## 2026-10-10 — Unbinding the Soul246900181 targets/shuffle verified
+
+- Printed current DB text: Target up to2 monsters in either GY; shuffle them into the Deck. Source native Hand activation with real selection and owner Deck queries passes7 cases: own1, opponent1, own2, split1each, choose1of2, Spell-only pool excluded, empty-monster pool excluded. Neutral Spell included in every GY fixture confirms target exclusion. Actual activated Spell GY verified.
+- Explicit constant-only legacy CHAININFO_TARGET_CARDS=8 adapter in all cases; production unchanged. No-shuffle mutation fails5 positive cases; any-type mutation failsall7 (Spell selectable or activation incorrectly available). Frozen current-unbinding-targets-batch.json7 cases/2 controls, current-unbinding-coverage.json hashes/source/install parity. Full auditOPEN: Necrovalley, changed eligibility/target relation at resolution, native Omega remain.
+- Conservative progress refresh115 focused partial/59 repaired/0 full. No production edit; no broad refresh required. Aqua stays23 cases/17 controls. Full711 active. Next Unbinding target interruption/Necrovalley or another uncovered card.
+
+## 2026-10-10 — Aqua actual opponent-turn restriction/reset verified
+
+- Native Hand set turn1, actual set Quick-Play activation from own response window on opponent turn2, source resolves GY. Opponent-controlled neutral ignition then asserts both IsCanBeSpecialSummoned and actual Duel.SpecialSummon return: opposing non-WATER Hand blocked; WATER Hand and non-WATER Grave allowed. Destination/origin queries verify outcomes. Reset case blocked turn2, progresses through End Phase and own turn3, then same card actually summons on opponent turn4.
+- Four raw cases/3 controls verified: no-lock fails blocked and reset cases; no-WATER exemption fails WATER case; no-reset fails renewal case. Frozen current-aqua-whirlpool-opponent-lock-batch.json. Eight suites reconcile23 scenarios/17 controls:21 raw plus2 explicitly OATH-adapted cases. Source/install parity and all dependencies/artifacts checked. Production unchanged;114 partial/59 repaired/0 full.
+- Proper Fusion support and native Omega including legacy OATH remain OPEN. Full711 active. Next another uncovered card (Stellaer Pain259214334, Unbinding Soul246900181, Pot Gambling224774049, Retaliation Rebound259687425), or proper-support Aqua fixture. No broad refresh needed without source change.
+
+## 2026-10-10 — Aqua set/opponent-turn activation verified
+
+- Native Hand set on own turn1; source remains SZONE and cannot activate same turn. On opponent turn2 eligible set Quick-Play is selected from native response window and actually resolves to GY. With only1 Fusion support it remains set, never activates, and reaches opponent idle. Ignore-count control fails insufficient-support case. No adapters/ignored count limits in this suite.
+- Frozen current-aqua-whirlpool-set-turn-batch.json2 cases/1 control. Current coverage19 cases/14 controls with hashes/source/install parity:17 raw cases and2 explicitly OATH-adapted cases. Production unchanged;114 partial/59 distinct repaired/0 full. Proper Fusion support and native Omega including legacy OATH remain OPEN. Opponent-turn restriction actual summon behavior not yet exercised in this new suite (existing own-turn restriction suite covers operation/reset).
+- Full711 goal active. Next extend opponent-turn restriction or audit another uncovered card; no global refresh required without production change.
+
+## 2026-10-10 — Aqua OATH adapted negation suite verified
+
+- Separately labelled modern OATH adapter suite: two actual chained negation cases pass. NegateActivation restores activation count and second copy actually activates; NegateEffect retains named limit. Remove-OATH flag control fails activation-negation case; per-copy SetCountLimit(1) control fails effect-negation case. Two controls verified. Production unchanged.
+- Frozen current-aqua-whirlpool-negation-adapted-batch.json with source/runtime/artifact hashes. Coverage now17 cases/13 controls:15 raw cases plus2 explicitly adapted cases. Native Omega legacy OATH behavior, opponent-turn set Quick-Play activation, and proper Fusion support remain OPEN.
+- Conservative counts unchanged114 focused partial/59 distinct repaired/0 full. Full711 goal active. Next opponent-turn set Aqua activation or another uncovered card; no broad refresh needed because production unchanged.
+
+## 2026-10-10 — Aqua activation/effect negation OATH compatibility diagnosis
+
+- Two native cases: actual CL2 NegateActivation should restore only-activate1 count (second copy can actually activate); NegateEffect leaves activation consumed (second unavailable). Raw pinned source passes effect-negation but fails activation-negation. Explicit source-only modern mapping e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)->e1:SetCountLimit(1,id,1) passes both. Production unchanged; not a card repair.
+- Pinned constant.lua OATH=0x10000000 and official c35261759 uses added legacy OATH argument; primary upstream effect_constants.h OATH=1, libeffect.cpp SetCountLimit has separate code and flag arguments. URLs https://raw.githubusercontent.com/edo9300/ygopro-core/master/effect_constants.h and https://raw.githubusercontent.com/edo9300/ygopro-core/master/libeffect.cpp. Current public callback behavior independently reproduced; upstream contextual not installed version proof.
+- Frozen current-aqua-whirlpool-negation-count-batch.json expected raw failure and explicit adapter successes, adapter marked control/legacy_oath_adapter. Not added to raw passing coverage15/11. Counts114 partial/59 repaired/0 full. Next maintain separate adapted suite with remove-OATH flag control and reconcile compatibility declaration; native Omega OATH execution remains open. Full711 goal active.
+
+## 2026-10-10 — Aqua Whirlpool activation negation/support departure verified
+
+- Two canonical native cases pass: actual opponent CL2 negates Aqua activation (NegateActivation success asserted), then actual opponent non-WATER Hand summon succeeds; alternatively selected CL2 sends1 Fusion support GY, Aqua resolves and actual opposing non-WATER Hand summon remains blocked. Response selection/support destination and subsequent summon eligibility/return count/field arrival asserted. No adapters/ignored limits.
+- No-response fixture control fails both. Frozen current-aqua-whirlpool-interruption-batch.json2 cases/1 control. Four suites reconcile15 scenarios/11 controls current source/install/runtime/artifact hashes. Source unchanged;114 partial/59 repaired/0 full.
+- Next named count after negated activation, opponent-turn Quickplay activation/lock timing, proper support/native Omega. Full711 goal open.
+
+## 2026-10-10 — Aqua Whirlpool named activation count/renewal verified
+
+- Two canonical cases pass: actual first Hand activation, second legal copy unavailable same turn; next own turn second actually activates. Valid Fusion supports remain field, Hand/GY copy counts verify actual activations. No adapters/ignored limits.
+- Per-copy activation limit control fails both; explicit next-turn activation condition suppression fails renewal. Frozen current-aqua-whirlpool-limit-batch.json2 cases/2 controls. Three suites reconcile13 scenarios/10 controls with current source/install/runtime/artifact hashes. Source unchanged;114 partial/59 repaired/0 full.
+- Next negated activation and restriction noninstallation, late support departure/chain interaction; native Omega/proper Fusion support/full711 audits open.
+
+## 2026-10-10 — Aqua Whirlpool actual summon restriction/reset verified
+
+- Five canonical cases pass after native activation: actual neutral effect attempts opposing non-WATER Hand summon (eligibility false, returned0, source not field), WATER Hand/Grave/own-player summon (eligibility true, returned1, actual field arrival). Native End Phase/turn progression resets lock and same opponent Hand recipient actually summons next own turn3. No adapters/ignored limits, neutral Fusion support initially field.
+- No-lock fails blocked/reset cases; no-WATER exemption fails WATER; no-reset fails renewal. Frozen current-aqua-whirlpool-lock-batch.json5 cases/3 controls. Two suites reconcile11 cases/8 controls source/install/runtime/artifact hashes. Source unchanged;114 partial/59 repaired/0 full.
+- Next named activation copy count/renewal, chain-negated/interrupted activation. Proper Fusion support/native Omega/full711 audits open.
+
+## 2026-10-10 — Aqua Whirlpool activation audit started
+
+- New uncovered card253928485 six canonical native Hand activation cases pass: two initially-field neutral faceup Level8 WATER Fusions allow actual spell activation/resolution to Grave; one support, Level7, non-WATER, non-Fusion or facedown second support exclude. No adapters/ignored limits, source/install parity confirmed. Seeded supports not proper Fusion recipe claim.
+- Five prerequisite-removal controls verified: reducing required count to1 fails all5 negatives because one valid support remains; level/attribute/Fusion/faceup removals each fail their corresponding negative. Count expectation corrected before final batch verification. Frozen current-aqua-whirlpool-activation-batch.json6 cases/5 controls with source/runtime/artifact hashes. Source unchanged. Progress114 partial/59 repaired/0 full.
+- Next actual Hand Special Summon restriction WATER exemption/opponent-only/origin and End Phase reset, named activation count. Arktos36 cases/18 controls partial; proper/native Omega/full711 goal open.
+
+## 2026-10-10 — Arktos Quick recipient immunity already respected
+
+- Two canonical native Quick cases select own neutral ally with native immunity to other cards, then choose free Main Zone3/4; ally remains original Zone0. MoveSequence engine honors immunity here; no source repair needed. Removing fixture immunity makes both move and fails protected assertions, confirming test exercises actual immunity.
+- Frozen current-arktos-quick-immunity-batch.json2 cases/1 fixture control. Diagnostic added explicit source immunity check also passed but unnecessary; not installed. No adapters/ignored limits. Ten suites reconcile36 scenarios/18 controls with source/install/runtime/artifact hashes.
+- Source unchanged;113 partial/59 repaired/0 full. Next late immunity/disabled source, automatic movement under interruption, proper Fusion support/native Omega. Full711 goal open.
+
+## 2026-10-10 — Arktos late Pendulum summon eligibility repaired/installed
+
+- pop now rechecks IsCanBeSpecialSummoned with same-column mask alongside relation guard. Actual opponent CL2 destination blocker leaves source in PZONE; Fusion support departure still permits valid summon. Backup arktos-before-late-pendulum-eligibility-fix, source/install parity before/after. Old-late-eligibility control fails blocked case. Same repaired card, distinct count remains59.
+- Refreshed nine suites34 cases/17 controls and current hashes. Ignore-column mutation no longer independently fails because added target eligibility still enforces same column; excluded from repair controls rather than claiming sensitivity. Earlier late diagnosis historical, passing current batch supersedes it.
+- All711 syntax/parity pass, Ohmen38/28 pass, selected72 init46 pass/26 known compatibility failures. Drift/inventories/ledger59 CURRENT_EVIDENCE_VERIFIED. Overall113 partial/59 repaired/0 full. No commit/push.
+- Next disabled/negated source and late opponent summon trigger interaction, Quick recipient immunity, proper support/native Omega. Full711 audit open.
+
+## 2026-10-10 — Arktos late column blockage failure reproduced
+
+- Actual Pendulum effect followed by opponent CL2: Fusion support sent GY still allows source summon (activation condition only); alternatively actual neutral blocker Special Summoned from opponent Hand to source same-column own Zone0. Canonical source fails blocked assertion: attempts impossible summon and source leaves PZONE instead of remaining. Own destination checked via native field placement handling relative-player mask bits (opponent selects own-side destination).
+- Candidate adds same IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP,tp,1<<sequence) check at pop resolution alongside relation guard. Both cases pass; blocked source staysPZONE, support-departure summon preserved. No source edit/install yet. Ignore-column diagnostic wrongly summons elsewhere, confirms zone constraint needed.
+- Frozen current-arktos-pendulum-late-batch.json expected canonical blockage failure/candidate2 passes, candidate marked control. Passing coverage remains32/16,113 partial/59 repaired/0 full. Next install exact late eligibility guard with backup/parity, old-guard control, refresh all Arktos suites/syntax/Ohmen/load/drift/ledger. Full711/native Omega open.
+
+## 2026-10-10 — Arktos Pendulum departure/return outcome verified
+
+- Two native cases pass: actual Pendulum activation and summon effect; opponent CL2 sends source PZONE->Hand, optionally real MoveToField back to PZONE. Old summon does not occur and source remains changed destination. No adapters/ignored summon limits. No-response fixture control fails both (response absent; old summon succeeds).
+- No-source-relation diagnostic also passes both, so do NOT claim independent relation-guard sensitivity. Initial exact mutation missed source whitespace; broader guard mutation also yielded protected outcome. Engine/remaining legality independently prevents summon; necessity of guard unproven in these cases. No observational marker retained in final harness.
+- Frozen current-arktos-pendulum-relation-batch.json2 cases/1 fixture control. Eight suites reconcile32 scenarios/16 controls, source unchanged;113 partial/59 repaired/0 full. Next late destination/support eligibility and native Omega; full711 goal open.
+
+## 2026-10-10 — Arktos Pendulum named copy limit/renewal verified
+
+- Two canonical cases pass with native Hand Pendulum activation for each copy into opposite zones: first effect actually summons left Main Zone0; second legal copy in right Pendulum Zone blocked same turn; next own turn second effect actually summons right Main Zone4. Neutral Vaylantz Fusion support initially field, no adapters/ignored limits.
+- Per-copy-limit control fails both; explicit next-turn summon-target suppression fails renewal. Frozen current-arktos-pendulum-limit-batch.json2 cases/2 controls. Source unchanged. Seven suites reconcile30 scenarios/15 controls current source/install/runtime/artifact hashes.
+- Overall113 partial/59 repaired/0 full. Next Pendulum source departure/return and late support/zone eligibility, disabled source, native Omega. Full711 goal open.
+
+## 2026-10-10 — Arktos Quick shared copy limit/renewal verified
+
+- Two canonical cases pass:2 source copies initially field, actual first Quick relocates one to Main Zone0; both copies then unavailable same turn while other copy remains legal and free zones remain. Next own turn actual second Quick moves first copy to Zone1. No adapters/ignored limits.
+- Per-copy-limit control fails both; explicit next-turn target suppression fails renewal. Frozen current-arktos-quick-limit-batch.json2 cases/2 controls. Source unchanged; six suites reconcile28 scenarios/13 controls current source/install/runtime/artifact hashes. Overall113 partial/59 repaired/0 full.
+- Next Pendulum shared named limit/renewal and departure/interruption, proper Fusion support/native Omega. Full711 goal open.
+
+## 2026-10-10 — Arktos Quick remaining destinations/opponent turn verified
+
+- Five canonical native Quick cases pass: source initially Main Zone4 actually moves to selected Main Zones0/1/2/3; Zone0 additionally activates through SELECT_CHAIN on actual opponent turn2 and resolves there. Single-bit SelectDisableField mask/math.log conversion valid for all5 Main destinations across current suites. No adapters/ignored limits.
+- No-quick-move control fails all5. Frozen current-arktos-quick-zones-batch.json5 cases/1 control. Source unchanged. Five suites reconcile26 scenarios/11 controls current source/install/runtime/artifact hashes. Counts113 partial/59 repaired/0 full.
+- Next Quick named copy limit/renewal, Pendulum named limit and departure/interruption. Proper Fusion support/native Omega/full711 audits open.
+
+## 2026-10-10 — Arktos Quick self/ally/facedown relocation verified
+
+- Four canonical cases pass: native Quick selects self, neutral ally or facedown ally and actually relocates chosen card to Main Zone4; facedown position preserved. Full Main Zones exclude activation. SELECT_DISFIELD mask permits chosen zone; actual field array index verifies move. No adapters/ignored limits, source initially field.
+- No-quick-move control fails3 positives; ignore-space fails full-field negative. Frozen current-arktos-quick-batch.json4 cases/2 controls. math.log(single-bit zone mask,2) succeeds for zone4 in these cases, no repair indicated.
+- Four suites reconcile21 scenarios/10 controls current source/install/runtime/artifact hashes. Source unchanged;113 partial/59 repaired/0 full. Next destinations0-3, opponent-turn Quick, named copy limit/renewal, Pendulum interruption/native Omega. Full711 goal open.
+
+## 2026-10-10 — Arktos Pendulum destination argument repaired/installed (repair59)
+
+- Removed extra tp from pop Duel.SpecialSummon after POS_FACEUP, preserving Card.IsCanBeSpecialSummoned controller argument. Matches pinned Vaylantz c41802073. Backup arktos-before-pendulum-zone-argument-fix, source/install parity before/after. Native left/right Pendulum activation and actual same-column summon pass; four prerequisite/blocked negatives preserved.
+- Old-zone-argument control fails both positive cases; ignore-Fusion and ignore-set controls fail corresponding negatives. Three refreshed suites17 cases/8 controls verified; no adapters/ignored limits. Previous diagnosis historical, superseded by passing current-arktos-pendulum-batch.json.
+- All711 syntax/parity pass, Ohmen38/28 pass, selected72 init46 pass/26 known legacy compatibility failures. Drift/inventories/ledger refreshed59 CURRENT_EVIDENCE_VERIFIED. Overall113 partial/59 repaired/0 full. No commit/push.
+- Next Arktos Quick relocation zone mask/math.log, Pendulum named limit/renewal and interruptions; proper Fusion support/native Omega/full711 scope open.
+
+## 2026-10-10 — Arktos Pendulum summon destination argument bug reproduced
+
+- Native Hand Pendulum activation into left/right SZONE0/4 successfully creates Pendulum Zone (direct initial SZONE/PZONE seeding did not expose effect; corrected fixture). Actual Pendulum effect offered with neutral faceup Vaylantz Fusion, but canonical positive2 cases fail to summon; wrong set/type/facedown/occupied destination4 negatives pass.
+- Production pop passes POS_FACEUP,tp,zone to Duel.SpecialSummon; pinned Vaylantz Voltage Viscount c41802073 line45 uses POS_FACEUP,zone. Extra tp=0 becomes zero destination mask in runtime; source subsequently moves Pendulum-to-Extra rather than MZONE. In-memory candidate removes only extra tp in Duel.SpecialSummon, all6 cases pass. Card IsCanBeSpecialSummoned call retains controller parameter (different signature).
+- Frozen current-arktos-pendulum-batch.json diagnosis expected canonical2 failures and candidate6 passes, candidate marked control. No source edit/install yet. Passing movement coverage remains11/5;113 partial/58 repaired/0 full. Next back up/install exact reference-backed pop fix, freeze positive baseline plus old-zone-argument and prerequisite controls, run syntax/Ohmen/load/drift/ledger refresh. Native Omega/full711 goal open.
+
+## 2026-10-10 — Arktos X native Normal Summon movement verified
+
+- Five canonical cases pass after actual native Normal Summon of neutral Hand monster: mirrored left/right, same column, blocked destination and own-player exclusion. SUMMONED message asserted, source initially MZONE2. No adapters/ignored limits.
+- No-movement control fails left/right; any-player fails own Normal Summon. Frozen current-arktos-normal-movement-batch.json5 cases/2 controls. Two suites reconcile11 scenarios/5 controls with source/install/runtime/artifact hashes. Source unchanged;113 partial/58 repaired/0 full.
+- Next Pendulum same-column summon and Quick movement zone selection, limits/renewal/interruptions; proper source/native Omega/full711 audits open.
+
+## 2026-10-10 — Arktos X automatic movement focused audit started
+
+- Six canonical cases pass against actual neutral Hand effect summons: own source starts MZONE2 and mirrored opponent sequence0 moves right3, sequence3 moves left1, same mirrored sequence2 stays, blocked adjacent zone stays, own-player summon excluded, simultaneous2-card group excluded. Source initially field, proper source summon/Pendulum/Quick/Normal trigger not claimed. No adapters/ignored limits. Installed source bytes match.
+- No-movement fails left/right; any-player fails own summon; any-group fails simultaneous group. Frozen current-arktos-movement-batch.json6 cases/3 controls hashes/runtime/source. Initial query sequence assertion corrected to MZONE array index (query cards do not expose sequence); all baselines/controls reverified.
+- Source unchanged. Progress now113 partial/58 repaired/0 full. Next Arktos actual Normal Summon movement, Pendulum same-column procedure and Quick zone movement (review math.log field mask handling). Argalia38 scenarios/24 controls remains partial; native Omega/full711 goal open.
+
+## 2026-10-10 — Argalia late Necrovalley arrival/removal verified
+
+- Four native cases pass: actual Hand procedure triggers destruction, selected opponent CL2 moves full pinned Necrovalley Hand->Field or Field->GY. Destruction succeeds; neutral GY Monster/Spell blocked after arrival, attaches after removal. Field presence/destination and material/GY queried. No ignored summon limits; fixture MoveToField enables existing field effects.
+- Ignore-valley source control fails both arrival cases; no-field-change fixture control fails all4. Frozen current-argalia-valley-change-batch.json4 cases/2 controls with pinned Necrovalley hash. Bounded public IsCanOverlay adapter additionally permits removed47355498 to enumerate GY pool; chosen recipient remains neutral900001214. General native eligibility not certified. Initial narrower adapter rejected new known GY field card, corrected before freezing.
+- Thirteen suites reconcile38 scenarios/24 controls with current source/install/runtime/artifact hashes. Source unchanged. Overall112 partial/58 repaired/0 full. Next disabled source/summon interruption/native Omega or Arktos X uncovered roster; full711 goal open.
+
+## 2026-10-10 — Argalia failed destruction prevents optional attachment
+
+- Two native cases pass: actual Hand summon trigger targets opponent monster; selected CL2 grants target immunity to opposing effects; target survives and opponent GY Monster/Spell remains GY, no overlay. Neutral Xyz host and valid optional candidate make follow-up otherwise possible. Explicit bounded IsCanOverlay adapter retained; no ignored limits.
+- Ignoring successful destruction requirement (Destroy>=0 instead of>0) fails both by wrongly attaching optional card. Frozen current-argalia-destroy-prevention-batch.json2 cases/1 control. Source unchanged. Twelve suites reconcile34 scenarios/22 controls with current hashes/source-install parity.
+- Overall112 partial/58 repaired/0 full unchanged. Next late Necrovalley arrival/removal, disabled source/summon interruption or next uncovered roster. Native Omega/full711 goal open.
+
+## 2026-10-09 — Argalia destruction target relation interruptions verified
+
+- Two native cases pass: actual Hand procedure -> summon destruction trigger -> opponent CL2 sends target MZONE-to-Hand, optionally actually Special Summons it back. Response explicitly selected; changed target remains Hand/field and not GY. No ignored limits; neutral normal target/support. Optional overlay not exercised (no Xyz host; inherited bounded adapter loaded).
+- Removing desop relation guard fails both: target incorrectly destroyed in Hand or after return. Frozen current-argalia-destroy-relation-batch.json2 cases/1 control, source unchanged. Eleven suites reconcile32 scenarios/21 controls with current source/install/runtime/artifact hashes.
+- Overall112 partial/58 repaired/0 full. Next late target immunity/destruction prevention and Necrovalley arrival/removal; native Omega and full711 scope open.
+
+## 2026-10-09 — Argalia Normal/Special destruction shared count/renewal verified
+
+- Two canonical cases pass: native Normal Summon with neutral Aerocat Tribute destroys1 opposing monster; second copy actually summons by Hand procedure same turn and remaining legal opposing monster survives; next own turn third copy actually procedure summons and destroys remaining monster. Thus printed named destruction limit shared across Normal/Special/copied event effects and renewed next turn.
+- Per-copy destruction count control fails both; explicit next-turn destruction target suppression fails renewal. Frozen current-argalia-destroy-limit-batch.json2 scenarios/2 controls. Source unchanged. Optional overlay not exercised (no Xyz host); inherited bounded neutral IsCanOverlay adapter loaded but follow-up branch excluded.
+- Ten suites reconcile30 scenarios/20 controls with current source/install/runtime/artifact hashes. Counts112 partial/58 repaired/0 full unchanged. Next late Necrovalley arrival/removal, destruction target relation/immunity and summon interruption/native Omega. Full711 goal open.
+
+## 2026-10-09 — Argalia native Hand procedure shared limit/renewal verified
+
+- Two canonical cases pass: actual first Hand procedure summon; second otherwise legal Hand copy unavailable same turn; next own turn second copy actually summons. Native field count confirms1/2 Argalia, Hand count confirms1/0 remaining. Neutral own Aerocat Xyz initially field. No adapters/ignored limits; no opponent monster means destruction trigger not covered here.
+- Per-copy-procedure count mutation fails both; explicit next-turn procedure condition suppression fails renewal. Frozen current-argalia-procedure-limit-batch.json2 cases/2 controls. Source unchanged.
+- Nine suites reconcile28 scenarios/18 controls with current source/install/runtime/artifact hashes. Overall112 partial/58 repaired/0 full unchanged. Next Normal/Special destruction shared named count/renewal and late Necrovalley change. Native Omega/full711 goal open.
+
+## 2026-10-09 — Argalia named Quick attachment copies/renewal verified
+
+- Two canonical cases pass: actual first Hand attachment, second legal Hand copy unavailable same turn; next own turn second copy actually attaches to same neutral Rank6 WIND Xyz (2 materials confirmed). No adapters/ignored limits in this Quick-only suite. Native named limit and renewal exercised.
+- Per-copy-limit control fails both; explicit next-turn target suppression fails renewal. Frozen current-argalia-attach-limit-batch.json2 cases/2 controls. Source unchanged. Eight suites reconcile26 cases/16 controls with current source/install/runtime/artifact hashes.
+- Counts112 partial/58 repaired/0 full unchanged. Next Hand procedure shared once-per-turn/count renewal and Normal/Special destruction shared count, or late Necrovalley/source relation cases. Native Omega/full711 goal open.
+
+## 2026-10-09 — Argalia Quick attachment relation interruptions verified
+
+- Two native chained-response cases pass: opponent CL2 sends source Hand->GY->Hand, or target MZONE->Hand then actually Special Summons target back. Original relation lost prevents source attachment. No adapters/ignored limits in this Quick-only suite, source unchanged.
+- No-source-relation control fails source-return; no-target-relation control fails target-return. Initial target mutation changed desop first matching relation rather than ovop, yielding no failure; corrected to exact Quick guard substring and batch reverified. Frozen current-argalia-relation-batch.json2 cases/2 controls.
+- Seven suites reconcile24 cases/14 controls with current source/install/runtime/artifact hashes. Counts112 partial/58 repaired/0 full unchanged. Next shared named Quick/summon/destroy limits and renewal or late Necrovalley change. Native Omega/full711 scope open.
+
+## 2026-10-09 — Argalia Necrovalley optional GY eligibility repaired/installed
+
+- Full pinned Necrovalley fixture reproduces illegal optional attachment for opponent GY Monster/Spell. Replaced oppgy with aux.NecroValleyFilter(Card.IsCanOverlay)(c); destruction still succeeds, both protected cards remain GY, no material added. Backup argalia-before-necrovalley-filter-fix and source/install parity asserted. Two canonical cases/old-valley-filter control verified. Bounded public neutral IsCanOverlay adapter remains explicit; full pinned field script/hash included.
+- Refreshed six suites22 cases/12 controls. Old Spell-filter mutation initially no-op after production switched method call to callback; corrected mutation Card.IsCanOverlay->Card.IsCanBeXyzMaterial, reran destroy batch and coverage successfully. Do not treat initial failed verifier as final evidence.
+- All711 syntax/parity pass; Ohmen38/28 pass; selected71 init45 pass/26 known legacy failures. Drift/inventories/ledger refreshed CURRENT_EVIDENCE_VERIFIED58;112 partial/0 full. Same repaired card, no distinct repair count increase.
+- Next late Necrovalley arrival/removal and shared named counts/renewal, source/target relation interruptions. Native Omega/full711 audit open; no commit/push.
+
+## 2026-10-09 — Argalia optional attachment immunity repaired/installed
+
+- Two actual Hand procedure -> opponent monster destruction -> optional GY Monster/Spell attachment cases reproduce immune recipient wrongly receiving material. Guard not x:IsImmuneToEffect(e) before optional Duel.Overlay fixes both; destruction still succeeds, GY card retained. Installed backup argalia-before-optional-recipient-immunity-fix, source/install parity asserted. Old-optional-immunity control fails both.
+- Five refreshed suites20 cases/11 controls reconcile hashes/source/install. Explicit bounded missing IsCanOverlay adapter on neutral GY fixtures only. All711 syntax pass, Ohmen38/28 pass, selected71 init45 pass/26 known compatibility failures; drift/inventories/ledger refreshed, ledger58 verified. Overall112 partial/58 repaired/0 full. Same repaired card, no count increase.
+- Next Necrovalley opponent-GY eligibility/resolution (destruction must remain independent), shared counts/renewal and native interruption/relation. Optional immune-only recipient still offers choice then safely skips overlay; legality/menu refinement not certified. Full711/native Omega audit open, no commit/push.
+
+## 2026-10-09 — Argalia opponent-GY Spell attachment repaired/installed
+
+- Replaced oppgy IsCanBeXyzMaterial with IsCanOverlay, matching prior Shade legacy attachment repair: printed1 card permits tested Spell. Actual native Hand procedure plus opponent monster destruction, Monster/Spell GY attachment, optional decline and no-Xyz4 cases pass. Old filter fails Spell, no-destroy fails all4, no-followup fails2 attachment positives. Canonical4-suite18 scenarios/10 controls refreshed.
+- Explicit bounded public missing Card.IsCanOverlay adapter only codes900001213/900001214 neutral GY fixtures returns true; general eligibility NOT certified. Production uses native legacy method. Backup argalia-before-opponent-gy-overlay-filter-fix, source/install parity asserted before/after. This is second repair on samecard, distinct repaired count stays58.
+- All711 syntax/parity pass, Ohmen38/28 pass, selected71 init45 pass/26 known compatibility failures. Drift/inventories/ledger refreshed CURRENT_EVIDENCE_VERIFIED. Overall112 partial/58 repaired/0 full. Earlier destroy diagnosis describes historical pre-fix failure, not current baseline; current destroy batch supersedes it.
+- Next opponent-GY Necrovalley eligibility and optional recipient immunity safety, shared count/renewal and interrupted destroy/attachment. Native Omega/full711 goal open. No commit/push.
+
+## 2026-10-09 — Argalia destruction/Spell attachment mismatch reproduced
+
+- Actual native Hand procedure followed by production summon trigger destroys opposing monster. Canonical monster-GY attachment, optional decline and no-Xyz follow-up3 cases pass. Spell-GY case fails because chosen Spell not offered by oppgy IsCanBeXyzMaterial despite printed1 card. Unrestricted in-memory oppgy=true candidate passes all4, proving filter issue only; NOT safe general eligibility repair.
+- Harness explicitly chooses destroy trigger description (133748623*16+1); initial diagnostic accidentally accepted idle Quick before summon and was corrected. No production change. Frozen current-argalia-destroy-batch.json records canonical expected Spell failure and candidate passing; candidate marked control to exclude from canonical progress discovery. Not added to passing coverage14/7.
+- Next replace filter with proper legacy IsCanOverlay/appropriate Necrovalley handling, bounded public adapter if required; test recipient immunity before applying optional overlay, then install/refresh all checks. Counts112 partial/58 repaired/0 full. Native Omega/full711 goal open.
+
+## 2026-10-09 — Argalia native Hand procedure verified
+
+- Six canonical native menu/actual summon cases pass: own Aerocat faceup field, facedown field, GY support allow; wrong set, no support, opponent support exclude. Source actually leaves Hand for MZONE when eligible. No adapters/ignored limits. Destruction trigger has no eligible opponent in positive fixtures and is not claimed covered.
+- Ignoring support fails wrong-set/missing/opponent cases; ignoring set fails wrong-set; faceup-only restriction fails facedown support. Frozen current-argalia-procedure-batch.json6 scenarios/3 controls. Production unchanged.
+- Three suites reconcile14 scenarios/7 controls with current source/install/runtime/artifact hashes. Counts112 partial/58 repaired/0 full unchanged. Next actual destroy+optional opponent-GY any-card attachment, suspected Spell filter mismatch, Necrovalley and shared count/renewal. Full711 goal active.
+
+## 2026-10-09 — Argalia recipient immunity repaired/installed (repair58)
+
+- New uncovered Argalia259748623 Quick Hand/GY attachment: six canonical cases pass (Hand/GY actual material, wrong rank/attribute/controller/facedown excluded). Two native immune-host cases initially failed: source wrongly moved into immune Xyz. In-memory guard passed both, then production ovop adds not tc:IsImmuneToEffect(e), matching prior Vik/pinned Overlay Regen approach. Installed original backed up argalia-before-recipient-immunity-fix, source/install parity before/after asserted.
+- Canonical repaired8 cases/4 controls frozen current-argalia-{attach,immunity}-batch.json. Rank/attribute/no-overlay and old-immunity controls detect intended failures. No adapters/fixture ignored limits. Neutral Rank6 WIND Xyz initially field; proper Xyz material recipe/full card/native Omega open.
+- All711 syntax/source-install parity pass, Ohmen38cases/28runs pass. Selected71 initialization45 pass/26 known legacy API failures. Drift/inventories refreshed; ledger58 CURRENT_EVIDENCE_VERIFIED,112 partial/0 full. No commit/push.
+- Next Argalia destroy+optional opponent-GY attachment: printed any card but oppgy uses IsCanBeXyzMaterial (likely excludes Spells/Traps, must reproduce), Necrovalley/recipient immunity, native Hand procedure/count/reset and relation/interruption. Arktos X inspected only, remains uncovered. Melantha timing unresolved; all711 scope stays active.
+
+## 2026-10-09 — Melantha history flag End Phase expiry verified
+
+- Two canonical cases pass: actual opposing neutral Extra effect summon enables Hand Quick self-summon; alternatively Hand Quick is actually offered and declined, native End Phase advances to next turn where still-in-Hand source no longer offers Quick. Both SELECT_CHAIN and native idle menu checked. No adapters or fixture bypass. No-history-reset control fails expiry through stale Quick availability.
+- Frozen current-melantha-history-batch.json. Seven suites reconcile22 scenarios/12 controls with current source/install/runtime/artifact hashes. No source change. Overall111 partial/57 repaired/0 full. Timing tax discrepancy remains open, cost diagnostics excluded from canonical coverage.
+- Next multiple copies/named summon count and summon interruption/source departure, or next uncovered roster while retaining unresolved timing issue. Native Omega/full-card audit open; full711 goal active.
+
+## 2026-10-09 — Summon cost Grave-send cancellation ruled out
+
+- Three neutral diagnostic cases (effect single, effect simultaneous pair, inherent procedure) actually send recipient Extra->Grave during SINGLE SPSUMMON_COST operation. Native MOVE traces then show Grave->MZONE and SPSUMMONED; all recipient(s) end field. Thus pre-cost Grave-send does NOT cancel summons and cannot implement Melantha refusal. No-hook control fails each, ensuring fixture actually exercises movement. Frozen current-melantha-cost-cancel-probe-{tax,tax-group,tax-procedure}-batch.json, current dependency/artifact hashes. Source unchanged; diagnostics excluded from card coverage.
+- Inspected primary upstream https://raw.githubusercontent.com/edo9300/ygopro-core/master/operations.cpp: cost callbacks use nil_event and per-card operations (around3044,3282,3574); effect path proceeds to move_to_field after callbacks (around3584-3619). Upstream is contextual, not proof of installed core revision; runtime traces independently establish behavior here. Cost callback does not receive group via event parameters in that upstream path.
+- Printed tax timing remains UNPROVEN; do not use cost movement as cancellation or per-recipient payment as group tax. Need different valid engine mechanism, possibly pre-summon replacement supported by Omega, or explicit specification clarification. Other audit work can continue; no global blocker. Counts111 partial/57 repairs/0 full, canonical Melantha20 scenarios/11 controls unchanged. Full711 goal active.
+
+## 2026-10-09 — Pre-completion summon cost hook characterized
+
+- Neutral recipient SINGLE EFFECT_SPSUMMON_COST instrumentation fires before SPSUMMONED for effect summons and neutral inherent procedures. Eleven diagnostic scenarios pass across cost-probe-tax5, cost-probe-tax-group3, cost-probe-tax-procedure3; each frozen batch includes no-cost-hook control failing every scenario. Correct public HINT payload is .hint, not .value; initial failed parser assertions corrected before freezing.
+- Two simultaneously summoned recipients produce2 pre-completion operations, versus required1 payment per group. Thus direct per-card hook would overcharge; group identity/aggregation and refusal cancellation must be established before applying any production repair. Current source unchanged, no API adapters. Diagnostic fixture hooks are not card effect coverage and not added to canonical20 scenarios/11 controls.
+- Artifacts current-melantha-cost-probe-*-batch.json pin source/runtime/harness/current DB and artifact hashes. Overall111 partial/57 repaired/0 full unchanged. Printed tax timing unproven. Next investigate field cost hook arguments/group identity and cancellation, or retain documented discrepancy while covering history/reset. Full711 goal active.
+
+## 2026-10-09 — Melantha inherent procedure tax timing contrasted
+
+- Three canonical cases pass against actual neutral Extra SPSUMMON_PROC selected from native menu: pay/refuse/empty Hand. No adapters, no official Fusion recipe/materials claim. Canonical payment choice follows SPSUMMONED.
+- In-memory e4 EVENT_SPSUMMON candidate passes these3 outcomes and asserts payment choice BEFORE SPSUMMONED for nonempty Hand. Contrast previous effect-summon suite: identical event candidate misses all3 taxed effect-summon cases. Thus earlier event supports inherent procedure but not unified printed timing. No production change. No-tax control fails all3. Candidate does not establish refusal suppresses all success-related events: SPSUMMONED still appears, so this too requires investigation.
+- Frozen current-melantha-tax-procedure-batch.json; six suites reconcile20 scenarios/11 controls, including diagnostic candidate runs, current source/install/runtime/artifact hashes. Printed timing remains UNPROVEN. Counts111 partial/57 repaired/0 full.
+- Located pinned EFFECT_SPSUMMON_COST examples c13073850/c102380; callbacks apply per-card costs/operations. Next investigate field application and simultaneous-group semantics for unified enforcement, plus success triggers after refused inherent summon. Do not substitute merely banning summons or post-success cleanup for printed behavior. Full711 goal active.
+
+## 2026-10-09 — Melantha simultaneous summon tax verified
+
+- Three current-source cases pass with actual single-group Special Summon of2 neutral Fusion-type Extra recipients. Exactly1 completion and1 tax choice asserted (no choice with empty Hand). One payment from a2-card Hand preserves both; refusal/empty Hand sends both GY. Initially-field source, no adapters, no proper Fusion recipe claim.
+- No-tax control fails all3; first-only Grave-send control fails refusal/empty-Hand, detecting incomplete group handling. Frozen current-melantha-tax-group-batch.json. Source unchanged.
+- Five suites reconcile17 scenarios/9 controls with current source/install/runtime/artifact hashes. Tax suites remain post-success behavior evidence; printed would-summon timing still UNPROVEN. Overall111 partial/57 repaired/0 full.
+- Next inherent/proper Extra summon timing and unified pre-summon enforcement investigation; history reset/copies, proper self-summon/battle integration and native Omega open. Full711 goal active.
+
+## 2026-10-09 — Melantha tax outcomes verified; timing discrepancy reproduced
+
+- Five current-source cases pass: opponent pays one Hand card to Deck and Extra recipient remains, refusal/empty Hand sends recipient GY, Hand-origin and own-player Special Summons excluded. Source initially field, actual neutral effect summon, no adapters. Native trace explicitly proves SPSUMMONED precedes opponent payment choice.
+- No-tax control fails all3 taxed cases. Diagnostic candidate changing only e4 EVENT_SPSUMMON_SUCCESS to EVENT_SPSUMMON also fails all3 effect-summon cases, so not a repair. Pinned Solemn Warning c84749824 separately handles summon events and effect chains, illustrating why a single event swap cannot cover both. Canonical source unchanged. Frozen current-melantha-tax-batch.json5 scenarios/2 controls.
+- Printed text says would Special Summon; post-success tax cannot establish that timing. Four suites reconcile14 scenarios/7 controls with explicit printed_timing_conformity UNPROVEN and current source/install/runtime/artifact hashes. Tax suite is existing-behavior evidence, not certification of printed pre-summon timing. Counts111 partial/57 repaired/0 full unchanged.
+- Next test proper/inherent Extra summon timing and simultaneous recipients, determine correct unified pre-summon enforcement before source repair. Also proper self-summon/battle integration, history reset/copies and native Omega open. Full711 goal active.
+
+## 2026-10-09 — Melantha mutual battle protection verified
+
+- Four native battle cases pass: stronger/weaker opposing battle partners both survive with battle damage; disabled Melantha is destroyed; unrelated ally is destroyed. Initially-field canonical source, no adapters. Removing own protection fails stronger-opponent case; removing partner protection fails weaker-opponent case. Frozen current-melantha-battle-batch.json.
+- Three suites reconcile9 scenarios/5 controls, current source/install/runtime/artifact hashes verified by fresh_current_melantha_coverage.py. No production change. Counts111 partial/57 repaired/0 full.
+- Proper self-summon to battle integration, Extra history reset/copies, taxation choices/timing/interruption and native Omega remain open. Next investigate tax EVENT_SPSUMMON_SUCCESS versus printed would summon. Full711 goal active.
+
+## 2026-10-09 — Melantha own effect summon repaired/installed
+
+- Own effect target and operation now nocheck=true to explicitly bypass initial procedure restriction that blocked printed self-summon; EnableReviveLimit/self-only SPSummon condition retained. Backup melantha-before-self-summon-fix, installed bytes match. Own field/no Extra history negatives preserved.
+- Summon3 cases pass: actual opposing neutral Extra summon enables canonical Hand self-summon; own field or opposing Hand-origin excludes. External2 cases: ample own Tribute pool still no native Normal Summon/Set; actual external Hand/GY eligibility and summon attempts blocked. Old own parameters fail positive, ignoring field fails own-field, removing restrictions fails both external tests. Frozen two batches5 cases/3 controls; no compatibility adapter. Own-production initial restriction bypass deliberate, not fixture bypass.
+- All711 syntax/parity pass, Ohmen38/28 pass. Selected70 initialization44 pass/26 known legacy API failures; drift/inventories current. Ledger57 CURRENT_EVIDENCE_VERIFIED;111 partial/0 full.
+- Opposing proper material Fusion, Extra history/reset/copies, native battle mutual protection, tax choice/timing/interruption and native Omega remain open. Tax script EVENT_SPSUMMON_SUCCESS occurs after summon versus printed would summon; investigate without claiming pre-summon enforcement. Next battle protection or tax actual outcomes. Full711 goal active.
+
+## 2026-10-09 — Melantha own summon blocked; repair candidate
+
+- Reviewed current Melantha259221974 source/text. Actual opponent neutral Extra effect summon observed, own field empty, but source Hand Quick not offered. Own field and opponent Hand-origin summon negatives pass. Neutral Hand-origin recipient corrected to normal Monster metadata to avoid engine rerouting Fusion to Extra.
+- In-memory --self-summon-candidate changes only source own IsCanBeSpecialSummoned and SpecialSummon nocheck parameter to true; all3 scenarios pass. EnableReviveLimit/e0 self-only condition remain. Raw/candidate and hashed current-melantha-self-summon-diagnosis.json saved; production unchanged. Candidate proof is not canonical passing coverage.
+- Next verify no Normal Summon/Set or external effect summon, then apply own-effect initial restriction bypass with backup/parity, controls, syntax/load/drift/Ohmen/ledger refresh. Taxation timing and battle protection remain open. Counts110 partial/56 repairs/0 full unchanged. Full711 goal active.
+
+## 2026-10-09 — Calamities flip target relation under CL2
+
+- Two native cases pass: actual opponent chained effect sends targeted facedown recipient to Hand, optionally actually Special Summons it back facedown before source resolves. Recipient remains changed destination/face-down after original relation lost. Response selected; no ignored limits; explicit SINGLE count mapping retained.
+- Removing relation guard fails return-field case through improper flip; leave-only remains naturally safe because Hand card cannot ChangePosition, so not claimed detected there. Frozen current-calamities-flip-relation-batch.json. Source unchanged.
+- Seven suites reconcile19 scenarios/11 controls, current source/install/runtime/artifacts. Overall110 partial/56 repaired/0 full. Immunity/late position/control, source reset, activation copies/renewal/opposing events/native Omega remain open. Next next uncovered roster or flip immunity. Full711 goal active.
+
+## 2026-10-09 — Calamities flipped-recipient restriction expires
+
+- Two cases pass after actual Special Summon or native Set: source flips non-Krawler faceup Defense, native ignition absent that turn; after actual End Phase/next own turn ignition available. Removing restriction phase reset fails both. Frozen current-calamities-flip-reset-batch.json, source unchanged; explicit SINGLE count adapter retained.
+- fresh_current_calamities_coverage.py reconciles six suites17 scenarios/10 controls and source/install/runtime/artifact hashes. Full audit OPEN. Overall110 partial/56 repaired/0 full.
+- Shared activation copies/renewal, flip target relation/immunity/position/source reset, opponent Special Summon/Set and native Omega remain open. Next flip CL2 target relation or next roster. Full711 goal active.
+
+## 2026-10-09 — Calamities single-card shared flip count repaired
+
+- Changed global named e2 count to native legacy e2:SetCountLimit(1,EFFECT_COUNT_CODE_SINGLE), following pinned constant and official scripts c100256002/c101203073. Each source copy can flip once; cloned SpecialSummon/Set effects share one count within same card. Backup calamities-before-single-card-flip-limit-fix; installed bytes match.
+- Two actual copy flips pass; reverting named count fails. Actual first SpecialSummon flip then native Monster Set with same source leaves second target facedown; separate per-effect counts fail. Frozen current-calamities-flip-copies-batch.json and current-calamities-flip-shared-batch.json. Refreshed activation4/lock5/flip4:15 scenarios/9 control runs total.
+- Public core modern SetCountLimit stores flags separately; SINGLE flag4 confirmed primary https://raw.githubusercontent.com/edo9300/ygopro-core/master/effect_constants.h and libeffect.cpp lines100-129. Explicit in-memory adapter maps ONLY source e2 native legacy call to SetCountLimit(1,0,4); artifact legacy_single_count_adapter:true. Production retains Omega-native API. Older plain-count candidate and failed raw SINGLE diagnosis superseded; never claim plain per-effect counts solve shared-event requirement.
+- All711 syntax/parity pass, Ohmen38/28 pass. Selected69 initialization43 pass/26 missing legacy APIs; drift/inventories current. Ledger56 CURRENT_EVIDENCE_VERIFIED, counts110 partial/0 full. Restriction expiry, flip relation/immunity/reset, shared activation copies/renewal/native Omega remain open. Next restriction End reset/late-chain flip. Full711 goal active.
+
+## 2026-10-09 — Calamities per-copy flip count defect reproduced
+
+- Two initially active source copies, actual simultaneous facedown neutral Special Summon2, distinct target selections: canonical named e2 count permits only one flip. Text once per turn without named trigger restriction should permit each copy; named activation limit remains separate.
+- --single-card-count-candidate currently replaces named count with plain SetCountLimit(1), allows two actual flips. Historical attempt using pinned EFFECT_COUNT_CODE_SINGLE=1 also permitted only one in public core. Candidate flag name is historical; it is plain per-effect count, not proven shared-per-card implementation. No production edit.
+- Hashed current-calamities-flip-count-diagnosis.json retains raw/candidate hashes. Next verify sequential same-source SPSummon then native Set must share limit; implement shared per-card count (native legacy SINGLE with correctly bounded public compatibility or source flag gating) without global cross-copy restriction, then refresh/freeze/install. Restriction expiry still open. Counts110 partial/56 repairs/0 full unchanged; full711 goal active.
+
+## 2026-10-09 — Calamities actual Special Summon/Set flip
+
+- Four cases pass with initially active source: actual neutral facedown Special Summon or native Monster Set triggers canonical flip faceup Defense. Recipient native ignition unavailable for non-Krawler, available for Krawler. No adapters/ignored limits; initial field Continuous source isolates trigger branch.
+- Suppressed flip fails all4; omitted restriction fails both non-Krawler; removed exemption fails both Krawler. Frozen current-calamities-flip-batch.json pins current source/runtime/artifact hashes. Source unchanged. Calamities13 scenarios/7 control runs across three suites.
+- Overall110 partial/56 repairs/0 full. Restriction phase/reset, shared SPSummon/Set count/copies, changing relation/immunity/position, Normal Summon/opponent event and native Omega remain open. Next restriction reset/shared trigger limit. Full711 goal active.
+
+## 2026-10-09 — Calamities optional take repaired/installed
+
+- Card activation now always legal independent of optional take. Target offers take only if eligible World Legacy Spell/Trap pool and no prior restricted activity; label distinguishes declined/no effect, lock imposed only accepted take, operation skips declined choice. Backup calamities-before-optional-take-fix, installed bytes match.
+- Activation4 cases pass: actual Hand/GY take, empty pool activation, decline leaves Deck recipient. Lock5 cases pass: accepted take blocks non-WL Spell; actual World Legacy Spell still activates; decline/no-pool/prior non-WL allow card-only/no lock; next own turn non-WL permitted. Old script controls fail exact optional cases; omitted lock/removed reset detected. Frozen both batches9 scenarios/4 control runs, no adapters.
+- All711 syntax/parity pass; Ohmen38/28 pass. Selected69 initialization43 pass/26 missing legacy API failures, drift/inventories refreshed. Ledger56 CURRENT_EVIDENCE_VERIFIED. Counts110 partial/56 repairs/0 full.
+- Historical raw diagnosis superseded by repaired batches. Flip on Special Summon/Set, Krawler activation exemption, shared counts/renewal, Trap/monster/prior effects/negation and native Omega remain open. Next Calamities flip event tests. Full711 goal active.
+
+## 2026-10-09 — Calamities optional take defect reproduced
+
+- Current Calamities259187643 source/text compared. Actual activation adds World Legacy Spell to Hand or sends GY successfully; empty pool cannot activate card despite optional take, and decline case still moves recipient. Raw current-calamities-activation.json exact two failures retained.
+- In-memory --optional-candidate makes card target chk0 true, separately offers optional choice only with eligible pool/no prior restricted activity, stores label and imposes lock only if accepted, skips take operation when declined. All4 cases pass. Hashed current-calamities-optional-diagnosis.json; source remains unrepaired and candidate not canonical passing coverage.
+- Next strengthen fixture to assert non-World-Legacy Spell activations allowed after decline/no-pool, prior non-WL history permits card-only activation but prevents take, accepted take imposes restriction and resets next turn. Then apply verified fix/backup/parity, controls/full refresh and new ledger row. Counts109 partial/55 repairs/0 full unchanged. Full711 goal active.
+
+## 2026-10-09 — Vik Special Summon search/shared limit reconciled
+
+- Two cases pass: actual neutral effect Special Summons Hand Vik and canonical Deck search succeeds; actual first-copy no-Tribute Normal Summon/search then actual second-copy Special Summon cannot search otherwise legal second Deck recipient. Native option explicitly selects Vik reveal procedure over regular Tribute when neutral helper field offers both.
+- Per-copy search limit fails mixed case; omitted search fails both positives. Frozen current-vik-special-search-batch.json with current source/runtime/artifact hashes. No adapters/ignored limits/source changes.
+- fresh_current_vik_coverage.py reconciles six suites18 scenarios/12 controls and source/install parity. Overall109 partial/55 repairs/0 full. Search renewal, late immunity/control/rank/overlay eligibility/Necrovalley, native Omega remain open. Next next uncovered roster or Vik search renewal. Full711 goal active.
+
+## 2026-10-09 — Vik attachment shared copies and renewal
+
+- Two native cases pass: first Hand copy actually becomes material, second otherwise legal copy remains Hand and activation unavailable; next own turn second actually attaches same host, duplicate source material count2 and no remaining Hand copy asserted. No adapters/ignored limits/source changes.
+- Per-copy attachment limit fails both cases; explicit next-turn target suppression fails renewal. Frozen current-vik-attach-limit-batch.json pins source/runtime/artifact hashes. Vik16 scenarios/10 controls across five suites.
+- Overall109 partial/55 repairs/0 full. Special Summon search/shared search limit, late immunity/control/rank/eligibility and native Omega remain open. Next search integration/shared limit or coverage reconciliation. Full711 goal active.
+
+## 2026-10-09 — Vik actual CL2 source/target relation
+
+- Two cases pass: opponent neutral Quick response moves source Hand-GY-Hand or target MZONE-Hand-actual Special Summon before Vik resolves. Original relation lost, source remains Hand, host field but Vik not material. Response actually selected; no adapters/ignored summon limits.
+- Removing source relation fails only source-return; removing target relation fails only target-return. Frozen current-vik-relation-batch.json pins source/runtime/artifact hashes. No repair. Vik14 scenarios/8 controls across four suites.
+- Overall109 partial/55 repaired/0 full. Special Summon search, named copies/reset, late immunity/control/rank changes and native Omega remain open. Next shared search/attachment copy limits or next roster. Full711 goal active.
+
+## 2026-10-09 — Vik recipient immunity repaired/installed
+
+- Native immune Rank6 WIND recipient previously accepted Hand/GY Vik attachment despite immunity. Pinned c27068117 Overlay Regen reference explicitly checks targeted recipient immunity. Added not tc:IsImmuneToEffect(e) to resolution; backup vik-before-recipient-immunity-fix and installed byte parity.
+- Two cases pass: source stays original Hand/GY and host gains no material. Removing guard fails both. Frozen current-vik-immunity-batch.json. Refreshed attachment6 and Normal/reveal/search4 against repaired source; Vik12 scenarios/6 controls. No compatibility adapters/ignored limits.
+- All711 syntax/parity pass; Ohmen38/28 pass. Selected68 initialization42 pass/26 known missing legacy APIs. Drift/inventories current; ledger55 CURRENT_EVIDENCE_VERIFIED. Counts109 partial/55 repaired/0 full.
+- Special Summon search, shared named copies/renewal, late target/source relation/control/immunity/eligibility and native Omega remain open. Next Vik CL2 relation or search copy limits; full711 goal active.
+
+## 2026-10-09 — Vik native Hand/GY attachment
+
+- Six cases pass: actual source Hand/GY departure and native overlay material query confirm Vik attaches to own initially-field neutral Rank6 WIND Xyz. Wrong rank5, non-WIND, opposing controller and facedown exclude activation. No adapters or ignored summon limits; original host Xyz summon not certified.
+- Any-rank/any-attribute controls fail respective negatives; omitted Overlay fails both positives. Frozen current-vik-attach-batch.json with source/runtime/artifact hashes. No source change. Vik10 scenarios/5 controls across Normal/reveal/search and attachment suites.
+- Overall109 partial/54 repairs/0 full. Target/source relation, immunity/overlay eligibility, named copies/renewal, Special Summon search/native Omega remain open. Next attachment target/source CL2 or Special Summon search. Full711 goal active.
+
+## 2026-10-09 — Vik native no-Tribute Normal Summon/search
+
+- Four cases pass: native Normal Summon without Tribute, actual opposing-player confirmation of neutral Aerocat Xyz Extra card, actual Aerocat Monster Deck search. Wrong-set or missing Extra excludes summon; wrong-set Deck recipient excludes search. No adapters/ignored summon limits; source unchanged.
+- Any-extra-set control fails wrong Extra; suppressed search fails positive. Frozen current-vik-normal-search-batch.json pins current source/runtime/artifact hashes. Count109 partial/54 repairs/0 full.
+- Vik259113182 Special Summon search, Quick Hand/GY attachment and target rank/WIND/controller/relation/overlay eligibility, named copies/reset/native Omega remain open. Next Vik attachment; full711 goal active.
+
+## 2026-10-09 — Plexus proper Link into own material revival
+
+- Four integrated scenarios pass: actual production Link procedure with faceup/facedown neutral Krawler, actual material movement to GY, canonical on-summon revival of same material in facedown Defense; optional actual discard COST+DISCARD and faceup Defense flip. No initial-limit bypass/disabled procedure; explicit bounded legacy Link aliases and empty compulsory group retained.
+- Suppressing revival fails all4; suppressing flip fails both discard cases. Frozen current-plexus-link-revival-batch.json, source unchanged. Coverage reconciles eight suites17 scenarios/12 controls against current hashes/source/install.
+- Overall108 partial/54 repairs/0 full. More material restrictions/mandatory effects, field-space/Spirit/late-chain and native Omega remain open. Next next uncovered roster effect or late-chain revival. Full711 goal active.
+
+## 2026-10-09 — Plexus actual faceup/facedown Link procedure
+
+- Three cases execute unchanged source e0 procedure: one faceup or facedown neutral Krawler actually Link Summons Plexus, material sent GY with REASON_LINK; wrong-set material excludes native summon menu. No ignored summon limit/disabled procedure in this suite. On-summon optional effect declined to isolate procedure.
+- Explicit public compatibility adapter maps legacy Card.IsLinkSetCard to IsSetCard (asserts fixture/Plexus codes), Card.IsLinkType to IsType; Duel.GetMustMaterial asserts LMATERIAL code and returns empty group for fixture containing no compulsory-material effects. General mandatory/material-changing effects not certified. Removing SET_AVAILABLE fails facedown; allowing any material fails wrong-set. Frozen current-plexus-link-batch.json.
+- Coverage reconciles seven suites13 scenarios/10 controls with source/install/current dependency/artifact hashes. Source unchanged. Earlier isolated suites' Link-disabled/initial-limit-bypass limitations remain, supplemented by actual procedure suite. Overall108 partial/54 repairs/0 full.
+- Original Link arrow data/runtime adapter, more material restrictions/compulsory effects, proper-Link-triggered revival integration and native Omega remain open. Next integrate canonical Link into revival test or next roster. Full711 goal active.
+
+## 2026-10-09 — Plexus native named summon cap and renewal
+
+- Actual neutral effect summons first Extra copy; native IsCanBeSpecialSummoned for second copy false and actual second SpecialSummon attempt returns0. Next own turn fixture sends first field copy GY to free Extra-zone space, then second copy actually summons. Source SetSPSummonOnce preserved; fixture ignores initial summon restriction and disables original Link procedure only.
+- Removing SetSPSummonOnce fails native second-copy cap assertion. Frozen current-plexus-summon-cap-batch.json pins source/runtime/artifact hashes. Initial renewal attempt lacked available Extra zone and was corrected through actual removal before second summon. Source unchanged; proper Link unproven.
+- Plexus10 scenarios/8 controls across six suites. Overall108 partial/54 repairs/0 full. Proper Link/facedown materials, full-field/Spirit/late changes and native Omega remain open. Next proper Link compatibility investigation or next roster effect. Full711 goal active.
+
+## 2026-10-09 — Plexus boost End Phase reset and reconciliation
+
+- Actual shuffle creates300 ATK/DEF boost on both fields; after advancing through real End Phase to next turn, both neutral Krawlers return to100 ATK/DEF. Removing phase reset fails next-turn stats. Frozen current-plexus-boost-reset-batch.json. No source change.
+- fresh_current_plexus_coverage.py reconciles all five suites, runtime/artifact hashes, source/install parity:9 scenarios/7 controls, full audit OPEN. Original Link disabled in-memory, proper Link and on-summon fixture initial-limit bypass explicitly disclosed.
+- Overall108 partial/54 repairs/0 full. Native SpecialSummonOnce cap, proper Link/facedown material, field-space/Spirit/resolution interactions and native Omega remain open. Next proper Link compatibility investigation or next roster. Full711 goal active.
+
+## 2026-10-09 — Plexus all-Krawler boost repaired
+
+- Printed all Krawler monsters gain300 ATK/DEF; production field range previously own only. Native actual recycle test reproduced opponent neutral Krawler100 instead of400 ATK; both-field candidate passes ATK/DEF. Changed ex target range to both fields; installed backup plexus-before-both-field-boost-fix and byte parity.
+- Frozen current-plexus-boost-scope-batch.json: own/opponent stats400 verified; old-own-field control fails. Refreshed shuffle2, full Necrovalley1, revival/discard4 suites against repaired source. Plexus8 scenarios/6 controls total. Explicit original Link procedure disabled for missing legacy APIs; proper Link remains open.
+- All711 syntax/parity pass, Ohmen38/28 pass. Selected67 initialization41 pass/26 missing legacy API failures; drift/inventories refreshed. Ledger54 CURRENT_EVIDENCE_VERIFIED;108 focused partial/0 full. Boost duration, named summon cap, proper Link/facedown material and native Omega remain open. Next boost End Phase reset or proper Link investigation. Full711 goal active.
+
+## 2026-10-09 — Plexus on-summon revival/discard
+
+- Four scenarios pass: neutral actual Extra Deck Special Summon triggers canonical GY Krawler facedown revival; accepting optional cost discard additionally flips revived card faceup Defense; faceup banished recipient revived facedown; wrong-set excluded. Native discard COST+DISCARD reasons asserted.
+- Suppressed revival fails all three positives; suppressed flip fails discard case. Frozen current-plexus-revival-batch.json. Original Link procedure disabled in-memory and initial summon limit ignored by neutral fixture; proper Link not claimed. Source unchanged. Initial banished fixture defaulted facedown and was corrected to explicitly faceup before freeze.
+- Plexus7 scenarios/5 controls across three suites. Overall108 partial/53 repairs/0 full. Proper Link/facedown materials, native once-SpecialSummon cap, full-field/Spirit/resolution changes, discard without revival pool, boost duration/scope/native Omega remain open. Next proper Link compatibility investigation or boost duration. Full711 goal active.
+
+## 2026-10-09 — Plexus full Necrovalley resolution
+
+- One actual opponent removal scenario under full pinned Necrovalley: Plexus recycle offered/accepted, but source/two chosen recipients remain GY at resolution. Without Field fixture the same test fails protected-source assertion through otherwise successful recycling. This is a fixture control, not a source-mutation control. Frozen current-plexus-necrovalley-batch.json pins official script and runtime/artifact hashes.
+- Initial SELECT_CHAIN-only diagnostic missed SELECT_EFFECTYN offer; corrected harness explicitly records either source activation prompt. Do not claim activation unavailable. Filter candidate did not establish needed source repair; production unchanged. Original Link procedure disabled in-memory for missing public legacy APIs, same bounded scope as prior shuffle.
+- Plexus3 scenarios/3 controls across two suites. Counts108 partial/53 repairs/0 full. Activation legality under protection, proper Link/summon branch, boost duration/scope/interruption/native Omega remain open. Next Plexus summon/revival/discard. Full711 goal active.
+
+## 2026-10-09 — Shade reconciled; Krawler Plexus shuffle/boost
+
+- fresh_current_shade_coverage.py verifies all six current suites, runtime/artifact hashes, source/install parity:20 scenarios/12 controls, full audit OPEN.
+- Plexus259669838 seeded GY two cases pass: actual opposing effect destroys own Krawler, canonical source returns Extra Deck + two other GY Krawlers return Deck, own ally gains native300 ATK/DEF. Own effect excluded. Any-player control fails own case; suppressed shuffle fails positive. Frozen current-plexus-shuffle-batch.json.
+- Raw public-core original Link menu fails missing IsLinkSetCard/GetMustMaterial after source returns Extra. In-memory e0 Link condition disabled only to isolate GY effect; source unchanged, no proper Link proof. Proper Link/facedown material, summon/revive-discard branch, boost scope/reset, Necrovalley and interruptions/native Omega remain open.
+- Counts108 focused partial/53 repairs/0 full. Next Plexus Necrovalley recycle legality or revival/discard; full711 goal active.
+
+## 2026-10-09 — Shade actual faceup-use reset
+
+- Two native cases pass: first actual Spell overlay, opponent turn2 neutral ignition flips Shade face-down then face-up or sends Shade to Hand and actually Special Summons it back; next own turn Shade actually attaches second opposing target. Both old/new material codes on host asserted. No ignored limits; bounded neutral IsCanOverlay adapter.
+- Removing event reset on once-faceup flag fails both cases at renewed attachment availability. Frozen current-shade-attach-reset-batch.json pins current source/runtime/artifact hashes. Source unchanged. Shade20 scenarios/12 controls across six suites.
+- Overall107 partial/53 repairs/0 full. Shared named copies, source/target/recipient changes under CL2, general token/material permissions and native Omega remain open. Next coverage reconciliation or next uncovered roster effect. Full711 goal active.
+
+## 2026-10-09 — Shade distinct recipient and persistent faceup limit
+
+- Two native cases pass: own Aerocat Xyz targeted and actually overlaid onto second Aerocat Xyz; target excluded from receiver menu. Actual first Spell attachment verified, then next own turn another legal opposing target remains but Shade attachment unavailable while same source stays faceup.
+- Including target in receiver menu fails distinct-host case; ignoring faceup flag condition fails next-turn case. Frozen current-shade-attach-limit-batch.json pins source/runtime/artifact hashes. Bounded neutral IsCanOverlay adapter; source unchanged. Shade18 scenarios/11 controls across five suites.
+- Overall107 partial/53 repairs/0 full. Face-down/leave-return reset, named copies/renewal, changing recipient/relation/control/immunity, general material restrictions/native Omega open. Next Shade faceup reset or next roster effects. Full711 goal active.
+
+## 2026-10-09 — Shade immunity and self-recipient repaired
+
+- Actual native immune opposing monster was illegally overlaid; adding IsImmuneToEffect resolution guard fixes it. Sole own Aerocat Xyz was offered as target despite no distinct receiver; target filter now requires another s.aero recipient excluding candidate target; resolution selection excludes tc. Also rechecks IsCanOverlay at resolution. Backup shade-before-attachment-safety-fix, repaired installed bytes match.
+- Two safety cases pass: immune opponent remains/not material; sole host absent from target menu. Missing-immunity and old-self-target controls fail exact respective cases. Frozen current-shade-attach-safety-batch.json; bounded neutral missing-method adapter retained. Refreshed all prior aura/summon/attachment suites:16 cases/9 detected controls total.
+- All711 syntax/parity pass; Ohmen38/28 pass. Selected initialization66:41 pass/25 legacy API failures, drift/inventories current. Ledger53 CURRENT_EVIDENCE_VERIFIED checks four Shade suites. Overall107 partial/53 distinct repaired/0 full.
+- Multiple Aerocat recipient choices and legitimate Xyz-as-target with alternate receiver, late immunity/relation/control changes, token/material restrictions, once-faceup flag/count renewal/native Omega remain open. Next multiple-host or once-faceup-use proof. Full711 goal active.
+
+## 2026-10-09 — Shade overlay filter repaired/installed
+
+- Replaced target IsCanBeXyzMaterial with IsCanOverlay, following pinned c48739166 and c101203048 (explicit Spell/Trap overlay filter). Installed backup shade-before-overlay-filter-fix and byte parity. Three attachment scenarios pass: actual opposing Monster/continuous Spell overlay; wrong-set Xyz recipient excludes activation. Old filter fails Spell case, any-recipient fails wrong-set, omitted Overlay fails both positives.
+- Public core lacks Card.IsCanOverlay. Explicit bounded adapter asserts only fixture codes/Shade and returns true; does not certify general engine eligibility. Added bounded adapter to aura/summon suites because idle-menu eligibility invokes attachment filter. Refreshed6 aura +5 summon cases. Shade14 scenarios/7 controls across three suites; general permissions remain open.
+- All711 syntax/parity pass. Selected66 initialization41 pass/25 known missing legacy APIs; drift/inventories refreshed. Ohmen38 scenarios/28 runs pass. Ledger53 CURRENT_EVIDENCE_VERIFIED;107 partial/0 full. Historical diagnosis superseded by repaired batch.
+- Self-target sole Xyz recipient caused initial diagnostic self-overlay error before harness selected intended Spell; production self-recipient exclusion still needs proper test/fix. Immunity recheck, tokens/material prohibition, face-up-use flag, named limit/reset/interruption/native Omega remain open. Next Shade self-recipient/immunity tests. Full711 goal active.
+
+## 2026-10-09 — Shade Spell attachment target defect reproduced
+
+- Actual monster attachment works, host material query and target departure asserted. Wrong-set recipient blocks activation. Canonical opposing continuous Spell absent from target menu despite printed any-card target. Raw current-shade-attach.json retains exact failure.
+- In-memory --spell-target-candidate removes IsCanBeXyzMaterial predicate; all three scenarios pass, including actual Spell overlay. Hashed current-shade-attach-diagnosis.json records pending defect; production unchanged. Candidate is not canonical passing coverage. Initial diagnostic query corrected overlayCards property and now asserts intended target offered, preventing accidental host self-overlay.
+- Next review correct overlay/material permission filter (legacy IsCanOverlay unavailable public runtime; avoid blindly accepting prohibited monsters), implement supported repair with backup/parity and controls, refresh Shade suites/Ohmen/syntax/load/drift/ledger. Counts107 partial/52 repairs/0 full unchanged. Full711 goal active.
+
+## 2026-10-09 — Shade actual cost detach and summon
+
+- Five cases pass: actual Hand/GY Quick summons after neutral fixture attaches material to initially-field Rank6 Xyz; opposing Rank6 host also usable. Wrong Rank5/empty host exclude activation. Native detached material arrives GY with COST, without EFFECT reason. No adapters/ignored summon limits; original proper Xyz materials not certified.
+- Any-rank control fails Rank5 case; suppressed summon fails all three positives. Frozen current-shade-summon-batch.json with source/runtime/artifact hashes. No repair. Shade11 scenarios/4 controls across aura/summon suites.
+- Overall107 partial/52 repairs/0 full. Shade attachment, face-up-use flag, shared named limits/renewal, full-field/face-down support, Necrovalley/interruption/native Omega remain open. Next attachment tests; full711 goal active.
+
+## 2026-10-09 — Shade native ATK aura
+
+- Reviewed current text/source for Shade259615843. Six native ATK query scenarios pass: other own Aerocat gains1000; face-down source, actual source removal, native effect disable, wrong-set ally and opposing Aerocat exclude boost. Source itself retains printed ATK.
+- No-boost control fails positive case; boost-self control fails active/ wrong-set ally/ opposing ally cases through independent source ATK assertion. Frozen current-shade-aura-batch.json with runtime/artifact hashes. Initial field Shade/neutral recipients; no adapter or repair.
+- Counts107 focused partial/52 distinct repaired/0 fully audited. Shade Hand/GY summon Rank6 detach cost (either player), attachment target/recipient/control permissions, once-faceup flag and named limits remain open. Next Shade actual detach/summon; full711 goal active.
+
+## 2026-10-09 — Egg revival relation under actual CL2
+
+- Two canonical scenarios pass: opponent chained neutral effect sends original GY Egg to Hand, optionally back to GY, before revival resolves. Actual response selected and changed destination asserted; neither Egg revives because original effect relation lost.
+- Removing relation guard fails both cases with actual improper revival. Frozen current-egg-relation-batch.json hashes current source/runtime/artifacts. No adapters, ignored summon limits or repair. Egg21 scenarios/13 controls across seven suites.
+- Overall106 partial/52 repairs/0 full. Real official Field effects, negated summons, GY protection/Necrovalley, revival shared copies/reset and native Omega remain open. Full711 goal active; next uncovered roster effect or GY protection.
+
+## 2026-10-09 — Egg procedure copies and search renewal
+
+- Two actual native scenarios pass: first Hand copy summons/searches, second otherwise legal copy cannot use named Hand procedure that turn; next own turn second copy actually summons/searches second listed Deck recipient. Neutral Obsidim, no adapters.
+- Per-copy procedure limit mutation fails both cases. Explicit next-turn search target suppression fails renewal case. Legacy/third-argument DUEL count mutations did not fail this public runtime; not claimed as detected count controls. Frozen current-egg-procedure-limit-batch.json pins source/runtime/artifact hashes. Source unchanged.
+- Egg19 scenarios/12 detected controls across six suites. Overall106 partial/52 repaired/0 full. Negated summons, actual official Field effects, interruption/Necrovalley/native Omega remain open. Full711 goal active; next next uncovered roster effect or Egg chain interruption.
+
+## 2026-10-09 — Egg Damage Step revival repaired and installed
+
+- Added EFFECT_FLAG_DAMAGE_STEP to Egg e3 destroyed-event trigger, enabling printed battle revival. Installed pre-fix backup egg-before-damage-step-fix; repaired source/install bytes match. Actual opposing battles: face-up Pyro and initially face-down Pyro flipped before destruction revive Egg; wrong race excluded. Old-property and no-revival controls fail both positives. Frozen current-egg-battle-batch.json.
+- Refreshed Hand/search5, GY revival4, Extra Deck eligibility/reset2 and Normal Summon/shared-search3 against repaired source. Egg total17 scenarios/10 controls across five suites. Neutral fixtures, no adapters; Extra Deck evidence remains eligibility rather than official material recipe certification.
+- All711 syntax/parity pass, Ohmen38 scenarios/28 runs pass; selected65 initialization40 pass/25 known missing legacy APIs. Drift/load and inventories refreshed. Repair ledger verifies all five Egg suites, 52 distinct repaired cards (Egg already counted); counts106 partial/0 full.
+- Historical unrepaired diagnosis remains evidence of pre-fix reproduction, superseded by current battle batch. Search/procedure count renewal, summon-procedure shared copies, real Obsidim effects, interruptions/native Omega remain open. Full711 goal active; next further Egg limit/interruption or next roster effect.
+
+## 2026-10-09 — Egg battle revival bug reproduced; repair pending
+
+- Actual opponent turn2 battles destroy own face-up Pyro / initially face-down Pyro flipped in battle. Both canonical source tests fail: no revival offer despite actual battle destruction. Wrong-race negative passes. Raw current-egg-battle.json retained.
+- In-memory --damage-step-candidate adds EFFECT_FLAG_DAMAGE_STEP to e3 trigger property; all three cases pass. current-egg-battle-damage-step-candidate.json and hashed current-egg-battle-diagnosis.json saved. Production remains unrepaired; do not count candidate as canonical passing coverage.
+- Next apply proven Damage Step property fix with installed backup/parity, add old-property and no-revival controls, freeze batch, refresh all four existing Egg suites, Ohmen, syntax/load/drift/inventories/ledger. Existing counts106 partial/52 repaired/0 full unchanged; full711 goal active.
+
+## 2026-10-09 — Egg Normal Summon search and shared limit
+
+- Three native scenarios pass: Normal Summon actually searches listed Deck card; unlisted recipient excluded; after successful first search a second Hand copy actually Special Summons using production procedure but cannot search another otherwise legal listed Deck recipient. Both Eggs field, one recipient Hand and one Deck asserted.
+- Per-copy search count mutation fails copies case; omitted SendtoHand fails both positive searches. Frozen current-egg-normal-search-batch.json pins current source/runtime/artifact hashes. Neutral Obsidim and listed-card fixtures; no adapters or source change. Egg now14 scenarios/8 controls across four suites.
+- Counts106 partial/52 repairs/0 fully audited. Search renewal, summon-procedure named limit, real Obsidim effects, battle destruction, chain interference and native Omega remain open. Full711 goal active. Next Egg battle destruction/revival or further roster effects.
+
+## 2026-10-09 — Egg Extra Deck eligibility lock and reset
+
+- Two scenarios pass after actual opponent destruction and canonical Egg GY revival: native summon menu allows neutral Pyro Extra Deck Fusion procedure and excludes non-Pyro; next own turn both available. No adapters or ignored summon limits. Fixtures use neutral Extra Deck procedures, not official Fusion material recipes; eligibility verified, actual resulting Fusion summon not claimed.
+- Removing restriction fails both cases; removing phase reset fails renewal case. Frozen current-egg-extra-lock-batch.json pins source, runtime and artifact hashes. Source unchanged; installed byte parity verified. Egg now11 scenarios/6 detected controls across three suites.
+- Counts106 partial/52 repairs/0 fully audited. Normal Summon listed-card search, named copies, real Obsidim effects, battle destruction/interruption, official Fusion materials/native Omega remain open. Full711 goal active; next Normal Summon search/shared limit.
+
+## 2026-10-09 — Egg face-up Field condition repaired
+
+- Egg259464064 Hand summon incorrectly accepted face-down Obsidim. Pinned Ashened reference requires face-up Field card; added face-up condition, backed up installed source in egg-before-faceup-field-fix and installed repaired bytes.
+- Five native Hand/search scenarios pass: own/opponent face-up Obsidim enable actual summon and listed-card Deck search; missing/face-down Field card block summon; wrong listed recipient blocks search. Old Field filter fails face-down case; omitted search fails both positive searches. No API adapters.
+- Refreshed four actual GY revival cases and both controls against repaired source. Egg totals9 scenarios/4 controls; frozen current-egg-hand-search-batch.json and current-egg-revival-batch.json. Ledger52 repairs CURRENT_EVIDENCE_VERIFIED.
+- All711 syntax and source/install parity pass; Ohmen38 scenarios/28 runs refreshed. Selected initialization65:40 pass/25 known missing legacy API failures; inventories and drift evidence refreshed.
+- Counts106 partial/52 repairs/0 fully audited. Normal Summon search, real Obsidim effects, actual Pyro Extra Deck lock, copy/reset, battle destruction/interruption/native Omega remain open. Next Egg Extra Deck lock or Normal Summon search; full711 goal remains active.
+
+## 2026-10-09 — Divinity reconciled; Egg GY revival
+
+- `fresh_current_divinity_coverage.py` reconciles all4 current suites, runtime/artifact hashes and installed parity:11 scenarios/7 controls; full-card audit OPEN.
+- Inspected short uncovered Normal monsters (empty scripts/flavor text do not alone imply missing effects) then Egg259464064 current printed text/source. Egg actual GY revival4 cases: opponent destroys own faceup Pyro positive; wrong race/facedown/own effect negative. Two controls accept own destruction/suppress revival, exact corresponding failures.
+- Frozen `current-egg-revival-batch.json`; no API adapters or production change. Initial Egg GY, actual neutral quick removal effect and revival, no ignored summon limits. Source search lacks neutral Deck listed recipient, so no search proof.
+- Egg Hand procedure/listed-card search, actual Pyro Extra Deck lock enforcement, battle destruction, copy/reset/chain interaction/native Omega remain open. Counts106 partial/51 repairs/0 full. Next Egg Extra Deck lock and/or hand/search; full711 goal active.
+
+## 2026-10-09 — Divinity Hand permission and shared limit
+
+- Two cases pass: actual first Hand copy banishes/draws, while second Hand copy and another otherwise legal old opposing GY recipient remain (named activation limit blocks second); actual opposing turn2 neutral ignition offers no own Hand Divinity response.
+- Removing named count limit fails copies case; allowing Hand activation on any turn fails opposing-turn case. Frozen `current-divinity-permission-limit-batch.json`. Neutral recipient draw constants9/10 adapter; source unchanged.
+- Divinity now11 scenarios/7 detected controls across four suites. Set activation/next-turn renewal, official/general recipients, target/label/property variants, Necrovalley/interruption/native Omega remain open. Counts105 partial/51 repairs/0 full. Next refresh four-suite coverage reconciliation or next uncovered roster card; full711 goal active.
+
+## 2026-10-09 — Divinity recipient relation under actual CL2
+
+- Two cases pass: opposing neutral Quick response moves original copy recipient from GY to Hand; optionally sends it back to GY before Divinity resolves. Original relation lost; no recipient banishment or copied draw occurs in either case. Recipient remains at actual new destination.
+- Removing relation check fails both cases. Frozen `current-divinity-relation-batch.json`; source unchanged, copied draw retains constants9/10 adapter. Divinity now9 scenarios/5 controls across three suites.
+- General/official copied effects, properties/label variations, opposing-turn Hand restriction, shared limit/reset, Necrovalley/native Omega remain open. Counts105 partial/51 repairs/0 full; full711 goal active. Next opposing-turn permission/shared copy limit or next uncovered roster effect.
+
+## 2026-10-09 — Divinity to Infinity copying activation effects
+
+- Five cases in `current-divinity-copy-batch.json`: own-turn Hand activation copies old opposing GY neutral draw Spell/Trap, actually banishes recipient and draws for source player; Monster, own GY and same-turn actual send-to-GY excluded. Constants9/10 adapter supports neutral draw operation; source unchanged. Controls ignore age/suppress copied operation fail corresponding cases.
+- Two cases in `current-divinity-target-copy-batch.json`: copied neutral targeting activation selects source-player monster and actually destroys it; no legal own target prevents activation. Controls suppress copied target callback/suppress operation fail positive case. Removing original ClearTargetCard alone did not fail in this engine; do not claim necessity established by control.
+- Seven scenarios/four detected controls total. No repair. Actual CheckActivateEffect native behavior and own-turn hand permission execute. Official/general recipient effects, target/label/property variations, opposing-turn restriction, activation count/copies/reset, Necrovalley/interruption/native Omega remain open.
+- Ledger51 verified. Counts105 partial/51 repairs/0 full; full711 goal active. Next Divinity interruption/recipient relation or next uncovered roster card.
+
+## 2026-10-08 — Land target relation under actual CL2
+
+- Three cases pass with actual opponent neutral QUICK EVENT_CHAINING response: own targeted Pyro sent to Hand; own Pyro sent to Hand then genuinely Special Summoned before Land CL1; opposing target sent to Hand. Canonical relation filter spares departed/resummoned target while destroying remaining target.
+- Removing relation filter fails all3, preventing skipped-target tests from passing vacuously. Frozen `current-land-pyre-relation-target-card-adapter-batch.json`; explicit chain-info constant8 adapter, production unchanged.
+- Land now17 scenarios/6 controls. Copy/reset/activation renewal, battle replacement, competing replacements/native Omega remain open. Counts104 partial/51 repairs/0 full. Next Divinity to Infinity activation copy or remaining roster. Full711 goal active.
+
+## 2026-10-08 — Land of the Pyre activate/destroy
+
+- Six cases pass: actual two target destruction, own wrong race/facedown/missing opposing target block activation, opposing Spell target destroyed, own effect-indestructible Pyro survives while opposing target still destroyed. Source actually activates from Hand and resolves to GY.
+- Raw legacy CHAININFO_TARGET_CARDS64 rejected by public runtime retained; explicit constant-only adapter maps to enum8. Production source unchanged. Two controls detect omitted destruction and accepting any race. Frozen `current-land-pyre-activation-target-card-adapter-batch.json` via `fresh_current_land_pyre_activation_batch.py`.
+- Land now14 focused scenarios/5 controls across activation/replacement suites. Shared activation limit/copies/reset, changing target relation, actual battle replacement, competing replacement/interruption/native Omega remain open. Ledger51 verified; counts104 partial/51 repairs/0 full. Next Land target relation/copies or uncovered Divinity to Infinity activation copy. Full711 objective active.
+
+## 2026-10-08 — Land of the Pyre GY protection
+
+- Reviewed current Land of the Pyre and Divinity to Infinity sources/text; chose Land replacement branch. Eight scenarios pass: single/group Pyro protected by one source effect/replacement banishment; decline; wrong race; pinned Necrovalley blocks removal; send-only; opponent monster; mixed group protects Pyro and destroys outsider.
+- Three controls detect disabled replacement, first-zone-only protection, any-race protection. Native source banishment has EFFECT+REPLACE, excludes COST. Frozen `current-land-pyre-replacement-batch.json`; neutral victims/removal Spell and initial source GY, no adapters or source repair. Ledger51 verified.
+- Original activate/destroy own Pyro+opponent card and shared activation limit, battle destruction/facedown recipients, competing replacement/chain interference, native Omega open. Counts104 partial/51 repairs/0 full. Next Land activation branch or Divinity copying actual opponent activation. Full711 objective active.
+
+## 2026-10-08 — Navi Necrovalley recycle repaired
+
+- Full pinned Necrovalley exposed actual illegal return of cards from both GYs in raw probe. Repaired both recycle candidate count and selection using `aux.NecroValleyFilter(s.tdf)`. If no legal pool, no detach occurs. Attachment explicitly declined in recycle scenario, isolating proof from bounded legacy overlay adapter.
+- Two cases pass: protected GY recycle excluded, faceup banished attachment still allowed with recycling declined. Old unfiltered-source control fails exactly protected GY case. Existing3 recycle/attachment and6 negation scenarios rerun against repair; total11 scenarios/6 controls. Original Card.IsCanOverlay overlay eligibility remains bounded/open.
+- Backup `navi-before-necrovalley-recycle-fix/`; installed parity verified. Syntax711 pass, zero source/install mismatch, Ohmen38/28 pass; selected initialization64=39 pass/25 known missing-legacy-API failures. Ledger51 repairs;103 partial/0 full.
+- Next Goliath Necrovalley attachment restriction review or uncovered roster card. Proper Xyz, original/general overlay legality, copy/reset/chain interactions/native Omega remain open. Full711 goal active.
+
+## 2026-10-08 — Goliath real battle target protection
+
+- Four native battle scenarios pass: active initially-field Goliath restricts opposing turn2 attacker target menu to itself and protects ally; facedown source, actual source removal and native effect disable restore ally as target. Actual battle resolves, chosen monster destruction and damage observed.
+- Removing source protection fails only active case. Frozen `current-goliath-battle-batch.json`; no API adapters or repair. Disable fixture registers cannot-disable DISABLE/DISABLE_EFFECT so fixture does not cancel itself.
+- Goliath now9 scenarios/3 controls across search and battle suites; original material Xyz procedure, changing control/multiple copies, battle replay, Necrovalley/attachment eligibility, limit/reset and native Omega remain open. Ledger50 verified; counts103 partial/50 repairs/0 full. Next uncovered roster effects or Goliath/Navi Necrovalley interactions. Full711 goal active.
+
+## 2026-10-08 — Goliath detach-all/search/attach
+
+- Five cases pass after actual neutral Xyz-type source summon and two effect-attached materials: different-type Monster/Spell search two; same-kind search one; wrong-set candidate excluded; search declined but attachment resolves; attachment declined but search resolves. Actual two detached original materials in GY and selected Aerocat card moves to overlay.
+- Two controls detect accepting same card type and suppressed attachment. Selection deliberately chooses distinct candidate copies for wrong-type control; avoids masking filter defect by selecting original card twice. Frozen `current-goliath-search-attach-batch.json`; no repair.
+- Explicit missing CheckXyzMaterial disabled; bounded IsCanOverlay adapter asserts neutral known eligible GY cards. Original proper material Xyz, attack-target restriction, different target rank/type, Necrovalley, shared named limit/reset, interruption/native Omega remain open. Counts103 partial/50 repairs/0 full; full711 goal active. Next Goliath battle target restriction or Navi/Goliath GY/overlay restriction edges.
+
+## 2026-10-08 — Navi recycle/attach sequence
+
+- Three scenarios pass: actual neutral Xyz-type summon then two effect attachments, canonical on-summon trigger; detach2 and return one neutral card from each GY then attach chosen own GY card; decline recycle still attaches; faceup banished attachment. Actual native card movements, materials in GY and both-owner Deck counts asserted.
+- Two controls detect suppressed recycle (normal/banished fail) and suppressed attach (all3 fail). Frozen `current-navi-recycle-attach-batch.json`; no source repair. Explicit missing CheckXyzMaterial adapter disables unrelated original procedure; bounded Card.IsCanOverlay adapter asserts neutral known cards and GY/faceup eligibility. General original overlay eligibility not certified.
+- Navi now9 scenarios/5 controls across negate and sequence suites. Proper Beast level6 Xyz material procedure, general overlay restrictions, Necrovalley/hidden banishment, copy limits/reset, damage-step/interruption and native Omega open. Ledger50 verified; counts102 partial/50 repairs/0 full. Next Navi Necrovalley/overlay edge cases or Goliath search; full711 goal active.
+
+## 2026-10-08 — Navi monster negation/destruction
+
+- Reviewed current Goliath/Navi sources and printed text; selected Navi negate branch for actual runtime proof. Six cases pass: own Navi initially has zero materials; neutral other Xyz with actual Spell-effect attachment holds exactly one. Other host wrong rank/attribute still legal. Two materials, facedown host and opposing Spell activation block negate.
+- Actual opposing turn2 monster activation negated/destroyed; Navi retained and no material consumed. Three controls detect omitted negate, accepting any effect type, omitted destruction. Frozen `current-navi-negation-batch.json`, no source repair/API adapter. Ledger50 verified.
+- Initial Navi/other host field fixtures; proper Xyz/on-summon recycle+attachment, count/copies/reset, damage-step/chain relation/native Omega remain open. Counts102 partial/50 repairs/0 full; full711 goal active. Next Navi on-summon sequence or Goliath on-summon detached-material search.
+
+## 2026-10-08 — Lightning Shot pending-GY shuffle repair
+
+- Found actual opposing Spell/Trap activation negated and material detached but handler sent to GY rather than Deck. Repaired with `rc:CancelToGrave()` immediately before SendtoDeck, inside existing relation guard. Neutral experiment adding this call passed both; removing production fix reproduces exactly both failures.
+- Follow-up three cases pass: separate Rank4 non-WIND Aerocat host detaches while non-Aerocat Rank6 WIND host satisfies condition; actual opponent Spell and Trap activations. Four controls detect removed negate, incorrectly restricting detach host to rank6, no shuffle, old pending-GY handling. Original seven monster/condition cases and three controls rerun against repaired source (ten scenarios/seven controls total).
+- Backup `lightning-before-pending-grave-fix/`; installed source matches. Syntax711 pass, zero source/install mismatch, Ohmen38/28 pass, selected initialization63 =39 pass/24 known compatibility errors. Ledger50 repairs, progress101 partial/0 fully audited.
+- Proper initial Xyz procedures, handler relation changing mid-chain, activation count/copies/reset, native Omega remain open. Next Lightning handler-departure branch and/or next uncovered roster card; full711 goal active.
+
+## 2026-10-08 — Aerocat Lightning Shot negate/detach/shuffle
+
+- Seven current cases pass after own neutral Spell actually overlays material onto neutral initially-field Xyz, then opponent turn2 ignition CL1/Lightning CL2. Actual activation negated; optional effect detach (EFFECT, not COST) and opponent handler shuffled into Deck; decline preserves material/handler.
+- Condition allows non-Aerocat Rank6 WIND Xyz with one material to negate, but optional detach requires Aerocat. Wrong rank, wrong attribute, two materials and facedown host block activation. Three controls detect no negate, any rank, no shuffle. Frozen `current-lightning-shot-batch.json`; no API adapters or source repair.
+- Proper initial Xyz summon, other Aerocat host selection, opponent Spell/Trap activation, handler departure/chain interruption, shared activation limit/reset and native Omega remain open. Counts101 partial/49 repairs/0 full; full711 goal active. Next strengthen Lightning multi-host and handler relation branch.
+
+## 2026-10-08 — Pot of Rage limits/reset/cost
+
+- Four additional cases verified: one actual destruction plus one banishment counts together; opponent neutral effect actually banishes two as activation cost (excluded); two legal Hand copies share activation limit; counted events expire and original Hand copy cannot activate on own turn3 without new removal.
+- Controls: remove named activation limit, suppress flag reset, count COST as EFFECT. Exactly corresponding scenarios fail. Frozen `current-rage-count-limits-batch.json`; constant-only TARGET_PLAYER9/TARGET_PARAM10 adapter. No repair, ledger49 verified.
+- Pot now10 scenarios/5 controls across two suites. Activation limit next-turn renewal, changing control/ownership, same-card event overlap, negation/interruption and native Omega open. Counts100 partial/49 repairs/0 full; full711 goal active. Next uncovered effects such as Aerocat Lightning Shot259446105.
+
+## 2026-10-08 — Pot of Rage current count/draw evidence
+
+- Selected uncovered roster card using current progress evidence/source list. Six cases pass: opponent actually destroys1/2/3/4 cards (draw floor(n/2)), opponent banishes2, own effect destroys2 (excluded). Actual victim movement and drawn neutral cards execute; opponent-controlled neutral free-chain removal fixture.
+- Explicit constant-only public runtime adapter TARGET_PLAYER=9/TARGET_PARAM=10; retained legacy production source unchanged. Raw invalid legacy chain-info diagnostic preceded adapter. Not native Omega certification.
+- Two controls detect accepting own removal and suppressed draw. Frozen `current-rage-count-batch.json`. No repair. Limits/renewal, changing control/ownership, event overlap/double count, cost and hidden removal remain open.
+- Counts100 partial/49 repairs/0 full. Next strengthen Pot event counting/reset/activation limit, or next uncovered roster effect. Full711 objective remains active.
+
+## 2026-10-08 — Shrieker GY destruction replacement
+
+- Eight actual destruction scenarios pass: single/group preservation with one source banishment, decline, wrong set, full pinned Necrovalley, send-only, opponent controller and mixed eligible/ineligible group. Mixed group preserves Ex monsters and destroys outsider.
+- Actual source banishment has EFFECT+REPLACE reasons, excludes COST. Three controls detect disabled replacement, incorrectly protecting first zone only and incorrectly accepting any monster. Frozen `current-shrieker-replacement-batch.json` with current dependencies/artifacts; no repair.
+- Shrieker now15 scenarios/6 controls across three suites. Field and GY fixtures, neutral recipients/probe. Battle destruction, facedown recipients, competing replacement/interruption, named copy/reset/renewal and native Omega remain open.
+- Counts99 partial/49 repairs/0 full. Next expand coverage beyond simultaneous-summon priority group; inspect untested short effects against current roster/evidence inventory. Full711 goal remains active.
+
+## 2026-10-08 — A.I.P Ex Shrieker Deck pair/lock
+
+- Seven scenarios across `current-shrieker-spirit-limit-batch.json` (five) and `current-shrieker-oath-batch.json` (two): actual tribute/Deck pair, level6 allowed/7 blocked, wrong set, Spirit, one zone; actual Ex follow-up allowed and outside summon blocked. Native direct-attack flag observed and neutral ignition still available.
+- Three controls detect missing Spirit guard, direct-attack restriction and future lock. Initial source/helper seeded field; neutral recipients. No repair; ledger49 remains verified. Proper battles/continuous restriction resets, named copies/renewal, failures/interruption and GY destruction replacement/native Omega remain open.
+- Counts99 partial/49 repairs/0 full. All17 priority simultaneous-summon candidates now have some targeted evidence, not full audits. Next Shrieker GY destruction replacement; then expand roster coverage beyond this priority group. Full711 goal active.
+
+## 2026-10-08 — Hope activity/oath execution
+
+- `fresh_current_hope_oath_batch.py`: three cases pass. Actual prior non-Brigade Special Summon blocks Hope; prior Brigade summon permits tribute/Deck pair and actual future Brigade summon; non-Brigade future summon unavailable after Hope cost.
+- Removing activity gate fails prior-outside case; removing oath registration fails future-outside case. Frozen current dependency/artifact hashes in `current-hope-oath-batch.json`. No repair. Initial source/helper field fixtures; actual summons, cost and pair resolution.
+- Hope now8 focused scenarios/5 controls across two suites. Proper Hand/GY procedure, encoded oath compatibility, recipient restriction reset/actual battles, copy limits/renewal and native Omega remain open. Counts98 partial/49 repairs/0 full. Next A.I.P. Ex Shrieker259664027; full711 goal active.
+
+## 2026-10-08 — Shining Brigade Hope tribute/Deck pair
+
+- Five baseline cases pass: actual source tribute and Deck pair, full pinned Spirit blocks activation, wrong set, wrong level, only one zone after tribute. Neutral summoned ignition effects actually unavailable under native CANNOT_TRIGGER; native CANNOT_ATTACK/CANNOT_TRIGGER flags observed via continuous monitor.
+- Three controls verified: remove Spirit guard (Spirit case fails), remove attack restriction, remove trigger restriction (positive case fails). Frozen `current-hope-spirit-limit-batch.json` via `fresh_current_hope_spirit_limit_batch.py`. No repair.
+- Initial source field fixture. Hand/GY summon procedure, original encoded oath limit compatibility, prior activity and future archetype lock, copies/renewal, actual battle restriction/reset, source exclusion, interruption and native Omega remain open. Full711 goal active.
+- Counts98 partial/49 documented repairs/0 fully audited. Next strengthen Hope prior-activity/oath restriction, then A.I.P. Ex Shrieker259664027.
+
+## 2026-10-08 — Hydra recipe/wipe current reconciliation
+
+- Refreshed actual contact Fusion recipe suite: seven baseline cases (normal, duplicate name, wrong race, missing Heart, occupied center, center material removed prospectively, faceup Heart continuous-spell fixture). Five controls prove names/Heart gate/center/banished materials/prospective zone logic.
+- Refreshed actual Quick wipe: six baseline cases (normal clear opposing monster/continuous Spell/facedown Trap, four monsters, missing/facedown Heart, wrong race, used limit with actual restored target). Five controls prove destruction, five-monster/Heart gates, all opposing field locations and once-per-turn limit.
+- No repair. `fresh_current_hydra_coverage.py` verifies current dependency/artifact hashes and installed parity across four suites:25 scenarios/16 controls. Output `current-hydra-coverage.json` retains full-card audit OPEN.
+- Open: Necrovalley/material removal restrictions/alternate pools, damage-step/protection/negation/interruption, wipe renewal/copy independence, native Omega. Initial field sources for token/wipe remain distinct from real Fusion/revival suite.
+- Next remaining simultaneous-summon priority: Shining Brigade Hope243194249, then A.I.P. Ex Shrieker259664027. Counts97 partial/49 repairs/0 full; full711 objective active.
+
+## 2026-10-08 — Hydra actual Fusion then GY/banishment revival
+
+- `fresh_current_hydra_fusion_revival_batch.py`: seven scenarios pass after actual canonical five-material contact Fusion in center MMZ. All five materials genuinely banished with COST/MATERIAL/FUSION reasons; native Fusion summon type/Extra origin asserted. No CompleteProcedure fixture, ignored summon restriction or legacy adapter.
+- Scenarios: destroyed-to-GY revive+one token; send-only remains GY; two destruction/revivals same turn (no invented HOPT); full pinned Spirit permits sequential source/token summons; center occupied during departure blocks revival; destroyed-to-faceup-banishment revival, also under Spirit. Native movement center placement and live ATK/DEF queried. Neutral material/Heart scripts and bounded redirect/blocker effects.
+- Four controls verified: suppress source revival; replace destroyed event by GY departure (fails send-only and both banishment cases); suppress token; add erroneous HOPT (fails second revival). Frozen `current-hydra-fusion-revival-batch.json`. No repair; ledger49 verified.
+- Counts unchanged97 partial/49 repairs/0 full. Next refresh existing `fresh_swamp_hydra_fusion.cjs` recipe negatives and wipe tests against current source/metadata. Proper recipe alternatives, Necrovalley, facedown removal, damage-step/interruption and native Omega remain open; full711 goal active.
+
+## 2026-10-08 — Terrifying Hydra field token/stat checkpoint
+
+- Current metadata `fresh_current_hydra_tokens_batch.py`: five actual destruction scenarios pass: WATER Reptile, wrong race excluded, Spirit blocks pair, only one zone after destruction blocks pair, non-Reptile Hydra-set monster still triggers. Actual two tokens and dynamic ATK/DEF queried; full pinned Spirit fixture.
+- Two controls verified: removed token summon fails the two valid token cases; removed Spirit guards fails only Spirit. Frozen `current-hydra-tokens-batch.json`. No source change/repair.
+- Source initially field-seeded. Proper center-zone five-material Fusion procedure, GY/banished center revival plus sequential single token, wipe, responses and native Omega remain open. Next strengthen existing `fresh_swamp_hydra_fusion_revival.cjs` against current metadata/procedures rather than substitute seeded GY revival for proper first summon.
+- Totals97/711 focused partial,49 repairs,0 fully audited. Full711 goal active.
+
+## 2026-10-08 — Vylon Volt equip targeting repaired
+
+- Reconciled printed text. Canonical Hand reveal/double summon: seven scenarios pass (normal, Spirit, wrong set, non-monster, sole source, one zone, LIGHT lock). Actual LIGHT follow-up succeeds; DARK activation blocked. Removed Spirit and removed lock controls fail exactly their corresponding cases.
+- Canonical Normal Summon/Union equip: seven scenarios pass (Deck, GY, Necrovalley GY blocked/Deck allowed, wrong set, non-Union, full spell zones). Actual equip target and EFFECT_UNION_STATUS verified via neutral Union monitor and canonical SetUnionState.
+- Repaired `s.eqtarget` to apply `aux.NecroValleyFilter(s.unionfilter)`, matching resolution. Previously offered trigger with only forbidden GY Union under full pinned Necrovalley. Removing targeting filter reproduces exact failure.
+- Frozen suites: `current-volt-spirit-limit-batch.json`, `current-volt-union-equip-batch.json`; repair ledger verifies both. Backup `volt-before-union-target-fix/`; installed parity zero mismatches. Syntax all711 pass; Ohmen38/28 pass; selected initialization62 =38 pass/24 known legacy API failures.
+- Current totals96/711 focused partial,49 repairs,0 fully audited. Shared Normal/Special equip limit, copies/renewal, Union protection/unequip legality, interruption and native Omega open. Next: Terrifying Hydra239935098 / remaining simultaneous-summon priorities. Full711 goal active.
+
+## 2026-10-08 — Otakemaru blocked-return loop repaired
+
+- Added per-copy `e4:SetCountLimit(1)` to mandatory End Phase return. Preventing return previously caused 20 repeated forced trigger selections and exhausted the fixture step limit. The source remains on field without revival when blocked; normal return still summons a level-nine Spirit Tuner/non-Tuner pair.
+- Five canonical public-core scenarios pass: normal pair, Spirit Dragon (return only), wrong total, two non-Tuners, return prevented. Two controls detect exactly Spirit/no-cap and blocked-return/no-End-limit. Evidence frozen by `fresh_current_otakemaru_spirit_limit_batch.py` / `current-otakemaru-spirit-limit-batch.json`.
+- Initial source actually Special Summoned by neutral fixture ignoring initial limit. Missing legacy CheckSynchroMaterial explicitly disabled only for original procedure. Proper Synchro summon, other-Spirit return protection, opponent targeting protection, Normal Summon bounce and native Omega remain open.
+- Backed up installed source in `output/fresh-ccg-september/otakemaru-before-end-limit/`, installed repair and verified parity. Syntax 711 pass; all source/install parity; Ohmen 38 scenarios/28 runs pass. Selected initialization now 61: 37 pass/24 known missing-legacy-API failures. Repair ledger 48; focused partial cards 95/711; fully audited zero.
+- Next: Vylon Volt 238274859 and remaining simultaneous-summon priorities. Full 711-card objective remains active.
+
+## 2026-10-08 — Urphiel leave-field revival checkpoint
+
+- `fresh_current_urphiel_spirit_limit_batch.py`: three baseline scenarios pass (two recipients, Spirit Dragon cap one, sole recipient); removing the source cap fails only the Spirit case. No source repair.
+- Opponent-controlled neutral fixture actually Xyz-type summons source, then removes it in a separate chain. Canonical leave-field condition and actual GY revival execute. Explicit missing `Duel.CheckXyzMaterial` adapter disables unrelated original Xyz procedure; proper material Xyz summon, negate/replacement, Necrovalley, interruption and native Omega remain open.
+- Frozen current evidence: `current-urphiel-spirit-limit-batch.json`. Repair ledger still verifies 47; progress now 94/711 focused partial cards, zero fully audited.
+- Next: Otakemaru 221855414 return-to-Extra and level-nine Spirit pair, then remaining simultaneous-summon priority candidates. Full 711-card goal remains active.
+
+## 2026-10-08 Prayer late-chain Spirit and reconciled coverage
+
+`current-prayer-late-spirit-batch.json`: two cases pass. Valid canonical activation then opponent neutral Quick response actually summons full pinned Spirit from Extra with initial ignore-limit fixture. Canonical Prayer destroys level8 first, then resolution guard blocks two-recipient selection/summon; normal comparator actually summons pair. Removing only resolution Spirit check fails exactly late-chain case; activation guard remains intact. Proper original Spirit Synchro and broader chain/negation interactions unproved.
+
+`fresh_current_prayer_coverage.py` verifies current source/install parity and every dependency/artifact/exact failure set across seven suites,25 scenarios and12 detected controls; current-prayer-coverage.json records reconciliation and explicit OPEN items. No production repair/adapters for these suites. Full Prayer audit remains OPEN, and all711 objective remains active; counts93partial/47repair/0full unchanged. Next activation/effect negation scenarios or remaining17 multi-summon branches to broaden roster progress.
+
+## 2026-10-08 Prayer full pinned Necrovalley interactions
+
+`current-prayer-necrovalley-batch.json`: five native full-source scenarios pass without adapters. Main normal Hand/GY pair and actual End destruction; under full pinned Necrovalley47355498 Hand-only pair still actually summons/destroys; mixed Hand/GY case has fewer than2 legal recipients and activation excluded by existing aux.NecroValleyFilter. Search normal Ritual destruction recovers Deck Spell after source banish cost; active Valley prohibits source cost, excluding optional activation with source retained in GY. Source filter-removal control fails only mixed pair; Valley cannot-remove effect mutation fails only banned search cost. Full pinned Valley starts in opponent FZONE with explicit standard Field Spell metadata; initial Ritual placement, Valley activation/timing/immunity, negation/interference and native Omega open. No source fix/count increase. Prayer broad tested branches are still partial evidence, not full-card certification. Minimum93partial/47repair/0full. Next response/negation or same-chain late restriction guard evidence; full711 objective active.
+
+## 2026-10-08 Prayer main named sharing and renewal
+
+`current-prayer-main-copies-batch.json`: native three-turn scenario passes. Two Hand source copies, two independent level8 destroy fixtures and four eligible Hand/GY recipients keep second activation otherwise legal. Actual first destruction/pair/negation; remaining Hand Prayer activation absent under named limit. Actual End destruction, opponent turn, next own turn: remaining source activation available and actually destroys second level8/summons another pair; both sources/cost cards in GY. Per-copy main SetCountLimit(1) mutation fails first-turn exclusion. No adapter/source edits. Main and GY search named sharing/renewal now each bounded-tested; proper original Rituals, response/negation, Necrovalley, destruction-choice/free-space corner cases and native Omega remain open. Counts93partial/47repairs/0full unchanged. Next Necrovalley or narrow main effect destruction-choice/zone fixture; full711 goal active.
+
+## 2026-10-08 Prayer named search sharing and next-turn renewal
+
+`current-prayer-search-copies-batch.json`: one two-turn native scenario passes. Two source GY copies and two eligible Deck Spells after actual neutral Quick-effect Ritual destruction yield exactly one recovery/one source banish; named count excludes second source activation on same event. Actual opponent next turn renews neutral effect: second Ritual Hand fixture actually Special Summoned ignoring initial ritual limit then destroyed, remaining GY Prayer yields second recovery/second source banish. Changing e2 named SetCountLimit(1,id+100) to per-copy SetCountLimit(1) fails first event with two immediate searches. No source edits/adapters. Original Ritual procedures, main-effect named sharing, activation/negation handling, Necrovalley, other interference and native Omega remain open. Partial93/repair47/full0 unchanged; full711 goal active. Next Necrovalley original source banish cost and GY recipient handling, or other priority summon branches.
+
+## 2026-10-08 Prayer Ritual-destruction search coverage
+
+`current-prayer-search-leave-field-batch.json` from fresh_current_prayer_search_batch.py freezes ten passing full-source/current-data cases. Neutral own monster effect actually destroys initially placed Nephthys Ritual fixture; canonical GY optional trigger banishes Prayer as cost and recovers Nephthys Spell from Deck/GY/face-up banishment, or explicit Phoenix Wing Wind Blast code63356631/Trap fixture. Facedown banishment, wrong recipient set, non-Ritual destruction, wrong Ritual set, Prayer in same destruction group, and self-only recipient blocked; source remains unbanished in negatives. Controls allowing facedown, simultaneous source, wrong Ritual set fail exactly corresponding cases. No adapters or source edits. Proper Ritual procedure, real recipient effects, named-copy HOPT/renewal, chain interference, Necrovalley and native Omega remain unverified; full-card audit still OPEN. Combined Prayer now has main pair/negation/End destruction, two tracking resets and search branches covered in bounded fixtures. Minimum93partial/47repairs/0full unchanged. Next named-copy search limit or remaining multi-summon17 source branches.
+
+## 2026-10-08 Prayer delayed identity reset native evidence
+
+`current-prayer-delayed-reset-batch.json`: two cases pass. After actual canonical Prayer pair/negation, neutral Spell changes one recipient face-down OR returns one recipient to Hand and actually re-summons it. Actual End Phase destroys only untouched original; reset copy survives. Hand-return copy regains its passive+1000 ATK (1100 observed), confirming original negation reset. Mutation ignoring flag-label identity tracking destroys both and fails both cases. No adapters or production edits. This records bounded actual reset behavior, not universal ruling or all interference correctness; control change, temporary banish, immunity/protection, source negation, ritual trigger/search and native Omega remain open. Count remains93partial/47repairs/0full. Next Prayer Ritual destruction/search trigger with cost and recipient eligibility; full711 audit remains active.
+
+## 2026-10-08 Prayer pair, negation and actual End destruction
+
+Prayer238276252 `current-prayer-spirit-limit-batch.json` via fresh_current_prayer_pair_batch.py: four canonical current-data scenarios pass. Positive actually destroys level8 Nephthys Hand fixture, simultaneously summons two level2 Hand/GY fixtures, native negation suppresses their field passive+1000 ATK effects (100 observed), and actual End Phase destroys both into GY. Spirit activation, wrong-level7 destroy candidate and one free field zone excluded. Three exact controls: remove Spirit guard fails Spirit case; remove both registered negations fails positive ATK check; remove End operation fails positive End destruction. No production repair/adapters. Ritual-destruction GY search, interference/removal/face-down changes before delayed destruction, real recipients and native Omega remain open. Partial minimum93, repair minimum47, fully0. Next meaningful extension: delayed destruction identity/reset when a revived card leaves/returns or turns facedown; then ritual trigger/search.
+
+## 2026-10-08 Breeze detached-pair Spirit repair
+
+Stellaer of the Breeze230998543 gains specific Spirit59822133 targeting/resolution guards for detached source+revealed Hand recipient pair; separate count API retained. `current-breeze-spirit-limit-batch.json`: three adapted scenarios pass, old guard fails exactly Spirit. Neutral properly typed Xyz host (0x800021) actually attaches source by effect then detaches as cost; canonical source previous-overlay/cost/host condition, reveal relation and pair execute. Explicit source event-only adapter replaces legacy EVENT_DETACH_MATERIAL with EVENT_TO_GRAVE; no production event change. Raw unadapted probe records actual attach/detach MOVE trace but no xyzcon callback, so raw negatives are inconclusive. Follow-up optional Xyz omitted because no recipient fixture; actual original event/native Omega, original host/source procedure, Hand self-summon/lock, alias and interruption remain open. Installed with backup/hash parity. All711 syntax/parity refreshed; selected60 initialization37pass/23compatibility; Ohmen38/28. Minimum92partial/47repairs/0full. Next Prayer of Nephthys existing guarded pair, effect negation and End destruction, or strengthen late-chain restriction coverage.
+
+## 2026-10-08 Eisodos token Spirit guard runtime finding
+
+To Proto Eisodos241543138 existing IsPlayerCanSpecialSummonCount(tp,2) DOES NOT block pinned Spirit restriction in tested public runtime: illegal optional trigger offered. Added explicit59822133 guard to targeting and resolution, retaining count API. `current-eisodos-leave-field-batch.json` from fresh_current_eisodos_count_guard_batch.py: three pass (actual opponent neutral banishment/source removed, two actual Protogenic tokens; Spirit trigger blocked; one free MZONE blocked); old specific guard fails exactly Spirit. No callback/card-data/selection adapter. Initial source field placement bypasses proper Link; explicit token240299293 metadata/empty source; removed Quick effect, actual token stats/restrictions, general summon-count cap semantics, late restriction insertion and native Omega open. Installed with predecessor backup/hash parity. Earlier static note about count API was explicitly unproven, now superseded by runtime finding. All711 syntax/parity refreshed; selected59 initialization36pass/23known compatibility failures; Ohmen38/28 pass. Minimum91partial/46repairs/0full. Next remaining count-API source or existing marker branch review; maintain full711 goal.
+
+## 2026-10-08 Machina restriction repair after resolving wrapper fixture
+
+Located existing isolated `fresh_public_card_data_adapter.py`/public-core-card-data-adapter.mjs: 32-bit wrapper incorrectly writes right scale at48 and Link markers at52 instead of44/48. Adapter changes only isolated module, not node_modules/Omega. Adapted Machina259247853 now actually summons two different-name neutral Krawler Links from Extra using canonical Step(SUMMON_TYPE_LINK)/CompleteProcedure; source initially on field and neutral Link anchor in EMZ5 provides arrows. `current-machina-spirit-limit-batch.json`: three pass (actual pair, Spirit blocked, duplicate name blocked); old guard fails exactly Spirit. Added production Spirit check at targeting and resolution; installed with backup/hash parity (machina-local-install.json). Bounded aux.SelectUnselectGroup adapter returns only exactly-two group and asserts canonical dncheck; generic interactive selection, initial proper source/anchor Link procedures, chain rewrite, lock/immunity, native Omega remain open. Unadapted zero-marker/zero-zone diagnostic retained separately with old guard control and hashes; no longer blocks adapted tests. All711 syntax/parity refreshed; selected58 initialization36pass/22known compatibility failures; Ohmen38/28. Minimum90partial/45repairs/0fully. Next review remaining17 priority branches and strengthen late-chain restriction/selection coverage; entire711 scope remains active.
+
+## 2026-10-08 Machina Extra-zone fixture diagnostic
+
+`fresh_machina_link_zone_review.py` freezes reproducible diagnostic into machina-link-zone-review.json. Full Machina259247853/opponent neutral removal, two different-name neutral Krawler Links in Extra, initial anchor Link in EMZ5 supplied marker5. Runtime reports anchor type67108897 but GetLinkMarker0; default and explicit TYPE_LINK GetLocationCountFromEx0 while eligible recipient class count2. Positive effect cannot activate; Spirit/same-name negatives are inconclusive/vacuous and are NOT new coverage. Harness uses bounded exactly-two selection helper but never reaches it. Production source unchanged. Next resolve native anchor marker/linked-zone precondition (check card data marshaling vs runtime and use authoritative compatible fixture), then test Spirit guard; do not change GetLocationCountFromEx or bypass zone check merely to get passing card tests. Current counts89partial/44repair/0full unchanged.
+
+## 2026-10-08 Abe End Phase pair restriction repair
+
+Abe259635008 retop now checks Spirit59822133 after successful mandatory Extra return and before pair selection. `current-abe-spirit-limit-batch.json`: three adapted scenarios pass (actual End Phase return plus tuner2/non-tuner4 revival, Spirit preserves return but blocks pair, wrong-total2+3 blocks pair). Old guard fails exactly Spirit pair selection. Full current source/pinned Spirit; neutral effect actually Special Summons source from Extra with initial ignore-limit fixture, then actual turn/phase transitions run canonical conditions/triggers. Missing Duel.CheckSynchroMaterial explicitly disabled for this fixture; raw unadapted three errors retained. Proper Synchro procedure, hand-limit enforcement/expiry, level/ATK effect, interrupted return, native Omega unverified. Source installed with backed-up predecessor/parity (abe-local-install.json). All711 syntax/source-install hashes refreshed; selected57 initialization36pass/21known compatibility failures (newly selected Abe adds missing Synchro API); Ohmen38/28 pass. Minimum89 partial,44 repairs,0full. Next Machina X-Krawler mandatory different-name Link pair and legacy group selection.
+
+## 2026-10-08 Bhodi actual material Fusion evidence
+
+Strengthened Bhodi259072745 with `current-bhodi-material-fusion-batch.json`: four cases pass, old revival cap fails exactly Spirit. Neutral Fusion spell calls canonical source CheckFusionMaterial/SelectFusionMaterial, asserts exactly2 selected materials, sets material group, sends with EFFECT+MATERIAL+FUSION reasons, actually summons with SUMMON_TYPE_FUSION without ignore-limit, and CompleteProcedure. Full Bhodi DARK Fiend recipe accepts valid materials and excludes wrong-attribute/race pairs. Canonical Fusion trigger actually revives two consumed materials normally and one under full pinned Spirit. This closes the earlier proper-material procedure gap for the bounded tested pairs. Explicit legacy IsFaceupEx and sterile empty/true mandatory-material adapters remain; no general mandatory-material effects, native Omega, banished recipients, effect-negation enforcement or equip proof. Additional certificate is hash-bound into original Bhodi repair batch and required by repair ledger. Source unchanged, counts88partial/43repair/0full. Next mandatory pair: Abe no Seimei or Machina X-Krawler.
+
+## 2026-10-08 Bhodi optional revival restriction repair
+
+Bhodi259072745 now caps both operation information and resolution recipient selection at1 under Spirit59822133, leaving normal maximum2. `current-bhodi-spirit-limit-batch.json`: three passing adapted scenarios (two normal revivals, one under Spirit, sole recipient); old cap fails exactly Spirit maximum. Full source/current DB and pinned Spirit; explicit legacy Card.IsFaceupEx adapter needed for modern public core. Raw unadapted three IsFaceupEx failures retained in current-bhodi-spirit-limit.json. Neutral field monster effect actually summons source from Extra with SUMMON_TYPE_FUSION and ignore-limit flag; canonical IsSummonType trigger runs, but proper material Fusion procedure is NOT proved. No claim of full Fusion audit, native Omega, banished recipients, revived effect negation enforcement, equip effect or interruptions. Installed with backup/parity (bhodi-local-install.json). All711 syntax/source-install parity, selected56 initialization36/20compatibility, Ohmen38/28 and inventories refreshed. Minimum88 partial,43 repairs,0 full. Next strengthen Bhodi with proper Fusion procedure or test Abe/Machina mandatory pair branches.
+
+## 2026-10-08 Dream Bedroom condition and optional summon repair
+
+Dream Bedroom259090287 protection condition now reads controller from e:GetHandlerPlayer() because native condition callback receives no tp; old source crashes GetFlagEffect(nil,...). Optional excavation selection now caps at1 under full pinned Spirit59822133 while preserving activation/excavation, decline and actual single summon. `current-bedroom-spirit-limit-batch.json`: three passing scenarios (normal two monsters, Spirit one, decline zero) verify native CONFIRM_DECKTOP and actual field counts. Old cap fails only Spirit selection max; old condition fails all3 with original nil-player error. Full canonical source, no callback adapters. Initial active FZONE source and four facedown banished fixtures establish excavation count2; neutral top-deck Nemleria recipients. Native Omega, actual banishing history/protection threshold/enforcement, recovery effect, interference and late restriction changes remain open. Installed source backup/parity in bedroom-local-install.json.
+
+All711 syntax/source-install parity refreshed; selected56 initialization36pass/20compatibility failures; Ohmen38cases/28runs. Partial minimum87, repair minimum42, fully0. Next Bhodi optional group cap plus legacy IsFaceupEx compatibility; preserve legal one-recipient branch.
+
+## 2026-10-08 Devotee two-token restriction repair
+
+Devotee259024242 now checks Spirit Dragon59822133 at activation targeting and resolution before mandatory two-token creation. `current-devotee-spirit-limit-batch.json` freezes source, harness, full pinned Spirit, current DB, procedures/runtime. Four cases pass: actual two Pyre tokens after Hand Pyro cost; Spirit activation blocked; wrong-race cost blocked; one free zone blocked. Old guard fails exactly Spirit. Neutral token239823001 uses explicit standard token metadata and empty source; Devotee itself creates restrictions. No token material/tribute restriction enforcement, Lord search, destruction replacement, oath flag renewal, late restriction insertion or native Omega proof. Installed with predecessor backup/hash parity (`devotee-local-install.json`). All711 syntax/source-install parity refreshed; selected55 initialization35pass/20 known compatibility failures; Ohmen38cases/28runs pass. Minimum86 partially tested,41 repaired,0 fully audited. Next optional group branches Bhodi/Dream Bedroom should retain legal one-card summon under Spirit.
+
+## 2026-10-08 simultaneous-summon triage narrowed
+
+Current scanner now derives17 priority candidates from multiple Step call sites or printed multi-summon clauses, while preserving broad376 candidates and all711 hashes. Signals are not exhaustive and do not certify remaining sources. Manual branch review removes Caudina, Grand Blue Princess, Sylvan Greetings as multi-summon false positives: each summons one, while its two-card text concerns sends/materials/recovery. Five unresolved priorities recorded: Devotee259024242 mandatory two-token loop; Machina X-Krawler259247853 mandatory two Links (legacy group helper and Extra zones); Abe no Seimei259635008 mandatory tuner/non-tuner GY pair after returning source; Bhodi259072745 and Dream Bedroom259090287 optional one/two groups need one-card cap under Spirit while preserving legal single branch. No source change/count increase from this review. Next actual fixture: Devotee tokens versus full pinned Spirit, valid cost and zone controls.
+
+## 2026-10-08 Carcel Spirit restriction repair
+
+Carcel259780273 now blocks mandatory Hand/Deck simultaneous summon under Spirit Dragon59822133 at targeting and resolution. `current-carcel-spirit-limit-batch.json`: four cases pass (actual pair, Spirit blocked, wrong-set Deck recipient, one zone); old guard fails only Spirit. Canonical reveal cost and Deck-card effect relation run without adapters. Neutral eligible recipient; full pinned Spirit source with explicit initial field fixture. Local source installed with predecessor backup/hash parity (`carcel-local-install.json`). Prior summon history, post-cost oath probes, Link material trigger, interruption/later restriction insertion, proper Spirit initial summon and native Omega remain open. Carcel already had partial coverage, so focused minimum remains85, repair minimum40, fully0.
+
+Refreshed all711 syntax/source-install parity, selected54 initialization34pass/20known compatibility failures, current Ohmen38cases/28runs, current spec drift and three inventories. Full audit remains active. Next broaden optional multi-summon triage or resolve Astrocyte legacy selection helper with authoritative compatible implementation.
+
+## 2026-10-08 Murugan conditional Spirit restriction repair
+
+Murugan247755869 Hand branch now rejects Spirit Dragon59822133 at targeting and resolution using stored Hand label; field branch remains legal. `current-murugan-spirit-limit-batch.json`: four canonical current-data cases pass (Hand/field with/without full pinned Spirit source); old guard fails exactly restricted Hand activation. Actual neutral Kali Yuga GY revival and source summon observed; initial field source/Spirit are fixtures. Source installed with backup/hash parity (`murugan-local-install.json`). No native Omega, proper initial Spirit summon, destruction-return trigger, revived monster negation stats, later restriction insertion or interruption certification. Next priority: Carcel259780273 mandatory pair.
+
+All711 syntax and source/install parity refreshed. Selected initialization34/54 with20 known compatibility failures; Ohmen38cases/28runs pass. Repair minimum39, focused minimum85, fully0; full audit active.
+
+## 2026-10-08 roster-wide simultaneous-summon triage
+
+`fresh_simultaneous_summon_inventory.py` scans exactly711 roster sources/current printed metadata; `simultaneous-summon-inventory.json` freezes all711 source hashes, database, roster and scanner. Broad376 group/step candidates are triage only, not new test coverage or automatically defects. Manual review: To Proto Eisodos241543138 explicitly calls IsPlayerCanSpecialSummonCount(tp,2) at targeting/resolution, so absence of literal59822133 alone is not a bug. Murugan247755869 has unguarded two-step Hand branch but legal one-card field branch; priority test must retain the latter under Spirit. Carcel259780273 has unguarded mandatory Hand/Deck pair; priority test must include reveal relation and Ohmen oath. No source edits or count increase from scan. Next: actual Murugan Hand/field versus Spirit restriction, then Carcel.
+
+## 2026-10-08 Astrocyte leave-field Spirit restriction repair
+
+Astrocyte259481543 now checks Spirit Dragon59822133 at both leave-field targeting and resolution. Source installed with backup and hash parity (`astrocyte-local-install.json`). `current-astrocyte-leave-field-batch.json`: four baseline cases pass; old guard fails exactly Spirit restriction. Actual opponent-controlled neutral quick effect sends initially placed source to GY; normal case actually summons two different-code Krawler fixtures face-down, same-name and facedown-source cases block. Full pinned Spirit source loaded with explicit metadata and initial face-up fixture. An explicit bounded selection adapter requires exactly two eligible cards and asserts canonical aux.dncheck; pinned utility lacks SelectUnselectGroup. General interactive selection and native Omega remain unresolved, not certified. Six hand-summon cases/control rerun with repaired source. Proper initial procedures, Flip effect, late-chain restriction insertion and interruptions remain open.
+
+Refreshed syntax711/711, selected initialization33/53 with20 known procedure compatibility failures, current Ohmen38/28, source/install parity and inventory evidence. Repair minimum38; partial minimum84; fully0.
+
+## 2026-10-08 Astrocyte hand-summon checks
+
+`current-astrocyte-hand-summon-batch.json` freezes source, current metadata, procedures and public runtime. Six baseline cases pass: Krawler cost, World Legacy cost, optional face-up Defense, wrong set, self-only cost, full field. Actual discard and source Special Summon/position observed. Self-cost mutation fails exactly wrong-set and self-only cases because source itself is Krawler. Existing handler exclusions are correct; no repair. Flip trigger, opponent-caused leave-field double summon (including Spirit restriction), interruptions and native Omega remain open. Partial evidence only; full audit remains open.
+
+## 2026-10-08 Hanabi simultaneous-summon restriction repair
+
+Hanabi (259790247) now checks Blue-Eyes Spirit Dragon restriction 59822133 at targeting and resolution. Installed locally with backed-up predecessor and matching source/install hashes (`hanabi-local-install.json`). `current-hanabi-spirit-limit-batch.json`: two passing baseline cases; old guard fails restricted case. Actual pinned Spirit script, initially face-up fixture; normal case actually summons Hanabi and neutral recipient together. Existing six Hanabi summon cases and discarded-name/zone controls rerun successfully. No proper Spirit Synchro procedure, Ritual-release trigger, late restriction insertion, or native Omega verification claimed.
+
+Refreshed syntax 711/711, selected initialization 32/52 with 20 known procedure compatibility failures, current Ohmen 38 cases/28 runs, spec drift and inventories. All 711 source/install hashes match. Ledger minimum37 repairs; focused minimum83/711; fully audited0. Full audit remains open.
+
+## Hanabi Spirit Dragon restriction reproduced — 2026-10-08
+
+- Canonical Hanabi259790247 double summon remains activatable while full pinned Blue-Eyes Spirit Dragon59822133 script is face-up opponent field. Source lacks standard simultaneous-summon marker guard. In-memory target/resolution guard `Duel.IsPlayerAffectedByEffect(tp,59822133)` blocks activation, preserving actual unrestricted double summon.
+- `hanabi-spirit-limit-review.json` captures full source/pinnedSpirit/runtime/currentDB/harness hashes and exact canonical/candidate result distinction. Spirit fixture uses accurate standard metadata but initial placement bypasses proper Synchro; no full Spirit/native Omega proof. Candidate artifacts marked control to exclude source evidence discovery.
+- Production unchanged pending repair packaging/install. Next apply guards, old-guard causal control, replay six cost/name/zone cases, install backup and refresh source-dependent Ohmechanic/drift/ledger. Counts83partial/36repairs/0fully.
+
+## Hanabi discarded-name double summon — 2026-10-08
+
+- `fresh_current_hanabi_double_summon.cjs` / `_batch.py`: six canonical native cases pass. Actual discard of another Charmelia plus source and different-name neutral recipient double summon from Deck/GY. Same discarded-name-only candidate, wrong set, self-only cost and one-free-zone cases blocked.
+- Removing discarded-name filter fails same-name and wrong-set cases (otherwise a same-name cost-card copy in Deck supplies fallback); allowing one zone fails one-zone case. Exact control sets/runtime/source/data/helper/harness hashes captured before/after. Material/recipient selection intentionally chooses named intended cards, avoiding incidental choices under weakened control.
+- No production changes. Totals83partial/36repairs/0fully. Ritual-release Continuous Spell/Trap activation, alias-name cases, restrictions/interference and native Omega remain open.
+
+## Roster-wide discard dependency inventory — 2026-10-08
+
+- `fresh_discard_dependency_inventory.py` read-only scans711 current scripts/printed texts, records source/cost-call lines and current hashes in discard-dependency-inventory.json. Text co-occurrence is a candidate search, not defect/full-audit evidence.
+- Veilleuse259898110 source explicitly excludes itself from discard eligibility and selection. Bookkeeper221047295 self-discard creates GY recipient before targeting; generic independent Hand-recipient rule does not transfer. Charmelia Hanabi259790247 uses other-card cost and discarded-name dependent Deck/GY recipient; next focused target.
+- No production changes/counter inflation. Counts82partial/36repairs/0fully. Broader cost-recipient dependency mapping and native effect tests remain open.
+
+## Crawler independent discard repair installed — 2026-10-08
+
+- Canonical source previously allowed activating Hand Galaxy summon with a sole Galaxy Hand card, which must be discarded leaving no recipient. New discardfilter requires another eligible Galaxy excluding selected cost card; both cost eligibility and selected discard use it.
+- Four native cases pass: discard+Galaxy and two-Galaxy hands actually summon, sole Galaxy and wrong race blocked. Restoring old discard logic fails exactly sole-Galaxy case. Full source installed with backup/hash parity.
+- Replayed current native CL4/5, shared two-copy limit, callback registration and renewal compatibility diagnostic; legacy renewal failure vs modern-flag adapter success preserved. Refreshed711syntax/51current initialization/38Ohmechanic scenarios/drift/ledger.
+- Totals82partial/36distinct repaired/0fully audited. Crawler proper initial Link, cost restrictions under other effects, fullzones/source-loss/negation/native Omega remain OPEN.
+
+## Crawler shared-copy limit in actual chain — 2026-10-08
+
+- `fresh_current_crawler_copies.cjs` / `_batch.py`: actual five-neutral-Spell chain with two canonical Crawler copies in GY. Exactly one Crawler activation/revival allowed; replacing named legacy registration with per-copy count allows duplicate activations and fails exact count check.
+- Runtime/source/currentDB/helper/harness hashes frozen before/after. Both initial GY copies marked CompleteProcedure by explicit fixture; no original proper Link Summon proof. Single-chain named sharing is proven in unadapted public engine, whereas same-turn per-chain renewal retains earlier modern-flag compatibility adapter boundary. Do not conflate them.
+- Production unchanged; counts82partial/35repairs/0fully audited. Native Omega, source removed/negated/full zones, original proper summon and remaining Crawler hand-summon legality remain open.
+
+## Crawler per-chain renewal compatibility — 2026-10-08
+
+- `fresh_current_crawler_chain_renewal.cjs`: two separate actual five-Spell-link chains in same turn; neutral Spell returns Crawler GY after first actual revival. Unadapted legacy count registration revives only once in public core. Test-only conversion to modern third-argument flag4 permits two actual revivals.
+- `crawler-chain-renewal-review.json` records exact failure/pass distinction and source/runtime/data/helper/harness hashes before/after. Production legacy script unchanged; do not infer Omega bug or replace count encoding based solely on modern public engine.
+- Initial GY fixture marks CompleteProcedure explicitly, not initial Link summon proof. Single-copy per-chain renewal demonstrated only with explicit adapter; cross-copy same-chain count and native Omega remain open. Progress counters unchanged82partial/35repairs.
+
+## Crawler actual Chain Link threshold — 2026-10-08
+
+- `fresh_current_crawler_chain.cjs` / `_batch.py`: actual four/five-link neutral Quick-Play chains. Canonical Crawler not chained/revived at4; responds once after5 and actually revives. Lowering condition toCL1 fails both exact threshold cases. Runtime/source/data/helper/harness hashes frozen before/after.
+- Fixture explicitly marks initial GY Crawler CompleteProcedure to model previously proper-summoned Link; no actual initial Link Summon or generic revival legality proof. Legacy per-chain counter registration still needs cross-copy/repeated-chain enforcement/renewal tests. Native Omega open.
+- Adds current focused Crawler evidence; counters82partial/35repairs/0fully. No production change. Initial source placement and neutral chains bounded, not full-card certificate.
+
+## Scarstech Crawler current-text callbacks — 2026-10-08
+
+- `fresh_current_crawler_callbacks.lua` / `.py`:18 production-source callback/registration assertions with mock Card/Effect boundaries. Legacy count flag present, GY named key separate, exact CL5-or-higher threshold,300ATK callback per resolution; two source controls fail expected flag/threshold checks.
+- This verifies legacy bit-encoded registration, not public-core modern API equivalence. No production change based on incompatible core count semantics. Actual multiple-copy CL5 chain, revival relation/zone restrictions, per-chain renewal and native Omega remain OPEN. Counts stay81partial/35repairs.
+- `crawler-callback-validation.json` freezes source/harness/constants/Lua binary hashes. Next build actual five-link chain fixture with canonical Crawler and explicit legacy API evidence; do not count these mock checks as actual engine effect proof.
+
+## Grimoire opponent draw prohibition — 2026-10-08
+
+- `fresh_current_grimoire_no_draw.cjs` / `_batch.py`: actual opponent EFFECT_CANNOT_DRAW allows field-only neutral Eclipse Fusion but prevents activating if required material is Deck-only. Removing draw-permission gate fails exactly Deck-only case.
+- Two baseline cases and exact control verified with runtime/currentdata/source/helper/harness hashes before/after. Explicit sterile mandatory adapter remains. No production changes; counts81partial/35repairs/0fully. Low remaining Deck size, draw prevention introduced during chain, material interruptions, Chain Material and native Omega still open.
+
+## Grimoire Deck material immunity repair — 2026-10-08
+
+- Full259680842 native fixture confirmed field immunity filtering already works; added Deck pool omitted immunity check. Production Deck pool now applies existing matfilter1.
+- Five baseline cases pass: actual field-only Fusion with no opponent draws; one Deck material Fusion with opponent drawing2; field immune/Deck immune/two Deck materials excluded. Old Deck pool control fails exactly immune Deck case. Native recipient remains neutral with canonical named-pair recipe, explicit sterile mandatory adapter; Chain Material/native Omega remain open.
+- Installed with backup/hash parity. Refreshed711syntax,51currentinitialization (31pass/20knowncompatibility),38Ohmechanic scenarios, drift/Fusion inventory/ledger. Totals81partial-focused/35repaired/0fully audited. Alternative pool sourcing, opponent draw prohibition and interruptions still require follow-up.
+
+## Dinomorphia Provocation repair installed — 2026-10-08
+
+- Production259826112 filters optional Fusion material pool for source immunity after successful Dinomorphia Trap Set. Actual Set + Fusion and optional decline remain valid; immune material prevents Fusion, preserving Set. Independent old-pool control fails exactly immune case.
+- `current-dinomorphia-provocation-fusion-batch.json` freezes source/runtime/currentDB/helper/harness and exact control artifacts. Installed with backup/hash parity; neutral recipient and sterile mandatory adapter remain explicit limitations.
+- Refreshed711syntax,50current initialization (30pass/20known API compatibility failures),38Ohmechanic baseline scenarios, drift, Fusion pool inventory and repair ledger. Totals80partial focused cards/34distinct documented repairs/0fully audited. Native Omega, Provocation GY effect, Set-target loss/fullzones and LP/copy use edge cases remain open.
+
+## Dinomorphia Provocation immunity reproduced — 2026-10-08
+
+- Full259826112 source actually Sets neutral Dinomorphia Trap, then optional neutral Fusion (canonical recipe helper). Accept and decline pass; immune second material incorrectly still completes Fusion.
+- Candidate in-memory immunity filtering of normal `GetFusionMaterial` pool passes all3 cases, preserving mandatory successful Set before optional Fusion. `dinomorphia-provocation-immunity-review.json` hashes source/runtime/data/helper/harness. Production unchanged pending repair install/causal certificate.
+- Explicit sterile mandatory-material adapter remains; source initially Set via fixture; no general proper initial Set timing/native Omega/real recipients/GY effect certificate. Next apply targeted production filter and old-pool regression, install backup and refresh ledger/inventory. Counts unchanged79partial/33repairs.
+
+## Planktonites immunity repair installed — 2026-10-08
+
+- Production250339529 now filters both normal target/resolution Fusion pools with its existing ffilter1. Required own-card inclusion remains enforced; Chain Material branch unchanged/open.
+- `current-planktonites-fusion-batch.json`: valid actual Nautilus Fusion passes, immune second-material activation excluded; restoring old normal pool fails exactly immune case. Exact forced-single-card/sterile mandatory adapters stay explicit; starting source field placement bypasses initial proper Fusion Summon. No native Omega/general compatibility certification.
+- Installed with backup and exact hash parity. Refreshed711syntax,49current initialization (29pass/20known compatibility failures),38Ohmechanic baseline scenarios, drift, Fusion pool inventory and repair ledger.
+- Conservative counters now79partial-focused cards and33distinct documented repairs,0fully audited. Full Planktonites summon trigger/revival, resolution interrupt, Chain Material and native Omega remain OPEN. Historical candidate diagnostic has old source hash; do not count it as current source evidence.
+
+## Planktonites immunity reproduced — 2026-10-08
+
+- Full canonical250339529 + actual Nautilus recipient: valid required-own-card Fusion completes; an immune second monster still makes effect activatable. In-memory candidate applying existing ffilter1 to both normal target/resolution pools passes both cases. Production unchanged pending repair packaging.
+- Legacy canonical forced material API fails Group-vs-Card at procedure.lua923. Explicit `--single-forced-adapter` wraps FConditionMix/FOperationMix to assert exactly one forced card and convert group to card; mandatory empty-fixture adapter still explicit. Unadapted diagnostic retained.
+- `planktonites-immunity-review.json` hashes current source/recipient/runtime/data/helper/harness. Next apply bounded production filter with old-pool control, install backup, refresh affected source dependencies/ledger. Do not count reproduction/candidate as current passing source evidence. Source starts face-up via fixture, not properly Fusion Summoned initially; no revival certificate.
+
+## Roster-wide Fusion pool inventory — 2026-10-08
+
+- `fresh_fusion_pool_inventory.py` read-only scans all711 scripts with current DB names; `fusion-pool-inventory.json` records current source/scanner/data hashes and line-specific calls. No direct nil-filter Deck GetMatchingGroup pattern remains. Static absence is not semantic certification.
+- Found raw standard GetFusionMaterial pools in Planktonites250339529, Grimoire259680842 and Dinomorphia259826112. Grimoire has downstream `fusiongroup` filtering; raw-pool findings are review candidates, not confirmed defects.
+- Source review: Planktonites defines immunity filter ffilter1 but target/resolution normal pools do not apply it; handler-only immunity guard does not cover other materials. Next native test should use actual Planktonites and mandatory own-card material, plus second monster immune to source. Distinguish genuine exclusion failure from legacy helper/forced material incompatibility.
+- Inventory supports full roster scope without inflating completed cards. Counts unchanged; all full/native audits remain open.
+
+## Aqua Fusion restricted/immune material — 2026-10-08
+
+- `fresh_current_aqua_material_restrictions.cjs` / `_batch.py`: actual native neutral monster EFFECT_CANNOT_BE_FUSION_MATERIAL and immunity to Aqua Fusion source cause activation exclusion; otherwise identical allowed Deck monster completes actual Nautilus Fusion.
+- Removing only immunity filter fails exactly immune case; forbidden-Fusion material remains excluded by canonical helper too. Three baseline cases pass. Batch freezes current source/recipient/runtime/data/helper/harness and exact control results.
+- Confirms two remaining branches of new first-effect filter in bounded native fixtures. No source changes; counts78partial/32repairs/0fully. Chain Material, resolution interrupts, negation oath and native Omega remain OPEN.
+
+## Aqua Fusion first-effect material eligibility repair — 2026-10-08
+
+- Isolated actual Nautilus recipe: original Aqua Deck pool accepted a matching-set Spell or Trap instead of printed monster. `current-aqua-deck-type-batch.json` now verifies valid Deck monster summon and invalid Spell/Trap activation rejection; restoring old material filter fails exactly Spell/Trap cases.
+- First-effect Hand/field and Deck material pools now filtered by TYPE_MONSTER, IsCanBeFusionMaterial and immunity to source effect, using existing ffilter1. Both target and resolution pools updated. No change to Chain Material alternative; separate coverage remains open.
+- Replayed all existing Aqua focused suites (first materials, Extra lock/expiry, prior activity, copy/delay, real Nautilus recipe, Nautilus send, GY material cases) and causal controls against current source. Installed with prior-script backup. Refreshed711syntax/current48initialization/38Ohmechanic baseline scenarios, drift and ledger.
+- Repair ledger remains32 distinct repaired cards; partial focused78; fully audited0. TYPE_MONSTER Spell/Trap negatives proven; Fusion-ineligible/immunity filter behavior needs separate native counterfactuals. Native Omega/general mandatory material rules/negations/Chain Material remain OPEN.
+
+## Nautilus on-summon send — 2026-10-08
+
+- `fresh_current_nautilus_send.cjs` / `_batch.py`: full canonical Nautilus trigger after actual Aqua Fusion summon sends an Aquamarine Spell from Deck or Hand; optional decline and wrong-set exclusion pass. Removing send fails Deck/Hand; widening set filter fails wrong-set case. Four baseline cases and exact control sets verified with frozen dependencies.
+- Harness chooses intended neutral monster material pair explicitly and distinguishes send-trigger description from unrelated protection Quick Effect. Explicit sterile mandatory adapters remain; full Nautilus/native Omega open. Partial focused count now78 (new primary-source Nautilus evidence); repairs32.
+- New open diagnostic observed while setting fixture: initial automatic material selection could choose the Aquamarine Deck Spell as a Fusion material through broad SetCard recipe. Aqua Fusion's Deck pool currently uses nil filter although printed first effect specifies monsters. Next: reproduce isolated invalid Spell/Trap-material availability against actual Nautilus recipe; inspect mandatory adapter contribution before deciding production repair.
+
+## Aqua Fusion real Nautilus recipient — 2026-10-08
+
+- Canonical current-data/full-source Aquamarine Nautilus 241976572 now exercised as actual Fusion recipient through canonical Aqua Fusion first effect. Six cases pass: actual Hand/Deck/face-up field/face-down field material Fusion Summons, wrong Aquamarine set and wrong Aqua race pairs excluded.
+- `fresh_current_aqua_nautilus_batch.py` records current source/runtime/data/helper/harness hashes before/after. Independent recipient-script controls removing set or race recipe requirements fail exactly their respective negative pair.
+- Materials remain neutral with printed matching set/type/attribute/race; Nautilus own optional effects declined. Actual recipient replaces earlier neutral boss, but sterile mandatory-material adapters remain explicit. This adds Aqua integration evidence, not complete Nautilus effect audit or native Omega proof. Counters unchanged77 partial/32 repairs.
+
+## Aqua Fusion cross-copy limit and GY delay — 2026-10-07
+
+- `fresh_current_aqua_copy_delay.cjs` / `_batch.py`: actual first-effect Fusion leaves second spell copy Hand, compatible remaining materials and another Extra recipient. Canonical script blocks second Hand copy via named count and just-sent GY copy via turn delay.
+- Independent `--no-named-limit` and `--no-grave-delay` controls each fail the corresponding exact check. Initial controls exposed fixture lacked free Extra zone/materials; final fixture adds compatible Hand pair and explicitly moves summoned neutral Fusion from Extra zone to MMZ2 via test-only summon-success observer. Thus availability is tested with free zone; this is not proof of automatic zone placement or legal movement by real card effects.
+- Runtime/source/data/helper/harness hashes frozen by batch; actual native Fusion completion and final Hand/GY locations asserted. No source changes. Native Omega, independent GY count across copies and first-effect next-turn renewal/negation remain open.
+
+## Aqua Fusion prior-summon history — 2026-10-07
+
+- Added `fresh_current_aqua_prior_summon.cjs` / `_batch.py`: four actual prior effect Special Summon fixtures (Extra WATER Fusion, non-WATER Fusion, WATER Synchro, Hand monster). Fixture moves prior recipient GY after successful summon to free Extra zone; historical activity must still be respected.
+- Canonical spell blocks after prior non-WATER Fusion/WATER Synchro; permits WATER Fusion/Hand history and actually completes Fusion in permitted cases. Removing history check fails exactly two prohibited-history cases. Runtime/source/currentDB/harness hashes frozen before/after.
+- Neutral prior recipient is directly summoned by test effect with corresponding summon-type value, not proper prior Fusion/Synchro procedure. Native Special Summon messages and subsequent GY presence are asserted. Aqua final Fusion still uses canonical helper with explicit sterile mandatory adapters. No native Omega/general recipient certification. Counts unchanged.
+- Remaining Aqua: actual activation/effect negation oath distinction, independent named use limits/multiple copies, Chain Material and actual archetype recipients, interruption and material legality. Full audit OPEN.
+
+## Aqua Fusion Extra Deck restriction — 2026-10-07
+
+- `fresh_current_aqua_extra_lock.cjs` executes actual first-effect Fusion then calls native Card.IsCanBeSpecialSummoned for four neutral cards via explicit probe: Extra WATER Fusion permitted; Extra non-WATER Fusion and WATER Synchro blocked; Hand monster permitted. After actual End Phase advancement all four regain eligibility.
+- `fresh_current_aqua_extra_lock_batch.py` verifies passing baseline and exact `--no-extra-lock` causal failure, captures runtime/source/currentDB/harness hashes before/after. Existing first-effect/GY harnesses and certificates unchanged.
+- Fixture still uses explicit sterile mandatory-material adapters and neutral Fusion recipient. Probes establish native summon eligibility enforcement, not attempted summoning of every blocked card. Prior activity counter/oath timing under negation, multiple copies, interruptions, actual recipients and native Omega remain OPEN. No production changes; counts unchanged.
+
+## Aqua Fusion first-effect material tests — 2026-10-07
+
+- `fresh_current_aqua_first_fusion.cjs` and reproducible `fresh_current_aqua_first_batch.py`: five baseline cases pass. Actual canonical spell activation consumes two materials from hand/Deck/face-up field/face-down field and completes Fusion Summon. A three-material-only neutral Fusion is unavailable; `--no-two-limit` mutation fails exactly this case.
+- Neutral recipients retain canonical Omega AddFusionProcFun2/FunRep; explicit empty-mandatory fixture adapters and legacy face-up adapter are bounded, not generic procedure replacements. First batch hashes runtime/helper/source/current DB/harness before and after and records exact artifact/control failures.
+- Source/install unchanged from prior repair. Focused evidence now77 cards; documented repairs32; fully audited0. First-effect Extra Deck oath prior-history/enforcement/expiry, multiple-copy limits, real recipients, Chain Material, interrupts and GY cost edge cases remain OPEN.
+
+## Aqua Fusion face-down field repair — 2026-10-07
+
+- Official Ultimate Fusion Q&A explicitly discusses face-down Blue-Eyes being used in shuffle-to-Deck Fusion; consistent with official Super Polymerization own face-down material rule. Applied to Aqua Fusion's unrestricted own field-material wording. Source: https://www.db.yugioh-card.com/yugiohdb/faq_search.action?cid=16856&ope=4&request_locale=ja .
+- Replaced broad IsFaceupEx gate with face-up requirement only for banishment in cffilter1. Own face-down field materials now activate and complete actual Fusion; face-down banishment stays prohibited. Canonical source installed with backup.
+- current-aqua-repair-batch.json: five baseline cases pass; restoring old filter fails exactly own face-down field case. Four actual summons using face-up/face-down field, GY and face-up banishment; one prohibited case. Explicit sterile mandatory-material helper adapters and neutral named-material Fusion recipient remain bounded limitations.
+- Refreshed source-dependent current-data initialization/syntax, 38 Ohmechanic suite and repair ledger. Minimum repairs now32; partial discovery stays76 pending separate Aqua focused certificate integration. Fully audited0; native Omega open.
+- Prior Aqua diagnostics retained as historical evidence with old source hashes, not current passes. First effect, real recipients, interruptions/material movement and general mandatory-material rules still OPEN.
+
+## Aqua Fusion actual GY summon fixture — 2026-10-07
+
+- Added `fresh_current_aqua_contact_fusion.cjs`: current canonical spell and legacy Fusion procedure, neutral Aquamarine boss requiring exactly two named materials. Actually advances to next own turn, activates GY effect, banishes spell cost, returns materials Deck and completes Fusion Summon.
+- Canonical-helper run preserves missing GetMustMaterial diagnostic. Explicit `--neutral-mandatory-adapter` supplies empty mandatory group/true checker solely for sterile fixture with no mandatory material effects; IsFaceupEx legacy adapter also explicit.
+- Adapted fixture achieves three actual summons (face-up field/GY/face-up banishment). Face-down banishment correctly blocks; own face-down field material prevents activation, confirming earlier filter finding at effect availability. No production change yet.
+- Both result files capture current source/data/helper/runtime/harness hashes. These are bounded adapted neutral-recipient tests, not general Fusion legality/native Omega proof. Next: establish face-down field ruling from primary official source, repair only restriction if justified, add old-filter control and actual first effect/exactly-two tests. Counters unchanged until passing repaired baseline/evidence packaging.
+
+## Aqua Fusion material diagnostic — 2026-10-07
+
+- Inspected current printed text and canonical 227035644. Five actual public-core Card placements reproduce missing `IsFaceupEx` in original script: another legacy compatibility boundary, not an automatic production defect.
+- Explicit `--legacy-faceup-adapter` reproduces local `gemini-core-reference/libcard.cpp` card_is_faceup_ex semantics: face-up MZONE, GY and face-up banishment eligible; face-down MZONE/banishment excluded. Production source unchanged.
+- `current-aqua-material-review.json` hashes source, helper, current DB, core reference, harness and both results. No effect resolution/native proof. Open finding: own face-down field material exclusion vs broad printed field-material wording; confirm rules and test actual contact Fusion before repair.
+- Next: build actual two-material Aqua Fusion activation/contact-Fusion tests, preserving canonical procedure and current-data reader. Do not erase original compatibility diagnostic or count these probes as focused effect passes.
+
+## Current printed filter deltas — 2026-10-07
+
+- Validated current eligibility deltas in Gathering 259073666, Sanctuary 259160760, Sphinx 259348317, Lymantria 259763531 and Dragon Protector 259152704.
+- `scripts/fresh_current_spec_filters.py` / `.lua`: 356 production-callback assertions cover non-Insect Wyvernal inclusion, unrelated-race/set exclusion, monster type, WIND, face-up requirements, Deck/summon legality, Extra-only lock exceptions, and Plant/Insect/Beast Tuner/Level/protection filters.
+- Four separate source-specific old-Insect mutation controls fail as expected; all five canonical scripts pass. `current-spec-filter-validation.json` records source/currentDB/helper/harness/Lua executable hashes before/after.
+- Explicitly mock-boundary callback evidence, not actual fusion/summon/cost/search/lock enforcement or native Omega. No source repairs required. Conservative native-focused counts stay 76 partial, 31 repairs, 0 fully audited.
+- Changed-effect review still open for Crawler chain limit and actual CL5 revival, Natir timing, Boo-Boo negation, Aqua Fusion materials, and broader card effects. The installed legacy count-limit encoding must be respected; do not replace Crawler's bit-encoded chain flag based solely on modern API expectations.
+
+## Current-data Onibi continuation repair — 2026-10-07
+
+- Replayed 38 Ohmechanic baseline effect scenarios and causal controls against current metadata; historical fixtures/artifacts preserved. `current-ohmen-effects-batch.json` captures current dependencies.
+- Onibi 217713649 reproduced skipped optional search: the public engine reserves its in-chain Normal Summon, so an immediate MZONE check occurs before summon completion. Source now registers a selected-card successful-summon continuation, paired with negation cleanup and End Phase fallback.
+- `current-onibi-batch.json`: four actual-effect cases (accept/decline search, Hand Tribute alternative, wrong Deck type), three controls with exact failures. Actual named limit across copies, End return, and second own-turn activation/summon pass. Negated/interrupted summon cleanup, Flip/shared return limit, full card and native Omega remain OPEN.
+- Installed Onibi with prior-script backup; all 711 source/install hashes match. Refreshed 711 syntax checks and 48 current-data initialization checks: 28 pass, 20 known legacy-helper compatibility failures.
+- Conservative progress: 76 cards with partial focused evidence; 31 documented repairs; 0/711 fully audited. Whole audit remains active. Public release DB still lacks 91 rows; no publication performed.
+
+## Full roster current-spec reconciliation and targeted initialization refresh (2026-10-07)
+
+Read-only fresh_current_spec_drift.py reconciles all711current website cards with pinned711roster, original frozen candidate, public downloadDB and installedDB. No roster additions/removals. Twelve printed effects and13additional metadata specifications changed (25cards total). Frozen candidate differs semantically on12effects and14metadata rows compared with public existing rows. Literal escaped line breaks explain12extra raw-text differences; these are formatting-only, not new effect designs. Installed names/effect text matches all711 semantically, all711script bytes match source, and installed metadata matches every existing publicDB row. Public DB lacks91card rows (the authored additions); do not confuse absent reference rows with mismatched installed metadata. JSON and readable docs/OMEGA-CURRENT-SPECIFICATION-DRIFT.md retain each difference.
+
+Created independent current-spec-CCG_v1.db via read-only SQLite backup from installedDB; integrity check passes and snapshot provenance/hash in current-spec-database-snapshot.json. Original candidate DB and historical evidence preserved. fresh_current_card.cjs reads only new snapshot; original reader unchanged so existing frozen-data tests remain reproducible. Twelve changed effects include Scarstech Crawler/Onibi chain/turn limits, Natir wording, Boo-Boo operation, Aqua Fusion wording, Janna own-Windborne exception, Iscylla count, and5Wyvernal/Nature wording changes. Ohmechanic attributes and Ohmen Bob's monsterType also changed. Future current-spec tests must explicitly choose the new reader; existing41batch is still frozen-candidate evidence.
+
+Current syntax re-run passes711/711. Prior syntax JSON archived with original SHA prefix (historical-roster-syntax-*.json) for historical Gemini certificate. Selected48initialization rechecks determined by stale source hashes OR changed specifications OR frozen/current metadata differences, using new snapshot and current production sources.28first-decision passes/20known compatibility failures; every result matches prior status, no regressions. Failures are only CheckXyzMaterial, CheckSynchroMaterial and GetMustMaterial missing from public core. Source/runtime/wrapper/snapshot/current-reader hashes and loaded-script hashes are checked after run; selected current-spec-engine-load-selected.json is separate from old full-roster evidence. Drift report overlays verified selected source freshness (syntax/load stale0); not full-effect/native certification. Plan in current-spec-revalidation-plan.json.
+
+Historical repair ledger and progress checks pass; totals remain75partial/30minimumrepairs/0fullaudits. No production scripts, installedDB or public release changed this turn. Current effect testing and public asset staging still required; public download omissions are recorded, not published blindly. Next: use current snapshot to revalidate focused Ohmechanic effects affected by metadata drift and test the12changed effects; finish Spherix general material requirements and remaining full711/native audit.
+
+## Spherix non-targeting column shuffle and face-down repair (2026-10-07)
+
+Current printed text does not require opponent monster face-up. New fresh_spherix_column_shuffle.cjs reproduced missing activation for a face-down opponent in an otherwise valid center-column pair. Production oppfilter now removes only IsFaceup. Nine public-core baselines pass: face-up, face-down, own originally-Monster card treated as Continuous Trap inSZONE, own Fusion returnedExtra, wrongset/wrongcolumn/originalSpell/oneCounter negatives, and target-immunity positive. Source is full canonical Spherix initially fielded; neutral Spell explicitly places2Gravity counters (or1negative). Actual Spherix chain selects pair and native final queries confirm opponentDeck and ownDeck/Extra. Absence of BECOME_TARGET verifies non-targeting. A second actual neutral Spell independently checks sourceCounter0 after use, separating paid cost from missing later targets.
+
+Causal controls: old-faceup fails only face-down; no-shuffle fails fivepositive cases; no-column fails wrongset/wrongcolumn/originalSpell because source Spherix itself becomes an incorrectly eligible off-column Gravinity partner; no-cost fails fivepositive native counter probes. Combined batch41baselines across19runs; exactfailure/currenthash/runtime/source/install parity verified. Spherix face-down repair installed with preserved prior backup in spherix-column-local-install.json. Existing repair count remains30, partialcard count75; no new card certification. Syntax/diff checks pass.
+
+Boundaries: synthetic selected recipients, initial Spherix placement and direct counter setup do not establish properSynchro or counter-generation coverage for this harness. No new minimum-material solution or nativeOmega certification. Next: general XYZ material minimum/eligibility, Spherix shuffle chain interruption/ExtraMonsterZone cases, Synchro-only summon-negation protection, source counter cap/repeat events, remaining full711audit.
+
+## Surge actual control-chain and interruption coverage (2026-10-07)
+
+fresh_surge_control.cjs adds13passing public-core cases with full canonical Surge259869259, Carcel259033429 and Conductor259405917 initially fielded. Actual opponent turn2 Spell activates CL1; Surge CL2 targets opponent neutral monster and takes control into own linked MMZ0. Actual original Spell operation asserts recipient controller0 and sequence0. Decline/noGraph/linkedZoneOccupied/noSupport/noTarget/Trap/ownSpell negatives pass. noSupport deliberately alters only supporting cards' set metadata; those support cards are not independently audited. Public link-data wrapper adapter is explicit; no proper Link summons.
+
+Actual opposing Trap CL3 verifies target sent toGY, target sentHand then SpecialSummoned back, graph broken by native MoveSequence, linkedMMZ0 filled by actual SpecialSummon, and Surge sentGY (returned count1 asserted). In every case Surge chain has actually activated and resolves without stealing the recipient. Source removal is handled by public-core continuous-Spell resolution; no unneeded source-guard production edit was made. Target-return native SpecialSummon required a SELECT_POSITION handler; fixture was corrected. First canonical Intensity/Conductor graph had no free linkedMMZ, only free linkedEMZ; selecting Carcel/Conductor provides genuine freeMMZ0. No metadata arrows fabricated.
+
+Three causal controls: no-control fails only positive {}, no-relation fails only targetReturned, no-colink-recheck fails only graphBroken. Fullcombined batch now32baseline cases across14runs, preserving4explicit neutral-overlay-adapted XYZ fixtures and28other actual duel cases. Canonical Carcel source added to frozen runtime dependencies. Exactfailures/currentharnesses/artifacts/source/install parity verified; ledger/progress checks pass. No production/installchanges in this turn; counts75partial/30minimumrepairs/0fullyaudited.
+
+Next: Spherix general XYZ material minimum/eligibility and column shuffle (source gaps stillopen); Surge extra-zone interpretation, unaffected recipient, target/change-controller and temporary-control boundaries; remaining Gemini wrong-spec technical assertions/full711audit. NativeOmega/properSummon/fullcard certification and release packaging remain open.
+
+## Spherix optional XYZ attachment repair and bounded regression (2026-10-07)
+
+Source s.spop previously always attached two eligible GY monsters. It now asks optional continuation via existing system prompt94 before selecting/overlaying. Native overlay-count probes demonstrate accept2, decline0, insufficient0 and wrong-Level0. forced-attachment reader control restores the old branch: accepted case fails missing optional prompt and declined case fails native overlay count; two negative cases pass. Spherix script installed with preserved prior backup and exact parity (spherix-optional-local-install.json).
+
+Coverage boundary: fresh_spherix_xyz_attachment.cjs uses a synthetic Rank4 XYZ, test-only CompleteProcedure marking, and both bypass flags for its initial Special Summon. Unadapted public core fails three cases because it lacks Omega Card.IsCanOverlay; failure artifact is retained separately and excluded from passing evidence. Explicit --neutral-overlay-adapter defines eligibility only for neutral material code900003813; it asserts the code and returns true. This verifies optional flow, actual selection/native overlay count, and basic Level/count negatives, NOT generic material eligibility or native Omega. Current hardcoded2 requirement and basic same-Level filter remain genuine unresolved source gaps. No fabricated minimum-material API was added. Omega's pinned legacy AddXyzProcedure stores filter/Level/count in closures without exported xyz_parameters metadata; a correct general procedure/material solution remains required.
+
+Combined batch now19baseline scenarios across10runs (15unadapted existing+4explicitly adapted attachment fixtures). Source/runtime/harness freshness and all causal failure sets verified. A copied harness initially wrote to the interception artifact name; corrected to separate XYZ paths and reran full batch so all final artifacts are independently current. Repair ledger/progress checks pass:75partial/30minimumrepairs/0fullyaudited. Source changed only for optionality in this turn; no count increase because Spherix was already counted as repaired.
+
+Next: resolve Spherix general minimum/legality from actual Omega procedures without silently assuming2; Surge opponent-Spell target/control-zone and resolution changes; continue remaining claim-level/full711audit. Native Omega certification and release packaging remain open.
+
+## Surge inactive-interval repair and updated installation (2026-10-07)
+
+New native neutral-Spell fixtures reproduce surplus counter at probe4 (actual1 versus expected0) after a graph forms while Surge is disabled or face-down and source is re-enabled/flipped face-up. Negation fixture uses unnegatable single disable/disable-effect modifiers to avoid negating its own fixture; actual IsDisabled/IsFacedown and restored states are asserted. Six actual probe Spell chains per scenario, with final fresh break/re-link proving correct1counter after the inactive interval. Initial fixture lacked CANNOT_DISABLE and did not actually disable its source; that setup was corrected before accepting reproduction.
+
+Final tracker is a per-card global EVENT_ADJUST observer registered for player0, with current controller derived from the source card. Initial controller is not assumed available during card initialization. Observer updates snapshots while source is absent, disabled or face-down; applies counters only when source is in SZONE, face-up and enabled. Invalid-controller snapshots are cleared. Range-only/SET_AVAILABLE experiment did not observe face-down intervals and was replaced. Comparative primary core effect.cpp documents field/range availability boundaries (https://github.com/edo9300/ygopro-core/blob/master/effect.cpp); actual public-core regressions are the behavioral evidence, native Omega remains open.
+
+Updated combined batch passes15baseline cases (6Surge+9Spherix) across8runs. --old-inactive restores a source-bound range-only tracker and fails exactly disabled/facedown at probe4. --old-baseline now explicitly seeds an empty activation snapshot, failing initially linked and next-turn reactivation cases; shared tracking still fails only two-copy case. Three Spherix controls retain exactfailure sets. Full runtime/source/harness hashes frozen and checked. Updated Surge installed locally with original prior version backed up in surge-inactive-local-install.json; Spherix installation retained. Repair ledger/progress generation both pass; totals remain75partial/30minimumrepairs/0fullyaudited.
+
+Next: Surge opponent-Spell control branch/control-change cases and Spherix optional XYZ attachment/material legality. Scope is full711card effect audit; do not treat15scenarios or installation parity as certification. Release archive/package still pending; native Omega tests remain open.
+
+## Verified batch, local installation and Janna source reconciliation (2026-10-07)
+
+Spherix interception harness now passes9 native duel cases, including actual Normal Summon, two simultaneously summoned recipients, simultaneous source+recipient (neither intercepted), and granted ignition revival. Two actual neutral probe Spells assert Continuous Trap/non-Monster type before revival, original Monster/non-Trap type afterwards, and Gravity counters0 then1. Source-first and simultaneous-source fixtures bypass summon/revive restrictions; proper Synchro procedure remains open. Owner1 recipient is placed in owner1 SZONE; its ignition is not expected in player0 idle commands. Surge retains4 passing scenarios. Combined fresh_surge_spherix_batch.py verifies13baselines across7runs;5causal controls fail exact predicted case sets, including no-revival/no-counter. It freezes full loaded public-core JS/WASM carriers, adapter, helper Lua, candidateDB and canonical supporting scripts before/after.
+
+Both repaired scripts installed to local Omega Files/Scripts with two original backups and exact byte parity; evidence surge-spherix-local-install.json. This does not verify native Omega gameplay or release packaging. Repair ledger generator validates current-source artifacts/runtime/harness/install parity; minimum repairs now30. Progress refresh passes:75/711partial focused evidence,30minimumrepairs,0fullyaudited; old583load passes/128compatibility failures and711syntax baseline retained, not newly rerun.
+
+Janna237684285 current source/install byte parity verified. Reconstructed original repair from original backup reproduces historical hash exactly; the only subsequent source delta is targetlimit for the later current-website own-Windborne targeting exception. Historical Gemini certificate and repair manifest preserved. fresh_janna_source_reconcile.py executes original91callback assertions plus8new targeting/turn checks, records exact reviewed delta/current specification/current source and installation hashes. Repair ledger consumes this checked supersession; progress generator checks reconciliation-artifact freshness. CandidateDB and pinned711baseline still carry older Janna wording, explicitly recorded; do not silently mutate frozen reference DB or earlier evidence.
+
+Next: Surge negation/face-down activation-baseline cases and opponent-Spell control branch; Spherix optional XYZ material attachment, Synchro-only protection and column shuffle branches; current-specification versus frozen-roster drift checks (including Janna) before broader certification. Remaining Gemini wrong-spec technical assertions and all711full-effect/native tests remain active.
+
+## Surge per-copy tracking and Spherix interception repairs (2026-10-07)
+
+Current Surge source supersedes the preceding shared-flag implementation. Each card instance now owns a co-link snapshot in Lua closure state; Card.GetFieldID distinguishes a monster that leaves and returns. Activation seeds the existing graph. Four public-core scenarios pass: new graph, initially existing graph, two active copies (two counters per transition), and actual SendtoHand removal followed by actual next-own-turn reactivation. Same-turn oath rejection is asserted. Eight probes in the reactivation case prove no counters from graph changes while absent or simply from returning to the existing graph. --old-baseline fails only startup; --shared-tracking fails the multiple-copy case. Initially fielded second copy is a fixture boundary, not two actual activations. Negation/reset and native Omega remain open.
+
+Spherix c231088629.lua removes only the invalid IsRelateToEffect guard from its continuous summon interception. New fresh_spherix_interception_regression.cjs passes five cases: own recipient, opponent-owned recipient controlled by test player returns to owner's SZONE, full owner SZONE, recipient previously in SZONE remains MZONE, and Spherix summoned before recipient (Spherix stays MZONE). The last fixture explicitly uses a test-only SpecialSummon with both bypass arguments true from GY; it does not verify a proper Synchro Summon. --old-relation restores the old guard and fails the three positive interception cases while negative boundaries pass. Original diagnostic evidence is preserved independently. Pending: Normal Summon, simultaneous summons, trap type/ignition revival and other Spherix effects. No local install/release or full-card certification.
+
+Progress refresh caveat: fresh_progress_counts.py currently fails its existing Janna237684285 source-hash ledger assertion (unrelated to these two edits). Preserve old totals until the historical Janna evidence/install parity is reconciled; do not rewrite the hash blindly. Both changed scripts parse as Lua5.3 and git diff --check passes.
+
+Next: extend Spherix native type/revival tests and normal/simultaneous interception; extend Surge negation cases, then install verified repairs with source/install parity and ledger updates. Independent wrong-spec Gemini claims still need review; continue full711-card goal.
+
+## Surge activation baseline repair (2026-10-07)
+
+Resumed from prior conversation. Group I review completed before the previous usage interruption: 56 finding groups across 13 Chrono-Saur/Talismandrake cards; see OMEGA-GEMINI-CHRONO-TALISMANDRAKE-CLAIMS.md. Remaining wrong-specification technical assertions and runtime cases remain active.
+
+Production c259869259.lua now seeds existing co-link flags in its activation operation. Existing co-links receive zero startup counters; later real co-link transitions continue to work. Run: node --no-warnings scripts/fresh_surge_colink_transitions.cjs --source=259869259 --target=259174227 --card-data-adapter. Both scenarios pass five real neutral Spell probes with exact native counter assertions. Initially broken graph: 0,1,1,1,2; initially linked graph: 0,0,0,0,1. The latter expectation now correctly excludes the initial existing episode. --old-baseline removes only the activation callback in the script reader; broken-graph case passes and initially-linked case fails, demonstrating regression sensitivity. Source and native traces are retained in the respective JSON artifacts.
+
+No local Omega installation or release packaging yet. Removal/reactivation, multiple copies, negation and native Omega still need checks before installing/counting this as a ledger repair. Counts remain conservative; do not mark any card fully audited. Next: extend Surge removal/reactivation tests, then confirmed Spherix interception repair. Continue the 711-card goal.
+
 ## Stain claim-level Gemini fact-check (2026-10-06)
 
 Progress:31 numbered Group G finding groups across13Stain cards reviewed against source and available engine/Omega references, with compound assertions distinguished. Evidence-scoped verdicts in gemini-stain-claim-review.json and docs/OMEGA-GEMINI-STAIN-CLAIMS.md. Supported gaps includeAvatar copied-source identity erased by ClearTargetCard/GetFirstTarget, Story activation-time copied targeting/feasibility, Silphia first selection consuming only viable partner, Dragar independent also clause blocked by early return, and named Fusion substitute registration (distinct from prior generic-predicate substitution rejection). These are source-reviewed, not all runtime reproductions.

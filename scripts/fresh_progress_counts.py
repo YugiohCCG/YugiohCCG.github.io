@@ -21,6 +21,9 @@ def main():
  repairs=json.loads((OUT/'repair-ledger.json').read_text(encoding='utf-8'))
  for row in repairs['cards']:
   assert row['script_sha256']==sha(ROOT/'public/CCG Downloads/CCG_Scripts'/f"c{row['passcode']}.lua")
+  if 'source_reconciliation' in row:
+   reconciled=row['source_reconciliation']
+   assert reconciled['sha256']==sha(OUT/reconciled['artifact'])
   if 'batch' in row:assert row['batch_sha256']==sha(OUT/row['batch'])
   else:assert row['validation_sha256']==sha(OUT/row['validation'])
  summary=inventory['summary'];assert summary['total']==711 and not summary['missing'] and not summary['syntax_stale'] and not summary['load_stale']

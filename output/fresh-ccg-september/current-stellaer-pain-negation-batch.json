@@ -1,0 +1,71 @@
+{
+  "scope": "Initially-set counter actually chains to opponent monster ignition or Spell activation, negates damage and destroys handler. Own faceup Stellaer Xyz required; wrong set/type/facedown/opposing/no support and own effect excluded. Seeded Xyz proper materials and native Omega open; no adapters",
+  "baseline_cases": 8,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_stellaer_pain_negation_batch.py": "608920ae9f1b885d0a3174d94b6d587f1c285c3fb193f5428af72a0b653f2bb6",
+    "scripts/fresh_current_stellaer_pain_negation.cjs": "88a1673bc7c3bcc4aa16e4cbd48ce54c9850e5052169b1f15e3d79665b7650b5",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c259214334.lua": "421f73d724805832efc3b7da039f384a61d893d04cdc9f88a812d85ed1945d90",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-stellaer-pain-negation.json",
+      "artifact_sha256": "f0a7cbcad2cbe7615f71f85442012d91212f9ba375dbe25fb7b4e393889867d2"
+    },
+    {
+      "control": "no-negate",
+      "expected_failures": [
+        {},
+        {
+          "spell": true
+        }
+      ],
+      "artifact": "current-stellaer-pain-negation-no-negate.json",
+      "artifact_sha256": "d61cbeeb6245a9095ce8baf39c2e2ce5aea9a713eb9c10c798b9d575a34b9ce1"
+    },
+    {
+      "control": "ignore-set",
+      "expected_failures": [
+        {
+          "wrongSet": true
+        }
+      ],
+      "artifact": "current-stellaer-pain-negation-ignore-set.json",
+      "artifact_sha256": "512c774bb4f181628e8719e1004ad2f624bb40498fbfb1873a28522482b4aeeb"
+    },
+    {
+      "control": "ignore-type",
+      "expected_failures": [
+        {
+          "notXyz": true
+        }
+      ],
+      "artifact": "current-stellaer-pain-negation-ignore-type.json",
+      "artifact_sha256": "aa05f19958d71af7b5ecac81ae703259774899de4d04753f744c6c2f50c35c51"
+    },
+    {
+      "control": "any-player",
+      "expected_failures": [
+        {
+          "ownEffect": true
+        }
+      ],
+      "artifact": "current-stellaer-pain-negation-any-player.json",
+      "artifact_sha256": "dc68f7216f03899c8963b0fcd58573bd44251f06750bae70e6253d549095e2e1"
+    }
+  ]
+}

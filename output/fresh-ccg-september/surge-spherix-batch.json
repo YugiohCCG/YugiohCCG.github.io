@@ -1,0 +1,359 @@
+{
+  "scope": "Surge startup/per-copy/inactive/removal/reactivation/opponent-Spell control and actual CL3 interruptions; Spherix interception/type/revival/counters/non-targeting column shuffle plus optional attachment fixtures with explicit neutral eligibility adapter. Exact isolated causal controls. Fixture summon/procedure boundaries remain explicit; no native Omega or full-card certification.",
+  "batch_script_sha256": "b438c31e430041a8b71fbc870df8179847c3319a946c39b98698e549ae7a0282",
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "scripts/fresh_candidate_card.cjs": "71e44bf8bee0bc3b1ec1f6b7efdb5829493b16ece041f51ba8552a831616ce4f",
+    "output/fresh-ccg-september/candidate-CCG_v1.db": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+    "output/fresh-ccg-september/public-core-card-data-adapter.mjs": "3df84e0cb3521c725a9d049409473c6a8506aca0d30a10ab8ed623efc2fe67c1",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c259869259.lua": "d1c4dcb0d321e61eb2b801a024d31af75d8291acef69b30015e851e35293d7d1",
+    "public/CCG Downloads/CCG_Scripts/c259174227.lua": "7e93e2cfed82b65a52b8fab4f0ead565340f9decd67947f08c12a6ae60fb448d",
+    "public/CCG Downloads/CCG_Scripts/c259479044.lua": "0a1568b7c650c9e929505252e880052bccd1831e3337ab99a86f9984cbaa30fd",
+    "public/CCG Downloads/CCG_Scripts/c259405917.lua": "4eefd3bc863e1c36114cc8d3ffe407acd882be4ff44b3e88d1285c1e2457079c",
+    "public/CCG Downloads/CCG_Scripts/c259033429.lua": "7c5ed34206e350dd87d22f04ecbbfc098ae9dba37fc266e1c43ff14cc73e4401",
+    "public/CCG Downloads/CCG_Scripts/c231088629.lua": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a"
+  },
+  "baseline_cases": 41,
+  "runs": [
+    {
+      "passcode": 259869259,
+      "control": null,
+      "status": 0,
+      "cases": 6,
+      "expected_failures": [],
+      "artifact": "surge-colink-transitions-259869259-259174227-card-data-adapter.json",
+      "artifact_sha256": "b91f7ae3e261e1fe45dcd34392b3457fd8dc17b1a227349786f5f260c236383c",
+      "harness": "fresh_surge_colink_transitions.cjs",
+      "harness_sha256": "ab3244e2eb3ffbe86dd99bb9766a0bead927dedde6df6ae120c17dadf8480e27",
+      "script_sha256": "d1c4dcb0d321e61eb2b801a024d31af75d8291acef69b30015e851e35293d7d1"
+    },
+    {
+      "passcode": 259869259,
+      "control": "old-baseline",
+      "status": 1,
+      "cases": 6,
+      "expected_failures": [
+        {
+          "initiallyCoLinked": true
+        },
+        {
+          "reactivate": true
+        }
+      ],
+      "artifact": "surge-colink-transitions-259869259-259174227-card-data-adapter-old-baseline.json",
+      "artifact_sha256": "0f62d1cb2acf6e348edb1db70f4fba2b816850c4f58178498e423ba43dab1848",
+      "harness": "fresh_surge_colink_transitions.cjs",
+      "harness_sha256": "ab3244e2eb3ffbe86dd99bb9766a0bead927dedde6df6ae120c17dadf8480e27",
+      "script_sha256": "d1c4dcb0d321e61eb2b801a024d31af75d8291acef69b30015e851e35293d7d1"
+    },
+    {
+      "passcode": 259869259,
+      "control": "shared-tracking",
+      "status": 1,
+      "cases": 6,
+      "expected_failures": [
+        {
+          "multipleCopies": true
+        }
+      ],
+      "artifact": "surge-colink-transitions-259869259-259174227-card-data-adapter-shared-tracking.json",
+      "artifact_sha256": "879a289805deb5a56786ec50ec7cd19979f763787ba1ddf244df99a14765ec38",
+      "harness": "fresh_surge_colink_transitions.cjs",
+      "harness_sha256": "ab3244e2eb3ffbe86dd99bb9766a0bead927dedde6df6ae120c17dadf8480e27",
+      "script_sha256": "d1c4dcb0d321e61eb2b801a024d31af75d8291acef69b30015e851e35293d7d1"
+    },
+    {
+      "passcode": 259869259,
+      "control": "old-inactive",
+      "status": 1,
+      "cases": 6,
+      "expected_failures": [
+        {
+          "disabled": true
+        },
+        {
+          "facedown": true
+        }
+      ],
+      "artifact": "surge-colink-transitions-259869259-259174227-card-data-adapter-old-inactive.json",
+      "artifact_sha256": "8690049134326411a0c1a02e885f903de536b5dd79963392ef77057ac1a7529f",
+      "harness": "fresh_surge_colink_transitions.cjs",
+      "harness_sha256": "ab3244e2eb3ffbe86dd99bb9766a0bead927dedde6df6ae120c17dadf8480e27",
+      "script_sha256": "d1c4dcb0d321e61eb2b801a024d31af75d8291acef69b30015e851e35293d7d1"
+    },
+    {
+      "passcode": 231088629,
+      "control": null,
+      "status": 0,
+      "cases": 9,
+      "expected_failures": [],
+      "artifact": "spherix-interception-regression.json",
+      "artifact_sha256": "156ec09e3847e4e3b7b3aff685b95c8cb461de3dc194e3ee7110fb0fab909bc4",
+      "harness": "fresh_spherix_interception_regression.cjs",
+      "harness_sha256": "08bd4c13a8e15b06505d3bd6f525a5b87a10678b2a024931a850073b7838f75e",
+      "script_sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a"
+    },
+    {
+      "passcode": 231088629,
+      "control": "old-relation",
+      "status": 1,
+      "cases": 9,
+      "expected_failures": [
+        {},
+        {
+          "opponentOwner": true
+        },
+        {
+          "sourceSummoned": true
+        },
+        {
+          "normal": true
+        },
+        {
+          "twoRecipients": true
+        },
+        {
+          "revive": true
+        }
+      ],
+      "artifact": "spherix-interception-regression-old-relation.json",
+      "artifact_sha256": "1da423c7a0343183d903d1e850eaec7123f4a0a241571aeba06737f0ce3f1c8c",
+      "harness": "fresh_spherix_interception_regression.cjs",
+      "harness_sha256": "08bd4c13a8e15b06505d3bd6f525a5b87a10678b2a024931a850073b7838f75e",
+      "script_sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a"
+    },
+    {
+      "passcode": 231088629,
+      "control": "no-revival",
+      "status": 1,
+      "cases": 9,
+      "expected_failures": [
+        {
+          "revive": true
+        }
+      ],
+      "artifact": "spherix-interception-regression-no-revival.json",
+      "artifact_sha256": "bafb091cc2418dc4859cba6a1faebf24c3a41b65a113a6e258b46cccabd0ee3e",
+      "harness": "fresh_spherix_interception_regression.cjs",
+      "harness_sha256": "08bd4c13a8e15b06505d3bd6f525a5b87a10678b2a024931a850073b7838f75e",
+      "script_sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a"
+    },
+    {
+      "passcode": 231088629,
+      "control": "no-counter",
+      "status": 1,
+      "cases": 9,
+      "expected_failures": [
+        {
+          "revive": true
+        }
+      ],
+      "artifact": "spherix-interception-regression-no-counter.json",
+      "artifact_sha256": "86155ccdaabc567ca1c38d291d1b70b09b20891d238524c9d198e55d68bacd3f",
+      "harness": "fresh_spherix_interception_regression.cjs",
+      "harness_sha256": "08bd4c13a8e15b06505d3bd6f525a5b87a10678b2a024931a850073b7838f75e",
+      "script_sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a"
+    },
+    {
+      "passcode": 231088629,
+      "control": null,
+      "status": 0,
+      "cases": 4,
+      "expected_failures": [],
+      "artifact": "spherix-xyz-attachment-neutral-overlay-adapter.json",
+      "artifact_sha256": "6e811d94fc01ce9b31759a1e26b01ffa34c0059a838bd2deacc78501f51c2132",
+      "harness": "fresh_spherix_xyz_attachment.cjs",
+      "harness_sha256": "88903f05f2a098c49a88e2d9effa6be71440201bacf015ee3439b21f6f1aca41",
+      "script_sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a"
+    },
+    {
+      "passcode": 231088629,
+      "control": "forced-attachment",
+      "status": 1,
+      "cases": 4,
+      "expected_failures": [
+        {
+          "revive": true
+        },
+        {
+          "revive": true,
+          "decline": true
+        }
+      ],
+      "artifact": "spherix-xyz-attachment-neutral-overlay-adapter-forced-attachment.json",
+      "artifact_sha256": "55f2343a03f1223ffea0bfd1924290a706e4b370ef664b041532e3e9175bf847",
+      "harness": "fresh_spherix_xyz_attachment.cjs",
+      "harness_sha256": "88903f05f2a098c49a88e2d9effa6be71440201bacf015ee3439b21f6f1aca41",
+      "script_sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a"
+    },
+    {
+      "passcode": 259869259,
+      "control": null,
+      "status": 0,
+      "cases": 13,
+      "expected_failures": [],
+      "artifact": "surge-control.json",
+      "artifact_sha256": "ace8ebd6ee018444c5fb5a0c6749ec29a64bfeb6135742c2a97478dbee92453f",
+      "harness": "fresh_surge_control.cjs",
+      "harness_sha256": "6ee54096a2fd744b7707d5771c860b5244e7283aef92ecb67349da387f163342",
+      "script_sha256": "d1c4dcb0d321e61eb2b801a024d31af75d8291acef69b30015e851e35293d7d1"
+    },
+    {
+      "passcode": 259869259,
+      "control": "no-control",
+      "status": 1,
+      "cases": 13,
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "surge-control-no-control.json",
+      "artifact_sha256": "302b3a89938e04d11cc665043a6347f0f5d600e0a9ba0531712e426c8bf22285",
+      "harness": "fresh_surge_control.cjs",
+      "harness_sha256": "6ee54096a2fd744b7707d5771c860b5244e7283aef92ecb67349da387f163342",
+      "script_sha256": "d1c4dcb0d321e61eb2b801a024d31af75d8291acef69b30015e851e35293d7d1"
+    },
+    {
+      "passcode": 259869259,
+      "control": "no-relation",
+      "status": 1,
+      "cases": 13,
+      "expected_failures": [
+        {
+          "targetReturned": true
+        }
+      ],
+      "artifact": "surge-control-no-relation.json",
+      "artifact_sha256": "d5d844eff15de58aaabbfeeb3fb30dd6c76391afc1b5e1f3aedd44c27b212d9a",
+      "harness": "fresh_surge_control.cjs",
+      "harness_sha256": "6ee54096a2fd744b7707d5771c860b5244e7283aef92ecb67349da387f163342",
+      "script_sha256": "d1c4dcb0d321e61eb2b801a024d31af75d8291acef69b30015e851e35293d7d1"
+    },
+    {
+      "passcode": 259869259,
+      "control": "no-colink-recheck",
+      "status": 1,
+      "cases": 13,
+      "expected_failures": [
+        {
+          "graphBroken": true
+        }
+      ],
+      "artifact": "surge-control-no-colink-recheck.json",
+      "artifact_sha256": "21256231fea26142a96ca729b08e64c11955ac501ecefdb06403ab70ff897ef9",
+      "harness": "fresh_surge_control.cjs",
+      "harness_sha256": "6ee54096a2fd744b7707d5771c860b5244e7283aef92ecb67349da387f163342",
+      "script_sha256": "d1c4dcb0d321e61eb2b801a024d31af75d8291acef69b30015e851e35293d7d1"
+    },
+    {
+      "passcode": 231088629,
+      "control": null,
+      "status": 0,
+      "cases": 9,
+      "expected_failures": [],
+      "artifact": "spherix-column-shuffle.json",
+      "artifact_sha256": "abbbb3c7a6a8144f195339a4f6a8f4a77cf2ae09ba5e06f473a1356bc2057e94",
+      "harness": "fresh_spherix_column_shuffle.cjs",
+      "harness_sha256": "609c62d1ea49530edf179b08405a95707cf9854e9d2df8310cc518cd930367d3",
+      "script_sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a"
+    },
+    {
+      "passcode": 231088629,
+      "control": "old-faceup",
+      "status": 1,
+      "cases": 9,
+      "expected_failures": [
+        {
+          "facedown": true
+        }
+      ],
+      "artifact": "spherix-column-shuffle-old-faceup.json",
+      "artifact_sha256": "072def9cdb3805362ba8c8c34c20fe16c8469889797390918b3cf775248a303b",
+      "harness": "fresh_spherix_column_shuffle.cjs",
+      "harness_sha256": "609c62d1ea49530edf179b08405a95707cf9854e9d2df8310cc518cd930367d3",
+      "script_sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a"
+    },
+    {
+      "passcode": 231088629,
+      "control": "no-shuffle",
+      "status": 1,
+      "cases": 9,
+      "expected_failures": [
+        {},
+        {
+          "facedown": true
+        },
+        {
+          "trapPartner": true
+        },
+        {
+          "fusionPartner": true
+        },
+        {
+          "targetImmune": true
+        }
+      ],
+      "artifact": "spherix-column-shuffle-no-shuffle.json",
+      "artifact_sha256": "02f240aaeeafab021681a71ae3d366af2853fe29c0b3a998916e3e6a671eac0d",
+      "harness": "fresh_spherix_column_shuffle.cjs",
+      "harness_sha256": "609c62d1ea49530edf179b08405a95707cf9854e9d2df8310cc518cd930367d3",
+      "script_sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a"
+    },
+    {
+      "passcode": 231088629,
+      "control": "no-column",
+      "status": 1,
+      "cases": 9,
+      "expected_failures": [
+        {
+          "wrongSet": true
+        },
+        {
+          "wrongColumn": true
+        },
+        {
+          "spellPartner": true
+        }
+      ],
+      "artifact": "spherix-column-shuffle-no-column.json",
+      "artifact_sha256": "1d43ff85f0ccf8b8034210c1fa0eb5025cc57dd8651ad9c9c114836b776bb4f6",
+      "harness": "fresh_spherix_column_shuffle.cjs",
+      "harness_sha256": "609c62d1ea49530edf179b08405a95707cf9854e9d2df8310cc518cd930367d3",
+      "script_sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a"
+    },
+    {
+      "passcode": 231088629,
+      "control": "no-cost",
+      "status": 1,
+      "cases": 9,
+      "expected_failures": [
+        {},
+        {
+          "facedown": true
+        },
+        {
+          "trapPartner": true
+        },
+        {
+          "fusionPartner": true
+        },
+        {
+          "targetImmune": true
+        }
+      ],
+      "artifact": "spherix-column-shuffle-no-cost.json",
+      "artifact_sha256": "62506e976c514091ff6e7d236bbffda78968f067acb916449cbca34cd32269f0",
+      "harness": "fresh_spherix_column_shuffle.cjs",
+      "harness_sha256": "609c62d1ea49530edf179b08405a95707cf9854e9d2df8310cc518cd930367d3",
+      "script_sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "passcode": 253928485,
+  "script_sha256": "fc13556dbe39bf899c9b11dcd69f70cb45fad1f667e4031533dcf9873dd2aaf3",
+  "installed_matches": true,
+  "scenarios": 23,
+  "controls": 17,
+  "suites": [
+    {
+      "batch": "current-aqua-whirlpool-activation-batch.json",
+      "sha256": "531bf06eaffc63433cfc99375d099d256ddfcf657868a159098e042797e806bb",
+      "compatibility_adapted": false,
+      "scenarios": 6,
+      "controls": 5
+    },
+    {
+      "batch": "current-aqua-whirlpool-lock-batch.json",
+      "sha256": "f7bbdd366fd204fc8d61df979a03043d2afe29cc1abb50f77c86acedc6422b09",
+      "compatibility_adapted": false,
+      "scenarios": 5,
+      "controls": 3
+    },
+    {
+      "batch": "current-aqua-whirlpool-limit-batch.json",
+      "sha256": "140855f73c1e9dec5edd16cd7fdce97f8c2a834628d1379d80cf011f920ef138",
+      "compatibility_adapted": false,
+      "scenarios": 2,
+      "controls": 2
+    },
+    {
+      "batch": "current-aqua-whirlpool-interruption-batch.json",
+      "sha256": "f1ef99796eec1e501bec75bf26ac2b5e00629e3fb5d45b857d52ae4ff50f824e",
+      "compatibility_adapted": false,
+      "scenarios": 2,
+      "controls": 1
+    },
+    {
+      "batch": "current-aqua-whirlpool-negation-adapted-batch.json",
+      "sha256": "ab5dd7bad07c45e7eeb71855b46a6cdac202184bb3136df9e3edb9899b730fd0",
+      "compatibility_adapted": true,
+      "scenarios": 2,
+      "controls": 2
+    },
+    {
+      "batch": "current-aqua-whirlpool-set-turn-batch.json",
+      "sha256": "3b8d5c8585bd8bf424fc452218371bf96c59cf0d92415fb96959adb23eaeeb3d",
+      "compatibility_adapted": false,
+      "scenarios": 2,
+      "controls": 1
+    },
+    {
+      "batch": "current-aqua-whirlpool-opponent-lock-batch.json",
+      "sha256": "32bb58896aa6411b9955dfbed227d17fee27216fd0312b5026d70b1c8674a703",
+      "compatibility_adapted": false,
+      "scenarios": 4,
+      "controls": 3
+    }
+  ],
+  "full_card_audit": "OPEN",
+  "limitations": [
+    "Fusion support initially field; proper materials unproven",
+    "Named activation copies/renewal and activation interruption",
+    "Two negation cases use explicit source-only modern OATH adapter; native legacy OATH semantics unproven",
+    "Native Omega execution"
+  ]
+}

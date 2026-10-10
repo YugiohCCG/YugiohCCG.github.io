@@ -1,0 +1,14 @@
+{
+  "scope": "Exact later targeting-exception delta from reconstructed historical repair; current website text, installed parity, 91 prior callback assertions plus 8 targeting/turn callback checks. Candidate DB and baseline roster retain older text; no native targeting or full-card certification.",
+  "passcode": 237684285,
+  "historical_repair_sha256": "2faa7237a04058b1816f7c2dda6f37ce02e8aa616f13f5c8f8987d0c82e37373",
+  "historical_validation_sha256": "a52edcbcfba26b48e72c5a945c7fc6066e1f730f20b874ded3d5eb25b61cadea",
+  "script_sha256": "58da70ad20b1e53784cd8d553f1b1f3091e5cf281d4c34a881c6f00accf056b3",
+  "installed_sha256": "58da70ad20b1e53784cd8d553f1b1f3091e5cf281d4c34a881c6f00accf056b3",
+  "reconciliation_script_sha256": "98ad51b45fdb947e28227cee3b738fe8e578b70b31bc9ad7a64eb7509481073c",
+  "callback_harness_sha256": "2940e3cf8ac047db93631e44b4c05d77d7442a7179136b3d50255a1a53de13ef",
+  "current_card_text": "1 Tuner + 1+ non-Tuner monsters\nCannot be targeted by card effects, except your \"Windborne\" cards, the turn it is Synchro Summoned. If this card is Synchro Summoned using only \"Windborne\" monsters: You can target up to 2 cards your opponent controls; return them to the hand, then shuffle as many cards from your hand into the Deck and if you do, during the next Standby Phase, add 1 \"Windborne\" card from your Deck to your hand for each card you shuffled into the Deck by this effect. During the End Phase: you can target 1 \"Windborne\" Spell in your GY; add that target to your hand during your next Standby Phase. You can only use each effect of \"Janna, Windborne Goddess of Clement Winds\" once per turn.",
+  "callback_assertions": 99,
+  "native_omega_verified": false,
+  "delta": "--- \n+++ \n@@ -11,7 +11,7 @@\n \te1:SetRange(LOCATION_MZONE)\n \te1:SetCode(EFFECT_CANNOT_BE_EFFECT_TARGET)\n \te1:SetCondition(s.indcon)\n-\te1:SetValue(aux.tgoval)\n+\te1:SetValue(s.targetlimit)\n \tc:RegisterEffect(e1)\n \t--return to hand and shuffle\n \tlocal e3=Effect.CreateEffect(c)\n@@ -142,3 +142,7 @@\n \t\tDuel.ConfirmCards(1-tp,tc)\n \tend\n end\n+\n+function s.targetlimit(e,re,rp)\n+    return rp~=e:GetHandlerPlayer() or not re:GetHandler():IsSetCard(0x21fc)\n+end\n"
+}

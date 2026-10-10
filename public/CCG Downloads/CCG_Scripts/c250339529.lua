@@ -59,7 +59,7 @@ end
 function s.fstg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
 		local chkf=tp
-		local m=Duel.GetFusionMaterial(tp)
+		local m=Duel.GetFusionMaterial(tp):Filter(s.ffilter1,nil,e)
 		if not m:IsContains(e:GetHandler()) then return false end
 		local res=Duel.IsExistingMatchingCard(s.ffilter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,m,nil,chkf)
 		if not res then
@@ -79,7 +79,7 @@ function s.fsop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) or c:IsImmuneToEffect(e) then return end
 	local chkf=tp
-	local m=Duel.GetFusionMaterial(tp)
+	local m=Duel.GetFusionMaterial(tp):Filter(s.ffilter1,nil,e)
 	if not m:IsContains(c) then return end
 	local sg1=Duel.GetMatchingGroup(s.ffilter2,tp,LOCATION_EXTRA,0,nil,e,tp,m,nil,chkf)
 	local mg3=nil

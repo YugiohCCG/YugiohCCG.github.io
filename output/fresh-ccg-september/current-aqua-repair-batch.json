@@ -1,0 +1,48 @@
+{
+  "script_sha256": "00ba89979c877ac7d13e6af48c7dec4b5e7290a1db95146d10f7565186b60fcb",
+  "before_source_sha256": "d4a59f3a7a598a0f5f4bd813074a77770a1a3077af83c0b0362b7cbe20a34c53",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c227035644.lua": "00ba89979c877ac7d13e6af48c7dec4b5e7290a1db95146d10f7565186b60fcb",
+    "scripts/fresh_current_aqua_contact_fusion.cjs": "e0a54f1f47108910068d136d6f3636c1f287c6d69de0142b4cafbc8792f318de",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "baseline_cases": 5,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-aqua-contact-fusion-attempt-neutral-mandatory-adapter.json",
+      "artifact_sha256": "c88322dd07c21e154c0715c02619083b7538c7c2cf7f435fea3707b2734914a6",
+      "expected_failures": []
+    },
+    {
+      "control": "old-faceup-filter",
+      "artifact": "current-aqua-contact-fusion-attempt-neutral-mandatory-adapter-old-faceup-filter.json",
+      "artifact_sha256": "7ac0ba5b0d40f453715c68b95b90c3dad9b3f2dbad77d7f15dc458b1131fedde",
+      "expected_failures": [
+        {
+          "facedown": true
+        }
+      ]
+    }
+  ],
+  "backup": "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\aqua-deck-install-backup-20261008-000543",
+  "installed_sha256": "00ba89979c877ac7d13e6af48c7dec4b5e7290a1db95146d10f7565186b60fcb",
+  "ruling_source": "https://www.db.yugioh-card.com/yugiohdb/faq_search.action?cid=16856&ope=4&request_locale=ja",
+  "scope": "Actual GY Fusion Summon using neutral exactly-two-code recipient and explicit sterile mandatory-material adapters; four successful summons and one prohibited banished case. First activation, general Fusion legality and native Omega open.",
+  "additional_regression": {
+    "batch": "current-aqua-deck-type-batch.json",
+    "sha256": "062eb087102fe2e98aea4a455bd3eefe777a134b7c74fba01a3d16a3e8b102d2",
+    "repair": "Exclude non-monsters, Fusion-ineligible and effect-immune cards from first-effect material pools."
+  }
+}

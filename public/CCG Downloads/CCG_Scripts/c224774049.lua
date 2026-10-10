@@ -21,7 +21,10 @@ end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local ac=Duel.GetChainInfo(0,CHAININFO_TARGET_PARAM)
 	local d=Duel.TossDice(tp,1)
-	if Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)==0 then return end
+	if Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)==0 then
+		Duel.SetLP(tp,Duel.GetLP(tp)-2000)
+		return
+	end
 	local ct=math.min(d,Duel.GetFieldGroupCount(tp,LOCATION_DECK,0))
 	Duel.ConfirmDecktop(tp,ct)
 	local g=Duel.GetDecktopGroup(tp,ct)

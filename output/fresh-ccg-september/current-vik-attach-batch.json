@@ -1,0 +1,61 @@
+{
+  "scope": "Canonical Vik actual Hand/GY Quick attachment to own initially-field neutral Rank6 WIND Xyz; wrong rank/attribute/controller/facedown exclude activation. No adapters or ignored summon limits; proper host Xyz procedure, immunity/relations/count copies/renewal/native Omega open.",
+  "baseline_cases": 6,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_vik_attach_batch.py": "c3823b40fdcb0b9e43c6e874dee80b2cb302009845da7592c89ca014b34798e2",
+    "scripts/fresh_current_vik_attach.cjs": "0231f4d0e9dbd3a2814a12c2edb979abe68dcc14b052e3369dd2c489fadaf917",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c259113182.lua": "39c9b19a0a71444574d1c7e35de04cd4501593f4beacac95d8cc531c95eb1638",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-vik-attach.json",
+      "artifact_sha256": "bf6ac9f60f80aca4d9d54443b7b5183ccefbd5e83d79f96d03209703d85f0b80"
+    },
+    {
+      "control": "any-rank",
+      "expected_failures": [
+        {
+          "wrongRank": true
+        }
+      ],
+      "artifact": "current-vik-attach-any-rank.json",
+      "artifact_sha256": "cd526b26251a417cde7cdd2f830ea5602747f7178a28e3cac20f399c7d14b329"
+    },
+    {
+      "control": "any-attribute",
+      "expected_failures": [
+        {
+          "wrongAttribute": true
+        }
+      ],
+      "artifact": "current-vik-attach-any-attribute.json",
+      "artifact_sha256": "8a73b37ed183b50110e027c2d153c58e70db534d9c8722bbf5e53b6ce26d604d"
+    },
+    {
+      "control": "no-overlay",
+      "expected_failures": [
+        {},
+        {
+          "grave": true
+        }
+      ],
+      "artifact": "current-vik-attach-no-overlay.json",
+      "artifact_sha256": "edc04c168e5f1819064569fa98e104d54d7c8738e2a41b649c1fdf25ba400f4b"
+    }
+  ]
+}

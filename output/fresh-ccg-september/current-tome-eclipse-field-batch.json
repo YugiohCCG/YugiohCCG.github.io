@@ -1,0 +1,83 @@
+{
+  "scope": "Actual Tome activation banishes other own/opposing field Spells and Traps; opponent draws exact count; End Phase opposing owned cards return GY and own cards remain banished. No adapters. Eligibility, redirects, interruptions, limits and native Omega OPEN",
+  "baseline_cases": 3,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_tome_eclipse_field_batch.py": "a2f4a2b12a1a9704f7efe5f82d933cae92779d39e0cab617d242cbb4a04bb6f5",
+    "scripts/fresh_current_tome_eclipse_field.cjs": "a16a60de93ecac6b1a72fbdf63f2aaeeb3fc880da316250e236fb508bb5393c1",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c259303191.lua": "84d6d26e6c5222aeb8698d76f350a99f4366e045dd1f2a23894a03087c01bd6a",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-tome-eclipse-field.json",
+      "artifact_sha256": "e10552791dd8560d6e330ecdb05f662a999b1c14693e5c70f44e6fa8d725bb23"
+    },
+    {
+      "control": "no-banish",
+      "expected_failures": [
+        {
+          "own": 1,
+          "opp": 0
+        },
+        {
+          "own": 0,
+          "opp": 1
+        },
+        {
+          "own": 1,
+          "opp": 2
+        }
+      ],
+      "artifact": "current-tome-eclipse-field-no-banish.json",
+      "artifact_sha256": "2f6ed56389b732dc25ebc13b9018065f957760c39730056815792ae47db81433"
+    },
+    {
+      "control": "no-draw",
+      "expected_failures": [
+        {
+          "own": 1,
+          "opp": 0
+        },
+        {
+          "own": 0,
+          "opp": 1
+        },
+        {
+          "own": 1,
+          "opp": 2
+        }
+      ],
+      "artifact": "current-tome-eclipse-field-no-draw.json",
+      "artifact_sha256": "99957aaa559024aed7bd750a53da897bdaa8c70ddaa42be903c64e51bee5b538"
+    },
+    {
+      "control": "no-return",
+      "expected_failures": [
+        {
+          "own": 0,
+          "opp": 1
+        },
+        {
+          "own": 1,
+          "opp": 2
+        }
+      ],
+      "artifact": "current-tome-eclipse-field-no-return.json",
+      "artifact_sha256": "d65a524d8cd2bb3a6e37a63954c1bd50bc9a3812ad8abf8d97330e78efaaeaf2"
+    }
+  ]
+}

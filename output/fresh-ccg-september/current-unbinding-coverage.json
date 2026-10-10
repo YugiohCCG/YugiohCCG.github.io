@@ -1,0 +1,37 @@
+{
+  "passcode": 246900181,
+  "script_sha256": "88f933cf48ea71b0cf99c5e92d5bcc6d80e0bcbfeda60cca7f4194defba8e63a",
+  "installed_matches": true,
+  "scenarios": 15,
+  "controls": 6,
+  "suites": [
+    {
+      "batch": "current-unbinding-targets-batch.json",
+      "sha256": "43b22d9ac4eb3293f9936a5ef2630ebe650aa790fae988b7bebaed0745a4c73c",
+      "compatibility_adapted": true,
+      "scenarios": 7,
+      "controls": 2
+    },
+    {
+      "batch": "current-unbinding-relation-batch.json",
+      "sha256": "79f199b281c4d6eb78b8d7d87b518d85a97c000c863509ad5ac89acfdb27fccb",
+      "compatibility_adapted": true,
+      "scenarios": 4,
+      "controls": 2
+    },
+    {
+      "batch": "current-unbinding-necrovalley-batch.json",
+      "sha256": "6df75f4485033736cfcc737918b34d8eacabd39053a33dbb8b0e0293ddbf9249",
+      "compatibility_adapted": true,
+      "scenarios": 4,
+      "controls": 2
+    }
+  ],
+  "full_card_audit": "OPEN",
+  "limitations": [
+    "Explicit legacy CHAININFO_TARGET_CARDS=8 adapter used in all cases",
+    "Necrovalley arrival protected by combined script/engine; filter necessity at resolution unproven",
+    "Changed eligibility beyond target relation at resolution unproven",
+    "Native Omega execution"
+  ]
+}

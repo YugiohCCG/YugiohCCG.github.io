@@ -1,0 +1,16 @@
+--Shade the Aigalon Aerocat
+--Omega references: Crystal Wing Synchro Dragon (c50954680), Number 101: Silent Honor ARK (c48739166)
+local s,id=GetID(); local SET_AEROCAT=0x3de1; local STRING_ID=133615843
+function s.initial_effect(c)
+ local e0=Effect.CreateEffect(c); e0:SetType(EFFECT_TYPE_FIELD); e0:SetCode(EFFECT_UPDATE_ATTACK); e0:SetRange(LOCATION_MZONE); e0:SetTargetRange(LOCATION_MZONE,0); e0:SetTarget(function(e,c) return c~=e:GetHandler() and c:IsSetCard(SET_AEROCAT) end); e0:SetValue(1000); c:RegisterEffect(e0)
+ local e1=Effect.CreateEffect(c); e1:SetDescription(aux.Stringid(STRING_ID,0)); e1:SetCategory(CATEGORY_SPECIAL_SUMMON); e1:SetType(EFFECT_TYPE_QUICK_O); e1:SetCode(EVENT_FREE_CHAIN); e1:SetRange(LOCATION_HAND+LOCATION_GRAVE); e1:SetCountLimit(1,id); e1:SetCost(s.spcost); e1:SetTarget(s.sptg); e1:SetOperation(s.spop); c:RegisterEffect(e1)
+ local e2=Effect.CreateEffect(c); e2:SetDescription(aux.Stringid(STRING_ID,1)); e2:SetType(EFFECT_TYPE_QUICK_O); e2:SetCode(EVENT_FREE_CHAIN); e2:SetRange(LOCATION_MZONE); e2:SetProperty(EFFECT_FLAG_CARD_TARGET); e2:SetCountLimit(1,id+100); e2:SetCondition(function(e) return e:GetHandler():GetFlagEffect(id+500)==0 end); e2:SetTarget(s.ovtg); e2:SetOperation(s.ovop); c:RegisterEffect(e2)
+end
+function s.xf(c,tp) return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:IsRank(6) and c:CheckRemoveOverlayCard(tp,1,REASON_COST) end
+function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk) local g=Duel.GetMatchingGroup(s.xf,tp,LOCATION_MZONE,LOCATION_MZONE,nil,tp); if chk==0 then return #g>0 end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVEXYZ); local tc=g:Select(tp,1,1,nil):GetFirst(); tc:RemoveOverlayCard(tp,1,1,REASON_COST) end
+function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0) end
+function s.spop(e,tp) local c=e:GetHandler(); if c:IsRelateToEffect(e) then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP) end end
+function s.aero(c) return c:IsFaceup() and c:IsSetCard(SET_AEROCAT) and c:IsType(TYPE_XYZ) end
+function s.target(c,tp) return c:IsCanBeXyzMaterial() and (c:IsControler(tp) or c:IsAbleToChangeControler()) end
+function s.ovtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return chkc:IsLocation(LOCATION_ONFIELD) and s.target(chkc,tp) end if chk==0 then return Duel.IsExistingTarget(s.target,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil,tp) and Duel.IsExistingMatchingCard(s.aero,tp,LOCATION_MZONE,0,1,nil) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL); Duel.SelectTarget(tp,s.target,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil,tp) end
+function s.ovop(e,tp) local c=e:GetHandler(); local tc=Duel.GetFirstTarget(); if not tc or not tc:IsRelateToEffect(e) or (not tc:IsControler(tp) and not tc:IsAbleToChangeControler()) then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL); local g=Duel.SelectMatchingCard(tp,s.aero,tp,LOCATION_MZONE,0,1,1,nil); local x=g:GetFirst(); if x then Duel.Overlay(x,Group.FromCards(tc)); if tc:GetOverlayTarget()==x and c:IsFaceup() and c:IsRelateToEffect(e) then c:RegisterFlagEffect(id+500,RESET_EVENT+RESETS_STANDARD,0,1) end end end

@@ -39,11 +39,11 @@ end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,e,tp) end
-	local ft=math.min(2,Duel.GetLocationCount(tp,LOCATION_MZONE))
+	local ft=math.min(Duel.IsPlayerAffectedByEffect(tp,59822133) and 1 or 2,Duel.GetLocationCount(tp,LOCATION_MZONE))
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,ft,tp,LOCATION_GRAVE+LOCATION_REMOVED)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
-	local ft=math.min(2,Duel.GetLocationCount(tp,LOCATION_MZONE))
+	local ft=math.min(Duel.IsPlayerAffectedByEffect(tp,59822133) and 1 or 2,Duel.GetLocationCount(tp,LOCATION_MZONE))
 	if ft<=0 then return end
 	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,nil,e,tp)
 	if #g==0 then return end
