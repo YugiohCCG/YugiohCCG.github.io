@@ -1,0 +1,62 @@
+{
+  "scope": "TerrifyingDarkSwamp native CL2 fills allfive SZONE or sends actual FieldSpell to GY: no selection or placement; reference actually places. FieldSpell remains except actual removal. No adapters; other effects/nativeOmega OPEN",
+  "baseline_cases": 3,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_swamp_interruption_batch.py": "cb0f776243226b0cc1b78fe7f1ec0a09a63a50096faf3f4fdb035174397a8c42",
+    "scripts/fresh_current_swamp_interruption.cjs": "d57a6062572506e1fbc91114cd72750dcd57770e27477d85f2d179a79982e855",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c239935101.lua": "ef3c32dd69989b9aa234302126b1820651f81e02bc8201111a9d70341aa953f0",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-swamp-interruption.json",
+      "artifact_sha256": "759ee74a2c6c6b19c4b70f4a86563e195f816f24625dfee912c74f478c5be73b"
+    },
+    {
+      "control": "no-move",
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "current-swamp-interruption-no-move.json",
+      "artifact_sha256": "fb7b7ce1e1c9cdf31d525812c4a8967c0c2716096ad3fc907e202321508493d4"
+    },
+    {
+      "control": "no-space-check",
+      "expected_failures": [
+        {
+          "interrupt": true
+        }
+      ],
+      "artifact": "current-swamp-interruption-no-space-check.json",
+      "artifact_sha256": "fea6302da7fee64f8531e5c89f3233c9c62e33847ebcd36c29e1c34c720543be"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        {
+          "interrupt": true
+        },
+        {
+          "interrupt": true,
+          "removeSource": true
+        }
+      ],
+      "artifact": "current-swamp-interruption-no-response.json",
+      "artifact_sha256": "197bc2382f78e6bdd38a61e93958243ca69552ed25aba2dd937b55aa0962431d"
+    }
+  ]
+}

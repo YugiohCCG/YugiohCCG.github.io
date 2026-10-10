@@ -1,0 +1,87 @@
+{
+  "scope": "Static actual Spell activation, full Papa Decksearch then native effectdiscard; empty Hand and choice to retain/discard searchedcard; wrongset/type/noresource excluded, no adapters. OfficialMine metadata/limit/battle/nativeOmega OPEN",
+  "baseline_cases": 6,
+  "certification": "Production focused evidence; native Omega and full card OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c211086520.lua": "bbcbbe99a7006a8bb2e812d1d24f23907d78f3d3966f45d82d88c06a35b01b23",
+    "public/CCG Downloads/CCG_Scripts/c251699681.lua": "606094785fe384e1f2127d7a2b17f4d8273a5e3fb5dbdfe0536ac9c334ed5ab0",
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_recollection_static_search_batch.py": "af2621dacd850e5a9ecce15438f766a5ad56a9f414c8289f60486cdea917ce79",
+    "scripts/fresh_current_recollection_static_search.cjs": "68f65977ed2a80aa16c4c91145246ea125c502365cfe75d3c9e93c8cafaf0534",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c241868535.lua": "f11e3ff728b89273c6455263f1202d618999ac75a8ff1ae953ac39c296ad7608",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-recollection-static-search.json",
+      "artifact_sha256": "03698b592668ca60b6bf1211261acf778999ffd4a06b33203c40823cdcf80a22"
+    },
+    {
+      "control": "no-search",
+      "expected_failures": [
+        {},
+        {
+          "extraHand": true
+        },
+        {
+          "extraHand": true,
+          "discardSearch": true
+        }
+      ],
+      "artifact": "current-recollection-static-search-no-search.json",
+      "artifact_sha256": "d56f64ac07e57e7352d53f1c5dd3be540fd3c913fd51959dcd0bb876432580f9"
+    },
+    {
+      "control": "no-discard",
+      "expected_failures": [
+        {},
+        {
+          "extraHand": true
+        },
+        {
+          "extraHand": true,
+          "discardSearch": true
+        }
+      ],
+      "artifact": "current-recollection-static-search-no-discard.json",
+      "artifact_sha256": "c2a83cd0b1fcbfb16372d28f1a6b003014753ac182ca3bd67d202672e9e2f874"
+    },
+    {
+      "control": "allow-any",
+      "expected_failures": [
+        {},
+        {
+          "extraHand": true
+        },
+        {
+          "extraHand": true,
+          "discardSearch": true
+        },
+        {
+          "wrongSet": true
+        },
+        {
+          "wrongType": true
+        },
+        {
+          "noResource": true
+        }
+      ],
+      "artifact": "current-recollection-static-search-allow-any.json",
+      "artifact_sha256": "1f1a9190abec5674f0a663c0e6ac7c6ae7b05ce844146da3fa209498af7603c1"
+    }
+  ]
+}

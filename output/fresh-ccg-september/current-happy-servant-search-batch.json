@@ -1,0 +1,99 @@
+{
+  "scope": "HappyServant actual Normal/SpecialSummon, native discard or controlled neutral Recollection cost, actual two-category Deck search including full BearTrap/Teleum. Neutral Recollection metadata; no adapters. Limit/protection/interruption/nativeOmega OPEN",
+  "baseline_cases": 9,
+  "certification": "Production focused evidence; native Omega and full card OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c215984744.lua": "2c15ccbaa2b8a6384236ea3836d96c6b0bb30288fd2ffb390faf890a1133711e",
+    "public/CCG Downloads/CCG_Scripts/c251699681.lua": "606094785fe384e1f2127d7a2b17f4d8273a5e3fb5dbdfe0536ac9c334ed5ab0",
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_happy_servant_search_batch.py": "d006eaeda6378649817609f6192453c07be4d59208d3fa9699160fb5c0cb197b",
+    "scripts/fresh_current_happy_servant_search.cjs": "ba3974b4dee8a281d5657b9d639cb20d83beaca1f721acbf7dd6561f48f9704f",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c229875953.lua": "39fe0910149ac7020aea633f8f9c7e4b10b798be394a40a2dbb8b831466e8beb",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-happy-servant-search.json",
+      "artifact_sha256": "e9a322a86fb3683c109f34762717c8f6cc2df42fb94c19910aec7395a9bec491"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        {},
+        {
+          "special": true
+        },
+        {
+          "send": true
+        },
+        {
+          "both": true,
+          "send": true
+        },
+        {
+          "mortis": true
+        }
+      ],
+      "artifact": "current-happy-servant-search-no-cost.json",
+      "artifact_sha256": "e354e261f1c0911de127dcfaaa1beb2be62954f161205a9c737b4d839d8680ff"
+    },
+    {
+      "control": "no-search",
+      "expected_failures": [
+        {},
+        {
+          "special": true
+        },
+        {
+          "send": true
+        },
+        {
+          "both": true,
+          "send": true
+        },
+        {
+          "mortis": true
+        }
+      ],
+      "artifact": "current-happy-servant-search-no-search.json",
+      "artifact_sha256": "a8f88753a5d592962b31cf182febb3205aab5748990bc4abebf5599b4a926ed1"
+    },
+    {
+      "control": "ignore-second",
+      "expected_failures": [
+        {},
+        {
+          "special": true
+        },
+        {
+          "send": true
+        },
+        {
+          "both": true,
+          "send": true
+        },
+        {
+          "mortis": true
+        },
+        {
+          "noSecond": true
+        }
+      ],
+      "artifact": "current-happy-servant-search-ignore-second.json",
+      "artifact_sha256": "312e1eb528878181964fdb367fc7bd2aef238de450209942d42855f51aafb4be"
+    }
+  ]
+}

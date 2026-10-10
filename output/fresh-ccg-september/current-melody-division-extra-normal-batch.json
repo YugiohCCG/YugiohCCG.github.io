@@ -1,0 +1,78 @@
+{
+  "scope": "MelodyDivision native ordinary normal summon then extra Brigade NormalSummon/Set; second copy grants no third use; wrongset Handmonster excluded. No adapters. Turn reset/other timing/attachment/nativeOmega OPEN",
+  "baseline_cases": 4,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_melody_division_extra_normal_batch.py": "b79481d16e0d53d16837fde4627675bcf6282f2bf1d58b571d5d8fa2170dabe3",
+    "scripts/fresh_current_melody_division_extra_normal.cjs": "424c6d6b028c63d6fe5730f02075130f3b30665bfce8ceb4eea4e60d1e1cf590",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c243420199.lua": "ea1a5a9eaa28727abe4ebc403b43a1215621b7a07d017f988c9cbb55b2305b5f",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-melody-division-extra-normal.json",
+      "artifact_sha256": "18038d98525f7a19cf8ccf7cfb1be6be118ab30ddb88fc1c1f7925380da912ea"
+    },
+    {
+      "control": "no-extra",
+      "expected_failures": [
+        {},
+        {
+          "set": true
+        },
+        {
+          "twoCopies": true
+        }
+      ],
+      "artifact": "current-melody-division-extra-normal-no-extra.json",
+      "artifact_sha256": "fbea5486bdf502e0c08380ee9146984f6fba275d30020844bef6d78c1deb09ee"
+    },
+    {
+      "control": "ignore-set",
+      "expected_failures": [
+        {
+          "wrongSet": true
+        }
+      ],
+      "artifact": "current-melody-division-extra-normal-ignore-set.json",
+      "artifact_sha256": "fecac7ede52cde641a3f66aef76e8021e4f1638dc9ba2bc4404d35e9bb5894f5"
+    },
+    {
+      "control": "old-value",
+      "expected_failures": [
+        {},
+        {
+          "set": true
+        },
+        {
+          "twoCopies": true
+        }
+      ],
+      "artifact": "current-melody-division-extra-normal-old-value.json",
+      "artifact_sha256": "16eabce4352b21e59b572984c1f451f7a8ef109336ecebb3dd13e0b867417c6c"
+    },
+    {
+      "control": "no-set",
+      "expected_failures": [
+        {
+          "set": true
+        }
+      ],
+      "artifact": "current-melody-division-extra-normal-no-set.json",
+      "artifact_sha256": "c7c9188d056cd837896fda85a23b1419bfd41315f467b2a9a73bcda80d004cf0"
+    }
+  ]
+}

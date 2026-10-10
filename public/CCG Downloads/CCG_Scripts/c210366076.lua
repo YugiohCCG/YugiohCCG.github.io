@@ -8,6 +8,9 @@ function s.initial_effect(c)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetCountLimit(1,id)
 	e1:SetCost(s.cost)
+	--This effect places a Zombie monster face-up in the Spell/Trap Zone.
+	aux.CCGFaceupPlacementEffects=aux.CCGFaceupPlacementEffects or {}
+	aux.CCGFaceupPlacementEffects[e1]=true
 	e1:SetTarget(s.target)
 	e1:SetOperation(s.activate)
 	c:RegisterEffect(e1)

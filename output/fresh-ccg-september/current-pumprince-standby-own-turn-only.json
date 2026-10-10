@@ -1,0 +1,820 @@
+{
+  "scope": "Pumprince one/two copies: forced Standby counter +1 on own1/opponent2/own3, native per-copy count predicate and opponent-phase assertion, trigger counts and aggregate ATK DEF stacking. No adapters; other counter origins/ignition reset/native Omega OPEN",
+  "recipient": null,
+  "control": "own-turn-only",
+  "script_sha256": "e4745c29e2fb7600d87881f5be39745eef31eb0ae67d2c28bf44ab702a173f5c",
+  "results": [
+    {
+      "test": {},
+      "failure": "stack traceback:\n\t[string \"c900001214.lua\"]:1: in function <[string \"c900001214.lua\"]:1>; [string \"c900001214.lua\"]:1: Opponent Standby increments each copy exactly once",
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": true,
+          "hint_timing": 2,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 239028111,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0,
+              "position": 1,
+              "description": "2128449777",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 70,
+          "code": 239028111,
+          "controller": 0,
+          "location": 4,
+          "sequence": 0,
+          "position": 1,
+          "triggering_controller": 0,
+          "triggering_location": 4,
+          "triggering_sequence": 0,
+          "description": "2128449777",
+          "chain_size": 1
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 101,
+          "counter_type": 47,
+          "controller": 0,
+          "location": 4,
+          "sequence": 0,
+          "count": 1
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 74
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 239028111,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            },
+            {
+              "code": 900001214,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [
+            {
+              "code": 900001214,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1,
+              "description": "0",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 1,
+          "hint": "23"
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 4,
+          "selects": []
+        },
+        {
+          "type": 41,
+          "phase": 512
+        },
+        {
+          "type": 40,
+          "player": 1
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 1,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": true,
+          "hint_timing": 0,
+          "hint_timing_other": 2,
+          "selects": [
+            {
+              "code": 239028111,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0,
+              "position": 1,
+              "description": "2128449777",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 70,
+          "code": 239028111,
+          "controller": 0,
+          "location": 4,
+          "sequence": 0,
+          "position": 1,
+          "triggering_controller": 0,
+          "triggering_location": 4,
+          "triggering_sequence": 0,
+          "description": "2128449777",
+          "chain_size": 1
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 74
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 41,
+          "phase": 4
+        }
+      ],
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"c900001214.lua\"]:1: in function <[string \"c900001214.lua\"]:1>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"c900001214.lua\"]:1: Opponent Standby increments each copy exactly once"
+        }
+      ]
+    },
+    {
+      "test": {
+        "twoCopies": true
+      },
+      "failure": "stack traceback:\n\t[string \"c900001214.lua\"]:1: in function <[string \"c900001214.lua\"]:1>; [string \"c900001214.lua\"]:1: Opponent Standby increments each copy exactly once",
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": true,
+          "hint_timing": 2,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 239028111,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0,
+              "position": 1,
+              "description": "2128449777",
+              "client_mode": 0
+            },
+            {
+              "code": 239028111,
+              "controller": 0,
+              "location": 4,
+              "sequence": 3,
+              "position": 1,
+              "description": "2128449777",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 70,
+          "code": 239028111,
+          "controller": 0,
+          "location": 4,
+          "sequence": 0,
+          "position": 1,
+          "triggering_controller": 0,
+          "triggering_location": 4,
+          "triggering_sequence": 0,
+          "description": "2128449777",
+          "chain_size": 1
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 101,
+          "counter_type": 47,
+          "controller": 0,
+          "location": 4,
+          "sequence": 0,
+          "count": 1
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 74
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": true,
+          "hint_timing": 2,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 239028111,
+              "controller": 0,
+              "location": 4,
+              "sequence": 3,
+              "position": 1,
+              "description": "2128449777",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 70,
+          "code": 239028111,
+          "controller": 0,
+          "location": 4,
+          "sequence": 3,
+          "position": 1,
+          "triggering_controller": 0,
+          "triggering_location": 4,
+          "triggering_sequence": 3,
+          "description": "2128449777",
+          "chain_size": 1
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 101,
+          "counter_type": 47,
+          "controller": 0,
+          "location": 4,
+          "sequence": 3,
+          "count": 1
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 74
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 239028111,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            },
+            {
+              "code": 900001214,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            },
+            {
+              "code": 239028111,
+              "controller": 0,
+              "location": 4,
+              "sequence": 3
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [
+            {
+              "code": 900001214,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1,
+              "description": "0",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 1,
+          "hint": "23"
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 4,
+          "selects": []
+        },
+        {
+          "type": 41,
+          "phase": 512
+        },
+        {
+          "type": 40,
+          "player": 1
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 1,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": true,
+          "hint_timing": 0,
+          "hint_timing_other": 2,
+          "selects": [
+            {
+              "code": 239028111,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0,
+              "position": 1,
+              "description": "2128449777",
+              "client_mode": 0
+            },
+            {
+              "code": 239028111,
+              "controller": 0,
+              "location": 4,
+              "sequence": 3,
+              "position": 1,
+              "description": "2128449777",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 70,
+          "code": 239028111,
+          "controller": 0,
+          "location": 4,
+          "sequence": 0,
+          "position": 1,
+          "triggering_controller": 0,
+          "triggering_location": 4,
+          "triggering_sequence": 0,
+          "description": "2128449777",
+          "chain_size": 1
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 74
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": true,
+          "hint_timing": 0,
+          "hint_timing_other": 2,
+          "selects": [
+            {
+              "code": 239028111,
+              "controller": 0,
+              "location": 4,
+              "sequence": 3,
+              "position": 1,
+              "description": "2128449777",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 70,
+          "code": 239028111,
+          "controller": 0,
+          "location": 4,
+          "sequence": 3,
+          "position": 1,
+          "triggering_controller": 0,
+          "triggering_location": 4,
+          "triggering_sequence": 3,
+          "description": "2128449777",
+          "chain_size": 1
+        },
+        {
+          "type": 71,
+          "chain_size": 1
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 0,
+          "selects": []
+        },
+        {
+          "type": 72,
+          "chain_size": 1
+        },
+        {
+          "type": 73,
+          "chain_size": 1
+        },
+        {
+          "type": 74
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 32768,
+          "hint_timing_other": 32768,
+          "selects": []
+        },
+        {
+          "type": 41,
+          "phase": 4
+        }
+      ],
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"c900001214.lua\"]:1: in function <[string \"c900001214.lua\"]:1>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"c900001214.lua\"]:1: Opponent Standby increments each copy exactly once"
+        }
+      ]
+    }
+  ]
+}

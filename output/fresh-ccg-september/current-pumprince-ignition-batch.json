@@ -1,0 +1,79 @@
+{
+  "scope": "Pumprince actual ignition adds3 counters with own faceup named neutral Pumprincess Monster/SZONE support; opposing/facedown/absent excluded. Initial forced Standby1 accounted; native GetCounter predicate plus opponent ATK DEF and own unchanged stats. No adapters; other counter routes/reset/native Omega OPEN",
+  "baseline_cases": 5,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_pumprince_ignition_batch.py": "d1a1b092d04040643c9f02088fdbc353c64548ad6cbb76de0e6ad0ca33037ef6",
+    "scripts/fresh_current_pumprince_ignition.cjs": "cebc80b2947fd35b7ec3dc836f12f626b8566b79ebbf4072e924ca73139d3c69",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c239028111.lua": "e4745c29e2fb7600d87881f5be39745eef31eb0ae67d2c28bf44ab702a173f5c",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-pumprince-ignition.json",
+      "artifact_sha256": "4472647b968f1eba1cc6fcb285206140872d9b5a1bec70b18d9e5dc104284b2a"
+    },
+    {
+      "control": "no-counters",
+      "expected_failures": [
+        {},
+        {
+          "spellzone": true
+        }
+      ],
+      "artifact": "current-pumprince-ignition-no-counters.json",
+      "artifact_sha256": "14d557776a36aaea945a1656596c6142eb260454bb563d89c668315c4e7b8701"
+    },
+    {
+      "control": "wrong-count",
+      "expected_failures": [
+        {},
+        {
+          "spellzone": true
+        }
+      ],
+      "artifact": "current-pumprince-ignition-wrong-count.json",
+      "artifact_sha256": "fd0aee5c7c7e6578068325a17d77696dd291b7fc94012e7c4e243e7e5e9162a5"
+    },
+    {
+      "control": "ignore-princess",
+      "expected_failures": [
+        {
+          "opponent": true
+        },
+        {
+          "facedown": true
+        },
+        {
+          "absent": true
+        }
+      ],
+      "artifact": "current-pumprince-ignition-ignore-princess.json",
+      "artifact_sha256": "48581ebbe57d93281e834ca8539d3b0b7884d0b27f8d59022a6ee9b3a6950132"
+    },
+    {
+      "control": "no-limit",
+      "expected_failures": [
+        {},
+        {
+          "spellzone": true
+        }
+      ],
+      "artifact": "current-pumprince-ignition-no-limit.json",
+      "artifact_sha256": "0b4a3ef1a370b78c120f473840bbff1ced38a0e44fa3d10b7c42f82d61106727"
+    }
+  ]
+}

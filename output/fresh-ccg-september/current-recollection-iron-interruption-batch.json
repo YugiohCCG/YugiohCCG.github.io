@@ -1,0 +1,103 @@
+{
+  "scope": "Iron target Hand/down/departure-return abort ATK, source GY still resolves; actual opposing CL2 and paid1000 retained. Full Papa, neutral interruption helper. Protection on interrupted target/negation/battle/nativeOmega/fullcard OPEN",
+  "baseline_cases": 5,
+  "certification": "Production focused evidence; native Omega and full card OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c234984156.lua": "a1a2e2ce49ce8970d34eb0fb4b86ce2d4f5dee8b18b638b8783c6a4f124a96c0",
+    "public/CCG Downloads/CCG_Scripts/c251699681.lua": "606094785fe384e1f2127d7a2b17f4d8273a5e3fb5dbdfe0536ac9c334ed5ab0",
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_recollection_iron_interruption_batch.py": "28e195fa2be5852369b1d328acff5594d7b18ae214dc833b75ca91be1dd239f0",
+    "scripts/fresh_current_recollection_iron_interruption.cjs": "729c87c03ae9278d269d730321f7a15106e798dbdbdfe3c383eb72e355cf29ce",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c241868535.lua": "f11e3ff728b89273c6455263f1202d618999ac75a8ff1ae953ac39c296ad7608",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-recollection-iron-interruption.json",
+      "artifact_sha256": "c5e456ece44b375479c15ff0cae45af7d87a395033dfa6e7cc9880ff67df9b8f"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        {
+          "sourceGY": true
+        },
+        {
+          "targetHand": true
+        },
+        {
+          "targetDown": true
+        },
+        {
+          "targetReturn": true
+        }
+      ],
+      "artifact": "current-recollection-iron-interruption-no-response.json",
+      "artifact_sha256": "11a9d946127d5c0d834cc734ed81e5ee72b8dcd75c7bbdfd156746ad4061963f"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        {},
+        {
+          "sourceGY": true
+        },
+        {
+          "targetHand": true
+        },
+        {
+          "targetDown": true
+        },
+        {
+          "targetReturn": true
+        }
+      ],
+      "artifact": "current-recollection-iron-interruption-no-cost.json",
+      "artifact_sha256": "4745739cb4812631f6f0e9286fbef8e043c3ff31a6b12f18d55789539a8b0269"
+    },
+    {
+      "control": "no-boost",
+      "expected_failures": [
+        {},
+        {
+          "sourceGY": true
+        }
+      ],
+      "artifact": "current-recollection-iron-interruption-no-boost.json",
+      "artifact_sha256": "ea4341aad85b5ddade495b525f6ae6bb90b0847a6761f64b7af6929975ce9f75"
+    },
+    {
+      "control": "ignore-relation",
+      "expected_failures": [
+        {
+          "targetReturn": true
+        }
+      ],
+      "artifact": "current-recollection-iron-interruption-ignore-relation.json",
+      "artifact_sha256": "cf31c21453d7e018d38d3e3a4a0975c6d6c72404582467d4bd21d78b4d9c635a"
+    },
+    {
+      "control": "ignore-faceup",
+      "expected_failures": [
+        {
+          "targetDown": true
+        }
+      ],
+      "artifact": "current-recollection-iron-interruption-ignore-faceup.json",
+      "artifact_sha256": "e2f13c49f675888c50d896f628a2bc357bcecae2d4617d6152551b3482166075"
+    }
+  ]
+}

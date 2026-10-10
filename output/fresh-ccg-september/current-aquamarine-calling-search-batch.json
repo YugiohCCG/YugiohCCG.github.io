@@ -1,0 +1,71 @@
+{
+  "scope": "AquamarineCalling native Deck Level1/4 Aquamarine monster search toHand; wrongset/Level5/Spell/nativeCANNOT_TO_HAND exclude. No adapters. ExtraDeck WATER lock/prioractivity/limits/interruption/nativeOmega OPEN",
+  "baseline_cases": 6,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_aquamarine_calling_search_batch.py": "c99ca4a9fbcdb517fb2375ffa4fed71245965ed6185994b00b3d5821b1dc9df2",
+    "scripts/fresh_current_aquamarine_calling_search.cjs": "78e708dba229550140ceb7b9f9c277775c92b9ff0c379ba13d570100afb0af68",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c221509060.lua": "21fe57fa3c6f6830ead82656f8ab6998c6e5856b11c4278c878abdaa06892d0f",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-aquamarine-calling-search.json",
+      "artifact_sha256": "31262ab1a7e64ce8d4b58c2c9bed8c416bb6e888e0997cfcf66ccc48a70d2ab9"
+    },
+    {
+      "control": "no-add",
+      "expected_failures": [
+        {},
+        {
+          "levelOne": true
+        }
+      ],
+      "artifact": "current-aquamarine-calling-search-no-add.json",
+      "artifact_sha256": "ca4f8b13ee6b1d0d18e57c66e681326aa381ca7734d3fa95c07e9c1d9e51e7b3"
+    },
+    {
+      "control": "ignore-set",
+      "expected_failures": [
+        {
+          "wrongSet": true
+        }
+      ],
+      "artifact": "current-aquamarine-calling-search-ignore-set.json",
+      "artifact_sha256": "6a646435e8b8f1e8509a29811f0a47a2a3e5ab68b16316d3746666102b336676"
+    },
+    {
+      "control": "ignore-level",
+      "expected_failures": [
+        {
+          "highLevel": true
+        }
+      ],
+      "artifact": "current-aquamarine-calling-search-ignore-level.json",
+      "artifact_sha256": "3ae7e4a0d98369371f0b2fa2c2b2ed115f4a5d1705aa11548cb282c63837e6f5"
+    },
+    {
+      "control": "ignore-able",
+      "expected_failures": [
+        {
+          "blocked": true
+        }
+      ],
+      "artifact": "current-aquamarine-calling-search-ignore-able.json",
+      "artifact_sha256": "6da62bb89eef0b89fc6b5e393ccc58a73af5dbe6b5786a33d95bc883c1f1b8e3"
+    }
+  ]
+}

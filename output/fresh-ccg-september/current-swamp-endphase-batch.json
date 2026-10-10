@@ -1,0 +1,96 @@
+{
+  "scope": "Public OCGCore, full production Terrifying Dark Swamp with current metadata seeded field slot; actual own/opponent End Phase advancement and banished neutral monsters returned to Deck; battle and native Omega untested",
+  "baseline_cases": 7,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_swamp_endphase_batch.py": "36b85b4e8e777efce265c3a187f8ee719475fc71e52b3f65d2382817efdf5f13",
+    "scripts/fresh_current_swamp_endphase.cjs": "4c43feebebded4e7f3894e08f7fd9a73e467574a03164bac87113bf3dc7ee4f4",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c239935101.lua": "ef3c32dd69989b9aa234302126b1820651f81e02bc8201111a9d70341aa953f0",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-swamp-endphase.json",
+      "artifact_sha256": "921d7500c9929e848c90f073bbacb563d852b0ca88a72cdfb87b89cb32d4d529"
+    },
+    {
+      "control": "own-phase",
+      "expected_failures": [
+        {},
+        {
+          "one": true
+        },
+        {
+          "decline": true
+        }
+      ],
+      "artifact": "current-swamp-endphase-own-phase.json",
+      "artifact_sha256": "73e37e64bbf5de9f23fe48536e35b02aeb5d6eacecbf306ec6ac1e0b56b9b1ea"
+    },
+    {
+      "control": "no-shuffle",
+      "expected_failures": [
+        {},
+        {
+          "one": true
+        }
+      ],
+      "artifact": "current-swamp-endphase-no-shuffle.json",
+      "artifact_sha256": "765e87e5cd9de8d057e5e3e0ea7609acf10319b20a7f81d37f862716eae6aa6f"
+    },
+    {
+      "control": "no-count",
+      "expected_failures": [
+        {},
+        {
+          "one": true
+        }
+      ],
+      "artifact": "current-swamp-endphase-no-count.json",
+      "artifact_sha256": "f55fbb784aa75ab8135d5c857b7d4411f7c203272d92dc2e247ba0ce2d2d9792"
+    },
+    {
+      "control": "ignore-attribute",
+      "expected_failures": [
+        {
+          "wrongattribute": true
+        }
+      ],
+      "artifact": "current-swamp-endphase-ignore-attribute.json",
+      "artifact_sha256": "5394981f212793e21205af516f79454454423a4afefff985b93ccbb661667a9a"
+    },
+    {
+      "control": "ignore-race",
+      "expected_failures": [
+        {
+          "wrongrace": true
+        }
+      ],
+      "artifact": "current-swamp-endphase-ignore-race.json",
+      "artifact_sha256": "25f2440144607eb291d954e132d8b26b65d01ec57ad6ad855bdd7ade50d47a89"
+    },
+    {
+      "control": "ignore-faceup",
+      "expected_failures": [
+        {
+          "facedown": true
+        }
+      ],
+      "artifact": "current-swamp-endphase-ignore-faceup.json",
+      "artifact_sha256": "3ec38eae3073be3e53c732878efec5534621a0921e212f030ecf9dd9f08f9faf"
+    }
+  ]
+}

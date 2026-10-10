@@ -65,7 +65,7 @@ end
 function s.thop(e,tp)
 	local c=e:GetHandler()
 	local all=c:GetFlagEffect(TRANSFER_CALL)>0
-	if all then c:ResetFlagEffect(TRANSFER_CALL) end
+	if all then c:ResetFlagEffect(TRANSFER_CALL) all=Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local tc=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
 	if tc and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,tc) end
@@ -81,7 +81,7 @@ function s.domove(c,tp)
 end
 function s.mvop(e,tp)
 	local c=e:GetHandler()
-	if c:GetFlagEffect(TRANSFER_CALL)>0 then c:ResetFlagEffect(TRANSFER_CALL) s.thop(e,tp) end
+	if c:GetFlagEffect(TRANSFER_CALL)>0 then c:ResetFlagEffect(TRANSFER_CALL) if Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then s.thop(e,tp) end end
 	s.domove(c,tp)
 end
 function s.matval(e,sc) return sc:IsCode(LAPSIX,GALAXIX) end

@@ -1,0 +1,1527 @@
+{
+  "scope": "All current CCG scripts scanned for direct Duel.MoveToField calls; candidate inventory only, no automatic eligibility conclusions or production changes",
+  "scripts_scanned": 724,
+  "scripts_with_calls": 57,
+  "calls": 62,
+  "cards": [
+    {
+      "code": 210366076,
+      "path": "public/CCG Downloads/CCG_Scripts/c210366076.lua",
+      "sha256": "63295eb32eb619d8f387c11e61d323056d9793836d5f2ab2262be82a0e3a76e7",
+      "placements": [
+        {
+          "line": 51,
+          "function": "activate",
+          "call": "if tc and Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then",
+          "context": "end\nfunction s.activate(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\tlocal tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.plfilter),tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil):GetFirst()\n\tif tc and Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then\n\t\tlocal e1=Effect.CreateEffect(e:GetHandler())",
+          "references": [
+            {
+              "line": 15,
+              "text": "e1:SetOperation(s.activate)"
+            },
+            {
+              "line": 47,
+              "text": "function s.activate(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 210628767,
+      "path": "public/CCG Downloads/CCG_Scripts/c210628767.lua",
+      "sha256": "93f76ea2babe13b4cb64649a3105c2de816b57136cd7af1421904f5dcc400204",
+      "placements": [
+        {
+          "line": 55,
+          "function": "moveincolumn",
+          "call": "if Duel.GetLocationCount(p,LOCATION_SZONE)<=0 or not Duel.MoveToField(c,tp,p,LOCATION_SZONE,POS_FACEUP,true) then return false end",
+          "context": "\tlocal col=seq\n\tif c:IsLocation(LOCATION_MZONE) and seq>=5 then col=seq==5 and 1 or 3 end\n\tlocal sq=c:GetControler()==p and col or 4-col\n\tlocal oc=Duel.GetFieldCard(p,LOCATION_SZONE,sq)\n\tif oc then Duel.Destroy(oc,REASON_EFFECT) end\n\tif Duel.GetLocationCount(p,LOCATION_SZONE)<=0 or not Duel.MoveToField(c,tp,p,LOCATION_SZONE,POS_FACEUP,true) then return false end\n\tDuel.MoveSequence(c,sq)",
+          "references": [
+            {
+              "line": 48,
+              "text": "function s.moveincolumn(c,tp,seq)"
+            },
+            {
+              "line": 64,
+              "text": "local b1=s.moveincolumn(tc,tp,ts)"
+            },
+            {
+              "line": 65,
+              "text": "local b2=s.moveincolumn(c,tp,cs)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 212345347,
+      "path": "public/CCG Downloads/CCG_Scripts/c212345347.lua",
+      "sha256": "5ba1398b3e0a3fae63e6caa966d97cbf295ac7f0f9a1c2ab50ec54527daa448b",
+      "placements": [
+        {
+          "line": 67,
+          "function": "spop1",
+          "call": "elseif Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end",
+          "context": "\tlocal b1=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)\n\tlocal b2=Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\tif not b1 and not b2 then return end\n\tlocal op=b1 and b2 and Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3)) or (b1 and 0 or 1)\n\tif op==0 then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)\n\telseif Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end\nend",
+          "references": [
+            {
+              "line": 18,
+              "text": "e1:SetOperation(s.spop1)"
+            },
+            {
+              "line": 57,
+              "text": "function s.spop1(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 212429024,
+      "path": "public/CCG Downloads/CCG_Scripts/c212429024.lua",
+      "sha256": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921",
+      "placements": [
+        {
+          "line": 75,
+          "function": "addop",
+          "call": "elseif Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end",
+          "context": "\tlocal b1=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)\n\tlocal b2=Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\tif not b1 and not b2 then return end\n\tlocal op=b1 and b2 and Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3)) or (b1 and 0 or 1)\n\tif op==0 then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)\n\telseif Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end\nend",
+          "references": [
+            {
+              "line": 28,
+              "text": "e2:SetOperation(s.addop)"
+            },
+            {
+              "line": 65,
+              "text": "function s.addop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 215034223,
+      "path": "public/CCG Downloads/CCG_Scripts/c215034223.lua",
+      "sha256": "4c9847845d85e7973e1b96698abfcf738088a4cbc2e071c886cb2575b119cfbb",
+      "placements": [
+        {
+          "line": 59,
+          "function": "pzop",
+          "call": "Duel.MoveToField(tc,tp,tp,LOCATION_PZONE,POS_FACEUP,true)",
+          "context": "\tif ct<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\tlocal g=Duel.SelectMatchingCard(tp,s.pzfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,math.min(2,ct),nil)\n\tfor tc in aux.Next(g) do\n\t\tif Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1) then\n\t\t\tDuel.MoveToField(tc,tp,tp,LOCATION_PZONE,POS_FACEUP,true)\n\t\tend",
+          "references": [
+            {
+              "line": 19,
+              "text": "e1:SetOperation(s.pzop)"
+            },
+            {
+              "line": 50,
+              "text": "function s.pzop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 215768254,
+      "path": "public/CCG Downloads/CCG_Scripts/c215768254.lua",
+      "sha256": "90d9d1a290b98a37d3926f384b69e10618f1b87f25712f93c633581070a2e322",
+      "placements": [
+        {
+          "line": 58,
+          "function": "plop",
+          "call": "if c:IsRelateToEffect(e) and Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(c) end",
+          "context": "\tc:RegisterEffect(e1)\nend\nfunction s.pltg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 end end\nfunction s.plop(e,tp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(c) end\nend",
+          "references": [
+            {
+              "line": 16,
+              "text": "e1:SetOperation(s.plop)"
+            },
+            {
+              "line": 56,
+              "text": "function s.plop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 216532402,
+      "path": "public/CCG Downloads/CCG_Scripts/c216532402.lua",
+      "sha256": "858d0b162ee93908ecac3544091b1e82a5fd76843e330518c40208f49a34cbe2",
+      "placements": [
+        {
+          "line": 146,
+          "function": "plop",
+          "call": "Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true)",
+          "context": "\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 or not Duel.IsExistingMatchingCard(s.trapfilter,tp,LOCATION_DECK,0,1,nil) then return end\n\tDuel.BreakEffect()\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\tlocal tc=Duel.SelectMatchingCard(tp,s.trapfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()\n\tif tc then\n\t\tDuel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true)\n\tend",
+          "references": [
+            {
+              "line": 31,
+              "text": "e2:SetOperation(s.plop)"
+            },
+            {
+              "line": 135,
+              "text": "function s.plop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 218142234,
+      "path": "public/CCG Downloads/CCG_Scripts/c218142234.lua",
+      "sha256": "56a270f23f366cbe0eac6431e88e531694be275cf6d75c60b53667e1062c4cb3",
+      "placements": [
+        {
+          "line": 307,
+          "function": "penop",
+          "call": "Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)",
+          "context": "\tif chk==0 then return Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1) end\nend\nfunction s.penop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) then\n\t\tDuel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)\n\tend",
+          "references": [
+            {
+              "line": 54,
+              "text": "e4:SetOperation(s.penop)"
+            },
+            {
+              "line": 304,
+              "text": "function s.penop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 219783132,
+      "path": "public/CCG Downloads/CCG_Scripts/c219783132.lua",
+      "sha256": "7f7555da43b6338d3c66dbd0bf65f45e1daf176d3a8abee89523e13e6ce4664c",
+      "placements": [
+        {
+          "line": 67,
+          "function": "plcost",
+          "call": "if tc and Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then",
+          "context": "function s.plcost(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.IsExistingMatchingCard(s.ownfilter,tp,LOCATION_MZONE,0,1,nil) end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\tlocal tc=Duel.SelectMatchingCard(tp,s.ownfilter,tp,LOCATION_MZONE,0,1,1,nil):GetFirst()\n\tif tc and Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then\n\t\ts.maketrap(tc,e:GetHandler())",
+          "references": [
+            {
+              "line": 27,
+              "text": "e3:SetCost(s.plcost)"
+            },
+            {
+              "line": 62,
+              "text": "function s.plcost(e,tp,eg,ep,ev,re,r,rp,chk)"
+            }
+          ],
+          "registration_exclusion": "Placement is paid as cost, not included in resolving effect",
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        },
+        {
+          "line": 91,
+          "function": "plop",
+          "call": "and Duel.MoveToField(oc,tp,1-tp,LOCATION_SZONE,POS_FACEUP,true) then",
+          "context": "end\nfunction s.plop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(1-tp,LOCATION_SZONE)<=0 then return end\n\tlocal oc=Duel.GetFirstTarget()\n\tif oc and oc:IsRelateToEffect(e) and oc:IsControler(1-tp) and s.oppfilter(oc)\n\t\tand Duel.MoveToField(oc,tp,1-tp,LOCATION_SZONE,POS_FACEUP,true) then\n\t\ts.maketrap(oc,e:GetHandler())",
+          "references": [
+            {
+              "line": 29,
+              "text": "e3:SetOperation(s.plop)"
+            },
+            {
+              "line": 87,
+              "text": "function s.plop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 222654570,
+      "path": "public/CCG Downloads/CCG_Scripts/c222654570.lua",
+      "sha256": "589db8a7afbb0064b02a27630a9847d9551ffe7bba3515fdcc72e6f755c2ce04",
+      "placements": [
+        {
+          "line": 59,
+          "function": "operation",
+          "call": "if not tc or not Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then return end",
+          "context": "end\nfunction s.operation(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\tlocal tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.plfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil):GetFirst()\n\tif not tc or not Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then return end\n\tlocal e1=Effect.CreateEffect(e:GetHandler())",
+          "references": [
+            {
+              "line": 21,
+              "text": "e2:SetOperation(s.operation)"
+            },
+            {
+              "line": 55,
+              "text": "function s.operation(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 223366685,
+      "path": "public/CCG Downloads/CCG_Scripts/c223366685.lua",
+      "sha256": "60755647e3ea8dff38ebb1201a36b658c43e97876f05e29585492692329f4c5d",
+      "placements": [
+        {
+          "line": 66,
+          "function": "plop",
+          "call": "Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true)",
+          "context": "\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 end\nend\nfunction s.plop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 then\n\t\tDuel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true)\n\tend",
+          "references": [
+            {
+              "line": 36,
+              "text": "e4:SetOperation(s.plop)"
+            },
+            {
+              "line": 63,
+              "text": "function s.plop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 223505382,
+      "path": "public/CCG Downloads/CCG_Scripts/c223505382.lua",
+      "sha256": "33733048854ce7caad3961b66912c58a83bb2feee6f6d147acf58a8071a2d428",
+      "placements": [
+        {
+          "line": 25,
+          "function": "activate",
+          "call": "if tc and Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then",
+          "context": "end\nfunction s.activate(e,tp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\tlocal tc=Duel.SelectMatchingCard(tp,s.filter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()\n\tif tc and Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then\n\t\tlocal e1=Effect.CreateEffect(e:GetHandler())",
+          "references": [
+            {
+              "line": 11,
+              "text": "e1:SetOperation(s.activate)"
+            },
+            {
+              "line": 21,
+              "text": "function s.activate(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 223512283,
+      "path": "public/CCG Downloads/CCG_Scripts/c223512283.lua",
+      "sha256": "fa9f802eb7c0b3e4a96dd1fc06de957f861642d0446ec47b1320e30feb00a085",
+      "placements": [
+        {
+          "line": 97,
+          "function": "plop",
+          "call": "Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true)",
+          "context": "function s.plop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\tlocal tc=Duel.SelectMatchingCard(tp,s.plfilter,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil):GetFirst()\n\tif tc then\n\t\tDuel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true)\n\tend",
+          "references": [
+            {
+              "line": 39,
+              "text": "e4:SetOperation(s.plop)"
+            },
+            {
+              "line": 92,
+              "text": "function s.plop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 227362839,
+      "path": "public/CCG Downloads/CCG_Scripts/c227362839.lua",
+      "sha256": "be1dfa27843c22abf315f555237c42beae192907e7b81c681a443f9e6d2ff5f4",
+      "placements": [
+        {
+          "line": 142,
+          "function": "pzop",
+          "call": "Duel.MoveToField(pc,tp,tp,LOCATION_PZONE,POS_FACEUP,true)",
+          "context": "\t\tDuel.BreakEffect()\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\t\tlocal g=Duel.SelectMatchingCard(tp,s.pzplacefilter,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_EXTRA,0,1,1,nil,code)\n\t\tlocal pc=g:GetFirst()\n\t\tif pc then\n\t\t\tDuel.MoveToField(pc,tp,tp,LOCATION_PZONE,POS_FACEUP,true)\n\t\tend",
+          "references": [
+            {
+              "line": 35,
+              "text": "e2:SetOperation(s.pzop)"
+            },
+            {
+              "line": 130,
+              "text": "function s.pzop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 228472690,
+      "path": "public/CCG Downloads/CCG_Scripts/c228472690.lua",
+      "sha256": "8a7de890e6d61de4e46d8ca34202d7458390802d1357990a9f8bd572b130b81b",
+      "placements": [
+        {
+          "line": 56,
+          "function": "setop",
+          "call": "if Duel.MoveToField(tc,tp,tp,loc,pos,true) and ismonster then tc:SetStatus(STATUS_SET_TURN,false) end",
+          "context": "\tif not tc or not tc:IsRelateToEffect(e) or not tc:IsFacedown() then return end\n\tlocal ismonster=(tc:GetOriginalType()&TYPE_MONSTER)~=0\n\tlocal loc=ismonster and LOCATION_MZONE or LOCATION_SZONE\n\tif Duel.GetLocationCount(tp,loc)<=0 then return end\n\tlocal pos=ismonster and POS_FACEDOWN_DEFENSE or POS_FACEDOWN\n\tif Duel.MoveToField(tc,tp,tp,loc,pos,true) and ismonster then tc:SetStatus(STATUS_SET_TURN,false) end\nend",
+          "references": [
+            {
+              "line": 16,
+              "text": "e1:SetOperation(s.setop)"
+            },
+            {
+              "line": 49,
+              "text": "function s.setop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 230947464,
+      "path": "public/CCG Downloads/CCG_Scripts/c230947464.lua",
+      "sha256": "cceccccf58a4914de681a2a3e7def9463c7cf13e29b873225b9990b49c0087c2",
+      "placements": [
+        {
+          "line": 105,
+          "function": "pzop",
+          "call": "Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)",
+          "context": "end\nfunction s.pzop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and c:IsFaceup()\n\t\tand (Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1)) then\n\t\tDuel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)\n\tend",
+          "references": [
+            {
+              "line": 53,
+              "text": "e5:SetOperation(s.pzop)"
+            },
+            {
+              "line": 101,
+              "text": "function s.pzop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 231088629,
+      "path": "public/CCG Downloads/CCG_Scripts/c231088629.lua",
+      "sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a",
+      "placements": [
+        {
+          "line": 69,
+          "function": "replaceop",
+          "call": "and Duel.MoveToField(tc,tp,p,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end",
+          "context": "\t--This continuous effect was not active before the handler itself was Summoned.\n\tif eg:IsContains(e:GetHandler()) then return end\n\tfor tc in aux.Next(eg) do\n\t\tlocal p=tc:GetOwner()\n\t\tif not tc:IsPreviousLocation(LOCATION_SZONE) and tc:IsLocation(LOCATION_MZONE) and Duel.GetLocationCount(p,LOCATION_SZONE)>0\n\t\t\tand Duel.MoveToField(tc,tp,p,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end\n\tend",
+          "references": [
+            {
+              "line": 18,
+              "text": "e1:SetOperation(s.replaceop)"
+            },
+            {
+              "line": 63,
+              "text": "function s.replaceop(e,tp,eg)"
+            }
+          ],
+          "registration_exclusion": "Continuous replacement; no activated placement chain",
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 234599395,
+      "path": "public/CCG Downloads/CCG_Scripts/c234599395.lua",
+      "sha256": "0e6f4f8fe1d55d5c98f0b1df4e23fa998211d7f06527a62dfa3a216cd1993fd9",
+      "placements": [
+        {
+          "line": 74,
+          "function": "excost",
+          "call": "if Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then",
+          "context": "\t\tand Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and not c:IsForbidden()\n\t\tand Duel.GetFieldGroupCount(tp,LOCATION_DECK,0)>=c:GetOverlayCount() end\n\tlocal ct=c:GetOverlayCount()\n\te:SetLabel(ct)\n\tc:RemoveOverlayCard(tp,ct,ct,REASON_COST)\n\tif Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then\n\t\tlocal e0=Effect.CreateEffect(c)",
+          "references": [
+            {
+              "line": 27,
+              "text": "e2:SetCost(s.excost)"
+            },
+            {
+              "line": 66,
+              "text": "function s.excost(e,tp,eg,ep,ev,re,r,rp,chk)"
+            }
+          ],
+          "registration_exclusion": "Placement is paid as cost, not included in resolving effect",
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 235538173,
+      "path": "public/CCG Downloads/CCG_Scripts/c235538173.lua",
+      "sha256": "22f276a3fc90dc003116d97dd2c4087c91b7666d00f47d9c0b2ea2178152a712",
+      "placements": [
+        {
+          "line": 57,
+          "function": "plop",
+          "call": "if c:IsRelateToEffect(e) and Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(c) end",
+          "context": "\tc:RegisterEffect(e1)\nend\nfunction s.pltg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 end end\nfunction s.plop(e,tp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(c) end\nend",
+          "references": [
+            {
+              "line": 16,
+              "text": "e1:SetOperation(s.plop)"
+            },
+            {
+              "line": 55,
+              "text": "function s.plop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        },
+        {
+          "line": 71,
+          "function": "deckop",
+          "call": "if tc and Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end",
+          "context": "\tlocal all=c:GetFlagEffect(TRANSFER_CALL)>0\n\tif all then c:ResetFlagEffect(TRANSFER_CALL) all=Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) end\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\tlocal tc=Duel.SelectMatchingCard(tp,s.deckfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()\n\tif tc and Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end\n\tif all then s.domove(c,tp) end",
+          "references": [
+            {
+              "line": 26,
+              "text": "e2:SetOperation(s.deckop)"
+            },
+            {
+              "line": 64,
+              "text": "function s.deckop(e,tp)"
+            },
+            {
+              "line": 84,
+              "text": "if c:GetFlagEffect(TRANSFER_CALL)>0 then c:ResetFlagEffect(TRANSFER_CALL) if Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then s.deckop(e,tp) end end"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 237269434,
+      "path": "public/CCG Downloads/CCG_Scripts/c237269434.lua",
+      "sha256": "ecddfde9337fd982bdc2336842980ac5f623d100c35fd45a3ee44ef27e038a77",
+      "placements": [
+        {
+          "line": 59,
+          "function": "spop",
+          "call": "if not Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then return end",
+          "context": "end\nfunction s.spop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tlocal tc=Duel.GetFirstTarget()\n\tif not tc or not tc:IsRelateToEffect(e) or tc:IsImmuneToEffect(e) then return end\n\tif not Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then return end\n\tlocal e1=Effect.CreateEffect(c)",
+          "references": [
+            {
+              "line": 26,
+              "text": "e3:SetOperation(s.spop)"
+            },
+            {
+              "line": 55,
+              "text": "function s.spop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 237917359,
+      "path": "public/CCG Downloads/CCG_Scripts/c237917359.lua",
+      "sha256": "cb5030f91f80b8b4f5697f08a5150869b0bbca1a73ea51084800328c57c8a511",
+      "placements": [
+        {
+          "line": 55,
+          "function": "actop",
+          "call": "if Duel.MoveToField(tc,tp,tp,LOCATION_FZONE,POS_FACEUP,true) then",
+          "context": "\tlocal fc=Duel.GetFieldCard(tp,LOCATION_FZONE,0)\n\tif fc then\n\t\tDuel.SendtoGrave(fc,REASON_RULE)\n\t\tDuel.BreakEffect()\n\tend\n\tif Duel.MoveToField(tc,tp,tp,LOCATION_FZONE,POS_FACEUP,true) then\n\t\tlocal e1=Effect.CreateEffect(e:GetHandler())",
+          "references": [
+            {
+              "line": 15,
+              "text": "e1:SetOperation(s.actop)"
+            },
+            {
+              "line": 45,
+              "text": "function s.actop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 238184015,
+      "path": "public/CCG Downloads/CCG_Scripts/c238184015.lua",
+      "sha256": "2e343cb26301b091e96df4c4cb623f0dc1d923d647141c546d9235da972718df",
+      "placements": [
+        {
+          "line": 52,
+          "function": "negop",
+          "call": "if Duel.MoveToField(rc,tp,p,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(rc) end",
+          "context": "\t\tand (not rc:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(rc))\n\tlocal op=canplace and Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3)) or 0\n\tif op==0 then Duel.Destroy(rc,REASON_EFFECT)\n\telse\n\t\trc:CancelToGrave()\n\t\tif Duel.MoveToField(rc,tp,p,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(rc) end\n\tend",
+          "references": [
+            {
+              "line": 13,
+              "text": "e1:SetOperation(s.negop)"
+            },
+            {
+              "line": 42,
+              "text": "function s.negop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 238273768,
+      "path": "public/CCG Downloads/CCG_Scripts/c238273768.lua",
+      "sha256": "0b9bcfd0614b183308ecbc120d44fde03b23352ac6855a9a2d64e9b62e85b573",
+      "placements": [
+        {
+          "line": 58,
+          "function": "pop",
+          "call": "if tc then Duel.MoveToField(tc,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end",
+          "context": " local c=e:GetHandler()\n if not c:IsRelateToEffect(e) or Duel.Destroy(c,REASON_EFFECT)==0 then return end\n if not Duel.CheckLocation(tp,LOCATION_PZONE,0) and not Duel.CheckLocation(tp,LOCATION_PZONE,1) then return end\n Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n local tc=Duel.SelectMatchingCard(tp,s.pfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()\n if tc then Duel.MoveToField(tc,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end\nend",
+          "references": [
+            {
+              "line": 15,
+              "text": "e1:SetOperation(s.pop)"
+            },
+            {
+              "line": 52,
+              "text": "function s.pop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 238273772,
+      "path": "public/CCG Downloads/CCG_Scripts/c238273772.lua",
+      "sha256": "dd3c2101699086b4d3b578ec7ab7439899393660a9392fa6f703a1c6a5e7c33d",
+      "placements": [
+        {
+          "line": 135,
+          "function": "leaveop",
+          "call": "Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)",
+          "context": "end\nfunction s.leaveop(e,tp)\n local c=e:GetHandler()\n if c:IsRelateToEffect(e) and not c:IsForbidden()\n  and (Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1)) then\n  Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)\n end",
+          "references": [
+            {
+              "line": 65,
+              "text": "e9:SetOperation(s.leaveop)"
+            },
+            {
+              "line": 131,
+              "text": "function s.leaveop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 239935093,
+      "path": "public/CCG Downloads/CCG_Scripts/c239935093.lua",
+      "sha256": "83686e5064d513bbfc6d58771f567e15283d5830bcfb9893b5daf531789ba97c",
+      "placements": [
+        {
+          "line": 85,
+          "function": "placeop",
+          "call": "or not Duel.MoveToField(c,tp,owner,LOCATION_SZONE,POS_FACEUP,true)) then return end",
+          "context": " local g=Duel.SelectMatchingCard(tp,s.sendfilter,tp,LOCATION_DECK,0,1,1,nil)\n if #g==0 or Duel.SendtoGrave(g,REASON_EFFECT)==0 then return end\n local owner=c:GetOwner()\n local there=c:IsControler(owner) and c:IsLocation(LOCATION_SZONE) and c:GetSequence()<5 and c:IsFaceup()\n if not there and (Duel.GetLocationCount(owner,LOCATION_SZONE)<=0\n  or not Duel.MoveToField(c,tp,owner,LOCATION_SZONE,POS_FACEUP,true)) then return end\n local change=Effect.CreateEffect(c)",
+          "references": [
+            {
+              "line": 19,
+              "text": "e1:SetOperation(s.placeop)"
+            },
+            {
+              "line": 76,
+              "text": "function s.placeop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 239935097,
+      "path": "public/CCG Downloads/CCG_Scripts/c239935097.lua",
+      "sha256": "5d96cbce94a5e516ba10eaded28b7f06c428468e8d36fb9b8d9712390da9446e",
+      "placements": [
+        {
+          "line": 59,
+          "function": "place",
+          "call": "if Duel.GetLocationCount(player,LOCATION_SZONE)<=0 or not Duel.MoveToField(c,tp,player,LOCATION_SZONE,POS_FACEUP,true) then return false end",
+          "context": " if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.placefilter),tp,LOCATION_MZONE+LOCATION_GRAVE,0,1,nil)\n  and Duel.IsExistingMatchingCard(s.addfilter,tp,LOCATION_DECK,0,1,nil) end\n Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)\nend\nfunction s.place(c,e,tp,player)\n if Duel.GetLocationCount(player,LOCATION_SZONE)<=0 or not Duel.MoveToField(c,tp,player,LOCATION_SZONE,POS_FACEUP,true) then return false end\n local change=Effect.CreateEffect(e:GetHandler())",
+          "references": [
+            {
+              "line": 58,
+              "text": "function s.place(c,e,tp,player)"
+            },
+            {
+              "line": 73,
+              "text": "if not tc or not s.place(tc,e,tp,tc:GetOwner()) then return end"
+            },
+            {
+              "line": 107,
+              "text": "else s.place(tc,e,tp,tp) end"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 239935100,
+      "path": "public/CCG Downloads/CCG_Scripts/c239935100.lua",
+      "sha256": "d6204d7f8f6335e93fa2146a1afc96352d475b54de3706f07978dedf72a522f1",
+      "placements": [
+        {
+          "line": 70,
+          "function": "operation",
+          "call": "elseif Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then",
+          "context": " local place=Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and not tc:IsForbidden()\n local option=0\n if summon and place then option=Duel.SelectOption(tp,aux.Stringid(MSG_ID,1),aux.Stringid(MSG_ID,2)) elseif place then option=1 end\n local success=false\n if option==0 then success=Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0\n elseif Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then\n  local change=Effect.CreateEffect(e:GetHandler())",
+          "references": [
+            {
+              "line": 16,
+              "text": "e1:SetOperation(s.operation)"
+            },
+            {
+              "line": 59,
+              "text": "function s.operation(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 239935101,
+      "path": "public/CCG Downloads/CCG_Scripts/c239935101.lua",
+      "sha256": "ef3c32dd69989b9aa234302126b1820651f81e02bc8201111a9d70341aa953f0",
+      "placements": [
+        {
+          "line": 55,
+          "function": "placeop",
+          "call": "if not tc or not Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then return end",
+          "context": " local c=e:GetHandler()\n if not c:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n local g=Duel.SelectMatchingCard(tp,s.placefilter,tp,LOCATION_DECK,0,1,1,nil)\n local tc=g:GetFirst()\n if not tc or not Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then return end\n local change=Effect.CreateEffect(c)",
+          "references": [
+            {
+              "line": 15,
+              "text": "e1:SetOperation(s.placeop)"
+            },
+            {
+              "line": 49,
+              "text": "function s.placeop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 244972185,
+      "path": "public/CCG Downloads/CCG_Scripts/c244972185.lua",
+      "sha256": "ab3206430f46e2de53445508e0e8efb487e8d9e6fc179b3128d0cbbce570749e",
+      "placements": [
+        {
+          "line": 73,
+          "function": "activate",
+          "call": "Duel.MoveToField(tc,tp,tp,LOCATION_FZONE,POS_FACEUP,true)",
+          "context": "\t\t\tlocal fc=Duel.GetFieldCard(tp,LOCATION_FZONE,0)\n\t\t\tif fc then\n\t\t\t\tDuel.SendtoGrave(fc,REASON_RULE)\n\t\t\t\tDuel.BreakEffect()\n\t\t\tend\n\t\t\tDuel.MoveToField(tc,tp,tp,LOCATION_FZONE,POS_FACEUP,true)\n\t\t\tlocal te=tc:GetActivateEffect()",
+          "references": [
+            {
+              "line": 15,
+              "text": "e1:SetOperation(s.activate)"
+            },
+            {
+              "line": 49,
+              "text": "function s.activate(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 244986323,
+      "path": "public/CCG Downloads/CCG_Scripts/c244986323.lua",
+      "sha256": "30547e85e199cec0196393d49a9f63bd892a624ff5e8daed8b9c2caf2c2c416d",
+      "placements": [
+        {
+          "line": 128,
+          "function": "penop",
+          "call": "Duel.MoveToField(e:GetHandler(),tp,tp,LOCATION_PZONE,POS_FACEUP,true)",
+          "context": "function s.pentg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1) end\nend\nfunction s.penop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1) then\n\t\tDuel.MoveToField(e:GetHandler(),tp,tp,LOCATION_PZONE,POS_FACEUP,true)\n\tend",
+          "references": [
+            {
+              "line": 64,
+              "text": "e5:SetOperation(s.penop)"
+            },
+            {
+              "line": 126,
+              "text": "function s.penop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 245099829,
+      "path": "public/CCG Downloads/CCG_Scripts/c245099829.lua",
+      "sha256": "34cfe579b8348b899c9a2f98c590e7e6561730c915d409ba525dc79ffe85d8ff",
+      "placements": [
+        {
+          "line": 98,
+          "function": "plop",
+          "call": "Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true)",
+          "context": "function s.plop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\tlocal tc=Duel.SelectMatchingCard(tp,s.plfilter,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil):GetFirst()\n\tif tc then\n\t\tDuel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true)\n\tend",
+          "references": [
+            {
+              "line": 40,
+              "text": "e4:SetOperation(s.plop)"
+            },
+            {
+              "line": 93,
+              "text": "function s.plop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 245935439,
+      "path": "public/CCG Downloads/CCG_Scripts/c245935439.lua",
+      "sha256": "ae29340823a8bffadac4f8b0d2051e9295769291b498b69719ef0c2919535022",
+      "placements": [
+        {
+          "line": 140,
+          "function": "psop",
+          "call": "Duel.MoveToField(pc,tp,tp,LOCATION_PZONE,POS_FACEUP,true)",
+          "context": "\t\tand Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\t\tlocal pg=Duel.SelectMatchingCard(tp,s.pzfilter,tp,LOCATION_EXTRA,0,1,1,nil)\n\t\tlocal pc=pg:GetFirst()\n\t\tif pc then\n\t\t\tDuel.MoveToField(pc,tp,tp,LOCATION_PZONE,POS_FACEUP,true)\n\t\tend",
+          "references": [
+            {
+              "line": 34,
+              "text": "e3:SetOperation(s.psop)"
+            },
+            {
+              "line": 125,
+              "text": "function s.psop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 247755870,
+      "path": "public/CCG Downloads/CCG_Scripts/c247755870.lua",
+      "sha256": "b3471f65a7a7d6d6baf39b86da95ad73bb967f55b4bc6bce09b3562008992462",
+      "placements": [
+        {
+          "line": 92,
+          "function": "placeop",
+          "call": "or not Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then return end",
+          "context": " if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and not e:GetHandler():IsForbidden() end\nend\nfunction s.placeop(e,tp)\n local c=e:GetHandler()\n if not c:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_SZONE)<=0\n  or not Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then return end\n local e1=Effect.CreateEffect(c)",
+          "references": [
+            {
+              "line": 29,
+              "text": "e2:SetOperation(s.placeop)"
+            },
+            {
+              "line": 89,
+              "text": "function s.placeop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 247755871,
+      "path": "public/CCG Downloads/CCG_Scripts/c247755871.lua",
+      "sha256": "9ced2fda202579a9170cf4b0dcb222eeb268296201da3c0b0fcbc1533155df09",
+      "placements": [
+        {
+          "line": 45,
+          "function": "placeop",
+          "call": "if #g>0 then Duel.MoveToField(g:GetFirst(),tp,tp,LOCATION_SZONE,POS_FACEUP,true) end",
+          "context": "end\nfunction s.placeop(e,tp)\n if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n local g=Duel.SelectMatchingCard(tp,s.placefilter,tp,LOCATION_DECK,0,1,1,nil)\n if #g>0 then Duel.MoveToField(g:GetFirst(),tp,tp,LOCATION_SZONE,POS_FACEUP,true) end\nend",
+          "references": [
+            {
+              "line": 16,
+              "text": "e1:SetOperation(s.placeop)"
+            },
+            {
+              "line": 41,
+              "text": "function s.placeop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 247919552,
+      "path": "public/CCG Downloads/CCG_Scripts/c247919552.lua",
+      "sha256": "2c710d3399e202279a4491f569e7b49ad2683862d995236ec0547d51a7b2ccf5",
+      "placements": [
+        {
+          "line": 57,
+          "function": "activate",
+          "call": "for tc in aux.Next(sg) do if Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end end",
+          "context": "\t\tlocal ft=Duel.GetLocationCount(tp,LOCATION_SZONE)\n\t\tlocal g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.placefilter),tp,LOCATION_MZONE+LOCATION_GRAVE,0,nil)\n\t\tif ft<=0 or #g==0 then return end\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\t\tlocal sg=g:Select(tp,1,math.min(2,ft,#g),nil)\n\t\tfor tc in aux.Next(sg) do if Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end end\n\telseif op==2 then",
+          "references": [
+            {
+              "line": 11,
+              "text": "e1:SetOperation(s.activate)"
+            },
+            {
+              "line": 49,
+              "text": "function s.activate(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 248760718,
+      "path": "public/CCG Downloads/CCG_Scripts/c248760718.lua",
+      "sha256": "27569ae7ce657d4ab023d987521782f713642b0d8d4c73374150388ccea435a5",
+      "placements": [
+        {
+          "line": 121,
+          "function": "pccost",
+          "call": "Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)",
+          "context": "\t\tand not c:IsForbidden() and Duel.IsExistingMatchingCard(s.revfilter2,tp,LOCATION_HAND,0,1,nil) end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)\n\tlocal g=Duel.SelectMatchingCard(tp,s.revfilter2,tp,LOCATION_HAND,0,1,1,nil)\n\tDuel.ConfirmCards(1-tp,g)\n\tDuel.ShuffleHand(tp)\n\tDuel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)\nend",
+          "references": [
+            {
+              "line": 47,
+              "text": "e4:SetCost(s.pccost)"
+            },
+            {
+              "line": 113,
+              "text": "function s.pccost(e,tp,eg,ep,ev,re,r,rp,chk)"
+            }
+          ],
+          "registration_exclusion": "Placement is paid as cost, not included in resolving effect",
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 249680945,
+      "path": "public/CCG Downloads/CCG_Scripts/c249680945.lua",
+      "sha256": "27666eb44589f2ae7154f338dced76cbe09bae406d56c339a6e4d6ab544cea30",
+      "placements": [
+        {
+          "line": 60,
+          "function": "plop",
+          "call": "if c:IsRelateToEffect(e) and Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(c) end",
+          "context": "function s.pltg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 end\nend\nfunction s.plop(e,tp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(c) end\nend",
+          "references": [
+            {
+              "line": 16,
+              "text": "e1:SetOperation(s.plop)"
+            },
+            {
+              "line": 58,
+              "text": "function s.plop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 250792632,
+      "path": "public/CCG Downloads/CCG_Scripts/c250792632.lua",
+      "sha256": "2d025dcaa5ea2d143f1a71e41e596c86f93a0e595f33e360fddc20bec6142c1c",
+      "placements": [
+        {
+          "line": 47,
+          "function": "plop",
+          "call": "and Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then",
+          "context": "\treturn not c:IsRace(RACE_ZOMBIE)\nend\nfunction s.plop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then\n\t\tlocal e1=Effect.CreateEffect(c)",
+          "references": [
+            {
+              "line": 13,
+              "text": "e1:SetOperation(s.plop)"
+            },
+            {
+              "line": 44,
+              "text": "function s.plop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 250829750,
+      "path": "public/CCG Downloads/CCG_Scripts/c250829750.lua",
+      "sha256": "c8c561a6d75f4bb1040be9ee6f5879309be99b91cbaf67c61cc79d6acab698f1",
+      "placements": [
+        {
+          "line": 26,
+          "function": "actop",
+          "call": "if Duel.MoveToField(tc,tp,tp,LOCATION_FZONE,POS_FACEUP,true) then",
+          "context": "\t\tor not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD) local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.stfilter),tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil,tp):GetFirst() if not tc then return end\n\tlocal te=tc:GetActivateEffect() if not te or not te:IsActivatable(tp,true,true) then return end\n\tlocal fc=Duel.GetFieldCard(tp,LOCATION_FZONE,0)\n\tif fc then Duel.SendtoGrave(fc,REASON_RULE) Duel.BreakEffect() end\n\tif Duel.MoveToField(tc,tp,tp,LOCATION_FZONE,POS_FACEUP,true) then\n\t\tte:UseCountLimit(tp,1,true)",
+          "references": [
+            {
+              "line": 7,
+              "text": "local e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) e1:SetCategory(CATEGORY_LEAVE_GRAVE) e1:SetType(EFFECT_TYPE_ACTIVATE) e1:SetCode(EVENT_FREE_CHAIN) e1:SetTarget(s.acttg) e1:SetOperation(s.actop) c:RegisterEffect(e1)"
+            },
+            {
+              "line": 18,
+              "text": "function s.actop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 252249599,
+      "path": "public/CCG Downloads/CCG_Scripts/c252249599.lua",
+      "sha256": "24021bf677b9775160abe8536845301008eb4dfcd03c63eeb11cc3ac410a4f7c",
+      "placements": [
+        {
+          "line": 93,
+          "function": "plop",
+          "call": "Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true)",
+          "context": "\tDuel.SelectTarget(tp,aux.NecroValleyFilter(s.plfilter),tp,LOCATION_GRAVE,0,1,1,nil)\nend\nfunction s.plop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal tc=Duel.GetFirstTarget()\n\tif not tc or not tc:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true)\nend",
+          "references": [
+            {
+              "line": 17,
+              "text": "e1:SetOperation(s.plop)"
+            },
+            {
+              "line": 90,
+              "text": "function s.plop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 254215159,
+      "path": "public/CCG Downloads/CCG_Scripts/c254215159.lua",
+      "sha256": "15236411b1299a8bbaf8dca198d524cbe6a881f0fff16ae6db9b8954f5dd2ed4",
+      "placements": [
+        {
+          "line": 61,
+          "function": "activatefield",
+          "call": "if not Duel.MoveToField(tc,tp,tp,LOCATION_FZONE,POS_FACEUP,true) then return false end",
+          "context": "\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\tlocal tc=Duel.SelectMatchingCard(tp,s.fldfilter,tp,LOCATION_DECK+LOCATION_REMOVED,0,1,1,nil,tp):GetFirst()\n\tif not tc then return false end\n\tlocal fc=Duel.GetFieldCard(tp,LOCATION_FZONE,0)\n\tif fc then Duel.SendtoGrave(fc,REASON_RULE); Duel.BreakEffect() end\n\tif not Duel.MoveToField(tc,tp,tp,LOCATION_FZONE,POS_FACEUP,true) then return false end\n\tlocal te=tc:GetActivateEffect()",
+          "references": [
+            {
+              "line": 55,
+              "text": "function s.activatefield(e,tp,eg,ep,ev,re,r,rp)"
+            },
+            {
+              "line": 72,
+              "text": "ok=s.activatefield(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 256172827,
+      "path": "public/CCG Downloads/CCG_Scripts/c256172827.lua",
+      "sha256": "611b159223f25534407306ff4a2b300e9046a5975507fa28ac858d5b7ebd24e0",
+      "placements": [
+        {
+          "line": 57,
+          "function": "plop",
+          "call": "if c:IsRelateToEffect(e) and Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(c) end",
+          "context": "\tc:RegisterEffect(e1)\nend\nfunction s.pltg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 end end\nfunction s.plop(e,tp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(c) end\nend",
+          "references": [
+            {
+              "line": 16,
+              "text": "e1:SetOperation(s.plop)"
+            },
+            {
+              "line": 55,
+              "text": "function s.plop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 256831125,
+      "path": "public/CCG Downloads/CCG_Scripts/c256831125.lua",
+      "sha256": "c26df5daf8fd4e558616bf26ec9dfa24b8f6811184ceb1697a9bf121d817dbf0",
+      "placements": [
+        {
+          "line": 130,
+          "function": "nebop",
+          "call": "elseif Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then",
+          "context": "\tif not b1 and not b2 then return end\n\tlocal op=b1 and b2 and Duel.SelectOption(tp,aux.Stringid(NEBULIX_STRING_ID,2),aux.Stringid(NEBULIX_STRING_ID,3))\n\t\tor (b1 and 0 or 1)\n\tif op==0 then\n\t\tDuel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)\n\telseif Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then\n\t\ts.trapify(tc)",
+          "references": [
+            {
+              "line": 69,
+              "text": "e1:SetOperation(s.nebop)"
+            },
+            {
+              "line": 118,
+              "text": "function s.nebop(e,tp)"
+            }
+          ],
+          "registration_exclusion": "Continuous replacement; no activated placement chain",
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        },
+        {
+          "line": 138,
+          "function": "sphreplaceop",
+          "call": "and tc:IsRelateToEffect(e) and Duel.MoveToField(tc,tp,p,LOCATION_SZONE,POS_FACEUP,true) then",
+          "context": "end\nfunction s.sphreplaceop(e,tp,eg)\n\tfor tc in aux.Next(eg) do\n\t\tlocal p=tc:GetOwner()\n\t\tif not tc:IsPreviousLocation(LOCATION_SZONE) and tc:IsLocation(LOCATION_MZONE) and Duel.GetLocationCount(p,LOCATION_SZONE)>0\n\t\t\tand tc:IsRelateToEffect(e) and Duel.MoveToField(tc,tp,p,LOCATION_SZONE,POS_FACEUP,true) then\n\t\t\ts.trapify(tc)",
+          "references": [
+            {
+              "line": 77,
+              "text": "e1:SetOperation(s.sphreplaceop)"
+            },
+            {
+              "line": 134,
+              "text": "function s.sphreplaceop(e,tp,eg)"
+            }
+          ],
+          "registration_exclusion": "Continuous replacement; no activated placement chain",
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 256928871,
+      "path": "public/CCG Downloads/CCG_Scripts/c256928871.lua",
+      "sha256": "3d8845ac0f1c72add24fc8c0ab828aee5ec2b53303d4a8a2549d41fc35e29031",
+      "placements": [
+        {
+          "line": 122,
+          "function": "pzop",
+          "call": "Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)",
+          "context": "end\nfunction s.pzop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and c:IsFaceup()\n\t\tand (Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1)) then\n\t\tDuel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)\n\tend",
+          "references": [
+            {
+              "line": 55,
+              "text": "e6:SetOperation(s.pzop)"
+            },
+            {
+              "line": 118,
+              "text": "function s.pzop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 259225324,
+      "path": "public/CCG Downloads/CCG_Scripts/c259225324.lua",
+      "sha256": "4ee194010166e2aee52d6113d12004dda73aca5425a361ceea4488ff4c0bf631",
+      "placements": [
+        {
+          "line": 75,
+          "function": "desop",
+          "call": "Duel.MoveToField(tc1,tp,tp,LOCATION_PZONE,POS_FACEUP,true)",
+          "context": "\t\tlocal tc1=sg1:GetFirst()\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\t\tlocal sg2=g2:Filter(s.pzfilter2,nil,tc1:GetCode()):Select(tp,1,1,nil)\n\t\tlocal tc2=sg2:GetFirst()\n\t\tif tc1 and tc2 then\n\t\t\tDuel.MoveToField(tc1,tp,tp,LOCATION_PZONE,POS_FACEUP,true)\n\t\t\tDuel.MoveToField(tc2,tp,tp,LOCATION_PZONE,POS_FACEUP,true)",
+          "references": [
+            {
+              "line": 18,
+              "text": "e1:SetOperation(s.desop)"
+            },
+            {
+              "line": 59,
+              "text": "function s.desop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        },
+        {
+          "line": 76,
+          "function": "desop",
+          "call": "Duel.MoveToField(tc2,tp,tp,LOCATION_PZONE,POS_FACEUP,true)",
+          "context": "\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n\t\tlocal sg2=g2:Filter(s.pzfilter2,nil,tc1:GetCode()):Select(tp,1,1,nil)\n\t\tlocal tc2=sg2:GetFirst()\n\t\tif tc1 and tc2 then\n\t\t\tDuel.MoveToField(tc1,tp,tp,LOCATION_PZONE,POS_FACEUP,true)\n\t\t\tDuel.MoveToField(tc2,tp,tp,LOCATION_PZONE,POS_FACEUP,true)\n\t\tend",
+          "references": [
+            {
+              "line": 18,
+              "text": "e1:SetOperation(s.desop)"
+            },
+            {
+              "line": 59,
+              "text": "function s.desop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 259230000,
+      "path": "public/CCG Downloads/CCG_Scripts/c259230000.lua",
+      "sha256": "46322ef7b5d2153747d5c5848aa78dc4bc2265ba0a4935c03c13e80f80bf47fb",
+      "placements": [
+        {
+          "line": 32,
+          "function": "activate_card",
+          "call": "if Duel.MoveToField(tc,tp,tp,zone,POS_FACEUP,true) then",
+          "context": "\tlocal zone=tc:IsType(TYPE_FIELD) and LOCATION_FZONE or LOCATION_SZONE\n\tif zone==LOCATION_FZONE then\n\t\tlocal fc=Duel.GetFieldCard(tp,LOCATION_FZONE,0)\n\t\tif fc then Duel.SendtoGrave(fc,REASON_RULE) Duel.BreakEffect() end\n\tend\n\tif Duel.MoveToField(tc,tp,tp,zone,POS_FACEUP,true) then\n\t\tte:UseCountLimit(tp,1,true)",
+          "references": [
+            {
+              "line": 24,
+              "text": "function s.activate_card(e,tp,code,loc,eg,ep,ev,re,r,rp)"
+            },
+            {
+              "line": 42,
+              "text": "local tc=Duel.GetFirstTarget() local c=e:GetHandler() if not tc or not tc:IsRelateToEffect(e) or not c:IsRelateToEffect(e) or not s.activate_card(e,tp,ELDORA,LOCATION_DECK,eg,ep,ev,re,r,rp) or not c:IsRelateToEffect(e) or not tc:IsRelateToEffect(e) then return end"
+            },
+            {
+              "line": 59,
+              "text": "function s.stop(e,tp,eg,ep,ev,re,r,rp) s.activate_card(e,tp,STATION,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,eg,ep,ev,re,r,rp) end"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 259489283,
+      "path": "public/CCG Downloads/CCG_Scripts/c259489283.lua",
+      "sha256": "9b7293663d9464824d13c21556ac4b81bad3c6152e9e2f84c8c62de333706a3b",
+      "placements": [
+        {
+          "line": 90,
+          "function": "plop",
+          "call": "and Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then",
+          "context": "function s.plop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal tc=Duel.GetFirstTarget()\n\tif tc and tc:IsRelateToEffect(e) and not tc:IsImmuneToEffect(e)\n\t\tand tc:IsControler(1-tp) and tc:IsLocation(LOCATION_MZONE)\n\t\tand Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then\n\t\tlocal e1=Effect.CreateEffect(e:GetHandler())",
+          "references": [
+            {
+              "line": 43,
+              "text": "e3:SetOperation(s.plop)"
+            },
+            {
+              "line": 85,
+              "text": "function s.plop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 259614449,
+      "path": "public/CCG Downloads/CCG_Scripts/c259614449.lua",
+      "sha256": "469226e6a8781cc1ea7b382bc8f6e5f8f264b7be8325150b9e315a32642155b4",
+      "placements": [
+        {
+          "line": 50,
+          "function": "actop",
+          "call": "if Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then",
+          "context": "\tlocal tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.actfilter),tp,\n\t\tLOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil,tp):GetFirst()\n\tif not tc then return end\n\tlocal te=tc:GetActivateEffect()\n\tif not te or not te:IsActivatable(tp,true,true) then return end\n\tif Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then\n\t\tte:UseCountLimit(tp,1,true)",
+          "references": [
+            {
+              "line": 13,
+              "text": "e1:SetOperation(s.actop)"
+            },
+            {
+              "line": 42,
+              "text": "function s.actop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 259670933,
+      "path": "public/CCG Downloads/CCG_Scripts/c259670933.lua",
+      "sha256": "88c6453ff080fe412d523adb05f9bc164f1876bb8d84ac3333d97120b208d3f0",
+      "placements": [
+        {
+          "line": 118,
+          "function": "actop",
+          "call": "Duel.MoveToField(tc,tp,tp,LOCATION_FZONE,POS_FACEUP,true)",
+          "context": "\t\tlocal fc=Duel.GetFieldCard(tp,LOCATION_FZONE,0)\n\t\tif fc then\n\t\t\tDuel.SendtoGrave(fc,REASON_RULE)\n\t\t\tDuel.BreakEffect()\n\t\tend\n\t\tDuel.MoveToField(tc,tp,tp,LOCATION_FZONE,POS_FACEUP,true)\n\tend",
+          "references": [
+            {
+              "line": 39,
+              "text": "e3:SetOperation(s.actop)"
+            },
+            {
+              "line": 108,
+              "text": "function s.actop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 259758604,
+      "path": "public/CCG Downloads/CCG_Scripts/c259758604.lua",
+      "sha256": "0df3eb78871441ceca7ca94cb62664b0db2db5db63a68037e8ef18cf7a1da9c7",
+      "placements": [
+        {
+          "line": 89,
+          "function": "plop",
+          "call": "Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true)",
+          "context": "end\nfunction s.plop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and c:IsRelateToEffect(e)\n\t\tand aux.NecroValleyFilter()(c) then\n\t\tDuel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true)\n\tend",
+          "references": [
+            {
+              "line": 39,
+              "text": "e4:SetOperation(s.plop)"
+            },
+            {
+              "line": 85,
+              "text": "function s.plop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 259774818,
+      "path": "public/CCG Downloads/CCG_Scripts/c259774818.lua",
+      "sha256": "b0c3b4e34b5663f2ed0618a13cc75031d4e72a11859a619366a6e446043983ec",
+      "placements": [
+        {
+          "line": 21,
+          "function": "plop",
+          "call": "function s.plop(e,tp) if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD); local tc=Duel.SelectMatchingCard(tp,s.wlf,tp,LOCATION_HAND+LOCATION_DECK,0,1,1,nil,tp):GetFirst(); if not tc then return end local face=s.face(tc,tp); local set=tc:IsSSetable(); if face and set then if Duel.SelectOption(tp,aux.Stringid(MSG_ID,3),aux.Stringid(MSG_ID,4))==0 then Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) else Duel.SSet(tp,tc) end elseif face then Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) else Duel.SSet(tp,tc) end end",
+          "context": "function s.spop(e,tp) if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON); local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spf),tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil,e,tp); local tc=g:GetFirst(); if tc then local pos=Duel.SelectPosition(tp,tc,POS_FACEUP_DEFENSE+POS_FACEDOWN_DEFENSE); Duel.SpecialSummon(tc,0,tp,tp,false,false,pos); if pos==POS_FACEDOWN_DEFENSE then Duel.ConfirmCards(1-tp,tc) end end end\nfunction s.lkcon(e,tp,eg) return eg:IsExists(Card.IsType,1,nil,TYPE_LINK) end\nfunction s.face(c,tp) return not c:IsForbidden() and c:CheckUniqueOnField(tp) end\nfunction s.wlf(c,tp) return c:IsSetCard(SET_WORLD_LEGACY) and c:IsType(TYPE_CONTINUOUS) and c:IsType(TYPE_SPELL+TYPE_TRAP) and (c:IsSSetable() or s.face(c,tp)) end\nfunction s.pltg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingMatchingCard(s.wlf,tp,LOCATION_HAND+LOCATION_DECK,0,1,nil,tp) end end\nfunction s.plop(e,tp) if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD); local tc=Duel.SelectMatchingCard(tp,s.wlf,tp,LOCATION_HAND+LOCATION_DECK,0,1,1,nil,tp):GetFirst(); if not tc then return end local face=s.face(tc,tp); local set=tc:IsSSetable(); if face and set then if Duel.SelectOption(tp,aux.Stringid(MSG_ID,3),aux.Stringid(MSG_ID,4))==0 then Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) else Duel.SSet(tp,tc) end elseif face then Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) else Duel.SSet(tp,tc) end end",
+          "references": [
+            {
+              "line": 7,
+              "text": "local e3=Effect.CreateEffect(c); e3:SetDescription(aux.Stringid(MSG_ID,2)); e3:SetCategory(CATEGORY_REMOVE); e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O); e3:SetCode(EVENT_SPSUMMON_SUCCESS); e3:SetRange(LOCATION_GRAVE); e3:SetProperty(EFFECT_FLAG_DELAY); e3:SetCountLimit(1,id+200); e3:SetCondition(s.lkcon); e3:SetCost(aux.bfgcost); e3:SetTarget(s.pltg); e3:SetOperation(s.plop); c:RegisterEffect(e3)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 259790247,
+      "path": "public/CCG Downloads/CCG_Scripts/c259790247.lua",
+      "sha256": "3cdea8546d404c67e983469c4688ed62c52e538e4d06518f4a12fe23b4f77751",
+      "placements": [
+        {
+          "line": 84,
+          "function": "actop",
+          "call": "if Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then",
+          "context": "\tlocal tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.actfilter),tp,\n\t\tLOCATION_DECK+LOCATION_GRAVE,0,1,1,nil,tp):GetFirst()\n\tif not tc then return end\n\tlocal te=tc:GetActivateEffect()\n\tif not te or not te:IsActivatable(tp,true,true) then return end\n\tif Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then\n\t\tte:UseCountLimit(tp,1,true)",
+          "references": [
+            {
+              "line": 26,
+              "text": "e2:SetOperation(s.actop)"
+            },
+            {
+              "line": 76,
+              "text": "function s.actop(e,tp,eg,ep,ev,re,r,rp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 259882493,
+      "path": "public/CCG Downloads/CCG_Scripts/c259882493.lua",
+      "sha256": "b674d116672ee58d3ffbc78e0d6eb004dd446018cabeab8e29d3fda558550c53",
+      "placements": [
+        {
+          "line": 22,
+          "function": "coinop",
+          "call": "function s.coinop(e,tp) local res=Duel.TossCoin(tp,1); if res==COIN_HEADS and Duel.GetLocationCount(tp,LOCATION_PZONE)>0 then local g=Duel.GetMatchingGroup(s.vmon,tp,LOCATION_DECK+LOCATION_EXTRA,0,nil); if #g>0 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD); local tc=g:Select(tp,1,1,nil):GetFirst(); Duel.MoveToField(tc,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end elseif res==COIN_TAILS then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET); local g=Duel.SelectMatchingCard(tp,s.vst,tp,LOCATION_DECK,0,1,1,nil); if #g>0 then Duel.SSet(tp,g) end end end",
+          "context": "function s.movef(c) local seq=c:GetSequence(); return c:IsLocation(LOCATION_MZONE) and seq<5 and (seq>0 and Duel.CheckLocation(c:GetControler(),LOCATION_MZONE,seq-1) or seq<4 and Duel.CheckLocation(c:GetControler(),LOCATION_MZONE,seq+1)) end\nfunction s.ptg(e,tp,eg,ep,ev,re,r,rp,chk) local c=e:GetHandler(); local b1=c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP,tp,1<<c:GetSequence()); local b2=Duel.IsExistingMatchingCard(s.movef,tp,LOCATION_MZONE,0,1,nil); if chk==0 then return b1 or b2 end local op=b1 and b2 and Duel.SelectOption(tp,aux.Stringid(MSG_ID,0),aux.Stringid(MSG_ID,1)) or (b1 and 0 or 1); e:SetLabel(op); if op==0 then Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,0,0) end end\nfunction s.pop(e,tp) local c=e:GetHandler(); if not c:IsRelateToEffect(e) then return end if e:GetLabel()==0 then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP,1<<c:GetSequence()); return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP); local tc=Duel.SelectMatchingCard(tp,s.movef,tp,LOCATION_MZONE,0,1,1,nil):GetFirst(); if tc then local seq=tc:GetSequence(); local flag=0; if seq>0 and Duel.CheckLocation(tp,LOCATION_MZONE,seq-1) then flag=flag|(1<<(seq-1)) end; if seq<4 and Duel.CheckLocation(tp,LOCATION_MZONE,seq+1) then flag=flag|(1<<(seq+1)) end; Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOZONE); local z=Duel.SelectDisableField(tp,1,LOCATION_MZONE,0,~flag); Duel.MoveSequence(tc,math.log(z,2)) end end\nfunction s.vmon(c) return c:IsSetCard(SET_VAYLANTZ) and c:IsType(TYPE_MONSTER) and (not c:IsLocation(LOCATION_EXTRA) or c:IsFaceup()) end\nfunction s.vst(c) return c:IsSetCard(SET_VAYLANTZ) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() end\nfunction s.coinop(e,tp) local res=Duel.TossCoin(tp,1); if res==COIN_HEADS and Duel.GetLocationCount(tp,LOCATION_PZONE)>0 then local g=Duel.GetMatchingGroup(s.vmon,tp,LOCATION_DECK+LOCATION_EXTRA,0,nil); if #g>0 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD); local tc=g:Select(tp,1,1,nil):GetFirst(); Duel.MoveToField(tc,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end elseif res==COIN_TAILS then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET); local g=Duel.SelectMatchingCard(tp,s.vst,tp,LOCATION_DECK,0,1,1,nil); if #g>0 then Duel.SSet(tp,g) end end end\nfunction s.pztg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_PZONE)>0 and e:GetHandler():IsAbleToExtra() end end",
+          "references": [
+            {
+              "line": 9,
+              "text": "local e3=Effect.CreateEffect(c); e3:SetCategory(CATEGORY_COIN); e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O); e3:SetCode(EVENT_SPSUMMON_SUCCESS); e3:SetProperty(EFFECT_FLAG_DELAY); e3:SetCountLimit(1,id+100); e3:SetOperation(s.coinop); c:RegisterEffect(e3); local e4=e3:Clone(); e4:SetCode(EVENT_MOVE); e4:SetCondition(function(e) local c=e:GetHandler(); return c:IsLocation(LOCATION_MZONE) and c:GetPreviousLocation()==LOCATION_MZONE and c:GetPreviousSequence()~=c:GetSequence() end); c:RegisterEffect(e4)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        },
+        {
+          "line": 24,
+          "function": "pzop",
+          "call": "function s.pzop(e,tp) local c=e:GetHandler(); if c:IsRelateToEffect(e) then Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end end",
+          "context": "function s.pop(e,tp) local c=e:GetHandler(); if not c:IsRelateToEffect(e) then return end if e:GetLabel()==0 then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP,1<<c:GetSequence()); return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP); local tc=Duel.SelectMatchingCard(tp,s.movef,tp,LOCATION_MZONE,0,1,1,nil):GetFirst(); if tc then local seq=tc:GetSequence(); local flag=0; if seq>0 and Duel.CheckLocation(tp,LOCATION_MZONE,seq-1) then flag=flag|(1<<(seq-1)) end; if seq<4 and Duel.CheckLocation(tp,LOCATION_MZONE,seq+1) then flag=flag|(1<<(seq+1)) end; Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOZONE); local z=Duel.SelectDisableField(tp,1,LOCATION_MZONE,0,~flag); Duel.MoveSequence(tc,math.log(z,2)) end end\nfunction s.vmon(c) return c:IsSetCard(SET_VAYLANTZ) and c:IsType(TYPE_MONSTER) and (not c:IsLocation(LOCATION_EXTRA) or c:IsFaceup()) end\nfunction s.vst(c) return c:IsSetCard(SET_VAYLANTZ) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() end\nfunction s.coinop(e,tp) local res=Duel.TossCoin(tp,1); if res==COIN_HEADS and Duel.GetLocationCount(tp,LOCATION_PZONE)>0 then local g=Duel.GetMatchingGroup(s.vmon,tp,LOCATION_DECK+LOCATION_EXTRA,0,nil); if #g>0 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD); local tc=g:Select(tp,1,1,nil):GetFirst(); Duel.MoveToField(tc,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end elseif res==COIN_TAILS then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET); local g=Duel.SelectMatchingCard(tp,s.vst,tp,LOCATION_DECK,0,1,1,nil); if #g>0 then Duel.SSet(tp,g) end end end\nfunction s.pztg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_PZONE)>0 and e:GetHandler():IsAbleToExtra() end end\nfunction s.pzop(e,tp) local c=e:GetHandler(); if c:IsRelateToEffect(e) then Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end end",
+          "references": [
+            {
+              "line": 10,
+              "text": "local e5=Effect.CreateEffect(c); e5:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O); e5:SetCode(EVENT_DESTROYED); e5:SetProperty(EFFECT_FLAG_DELAY); e5:SetCondition(function(e,tp) local c=e:GetHandler(); return c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE) and c:IsPreviousPosition(POS_FACEUP) and c:IsSummonType(SUMMON_TYPE_SPECIAL) end); e5:SetTarget(s.pztg); e5:SetOperation(s.pzop); c:RegisterEffect(e5)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 284636589,
+      "path": "public/CCG Downloads/CCG_Scripts/c284636589.lua",
+      "sha256": "655f8426a8110ba42a76f35621003c310ecf46f1a43ecda29aa4b3010e6b2ba7",
+      "placements": [
+        {
+          "line": 59,
+          "function": "placeop",
+          "call": "if pc then Duel.MoveToField(pc,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end",
+          "context": " local g=Duel.SelectMatchingCard(tp,s.destroyfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,1,nil)\n if #g==0 or Duel.Destroy(g,REASON_EFFECT)==0 or not s.haszone(tp) then return end\n Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n local pg=Duel.SelectMatchingCard(tp,s.pendulumfilter,tp,LOCATION_DECK,0,1,1,nil)\n local pc=pg:GetFirst()\n if pc then Duel.MoveToField(pc,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end\nend",
+          "references": [
+            {
+              "line": 16,
+              "text": "e1:SetOperation(s.placeop)"
+            },
+            {
+              "line": 51,
+              "text": "function s.placeop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 284639717,
+      "path": "public/CCG Downloads/CCG_Scripts/c284639717.lua",
+      "sha256": "6ecf88d64e1bea15bd1c5ea7f89bb9fe043401ff6f18436f711f5c9eff3e25bf",
+      "placements": [
+        {
+          "line": 75,
+          "function": "pop",
+          "call": "if pc then Duel.MoveToField(pc,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end",
+          "context": "  or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end\n if not (Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1)) then return end\n Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n local pg=Duel.SelectMatchingCard(tp,s.deckfilter,tp,LOCATION_DECK,0,1,1,nil)\n local pc=pg:GetFirst()\n if pc then Duel.MoveToField(pc,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end\nend",
+          "references": [
+            {
+              "line": 17,
+              "text": "e1:SetOperation(s.pop)"
+            },
+            {
+              "line": 62,
+              "text": "function s.pop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 284639718,
+      "path": "public/CCG Downloads/CCG_Scripts/c284639718.lua",
+      "sha256": "5c3d3a6c8edccd2f9521532405042f0233ea261b2c84ec1f965d98dff0292300",
+      "placements": [
+        {
+          "line": 91,
+          "function": "pop",
+          "call": "if pc then Duel.MoveToField(pc,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end",
+          "context": "  or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end\n if not (Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1)) then return end\n Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n local pg=Duel.SelectMatchingCard(tp,s.deckfilter,tp,LOCATION_DECK,0,1,1,nil)\n local pc=pg:GetFirst()\n if pc then Duel.MoveToField(pc,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end\nend",
+          "references": [
+            {
+              "line": 24,
+              "text": "e2:SetOperation(s.pop)"
+            },
+            {
+              "line": 78,
+              "text": "function s.pop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    },
+    {
+      "code": 284639719,
+      "path": "public/CCG Downloads/CCG_Scripts/c284639719.lua",
+      "sha256": "de3a3f392f3bec0328b2e89525cae47725c3d172eeb22fd95ae90690e6538aa9",
+      "placements": [
+        {
+          "line": 123,
+          "function": "pop",
+          "call": "if pc then Duel.MoveToField(pc,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end",
+          "context": "  or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end\n if not (Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1)) then return end\n Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)\n local pg=Duel.SelectMatchingCard(tp,s.deckfilter,tp,LOCATION_DECK,0,1,1,nil)\n local pc=pg:GetFirst()\n if pc then Duel.MoveToField(pc,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end\nend",
+          "references": [
+            {
+              "line": 29,
+              "text": "e3:SetOperation(s.pop)"
+            },
+            {
+              "line": 110,
+              "text": "function s.pop(e,tp)"
+            }
+          ],
+          "registration_exclusion": null,
+          "review": "OPEN: distinguish effect vs cost/rule replacement, source type/location, and conditional branch before registration"
+        }
+      ]
+    }
+  ]
+}

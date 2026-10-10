@@ -4,6 +4,15 @@ const root=path.resolve(__dirname,'..'),out=path.join(root,'output/fresh-ccg-sep
 const read=name=>JSON.parse(fs.readFileSync(path.join(out,name),'utf8'));
 const roster=read('baseline-remote.json').cards,syntax=new Map(read('current-roster-syntax.json').results.map(r=>[r.passcode,r])),load=new Map(read('current-roster-engine-load.json').results.map(r=>[r.passcode,r]));
 const sha=s=>crypto.createHash('sha256').update(s).digest('hex');
+// Overlay current selected rechecks; retain historical full-roster results for other cards.
+const selectedPath=path.join(out,'current-spec-engine-load-selected.json');
+if(fs.existsSync(selectedPath)){
+ const selected=JSON.parse(fs.readFileSync(selectedPath,'utf8'));
+ for(const [file,hash] of Object.entries({...selected.runtime_dependencies_sha256,...selected.loaded_script_dependencies_sha256})){
+  if(sha(fs.readFileSync(path.join(root,file)))!==hash)throw Error('Selected initialization dependency changed: '+file);
+ }
+ for(const row of selected.results)load.set(row.passcode,row);
+}
 const harnesses=fs.readdirSync(__dirname).filter(n=>/^fresh_.*\.cjs$/.test(n)).map(name=>({name,source:fs.readFileSync(path.join(__dirname,name),'utf8')}));
 const cards=roster.map(c=>{
  const file=path.join(root,'public/CCG Downloads/CCG_Scripts/c'+c.passcode+'.lua');

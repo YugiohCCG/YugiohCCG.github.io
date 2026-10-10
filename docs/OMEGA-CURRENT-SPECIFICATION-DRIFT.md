@@ -33,9 +33,9 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
   "syntax_stale": 0,
   "load_stale": 0,
   "current_spec_initialization_rechecks": {
-    "total": 77,
-    "passed": 51,
-    "compatibility_failures": 26
+    "total": 88,
+    "passed": 61,
+    "compatibility_failures": 27
   }
 }
 ```

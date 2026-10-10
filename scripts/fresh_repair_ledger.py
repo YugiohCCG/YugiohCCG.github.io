@@ -566,6 +566,98 @@ def main():
   assert sha(FILES/'Scripts'/source.name)==sha(source)
   assert not any(r['passcode']==241540236 for r in rows)
   rows.append({'passcode':241540236,'name':roster[241540236]['name'],'repair':'Add EFFECT_FLAG_DELAY to optional Graveyard EVENT_CHAINING trigger so Level1 Ghostrick Hand activation offers selfSet after chain resolution. Five native scenarios and noSet/noRedirect/noDelay/ignoreLevel controls verify actual selfSet and subsequent destruction banishredirect. Position/return five-case regression preserved. No adapters; interruption/other leavefield routes/native Omega/full card remain open','script_sha256':sha(source),'batch':haunt_path.name,'batch_sha256':sha(haunt_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ gravinity_path=OUT/'current-gravinity-transfer-recipient-choice-batch.json'
+ if gravinity_path.exists():
+  batch=json.loads(gravinity_path.read_text());assert batch['baseline_cases']==16 and not batch.get('diagnostic_only')
+  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for code in [215768254,235538173,249680945,256172827]:
+   source=ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua'
+   runs=[r for r in batch['runs'] if r['recipient']==code];assert len(runs)==4
+   for run in runs:
+    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
+    data=json.loads(artifact.read_text());assert data['recipient_script_sha256']==sha(source)
+    assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures']
+   assert sha(FILES/'Scripts'/source.name)==sha(source)
+   assert not any(r['passcode']==code for r in rows)
+   rows.append({'passcode':code,'name':roster[code]['name'],'repair':'Honor optional TransferCall all-effects permission on primary/movement selected routes. Consume flag once, prompt with additional effect description, preserve primary-before-movement sequence. Four real-recipient accept/decline scenarios and mandatory/no-extra/no-consume controls; native flag/type/destruction assertions. No adapters; permission on negated activation/other recipient effects/native Omega/full card open.','script_sha256':sha(source),'batch':gravinity_path.name,'batch_sha256':sha(gravinity_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ melody_path=OUT/'current-melody-division-extra-normal-batch.json'
+ if melody_path.exists():
+  source=ROOT/'public/CCG Downloads/CCG_Scripts/c243420199.lua'
+  for prefix,cases in [('extra-normal',4),('attach',7)]:
+   batch=json.loads((OUT/f'current-melody-division-{prefix}-batch.json').read_text());assert batch['baseline_cases']==cases and not batch.get('diagnostic_only')
+   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for run in batch['runs']:
+    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
+    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
+    assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures']
+  assert sha(FILES/'Scripts'/source.name)==sha(source)
+  assert not any(r['passcode']==243420199 for r in rows)
+  rows.append({'passcode':243420199,'name':roster[243420199]['name'],'repair':'Use value0 for unrestricted Level2 extra NormalSummon and clone EFFECT_EXTRA_SET_COUNT for printed extra Set. Native four-case summon/set/two-copy shared extra use/wrongset tests and noExtra/oldValue/noSet/ignoreSet controls; seven-case banish-cost attachment regression preserved. No adapters; turn reset/other levels/materialeligibility/nativeOmega/full card open.','script_sha256':sha(source),'batch':melody_path.name,'batch_sha256':sha(melody_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ ganan_path=OUT/'current-ganan-direct-battle-batch.json'
+ if ganan_path.exists():
+  source=ROOT/'public/CCG Downloads/CCG_Scripts/c259459462.lua'
+  for prefix,cases in [('direct-battle',3),('chain-damage',2),('unique',3)]:
+   batch=json.loads((OUT/f'current-ganan-{prefix}-batch.json').read_text());assert batch['baseline_cases']==cases and not batch.get('diagnostic_only')
+   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for run in batch['runs']:
+    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
+    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
+    assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures']
+  assert sha(FILES/'Scripts'/source.name)==sha(source)
+  assert not any(r['passcode']==259459462 for r in rows)
+  rows.append({'passcode':259459462,'name':roster[259459462]['name'],'repair':'Use EFFECT_IGNORE_BATTLE_TARGET so Ganan remains untargetable while lone Ganan permits printed direct attacks. Three actual native battle cases verify1000directdamage below3000ATK/zero at3000 and other defender targeted without Ganan. OldCode/noProtection/noIgnore controls; chainATK/damage2case and uniqueness3case regressions pass. No adapters; proper Link/negatedchains/nativeOmega/full card open','script_sha256':sha(source),'batch':ganan_path.name,'batch_sha256':sha(ganan_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ frozen_path=OUT/'current-frozen-girl-transfer-batch.json'
+ if frozen_path.exists():
+  batch=json.loads(frozen_path.read_text());assert batch['baseline_cases']==3 and not batch.get('diagnostic_only')
+  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for code in [222676270,223505382]:
+   source=ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua'
+   for run in batch['runs']:
+    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
+    data=json.loads(artifact.read_text());assert data['script_sha256' if code==222676270 else 'secondary_script_sha256']==sha(source)
+    assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures']
+   assert sha(FILES/'Scripts'/source.name)==sha(source)
+   assert not any(r['passcode']==code for r in rows)
+   rows.append({'passcode':code,'name':roster[code]['name'],'repair':'Register effect-specific faceup placement marker on TransferCall Deckmonster SZONE placement and check it in FrozenGirl response condition. Three native cases: discard/effectnegation, decline allowing actual placement, unrelated damage excluded. Four controls detect missing marker/negation/discard and overly broad registration. Transfer placement4/expiry2/interruption2 and recipient-choice16 regressions refreshed. Other qualifying placements/cost and continuous replacement exclusions/limits/nativeOmega/full card remain OPEN.','script_sha256':sha(source),'batch':frozen_path.name,'batch_sha256':sha(frozen_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ swamp_path=OUT/'current-frozen-girl-swamp-batch.json'
+ if swamp_path.exists():
+  source=ROOT/'public/CCG Downloads/CCG_Scripts/c239935101.lua'
+  batch=json.loads(swamp_path.read_text());assert batch['baseline_cases']==3 and not batch.get('diagnostic_only')
+  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for run in batch['runs']:
+   artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
+   data=json.loads(artifact.read_text());assert data['secondary_script_sha256']==sha(source)
+   assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures']
+  assert sha(FILES/'Scripts'/source.name)==sha(source)
+  assert not any(r['passcode']==239935101 for r in rows)
+  rows.append({'passcode':239935101,'name':roster[239935101]['name'],'repair':'Mark only initial activation WATER Reptile Deckmonster faceup SZONE placement for FrozenGirl response. Native three-case discard/effectnegation, decline with actual placement and unrelated damage exclusion; missing marker/negation/discard and broad marker controls. No adapters; battle/endphase effects, placement eligibility/interruption, nativeOmega/full card OPEN.','script_sha256':sha(source),'batch':swamp_path.name,'batch_sha256':sha(swamp_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ meeting_marker_path=OUT/'current-frozen-girl-crewal-210366076-batch.json'
+ if meeting_marker_path.exists():
+  source=ROOT/'public/CCG Downloads/CCG_Scripts/c210366076.lua'
+  for name,cases,secondary in [('current-frozen-girl-crewal-210366076-batch.json',3,True),('current-crewal-meeting-placement-batch.json',12,False),('current-crewal-meeting-recover-batch.json',5,False)]:
+   batch=json.loads((OUT/name).read_text());assert batch['baseline_cases']==cases and not batch.get('diagnostic_only')
+   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for run in batch['runs']:
+    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
+    data=json.loads(artifact.read_text());assert data['secondary_script_sha256' if secondary else 'script_sha256']==sha(source)
+    assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures']
+  assert sha(FILES/'Scripts'/source.name)==sha(source)
+  assert not any(r['passcode']==210366076 for r in rows)
+  rows.append({'passcode':210366076,'name':roster[210366076]['name'],'repair':'Mark initial activation Zombie Deck/GY/banished placement as faceup ContinuousTrap for FrozenGirl response; recovery ignition unmarked. Native real GYZombie interaction3cases4controls confirms paid ContinuousTrap cost persists after effectnegation. Current placement12cases4controls and recovery5cases2controls preserved. No adapters; other interactions/interruption/nativeOmega/full card OPEN.','script_sha256':sha(source),'batch':meeting_marker_path.name,'batch_sha256':sha(meeting_marker_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ bear_path=OUT/'current-teleum-bear-negation-repaired-batch.json'
+ if bear_path.exists():
+  source=ROOT/'public/CCG Downloads/CCG_Scripts/c251699681.lua'
+  for name,cases,key in [('current-teleum-bear-negation-repaired-batch.json',2,'diagnostic_cases'),('current-teleum-bear-attack-repaired-batch.json',2,'baseline_cases'),('current-teleum-bear-history-preservation-repaired-batch.json',4,'baseline_cases')]:
+   batch=json.loads((OUT/name).read_text());assert batch[key]==cases
+   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   assert source.relative_to(ROOT).as_posix() in batch['runtime_dependencies_sha256']
+   for run in batch['runs']:
+    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
+    data=json.loads(artifact.read_text());assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures']
+   assert any(r['control'] is None and not r['expected_failures'] for r in batch['runs'])
+  assert sha(FILES/'Scripts'/source.name)==sha(source)
+  assert not any(r['passcode']==251699681 for r in rows)
+  rows.append({'passcode':251699681,'name':roster[251699681]['name'],'repair':'Rollback exactly one permanent and turn activation-history flag for relevant player on EVENT_CHAIN_NEGATED. Actual attack-response activation/effect-negation2cases, attack/persistence2cases and seeded prior/bothplayer history preservation4cases, each with2controls. Official FAQ12712 activation-count distinction applied by inference to custom Trap. Prior counts are seeded, not actual prior activations. No adapters; summon-response legacy GetReadyChain, actual multiple/bothplayer activations, nativeOmega/fullcard OPEN.','script_sha256':sha(source),'batch':bear_path.name,'batch_sha256':sha(bear_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
  report={'scope':'Documented script repairs with current source/install parity. Public-engine regressions and explicitly bounded callback/shared-effect evidence are distinguished per row. Not full-card or native Omega certification.', 'fixed_cards_minimum':len(rows),'cards':rows}
  (OUT/'repair-ledger.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');print(json.dumps({'fixed_cards_minimum':len(rows),'status':'CURRENT_EVIDENCE_VERIFIED'}))
 if __name__=='__main__':main()
