@@ -1,0 +1,63 @@
+{
+  "scope": "Production Scarstech Principality native CL2 destruction/CL3 response selfGY removes responding Trap from pool; resourceHand lowers available pool below label and suppresses, native HandMZONE return eligible non-target, one native protected selected monster survives actual partial destruction. No adapters; fullcard/printed ruling interpretation OPEN",
+  "baseline_cases": 4,
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-scarstech-principality-resolution-pool.json",
+      "artifact_sha256": "0af971139e9a9fbf1560d9e31fe4625798d3997d2d1176d3846710e3fcf55ba0"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "artifact": "current-scarstech-principality-resolution-pool-no-cost.json",
+      "artifact_sha256": "318a6e646284635dc25340350f3356389e2528398f38b006f89189fccff79421"
+    },
+    {
+      "control": "no-destroy",
+      "expected_failures": [
+        0,
+        2,
+        3
+      ],
+      "artifact": "current-scarstech-principality-resolution-pool-no-destroy.json",
+      "artifact_sha256": "22a470317413244d907a7061fdf70d2ba6cefe5290573fbd0095fb2e1edd1269"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        1,
+        2,
+        3
+      ],
+      "artifact": "current-scarstech-principality-resolution-pool-no-response.json",
+      "artifact_sha256": "08397ab1538035fa83e2dc93e6f6944d49a020e6a97c54917c5d4beb3be2515e"
+    },
+    {
+      "control": "no-chain",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "artifact": "current-scarstech-principality-resolution-pool-no-chain.json",
+      "artifact_sha256": "6efc3758a546627d8c7e4d4954f42921d17067f9681dcabc6f8013cc993cb1e1"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_scarstech_principality_resolution_pool.cjs": "c89cdab5bb4681c6c5d2e4ed643d05ee81741ba3afb163e827cc033f0f348668",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210175845.lua": "f989f9c1b1fd2c32f6bddb7e8f05e69b46cec7fb1e90750a301bd89f5878fa0e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

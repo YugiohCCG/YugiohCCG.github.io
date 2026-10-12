@@ -1,0 +1,73 @@
+{
+  "scope": "In-memory destination occupied guard validation, no production repair or full certification",
+  "baseline_cases": 11,
+  "runs": [
+    {
+      "artifact": "current-morbydrip-placement-validation.json",
+      "artifact_sha256": "31a9af76e9c4dd5b3f383ebb598ddc0f39bb3c11e30621279d53af6366a72060",
+      "expected_failures": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "artifact": "current-morbydrip-placement-validation-occupied-guard-comparison.json",
+      "artifact_sha256": "1eac7b02edff79d5ec42bed023f3af0cbfc50c160dda4db73b1d364a51696e08",
+      "expected_failures": []
+    },
+    {
+      "artifact": "current-morbydrip-placement-validation-occupied-guard-comparison-no-placement.json",
+      "artifact_sha256": "9605e1bd12a998c840fbb1ca936b301edb9d3d4c8199b11880754d76f68035aa",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        9
+      ]
+    },
+    {
+      "artifact": "current-morbydrip-placement-validation-occupied-guard-comparison-no-type.json",
+      "artifact_sha256": "50a6d14dbc820096e346da54c7d57109c85e46220b3aa1d1aff685a228f8de82",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        9
+      ]
+    },
+    {
+      "artifact": "current-morbydrip-placement-validation-occupied-guard-comparison-no-destroy.json",
+      "artifact_sha256": "549e6f6d1abc0e4bd099671f541d715a996267d73e65290fd344b0e443c5de2a",
+      "expected_failures": [
+        5,
+        7,
+        8
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_morbydrip_placement_validation.cjs": "e72a12f0ca48cdf0297ee1e248a047b094c41ac2da94182a84a909fb0b9ea962",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210628767.lua": "93f76ea2babe13b4cb64649a3105c2de816b57136cd7af1421904f5dcc400204",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  },
+  "native_type_evidence": "Neutral EVENT_CHAIN_END observer reads actual Card.IsType(TRAP/CONTINUOUS) and emits native HINT810/820; full-card source unchanged",
+  "owner_evidence": "Native Duel.GetControl before actual full-card Hand SS creates borrowed opposing target; returns to actual owner mirrored column4",
+  "open": [
+    "Native NormalSummon",
+    "Placement interruption/extra monster column",
+    "Revival/endphase/shared count and nativeOmega fullcard"
+  ]
+}

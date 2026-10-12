@@ -1,0 +1,51 @@
+{
+  "scope": "Full production Heat continuous ATK with full Halberd215921734/Suppressor238136421 native GY equip effects on own neutral DARKPyro recipient; one/two actual equips, faceup unequipped full Spell exclusion, actual helper fieldGY departures remove gains. No adapters; broader filter/Pendulum/Fusion/fullcard OPEN",
+  "baseline_cases": 3,
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-talismandrake-heat-equip-atk.json",
+      "artifact_sha256": "23aaed85713ec4090d4e710e4b7a5f0eead03013a5d14f156ed4df98acfa60cb"
+    },
+    {
+      "control": "no-gain",
+      "expected_failures": [
+        0,
+        1
+      ],
+      "artifact": "current-talismandrake-heat-equip-atk-no-gain.json",
+      "artifact_sha256": "0ac947fb6cd70adc4b76f000d9ac465c0c9c4ce0bee59eb70171dda8910882ee"
+    },
+    {
+      "control": "no-equip",
+      "expected_failures": [
+        0,
+        1
+      ],
+      "artifact": "current-talismandrake-heat-equip-atk-no-equip.json",
+      "artifact_sha256": "f43455423be18ff5d0a50092b196a0b8518d9465a54392857008f58ab9700f72"
+    },
+    {
+      "control": "no-departure",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-talismandrake-heat-equip-atk-no-departure.json",
+      "artifact_sha256": "2fc8a9008638c007b09648cf0b6e6e2b449dbcd7eaf8a2b2132435b70e6618ae"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_talismandrake_heat_equip_atk.cjs": "0eb52d3eb4816c2a14f301544fefb20280fd4d60db5ae680bf40a93b53c1c640",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210506870.lua": "8a6d1e9cfbc774b26a949aec98558659ca956846dd767b78ff7be09fb4037606",
+    "public/CCG Downloads/CCG_Scripts/c215921734.lua": "600e766d4f89f9482b83d18fd85af413f1f312802a52e605fe51dbb38e4876e6",
+    "public/CCG Downloads/CCG_Scripts/c238136421.lua": "088d06d4ed6c3a66534b2cb1ef4f51b1bc4df34886fecc2d7948250eb8f32132",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

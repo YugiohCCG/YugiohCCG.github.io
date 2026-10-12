@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import type { Card, SetInfo } from "../types/card";
 import { cardMatches, type Query } from "../utils/filters";
+import { cardMemberships } from "../utils/memberships";
 
 
 // Out-of-scope attributes that should be hidden temporarily
@@ -181,7 +182,8 @@ export default function useCards(
 
     const archetypes = Array.from(
       new Set(
-        sourceCards.flatMap((c: any) => [
+        sourceCards.filter(isVisible).flatMap((c: any) => [
+          ...cardMemberships(c),
           c?.archetype,
           ...(Array.isArray(c?.archetypes) ? c.archetypes : []),
           ...(Array.isArray(c?.treatedAs) ? c.treatedAs : []),

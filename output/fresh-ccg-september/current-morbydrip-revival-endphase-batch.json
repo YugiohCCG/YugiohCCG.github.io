@@ -1,0 +1,46 @@
+{
+  "scope": "Full production actual initial Hand SS/ContinuousTrap placement then actual opponent/own SS, native revival and actual EndPhase banish; no seeded types/history/adapters. Remaining both-side/name EndPhase exclusions/locks/interruptions/limits OPEN",
+  "baseline_cases": 3,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-morbydrip-revival-endphase.json",
+      "artifact_sha256": "419b4ac3f56667ddb835b3e74ba533716cda35f775469c347845a9a16a09bf72",
+      "expected_failures": []
+    },
+    {
+      "control": "no-revive",
+      "artifact": "current-morbydrip-revival-endphase-no-revive.json",
+      "artifact_sha256": "a8a5d0d235b3b1d4e9640dba0bb32c40cd7c34f7ed28c78f9fdcfd27fb1526d7",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "control": "no-banish",
+      "artifact": "current-morbydrip-revival-endphase-no-banish.json",
+      "artifact_sha256": "1a5f61664dba03579fa5bc34b9ae5be339a87304a57d87abbb479ee5ebc8fcf3",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "control": "allow-any-column",
+      "artifact": "current-morbydrip-revival-endphase-allow-any-column.json",
+      "artifact_sha256": "12a1ec190a2f4f9722df065177b5386e3ec8fc6c3f3536880c03c79e6ff6039b",
+      "expected_failures": [
+        1,
+        2
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_morbydrip_revival_endphase.cjs": "dbbaf91d812e2e89cc25449d52303964bf52c58cb1c901a14e1ebd9e38d417bf",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210628767.lua": "3eb2b2ff44a3240a917c606f70203c33c66a69d7447016789ce3d3b194e4ede6",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

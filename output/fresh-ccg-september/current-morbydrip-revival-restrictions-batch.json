@@ -1,0 +1,45 @@
+{
+  "scope": "Full actual ContinuousTrap placement; four native DeckSS fill own fiveMZONE or native playerCannotSpecialSummon registered before actual opponent same-column SS. Excludes revival and EndPhase scheduling, no seeded types/capacity/adapters; fullcard OPEN",
+  "baseline_cases": 3,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-morbydrip-revival-restrictions.json",
+      "artifact_sha256": "f35b9f72941387a5d0dc688420b7803375ca60b0448664e498b4f9db5738b93d",
+      "expected_failures": []
+    },
+    {
+      "control": "no-revive",
+      "artifact": "current-morbydrip-revival-restrictions-no-revive.json",
+      "artifact_sha256": "4fb771d1934526d2b274b15febaa54090b9dc26f5948ae9c3d049ae6e62803f3",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "control": "no-banish",
+      "artifact": "current-morbydrip-revival-restrictions-no-banish.json",
+      "artifact_sha256": "701eb22168c799999715dfbccb015caa6499b993e1203ca565ba7d9a846e4119",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "control": "no-lock",
+      "artifact": "current-morbydrip-revival-restrictions-no-lock.json",
+      "artifact_sha256": "3c14dbb817f408d0762845a32f54c74ec397f52625d6a6c97020f561e0ceb480",
+      "expected_failures": [
+        2
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_morbydrip_revival_restrictions.cjs": "ba8b440f213d040c4f232c245ca2669edabedff24e7310b8670ea74be185f1d1",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210628767.lua": "3eb2b2ff44a3240a917c606f70203c33c66a69d7447016789ce3d3b194e4ede6",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

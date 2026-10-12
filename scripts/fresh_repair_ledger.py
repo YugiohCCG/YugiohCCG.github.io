@@ -29,15 +29,19 @@ def main():
    assert repair['after_sha256']==review['source_scripts'][str(code)]
    reconciliation=None
    if sha(source)!=repair['after_sha256']:
-    assert code==237684285,'Unreviewed historical source change'
-    reconciliation=OUT/'janna-source-reconciliation.json'
-    reconciled=json.loads(reconciliation.read_text(encoding='utf-8'))
-    assert reconciled['script_sha256']==sha(source)
-    assert reconciled['historical_repair_sha256']==repair['after_sha256']
-    assert reconciled['historical_validation_sha256']==sha(review_path)
-    assert reconciled['reconciliation_script_sha256']==sha(ROOT/'scripts/fresh_janna_source_reconcile.py')
-    assert reconciled['callback_harness_sha256']==review['callback_harness_sha256']
-    assert reconciled['callback_assertions']==99 and reconciled['native_omega_verified'] is False
+    if code==210628767:
+     reconciliation=OUT/'morbydrip-source-reconciliation.json';reconciled=json.loads(reconciliation.read_text());assert reconciled['script_sha256']==sha(source);assert reconciled['historical_repair_sha256']==repair['after_sha256'];assert reconciled['current_batch_sha256']==sha(OUT/'current-morbydrip-placement-repaired-batch.json')
+     before=(OUT/'morbydrip-before-occupied-column-repair/source-c210628767.lua').read_bytes();after=source.read_bytes();newline=b'\r\n' if b'\r\n' in before else b'\n';assert after.replace(newline+b'\tif Duel.GetFieldCard(p,LOCATION_SZONE,sq) then return false end',b'').replace(b' or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0',b'')==before
+    else:
+     assert code==237684285,'Unreviewed historical source change'
+     reconciliation=OUT/'janna-source-reconciliation.json'
+     reconciled=json.loads(reconciliation.read_text(encoding='utf-8'))
+     assert reconciled['script_sha256']==sha(source)
+     assert reconciled['historical_repair_sha256']==repair['after_sha256']
+     assert reconciled['historical_validation_sha256']==sha(review_path)
+     assert reconciled['reconciliation_script_sha256']==sha(ROOT/'scripts/fresh_janna_source_reconcile.py')
+     assert reconciled['callback_harness_sha256']==review['callback_harness_sha256']
+     assert reconciled['callback_assertions']==99 and reconciled['native_omega_verified'] is False
    else:assert sha(source)==repair['after_sha256']
    assert sha(FILES/'Scripts'/source.name)==sha(source)
    assert not any(r['passcode']==code for r in rows)
@@ -695,6 +699,31 @@ def main():
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert [i for i,r in enumerate(data['results']) if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results']);assert data['legacy_chaininfo_adapter'] is False
   assert any(r['control']=='original-relation' and r['expected_failures']==[0,1,2,3] for r in batch['runs']);assert any(r['control']=='original-material' and r['expected_failures']==[4] for r in batch['runs']);assert sha(FILES/'Scripts'/source.name)==sha(source);assert not any(r['passcode']==256930605 for r in rows)
   rows.append({'passcode':256930605,'name':roster[256930605]['name'],'repair':'Exclude selected Ritual from its material subgroup; remove unestablished target relation check from matching-card-selected Ritual. Native Hand/GY Ritual, Hand/field real materials, higher level and insufficient-other-material exclusion: five cases/four controls including original-line regressions. Both-copy exact-byte backups fruteification-before-relation-material-repair. Optional revival/current focused integration follow-ups separately diagnostic; all-effects/nativeOmega remain OPEN.','script_sha256':sha(source),'batch':frute_path.name,'batch_sha256':sha(frute_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ heat_path=OUT/'current-talismandrake-heat-hand-capacity-repaired-batch.json'
+ if heat_path.exists():
+  source=ROOT/'public/CCG Downloads/CCG_Scripts/c210506870.lua'
+  for name,cases in [('current-talismandrake-heat-hand-capacity-repaired-batch.json',7),('current-talismandrake-heat-hand-summon-batch.json',8)]:
+   batch=json.loads((OUT/name).read_text());assert batch['baseline_cases']==cases
+   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for run in batch['runs']:
+    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert [i for i,r in enumerate(data['results']) if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results'])
+  batch=json.loads(heat_path.read_text());assert any(r['control']=='original-capacity' and r['expected_failures']==[6] for r in batch['runs']);assert sha(FILES/'Scripts'/source.name)==sha(source);assert not any(r['passcode']==210506870 for r in rows)
+  rows.append({'passcode':210506870,'name':roster[210506870]['name'],'repair':'Recheck MZONE space before Hand selfsummon resolution; native CL2 four Deck summons fill five zones and source remains Hand. Seven interruption cases/three controls including original-capacity; eight Hand eligibility cases/three controls. Exact-byte both-copy backups heat-before-hand-capacity-repair. Helmsman precedent/FAQ19958 interpretation applied by inference; Pendulum/equip ATK/Fusion/nativeOmega/fullcard OPEN.','script_sha256':sha(source),'batch':heat_path.name,'batch_sha256':sha(heat_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ morby_path=OUT/'current-morbydrip-placement-repaired-batch.json'
+ if morby_path.exists():
+  source=ROOT/'public/CCG Downloads/CCG_Scripts/c210628767.lua';batch=json.loads(morby_path.read_text());assert batch['baseline_cases']==11
+  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for run in batch['runs']:
+   artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source);assert [i for i,r in enumerate(data['results']) if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results']);assert not data['in_memory_occupied_guard']
+  assert any(r['control']=='original-guard' and r['expected_failures']==[6,7,8] for r in batch['runs']);assert sha(FILES/'Scripts'/source.name)==sha(source);assert sum(r['passcode']==210628767 for r in rows)==1
+  row=next(r for r in rows if r['passcode']==210628767);row.update({'passcode':210628767,'name':roster[210628767]['name'],'repair':row.get('repair','')+' Additional repair: After destruction attempt, retain monster when required owner SZONE column remains occupied. Prevent generic MoveToField arriving in another column. Eleven native actual full-card Hand SS placement cases/four controls; five columns, destructible/indestructible/both or one-sided occupants, actual borrowed target owner mirrored return and absent target. Native ContinuousTrap type observer, no adapters. Exact-byte both-copy backups morbydrip-before-occupied-column-repair. NormalSummon/interruption/ExtraMonster columns/revival/EndPhase/shareduse/nativeOmega/fullcard OPEN.','script_sha256':sha(source),'batch':morby_path.name,'batch_sha256':sha(morby_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ morby_capacity_path=OUT/'current-morbydrip-revival-capacity-repaired-batch.json'
+ if morby_capacity_path.exists():
+  source=ROOT/'public/CCG Downloads/CCG_Scripts/c210628767.lua';batch=json.loads(morby_capacity_path.read_text());assert batch['baseline_cases']==7
+  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for run in batch['runs']:
+   artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source);assert [i for i,r in enumerate(data['results']) if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results']);assert not data['capacity_guard_comparison']
+  assert any(r['control']=='original-capacity' and r['expected_failures']==[6] for r in batch['runs']);row=next(r for r in rows if r['passcode']==210628767);row['repair']+=' Additional revival repair: recheck MZONE capacity before native SS so late full zones retain ContinuousTrap rather than consuming it toGY. Seven cases/fourcontrols including original-capacity; seven earlier Morbydrip batches refreshed/preserved. Both-copy byte backups morbydrip-before-revival-capacity-repair.';row['additional_batch']=morby_capacity_path.name;row['additional_batch_sha256']=sha(morby_capacity_path)
  report={'scope':'Documented script repairs with current source/install parity. Public-engine regressions and explicitly bounded callback/shared-effect evidence are distinguished per row. Not full-card or native Omega certification.', 'fixed_cards_minimum':len(rows),'cards':rows}
  (OUT/'repair-ledger.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');print(json.dumps({'fixed_cards_minimum':len(rows),'status':'CURRENT_EVIDENCE_VERIFIED'}))
 if __name__=='__main__':main()

@@ -1,0 +1,51 @@
+{
+  "scope": "Six actual native full-card Special Summon placement cases; in-memory occupied-column guard comparison only, no production repair/certification",
+  "reports": [
+    {
+      "path": "current-morbydrip-placement.json",
+      "sha256": "80c0fd0d36492f650d32053d638ada3f8a613aa971bf1e2592aeb67c59baaf6d",
+      "expected_failures": [
+        4
+      ]
+    },
+    {
+      "path": "current-morbydrip-placement-occupied-guard-comparison.json",
+      "sha256": "5d3de84ec0ebbaa870be805f191eba5d5deb71e99ec7549ad98f5e644d196d6d",
+      "expected_failures": []
+    },
+    {
+      "path": "current-morbydrip-placement-occupied-guard-comparison-no-placement.json",
+      "sha256": "49a3447fe8dab49761907451abed0e3c46711ac60c22c797ce5ffa9f4880f109",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "path": "current-morbydrip-placement-occupied-guard-comparison-no-destroy.json",
+      "sha256": "d01be851193f1c8a49bebd8e6c08d12b80e13d3b3a09dde5e8cacc7f25265404",
+      "expected_failures": [
+        3,
+        4
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_morbydrip_placement.cjs": "ee2943693826a8742e6e5f4331093ed7068df2b616a40ef620e3f96301f306cc",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210628767.lua": "93f76ea2babe13b4cb64649a3105c2de816b57136cd7af1421904f5dcc400204",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  },
+  "limitations": [
+    "Normal Summon not yet tested; full card level8 unchanged, bounded neutral helper actual Hand SS",
+    "Continuous Trap type not queried: public query TYPE flag produced malformed records; current type proof remains OPEN",
+    "No-destroy control removes destroy and prevents guard insertion; combined control, not isolated destruction control",
+    "Owners/borrowed control, more columns/extra zones, interruptions and remaining printed clauses OPEN"
+  ],
+  "next_action": "Broaden actual owner/column and placement interruption cases; isolate destroy and current-type controls, then minimal guard repair with mandated gates if confirmed."
+}

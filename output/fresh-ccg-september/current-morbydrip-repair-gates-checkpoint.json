@@ -1,0 +1,40 @@
+{
+  "scope": "Occupied-column guard repair gates, no fullcard certification",
+  "syntax": {
+    "cards": 711,
+    "passed": 711
+  },
+  "selected_initialization": {
+    "cards": 90,
+    "pass": 63,
+    "known_legacy_failures": 27,
+    "exact_statuses_and_errors_unchanged": true
+  },
+  "ohmen": {
+    "baseline_cases": 38,
+    "runs": 28,
+    "status": "PASS"
+  },
+  "placement_inventory": {
+    "scripts": 724,
+    "scripts_with_calls": 57,
+    "calls": 62
+  },
+  "drift": {
+    "source_install_mismatches": 0,
+    "syntax_stale": 0,
+    "historical_load_stale": 2,
+    "installed_database_text_mismatch": 0,
+    "installed_database_metadata_mismatch": 0,
+    "public_database_missing": 91
+  },
+  "fixed_cards_minimum": 79,
+  "note": "Morbydrip was already historically repaired; add current repair to same ledger card, no duplicate increment. Historical callback evidence kept frozen, exact-byte old source reconciliation verified.",
+  "artifacts": {
+    "current-roster-syntax.json": "0a7af10301ec9580d820e15c0927e5bb0764a75af944f02c50770ce4e5654869",
+    "current-spec-engine-load-selected.json": "42166906e551fcfb2c45c612b2acc196dd07517ddf45d8dd331fb133c02b6c95",
+    "repair-ledger.json": "2e7d8797882527f65df72a9c2736a1d053c9259da1feb51993b6c27789f8b335",
+    "current-morbydrip-placement-repaired-batch.json": "30045fab11087deb97ff6af6fc49d41798074129cbbcaedcb1702fb9dbf7ea68",
+    "morbydrip-source-reconciliation.json": "6323a0c914215da31b75419e5c32c4a84c85ab79c2fe436e0cb15bb6ff378422"
+  }
+}

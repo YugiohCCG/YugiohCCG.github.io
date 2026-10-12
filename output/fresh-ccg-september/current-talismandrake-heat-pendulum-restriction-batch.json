@@ -1,0 +1,58 @@
+{
+  "scope": "Full Heat actual native Hand Pendulum placement plus explicit neutral scale2/native Pendulum summon of neutral Pyro Hand or actual field-effectGY faceupExtra; nonPyro excluded in both, ordinary neutral SS unaffected. No adapters; fullcard OPEN",
+  "baseline_cases": 5,
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-talismandrake-heat-pendulum-restriction.json",
+      "artifact_sha256": "3f15b4e26237fa7d3e804cfc12eb16480618400aed6fd39914c06e77a09437a3"
+    },
+    {
+      "control": "no-limit",
+      "expected_failures": [
+        1,
+        3
+      ],
+      "artifact": "current-talismandrake-heat-pendulum-restriction-no-limit.json",
+      "artifact_sha256": "9fd091a8d1c9bb4650ac97ec5d72434355c5bbf6f41eb2c11067dc385f40493f"
+    },
+    {
+      "control": "invert-race",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "artifact": "current-talismandrake-heat-pendulum-restriction-invert-race.json",
+      "artifact_sha256": "c669284242014610dc1e587cb980d2b0890cee43945974ee2ac798847aab1f3d"
+    },
+    {
+      "control": "no-departure",
+      "expected_failures": [
+        2,
+        3
+      ],
+      "artifact": "current-talismandrake-heat-pendulum-restriction-no-departure.json",
+      "artifact_sha256": "8d0429666c6686bfc06f82d0016fd2fc1381d0db1f5578b83db5c7f201d0aa99"
+    },
+    {
+      "control": "no-ordinary",
+      "expected_failures": [
+        4
+      ],
+      "artifact": "current-talismandrake-heat-pendulum-restriction-no-ordinary.json",
+      "artifact_sha256": "3c3dc04e0f5307b2ba7214a3a9c484c4574475551ed66f11f32fb559848eae32"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_talismandrake_heat_pendulum_restriction.cjs": "ffb0ef84a48c407bbcdd1fda8e82cc05d1d1919ce60bb5beccf59e931c1a4160",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210506870.lua": "8a6d1e9cfbc774b26a949aec98558659ca956846dd767b78ff7be09fb4037606",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "scope": "Production preSS capacity guard preserves actual ContinuousTrap when nativeCL2 fills all MZONE; seven cases/fourcontrols, no adapters/fullcard certification",
+  "baseline_cases": 7,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-morbydrip-revival-capacity-repaired.json",
+      "artifact_sha256": "1e0f1d2f8d72d62eb022f6ddb6ec9f372e3fec1cdfbc841b88190994053bfcac",
+      "expected_failures": []
+    },
+    {
+      "control": "no-revive",
+      "artifact": "current-morbydrip-revival-capacity-repaired-no-revive.json",
+      "artifact_sha256": "84623b6ee302c502fb9c8bac298129b52707e6193472f0634f5f3676f2a8aac0",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "control": "no-banish",
+      "artifact": "current-morbydrip-revival-capacity-repaired-no-banish.json",
+      "artifact_sha256": "fff93b2def8073dfed6b822d552eecb11396bf72eadecd359b5a99c5b0b94495",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "control": "no-response",
+      "artifact": "current-morbydrip-revival-capacity-repaired-no-response.json",
+      "artifact_sha256": "9b038508e6a93587bcc5c4b529a92126385f9f123438f002ef7bb0b45a42b567",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "control": "original-capacity",
+      "artifact": "current-morbydrip-revival-capacity-repaired-original-capacity.json",
+      "artifact_sha256": "387def21c20dfab21fdfc66984ad58b9a9e40459f08791a6c3a97f1b7bd5df4b",
+      "expected_failures": [
+        6
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_morbydrip_revival_capacity_repaired.cjs": "d8c2ac952603bae9da2539337a32aff0b8115eb45bade1c5a8d419963570d6c4",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210628767.lua": "3eb2b2ff44a3240a917c606f70203c33c66a69d7447016789ce3d3b194e4ede6",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

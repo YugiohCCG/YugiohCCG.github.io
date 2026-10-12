@@ -1,0 +1,53 @@
+{
+  "scope": "Full current initial-field Lapsix actual neutral MoveToField SZONE/type change to Continuous Trap, native printed Quick draw retained Trap; draw restriction/empty Deck/nonTrap exclusion. No adapters. Source initially field not properly Synchro summoned, so positive optional revival/native Synchro arrival remain unverified.",
+  "baseline_cases": 4,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_gravinity_lapsix_trap_draw.cjs": "1fe1d2b7dfb31718fa90669753f1c45703b94b57e0d4e3afde45dde5a297a2d4",
+    "scripts/fresh_current_gravinity_lapsix_trap_draw_batch.py": "483d3a6adc3562d09bf826f1d7388f49bf3fa495446cf6d31f4cfc809bbb5e5e",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c212345347.lua": "5ba1398b3e0a3fae63e6caa966d97cbf295ac7f0f9a1c2ab50ec54527daa448b",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-gravinity-lapsix-trap-draw.json",
+      "artifact_sha256": "01cf5f0ba19e1de59a0505cceec810b213a1b6f33ae8039bc955ee194b5cb850"
+    },
+    {
+      "control": "no-draw",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-gravinity-lapsix-trap-draw-no-draw.json",
+      "artifact_sha256": "b8f1970e5562138280573b08a97c4040fab7f49ebb89a43094b4ea20aa9a2c30"
+    },
+    {
+      "control": "no-lock",
+      "expected_failures": [
+        1
+      ],
+      "artifact": "current-gravinity-lapsix-trap-draw-no-lock.json",
+      "artifact_sha256": "45da452f5b6dac689d85cfb86e8818d33b11cdd4a6148da606026a649d1b7262"
+    },
+    {
+      "control": "allow-type",
+      "expected_failures": [
+        2
+      ],
+      "artifact": "current-gravinity-lapsix-trap-draw-allow-type.json",
+      "artifact_sha256": "c47aa18b37c032241b0191f0edcc3f6db05c876dc5bbce831461777d5db1eb78"
+    }
+  ]
+}

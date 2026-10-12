@@ -1,0 +1,49 @@
+{
+  "scope": "Full production Talismandrake Heat actual native Hand summon with neutral own faceup DARK Pyro prerequisite; facedown/wrongrace/wrongattribute/opponent-only/no-resource/fullzone/playerSSlock exclusions. No adapters; Pendulum/equipATK/Fusion/shareduses/fullcard OPEN",
+  "baseline_cases": 8,
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-talismandrake-heat-hand-summon.json",
+      "artifact_sha256": "570ca7a27d289048da15d0262f02cf3ea46395288ee5cb4e461c46738c9967c3"
+    },
+    {
+      "control": "no-summon",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-talismandrake-heat-hand-summon-no-summon.json",
+      "artifact_sha256": "2a78187b4d20f7906d4ca72bd1472f4d0192230c38d4c0af09b96f6768cb9c17"
+    },
+    {
+      "control": "no-condition",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "artifact": "current-talismandrake-heat-hand-summon-no-condition.json",
+      "artifact_sha256": "1afd69479bb590a76101c66fa5343073e042328debab05bd74deb918fa7f9b80"
+    },
+    {
+      "control": "no-lock",
+      "expected_failures": [
+        7
+      ],
+      "artifact": "current-talismandrake-heat-hand-summon-no-lock.json",
+      "artifact_sha256": "779b607a8972cbda4dc9592f2eadd72349c176bd4b9ab461056b86340a0ca1e6"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_talismandrake_heat_hand_summon.cjs": "73f2310a5200bf033bd06e5bd0ce1ae25d58f3099775da6d80aee2c948a062aa",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210506870.lua": "8a6d1e9cfbc774b26a949aec98558659ca956846dd767b78ff7be09fb4037606",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

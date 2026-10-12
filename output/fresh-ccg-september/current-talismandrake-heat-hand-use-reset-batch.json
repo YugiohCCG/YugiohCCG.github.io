@@ -1,0 +1,60 @@
+{
+  "scope": "Full production Heat two actual Hand copies shared selfsummon use including native activation/effect negation and actual next-ownturn3 native Hand summons. No adapters/seeded history; remaining printed effects/fullcard OPEN",
+  "baseline_cases": 3,
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-talismandrake-heat-hand-use-reset.json",
+      "artifact_sha256": "7321f0b79fb1617619c1cbcb3d3929cce6a16654331f0cc28ab1ccceae2ea754"
+    },
+    {
+      "control": "no-summon",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-talismandrake-heat-hand-use-reset-no-summon.json",
+      "artifact_sha256": "8f0c133356c20168fa73b7d65adc56534cd586b87a55e0d1b925c628d982d2ea"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        1,
+        2
+      ],
+      "artifact": "current-talismandrake-heat-hand-use-reset-no-response.json",
+      "artifact_sha256": "e4f92e1bed44bdd85aee72f812a156873afaab32f0e8dfbcfcee4146a2b59be6"
+    },
+    {
+      "control": "per-copy",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-talismandrake-heat-hand-use-reset-per-copy.json",
+      "artifact_sha256": "6e1439c68c6df8cbee8afdf6b02b33964f6627aea5f08d4444bf433b519a4cbb"
+    },
+    {
+      "control": "no-reset",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-talismandrake-heat-hand-use-reset-no-reset.json",
+      "artifact_sha256": "3bcae673c38a7772503f2ac713db1d871649cfd195fbc07d450e9df544580055"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_talismandrake_heat_hand_use_reset.cjs": "6ef0035566fcb812f9ed914d44b0f1a5121b04962cc90048f070f269b93beaa2",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210506870.lua": "8a6d1e9cfbc774b26a949aec98558659ca956846dd767b78ff7be09fb4037606",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

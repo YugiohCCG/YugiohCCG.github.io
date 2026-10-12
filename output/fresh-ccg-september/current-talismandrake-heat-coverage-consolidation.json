@@ -1,0 +1,108 @@
+{
+  "card": 210506870,
+  "name": "Talismandrake Heat",
+  "classification": "Partial focused coverage, not full certification",
+  "groups": [
+    {
+      "group": "hand-summon",
+      "path": "current-talismandrake-heat-hand-summon-batch.json",
+      "sha256": "9cb503f9661fc1e29d3b93628278c49e57909c14a699b9040bec8c0d632e807e",
+      "cases": 8,
+      "controls": 3,
+      "fresh": true
+    },
+    {
+      "group": "hand-capacity-repaired",
+      "path": "current-talismandrake-heat-hand-capacity-repaired-batch.json",
+      "sha256": "ece31c87effea56b42669a8569314c11b188f5738c10d45aa589e00f1e5dbb2d",
+      "cases": 7,
+      "controls": 3,
+      "fresh": true
+    },
+    {
+      "group": "hand-use-reset",
+      "path": "current-talismandrake-heat-hand-use-reset-batch.json",
+      "sha256": "d21b2d8db687a0b6f6b904cf8e51dfd2ac03a80941a056686957ffae6808cc1c",
+      "cases": 3,
+      "controls": 4,
+      "fresh": true
+    },
+    {
+      "group": "equip-atk",
+      "path": "current-talismandrake-heat-equip-atk-batch.json",
+      "sha256": "74eebd9e80a7273de27249fd6c525288b3a3d20e6909de5676f615aed9f0c7d5",
+      "cases": 3,
+      "controls": 3,
+      "fresh": true
+    },
+    {
+      "group": "equip-filter",
+      "path": "current-talismandrake-heat-equip-filter-batch.json",
+      "sha256": "e1aae7abfb65527b2c163cf97c9bea3903f2d6177e94842dffdc93956f8b2bfb",
+      "cases": 5,
+      "controls": 5,
+      "fresh": true
+    },
+    {
+      "group": "pendulum-recycle",
+      "path": "current-talismandrake-heat-pendulum-recycle-batch.json",
+      "sha256": "f39d4fda99d9f9ca7fa16b059229ad98054f8ae90ed5e8e66e18dbe7138028c0",
+      "cases": 9,
+      "controls": 4,
+      "fresh": true
+    },
+    {
+      "group": "pendulum-use-reset",
+      "path": "current-talismandrake-heat-pendulum-use-reset-batch.json",
+      "sha256": "2a655956e88b9e692f26275daca927aba304926b8793e7c7036b8365687053bf",
+      "cases": 3,
+      "controls": 5,
+      "fresh": true
+    },
+    {
+      "group": "pendulum-restriction",
+      "path": "current-talismandrake-heat-pendulum-restriction-batch.json",
+      "sha256": "07e6b503ef42052316079bfb899d33b714959fb57fb5ff0b2639c5205d018c9d",
+      "cases": 5,
+      "controls": 4,
+      "fresh": true
+    }
+  ],
+  "baseline_cases": 43,
+  "printed_clause_evidence": {
+    "Pyro-only Pendulum restriction": [
+      "pendulum-restriction"
+    ],
+    "GY DARK Pyro Fusion return Extra and source Hand": [
+      "pendulum-recycle",
+      "pendulum-use-reset"
+    ],
+    "equipped archetype SpellTrap attack gain": [
+      "equip-atk",
+      "equip-filter"
+    ],
+    "Hand SS if own DARK Pyro": [
+      "hand-summon",
+      "hand-capacity-repaired",
+      "hand-use-reset"
+    ]
+  },
+  "open_requirements": [
+    "Full Fusion summon and actual material/procedure proof; publicengine IsFusionAttribute/GetMustMaterial compatibility",
+    "Fusion Chain Material branch, interruptions, shared use/reset",
+    "Cross-effect independent uses",
+    "Pendulum restriction opponent scope/disable/source departure",
+    "Pendulum recycle source departure nativeOmega interpretation",
+    "Native Omega and full printed-effect certification"
+  ],
+  "fusion_diagnostic": {
+    "path": "current-talismandrake-heat-fusion-compatibility-checkpoint.json",
+    "sha256": "ea1ceafc0fae9892913e1ca76f275aeb7ae8454460f78c60b34e54c799750ee0"
+  },
+  "next_card": {
+    "passcode": 210628767,
+    "name": "Morbydrip the Crewal Whale",
+    "status": "syntax_pass",
+    "script_sha256": "93f76ea2babe13b4cb64649a3105c2de816b57136cd7af1421904f5dcc400204"
+  }
+}

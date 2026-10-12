@@ -1,0 +1,62 @@
+(node:30728) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL {}: stack traceback:
+	[string "procedure.lua"]:2275: in field 'MustMaterialCheck'
+	[string "procedure.lua"]:976: in local 'f'
+	[string "utility.lua"]:1202: in function <[string "utility.lua"]:1196>
+	[C]: in method 'IsExists'
+	[string "utility.lua"]:1203: in field 'CheckGroupRecursive'
+	[string "utility.lua"]:1241: in function <[string "utility.lua"]:1230>
+	(...tail calls...)
+	[C]: in method 'CheckFusionMaterial'
+	[string "c210506870.lua"]:110: in function <[string "c210506870.lua"]:107>
+	[C]: in field 'IsExistingMatchingCard'
+	[string "c210506870.lua"]:116: in function <[string "c210506870.lua"]:112>; [string "procedure.lua"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:
+	[string "procedure.lua"]:2275: in field 'MustMaterialCheck'
+	[string "procedure.lua"]:976: in local 'f'
+	[string "utility.lua"]:1202: in function <[string "utility.lua"]:1196>
+	[C]: in method 'IsExists'
+	[string "utility.lua"]:1203: in field 'CheckGroupRecursive'
+	[string "utility.lua"]:1241: in function <[string "utility.lua"]:1230>
+	(...tail calls...)
+	[C]: in method 'CheckFusionMaterial'
+	[string "c210506870.lua"]:110: in function <[string "c210506870.lua"]:107>
+	[C]: in field 'IsExistingMatchingCard'
+	[string "c210506870.lua"]:116: in function <[string "c210506870.lua"]:112>; [string "procedure.lua"]:2275: attempt to call a nil value (field 'GetMustMaterial')
+FAIL {"field":true}: stack traceback:
+	[string "procedure.lua"]:2275: in field 'MustMaterialCheck'
+	[string "procedure.lua"]:976: in local 'f'
+	[string "utility.lua"]:1202: in function <[string "utility.lua"]:1196>
+	[C]: in method 'IsExists'
+	[string "utility.lua"]:1203: in field 'CheckGroupRecursive'
+	[string "utility.lua"]:1241: in function <[string "utility.lua"]:1230>
+	(...tail calls...)
+	[C]: in method 'CheckFusionMaterial'
+	[string "c210506870.lua"]:110: in function <[string "c210506870.lua"]:107>
+	[C]: in field 'IsExistingMatchingCard'
+	[string "c210506870.lua"]:116: in function <[string "c210506870.lua"]:112>; [string "procedure.lua"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:
+	[string "procedure.lua"]:2275: in field 'MustMaterialCheck'
+	[string "procedure.lua"]:976: in local 'f'
+	[string "utility.lua"]:1202: in function <[string "utility.lua"]:1196>
+	[C]: in method 'IsExists'
+	[string "utility.lua"]:1203: in field 'CheckGroupRecursive'
+	[string "utility.lua"]:1241: in function <[string "utility.lua"]:1230>
+	(...tail calls...)
+	[C]: in method 'CheckFusionMaterial'
+	[string "c210506870.lua"]:110: in function <[string "c210506870.lua"]:107>
+	[C]: in field 'IsExistingMatchingCard'
+	[string "c210506870.lua"]:116: in function <[string "c210506870.lua"]:112>; [string "procedure.lua"]:2275: attempt to call a nil value (field 'GetMustMaterial')
+FAIL {"heatMaterial":true}: stack traceback:
+	[string "procedure.lua"]:2275: in field 'MustMaterialCheck'
+	[string "procedure.lua"]:976: in local 'f'
+	[string "utility.lua"]:1202: in function <[string "utility.lua"]:1196>
+	[C]: in method 'IsExists'
+	[string "utility.lua"]:1203: in field 'CheckGroupRecursive'
+	[string "utility.lua"]:1241: in function <[string "utility.lua"]:1230>
+	(...tail calls...)
+	[C]: in method 'CheckFusionMaterial'
+	[string "c210506870.lua"]:110: in function <[string "c210506870.lua"]:107>
+	[C]: in field 'IsExistingMatchingCard'
+	[string "c210506870.lua"]:116: in function <[string "c210506870.lua"]:112>; [string "procedure.lua"]:2275: attempt to call a nil value (field 'GetMustMaterial')
+PASS {"wrongRace":true}
+PASS {"absent":true}

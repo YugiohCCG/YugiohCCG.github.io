@@ -1,0 +1,56 @@
+{
+  "scope": "Full current initial-field Regissae actual paid Quick negate; native ATK modifier suppressed through ownturn3 with source retained/banished, native target Hand departure/actual SS reentry restores modifier. Neutral ignition/targets, no adapters. Link/Omega/fullcard gaps open.",
+  "baseline_cases": 3,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_altergeist_regissae_negate_persistence.cjs": "73d9f755a871d19b69c371bc66eb57832129eb169efbd5d796c6773ca7e0ce7f",
+    "scripts/fresh_current_altergeist_regissae_negate_persistence_batch.py": "3962d81339b8786a73791e1fe47a01f386ffb0cba95e3c097dcd8c5b6b0faacb",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c211873618.lua": "78315401791405319c80560b861be03f36581585ea73827c2c45b396d7a3c5ac",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-altergeist-regissae-negate-persistence.json",
+      "artifact_sha256": "fb554557de08d9dab737ae3bba6103e5085375bc82e1c85ef07ae08dc1e30b33"
+    },
+    {
+      "control": "end-phase",
+      "expected_failures": [
+        0,
+        1
+      ],
+      "artifact": "current-altergeist-regissae-negate-persistence-end-phase.json",
+      "artifact_sha256": "0c1e6340556fb99a9f225b2129da13cab69b334af8a0df6c33ce2a3daa95f349"
+    },
+    {
+      "control": "no-reset",
+      "expected_failures": [
+        2
+      ],
+      "artifact": "current-altergeist-regissae-negate-persistence-no-reset.json",
+      "artifact_sha256": "a2b4474ce91aa3786e5d7fd3458e888c91da20420dbcb53d0e24593fe933bfc5"
+    },
+    {
+      "control": "no-disable",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-altergeist-regissae-negate-persistence-no-disable.json",
+      "artifact_sha256": "74507e0c9e7647f7fde615ba73d47d7237528f4a2d75fd6b4491130c1af5da30"
+    }
+  ]
+}

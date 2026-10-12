@@ -1,5 +1,6 @@
 // src/utils/filters.ts
 import type { Card } from "../types/card";
+import { cardMemberships } from "./memberships";
 
 export type Query = {
   q?: string;
@@ -75,6 +76,7 @@ const hasAny = (hay: string[] = [], needles: string[] = []) => {
 
 const archetypesFrom = (card: any): string[] => {
   const values = [
+    ...cardMemberships(card),
     card?.archetype,
     ...(Array.isArray(card?.archetypes) ? card.archetypes : []),
     ...(Array.isArray(card?.treatedAs) ? card.treatedAs : []),

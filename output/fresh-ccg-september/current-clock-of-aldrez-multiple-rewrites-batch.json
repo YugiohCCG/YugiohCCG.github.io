@@ -1,0 +1,45 @@
+{
+  "scope": "Native CL1 opponentSpell/CL2 own fullClock paidtribute/CL3 ownQuickplaySpell/CL4 opponent fullClock paidtribute. Both real ownXyzGY and both full cards transferred opposite controller; both originalSpell operations suppressed. Shared script state tested at real legal interleaving, no seeded counts/adapters/fullcard certification",
+  "baseline_cases": 1,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-clock-of-aldrez-multiple-rewrites.json",
+      "artifact_sha256": "4b64ca17bc86533b58c22ffd68072a122d0ab578a3675282188ff8277e42956d",
+      "expected_failures": []
+    },
+    {
+      "control": "no-rewrite",
+      "artifact": "current-clock-of-aldrez-multiple-rewrites-no-rewrite.json",
+      "artifact_sha256": "6fd6ed61bd885382a50db8d76c6c09d689da6f2aed2c4288641ea9f01aa8f914",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "control": "no-summon",
+      "artifact": "current-clock-of-aldrez-multiple-rewrites-no-summon.json",
+      "artifact_sha256": "0c846f6b1fddfe644b20f63ba054f50e6e27f83f0ad314489c0a984b34299596",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "control": "no-inner-spell",
+      "artifact": "current-clock-of-aldrez-multiple-rewrites-no-inner-spell.json",
+      "artifact_sha256": "51734317d240df5f43af7df8c2fab165b691ae9ca00e638d3fc41cdefa1853a2",
+      "expected_failures": [
+        0
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_clock_of_aldrez_multiple_rewrites.cjs": "d78a733484ab7bb97a4df21ad58644ef64e4dc434db4a92aebe8b6cdabe1bedc",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210716547.lua": "1b9bd3c4847c58bf60a86b505aaf53e6b2f9aab7565babd63263783ae4a833f4",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

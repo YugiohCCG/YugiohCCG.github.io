@@ -1,0 +1,71 @@
+{
+  "scope": "Full production Heat two actual native Pendulum placements/full PyreGYcopies, shared named recycle use including native activation/effect negation and actual next-ownturn3 targetExtra/sourceHand returns. No adapters/seeded history; fullcard OPEN",
+  "baseline_cases": 3,
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-talismandrake-heat-pendulum-use-reset.json",
+      "artifact_sha256": "b3bbe598c6cd4e87946ac19413a65c9c401b4594ff336170c4ce66acc353080c"
+    },
+    {
+      "control": "no-extra",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-talismandrake-heat-pendulum-use-reset-no-extra.json",
+      "artifact_sha256": "53ee2c36d533168469a54df3b76d0912c67ab2565538ee2f11b40a973e312daf"
+    },
+    {
+      "control": "no-hand",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-talismandrake-heat-pendulum-use-reset-no-hand.json",
+      "artifact_sha256": "e3f1f798d39be82f4b57d58238ca854a5e17c37a8767c41466a0bde9617ca3e2"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        1,
+        2
+      ],
+      "artifact": "current-talismandrake-heat-pendulum-use-reset-no-response.json",
+      "artifact_sha256": "0436cf264fbbd83b1c840256ddeeceec697250a875ee54bf6bae56ad3d521984"
+    },
+    {
+      "control": "per-copy",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-talismandrake-heat-pendulum-use-reset-per-copy.json",
+      "artifact_sha256": "ca3c0fdfc575d817e637b1df60f599b363a9eb7bcb76bf36533e11ba320f4d63"
+    },
+    {
+      "control": "no-reset",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-talismandrake-heat-pendulum-use-reset-no-reset.json",
+      "artifact_sha256": "d0e4bd9f61cf55916b95261f727455ca76d4a478412b076234527d421fc4aa9c"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_talismandrake_heat_pendulum_use_reset.cjs": "30ac7d2646d73d977076cb11e5828b6eec6554830bff870a73c21900a9d99e6a",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210506870.lua": "8a6d1e9cfbc774b26a949aec98558659ca956846dd767b78ff7be09fb4037606",
+    "public/CCG Downloads/CCG_Scripts/c227362839.lua": "be1dfa27843c22abf315f555237c42beae192907e7b81c681a443f9e6d2ff5f4",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

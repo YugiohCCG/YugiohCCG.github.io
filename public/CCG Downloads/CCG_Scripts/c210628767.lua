@@ -52,6 +52,7 @@ function s.moveincolumn(c,tp,seq)
 	local sq=c:GetControler()==p and col or 4-col
 	local oc=Duel.GetFieldCard(p,LOCATION_SZONE,sq)
 	if oc then Duel.Destroy(oc,REASON_EFFECT) end
+	if Duel.GetFieldCard(p,LOCATION_SZONE,sq) then return false end
 	if Duel.GetLocationCount(p,LOCATION_SZONE)<=0 or not Duel.MoveToField(c,tp,p,LOCATION_SZONE,POS_FACEUP,true) then return false end
 	Duel.MoveSequence(c,sq)
 	return true
@@ -87,7 +88,7 @@ function s.epfilter(c)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not c:IsRelateToEffect(e) or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end
+	if not c:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,2))
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)

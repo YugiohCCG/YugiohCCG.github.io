@@ -1,0 +1,47 @@
+{
+  "scope": "Cassiopeia current metadata: native Galactica membership/Normal type/printed stats in Hand Deck GY banishment face-up field; actual Normal Summon and Normal Set. Neutral inspection Spell. No API adapters. Native Omega and interactions unverified",
+  "baseline_cases": 2,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_cassiopeia_normal.cjs": "a5b69fa43b877d685c812cdc295972ad80621c1d0c2ea50b6a4a664d6f127546",
+    "scripts/fresh_current_cassiopeia_normal_batch.py": "2c74c39758510ea80f4dfbb6b2ea3079a4d7adbee22e662c4ca97e9ecb93d0cf",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c212377618.lua": "a8c393023f3689c77171a3c55b4b76b1d0977ff5781df41deafc7a12c1897011",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-cassiopeia-normal.json",
+      "artifact_sha256": "7cf9124a1590de7d42efd92c61e2ec0cff988ab3f83c8633e5deb2c7953d66dc"
+    },
+    {
+      "control": "no-membership",
+      "expected_failures": [
+        0,
+        1
+      ],
+      "artifact": "current-cassiopeia-normal-no-membership.json",
+      "artifact_sha256": "012c2d166f6f7b06f67c01cd403aab43fd8c97e43dbddb95161c53e297152dbe"
+    },
+    {
+      "control": "wrong-type",
+      "expected_failures": [
+        0,
+        1
+      ],
+      "artifact": "current-cassiopeia-normal-wrong-type.json",
+      "artifact_sha256": "930f170aab241e2a80f93079991d85bb43b98cd89303a6a77b35aa558e50bd79"
+    }
+  ]
+}

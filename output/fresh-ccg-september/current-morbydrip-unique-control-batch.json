@@ -1,0 +1,39 @@
+{
+  "scope": "Full unique-control restriction with two own full Hand copies and actual own native SS; optional actual opposing full native SS first. Neutral helper target uses native CanSS; second own summon offer excluded. No seeded arrival/history or adapters/fullcard certification",
+  "baseline_cases": 2,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-morbydrip-unique-control.json",
+      "artifact_sha256": "80cf93cff25e37c473133201652ec1698ae5839669bee80b5f43f042716ff6b5",
+      "expected_failures": []
+    },
+    {
+      "control": "no-summon",
+      "artifact": "current-morbydrip-unique-control-no-summon.json",
+      "artifact_sha256": "7046d814c7e2be08e68943ba1ba0ea75e5630f599d9b2cf65cccc9e474529339",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "control": "no-unique",
+      "artifact": "current-morbydrip-unique-control-no-unique.json",
+      "artifact_sha256": "03a29f62d0b691e70a2b42d1e1e4c1421feeee41fade4a7096431a7debec1f25",
+      "expected_failures": [
+        0,
+        1
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_morbydrip_unique_control.cjs": "9620a20b179bfa177f2bd44409c68dddaf86c83daeac150824eaf86573865668",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210628767.lua": "3eb2b2ff44a3240a917c606f70203c33c66a69d7447016789ce3d3b194e4ede6",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

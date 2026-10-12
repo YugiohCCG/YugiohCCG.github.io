@@ -1,0 +1,49 @@
+{
+  "scope": "Full production native printed summon placement branch, no adapters; remaining revival/EndPhase/limits/ExtraMonster columns/nativeOmega OPEN",
+  "baseline_cases": 6,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-morbydrip-placement-interruption.json",
+      "artifact_sha256": "75c759a38d51d7293dd6a7d29fd7f449ce228efa8a396dd1c8d58cd7699638df",
+      "expected_failures": []
+    },
+    {
+      "control": "no-placement",
+      "artifact": "current-morbydrip-placement-interruption-no-placement.json",
+      "artifact_sha256": "1c112dd6e8b35d2f4de60f7dd3fa9bc417b177552ecaff924e13f5d9be02fd53",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "control": "no-type",
+      "artifact": "current-morbydrip-placement-interruption-no-type.json",
+      "artifact_sha256": "68df639804901a476351db2be66790b5c47c2a3a88b63067cb3c2a2268e571c5",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "control": "no-response",
+      "artifact": "current-morbydrip-placement-interruption-no-response.json",
+      "artifact_sha256": "fb7f44d5a26d5acb95089c87c0f13d9289b7bd3b1c58215974151ec6b3324643",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_morbydrip_placement_interruption.cjs": "bb34f15feb915329f09ef046d944586bf67312eb51276ebd8090794c522b1621",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210628767.lua": "17b59ca28687628d8c6186d2d82d921b99508b4d4a945884fe2e4268291432d2",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

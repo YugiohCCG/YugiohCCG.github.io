@@ -1,0 +1,20 @@
+{
+  "card": 210716547,
+  "name": "Clock of Aldrez",
+  "printed_text": "If this card is Normal or Special Summoned: You can send 1 \"Aldrez\" card from your Deck to your GY. When your opponent activates a Spell/Trap Card or effect while this card is in your hand or face-up on your field (Quick Effect): You can Tribute this card; the activated effect becomes \"Send 1 face-up Xyz Monster your opponent controls to the GY\", then Special Summon this card from your GY to your opponent's field (with its effects negated), also, you cannot activate monster effects on the field until the end of this turn, except \"Aldrez\" monsters. You can only use each effect of \"Clock of Aldrez\" once per turn.",
+  "source_sha256": "1b9bd3c4847c58bf60a86b505aaf53e6b2f9aab7565babd63263783ae4a833f4",
+  "database_sha256": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+  "classification": "Printed/source inspection only, not focused evidence or certification",
+  "requirements": [
+    "Normal/Special Summon actual own Aldrez DeckGY; eligibility/native locks and optional decline",
+    "Opponent SpellTrap card/effect trigger vs own/monster, Hand and faceupField ranges",
+    "Actual tribute cost Hand/field and costlocks; paid cost negation/resource movement",
+    "Native rewrite original SpellTrap targets/operation: opponent selects own faceupXyz and actual SendGY; original operation suppressed",
+    "Actual source GYtoopponentMZONE with effects negated, native locks/capacity/NC",
+    "NonAldrez own fieldmonster activation restriction regardless SS success, Aldrez/Hand/opponent unaffected; actual EndPhase reset",
+    "Each named use shared across copies, actual successful/negated use and turn reset",
+    "Multiple simultaneous rewrite links and both-player copies: source uses shared s.rewrite_card/player; possible overwrite probe, not inferred defect"
+  ],
+  "next_action": "Batch full printed summon-trigger DeckGY eligibility then native SpellTrap rewrite integration.",
+  "full_card_audit": "OPEN"
+}

@@ -1,0 +1,65 @@
+{
+  "scope": "Full current Regissae initially MZONE/banishment, actual native effect SendGY and GY Trap setting. Neutral removal Spell/targets, no adapters. Initial source does not prove native Link arrival; Link procedure GetMustMaterial/native Omega and other effect gaps open.",
+  "baseline_cases": 5,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_altergeist_regissae_set.cjs": "0f472481c1b239e13267777e782bc8e0838b89f37f9a6cc26e51eb7eb49abc3a",
+    "scripts/fresh_current_altergeist_regissae_set_batch.py": "0ec4848ef463da7194aa772f5d61eba2b1b6864f8cea0dfecfb99e00b5589b11",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c211873618.lua": "78315401791405319c80560b861be03f36581585ea73827c2c45b396d7a3c5ac",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-altergeist-regissae-set.json",
+      "artifact_sha256": "1077093c36e600a2c49b975ef5f18d69ba18f0cde4d98dcf32994397120a6f83"
+    },
+    {
+      "control": "no-set",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-altergeist-regissae-set-no-set.json",
+      "artifact_sha256": "3cb7d9c1f080822ba9cfb3a88140fb9b613c9d588c0d30f37b43ed4f7008b5fe"
+    },
+    {
+      "control": "allow-set",
+      "expected_failures": [
+        1
+      ],
+      "artifact": "current-altergeist-regissae-set-allow-set.json",
+      "artifact_sha256": "afb53814291cb28b4364623aa7b5cca41f85f0386a4bf0880007a3595c42acd0"
+    },
+    {
+      "control": "allow-type",
+      "expected_failures": [
+        2
+      ],
+      "artifact": "current-altergeist-regissae-set-allow-type.json",
+      "artifact_sha256": "15e4c474b8c1e4d5e7b42e26eff15baf5c6bf0c13a088516d9f44f18ae7e994f"
+    },
+    {
+      "control": "no-removal",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "artifact": "current-altergeist-regissae-set-no-removal.json",
+      "artifact_sha256": "df0343f7ed25c9de500c32908569275a6077786bcbacd735893a2928f5daedeb"
+    }
+  ]
+}

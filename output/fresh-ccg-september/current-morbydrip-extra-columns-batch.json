@@ -1,0 +1,48 @@
+{
+  "scope": "Full Morbydrip actual Hand SS/targeted placement of neutral originalFusion initially occupying opponent ExtraMonster seq5/6; corresponding owner SZONE1/3 and actual ContinuousTrap type. Target Extra arrival is initial fixture state, not native Fusion arrival proof. No adapters/fullcard certification",
+  "baseline_cases": 2,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-morbydrip-extra-columns.json",
+      "artifact_sha256": "e5ce39697905406cd26ee327b917769e873e0822124053ba4a2a0ad96f02f57b",
+      "expected_failures": []
+    },
+    {
+      "control": "no-placement",
+      "artifact": "current-morbydrip-extra-columns-no-placement.json",
+      "artifact_sha256": "1e9909205f14b6dad076ac106d45eac271eef204f72f1fb2381c8a4974ae01e8",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "control": "no-type",
+      "artifact": "current-morbydrip-extra-columns-no-type.json",
+      "artifact_sha256": "5d5f64cb3b9ac5d17f4cc172104eaa976f3b98153711ae8b37bc0a492ae9416c",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "control": "wrong-column",
+      "artifact": "current-morbydrip-extra-columns-wrong-column.json",
+      "artifact_sha256": "09f532bb182223fe1715385d4b3be29ffe37e56b6461749c45d3c34e259abde6",
+      "expected_failures": [
+        0,
+        1
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_morbydrip_extra_columns.cjs": "8c4cb71f8f85991927c9dfdb08fe17045bd52c5913b4cd74873214a0a501fc80",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210628767.lua": "3eb2b2ff44a3240a917c606f70203c33c66a69d7447016789ce3d3b194e4ede6",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

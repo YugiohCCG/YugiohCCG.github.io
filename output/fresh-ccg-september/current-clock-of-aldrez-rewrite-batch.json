@@ -1,0 +1,54 @@
+{
+  "scope": "Full actual opponent Spell/native Clock Hand or field tribute/ownfaceupXyzGY/opponentSS/accepted source summon trigger nativeCHAIN_DISABLED, archetypeDeckresource retained. No adapters/production edit/fullcard certification",
+  "baseline_cases": 2,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-clock-of-aldrez-rewrite.json",
+      "artifact_sha256": "9338c702d0188ef9e09f71a393746eec024b2004904670f93cac85e8ae44d6f8",
+      "expected_failures": []
+    },
+    {
+      "control": "no-rewrite",
+      "artifact": "current-clock-of-aldrez-rewrite-no-rewrite.json",
+      "artifact_sha256": "7bb5b364e78b3f3b7d57bd7c55a06ed34916973dccded87234568ff17529535e",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "control": "no-summon",
+      "artifact": "current-clock-of-aldrez-rewrite-no-summon.json",
+      "artifact_sha256": "aea12803b73803eb949ea98dc1e06a450a7107c8f09a6527b0c1632e1f0c82e8",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "control": "no-disable",
+      "artifact": "current-clock-of-aldrez-rewrite-no-disable.json",
+      "artifact_sha256": "f08802769dfa53235627b4fd9b3dd8ece4534a9b4c305ec28e6c14ae828c3766",
+      "expected_failures": [
+        0,
+        1
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_clock_of_aldrez_rewrite.cjs": "db801d953a4f57a1ffbf1aac9a63aa3546517865c20d75134edb2449f1d9b70e",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210716547.lua": "1b9bd3c4847c58bf60a86b505aaf53e6b2f9aab7565babd63263783ae4a833f4",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  },
+  "correction": "Prior optional-trigger-offer exclusion and Card.IsDisabled status were insufficient evidence for printed effect negation. Accepted real effect resolves negated; suspected disable defect withdrawn.",
+  "independent_disable_control": {
+    "artifact": "current-clock-native-disable-positive-control.json",
+    "artifact_sha256": "42b05b90538277237b6c691c01846e98453c9a42be75b93fd4a8defe54ff3ad9",
+    "harness_sha256": "a0d4bb3effd577970d9c18fbce37dec5a6807faaab82062380d163536c16d543"
+  }
+}

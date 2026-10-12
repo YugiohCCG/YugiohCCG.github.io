@@ -1,0 +1,48 @@
+{
+  "scope": "Both full printed effects actual same ownturn1 in both orders; full HandSS/Decksend and actual opponentQuickplay/tribute/rewrite/XyzGY/transfer. Aldrez neutral summon helper respects native restriction. No seeded history/adapters/fullcard certification",
+  "baseline_cases": 2,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-clock-of-aldrez-effect-independence.json",
+      "artifact_sha256": "367b95122fa44365130974df1a91fd75e745274cd94493283daf47f43c836f78",
+      "expected_failures": []
+    },
+    {
+      "control": "no-rewrite",
+      "artifact": "current-clock-of-aldrez-effect-independence-no-rewrite.json",
+      "artifact_sha256": "9737328c7321a3b6e6f34ccd07cae2107c6f5751dc08cd5a1a98062ea6f3acb1",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "control": "no-send",
+      "artifact": "current-clock-of-aldrez-effect-independence-no-send.json",
+      "artifact_sha256": "7048499c22309c17bfdddd1010ed77f976d39976eebf2fd5d8f765560966e4ab",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "control": "merged-limit",
+      "artifact": "current-clock-of-aldrez-effect-independence-merged-limit.json",
+      "artifact_sha256": "41203ec7f6d57d1cacc636a78530fe231ab7ac6ff98883d8713c96200ff9e25d",
+      "expected_failures": [
+        0,
+        1
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_clock_of_aldrez_effect_independence.cjs": "9ee768f2f31f4550d4a181555eaf3524936fe313fccebd61571cf280fcafd65b",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210716547.lua": "1b9bd3c4847c58bf60a86b505aaf53e6b2f9aab7565babd63263783ae4a833f4",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "scope": "Full production Heat actual native Hand Pendulum placement then full Pyre227362839 GYtoExtra and sourcePZONEtoHand; wrongrace/attribute/type/opponent/absent/NC/sourceHandlock/targetDecklock eligibility. No adapters or seeded procedure for return; fullcard OPEN",
+  "baseline_cases": 9,
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-talismandrake-heat-pendulum-recycle.json",
+      "artifact_sha256": "b61dd22917eed1a73bfe1b1ef8553aeef998ad06909a1a6fbfd6b17b48451f16"
+    },
+    {
+      "control": "no-extra",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-talismandrake-heat-pendulum-recycle-no-extra.json",
+      "artifact_sha256": "f69052fbc320c6fcbb8e54ef94f173081c20a608568235ca4438c5e9b3b7bacd"
+    },
+    {
+      "control": "no-hand",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-talismandrake-heat-pendulum-recycle-no-hand.json",
+      "artifact_sha256": "b24771d94c6e66cd69c4cce538c0f9da80df00ae16880c991d9eae8f82033a1a"
+    },
+    {
+      "control": "allow-any",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        8
+      ],
+      "artifact": "current-talismandrake-heat-pendulum-recycle-allow-any.json",
+      "artifact_sha256": "18d18df009b378ecb613903482eee9f338ed74f7d9bf0bdc40de68fd8ea8727e"
+    },
+    {
+      "control": "no-lock",
+      "expected_failures": [
+        6,
+        7,
+        8
+      ],
+      "artifact": "current-talismandrake-heat-pendulum-recycle-no-lock.json",
+      "artifact_sha256": "1381a20679b3eb253ea6cafad26132b138198a1937ca2201f05264b59d72c3a6"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_talismandrake_heat_pendulum_recycle.cjs": "4589496ea23fde3e6599685df6c4e9252507dcd5fe87bd4e64bfe3d96ac12fc1",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210506870.lua": "8a6d1e9cfbc774b26a949aec98558659ca956846dd767b78ff7be09fb4037606",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "public/CCG Downloads/CCG_Scripts/c227362839.lua": "be1dfa27843c22abf315f555237c42beae192907e7b81c681a443f9e6d2ff5f4"
+  }
+}

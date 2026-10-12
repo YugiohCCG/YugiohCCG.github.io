@@ -15,7 +15,7 @@ OUTPUT_PATH = ROOT / "src" / "data" / "archetype-catalog.json"
 OUT_OF_SCOPE_ATTRIBUTES = {"ELECTRIC", "METAL", "NATURE"}
 QUOTED = re.compile(r'"([^"\n]{1,100})"')
 ARCHETYPE_REFERENCE = re.compile(
-    r'"([^"\n]{1,60})"\s+(?:cards?|monsters?|Spell(?:/Trap)? Cards?|Trap Cards?)',
+    r'"([^"\n]{1,60})"\s+(?:cards?|monsters?|Spell(?:/Trap)?(?: Cards?)?|Trap(?: Cards?)?|Pendulum Monsters?|Ritual Monsters?)',
     re.IGNORECASE,
 )
 TREATED_AS = re.compile(
@@ -76,7 +76,7 @@ def build_catalog(cards: list[dict[str, object]]) -> list[dict[str, object]]:
                 memberships[canonical_name.casefold()] = canonical_name
 
         add(card.get("archetype"))
-        text = str(card.get("text") or "")
+        text = str(card.get("text") or "").replace("“", '"').replace("”", '"')
 
         # A card that explicitly names another CCG card belongs in that card's
         # primary support group. This joins orphan support labels without
@@ -101,11 +101,9 @@ def build_catalog(cards: list[dict[str, object]]) -> list[dict[str, object]]:
     for group_name, indexed_cards in groups.items():
         grouped_cards = list(indexed_cards.values())
         monsters = [card for card in grouped_cards if card.get("category") == "Monster"]
-        # A single card is a card label, not an archetype. Requiring a monster
-        # also guarantees every directory entry has a meaningful key icon.
-        if len(grouped_cards) < 2 or not monsters:
-            continue
-        icon_card = max(monsters, key=lambda card: monster_score(card, group_name))
+        # Named series can have only one custom card or only Spell/Trap support.
+        # Keep them accessible rather than silently dropping their directory links.
+        icon_card = max(monsters or grouped_cards, key=lambda card: monster_score(card, group_name))
         catalog.append(
             {
                 "name": group_name,

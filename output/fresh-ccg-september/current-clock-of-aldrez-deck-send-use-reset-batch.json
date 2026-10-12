@@ -1,0 +1,60 @@
+{
+  "scope": "Two full actual HandSS Clockcopies with first accepted Decksend or actual activation/effectnegation consumes shared use; second actual SS no optionaltrigger despite resources; ownturn3 real departure/GYSS/actual renewed Decksend. No seeded history/counters/adapters/fullcard certification",
+  "baseline_cases": 3,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-clock-of-aldrez-deck-send-use-reset.json",
+      "artifact_sha256": "4d028e011978c658c98d49446f5c04d71ce484f86534ca99039c3999474b4a6b",
+      "expected_failures": []
+    },
+    {
+      "control": "no-send",
+      "artifact": "current-clock-of-aldrez-deck-send-use-reset-no-send.json",
+      "artifact_sha256": "a54ab1c960327e924df72dffc2b225bdfcd80dfe7393ce55f0fdf1f4bfa1b58d",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "control": "per-copy",
+      "artifact": "current-clock-of-aldrez-deck-send-use-reset-per-copy.json",
+      "artifact_sha256": "7c757a50a41ca5e660f98e0bab034ea45c225ccade76dffedb9332111969c7c1",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "control": "no-reset",
+      "artifact": "current-clock-of-aldrez-deck-send-use-reset-no-reset.json",
+      "artifact_sha256": "8ddb923c1c4a1b10261f77e848767b136d4573ef93691efb2ee0154821496587",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "control": "no-response",
+      "artifact": "current-clock-of-aldrez-deck-send-use-reset-no-response.json",
+      "artifact_sha256": "b925314032216f22c5d1e56d0f4df9d3ed0bb5fed1574af576feb206432a010e",
+      "expected_failures": [
+        1,
+        2
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_clock_of_aldrez_deck_send_use_reset.cjs": "d1203ab7b473f3322050c4e253219564988423de7794eeeb9f42deed28a6449e",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210716547.lua": "1b9bd3c4847c58bf60a86b505aaf53e6b2f9aab7565babd63263783ae4a833f4",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

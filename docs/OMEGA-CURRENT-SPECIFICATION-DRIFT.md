@@ -31,7 +31,7 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
   },
   "source_install_mismatches": 0,
   "syntax_stale": 0,
-  "load_stale": 1,
+  "load_stale": 2,
   "current_spec_initialization_rechecks": {
     "total": 90,
     "passed": 63,
@@ -61,6 +61,7 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
 
 | Card | Text mismatches | Metadata differs from public | Evidence stale | Installed script differs |
 |---|---|---|---|---|
+| 210506870 Talismandrake Heat | — | — | load | — |
 | 213611313 Scarstech Crawler | candidate | — | — | — |
 | 217713649 Onibi | candidate | — | — | — |
 | 220305422 Natir, the Swords Master of Crying Chaos | candidate | — | — | — |

@@ -1,0 +1,71 @@
+{
+  "scope": "Production occupied-destination guard; native actual full card SpecialSummon placement and ContinuousTrap type; not fullcard certification",
+  "baseline_cases": 11,
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-morbydrip-placement-repaired.json",
+      "artifact_sha256": "b79b5642724babeab5fbcfaf70e4035731c544a79c61fdcc74a5deff1b8d31f8"
+    },
+    {
+      "control": "no-placement",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        9
+      ],
+      "artifact": "current-morbydrip-placement-repaired-no-placement.json",
+      "artifact_sha256": "f1aefa6d1847a23f5a31ae04d2e483d9e1220a1a96ae3feef6127b4a3955b6ae"
+    },
+    {
+      "control": "no-type",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        9
+      ],
+      "artifact": "current-morbydrip-placement-repaired-no-type.json",
+      "artifact_sha256": "44461a78e6a673d43460a6bb335afa17837191ed259d763c61fddd350774faf2"
+    },
+    {
+      "control": "no-destroy",
+      "expected_failures": [
+        5,
+        7,
+        8
+      ],
+      "artifact": "current-morbydrip-placement-repaired-no-destroy.json",
+      "artifact_sha256": "f682f51e32850b7a866e9d4b3af2879f6863d0316a5749b097dd82309d964715"
+    },
+    {
+      "control": "original-guard",
+      "expected_failures": [
+        6,
+        7,
+        8
+      ],
+      "artifact": "current-morbydrip-placement-repaired-original-guard.json",
+      "artifact_sha256": "7b0a224472c1d3dfb58af1f903c4e2c13b3e56d9e479a8c93cc3f25f6205f999"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_morbydrip_placement_repaired.cjs": "56207cd3c48f2e3bf45e568a83fa54163f3f2e35e0a5040cef5e3fa92d60dd9f",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210628767.lua": "17b59ca28687628d8c6186d2d82d921b99508b4d4a945884fe2e4268291432d2",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

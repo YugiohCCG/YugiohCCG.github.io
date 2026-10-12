@@ -1,0 +1,64 @@
+{
+  "scope": "Full actual revival/EndPhase, both players original monsters/ordinarySpell/opposing full Morbydrip named exclusion/native CannotRemove. Extra resources actually Hand-toSZONE/typechange via neutral helper, no seeded types/adapters/fullcard certification.",
+  "baseline_cases": 2,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-morbydrip-endphase-exclusions.json",
+      "artifact_sha256": "6541189322e845c8a06188e12fdf95a3feba64a3af1128c7204d783b08bb7ad1",
+      "expected_failures": []
+    },
+    {
+      "control": "no-banish",
+      "artifact": "current-morbydrip-endphase-exclusions-no-banish.json",
+      "artifact_sha256": "6b8c236d6a871d3346008a0fb304cebecef4e5fd991e60a82d22521cd4f4f9f5",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "control": "allow-name",
+      "artifact": "current-morbydrip-endphase-exclusions-allow-name.json",
+      "artifact_sha256": "550edace07ee9d8a44e6abf95efe831acac5d67ad3569acd5e7e332800796c74",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "control": "allow-spell",
+      "artifact": "current-morbydrip-endphase-exclusions-allow-spell.json",
+      "artifact_sha256": "a1b8ae881e0930e54a17fc73a638b72e98ca1c1ceb8645c0bd6c61341cf4bf04",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "control": "no-lock",
+      "artifact": "current-morbydrip-endphase-exclusions-no-lock.json",
+      "artifact_sha256": "68a7e766446a77e33d6be7c363e3923677ace0bb03763a1b88793b4fb0ce94a7",
+      "expected_failures": [
+        1
+      ]
+    },
+    {
+      "control": "no-own-side",
+      "artifact": "current-morbydrip-endphase-exclusions-no-own-side.json",
+      "artifact_sha256": "a1b867845d2cbd677b107d70464fdf9be4683ad2a16928c5453d3c1a3ef84c4f",
+      "expected_failures": [
+        0
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_morbydrip_endphase_exclusions.cjs": "aa08a27a216104ce594ee549e8b5314564923c5c2df4230d7c5b439707748330",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210628767.lua": "17b59ca28687628d8c6186d2d82d921b99508b4d4a945884fe2e4268291432d2",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

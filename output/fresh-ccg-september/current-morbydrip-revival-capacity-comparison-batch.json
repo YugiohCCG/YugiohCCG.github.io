@@ -1,0 +1,55 @@
+{
+  "scope": "Seven native full-card revival interruption cases; in-memory MZONE capacity guard diagnostic, not production evidence or repair",
+  "baseline_cases": 7,
+  "runs": [
+    {
+      "artifact": "current-morbydrip-revival-late-capacity.json",
+      "artifact_sha256": "95e551efc810b092119a9383aab849c132dd9c6692cbe55271d75d8564cf6c4d",
+      "expected_failures": [
+        6
+      ]
+    },
+    {
+      "artifact": "current-morbydrip-revival-late-capacity-capacity-guard-comparison.json",
+      "artifact_sha256": "be896de5e0b567351dd0267a4a0bcee19e4425e6a817ace5f52b4b4799b105fc",
+      "expected_failures": []
+    },
+    {
+      "artifact": "current-morbydrip-revival-late-capacity-capacity-guard-comparison-no-revive.json",
+      "artifact_sha256": "44db174c3488acb6df98277eed0c418ebe1e64257a7fc1082a20d740aba64230",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "artifact": "current-morbydrip-revival-late-capacity-capacity-guard-comparison-no-banish.json",
+      "artifact_sha256": "1d1b1f7c0e45f3ee1821fd8fda10aa65623d7b043ed48682c9f97327871610e3",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "artifact": "current-morbydrip-revival-late-capacity-capacity-guard-comparison-no-response.json",
+      "artifact_sha256": "eadd7ccbc6e97db97124b5393923b3c05c5caeb679ed08d5f5ddd2dcf16ec078",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_morbydrip_revival_late_capacity.cjs": "1409bb423bf477db18766fb4c10cf25d55ecef14245b30cc01b773b6ee2322a4",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210628767.lua": "17b59ca28687628d8c6186d2d82d921b99508b4d4a945884fe2e4268291432d2",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  },
+  "defect": "Actual CL2 four DeckSS fills five zones; unmodified native failed SS consumes source ContinuousTrap toGY. In-memory pre-SS space guard retains it, no delayed EndPhase banish.",
+  "next": "Backup both copies, apply minimal space guard, run production focused regressions/mandatory gates and reconcile historical source and existing same-card ledger."
+}
