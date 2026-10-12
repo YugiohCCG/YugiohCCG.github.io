@@ -1,0 +1,59 @@
+{
+  "scope": "DIAGNOSTIC unmodified fullzone case fails Hand retention; minimal hspop capacityguard comparison passes seven cases/two discriminating controls. Not production repair/indexed; full-card open.",
+  "baseline_cases": 7,
+  "runs": [
+    {
+      "flags": [],
+      "expected_failures": [
+        6
+      ],
+      "artifact": "current-talismandrake-heat-hand-interruption.json",
+      "artifact_sha256": "dbda3a6d32b1d254581d62e3d85dffc9f2185ef1c3cef4d010dc423d4eec8ca5"
+    },
+    {
+      "flags": [
+        "--capacity-comparison"
+      ],
+      "expected_failures": [],
+      "artifact": "current-talismandrake-heat-hand-interruption-capacity-comparison.json",
+      "artifact_sha256": "6d85085d2ba31fb7d1b0f44d7fbb01db0903c25733dba2bbbe78e7a964e5c4b3"
+    },
+    {
+      "flags": [
+        "--capacity-comparison",
+        "--no-summon"
+      ],
+      "expected_failures": [
+        0,
+        4
+      ],
+      "artifact": "current-talismandrake-heat-hand-interruption-capacity-comparison-no-summon.json",
+      "artifact_sha256": "64c60bb805202e87e98e1ad176d6f22a88b34b0679ed6a16f7e523d1b1686a08"
+    },
+    {
+      "flags": [
+        "--capacity-comparison",
+        "--no-response"
+      ],
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "artifact": "current-talismandrake-heat-hand-interruption-capacity-comparison-no-response.json",
+      "artifact_sha256": "7e2eea8769f69d4ff5bbc5b032448341a969460ab7fbf0164576758b8f9978cb"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_talismandrake_heat_hand_interruption.cjs": "8fe7b518b99a2c9aabd26957b8741f8b1a2e5390f3e737da3c88ea60b045972a",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210506870.lua": "75e90572fedf94ea98f2d5d71173c0fbd13736765830883419d767334a87af3c",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}
