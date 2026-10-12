@@ -1,0 +1,60 @@
+{
+  "scope": "Full production Scarstech Principality two actual field copies; native source GY costs/destruction shared use incl activation/effect negation, spare fullcopy/archetype partner/opponent resources retained, actual next ownturn3 activation/cost/destruction. No adapters; reciprocal effect independence/fullcard OPEN",
+  "baseline_cases": 3,
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-scarstech-principality-destroy-use-reset.json",
+      "artifact_sha256": "1abfc3c45a28f859911a64e5f028277dcd213bd1c424c69422bf2c56e1f3b181"
+    },
+    {
+      "control": "no-destroy",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-scarstech-principality-destroy-use-reset-no-destroy.json",
+      "artifact_sha256": "f38e94f7c4e0b40cd4e52130405ee98a21b9077c1f065560f5225baaab2a7983"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        1,
+        2
+      ],
+      "artifact": "current-scarstech-principality-destroy-use-reset-no-response.json",
+      "artifact_sha256": "57882e8b5d4122274c5ae4b3883a536cc43e1a8a6e3d6b4f7c23524619f40549"
+    },
+    {
+      "control": "per-copy",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-scarstech-principality-destroy-use-reset-per-copy.json",
+      "artifact_sha256": "8e70393d346ea06f7f9249ded24fb1e86054d9a5eed49d58cd1d419581d5c152"
+    },
+    {
+      "control": "no-reset",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-scarstech-principality-destroy-use-reset-no-reset.json",
+      "artifact_sha256": "9d067076c2cb888cdf1c1a8743117e9e4d605b3ad410fb81ab82907b6db88c7e"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_scarstech_principality_destroy_use_reset.cjs": "543e40d452fb8a0b02927c02f3f91c535aceb168f994a3f97fbbabf3bd038bf2",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210175845.lua": "f989f9c1b1fd2c32f6bddb7e8f05e69b46cec7fb1e90750a301bd89f5878fa0e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

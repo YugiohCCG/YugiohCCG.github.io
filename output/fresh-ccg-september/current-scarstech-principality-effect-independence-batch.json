@@ -1,0 +1,57 @@
+{
+  "scope": "Full production Scarstech Principality same-turn actual destruction-to-GY cost then native CL4 revival and reverse actual revival then destruction-cost order; independent two effects. Native neutral chain builders; no adapters/seeded history; fullcard OPEN",
+  "baseline_cases": 2,
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-scarstech-principality-effect-independence.json",
+      "artifact_sha256": "2ec5122fd672a9b53f23ada5f4ff88f885a3137a28ca17b32d540b12bc0f949c"
+    },
+    {
+      "control": "no-summon",
+      "expected_failures": [
+        0,
+        1
+      ],
+      "artifact": "current-scarstech-principality-effect-independence-no-summon.json",
+      "artifact_sha256": "0fc0387fb6f9cfc9699964464e3d6c39c84dd52b2e60521e537b72b9c61ca5bf"
+    },
+    {
+      "control": "no-destroy",
+      "expected_failures": [
+        0,
+        1
+      ],
+      "artifact": "current-scarstech-principality-effect-independence-no-destroy.json",
+      "artifact_sha256": "0931a0d86d1259ead6f93f4868ab25d3be85b8bb71be35e40cb2a5ec0c41da3f"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        0,
+        1
+      ],
+      "artifact": "current-scarstech-principality-effect-independence-no-cost.json",
+      "artifact_sha256": "da38cea2d3cdb8a45f79626ceff0541a742c8e0f87909fea13bbfa75a5f0d156"
+    },
+    {
+      "control": "merged-limit",
+      "expected_failures": [
+        0,
+        1
+      ],
+      "artifact": "current-scarstech-principality-effect-independence-merged-limit.json",
+      "artifact_sha256": "38877105873c56180ebb8ebc77aba21998e0d3c0613de6c6a35bd7c4dad53ea4"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_scarstech_principality_effect_independence.cjs": "c5b1c297be9e500cab2e8748ef4fdb118cca3ccd92c5689990ad25dbeb8a08a6",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210175845.lua": "f989f9c1b1fd2c32f6bddb7e8f05e69b46cec7fb1e90750a301bd89f5878fa0e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}
