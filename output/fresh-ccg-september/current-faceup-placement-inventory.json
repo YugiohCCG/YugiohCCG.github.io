@@ -32,24 +32,24 @@
     {
       "code": 210628767,
       "path": "public/CCG Downloads/CCG_Scripts/c210628767.lua",
-      "sha256": "93f76ea2babe13b4cb64649a3105c2de816b57136cd7af1421904f5dcc400204",
+      "sha256": "3eb2b2ff44a3240a917c606f70203c33c66a69d7447016789ce3d3b194e4ede6",
       "placements": [
         {
-          "line": 55,
+          "line": 56,
           "function": "moveincolumn",
           "call": "if Duel.GetLocationCount(p,LOCATION_SZONE)<=0 or not Duel.MoveToField(c,tp,p,LOCATION_SZONE,POS_FACEUP,true) then return false end",
-          "context": "\tlocal col=seq\n\tif c:IsLocation(LOCATION_MZONE) and seq>=5 then col=seq==5 and 1 or 3 end\n\tlocal sq=c:GetControler()==p and col or 4-col\n\tlocal oc=Duel.GetFieldCard(p,LOCATION_SZONE,sq)\n\tif oc then Duel.Destroy(oc,REASON_EFFECT) end\n\tif Duel.GetLocationCount(p,LOCATION_SZONE)<=0 or not Duel.MoveToField(c,tp,p,LOCATION_SZONE,POS_FACEUP,true) then return false end\n\tDuel.MoveSequence(c,sq)",
+          "context": "\tif c:IsLocation(LOCATION_MZONE) and seq>=5 then col=seq==5 and 1 or 3 end\n\tlocal sq=c:GetControler()==p and col or 4-col\n\tlocal oc=Duel.GetFieldCard(p,LOCATION_SZONE,sq)\n\tif oc then Duel.Destroy(oc,REASON_EFFECT) end\n\tif Duel.GetFieldCard(p,LOCATION_SZONE,sq) then return false end\n\tif Duel.GetLocationCount(p,LOCATION_SZONE)<=0 or not Duel.MoveToField(c,tp,p,LOCATION_SZONE,POS_FACEUP,true) then return false end\n\tDuel.MoveSequence(c,sq)",
           "references": [
             {
               "line": 48,
               "text": "function s.moveincolumn(c,tp,seq)"
             },
             {
-              "line": 64,
+              "line": 65,
               "text": "local b1=s.moveincolumn(tc,tp,ts)"
             },
             {
-              "line": 65,
+              "line": 66,
               "text": "local b2=s.moveincolumn(c,tp,cs)"
             }
           ],

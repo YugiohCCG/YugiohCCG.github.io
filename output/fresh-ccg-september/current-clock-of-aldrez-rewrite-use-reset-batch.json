@@ -1,0 +1,60 @@
+{
+  "scope": "Two full Hand Clock copies, three actual opponentSpell activations and native first rewrite or activation/effectnegation; second same-turn excludes sparecopy with actual remaining Xyz, later opponentturn4 actual renewed rewrite/tribute/XyzGY/transfer. No seeded count/history/adapters/fullcard certification; reset demonstrated by turn4, not earliest turn3 window.",
+  "baseline_cases": 3,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-clock-of-aldrez-rewrite-use-reset.json",
+      "artifact_sha256": "cf98363589e2ed1c2ad09bbbffc58494470c80d14d8f5d41fb2c989e1ae4ce04",
+      "expected_failures": []
+    },
+    {
+      "control": "no-rewrite",
+      "artifact": "current-clock-of-aldrez-rewrite-use-reset-no-rewrite.json",
+      "artifact_sha256": "303a0b705f65aba30736a537e809a9a16cb366a63fa2d2f40cb958843cb237d3",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "control": "per-copy",
+      "artifact": "current-clock-of-aldrez-rewrite-use-reset-per-copy.json",
+      "artifact_sha256": "0cf9fde2ef4cd5a594c53e133cf5f93dfd76ea92b88b34df33b93d016a6ece9c",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "control": "no-reset",
+      "artifact": "current-clock-of-aldrez-rewrite-use-reset-no-reset.json",
+      "artifact_sha256": "b07260e4abdc0f8b1bec9b69519deadbe4942d4fd21add081d7db91d74c28d4d",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "control": "no-response",
+      "artifact": "current-clock-of-aldrez-rewrite-use-reset-no-response.json",
+      "artifact_sha256": "20d815c022fba402c3650ff2df11a385da3ba850584708f5db48cbe8db643a9b",
+      "expected_failures": [
+        1,
+        2
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_clock_of_aldrez_rewrite_use_reset.cjs": "39099f685c9e729c707368f6e1bdf19b1c9ca876fc6499750f3dae9ab2689ebc",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210716547.lua": "1b9bd3c4847c58bf60a86b505aaf53e6b2f9aab7565babd63263783ae4a833f4",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

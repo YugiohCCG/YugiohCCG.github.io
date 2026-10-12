@@ -1,0 +1,54 @@
+{
+  "scope": "Full native opponentSpell CL1/paid Clock tribute CL2/actual CounterTrap CL3. Negation/Xyz Extra departure/sourcebanish/nativeNC/actual fiveDeckSS late capacity; real source/Xyz finalpositions and originaloperation replacement. No adapters/fullcard certification",
+  "baseline_cases": 7,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-clock-of-aldrez-rewrite-interruption.json",
+      "artifact_sha256": "8d5e78d3ca96b0e174351d2a2f67c39bcafb9f30c372bd6e23c514a5492b603b",
+      "expected_failures": []
+    },
+    {
+      "control": "no-rewrite",
+      "artifact": "current-clock-of-aldrez-rewrite-interruption-no-rewrite.json",
+      "artifact_sha256": "540d65cb7cf1c57d9cc70f5840685c1aa6fe23f151a4612ffe80262d56455d2c",
+      "expected_failures": [
+        0,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "control": "no-summon",
+      "artifact": "current-clock-of-aldrez-rewrite-interruption-no-summon.json",
+      "artifact_sha256": "01756795fd834d3389224ab6bb3b6e0143cc21d76bd0d6c3cec718a89ad43668",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "control": "no-response",
+      "artifact": "current-clock-of-aldrez-rewrite-interruption-no-response.json",
+      "artifact_sha256": "bb1cededf9b77ab5782feee93fc328d9fa67dc1a3e1d41e308c395fcb9626ff8",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_clock_of_aldrez_rewrite_interruption.cjs": "40a8dcf0475c4491c4ba2237f26e6f95a0212229150d2dbece6a6af0fdb79700",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210716547.lua": "1b9bd3c4847c58bf60a86b505aaf53e6b2f9aab7565babd63263783ae4a833f4",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

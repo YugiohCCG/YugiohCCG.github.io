@@ -156,14 +156,23 @@
       "passcode": 210628767,
       "name": "Morbydrip the Crewal Whale",
       "documented_repair_section": "Gemini claim review",
-      "repair": "Map EMZ sequences 5/6 to physical columns 1/3 before moving to owner Spell/Trap Zone; declare destruction category.",
-      "script_sha256": "93f76ea2babe13b4cb64649a3105c2de816b57136cd7af1421904f5dcc400204",
+      "repair": "Map EMZ sequences 5/6 to physical columns 1/3 before moving to owner Spell/Trap Zone; declare destruction category. Additional repair: After destruction attempt, retain monster when required owner SZONE column remains occupied. Prevent generic MoveToField arriving in another column. Eleven native actual full-card Hand SS placement cases/four controls; five columns, destructible/indestructible/both or one-sided occupants, actual borrowed target owner mirrored return and absent target. Native ContinuousTrap type observer, no adapters. Exact-byte both-copy backups morbydrip-before-occupied-column-repair. NormalSummon/interruption/ExtraMonster columns/revival/EndPhase/shareduse/nativeOmega/fullcard OPEN. Additional revival repair: recheck MZONE capacity before native SS so late full zones retain ContinuousTrap rather than consuming it toGY. Seven cases/fourcontrols including original-capacity; seven earlier Morbydrip batches refreshed/preserved. Both-copy byte backups morbydrip-before-revival-capacity-repair.",
+      "script_sha256": "3eb2b2ff44a3240a917c606f70203c33c66a69d7447016789ce3d3b194e4ede6",
       "validation": "gemini-validation.json",
       "validation_sha256": "a52edcbcfba26b48e72c5a945c7fc6066e1f730f20b874ded3d5eb25b61cadea",
       "evidence_type": "Source-reviewed repair; callback regression plus existing focused public-engine tests where available",
       "installed_matches": true,
       "full_card_audit": "OPEN",
-      "native_omega_verified": false
+      "native_omega_verified": false,
+      "source_reconciliation": {
+        "artifact": "morbydrip-source-reconciliation.json",
+        "sha256": "681d11202f70b1fb695abc6c9aaa3512e0cf01c7ab552c8b5c0354966026457d",
+        "scope": "Frozen historical source restored byte-exact by removing occupied-column and revival-capacity guards; current native batches cover new guards, historical callback evidence remains frozen."
+      },
+      "batch": "current-morbydrip-placement-repaired-batch.json",
+      "batch_sha256": "bef418f68c5b68299cbc7f8603aa6b694cb487196cb1fa5c888382a0a72051b8",
+      "additional_batch": "current-morbydrip-revival-capacity-repaired-batch.json",
+      "additional_batch_sha256": "6415aea3eff4b0cbf2d9b7ec062902337ea242bba3d7b09496b543511d5a9b4f"
     },
     {
       "passcode": 215142357,

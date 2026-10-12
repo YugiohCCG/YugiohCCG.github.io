@@ -1,0 +1,60 @@
+{
+  "scope": "Two full own actual Handcopies, first native revival or actual activation/effectnegation consumes shared named use; first copy actually GY before replacement actual SS/placement; second actual qualifying opponent SS offers no revival. Actual ownturn3 qualifying SS revives replacement. No seeded history/types/arrival or adapters, fullcard OPEN",
+  "baseline_cases": 3,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-morbydrip-revival-use-reset.json",
+      "artifact_sha256": "2d2768e7d4b56e7843f102a18058972d3e80dbfcc96e095eae6d09257bfaf09e",
+      "expected_failures": []
+    },
+    {
+      "control": "no-revive",
+      "artifact": "current-morbydrip-revival-use-reset-no-revive.json",
+      "artifact_sha256": "42311ff259bf3a8fa37744c878fb368fad11d84360adca726b773c1c9eaa7d8f",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "control": "per-copy",
+      "artifact": "current-morbydrip-revival-use-reset-per-copy.json",
+      "artifact_sha256": "c2b7f377b0a8e640fcf2343e2a9d9b16b86427a269f45f687414bad528c67cda",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "control": "no-reset",
+      "artifact": "current-morbydrip-revival-use-reset-no-reset.json",
+      "artifact_sha256": "7ffe26cddc3aba5ac3bab5170ea3d020c098183d95f6b9e15fbb53f53390b2fc",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "control": "no-response",
+      "artifact": "current-morbydrip-revival-use-reset-no-response.json",
+      "artifact_sha256": "4f0b096917a446c24b8be364534fdca5234aaaa28a867bb206ad7e2f3fbbbf02",
+      "expected_failures": [
+        1,
+        2
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_morbydrip_revival_use_reset.cjs": "a4b64d75624fc6238b794120039840fac3fa77623d8785ba7486cbd80b828584",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210628767.lua": "3eb2b2ff44a3240a917c606f70203c33c66a69d7447016789ce3d3b194e4ede6",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

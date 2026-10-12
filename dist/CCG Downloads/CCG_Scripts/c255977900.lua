@@ -43,7 +43,7 @@ function s.ctcon(e,tp,eg)
 end
 function s.ctop(e,tp)
 	local c=e:GetHandler()
-	if c:IsFaceup() and c:IsRelateToEffect(e) then c:AddCounter(COUNTER_HALLOWEEN,1) end
+	if c:IsFaceup() then c:AddCounter(COUNTER_HALLOWEEN,1) end
 end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsCanRemoveCounter(tp,COUNTER_HALLOWEEN,3,REASON_COST) end
@@ -58,6 +58,7 @@ function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
+	if not e:GetHandler():IsFaceup() then return end
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,1,nil,e,tp):GetFirst()

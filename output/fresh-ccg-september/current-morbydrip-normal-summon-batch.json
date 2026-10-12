@@ -1,0 +1,47 @@
+{
+  "scope": "Full production native printed summon placement branch, no adapters; remaining revival/EndPhase/limits/ExtraMonster columns/nativeOmega OPEN",
+  "baseline_cases": 3,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-morbydrip-normal-summon.json",
+      "artifact_sha256": "923e2be3e893c1254ef5af47478aa7b7055a6ea7dec2afa1ec912e8bc360ecba",
+      "expected_failures": []
+    },
+    {
+      "control": "no-placement",
+      "artifact": "current-morbydrip-normal-summon-no-placement.json",
+      "artifact_sha256": "02090f03028c3ff9999dcdfa369ef3e680082bce00996d694d70b3d943d376ef",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "control": "no-type",
+      "artifact": "current-morbydrip-normal-summon-no-type.json",
+      "artifact_sha256": "83d5b2553b257d7881890aeeb1ceef0855242daf6e9e227cb28cb394de8794f0",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "control": "no-destroy",
+      "artifact": "current-morbydrip-normal-summon-no-destroy.json",
+      "artifact_sha256": "ef1c09e3d736f49c78777cf2aee347df1a9fe9d1ee143b5fc1fc7e1365b19578",
+      "expected_failures": [
+        1
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_morbydrip_normal_summon.cjs": "1ed5a2dfe9cb7670b17b9f9ed9c093e38cf1a1f27226ecf707aa6fc033db4994",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210628767.lua": "3eb2b2ff44a3240a917c606f70203c33c66a69d7447016789ce3d3b194e4ede6",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

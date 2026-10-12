@@ -1,0 +1,49 @@
+{
+  "scope": "Full actual ContinuousTrap placement/native revival offer/CL2 negation/sourceHand/HandSZONEreturn/lateplayerlock, then actual EndPhase no banish on suppressed revival. No adapters, no completecard certification. Latecapacity/shared-use/ExtraMonstercolumns/nativeOmega OPEN",
+  "baseline_cases": 6,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-morbydrip-revival-interruption.json",
+      "artifact_sha256": "2f8f39b7c9159b647a26ed983913027be85387f63a6fe01b03985b58c4d0db43",
+      "expected_failures": []
+    },
+    {
+      "control": "no-revive",
+      "artifact": "current-morbydrip-revival-interruption-no-revive.json",
+      "artifact_sha256": "f20ed171c329e1a79c8121345d79cb068fe30bd72741eaef504fb9a0893cdd10",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "control": "no-banish",
+      "artifact": "current-morbydrip-revival-interruption-no-banish.json",
+      "artifact_sha256": "16bd4a33038de1d68105665705a9af1ce4a27e1dcc6204d46d742e0233421b40",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "control": "no-response",
+      "artifact": "current-morbydrip-revival-interruption-no-response.json",
+      "artifact_sha256": "08daa2866fb04edc5e7d8ca4e3af37628ff6714e666ee951b26b7703757443d5",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_morbydrip_revival_interruption.cjs": "f154b6072d680ddb5b5ac5cf6b6b63fdcf5ab2aac5dd78625f7072b2500538ab",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210628767.lua": "3eb2b2ff44a3240a917c606f70203c33c66a69d7447016789ce3d3b194e4ede6",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

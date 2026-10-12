@@ -1,0 +1,60 @@
+{
+  "scope": "Full Clock native response to actual Spell or Trap; own/monster activation, ownfaceupXyz/race-type-location/absence/CanGrave, opponent fiveMonsterzones, Hand tribute CannotRelease and facedownsource exclusions. Cost lock is native SINGLE UNRELEASABLE_NONSUM fixture effect added in memory to full source, printed source logic unchanged. Full opponent capacity initial fixture contains neutral monsters. No API adapters/fullcard certification",
+  "baseline_cases": 12,
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-clock-of-aldrez-rewrite-eligibility.json",
+      "artifact_sha256": "a24ce60356f446ec4a9dce7e319a6d399146506f149ba410ba7a7abc333b8d22",
+      "expected_failures": []
+    },
+    {
+      "control": "no-rewrite",
+      "artifact": "current-clock-of-aldrez-rewrite-eligibility-no-rewrite.json",
+      "artifact_sha256": "f1b57e89594b95dc25ca4e292ee01e84c753d9e1b5f3c6d00b9c431dc7b3cf53",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "control": "allow-condition",
+      "artifact": "current-clock-of-aldrez-rewrite-eligibility-allow-condition.json",
+      "artifact_sha256": "99acaa6daac098fdc5b3a536d0dec68f610d49bee8a6f56d689cd23c58b4ee16",
+      "expected_failures": [
+        2,
+        3
+      ]
+    },
+    {
+      "control": "allow-xyz",
+      "artifact": "current-clock-of-aldrez-rewrite-eligibility-allow-xyz.json",
+      "artifact_sha256": "39e6d3e2255e0bb725364dfb39b67b5b3f09b4304cf74c36c26f7079075be200",
+      "expected_failures": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "control": "no-lock",
+      "artifact": "current-clock-of-aldrez-rewrite-eligibility-no-lock.json",
+      "artifact_sha256": "51c71e24d6555b1ef5e841f1a828a2bd75653e975bb2f62bc2e7ae4298127919",
+      "expected_failures": [
+        8,
+        10
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_clock_of_aldrez_rewrite_eligibility.cjs": "9102df2e61b2ca5e89b6b7dd515b3636bb0668dcaa64c54df12065872602ed77",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210716547.lua": "1b9bd3c4847c58bf60a86b505aaf53e6b2f9aab7565babd63263783ae4a833f4",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

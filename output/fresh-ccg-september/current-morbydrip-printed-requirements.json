@@ -1,0 +1,66 @@
+{
+  "card": 210628767,
+  "name": "Morbydrip the Crewal Whale",
+  "printed_text": "If this card is Normal or Special Summoned: You can target 1 monster your opponent controls; place it and this card face-up in their owners' Spell & Trap Zones as Continuous Traps in their same columns. (If the Zones are occupied, destroy the occupying card.) While this card is a Continuous Trap, if an opponent monster is Special Summoned in this card's column: You can Special Summon this card, and if you do during the End Phase of this turn banish all Monster Cards in the Spell & Trap Zones, except \"Morbydrip The Crewal Whale\". You can only use this effect of \"Morbydrip The Crewal Whale\" once per turn. You can only control 1 \"Morbydrip The Crewal Whale\".",
+  "source_sha256": "93f76ea2babe13b4cb64649a3105c2de816b57136cd7af1421904f5dcc400204",
+  "database_sha256": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+  "source_installed_parity": true,
+  "classification": "Printed/source inspection only, no behavior certification or focused-count increment",
+  "requirements": [
+    {
+      "clause": "Normal and Special Summon trigger",
+      "source": "e1/e2",
+      "required_native_evidence": "actual summon both; no opponent resource; target relation/negation",
+      "status": "OPEN"
+    },
+    {
+      "clause": "Opponent controlled monster target",
+      "source": "pltg/tgfilter",
+      "required_native_evidence": "own target excluded; forbidden/type; opponent owned vs borrowed",
+      "status": "OPEN"
+    },
+    {
+      "clause": "Both cards faceup Continuous Traps",
+      "source": "plop/maketrap",
+      "required_native_evidence": "actual MZONE-to-SZONE, queried current type, original monster preserved",
+      "status": "OPEN"
+    },
+    {
+      "clause": "Owners zones and original columns",
+      "source": "moveincolumn",
+      "required_native_evidence": "same/opposite owners, all main columns and extra monster columns",
+      "status": "OPEN"
+    },
+    {
+      "clause": "Destroy occupied destination",
+      "source": "moveincolumn",
+      "required_native_evidence": "empty/occupied/destruction immunity/full SZONE; ensure failed destination cannot move card into other column",
+      "status": "OPEN"
+    },
+    {
+      "clause": "Opponent Special Summon in column only",
+      "source": "spcon/colfilter",
+      "required_native_evidence": "actual opponent same/other column and own summons; Continuous Trap type",
+      "status": "OPEN"
+    },
+    {
+      "clause": "Native self Special Summon",
+      "source": "sptg/spop",
+      "required_native_evidence": "capacity/lock/source movement/negation",
+      "status": "OPEN"
+    },
+    {
+      "clause": "End Phase banish monster cards except named card",
+      "source": "epop/epfilter",
+      "required_native_evidence": "both players SZONE, original monster changed type, excludes both Morbydrips and ordinary SpellsTraps; removable restriction; actual phase",
+      "status": "OPEN"
+    },
+    {
+      "clause": "Named once-per-turn and uniqueness",
+      "source": "SetCountLimit/SetUniqueOnField",
+      "required_native_evidence": "two actual copies, negation semantics/next own turn; one controlled only",
+      "status": "OPEN"
+    }
+  ],
+  "candidate_to_probe": "moveincolumn uses total SZONE capacity and generic MoveToField before MoveSequence; occupied indestructible destination may allow misplaced arrival. Must reproduce, do not infer defect from inspection."
+}

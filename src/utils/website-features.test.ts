@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { Card } from "../types/card";
 import cardsData from "../data/cards.json";
+import { cardMatches } from "./filters";
 import { serializeOmegaDeck } from "./deck";
 import { cardMemberships, consolidatedArchetypes, isExtraDeckCard } from "./memberships";
 
@@ -13,13 +14,13 @@ const card = (overrides: Partial<Card> = {}): Card => ({
 });
 
 describe("website card tools", () => {
-  it("only exposes consolidated multi-card archetypes with a monster icon", () => {
+  it("exposes named families, including single cards and Spell/Trap series", () => {
     const cardsById = new Map((cardsData as Card[]).map((item) => [item.passcode, item]));
     expect(consolidatedArchetypes.length).toBeGreaterThan(0);
     for (const group of consolidatedArchetypes) {
-      expect(group.cardIds.length).toBeGreaterThanOrEqual(2);
+      expect(group.cardIds.length).toBeGreaterThanOrEqual(1);
       expect(group.cardIds).toContain(group.iconCardId);
-      expect(cardsById.get(group.iconCardId)?.category).toBe("Monster");
+      expect(cardsById.get(group.iconCardId)).toBeTruthy();
       expect(group.iconImage).toBeTruthy();
     }
   });
@@ -29,6 +30,25 @@ describe("website card tools", () => {
     expect(cardMemberships(byName.get("Bauy Magician")!)).toContain("Bau");
     expect(cardMemberships(byName.get("Magical Girl Explosion!")!)).toContain("Charmelia");
     expect(cardMemberships(byName.get("Phlogiston's Roar!")!)).toContain("Phlogiston Dragon");
+  });
+
+  it("files placeholders and newly added families consistently in filters", () => {
+    const byName = new Map((cardsData as Card[]).map((item) => [item.name, item]));
+    expect((cardsData as Card[]).some((item) => ["Existing", "New"].includes(item.archetype ?? ""))).toBe(false);
+    for (const [name, family] of [
+      ["Machina Megaframe", "Machina"], ["Scion of Nephthys", "Nephthys"],
+      ["Symphonic Warrior DDJ", "Symphonic Warrior"], ["Heart of the Hydra", "Dark Swamp"],
+      ["Vylon Chevron", "Vylon"], ["Sylvan Flamushroomo", "Sylvan"],
+      ["Killamity Goldenrod", "Killamity"], ["Kali Yuga - Vritra", "Kali Yuga"],
+      ["Terrarumian Cushion Moss", "Terrarumian"], ["Pride of the Stellaers", "Stellaer"],
+      ["Reactor Shocker", "Reactor"], ["Striking Mirror Force", "Mirror Force"],
+      ["Lance — Luminar Justiciar", "Aurelion — Divine Illumination"],
+    ]) {
+      const item = byName.get(name)!;
+      expect(item, name).toBeTruthy();
+      expect(cardMemberships(item), name).toContain(family);
+      expect(cardMatches(item, { archetype: family }), name).toBe(true);
+    }
   });
 
   it("recognizes every Extra Deck card family", () => {

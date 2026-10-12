@@ -32,7 +32,7 @@ function s.ritfilter(c,e,tp,mg,needextra)
 		and s.ritcheck(mg,tp,c,lv,needextra)
 end
 function s.ritmatcheck(g,tp,c,lv,greater_or_equal,needextra)
-	return Auxiliary.RitualCheck(g,tp,c,lv,greater_or_equal)
+	return not g:IsContains(c) and Auxiliary.RitualCheck(g,tp,c,lv,greater_or_equal)
 		and (not needextra or Duel.GetMZoneCount(tp,g,tp)>1)
 end
 function s.ritcheck(mg,tp,c,lv,needextra)
@@ -89,7 +89,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	if needextra and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then
 		Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEDOWN_DEFENSE)
 	end
-	if ritual:IsRelateToEffect(e) and (not ritual:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(ritual))
+	if (not ritual:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(ritual))
 		and Duel.SpecialSummon(ritual,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
 		ritual:CompleteProcedure()
 	end

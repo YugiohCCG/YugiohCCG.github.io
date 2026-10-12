@@ -1,0 +1,171 @@
+{
+  "scope": "Native disable causal probes, no production edits/certification/indexed behavior evidence",
+  "reports": [
+    {
+      "probe": "force",
+      "artifact": "current-clock-of-aldrez-rewrite-probe-force.json",
+      "artifact_sha256": "a35c9a2f178d5260f8fc740e91c160a1c5702494420835b99c68f7eaf47ef7a7",
+      "failures": [
+        [
+          {},
+          "Disabled actual summon trigger excluded despite valid archetype Deck resource\n\n1 !== 0\n"
+        ],
+        [
+          {
+            "field": true
+          },
+          "Disabled actual summon trigger excluded despite valid archetype Deck resource\n\n1 !== 0\n"
+        ]
+      ],
+      "native_hint_numbers": [
+        [
+          "882"
+        ],
+        [
+          "882"
+        ]
+      ],
+      "classification": "Unsuccessful causal comparison, not a regression control"
+    },
+    {
+      "probe": "owner",
+      "artifact": "current-clock-of-aldrez-rewrite-probe-owner.json",
+      "artifact_sha256": "b97d01f0af9fa7df460b9b1c54eedacd174a0db5a97ecdedc2b87cbf0eb2e730",
+      "failures": [
+        [
+          {},
+          "Disabled actual summon trigger excluded despite valid archetype Deck resource\n\n1 !== 0\n"
+        ],
+        [
+          {
+            "field": true
+          },
+          "Disabled actual summon trigger excluded despite valid archetype Deck resource\n\n1 !== 0\n"
+        ]
+      ],
+      "native_hint_numbers": [
+        [
+          "881"
+        ],
+        [
+          "881"
+        ]
+      ],
+      "classification": "Unsuccessful causal comparison, not a regression control"
+    },
+    {
+      "probe": "no-reset",
+      "artifact": "current-clock-of-aldrez-rewrite-probe-no-reset.json",
+      "artifact_sha256": "a35c9a2f178d5260f8fc740e91c160a1c5702494420835b99c68f7eaf47ef7a7",
+      "failures": [
+        [
+          {},
+          "Disabled actual summon trigger excluded despite valid archetype Deck resource\n\n1 !== 0\n"
+        ],
+        [
+          {
+            "field": true
+          },
+          "Disabled actual summon trigger excluded despite valid archetype Deck resource\n\n1 !== 0\n"
+        ]
+      ],
+      "native_hint_numbers": [
+        [
+          "882"
+        ],
+        [
+          "882"
+        ]
+      ],
+      "classification": "Unsuccessful causal comparison, not a regression control"
+    },
+    {
+      "probe": "owner-player",
+      "artifact": "current-clock-of-aldrez-rewrite-probe-owner-player.json",
+      "artifact_sha256": "a35c9a2f178d5260f8fc740e91c160a1c5702494420835b99c68f7eaf47ef7a7",
+      "failures": [
+        [
+          {},
+          "Disabled actual summon trigger excluded despite valid archetype Deck resource\n\n1 !== 0\n"
+        ],
+        [
+          {
+            "field": true
+          },
+          "Disabled actual summon trigger excluded despite valid archetype Deck resource\n\n1 !== 0\n"
+        ]
+      ],
+      "native_hint_numbers": [
+        [
+          "882"
+        ],
+        [
+          "882"
+        ]
+      ],
+      "classification": "Unsuccessful causal comparison, not a regression control"
+    },
+    {
+      "probe": "adjust",
+      "artifact": "current-clock-of-aldrez-rewrite-probe-adjust.json",
+      "artifact_sha256": "ca92f5b733464e08092cac872e10a7144f8e54157ccb4e098b83e78dca5443d3",
+      "failures": [
+        [
+          {},
+          "[string \"c210716547.lua\"]:99: attempt to call a nil value (field 'AdjustInstant')"
+        ],
+        [
+          {
+            "field": true
+          },
+          "[string \"c210716547.lua\"]:99: attempt to call a nil value (field 'AdjustInstant')"
+        ]
+      ],
+      "native_hint_numbers": [
+        [],
+        []
+      ],
+      "classification": "Unsupported engine API diagnostic"
+    },
+    {
+      "probe": "trace",
+      "artifact": "current-clock-of-aldrez-rewrite-probe-trace.json",
+      "artifact_sha256": "cef4a2d262bc2f50c431092ee172ee2273a6b0eb0c6a43e02ae9ba17ad5d2384",
+      "failures": [
+        [
+          {},
+          "Disabled actual summon trigger excluded despite valid archetype Deck resource\n\n1 !== 0\n"
+        ],
+        [
+          {
+            "field": true
+          },
+          "Disabled actual summon trigger excluded despite valid archetype Deck resource\n\n1 !== 0\n"
+        ]
+      ],
+      "native_hint_numbers": [
+        [
+          "910",
+          "882"
+        ],
+        [
+          "910",
+          "882"
+        ]
+      ],
+      "classification": "Unsuccessful causal comparison, not a regression control"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_clock_of_aldrez_rewrite.cjs": "4b3831fd5bc2b869e643d8779e7fd59d6a78189081afbebba940d62cd703a013",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210716547.lua": "1b9bd3c4847c58bf60a86b505aaf53e6b2f9aab7565babd63263783ae4a833f4",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  },
+  "finding": "Native effect registration exists (Card.IsHasEffect(EFFECT_DISABLE) hint910), but native chain-end IsDisabled remains false882 and trigger still offered. Force registration/different owner/removing reset/owner-player each does not resolve. AdjustInstant unsupported. Script defect versus public-engine semantics remains OPEN.",
+  "probe_correction": "Force/owner initial first string occurrence modified initial_effect; corrected to function s.repop scope and rerun final evidence.",
+  "next": "Independent native neutral monster disable positive control and event timing probe; if engine limitation established, preserve explicit nativeOmega gap and advance other printed clauses."
+}
