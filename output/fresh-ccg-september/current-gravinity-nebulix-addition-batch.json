@@ -1,0 +1,75 @@
+{
+  "scope": "Full current initial-field Nebulix actual native Gravinity Spell resolution followed by Deck/GY monster Special Summon or faceup SZONE placement; resource/trigger type/set/decline exclusions. No adapters. Does not certify proper Synchro arrival, recycle/draw or full-card behavior.",
+  "baseline_cases": 9,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_gravinity_nebulix_addition.cjs": "3fdc865a88c1b25708028f60468de79308d60484e36893f92a2d4b8d46e7159d",
+    "scripts/fresh_current_gravinity_nebulix_addition_batch.py": "890aca8ed386a187333e3d69aa4a41aa091c93633d9e3a32934aa9de34fa3489",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c212429024.lua": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-gravinity-nebulix-addition.json",
+      "artifact_sha256": "1ced24453136320e01fc0b12b1b0ffb9506499c0d1cd8b5359124b9b845b0838"
+    },
+    {
+      "control": "no-operation",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        6
+      ],
+      "artifact": "current-gravinity-nebulix-addition-no-operation.json",
+      "artifact_sha256": "5f78b984e348dfcec05f5e71af458d1e276ff827733f5a6b5f43a76c3a119e4f"
+    },
+    {
+      "control": "ignore-set",
+      "expected_failures": [
+        4
+      ],
+      "artifact": "current-gravinity-nebulix-addition-ignore-set.json",
+      "artifact_sha256": "17f387b882928e04d89d9b73f9299f902befc1c109319325df64e28cb6d8f218"
+    },
+    {
+      "control": "ignore-type",
+      "expected_failures": [
+        5
+      ],
+      "artifact": "current-gravinity-nebulix-addition-ignore-type.json",
+      "artifact_sha256": "520040a253215ddf48a214ac57df38db84af6a43a2f8fcfa46350f0f85f4cb5c"
+    },
+    {
+      "control": "allow-trigger",
+      "expected_failures": [
+        7,
+        8
+      ],
+      "artifact": "current-gravinity-nebulix-addition-allow-trigger.json",
+      "artifact_sha256": "9fdbff9767cf031fabc33ca0d5c1519ef36a53ee184c2466e5ae6ac38331259d"
+    },
+    {
+      "control": "no-trap-type",
+      "expected_failures": [
+        1,
+        3
+      ],
+      "artifact": "current-gravinity-nebulix-addition-no-trap-type.json",
+      "artifact_sha256": "0ee00b55dc3b8c9df561b19b5b2684e31e2d03e281f1142a1c0f712672e9ccd7"
+    }
+  ]
+}

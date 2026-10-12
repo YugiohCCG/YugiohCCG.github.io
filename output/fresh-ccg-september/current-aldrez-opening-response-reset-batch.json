@@ -1,0 +1,47 @@
+{
+  "scope": "Full current Opening actual activation and Normal/Special Summon, accepted own Quick response with actual operation, opponent excluded throughout protected chain, actual later nonsummon chain restores opponent response. No adapters. Native Omega/recycle gaps remain open.",
+  "baseline_cases": 2,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_aldrez_opening_response_reset.cjs": "ed76a7a19391ac5912d0efac0482acac9722a9aa78e00de9bf268da19bc7072d",
+    "scripts/fresh_current_aldrez_opening_response_reset_batch.py": "b0a2cfb0679a53d31071fe7102c931cb3ee0f41ca1c9dc3e6fe3fa2e67d08a94",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210923192.lua": "eff24d7291ce3454311e6dc92e09aee153caada6f192dd6b8900d1b24cdd4922",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-aldrez-opening-response-reset.json",
+      "artifact_sha256": "4b0a9ec037e705a4719befd5bd3c5800a09aeb35c22e802cc4e65069bc5b5e78"
+    },
+    {
+      "control": "no-limit",
+      "expected_failures": [
+        0,
+        1
+      ],
+      "artifact": "current-aldrez-opening-response-reset-no-limit.json",
+      "artifact_sha256": "0b32e130df9bea6e586e97b8b7ec42069125af62a780556476d161303da9c2c1"
+    },
+    {
+      "control": "no-response-operation",
+      "expected_failures": [
+        0,
+        1
+      ],
+      "artifact": "current-aldrez-opening-response-reset-no-response-operation.json",
+      "artifact_sha256": "ef4207c86050f5296bd6b7a577da62e2714e230c2a1bdaa62c107e8275a480f8"
+    }
+  ]
+}

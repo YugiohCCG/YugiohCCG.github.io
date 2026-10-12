@@ -1,0 +1,60 @@
+{
+  "scope": "Full current initial-field Stellaer actual native overlay/detach, targeted destroy and actual CounterTrap CL2 activation/effect negation, target Hand/reentry/protection or source banish. No adapters; native Xyz/Omega/fullcard open.",
+  "baseline_cases": 7,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_stellaer_flames_destroy_interruption.cjs": "109fdbce7a513d474838e73923e8402c56e18cf857c420b6791a7bf20ef7202a",
+    "scripts/fresh_current_stellaer_flames_destroy_interruption_batch.py": "7653413cb5afbd7d6aadc5327a694209851a1a8de159c87f6378cb2d6b31e481",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c212184534.lua": "03ce67a3f139d7a3c0a3254ee5bea1cde719a0acfbb22078f85b6b60f7abba8c",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-stellaer-flames-destroy-interruption.json",
+      "artifact_sha256": "aaa4a7e415c6b60f3529521a607708272848b7f586462fd2ee2396cebc894f5f"
+    },
+    {
+      "control": "no-destroy",
+      "expected_failures": [
+        0,
+        6
+      ],
+      "artifact": "current-stellaer-flames-destroy-interruption-no-destroy.json",
+      "artifact_sha256": "1609755c81d4cf9655ad1679c11e3dfa228c44010db3a915dd9c68df63f8ca28"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "artifact": "current-stellaer-flames-destroy-interruption-no-response.json",
+      "artifact_sha256": "a3a0859a0c946bb277ac8f7dfe6daef9b1e1389245e15ec4d5b1281b49b0b05c"
+    },
+    {
+      "control": "ignore-relation",
+      "expected_failures": [
+        3,
+        4
+      ],
+      "artifact": "current-stellaer-flames-destroy-interruption-ignore-relation.json",
+      "artifact_sha256": "9e6a8d2c88c0bfbf264f2126d4e915336d3fb3d6e35ad2c29cee7532a9f44127"
+    }
+  ]
+}

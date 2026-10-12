@@ -1,0 +1,50 @@
+{
+  "card": 212184534,
+  "classification": "Partial focused evidence, not native Xyz/Omega/full-card certification",
+  "groups": [
+    {
+      "path": "current-stellaer-flames-destroy-batch.json",
+      "sha256": "a51b25666a6bef8a7a51f8a2dc28852d5338e64be1e0d430094c0f027b8f3e6b",
+      "cases": 5
+    },
+    {
+      "path": "current-stellaer-flames-destroy-interruption-batch.json",
+      "sha256": "aa862ec32ec178e58fa6ddee46db00caa92cf6860a1736e06b857b9c29d55ed7",
+      "cases": 7
+    },
+    {
+      "path": "current-stellaer-flames-destroy-use-reset-batch.json",
+      "sha256": "36f96f75777adf2337ec6e534841fc015e6ca2a25c32033ab189bb8c7e987246",
+      "cases": 3
+    },
+    {
+      "path": "current-stellaer-flames-draw-batch.json",
+      "sha256": "3503bbab712ee5d16494cdaa25b4d4c7ee3bec2bd24d96d9f8891fb8d7ad72a0",
+      "cases": 4
+    },
+    {
+      "path": "current-stellaer-flames-draw-integration-batch.json",
+      "sha256": "2152f161574426bdc0a71b4d79ea4942b2cb66732d857007f265d2f9b15ca04b",
+      "cases": 3
+    },
+    {
+      "path": "current-stellaer-flames-draw-interruption-batch.json",
+      "sha256": "83f0a5ce586ad5e760e0cb8e3fe1aae4b792c4a7ae6ce740c63f06e6d5a5d5f9",
+      "cases": 7
+    }
+  ],
+  "baseline_cases": 29,
+  "remaining_gaps": [
+    "Native regular/alternative Xyz: missing CheckXyzMaterial/GetMustMaterial public APIs, material eligibility/control/overlay transfer",
+    "Draw when materials already present, repeated separate-source draw use, late draw restriction/deck exhaustion",
+    "Destroy target initial protection/target immunity, use reset on facedown/reentry and wider archetype integration",
+    "Native Omega/full-card certification"
+  ],
+  "excluded_diagnostic": "destroy-use-reset-no-reset uses invalid code0/duel limit and is excluded; reset proven by actual baseline ownturn3 use",
+  "next_roster": {
+    "passcode": 212345347,
+    "name": "Gravinity Lapsix",
+    "status": "syntax_pass",
+    "script_sha256": "5ba1398b3e0a3fae63e6caa966d97cbf295ac7f0f9a1c2ab50ec54527daa448b"
+  }
+}

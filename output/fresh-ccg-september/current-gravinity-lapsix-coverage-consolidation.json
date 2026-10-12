@@ -1,0 +1,40 @@
+{
+  "card": 212345347,
+  "classification": "Partial focused evidence, not native Synchro/Omega/full-card certification",
+  "groups": [
+    {
+      "path": "current-gravinity-lapsix-opponent-turn-draw-batch.json",
+      "sha256": "58f9f326dbafcab01ff0a67d97a5eedcaa8dba739ef0e8b8b3311886809bddca",
+      "cases": 3
+    },
+    {
+      "path": "current-gravinity-lapsix-trap-draw-batch.json",
+      "sha256": "57ff650598fa434b503c7c0a7a18742be1c8086ecf77ad03ef23f1a87e3e554f",
+      "cases": 4
+    },
+    {
+      "path": "current-gravinity-lapsix-trap-draw-interruption-batch.json",
+      "sha256": "bc15cfb5d6b50bc6badd0a603bfb981b7c1b42d50fc5138124733225476b8c79",
+      "cases": 5
+    },
+    {
+      "path": "current-gravinity-lapsix-trap-draw-use-reset-batch.json",
+      "sha256": "f2c2173896cabd4bbb5f732e708bb0f493bb0e8ca1c141838a885de804f86cc3",
+      "cases": 3
+    }
+  ],
+  "baseline_cases": 15,
+  "remaining_gaps": [
+    "Recovery trigger/resources: native compatibility probe for Card.IsFaceupEx, GY/banishment eligibility, both branches, capacity and interruptions",
+    "Proper native Synchro/SZONE special summon history and positive optional self revival",
+    "Extra Synchro materials from Spell & Trap Zone: several Gravinity material scripts register this permission; requires native integration, no defect inferred",
+    "Native Synchro CheckSynchroMaterial compatibility and native Omega/full-card certification"
+  ],
+  "excluded_diagnostic": "current-gravinity-lapsix-synchro-probe.json: missing public CheckSynchroMaterial, no summon certification",
+  "next_action": "Cassiopeia printed/current-script/native behavior audit; preserve all Lapsix gaps",
+  "excluded_recovery_diagnostic": "current-gravinity-lapsix-recovery-resource-diagnostic.json: six real-resource cases fail missing Card.IsFaceupEx; empty resources return false. Direct native predicate invocation does not certify trigger/operation.",
+  "next_roster": {
+    "passcode": 212377618,
+    "name": "Cassiopeia of the Eldoran System"
+  }
+}
