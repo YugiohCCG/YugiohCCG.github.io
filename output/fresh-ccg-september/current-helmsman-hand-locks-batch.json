@@ -1,0 +1,83 @@
+{
+  "scope": "Helmsman Hand ignition full faceup HappySpell/BearTrap cost references; native player summonrestriction/fullfiveMZONE excludes before cost, resources preserved. No adapters; neutral restrictions bounded; nativeOmega/fullcard OPEN",
+  "baseline_cases": 6,
+  "certification": "Production focused evidence; native Omega and full card OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c215730767.lua": "7d01e43a8e478088b3527c684efe45d9414e52d71f75da03df5bdc73e105a3ef",
+    "public/CCG Downloads/CCG_Scripts/c255977900.lua": "f4640522704017813c6e972d2d78d22d202a32d182062dfbb6550e01eb27a613",
+    "scripts/fresh_current_helmsman_hand_locks_batch.py": "0b7a87c3db02ffa986df80151251113ad5342b7e0b21dfb0874feef83180d9dc",
+    "scripts/fresh_current_helmsman_hand_locks.cjs": "a7c7d5bf77c64f36510b84bdc559d9cf4a7c1efab6b5e4cf67be2696d6a45f49",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c251699681.lua": "606094785fe384e1f2127d7a2b17f4d8273a5e3fb5dbdfe0536ac9c334ed5ab0",
+    "public/CCG Downloads/CCG_Scripts/c231872299.lua": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-helmsman-hand-locks.json",
+      "artifact_sha256": "73fc2d708b121200c3748c4b136a18be5436e503389b1c0c76ca16aef5f7e7e0"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        {},
+        {
+          "trap": true
+        }
+      ],
+      "artifact": "current-helmsman-hand-locks-no-cost.json",
+      "artifact_sha256": "84748a54a4eba84557fbeab6ae4e5c08dc50741ca5e07c13f16f2bfa01e7ce7f"
+    },
+    {
+      "control": "no-summon",
+      "expected_failures": [
+        {},
+        {
+          "trap": true
+        }
+      ],
+      "artifact": "current-helmsman-hand-locks-no-summon.json",
+      "artifact_sha256": "ca3abeed5e5c48182fb526902028b68a17c1f27cc98570e57d7ae05c3a157184"
+    },
+    {
+      "control": "no-lock",
+      "expected_failures": [
+        {
+          "lock": true
+        },
+        {
+          "lock": true,
+          "trap": true
+        }
+      ],
+      "artifact": "current-helmsman-hand-locks-no-lock.json",
+      "artifact_sha256": "587e8e3d20a1fd590ee518f3cc4587547ea488a4f81ea4f32d989b2270de6d85"
+    },
+    {
+      "control": "no-fill",
+      "expected_failures": [
+        {
+          "full": true
+        },
+        {
+          "full": true,
+          "trap": true
+        }
+      ],
+      "artifact": "current-helmsman-hand-locks-no-fill.json",
+      "artifact_sha256": "91a126d601247ff7e558f1149818a7a20b5d04f4a0bd3fa74206fcc3b40e31ac"
+    }
+  ]
+}

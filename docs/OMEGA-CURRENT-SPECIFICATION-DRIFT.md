@@ -31,10 +31,10 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
   },
   "source_install_mismatches": 0,
   "syntax_stale": 0,
-  "load_stale": 0,
+  "load_stale": 1,
   "current_spec_initialization_rechecks": {
-    "total": 88,
-    "passed": 61,
+    "total": 90,
+    "passed": 63,
     "compatibility_failures": 27
   }
 }
@@ -139,6 +139,7 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
 | 247756271 Kali Yuga - Bheki | public | — | — | — |
 | 247756272 Kali Yuga - Jakarta | public | — | — | — |
 | 255686110 Iscylla, Windborne Kraken of Sunken Depths | candidate | — | — | — |
+| 256930605 Fruteification | — | — | load | — |
 | 259033429 Carcel, the Ohmechanic Light | — | candidate | — | — |
 | 259072745 Bhodi, the Corrupted Halloween Tree | — | candidate | — | — |
 | 259073666 Wyvernal Gathering | candidate | — | — | — |

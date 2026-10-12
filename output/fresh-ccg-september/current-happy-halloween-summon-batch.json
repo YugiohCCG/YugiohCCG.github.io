@@ -1,0 +1,65 @@
+{
+  "scope": "HappyHalloWeen actual full Ween sequential summons earn three counters, neutral returns each Ween Deck to keep space/resources isolated; real cost removes3 then full HalloGiver Hand/GY summon earns1. Low2/wrong/noresource exclude. No seeded counters/adapters; nativeOmega/fullcard OPEN",
+  "baseline_cases": 5,
+  "certification": "Production focused evidence; native Omega and full card OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c255977900.lua": "1148765d513fa9b477faec41acb60347688a7382538443345857c5629af9a12b",
+    "public/CCG Downloads/CCG_Scripts/c230749983.lua": "d12495e36b09934c902cc5f1d805f25dae207d750b3cc71b5ed2cd8d60acad99",
+    "scripts/fresh_current_happy_halloween_summon_batch.py": "c0b472d0104a118225703f28c65c7159f58daa4b6506ed5fe688829ea6cb8d14",
+    "scripts/fresh_current_happy_halloween_summon.cjs": "12ad524994ec989b6eb41f0facd90de2287afaaf916741db24ff02829d6e8af8",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "public/CCG Downloads/CCG_Scripts/c231872299.lua": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-happy-halloween-summon.json",
+      "artifact_sha256": "c1e380f47088cb6b4a30fd360646ab7cb75ebdc60a1d5f2477b5eb112a5c66a2"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        {},
+        {
+          "grave": true
+        }
+      ],
+      "artifact": "current-happy-halloween-summon-no-cost.json",
+      "artifact_sha256": "2ed5327e10210b1289fd8d4733cbeafdb561e305d8aa56659a0b01f4edeb4f28"
+    },
+    {
+      "control": "no-summon",
+      "expected_failures": [
+        {},
+        {
+          "grave": true
+        }
+      ],
+      "artifact": "current-happy-halloween-summon-no-summon.json",
+      "artifact_sha256": "f2ae0b8d62c9c9b669ef46edd3bccf0090ff9c8045dec77fe0a76c4396cb11d6"
+    },
+    {
+      "control": "allow-any",
+      "expected_failures": [
+        {
+          "wrong": true
+        }
+      ],
+      "artifact": "current-happy-halloween-summon-allow-any.json",
+      "artifact_sha256": "581f9a0f8e1788a9134b36034dd84b6108a0b0d48b6f9418fca1053e0bdae44f"
+    }
+  ]
+}

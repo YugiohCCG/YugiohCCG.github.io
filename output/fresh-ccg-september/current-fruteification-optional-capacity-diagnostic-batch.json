@@ -1,0 +1,65 @@
+{
+  "scope": "DIAGNOSTIC full Fruteification optional capacity ordering: CL2 three actual nonreleasable Deck summons leaves one zone; combined-space check suppresses both summons before material release, retaining full RitualHand/materialHand/fullWhiteGY. Explicit loaded query8, no production change; printed-rule interpretation remains OPEN",
+  "baseline_cases": 2,
+  "runs": [
+    {
+      "flags": [
+        "--no-response"
+      ],
+      "expected_failures": [
+        1
+      ],
+      "artifact": "current-fruteification-optional-capacity-diagnostic-no-response.json",
+      "sha256": "c8201a23f2015e9d572b57830e759624d23f6b7928360c4ea3fa64ffcc53f7c7"
+    },
+    {
+      "flags": [
+        "--relation-comparison",
+        "--material-guard-comparison",
+        "--no-extra"
+      ],
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-fruteification-optional-capacity-diagnostic-relation-comparison-material-guard-comparison-no-extra.json",
+      "sha256": "c76ca34e182ec40052abc21064aa43ec5092e1fcb6216d7bea375bee9ba27e94"
+    },
+    {
+      "flags": [
+        "--relation-comparison",
+        "--material-guard-comparison",
+        "--no-material"
+      ],
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-fruteification-optional-capacity-diagnostic-relation-comparison-material-guard-comparison-no-material.json",
+      "sha256": "d284ae9bfb6657c97678cdbc0c93435808125dd37cb8f5131caeaf9783fc2edf"
+    },
+    {
+      "flags": [
+        "--relation-comparison",
+        "--material-guard-comparison",
+        "--no-ritual"
+      ],
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-fruteification-optional-capacity-diagnostic-relation-comparison-material-guard-comparison-no-ritual.json",
+      "sha256": "54ea6e366f8822943dbfbca09c1a985578716ad3ea231bad05e56b8f7a183093"
+    }
+  ],
+  "hashes": {
+    "output\\fresh-ccg-september\\current-fruteification-optional-capacity-diagnostic.json": "39cfa74e413e1663076715b3500f33c56266b6a36486e9558f810fe0163e390b",
+    "scripts/fresh_current_fruteification_optional_capacity_diagnostic.cjs": "aa0c9432e79028106c11b90b0ed0672422982723697282f65b0cf47f9aa1ae75",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c256930605.lua": "592c87e2fe6bf5dd8df388b4cb9b2811e3fb0793469bd47a9e114dc65ddc3f07",
+    "public/CCG Downloads/CCG_Scripts/c213266433.lua": "8693059b76823e8baf2c44f4eafa95a9e880602dd26a75cfd908dacbd9d17678",
+    "public/CCG Downloads/CCG_Scripts/c220916791.lua": "254dd78b0389f8a0dadcb7096241373f0cf4bcac1565061550a1561746f2b50d",
+    "public/CCG Downloads/CCG_Scripts/c216140411.lua": "7c5a4e3783e26290da915c33a35958c406961854235805305e3aedeca67b991d",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

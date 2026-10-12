@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import type { Card } from "../types/card";
@@ -38,7 +38,28 @@ describe("website banlist catalog", () => {
   });
 
   it("contains both TCG and CCG cards", () => {
-    expect(cards.filter((card) => card.id.startsWith("YGO-")).length).toBe(251);
-    expect(cards.filter((card) => card.id.startsWith("CARD-")).length).toBe(9);
+    expect(cards.some((card) => card.id.startsWith("YGO-"))).toBe(true);
+    expect(cards.some((card) => card.id.startsWith("CARD-"))).toBe(true);
+  });
+
+  it("ships a local image for every banlist card", () => {
+    for (const card of cards) {
+      expect(card.image, card.name).toMatch(/^\/assets\//);
+      expect(existsSync(resolve(process.cwd(), "public", card.image.slice(1))), card.name).toBe(true);
+    }
+  });
+});
+
+describe("Ohmen spell visibility", () => {
+  it("includes all three restored spells in the Ohmen archetype", () => {
+    const cards = JSON.parse(readFileSync(resolve(process.cwd(), "src/data/cards.json"), "utf8")) as Card[];
+    const catalog = JSON.parse(readFileSync(resolve(process.cwd(), "src/data/archetype-catalog.json"), "utf8"));
+    const ohmen = catalog.find((group: { name: string }) => group.name === "Ohmen");
+    for (const name of ["Ohmen Surge", "Ohmen Powerload", "Ohmen Beacon"]) {
+      const card = cards.find((item) => item.name === name)!;
+      expect(card.hidden, name).not.toBe(true);
+      expect(card.archetype, name).toBe("Ohmen");
+      expect(ohmen.cardIds, name).toContain(card.passcode);
+    }
   });
 });

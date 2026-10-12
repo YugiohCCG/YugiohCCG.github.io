@@ -1,0 +1,105 @@
+{
+  "scope": "Full Fruteopia search refs/Deck-banish CannotToHand/native negation; native name checks field/GY; shared activation-GYATK exclusion with WATER/Defense prerequisites. No adapters; remaining/fullcard/nativeOmega OPEN",
+  "baseline_cases": 6,
+  "certification": "Production focused evidence; native Omega and full card OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c216140411.lua": "7c5a4e3783e26290da915c33a35958c406961854235805305e3aedeca67b991d",
+    "public/CCG Downloads/CCG_Scripts/c213266433.lua": "8693059b76823e8baf2c44f4eafa95a9e880602dd26a75cfd908dacbd9d17678",
+    "scripts/fresh_current_fruteopia_activation_group_batch.py": "abdd0f316829cbf4843c444988255594961b97a382a209187ce17f5176b8da54",
+    "scripts/fresh_current_fruteopia_activation_group.cjs": "15dcc5858c1cc6e1712d7f5e5f0dee61bf28b9e468b9b3bfd9ebebfb829db257",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c256930605.lua": "9c68121434c5db376cd94ace47e44d368920119a7f081d595b9988098b5d60de",
+    "public/CCG Downloads/CCG_Scripts/c231872299.lua": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-fruteopia-activation-group.json",
+      "artifact_sha256": "72889b5de05a758226c9c5498c483ef6db27a50baca59390f543d697d4afe44e"
+    },
+    {
+      "control": "no-name",
+      "expected_failures": [
+        {},
+        {
+          "banished": true
+        },
+        {
+          "lock": true
+        },
+        {
+          "lock": true,
+          "banished": true
+        },
+        {
+          "effect": true
+        }
+      ],
+      "artifact": "current-fruteopia-activation-group-no-name.json",
+      "artifact_sha256": "19810d9ef8758d1abd833012adefdc9602d3d9a29b01cd2454c7573e4abccd35"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        {
+          "activation": true
+        },
+        {
+          "effect": true
+        }
+      ],
+      "artifact": "current-fruteopia-activation-group-no-response.json",
+      "artifact_sha256": "98596258604752d09f78a168ed40e676b36f11e8ad71ce7948ee9d1587a5a680"
+    },
+    {
+      "control": "no-lock",
+      "expected_failures": [
+        {
+          "lock": true
+        },
+        {
+          "lock": true,
+          "banished": true
+        }
+      ],
+      "artifact": "current-fruteopia-activation-group-no-lock.json",
+      "artifact_sha256": "7efe374aa0c4c297ab117fd4063ad1c65504aef7c9af1f38f198ad01539dffee"
+    },
+    {
+      "control": "split-limit",
+      "expected_failures": [
+        {},
+        {
+          "banished": true
+        },
+        {
+          "lock": true
+        },
+        {
+          "lock": true,
+          "banished": true
+        },
+        {
+          "activation": true
+        },
+        {
+          "effect": true
+        }
+      ],
+      "artifact": "current-fruteopia-activation-group-split-limit.json",
+      "artifact_sha256": "6dd2b9556cc3ae0acbf7a517f709f04ef092ae7610fb8ce06c4ccd23b0cc3753"
+    }
+  ]
+}

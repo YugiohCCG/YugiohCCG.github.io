@@ -1,0 +1,63 @@
+{
+  "scope": "Full production Scarstech Principality native GY response to actual CL3/CL4, CL1/CL2 exclusion, native playerSSlock/NecroValley/five occupied zones. Neutral native chain builders no seeded chain/history; no adapters; fullcard OPEN",
+  "baseline_cases": 7,
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-scarstech-principality-grave-chain.json",
+      "artifact_sha256": "e00e5971b1b44cdd739b5b228c8c34c7d806be86006603bca04ac561835e02f6"
+    },
+    {
+      "control": "no-summon",
+      "expected_failures": [
+        2,
+        3
+      ],
+      "artifact": "current-scarstech-principality-grave-chain-no-summon.json",
+      "artifact_sha256": "0327ce7c45bc2d4451ad86c637d0fd0cc584d6456746610d846aae81331057f0"
+    },
+    {
+      "control": "no-threshold",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "artifact": "current-scarstech-principality-grave-chain-no-threshold.json",
+      "artifact_sha256": "9dbdcc38e5a765629cbae19b0e312837beeda1e68373cf05034af4f2ab041966"
+    },
+    {
+      "control": "no-chain",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "artifact": "current-scarstech-principality-grave-chain-no-chain.json",
+      "artifact_sha256": "0dadf92b5db1731b38ddb4948c52b3286437b521b2b02042e915d5c1048afbca"
+    },
+    {
+      "control": "no-lock",
+      "expected_failures": [
+        4,
+        5
+      ],
+      "artifact": "current-scarstech-principality-grave-chain-no-lock.json",
+      "artifact_sha256": "b4dc185b94f0e5aceb971067cd6c46a8227e14bcb74e729dd08d8ae962090046"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_scarstech_principality_grave_chain.cjs": "62f29c05f786a24584a3d4191cc31438773e323d91db153f312176305b51abb7",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210175845.lua": "f989f9c1b1fd2c32f6bddb7e8f05e69b46cec7fb1e90750a301bd89f5878fa0e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

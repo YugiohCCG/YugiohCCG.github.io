@@ -1,0 +1,97 @@
+{
+  "baseline_cases": 9,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_happy_halloween_counters_repaired.cjs": "8b0d64f34b975b09fbd726550044f8282822b605cd3749642350faa8cf96fdc7",
+    "scripts/fresh_current_happy_halloween_counter_boundary_repaired.cjs": "326d8fc07150c8c912832a6b26a45e81862ae82d21c558b45b0c4b01b2c14186",
+    "scripts/fresh_current_happy_halloween_repaired_batch.py": "cddf44763537ad1b75447e6ebf3a26e18a44cb56268a41fbbcdcc8935c6da7d0",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "public/CCG Downloads/CCG_Scripts/c255977900.lua": "f4640522704017813c6e972d2d78d22d202a32d182062dfbb6550e01eb27a613",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "prefix": "counters",
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-happy-halloween-counters-repaired.json",
+      "artifact_sha256": "f2fce0aced451685daf1f6e44f589d561ebdda465901653f9387013e4fa0d9c1"
+    },
+    {
+      "prefix": "counters",
+      "control": "no-counter",
+      "expected_failures": [
+        {},
+        {
+          "group": true
+        }
+      ],
+      "artifact": "current-happy-halloween-counters-repaired-no-counter.json",
+      "artifact_sha256": "951f95fc68fcdf74222efeb88c5bf977b4f78c6579daac864aeb6572b4511da1"
+    },
+    {
+      "prefix": "counters",
+      "control": "allow-any",
+      "expected_failures": [
+        {
+          "wrong": true
+        }
+      ],
+      "artifact": "current-happy-halloween-counters-repaired-allow-any.json",
+      "artifact_sha256": "02d5e5934cec5dd48bd63747a465db3685e8b3c952c3eb0ba92c727504088724"
+    },
+    {
+      "prefix": "counter-boundary",
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-happy-halloween-counter-boundary-repaired.json",
+      "artifact_sha256": "a4a18414981885c4b4dc66a77aaad05dc7fcee2b2f82de256cf2c63b0fc1d78f"
+    },
+    {
+      "prefix": "counter-boundary",
+      "control": "no-counter",
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "current-happy-halloween-counter-boundary-repaired-no-counter.json",
+      "artifact_sha256": "60312e194e5f99bf874ed04cb2e5d678fe2a291426eb81a2eb2a298c3105fe19"
+    },
+    {
+      "prefix": "counter-boundary",
+      "control": "no-boundary",
+      "expected_failures": [
+        {
+          "disabled": true
+        },
+        {
+          "facedown": true
+        },
+        {
+          "sourceGY": true
+        }
+      ],
+      "artifact": "current-happy-halloween-counter-boundary-repaired-no-boundary.json",
+      "artifact_sha256": "f99f4303e75e8303f1cd0cc69443f315693c895fbad63b7caab3f2e089add7e4"
+    },
+    {
+      "prefix": "counter-boundary",
+      "control": "original-guard",
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "current-happy-halloween-counter-boundary-repaired-original-guard.json",
+      "artifact_sha256": "cf6ea7d4cde5d904d171fcdc7fe9ce7508e4ce62f28d273b19506da8e3731682"
+    }
+  ],
+  "certification": "Production focused evidence; activation/cost/revival/limit/nativeOmega/fullcard OPEN"
+}

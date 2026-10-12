@@ -75,7 +75,7 @@ function s.xyzcost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.xyztg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return Duel.IsPlayerCanSpecialSummonCount(tp,2)
+	if chk==0 then return not Duel.IsPlayerAffectedByEffect(tp,59822133) and Duel.IsPlayerCanSpecialSummonCount(tp,2)
 		and Duel.GetLocationCount(tp,LOCATION_MZONE)>1 and s.selffilter(c,e,tp)
 		and Duel.IsExistingMatchingCard(s.handfilter,tp,LOCATION_HAND,0,1,nil,e,tp) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,2,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED)
@@ -86,7 +86,7 @@ end
 function s.xyzop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=e:GetLabelObject()
-	if not (c:IsRelateToEffect(e) and Duel.IsPlayerCanSpecialSummonCount(tp,2)
+	if not (not Duel.IsPlayerAffectedByEffect(tp,59822133) and c:IsRelateToEffect(e) and Duel.IsPlayerCanSpecialSummonCount(tp,2)
 		and Duel.GetLocationCount(tp,LOCATION_MZONE)>1 and s.selffilter(c,e,tp)) then return end
 	if not (tc and tc:IsRelateToEffect(e) and tc:IsLocation(LOCATION_HAND) and s.handfilter(tc,e,tp)) then return end
 	local g=Group.FromCards(c,tc)

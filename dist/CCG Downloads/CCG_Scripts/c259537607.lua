@@ -9,7 +9,7 @@ function s.initial_effect(c)
 end
 function s.pcon(e,tp) return Duel.IsExistingMatchingCard(function(c) return c:IsFaceup() and c:IsSetCard(SET_VAYLANTZ) and c:IsType(TYPE_FUSION) end,tp,LOCATION_MZONE,0,1,nil) end
 function s.ptg(e,tp,eg,ep,ev,re,r,rp,chk) local c=e:GetHandler(); if chk==0 then return c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP,tp,1<<c:GetSequence()) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,0,0) end
-function s.pop(e,tp) local c=e:GetHandler(); if c:IsRelateToEffect(e) then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP,tp,1<<c:GetSequence()) end end
+function s.pop(e,tp) local c=e:GetHandler(); if c:IsRelateToEffect(e) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP,tp,1<<c:GetSequence()) then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP,1<<c:GetSequence()) end end
 function s.mvcon(e,tp,eg) return #eg==1 and eg:GetFirst():IsControler(1-tp) and eg:GetFirst():IsLocation(LOCATION_MZONE) and e:GetHandler():GetSequence()<5 end
 function s.mvop(e,tp,eg) local c=e:GetHandler(); local oc=eg:GetFirst(); if not c:IsFaceup() or not oc:IsFaceup() then return end local cs=c:GetSequence(); local os=4-oc:GetSequence(); local ns=cs; if os<cs and cs>0 then ns=cs-1 elseif os>cs and cs<4 then ns=cs+1 end if ns~=cs and Duel.CheckLocation(tp,LOCATION_MZONE,ns) then Duel.MoveSequence(c,ns) end end
 function s.mf(c) local tp=c:GetControler(); for i=0,4 do if i~=c:GetSequence() and Duel.CheckLocation(tp,LOCATION_MZONE,i) then return true end end return false end

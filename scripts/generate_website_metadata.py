@@ -139,6 +139,10 @@ def build_banlist_cards() -> list[dict[str, object]]:
         if source is None:
             raise RuntimeError(f"Banlist passcode {passcode} is missing from the website card catalogs")
         card = dict(source)
+        # Prefer cached art so banlist images do not depend on external hotlinks.
+        cached_image = PUBLIC / "assets" / "tcg" / f"{passcode}.jpg"
+        if cached_image.is_file():
+            card["image"] = "/" + cached_image.relative_to(PUBLIC).as_posix()
         card["legal"] = status_fields[match.group(2)]
         cards.append(card)
     if not cards:

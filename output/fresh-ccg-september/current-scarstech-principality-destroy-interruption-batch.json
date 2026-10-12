@@ -1,0 +1,56 @@
+{
+  "scope": "Full production Scarstech Principality CL1 native source GY cost/destruction, native CL2 CounterTrap activation/effect negation/opponent resourceHand/indestructible effect/sourceGY banish. Paid source departure does not invalidate non-target destruction. No adapters; fullcard OPEN",
+  "baseline_cases": 6,
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-scarstech-principality-destroy-interruption.json",
+      "artifact_sha256": "07e8ca82700a190973f429a9cd192e3612ba41f55970d890a1fac96f98bf5673"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "artifact": "current-scarstech-principality-destroy-interruption-no-cost.json",
+      "artifact_sha256": "2323d60c66fe87ecad0ea75b061c66054fbfe0bf1067e493b6bb4a1d152d61af"
+    },
+    {
+      "control": "no-destroy",
+      "expected_failures": [
+        0,
+        3,
+        5
+      ],
+      "artifact": "current-scarstech-principality-destroy-interruption-no-destroy.json",
+      "artifact_sha256": "8ff1b67f30bcde05ac6046c2284fcafbd5f0c56be0900589740119e18053a833"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "artifact": "current-scarstech-principality-destroy-interruption-no-response.json",
+      "artifact_sha256": "bee34824bca147c202853b32c6d4204b51ff8e4d75c46a70ecc6f329532a8d73"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts\\fresh_current_scarstech_principality_destroy_interruption.cjs": "da26708479ee30efe632180edf2bff12249566f2f2aa42b150f1782100b23fb5",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210175845.lua": "f989f9c1b1fd2c32f6bddb7e8f05e69b46cec7fb1e90750a301bd89f5878fa0e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

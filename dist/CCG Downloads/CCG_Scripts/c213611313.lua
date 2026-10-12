@@ -45,8 +45,11 @@ function s.atkop(e)
 	e:GetHandler():RegisterEffect(e1)
 end
 function s.spcost1(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil) end
-	Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_COST+REASON_DISCARD)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.discardfilter,tp,LOCATION_HAND,0,1,nil,e,tp) end
+	Duel.DiscardHand(tp,function(c) return s.discardfilter(c,e,tp) end,1,1,REASON_COST+REASON_DISCARD)
+end
+function s.discardfilter(c,e,tp)
+	return c:IsDiscardable() and Duel.IsExistingMatchingCard(s.handfilter,tp,LOCATION_HAND,0,1,c,e,tp)
 end
 function s.handfilter(c,e,tp) return c:IsRace(RACE_GALAXY) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end
 function s.sptg1(e,tp,eg,ep,ev,re,r,rp,chk)

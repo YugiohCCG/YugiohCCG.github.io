@@ -8,6 +8,9 @@ function s.initial_effect(c)
  e1:SetType(EFFECT_TYPE_ACTIVATE)
  e1:SetCode(EVENT_FREE_CHAIN)
  e1:SetCountLimit(1,id)
+ --This effect places a Deck monster face-up in the Spell/Trap Zone.
+ aux.CCGFaceupPlacementEffects=aux.CCGFaceupPlacementEffects or {}
+ aux.CCGFaceupPlacementEffects[e1]=true
  e1:SetTarget(s.placetg)
  e1:SetOperation(s.placeop)
  c:RegisterEffect(e1)

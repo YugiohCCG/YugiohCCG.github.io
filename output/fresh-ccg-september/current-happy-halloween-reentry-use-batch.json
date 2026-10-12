@@ -1,0 +1,129 @@
+{
+  "scope": "HappyHalloWeen first success/activation/effect negation pays3; neutral helper moves same source Hand/GY and back faceup, native counter reset0 asserted then actual full Ween earns3, same-ownturn second cost/summon succeeds. Neutral placement bounded; no adapters/seeding; nativeOmega/fullcard OPEN",
+  "baseline_cases": 6,
+  "certification": "Production focused evidence; native Omega and full card OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c255977900.lua": "1148765d513fa9b477faec41acb60347688a7382538443345857c5629af9a12b",
+    "public/CCG Downloads/CCG_Scripts/c230749983.lua": "d12495e36b09934c902cc5f1d805f25dae207d750b3cc71b5ed2cd8d60acad99",
+    "scripts/fresh_current_happy_halloween_reentry_use_batch.py": "6be65867162add9361bda22b9d93b2148b851c62d7828ff4b635c1a80a4e364f",
+    "scripts/fresh_current_happy_halloween_reentry_use.cjs": "9f0058f3f295497033a94cbb200e7bcb028a8c647a50c21ed242205bcfa030c9",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "public/CCG Downloads/CCG_Scripts/c231872299.lua": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-happy-halloween-reentry-use.json",
+      "artifact_sha256": "9bda3c77a1cf5ffeac9798aed8c97d0f5c7c1245f176c52e6d74366ba7493042"
+    },
+    {
+      "control": "no-placement",
+      "expected_failures": [
+        {},
+        {
+          "grave": true
+        },
+        {
+          "activation": true
+        },
+        {
+          "activation": true,
+          "grave": true
+        },
+        {
+          "effect": true
+        },
+        {
+          "effect": true,
+          "grave": true
+        }
+      ],
+      "artifact": "current-happy-halloween-reentry-use-no-placement.json",
+      "artifact_sha256": "7e7f8fd1289152662d973bd9bafe41482463ed4f8beadfd44edb045cd2f08589"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        {},
+        {
+          "grave": true
+        },
+        {
+          "activation": true
+        },
+        {
+          "activation": true,
+          "grave": true
+        },
+        {
+          "effect": true
+        },
+        {
+          "effect": true,
+          "grave": true
+        }
+      ],
+      "artifact": "current-happy-halloween-reentry-use-no-cost.json",
+      "artifact_sha256": "9cf44bf8016013b9369126338900236ce24a69ae7e6210d2484ac70582121472"
+    },
+    {
+      "control": "no-earn",
+      "expected_failures": [
+        {},
+        {
+          "grave": true
+        },
+        {
+          "activation": true
+        },
+        {
+          "activation": true,
+          "grave": true
+        },
+        {
+          "effect": true
+        },
+        {
+          "effect": true,
+          "grave": true
+        }
+      ],
+      "artifact": "current-happy-halloween-reentry-use-no-earn.json",
+      "artifact_sha256": "4e3f327f61954fd513dca0e1c821531f19254d3ce508e84f070a96de8789fc06"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        {
+          "activation": true
+        },
+        {
+          "activation": true,
+          "grave": true
+        },
+        {
+          "effect": true
+        },
+        {
+          "effect": true,
+          "grave": true
+        }
+      ],
+      "artifact": "current-happy-halloween-reentry-use-no-response.json",
+      "artifact_sha256": "889ffae8137620352a240ab3806ead8f08956c1d26d766677b892d168807a39d"
+    }
+  ]
+}

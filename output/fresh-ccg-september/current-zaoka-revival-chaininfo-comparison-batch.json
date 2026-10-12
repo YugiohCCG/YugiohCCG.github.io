@@ -1,0 +1,83 @@
+{
+  "scope": "DIAGNOSTIC explicit chaininfo query4 for actual banishcost on turn2, no seeded history; native full Zaoka next ownturn3 Standby revival from Hand/faceupMZONE cost, decline retained. No current-turn revival, actual banish/revival movement; adapter prevents production certification; nativeOmega/fullcard OPEN",
+  "baseline_cases": 3,
+  "certification": "Diagnostic explicit chaininfo adapter comparison only; production unchanged; no fullcard certification",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c215629896.lua": "c9c633382e64429d9a8ac6f4b299032646327e79a117e8914dba50ef0d5d6e97",
+    "public/CCG Downloads/CCG_Scripts/c232232676.lua": "03fa56764c7aef4ab3f4c26f85317e1a994592415fe83aa85547f3da1eab352d",
+    "scripts/fresh_current_zaoka_revival_chaininfo_comparison_batch.py": "26a0059dce3393126c96397ba1170fb22617e570ab10feed37a0580952155b91",
+    "scripts/fresh_current_zaoka_revival_chaininfo_comparison.cjs": "9597bbd7fe0b09fa9f156c6a8b72dc97d00db687f6413a147fa67a19bf3d3c8e",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c236542835.lua": "f74c4420c72822502c95e95bf022b45a6246823d7e33c5b00560fa40bd95fadc",
+    "public/CCG Downloads/CCG_Scripts/c231872299.lua": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-zaoka-revival-chaininfo-comparison.json",
+      "artifact_sha256": "58cbe5c0671a200715d331a282f8698536acb1bd7fef7e4736c66f71c175ae58"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        {
+          "none": true
+        },
+        {
+          "none": true,
+          "field": true
+        },
+        {
+          "none": true,
+          "decline": true
+        }
+      ],
+      "artifact": "current-zaoka-revival-chaininfo-comparison-no-cost.json",
+      "artifact_sha256": "7aad735d2e00dd4af55112dae751c2d1ccd86fe677b96f112bfe63521cc68416"
+    },
+    {
+      "control": "no-revive",
+      "expected_failures": [
+        {
+          "none": true
+        },
+        {
+          "none": true,
+          "field": true
+        }
+      ],
+      "artifact": "current-zaoka-revival-chaininfo-comparison-no-revive.json",
+      "artifact_sha256": "2776a87924088ccf1832764c1c67e68fed4bd9e6e26095fe3aee1e2605da941d"
+    },
+    {
+      "control": "no-history",
+      "expected_failures": [
+        {
+          "none": true
+        },
+        {
+          "none": true,
+          "field": true
+        },
+        {
+          "none": true,
+          "decline": true
+        }
+      ],
+      "artifact": "current-zaoka-revival-chaininfo-comparison-no-history.json",
+      "artifact_sha256": "c332ed7a9f167071003f538cc8bd0487a6ab06d517ff011b944a9711654e09fa"
+    }
+  ]
+}

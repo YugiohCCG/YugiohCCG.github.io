@@ -1,0 +1,84 @@
+{
+  "scope": "Zaoka actual NormalSummon recovery full Oro GY/banished; native CL2 sourceGY/down continues, resourceDeck/native GY NecroValley/Hand lock suppress, banished NecroValley continues. No adapters; neutral response bounded; fullcard/nativeOmega OPEN",
+  "baseline_cases": 10,
+  "certification": "Production focused evidence; native Omega and full card OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c215629896.lua": "c9c633382e64429d9a8ac6f4b299032646327e79a117e8914dba50ef0d5d6e97",
+    "public/CCG Downloads/CCG_Scripts/c232232676.lua": "03fa56764c7aef4ab3f4c26f85317e1a994592415fe83aa85547f3da1eab352d",
+    "scripts/fresh_current_zaoka_recovery_interruption_batch.py": "deba6b4285e9d4c68f41f593bd7209b9c095bc2e261aff8cd9c89f37f968dc0b",
+    "scripts/fresh_current_zaoka_recovery_interruption.cjs": "8f480dd96d5073096639dce97a53e3d41997b78ba7f70f7fcb26b8cbf22b0431",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c236542835.lua": "f74c4420c72822502c95e95bf022b45a6246823d7e33c5b00560fa40bd95fadc",
+    "public/CCG Downloads/CCG_Scripts/c231872299.lua": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-zaoka-recovery-interruption.json",
+      "artifact_sha256": "d0bba4d16387458b1e24f083cae95680d70657bdb3c8db27b0299c142200a501"
+    },
+    {
+      "control": "no-search",
+      "expected_failures": [
+        {},
+        {
+          "banished": true
+        },
+        {
+          "sourceGY": true
+        },
+        {
+          "sourceDown": true
+        },
+        {
+          "necro": true,
+          "banished": true
+        }
+      ],
+      "artifact": "current-zaoka-recovery-interruption-no-search.json",
+      "artifact_sha256": "82a77ceda4dcd7902467474074ab3d6ee4db7b2c507fddd3fa6c637487016311"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        {
+          "sourceGY": true
+        },
+        {
+          "sourceDown": true
+        },
+        {
+          "remove": true
+        },
+        {
+          "remove": true,
+          "banished": true
+        },
+        {
+          "necro": true
+        },
+        {
+          "handLock": true
+        },
+        {
+          "handLock": true,
+          "banished": true
+        }
+      ],
+      "artifact": "current-zaoka-recovery-interruption-no-response.json",
+      "artifact_sha256": "52b5704bbcb65b136ed5ef330df2e268983a3e13e418ff9f70cafb01b14fbcd3"
+    }
+  ]
+}

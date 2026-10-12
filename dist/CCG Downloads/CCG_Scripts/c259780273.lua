@@ -60,14 +60,14 @@ function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	tc:CreateEffectRelation(e)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>1
+	if chk==0 then return not Duel.IsPlayerAffectedByEffect(tp,59822133) and Duel.GetLocationCount(tp,LOCATION_MZONE)>1
 		and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,2,tp,LOCATION_HAND+LOCATION_DECK)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=e:GetLabelObject()
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<2 then return end
+	if Duel.IsPlayerAffectedByEffect(tp,59822133) or Duel.GetLocationCount(tp,LOCATION_MZONE)<2 then return end
 	if c:IsRelateToEffect(e) and tc and tc:IsRelateToEffect(e) then
 		if Duel.SpecialSummonStep(c,0,tp,tp,false,false,POS_FACEUP) then
 			Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP)

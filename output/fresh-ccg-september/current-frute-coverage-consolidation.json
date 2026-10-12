@@ -1,0 +1,193 @@
+{
+  "scope": "Requirement reconciliation plus frozen batch/dependency freshness. Focused partial evidence only, explicit adapters per report; no full-card certification.",
+  "cards": {
+    "216140411": {
+      "name": "Fruteopia",
+      "printed_effect": "This card\u2019s name becomes \u201cFruteonia\u201d while face-up on the field. You can only use 1 of the following effects of \u201cFruteopia\u201d per turn, and only once that turn. When this card is activated: You can add 1 \u201cFrute\u201d monster or 1 \u201cFruteification\u201d from your Deck or banishment to your hand. If a WATER Ritual Monster(s) you control leaves the field by card effect: You can send this card to the GY, and if you do, Special Summon 1 of those monsters. You can banish this card from your GY; all WATER monsters you control gain 400 ATK this turn for each Defense Position monster your opponent controls.",
+      "source_sha256": "7c5a4e3783e26290da915c33a35958c406961854235805305e3aedeca67b991d",
+      "clauses_with_focused_evidence": [
+        "Field name change",
+        "Optional Deck/banishment search",
+        "Effect departure WATER Ritual revival and source effect GY send",
+        "GY banish/ATK per opponent Defense count/end-turn expiry",
+        "Shared three-effect use/reset"
+      ],
+      "open": [
+        "Revival legacy target-card query nativeOmega verification",
+        "Historical support dependency changes require scoped refresh",
+        "Final complete printed-clause/nativeOmega integration certification"
+      ],
+      "fully_audited": false
+    },
+    "256930605": {
+      "name": "Fruteification",
+      "printed_effect": "When this card is activated, you can also target 1 non-Ritual \"Frute\" monster in your GY, but for the rest of this turn, you cannot target a monster to activate this effect of \"Fruteification\"; Special Summon the targeted monster in face-down Defense Position (if any), also, Ritual Summon 1 WATER Ritual Monster from your hand or GY by Tributing monsters from your hand or field, whose total Levels equal or exceed the Level of the Ritual Monster. You can banish this card from your GY; send 1 WATER Ritual Monster from your Deck to the GY. You can only use this effect of \"Fruteification\" once per Duel.",
+      "source_sha256": "592c87e2fe6bf5dd8df388b4cb9b2811e3fb0793469bd47a9e114dc65ddc3f07",
+      "clauses_with_focused_evidence": [
+        "Hand/GY WATER Ritual, Hand/field material total >= level",
+        "Optional nonRitual Frute facedown revival/target restrictions/capacity",
+        "Shared optional target use incl OATH negation and next-turn reset",
+        "GY banish Deck WATER Ritual send",
+        "Once-per-Duel GY shared use"
+      ],
+      "open": [
+        "GY legacy additive DUEL encoding nativeOmega verification",
+        "Optional facedown revival broader eligibility pool exclusions/archetype nonRitual/opponent",
+        "Final complete printed-clause/nativeOmega integration certification"
+      ],
+      "fully_audited": false
+    }
+  },
+  "reports": [
+    {
+      "file": "current-fruteification-grave-interruption-use-batch.json",
+      "sha256": "bbe358b900805e6f8300f53999debe9c49c7675b249461b8e05d60ba2655cfb6",
+      "stale_dependencies": [],
+      "status": "FROZEN_CURRENT_DEPENDENCIES"
+    },
+    {
+      "file": "current-fruteification-grave-send-batch.json",
+      "sha256": "2f7c217015a5a476fba19bc621662975444247cd51e52eea68354f8dc6decd81",
+      "stale_dependencies": [],
+      "status": "FROZEN_CURRENT_DEPENDENCIES"
+    },
+    {
+      "file": "current-fruteification-interruption-comparison-batch.json",
+      "sha256": "e939c188795ba114fa1c6bda1fe7e9e3e0188dc0724756d8b006736792077e1e",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    },
+    {
+      "file": "current-fruteification-optional-capacity-diagnostic-batch.json",
+      "sha256": "b947ef0e5030eea1d98a1be87dcb391c0b462bf722ef9f978ad8502c1efcc1a4",
+      "stale_dependencies": [],
+      "status": "FROZEN_CURRENT_DEPENDENCIES"
+    },
+    {
+      "file": "current-fruteification-optional-interruption-comparison-batch.json",
+      "sha256": "b9e5038d8ae8d6c1b609c57e0f2d615393cd91e82bbfef7f8cb5bc0808fed497",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    },
+    {
+      "file": "current-fruteification-optional-restrictions-comparison-batch.json",
+      "sha256": "aad62a97a09a66ea73f48af6e3aac8bf72f5a90ad421effe9e4020485766c61a",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    },
+    {
+      "file": "current-fruteification-optional-revival-comparison-batch.json",
+      "sha256": "9a9a24d72bc646a7c696ec40d38e41539cdda38070732a2d335e9db94c584a1c",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    },
+    {
+      "file": "current-fruteification-optional-use-reset-batch.json",
+      "sha256": "df11b7de7ecb68f0520e139a0be289a9edba9281335142101fd986b225f8f69f",
+      "stale_dependencies": [],
+      "status": "FROZEN_CURRENT_DEPENDENCIES"
+    },
+    {
+      "file": "current-fruteification-ritual-repaired-batch.json",
+      "sha256": "ae14e8e41d09fbc3a32bcceb1f3751c4c8f9b11b189f2e5675faffb553c209ed",
+      "stale_dependencies": [],
+      "status": "FROZEN_CURRENT_DEPENDENCIES"
+    },
+    {
+      "file": "current-fruteopia-activation-group-batch.json",
+      "sha256": "3638458964008cab56afd8e5a5d36e3c45db8c1144a0c7866b331b418eb6c5cb",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    },
+    {
+      "file": "current-fruteopia-atk-group-batch.json",
+      "sha256": "2203afc7cee2b9b9a88aa78a9817888627b881ab4a8ef677b8302a3e770a750e",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    },
+    {
+      "file": "current-fruteopia-atk-interruption-group-batch.json",
+      "sha256": "09a29f4ea14f5f3deef3db96c43d603cdf65160bff75af134f7b71b36f57f4c7",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    },
+    {
+      "file": "current-fruteopia-revival-capacity-comparison-batch.json",
+      "sha256": "6498c2a94c34eff83d984bddedb99cc284e4411fc8f4d2950a10a5be28730734",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    },
+    {
+      "file": "current-fruteopia-revival-comparison-batch.json",
+      "sha256": "578acf12abda27ba39972843b7eb17beb9950a6f76099b0ec61504743a253061",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    },
+    {
+      "file": "current-fruteopia-revival-interruption-comparison-batch.json",
+      "sha256": "e23f17542681a020406f4a101f86f8666f8d59262e856477c9a7a28575a5397e",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    },
+    {
+      "file": "current-fruteopia-revival-locks-comparison-batch.json",
+      "sha256": "5883f1fb040af7a68e48069a55ed594ab80ad760a4754771cf9682b1a2595d81",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    },
+    {
+      "file": "current-fruteopia-revival-use-reset-comparison-batch.json",
+      "sha256": "16f2846ca452b5ed77e0f582011c8f5c7d2dd380105ea1a8e708f39cc5342a28",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    },
+    {
+      "file": "current-fruteopia-ritual-material-comparison-batch.json",
+      "sha256": "422aedcb4ce727b600c0e0ea97ae23a193084c8d2542594277d2b138da1f7cf7",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    },
+    {
+      "file": "current-fruteopia-search-batch.json",
+      "sha256": "79136362c912fdcdc98a3974529695af99774902121001fdbb088a12a5cc6300",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    },
+    {
+      "file": "current-fruteopia-use-reset-group-batch.json",
+      "sha256": "106473fa2cef9bbc2f9af82ddb2b1d702bab735b7238a72f48e689ce419380ce",
+      "stale_dependencies": [
+        "public/CCG Downloads/CCG_Scripts/c256930605.lua"
+      ],
+      "status": "HISTORICAL_DEPENDENCY_CHANGED"
+    }
+  ]
+}

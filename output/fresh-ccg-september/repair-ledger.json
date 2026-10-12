@@ -1,6 +1,6 @@
 {
   "scope": "Documented script repairs with current source/install parity. Public-engine regressions and explicitly bounded callback/shared-effect evidence are distinguished per row. Not full-card or native Omega certification.",
-  "fixed_cards_minimum": 75,
+  "fixed_cards_minimum": 78,
   "cards": [
     {
       "passcode": 215034223,
@@ -909,6 +909,41 @@
       "script_sha256": "606094785fe384e1f2127d7a2b17f4d8273a5e3fb5dbdfe0536ac9c334ed5ab0",
       "batch": "current-teleum-bear-negation-repaired-batch.json",
       "batch_sha256": "a5c5b67e681c7295bbf5e0d28d9beb9851938a0114468b344a9ccf6e16e6cdd8",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 255977900,
+      "name": "Happy Hallo-Ween!",
+      "repair": "Remove IsRelateToEffect guard from continuous SpecialSummon counter operation; retain faceup guard. Full Ween actual summon/group event one-counter accrual; wrongmonster/Normal/opponent excluded. Native disabled/facedown/sourceGY boundaries, nine cases/five control runs including original guard. No seeded counters/adapters. Activation/cost/revival/limits/nativeOmega/fullcard OPEN. Additional repair: require source faceup in ignition spop. Six native reference/facedown/disabled Hand/GY cases and four controls, including original-faceup reproducing both facedown failures; exact-byte backups happy-halloween-before-faceup-repair. Cost preserved. Native engine handles same-chain source departure/re-entry; faceup guard adds missing facedown exclusion.",
+      "script_sha256": "f4640522704017813c6e972d2d78d22d202a32d182062dfbb6550e01eb27a613",
+      "batch": "current-happy-halloween-counter-repaired-batch.json",
+      "batch_sha256": "6f41962c4ba6934211742b4481c348c1b580318e8441da34743d1089b450e74e",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false,
+      "additional_batch": "current-happy-halloween-faceup-repaired-batch.json",
+      "additional_batch_sha256": "15b19f60001a581d5947c88be3565707dabb07cc6c632ca28b6d9c3859c8aeaf"
+    },
+    {
+      "passcode": 215730767,
+      "name": "Crewal Helmsman",
+      "repair": "Recheck MonsterZone space before Hand selfsummon resolution so CL2 filling all zones preserves Hand source and paidSpellTrapcost. Native five interruption cases/four controls including original-capacity; Handcost6/locks6/negation4 regressions. Exact-byte both-copy backup helmsman-before-hand-capacity-repair. Official FAQ19958 no-space Handresource retention applied by inference. No adapters; Zombie revival/ContinuousTrap selfsummon/shareduse/nativeOmega/fullcard OPEN.",
+      "script_sha256": "7d01e43a8e478088b3527c684efe45d9414e52d71f75da03df5bdc73e105a3ef",
+      "batch": "current-helmsman-hand-capacity-repaired-batch.json",
+      "batch_sha256": "36e6135704e3688076a31373e03fec0e83b226bb1a7cb7fae07680fddd5a5717",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 256930605,
+      "name": "Fruteification",
+      "repair": "Exclude selected Ritual from its material subgroup; remove unestablished target relation check from matching-card-selected Ritual. Native Hand/GY Ritual, Hand/field real materials, higher level and insufficient-other-material exclusion: five cases/four controls including original-line regressions. Both-copy exact-byte backups fruteification-before-relation-material-repair. Optional revival/current focused integration follow-ups separately diagnostic; all-effects/nativeOmega remain OPEN.",
+      "script_sha256": "592c87e2fe6bf5dd8df388b4cb9b2811e3fb0793469bd47a9e114dc65ddc3f07",
+      "batch": "current-fruteification-ritual-repaired-batch.json",
+      "batch_sha256": "ae14e8e41d09fbc3a32bcceb1f3751c4c8f9b11b189f2e5675faffb553c209ed",
       "installed_matches": true,
       "full_card_audit": "OPEN",
       "native_omega_verified": false

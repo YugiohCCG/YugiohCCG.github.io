@@ -658,6 +658,43 @@ def main():
   assert sha(FILES/'Scripts'/source.name)==sha(source)
   assert not any(r['passcode']==251699681 for r in rows)
   rows.append({'passcode':251699681,'name':roster[251699681]['name'],'repair':'Rollback exactly one permanent and turn activation-history flag for relevant player on EVENT_CHAIN_NEGATED. Actual attack-response activation/effect-negation2cases, attack/persistence2cases and seeded prior/bothplayer history preservation4cases, each with2controls. Official FAQ12712 activation-count distinction applied by inference to custom Trap. Prior counts are seeded, not actual prior activations. No adapters; summon-response legacy GetReadyChain, actual multiple/bothplayer activations, nativeOmega/fullcard OPEN.','script_sha256':sha(source),'batch':bear_path.name,'batch_sha256':sha(bear_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ hallo_path=OUT/'current-happy-halloween-counter-repaired-batch.json'
+ if hallo_path.exists():
+  source=ROOT/'public/CCG Downloads/CCG_Scripts/c255977900.lua';batch=json.loads(hallo_path.read_text());assert batch['baseline_cases']==9
+  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  assert sha(FILES/'Scripts'/source.name)==sha(source)
+  for run in batch['runs']:
+   artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source);assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures'];assert not data['relation_guard_comparison']
+  assert sum(r['control'] is None and not r['expected_failures'] for r in batch['runs'])==2
+  assert any(r['control']=='original-guard' and r['expected_failures']==[{}] for r in batch['runs'])
+  assert not any(r['passcode']==255977900 for r in rows)
+  rows.append({'passcode':255977900,'name':roster[255977900]['name'],'repair':'Remove IsRelateToEffect guard from continuous SpecialSummon counter operation; retain faceup guard. Full Ween actual summon/group event one-counter accrual; wrongmonster/Normal/opponent excluded. Native disabled/facedown/sourceGY boundaries, nine cases/five control runs including original guard. No seeded counters/adapters. Activation/cost/revival/limits/nativeOmega/fullcard OPEN.','script_sha256':sha(source),'batch':hallo_path.name,'batch_sha256':sha(hallo_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ faceup_path=OUT/'current-happy-halloween-faceup-repaired-batch.json'
+ if faceup_path.exists():
+  source=ROOT/'public/CCG Downloads/CCG_Scripts/c255977900.lua';batch=json.loads(faceup_path.read_text());assert batch['baseline_cases']==6
+  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for run in batch['runs']:
+   artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source);assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results'])
+  assert any(r['control']=='original-faceup' and len(r['expected_failures'])==2 for r in batch['runs'])
+  row=next(r for r in rows if r['passcode']==255977900);row['repair']+=' Additional repair: require source faceup in ignition spop. Six native reference/facedown/disabled Hand/GY cases and four controls, including original-faceup reproducing both facedown failures; exact-byte backups happy-halloween-before-faceup-repair. Cost preserved. Native engine handles same-chain source departure/re-entry; faceup guard adds missing facedown exclusion.';row['additional_batch']=faceup_path.name;row['additional_batch_sha256']=sha(faceup_path)
+ helmsman_path=OUT/'current-helmsman-hand-capacity-repaired-batch.json'
+ if helmsman_path.exists():
+  source=ROOT/'public/CCG Downloads/CCG_Scripts/c215730767.lua'
+  for name,cases in [('current-helmsman-hand-capacity-repaired-batch.json',5),('current-helmsman-hand-summon-batch.json',6),('current-helmsman-hand-locks-batch.json',6),('current-helmsman-hand-negation-batch.json',4)]:
+   batch=json.loads((OUT/name).read_text());assert batch['baseline_cases']==cases
+   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for run in batch['runs']:
+    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source);assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results'])
+  batch=json.loads(helmsman_path.read_text());assert any(r['control']=='original-capacity' and r['expected_failures']==[{'full':True}] for r in batch['runs']);assert sha(FILES/'Scripts'/source.name)==sha(source);assert not any(r['passcode']==215730767 for r in rows)
+  rows.append({'passcode':215730767,'name':roster[215730767]['name'],'repair':'Recheck MonsterZone space before Hand selfsummon resolution so CL2 filling all zones preserves Hand source and paidSpellTrapcost. Native five interruption cases/four controls including original-capacity; Handcost6/locks6/negation4 regressions. Exact-byte both-copy backup helmsman-before-hand-capacity-repair. Official FAQ19958 no-space Handresource retention applied by inference. No adapters; Zombie revival/ContinuousTrap selfsummon/shareduse/nativeOmega/fullcard OPEN.','script_sha256':sha(source),'batch':helmsman_path.name,'batch_sha256':sha(helmsman_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ frute_path=OUT/'current-fruteification-ritual-repaired-batch.json'
+ if frute_path.exists():
+  source=ROOT/'public/CCG Downloads/CCG_Scripts/c256930605.lua';batch=json.loads(frute_path.read_text());assert batch['baseline_cases']==5
+  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for run in batch['runs']:
+   artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert [i for i,r in enumerate(data['results']) if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results']);assert data['legacy_chaininfo_adapter'] is False
+  assert any(r['control']=='original-relation' and r['expected_failures']==[0,1,2,3] for r in batch['runs']);assert any(r['control']=='original-material' and r['expected_failures']==[4] for r in batch['runs']);assert sha(FILES/'Scripts'/source.name)==sha(source);assert not any(r['passcode']==256930605 for r in rows)
+  rows.append({'passcode':256930605,'name':roster[256930605]['name'],'repair':'Exclude selected Ritual from its material subgroup; remove unestablished target relation check from matching-card-selected Ritual. Native Hand/GY Ritual, Hand/field real materials, higher level and insufficient-other-material exclusion: five cases/four controls including original-line regressions. Both-copy exact-byte backups fruteification-before-relation-material-repair. Optional revival/current focused integration follow-ups separately diagnostic; all-effects/nativeOmega remain OPEN.','script_sha256':sha(source),'batch':frute_path.name,'batch_sha256':sha(frute_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
  report={'scope':'Documented script repairs with current source/install parity. Public-engine regressions and explicitly bounded callback/shared-effect evidence are distinguished per row. Not full-card or native Omega certification.', 'fixed_cards_minimum':len(rows),'cards':rows}
  (OUT/'repair-ledger.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');print(json.dumps({'fixed_cards_minimum':len(rows),'status':'CURRENT_EVIDENCE_VERIFIED'}))
 if __name__=='__main__':main()

@@ -1,0 +1,99 @@
+{
+  "scope": "DIAGNOSTIC unmodified legacy additive DUEL encoding consumes shared first-turn use but resets ownturn3 (three failures). Explicit in-memory SetCountLimit(1,id,2) comparison passes five cases, shared once-per-Duel including native activation/effect negation; CL2 Deck resource banish/send restriction preserve paid cost/suppress send. No production compatibility edit or focused-indexing.",
+  "runs": [
+    {
+      "flags": [],
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-fruteification-grave-interruption-use.json",
+      "sha256": "ffa9ef223d22e0e1bc4b001630b598e3325c2ad7dbe2069f56c61196f7e980a1"
+    },
+    {
+      "flags": [
+        "--duel-flag-comparison",
+        "--no-response"
+      ],
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "artifact": "current-fruteification-grave-interruption-use-duel-flag-comparison-no-response.json",
+      "sha256": "184f99cd918a3725d355b412c0e301832f6c4a207aac0c7a0e2198e5b9941459"
+    },
+    {
+      "flags": [
+        "--duel-flag-comparison",
+        "--per-copy"
+      ],
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-fruteification-grave-interruption-use-duel-flag-comparison-per-copy.json",
+      "sha256": "bda4d817b81b231f9c429f94dad9f1424d7de4be05ffa1af4aeead95360806b9"
+    },
+    {
+      "flags": [
+        "--duel-flag-comparison",
+        "--per-turn"
+      ],
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-fruteification-grave-interruption-use-duel-flag-comparison-per-turn.json",
+      "sha256": "0e13ddadece56776c7f2d1ba6ee36f0c87c2fa232a5f14278745ce57616bad99"
+    },
+    {
+      "flags": [
+        "--duel-flag-comparison",
+        "--no-cost"
+      ],
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "artifact": "current-fruteification-grave-interruption-use-duel-flag-comparison-no-cost.json",
+      "sha256": "101e468875f4ceabe3396951044610b8444c9e4d6c1dc5daa98861f44c452893"
+    },
+    {
+      "flags": [
+        "--duel-flag-comparison",
+        "--no-send"
+      ],
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-fruteification-grave-interruption-use-duel-flag-comparison-no-send.json",
+      "sha256": "059b527a566a1085ebaadfddccbe547dea4858c9c9ce5868ad62d57271307d6f"
+    },
+    {
+      "flags": [
+        "--duel-flag-comparison"
+      ],
+      "expected_failures": [],
+      "artifact": "current-fruteification-grave-interruption-use-duel-flag-comparison.json",
+      "sha256": "09c28ac7cbe54419a7ede8d19daef3c63307e78184c8ef47bc3b89467ff87316"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_fruteification_grave_interruption_use.cjs": "613dd8a9c37d492d73dae6fb1d4445e7091e53e855093657daa0e6eb931620fc",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c256930605.lua": "592c87e2fe6bf5dd8df388b4cb9b2811e3fb0793469bd47a9e114dc65ddc3f07",
+    "public/CCG Downloads/CCG_Scripts/c213266433.lua": "8693059b76823e8baf2c44f4eafa95a9e880602dd26a75cfd908dacbd9d17678",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}
