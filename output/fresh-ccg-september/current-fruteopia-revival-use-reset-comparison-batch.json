@@ -1,0 +1,49 @@
+{
+  "scope": "DIAGNOSTIC explicit target-card query8 adapter; full native Ritual summon/material release and effect departure; revival including native activation/effect negation consumes shared activation/GY use, both return own turn3, actual GY cost/gain consumes activation again. Production unchanged; no full-card certification.",
+  "baseline": {
+    "file": "output\\fresh-ccg-september\\current-fruteopia-revival-use-reset-comparison.json",
+    "sha256": "4aad4284670482d2e57e6bb4ae712df7beb27758d41f409395c2e573b7412bea",
+    "cases": 3
+  },
+  "controls": [
+    {
+      "control": "split-limit",
+      "failed_cases": [
+        0,
+        1,
+        2
+      ],
+      "file": "output\\fresh-ccg-september\\current-fruteopia-revival-use-reset-comparison-split-limit.json",
+      "sha256": "e5327876feb88f8d774902b67ced6941a5f4fc1d2517f92f92951488a25df730"
+    },
+    {
+      "control": "no-response",
+      "failed_cases": [
+        1,
+        2
+      ],
+      "file": "output\\fresh-ccg-september\\current-fruteopia-revival-use-reset-comparison-no-response.json",
+      "sha256": "1a3eac63126109dfa4b6edb2f868f597c24594ff9b194d10a11c2fd45da07fd6"
+    },
+    {
+      "control": "no-gain",
+      "failed_cases": [
+        0,
+        1,
+        2
+      ],
+      "file": "output\\fresh-ccg-september\\current-fruteopia-revival-use-reset-comparison-no-gain.json",
+      "sha256": "225cb4bf6581a80fbff5928caab2d2ac6de323ea59cc97a5ff54c4063225ba52"
+    }
+  ],
+  "dependencies": {
+    "scripts/fresh_current_fruteopia_revival_use_reset_comparison.cjs": "ad56ba0af7a997c65bfa1ad086026e831a054f69493b96bba88e7bb074a96bbc",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c216140411.lua": "7c5a4e3783e26290da915c33a35958c406961854235805305e3aedeca67b991d",
+    "public/CCG Downloads/CCG_Scripts/c213266433.lua": "8693059b76823e8baf2c44f4eafa95a9e880602dd26a75cfd908dacbd9d17678",
+    "public/CCG Downloads/CCG_Scripts/c256930605.lua": "9c68121434c5db376cd94ace47e44d368920119a7f081d595b9988098b5d60de",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde"
+  }
+}

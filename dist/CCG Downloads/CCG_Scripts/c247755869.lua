@@ -35,7 +35,7 @@ function s.sstg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
  local c=e:GetHandler()
  local hand=c:IsLocation(LOCATION_HAND)
  if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE) and s.ssfilter(chkc,e,tp) end
- if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>(hand and 1 or 0)
+ if chk==0 then return (not hand or not Duel.IsPlayerAffectedByEffect(tp,59822133)) and Duel.GetLocationCount(tp,LOCATION_MZONE)>(hand and 1 or 0)
   and (not hand or c:IsCanBeSpecialSummoned(e,0,tp,false,false))
   and Duel.IsExistingTarget(aux.NecroValleyFilter(s.ssfilter),tp,LOCATION_GRAVE,0,1,nil,e,tp) end
  e:SetLabel(hand and 1 or 0)
@@ -46,6 +46,7 @@ function s.sstg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.ssop(e,tp)
  local c=e:GetHandler()
+ if e:GetLabel()==1 and Duel.IsPlayerAffectedByEffect(tp,59822133) then return end
  local tc=Duel.GetFirstTarget()
  local summoned=false
  if tc and tc:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0

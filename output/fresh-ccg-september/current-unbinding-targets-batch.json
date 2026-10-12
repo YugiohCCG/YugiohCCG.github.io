@@ -1,0 +1,76 @@
+{
+  "scope": "Actual Hand activation targeting one/two own, opposing or split Graveyard monsters, optionally one of two; Spell and empty-monster pool excluded. Actual owner Deck destination. Explicit legacy CHAININFO_TARGET_CARDS=8 adapter, production unchanged. Necrovalley, target interruption and native Omega open",
+  "baseline_cases": 7,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_unbinding_targets_batch.py": "d7520b187457e24f884bbcbe136c8b804f75cda53023ac8d09f84066037c2a03",
+    "scripts/fresh_current_unbinding_targets.cjs": "3ac82e0bd927e783aafa334288b2a05cd4ded218c9790a0361d976c1e03ef070",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c246900181.lua": "88f933cf48ea71b0cf99c5e92d5bcc6d80e0bcbfeda60cca7f4194defba8e63a",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-unbinding-targets.json",
+      "artifact_sha256": "0ae7b7d1b6628088463466d683e1e30cee8b55afab71b94bafd1df9ed9628f4d"
+    },
+    {
+      "control": "no-shuffle",
+      "expected_failures": [
+        {},
+        {
+          "opponent": true
+        },
+        {
+          "pair": true
+        },
+        {
+          "split": true
+        },
+        {
+          "single": true
+        }
+      ],
+      "artifact": "current-unbinding-targets-no-shuffle.json",
+      "artifact_sha256": "09902cf65f39f75b8c2572b9ebd043f4240c0f0664bef5ee3e28ff132703bbef"
+    },
+    {
+      "control": "any-type",
+      "expected_failures": [
+        {},
+        {
+          "opponent": true
+        },
+        {
+          "pair": true
+        },
+        {
+          "split": true
+        },
+        {
+          "single": true
+        },
+        {
+          "spellOnly": true
+        },
+        {
+          "empty": true
+        }
+      ],
+      "artifact": "current-unbinding-targets-any-type.json",
+      "artifact_sha256": "eac3ad26239cf51daa5860b417d8592e8701494f1c7c3a01da0b7894a47de18e"
+    }
+  ]
+}

@@ -38,6 +38,7 @@ end
 function s.discon(e,tp,eg,ep,ev,re,r,rp)
 	if not Duel.IsChainDisablable(ev) then return false end
 	return s.setcheck(ev,re) or s.eqcheck(ev)
+		or (type(aux.CCGFaceupPlacementEffects)=="table" and aux.CCGFaceupPlacementEffects[re])
 end
 function s.discost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

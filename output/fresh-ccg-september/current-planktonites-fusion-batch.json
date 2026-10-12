@@ -1,0 +1,40 @@
+{
+  "scope": "Full canonical Planktonites ignition with required self-material and actual full-source Nautilus recipient. Valid Fusion completes; native source-immune second monster prevents activation. Starting Planktonites face-up fixture bypasses original proper summon. Explicit sterile mandatory and exactly-one forced group-to-card adapters. No generic compatibility/initial summon/revival/native Omega proof.",
+  "baseline_cases": 2,
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c241976572.lua": "b1fa9e29f91add399439d852327a2611f1ef4422891ea66765267dafb2b3f741",
+    "scripts/fresh_current_planktonites_fusion_batch.py": "f75a0c28b122445015e5cdbb7a83026d4d00d7982b86c6bfc8980e77dc9425e6",
+    "scripts/fresh_current_planktonites_fusion.cjs": "ae5793e7b4867cd5077f8ba2bd8a23a5a30a3840cdd51c9bae43979d58f6af41",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c250339529.lua": "0cacdefea7bffdbe277150a4a414356c8ba4654ae346f3824ea45cc92016f70a",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-planktonites-fusion-neutral-mandatory-adapter-single-forced-adapter.json",
+      "artifact_sha256": "d3f24315752584bea738450094bb8c572206b9f8f3b47afef4c0430a4a2c6651"
+    },
+    {
+      "control": "old-material-pool",
+      "expected_failures": [
+        {
+          "immune": true
+        }
+      ],
+      "artifact": "current-planktonites-fusion-neutral-mandatory-adapter-single-forced-adapter-old-material-pool.json",
+      "artifact_sha256": "1ea787033be01557e5312b6a2d2498e9980a0f09d39b39f3912906090956f7f4"
+    }
+  ]
+}

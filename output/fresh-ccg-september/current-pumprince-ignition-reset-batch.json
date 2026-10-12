@@ -1,0 +1,62 @@
+{
+  "scope": "Pumprince one/two copies independent actual three-counter ignitions once each ownturn1 and ownturn3 after reset, Standby adds1 both players; exact native counter/chain/stat checks. No adapters; other counter sources/interruption/native Omega OPEN",
+  "baseline_cases": 2,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_pumprince_ignition_reset_batch.py": "e3023584358178bdf7361462d8de1030729dcd11aee1058efa0d48dca2657945",
+    "scripts/fresh_current_pumprince_ignition_reset.cjs": "87e75e562f5791a60e9ccbaa5e8480813aad237ffaf3e5011c55324f4dda0ca6",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c239028111.lua": "e4745c29e2fb7600d87881f5be39745eef31eb0ae67d2c28bf44ab702a173f5c",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-pumprince-ignition-reset.json",
+      "artifact_sha256": "5e1c903f752b5953eaf1d43ce5f099a49f628f77b207b3aaa82bdd3143bee242"
+    },
+    {
+      "control": "no-counters",
+      "expected_failures": [
+        {},
+        {
+          "twoCopies": true
+        }
+      ],
+      "artifact": "current-pumprince-ignition-reset-no-counters.json",
+      "artifact_sha256": "2ddaef1e232338715c148b93225377fbc1f920379dd32f51af259e2594a3c8ca"
+    },
+    {
+      "control": "no-limit",
+      "expected_failures": [
+        {},
+        {
+          "twoCopies": true
+        }
+      ],
+      "artifact": "current-pumprince-ignition-reset-no-limit.json",
+      "artifact_sha256": "66f4051d8ad6889e7b72bf64709135fa91aeaf553b63c8be7d9fe370772c4084"
+    },
+    {
+      "control": "shared-limit",
+      "expected_failures": [
+        {
+          "twoCopies": true
+        }
+      ],
+      "artifact": "current-pumprince-ignition-reset-shared-limit.json",
+      "artifact_sha256": "30470f3f54478759a1c5ee8278df2d7972bea88121230f4eebf8ae9cf5e211c0"
+    }
+  ]
+}

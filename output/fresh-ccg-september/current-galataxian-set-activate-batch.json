@@ -1,0 +1,84 @@
+{
+  "scope": "Actual Galataxian Sets1/3 own faceupbanished Galactica Spell/Trap; normalSpell/Trap/Quickplay actually activates same turn and native Recover100. Wrongset/facedown/opponent/monster excludes. TARGET_CARDS8 and QP_ACT_IN_SET_TURN19 legacy public-core constants. Selfexclusion/zonecapacity/interruptions/sharedlimits/nativeOmegaOPEN",
+  "baseline_cases": 8,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_galataxian_set_activate_batch.py": "69cbd295f018dd02162dd030ab173a65769209660afaf6f98e18766d53653645",
+    "scripts/fresh_current_galataxian_set_activate.cjs": "36ead5297940d88d643835e1c1f7ba407c7e838ef6a3c6038ae1bd7564fbaf17",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c210696007.lua": "6204a8bd36a96ad1d178ec05a68dc50dc14fcaa0f5c21e378ba05111665ad593",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-galataxian-set-activate.json",
+      "artifact_sha256": "86f480f1de44814a71ec02050e8e03af03c63e44e8f17e64badd245170c67392"
+    },
+    {
+      "control": "no-set",
+      "expected_failures": [
+        {
+          "count": 1,
+          "kind": "spell"
+        },
+        {
+          "count": 1,
+          "kind": "trap"
+        },
+        {
+          "count": 1,
+          "kind": "quickplay"
+        },
+        {
+          "count": 3,
+          "kind": "trap"
+        }
+      ],
+      "artifact": "current-galataxian-set-activate-no-set.json",
+      "artifact_sha256": "aa340769f29bd5e1ba62aeac42e0b92acd75df1cdc3376a66057d904d25d33e2"
+    },
+    {
+      "control": "no-permission",
+      "expected_failures": [
+        {
+          "count": 1,
+          "kind": "trap"
+        },
+        {
+          "count": 1,
+          "kind": "quickplay"
+        },
+        {
+          "count": 3,
+          "kind": "trap"
+        }
+      ],
+      "artifact": "current-galataxian-set-activate-no-permission.json",
+      "artifact_sha256": "d6cb7bbd12070e85631dd9413e86a77a4dd25326478380cf57052dc2f3507dcf"
+    },
+    {
+      "control": "ignore-set",
+      "expected_failures": [
+        {
+          "count": 1,
+          "kind": "trap",
+          "wrongSet": true
+        }
+      ],
+      "artifact": "current-galataxian-set-activate-ignore-set.json",
+      "artifact_sha256": "e64ee97480479ac2dfc0cdd3f6c107983a28742e1e2da00264c7ff26e2eb9f12"
+    }
+  ]
+}

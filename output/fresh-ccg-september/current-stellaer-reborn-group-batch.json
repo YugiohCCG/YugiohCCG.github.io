@@ -1,0 +1,86 @@
+{
+  "scope": "Native simultaneous effect destruction of two monsters; accept/decline, both eligible or second wrong-set/facedown/opponent. One source banish protects all eligible monsters only. No adapters; battle/destination/Necrovalley/native Omega open",
+  "baseline_cases": 8,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_stellaer_reborn_group_batch.py": "45276684d23ec03242c574215d943366c06e278d6b6c6c3c535c6eb3f745902d",
+    "scripts/fresh_current_stellaer_reborn_group.cjs": "550ffdc6667051aacd4dc3bc151041f5d92abcc4443570968355493012a7a51e",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c257549955.lua": "0eef38755b2dbf72620b8e101de4124873daca9948bcf0fe2faa41233e95aa6d",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-stellaer-reborn-group.json",
+      "artifact_sha256": "7c38f5a6e52ef90b52442bbc4dea3b3f27ec3c671c4eddfad1f1e95e92b73a7b"
+    },
+    {
+      "control": "no-replacement",
+      "expected_failures": [
+        {
+          "mode": "both",
+          "decline": false
+        },
+        {
+          "mode": "wrong-set",
+          "decline": false
+        },
+        {
+          "mode": "facedown",
+          "decline": false
+        },
+        {
+          "mode": "opponent",
+          "decline": false
+        }
+      ],
+      "artifact": "current-stellaer-reborn-group-no-replacement.json",
+      "artifact_sha256": "d35f91d3db7b85bcd520df0093f47083498738a23740b64324a8fab918427543"
+    },
+    {
+      "control": "ignore-set",
+      "expected_failures": [
+        {
+          "mode": "wrong-set",
+          "decline": false
+        }
+      ],
+      "artifact": "current-stellaer-reborn-group-ignore-set.json",
+      "artifact_sha256": "f801d23d6c9bc6d1f8d2ce82d9a82ef9ce5ac2dcd14660e43b9105b3e6bd0666"
+    },
+    {
+      "control": "ignore-faceup",
+      "expected_failures": [
+        {
+          "mode": "facedown",
+          "decline": false
+        }
+      ],
+      "artifact": "current-stellaer-reborn-group-ignore-faceup.json",
+      "artifact_sha256": "4d14b4793b0592c897027b31d2b3a84884cd77c52eec6abc351f152ef7e739f2"
+    },
+    {
+      "control": "ignore-controller",
+      "expected_failures": [
+        {
+          "mode": "opponent",
+          "decline": false
+        }
+      ],
+      "artifact": "current-stellaer-reborn-group-ignore-controller.json",
+      "artifact_sha256": "f70ab91fcc7d1040b65595cd9ae5d1516c2d399912a6b9cadb6871599417343c"
+    }
+  ]
+}

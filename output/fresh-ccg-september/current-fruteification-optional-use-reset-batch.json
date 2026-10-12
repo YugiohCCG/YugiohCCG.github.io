@@ -1,0 +1,61 @@
+{
+  "scope": "Production full Fruteification three actual full Spell activations and full Ritual/material/White optional revival, native CounterTrap activation/effect negation, actual neutral helper fieldGY departure frees zones, shared optional-use and ownturn3 reset; no seeded history or Fruteopia loaded",
+  "baseline_cases": 3,
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-fruteification-optional-use-reset.json",
+      "artifact_sha256": "78a36bc55f7e9e7a81485c3c46f172b2d0cab52a29257d89610ebb5bcffc6f24"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        1,
+        2
+      ],
+      "artifact": "current-fruteification-optional-use-reset-no-response.json",
+      "artifact_sha256": "a4cb31f28ec8705bcb00c75506d44a26d7289e9535cbc7a7b3aa2d57389990dc"
+    },
+    {
+      "control": "no-limit",
+      "expected_failures": [
+        0,
+        2
+      ],
+      "artifact": "current-fruteification-optional-use-reset-no-limit.json",
+      "artifact_sha256": "3f5aa4c0dc9519fee6166a7bb85638315ea94f8b016c26dd71ce9699c4467103"
+    },
+    {
+      "control": "no-reset",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-fruteification-optional-use-reset-no-reset.json",
+      "artifact_sha256": "f684ba9e14bbfaea0f55466594dbc97e170b04115031ee93035d38cca62aa401"
+    },
+    {
+      "control": "no-extra",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-fruteification-optional-use-reset-no-extra.json",
+      "artifact_sha256": "aa24da3446896ca7a0343e115b06d92c28fb7beea8e4f9582f6a9bf4d83b41d9"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_fruteification_optional_use_reset.cjs": "ad7590350b056305453545e79fc8879d81eaa345ff31efb67d9488cdae9e2e2a",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c256930605.lua": "592c87e2fe6bf5dd8df388b4cb9b2811e3fb0793469bd47a9e114dc65ddc3f07",
+    "public/CCG Downloads/CCG_Scripts/c213266433.lua": "8693059b76823e8baf2c44f4eafa95a9e880602dd26a75cfd908dacbd9d17678",
+    "public/CCG Downloads/CCG_Scripts/c220916791.lua": "254dd78b0389f8a0dadcb7096241373f0cf4bcac1565061550a1561746f2b50d",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

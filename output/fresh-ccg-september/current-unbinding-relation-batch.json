@@ -1,0 +1,66 @@
+{
+  "scope": "Actual opponent CL2 moves targeted own Graveyard monster to Hand, optionally returns it Grave before resolution; old chain does not shuffle departed target, remaining target still shuffles. Explicit target-chaininfo adapter. Native Omega/Necrovalley open",
+  "baseline_cases": 4,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_unbinding_relation_batch.py": "e30c1d7037e20d4c32628300586a3899829be3a1e626294a6ab20b9129fd8bba",
+    "scripts/fresh_current_unbinding_relation.cjs": "f94370effc218d529541933da975d88c20f9978255367402e8bebd0effeed31e",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c246900181.lua": "88f933cf48ea71b0cf99c5e92d5bcc6d80e0bcbfeda60cca7f4194defba8e63a",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-unbinding-relation.json",
+      "artifact_sha256": "7dd99cfebe07b3aff13a8c6d3b707b8df9260664cc297478cd05a7a5a373f9cf"
+    },
+    {
+      "control": "ignore-relation",
+      "expected_failures": [
+        {},
+        {
+          "returning": true
+        },
+        {
+          "pair": true
+        },
+        {
+          "pair": true,
+          "returning": true
+        }
+      ],
+      "artifact": "current-unbinding-relation-ignore-relation.json",
+      "artifact_sha256": "20c8f59eb653bbbe1da92fc63f53610a47e976ab517603e0ba8ecd7214e65745"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        {},
+        {
+          "returning": true
+        },
+        {
+          "pair": true
+        },
+        {
+          "pair": true,
+          "returning": true
+        }
+      ],
+      "artifact": "current-unbinding-relation-no-response.json",
+      "artifact_sha256": "4a8a6854dda8a2abb060ded21168bd96872d70f410b6d5952a5dee94d59e6f41"
+    }
+  ]
+}

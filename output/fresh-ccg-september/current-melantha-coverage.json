@@ -1,0 +1,59 @@
+{
+  "passcode": 259221974,
+  "script_sha256": "4b6eec7b2cce535bf4c2985792b84e63f0d2e740bd7f25de4d35b3fe57a400dd",
+  "installed_matches": true,
+  "scenarios": 22,
+  "controls": 12,
+  "suites": [
+    {
+      "batch": "current-melantha-summon-batch.json",
+      "sha256": "825672b03091e35395789b97ec306a9afbebd4cb977121f3bc8eb7f647b04a46",
+      "scenarios": 3,
+      "controls": 2
+    },
+    {
+      "batch": "current-melantha-external-batch.json",
+      "sha256": "105bfa642f5f589090c387ab200eaaf531389323546cdcadba52f33863ca6cad",
+      "scenarios": 2,
+      "controls": 1
+    },
+    {
+      "batch": "current-melantha-battle-batch.json",
+      "sha256": "1b0d09ef295ccdbb7e8b5fccc5d1b8e7e1a04ef1ae93432777829bfcf83042bc",
+      "scenarios": 4,
+      "controls": 2
+    },
+    {
+      "batch": "current-melantha-tax-batch.json",
+      "sha256": "881778083c02b5aab505c739efb473bf5c7450094f0210875f60a9803572d6c1",
+      "scenarios": 5,
+      "controls": 2
+    },
+    {
+      "batch": "current-melantha-tax-group-batch.json",
+      "sha256": "6ef8748e27300567068c731865ba5e406c5ac2be8802bd250f075cd1e016595a",
+      "scenarios": 3,
+      "controls": 2
+    },
+    {
+      "batch": "current-melantha-tax-procedure-batch.json",
+      "sha256": "a0408951d6e310eeed43428660cf568947f905438f938b2bebef065332ecb24e",
+      "scenarios": 3,
+      "controls": 2
+    },
+    {
+      "batch": "current-melantha-history-batch.json",
+      "sha256": "8d29e16c65766363738f55213ee7082115c656d67c2e383d54608de404cabc76",
+      "scenarios": 2,
+      "controls": 1
+    }
+  ],
+  "full_card_audit": "OPEN",
+  "printed_timing_conformity": "UNPROVEN: tax choices occur after SPSUMMONED; tax suite verifies current post-success behavior only",
+  "tax_timing_candidate": "Replacing only e4 event with EVENT_SPSUMMON handles neutral inherent procedure before success but misses effect summons; not a unified repair",
+  "limitations": [
+    "Battle suite starts Melantha on field; integration with proper self-summon remains open",
+    "Multiple copies/history-mark interactions, taxation timing/interrupted chains",
+    "Native Omega execution"
+  ]
+}

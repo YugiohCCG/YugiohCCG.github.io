@@ -1,0 +1,51 @@
+{
+  "scope": "HappyServant full Papa/Mine: actual opposing destruction before battle protected, actual enemy attack kills or loses to Servant, same-turn MainPhase2 destruction follows. Papa battle effect declined; no adapters; nativeOmega/fullcard OPEN",
+  "baseline_cases": 2,
+  "certification": "Production focused evidence; native Omega and full card OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c215984744.lua": "2c15ccbaa2b8a6384236ea3836d96c6b0bb30288fd2ffb390faf890a1133711e",
+    "public/CCG Downloads/CCG_Scripts/c241868535.lua": "f11e3ff728b89273c6455263f1202d618999ac75a8ff1ae953ac39c296ad7608",
+    "public/CCG Downloads/CCG_Scripts/c231872299.lua": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+    "scripts/fresh_current_happy_servant_battle_source_batch.py": "771c086a29bf64eef9b5eed6cdff3fb64c2cc5215047410b490d80fed0ae6439",
+    "scripts/fresh_current_happy_servant_battle_source.cjs": "1cbe577b13b14750ac38c80352fff4d691a0e471e840e771945ff158263bc9d8",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-happy-servant-battle-source.json",
+      "artifact_sha256": "23889db3cf1b33f84e95927a55471f57964d2605c532dd1df58a0d5f10150518"
+    },
+    {
+      "control": "no-protection",
+      "expected_failures": [
+        {},
+        {
+          "survive": true
+        }
+      ],
+      "artifact": "current-happy-servant-battle-source-no-protection.json",
+      "artifact_sha256": "672fcad00a10f2f7455e053e9ba66488f749731f8aa5e829de5425ff5de31bc0"
+    },
+    {
+      "control": "no-destroy",
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "current-happy-servant-battle-source-no-destroy.json",
+      "artifact_sha256": "641af74fedf181f20c688cfcd0ab0f761ddd887b3ac7c84e93834fd79f988277"
+    }
+  ]
+}

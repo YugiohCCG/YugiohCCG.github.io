@@ -79,9 +79,28 @@ function s.sumop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SUMMON)
 	local tc=Duel.SelectMatchingCard(tp,f,tp,LOCATION_HAND,0,1,1,nil):GetFirst()
 	if not tc then return end
+	-- In-chain Normal Summons finish after the chain; continue on actual success.
+	if tc:IsCode(id) then
+		local follow=Effect.CreateEffect(e:GetHandler())
+		follow:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+		follow:SetCode(EVENT_SUMMON_SUCCESS)
+		follow:SetReset(RESET_PHASE+PHASE_END)
+		local neg=follow:Clone()
+		neg:SetCode(EVENT_SUMMON_NEGATED)
+		local function clear() follow:Reset() neg:Reset() end
+		follow:SetOperation(function(te,p,eg)
+			if not eg:IsContains(tc) then return end
+			clear()
+			if tc:IsLocation(LOCATION_MZONE) then s.searchop(tp) end
+		end)
+		neg:SetOperation(function(te,p,eg) if eg:IsContains(tc) then clear() end end)
+		Duel.RegisterEffect(follow,tp)
+		Duel.RegisterEffect(neg,tp)
+	end
 	Duel.Summon(tp,tc,true,nil)
-	if tc:IsCode(id) and tc:IsLocation(LOCATION_MZONE)
-		and Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil)
+end
+function s.searchop(tp)
+	if Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil)
 		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 		Duel.BreakEffect()
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)

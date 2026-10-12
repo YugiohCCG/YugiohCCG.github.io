@@ -1,0 +1,552 @@
+{
+  "scope": "Actual Aqua Fusion GY activation attempt with current source/data, canonical Omega fusion procedure, neutral exactly-two-code Aquamarine fixture, explicit legacy IsFaceupEx adapter only. Failures are diagnostics; native Omega/full audit open. Actual successes limited to face-up field, GY and face-up banished cases in adapted neutral fixture. Own face-down field case fails availability; face-down banishment correctly unavailable. No blanket helper compatibility claim.",
+  "results": [
+    {
+      "test": {},
+      "failure": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:136: in function <[string \"c227035644.lua\"]:134>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:142: in function <[string \"c227035644.lua\"]:138>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')",
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 900004402,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            },
+            {
+              "code": 900004403,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ],
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:136: in function <[string \"c227035644.lua\"]:134>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:142: in function <[string \"c227035644.lua\"]:138>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        }
+      ]
+    },
+    {
+      "test": {
+        "facedown": true
+      },
+      "failure": "Aqua Fusion GY activation available",
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 900004402,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            },
+            {
+              "code": 900004403,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 1,
+          "hint": "23"
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 4,
+          "selects": []
+        },
+        {
+          "type": 41,
+          "phase": 512
+        },
+        {
+          "type": 40,
+          "player": 1
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 1,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 1,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": true,
+          "to_ep": true,
+          "shuffle": false
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "23"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 4,
+          "selects": []
+        },
+        {
+          "type": 41,
+          "phase": 512
+        },
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 900004402,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            },
+            {
+              "code": 900004403,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": true,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ],
+      "logs": []
+    },
+    {
+      "test": {
+        "grave": true
+      },
+      "failure": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:136: in function <[string \"c227035644.lua\"]:134>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:142: in function <[string \"c227035644.lua\"]:138>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')",
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 900004403,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ],
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:136: in function <[string \"c227035644.lua\"]:134>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:142: in function <[string \"c227035644.lua\"]:138>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        }
+      ]
+    },
+    {
+      "test": {
+        "banished": true
+      },
+      "failure": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:136: in function <[string \"c227035644.lua\"]:134>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:142: in function <[string \"c227035644.lua\"]:138>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')",
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 900004403,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ],
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:136: in function <[string \"c227035644.lua\"]:134>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:142: in function <[string \"c227035644.lua\"]:138>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        }
+      ]
+    },
+    {
+      "test": {
+        "facedownBanished": true
+      },
+      "failure": null,
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 900004403,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 1,
+          "hint": "23"
+        },
+        {
+          "type": 16,
+          "player": 1,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 4,
+          "selects": []
+        },
+        {
+          "type": 41,
+          "phase": 512
+        },
+        {
+          "type": 40,
+          "player": 1
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 1,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 1,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": true,
+          "to_ep": true,
+          "shuffle": false
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "23"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 0,
+          "hint_timing_other": 4,
+          "selects": []
+        },
+        {
+          "type": 41,
+          "phase": 512
+        },
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 900004403,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": true,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ],
+      "logs": []
+    }
+  ],
+  "dependencies_sha256": {
+    "scripts/fresh_current_aqua_contact_fusion.cjs": "e87f6f431a3a1da21e7528d8a0cb0a176c5c60f8843438ca3eaa52f5266caa5a",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c227035644.lua": "d4a59f3a7a598a0f5f4bd813074a77770a1a3077af83c0b0362b7cbe20a34c53",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "test_adapters": [
+    "legacy IsFaceupEx semantics"
+  ]
+}

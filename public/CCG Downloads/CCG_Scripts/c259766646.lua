@@ -19,7 +19,7 @@ end
 s.listed_names={CARD_DREAMING_NEMLERIA}
 s.listed_series={SET_NEMLERIA}
 function s.exfilter(c)
-	return c:IsCode(CARD_DREAMING_NEMLERIA) and not c:IsForbidden()
+	return c:IsCode(CARD_DREAMING_NEMLERIA) and not c:IsForbidden() and c:IsAbleToExtra()
 end
 function s.setfilter(c)
 	return c:IsSetCard(SET_NEMLERIA)

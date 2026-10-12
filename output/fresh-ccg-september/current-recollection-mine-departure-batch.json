@@ -1,0 +1,68 @@
+{
+  "scope": "Mine actual first costs/summon/search, samecopy ignition blocked, neutral helper sends Mine Hand/GY then places SAMECARD Field without activation; same turn second actual costs/summon/search demonstrates departure reset. Does not certify Field activation bypass. NativeOmega/fullcard OPEN",
+  "baseline_cases": 2,
+  "certification": "Production focused evidence; native Omega and full card OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c231872299.lua": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+    "public/CCG Downloads/CCG_Scripts/c251699681.lua": "606094785fe384e1f2127d7a2b17f4d8273a5e3fb5dbdfe0536ac9c334ed5ab0",
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_recollection_mine_departure_batch.py": "847f48a7ffbb9895eaf9ae196407f8e8c28766da5826cff7f5a4da71735f8cfe",
+    "scripts/fresh_current_recollection_mine_departure.cjs": "766b8d5462f112af2876d690009dbdd3e0733a7d6f72121ab62bbb1eef8e9a30",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c241868535.lua": "f11e3ff728b89273c6455263f1202d618999ac75a8ff1ae953ac39c296ad7608",
+    "public/CCG Downloads/CCG_Scripts/c215984744.lua": "2c15ccbaa2b8a6384236ea3836d96c6b0bb30288fd2ffb390faf890a1133711e",
+    "public/CCG Downloads/CCG_Scripts/c241447408.lua": "7a27d167e4b532fd74ab8ec56aace478c3297c12d92ae9ffb1369287668307c7",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-recollection-mine-departure.json",
+      "artifact_sha256": "2fff11fdb9c4bd4d94c2e579fc0a106b3bf7301e2a25107f5137e08997e1d8cc"
+    },
+    {
+      "control": "no-return",
+      "expected_failures": [
+        {},
+        {
+          "hand": true
+        }
+      ],
+      "artifact": "current-recollection-mine-departure-no-return.json",
+      "artifact_sha256": "2c77bd6b89c3d670b72347d6caa0e6af113f1acd40d2df43d8857c23fe402349"
+    },
+    {
+      "control": "no-banish",
+      "expected_failures": [
+        {},
+        {
+          "hand": true
+        }
+      ],
+      "artifact": "current-recollection-mine-departure-no-banish.json",
+      "artifact_sha256": "2e96a3d5f0c6ef82ec4ed07d21529d885001735eab64f14c293bac0f463f5183"
+    },
+    {
+      "control": "no-discard",
+      "expected_failures": [
+        {},
+        {
+          "hand": true
+        }
+      ],
+      "artifact": "current-recollection-mine-departure-no-discard.json",
+      "artifact_sha256": "b031e4d165d130aa1cb2c43ea81317fa8d5da15833d5779a20410f1cfb7465b7"
+    }
+  ]
+}

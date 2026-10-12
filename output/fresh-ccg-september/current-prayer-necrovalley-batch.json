@@ -1,0 +1,65 @@
+{
+  "scope": "Five canonical full-source Prayer scenarios versus full pinned Necrovalley; no production repair or compatibility adapter. Initial Field Spell/Ritual fixtures; native Omega/late timing/immunity open.",
+  "baseline_cases": 5,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_prayer_necrovalley_batch.py": "71873cc04b31d88f8ea703162798c8d7dc73a206ecd7d402606fc8b6db4c6683",
+    "scripts/fresh_current_prayer_necrovalley_main.cjs": "2631ec79e2d9d0e540d9451a68ec82d541a45dc8f50f4cebe4da53102f170f15",
+    "scripts/fresh_current_prayer_necrovalley_search.cjs": "bd8397f38a360e6a45172d8493dd4be9f981966d4ba86ebabb6cc67766baebc4",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c238276252.lua": "14d226722745ed3b49c0d86bdd5ff960e4d6622040d41420c0bb1c7e3e5a7516",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "tmp/omega_scripts/c47355498.lua": "1d3862aabbbb3f381587a3028435736db2ca5818bdb4973ca30deb5632398318",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "profile": "main",
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-prayer-necrovalley-main.json",
+      "artifact_sha256": "af029f49bd5f8fab372f5072d65970f8e2e7af8316d1d976af69cd84fd00df78",
+      "scope": "Canonical Prayer with full pinned Necrovalley47355498 initial field fixture: actual Hand/GY normal pair, legal Hand-only pair under Valley, mixed Hand/GY blocked under Valley; actual End destruction. Neutral recipients/source current metadata. Native Omega, Valley timing/immunity and initial field activation open."
+    },
+    {
+      "profile": "main",
+      "control": "ignore-valley-filter",
+      "expected_failures": [
+        {
+          "valleyGrave": true
+        }
+      ],
+      "artifact": "current-prayer-necrovalley-main-ignore-valley-filter.json",
+      "artifact_sha256": "cda3ccd489b1c82a12f6f299c03317e7d8c5ad2e63b9d6ffc5a10eabb2fef2ab",
+      "scope": "Canonical Prayer with full pinned Necrovalley47355498 initial field fixture: actual Hand/GY normal pair, legal Hand-only pair under Valley, mixed Hand/GY blocked under Valley; actual End destruction. Neutral recipients/source current metadata. Native Omega, Valley timing/immunity and initial field activation open."
+    },
+    {
+      "profile": "search",
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-prayer-necrovalley-search.json",
+      "artifact_sha256": "d52fc94c6f6a62cc6e350e2134b9ce30afefc71b0a04704bb97f9c7457f61258",
+      "scope": "Canonical Prayer actual neutral Ritual destruction and Deck search/source banish cost with/without full pinned Necrovalley47355498 initial field fixture. Valley blocks source banish cost before activation; remove Valley banish ban control. Native Omega, late Valley timing/immunity/real Ritual procedures open."
+    },
+    {
+      "profile": "search",
+      "control": "no-valley-banish-ban",
+      "expected_failures": [
+        {
+          "valley": true
+        }
+      ],
+      "artifact": "current-prayer-necrovalley-search-no-valley-banish-ban.json",
+      "artifact_sha256": "eba922b6893780747212d4801a14d23637a524da04fbb1934108b4cdbb085c78",
+      "scope": "Canonical Prayer actual neutral Ritual destruction and Deck search/source banish cost with/without full pinned Necrovalley47355498 initial field fixture. Valley blocks source banish cost before activation; remove Valley banish ban control. Native Omega, late Valley timing/immunity/real Ritual procedures open."
+    }
+  ]
+}

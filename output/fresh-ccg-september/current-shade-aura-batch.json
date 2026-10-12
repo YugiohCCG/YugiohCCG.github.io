@@ -1,0 +1,52 @@
+{
+  "scope": "Initially-field canonical Shade native ATK aura: own other Aerocat boosts, facedown source/actual source removal/native disable/wrong set/opposing recipient excluded, source itself excluded. Neutral recipients; bounded neutral IsCanOverlay adapter. Summon cost, attachment, limits/renewal/native Omega open.",
+  "baseline_cases": 6,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_shade_aura_batch.py": "22360d7a8c77b5bccf3fdd807d3f46dd12bb47d61e13e67bdb18cd2ce757bc7d",
+    "scripts/fresh_current_shade_aura.cjs": "6ff75899e5791e07c0b7dee098b38a072635e9ed07aa4c871e2284c60b1cd2a5",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c259615843.lua": "bd4793335216ba1cb82e30cf75c56f15cba3089a697e5e251d1aad421b08067d",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-shade-aura.json",
+      "artifact_sha256": "b1a6598b657b8abad2c91f886b39e09e0a0ad9a3434f8b985df5e1ae4968b2f7"
+    },
+    {
+      "control": "no-boost",
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "current-shade-aura-no-boost.json",
+      "artifact_sha256": "48bbd96258308e7965bbe0441212cad3da2d64f97130f31d168475886682dea2"
+    },
+    {
+      "control": "boost-self",
+      "expected_failures": [
+        {},
+        {
+          "wrongSet": true
+        },
+        {
+          "opponent": true
+        }
+      ],
+      "artifact": "current-shade-aura-boost-self.json",
+      "artifact_sha256": "f6f597af3b58c89a48b6963ed536353d1151b54363d62730a28663fb97278368"
+    }
+  ]
+}

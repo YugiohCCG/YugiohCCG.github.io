@@ -1,0 +1,99 @@
+{
+  "scope": "Public OCGCore, complete production Hydra/candidate source; neutral materials/Heart script and probe. Actual production contact Fusion then source destruction and center revival/token; negative send-only departure; full pinned Spirit permits separate source/token summons, center occupied during departure blocks revival. No fixture CompleteProcedure or ignored summon restrictions. Native Omega unverified.",
+  "baseline_cases": 7,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_hydra_fusion_revival_batch.py": "6897d99e7510e122c55fb3c1cfd37a10883f632583e6083c8af17ee96d92f3de",
+    "scripts/fresh_current_hydra_fusion_revival.cjs": "494668fefd824b1d87b7bc3620fd48ac6d92e13dda3025b9583c0c89ad2328f4",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c239935098.lua": "5a3c1a0ad4830cf2fb7b6bbeba227fb670cf3f331076334364c43f3d2a08f91e",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-hydra-fusion-revival.json",
+      "artifact_sha256": "21ac718701770712f5d2a4abcb35d1aacae77857641989472c0d4f780c8e25b8"
+    },
+    {
+      "control": "no-revival",
+      "expected_failures": [
+        {},
+        {
+          "twice": true
+        },
+        {
+          "spirit": true
+        },
+        {
+          "banished": true
+        },
+        {
+          "banished": true,
+          "spirit": true
+        }
+      ],
+      "artifact": "current-hydra-fusion-revival-no-revival.json",
+      "artifact_sha256": "2f9c6f0768fb1a1e6a3ab57cd9df5f73076135e14bb89d49d6acc062d1eeff34"
+    },
+    {
+      "control": "any-departure",
+      "expected_failures": [
+        {
+          "sendOnly": true
+        },
+        {
+          "banished": true
+        },
+        {
+          "banished": true,
+          "spirit": true
+        }
+      ],
+      "artifact": "current-hydra-fusion-revival-any-departure.json",
+      "artifact_sha256": "448f985e5017adc50f87cc9fbb1dcbb4202625211d54dbb17cbb83f531228ab9"
+    },
+    {
+      "control": "no-token",
+      "expected_failures": [
+        {},
+        {
+          "twice": true
+        },
+        {
+          "spirit": true
+        },
+        {
+          "banished": true
+        },
+        {
+          "banished": true,
+          "spirit": true
+        }
+      ],
+      "artifact": "current-hydra-fusion-revival-no-token.json",
+      "artifact_sha256": "2f2ef1f2308a5df8b665e99b1cafcd831f5311b5cccc52e6c426b3a9aa3ec71b"
+    },
+    {
+      "control": "trigger-limit",
+      "expected_failures": [
+        {
+          "twice": true
+        }
+      ],
+      "artifact": "current-hydra-fusion-revival-trigger-limit.json",
+      "artifact_sha256": "fbfb446e974ea4db69134c5140dc5343d98055c90effd4cf5e85a8dd007feb11"
+    }
+  ]
+}

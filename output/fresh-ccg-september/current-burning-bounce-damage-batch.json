@@ -1,0 +1,69 @@
+{
+  "scope": "Actual Burning target1/2 opposing fieldmonsters; own qualifying LIGHTSpellcaster SynchroGY or Xyzfield+GY gives targetcap; native ownerHand return and500damage each. Wrongattribute/race/type exclude. TARGET_CARDS8 legacy adapter. Own targets/Extra returns/discardSet/interruption/limits/nativeOmegaOPEN",
+  "baseline_cases": 5,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_burning_bounce_damage_batch.py": "a137765aab04aba22a6830eaee3b38f031b14ab64805e659dda37551c7707583",
+    "scripts/fresh_current_burning_bounce_damage.cjs": "8e68caac7280621d6399e6bf1dd984fd8cc4c87896fd238b43e20bae5df7aa7d",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c239235967.lua": "763bf8c2c616539331490dd951a8f3358fbfd10c3433c0b39228fd38f503c050",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-burning-bounce-damage.json",
+      "artifact_sha256": "3bbec55657c09e1d0a637302586a79ace6767fed4d942b2d5d0ddd15a5bf4d31"
+    },
+    {
+      "control": "no-return",
+      "expected_failures": [
+        {
+          "count": 1
+        },
+        {
+          "count": 2,
+          "field": true
+        }
+      ],
+      "artifact": "current-burning-bounce-damage-no-return.json",
+      "artifact_sha256": "b5eee14e392dcfd4f4c8ba656f2515f5d98133eb51aba3d09482b9686b5f8f1a"
+    },
+    {
+      "control": "no-damage",
+      "expected_failures": [
+        {
+          "count": 1
+        },
+        {
+          "count": 2,
+          "field": true
+        }
+      ],
+      "artifact": "current-burning-bounce-damage-no-damage.json",
+      "artifact_sha256": "27f13876b09c4d20a5d9f881e2cc59513f007d58fe54dbd0b445cbe26d03e0af"
+    },
+    {
+      "control": "ignore-attribute",
+      "expected_failures": [
+        {
+          "count": 1,
+          "wrongAttribute": true
+        }
+      ],
+      "artifact": "current-burning-bounce-damage-ignore-attribute.json",
+      "artifact_sha256": "e8e5d0d274f951a2c68c99a7f56fb0a250c7b3bcd6eed2b8146b58268238df49"
+    }
+  ]
+}

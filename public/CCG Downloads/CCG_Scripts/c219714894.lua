@@ -60,13 +60,14 @@ end
 function s.damop(e,tp,eg,ep,ev,re,r,rp)
 	local dam=math.floor(s[tp]/2)
 	if dam<=0 then return end
-	if Duel.Damage(1-tp,dam,REASON_EFFECT)>0 then
+	local actual=Duel.Damage(1-tp,dam,REASON_EFFECT)
+	if actual>0 then
 		if Duel.IsExistingMatchingCard(aux.AND(Card.IsFaceup,Card.IsAttribute),tp,LOCATION_MZONE,0,1,nil,ATTRIBUTE_FIRE)
 			and Duel.IsExistingMatchingCard(s.dragonfilter,tp,LOCATION_MZONE,0,1,nil)
 			and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then
 			Duel.BreakEffect()
 			local g=Duel.GetMatchingGroup(aux.AND(Card.IsFaceup,Card.IsAttribute),tp,LOCATION_MZONE,0,nil,ATTRIBUTE_FIRE)
-			local val=math.floor(dam/2)
+			local val=math.floor(actual/2)
 			local tc=g:GetFirst()
 			while tc do
 				local e1=Effect.CreateEffect(e:GetHandler())

@@ -1,0 +1,26 @@
+{
+  "scope": "Compatibility diagnostic only; full Link summon NOT verified, no production changes",
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_fearless_hunter_link_material.cjs": "374076020f5a0f362eb3625bc75f7a8a9a6ea45db0ba757d05cb33cae9e9a6ca",
+    "public/CCG Downloads/CCG_Scripts/c244778917.lua": "a73ded1c7640d950ab57ab2479118ca3a7f05b8df3067e903326f832b6b98c09",
+    "public/CCG Downloads/CCG_Scripts/c233103500.lua": "5ea113781ce1f2e0ca228a576cf5335c23e13b41e583114a73782d038240597c",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde"
+  },
+  "runs": [
+    {
+      "adapter": false,
+      "expected_compatibility_error": "GetMustMaterial",
+      "artifact": "current-fearless-hunter-link-material.json",
+      "sha256": "5f0e55ea2b724f6aadca5332fcc58fe49068d62b1c5806daefd0767252b58aab"
+    },
+    {
+      "adapter": true,
+      "expected_compatibility_error": "IsLinkType",
+      "artifact": "current-fearless-hunter-link-material-neutral-mandatory-adapter.json",
+      "sha256": "21a40363abe4277cc2470eaa39b64b0df66506e100b7457093e9f2b625f921d7"
+    }
+  ]
+}

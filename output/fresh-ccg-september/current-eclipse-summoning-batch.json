@@ -1,0 +1,64 @@
+{
+  "scope": "Eclipse Summoning native SetTrap/emptyfieldHand activation against opponentLink3/4: actual DeckLevel7DARKSpellcaster DefenseSS; lowerLink/nonLink/wronglevel/attribute/race/Handoccupied/fullMonsterzones/nativeCANNOT_SS exclude. No adapters. Interruption/fullzones/nativeOmega OPEN",
+  "baseline_cases": 11,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_eclipse_summoning_batch.py": "dce3f61c04d565e0571ce037d0c6190529bc616f159e57664a27c73fcd424b5c",
+    "scripts/fresh_current_eclipse_summoning.cjs": "42806e75a99905721374dbf62033911d4c1c76bea1df3c91b20701daed1e99c7",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c251331463.lua": "f4d22420ed37ccbe242392f18f46b062557a8222297f3de3b303fa0b282f7b97",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-eclipse-summoning.json",
+      "artifact_sha256": "5f8ac46f1071d79c72df668ee5aab4351a83209c231aa635cfbed3e9631cbf73"
+    },
+    {
+      "control": "no-summon",
+      "expected_failures": [
+        {},
+        {
+          "link4": true
+        },
+        {
+          "hand": true
+        }
+      ],
+      "artifact": "current-eclipse-summoning-no-summon.json",
+      "artifact_sha256": "e6958cb4a930efb6acda088a6e2640f30cce6b13c44bfc140d65fcf7a411465f"
+    },
+    {
+      "control": "ignore-link",
+      "expected_failures": [
+        {
+          "lowLink": true
+        }
+      ],
+      "artifact": "current-eclipse-summoning-ignore-link.json",
+      "artifact_sha256": "a22f89b38847957c80f7f7475c91822e4723c25d3b74a69ebd534ba54a8de708"
+    },
+    {
+      "control": "ignore-attribute",
+      "expected_failures": [
+        {
+          "wrongAttribute": true
+        }
+      ],
+      "artifact": "current-eclipse-summoning-ignore-attribute.json",
+      "artifact_sha256": "4d5ef6d292873aa09809ea246f1bb71d1f17c6ead86c7446f16671d27d5cc938"
+    }
+  ]
+}

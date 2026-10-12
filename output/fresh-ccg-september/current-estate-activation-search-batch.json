@@ -1,0 +1,100 @@
+{
+  "scope": "Estate full actual activation searches full Papa/Warden from Deck/GY or chooses one in mixed pool; exactly one effect addition, wrong set/type and no resource exclude. Neutral ineligible card. No adapters; interruption/locks/activationlimit/nativeOmega/fullcard OPEN",
+  "baseline_cases": 9,
+  "certification": "Production focused evidence; native Omega and full card OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c236744343.lua": "26666a68f4f3236b06131995dc2114aa62b3c7560014e2793964a7ce23e940b4",
+    "public/CCG Downloads/CCG_Scripts/c243144691.lua": "8359e42fd144a6b8444a598b7a29767e795f5d327c52bfbad8b6ddaa1e093ca7",
+    "scripts/fresh_current_estate_activation_search_batch.py": "cef2b9bce9dd6f61e70525cba709145789a0448c433b553af8dfdbf3648c96c5",
+    "scripts/fresh_current_estate_activation_search.cjs": "5ae86ee5f18c5bcbf669a176b2317f872a2f7a8df4f19683bd5ec443af778d83",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c241868535.lua": "f11e3ff728b89273c6455263f1202d618999ac75a8ff1ae953ac39c296ad7608",
+    "public/CCG Downloads/CCG_Scripts/c231872299.lua": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-estate-activation-search.json",
+      "artifact_sha256": "0c6a6b6099dc5f5d6a05ad22741b4fa598a53efdb663cf68db17c12e2778a519"
+    },
+    {
+      "control": "no-search",
+      "expected_failures": [
+        {},
+        {
+          "grave": true
+        },
+        {
+          "both": true
+        },
+        {
+          "both": true,
+          "chooseGrave": true
+        }
+      ],
+      "artifact": "current-estate-activation-search-no-search.json",
+      "artifact_sha256": "e7d8dac0c0ed610b919f0cb068ac207a96cfbc37bef0ee6b7967bead73d8f9bb"
+    },
+    {
+      "control": "deck-only",
+      "expected_failures": [
+        {
+          "grave": true
+        },
+        {
+          "both": true,
+          "chooseGrave": true
+        }
+      ],
+      "artifact": "current-estate-activation-search-deck-only.json",
+      "artifact_sha256": "467d28c908fb9a3a3c65ead0df5d4b8685f6a06bf1c982d42fd04e2fd7365c4c"
+    },
+    {
+      "control": "allow-any",
+      "expected_failures": [
+        {},
+        {
+          "grave": true
+        },
+        {
+          "both": true
+        },
+        {
+          "both": true,
+          "chooseGrave": true
+        },
+        {
+          "wrongSet": true
+        },
+        {
+          "wrongType": true
+        },
+        {
+          "wrongSet": true,
+          "grave": true
+        },
+        {
+          "wrongType": true,
+          "grave": true
+        },
+        {
+          "noResource": true
+        }
+      ],
+      "artifact": "current-estate-activation-search-allow-any.json",
+      "artifact_sha256": "d27254ddb4012ddd99461391dc1adb354d0f6c8a4f0544a75d1d689fb412870d"
+    }
+  ]
+}

@@ -49,6 +49,10 @@ function s.initial_effect(c)
 		ge:SetCode(EVENT_CHAINING)
 		ge:SetOperation(s.checkop)
 		Duel.RegisterEffect(ge,0)
+		local gn=ge:Clone()
+		gn:SetCode(EVENT_CHAIN_NEGATED)
+		gn:SetOperation(s.uncheckop)
+		Duel.RegisterEffect(gn,0)
 	end
 end
 s.listed_series={SET_VIR_PEDICAE_MORTIS}
@@ -110,5 +114,17 @@ function s.setop(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetReset(RESET_EVENT+RESETS_REDIRECT)
 		e1:SetValue(LOCATION_REMOVED)
 		c:RegisterEffect(e1)
+	end
+end
+
+--An activation that was negated does not count as an activated card.
+function s.uncheckop(e,tp,eg,ep,ev,re,r,rp)
+	if not re:IsHasType(EFFECT_TYPE_ACTIVATE) or not re:GetHandler():IsCode(id) then return end
+	for _,code in ipairs({id,id+100}) do
+		local ct=Duel.GetFlagEffect(rp,code)
+		Duel.ResetFlagEffect(rp,code)
+		for i=1,ct-1 do
+			Duel.RegisterFlagEffect(rp,code,code==id and 0 or RESET_PHASE+PHASE_END,0,1)
+		end
 	end
 end

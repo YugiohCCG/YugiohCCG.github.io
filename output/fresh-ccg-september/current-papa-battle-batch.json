@@ -1,0 +1,84 @@
+{
+  "scope": "Papa actual own full HappyServant attacker/defender, full Recollection Static/Iron/Mine Deckcost and native500ATK gain; Kaboom/noresource/decline exclusions. No adapters; limit/reset/interruption/nativeOmega OPEN",
+  "baseline_cases": 7,
+  "certification": "Production focused evidence; native Omega and full card OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c215984744.lua": "2c15ccbaa2b8a6384236ea3836d96c6b0bb30288fd2ffb390faf890a1133711e",
+    "public/CCG Downloads/CCG_Scripts/c211086520.lua": "bbcbbe99a7006a8bb2e812d1d24f23907d78f3d3966f45d82d88c06a35b01b23",
+    "public/CCG Downloads/CCG_Scripts/c234984156.lua": "a1a2e2ce49ce8970d34eb0fb4b86ce2d4f5dee8b18b638b8783c6a4f124a96c0",
+    "public/CCG Downloads/CCG_Scripts/c241447408.lua": "7a27d167e4b532fd74ab8ec56aace478c3297c12d92ae9ffb1369287668307c7",
+    "public/CCG Downloads/CCG_Scripts/c241868535.lua": "f11e3ff728b89273c6455263f1202d618999ac75a8ff1ae953ac39c296ad7608",
+    "public/CCG Downloads/CCG_Scripts/c251699681.lua": "606094785fe384e1f2127d7a2b17f4d8273a5e3fb5dbdfe0536ac9c334ed5ab0",
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_papa_battle_batch.py": "6db540efb51b9d4bb1097a81fce6e53c667ee0780a2d617633fe3fbc2ef28251",
+    "scripts/fresh_current_papa_battle.cjs": "580d005e705b5953e30c3811df87efceab7fd7f67a3490b46b8563366d41aae3",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c231872299.lua": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-papa-battle.json",
+      "artifact_sha256": "607b22526e5d3a7c93f559754195039454fb6f87d3b76eeec4b46d5a28661501"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        {},
+        {
+          "defender": true
+        },
+        {
+          "iron": true
+        },
+        {
+          "mine": true
+        }
+      ],
+      "artifact": "current-papa-battle-no-cost.json",
+      "artifact_sha256": "0a9801ce4f5dd81b0c39eee10af7553c10ebf0f5f1c0a83f6264d211eb520619"
+    },
+    {
+      "control": "no-boost",
+      "expected_failures": [
+        {},
+        {
+          "defender": true
+        },
+        {
+          "iron": true
+        },
+        {
+          "mine": true
+        }
+      ],
+      "artifact": "current-papa-battle-no-boost.json",
+      "artifact_sha256": "05fdea77d484f880d1a4c21feb14c9a448dc9b319ef9f1072a927e2216f3cf8f"
+    },
+    {
+      "control": "allow-cost",
+      "expected_failures": [
+        {
+          "noResource": true
+        },
+        {
+          "kaboom": true
+        }
+      ],
+      "artifact": "current-papa-battle-allow-cost.json",
+      "artifact_sha256": "1d51394acab26cf8efb05df9f32b5e482fabda8eeda29a308a5d559ed507698e"
+    }
+  ]
+}

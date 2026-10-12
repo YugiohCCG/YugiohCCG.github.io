@@ -47,7 +47,7 @@ function s.fscost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.RegisterEffect(e1,tp)
 end
 function s.ffilter1(c,e)
-	return not c:IsImmuneToEffect(e)
+	return c:IsType(TYPE_MONSTER) and c:IsCanBeFusionMaterial() and not c:IsImmuneToEffect(e)
 end
 function s.ffilter2(c,e,tp,m,f,chkf)
 	if not (c:IsType(TYPE_FUSION) and c:IsSetCard(SET_AQUAMARINE) and (not f or f(c))
@@ -63,8 +63,8 @@ end
 function s.fstg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
 		local chkf=tp
-		local m=Duel.GetFusionMaterial(tp)
-		local mg2=Duel.GetMatchingGroup(nil,tp,LOCATION_DECK,0,nil) -- include Deck
+		local m=Duel.GetFusionMaterial(tp):Filter(s.ffilter1,nil,e)
+		local mg2=Duel.GetMatchingGroup(s.ffilter1,tp,LOCATION_DECK,0,nil,e) -- include Deck
 		m:Merge(mg2)
 		local res=Duel.IsExistingMatchingCard(s.ffilter2,tp,LOCATION_EXTRA,0,1,nil,e,tp,m,nil,chkf)
 		if not res then
@@ -82,8 +82,8 @@ function s.fstg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.fsop(e,tp,eg,ep,ev,re,r,rp)
 	local chkf=tp
-	local m=Duel.GetFusionMaterial(tp)
-	local mg2=Duel.GetMatchingGroup(nil,tp,LOCATION_DECK,0,nil)
+	local m=Duel.GetFusionMaterial(tp):Filter(s.ffilter1,nil,e)
+	local mg2=Duel.GetMatchingGroup(s.ffilter1,tp,LOCATION_DECK,0,nil,e)
 	m:Merge(mg2)
 	local sg1=Duel.GetMatchingGroup(s.ffilter2,tp,LOCATION_EXTRA,0,nil,e,tp,m,nil,chkf)
 	local mg3=nil
@@ -128,7 +128,7 @@ function s.cfcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetTurnID()~=Duel.GetTurnCount()
 end
 function s.cffilter1(c)
-	return c:IsFaceupEx() and c:IsAbleToDeck()
+	return (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup()) and c:IsAbleToDeck()
 		and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
 end
 function s.cffilter2(c,e,tp,m,f,chkf)

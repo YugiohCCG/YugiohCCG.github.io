@@ -24,6 +24,7 @@ function s.initial_effect(c)
 	if type(aux.CCGSetEffects)~="table" then aux.CCGSetEffects={} end aux.CCGSetEffects[e2]=true
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_CHAINING)
+	e2:SetProperty(EFFECT_FLAG_DELAY)
 	e2:SetRange(LOCATION_GRAVE)
 	e2:SetCondition(s.setcon)
 	e2:SetTarget(s.settg)

@@ -3,9 +3,9 @@
 local s,id=GetID(); local SET_ASHENED=0x1ad; local OBSIDIM=3055018
 function s.initial_effect(c)
  aux.AddCodeList(c,3055018)
- local e0=Effect.CreateEffect(c); e0:SetType(EFFECT_TYPE_FIELD); e0:SetCode(EFFECT_SPSUMMON_PROC); e0:SetProperty(EFFECT_FLAG_UNCOPYABLE); e0:SetRange(LOCATION_HAND); e0:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH); e0:SetCondition(function(e,c) if c==nil then return true end return Duel.IsExistingMatchingCard(Card.IsCode,c:GetControler(),LOCATION_FZONE,LOCATION_FZONE,1,nil,OBSIDIM) end); c:RegisterEffect(e0)
+ local e0=Effect.CreateEffect(c); e0:SetType(EFFECT_TYPE_FIELD); e0:SetCode(EFFECT_SPSUMMON_PROC); e0:SetProperty(EFFECT_FLAG_UNCOPYABLE); e0:SetRange(LOCATION_HAND); e0:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH); e0:SetCondition(function(e,c) if c==nil then return true end return Duel.IsExistingMatchingCard(function(c) return c:IsFaceup() and c:IsCode(OBSIDIM) end,c:GetControler(),LOCATION_FZONE,LOCATION_FZONE,1,nil,OBSIDIM) end); c:RegisterEffect(e0)
  local e1=Effect.CreateEffect(c); e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH); e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O); e1:SetCode(EVENT_SUMMON_SUCCESS); e1:SetProperty(EFFECT_FLAG_DELAY); e1:SetCountLimit(1,id); e1:SetTarget(s.thtg); e1:SetOperation(s.thop); c:RegisterEffect(e1); local e2=e1:Clone(); e2:SetCode(EVENT_SPSUMMON_SUCCESS); c:RegisterEffect(e2)
- local e3=Effect.CreateEffect(c); e3:SetCategory(CATEGORY_SPECIAL_SUMMON); e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O); e3:SetCode(EVENT_DESTROYED); e3:SetRange(LOCATION_GRAVE); e3:SetProperty(EFFECT_FLAG_DELAY); e3:SetCountLimit(1,id+100); e3:SetCondition(s.spcon); e3:SetTarget(s.sptg); e3:SetOperation(s.spop); c:RegisterEffect(e3)
+ local e3=Effect.CreateEffect(c); e3:SetCategory(CATEGORY_SPECIAL_SUMMON); e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O); e3:SetCode(EVENT_DESTROYED); e3:SetRange(LOCATION_GRAVE); e3:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_DAMAGE_STEP); e3:SetCountLimit(1,id+100); e3:SetCondition(s.spcon); e3:SetTarget(s.sptg); e3:SetOperation(s.spop); c:RegisterEffect(e3)
 end
 s.listed_names={3055018}
 function s.thf(c) return aux.IsCodeListed(c,3055018) and c:IsAbleToHand() end

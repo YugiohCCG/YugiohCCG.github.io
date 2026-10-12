@@ -45,14 +45,14 @@ function s.tkcon(e,tp,eg,ep,ev,re,r,rp)
 		and e:GetHandler():IsPreviousLocation(LOCATION_ONFIELD)
 end
 function s.tktg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>=2
+	if chk==0 then return not Duel.IsPlayerAffectedByEffect(tp,59822133) and Duel.GetLocationCount(tp,LOCATION_MZONE)>=2
 		and Duel.IsPlayerCanSpecialSummonCount(tp,2)
 		and Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT) end
 	Duel.SetOperationInfo(0,CATEGORY_TOKEN,nil,2,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,2,tp,0)
 end
 function s.tkop(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<2 or not Duel.IsPlayerCanSpecialSummonCount(tp,2) then return end
+	if Duel.IsPlayerAffectedByEffect(tp,59822133) or Duel.GetLocationCount(tp,LOCATION_MZONE)<2 or not Duel.IsPlayerCanSpecialSummonCount(tp,2) then return end
 	if not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN_PROTOGENIC,SET_TO_PROTO,TYPES_TOKEN_MONSTER,0,0,1,RACE_GALAXY,ATTRIBUTE_LIGHT) then return end
 	local token1=Duel.CreateToken(tp,TOKEN_PROTOGENIC)
 	local token2=Duel.CreateToken(tp,TOKEN_PROTOGENIC)

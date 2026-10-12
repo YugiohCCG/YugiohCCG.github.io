@@ -1,0 +1,55 @@
+{
+  "scope": "Five cards: current printed race/set eligibility deltas only. Production callbacks with mock Card/Duel boundaries. No actual fusion, cost, search, lock enforcement, summon or native Omega proof. Not full audits or additional repairs.",
+  "passcodes": [
+    259073666,
+    259160760,
+    259348317,
+    259763531,
+    259152704
+  ],
+  "baseline_assertions": 356,
+  "dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_spec_filters.py": "36c9ffaf36cd9e496dc93288815e64e87cb761a483229c0db93b692bc2b78ac8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_spec_filters.lua": "f252417831a1ed6f6ad740a01ab108b156a22b83fbc75faaf6f36b0f46c7c62d",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "C:\\Users\\hclar\\AppData\\Local\\Microsoft\\WinGet\\Packages\\DEVCOM.Lua_Microsoft.Winget.Source_8wekyb3d8bbwe\\bin\\lua.EXE": "72f5ea9275f816c421450fd81ba7d32fc42c0abca1d087d450db0bf644379fb8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259073666.lua": "0f734153a9fea75f0f8c6ed6054a8442928d10fa18ef8e95309d877ba42dc5b3",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259160760.lua": "5bf1e1f35461b86c1140d045788c91a3610c68d38d459f059f51f313f41a1891",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259348317.lua": "6efc98b26d21ad619ff34271c19c8bfc02cab3a7246200eebe77bca8025a0a47",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259763531.lua": "931677ee53b4798d500e507f8c07cb8e871e91e5ab2f6656435b7e4d31cd6c37",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259152704.lua": "4bab393d47990e2a98f3927a5bf9a0e0aef2eaff90b256dc92d9366b1a936d53"
+  },
+  "runs": [
+    {
+      "control": null,
+      "exit_status": 0,
+      "stdout": "PASS 356 current-spec filter assertions\n",
+      "stderr": ""
+    },
+    {
+      "control": "old-insect-259073666",
+      "exit_status": 1,
+      "stdout": "",
+      "stderr": "lua: scripts/fresh_current_spec_filters.lua:5: Gathering GY eligibility\nstack traceback:\n\t[C]: in function 'assert'\n\tscripts/fresh_current_spec_filters.lua:5: in local 'check'\n\tscripts/fresh_current_spec_filters.lua:32: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "old-insect-259160760",
+      "exit_status": 1,
+      "stdout": "",
+      "stderr": "lua: scripts/fresh_current_spec_filters.lua:5: Sanctuary summon event\nstack traceback:\n\t[C]: in function 'assert'\n\tscripts/fresh_current_spec_filters.lua:5: in local 'check'\n\tscripts/fresh_current_spec_filters.lua:34: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "old-insect-259348317",
+      "exit_status": 1,
+      "stdout": "",
+      "stderr": "lua: scripts/fresh_current_spec_filters.lua:5: Sphinx quick mode\nstack traceback:\n\t[C]: in function 'assert'\n\tscripts/fresh_current_spec_filters.lua:5: in local 'check'\n\tscripts/fresh_current_spec_filters.lua:36: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "control": "old-insect-259763531",
+      "exit_status": 1,
+      "stdout": "",
+      "stderr": "lua: scripts/fresh_current_spec_filters.lua:5: Extra lock exceptions\nstack traceback:\n\t[C]: in function 'assert'\n\tscripts/fresh_current_spec_filters.lua:5: in local 'check'\n\tscripts/fresh_current_spec_filters.lua:41: in main chunk\n\t[C]: in ?\n"
+    }
+  ]
+}

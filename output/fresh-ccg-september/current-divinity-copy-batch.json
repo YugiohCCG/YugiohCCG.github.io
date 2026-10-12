@@ -1,0 +1,51 @@
+{
+  "scope": "Canonical Divinity own-turn Hand activation copies neutral opposing old-GY draw Spell/Trap; actual banishment and source-player draw. Wrong type/own GY/sent this turn excluded. Constant9/10 adapter for copied draw chain-info. Targeting/label properties, official recipients, shared limits/opposing turn, interruption/native Omega open.",
+  "baseline_cases": 5,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_divinity_copy_batch.py": "fe0b6ea240c143e36c1b0985e250b2378a06bb785fa1ae9f6c2f2e55871dc5d8",
+    "scripts/fresh_current_divinity_copy.cjs": "6c9bd71822fadf3db2895027affb02eb951afc143d3718397f52399854d3b9e2",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c259384841.lua": "f207e7f910e6d4885049f26c89fada8bbd97e922bcc4a0426d06de2000795e47",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-divinity-copy.json",
+      "artifact_sha256": "d4f7f6f64ea80f10402584fb54c7a2163dcffddfe9fcffed1ee7b1343c8c09b4"
+    },
+    {
+      "control": "ignore-turn",
+      "expected_failures": [
+        {
+          "sameTurn": true
+        }
+      ],
+      "artifact": "current-divinity-copy-ignore-turn.json",
+      "artifact_sha256": "3a88ba9a7ea3535754b4f13af9a147a791bb9c6985116bc498a0f0f689a384aa"
+    },
+    {
+      "control": "no-copy",
+      "expected_failures": [
+        {},
+        {
+          "trap": true
+        }
+      ],
+      "artifact": "current-divinity-copy-no-copy.json",
+      "artifact_sha256": "f05cd5b35ff6bc636da12bce71a6af654f3a690ca934485995e8873307c4eff3"
+    }
+  ]
+}

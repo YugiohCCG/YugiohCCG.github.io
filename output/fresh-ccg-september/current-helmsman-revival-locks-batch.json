@@ -1,0 +1,93 @@
+{
+  "scope": "Full Helmsman actual Normal/Special summons; full Doctor ownGY revival refs, native Doctor-specific player summon restriction/NecroValley/fullfive MZONE exclude revival before activation. Neutral restrictions bounded; no adapters; fullcard/nativeOmega OPEN",
+  "baseline_cases": 8,
+  "certification": "Production focused evidence; native Omega and full card OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c215730767.lua": "7d01e43a8e478088b3527c684efe45d9414e52d71f75da03df5bdc73e105a3ef",
+    "public/CCG Downloads/CCG_Scripts/c217118040.lua": "bd6a599afbb162e64667e4e0d75690fff4d2c172d37794aef987e84a77bc504f",
+    "scripts/fresh_current_helmsman_revival_locks_batch.py": "aabca17ed6196ceb716187a7d1b9d217bce0f5138098a590da3a919f068f1e70",
+    "scripts/fresh_current_helmsman_revival_locks.cjs": "05303a318601ad654d038c74c4036bec8afdb0854d7082862cde453570d81296",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c218261525.lua": "dfd6a3a24ae81aa1da1271e04f9d0c47e483d631929eaae4d52028255e9ee0db",
+    "public/CCG Downloads/CCG_Scripts/c231872299.lua": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-helmsman-revival-locks.json",
+      "artifact_sha256": "5b7bd1155debd78e8b534b131a777fad73a99ebe6877944b7da90434f48271e7"
+    },
+    {
+      "control": "no-revive",
+      "expected_failures": [
+        {},
+        {
+          "special": true
+        }
+      ],
+      "artifact": "current-helmsman-revival-locks-no-revive.json",
+      "artifact_sha256": "9dc153a59ffa0e3a82e008f43fa485db27f05776d21d4ccda766a3b500514b79"
+    },
+    {
+      "control": "no-lock",
+      "expected_failures": [
+        {
+          "lock": true
+        },
+        {
+          "special": true,
+          "lock": true
+        },
+        {
+          "necro": true
+        },
+        {
+          "special": true,
+          "necro": true
+        }
+      ],
+      "artifact": "current-helmsman-revival-locks-no-lock.json",
+      "artifact_sha256": "fa46e5ee80efd64a142be41472db707e0cd5f5004ecfd6615344d07c1ce41ac9"
+    },
+    {
+      "control": "no-fill",
+      "expected_failures": [
+        {
+          "full": true
+        },
+        {
+          "special": true,
+          "full": true
+        }
+      ],
+      "artifact": "current-helmsman-revival-locks-no-fill.json",
+      "artifact_sha256": "0ab53fe54580f6a90a4022ba5fc1cf7e0ef3332b5893e747d3435657936d6ff1"
+    },
+    {
+      "control": "ignore-necro",
+      "expected_failures": [
+        {
+          "necro": true
+        },
+        {
+          "special": true,
+          "necro": true
+        }
+      ],
+      "artifact": "current-helmsman-revival-locks-ignore-necro.json",
+      "artifact_sha256": "2d568a1b42638f360bcd9e8e64596cae8ceb4cb9c811d44e119ec9bf7b79dc41"
+    }
+  ]
+}

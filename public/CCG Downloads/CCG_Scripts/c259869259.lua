@@ -4,19 +4,22 @@ local STRING_ID=133869259
 local COUNTER_CURRENT = 0x18f0
 local SET_OHMECHANIC = 0x8de1
 function s.initial_effect(c)
+	local state={}
 	-- Activate SZone
 	local e0=Effect.CreateEffect(c)
 	e0:SetType(EFFECT_TYPE_ACTIVATE)
 	e0:SetCode(EVENT_FREE_CHAIN)
 	e0:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	e0:SetOperation(function(e,tp) state.previous=s.colinks(tp) end)
 	c:RegisterEffect(e0)
 	-- Continuous co-link counter placement
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e1:SetCode(EVENT_ADJUST)
-	e1:SetRange(LOCATION_SZONE)
-	e1:SetOperation(s.adjustop)
-	c:RegisterEffect(e1)
+	-- Observe inactive intervals too; only the face-up, enabled source adds counters.
+	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+	e1:SetOperation(function(e) s.adjustop(e,c:GetControler(),state,c) end)
+	Duel.RegisterEffect(e1,0)
 	-- Control opponent monster on Spell activation
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,0))
@@ -32,25 +35,24 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_OHMECHANIC}
 
-function s.adjustop(e,tp,eg,ep,ev,re,r,rp)
-	local g = Duel.GetMatchingGroup(function(tc)
-		return tc:IsFaceup() and tc:IsControler(tp) and tc:GetMutualLinkedGroupCount() > 0
-	end, tp, LOCATION_MZONE, 0, nil)
-	
-	for tc in aux.Next(g) do
-		if tc:GetFlagEffect(id) == 0 then
-			tc:RegisterFlagEffect(id, RESET_EVENT+RESETS_STANDARD, 0, 1)
-			tc:AddCounter(COUNTER_CURRENT, 1)
-		end
-	end
-	
-	local all_g = Duel.GetMatchingGroup(function(tc)
-		return tc:GetFlagEffect(id) > 0
-	end, tp, LOCATION_MZONE, 0, nil)
-	for tc in aux.Next(all_g) do
-		if tc:GetMutualLinkedGroupCount() == 0 then
-			tc:ResetFlagEffect(id)
-		end
+-- Track each copy independently and distinguish cards that leave and return.
+function s.colinks(tp)
+	local previous={}
+	local g=Duel.GetMatchingGroup(function(tc)
+		return tc:IsFaceup() and tc:GetMutualLinkedGroupCount()>0
+	end,tp,LOCATION_MZONE,0,nil)
+	for tc in aux.Next(g) do previous[tc]=tc:GetFieldID() end
+	return previous
+end
+function s.adjustop(e,tp,state,c)
+	if tp~=0 and tp~=1 then state.previous=nil return end
+	local current=s.colinks(tp)
+	local previous=state.previous
+	-- An initially fielded copy also starts with the current graph as baseline.
+	state.previous=current
+	if not previous or not c:IsLocation(LOCATION_SZONE) or c:IsDisabled() or not c:IsFaceup() then return end
+	for tc,fieldid in pairs(current) do
+		if previous[tc]~=fieldid then tc:AddCounter(COUNTER_CURRENT,1) end
 	end
 end
 

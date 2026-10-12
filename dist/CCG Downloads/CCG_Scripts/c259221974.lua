@@ -11,7 +11,7 @@ function s.initial_effect(c)
 end
 function s.exmark(e,tp,eg) for p=0,1 do if eg:IsExists(function(c,p) return c:IsControler(p) and c:IsPreviousLocation(LOCATION_EXTRA) end,1,nil,p) then Duel.RegisterFlagEffect(p,id,RESET_PHASE+PHASE_END,0,1) end end end
 function s.spcon(e,tp) return Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,0)==0 and Duel.GetFlagEffect(1-tp,id)>0 end
-function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0) end
-function s.spop(e,tp) local c=e:GetHandler(); if c:IsRelateToEffect(e) then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP) end end
+function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,true,false) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0) end
+function s.spop(e,tp) local c=e:GetHandler(); if c:IsRelateToEffect(e) then Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP) end end
 function s.taxcon(e,tp,eg) return eg:IsExists(function(c,p) return c:IsControler(p) and c:IsPreviousLocation(LOCATION_EXTRA) end,1,nil,1-tp) end
 function s.taxop(e,tp,eg) local p=1-tp; local sg=eg:Filter(function(c,p) return c:IsControler(p) and c:IsPreviousLocation(LOCATION_EXTRA) end,nil,p); local can_shuffle=Duel.IsExistingMatchingCard(Card.IsAbleToDeck,p,LOCATION_HAND,0,1,nil); local op=can_shuffle and Duel.SelectOption(p,aux.Stringid(STRING_ID,1),aux.Stringid(STRING_ID,2)) or 1; if op==0 then Duel.Hint(HINT_SELECTMSG,p,HINTMSG_TODECK); local g=Duel.SelectMatchingCard(p,Card.IsAbleToDeck,p,LOCATION_HAND,0,1,1,nil); Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT) else Duel.SendtoGrave(sg,REASON_RULE) end end

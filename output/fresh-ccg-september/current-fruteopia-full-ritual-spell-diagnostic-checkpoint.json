@@ -1,0 +1,41 @@
+{
+  "scope": "DIAGNOSTIC full RitualSpell native material release without summon; removing selected Ritual IsRelateToEffect check in-memory enables actual native Ritual summon/completed procedure and subsequent Fruteopia revival. Fruteopia query8 adapter explicit. No production edit or full-card certification.",
+  "controls": [
+    {
+      "control": "no-ritual",
+      "failure": "Actual Ritual summon",
+      "file": "output\\fresh-ccg-september\\current-fruteopia-full-ritual-spell-diagnostic-relation-comparison-no-ritual.json",
+      "sha256": "34be0e6b421c14037da22dc08217a7924a687ea2ad9e59481e971b31b28cd035"
+    },
+    {
+      "control": "no-material",
+      "failure": "Actual Ritual material release",
+      "file": "output\\fresh-ccg-september\\current-fruteopia-full-ritual-spell-diagnostic-relation-comparison-no-material.json",
+      "sha256": "e30e123f0ad70d3194e8c80132e193940139df8fdcc70d5b47a6b7dcd5c3cbb8"
+    },
+    {
+      "control": "no-revive",
+      "failure": "Actual Ritual revival\n\nfalse !== true\n",
+      "file": "output\\fresh-ccg-september\\current-fruteopia-full-ritual-spell-diagnostic-relation-comparison-no-revive.json",
+      "sha256": "64ed9b7823bd21dd9ef203ef04fe40fcca6276e529fc2ebf7733e99b910aa943"
+    },
+    {
+      "control": "no-departure",
+      "failure": "Effect-only departure trigger\n\n0 !== 1\n",
+      "file": "output\\fresh-ccg-september\\current-fruteopia-full-ritual-spell-diagnostic-relation-comparison-no-departure.json",
+      "sha256": "3843e86d82bf9aa5625a4cd3c5d4745ec5fb7612f22c7d74d54bce095c338654"
+    }
+  ],
+  "hashes": {
+    "output\\fresh-ccg-september\\current-fruteopia-full-ritual-spell-diagnostic.json": "4b7d4988d7a89ada1d29b41da2090d3e1e3b2c9bdb1dc0d11d85d88c22bf7cb0",
+    "output\\fresh-ccg-september\\current-fruteopia-full-ritual-spell-diagnostic-relation-comparison.json": "677a9a969263c732ebd0a488fced39a02038186a8664b2b463d764b95ecd51f0",
+    "scripts/fresh_current_fruteopia_full_ritual_spell_diagnostic.cjs": "59de7d0698171a0b4b1040c32070c17033a8eb5a76437a6ce88954ad1876f1c3",
+    "public/CCG Downloads/CCG_Scripts/c256930605.lua": "9c68121434c5db376cd94ace47e44d368920119a7f081d595b9988098b5d60de",
+    "public/CCG Downloads/CCG_Scripts/c216140411.lua": "7c5a4e3783e26290da915c33a35958c406961854235805305e3aedeca67b991d",
+    "public/CCG Downloads/CCG_Scripts/c213266433.lua": "8693059b76823e8baf2c44f4eafa95a9e880602dd26a75cfd908dacbd9d17678",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde"
+  }
+}

@@ -41,7 +41,7 @@ function s.fusiongroup(tp,e)
 		mg=mg:Filter(s.matfilter1,nil,e)
 	end
 	if Duel.IsPlayerCanDraw(1-tp,2) then
-		local dg=Duel.GetMatchingGroup(s.matfilter,tp,LOCATION_DECK,0,nil)
+		local dg=Duel.GetMatchingGroup(s.matfilter,tp,LOCATION_DECK,0,nil):Filter(s.matfilter1,nil,e)
 		mg:Merge(dg)
 	end
 	return mg

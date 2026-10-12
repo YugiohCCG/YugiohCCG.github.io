@@ -1,0 +1,58 @@
+{
+  "scope": "Ghostrick Haunt native GYselfSet then actual destruction/Handreturn/Deckreturn redirects to banishment. Neutral helper actions; no adapters. Redirect reset/interruption/nativeOmega OPEN",
+  "baseline_cases": 3,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_ghostrick_haunt_redirect_batch.py": "58f6146519c8c3357420b5f0b683689a09088f3662300ce4aeb4d9a34ca70927",
+    "scripts/fresh_current_ghostrick_haunt_redirect.cjs": "dc05f5188ad0dca6190710326aad5f2043c403b6ceff7cbdba5a9c3bc6de40aa",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c241540236.lua": "034935b0c2ae18dac88d2872008a42a60f238b3b42662bdd617a3aa6c969885b",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-ghostrick-haunt-redirect.json",
+      "artifact_sha256": "4921b22927f4ab171a0327961ecf7ab9afcc9cf31ee99b95c212ba4ac90379ad"
+    },
+    {
+      "control": "no-set",
+      "expected_failures": [
+        {},
+        {
+          "bounce": true
+        },
+        {
+          "deck": true
+        }
+      ],
+      "artifact": "current-ghostrick-haunt-redirect-no-set.json",
+      "artifact_sha256": "4e59ad788d3314ec376f90c7f1436660fa60ede42afc5d42a9b2f4fd02cd5c6c"
+    },
+    {
+      "control": "no-redirect",
+      "expected_failures": [
+        {},
+        {
+          "bounce": true
+        },
+        {
+          "deck": true
+        }
+      ],
+      "artifact": "current-ghostrick-haunt-redirect-no-redirect.json",
+      "artifact_sha256": "44c32c6ba11d443b448574fdf6b25a14d8ea8c8ef66f411b67eb1554a4d95de7"
+    }
+  ]
+}

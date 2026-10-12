@@ -1,0 +1,60 @@
+{
+  "scope": "Full production Fruteification GY banish cost/Deck WATER Ritual effectGY send, excluded wrong attribute/type/opponent/absent resource and native CannotRemove/CannotToGrave restrictions. No adapters; full-card and once-per-Duel follow-up open",
+  "baseline_cases": 7,
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-fruteification-grave-send.json",
+      "artifact_sha256": "31606798e0975bd11040fec3de81c07692e671a37f8fedf957263ac6b647640e"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        0,
+        5
+      ],
+      "artifact": "current-fruteification-grave-send-no-cost.json",
+      "artifact_sha256": "1377c382417392a72f6ada545597cf8780df0107638123d402ae8f716f1509ae"
+    },
+    {
+      "control": "no-send",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-fruteification-grave-send-no-send.json",
+      "artifact_sha256": "c399fe9ac45d261a17ea8b4764f9f3cb25f6905b43306805379ea5761c57a847"
+    },
+    {
+      "control": "allow-any",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "artifact": "current-fruteification-grave-send-allow-any.json",
+      "artifact_sha256": "d0dd0b042431fbbbfec6fa1c2be5521b10922e2fc12bb73da4c18b4e3ed4caa1"
+    },
+    {
+      "control": "no-lock",
+      "expected_failures": [
+        5,
+        6
+      ],
+      "artifact": "current-fruteification-grave-send-no-lock.json",
+      "artifact_sha256": "ba2d5afabf2a3ec9769bfdc3969e4acf04c1d95973c57aa165f855dfd3c3edee"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_fruteification_grave_send.cjs": "2c337753252c41e69c7d8db70daf25507a19d5a1aaaa5f9f5e2baa1984780815",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c256930605.lua": "592c87e2fe6bf5dd8df388b4cb9b2811e3fb0793469bd47a9e114dc65ddc3f07",
+    "public/CCG Downloads/CCG_Scripts/c213266433.lua": "8693059b76823e8baf2c44f4eafa95a9e880602dd26a75cfd908dacbd9d17678",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc"
+  }
+}

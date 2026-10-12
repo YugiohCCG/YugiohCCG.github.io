@@ -1,0 +1,68 @@
+{
+  "scope": "Two actual full Zaoka Hand copies effectbanished together, nextStandby success/activation/effect negation consumes shared revival; one chain, spare banishedcopy persists. No adapters/seededhistory; neutral banish/counter bounded; nativeOmega/fullcard OPEN",
+  "baseline_cases": 3,
+  "certification": "Production focused evidence; nativeOmega/fullcard OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c215629896.lua": "c9c633382e64429d9a8ac6f4b299032646327e79a117e8914dba50ef0d5d6e97",
+    "public/CCG Downloads/CCG_Scripts/c232232676.lua": "03fa56764c7aef4ab3f4c26f85317e1a994592415fe83aa85547f3da1eab352d",
+    "scripts/fresh_current_zaoka_revival_shared_use_batch.py": "4e3f47226370679f580167853c426695492e2d9ab034d7719b80a5cc8a4587c3",
+    "scripts/fresh_current_zaoka_revival_shared_use.cjs": "a41dec2029d5814a041f533af957e1ce39a6e882ac256460000fd12cb3f574e6",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c236542835.lua": "f74c4420c72822502c95e95bf022b45a6246823d7e33c5b00560fa40bd95fadc",
+    "public/CCG Downloads/CCG_Scripts/c231872299.lua": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-zaoka-revival-shared-use.json",
+      "artifact_sha256": "e70ebe308e8688fc55aa80e88e8e02c0b89892459233e174fd0d1a9f1492cc59"
+    },
+    {
+      "control": "per-copy",
+      "expected_failures": [
+        {},
+        {
+          "activation": true
+        },
+        {
+          "effect": true
+        }
+      ],
+      "artifact": "current-zaoka-revival-shared-use-per-copy.json",
+      "artifact_sha256": "8ce3eee2ba3e456b112754c9b9f0334d603c3bdbb84adda6e58db82652d547d3"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        {
+          "activation": true
+        },
+        {
+          "effect": true
+        }
+      ],
+      "artifact": "current-zaoka-revival-shared-use-no-response.json",
+      "artifact_sha256": "c99b2e80690f9c14833170261a6b7d7d3d2ef24dd543cdd27d09bba71a11913a"
+    },
+    {
+      "control": "no-revive",
+      "expected_failures": [
+        {}
+      ],
+      "artifact": "current-zaoka-revival-shared-use-no-revive.json",
+      "artifact_sha256": "a248d2e38653404714a841c3eea89dad54716485fe2746ac51c712d909337540"
+    }
+  ]
+}

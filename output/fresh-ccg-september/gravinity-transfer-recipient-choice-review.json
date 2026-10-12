@@ -1,0 +1,110 @@
+{
+  "production_unchanged": true,
+  "scope": "Static candidate review only; no repair or runtime certification",
+  "recipients": [
+    {
+      "passcode": 215768254,
+      "name": "Gravinity Star",
+      "printed_effect": "During the Main Phase, if this card is in your hand (Quick Effect): You can place this card face up in your Spell and Trap Zone as a Continuous Trap. During either player's turn, if this card is treated as a Continuous Trap: You can activate one of the following effects.\n\u25cf Set 1 \"Gravinity\" Spell or Trap directly from your Deck. If it is your opponent's turn, it can be activated this turn.\n\u25cf Move this card to another column.\nYou can only use each effect of \"Gravinity Star\" once per turn.",
+      "script_sha256": "d5d3b775c6eb710209f5f97982722aa7ecefc2ee094589aeb6dc0b2a2d4fe005",
+      "transfer_flag_consumers": [
+        {
+          "line": 4,
+          "text": "local TRANSFER_CALL=223505382"
+        },
+        {
+          "line": 67,
+          "text": "\tlocal all=c:GetFlagEffect(TRANSFER_CALL)>0"
+        },
+        {
+          "line": 68,
+          "text": "\tif all then c:ResetFlagEffect(TRANSFER_CALL) end"
+        },
+        {
+          "line": 92,
+          "text": "\tif c:GetFlagEffect(TRANSFER_CALL)>0 then c:ResetFlagEffect(TRANSFER_CALL) s.setop(e,tp) end"
+        }
+      ],
+      "select_yes_no_present": false,
+      "status": "STATIC_CANDIDATE_optional_all_effects_choice_missing_runtime_reproduction_required"
+    },
+    {
+      "passcode": 235538173,
+      "name": "Gravinity Plasma",
+      "printed_effect": "During the Main Phase, if this card is in your hand (Quick Effect): You can place this card face up in one of your Spell and Trap Zones as a Continuous Trap. During either player's turn, if this card is treated as a Continuous Trap: You can activate one of the following effects.\n\u25cf Place 1 \"Gravinity\" monster from your Deck, except \"Gravinity Plasma\", face up in your Spell and Trap Zone as a Continuous Trap.\n\u25cf Move this card to another column.\nYou can only use each effect of \"Gravinity Plasma\" once per turn.",
+      "script_sha256": "7edfdc113441b9dc252035ebd2ed041e193f569fe18ff7b30db75cfd9af7e212",
+      "transfer_flag_consumers": [
+        {
+          "line": 4,
+          "text": "local TRANSFER_CALL=223505382"
+        },
+        {
+          "line": 66,
+          "text": "\tlocal all=c:GetFlagEffect(TRANSFER_CALL)>0"
+        },
+        {
+          "line": 67,
+          "text": "\tif all then c:ResetFlagEffect(TRANSFER_CALL) end"
+        },
+        {
+          "line": 84,
+          "text": "\tif c:GetFlagEffect(TRANSFER_CALL)>0 then c:ResetFlagEffect(TRANSFER_CALL) s.deckop(e,tp) end"
+        }
+      ],
+      "select_yes_no_present": false,
+      "status": "STATIC_CANDIDATE_optional_all_effects_choice_missing_runtime_reproduction_required"
+    },
+    {
+      "passcode": 249680945,
+      "name": "Gravinity Orbit",
+      "printed_effect": "During the Main Phase, if this card is in your hand (Quick Effect): You can place this card face up in one of your Spell and Trap Zones as a Continuous Trap. During either player's turn, if this card is treated as a Continuous Trap: You can activate one of the following effects.\n\u25cf Add 1 \"Gravinity\" monster from your Deck to your hand.\n\u25cf Move this card to another column.\nYou can only use each effect of \"Gravinity Orbit\" once per turn.",
+      "script_sha256": "1e6df60518adde19b5a27e5075c45c39a61cd43ec625b3536dd6b4011d5ef669",
+      "transfer_flag_consumers": [
+        {
+          "line": 4,
+          "text": "local TRANSFER_CALL=223505382"
+        },
+        {
+          "line": 70,
+          "text": "\tlocal all=c:GetFlagEffect(TRANSFER_CALL)>0"
+        },
+        {
+          "line": 71,
+          "text": "\tif all then c:ResetFlagEffect(TRANSFER_CALL) end"
+        },
+        {
+          "line": 90,
+          "text": "\tif c:GetFlagEffect(TRANSFER_CALL)>0 then c:ResetFlagEffect(TRANSFER_CALL) s.thop(e,tp) end"
+        }
+      ],
+      "select_yes_no_present": false,
+      "status": "STATIC_CANDIDATE_optional_all_effects_choice_missing_runtime_reproduction_required"
+    },
+    {
+      "passcode": 256172827,
+      "name": "Gravinity Pulse",
+      "printed_effect": "During the Main Phase, if this card is in your hand (Quick Effect): You can place this card face up in your Spell and Trap Zone as a Continuous Trap. During either player's turn, if this card is treated as a Continuous Trap: You can activate one of the following effects.\n\u25cf Add 1 \"Gravinity\" Spell or Trap from your Deck to your hand.\n\u25cf Move this card to another column.\nYou can only use each effect of \"Gravinity Pulse\" once per turn.",
+      "script_sha256": "7026487c1f7b2ac50539b9c7281fbb446491f84f76e22795084dea9eaf354fdc",
+      "transfer_flag_consumers": [
+        {
+          "line": 4,
+          "text": "local TRANSFER_CALL=223505382"
+        },
+        {
+          "line": 67,
+          "text": "\tlocal all=c:GetFlagEffect(TRANSFER_CALL)>0"
+        },
+        {
+          "line": 68,
+          "text": "\tif all then c:ResetFlagEffect(TRANSFER_CALL) end"
+        },
+        {
+          "line": 84,
+          "text": "\tif c:GetFlagEffect(TRANSFER_CALL)>0 then c:ResetFlagEffect(TRANSFER_CALL) s.thop(e,tp) end"
+        }
+      ],
+      "select_yes_no_present": false,
+      "status": "STATIC_CANDIDATE_optional_all_effects_choice_missing_runtime_reproduction_required"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "scope": "Two full HappyHalloWeen copies earn counters through full Ween actual summons; first success/activation/effect negation consumes only first copy; distinct copy pays3 and summons same turn, both balances and consumed uses verified. No adapters/seeding; nativeOmega/fullcard OPEN",
+  "baseline_cases": 3,
+  "certification": "Production focused evidence; native Omega and full card OPEN",
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c255977900.lua": "1148765d513fa9b477faec41acb60347688a7382538443345857c5629af9a12b",
+    "public/CCG Downloads/CCG_Scripts/c230749983.lua": "d12495e36b09934c902cc5f1d805f25dae207d750b3cc71b5ed2cd8d60acad99",
+    "scripts/fresh_current_happy_halloween_copy_use_batch.py": "b81ff9a2b48f7d91b297f4abd8aca894125071899cd861ad61c34ad94fbcc05d",
+    "scripts/fresh_current_happy_halloween_copy_use.cjs": "e189ee2f0452391f8932a460a8716d11cb06cf674edb0db555254fa4bb7fce71",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c250262550.lua": "baa71a5fe57d0aa2e80f781ccbf2436344fdd5bf63497724aa844c722ec85526",
+    "public/CCG Downloads/CCG_Scripts/c231872299.lua": "490e0f1859057e45c0c3649b1e23276e8c5e286ceb8fe2e43ba85d7824b8afeb",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-happy-halloween-copy-use.json",
+      "artifact_sha256": "5294c0e53e167ee2ab917647bdeb208c5241323f0fa2ea835d64bd7df0da3061"
+    },
+    {
+      "control": "shared-limit",
+      "expected_failures": [
+        {},
+        {
+          "activation": true
+        },
+        {
+          "effect": true
+        }
+      ],
+      "artifact": "current-happy-halloween-copy-use-shared-limit.json",
+      "artifact_sha256": "b58a1f9dfe79f1ef94006190efb8552fd193811b82f5d29a80516fcaab02736e"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        {},
+        {
+          "activation": true
+        },
+        {
+          "effect": true
+        }
+      ],
+      "artifact": "current-happy-halloween-copy-use-no-cost.json",
+      "artifact_sha256": "c8103bdc05304b329979a882dfcff476f70e4899e84b3b48ff9fd30847eb920b"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        {
+          "activation": true
+        },
+        {
+          "effect": true
+        }
+      ],
+      "artifact": "current-happy-halloween-copy-use-no-response.json",
+      "artifact_sha256": "e930f6c7e08424b34cf12e43e11bc5fe241fb273963f610f733a8ccd843bc841"
+    }
+  ]
+}

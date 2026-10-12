@@ -13,7 +13,7 @@ function s.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
 	e1:SetRange(LOCATION_MZONE)
-	e1:SetCode(EFFECT_CANNOT_BE_BATTLE_TARGET)
+	e1:SetCode(EFFECT_IGNORE_BATTLE_TARGET)
 	e1:SetValue(aux.imval1)
 	c:RegisterEffect(e1)
 	--Gain ATK when a card or effect resolves

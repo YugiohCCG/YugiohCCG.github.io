@@ -1,0 +1,61 @@
+{
+  "scope": "Canonical Prayer actual neutral Ritual destruction and native GY optional search with source banish cost; Deck/GY/faceup removed recoveries and facedown/wrong set/non Ritual/simultaneous source/self-only negatives. Initial Ritual placement, no proper original Ritual procedure; Explicit Phoenix Wing Wind Blast code/Trap fixture recovery too; native Omega, real recipient effects, copies/interruptions open.",
+  "baseline_cases": 10,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_prayer_search_batch.py": "18a1de0ce3768af6d4b677284aaceacfa16180d87d3febcf811ca63aef06bcc5",
+    "scripts/fresh_current_prayer_search.cjs": "c26618803bc71efd6db1bfbdb8a3f3aeb28c73249b69f4270f47be0ce194a9f6",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c238276252.lua": "14d226722745ed3b49c0d86bdd5ff960e4d6622040d41420c0bb1c7e3e5a7516",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-prayer-search-leave-field.json",
+      "artifact_sha256": "b6f82b2916c1fded7cab11a7c3d08ec1fbcdc6923fed37909fce32fe0507dd09"
+    },
+    {
+      "control": "allow-facedown",
+      "expected_failures": [
+        {
+          "banished": true,
+          "facedown": true
+        }
+      ],
+      "artifact": "current-prayer-search-leave-field-allow-facedown.json",
+      "artifact_sha256": "8d20bbde7ae7238c21c0c7f453570d5ee9a492a9bd11564cc3fdb769a5f4c157"
+    },
+    {
+      "control": "allow-simultaneous",
+      "expected_failures": [
+        {
+          "simultaneous": true
+        }
+      ],
+      "artifact": "current-prayer-search-leave-field-allow-simultaneous.json",
+      "artifact_sha256": "3012a3259a2adfe5bb2b0f54b9ac68951d19f662bc327e5404812ef01965bb4c"
+    },
+    {
+      "control": "allow-wrong-ritual-set",
+      "expected_failures": [
+        {
+          "wrongRitualSet": true
+        }
+      ],
+      "artifact": "current-prayer-search-leave-field-allow-wrong-ritual-set.json",
+      "artifact_sha256": "c6c00398d3f22ce53783e9a68bf77853909d5f59730c8dcfec3d839dd186f939"
+    }
+  ]
+}

@@ -81,7 +81,7 @@ end
 function s.eqtarget(c,e,tp)
  return c~=e:GetHandler() and c:IsFaceup() and c:IsSetCard(SET_VYLON)
   and Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-  and Duel.IsExistingMatchingCard(s.unionfilter,tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil,c)
+  and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.unionfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil,c)
 end
 function s.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
  if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and s.eqtarget(chkc,e,tp) end

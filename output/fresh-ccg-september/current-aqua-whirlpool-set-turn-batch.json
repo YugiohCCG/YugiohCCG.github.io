@@ -1,0 +1,40 @@
+{
+  "scope": "Native Hand set; unavailable same turn; eligible set Quick-Play actually activates and resolves on opponent turn2, insufficient Fusion support excludes. No adapters or ignored limits. Proper Fusion support and native Omega open",
+  "baseline_cases": 2,
+  "runtime_dependencies_sha256": {
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_aqua_whirlpool_set_turn_batch.py": "4851ba3d217aa6d32cc13415f48cb4dfea4893fc430752b43c9eb136045268f3",
+    "scripts/fresh_current_aqua_whirlpool_set_turn.cjs": "560ab3640a6cee6f7d195e97194895aa81a20a600316a03eed17cd606878d9ba",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c253928485.lua": "fc13556dbe39bf899c9b11dcd69f70cb45fad1f667e4031533dcf9873dd2aaf3",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-aqua-whirlpool-set-turn.json",
+      "artifact_sha256": "f87b6b3719a459c175788ecf0c5b40f1eaae7395ee3c34ea8747ed81e3a611d4"
+    },
+    {
+      "control": "ignore-count",
+      "expected_failures": [
+        {
+          "oneSupport": true
+        }
+      ],
+      "artifact": "current-aqua-whirlpool-set-turn-ignore-count.json",
+      "artifact_sha256": "1349b39ba2c434d7df10b6aa5aa8c08b5a25df194239aabc376f5ddc500883e6"
+    }
+  ]
+}

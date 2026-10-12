@@ -1,0 +1,284 @@
+{
+  "scope": "Diagnostic actual TransferCall places real Gravinity256172827 then native search activates with optional additional movement accept/decline. Current source; native flag consumption and effect sequence verified. ExtraSynchro/nativeOmega/unselected effect route OPEN",
+  "baseline_cases": 16,
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c215768254.lua": "90d9d1a290b98a37d3926f384b69e10618f1b87f25712f93c633581070a2e322",
+    "public/CCG Downloads/CCG_Scripts/c235538173.lua": "22f276a3fc90dc003116d97dd2c4087c91b7666d00f47d9c0b2ea2178152a712",
+    "public/CCG Downloads/CCG_Scripts/c249680945.lua": "27666eb44589f2ae7154f338dced76cbe09bae406d56c339a6e4d6ab544cea30",
+    "public/CCG Downloads/CCG_Scripts/c256172827.lua": "611b159223f25534407306ff4a2b300e9046a5975507fa28ac858d5b7ebd24e0",
+    "tmp/omega_scripts/c59822133.lua": "ffc2026a40a5f146aee17cabfe4bad0bbb29d242a5f238784625300a34383d3a",
+    "scripts/fresh_current_gravinity_transfer_recipient_choice_batch.py": "e92b972cc7836a728284f2861f5d331f23f5fc206c81f5714483b3a8e10c4303",
+    "scripts/fresh_current_gravinity_transfer_recipient_choice.cjs": "4299d2bf7eaf4b7caf98ebffecbbf5051e7d084fae1fbfcf6b15514610cfe4e0",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c223505382.lua": "33733048854ce7caad3961b66912c58a83bb2feee6f6d147acf58a8071a2d428",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "recipient": 215768254,
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-gravinity-transfer-recipient-choice-215768254.json",
+      "artifact_sha256": "bcb471abf65fb2b1dc52efc92f0220050f9f84be24bf5daa0be04bd3daa8d5fa"
+    },
+    {
+      "recipient": 215768254,
+      "control": "mandatory",
+      "expected_failures": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        }
+      ],
+      "artifact": "current-gravinity-transfer-recipient-choice-215768254-mandatory.json",
+      "artifact_sha256": "3a48848fa15b44bdd6b723cce8c7200119fe991eb6ff8ffd01813dbfe42f83c5"
+    },
+    {
+      "recipient": 215768254,
+      "control": "no-extra",
+      "expected_failures": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        }
+      ],
+      "artifact": "current-gravinity-transfer-recipient-choice-215768254-no-extra.json",
+      "artifact_sha256": "f51754936de22c5a8d822dcfae46afdeb9df29bcf6794d5496e0779390141e46"
+    },
+    {
+      "recipient": 215768254,
+      "control": "no-consume",
+      "expected_failures": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        }
+      ],
+      "artifact": "current-gravinity-transfer-recipient-choice-215768254-no-consume.json",
+      "artifact_sha256": "a6a78cd903b36e0f6a7fa9e00c22ffdbe183f0c2fd777ec9dd6539381c0e3c96"
+    },
+    {
+      "recipient": 235538173,
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-gravinity-transfer-recipient-choice-235538173.json",
+      "artifact_sha256": "afd865a9ee785b2cd15b7d979dabd28c3c20c3ba55d2256d98e1853c89d6a06d"
+    },
+    {
+      "recipient": 235538173,
+      "control": "mandatory",
+      "expected_failures": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        }
+      ],
+      "artifact": "current-gravinity-transfer-recipient-choice-235538173-mandatory.json",
+      "artifact_sha256": "998ccfcbbb0f3101a19391db96b9933a4a4a4a228bf0308f67bfbcd92836f31e"
+    },
+    {
+      "recipient": 235538173,
+      "control": "no-extra",
+      "expected_failures": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        }
+      ],
+      "artifact": "current-gravinity-transfer-recipient-choice-235538173-no-extra.json",
+      "artifact_sha256": "dafcb52eb07ff34389a3b46728706aa5fb9b5716eec86e4da5a97f734adfe58c"
+    },
+    {
+      "recipient": 235538173,
+      "control": "no-consume",
+      "expected_failures": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        }
+      ],
+      "artifact": "current-gravinity-transfer-recipient-choice-235538173-no-consume.json",
+      "artifact_sha256": "018b743713cb5557f711f764c1b5639fa53ecf666483abefd57b8cc215acb9ae"
+    },
+    {
+      "recipient": 249680945,
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-gravinity-transfer-recipient-choice-249680945.json",
+      "artifact_sha256": "891b0ade3e0f589c75088a9b450ac56309a7b86768628c4577efc406dcb7fe93"
+    },
+    {
+      "recipient": 249680945,
+      "control": "mandatory",
+      "expected_failures": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        }
+      ],
+      "artifact": "current-gravinity-transfer-recipient-choice-249680945-mandatory.json",
+      "artifact_sha256": "7ef2c121b35cc19b27c692f0ffd6c2a4d7610e1a54df795749ca596d10d0ec0e"
+    },
+    {
+      "recipient": 249680945,
+      "control": "no-extra",
+      "expected_failures": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        }
+      ],
+      "artifact": "current-gravinity-transfer-recipient-choice-249680945-no-extra.json",
+      "artifact_sha256": "f28a97dbfc985e57ceb66b2470d40d4ab8f6fbd3db75afa309c5f0cd693fc011"
+    },
+    {
+      "recipient": 249680945,
+      "control": "no-consume",
+      "expected_failures": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        }
+      ],
+      "artifact": "current-gravinity-transfer-recipient-choice-249680945-no-consume.json",
+      "artifact_sha256": "6be9ed29fb0c4fde5034722bea3bc4c28a1eabd012e11e7593125449c5893896"
+    },
+    {
+      "recipient": 256172827,
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-gravinity-transfer-recipient-choice-256172827.json",
+      "artifact_sha256": "28cd732ff1452c3deca33047c1c54a3b51bf9d0dc235984f007d8f91d714dda8"
+    },
+    {
+      "recipient": 256172827,
+      "control": "mandatory",
+      "expected_failures": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        }
+      ],
+      "artifact": "current-gravinity-transfer-recipient-choice-256172827-mandatory.json",
+      "artifact_sha256": "90d4e640a25d13b4f4e5af092fb0adb4cabbc57b95b858c8789ef47243711d9a"
+    },
+    {
+      "recipient": 256172827,
+      "control": "no-extra",
+      "expected_failures": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        }
+      ],
+      "artifact": "current-gravinity-transfer-recipient-choice-256172827-no-extra.json",
+      "artifact_sha256": "b5ae2e0791fb6430c2c4a6a393d4b8080e57b1b2814a6a30227eaf2b1ce4d5bb"
+    },
+    {
+      "recipient": 256172827,
+      "control": "no-consume",
+      "expected_failures": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        }
+      ],
+      "artifact": "current-gravinity-transfer-recipient-choice-256172827-no-consume.json",
+      "artifact_sha256": "36e4e77e0850373ae555fb5fffd556839e128beaa52e691f2fbd0f7803ed477c"
+    }
+  ]
+}
