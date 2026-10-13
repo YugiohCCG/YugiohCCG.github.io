@@ -1,3 +1,4 @@
+import PrintTitle from "../components/PrintTitle";
 ﻿import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -110,10 +111,10 @@ export default function Cards() {
   if (error || errorBan) return <div className="card text-red-700">Failed to load cards.</div>;
 
   return (
-    <div className="grid gap-4">
+    <div className="grid gap-4 tp-catalog-page">
       <section className="card anim-rise">
         <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-slate-500">Collection Browser</p>
-        <h2 className="font-display text-4xl leading-none">Card Database</h2>
+        <PrintTitle as="h2" caption="CARD / ARCHIVE" className="font-display text-4xl leading-none">Card Database</PrintTitle>
         <p className="mt-2 text-sm text-slate-600" aria-live="polite">
           Filter by set, type, archetype, stats, and legality. Current results: {results.length.toLocaleString()} cards.
         </p>

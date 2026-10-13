@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "../components/SiteLink";
 import usePageMeta from "../hooks/usePageMeta";
 
 export default function NotFound() {

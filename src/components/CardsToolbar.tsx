@@ -1,4 +1,6 @@
-﻿import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
+
+import { isPrintPath } from "./SiteLink";
 
 type Dir = "asc" | "desc";
 const SORTS = [
@@ -12,6 +14,8 @@ const SORTS = [
 ];
 
 export default function CardsToolbar({ total }: { total: number }) {
+  const { pathname } = useLocation();
+  const print = isPrintPath(pathname);
   const [params, setParams] = useSearchParams();
   const view = (params.get("view") || "grid") as "grid" | "list";
   const sort = params.get("sort") || "name";
@@ -41,6 +45,12 @@ export default function CardsToolbar({ total }: { total: number }) {
     if (k !== sort) return null;
     return <span className="ml-1">{dir === "asc" ? "^" : "v"}</span>;
   };
+
+  if (print) return <div className="tp-cards-toolbar">
+    <div className="tp-results-count"><strong>{total.toLocaleString()}</strong><span>cards found</span></div>
+    <div className="tp-sort-controls"><label htmlFor="tp-card-sort">Sort by</label><select id="tp-card-sort" value={sort} onChange={(event) => setSort(event.target.value)}>{SORTS.map((item) => <option key={item.key} value={item.key}>{item.label}</option>)}</select><button type="button" className="tp-sort-direction" onClick={() => setSort(sort)} aria-label={`Sort ${dir === "asc" ? "descending" : "ascending"}`} title={dir === "asc" ? "Ascending order" : "Descending order"}>{dir === "asc" ? "↑" : "↓"}</button></div>
+    <div className="tp-view-switch" role="group" aria-label="Card display"><button type="button" aria-pressed={view === "grid"} onClick={() => setView("grid")}><span aria-hidden="true">▦</span> Grid</button><button type="button" aria-pressed={view === "list"} onClick={() => setView("list")}><span aria-hidden="true">☰</span> List</button></div>
+  </div>;
 
   return (
     <div className="card">

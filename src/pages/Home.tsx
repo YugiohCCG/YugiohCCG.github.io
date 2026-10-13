@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import PrintTitle from "../components/PrintTitle";
+import Link from "../components/SiteLink";
 import news from "../data/news.json";
 import sets from "../data/sets.json";
 import cardsData from "../data/cards.json";
 import { useMemo, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { isPrintPath } from "../components/SiteLink";
 import useCards from "../hooks/useCards";
 import useRemoteJson from "../hooks/useRemoteJson";
 import { useImageViewer } from "../components/ImageViewer";
@@ -59,6 +62,8 @@ function buildCarouselOffsets(total: number) {
 }
 
 export default function Home() {
+  const { pathname } = useLocation();
+  const print = isPrintPath(pathname);
   usePageMeta("Home", "Latest custom card releases, news, format updates, and YGO Omega tools.");
   const { open } = useImageViewer();
   const { cards: customVisible } = useCards({
@@ -127,8 +132,8 @@ export default function Home() {
             <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-slate-500">
               Editorial Hub
             </p>
-            <h2 className="font-display text-4xl leading-none">Latest CCG Stories and Releases</h2>
-            <p className="mt-2 max-w-2xl text-sm text-slate-600">
+            <PrintTitle as="h2" caption="COMMUNITY / JOURNAL" className="font-display text-4xl leading-none">Latest CCG Stories and Releases</PrintTitle>
+            <p className="home-intro-copy mt-2 max-w-2xl text-sm text-slate-600">
               Browse new sets, recently added cards, format updates, and the latest Omega package.
             </p>
           </div>
@@ -175,10 +180,10 @@ export default function Home() {
               </div>
               <div className="story-tile-body story-tone-mint">
                 <div className="story-meta">Featured Latest Release</div>
-                <h3 className="story-title mt-2">
+                <PrintTitle as="h3" caption="SET / RELEASE" className="story-title mt-2">
                   {setHeading(hero.name)}
-                </h3>
-                {hero.description && <p className="mt-2 text-base opacity-95">{hero.description}</p>}
+                </PrintTitle>
+                {!print && hero.description && <p className="mt-2 text-base opacity-95">{hero.description}</p>}
               </div>
             </Link>
           )}
@@ -199,7 +204,7 @@ export default function Home() {
                 </div>
                 <div className="story-tile-body story-tone-violet">
                   <div className="story-meta">Omega Setup</div>
-                  <h3 className="story-title-small mt-1">INSTALL CCG ON OMEGA</h3>
+                  <PrintTitle as="h3" caption="OMEGA / SETUP" className="story-title-small mt-1">INSTALL CCG ON OMEGA</PrintTitle>
                   <p className="mt-0.5 text-sm opacity-95">Automatic and manual installation</p>
                 </div>
               </Link>
@@ -220,7 +225,7 @@ export default function Home() {
                 </div>
                 <div className="story-tile-body story-tone-blue">
                   <div className="story-meta">Set Release</div>
-                  <h3 className="story-title-small mt-1">{setHeading(sideA.name)}</h3>
+                  <PrintTitle as="h3" caption="SET / RELEASE" className="story-title-small mt-1">{setHeading(sideA.name)}</PrintTitle>
                   <p className="mt-0.5 text-sm opacity-95">Release Date: {sideA.releaseDate || "TBA"}</p>
                 </div>
               </Link>
@@ -246,7 +251,7 @@ export default function Home() {
               </div>
               <div className="story-tile-body story-tone-orange">
                 <div className="story-meta">Set Release</div>
-                <h3 className="story-title-small mt-1">{setHeading(sideB.name)}</h3>
+                <PrintTitle as="h3" caption="SET / RELEASE" className="story-title-small mt-1">{setHeading(sideB.name)}</PrintTitle>
                 <p className="mt-0.5 text-sm opacity-95">Release Date: {sideB.releaseDate || "TBA"}</p>
               </div>
             </Link>
@@ -267,7 +272,7 @@ export default function Home() {
               </div>
               <div className="story-tile-body story-tone-red">
                 <div className="story-meta">Set Release</div>
-                <h3 className="story-title-small mt-1">{setHeading(rowA.name)}</h3>
+                <PrintTitle as="h3" caption="SET / RELEASE" className="story-title-small mt-1">{setHeading(rowA.name)}</PrintTitle>
                 <p className="mt-0.5 text-sm opacity-95">Release Date: {rowA.releaseDate || "TBA"}</p>
               </div>
             </Link>
@@ -288,7 +293,7 @@ export default function Home() {
               </div>
               <div className="story-tile-body story-tone-slate">
                 <div className="story-meta">Set Release</div>
-                <h3 className="story-title-small mt-1">{setHeading(rowB.name)}</h3>
+                <PrintTitle as="h3" caption="SET / RELEASE" className="story-title-small mt-1">{setHeading(rowB.name)}</PrintTitle>
                 <p className="mt-0.5 text-sm opacity-95">Release Date: {rowB.releaseDate || "TBA"}</p>
               </div>
             </Link>
@@ -298,7 +303,7 @@ export default function Home() {
 
       {latestCards.length > 0 && (
         <section className="latest-carousel anim-rise" aria-label="Latest releases carousel" tabIndex={0} onKeyDown={(event) => { if (event.key === "ArrowLeft") cycleLatest(-1); if (event.key === "ArrowRight") cycleLatest(1); }} onTouchStart={(event) => { touchStartX.current = event.touches[0]?.clientX ?? null; }} onTouchEnd={(event) => { if (touchStartX.current == null) return; const delta = event.changedTouches[0]?.clientX - touchStartX.current; if (Math.abs(delta) > 45) cycleLatest(delta > 0 ? -1 : 1); touchStartX.current = null; }}>
-          <h3 className="latest-carousel-title">Latest Releases</h3>
+          <PrintTitle as="h3" caption="FRESH CARDS / LATEST ADDITIONS" className="latest-carousel-title">Latest Releases</PrintTitle>
           <button
             type="button"
             className="latest-carousel-nav is-prev"
@@ -337,20 +342,21 @@ export default function Home() {
           <div className="mt-3 flex flex-wrap justify-center gap-1" aria-label="Choose latest card">
             {latestCards.map((card, index) => <button key={card.id} type="button" className={`h-2.5 w-2.5 rounded-full ${index === activeLatest ? "bg-accent" : "bg-slate-300"}`} aria-label={`Show ${card.name}`} aria-current={index === activeLatest ? "true" : undefined} onClick={() => setActiveLatest(index)} />)}
           </div>
+          {print && <div className="tp-latest-caption" aria-live="polite"><div><span className="tp-eyebrow">{String(activeLatest + 1).padStart(2, "0")} / {latestCards.length} — RECENTLY ADDED</span><h4>{latestCards[activeLatest]?.name}</h4><p>{latestCards[activeLatest]?.timestamps?.added ? `Added ${fmt(latestCards[activeLatest].timestamps!.added!)}` : "New to the CCG card archive"}</p></div><Link className="tp-text-link" to={`/cards/${latestCards[activeLatest]?.passcode}`}>Card details ↗</Link></div>}
           <p className="sr-only" aria-live="polite">Showing {latestCards[activeLatest]?.name}</p>
         </section>
       )}
 
       <section className="card">
         <div className="mb-3">
-          <h3 className="font-display text-3xl leading-none">Latest News</h3>
+          <PrintTitle as="h3" caption="COMMUNITY / BULLETIN" className="font-display text-3xl leading-none">Latest News</PrintTitle>
         </div>
 
         {sortedNews.length === 0 ? (
           <p className="text-sm text-slate-600">No news posts yet.</p>
         ) : (
           <>
-            <ul className="space-y-2">
+            <ul className="space-y-2 home-news-list">
               {visibleNews.map((item, index) => {
                 const isExternal = /^https?:\/\//i.test(item.link);
                 return (

@@ -1,3 +1,4 @@
+import PrintTitle from "../components/PrintTitle";
 ﻿import { useMemo, useState } from "react";
 import CardTile from "../components/CardTile";
 import useRemoteJson from "../hooks/useRemoteJson";
@@ -9,7 +10,7 @@ import banlistUpdate from "../data/banlist-update.json";
 function Section({ title, items }: { title: string; items: Card[] }) {
   const ordered = orderBanlistCards(items);
   return (
-    <section className="space-y-3">
+    <section className="space-y-3 tp-banlist-section">
       <h3 className="font-display text-3xl leading-none">
         {title} <span className="text-sm text-slate-500">({ordered.length})</span>
       </h3>
@@ -66,10 +67,10 @@ export default function BanList() {
   if (error) return <div className="card text-red-700">Failed to load ban list.</div>;
 
   return (
-    <div className="grid gap-4">
+    <div className="grid gap-4 tp-banlist-page">
       <section className="card anim-rise">
         <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-slate-500">Format Rules</p>
-        <h2 className="font-display text-4xl leading-none">Ban List</h2>
+        <PrintTitle as="h2" caption="FORMAT / RULES" className="font-display text-4xl leading-none">Ban List</PrintTitle>
         <p className="mt-2 text-sm text-slate-600">
           Effective {new Date(`${banlistUpdate.effectiveDate}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })}
         </p>

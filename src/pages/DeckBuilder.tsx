@@ -1,5 +1,6 @@
+import PrintTitle from "../components/PrintTitle";
 import { useDeferredValue, useEffect, useMemo, useState, type DragEvent } from "react";
-import { Link } from "react-router-dom";
+import Link from "../components/SiteLink";
 import useBanlistCards from "../hooks/useBanlistCards";
 import usePageMeta from "../hooks/usePageMeta";
 import useRemoteJson from "../hooks/useRemoteJson";
@@ -172,7 +173,7 @@ export default function DeckBuilder() {
     <section className="card deck-builder-hero">
       <p className="deck-kicker">Omega deck workshop</p>
       <div className="deck-builder-heading">
-        <div><h1 className="font-display text-4xl">Deck Builder</h1><p>Search the complete CCG and Yu-Gi-Oh! catalog. Drag cards onto a deck zone, rearrange them, then export an Omega <code>.ydk</code>.</p></div>
+        <div><PrintTitle as="h1" caption="YOUR NEXT / STRATEGY" className="font-display text-4xl">Deck Builder</PrintTitle><p>Search the complete CCG and Yu-Gi-Oh! catalog. Drag cards onto a deck zone, rearrange them, then export an Omega <code>.ydk</code>.</p></div>
         <div className="flex gap-2"><button className="btn" type="button" onClick={() => setDeck(EMPTY)}>Clear</button><button className="btn btn-primary" type="button" onClick={exportDeck} disabled={!valid}>Export .ydk</button></div>
       </div>
       <div className={`deck-validation ${valid ? "is-valid" : "is-incomplete"}`} role="status">{validationMessage}</div>
@@ -180,7 +181,7 @@ export default function DeckBuilder() {
 
     <div className="deck-workspace">
       <section className={`card deck-catalog ${dragging?.source === "deck" ? "can-return" : ""}`} onDragOver={(event) => { if (dragging?.source === "deck") { event.preventDefault(); event.dataTransfer.dropEffect = "move"; } }} onDrop={returnCardToLibrary}>
-        <div className="deck-section-heading"><div><p className="deck-kicker">Card library</p><h2 className="font-display text-3xl">Find Cards</h2></div><span>{results.length} shown</span></div>
+        <div className="deck-section-heading"><div><p className="deck-kicker">Card library</p><PrintTitle as="h2" caption="CARD / LIBRARY" className="font-display text-3xl">Find Cards</PrintTitle></div><span>{results.length} shown</span></div>
         <div className="deck-return-drop" aria-hidden={dragging?.source !== "deck"}><b>Return card to library</b><span>Drop anywhere in this panel to remove it from your deck</span></div>
         <div className="deck-search-controls"><input type="search" placeholder="Name, text, or archetype…" value={query} onChange={(event) => setQuery(event.target.value)} /><select value={pool} onChange={(event) => setPool(event.target.value as CardPool)} aria-label="Card pool"><option value="all">All cards</option><option value="ccg">CCG only</option><option value="yugioh">Yu-Gi-Oh! only</option></select></div>
         {loadingOfficial && <p className="deck-catalog-note" role="status">Loading the complete Yu-Gi-Oh! catalog…</p>}
