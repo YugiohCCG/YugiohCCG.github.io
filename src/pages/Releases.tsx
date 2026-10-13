@@ -1,4 +1,5 @@
-﻿import { Link } from "react-router-dom";
+import PrintTitle from "../components/PrintTitle";
+﻿import Link from "../components/SiteLink";
 import sets from "../data/sets.json";
 import { asset } from "../utils/assets";
 import usePageMeta from "../hooks/usePageMeta";
@@ -19,8 +20,7 @@ export default function Releases() {
   return (
     <div className="space-y-5">
       <section className="card anim-rise">
-        <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-slate-500">Set Library</p>
-        <h2 className="font-display text-4xl leading-none">Release Archive</h2>
+        <PrintTitle as="h2" caption="COLLECTED / EDITIONS" className="font-display text-4xl leading-none">Release Archive</PrintTitle>
       </section>
 
       <section className="release-grid grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -49,8 +49,7 @@ export default function Releases() {
               <div className={`story-tile-body release-tile-body ${toneClass}`}>
                 <div className="release-tile-copy">
                   <p className="story-meta">{s.code}</p>
-                  <h3 className="story-title-small release-tile-title line-clamp-2">{s.name}</h3>
-                  {s.releaseDate && <p className="release-tile-date text-sm opacity-90">{s.releaseDate}</p>}
+                  <PrintTitle as="h3" caption="SET / RELEASE" className="story-title-small release-tile-title line-clamp-2">{s.name}</PrintTitle>
                 </div>
                 <span className="btn release-tile-cta bg-white/95" aria-hidden="true">
                   View Set

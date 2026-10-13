@@ -2005,3 +2005,26 @@ html[data-theme="night"] .downloads-page{--downloads-hero:#111927;--downloads-he
 .downloads-installer-copy>span{color:var(--downloads-blue)}.downloads-installer-copy h2{color:var(--downloads-ink)}.downloads-installer-copy>p{color:var(--downloads-muted)}.downloads-requirements span{color:var(--downloads-body)}.downloads-installer-actions>a{color:var(--downloads-muted)}.downloads-installer-actions>a:hover{color:var(--downloads-ink)}
 .download-action.is-hero{border-color:var(--downloads-blue);color:#fff;background:var(--downloads-blue);box-shadow:0 8px 18px color-mix(in srgb,var(--downloads-blue) 24%,transparent)}.download-action.is-hero:hover:not(:disabled){color:#fff;background:var(--brand-strong);box-shadow:0 10px 22px color-mix(in srgb,var(--downloads-blue) 30%,transparent)}
 .downloads-stats{border-color:var(--downloads-line);background:var(--downloads-line)}.downloads-stats>div{background:var(--downloads-hero)}.downloads-stats strong{color:var(--downloads-ink)}.downloads-stats span{color:var(--downloads-muted)}
+
+/* Deck library: continuous artwork on dimensional printed boxes. */
+.library-hero { padding:clamp(24px,3vw,36px); background:linear-gradient(125deg,var(--bg-panel-strong),var(--bg-panel)); box-shadow:none; }
+.library-hero h1 { font-size:clamp(36px,5vw,54px); line-height:1.1; margin:8px 0 12px; }
+.library-hero p:not(.deck-kicker) { max-width:620px; line-height:1.7; margin-bottom:16px; color:var(--ink-muted); }
+.library-controls { display:flex; flex-wrap:wrap; align-items:flex-end; gap:18px; box-shadow:none; }
+.library-controls label { display:grid; gap:8px; flex:1 1 220px; font-size:12px; font-weight:700; }
+.library-controls input,.library-controls select { width:100%; border:1px solid var(--line-soft); border-radius:8px; background:var(--bg-panel); color:inherit; padding:12px; }
+.library-controls [role=status] { padding:12px 0; font-size:12px; color:var(--ink-muted); }
+.library-section-heading { border-bottom:1px solid var(--line-soft); padding:12px 0 18px; margin-bottom:30px; }
+.library-section-heading p { margin-top:6px; color:var(--ink-muted); font-size:13px; }
+.library-box-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:28px 24px; }
+.library-box-link { text-align:center; display:flex; flex-direction:column; align-items:center; border-radius:12px; padding:16px 6px 12px; perspective:850px; }
+.library-box-link:focus-visible { outline:2px solid var(--brand); outline-offset:4px; }
+.library-box { width:160px; height:240px; margin:0 0 18px; transition:transform .25s ease; }
+.library-box-render { display:block; width:100%; height:100%; object-fit:contain; }
+.library-box-link:hover .library-box { transform:translateY(-5px); }
+.library-box-link h3 { font-family:"Nunito Sans",sans-serif; font-weight:700; font-size:13px; line-height:1.45; letter-spacing:.1px; color:var(--ink-strong); }
+.library-box-link:hover h3 { color:var(--brand); }
+@media(prefers-reduced-motion:reduce) { .library-box { transition:none; } }
+@media(max-width:600px) { .library-box-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 10px; } }
+
+.legacy-banner{padding:10px 20px;text-align:center;background:#191917;color:#f2eee4;font-size:13px}.legacy-banner a{text-decoration:underline}

@@ -1,4 +1,5 @@
 import type { Card } from "../types/card";
+import classification from "../data/archetype-classification.json";
 import archetypeCatalog from "../data/archetype-catalog.json";
 
 export type ArchetypeCatalogEntry = {
@@ -9,7 +10,8 @@ export type ArchetypeCatalogEntry = {
   iconImage: string;
 };
 
-export const consolidatedArchetypes = archetypeCatalog as ArchetypeCatalogEntry[];
+export const standaloneLabels = new Set(classification.filter((record) => record.kind === "standalone").map((record) => record.family));
+export const consolidatedArchetypes = (archetypeCatalog as ArchetypeCatalogEntry[]).filter((group) => !standaloneLabels.has(group.name));
 
 const membershipsByPasscode = new Map<number, string[]>();
 for (const group of consolidatedArchetypes) {

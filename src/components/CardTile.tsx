@@ -2,7 +2,7 @@
 import { useImageViewer } from "./ImageViewer";
 import { asset } from "../utils/assets";
 import LegalityBadge, { legalStatus } from "./LegalityBadge";
-import { Link } from "react-router-dom";
+import Link from "./SiteLink";
 
 type Props = { card: Card; imageHeight?: number; detailsEnabled?: boolean };
 
@@ -12,7 +12,7 @@ export default function CardTile({ card, imageHeight, detailsEnabled = true }: P
   const status = legalStatus(card.legal);
 
   return (
-    <div className="relative h-full w-full">
+    <div className="relative h-full w-full tp-card-tile">
       <div className="card h-full">
         <button
           type="button"
@@ -29,7 +29,7 @@ export default function CardTile({ card, imageHeight, detailsEnabled = true }: P
           />
         </button>
 
-        <div className="mt-3 space-y-1">
+        <div className="mt-3 space-y-1 tp-card-tile-copy">
           <h3 className="line-clamp-2 text-sm font-bold uppercase tracking-wide text-slate-800">{card.name}</h3>
           <p className="text-xs text-slate-700">{card.set || card.category}</p>
           {detailsEnabled && card.passcode != null && (

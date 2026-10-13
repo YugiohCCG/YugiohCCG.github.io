@@ -1,4 +1,4 @@
-﻿// Compact Filters Panel with asset icons and category chips
+// Compact Filters Panel with asset icons and category chips
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { useSearchParams } from "react-router-dom";
 import useCards from "../hooks/useCards";
@@ -67,6 +67,7 @@ const MONSTER_ICON: Record<string, string> = {
   Illusion: ASSET("Illusion.png"),
   Insect: ASSET("Insect-TF06.svg"),
   Machine: ASSET("Machine-TF06.svg"),
+  "Magical Knight": ASSET("Magical_Knight.svg"),
   Plant: ASSET("Plant-TF06.svg"),
   Psychic: ASSET("Psychic-TF06.svg"),
   Pyro: ASSET("Pyro-TF06.svg"),
@@ -77,6 +78,7 @@ const MONSTER_ICON: Record<string, string> = {
   Spellcaster: ASSET("Spellcaster-TF06.svg"),
   Thunder: ASSET("Thunder-TF06.svg"),
   Warrior: ASSET("Warrior-TF06.svg"),
+  Wyrm: ASSET("Wyrm.svg"),
   Zombie: ASSET("Zombie-TF06.svg"),
 };
 
@@ -289,7 +291,7 @@ export default function FiltersPanel() {
 
   return (
     <div className="mb-4 filters-shell">
-      <div className="mb-2">
+      <div className="mb-2 filter-controls-heading">
         <p className="text-[12px] font-bold uppercase tracking-[0.12em] text-slate-500">
           Filter Controls
         </p>
@@ -345,9 +347,9 @@ export default function FiltersPanel() {
       </form>
 
       {!collapsed && (
-        <div className="mt-2 flex flex-col gap-2">
+        <div className="mt-2 flex flex-col gap-2 filters-expanded">
           {/* Order: Category -> Icon -> Attribute -> Monster Type (Type) -> Card Type */}
-          <Section onClear={category ? () => setCategory("") : undefined}>
+          <Section title="Category" onClear={category ? () => setCategory("") : undefined}>
             <div className="filter-grid">
               {CATEGORY.map((c) => (
                 <Chip
@@ -362,7 +364,7 @@ export default function FiltersPanel() {
             </div>
           </Section>
 
-          <Section onClear={icons.length ? () => setIcons([]) : undefined}>
+          <Section title="Spell / Trap" onClear={icons.length ? () => setIcons([]) : undefined}>
             <div className="filter-grid">
               {ICONS.map((i) => (
                 <Chip key={i} active={icons.includes(i)} onClick={() => toggle(icons, setIcons, i)}>
@@ -372,7 +374,7 @@ export default function FiltersPanel() {
             </div>
           </Section>
 
-          <Section onClear={attributes.length ? () => setAttributes([]) : undefined}>
+          <Section title="Attribute" onClear={attributes.length ? () => setAttributes([]) : undefined}>
             <div className="filter-grid">
               {ATTRS.map((a) => (
                 <Chip key={a} active={attributes.includes(a)} onClick={() => toggle(attributes, setAttributes, a)}>
@@ -384,6 +386,7 @@ export default function FiltersPanel() {
 
           <Section
             // Monster types
+            title="Monster Type"
             onClear={monsterTypes.length ? () => setMonsterTypes([]) : undefined}
           >
             <div className="filter-grid">
@@ -405,6 +408,7 @@ export default function FiltersPanel() {
 
           <Section
             // Card type row
+            title="Card Type"
             onClear={cardTypes.length ? () => setCardTypes([]) : undefined}
             fixedHeight
           >

@@ -1,5 +1,6 @@
+import PrintTitle from "../components/PrintTitle";
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "../components/SiteLink";
 import cardsData from "../data/cards.json";
 import usePageMeta from "../hooks/usePageMeta";
 import useRemoteJson from "../hooks/useRemoteJson";
@@ -102,7 +103,7 @@ function DownloadButton({ file, prominent = false }: { file: ReleaseArtifact; pr
 function ArtifactRow({ file }: { file: ReleaseArtifact }) {
   return <article className="download-file">
     <div className="download-file-main"><div className="download-file-type"><Icon name="download" /></div><div className="download-file-name"><strong>{file.label}</strong><span>{file.path.split("/").pop()} · {formatBytes(file.bytes)}</span></div><DownloadButton file={file} /></div>
-    <div className="download-hash"><span>SHA-256</span><code title={file.sha256}>{file.sha256}</code><CopyButton value={file.sha256} label="Copy hash" /></div>
+    <details className="download-verification"><summary>Checksum</summary><div className="download-hash"><span>SHA-256</span><code title={file.sha256}>{file.sha256}</code><CopyButton value={file.sha256} label="Copy hash" /></div></details>
   </article>;
 }
 
@@ -132,21 +133,21 @@ export default function Downloads() {
     <section className="downloads-hero anim-rise">
       <div className="downloads-hero-glow" aria-hidden="true" />
       <div className="downloads-hero-top">
-        <div><p className="downloads-eyebrow"><span /> Omega distribution</p><h1>Get the complete CCG package</h1><p>Install every card, script, image, hologram, and format rule needed to play in YGO Omega.</p></div>
+        <div><p className="downloads-eyebrow"><span /> Omega distribution</p><PrintTitle as="h1" caption="READY TO / PLAY">CCG Downloads</PrintTitle><p>Install every card, script, image, hologram, and format rule needed to play in YGO Omega.</p></div>
         {manifest && <div className="downloads-release"><span>Current release</span><strong>{manifest.version}</strong><small>Updated {formatDate(manifest.released_at)}</small></div>}
       </div>
       {loading && <div className="downloads-notice" role="status">Loading the latest release…</div>}
       {Boolean(error) && <div className="downloads-notice is-error">Release metadata could not be loaded.</div>}
       {installer && <div className="downloads-installer">
         <div className="downloads-installer-mark"><Icon name="window" /></div>
-        <div className="downloads-installer-copy"><span>Recommended for most players</span><h2>One-click Omega installer</h2><p>Guided setup installs or updates every required component while preserving unrelated Omega files.</p><div className="downloads-requirements"><span><Icon name="check" /> Windows</span><span><Icon name="check" /> {formatBytes(installer.bytes)}</span><span><Icon name="check" /> Safe update</span></div></div>
+        <div className="downloads-installer-copy"><PrintTitle as="h2" caption="OMEGA / INSTALL">Omega Installer</PrintTitle><p>Install or update the CCG add-on.</p><div className="downloads-requirements"><span><Icon name="check" /> Windows</span><span><Icon name="check" /> {formatBytes(installer.bytes)}</span><span><Icon name="check" /> Safe update</span></div></div>
         <div className="downloads-installer-actions"><DownloadButton file={installer} prominent /><Link to="/releases">See release notes <Icon name="arrow" /></Link></div>
       </div>}
       {manifest && <div className="downloads-stats"><div><strong>{manifest.card_count}</strong><span>Playable cards</span></div><div><strong>{manifest.monster_count}</strong><span>Monsters</span></div><div><strong>{manualFiles.length}</strong><span>Verified files</span></div><div><strong>SHA-256</strong><span>Checksums included</span></div></div>}
     </section>
 
     {manualGroups.length > 0 && <section className="downloads-section anim-rise anim-delay-1" id="manual-downloads">
-      <header className="downloads-section-head"><div><p className="downloads-eyebrow">Manual package</p><h2>Choose individual files</h2><p>For advanced installs, repairs, or downloading only the assets you need.</p></div><div className="downloads-section-tools"><span>{manualFiles.length} files · {formatBytes(manualSize)}</span><button type="button" onClick={handleDownloadJson}><Icon name="download" /> Export card JSON</button></div></header>
+      <header className="downloads-section-head"><div><p className="downloads-eyebrow">Manual package</p><PrintTitle as="h2" caption="MANUAL / PACKAGE">Choose individual files</PrintTitle><p>Download individual components.</p></div><div className="downloads-section-tools"><span>{manualFiles.length} files · {formatBytes(manualSize)}</span><button type="button" onClick={handleDownloadJson}><Icon name="download" /> Export card JSON</button></div></header>
       {saved && <div className="downloads-saved" role="status"><Icon name="check" /> JSON export started as <code>CCG-Custom-Database.json</code>.</div>}
       <div className="downloads-groups">{manualGroups.map((group) => {
         const files = grouped.get(group) ?? [];
@@ -156,13 +157,13 @@ export default function Downloads() {
     </section>}
 
     <section className="downloads-section downloads-install-guide">
-      <header className="downloads-section-head"><div><p className="downloads-eyebrow">Manual setup</p><h2>Install in six steps</h2><p>Extract every numbered archive part, then place each component in its matching Omega folder.</p></div><span className="downloads-guide-badge">Default Windows paths</span></header>
+      <header className="downloads-section-head"><div><p className="downloads-eyebrow">Manual setup</p><PrintTitle as="h2" caption="PLAYER / GUIDE">Install in six steps</PrintTitle><p>Extract every numbered archive part, then place each component in its matching Omega folder.</p></div><span className="downloads-guide-badge">Default Windows paths</span></header>
       <ol className="downloads-steps">{INSTALL_PATHS.map(([label, file, path], index) => <li key={label}><div className="downloads-step-number">{String(index + 1).padStart(2, "0")}</div><div className="downloads-step-copy"><span>{label}</span><strong>{file}</strong><div><code>{path}</code><CopyButton value={path} /></div></div></li>)}</ol>
       <div className="downloads-restart"><span><Icon name="check" /></span><div><strong>Finish the installation</strong><p>Restart YGO Omega, then select the CCG database if prompted.</p></div></div>
     </section>
 
     <section className="downloads-section downloads-help">
-      <header className="downloads-section-head"><div><p className="downloads-eyebrow">Support</p><h2>Troubleshooting</h2><p>Quick answers to the most common installation issues.</p></div></header>
+      <header className="downloads-section-head"><div><p className="downloads-eyebrow">Support</p><PrintTitle as="h2" caption="HELP / DESK">Troubleshooting</PrintTitle><p></p></div></header>
       <div className="downloads-faq">
         <details><summary>Omega is installed somewhere else <Icon name="arrow" /></summary><p>Choose the folder containing <code>YGO Omega.exe</code> in the installer, or replace the root shown in the manual paths.</p></details>
         <details><summary>Cards appear without images or holograms <Icon name="arrow" /></summary><p>Confirm every numbered ZIP part was extracted into its matching folder, then restart Omega.</p></details>

@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import type { Card, SetInfo } from "../types/card";
 import { cardMatches, type Query } from "../utils/filters";
-import { cardMemberships } from "../utils/memberships";
+import { cardMemberships, standaloneLabels } from "../utils/memberships";
 
 
 // Out-of-scope attributes that should be hidden temporarily
@@ -188,7 +188,7 @@ export default function useCards(
           ...(Array.isArray(c?.archetypes) ? c.archetypes : []),
           ...(Array.isArray(c?.treatedAs) ? c.treatedAs : []),
           ...(Array.isArray(c?.namedSeries) ? c.namedSeries : []),
-        ]).filter(Boolean).map(String)
+        ]).filter(Boolean).map(String).filter((label) => !standaloneLabels.has(label))
       )
     ).sort((a, b) => a.localeCompare(b));
 

@@ -41,13 +41,18 @@ describe("website card tools", () => {
       ["Vylon Chevron", "Vylon"], ["Sylvan Flamushroomo", "Sylvan"],
       ["Killamity Goldenrod", "Killamity"], ["Kali Yuga - Vritra", "Kali Yuga"],
       ["Terrarumian Cushion Moss", "Terrarumian"], ["Pride of the Stellaers", "Stellaer"],
-      ["Reactor Shocker", "Reactor"], ["Striking Mirror Force", "Mirror Force"],
-      ["Lance — Luminar Justiciar", "Aurelion — Divine Illumination"],
+      ["Striking Mirror Force", "Mirror Force"],
     ]) {
       const item = byName.get(name)!;
       expect(item, name).toBeTruthy();
       expect(cardMemberships(item), name).toContain(family);
       expect(cardMatches(item, { archetype: family }), name).toBe(true);
+    }
+    for (const [name, family] of [["Reactor Shocker", "Reactor"], ["Lance — Luminar Justiciar", "Aurelion — Divine Illumination"]]) {
+      const item = byName.get(name)!;
+      expect(item, name).toBeTruthy();
+      expect(cardMemberships(item), name).not.toContain(family);
+      expect(consolidatedArchetypes.some((group) => group.name === family), name).toBe(false);
     }
   });
 

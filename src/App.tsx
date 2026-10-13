@@ -1,5 +1,7 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, NavLink, useLocation } from "react-router-dom";
+import { legacyPath } from "./components/SiteLink";
+import { Link } from "react-router-dom";
 import { ImageViewerProvider } from "./components/ImageViewer";
 
 type NavItem =
@@ -50,18 +52,19 @@ export default function App() {
         <span>{item.label}</span><span className="site-nav-external" aria-hidden="true">↗</span>
       </a>
     ) : (
-      <NavLink key={item.to} to={item.to} end={item.end} className={({ isActive }) => `site-nav-link ${isActive ? "site-nav-link-active" : ""}`} data-theme={theme} onClick={() => mobile && setMenuOpen(false)}>{item.label}</NavLink>
+      <NavLink key={item.to} to={legacyPath(item.to)} end={item.end} className={({ isActive }) => `site-nav-link ${isActive ? "site-nav-link-active" : ""}`} data-theme={theme} onClick={() => mobile && setMenuOpen(false)}>{item.label}</NavLink>
     )
   );
 
   return (
     <ImageViewerProvider>
       <div className="app-frame flex min-h-full flex-col">
+        <div className="legacy-banner">Legacy website · <Link to="/">Visit the new CCG website ↗</Link></div>
         <a href="#main-content" className="skip-link">Skip to content</a>
         <header className="site-header sticky top-0 z-40">
           <div className="site-header-shell">
             <div className="site-header-row">
-              <NavLink to="/" end className="site-brand" aria-label="Yu-Gi-Oh! CCG home">
+              <NavLink to="/legacy" end className="site-brand" aria-label="Yu-Gi-Oh! CCG home">
                 <img
                   src="/assets/branding/yugioh-ccg-logo-exact.png"
                   alt="Yu-Gi-Oh! CCG"

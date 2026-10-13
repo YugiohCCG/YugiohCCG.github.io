@@ -1,3 +1,4 @@
+import PrintTitle from "../components/PrintTitle";
 import { useState, type CSSProperties } from "react";
 import { useImageViewer } from "../components/ImageViewer";
 import useDraftPool from "../hooks/useDraftPool";
@@ -92,9 +93,9 @@ function DraftLobby({ loading, cardCount, ccgCount, tcgCount, featuredCards, onB
   return <div className="draft-lobby">
     <section className="draft-lobby-stage">
       <div className="draft-lobby-content">
-        <p className="draft-eyebrow">CCG Draft Room</p>
-        <h1>Build your<br /><span>70-card deck.</span></h1>
-        <p className="draft-lobby-lede">Choose one card from each three-card offer. The pool responds to your archetypes, Extra Deck needs, and interaction picks as the draft progresses.</p>
+        
+        <PrintTitle as="h1" caption="DRAFT / YOUR DECK">Build your<br /><span>70-card deck.</span></PrintTitle>
+        <p className="draft-lobby-lede">Pick one of three cards each round. Build your Main, Extra, and Side Decks, then export to Omega.</p>
         <button type="button" className="draft-launch" onClick={onBegin} disabled={loading}>
           <span>{loading ? "Shuffling card pool…" : "Begin draft"}</span>
           <small>{TOTAL_DRAFT_PICKS} picks · {OFFER_SIZE} choices each</small>
@@ -102,7 +103,7 @@ function DraftLobby({ loading, cardCount, ccgCount, tcgCount, featuredCards, onB
       </div>
       <div className="draft-lobby-deck" aria-hidden="true">{featuredCards.slice(0, 3).map((card, index) => <img key={card.id} src={asset(card.image)} alt="" style={{ "--fan-index": index } as CSSProperties} />)}</div>
     </section>
-    <section className="draft-lobby-rules" aria-label="Draft format">
+    <div className="tp-draft-format-strip"><span>40 / MAIN</span><span>15 / EXTRA</span><span>15 / SIDE</span><strong>YOUR PICKS. YOUR DECK.</strong></div><section className="draft-lobby-rules" aria-label="Draft format">
       <div><span>01</span><strong>Choose</strong><p>Pick one card from every offer.</p></div>
       <div><span>02</span><strong>Build</strong><p>Complete Main, Extra, and Side Deck zones.</p></div>
       <div><span>03</span><strong>Export</strong><p>Download a ready-to-play Omega deck.</p></div>
@@ -115,7 +116,7 @@ function DraftComplete({ session, onRestart }: { session: DraftSession; onRestar
   const summary = summarizeDraftSections(session.picks);
   return <div className="draft-complete">
     <section className="draft-victory">
-      <p className="draft-eyebrow">Draft complete</p><h1>Your deck is ready.</h1>
+      <p className="draft-eyebrow">Draft complete</p><PrintTitle as="h1" caption="DRAFT / COMPLETE">Your deck is ready.</PrintTitle>
       <p>Seventy decisions. One finished Omega deck.</p>
       <div className="draft-victory-actions"><button type="button" className="draft-launch is-compact" onClick={() => downloadDecklist(session.picks)}><span>Download .ydk</span><small>Open in YGO Omega</small></button><button type="button" className="draft-quiet-button" onClick={onRestart}>Draft again</button></div>
     </section>
@@ -156,7 +157,7 @@ export default function Draft() {
     <div className="draft-arena-layout">
       <main className="draft-table">
         <div className="draft-table-mark" aria-hidden="true"><i /><span>CCG</span></div>
-        <div className="draft-table-heading"><p>Current offer</p><h1>Choose one card</h1><span>Inspect any card before making your pick</span></div>
+        <div className="draft-table-heading"><PrintTitle as="h1" caption="CURRENT / OFFER">Choose one card</PrintTitle></div>
         <div className="draft-offer-grid" key={session.meta?.pickNumber}>{session.offer.map((card, index) => <DraftChoice key={draftCardIdentity(card)} card={card} index={index} insight={draftCardInsight(card, session.picks, session.meta?.section ?? "main")} onPick={() => pickCard(card)} />)}</div>
         <div className="draft-announcement" aria-live="polite">{announcement}</div>
       </main>
