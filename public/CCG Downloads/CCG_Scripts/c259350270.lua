@@ -1,4 +1,4 @@
--- Farad, the Ohmechanic Capacitor
+-- Farad, the Ohmenchanic Capacitor
 local s,id=GetID()
 local STRING_ID=133350270
 local COUNTER_CURRENT = 0x18f0

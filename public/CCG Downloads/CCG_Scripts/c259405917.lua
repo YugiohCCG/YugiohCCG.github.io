@@ -1,4 +1,4 @@
--- Siemens, the Ohmechanic Conductor
+-- Siemens, the Ohmenchanic Conductor
 local s,id=GetID()
 local STRING_ID=133405917
 local COUNTER_CURRENT = 0x18f0

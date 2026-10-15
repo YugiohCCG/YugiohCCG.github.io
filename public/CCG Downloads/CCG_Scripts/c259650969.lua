@@ -3,7 +3,7 @@ local s,id=GetID()
 local STRING_ID=133650969
 local COUNTER_CURRENT = 0x18f0
 local SET_OHMEN = 0x8de0
-local SET_OHMECHANIC = 0x8de1
+local SET_OHMENCHANIC = 0x8de1
 function s.initial_effect(c)
 	-- Activate
 	local e1=Effect.CreateEffect(c)
@@ -33,7 +33,7 @@ function s.initial_effect(c)
 	e3:SetOperation(s.mvop)
 	c:RegisterEffect(e3)
 end
-s.listed_series={SET_OHMEN, SET_OHMECHANIC}
+s.listed_series={SET_OHMEN, SET_OHMENCHANIC}
 
 function s.spfilter1(tc,e,tp)
 	return tc:IsRace(RACE_THUNDER) and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)
@@ -46,7 +46,7 @@ function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	local b1=Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsExistingMatchingCard(s.spfilter1,tp,LOCATION_HAND,0,1,nil,e,tp)
 	local b2=Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and Duel.IsExistingMatchingCard(function(tc) return tc:IsFaceup() and tc:IsSetCard(SET_OHMECHANIC) end,tp,LOCATION_MZONE,0,1,nil)
+		and Duel.IsExistingMatchingCard(function(tc) return tc:IsFaceup() and tc:IsSetCard(SET_OHMENCHANIC) end,tp,LOCATION_MZONE,0,1,nil)
 		and Duel.IsExistingMatchingCard(s.spfilter2,tp,LOCATION_GRAVE,0,1,nil,e,tp)
 	
 	if chk==0 then return true end
@@ -57,7 +57,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local b1=Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsExistingMatchingCard(s.spfilter1,tp,LOCATION_HAND,0,1,nil,e,tp)
 	local b2=Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and Duel.IsExistingMatchingCard(function(tc) return tc:IsFaceup() and tc:IsSetCard(SET_OHMECHANIC) end,tp,LOCATION_MZONE,0,1,nil)
+		and Duel.IsExistingMatchingCard(function(tc) return tc:IsFaceup() and tc:IsSetCard(SET_OHMENCHANIC) end,tp,LOCATION_MZONE,0,1,nil)
 		and Duel.IsExistingMatchingCard(s.spfilter2,tp,LOCATION_GRAVE,0,1,nil,e,tp)
 	
 	if not (b1 or b2) then return end

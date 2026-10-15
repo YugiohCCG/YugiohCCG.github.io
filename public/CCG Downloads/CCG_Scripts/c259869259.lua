@@ -2,7 +2,7 @@
 local s,id=GetID()
 local STRING_ID=133869259
 local COUNTER_CURRENT = 0x18f0
-local SET_OHMECHANIC = 0x8de1
+local SET_OHMENCHANIC = 0x8de1
 function s.initial_effect(c)
 	local state={}
 	-- Activate SZone
@@ -33,7 +33,7 @@ function s.initial_effect(c)
 	e2:SetOperation(s.control_op)
 	c:RegisterEffect(e2)
 end
-s.listed_series={SET_OHMECHANIC}
+s.listed_series={SET_OHMENCHANIC}
 
 -- Track each copy independently and distinguish cards that leave and return.
 function s.colinks(tp)
@@ -58,7 +58,7 @@ end
 
 function s.control_con(e,tp,eg,ep,ev,re,r,rp)
 	return rp==1-tp and re:IsActiveType(TYPE_SPELL)
-		and Duel.IsExistingMatchingCard(function(tc) return tc:IsFaceup() and tc:IsSetCard(SET_OHMECHANIC) end, tp, LOCATION_MZONE, 0, 1, nil)
+		and Duel.IsExistingMatchingCard(function(tc) return tc:IsFaceup() and tc:IsSetCard(SET_OHMENCHANIC) end, tp, LOCATION_MZONE, 0, 1, nil)
 end
 
 function s.control_tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)

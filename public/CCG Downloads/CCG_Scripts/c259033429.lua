@@ -1,9 +1,9 @@
--- Carcel, the Ohmechanic Light
+-- Carcel, the Ohmenchanic Light
 local s,id=GetID()
 local STRING_ID=133033429
 local COUNTER_CURRENT = 0x18f0
 local SET_OHMEN = 0x8de0
-local SET_OHMECHANIC = 0x8de1
+local SET_OHMENCHANIC = 0x8de1
 function s.initial_effect(c)
 	-- Link Summon
 	c:EnableReviveLimit()
@@ -50,10 +50,10 @@ function s.initial_effect(c)
 	e4:SetOperation(s.desop)
 	c:RegisterEffect(e4)
 end
-s.listed_series={SET_OHMEN, SET_OHMECHANIC}
+s.listed_series={SET_OHMEN, SET_OHMENCHANIC}
 
 function s.lcheck(g)
-	return g:IsExists(Card.IsSetCard,1,nil,SET_OHMECHANIC)
+	return g:IsExists(Card.IsSetCard,1,nil,SET_OHMENCHANIC)
 end
 
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)

@@ -3,7 +3,7 @@ local s,id=GetID()
 local STRING_ID=133780273
 local COUNTER_CURRENT = 0x18f0
 local SET_OHMEN = 0x8de0
-local SET_OHMECHANIC = 0x8de1
+local SET_OHMENCHANIC = 0x8de1
 function s.initial_effect(c)
 	-- Special Summon
 	local e1=Effect.CreateEffect(c)
@@ -29,7 +29,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e2)
 	Duel.AddCustomActivityCounter(id,ACTIVITY_SPSUMMON,s.counterfilter)
 end
-s.listed_series={SET_OHMEN, SET_OHMECHANIC}
+s.listed_series={SET_OHMEN, SET_OHMENCHANIC}
 
 function s.spfilter(tc,e,tp)
 	return tc:IsSetCard(SET_OHMEN) and not tc:IsCode(id) and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)
@@ -81,7 +81,7 @@ function s.matcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsLocation(LOCATION_GRAVE) and r==REASON_LINK
 end
 function s.matfilter(tc)
-	return tc:IsFaceup() and tc:IsSetCard(SET_OHMECHANIC)
+	return tc:IsFaceup() and tc:IsSetCard(SET_OHMENCHANIC)
 end
 function s.mattg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and s.matfilter(chkc) end

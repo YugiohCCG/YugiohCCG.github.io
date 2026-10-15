@@ -4,7 +4,7 @@ All 15 card images use the latest artwork. The editable ygocarder exports, websi
 
 ## Requested changes
 
-- Use **Ohmechanic** in current names and references.
+- Use **Ohmenchanic** in current names and references.
 - Ampere Link 2+: restore Main Phase activation wording.
 - Coulomb Link 1+: restore your Main Phase activation wording.
 - Volt Link 1+: restore the original your Main Phase restriction lost during shortening.
