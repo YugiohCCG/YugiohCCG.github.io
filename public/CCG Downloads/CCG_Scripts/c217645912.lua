@@ -7,8 +7,6 @@ function s.initial_effect(c)
 	e1:SetCategory(CATEGORY_TOGRAVE)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,id)
-	e1:SetCost(s.zcost)
 	e1:SetTarget(s.target)
 	e1:SetOperation(s.activate)
 	c:RegisterEffect(e1)
@@ -47,10 +45,19 @@ function s.tgfilter(c)
 	return c:IsLevelBelow(4) and c:IsRace(RACE_ZOMBIE) and c:IsAbleToGrave()
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.tgfilter,tp,LOCATION_DECK,0,1,nil) end
-	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_DECK)
+	if chk==0 then return true end
+	e:SetLabel(0)
+	if Duel.GetFlagEffect(tp,id)==0 and Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0
+		and Duel.IsExistingMatchingCard(s.tgfilter,tp,LOCATION_DECK,0,1,nil)
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then
+		e:SetLabel(1)
+		Duel.RegisterFlagEffect(tp,id,RESET_PHASE+PHASE_END,0,1)
+		s.zcost(e,tp,eg,ep,ev,re,r,rp,1)
+		Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_DECK)
+	end
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
+	if e:GetLabel()==0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 	local tc=Duel.SelectMatchingCard(tp,s.tgfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
 	if tc then Duel.SendtoGrave(tc,REASON_EFFECT) end

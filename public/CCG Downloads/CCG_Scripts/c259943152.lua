@@ -24,6 +24,7 @@ function s.initial_effect(c)
 	e2:SetCountLimit(1,id)
 	e2:SetCondition(s.atkcon)
 	e2:SetOperation(s.atkop)
+	e2:SetProperty(e2:GetProperty()|EFFECT_FLAG_DELAY)
 	c:RegisterEffect(e2)
 	--If an "A.I.P Ex" monster is Special Summoned: change 1 Beast monster's Level by 3
 	local e3=Effect.CreateEffect(c)

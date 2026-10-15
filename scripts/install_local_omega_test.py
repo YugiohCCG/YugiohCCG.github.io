@@ -7,12 +7,20 @@ FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
 OUT=ROOT/'output/fresh-ccg-september'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def connect(p):return sqlite3.connect(p.resolve().as_uri()+'?mode=ro',uri=True)
+
+def validate_pendulum_descriptions(candidate):
+ from fresh_repair_omega_pendulum_text import parse
+ with connect(candidate) as c:
+  rows=c.execute('SELECT id,name,desc FROM texts JOIN datas USING(id) WHERE type & 16777216').fetchall()
+  invalid=[(code,name) for code,name,description in rows if not all(parse(description or '')[key] for key in ('P','E'))]
+  assert not invalid,('Candidate has missing Omega Pendulum/monster sections; regenerate with omega_description before installing',invalid)
 def record(manifest):
  backup=Path(manifest['backup']).resolve()
  assert backup.is_relative_to((FILES/'Backup').resolve())
  for p in (backup/'manifest.json',OUT/'local-omega-test-install.json'):
   p.write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
 def finish(manifest,candidate,target,sources,scripts):
+ validate_pendulum_descriptions(candidate)
  assert sha(candidate)==manifest['database_after_sha256'],'Candidate changed since backup; review before resuming'
  assert sha(target) in (manifest['database_before_sha256'],manifest['database_after_sha256']),'Installed DB changed since backup'
  assert all(sha(p)==sha(scripts/p.name) for p in sources),'Source/install script parity changed'
@@ -32,6 +40,7 @@ def main():
  candidate=OUT/'candidate-CCG_v1.db';target=FILES/'Databases/CCG_v1.db';scripts=FILES/'Scripts'
  roster=json.loads((OUT/'baseline-remote.json').read_text(encoding='utf-8'))['cards']
  assert target.is_file() and scripts.is_dir()
+ validate_pendulum_descriptions(candidate)
  if '--resume' in sys.argv:
   manifest=json.loads((OUT/'local-omega-test-install.json').read_text(encoding='utf-8'))
   assert manifest['status']=='SCRIPTS_INSTALLED_DATABASE_PENDING_GAME_CLOSE','No pending database install'

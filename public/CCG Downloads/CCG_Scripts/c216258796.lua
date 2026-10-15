@@ -36,6 +36,7 @@ s.listed_series={SET_AQUAMARINE}
 
 function s.spcon1(e,c)
 	if c==nil then return true end
+	if not c:IsStatus(STATUS_PROC_COMPLETE) then return false end
 	if c:IsHasEffect(EFFECT_NECRO_VALLEY) then return false end
 	local tp=c:GetControler()
 	return Duel.GetLocationCount(tp,LOCATION_MZONE)>0

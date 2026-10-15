@@ -4,11 +4,11 @@
     "total": 711,
     "missing": 0,
     "syntax_stale": 0,
-    "load_stale": 0,
-    "first_decision_pass": 583,
-    "load_fail": 128,
-    "with_literal_harness_reference": 276,
-    "without_literal_harness_reference": 435
+    "load_stale": 9,
+    "first_decision_pass": 576,
+    "load_fail": 126,
+    "with_literal_harness_reference": 316,
+    "without_literal_harness_reference": 395
   },
   "cards": [
     {
@@ -21,6 +21,15 @@
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
+        "fresh_current_scarstech_principality_chain_destroy.cjs",
+        "fresh_current_scarstech_principality_destroy.cjs",
+        "fresh_current_scarstech_principality_destroy_interruption.cjs",
+        "fresh_current_scarstech_principality_destroy_use_reset.cjs",
+        "fresh_current_scarstech_principality_effect_independence.cjs",
+        "fresh_current_scarstech_principality_grave_chain.cjs",
+        "fresh_current_scarstech_principality_grave_interruption.cjs",
+        "fresh_current_scarstech_principality_grave_use_reset.cjs",
+        "fresh_current_scarstech_principality_resolution_pool.cjs",
         "fresh_scarstech_principality_destruction.cjs",
         "fresh_scarstech_principality_integrated.cjs",
         "fresh_scarstech_principality_revival.cjs"
@@ -41,20 +50,33 @@
         "fresh_crewal_meeting_recovery.cjs",
         "fresh_current_crewal_meeting_placement.cjs",
         "fresh_current_crewal_meeting_recover.cjs",
-        "fresh_current_frozen_girl_crewal.cjs"
+        "fresh_current_frozen_girl_crewal.cjs",
+        "fresh_current_helmsman_meeting_exclusion.cjs"
       ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
       "passcode": 210506870,
       "name": "Talismandrake Heat",
-      "script_sha256": "75e90572fedf94ea98f2d5d71173c0fbd13736765830883419d767334a87af3c",
+      "script_sha256": "8a6d1e9cfbc774b26a949aec98558659ca956846dd767b78ff7be09fb4037606",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
-      "load_current": true,
+      "load_current": false,
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
+        "fresh_current_talismandrake_heat_equip_atk.cjs",
+        "fresh_current_talismandrake_heat_equip_filter.cjs",
+        "fresh_current_talismandrake_heat_fusion_material.cjs",
+        "fresh_current_talismandrake_heat_hand_capacity_repaired.cjs",
+        "fresh_current_talismandrake_heat_hand_interruption.cjs",
+        "fresh_current_talismandrake_heat_hand_summon.cjs",
+        "fresh_current_talismandrake_heat_hand_use_reset.cjs",
+        "fresh_current_talismandrake_heat_pendulum_interruption.cjs",
+        "fresh_current_talismandrake_heat_pendulum_recycle.cjs",
+        "fresh_current_talismandrake_heat_pendulum_relation_probe.cjs",
+        "fresh_current_talismandrake_heat_pendulum_restriction.cjs",
+        "fresh_current_talismandrake_heat_pendulum_use_reset.cjs",
         "fresh_talismandrake_heat_attack.cjs",
         "fresh_talismandrake_heat_batch.cjs",
         "fresh_talismandrake_heat_fusion.cjs",
@@ -67,7 +89,7 @@
     {
       "passcode": 210628767,
       "name": "Morbydrip the Crewal Whale",
-      "script_sha256": "93f76ea2babe13b4cb64649a3105c2de816b57136cd7af1421904f5dcc400204",
+      "script_sha256": "3eb2b2ff44a3240a917c606f70203c33c66a69d7447016789ce3d3b194e4ede6",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
@@ -75,7 +97,27 @@
       "load_error": null,
       "literal_harness_references": [
         "fresh_crewal_whale_placement.cjs",
-        "fresh_crewal_whale_revival.cjs"
+        "fresh_crewal_whale_revival.cjs",
+        "fresh_current_helmsman_trap_interruption_comparison.cjs",
+        "fresh_current_helmsman_trap_locks_comparison.cjs",
+        "fresh_current_helmsman_trap_negation_comparison.cjs",
+        "fresh_current_helmsman_trap_summon.cjs",
+        "fresh_current_helmsman_trap_type_comparison.cjs",
+        "fresh_current_helmsman_trap_use_reset_comparison.cjs",
+        "fresh_current_morbydrip_endphase_exclusions.cjs",
+        "fresh_current_morbydrip_extra_columns.cjs",
+        "fresh_current_morbydrip_normal_summon.cjs",
+        "fresh_current_morbydrip_placement.cjs",
+        "fresh_current_morbydrip_placement_interruption.cjs",
+        "fresh_current_morbydrip_placement_repaired.cjs",
+        "fresh_current_morbydrip_placement_validation.cjs",
+        "fresh_current_morbydrip_revival_capacity_repaired.cjs",
+        "fresh_current_morbydrip_revival_endphase.cjs",
+        "fresh_current_morbydrip_revival_interruption.cjs",
+        "fresh_current_morbydrip_revival_late_capacity.cjs",
+        "fresh_current_morbydrip_revival_restrictions.cjs",
+        "fresh_current_morbydrip_revival_use_reset.cjs",
+        "fresh_current_morbydrip_unique_control.cjs"
       ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
@@ -109,7 +151,18 @@
         "fresh_clock_aldrez_batch.cjs",
         "fresh_clock_aldrez_lock.cjs",
         "fresh_clock_aldrez_rewrite.cjs",
-        "fresh_clock_aldrez_summon.cjs"
+        "fresh_clock_aldrez_summon.cjs",
+        "fresh_current_clock_native_disable_positive_control.cjs",
+        "fresh_current_clock_of_aldrez_activation_restriction.cjs",
+        "fresh_current_clock_of_aldrez_deck_send.cjs",
+        "fresh_current_clock_of_aldrez_deck_send_interruption.cjs",
+        "fresh_current_clock_of_aldrez_deck_send_use_reset.cjs",
+        "fresh_current_clock_of_aldrez_effect_independence.cjs",
+        "fresh_current_clock_of_aldrez_multiple_rewrites.cjs",
+        "fresh_current_clock_of_aldrez_rewrite.cjs",
+        "fresh_current_clock_of_aldrez_rewrite_eligibility.cjs",
+        "fresh_current_clock_of_aldrez_rewrite_interruption.cjs",
+        "fresh_current_clock_of_aldrez_rewrite_use_reset.cjs"
       ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
@@ -123,7 +176,13 @@
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
-        "fresh_aldrez_opening_recycle.cjs"
+        "fresh_aldrez_opening_recycle.cjs",
+        "fresh_current_aldrez_opening_break_timing.cjs",
+        "fresh_current_aldrez_opening_recycle.cjs",
+        "fresh_current_aldrez_opening_response_reset.cjs",
+        "fresh_current_aldrez_opening_source_departure.cjs",
+        "fresh_current_aldrez_opening_stat_boost.cjs",
+        "fresh_current_aldrez_opening_summon_response.cjs"
       ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
@@ -211,7 +270,13 @@
         "fresh_aquamarine_pisaster_batch.cjs",
         "fresh_aquamarine_pisaster_hand.cjs",
         "fresh_aquamarine_pisaster_recovery.cjs",
-        "fresh_aquamarine_pisaster_tribute.cjs"
+        "fresh_aquamarine_pisaster_tribute.cjs",
+        "fresh_current_aquamarine_pisaster_hand.cjs",
+        "fresh_current_aquamarine_pisaster_recovery_exclusions.cjs",
+        "fresh_current_aquamarine_pisaster_recovery_probe.cjs",
+        "fresh_current_aquamarine_pisaster_tribute.cjs",
+        "fresh_current_aquamarine_pisaster_tribute_interruption.cjs",
+        "fresh_current_aquamarine_pisaster_tribute_use_reset.cjs"
       ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
@@ -247,7 +312,18 @@
       "load_current": true,
       "load_status": "load_fail",
       "load_error": "[string \"procedure.lua\"]:2226: attempt to call a nil value (field 'GetMustMaterial')",
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_altergeist_regissae_independence.cjs",
+        "fresh_current_altergeist_regissae_link.cjs",
+        "fresh_current_altergeist_regissae_negate.cjs",
+        "fresh_current_altergeist_regissae_negate_interruption.cjs",
+        "fresh_current_altergeist_regissae_negate_persistence.cjs",
+        "fresh_current_altergeist_regissae_negate_use_reset.cjs",
+        "fresh_current_altergeist_regissae_set.cjs",
+        "fresh_current_altergeist_regissae_set_interruption.cjs",
+        "fresh_current_altergeist_regissae_set_restrictions.cjs",
+        "fresh_current_altergeist_regissae_set_use_reset.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -316,7 +392,15 @@
       "load_current": true,
       "load_status": "load_fail",
       "load_error": "[string \"procedure.lua\"]:525: attempt to call a nil value (field 'CheckXyzMaterial')",
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_stellaer_flames_destroy.cjs",
+        "fresh_current_stellaer_flames_destroy_interruption.cjs",
+        "fresh_current_stellaer_flames_destroy_use_reset.cjs",
+        "fresh_current_stellaer_flames_draw.cjs",
+        "fresh_current_stellaer_flames_draw_integration.cjs",
+        "fresh_current_stellaer_flames_draw_interruption.cjs",
+        "fresh_current_stellaer_flames_xyz.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -328,7 +412,14 @@
       "load_current": true,
       "load_status": "load_fail",
       "load_error": "[string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')",
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_gravinity_lapsix_opponent_turn_draw.cjs",
+        "fresh_current_gravinity_lapsix_recovery_resource_probe.cjs",
+        "fresh_current_gravinity_lapsix_synchro_probe.cjs",
+        "fresh_current_gravinity_lapsix_trap_draw.cjs",
+        "fresh_current_gravinity_lapsix_trap_draw_interruption.cjs",
+        "fresh_current_gravinity_lapsix_trap_draw_use_reset.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -342,7 +433,8 @@
       "load_error": null,
       "literal_harness_references": [
         "fresh_cassiopeia_batch.cjs",
-        "fresh_cassiopeia_normal.cjs"
+        "fresh_cassiopeia_normal.cjs",
+        "fresh_current_cassiopeia_normal.cjs"
       ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
@@ -370,13 +462,41 @@
     {
       "passcode": 212429024,
       "name": "Gravinity Nebulix",
-      "script_sha256": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921",
+      "script_sha256": "7b03176439555fb2bc0165feea5f560bbfe86c6d18089ac54b545bdfea663114",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "load_fail",
       "load_error": "[string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')",
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_gravinity_nebulix_addition.cjs",
+        "fresh_current_gravinity_nebulix_addition_interruption.cjs",
+        "fresh_current_gravinity_nebulix_append_copies_candidate.cjs",
+        "fresh_current_gravinity_nebulix_append_interruption_candidate.cjs",
+        "fresh_current_gravinity_nebulix_append_regression_candidate.cjs",
+        "fresh_current_gravinity_nebulix_append_repeat_candidate.cjs",
+        "fresh_current_gravinity_nebulix_guard_reset_candidate.cjs",
+        "fresh_current_gravinity_nebulix_negation_guard_candidate.cjs",
+        "fresh_current_gravinity_nebulix_reason_effect_probe.cjs",
+        "fresh_current_gravinity_nebulix_resolution_append_candidate.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_attribution_candidate.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_attribution_production.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_capacity_candidate.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_capacity_production.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_copies_candidate.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_copies_production.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_interruption_candidate.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_interruption_production.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_opponent_candidate.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_opponent_production.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_reentry_candidate.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_reentry_production.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_regression_candidate.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_regression_production.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_repeat_candidate.cjs",
+        "fresh_current_gravinity_nebulix_shared_append_repeat_production.cjs",
+        "fresh_current_gravinity_nebulix_synchro_probe.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -429,7 +549,17 @@
       "load_current": true,
       "load_status": "load_fail",
       "load_error": "[string \"procedure.lua\"]:88: attempt to call a nil value (field 'CheckSynchroMaterial')",
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_bray_banish_interruption.cjs",
+        "fresh_current_bray_battle_protection.cjs",
+        "fresh_current_bray_deck_banish.cjs",
+        "fresh_current_bray_fish_restriction.cjs",
+        "fresh_current_bray_interrupted_restriction.cjs",
+        "fresh_current_bray_opponent_turn_reset.cjs",
+        "fresh_current_bray_protection_boundaries.cjs",
+        "fresh_current_bray_shared_use_reset.cjs",
+        "fresh_current_bray_synchro_probe.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -441,7 +571,19 @@
       "load_current": true,
       "load_status": "load_fail",
       "load_error": "[string \"procedure.lua\"]:2226: attempt to call a nil value (field 'GetMustMaterial')",
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_jet_drifter_battle_capacity.cjs",
+        "fresh_current_jet_drifter_battle_damage.cjs",
+        "fresh_current_jet_drifter_battle_interruption.cjs",
+        "fresh_current_jet_drifter_battle_summon.cjs",
+        "fresh_current_jet_drifter_link_probe.cjs",
+        "fresh_current_jet_drifter_quickplay_compatibility_probe.cjs",
+        "fresh_current_jet_drifter_quickplay_probe.cjs",
+        "fresh_current_jet_drifter_set_capacity.cjs",
+        "fresh_current_jet_drifter_set_operation.cjs",
+        "fresh_current_jet_drifter_set_permission_reset.cjs",
+        "fresh_current_jet_drifter_set_resource.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -454,6 +596,48 @@
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
+        "fresh_current_fruteification_grave_interruption_use.cjs",
+        "fresh_current_fruteification_grave_send.cjs",
+        "fresh_current_fruteification_interruption_comparison.cjs",
+        "fresh_current_fruteification_optional_capacity_diagnostic.cjs",
+        "fresh_current_fruteification_optional_interruption_comparison.cjs",
+        "fresh_current_fruteification_optional_restrictions_comparison.cjs",
+        "fresh_current_fruteification_optional_revival_comparison.cjs",
+        "fresh_current_fruteification_optional_use_reset.cjs",
+        "fresh_current_fruteification_ritual_repaired.cjs",
+        "fresh_current_fruteopia_activation_group.cjs",
+        "fresh_current_fruteopia_atk_group.cjs",
+        "fresh_current_fruteopia_atk_interruption_group.cjs",
+        "fresh_current_fruteopia_full_ritual_spell_diagnostic.cjs",
+        "fresh_current_fruteopia_revival_capacity_comparison.cjs",
+        "fresh_current_fruteopia_revival_comparison.cjs",
+        "fresh_current_fruteopia_revival_diagnostic.cjs",
+        "fresh_current_fruteopia_revival_interruption_comparison.cjs",
+        "fresh_current_fruteopia_revival_locks_comparison.cjs",
+        "fresh_current_fruteopia_revival_use_reset_comparison.cjs",
+        "fresh_current_fruteopia_ritual_material_comparison.cjs",
+        "fresh_current_fruteopia_search.cjs",
+        "fresh_current_fruteopia_use_reset_group.cjs",
+        "fresh_current_scarstech_principality_chain_destroy.cjs",
+        "fresh_current_scarstech_principality_destroy.cjs",
+        "fresh_current_scarstech_principality_destroy_interruption.cjs",
+        "fresh_current_scarstech_principality_destroy_use_reset.cjs",
+        "fresh_current_scarstech_principality_effect_independence.cjs",
+        "fresh_current_scarstech_principality_grave_chain.cjs",
+        "fresh_current_scarstech_principality_grave_interruption.cjs",
+        "fresh_current_scarstech_principality_grave_use_reset.cjs",
+        "fresh_current_scarstech_principality_resolution_pool.cjs",
+        "fresh_current_talismandrake_heat_equip_atk.cjs",
+        "fresh_current_talismandrake_heat_equip_filter.cjs",
+        "fresh_current_talismandrake_heat_hand_capacity_repaired.cjs",
+        "fresh_current_talismandrake_heat_hand_interruption.cjs",
+        "fresh_current_talismandrake_heat_hand_summon.cjs",
+        "fresh_current_talismandrake_heat_hand_use_reset.cjs",
+        "fresh_current_talismandrake_heat_pendulum_interruption.cjs",
+        "fresh_current_talismandrake_heat_pendulum_recycle.cjs",
+        "fresh_current_talismandrake_heat_pendulum_relation_probe.cjs",
+        "fresh_current_talismandrake_heat_pendulum_restriction.cjs",
+        "fresh_current_talismandrake_heat_pendulum_use_reset.cjs",
         "fresh_hanging_frute_batch.cjs",
         "fresh_hanging_frute_battle.cjs",
         "fresh_hanging_frute_battle_multiple.cjs",
@@ -580,7 +764,16 @@
       "load_current": true,
       "load_status": "load_fail",
       "load_error": "[string \"procedure.lua\"]:752: attempt to call a nil value (field 'GetMustMaterial')",
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_stellaer_purity_activation_history_probe.cjs",
+        "fresh_current_stellaer_purity_attach.cjs",
+        "fresh_current_stellaer_purity_negation.cjs",
+        "fresh_current_stellaer_purity_negation_interruption.cjs",
+        "fresh_current_stellaer_purity_negation_reset.cjs",
+        "fresh_current_stellaer_purity_revival.cjs",
+        "fresh_current_stellaer_purity_revival_interruption.cjs",
+        "fresh_current_stellaer_purity_xyz_probe.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -652,13 +845,30 @@
     {
       "passcode": 214552846,
       "name": "Eldora, the Intergalactic Empire",
-      "script_sha256": "7a37e100146c21e0fb35034edcf559abe267782c3b913b42f796fbec408bd5f2",
+      "script_sha256": "c2bbc342c22f0e1bdc935c24165c022646f2a1569e08f323ae6b4d4a56fda9ff",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
+        "fresh_current_eldora_destruction_negation.cjs",
+        "fresh_current_eldora_gy_interruption.cjs",
+        "fresh_current_eldora_gy_opponent_reset.cjs",
+        "fresh_current_eldora_gy_use_reset.cjs",
+        "fresh_current_eldora_lifecycle_repaired.cjs",
+        "fresh_current_eldora_matching_destruction.cjs",
+        "fresh_current_eldora_optional_set.cjs",
+        "fresh_current_eldora_original_operation.cjs",
+        "fresh_current_eldora_reason_candidate_comparison.cjs",
+        "fresh_current_eldora_reason_candidate_lifecycle.cjs",
+        "fresh_current_eldora_reason_candidate_original.cjs",
+        "fresh_current_eldora_reason_candidate_reason.cjs",
+        "fresh_current_eldora_reason_repaired.cjs",
+        "fresh_current_eldora_resolution_comparison.cjs",
+        "fresh_current_eldora_resolution_repaired.cjs",
+        "fresh_current_eldora_resolution_timing_probe.cjs",
+        "fresh_current_eldora_self_destruction_reason_probe.cjs",
         "fresh_eridani_attack_lock.cjs",
         "fresh_eridani_batch.cjs",
         "fresh_eridani_count.cjs",
@@ -850,7 +1060,23 @@
         "fresh_current_helmsman_hand_interruption.cjs",
         "fresh_current_helmsman_hand_locks.cjs",
         "fresh_current_helmsman_hand_negation.cjs",
-        "fresh_current_helmsman_hand_summon.cjs"
+        "fresh_current_helmsman_hand_summon.cjs",
+        "fresh_current_helmsman_hand_use_reset.cjs",
+        "fresh_current_helmsman_meeting_exclusion.cjs",
+        "fresh_current_helmsman_revival.cjs",
+        "fresh_current_helmsman_revival_locks.cjs",
+        "fresh_current_helmsman_revival_negation.cjs",
+        "fresh_current_helmsman_revival_post_lock.cjs",
+        "fresh_current_helmsman_revival_prior_activity.cjs",
+        "fresh_current_helmsman_revival_relocation.cjs",
+        "fresh_current_helmsman_revival_resolution_locks.cjs",
+        "fresh_current_helmsman_revival_use_reset.cjs",
+        "fresh_current_helmsman_trap_interruption_comparison.cjs",
+        "fresh_current_helmsman_trap_locks_comparison.cjs",
+        "fresh_current_helmsman_trap_negation_comparison.cjs",
+        "fresh_current_helmsman_trap_summon.cjs",
+        "fresh_current_helmsman_trap_type_comparison.cjs",
+        "fresh_current_helmsman_trap_use_reset_comparison.cjs"
       ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
@@ -910,6 +1136,13 @@
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
+        "fresh_current_seraphina_halberd_battle.cjs",
+        "fresh_current_seraphina_pendulum_equip.cjs",
+        "fresh_current_seraphina_sabre_battle_replacement.cjs",
+        "fresh_current_seraphina_shield_leave_replacement.cjs",
+        "fresh_current_seraphina_suppressor_target_protection.cjs",
+        "fresh_current_talismandrake_heat_equip_atk.cjs",
+        "fresh_current_talismandrake_heat_equip_filter.cjs",
         "fresh_talismandrake_united_arms.cjs",
         "fresh_talismandrake_united_batch.cjs",
         "fresh_talismandrake_united_battle.cjs"
@@ -960,19 +1193,68 @@
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_fruteification_grave_interruption_use.cjs",
+        "fresh_current_fruteification_grave_send.cjs",
+        "fresh_current_fruteification_interruption_comparison.cjs",
+        "fresh_current_fruteification_optional_capacity_diagnostic.cjs",
+        "fresh_current_fruteification_optional_interruption_comparison.cjs",
+        "fresh_current_fruteification_optional_restrictions_comparison.cjs",
+        "fresh_current_fruteification_optional_revival_comparison.cjs",
+        "fresh_current_fruteification_optional_use_reset.cjs",
+        "fresh_current_fruteification_ritual_repaired.cjs",
+        "fresh_current_fruteopia_activation_group.cjs",
+        "fresh_current_fruteopia_atk_group.cjs",
+        "fresh_current_fruteopia_atk_interruption_group.cjs",
+        "fresh_current_fruteopia_full_ritual_spell_diagnostic.cjs",
+        "fresh_current_fruteopia_revival_capacity_comparison.cjs",
+        "fresh_current_fruteopia_revival_comparison.cjs",
+        "fresh_current_fruteopia_revival_diagnostic.cjs",
+        "fresh_current_fruteopia_revival_interruption_comparison.cjs",
+        "fresh_current_fruteopia_revival_locks_comparison.cjs",
+        "fresh_current_fruteopia_revival_use_reset_comparison.cjs",
+        "fresh_current_fruteopia_ritual_material_comparison.cjs",
+        "fresh_current_fruteopia_search.cjs",
+        "fresh_current_fruteopia_use_reset_group.cjs",
+        "fresh_current_scarstech_principality_destroy.cjs",
+        "fresh_current_talismandrake_heat_equip_atk.cjs",
+        "fresh_current_talismandrake_heat_hand_summon.cjs",
+        "fresh_current_talismandrake_heat_pendulum_recycle.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
       "passcode": 216258796,
       "name": "Aquamarine Actinia",
-      "script_sha256": "dc355e0348b247cdb9467ac7126a75d1e82820aa1bd3ac8c11619257c2012868",
+      "script_sha256": "b430ed9372b2841f4c80a91f0d5f58a576165b94bd4cb2d16c307837d196f296",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_actinia_fusion_revival_probe.cjs",
+        "fresh_current_actinia_improper_revival.cjs",
+        "fresh_current_actinia_improper_revival_completion.cjs",
+        "fresh_current_actinia_improper_revival_probe.cjs",
+        "fresh_current_actinia_interruption.cjs",
+        "fresh_current_actinia_negation.cjs",
+        "fresh_current_actinia_opponent_reset.cjs",
+        "fresh_current_actinia_proper_revival.cjs",
+        "fresh_current_actinia_qualification_candidate.cjs",
+        "fresh_current_actinia_qualification_candidate_interruption.cjs",
+        "fresh_current_actinia_qualification_candidate_negation.cjs",
+        "fresh_current_actinia_qualification_candidate_opponent_reset.cjs",
+        "fresh_current_actinia_qualification_candidate_use_reset.cjs",
+        "fresh_current_actinia_qualification_native_fusion.cjs",
+        "fresh_current_actinia_qualification_proper_revival.cjs",
+        "fresh_current_actinia_qualification_repaired.cjs",
+        "fresh_current_actinia_qualification_revival_boundaries.cjs",
+        "fresh_current_actinia_qualification_revival_use_reset.cjs",
+        "fresh_current_actinia_revival_boundaries.cjs",
+        "fresh_current_actinia_revival_use_reset.cjs",
+        "fresh_current_actinia_use_reset.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -1039,7 +1321,19 @@
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_dante_deck_lifecycle.cjs",
+        "fresh_current_dante_gy_interruption.cjs",
+        "fresh_current_dante_gy_restrictions.cjs",
+        "fresh_current_dante_gy_transfer.cjs",
+        "fresh_current_dante_gy_transfer_probe.cjs",
+        "fresh_current_dante_gy_use_reset.cjs",
+        "fresh_current_dante_independent_effects.cjs",
+        "fresh_current_dante_opponent_deck_show.cjs",
+        "fresh_current_dante_summon_destruction.cjs",
+        "fresh_current_dante_summon_opponent_reset.cjs",
+        "fresh_current_dante_summon_use_reset.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -1068,6 +1362,20 @@
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
+        "fresh_current_helmsman_revival.cjs",
+        "fresh_current_helmsman_revival_locks.cjs",
+        "fresh_current_helmsman_revival_negation.cjs",
+        "fresh_current_helmsman_revival_post_lock.cjs",
+        "fresh_current_helmsman_revival_prior_activity.cjs",
+        "fresh_current_helmsman_revival_relocation.cjs",
+        "fresh_current_helmsman_revival_resolution_locks.cjs",
+        "fresh_current_helmsman_revival_use_reset.cjs",
+        "fresh_current_helmsman_trap_interruption_comparison.cjs",
+        "fresh_current_helmsman_trap_locks_comparison.cjs",
+        "fresh_current_helmsman_trap_negation_comparison.cjs",
+        "fresh_current_helmsman_trap_summon.cjs",
+        "fresh_current_helmsman_trap_type_comparison.cjs",
+        "fresh_current_helmsman_trap_use_reset_comparison.cjs",
         "fresh_current_plague_doctor_interruption.cjs",
         "fresh_current_plague_doctor_negated_use.cjs",
         "fresh_current_plague_doctor_shared_use.cjs",
@@ -1086,43 +1394,91 @@
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_kaleidragon_activation_negation_oath_actual.cjs",
+        "fresh_current_kaleidragon_activation_negation_oath_probe.cjs",
+        "fresh_current_kaleidragon_effect_negation.cjs",
+        "fresh_current_kaleidragon_fusion_probe.cjs",
+        "fresh_current_kaleidragon_look_interruption.cjs",
+        "fresh_current_kaleidragon_look_trigger.cjs",
+        "fresh_current_kaleidragon_look_use_reset.cjs",
+        "fresh_current_kaleidragon_negated_use_reset.cjs",
+        "fresh_current_kaleidragon_oath_reset.cjs",
+        "fresh_current_kaleidragon_prior_activity.cjs",
+        "fresh_current_kaleidragon_prior_negated_activity.cjs",
+        "fresh_current_kaleidragon_reverse_shared_use_reset.cjs",
+        "fresh_current_kaleidragon_self_fusion_look.cjs",
+        "fresh_current_kaleidragon_shared_use_reset.cjs",
+        "fresh_current_kaleidragon_summon_negation.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
       "passcode": 217332244,
       "name": "To Proto Psychi",
-      "script_sha256": "495f8ec124b10da53d9e6a426350a6563dd193b992d2dec85209f4424e4d01bc",
+      "script_sha256": "d75bea30aed92907d2473ebbc1d67f965aff546b4cca9d7ef72dbee9665d1122",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_psychi_banished_retrieval.cjs",
+        "fresh_current_psychi_battle_recovery.cjs",
+        "fresh_current_psychi_proper_history.cjs",
+        "fresh_current_psychi_recovery_interruption.cjs",
+        "fresh_current_psychi_recovery_use_reset.cjs",
+        "fresh_current_psychi_retrieval_interruption.cjs",
+        "fresh_current_psychi_retrieval_use_reset.cjs",
+        "fresh_current_psychi_summon_procedure.cjs",
+        "fresh_current_psychi_token_interruption.cjs",
+        "fresh_current_psychi_token_payment.cjs",
+        "fresh_current_psychi_token_use_reset.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
       "passcode": 217632789,
       "name": "Skewy! Pawty Tyme",
-      "script_sha256": "6849568af82320e61335046c874ba4d2d9d839240be6f82f55e7b4cfb450bd9f",
+      "script_sha256": "10da3886e2dacb7a6f286fcb22ce28b260a1f80badbd5ce00931551582a24ba4",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_pawty_activation_reset.cjs",
+        "fresh_current_pawty_cost_boundaries.cjs",
+        "fresh_current_pawty_hand_activation.cjs",
+        "fresh_current_pawty_hand_interruption.cjs",
+        "fresh_current_pawty_interruption.cjs",
+        "fresh_current_pawty_late_revival_boundaries.cjs",
+        "fresh_current_pawty_negation.cjs",
+        "fresh_current_pawty_paid_monster_revival.cjs",
+        "fresh_current_pawty_revival.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
       "passcode": 217645912,
       "name": "Crewal Tide",
-      "script_sha256": "d746579195dd9f8525b0ac3b0f8467ecd28e32e60dd5a8bf0beebf56058b7914",
+      "script_sha256": "49b7926735d72b3643bf0cf14cb87a6a400c511f836c2436756fab75e69b602d",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_tide_optional_activation.cjs",
+        "fresh_current_tide_optional_negation_reset.cjs",
+        "fresh_current_tide_optional_use_reset.cjs",
+        "fresh_current_tide_restriction_revival_integration.cjs",
+        "fresh_current_tide_revival_interruption.cjs",
+        "fresh_current_tide_revival_owner_qualification.cjs",
+        "fresh_current_tide_revival_use_reset.cjs",
+        "fresh_current_tide_summon_restriction.cjs",
+        "fresh_current_tide_zone_revival.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -1134,7 +1490,15 @@
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_aldrez_blitz_revival_interruption.cjs",
+        "fresh_current_aldrez_blitz_revival_token.cjs",
+        "fresh_current_aldrez_blitz_revival_use_reset.cjs",
+        "fresh_current_aldrez_blitz_set_boundaries.cjs",
+        "fresh_current_aldrez_blitz_set_interruption.cjs",
+        "fresh_current_aldrez_blitz_set_use_reset.cjs",
+        "fresh_current_aldrez_blitz_xyz_set.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -1154,13 +1518,22 @@
     {
       "passcode": 218142234,
       "name": "Maiden of Talismandrakes Seraphina",
-      "script_sha256": "56a270f23f366cbe0eac6431e88e531694be275cf6d75c60b53667e1062c4cb3",
+      "script_sha256": "e321e1e14d7ccff7ec4359429f01340c50a1dae58bd1e0b005b77bc039a6973c",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_seraphina_halberd_battle.cjs",
+        "fresh_current_seraphina_pendulum_equip.cjs",
+        "fresh_current_seraphina_pendulum_interruption.cjs",
+        "fresh_current_seraphina_pendulum_summon.cjs",
+        "fresh_current_seraphina_pendulum_use_reset.cjs",
+        "fresh_current_seraphina_sabre_battle_replacement.cjs",
+        "fresh_current_seraphina_shield_leave_replacement.cjs",
+        "fresh_current_seraphina_suppressor_target_protection.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -1172,7 +1545,21 @@
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_helmsman_revival.cjs",
+        "fresh_current_helmsman_revival_locks.cjs",
+        "fresh_current_helmsman_revival_negation.cjs",
+        "fresh_current_helmsman_revival_post_lock.cjs",
+        "fresh_current_helmsman_revival_prior_activity.cjs",
+        "fresh_current_helmsman_revival_relocation.cjs",
+        "fresh_current_helmsman_revival_resolution_locks.cjs",
+        "fresh_current_helmsman_trap_interruption_comparison.cjs",
+        "fresh_current_helmsman_trap_locks_comparison.cjs",
+        "fresh_current_helmsman_trap_negation_comparison.cjs",
+        "fresh_current_helmsman_trap_summon.cjs",
+        "fresh_current_helmsman_trap_type_comparison.cjs",
+        "fresh_current_helmsman_trap_use_reset_comparison.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -1196,7 +1583,10 @@
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_kaleidragon_fusion_probe.cjs",
+        "fresh_current_kaleidragon_self_fusion_look.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -1438,7 +1828,13 @@
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_fruteification_optional_capacity_diagnostic.cjs",
+        "fresh_current_fruteification_optional_interruption_comparison.cjs",
+        "fresh_current_fruteification_optional_restrictions_comparison.cjs",
+        "fresh_current_fruteification_optional_revival_comparison.cjs",
+        "fresh_current_fruteification_optional_use_reset.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -1526,13 +1922,15 @@
     {
       "passcode": 221822671,
       "name": "Stained Sovereign Silas",
-      "script_sha256": "4ef7df5bbb8c6a236ea19bc7798fa15ca85eca1334a8a5198be0dad4b5c1ef7c",
+      "script_sha256": "8a83ccaee16b9752d5000be38828da95be9a13e2970bda47eacfbfbe1fa1d2f4",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_chain_trigger_delay_family.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -1709,7 +2107,13 @@
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_eldora_gy_interruption.cjs",
+        "fresh_current_eldora_gy_opponent_reset.cjs",
+        "fresh_current_eldora_gy_use_reset.cjs",
+        "fresh_current_eldora_matching_destruction.cjs",
+        "fresh_current_eldora_optional_set.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -2105,7 +2509,14 @@
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_talismandrake_heat_fusion_material.cjs",
+        "fresh_current_talismandrake_heat_pendulum_interruption.cjs",
+        "fresh_current_talismandrake_heat_pendulum_recycle.cjs",
+        "fresh_current_talismandrake_heat_pendulum_relation_probe.cjs",
+        "fresh_current_talismandrake_heat_pendulum_restriction.cjs",
+        "fresh_current_talismandrake_heat_pendulum_use_reset.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -2325,7 +2736,12 @@
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_eldora_gy_interruption.cjs",
+        "fresh_current_eldora_gy_opponent_reset.cjs",
+        "fresh_current_eldora_gy_use_reset.cjs",
+        "fresh_current_eldora_optional_set.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -3429,6 +3845,13 @@
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
+        "fresh_current_seraphina_halberd_battle.cjs",
+        "fresh_current_seraphina_pendulum_equip.cjs",
+        "fresh_current_seraphina_sabre_battle_replacement.cjs",
+        "fresh_current_seraphina_shield_leave_replacement.cjs",
+        "fresh_current_seraphina_suppressor_target_protection.cjs",
+        "fresh_current_talismandrake_heat_equip_atk.cjs",
+        "fresh_current_talismandrake_heat_equip_filter.cjs",
         "fresh_talismandrake_united_batch.cjs",
         "fresh_talismandrake_united_equip.cjs",
         "fresh_talismandrake_united_target_protection.cjs"
@@ -3438,13 +3861,15 @@
     {
       "passcode": 238184015,
       "name": "Gravinity Sonic Scream",
-      "script_sha256": "2e343cb26301b091e96df4c4cb623f0dc1d923d647141c546d9235da972718df",
+      "script_sha256": "25cb9d41a66c8c711e047ca8a86de674cd336e9e99fb9ea9b7c468efcd388a80",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_chain_trigger_delay_family.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -3859,10 +4284,10 @@
     {
       "passcode": 238276572,
       "name": "Sylvan Flamushroomo",
-      "script_sha256": "5b7dd9718fb216eff1a727e1bd8509ed7b6271e28ca7c35ad3464a4466da05df",
+      "script_sha256": "75f395cbcfc495c04e0c1eb8ffb8ca71fe80e60a103238d0633271f4792bbacb",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
-      "load_current": true,
+      "load_current": false,
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
@@ -3874,7 +4299,7 @@
     {
       "passcode": 238276573,
       "name": "Sylvan Goleaf",
-      "script_sha256": "53d35b26e250b87503ca80d772de1e0897d644f6bb26bebbe143a61ba4a01fbd",
+      "script_sha256": "a8988db8afc695baa48b436fc2f383e25238410859bd1edba3ef11b3cd3a50a2",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
@@ -3889,10 +4314,10 @@
     {
       "passcode": 238276574,
       "name": "Sylvan Flamioak",
-      "script_sha256": "7a986d7135ec5288cb8e130f77ff60b0c8dff8c8e47d7cc8d633564ad127e76f",
+      "script_sha256": "f09ef3ad9029009aa5edeb406055d0b5961a6880eee09bd78a8f85c6f32845c8",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
-      "load_current": true,
+      "load_current": false,
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
@@ -3904,10 +4329,10 @@
     {
       "passcode": 238276575,
       "name": "Sylvan Greetings",
-      "script_sha256": "225a33232ce60a2fb12701ae8c29583a9f62bebd85a6d2b98c51d2aa989e8c75",
+      "script_sha256": "bf0ede633f36089923643c9967ce76c084cb97c91f07d4073b974d41f7ae9bb5",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
-      "load_current": true,
+      "load_current": false,
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
@@ -4003,10 +4428,10 @@
     {
       "passcode": 238276576,
       "name": "Sylvan Intervention",
-      "script_sha256": "070c7e7889ea2e772e96f7406c9b55dfef737afc6a336d38f0376b79fd3c770d",
+      "script_sha256": "2a774206b228e5a2c48e25f05d0649a1f63c4b42e9443a5d48575d22ea70d8fd",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
-      "load_current": true,
+      "load_current": false,
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
@@ -4018,10 +4443,10 @@
     {
       "passcode": 238276577,
       "name": "Sylvan Blast",
-      "script_sha256": "2c47147121679d4ef6918f3d2fd5500bc10c6edbc73841c221ef1d662dc8f7dd",
+      "script_sha256": "ce89f6162660f88cf711c3d6cf23fc80e5dcaf159567877cd17e14fc0d828a81",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
-      "load_current": true,
+      "load_current": false,
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
@@ -4033,10 +4458,10 @@
     {
       "passcode": 238276578,
       "name": "Sylvan Duchessprout",
-      "script_sha256": "768aedd34973ad1591cf7b09b46a56e8e3899b10455c32352f8aa2cd2aa07869",
+      "script_sha256": "9be4fde2263aa3848c6f4a7b36232fff855eb25d55c1f52f0077d847d401f73f",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
-      "load_current": true,
+      "load_current": false,
       "load_status": "load_fail",
       "load_error": "[string \"procedure.lua\"]:2226: attempt to call a nil value (field 'GetMustMaterial')",
       "literal_harness_references": [
@@ -4049,10 +4474,10 @@
     {
       "passcode": 238276579,
       "name": "Gink, the Sylvan High Champion",
-      "script_sha256": "3298bd058643f756b743869994dc5504228a22901e64abfaefebadf806828193",
+      "script_sha256": "c12ec3a6e4cae81305217bdf1afefd683a9e3687a9f3666838c000a57b805203",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
-      "load_current": true,
+      "load_current": false,
       "load_status": "load_fail",
       "load_error": "[string \"procedure.lua\"]:525: attempt to call a nil value (field 'CheckXyzMaterial')",
       "literal_harness_references": [
@@ -4845,13 +5270,15 @@
     {
       "passcode": 243306841,
       "name": "Wicked Puppeteer Tragedy",
-      "script_sha256": "fb33fa8afdc467c3a3e97b6718a4dfdb4472d4b7fe2702798da5756844d3c6b5",
+      "script_sha256": "f0c26da1e2f53a5f7832a99b767313d10f0463ebd51abea3bb5a7beea714e99b",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_ritual_material_family.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -5276,13 +5703,15 @@
     {
       "passcode": 244959812,
       "name": "Divine Phoenix of Nephthys",
-      "script_sha256": "881fd425ccf1816442cb1afcffcc0b0079df254a7853cb838c23d7ecba6faad4",
+      "script_sha256": "807f66d24fffa0f2725d73bd29ece9d188d23ee04ee6cd3752f01278fd6fd6cb",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_ritual_material_context.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -5396,13 +5825,15 @@
     {
       "passcode": 245837578,
       "name": "Scarstech Beacon",
-      "script_sha256": "349e03284b16ec58eabb1f2d5ff74f76bf0e7527ed415fb6e871d979638cee41",
+      "script_sha256": "31091b426feaffa5f7678434b954ef842f8ac849a6a81b2ea23427f3eae52ee7",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_chain_trigger_delay_family.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -5546,7 +5977,9 @@
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_fruteopia_activation_group.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -5945,13 +6378,16 @@
     {
       "passcode": 248760718,
       "name": "Starry Knight Starry Queen",
-      "script_sha256": "27569ae7ce657d4ab023d987521782f713642b0d8d4c73374150388ccea435a5",
+      "script_sha256": "5fc3396f32386bd3b547642db4476788e1da36ffd48d13e76cee183bb5e2faee",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_chain_trigger_delay_family.cjs",
+        "fresh_current_starry_queen_pendulum.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -5964,6 +6400,8 @@
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
+        "fresh_current_seraphina_pendulum_equip.cjs",
+        "fresh_current_seraphina_sabre_battle_replacement.cjs",
         "fresh_talismandrake_united_arms.cjs",
         "fresh_talismandrake_united_batch.cjs",
         "fresh_talismandrake_united_battle.cjs",
@@ -6343,6 +6781,7 @@
         "fresh_current_helmsman_hand_locks.cjs",
         "fresh_current_helmsman_hand_negation.cjs",
         "fresh_current_helmsman_hand_summon.cjs",
+        "fresh_current_helmsman_hand_use_reset.cjs",
         "fresh_current_nightmare_quick.cjs",
         "fresh_current_nightmare_quick_chaininfo_comparison.cjs",
         "fresh_current_papa_search.cjs",
@@ -6677,6 +7116,11 @@
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
+        "fresh_current_seraphina_halberd_battle.cjs",
+        "fresh_current_seraphina_pendulum_equip.cjs",
+        "fresh_current_seraphina_sabre_battle_replacement.cjs",
+        "fresh_current_seraphina_shield_leave_replacement.cjs",
+        "fresh_current_seraphina_suppressor_target_protection.cjs",
         "fresh_talismandrake_united_arms.cjs",
         "fresh_talismandrake_united_batch.cjs",
         "fresh_talismandrake_united_equip_count.cjs",
@@ -6779,7 +7223,8 @@
         "fresh_current_helmsman_hand_interruption.cjs",
         "fresh_current_helmsman_hand_locks.cjs",
         "fresh_current_helmsman_hand_negation.cjs",
-        "fresh_current_helmsman_hand_summon.cjs"
+        "fresh_current_helmsman_hand_summon.cjs",
+        "fresh_current_helmsman_hand_use_reset.cjs"
       ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
@@ -6908,13 +7353,36 @@
     {
       "passcode": 256930605,
       "name": "Fruteification",
-      "script_sha256": "9c68121434c5db376cd94ace47e44d368920119a7f081d595b9988098b5d60de",
+      "script_sha256": "592c87e2fe6bf5dd8df388b4cb9b2811e3fb0793469bd47a9e114dc65ddc3f07",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
-      "load_current": true,
+      "load_current": false,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_fruteification_grave_interruption_use.cjs",
+        "fresh_current_fruteification_grave_send.cjs",
+        "fresh_current_fruteification_interruption_comparison.cjs",
+        "fresh_current_fruteification_optional_capacity_diagnostic.cjs",
+        "fresh_current_fruteification_optional_interruption_comparison.cjs",
+        "fresh_current_fruteification_optional_restrictions_comparison.cjs",
+        "fresh_current_fruteification_optional_revival_comparison.cjs",
+        "fresh_current_fruteification_optional_use_reset.cjs",
+        "fresh_current_fruteification_ritual_repaired.cjs",
+        "fresh_current_fruteopia_activation_group.cjs",
+        "fresh_current_fruteopia_atk_group.cjs",
+        "fresh_current_fruteopia_atk_interruption_group.cjs",
+        "fresh_current_fruteopia_full_ritual_spell_diagnostic.cjs",
+        "fresh_current_fruteopia_revival_capacity_comparison.cjs",
+        "fresh_current_fruteopia_revival_comparison.cjs",
+        "fresh_current_fruteopia_revival_diagnostic.cjs",
+        "fresh_current_fruteopia_revival_interruption_comparison.cjs",
+        "fresh_current_fruteopia_revival_locks_comparison.cjs",
+        "fresh_current_fruteopia_revival_use_reset_comparison.cjs",
+        "fresh_current_fruteopia_ritual_material_comparison.cjs",
+        "fresh_current_fruteopia_search.cjs",
+        "fresh_current_fruteopia_use_reset_group.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -6956,13 +7424,15 @@
     {
       "passcode": 257464336,
       "name": "Guardian of Wicked Puppeteer",
-      "script_sha256": "361662c75a5a0070dca14dc768646ee838a1805da05cf2b5fcb6cb3850ee9201",
+      "script_sha256": "b207dcc9b239d8f3c1863ba7d5e0d37cf040c42de03fc499e9f82f21c939a788",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_ritual_material_family.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -7276,13 +7746,20 @@
     {
       "passcode": 259072906,
       "name": "Glitchling Mage",
-      "script_sha256": "71b45b1a7ae737542beb3f2f0edf551f93b139fd8cc43c7b286eea817a385786",
+      "script_sha256": "6cb1249b623397899487506c1e9f6a00fd5e841de22ef987a5bf573ded2253b9",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_glitchling_mage_pendulum_both_zones.cjs",
+        "fresh_current_glitchling_mage_pendulum_extra.cjs",
+        "fresh_current_glitchling_mage_pendulum_group.cjs",
+        "fresh_current_glitchling_mage_pendulum_group_corrected.cjs",
+        "fresh_current_glitchling_mage_pendulum_turn_reset.cjs",
+        "fresh_current_ritual_material_context.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -7823,13 +8300,15 @@
     {
       "passcode": 259241946,
       "name": "Charmelia Pray",
-      "script_sha256": "755e985c8f8b461ab3309dd477f4b47cafef019958ad2686eb039e2328b56c26",
+      "script_sha256": "3724a046df71e2d04de385815b7cc916999454f972dc4d0846f251976f18640d",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_ritual_material_context.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -7859,13 +8338,15 @@
     {
       "passcode": 259247807,
       "name": "Glitchling Bitron",
-      "script_sha256": "431169cd90e823517f4cee55fe290c4ba1bb9dd592caadaa908dc3aad54cbdf4",
+      "script_sha256": "c20c63ace7ca6441a25d9238a96b1afcb2af3764c00c884cab5393434917ae84",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_ritual_material_family.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -8009,13 +8490,15 @@
     {
       "passcode": 259288669,
       "name": "Charmelia Elysia",
-      "script_sha256": "2787c5edcb5d620fdf8a23d063beba77b4876900e5408f4ab439588da45ae374",
+      "script_sha256": "e39289c0e7a774c264cde51b39944ed4da915eb8a1bfeb8a34e50882f4c4db34",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_ritual_material_context.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -8840,7 +9323,8 @@
         "fresh_current_arktos_quick.cjs",
         "fresh_current_arktos_quick_immunity.cjs",
         "fresh_current_arktos_quick_limit.cjs",
-        "fresh_current_arktos_quick_zones.cjs"
+        "fresh_current_arktos_quick_zones.cjs",
+        "fresh_current_vaylantz_pendulum_column.cjs"
       ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
@@ -8867,13 +9351,15 @@
     {
       "passcode": 259546637,
       "name": "Glitchling Corruption",
-      "script_sha256": "e822e4908a6872c865cb7c2dc64fc7a6ea264b759edfdc39e856d41f4d9d3ade",
+      "script_sha256": "55276aa3e45daabb7e10c2b109870682c2463234259c5778715293e16d1f8771",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_ritual_material_family.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -9323,13 +9809,16 @@
     {
       "passcode": 259678739,
       "name": "Glitchling Witch",
-      "script_sha256": "d7b2cbf97790e33699196363d1af1af5597f8e85a7cae0048b46bcbf6fc3b3cd",
+      "script_sha256": "4bd1b52d421d08aa846caa66ec6fe26a1811d6c52cbd8caaaaf5fff71fe24301",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_glitchling_witch_pendulum.cjs",
+        "fresh_current_ritual_material_family.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -9876,13 +10365,16 @@
     {
       "passcode": 259873115,
       "name": "Glitchling Leotron",
-      "script_sha256": "815e15c9c57dd54732a2f435a56122f1003747644325fb9f421ada3f71d6f4fe",
+      "script_sha256": "530a7477006850976f3e5aa0a7f8899a01a86b843801ed1f8fae9f78acb2870e",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_glitchling_leotron_pendulum_ritual.cjs",
+        "fresh_current_ritual_material_family.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -9909,6 +10401,7 @@
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
+        "fresh_current_vaylantz_pendulum_column.cjs",
         "fresh_omega_predicate_filters.cjs"
       ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
@@ -10161,13 +10654,15 @@
     {
       "passcode": 259943152,
       "name": "A.I.P Lab",
-      "script_sha256": "0c8d07b8734f88f06d826f84b889d656e25bd18bdf16907cefd385f7d23c6e5a",
+      "script_sha256": "cb05bc06b576488888d0df5fbfb0500f4c29d40d81c6f2388ef3c2bb2c7674ad",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_chain_trigger_delay_family.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -10199,13 +10694,15 @@
     {
       "passcode": 259961648,
       "name": "Glitchling Data-Transfert",
-      "script_sha256": "5722ac6ab25c54eda4893a755da4ae41c111f881b2d6864221ac8595a73a16d5",
+      "script_sha256": "a16891dda783a8ef5006083c3a6c684eba4b61612bd39e83e519d4282e17cf89",
       "syntax_current": true,
       "syntax_status": "syntax_pass",
       "load_current": true,
       "load_status": "first_decision_pass",
       "load_error": null,
-      "literal_harness_references": [],
+      "literal_harness_references": [
+        "fresh_current_ritual_material_family.cjs"
+      ],
       "effect_audit": "OPEN: literal references are discovery hints, not tested-effect or completion evidence"
     },
     {
@@ -10443,6 +10940,7 @@
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
+        "fresh_current_terrarumian_pendulum_interruption.cjs",
         "fresh_terrarumian_cushion_defense_attack.cjs",
         "fresh_terrarumian_cushion_destroyed.cjs",
         "fresh_terrarumian_cushion_pendulum.cjs"
@@ -10474,6 +10972,7 @@
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
+        "fresh_current_terrarumian_pendulum_interruption.cjs",
         "fresh_terrarumian_sword_fern_replacement.cjs",
         "fresh_terrarumian_sword_fern_set.cjs"
       ],
@@ -10536,6 +11035,7 @@
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
+        "fresh_current_terrarumian_pendulum_interruption.cjs",
         "fresh_terrarumian_sundew_pendulum.cjs",
         "fresh_terrarumian_sundew_quick_end.cjs",
         "fresh_terrarumian_sundew_two_count.cjs"
@@ -10552,6 +11052,7 @@
       "load_status": "first_decision_pass",
       "load_error": null,
       "literal_harness_references": [
+        "fresh_current_terrarumian_pendulum_interruption.cjs",
         "fresh_terrarumian_trumpet_battle_chain.cjs",
         "fresh_terrarumian_trumpet_hand.cjs",
         "fresh_terrarumian_trumpet_pendulum.cjs",

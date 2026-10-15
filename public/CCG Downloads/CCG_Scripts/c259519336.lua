@@ -1,9 +1,9 @@
--- Volt, the Ohmechanic Chocker
+-- Volt, the Ohmenchanic Chocker
 local s,id=GetID()
 local STRING_ID=133519336
 local COUNTER_CURRENT = 0x18f0
 local SET_OHMEN = 0x8de0
-local SET_OHMECHANIC = 0x8de1
+local SET_OHMENCHANIC = 0x8de1
 function s.initial_effect(c)
 	-- Link Summon
 	c:EnableReviveLimit()
@@ -36,7 +36,7 @@ function s.initial_effect(c)
 	e3:SetRange(LOCATION_MZONE)
 	e3:SetTargetRange(LOCATION_MZONE,0)
 	e3:SetCondition(s.effcon2)
-	e3:SetTarget(aux.TargetBoolFunction(Card.IsSetCard,SET_OHMECHANIC))
+	e3:SetTarget(aux.TargetBoolFunction(Card.IsSetCard,SET_OHMENCHANIC))
 	e3:SetValue(500)
 	c:RegisterEffect(e3)
 	-- Destroy monster (3+ counters)
@@ -52,7 +52,7 @@ function s.initial_effect(c)
 	e4:SetOperation(s.effop3)
 	c:RegisterEffect(e4)
 end
-s.listed_series={SET_OHMEN, SET_OHMECHANIC}
+s.listed_series={SET_OHMEN, SET_OHMENCHANIC}
 
 function s.lcheck(g)
 	return g:IsExists(Card.IsSetCard,1,nil,SET_OHMEN)

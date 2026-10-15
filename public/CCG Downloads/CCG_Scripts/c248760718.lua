@@ -23,6 +23,7 @@ function s.initial_effect(c)
 	e2:SetCondition(s.pencon)
 	e2:SetTarget(s.pentg)
 	e2:SetOperation(s.penop)
+	e2:SetProperty(e2:GetProperty()|EFFECT_FLAG_DELAY)
 	c:RegisterEffect(e2)
 	-- set and spsummon
 	local e3=Effect.CreateEffect(c)

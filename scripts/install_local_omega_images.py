@@ -20,7 +20,7 @@ def main():
    ref=baseline['source_revision']+':public'+image
    data=subprocess.check_output(['git','show',ref],cwd=ROOT,stderr=subprocess.PIPE);origin=ref
   with Image.open(io.BytesIO(data)) as img:
-   full=img.convert('RGB');art=crop_card_art(img);full_size=full.size
+   full=img.convert('RGB');art=crop_card_art(img,is_pendulum="Pendulum" in (card["specification"].get("cardTypes") or []));full_size=full.size
    payloads={}
    for folder,picture in [('Pics',full),('Arts',art)]:
     buf=io.BytesIO();picture.save(buf,format='JPEG',quality=92,optimize=True);payloads[folder]=buf.getvalue()

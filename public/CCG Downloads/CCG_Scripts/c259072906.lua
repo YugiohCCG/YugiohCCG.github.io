@@ -93,8 +93,8 @@ function s.pzritfilter(c,e,tp,lscale,rscale)
 		and (not c:IsLocation(LOCATION_EXTRA) or c:IsFaceup())
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true)
 end
-function s.pzmatfilter(c)
-	return c:IsFaceup() and c:IsRace(RACE_CYBERSE) and c:GetLevel()>0
+function s.pzmatfilter(c,e)
+	return c:IsFaceup() and c:IsRace(RACE_CYBERSE) and c:GetLevel()>0 and c:IsReleasableByEffect() and not c:IsImmuneToEffect(e)
 end
 function s.pzexcheck(sg,tp,mat)
 	local exct=sg:FilterCount(Card.IsLocation,nil,LOCATION_EXTRA)
@@ -123,7 +123,7 @@ function s.pzritgroup(e,tp,og)
 	else
 		rg=Duel.GetMatchingGroup(s.pzritfilter,tp,LOCATION_HAND+LOCATION_EXTRA,0,nil,e,tp,lscale,rscale)
 	end
-	local mg=Duel.GetMatchingGroup(s.pzmatfilter,tp,LOCATION_MZONE,0,nil)
+	local mg=Duel.GetMatchingGroup(s.pzmatfilter,tp,LOCATION_MZONE,0,nil,e)
 	return rg,mg
 end
 function s.pendulumchecklist()
@@ -201,7 +201,7 @@ function s.ritfilter(c,e,tp)
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true)
 end
 function s.ritmatfilter(c,rc)
-	return c:IsRace(RACE_CYBERSE) and c:GetLevel()>0 and (not c:IsLocation(LOCATION_DECK) or c:IsAbleToGrave()) and c:IsCanBeRitualMaterial(rc)
+	return c:IsRace(RACE_CYBERSE) and c:GetLevel()>0 and (not c:IsLocation(LOCATION_DECK) or c:IsAbleToGrave()) and c:IsCanBeRitualMaterial(rc) and (c:IsLocation(LOCATION_DECK) or c:IsReleasableByEffect())
 end
 function s.ritcheck(g,lv)
 	return g:GetSum(Card.GetLevel)>=lv

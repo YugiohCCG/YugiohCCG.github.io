@@ -88,7 +88,7 @@ end
 function s.ritfilter(c,e,tp,mc)
 	return c:IsSetCard(SET_NEPHTHYS) and c:IsType(TYPE_RITUAL)
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true)
-		and mc:IsCanBeRitualMaterial(c) and mc:GetLevel()>=c:GetLevel()
+		and mc:IsCanBeRitualMaterial(c) and mc:IsReleasableByEffect() and mc:GetLevel()>=c:GetLevel()
 		and Duel.GetMZoneCount(tp,Group.FromCards(mc))>0
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)

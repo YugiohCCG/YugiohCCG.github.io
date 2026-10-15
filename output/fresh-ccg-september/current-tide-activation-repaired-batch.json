@@ -1,0 +1,189 @@
+{
+  "baseline_cases": 15,
+  "groups": [
+    {
+      "name": "optional-activation",
+      "baseline_cases": 5,
+      "scope": "Full Hand Crewal Tide actual native activation/Field placement, printed optional Zombie mill yes/no and absent/Level5/wrongRace resources. No adapters; summon restriction/trigger/use/fullcard OPEN",
+      "runs": [
+        {
+          "control": null,
+          "expected_failures": [],
+          "artifact": "current-tide-optional-activation.json",
+          "artifact_sha256": "eac139dc4f568b629c56cc034fc6ce23f3f8b2dabd557da5150b8bbcd9a2f4e4"
+        },
+        {
+          "control": "no-mill",
+          "expected_failures": [
+            0
+          ],
+          "artifact": "current-tide-optional-activation-no-mill.json",
+          "artifact_sha256": "5600fa8e9a7aef334bc528d81e6ce3edd6e4a2c064453cb570d2cd8297b4730e"
+        },
+        {
+          "control": "old-source",
+          "expected_failures": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "artifact": "current-tide-optional-activation-old-source.json",
+          "artifact_sha256": "b28a08109bbd11853cccc0d3c6412fe352feb8d0f367b048fc3650cd4c6e29ba"
+        }
+      ]
+    },
+    {
+      "name": "summon-restriction",
+      "baseline_cases": 6,
+      "scope": "Actual neutral monster special summon before/after full Tide activation: prior nonCrewal suppresses optional mill only; prior Crewal allowed; chosen mill restricts later nonCrewal but permits Crewal; declined/absent mill permits later nonCrewal. No adapters; use/reset/trigger/fullcard OPEN",
+      "runs": [
+        {
+          "control": null,
+          "expected_failures": [],
+          "artifact": "current-tide-summon-restriction.json",
+          "artifact_sha256": "5e1377cb758a1f4758fa2fff73852d798050c71aa64cb9823862e29f6cb5c657"
+        },
+        {
+          "control": "no-lock",
+          "expected_failures": [
+            2
+          ],
+          "artifact": "current-tide-summon-restriction-no-lock.json",
+          "artifact_sha256": "dcc2948c8d44a82f01caf3411a5e6fd301d42b4b31a52e73a4ae1e1b37998ed4"
+        },
+        {
+          "control": "ignore-history",
+          "expected_failures": [
+            0
+          ],
+          "artifact": "current-tide-summon-restriction-ignore-history.json",
+          "artifact_sha256": "1092b96d3f26e76ed40199dad8982ed1d6fdcf1372730b3ccfb2be0052da7bb0"
+        },
+        {
+          "control": "old-source",
+          "expected_failures": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "artifact": "current-tide-summon-restriction-old-source.json",
+          "artifact_sha256": "b7c3c40ccbf86eda096884e2e0814ca3006b497d16f01ded98f451dda7603831"
+        }
+      ]
+    },
+    {
+      "name": "optional-use-reset",
+      "baseline_cases": 2,
+      "scope": "Three full Tide copies actual Field activations: chosen first mill spends named use, declined first preserves named use, second basic Field activation allowed, actual ownturn3 resets and mills. No adapters; negation/trigger/fullcard OPEN",
+      "runs": [
+        {
+          "control": null,
+          "expected_failures": [],
+          "artifact": "current-tide-optional-use-reset.json",
+          "artifact_sha256": "7864250d9605499cfb959ad3c38c4e748c173119ad143f489bd7164cc315f887"
+        },
+        {
+          "control": "no-limit",
+          "expected_failures": [
+            0
+          ],
+          "artifact": "current-tide-optional-use-reset-no-limit.json",
+          "artifact_sha256": "e0a37e47077acbe39c95c65cd8333f04544f81ce356764d765d62648428e071b"
+        },
+        {
+          "control": "no-reset",
+          "expected_failures": [
+            0,
+            1
+          ],
+          "artifact": "current-tide-optional-use-reset-no-reset.json",
+          "artifact_sha256": "12f8aa046c79abf6000611ca99c461f11412d0e225b6560a4644140d5840e520"
+        },
+        {
+          "control": "old-source",
+          "expected_failures": [
+            0,
+            1
+          ],
+          "artifact": "current-tide-optional-use-reset-old-source.json",
+          "artifact_sha256": "cf26180c63c6428a8223b46d5f549337e1b66a4c3fb3162997ec503ec4cb1b5e"
+        }
+      ]
+    },
+    {
+      "name": "optional-negation-reset",
+      "baseline_cases": 2,
+      "scope": "Actual native CounterTrapCL2 activation/effect negation of first full Tide: optional use still spent, second Field activation permitted without mill, actual ownturn3 resets optional mill; actual source destination checked. No adapters; trigger/fullcard OPEN",
+      "runs": [
+        {
+          "control": null,
+          "expected_failures": [],
+          "artifact": "current-tide-optional-negation-reset.json",
+          "artifact_sha256": "e1c46fd0f344d2e3d01549c3850a548a18ac870fbac4babebd08f162ef5e5377"
+        },
+        {
+          "control": "no-limit",
+          "expected_failures": [
+            0,
+            1
+          ],
+          "artifact": "current-tide-optional-negation-reset-no-limit.json",
+          "artifact_sha256": "86f3e3eb62ac6b59f44fa6bc7663ef59926ccc9c90763709343dd735b7249f0b"
+        },
+        {
+          "control": "no-reset",
+          "expected_failures": [
+            0,
+            1
+          ],
+          "artifact": "current-tide-optional-negation-reset-no-reset.json",
+          "artifact_sha256": "f39fd9aeaab214bef75c444539b506d3d01ad66a358bfa8f47ccabe411908faa"
+        },
+        {
+          "control": "no-response",
+          "expected_failures": [
+            0,
+            1
+          ],
+          "artifact": "current-tide-optional-negation-reset-no-response.json",
+          "artifact_sha256": "13cbfb5e999643a21f8d96ae99e389d3d3fcfc076365fc1920bb645bc640446c"
+        },
+        {
+          "control": "old-source",
+          "expected_failures": [
+            0,
+            1
+          ],
+          "artifact": "current-tide-optional-negation-reset-old-source.json",
+          "artifact_sha256": "0f57f9022982eec2abbc80e20e16f8e7791c2c8014f864d22ca5c808e1b9b75c"
+        }
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_tide_activation_repaired_batch.py": "46b377b9a93d2525b19a3ee86bd277d86c864b5620aa91a5b132b91f798305cd",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c217645912.lua": "49b7926735d72b3643bf0cf14cb87a6a400c511f836c2436756fab75e69b602d",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "output/fresh-ccg-september/tide-before-optional-activation-repair/c217645912.lua": "d746579195dd9f8525b0ac3b0f8467ecd28e32e60dd5a8bf0beebf56058b7914",
+    "scripts/fresh_current_tide_optional_activation.cjs": "3996d0e41c925a7f8d723d6caf4f6726b8f49d2198e524c749fe244d979df750",
+    "scripts/fresh_current_tide_summon_restriction.cjs": "ce151ac9c7c24060c10fa46182b04c78719b162a546a6b79a3c8b8eb540d8f9f",
+    "scripts/fresh_current_tide_optional_use_reset.cjs": "e90acbca3d251031ad64f61e2153b13caa040044f6bd8d0bc25a40f62bddd6d3",
+    "scripts/fresh_current_tide_optional_negation_reset.cjs": "6a8014260d61685cd279ed011e55dc8347f6655393c1435c81c4a252208f424e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "scope": "Full production Tide activation optional mill, actual summon history/restriction, shared chosen-use/decline/negation/reset. Second trigger/native Omega/fullcard OPEN."
+}

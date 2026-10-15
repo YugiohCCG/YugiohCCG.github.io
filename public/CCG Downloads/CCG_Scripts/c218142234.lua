@@ -74,17 +74,20 @@ function s.pcostfilter(c)
 		and (not c:IsLocation(LOCATION_EXTRA) or c:IsFaceup())
 		and c:IsAbleToDeckOrExtraAsCost()
 end
+function s.pcostcheck(g,tp)
+	return aux.dncheck(g) and Duel.GetMZoneCount(tp,g)>0
+end
 function s.pcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.pcostfilter),tp,LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_EXTRA,0,c)
-	if chk==0 then return g:CheckSubGroup(aux.dncheck,3,3) end
+	if chk==0 then return g:CheckSubGroup(s.pcostcheck,3,3,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local sg=g:SelectSubGroup(tp,aux.dncheck,false,3,3)
+	local sg=g:SelectSubGroup(tp,s.pcostcheck,false,3,3,tp)
 	Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_COST)
 end
 function s.psptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end
+	if chk==0 then return c:IsCanBeSpecialSummoned(e,0,tp,false,false) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_EQUIP,nil,1,tp,LOCATION_GRAVE)
 end

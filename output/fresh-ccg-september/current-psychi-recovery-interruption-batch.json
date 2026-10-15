@@ -1,0 +1,57 @@
+{
+  "scope": "Full Psychi actual Token777LP boost then ownturn3 direct native attack/recovery, actual CounterTrapCL2 activation/effect negation or sourceGY during damage chain. No seeded damage/adapters/proper summon history; shared recovery use/fullcard OPEN",
+  "baseline_cases": 4,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_psychi_recovery_interruption.cjs": "fbc4e144a3a5b78702b29f9fd206b864ab48d6817f50be13d3782e00e28cf72f",
+    "scripts/fresh_current_psychi_recovery_interruption_batch.py": "4684caf9eaa44b8fde05ab9ef4dd5dc90349199dab71bdd21e453f43a43af1ef",
+    "output/fresh-ccg-september/psychi-payment-candidate.lua": "2a788812c67dae4a04cfabdeb636089b6e29c002a940d1399904eec778f8c4cc",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c217332244.lua": "d75bea30aed92907d2473ebbc1d67f965aff546b4cca9d7ef72dbee9665d1122",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-psychi-recovery-interruption.json",
+      "artifact_sha256": "26df5f11550edf2641a51a977d3388bd7beceb6321c8e6452ef18e9ea68d1ce7"
+    },
+    {
+      "control": "no-recover",
+      "expected_failures": [
+        0,
+        3
+      ],
+      "artifact": "current-psychi-recovery-interruption-no-recover.json",
+      "artifact_sha256": "602704c53decd80cba0e39406a0069e1fe8c9c1baa84e1f4cf7589b5fb2474ec"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        1,
+        2,
+        3
+      ],
+      "artifact": "current-psychi-recovery-interruption-no-response.json",
+      "artifact_sha256": "3f298d56a36e4090e33a5b58fd892794cd24b6a11549d87e1d8b620092ff3b70"
+    },
+    {
+      "control": "require-source",
+      "expected_failures": [
+        3
+      ],
+      "artifact": "current-psychi-recovery-interruption-require-source.json",
+      "artifact_sha256": "39c27eff3d76fba83c2a6afe4503d9ca34381aed8bef71e20190b3a015986991"
+    }
+  ]
+}

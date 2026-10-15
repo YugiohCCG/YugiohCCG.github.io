@@ -1,0 +1,60 @@
+{
+  "baseline_cases": 12,
+  "successful_loader_modes": 2,
+  "status": "VERIFIED_PARTIAL_PRODUCTION",
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_goleaf_helper_fallback_batch.py": "b0fca5a63e3d3ccb3a39610a5424b82b3323884c2d34706aeff891d24c2e21ba",
+    "scripts/fresh_sylvan_goleaf.cjs": "48ff2bf998fd91a13ba2d51e5bb7012297dd5468f9acd86ff8db18d8855d219e",
+    "scripts/fresh_sylvan_metadata.cjs": "dc846267618ba8b46b90e3d568c9dc548c984f82e2cb125a0ee8a252d7b55987",
+    "public/CCG Downloads/CCG_Scripts/c238276573.lua": "a8988db8afc695baa48b436fc2f383e25238410859bd1edba3ef11b3cd3a50a2",
+    "public/CCG Downloads/CCG_Scripts/c238276575.lua": "bf0ede633f36089923643c9967ce76c084cb97c91f07d4073b974d41f7ae9bb5",
+    "public/CCG Downloads/CCG_Scripts/ccg_sylvan.lua": "cc7a6dd0e99f9db6be3c9124b8178aa55c05079d355bf29a9f5a3104aa9bc38b",
+    "output/fresh-ccg-september/candidate-CCG_v1.db": "79ce1e6a07f28d665940c58208c46bb96c0ea0ef68db896acc015d0cda590939",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "output/fresh-ccg-september/goleaf-before-helper-fallback/c238276573.lua": "53d35b26e250b87503ca80d772de1e0897d644f6bb26bebbe143a61ba4a01fbd",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "output/fresh-ccg-september/sylvan-family-before-helper-fallback/c238276575.lua": "225a33232ce60a2fb12701ae8c29583a9f62bebd85a6d2b98c51d2aa989e8c75",
+    "tmp/omega_scripts/c30241314.lua": "571fb70d4d3a5f634cc4440fd1d6d4c132264030fec6b24db7043b312ef6540b"
+  },
+  "runs": [
+    {
+      "missing_helper": false,
+      "old_source": false,
+      "expected_failures": [],
+      "artifact": "sylvan-goleaf.json",
+      "artifact_sha256": "cfb2f51444ba480475a352341b0ef8eaeb372cad9c2d9ff4bb47c1f268ff6462"
+    },
+    {
+      "missing_helper": true,
+      "old_source": false,
+      "expected_failures": [],
+      "artifact": "sylvan-goleaf-missing-helper.json",
+      "artifact_sha256": "cfb2f51444ba480475a352341b0ef8eaeb372cad9c2d9ff4bb47c1f268ff6462"
+    },
+    {
+      "missing_helper": true,
+      "old_source": true,
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        11
+      ],
+      "artifact": "sylvan-goleaf-missing-helper-old-source.json",
+      "artifact_sha256": "53e384a81485b0a3f3dc550d5460a4cf79e328429ebfaa07c681ba1377f65ee0"
+    }
+  ],
+  "scope": "Full Goleaf native twelve existing excavation/level/normal-special topplacement/revival/Macro/Greetings cases with ordinary helper and unavailable non-card helper; old source reproduces exact user screenshot line59nilglobal. Inline exact helper fallback preserves supplied helper. No live Omega rerun/fullcard certification."
+}

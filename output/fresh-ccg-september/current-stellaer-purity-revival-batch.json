@@ -1,0 +1,63 @@
+{
+  "scope": "Full current initial-MZONE Purity zero-material ignition actually destroys source and summons neutral GY Xyz with no revival limit; positive full five Mzones uses vacated zone; material/wrongtype/native CannotSS exclusions. Native Overlay fixture; no adapters or proper Xyz/revival-history certification. Real properly summoned targets/native Omega/fullcard open",
+  "baseline_cases": 5,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_stellaer_purity_revival.cjs": "e2fb5631c723672077e0d63f1e0682eb37954297f9225c43e9fa15cccc54da5b",
+    "scripts/fresh_current_stellaer_purity_revival_batch.py": "474ac031d9b8d05b7c96d25f31513e6f0ddb87e70bbe43d8c70dd4a7ce0a95a9",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c214226989.lua": "1267a10260c06fbaf80a81124ca6f7ae744e14522039ef40b7688ad90648cd51",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-stellaer-purity-revival.json",
+      "artifact_sha256": "d3a3e27bb0e94d0d83f24174474f62a0ead8f697a2c9b2bbffeec794fbea91cc"
+    },
+    {
+      "control": "no-destroy",
+      "expected_failures": [
+        0,
+        4
+      ],
+      "artifact": "current-stellaer-purity-revival-no-destroy.json",
+      "artifact_sha256": "7173e9eec6c9446c8f82b3cb790619c607355c3d36ce17ee30b74c32f0597629"
+    },
+    {
+      "control": "no-summon",
+      "expected_failures": [
+        0,
+        4
+      ],
+      "artifact": "current-stellaer-purity-revival-no-summon.json",
+      "artifact_sha256": "9acf4944a38c5564581316d60578fb67a7b2be298f7c61928784d8ccc79301ef"
+    },
+    {
+      "control": "ignore-xyz",
+      "expected_failures": [
+        2
+      ],
+      "artifact": "current-stellaer-purity-revival-ignore-xyz.json",
+      "artifact_sha256": "4dd9902b59c9fc07fa8b5cf7007d274f6265d1378d42311db9bfb8c7deb75d95"
+    },
+    {
+      "control": "ignore-material",
+      "expected_failures": [
+        1
+      ],
+      "artifact": "current-stellaer-purity-revival-ignore-material.json",
+      "artifact_sha256": "15f94803529e64abdff5e94f79c2141462c3e449979775e48bab673a0f4b94d0"
+    }
+  ]
+}

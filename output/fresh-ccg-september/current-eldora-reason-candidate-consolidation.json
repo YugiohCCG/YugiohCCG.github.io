@@ -1,0 +1,24 @@
+{
+  "classification": "candidate comparison, production unchanged; excluded from focused production index",
+  "groups": [
+    {
+      "path": "current-eldora-reason-candidate-comparison-batch.json",
+      "sha256": "e69ad8c3e781c68d29f888fdeaa59702419d3f5f3dc4f176ab671d531a092378",
+      "cases": 9
+    },
+    {
+      "path": "current-eldora-reason-candidate-reason-batch.json",
+      "sha256": "de7894c1701347226d5ed3615065f5d9008e90faad75e7f165d9902b05216cd6",
+      "cases": 1
+    },
+    {
+      "path": "current-eldora-reason-candidate-original-batch.json",
+      "sha256": "6e5780180473b02796671b46e60e727fd9617b9de6789b7338fe27df35ab2e78",
+      "cases": 4
+    }
+  ],
+  "baseline_cases": 14,
+  "candidate_sha256": "c2bbc342c22f0e1bdc935c24165c022646f2a1569e08f323ae6b4d4a56fda9ff",
+  "finding": "Native custom continuous effect executes selfdestruction with source Eldora reason effect. Resolution wrapper raises event and BreakEffect before deciding skip/preserve original; native negation suppresses wrapper. No API adapters. Direct native EVENT_CHAIN_SOLVING operation failed original negation; IsChainDisabled missing, old GetChainInfo disable flag incompatible with modern constants (official11 vs captured512). Final candidate avoids those APIs/overrides.",
+  "next": "Verify repeated/native event lifecycle, exact backups/source-installed correction, refresh current Eldora evidence and mandatory repair gates before indexing"
+}

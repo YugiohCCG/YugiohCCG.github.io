@@ -4,6 +4,159 @@
   "diagnostic": "current-gravinity-nebulix-addition-effect-negation-diagnostic.json",
   "diagnostic_sha256": "355e860fcf58044c6d93854a52957f9a008f8b2ab273a93dda77e025c78143b9",
   "observation": "Real CounterTrap CL2 NegateEffect(1), native CHAIN_DISABLED for CL1, no original Spell operation HINT905; full Nebulix EVENT_CHAIN_SOLVED nonetheless offers and Special Summons Deck monster. Actual activation negation/source departure/resource departure suppress addition.",
-  "next_action": "Confirm intended negated-effect behavior against printed clause; test runtime guard in memory before any production repair. Full native/Omega gaps remain.",
-  "production_script_sha256": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921"
+  "next_action": "Nebulix native recycle/draw trigger and Synchro compatibility/material/immunity tests; preserve Omega/fullcard gaps.",
+  "production_script_sha256": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921",
+  "candidate": {
+    "path": "current-gravinity-nebulix-negation-guard-candidate-batch.json",
+    "sha256": "39d9f7c712e53eb8bd4888f9e31454eafa4f02c335a3fc21eb8a0f661b1ad012",
+    "classification": "In-memory native-event tracking candidate only; excluded from production passing evidence",
+    "baseline_cases": 5,
+    "controls": 3
+  },
+  "candidate_reset_validation": {
+    "path": "current-gravinity-nebulix-guard-reset-candidate-batch.json",
+    "sha256": "53ac154728c2c54f2c0dd502c38abb420d6fc66ab5e4474c72dcad4666595f90",
+    "classification": "In-memory candidate only; production unchanged",
+    "baseline_cases": 3,
+    "controls": 4,
+    "correction": "Original Duel.RegisterEffect chain-end reset failed actual subsequent chain. Corrected candidate uses e4:SetRange(LOCATION_MZONE) and c:RegisterEffect(e4). First candidate is superseded; native history reset verified on successive live chains."
+  },
+  "attribution_diagnostic": {
+    "path": "current-gravinity-nebulix-reason-effect-diagnostic.json",
+    "sha256": "22cdcdcec9f469ca939445716bd2c94fdfd5c976831135518688f3d23935a315"
+  },
+  "resolution_append_candidate": {
+    "classification": "In-memory candidate only; production unchanged; supersedes standalone history guard direction",
+    "groups": [
+      {
+        "path": "current-gravinity-nebulix-resolution-append-candidate-batch.json",
+        "sha256": "ffb5417d0004653a616c47def3db7a18c51331f218c12df72ee903d6c18fa9be",
+        "cases": 2
+      },
+      {
+        "path": "current-gravinity-nebulix-append-interruption-candidate-batch.json",
+        "sha256": "51cb26eda54cebb619a5960443ce34375023eefc86065dec61f4148e79fbd313",
+        "cases": 5
+      },
+      {
+        "path": "current-gravinity-nebulix-append-regression-candidate-batch.json",
+        "sha256": "d27a6729347eaf153d36cd22e75db48bfd88447ba19c7669ba685664ff06aaaf",
+        "cases": 9
+      },
+      {
+        "path": "current-gravinity-nebulix-append-repeat-candidate-batch.json",
+        "sha256": "9fa7cc2a38fe84866eaf96ed58399968a65a12ffeb3cf7bc13d8c3a2e9b85c9c",
+        "cases": 3
+      }
+    ],
+    "baseline_cases": 19,
+    "behavior": "EVENT_CHAIN_SOLVING installs ChangeChainOperation wrapper; preserves original operation then calls added operation in original resolving effect context. Deck/GY reason effect attributed to Spell, actual activation/effect negation suppresses addition without history bookkeeping."
+  },
+  "multiple_copy_failure": {
+    "path": "current-gravinity-nebulix-append-copies-diagnostic.json",
+    "sha256": "52c44b2769e4e768033c6f06f0f5ba358d3d01b8cd5ff6d0f785caa66e283b20",
+    "observation": "ChangeChainOperation second wrapper replaces first; re:GetOperation() does not recover previous installed chain wrapper. Three candidate cases fail only one optional addition."
+  },
+  "shared_append_candidate": {
+    "candidate_path": "scripts/fresh_current_gravinity_nebulix_append_candidate.lua",
+    "candidate_sha256": "7b03176439555fb2bc0165feea5f560bbfe86c6d18089ac54b545bdfea663114",
+    "classification": "In-memory candidate only; production unchanged",
+    "groups": [
+      {
+        "path": "current-gravinity-nebulix-shared-append-copies-candidate-batch.json",
+        "sha256": "4708b0613974fc62b3f902d79a53b61423bdcfc56e517292e31718dc64134d7a",
+        "cases": 3
+      },
+      {
+        "path": "current-gravinity-nebulix-shared-append-regression-candidate-batch.json",
+        "sha256": "fae8ebdab5d42e7a5fc048728c01b21559a0034fa695a6a5d552b634094c9e49",
+        "cases": 9
+      },
+      {
+        "path": "current-gravinity-nebulix-shared-append-repeat-candidate-batch.json",
+        "sha256": "f6c8f74701fce312b4cfd5010341f788004e0ec44d2563d80a0b47932de898e5",
+        "cases": 3
+      },
+      {
+        "path": "current-gravinity-nebulix-shared-append-attribution-candidate-batch.json",
+        "sha256": "8b1e80168168e33200bccf014e9d6d8b2d8e8081eb242f6a1a63ac2c1d6ce6ad",
+        "cases": 2
+      },
+      {
+        "path": "current-gravinity-nebulix-shared-append-interruption-candidate-batch.json",
+        "sha256": "a652536c43c1f71065e22e1f7ceb07c52e49345b0745bcda64311d30541ddac9",
+        "cases": 5
+      },
+      {
+        "path": "current-gravinity-nebulix-shared-append-opponent-candidate-batch.json",
+        "sha256": "40926d84497c5475bad7c0d71b7e4090343dac70916a81daae6d0d50cab9faed",
+        "cases": 4
+      },
+      {
+        "path": "current-gravinity-nebulix-shared-append-capacity-candidate-batch.json",
+        "sha256": "933cf39e39db9d81ca8a21f0dddfe00f04e16206f49fadcb1cef421845f72680",
+        "cases": 6
+      },
+      {
+        "path": "current-gravinity-nebulix-shared-append-reentry-candidate-batch.json",
+        "sha256": "ee0e4e9d3c05bf0c7e47a64faa7dcfbf83bc2b162cc0677e36f55ce37b699d8e",
+        "cases": 2
+      }
+    ],
+    "mechanism": "One wrapper per chain link; captures original once, collects both controller-owned additions. GlobalEffect CHAIN_END clears pending list, wrapper clears own link before original executes.",
+    "remaining_validation": [
+      "Review final candidate diff and native initialization/lifecycle registration",
+      "Production repair with exact-byte backup and all mandatory gates",
+      "Native Synchro/recycle/Omega/full-card clauses remain separate"
+    ],
+    "baseline_cases": 34
+  },
+  "production_repair": {
+    "source_sha256": "7b03176439555fb2bc0165feea5f560bbfe86c6d18089ac54b545bdfea663114",
+    "groups": [
+      {
+        "path": "current-gravinity-nebulix-shared-append-copies-production-batch.json",
+        "sha256": "0d3f6d063bffe69bba98eeae82ef687c1e8625e226094c2ff8457a35942f3d77",
+        "cases": 3
+      },
+      {
+        "path": "current-gravinity-nebulix-shared-append-regression-production-batch.json",
+        "sha256": "5cc7fe7f92691c67c03661ca0f4e73325b8b5a8a12fbf3784f8155055bd23dde",
+        "cases": 9
+      },
+      {
+        "path": "current-gravinity-nebulix-shared-append-repeat-production-batch.json",
+        "sha256": "4cfae636a1c5e04c1dab91a96cb6a34bbd454ff3e299cfb63d39078483932ed7",
+        "cases": 3
+      },
+      {
+        "path": "current-gravinity-nebulix-shared-append-attribution-production-batch.json",
+        "sha256": "12f89927a7b2ba97c421b48b04b8114a6e4829a52120b969936f41b48f9eb2b5",
+        "cases": 2
+      },
+      {
+        "path": "current-gravinity-nebulix-shared-append-interruption-production-batch.json",
+        "sha256": "27f344f1a40a99b2724b259f4024f0d94b865ecc56f2bc804de8c76cae77bda7",
+        "cases": 5
+      },
+      {
+        "path": "current-gravinity-nebulix-shared-append-opponent-production-batch.json",
+        "sha256": "461cdaad34725113e42dadcd5e0e5235559578a97fbe71814931430b7ff204c2",
+        "cases": 4
+      },
+      {
+        "path": "current-gravinity-nebulix-shared-append-capacity-production-batch.json",
+        "sha256": "0c3b2dc0a783b7d15b5821164dcd753fc583e37208b76377f4f26d23fcf9c956",
+        "cases": 6
+      },
+      {
+        "path": "current-gravinity-nebulix-shared-append-reentry-production-batch.json",
+        "sha256": "6fde96873e08fc48fa346a72fad77195932dcc006e6751eabbc2ea53aa0447d9",
+        "cases": 2
+      }
+    ],
+    "baseline_cases": 34,
+    "backup": "nebulix-before-resolution-append-repair",
+    "classification": "Verified repair of addition clause; not full-card certification"
+  }
 }

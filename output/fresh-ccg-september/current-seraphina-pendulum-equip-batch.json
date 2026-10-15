@@ -1,0 +1,56 @@
+{
+  "status": "VERIFIED_PARTIAL_PRODUCTION",
+  "baseline_cases": 6,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_seraphina_pendulum_equip_batch.py": "8792b1598dca501409c44ca52ce5d20cb4211eeace8cec94b3f402b7deeaaa7d",
+    "scripts/fresh_current_seraphina_pendulum_equip.cjs": "cc0e2a6b449b235eea30d3e05f7c7d0f3723b9dca76993757b09ccb6bc49dfaf",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c218142234.lua": "e321e1e14d7ccff7ec4359429f01340c50a1dae58bd1e0b005b77bc039a6973c",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c238136421.lua": "088d06d4ed6c3a66534b2cb1ef4f51b1bc4df34886fecc2d7948250eb8f32132",
+    "public/CCG Downloads/CCG_Scripts/c215921734.lua": "600e766d4f89f9482b83d18fd85af413f1f312802a52e605fe51dbb38e4876e6",
+    "public/CCG Downloads/CCG_Scripts/c248788543.lua": "93a3cdfab155ea8be08250b469172831ef66c0883219e03c7185d41763faf279",
+    "public/CCG Downloads/CCG_Scripts/c255832330.lua": "963629994577e7d175d2e696dab4fb3bbe3d2b753d4b47a63fcb5c806eedd329"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-seraphina-pendulum-equip.json",
+      "artifact_sha256": "ed5d2b7ecedd172f08a30c1abbe23a0e0717ec9ced83994f4ec674e98b7ce498"
+    },
+    {
+      "control": "no-equip",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "artifact": "current-seraphina-pendulum-equip-no-equip.json",
+      "artifact_sha256": "7d01fba537edf9c612afe3e4d35b68a199f299ec5bed09576bcca64761202495"
+    },
+    {
+      "control": "no-equip-effects",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "artifact": "current-seraphina-pendulum-equip-no-equip-effects.json",
+      "artifact_sha256": "3feffdd374434cf4f5c5c2ab9e2a0420e56b6c35155f0bf09610adf36d6c0591"
+    }
+  ],
+  "scope": "Full repaired Seraphina Pendulum summon/cost plus full production four ArmsGY scripts; actual optional equip, native relationship/SpellEquip type/ATKDEF/Pierce/target-protection registration observer. Decline and wrong-code exclude equip. Printed-category neutral Fusion history; no adapters; battle/replacement/protection interactions/Omega/fullcard OPEN"
+}

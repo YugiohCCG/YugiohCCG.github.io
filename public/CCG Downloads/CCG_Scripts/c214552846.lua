@@ -3,6 +3,7 @@ local s,id=GetID()
 local STRING_ID=132552846
 local CARD_DYSMANDR=223512283
 local CARD_ELDORA_DEPRAEVITY=229786055
+s.negated={}
 function s.initial_effect(c)
 	aux.AddCodeList(c,223512283,229786055)
 	--Activate
@@ -14,13 +15,17 @@ function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
 	e1:SetCategory(CATEGORY_DISABLE+CATEGORY_DESTROY)
-	e1:SetType(EFFECT_TYPE_QUICK_O)
-	e1:SetCode(EVENT_CHAINING)
+	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+	e1:SetCode(EVENT_CHAIN_SOLVING)
 	e1:SetRange(LOCATION_FZONE)
 	e1:SetCondition(s.negcon)
-	e1:SetTarget(s.negtg)
 	e1:SetOperation(s.negop)
 	c:RegisterEffect(e1)
+ local resolve=e1:Clone()
+ resolve:SetCode(EVENT_CUSTOM+id)
+ resolve:SetCondition(function(e,tp,eg) return eg:IsContains(e:GetHandler()) end)
+ resolve:SetOperation(s.resolve_negop)
+ c:RegisterEffect(resolve)
 	--If destroyed and sent to the GY
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,1))
@@ -61,10 +66,26 @@ function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_DISABLE,eg,1,0,0)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	if c:IsRelateToEffect(e) and Duel.Destroy(c,REASON_EFFECT)>0 then
-		Duel.NegateEffect(ev)
-	end
+ local original=re:GetOperation()
+ Duel.ChangeChainOperation(ev,function(ce,cp,cg,cep,cev,cre,cr,crp)
+  local c=e:GetHandler()
+  s.negated[ev]=nil
+  Duel.RaiseEvent(c,EVENT_CUSTOM+id,e,REASON_EFFECT,tp,tp,ev)
+  Duel.BreakEffect()
+  local negated=s.negated[ev]
+  s.negated[ev]=nil
+  if not negated and original then original(ce,cp,cg,cep,cev,cre,cr,crp) end
+ end)
+end
+function s.resolve_negop(e,tp,eg,ep,ev,re,r,rp)
+ local c=e:GetHandler()
+ if c:IsFaceup() and c:IsLocation(LOCATION_FZONE) and not c:IsDisabled()
+  and c:IsDestructable(e) and s.willdestroy(ev,tp)
+  and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0))
+  and Duel.Destroy(c,REASON_EFFECT)>0 then
+  s.negated[ev]=true
+  Duel.NegateEffect(ev)
+ end
 end
 function s.setcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()

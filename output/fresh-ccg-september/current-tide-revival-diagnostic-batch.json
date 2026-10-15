@@ -1,0 +1,123 @@
+{
+  "status": "COMPATIBILITY_DIAGNOSTIC_ONLY",
+  "adapted_baseline_cases": 14,
+  "native_unadapted_cases": 8,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_tide_revival_diagnostic_batch.py": "e52b59f63d2ca12758d9ac71148e908a99645fb42c9cbe7788565f2b5b53b881",
+    "scripts/fresh_current_tide_zone_revival.cjs": "78ca5365833c0208596385ffb98a3280853452afe5003451eb573dab23e53b3a",
+    "scripts/fresh_current_tide_revival_interruption.cjs": "09d20d2babd425212c0bf4afbca8977314f0ada42bb6dc25919ee4d0b538ccbc",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c217645912.lua": "49b7926735d72b3643bf0cf14cb87a6a400c511f836c2436756fab75e69b602d",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "adapter_reference": {
+    "url": "https://raw.githubusercontent.com/Fluorohydride/ygopro-core/master/libcard.cpp",
+    "function": "scriptlib::card_is_faceup_ex",
+    "lines": [
+      2644,
+      2649
+    ],
+    "definition": "faceup OR location Hand/GY/Deck"
+  },
+  "runs": [
+    {
+      "group": "zone-revival",
+      "compatibility_adapter": false,
+      "control": null,
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "artifact": "current-tide-zone-revival.json",
+      "artifact_sha256": "48b23fe135eada30846d22ee2b855289d57ccbaeeb8a4173f169fb3b2b13bcc9"
+    },
+    {
+      "group": "zone-revival",
+      "compatibility_adapter": true,
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-tide-zone-revival-faceup-compat.json",
+      "artifact_sha256": "8ee2f31e05dfa65d205f676d3f6e99c05311569386f9f35a957a18611ea09c41"
+    },
+    {
+      "group": "zone-revival",
+      "compatibility_adapter": true,
+      "control": "no-summon",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-tide-zone-revival-faceup-compat-no-summon.json",
+      "artifact_sha256": "a109ed08734872f860a68bbe80c638f5428b1ce64dd06b44046ab0c5c6f1a588"
+    },
+    {
+      "group": "zone-revival",
+      "compatibility_adapter": true,
+      "control": "ignore-set",
+      "expected_failures": [
+        4
+      ],
+      "artifact": "current-tide-zone-revival-faceup-compat-ignore-set.json",
+      "artifact_sha256": "743870a0aabc48b495d4a5ca35c818d2ab8865f30fa964e2d28d6a75de54d518"
+    },
+    {
+      "group": "zone-revival",
+      "compatibility_adapter": true,
+      "control": "ignore-origin",
+      "expected_failures": [
+        6
+      ],
+      "artifact": "current-tide-zone-revival-faceup-compat-ignore-origin.json",
+      "artifact_sha256": "000562e349dbf0e0feaf80c7e532f025c8b09ce67ff97fcc58c44d7d8cc4c006"
+    },
+    {
+      "group": "revival-interruption",
+      "compatibility_adapter": true,
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-tide-revival-interruption-faceup-compat.json",
+      "artifact_sha256": "224fa61873be13b76bef80497c4ed4d59c776b308220d3812319f98f91fe1f15"
+    },
+    {
+      "group": "revival-interruption",
+      "compatibility_adapter": true,
+      "control": "no-summon",
+      "expected_failures": [
+        0,
+        5
+      ],
+      "artifact": "current-tide-revival-interruption-faceup-compat-no-summon.json",
+      "artifact_sha256": "8eac7a3bc5f87368104aadacd98a62d47e6062ec586c8f505f94f34eda0dd9a3"
+    },
+    {
+      "group": "revival-interruption",
+      "compatibility_adapter": true,
+      "control": "no-response",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "artifact": "current-tide-revival-interruption-faceup-compat-no-response.json",
+      "artifact_sha256": "35f197daebce55559fef22be2ebb1a742695f3852c4c196dcc43651767752b6a"
+    }
+  ],
+  "scope": "No source change. Public native engine missing original-engine API IsFaceupEx. Adapter diagnostic verifies native original SZONE summon, choice/decline/qualification/capacity, negation/source banishment/late fill and late resource banishment. Not adapter-free or native Omega/fullcard certification. FacedownRemoved exclusion is jointly protected; allow-down mutation was nondiscriminating and excluded control count."
+}

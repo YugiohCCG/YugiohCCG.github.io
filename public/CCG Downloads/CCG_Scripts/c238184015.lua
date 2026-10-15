@@ -21,6 +21,7 @@ function s.initial_effect(c)
 	e2:SetCost(aux.bfgcost)
 	e2:SetTarget(s.copytg)
 	e2:SetOperation(s.copyop)
+	e2:SetProperty(e2:GetProperty()|EFFECT_FLAG_DELAY)
 	c:RegisterEffect(e2)
 end
 function s.gravfilter(c) return c:IsFaceup() and c:IsSetCard(SET_GRAVINITY) and (c:GetOriginalType()&TYPE_MONSTER)~=0 end

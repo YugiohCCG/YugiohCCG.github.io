@@ -1,0 +1,74 @@
+{
+  "scope": "Full Psychi actual native source banish from field versus GY/facedown; real banished target return/reveal, own faceup different-name To Proto monster qualification. Initial MZONE not proper summon history; interruptions/shared use/fullcard OPEN",
+  "baseline_cases": 9,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_psychi_banished_retrieval.cjs": "f35f3940ca62786a522c1c59d3c4ba921cd3d6ca2f493f633785b76763bece06",
+    "scripts/fresh_current_psychi_banished_retrieval_batch.py": "7f8d4b45f8c4325798408682b0bd98e6a2cf5b32e09a4fa6d6c7576000132821",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c217332244.lua": "d75bea30aed92907d2473ebbc1d67f965aff546b4cca9d7ef72dbee9665d1122",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-psychi-banished-retrieval.json",
+      "artifact_sha256": "8ce12d799c3fc4c353505aa7fa722dd974714f772deab2e1655d35419b102b12"
+    },
+    {
+      "control": "no-return",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-psychi-banished-retrieval-no-return.json",
+      "artifact_sha256": "677a9e52141a570c8400d78c0cc7c17c71df49945b88ba6545335e54f2675d53"
+    },
+    {
+      "control": "allow-wrong",
+      "expected_failures": [
+        1
+      ],
+      "artifact": "current-psychi-banished-retrieval-allow-wrong.json",
+      "artifact_sha256": "c703826884090db7c4044cb3d7458c0b6b545c0fbcb5c1d53c96284ee324a408"
+    },
+    {
+      "control": "allow-same",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        8
+      ],
+      "artifact": "current-psychi-banished-retrieval-allow-same.json",
+      "artifact_sha256": "a13a4db771be550dd495fabc59063b15781952bcffb271283eef69b9687e92d5"
+    },
+    {
+      "control": "allow-spell",
+      "expected_failures": [
+        8
+      ],
+      "artifact": "current-psychi-banished-retrieval-allow-spell.json",
+      "artifact_sha256": "b43075ea2ea5f0cfb0e9e7988a17dc9f3f4160b8cfe4a3f9e083297198debd9f"
+    },
+    {
+      "control": "no-reveal",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-psychi-banished-retrieval-no-reveal.json",
+      "artifact_sha256": "e01e9bdec3ad983911dae15efb5a2c41970f68f7d2f112f15ac8529d305c1e09"
+    }
+  ]
+}

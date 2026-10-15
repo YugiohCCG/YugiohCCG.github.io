@@ -3,25 +3,25 @@
   "generator_sha256": "5ae9da279550a06b5b72488183f34aa9fec7d8d37d9a5524263e47bdb0748491",
   "inputs_sha256": {
     "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\baseline-remote.json": "fdeeeb95ee58576324d348ef962438dda7e35c6ea29f51b474a2a39a2b8601f9",
-    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "27c0ae27c69ff5c3ae0ac849b2dabf6ea88396008523532391c0fb421ade6881",
-    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-roster-syntax.json": "b7477f55889f4c10f23d1633f445287eb683e9ba3c332cd7cad36f9ce2da4817",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "09f83a5a740b066a3fcb7f5f996ee5ff642d7d91ab500bf03660ac2f8ca790b0",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-roster-syntax.json": "fd8512094b00ff4852741ac0392b51d906f1a6fc93c4b5ff1b2584ca37bf37b8",
     "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-roster-engine-load.json": "d64efba34922f53f073c4772d0d9526018c4d0a725b6d65a6cab6d1f000706dd",
-    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\candidate-CCG_v1.db": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\candidate-CCG_v1.db": "79ce1e6a07f28d665940c58208c46bb96c0ea0ef68db896acc015d0cda590939",
     "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Database\\CCG_v1.db": "87903737793cf02937d270a47db86d5e55b3dcb278c38e02c2c62baf6e446ece",
-    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "5d139eee350f2f1c1625fea484b66ecd2090bcc2afe9031135d2aa407c9e5fad",
-    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-spec-engine-load-selected.json": "250699651d4e69d619010508fa8afa22fd8c28fbfeff510e4ddf066cdcded548"
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "a1ad932e0611109c95a863566b91b7e58f406827f2e75aae1691853dd6ec9357",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-spec-engine-load-selected.json": "b28731a6f4e9a19416d1659db690ffd99479b34baf44238b8d447d214b1f2554"
   },
   "summary": {
     "pinned_cards": 711,
     "current_cards": 711,
     "new_passcodes": [],
     "missing_current": 0,
-    "changed_printed_effects": 12,
-    "changed_specifications": 25,
+    "changed_printed_effects": 13,
+    "changed_specifications": 141,
     "database_text_mismatches": {
-      "candidate": 12,
-      "public": 91,
-      "installed": 0
+      "candidate": 13,
+      "public": 92,
+      "installed": 1
     },
     "database_metadata_mismatches": {
       "candidate": 14,
@@ -33,17 +33,17 @@
       "installed": 0
     },
     "database_text_formatting_only": {
-      "candidate": 12,
-      "public": 0,
-      "installed": 12
+      "candidate": 2,
+      "public": 2,
+      "installed": 2
     },
     "source_install_mismatches": 0,
     "syntax_stale": 0,
-    "load_stale": 2,
+    "load_stale": 9,
     "current_spec_initialization_rechecks": {
-      "total": 90,
-      "passed": 63,
-      "compatibility_failures": 27
+      "total": 113,
+      "passed": 85,
+      "compatibility_failures": 28
     }
   },
   "cards": [
@@ -441,7 +441,12 @@
       "passcode": 212055290,
       "name": "Advent of Cosmic Beings",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Galaxy",
+          "current": null
+        }
+      },
       "script_sha256": "8d409a5f2f55e9ca52cd4fa3338cb8809cba27b793f69f2978489c357bf31ba4",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -592,7 +597,7 @@
       "name": "Gravinity Nebulix",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921",
+      "script_sha256": "7b03176439555fb2bc0165feea5f560bbfe86c6d18089ac54b545bdfea663114",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -621,7 +626,12 @@
       "passcode": 212684822,
       "name": "Ektelestis gia Taxis",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "To Proto"
+        }
+      },
       "script_sha256": "6581cde011e9fd959d1a2e6d883990d8208af066e1134ecaf8f80844ab261d01",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -1056,7 +1066,7 @@
       "name": "Eldora, the Intergalactic Empire",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "7a37e100146c21e0fb35034edcf559abe267782c3b913b42f796fbec408bd5f2",
+      "script_sha256": "c2bbc342c22f0e1bdc935c24165c022646f2a1569e08f323ae6b4d4a56fda9ff",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -1536,7 +1546,7 @@
       "name": "Aquamarine Actinia",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "dc355e0348b247cdb9467ac7126a75d1e82820aa1bd3ac8c11619257c2012868",
+      "script_sha256": "b430ed9372b2841f4c80a91f0d5f58a576165b94bd4cb2d16c307837d196f296",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -1806,7 +1816,7 @@
       "name": "To Proto Psychi",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "495f8ec124b10da53d9e6a426350a6563dd193b992d2dec85209f4424e4d01bc",
+      "script_sha256": "d75bea30aed92907d2473ebbc1d67f965aff546b4cca9d7ef72dbee9665d1122",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -1836,7 +1846,7 @@
       "name": "Skewy! Pawty Tyme",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "6849568af82320e61335046c874ba4d2d9d839240be6f82f55e7b4cfb450bd9f",
+      "script_sha256": "10da3886e2dacb7a6f286fcb22ce28b260a1f80badbd5ce00931551582a24ba4",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -1866,7 +1876,7 @@
       "name": "Crewal Tide",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "d746579195dd9f8525b0ac3b0f8467ecd28e32e60dd5a8bf0beebf56058b7914",
+      "script_sha256": "49b7926735d72b3643bf0cf14cb87a6a400c511f836c2436756fab75e69b602d",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -1970,7 +1980,7 @@
       "name": "Maiden of Talismandrakes Seraphina",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "56a270f23f366cbe0eac6431e88e531694be275cf6d75c60b53667e1062c4cb3",
+      "script_sha256": "e321e1e14d7ccff7ec4359429f01340c50a1dae58bd1e0b005b77bc039a6973c",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -2643,7 +2653,12 @@
       "passcode": 220856437,
       "name": "Bauy Magician",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Bauy",
+          "current": "Bau"
+        }
+      },
       "script_sha256": "4c969b0edf67a4090dc6388751f2949da48c3c25ecc88198534437c04a2fee15",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -2733,7 +2748,12 @@
       "passcode": 221321849,
       "name": "The Condescender",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Condescender",
+          "current": null
+        }
+      },
       "script_sha256": "8ae78bc5ac379c8edc84c6486aa339052071c74ba1073242fa2313432c284e77",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -2906,7 +2926,7 @@
       "name": "Stained Sovereign Silas",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "4ef7df5bbb8c6a236ea19bc7798fa15ca85eca1334a8a5198be0dad4b5c1ef7c",
+      "script_sha256": "8a83ccaee16b9752d5000be38828da95be9a13e2970bda47eacfbfbe1fa1d2f4",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -3535,7 +3555,12 @@
       "passcode": 224274662,
       "name": "Armored Nova Mecha-Scaled Xyrion",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Armored Nova",
+          "current": null
+        }
+      },
       "script_sha256": "d08ac29e330e8f66c29516a1e8b586c4be58b44db90b79a8c263f6923a55fa42",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -3595,7 +3620,12 @@
       "passcode": 224751741,
       "name": "Fall of Azrynior",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "To Proto"
+        }
+      },
       "script_sha256": "85e543f8c13bd8f6eb025d95329724769d675941be63f3b8c038b01c4b5fe44f",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -6039,7 +6069,12 @@
       "passcode": 234818744,
       "name": "Primite Dragon Citrine",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Primite"
+        }
+      },
       "script_sha256": "7fb934a63ec43bf770bc6ba5956f1f3acf1fea0018fc90255f20f2bb5f33f761",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -6489,7 +6524,12 @@
       "passcode": 236239443,
       "name": "Restoration of Azrynior",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "To Proto"
+        }
+      },
       "script_sha256": "2297f9ba9028b89ef7a4eb9ac1b3bce3827367a2726e0a44ef76c4962bfcfb93",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -6579,7 +6619,12 @@
       "passcode": 236551669,
       "name": "Pride of the Stellaers",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Stellaer"
+        }
+      },
       "script_sha256": "16d1ed237cc29fa2054a5596c1c4a0b6420ec22ad14c58f0b7f0d68d0ddb23ad",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7074,7 +7119,7 @@
       "name": "Gravinity Sonic Scream",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "2e343cb26301b091e96df4c4cb623f0dc1d923d647141c546d9235da972718df",
+      "script_sha256": "25cb9d41a66c8c711e047ca8a86de674cd336e9e99fb9ea9b7c468efcd388a80",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -7163,7 +7208,12 @@
       "passcode": 238272434,
       "name": "Terror Skull from Underroot",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "rroot"
+        }
+      },
       "script_sha256": "632b065e2bf2fcbf8369f0977f78738b245738ee57b1bffb35fac033814f8be0",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7200,7 +7250,12 @@
       "passcode": 238272435,
       "name": "Blossom Skull from Underroot",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "rroot"
+        }
+      },
       "script_sha256": "1dfba5fd7ee88f8bf20abdfc0f52a8daaa6b4348190cedd043f8baf42908c8ac",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7237,7 +7292,12 @@
       "passcode": 238272436,
       "name": "Nether Skull from Underroot",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "rroot"
+        }
+      },
       "script_sha256": "64d81e9caa5befbf3191bbecfdcf05b61c4454941a264af332d2f08b1108b94e",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7274,7 +7334,12 @@
       "passcode": 238272437,
       "name": "Over Skull from Underroot",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "rroot"
+        }
+      },
       "script_sha256": "e90ae95241eed370f511a644f31a2ad20eed26a3d4eb7f0aa62214cba735b632",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7311,7 +7376,12 @@
       "passcode": 238272438,
       "name": "Terror Blossom from Underroot",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "rroot"
+        }
+      },
       "script_sha256": "83cd1bec333df67d2a08613cdbcb87a63bbfdab8b34770f676d9b1f7da16610c",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7348,7 +7418,12 @@
       "passcode": 238272439,
       "name": "Terror Blossom from Overroot",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "rroot"
+        }
+      },
       "script_sha256": "9fa6e43ffdf3d18f20a6676b79e096bc54b4bbe5b218b22d950da5b74680821f",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7385,7 +7460,12 @@
       "passcode": 238272440,
       "name": "Terror Blossom from Afterroot",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "rroot"
+        }
+      },
       "script_sha256": "6306e60bd62633121dbbb19cf33f4ae038ce4b633959024f40f4bedf9dd34e67",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7422,7 +7502,12 @@
       "passcode": 238273768,
       "name": "Symphonic Warrior Speeaker",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Existing",
+          "current": "Symphonic Warrior"
+        }
+      },
       "script_sha256": "0b9bcfd0614b183308ecbc120d44fde03b23352ac6855a9a2d64e9b62e85b573",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7442,9 +7527,9 @@
         "installed": null
       },
       "database_text_formatting_only": {
-        "candidate": true,
+        "candidate": false,
         "public": false,
-        "installed": true
+        "installed": false
       },
       "database_text_differences": {
         "public": [
@@ -7459,7 +7544,12 @@
       "passcode": 238273769,
       "name": "Symphonic Warrior DDJ",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Existing",
+          "current": "Symphonic Warrior"
+        }
+      },
       "script_sha256": "66d74feea6db63482cf659788f8d6d18b200e661cf74fdfb98f5d189d2a7640d",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7479,9 +7569,9 @@
         "installed": null
       },
       "database_text_formatting_only": {
-        "candidate": true,
+        "candidate": false,
         "public": false,
-        "installed": true
+        "installed": false
       },
       "database_text_differences": {
         "public": [
@@ -7496,7 +7586,12 @@
       "passcode": 238273770,
       "name": "Symphonic Warrior Disccs",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Existing",
+          "current": "Symphonic Warrior"
+        }
+      },
       "script_sha256": "7a7f0eefd77ec74e110a2d8640752fd8d6685d683236539d36e7e28fe7613ccd",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7516,9 +7611,9 @@
         "installed": null
       },
       "database_text_formatting_only": {
-        "candidate": true,
+        "candidate": false,
         "public": false,
-        "installed": true
+        "installed": false
       },
       "database_text_differences": {
         "public": [
@@ -7533,7 +7628,12 @@
       "passcode": 238273771,
       "name": "Symphonic Warrior Mettronomo",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Existing",
+          "current": "Symphonic Warrior"
+        }
+      },
       "script_sha256": "37489f7aad8e30c74062700182a00df03ead5143fbc1c797e7343d6ffed54c96",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7570,7 +7670,12 @@
       "passcode": 238273772,
       "name": "Symphonic Warrior Mega Staar",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Existing",
+          "current": "Symphonic Warrior"
+        }
+      },
       "script_sha256": "dd3c2101699086b4d3b578ec7ab7439899393660a9392fa6f703a1c6a5e7c33d",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7590,9 +7695,9 @@
         "installed": null
       },
       "database_text_formatting_only": {
-        "candidate": true,
+        "candidate": false,
         "public": false,
-        "installed": true
+        "installed": false
       },
       "database_text_differences": {
         "public": [
@@ -7607,7 +7712,12 @@
       "passcode": 238274857,
       "name": "Vylon Chevron",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Vylon"
+        }
+      },
       "script_sha256": "21ce1ecea50937190b50dc00de42c769c55c00a3a031879b2bf8032b044c6df0",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7644,7 +7754,12 @@
       "passcode": 238274858,
       "name": "Vylon Glome",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Vylon"
+        }
+      },
       "script_sha256": "3949cee7f77ac1f7cdec5c0d57502653b59eb4b41fd735d93da7ccd1e8325441",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7681,7 +7796,12 @@
       "passcode": 238274859,
       "name": "Vylon Volt",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Vylon"
+        }
+      },
       "script_sha256": "17c459b52332097093cc840817a459e628bf6ca8a5d3c38d2e74c05909cfe8c9",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7718,7 +7838,12 @@
       "passcode": 238274860,
       "name": "Vylon Torus",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Vylon"
+        }
+      },
       "script_sha256": "10cac9392c349bacc718e8062dba459774997e551ba8af2d5bee71575a7b81b5",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7755,7 +7880,12 @@
       "passcode": 238274861,
       "name": "Vylon's Aid",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Vylon"
+        }
+      },
       "script_sha256": "b971f7f1d4de1476661a9d29d3c716421b6edc35aee5fa7b8083446b3738392b",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7792,7 +7922,12 @@
       "passcode": 238274862,
       "name": "Vylon Observatory",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Vylon"
+        }
+      },
       "script_sha256": "9c2706a5b1031c834896daf12bde88b672e01dd05f6b1660192da40a9ece7663",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7829,7 +7964,12 @@
       "passcode": 238274863,
       "name": "Vylon Eta",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Vylon"
+        }
+      },
       "script_sha256": "919d8a3fcd3266a5e4f2cf36d8dac847257ff7bfbb1c0bbcf20b6382f9fe6204",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7866,7 +8006,12 @@
       "passcode": 238276248,
       "name": "Scion of Nephthys",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Existing",
+          "current": "Nephthys"
+        }
+      },
       "script_sha256": "72ec5325bdc16a02159318779fd870ad258a6ffdc593dba761c5d69a90b35221",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7903,7 +8048,12 @@
       "passcode": 238276249,
       "name": "Apostle of Nephthys",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Existing",
+          "current": "Nephthys"
+        }
+      },
       "script_sha256": "d85aee26423ff1c899f353a8a171486bf6826b731d822f09d1f53fd5a63efd79",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7940,7 +8090,12 @@
       "passcode": 238276250,
       "name": "Incarnation of Nephthys",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Existing",
+          "current": "Nephthys"
+        }
+      },
       "script_sha256": "92a69e858332aadc61830814a52349687023ef24b3cdaa3cbee684e4954c5473",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -7977,7 +8132,12 @@
       "passcode": 238276251,
       "name": "Brazier of Nephthys",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Existing",
+          "current": "Nephthys"
+        }
+      },
       "script_sha256": "ceb4e5ef8b616320b6b3916c5cf7e8bf4971602c7f09f290b1b4b532d0f8443e",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -8014,7 +8174,12 @@
       "passcode": 238276252,
       "name": "Prayer Of Nephthys",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Existing",
+          "current": "Nephthys"
+        }
+      },
       "script_sha256": "14d226722745ed3b49c0d86bdd5ff960e4d6622040d41420c0bb1c7e3e5a7516",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -8051,11 +8216,16 @@
       "passcode": 238276572,
       "name": "Sylvan Flamushroomo",
       "current_present": true,
-      "specification_delta": {},
-      "script_sha256": "5b7dd9718fb216eff1a727e1bd8509ed7b6271e28ca7c35ad3464a4466da05df",
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Sylvan"
+        }
+      },
+      "script_sha256": "75f395cbcfc495c04e0c1eb8ffb8ca71fe80e60a103238d0633271f4792bbacb",
       "installed_script_matches": true,
       "syntax_current": true,
-      "load_current": true,
+      "load_current": false,
       "database_text_matches_current": {
         "candidate": true,
         "public": false,
@@ -8088,8 +8258,13 @@
       "passcode": 238276573,
       "name": "Sylvan Goleaf",
       "current_present": true,
-      "specification_delta": {},
-      "script_sha256": "53d35b26e250b87503ca80d772de1e0897d644f6bb26bebbe143a61ba4a01fbd",
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Sylvan"
+        }
+      },
+      "script_sha256": "a8988db8afc695baa48b436fc2f383e25238410859bd1edba3ef11b3cd3a50a2",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -8125,11 +8300,16 @@
       "passcode": 238276574,
       "name": "Sylvan Flamioak",
       "current_present": true,
-      "specification_delta": {},
-      "script_sha256": "7a986d7135ec5288cb8e130f77ff60b0c8dff8c8e47d7cc8d633564ad127e76f",
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Sylvan"
+        }
+      },
+      "script_sha256": "f09ef3ad9029009aa5edeb406055d0b5961a6880eee09bd78a8f85c6f32845c8",
       "installed_script_matches": true,
       "syntax_current": true,
-      "load_current": true,
+      "load_current": false,
       "database_text_matches_current": {
         "candidate": true,
         "public": false,
@@ -8162,11 +8342,16 @@
       "passcode": 238276575,
       "name": "Sylvan Greetings",
       "current_present": true,
-      "specification_delta": {},
-      "script_sha256": "225a33232ce60a2fb12701ae8c29583a9f62bebd85a6d2b98c51d2aa989e8c75",
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Sylvan"
+        }
+      },
+      "script_sha256": "bf0ede633f36089923643c9967ce76c084cb97c91f07d4073b974d41f7ae9bb5",
       "installed_script_matches": true,
       "syntax_current": true,
-      "load_current": true,
+      "load_current": false,
       "database_text_matches_current": {
         "candidate": true,
         "public": false,
@@ -8199,11 +8384,16 @@
       "passcode": 238276576,
       "name": "Sylvan Intervention",
       "current_present": true,
-      "specification_delta": {},
-      "script_sha256": "070c7e7889ea2e772e96f7406c9b55dfef737afc6a336d38f0376b79fd3c770d",
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Sylvan"
+        }
+      },
+      "script_sha256": "2a774206b228e5a2c48e25f05d0649a1f63c4b42e9443a5d48575d22ea70d8fd",
       "installed_script_matches": true,
       "syntax_current": true,
-      "load_current": true,
+      "load_current": false,
       "database_text_matches_current": {
         "candidate": true,
         "public": false,
@@ -8236,11 +8426,16 @@
       "passcode": 238276577,
       "name": "Sylvan Blast",
       "current_present": true,
-      "specification_delta": {},
-      "script_sha256": "2c47147121679d4ef6918f3d2fd5500bc10c6edbc73841c221ef1d662dc8f7dd",
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Sylvan"
+        }
+      },
+      "script_sha256": "ce89f6162660f88cf711c3d6cf23fc80e5dcaf159567877cd17e14fc0d828a81",
       "installed_script_matches": true,
       "syntax_current": true,
-      "load_current": true,
+      "load_current": false,
       "database_text_matches_current": {
         "candidate": true,
         "public": false,
@@ -8273,11 +8468,16 @@
       "passcode": 238276578,
       "name": "Sylvan Duchessprout",
       "current_present": true,
-      "specification_delta": {},
-      "script_sha256": "768aedd34973ad1591cf7b09b46a56e8e3899b10455c32352f8aa2cd2aa07869",
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Sylvan"
+        }
+      },
+      "script_sha256": "9be4fde2263aa3848c6f4a7b36232fff855eb25d55c1f52f0077d847d401f73f",
       "installed_script_matches": true,
       "syntax_current": true,
-      "load_current": true,
+      "load_current": false,
       "database_text_matches_current": {
         "candidate": true,
         "public": false,
@@ -8310,11 +8510,16 @@
       "passcode": 238276579,
       "name": "Gink, the Sylvan High Champion",
       "current_present": true,
-      "specification_delta": {},
-      "script_sha256": "3298bd058643f756b743869994dc5504228a22901e64abfaefebadf806828193",
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Sylvan"
+        }
+      },
+      "script_sha256": "c12ec3a6e4cae81305217bdf1afefd683a9e3687a9f3666838c000a57b805203",
       "installed_script_matches": true,
       "syntax_current": true,
-      "load_current": true,
+      "load_current": false,
       "database_text_matches_current": {
         "candidate": true,
         "public": false,
@@ -8347,7 +8552,12 @@
       "passcode": 238276580,
       "name": "Azale, the Sylvan High Sovereign",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Sylvan"
+        }
+      },
       "script_sha256": "370d108cd09406e5c950aac82797ef85befe82bf64cf011d31822baff1591e40",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -8624,7 +8834,12 @@
       "passcode": 239245471,
       "name": "Birth of Azrynior",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "To Proto"
+        }
+      },
       "script_sha256": "f40f2550809cdb331126de046fc24c11bbd5296cd37c9e0d9dac07474421064e",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -8714,7 +8929,12 @@
       "passcode": 239935093,
       "name": "Heart of the Hydra",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "New",
+          "current": "Dark Swamp"
+        }
+      },
       "script_sha256": "83686e5064d513bbfc6d58771f567e15283d5830bcfb9893b5daf531789ba97c",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -8751,7 +8971,12 @@
       "passcode": 239935094,
       "name": "Winged Snake of the Swamp",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "New",
+          "current": "Dark Swamp"
+        }
+      },
       "script_sha256": "3f64cc610f3023ce936d432818a717ae4b2480374b094a6af8f83b78821b1b45",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -8788,7 +9013,12 @@
       "passcode": 239935095,
       "name": "Fierce Snake of the Swamp",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "New",
+          "current": "Dark Swamp"
+        }
+      },
       "script_sha256": "04ed242457921a35c31126d0989af9a54bfd269e32fa076df7a5ac6bc7896781",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -8825,7 +9055,12 @@
       "passcode": 239935096,
       "name": "Sparkling Snake of the Swamp",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "New",
+          "current": "Dark Swamp"
+        }
+      },
       "script_sha256": "37969a73afb6841caba33a30d78f418454f61bea0cb9910e2459be80da904f01",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -8862,7 +9097,12 @@
       "passcode": 239935097,
       "name": "Three-Headed Snake of the Swamp",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "New",
+          "current": "Dark Swamp"
+        }
+      },
       "script_sha256": "5d96cbce94a5e516ba10eaded28b7f06c428468e8d36fb9b8d9712390da9446e",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -8899,7 +9139,12 @@
       "passcode": 239935098,
       "name": "Terrifying Hydra",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "New",
+          "current": "Dark Swamp"
+        }
+      },
       "script_sha256": "5a3c1a0ad4830cf2fb7b6bbeba227fb670cf3f331076334364c43f3d2a08f91e",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -8936,7 +9181,12 @@
       "passcode": 239935099,
       "name": "Rage of the Terrifying Dark Swamp",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "New",
+          "current": "Dark Swamp"
+        }
+      },
       "script_sha256": "09d9ae4955a5edc486b1bc7f28f10226dd790f715c04cc4bc55d5020347a2ca2",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -8973,7 +9223,12 @@
       "passcode": 239935100,
       "name": "Perseverance of the Hydra's Heart",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "New",
+          "current": "Dark Swamp"
+        }
+      },
       "script_sha256": "d6204d7f8f6335e93fa2146a1afc96352d475b54de3706f07978dedf72a522f1",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -9010,7 +9265,12 @@
       "passcode": 239935101,
       "name": "Terrifying Dark Swamp",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "New",
+          "current": "Dark Swamp"
+        }
+      },
       "script_sha256": "ef3c32dd69989b9aa234302126b1820651f81e02bc8201111a9d70341aa953f0",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -9047,7 +9307,12 @@
       "passcode": 239935102,
       "name": "Terrifying Fog of the Dark Swamp",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "New",
+          "current": "Dark Swamp"
+        }
+      },
       "script_sha256": "84f6e08eca08e0db36713e16b1b037f666a40a962a61666287f5f69960208d7e",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -9571,7 +9836,12 @@
       "passcode": 241957394,
       "name": "Chapter II Verse IV",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "The Hallowed Scripts",
+          "current": "To Proto"
+        }
+      },
       "script_sha256": "df0da9d760fd281956bd8e5d6429ab577a7a3d0f1bd789682335f33d6c20d3cd",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -9782,7 +10052,7 @@
       "name": "Wicked Puppeteer Tragedy",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "fb33fa8afdc467c3a3e97b6718a4dfdb4472d4b7fe2702798da5756844d3c6b5",
+      "script_sha256": "f0c26da1e2f53a5f7832a99b767313d10f0463ebd51abea3bb5a7beea714e99b",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -9998,7 +10268,12 @@
       "passcode": 244161941,
       "name": "Vanquish Soul Brawl",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Vanquish Soul"
+        }
+      },
       "script_sha256": "e915e649fea8fd55394b4883cb6cc3f9cb08181dc34e00b5fde99499e278ce3e",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -10072,7 +10347,12 @@
       "passcode": 244163199,
       "name": "Killamity Goldenrod",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Killamity"
+        }
+      },
       "script_sha256": "b1f2a6b13803a5e6209d5615e70d8dc82e78a26c05242406b9a224d2d8d61449",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -10109,7 +10389,12 @@
       "passcode": 244163200,
       "name": "Killamity Pine",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Killamity"
+        }
+      },
       "script_sha256": "76274e3c1f6e9cd7c829bd3af751325c7d56439402248d326f103ffa6fdecdd3",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -10146,7 +10431,12 @@
       "passcode": 244163201,
       "name": "Killamity Crimson",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Killamity"
+        }
+      },
       "script_sha256": "cc60c05eafa722e27351341280cb96fe9a9ec7ca872abac4197844b60fbee070",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -10183,7 +10473,12 @@
       "passcode": 244163202,
       "name": "Killamity Azure",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Killamity"
+        }
+      },
       "script_sha256": "f9d7bd89ad20a1657271d0aa5470b0b2a760ae7846389e7011d59de98a0f44ab",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -10220,7 +10515,12 @@
       "passcode": 244163203,
       "name": "Killamity Ash",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Killamity"
+        }
+      },
       "script_sha256": "ced9275fd46af9712747699e21f1b149c0f2d6b605dbab1054bf25cb2c136ba4",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -10257,7 +10557,12 @@
       "passcode": 244163204,
       "name": "Killamity Apparition",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Killamity"
+        }
+      },
       "script_sha256": "c4112f69f0a72e9380705fbc5364963eed187ea6f0581164047deb0fdbb40cf6",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -10294,7 +10599,12 @@
       "passcode": 244163205,
       "name": "Killamity Showdown",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Killamity"
+        }
+      },
       "script_sha256": "d5ba65c98c1397a8660c1c075198595870c3734b635aa2d51c0ce9558227fdca",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -10331,7 +10641,12 @@
       "passcode": 244163206,
       "name": "Ruby, Killamity Convergence",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Killamity"
+        }
+      },
       "script_sha256": "edb35d7461160c11909384e855ac301d8830836551823a51d4c705307bef627a",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -10368,7 +10683,12 @@
       "passcode": 244163508,
       "name": "Machina Megaframe",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Existing",
+          "current": "Machina"
+        }
+      },
       "script_sha256": "8487c5d5182e16514c5fbb3e88d5a190d81bf45626e916bf0f8f3e15104af4c8",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -10405,7 +10725,12 @@
       "passcode": 244163509,
       "name": "Machina Trailblazer",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Existing",
+          "current": "Machina"
+        }
+      },
       "script_sha256": "c93258182e1e7881fe4d14a8726d946640239460e0041946d558fe0b646f1ba1",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -10697,7 +11022,7 @@
       "name": "Divine Phoenix of Nephthys",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "881fd425ccf1816442cb1afcffcc0b0079df254a7853cb838c23d7ecba6faad4",
+      "script_sha256": "807f66d24fffa0f2725d73bd29ece9d188d23ee04ee6cd3752f01278fd6fd6cb",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -10997,7 +11322,7 @@
       "name": "Scarstech Beacon",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "349e03284b16ec58eabb1f2d5ff74f76bf0e7527ed415fb6e871d979638cee41",
+      "script_sha256": "31091b426feaffa5f7678434b954ef842f8ac849a6a81b2ea23427f3eae52ee7",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -11146,7 +11471,12 @@
       "passcode": 246393365,
       "name": "Rei-Tachi Ga Kita Hi",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Spirit"
+        }
+      },
       "script_sha256": "5de00850909a2eace49f0fb970606d57ea3483151006114875ce1432a7bcc78e",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -11476,7 +11806,12 @@
       "passcode": 247755864,
       "name": "Kali Yuga - Vritra",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Kali Yuga"
+        }
+      },
       "script_sha256": "4ff052478a6baa0c3561c62138e82684e9b51bddf988ee92c487335bfab66bce",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -11513,7 +11848,12 @@
       "passcode": 247755865,
       "name": "Kali Yuga - Angulimala",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Kali Yuga"
+        }
+      },
       "script_sha256": "bde7c6d9a978c8d97eae984e763dd14415ba0ad832b072ddc80ed14457fba488",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -11550,7 +11890,12 @@
       "passcode": 247755866,
       "name": "Kali Yuga - Sampati",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Kali Yuga"
+        }
+      },
       "script_sha256": "8e146951655893818e7306c308aa1bf3d54f58caae8c4c2c6d4e251ab74ad99c",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -11587,7 +11932,12 @@
       "passcode": 247755867,
       "name": "Kali Yuga - Yajna",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Kali Yuga"
+        }
+      },
       "script_sha256": "716db898e4826880da9edf0c1d7d5159ff8ead4fdcee9971cea50fe86dde68c3",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -11624,7 +11974,12 @@
       "passcode": 247755868,
       "name": "Kali Yuga - Karkotaka",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Kali Yuga"
+        }
+      },
       "script_sha256": "15583ff790cbdfe5a03409325599bff5a8a88e5ba30a13fbb370c42c4d4eee8c",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -11661,7 +12016,12 @@
       "passcode": 247755869,
       "name": "Kali Yuga - Murugan",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Kali Yuga"
+        }
+      },
       "script_sha256": "868f1ec73dc02fbd66258d6e8fd49a0eda293c0a6ecfc5e534d32d115a4289ee",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -11698,7 +12058,12 @@
       "passcode": 247755870,
       "name": "Kali Yuga - Mayavada",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Kali Yuga"
+        }
+      },
       "script_sha256": "b3471f65a7a7d6d6baf39b86da95ad73bb967f55b4bc6bce09b3562008992462",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -11735,7 +12100,12 @@
       "passcode": 247755871,
       "name": "Kali Yuga - Jarita",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Kali Yuga"
+        }
+      },
       "script_sha256": "9ced2fda202579a9170cf4b0dcb222eeb268296201da3c0b0fcbc1533155df09",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -11772,7 +12142,12 @@
       "passcode": 247755872,
       "name": "Kali Yuga - Dukkha",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Kali Yuga"
+        }
+      },
       "script_sha256": "ce2a732cea21217a02da6f7ae940196379a825c5b1a4853fd69a81cc68b9c921",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -11809,7 +12184,12 @@
       "passcode": 247755873,
       "name": "Kali Yuga - Ahimsaka Justijhn",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Kali Yuga"
+        }
+      },
       "script_sha256": "87c79811b168334fa1d2c9f63c23eee81cf35102e5cc7aa23b7f061aa3ad5dcd",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -11846,7 +12226,12 @@
       "passcode": 247756271,
       "name": "Kali Yuga - Bheki",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Kali Yuga"
+        }
+      },
       "script_sha256": "05eb682b05bcb05e06fefd06a37ca8bd21c007492e3da5705f06eab6bb20591f",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -11883,7 +12268,12 @@
       "passcode": 247756272,
       "name": "Kali Yuga - Jakarta",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Kali Yuga"
+        }
+      },
       "script_sha256": "395b2d33eef34fb1ffe0f27acccab014eeb02c849322b92ee42c90af8b3e0f18",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -12130,15 +12520,26 @@
       "passcode": 248760718,
       "name": "Starry Knight Starry Queen",
       "current_present": true,
-      "specification_delta": {},
-      "script_sha256": "27569ae7ce657d4ab023d987521782f713642b0d8d4c73374150388ccea435a5",
+      "specification_delta": {
+        "text": [
+          {
+            "old": "",
+            "current": "Pendulum Effect:"
+          },
+          {
+            "old": "",
+            "current": "Monster Effect:"
+          }
+        ]
+      },
+      "script_sha256": "5fc3396f32386bd3b547642db4476788e1da36ffd48d13e76cee183bb5e2faee",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
       "database_text_matches_current": {
-        "candidate": true,
-        "public": true,
-        "installed": true
+        "candidate": false,
+        "public": false,
+        "installed": false
       },
       "database_rows_present": {
         "candidate": true,
@@ -12154,7 +12555,38 @@
         "public": false,
         "installed": false
       },
-      "database_text_differences": {}
+      "database_text_differences": {
+        "candidate": [
+          {
+            "old": "",
+            "current": "Pendulum Effect:"
+          },
+          {
+            "old": "",
+            "current": "Monster Effect:"
+          }
+        ],
+        "public": [
+          {
+            "old": "",
+            "current": "Pendulum Effect:"
+          },
+          {
+            "old": "",
+            "current": "Monster Effect:"
+          }
+        ],
+        "installed": [
+          {
+            "old": "",
+            "current": "Pendulum Effect:"
+          },
+          {
+            "old": "",
+            "current": "Monster Effect:"
+          }
+        ]
+      }
     },
     {
       "passcode": 248788543,
@@ -12280,7 +12712,12 @@
       "passcode": 248940511,
       "name": "Flower Cardian Moonflare",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Cardian",
+          "current": "Flower Cardian"
+        }
+      },
       "script_sha256": "69f0d2a412ef72cf46dc3b67c4698618e03ea94cb3f8871b02762182079eb9c2",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -13390,7 +13827,12 @@
       "passcode": 254065048,
       "name": "Polemistis gia Ataxia",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "To Proto"
+        }
+      },
       "script_sha256": "8d8e6feb96af58338c8270644db55224de7bf9efede25de5482479f2b54c7882",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -14223,7 +14665,7 @@
       "name": "Guardian of Wicked Puppeteer",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "361662c75a5a0070dca14dc768646ee838a1805da05cf2b5fcb6cb3850ee9201",
+      "script_sha256": "b207dcc9b239d8f3c1863ba7d5e0d37cf040c42de03fc499e9f82f21c939a788",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -14252,7 +14694,12 @@
       "passcode": 257549955,
       "name": "A Stellaer Is Reborn",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Stellaer"
+        }
+      },
       "script_sha256": "0eef38755b2dbf72620b8e101de4124873daca9948bcf0fe2faa41233e95aa6d",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -14552,7 +14999,12 @@
       "passcode": 259023461,
       "name": "Disciple of Fire",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Phlogistic Uprising!",
+          "current": "Phlogiston Dragon"
+        }
+      },
       "script_sha256": "9d358e26ff8915efbd0054c484a8e2b6b5da6ad683909ad96406b93ae25d13b9",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -14837,7 +15289,7 @@
       "name": "Glitchling Mage",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "71b45b1a7ae737542beb3f2f0edf551f93b139fd8cc43c7b286eea817a385786",
+      "script_sha256": "6cb1249b623397899487506c1e9f6a00fd5e841de22ef987a5bf573ded2253b9",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -15417,6 +15869,10 @@
         "attribute": {
           "old": "NATURE",
           "current": "EARTH"
+        },
+        "archetype": {
+          "old": "NATURE",
+          "current": null
         }
       },
       "script_sha256": "4bab393d47990e2a98f3927a5bf9a0e0aef2eaff90b256dc92d9366b1a936d53",
@@ -15832,7 +16288,12 @@
       "passcode": 259214334,
       "name": "Stellaer's Pain",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Stellaer"
+        }
+      },
       "script_sha256": "421f73d724805832efc3b7da039f384a61d893d04cdc9f88a812d85ed1945d90",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -15892,7 +16353,12 @@
       "passcode": 259221974,
       "name": "Melantha, Keeper of Lamentations",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Melantha",
+          "current": null
+        }
+      },
       "script_sha256": "4b6eec7b2cce535bf4c2985792b84e63f0d2e740bd7f25de4d35b3fe57a400dd",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -15922,7 +16388,12 @@
       "passcode": 259223502,
       "name": "Ether Mademoiselle",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Ether Mademoiselle",
+          "current": null
+        }
+      },
       "script_sha256": "5406f877d77fd308b72f627f4ae351588117b70988e497f1c34c51e7d53450f1",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -15952,7 +16423,12 @@
       "passcode": 259225324,
       "name": "Transcend the Pendulum",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Pendulum",
+          "current": null
+        }
+      },
       "script_sha256": "4ee194010166e2aee52d6113d12004dda73aca5425a361ceea4488ff4c0bf631",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -16133,7 +16609,7 @@
       "name": "Charmelia Pray",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "755e985c8f8b461ab3309dd477f4b47cafef019958ad2686eb039e2328b56c26",
+      "script_sha256": "3724a046df71e2d04de385815b7cc916999454f972dc4d0846f251976f18640d",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -16223,7 +16699,7 @@
       "name": "Glitchling Bitron",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "431169cd90e823517f4cee55fe290c4ba1bb9dd592caadaa908dc3aad54cbdf4",
+      "script_sha256": "c20c63ace7ca6441a25d9238a96b1afcb2af3764c00c884cab5393434917ae84",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -16583,7 +17059,7 @@
       "name": "Charmelia Elysia",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "2787c5edcb5d620fdf8a23d063beba77b4876900e5408f4ab439588da45ae374",
+      "script_sha256": "e39289c0e7a774c264cde51b39944ed4da915eb8a1bfeb8a34e50882f4c4db34",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -16612,7 +17088,12 @@
       "passcode": 259290896,
       "name": "Dominus Sentinel",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Dominus"
+        }
+      },
       "script_sha256": "f63697268d41ff8e5d643674d4aa3480d5d72c3b03ad69f665754bf6413efd2d",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -16822,7 +17303,12 @@
       "passcode": 259315827,
       "name": "Adamantios, the Dark Armor",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Adamantios, the Dark Armor",
+          "current": null
+        }
+      },
       "script_sha256": "91a6441ec572023b4f812b0f85d27d05be0d3d0dc3492d35349fd8fda6856736",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -17111,7 +17597,12 @@
       "passcode": 259365935,
       "name": "Aetherstorm Zenith Wire-Tailed Sypharion",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Aetherstorm",
+          "current": null
+        }
+      },
       "script_sha256": "079ef1bdb30480704e4d03604a8f28831f42e36afcd28a2dc1a750d84aa4ff71",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -17141,7 +17632,12 @@
       "passcode": 259366281,
       "name": "Phlogiston's Roar!",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Phlogiston's Roar!",
+          "current": "Phlogiston Dragon"
+        }
+      },
       "script_sha256": "86c520f6d8f4bd91f68c9b41e2d75da6054bda0a77c25ce8f6c8878abb8b2640",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -17321,7 +17817,12 @@
       "passcode": 259384841,
       "name": "Divinity to Infinity",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Divinity to Infinity",
+          "current": null
+        }
+      },
       "script_sha256": "f207e7f910e6d4885049f26c89fada8bbd97e922bcc4a0426d06de2000795e47",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -17471,7 +17972,12 @@
       "passcode": 259402105,
       "name": "Magical Girl Explosion!",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Magical Girl Explosion!",
+          "current": "Charmelia"
+        }
+      },
       "script_sha256": "4de30d56064d40fd0f8e54ba4cfad18dc20cf7880a5bb5c625b6c96cb2794195",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -18111,7 +18617,12 @@
       "passcode": 259485374,
       "name": "Heart of the Cards",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Heart of the Cards",
+          "current": null
+        }
+      },
       "script_sha256": "57cd49efff41bb3f0634c5c613ff96076e7984d7eb7e1656aae95502a17605c4",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -18496,9 +19007,9 @@
         "installed": true
       },
       "database_text_formatting_only": {
-        "candidate": false,
-        "public": false,
-        "installed": false
+        "candidate": true,
+        "public": true,
+        "installed": true
       },
       "database_text_differences": {}
     },
@@ -18537,7 +19048,7 @@
       "name": "Glitchling Corruption",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "e822e4908a6872c865cb7c2dc64fc7a6ea264b759edfdc39e856d41f4d9d3ade",
+      "script_sha256": "55276aa3e45daabb7e10c2b109870682c2463234259c5778715293e16d1f8771",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -19562,7 +20073,7 @@
       "name": "Glitchling Witch",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "d7b2cbf97790e33699196363d1af1af5597f8e85a7cae0048b46bcbf6fc3b3cd",
+      "script_sha256": "4bd1b52d421d08aa846caa66ec6fe26a1811d6c52cbd8caaaaf5fff71fe24301",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -19681,7 +20192,12 @@
       "passcode": 259687425,
       "name": "Retaliation Rebound",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Retaliation Rebound",
+          "current": null
+        }
+      },
       "script_sha256": "b320d732e4ff6e2b12f724b382e6954bb3011f7d15520c6d165149d2431d3d22",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -20046,7 +20562,12 @@
       "passcode": 259755133,
       "name": "Rush at the Gnome",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": "Rush at the Gnome",
+          "current": null
+        }
+      },
       "script_sha256": "1fd0d7ba5bed823ad89de8456da1804a9c31214e9eaf4de35788bf171a556dc4",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -20771,7 +21292,7 @@
       "name": "Glitchling Leotron",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "815e15c9c57dd54732a2f435a56122f1003747644325fb9f421ada3f71d6f4fe",
+      "script_sha256": "530a7477006850976f3e5aa0a7f8899a01a86b843801ed1f8fae9f78acb2870e",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -20855,9 +21376,9 @@
         "installed": true
       },
       "database_text_formatting_only": {
-        "candidate": false,
-        "public": false,
-        "installed": false
+        "candidate": true,
+        "public": true,
+        "installed": true
       },
       "database_text_differences": {}
     },
@@ -21436,7 +21957,7 @@
       "name": "A.I.P Lab",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "0c8d07b8734f88f06d826f84b889d656e25bd18bdf16907cefd385f7d23c6e5a",
+      "script_sha256": "cb05bc06b576488888d0df5fbfb0500f4c29d40d81c6f2388ef3c2bb2c7674ad",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -21526,7 +22047,7 @@
       "name": "Glitchling Data-Transfert",
       "current_present": true,
       "specification_delta": {},
-      "script_sha256": "5722ac6ab25c54eda4893a755da4ae41c111f881b2d6864221ac8595a73a16d5",
+      "script_sha256": "a16891dda783a8ef5006083c3a6c684eba4b61612bd39e83e519d4282e17cf89",
       "installed_script_matches": true,
       "syntax_current": true,
       "load_current": true,
@@ -21615,7 +22136,12 @@
       "passcode": 284636586,
       "name": "Terrarumian Terrarium",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Terrarumian"
+        }
+      },
       "script_sha256": "9b7b3dc7d69aa3a57f7375c3342e266a4d21db632fd0a8c6ea7e9d040f420556",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -21652,7 +22178,12 @@
       "passcode": 284636587,
       "name": "Terrarumian Spores",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Terrarumian"
+        }
+      },
       "script_sha256": "294849f77b32fcfb02e9cb369eacc439313e87aa0946c9a0d87dfe7e06e99fba",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -21689,7 +22220,12 @@
       "passcode": 284636588,
       "name": "Terrarumian Misting",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Terrarumian"
+        }
+      },
       "script_sha256": "1c62fd5271cd389c45f038ffd469a37cc16543781c667c86ce78009e0c15bd56",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -21724,9 +22260,18 @@
     },
     {
       "passcode": 284636589,
-      "name": "\"Terrarumian Growth",
+      "name": "Terrarumian Growth",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "name": {
+          "old": "\"Terrarumian Growth",
+          "current": "Terrarumian Growth"
+        },
+        "archetype": {
+          "old": null,
+          "current": "Terrarumian"
+        }
+      },
       "script_sha256": "655f8426a8110ba42a76f35621003c310ecf46f1a43ecda29aa4b3010e6b2ba7",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -21763,7 +22308,12 @@
       "passcode": 284636661,
       "name": "Aquamarine Seagrass Zostera",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Aquamarine"
+        }
+      },
       "script_sha256": "aad774933eacff7161b6a8471779ae4440f768468d4566774a3e0ff3b94c3aec",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -21800,7 +22350,12 @@
       "passcode": 284636662,
       "name": "Aquamarine Coral Krait",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Aquamarine"
+        }
+      },
       "script_sha256": "bf5d42877865c5784133a6017b437d509eb3772c35ccb623b7e4975b43dbecc2",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -21837,7 +22392,12 @@
       "passcode": 284636663,
       "name": "Aquamarine Seafan Gorgonia",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Aquamarine"
+        }
+      },
       "script_sha256": "7034a94ae205e5b45573fd797228c0d03a924fd71870594c06542077407b7ff3",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -21874,7 +22434,12 @@
       "passcode": 284636664,
       "name": "Aquamarine Sand Clypeasteria",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Aquamarine"
+        }
+      },
       "script_sha256": "8b611879d7a6ff3cc5cbf7e0aa44e4cc6edc506c5511d1908536f82f79f009e7",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -21911,7 +22476,12 @@
       "passcode": 284636665,
       "name": "Aquamarine Aquasanctuary",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Aquamarine"
+        }
+      },
       "script_sha256": "5ca5b438f9d88be8e72c28be4ce043e80a825263b9edda9cc6cca2ee3b514408",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -21948,7 +22518,12 @@
       "passcode": 284636666,
       "name": "Aquamarine Bubble Colony",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Aquamarine"
+        }
+      },
       "script_sha256": "fe6722138bdb7fc347e4f4823e93b903b99b78827e1dcf9b7daabe45b5fd3375",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -21985,7 +22560,12 @@
       "passcode": 284639717,
       "name": "Terrarumian Cushion Moss",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Terrarumian"
+        }
+      },
       "script_sha256": "6ecf88d64e1bea15bd1c5ea7f89bb9fe043401ff6f18436f711f5c9eff3e25bf",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -22005,9 +22585,9 @@
         "installed": null
       },
       "database_text_formatting_only": {
-        "candidate": true,
+        "candidate": false,
         "public": false,
-        "installed": true
+        "installed": false
       },
       "database_text_differences": {
         "public": [
@@ -22022,7 +22602,12 @@
       "passcode": 284639718,
       "name": "Terrarumian Coin Plant",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Terrarumian"
+        }
+      },
       "script_sha256": "5c3d3a6c8edccd2f9521532405042f0233ea261b2c84ec1f965d98dff0292300",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -22042,9 +22627,9 @@
         "installed": null
       },
       "database_text_formatting_only": {
-        "candidate": true,
+        "candidate": false,
         "public": false,
-        "installed": true
+        "installed": false
       },
       "database_text_differences": {
         "public": [
@@ -22059,7 +22644,12 @@
       "passcode": 284639719,
       "name": "Terrarumian Sword Fern",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Terrarumian"
+        }
+      },
       "script_sha256": "de3a3f392f3bec0328b2e89525cae47725c3d172eeb22fd95ae90690e6538aa9",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -22079,9 +22669,9 @@
         "installed": null
       },
       "database_text_formatting_only": {
-        "candidate": true,
+        "candidate": false,
         "public": false,
-        "installed": true
+        "installed": false
       },
       "database_text_differences": {
         "public": [
@@ -22096,7 +22686,12 @@
       "passcode": 284639720,
       "name": "Terrarumian Nerve Plant",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Terrarumian"
+        }
+      },
       "script_sha256": "52418bf0397ca210f790d3245dbb64e00be3e993415367bb5b2c2a462c191ff9",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -22116,9 +22711,9 @@
         "installed": null
       },
       "database_text_formatting_only": {
-        "candidate": true,
+        "candidate": false,
         "public": false,
-        "installed": true
+        "installed": false
       },
       "database_text_differences": {
         "public": [
@@ -22133,7 +22728,12 @@
       "passcode": 284639721,
       "name": "Terrarumian Staghorn Fern",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Terrarumian"
+        }
+      },
       "script_sha256": "e168736c19d6e73e7e35fc424d4662275782e06aa3525851fd6da58e3fde2f43",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -22153,9 +22753,9 @@
         "installed": null
       },
       "database_text_formatting_only": {
-        "candidate": true,
+        "candidate": false,
         "public": false,
-        "installed": true
+        "installed": false
       },
       "database_text_differences": {
         "public": [
@@ -22170,7 +22770,12 @@
       "passcode": 284639722,
       "name": "Terrarumian Ivy",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Terrarumian"
+        }
+      },
       "script_sha256": "e603a7dee12f099fcabcbfd1443205abe5e8674b491bf4403e11e4d299510241",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -22190,9 +22795,9 @@
         "installed": null
       },
       "database_text_formatting_only": {
-        "candidate": true,
+        "candidate": false,
         "public": false,
-        "installed": true
+        "installed": false
       },
       "database_text_differences": {
         "public": [
@@ -22207,7 +22812,12 @@
       "passcode": 284639723,
       "name": "Terrarumian Sundew",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Terrarumian"
+        }
+      },
       "script_sha256": "d2b3894a34942f2c4e87d954da88197127448a19e41c7b96c6635c6c2d891c94",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -22227,9 +22837,9 @@
         "installed": null
       },
       "database_text_formatting_only": {
-        "candidate": true,
+        "candidate": false,
         "public": false,
-        "installed": true
+        "installed": false
       },
       "database_text_differences": {
         "public": [
@@ -22244,7 +22854,12 @@
       "passcode": 284639724,
       "name": "Terrarumian Trumpet Pitchers",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Terrarumian"
+        }
+      },
       "script_sha256": "44144de5b9bf7ab384f888fe2bdb816341a41cce9e0d62f9fe0337adf03ef984",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -22264,9 +22879,9 @@
         "installed": null
       },
       "database_text_formatting_only": {
-        "candidate": true,
+        "candidate": false,
         "public": false,
-        "installed": true
+        "installed": false
       },
       "database_text_differences": {
         "public": [
@@ -22281,7 +22896,12 @@
       "passcode": 284639725,
       "name": "Terrarumian Tillandsia",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Terrarumian"
+        }
+      },
       "script_sha256": "8c61f11d5b2fdd7d9f26634f2c54ba1b6fc5482ef6e245798d8fbb7d2b11e91f",
       "installed_script_matches": true,
       "syntax_current": true,
@@ -22318,7 +22938,12 @@
       "passcode": 284639726,
       "name": "Terrarumian Venus Flytrap",
       "current_present": true,
-      "specification_delta": {},
+      "specification_delta": {
+        "archetype": {
+          "old": null,
+          "current": "Terrarumian"
+        }
+      },
       "script_sha256": "252102018f562222b3eff44d430ac370220e9d2935ad86965306dcb864bc0f14",
       "installed_script_matches": true,
       "syntax_current": true,

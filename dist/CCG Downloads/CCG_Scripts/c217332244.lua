@@ -112,15 +112,20 @@ function s.atkcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 	local g=Duel.SelectReleaseGroup(tp,s.tokencostfilter,1,1,nil)
 	Duel.Release(g,REASON_COST)
-	local opts={}
-	for i=100,lp-1,100 do
-		table.insert(opts,i)
+	--Choose any positive payment below current LP, one decimal digit at a time.
+	local pay=0
+	local place=1
+	while place*10<=lp-1 do place=place*10 end
+	while place>=1 do
+		local opts={}
+		for digit=0,9 do
+			local value=pay+digit*place
+			if value<=lp-1 and value+place-1>=1 then table.insert(opts,digit) end
+		end
+		Duel.Hint(HINT_NUMBER,tp,place)
+		pay=pay+Duel.AnnounceNumber(tp,table.unpack(opts))*place
+		place=place//10
 	end
-	if opts[#opts]~=lp-1 then
-		table.insert(opts,lp-1)
-	end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_NUMBER)
-	local pay=Duel.AnnounceNumber(tp,table.unpack(opts))
 	Duel.PayLPCost(tp,pay)
 	e:SetLabel(pay)
 end

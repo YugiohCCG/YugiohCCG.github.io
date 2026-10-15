@@ -1,0 +1,100 @@
+{
+  "status": "VERIFIED_COMPATIBILITY_DIAGNOSTIC",
+  "baseline_cases": 9,
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c248760718.lua": "5fc3396f32386bd3b547642db4476788e1da36ffd48d13e76cee183bb5e2faee",
+    "scripts/fresh_current_starry_queen_opponent_pendulum_batch.py": "3552c9fc509017b1769717cc8294a4e98f47f20720349ac95024fee2f088533f",
+    "scripts/fresh_current_starry_queen_opponent_pendulum.cjs": "1401d128cb5a05c5d9a02812474145a25c9c0efb96541d191d6b3f88bd646b2a",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "src/data/cards.json": "09f83a5a740b066a3fcb7f5f996ee5ff642d7d91ab500bf03660ac2f8ca790b0",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "scripts/fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "output/fresh-ccg-september/chain-trigger-before-delay-repair/c248760718.lua": "27569ae7ce657d4ab023d987521782f713642b0d8d4c73374150388ccea435a5"
+  },
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-starry-queen-opponent-pendulum-modern-chain-info.json",
+      "artifact_sha256": "761463149eb8d01af5954f1728e5430b4ef940067fc8b476658bf2cf6e48d893",
+      "expected_failures": []
+    },
+    {
+      "control": "old-source",
+      "artifact": "current-starry-queen-opponent-pendulum-modern-chain-info-old-source.json",
+      "artifact_sha256": "6d88285adafc1e140a98cb08428fe6de885891400401bbc8def4dea6aa3d1181",
+      "expected_failures": [
+        "hand",
+        "deck",
+        "grave",
+        "nativeDark",
+        "decline"
+      ]
+    },
+    {
+      "control": "no-attribute",
+      "artifact": "current-starry-queen-opponent-pendulum-modern-chain-info-no-attribute.json",
+      "artifact_sha256": "fea22a9a7ca92db645a8794c17d8d4dc08c05bd0cda6c55b624b3c58f614a598",
+      "expected_failures": [
+        "hand",
+        "deck",
+        "grave",
+        "wrongLevel",
+        "full",
+        "decline"
+      ]
+    },
+    {
+      "control": "change-own",
+      "artifact": "current-starry-queen-opponent-pendulum-modern-chain-info-change-own.json",
+      "artifact_sha256": "e86af18179b91c1eb93cd1317b9fa9239e980cdeebab9bb24f6ef791cf4df8a2",
+      "expected_failures": [
+        "hand",
+        "deck",
+        "grave",
+        "wrongLevel",
+        "nativeDark",
+        "full",
+        "decline"
+      ]
+    },
+    {
+      "control": "no-summon",
+      "artifact": "current-starry-queen-opponent-pendulum-modern-chain-info-no-summon.json",
+      "artifact_sha256": "101879ce4bc73b4ff319829085377055b900162c6f9e9f5d38ce20f8ced01e1d",
+      "expected_failures": [
+        "hand",
+        "deck",
+        "grave",
+        "nativeDark"
+      ]
+    },
+    {
+      "control": "no-probe",
+      "artifact": "current-starry-queen-opponent-pendulum-modern-chain-info-no-probe.json",
+      "artifact_sha256": "1f0eb5c655c4d8fc9c7ee8d357f34febedca235aac68ad2bd3521a8e3510bf28",
+      "expected_failures": [
+        "hand",
+        "deck",
+        "grave",
+        "wrongLevel",
+        "nativeDark",
+        "full",
+        "disabled",
+        "removed",
+        "decline"
+      ]
+    }
+  ],
+  "scope": "Full repaired StarryQueen actualown1 placement/setup andnativeopponent2 monsterIGN. OriginalLIGHT opponent becomesDARK; originalDARK tested. Nativeattrs beforeactivation; delayednewchain1/actualDeckshuffle/Lvl7LIGHTDragonSSHandDeckGY. Decline/wrongLevel/fullfield/disable/removal boundaries. Original5fails; controls6/7/4/9; emptylogs/parity/frozeninputs. Explicit triggeringattribute constant mapping0x100000 to22; corrected32bit testtransport. Compatibilitydiagnostic only, notnativeOmega/fullcard. Remaininginterruptions/shareduses/Trappermission open."
+}

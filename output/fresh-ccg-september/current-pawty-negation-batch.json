@@ -1,0 +1,61 @@
+{
+  "scope": "Full set Pawty Tyme actual opposing ignitionCL1/CounterTrapCL2 activation negation/destruction suppress native Deck summon; own effect/wrongset/facedown/absent Skewy monster exclude. No initial GY revival resource, Hand activation/revival/use/fullcard OPEN",
+  "baseline_cases": 5,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_pawty_negation.cjs": "d04feae37c230c196512bdca387ab3a96b0e7011229feb8b0897e8df8bda4499",
+    "scripts/fresh_current_pawty_negation_batch.py": "8c3014fc0c5876081f1958752948a64e368406a9b7a536f11ba5812bfa8c252f",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c217632789.lua": "10da3886e2dacb7a6f286fcb22ce28b260a1f80badbd5ce00931551582a24ba4",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-pawty-negation.json",
+      "artifact_sha256": "d7c5f70c2105bf5f197d8e41bf9bcf874db81d91d05187a68bfc7ba12a33e756"
+    },
+    {
+      "control": "no-negate",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-pawty-negation-no-negate.json",
+      "artifact_sha256": "7ad3069c07a82d82948bd9e4536eb8092571d4f0dd5382b518b699b095192038"
+    },
+    {
+      "control": "no-destroy",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-pawty-negation-no-destroy.json",
+      "artifact_sha256": "863f73e0b1b1f45a8a7cb5fe146de8fdc416ef603c338a54eb46ecdfd92138d9"
+    },
+    {
+      "control": "ignore-owner",
+      "expected_failures": [
+        4
+      ],
+      "artifact": "current-pawty-negation-ignore-owner.json",
+      "artifact_sha256": "0959c6263b7dbe6c2d7e3a190d52f853b7b6b4bc4fa83e082e99a4d1e1ef3032"
+    },
+    {
+      "control": "ignore-set",
+      "expected_failures": [
+        1
+      ],
+      "artifact": "current-pawty-negation-ignore-set.json",
+      "artifact_sha256": "a8d693a173351198dd5ddf375f8203531a93e9b4053d64813efc48ba116a77dc"
+    }
+  ]
+}
