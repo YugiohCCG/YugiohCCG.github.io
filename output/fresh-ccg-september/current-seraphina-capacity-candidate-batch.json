@@ -1,0 +1,77 @@
+{
+  "status": "SUPERSEDED_PRE_INSTALL_DIAGNOSTIC_NOT_CURRENT_EVIDENCE",
+  "baseline_cases": 7,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_seraphina_capacity_candidate_batch.py": "5e8379168145c10cc36098c0da479a97a43af4a0d47be2b0a81b6ed64446a193",
+    "scripts/fresh_current_seraphina_pendulum_summon.cjs": "1c880506e6484af07697dd7dfaa6c993d97f913f8e24e5aeae4ce8884c8b35c8",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c218142234.lua": "56a270f23f366cbe0eac6431e88e531694be275cf6d75c60b53667e1062c4cb3",
+    "output/fresh-ccg-september/seraphina-capacity-candidate.lua": "e321e1e14d7ccff7ec4359429f01340c50a1dae58bd1e0b005b77bc039a6973c",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "candidate": false,
+      "control": null,
+      "expected_failures": [
+        5,
+        6
+      ],
+      "artifact": "current-seraphina-pendulum-summon.json",
+      "artifact_sha256": "96e61bbc42c6d5aeff25d1c629a743e791ff672006526bb25e584ea6a6f2d999"
+    },
+    {
+      "candidate": true,
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-seraphina-pendulum-summon-candidate.json",
+      "artifact_sha256": "b4408109a77ae2f8c91b861e3f44f248d98ed184f303617ff7c8182a862a8a55"
+    },
+    {
+      "candidate": true,
+      "control": "no-cost",
+      "expected_failures": [
+        0,
+        1,
+        5,
+        6
+      ],
+      "artifact": "current-seraphina-pendulum-summon-candidate-no-cost.json",
+      "artifact_sha256": "cb87fc84a9ddec8e03348df549fb0d46bcecb9c8b46bd0c1706edd0397cb162d"
+    },
+    {
+      "candidate": true,
+      "control": "no-summon",
+      "expected_failures": [
+        0,
+        1,
+        5,
+        6
+      ],
+      "artifact": "current-seraphina-pendulum-summon-candidate-no-summon.json",
+      "artifact_sha256": "d85de232eabac3b2dc756ae61c10c8979970e02e13aaad954ebeef1a88502645"
+    },
+    {
+      "candidate": true,
+      "control": "ignore-capacity",
+      "expected_failures": [
+        4,
+        6
+      ],
+      "artifact": "current-seraphina-pendulum-summon-candidate-ignore-capacity.json",
+      "artifact_sha256": "1403fead1133a8129a1639b38490ecffef72c3f4957f82d764dedd30dc118b52"
+    }
+  ],
+  "scope": "Native prior checked printed-category Fusion history/PZone placement; mixed full-field pool prefers GY cards but must pay at least one MZONE card freeing zone. Candidate not installed; production recipe/Omega/fullcard OPEN.",
+  "superseded_by": "current-seraphina-capacity-repaired-batch.json"
+}

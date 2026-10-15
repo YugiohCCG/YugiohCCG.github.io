@@ -1,0 +1,48 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),{pathToFileURL}=require('node:url'),{DatabaseSync}=require('node:sqlite');
+const ROOT=path.resolve(__dirname,'..'),CUSTOM=path.join(ROOT,'public/CCG Downloads/CCG_Scripts'),OMEGA=path.join(ROOT,'tmp/omega_scripts');
+async function main(){
+ const mod=await require('./fresh_corrected_card_data_transport.cjs').loadCorrectedTransport();
+ const {candidateCard}=require('./fresh_current_card.cjs');
+ const {OcgMessageType:M,OcgResponseType:R,OcgLocation:L,OcgPosition:P,OcgProcessResult:S,SelectIdleCMDAction:A,OcgQueryFlags:Q}=mod;
+ const core=await mod.default({sync:true,print(){},printErr(){}}),boss=238273769,target=900000841,filler=900000842,partner=900000843,counter=900000844;
+ const base={alias:0,setcodes:[],type:33,level:3,attribute:8,race:32n,attack:300,defense:200,lscale:0,rscale:0,link_marker:0},results=[];
+ for(const scenario of ['negateActivation','negateEffect']) for(const firstSequence of [0,4]){
+  const test={member:true},legal=test.member&&!test.noPartner&&!test.badPartner&&!test.full,logs=[],trace=[],cards=new Map([[boss,candidateCard(boss)],[target,{...base,code:target,setcodes:test.member?[0x1066]:[]}],[filler,{...base,code:filler}],[partner,{...base,code:partner,type:0x1000021,setcodes:test.badPartner?[]:[0x1066]}],[counter,{...base,code:counter,type:0x100004}]]);
+  const reader=name=>{if(name==='c'+counter+'.lua')return `local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_CHAINING) e:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode(${boss}) and re:GetDescription()==${132273769*16+1} end) e:SetOperation(function(e,tp,eg,ep,ev,re) ${process.argv.includes('--no-response')?'do end':scenario==='negateActivation'?'Duel.NegateActivation(ev)':scenario==='negateEffect'?'Duel.NegateEffect(ev)':scenario==='sourceBanish'?'Duel.Remove(re:GetHandler(),POS_FACEUP,REASON_EFFECT)':scenario==='partnerBanish'?`Duel.Remove(Duel.GetMatchingGroup(Card.IsCode,1-tp,LOCATION_PZONE,0,nil,${partner}),POS_FACEUP,REASON_EFFECT)`:scenario==='lateFull'?`Duel.SpecialSummon(Duel.GetMatchingGroup(Card.IsCode,1-tp,LOCATION_DECK,0,nil,${filler}),0,1-tp,1-tp,false,false,POS_FACEUP)`:`local lock=Effect.CreateEffect(e:GetHandler()) lock:SetType(EFFECT_TYPE_FIELD) lock:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON) lock:SetProperty(EFFECT_FLAG_PLAYER_TARGET) lock:SetTargetRange(0,1) lock:SetTarget(function(e,c) return c:IsCode(${partner}) end) lock:SetReset(RESET_PHASE+PHASE_END) Duel.RegisterEffect(lock,tp)`} end) c:RegisterEffect(e) end`; if(name===`c${target}.lua`)return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_IGNITION) e:SetRange(LOCATION_MZONE) e:SetOperation(function(e,tp) Duel.Damage(tp,100,REASON_EFFECT) end) c:RegisterEffect(e) end';if(name===`c${partner}.lua`)return 'local s,id=GetID() function s.initial_effect(c) aux.EnablePendulumAttribute(c) end';if([filler].some(c=>name===`c${c}.lua`))return 'local s,id=GetID() function s.initial_effect(c) end';if(name==='c0.lua')return '';const file=[path.join(CUSTOM,name),path.join(OMEGA,name)].find(f=>fs.existsSync(f));if(!file)throw Error('Missing '+name);let source=fs.readFileSync(file,'utf8');if(name===`c${boss}.lua`){if(process.argv.includes('--per-copy'))source=source.replace('e2:SetCountLimit(1,id)','e2:SetCountLimit(1)');if(process.argv.includes('--no-reset'))source=source.replace('e2:SetCountLimit(1,id)','e2:SetCountLimit(1,id,2)');if(process.argv.includes('--old-type'))source=source.replace('e2:SetType(EFFECT_TYPE_QUICK_O)','e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)');if(process.argv.includes('--old-filter'))source=source.replace(/return c:IsSetCard\(SET_SYMPHONIC\)\s+and c:IsCanBeSpecialSummoned/,'return c:IsSetCard(SET_SYMPHONIC) and c:IsType(TYPE_MONSTER)\n  and c:IsCanBeSpecialSummoned');}if(name==='c'+boss+'.lua'){if(process.argv.includes('--no-return'))source=source.replace('Duel.SendtoHand(c,nil,REASON_EFFECT)','(function() return 0 end)()');if(process.argv.includes('--no-summon'))source=source.replace('Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)','(function() return 0 end)()');}return source};
+  const duel=core.createDuel({flags:mod.OcgDuelMode.MODE_MR5|mod.OcgDuelMode.PSEUDO_SHUFFLE,seed:[1n,2n,3n,4n],team1:{startingLP:8000,startingDrawCount:0,drawCountPerTurn:0},team2:{startingLP:8000,startingDrawCount:0,drawCountPerTurn:0},cardReader:c=>cards.get(c),scriptReader:reader,errorHandler:(type,message)=>logs.push({type,message})});
+  let failure=null,placed=0,turn=0,triggers=0,responses=0,interrupted=false,done=false;
+  try{
+   for(const name of ['constant.lua','utility.lua','procedure.lua'])core.loadScript(duel,name,reader(name));
+   const add=(code,location,player=0,position=P.FACEUP_ATTACK)=>core.duelNewCard(duel,{team:player,duelist:0,code,controller:player,location,sequence:0,position});add(boss,L.HAND);if(scenario!=='baseline')add(counter,L.SZONE,1,P.FACEDOWN_DEFENSE);add(target,L.MZONE);if(!test.noPartner)add(boss,L.HAND);if(test.full)for(let i=1;i<5;i++)core.duelNewCard(duel,{team:0,duelist:0,code:filler,controller:0,location:L.MZONE,sequence:i,position:P.FACEUP_ATTACK});for(const player of [0,1])for(let i=0;i<4;i++)add(filler,L.DECK,player);
+   core.startDuel(duel);
+   for(let step=0;step<300&&!done;step++){
+    const state=core.duelProcess(duel),messages=core.duelGetMessage(duel);trace.push(...messages);for(const m of messages)if(m.type===M.NEW_TURN)turn++;if(logs.some(x=>x.type===0))throw Error(logs.map(x=>x.message).join('; '));if(state===S.END)throw Error('Duel ended');if(state!==S.WAITING)continue;const p=messages.at(-1);
+    if(p.type===M.SELECT_IDLECMD){
+     if(turn===2){core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.TO_EP,index:0});continue;}
+     if(placed<2){const index=p.activates.findIndex(c=>c.code===boss&&c.location===L.HAND);if(index<0)throw Error('Two actual Hand/PZone copies missing');placed++;core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});continue;}
+     const h=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:L.HAND}),m=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:L.MZONE}),z=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:L.SZONE});
+     if(turn===1&&triggers<2||turn===3&&triggers<3){const index=p.activates.findIndex(c=>c.code===target);if(index<0)throw Error('Repeat monster ignition missing');triggers++;core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});continue;}
+     if(turn===1){if(responses!==1||z.filter(c=>c?.code===boss).length!==2)throw Error('Negation/use or retained PZone copies incorrect');if(trace.filter(t=>t.type===M.CHAINING&&t.code===counter&&t.chain_size===3).length!==1)throw Error('Actual CounterTrap CL3 missing');core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.TO_EP,index:0});continue;}
+     if(turn!==3||responses!==2||!h.some(c=>c?.code===boss)||m.filter(c=>c?.code===boss).length!==1||z.some(c=>c?.code===boss))throw Error('Next turn second-copy return/SS reset failed');
+     if(JSON.stringify(trace.filter(t=>t.type===M.NEW_TURN).map(t=>t.player))!=='[0,1,0]')throw Error('Native turn progression missing');done=true;
+    }
+    else if(p.type===M.SELECT_CARD){const index=p.selects.findIndex(c=>c.code===boss);if(index<0)throw Error('Second DDJ summon selection missing');core.duelSetResponse(duel,{type:R.SELECT_CARD,indicies:[index]});}
+    else if(p.type===M.SELECT_YESNO||p.type===M.SELECT_EFFECTYN){core.duelSetResponse(duel,{type:R.SELECT_YESNO,yes:false});}
+    else if(p.type===M.SELECT_CHAIN){const ci=p.selects.findIndex(c=>c.code===counter);if(ci>=0&&!interrupted){interrupted=true;core.duelSetResponse(duel,{type:R.SELECT_CHAIN,index:ci});continue;}
+     const offers=p.selects.filter(c=>c.code===boss&&String(c.description)===String(132273769*16+1));
+     if(offers.length&&turn===1&&responses)throw Error('Named shared use illegally available again');
+     const index=p.selects.findIndex(c=>c.code===boss&&String(c.description)===String(132273769*16+1)&&c.sequence===(turn===1?firstSequence:4-firstSequence));
+     if(index>=0){responses++;core.duelSetResponse(duel,{type:R.SELECT_CHAIN,index});}else core.duelSetResponse(duel,{type:R.SELECT_CHAIN,index:p.forced?0:null});}
+    else if(p.type===M.SELECT_PLACE){let location=L.MZONE,sequence=[0,1,2,3,4].find(i=>(p.field_mask&(1<<i))===0);if(sequence===undefined){location=L.SZONE;sequence=[0,4].find(i=>(p.field_mask&(1<<(8+i)))===0);}core.duelSetResponse(duel,{type:R.SELECT_PLACE,places:[{player:0,location,sequence}]});}
+    else if(p.type===M.SELECT_POSITION)core.duelSetResponse(duel,{type:R.SELECT_POSITION,position:P.FACEUP_ATTACK});
+    else throw Error('Unhandled '+JSON.stringify(p,(_,v)=>typeof v==='bigint'?String(v):v));
+   }
+   if(!done)throw Error('Step limit');
+  }catch(e){failure=e.message}finally{core.destroyDuel(duel)}
+  results.push({scenario,firstSequence,failure,triggers,responses,trace,logs});console.log(`${failure?'FAIL':'PASS'} ${JSON.stringify({scenario,firstSequence})}${failure?': '+failure:''}`);
+ }
+ const control=['per-copy','no-reset'].find(c=>process.argv.includes('--'+c));
+ fs.writeFileSync(path.join(ROOT,`output/fresh-ccg-september/current-symphonic-ddj-response-shared-reset${control?'-'+control:''}.json`),JSON.stringify({engine:'public OCGCore with Omega Lua; neutral companion effect and Pendulum; not native Omega',control,results},(_,v)=>typeof v==='bigint'?String(v):v,2)+'\n');if(results.some(r=>r.failure))process.exitCode=1;
+}
+main().catch(e=>{console.error(e);process.exitCode=1});

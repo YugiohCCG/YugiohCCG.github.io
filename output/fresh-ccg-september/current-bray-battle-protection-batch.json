@@ -1,0 +1,63 @@
+{
+  "scope": "Full current initial-field Bray actual native battle protects own faceup and initially facedown Ghoti defender; wrong archetype/opponent Ghoti excluded, native source disable/removal ends protection. Actual 4000 attacker and battle destruction/survival. No adapters; proper Synchro/effect removal/real archetype integration/native Omega/fullcard open.",
+  "baseline_cases": 6,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_bray_battle_protection.cjs": "5232839c0644678841ad763af9ab8b19099fe2740a18798fd67a4ef27fc8d9ba",
+    "scripts/fresh_current_bray_battle_protection_batch.py": "bd962d358e102bc229c5163d940e33614e982d9b4dd81f16262dc45fe77173d4",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c212822164.lua": "81f0c485a88ebc89cf58c1dbf907716ed5301bff5d3c83dd24721c1cd1c33ce0",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-bray-battle-protection.json",
+      "artifact_sha256": "cf9129622c7d120296d67129ebd3336337fe551785433b2a8a22299c124f64d2"
+    },
+    {
+      "control": "no-protection",
+      "expected_failures": [
+        0,
+        1
+      ],
+      "artifact": "current-bray-battle-protection-no-protection.json",
+      "artifact_sha256": "81b0ea8d5eaf10e01a633b6e2b5c5f0431462ba7d4b8d258828a969617d26079"
+    },
+    {
+      "control": "ignore-set",
+      "expected_failures": [
+        2
+      ],
+      "artifact": "current-bray-battle-protection-ignore-set.json",
+      "artifact_sha256": "2f145f80477584b233aea67dc2e6fd8bca29ce1283a59ec87189bb095a830ff8"
+    },
+    {
+      "control": "both-players",
+      "expected_failures": [
+        3
+      ],
+      "artifact": "current-bray-battle-protection-both-players.json",
+      "artifact_sha256": "04dfc2332379918149f1c1f48a6223f03f12df11984ff5da5d524983149ce0a9"
+    },
+    {
+      "control": "no-interference",
+      "expected_failures": [
+        4,
+        5
+      ],
+      "artifact": "current-bray-battle-protection-no-interference.json",
+      "artifact_sha256": "a864f68f6996d0a6f394559f4fe2a2bfa16d478be27f1d935702e9e1facbea26"
+    }
+  ]
+}

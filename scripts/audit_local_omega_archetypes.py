@@ -32,8 +32,8 @@ def main():
  spellings={m.normalize_name(n):n for v in votes.values() for n in v}
  for key,sc in m.OMEGA_SET_CODES.items():
   if sc in used and key in spellings:votes[sc][spellings[key]]+=1
- assert m.OMEGA_SET_CODES['bau']==0xba8 and m.OMEGA_SET_CODES['ohmechanic']==0x8de1
- votes[0xba8]=collections.Counter({'Bau':1});votes[0x8de1]=collections.Counter({'Ohmechanic':1})
+ assert m.OMEGA_SET_CODES['bau']==0xba8 and m.OMEGA_SET_CODES['ohmenchanic']==0x8de1
+ votes[0xba8]=collections.Counter({'Bau':1});votes[0x8de1]=collections.Counter({'Ohmenchanic':1})
  missing=sorted(set(used)-set(existing));labels={};unresolved=[]
  for sc in missing:
   candidates=votes[sc]

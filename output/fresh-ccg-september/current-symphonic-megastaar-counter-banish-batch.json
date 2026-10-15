@@ -1,0 +1,66 @@
+{
+  "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+  "baseline_cases": 9,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_symphonic_megastaar_counter_banish_batch.py": "f0c9516a5ec0586b291d1404a18559841a3a447f50a23e6233bd85302a407d51",
+    "scripts/fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "src/data/cards.json": "c98dfa92c196beb58188d4f19ded008c337bc70da002df221e7188084f32c3a5",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "scripts/fresh_current_symphonic_megastaar_counter_banish.cjs": "369bb116b985fa625f6e9579fa5e1c1d641650cfcc8b6e2afe2e5d606aa4e485",
+    "public/CCG Downloads/CCG_Scripts/c238273772.lua": "dd3c2101699086b4d3b578ec7ab7439899393660a9392fa6f703a1c6a5e7c33d",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "tmp/omega_scripts/c75304793.lua": "f128b46f08f4907b5958e1d681d259fad75291b6a3a62e37c52cb203865ba593"
+  },
+  "runs": [
+    {
+      "flag": null,
+      "artifact": "current-symphonic-megastaar-counter-banish.json",
+      "artifact_sha256": "24e9cec1425b3fa427800dea8e2d14386159ab2e5a1d2602323af3326692a06d",
+      "expected_failures": []
+    },
+    {
+      "flag": "no-banish",
+      "artifact": "current-symphonic-megastaar-counter-banish-no-banish.json",
+      "artifact_sha256": "a0eafec1daa0d9e349a0fe240de0b50047a9835bc6f580e788336c0fa02371d1",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "flag": "no-cost",
+      "artifact": "current-symphonic-megastaar-counter-banish-no-cost.json",
+      "artifact_sha256": "1a5ba260dafd91e0d782227e24de6245ae05b70bfc3a0e1807b1e43dd114cb80",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "flag": "no-field-check",
+      "artifact": "current-symphonic-megastaar-counter-banish-no-field-check.json",
+      "artifact_sha256": "87ac0f1539203239236cfb121cd208c7c4cd5d39cf9fde83fd31f2896015c38a",
+      "expected_failures": [
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "scope": "FullMegaStaar andloadedofficialAmplifirescript, currentcanonicalMegaStaar metadata/correctedCardData, actualpropernativeSynchrohistory withboundedlegacySynchroAPI/IsNotTuner adapters. Actualcounters2own+1opponent; remove2banish2field/GY, remove3banish1, separateGYonly/fieldonly. CostnativeREMOVE_COUNTER aftersourceCHAININGbeforeCHAINED, non-targeting/nativeREMOVEDcounts/selection/softonceperturn checked. PZone/noAmplifire/opponentField/facedownField/zeroCounters excluded. NoBanish4/noCost4/noFieldCheck3exactfailures, emptylogs/frozeninputs/parity. Testcompatibilitydiagnostic notnativeOmega/generalrecipe/fullcard; interruptions/sharedreset/remainingeffects open."
+}

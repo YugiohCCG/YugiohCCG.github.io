@@ -1,0 +1,53 @@
+{
+  "status": "VERIFIED_COMPATIBILITY_DIAGNOSTIC",
+  "baseline_cases": 3,
+  "runtime_dependencies_sha256": {
+    "public/CCG Downloads/CCG_Scripts/c248760718.lua": "5fc3396f32386bd3b547642db4476788e1da36ffd48d13e76cee183bb5e2faee",
+    "scripts/fresh_current_starry_queen_permission_shared_reset_batch.py": "03a7bea9c540ce30d14e3a2a2db7e2e743fe74d3008f048a838fee719d43ea36",
+    "scripts/fresh_current_starry_queen_permission_shared_reset.cjs": "293718d99d9411c3daebab4c4e81c3713e64c4eb7affec3780764e2a4a93d694",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "src/data/cards.json": "09f83a5a740b066a3fcb7f5f996ee5ff642d7d91ab500bf03660ac2f8ca790b0",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "scripts/fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "control": null,
+      "artifact": "current-starry-queen-permission-shared-reset.json",
+      "artifact_sha256": "a92ba180753ff412fbdfcb2f4ab1df03b81c959a22211c13740376c49a634f4e",
+      "expected_failures": []
+    },
+    {
+      "control": "per-copy",
+      "artifact": "current-starry-queen-permission-shared-reset-per-copy.json",
+      "artifact_sha256": "0e64dc267aae237ed5b02ba4fe5378eb6ffb98f7548251a9492fde7e97de2c4c",
+      "expected_failures": [
+        "baseline",
+        "negateActivation",
+        "negateEffect"
+      ]
+    },
+    {
+      "control": "no-reset",
+      "artifact": "current-starry-queen-permission-shared-reset-no-reset.json",
+      "artifact_sha256": "825de5161a87d02b20427ec6f97eb393083301850ecab51f79e51c041769ef3c",
+      "expected_failures": [
+        "baseline",
+        "negateActivation",
+        "negateEffect"
+      ]
+    }
+  ],
+  "scope": "Starry3native shared two-copy use/reset cases success/NegAct/NegEffect; cost/reveal/movementbeforeCHAINED retained; own1secondcopyblockedwithfreeoppositePZone. NaturalNEW_TURN0/1/0 thenoldTrapresolution/freshTrapHandSet, secondcopycostactualPZoneMove andnewfreshpermission. CopiesactuallySZONE0/4. ControlsperCopy3/noReset3, emptylogs/parity/frozeninputs. Explicitattributeconstant22/correctedCardData compatibilitydiagnosticnotOmega/fullcard."
+}

@@ -8,12 +8,12 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
   "current_cards": 711,
   "new_passcodes": [],
   "missing_current": 0,
-  "changed_printed_effects": 12,
-  "changed_specifications": 25,
+  "changed_printed_effects": 13,
+  "changed_specifications": 141,
   "database_text_mismatches": {
-    "candidate": 12,
-    "public": 91,
-    "installed": 0
+    "candidate": 13,
+    "public": 92,
+    "installed": 1
   },
   "database_metadata_mismatches": {
     "candidate": 14,
@@ -25,17 +25,17 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
     "installed": 0
   },
   "database_text_formatting_only": {
-    "candidate": 12,
-    "public": 0,
-    "installed": 12
+    "candidate": 2,
+    "public": 2,
+    "installed": 2
   },
   "source_install_mismatches": 0,
   "syntax_stale": 0,
-  "load_stale": 2,
+  "load_stale": 9,
   "current_spec_initialization_rechecks": {
-    "total": 90,
-    "passed": 63,
-    "compatibility_failures": 27
+    "total": 113,
+    "passed": 85,
+    "compatibility_failures": 28
   }
 }
 ```
@@ -50,6 +50,7 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
 | 221672256 Skewy! Boo-Boo | return this card to → negate; hand, and if you do, negate that → (removed) |
 | 227035644 Aqua Fusion | listed on it its materials → (removed) |
 | 237684285 Janna, Windborne Goddess of Clement Winds | effects → effects, except your "Windborne" cards, |
+| 248760718 Starry Knight Starry Queen | (added) → Pendulum Effect:; (added) → Monster Effect: |
 | 255686110 Iscylla, Windborne Kraken of Sunken Depths | card → card(s); (added) → for each card added |
 | 259073666 Wyvernal Gathering | (added) → "Wyvernal" or |
 | 259152704 Dragon Protector of Nature | NATURE → Plant, Insect or Beast; (added) → monster; NATURE → Plant, Insect or Beast; NATURE → Plant, Insect or Beast |
@@ -92,14 +93,14 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
 | 238276250 Incarnation of Nephthys | public | — | — | — |
 | 238276251 Brazier of Nephthys | public | — | — | — |
 | 238276252 Prayer Of Nephthys | public | — | — | — |
-| 238276572 Sylvan Flamushroomo | public | — | — | — |
+| 238276572 Sylvan Flamushroomo | public | — | load | — |
 | 238276573 Sylvan Goleaf | public | — | — | — |
-| 238276574 Sylvan Flamioak | public | — | — | — |
-| 238276575 Sylvan Greetings | public | — | — | — |
-| 238276576 Sylvan Intervention | public | — | — | — |
-| 238276577 Sylvan Blast | public | — | — | — |
-| 238276578 Sylvan Duchessprout | public | — | — | — |
-| 238276579 Gink, the Sylvan High Champion | public | — | — | — |
+| 238276574 Sylvan Flamioak | public | — | load | — |
+| 238276575 Sylvan Greetings | public | — | load | — |
+| 238276576 Sylvan Intervention | public | — | load | — |
+| 238276577 Sylvan Blast | public | — | load | — |
+| 238276578 Sylvan Duchessprout | public | — | load | — |
+| 238276579 Gink, the Sylvan High Champion | public | — | load | — |
 | 238276580 Azale, the Sylvan High Sovereign | public | — | — | — |
 | 239935093 Heart of the Hydra | public | — | — | — |
 | 239935094 Winged Snake of the Swamp | public | — | — | — |
@@ -139,6 +140,7 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
 | 247755873 Kali Yuga - Ahimsaka Justijhn | public | — | — | — |
 | 247756271 Kali Yuga - Bheki | public | — | — | — |
 | 247756272 Kali Yuga - Jakarta | public | — | — | — |
+| 248760718 Starry Knight Starry Queen | candidate, public, installed | — | — | — |
 | 255686110 Iscylla, Windborne Kraken of Sunken Depths | candidate | — | — | — |
 | 256930605 Fruteification | — | — | load | — |
 | 259033429 Carcel, the Ohmechanic Light | — | candidate | — | — |
@@ -162,7 +164,7 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
 | 284636586 Terrarumian Terrarium | public | — | — | — |
 | 284636587 Terrarumian Spores | public | — | — | — |
 | 284636588 Terrarumian Misting | public | — | — | — |
-| 284636589 "Terrarumian Growth | public | — | — | — |
+| 284636589 Terrarumian Growth | public | — | — | — |
 | 284636661 Aquamarine Seagrass Zostera | public | — | — | — |
 | 284636662 Aquamarine Coral Krait | public | — | — | — |
 | 284636663 Aquamarine Seafan Gorgonia | public | — | — | — |

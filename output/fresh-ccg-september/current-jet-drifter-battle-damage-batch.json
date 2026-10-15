@@ -1,0 +1,54 @@
+{
+  "scope": "Full current initial-field Jet Drifter: actual battle damage prevention for own player, opposing player excluded, native source disable/removal ends prevention. Neutral 4000 attacker/100 defender; no adapters. Proper Link summon and remaining effects/native Omega/fullcard open",
+  "baseline_cases": 4,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_jet_drifter_battle_damage.cjs": "41dc63d26e776708ac92e1e39e12d313a4b258b0b061b2f660c56d23a0cf55d4",
+    "scripts/fresh_current_jet_drifter_battle_damage_batch.py": "d54df8ce9c181e884ef9e28ec605c1e448191bbf9f2c4548039acaae59faf764",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c212837324.lua": "319f375da2c3c301721bb2390de42b94886d9899a9cfb4c46ab814f1ed7df3ab",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-jet-drifter-battle-damage.json",
+      "artifact_sha256": "059fd6b1f858d8ad4861a8beeccea813c26813baee0350b41c5694b386b01201"
+    },
+    {
+      "control": "no-protection",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-jet-drifter-battle-damage-no-protection.json",
+      "artifact_sha256": "bfea281ce86bdd2f478f38d15b5c4616ef51097317c862db4acefd1e8eadc48c"
+    },
+    {
+      "control": "both-players",
+      "expected_failures": [
+        1
+      ],
+      "artifact": "current-jet-drifter-battle-damage-both-players.json",
+      "artifact_sha256": "5b6221c7c4cc51494b3b73c0763e5ed37fc5f24029f365c2d83445df2d2829af"
+    },
+    {
+      "control": "no-interference",
+      "expected_failures": [
+        2,
+        3
+      ],
+      "artifact": "current-jet-drifter-battle-damage-no-interference.json",
+      "artifact_sha256": "b72f43ecc1b957ac3985a6ee7ea708c72119ae45c20f56bb41d826475260b95d"
+    }
+  ]
+}

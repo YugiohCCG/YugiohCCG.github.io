@@ -1,0 +1,57 @@
+{
+  "scope": "Full current Dante actual GY ignition, real opposing Deck neutral Stain Monster or Spell made faceup by actual native ReverseInDeck and shown, source transferred faceup to opposing Deck and real Stain monster searched. No adapters. Hidden and wrongset opposing Deck exclusions; interruptions/use/nativeOmega/fullcard OPEN.",
+  "baseline_cases": 4,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_dante_opponent_deck_show.cjs": "f014b054e1d82c49acdc96dbb315fa6f818102929fb0ed62ec4b3ee51ddc0a9f",
+    "scripts/fresh_current_dante_opponent_deck_show_batch.py": "8a3af2106581d78765287ec5f82438266cace2169e8993daf1992cd2ff550009",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c216958556.lua": "8056041f275334792b3a69179f084f0a733b2737788786681c13e83c93e6a5a0",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-dante-opponent-deck-show.json",
+      "artifact_sha256": "362d8dcbfb317bbe4aa2667bfbd8a07ef4e6e0c5a43799d92ac112289f60303a"
+    },
+    {
+      "control": "no-search",
+      "expected_failures": [
+        0,
+        3
+      ],
+      "artifact": "current-dante-opponent-deck-show-no-search.json",
+      "artifact_sha256": "ebb4dc557416e05f6f614c3277a1eaa3fd560999217eb2d30c50be654c2c7fca"
+    },
+    {
+      "control": "no-transfer",
+      "expected_failures": [
+        0,
+        3
+      ],
+      "artifact": "current-dante-opponent-deck-show-no-transfer.json",
+      "artifact_sha256": "5bc50e929302ad428ba61208a4d4cc2b315ae7945887bb9ebf465170f2c11d1e"
+    },
+    {
+      "control": "no-reverse",
+      "expected_failures": [
+        0,
+        2,
+        3
+      ],
+      "artifact": "current-dante-opponent-deck-show-no-reverse.json",
+      "artifact_sha256": "03a4aabcfe0fda2e271b7fb2e64983ea90827c6f0f5f65029685fbe4c7807b65"
+    }
+  ]
+}

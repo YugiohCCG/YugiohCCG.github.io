@@ -1,0 +1,59 @@
+{
+  "status": "VERIFIED_PARTIAL_PRODUCTION",
+  "baseline_cases": 5,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_seraphina_suppressor_target_protection_batch.py": "ce4b86757656d2a9cf967b81056a6eacc9f676d679b406b878825a7a30576129",
+    "scripts/fresh_current_seraphina_suppressor_target_protection.cjs": "7b4b7c13ee99162e4c22e2640d0c196c1a856f442106a02b13bf34681b26a3c1",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c218142234.lua": "e321e1e14d7ccff7ec4359429f01340c50a1dae58bd1e0b005b77bc039a6973c",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c238136421.lua": "088d06d4ed6c3a66534b2cb1ef4f51b1bc4df34886fecc2d7948250eb8f32132",
+    "public/CCG Downloads/CCG_Scripts/c215921734.lua": "600e766d4f89f9482b83d18fd85af413f1f312802a52e605fe51dbb38e4876e6"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-seraphina-suppressor-target-protection.json",
+      "artifact_sha256": "4788fad6c158d9c920d11b148298cd711ce79554daec290402794931aba9e274"
+    },
+    {
+      "control": "no-protection",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-seraphina-suppressor-target-protection-no-protection.json",
+      "artifact_sha256": "d3e0c6d55409585716aca7b018b3377e44e6ef3ce81320df277fec40c57dc68a"
+    },
+    {
+      "control": "protect-own",
+      "expected_failures": [
+        1
+      ],
+      "artifact": "current-seraphina-suppressor-target-protection-protect-own.json",
+      "artifact_sha256": "a123f68e055b6a9f51124cc2c611ba706c7dfef615cd3776c35d4f36db2d28e1"
+    },
+    {
+      "control": "no-probe",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "artifact": "current-seraphina-suppressor-target-protection-no-probe.json",
+      "artifact_sha256": "87d999dbb37e36f5f8737aee3f5abb701db5e830785a7ec97806fef9f96f4928"
+    }
+  ],
+  "scope": "Full Seraphina Pendulum/fullSuppressor equip; actual opposing targeting effect excluded, own targeting allowed, equipdecline/Halberd permits opponent target, opposing non-target destruction allowed. Native Card.IsCanBeEffectTarget and actual target/operation used, no adapters; checked neutral Fusion history, other effects/Omega/fullcard OPEN"
+}

@@ -1,0 +1,73 @@
+{
+  "scope": "Full current Actinia initial MZONE, actual own neutral ignition CL1 and native Quick CL2. Real WATER Aqua GY cost/activation negation/destruction; another Aquamarine absent/wrongset/facedown/opponent and absent/wrongrace/wrongattribute costs excluded. No proper Fusion history, adapters or seeded use. Revival/once-use/interruption/nativeOmega/fullcard OPEN.",
+  "baseline_cases": 8,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_actinia_negation.cjs": "577ab029a8234aee64ea7444ca3e34c95edb82891fd202827f927a932be2dc0b",
+    "scripts/fresh_current_actinia_negation_batch.py": "852efce30a32154d08986620745a7ea7be33d696a7d0b47f15ce2e6facf56da2",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c216258796.lua": "b430ed9372b2841f4c80a91f0d5f58a576165b94bd4cb2d16c307837d196f296",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-actinia-negation.json",
+      "artifact_sha256": "57d2ef90eb002a8d027cf0e418dba0ece8684764db64711f62cf8b097051797b"
+    },
+    {
+      "control": "no-negate",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-actinia-negation-no-negate.json",
+      "artifact_sha256": "9be690bb1655c69502cdc9306546c921b0242fd9e76d1c2b40601d68aa074c6e"
+    },
+    {
+      "control": "no-destroy",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-actinia-negation-no-destroy.json",
+      "artifact_sha256": "ede655d3493d5ef724472bc61eec2a3f0736d7311d28edc70cbd7e57de04967d"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-actinia-negation-no-cost.json",
+      "artifact_sha256": "6c66e98b0e4696cd29c6527f23d7cacfd503a1391f17c3f3f3db0f9746bdd53c"
+    },
+    {
+      "control": "ignore-partner",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "artifact": "current-actinia-negation-ignore-partner.json",
+      "artifact_sha256": "f7468e841e0884f5cf53ad227c9440d3a5f6a21e155d067a3e94be200a69bfbb"
+    },
+    {
+      "control": "ignore-cost-type",
+      "expected_failures": [
+        6,
+        7
+      ],
+      "artifact": "current-actinia-negation-ignore-cost-type.json",
+      "artifact_sha256": "53dd9ac0e32b6b127ba5c5bc26557f602494caa97c8fce05e6436e2568b49f8d"
+    }
+  ]
+}

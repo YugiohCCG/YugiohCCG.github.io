@@ -1,0 +1,58 @@
+{
+  "scope": "Full current Eldora actual native field destruction/GY forced trigger targets own Normal monster; destroys other own faceup Effect monster sharing only race/attribute/level/ATK/DEF. Nonmatch/Normal/facedown/opponent/listed Dysmandr exclusion; neutral metadata candidates explicit. No Set resource present; full matching group/Set/count/interruptions/nativeOmega/fullcard open",
+  "baseline_cases": 11,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_eldora_matching_destruction.cjs": "6f988a6142cb1c82dd846f6507b74b952c3e21b5ff8a13ef4d8f7c3212ab634f",
+    "scripts/fresh_current_eldora_matching_destruction_batch.py": "fa432838b59a1852796fd5b5fc9bdbfcae555f4ccf0766ff27939a5b386c7499",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c214552846.lua": "c2bbc342c22f0e1bdc935c24165c022646f2a1569e08f323ae6b4d4a56fda9ff",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-eldora-matching-destruction.json",
+      "artifact_sha256": "b85602f4987586d2a2139b6884170be772dca9ea40a8ea9c2862857a38062b17"
+    },
+    {
+      "control": "no-destroy",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        10
+      ],
+      "artifact": "current-eldora-matching-destruction-no-destroy.json",
+      "artifact_sha256": "1f92cc92a18ce14b5f228152c7d68cf0d0dc0e9bf276b578d407b2a857ef3d17"
+    },
+    {
+      "control": "ignore-type",
+      "expected_failures": [
+        6
+      ],
+      "artifact": "current-eldora-matching-destruction-ignore-type.json",
+      "artifact_sha256": "bf33cf16dc62aaeaa1632f75e03890f2a3609da113959cfcd66115aa0a06b176"
+    },
+    {
+      "control": "ignore-exclusion",
+      "expected_failures": [
+        9
+      ],
+      "artifact": "current-eldora-matching-destruction-ignore-exclusion.json",
+      "artifact_sha256": "bd75c86f845e3ac19685bcfb78d3ab2bb9a61ab1ac8cb68f49f5f79ce2199706"
+    }
+  ]
+}

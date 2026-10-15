@@ -1,0 +1,13 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+paths=[Path(__file__).resolve(),ROOT/'scripts/fresh_corrected_card_data_transport.cjs',ROOT/'scripts/fresh_current_card.cjs',OUT/'current-spec-CCG_v1.db',ROOT/'src/data/cards.json',ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']+[ROOT/'scripts/fresh_current_symphonic_disccs_pendulum_interruption.cjs']+[ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua' for code in [238273770]]+[ROOT/'tmp/omega_scripts'/name for name in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))
+before={p.relative_to(ROOT).as_posix():sha(p) for p in paths};runs=[]
+for flag,expected in [(None,[]),('no-response',['negateActivation','negateEffect','sourceBanish']),('no-operation',['baseline']),('no-cost',['baseline','negateActivation','negateEffect','sourceBanish'])]:
+ r=subprocess.run(['node','--no-warnings','scripts/fresh_current_symphonic_disccs_pendulum_interruption.cjs']+(['--'+flag] if flag else []),capture_output=True,text=True,timeout=20);p=OUT/('current-symphonic-disccs-pendulum-interruption'+('-'+flag if flag else '')+'.json');d=json.loads(p.read_text());assert len(d['results'])==4 and all(not v['logs'] for v in d['results']),r.stdout+r.stderr;assert [v['scenario'] for v in d['results'] if v['failure']]==expected,(flag,r.stdout);assert r.returncode==(1 if expected else 0)
+ runs.append({'flag':flag,'artifact':p.name,'artifact_sha256':sha(p),'expected_failures':expected})
+assert before=={p.relative_to(ROOT).as_posix():sha(p) for p in paths}
+inst=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts')
+for code in [238273770]:assert (ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua').read_bytes()==(inst/f'c{code}.lua').read_bytes()
+(OUT/'current-symphonic-disccs-pendulum-interruption-batch.json').write_text(json.dumps({'status':'VERIFIED_PARTIAL_PRODUCTION','baseline_cases':4,'runtime_dependencies_sha256':before,'runs':runs,'scope':'FullDisccs production/currentcanonicalmetadata/correctedCardData native4primaryPendulum baseline/CL2activationnegation/effectnegation/sourcebanishment. ActualcostcardMZONEtoHANDMOVEbetweenCHAINING/CHAINED stayspaid, interruptionspreventselfSS, sourceREMOVEDchecked. NativeCL2/non-targeting/repeatchecks. Noresponse3/noSS1/noCost4failures; emptylogs/parity/frozeninputs. NoLuaAPIshim/nativeOmega/fullcard; sharedreset/other effects open.'},indent=2)+'\n',encoding='utf-8');print('Disccs4interruptionPASS;controls3/1/4verified; frozeninputs/parity')

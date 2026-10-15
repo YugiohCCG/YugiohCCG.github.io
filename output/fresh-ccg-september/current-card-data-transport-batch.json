@@ -1,0 +1,56 @@
+{
+  "status": "VERIFIED_TEST_TRANSPORT_BUG",
+  "original_matches": 5,
+  "corrected_matches": 25,
+  "cards": 25,
+  "runtime_dependencies_sha256": {
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs": "c002e1b676181fb43881add27888ca8a106ac1dbe3ae0ad40836dcc98d186088",
+    "scripts/fresh_current_card_data_transport.cjs": "0a43927b1a9da6500ea51cd36e53634ea1add0355c0e215d01d5b952088ec0e9",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "src/data/cards.json": "09f83a5a740b066a3fcb7f5f996ee5ff642d7d91ab500bf03660ac2f8ca790b0",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde"
+  },
+  "artifacts": [
+    {
+      "path": "current-card-data-transport.json",
+      "sha256": "015a327fcc3739fcd14fd1359be5a7768e24cf7f85456ab9e4186114e7e0d196"
+    },
+    {
+      "path": "current-card-data-transport-corrected.json",
+      "sha256": "b547648397bdbaf0120d1d528b92459022923cb27cd990c111c9f58f37614b0f"
+    }
+  ],
+  "affected_actual_metadata": [
+    230947464,
+    256928871,
+    210506870,
+    245935439,
+    218142234,
+    248760718,
+    259072906,
+    259882493,
+    259537607,
+    238273768,
+    238273772,
+    284639717,
+    284639718,
+    284639719,
+    284639720,
+    284639721,
+    284639722,
+    284639723,
+    284639724,
+    900002603
+  ],
+  "scope": "32bit JS CardData packing rscale written48 instead44 andlink_marker52 instead48; native real getters confirm corrected25/25 vs original5/25. No production Lua/DB/Omega mutation. Separate candidate module only; no game API shim. Historical original-runtime results remain bounded by wrong right scales/arrows; do not broadly recertify without relevant native scenario reruns. Future fixture loader must explicitly select corrected transport with frozen inputs; current production-backed Mage effective rightscale supplied by neutral native scale-effect remains valid."
+}

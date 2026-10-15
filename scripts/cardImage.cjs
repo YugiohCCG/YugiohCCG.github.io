@@ -61,8 +61,8 @@ function decodeHtmlEntities(value) {
 }
 
 function splitPendulumText(text) {
-  const raw = String(text || '');
-  const match = raw.match(/^Pendulum Effect:\s*([\s\S]*?)(?:\nMonster Effect:\s*([\s\S]*))?$/i);
+  const raw = String(text || '').replace(/\\r\\n|\\n|\\r/g, '\n').replace(/\r\n?/g, '\n');
+  const match = raw.match(/^Pendulum Effect:\s*([\s\S]*?)(?:\s*Monster Effect:\s*([\s\S]*))?$/i);
   if (!match) return { effect: raw, pendulumEffect: '' };
   return {
     pendulumEffect: match[1].trim(),
@@ -197,10 +197,10 @@ function validateYgocarderExport(cardJson) {
   return problems;
 }
 
-async function cropCardArtToDataUrl(imagePath) {
+async function cropCardArtToDataUrl(imagePath, isPendulum = false) {
   const { stdout } = await execFileAsync(
     process.env.PYTHON || 'python',
-    [CROP_SCRIPT, '--input', imagePath, '--base64'],
+    [CROP_SCRIPT, '--input', imagePath, '--base64', ...(isPendulum ? ['--pendulum'] : [])],
     { maxBuffer: 16 * 1024 * 1024, windowsHide: true },
   );
   const base64 = String(stdout || '').trim();
@@ -463,7 +463,7 @@ async function renderAllCcgCards(options = {}) {
     }
 
     try {
-      const artDataUrl = await cropCardArtToDataUrl(targetPath);
+      const artDataUrl = await cropCardArtToDataUrl(targetPath, (card.cardTypes || []).includes('Pendulum'));
       const cardJson = mapCcgCardToYgocarder(card, artDataUrl);
       const mime = outputMimeForPath(targetPath);
       const buffer = await renderCardToPngBuffer(cardJson, { renderUrl, mime });

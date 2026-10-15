@@ -1,0 +1,59 @@
+{
+  "scope": "Actinia improper revival completion CONFIRMED: actual Extra-to-GY source has STATUS_PROC_COMPLETE false/ordinary IsCanBeSpecialSummoned false but printed GY procedure actually SpecialSummons it; empty logs. Candidate adds IsStatus(STATUS_PROC_COMPLETE) guard. Six candidate groups28cases verified: improper exclusion1 with old-source control, previous native negation/interruption/own+opponent reset21 regressions, proper native Fusion-history revival6 with no-revival/ignore-partner controls. Proper-history fixture explicitly checks known two printed material categories, sets real materials, sends both Hand materials toGY, actual native non-bypass SUMMON_TYPE_FUSION then CompleteProcedure and source destruction; no seeded procedure status/API adapters. Candidate accepts real proper history with own faceup WATER Aqua, excludes absent/wrongrace/wrongattribute/facedown/opponent partner. Production Fusion material-selection remains missing GetMustMaterial diagnostic; fixture does not certify source Fusion recipe. Official Konami rulebook pp24-25 proper-summon restriction applied by inference to custom Fusion own GY procedure. Candidate-only evidence excluded from focused production index. Counts205partial81repair0full, source/install unchanged. Next actual proper revival capacity/locks/shared procedure use and then exact both-copy backup/apply candidate with mandatory repair gates and evidence refresh. NativeOmega/fullcard/full711 goal ACTIVE.",
+  "artifacts": [
+    {
+      "path": "current-actinia-qualification-candidate-batch.json",
+      "sha256": "d6eb40e29e395b7b9bab448c4a6a16e1adfad5a3a2dfcc74bbdb4e4e6d448161",
+      "cases": 1
+    },
+    {
+      "path": "current-actinia-qualification-candidate-negation-batch.json",
+      "sha256": "ad45badba400ed4c4d2a2e7e17998d01ab5f0d0f1a3dbb2b19a87cac92398c4d",
+      "cases": 8
+    },
+    {
+      "path": "current-actinia-qualification-candidate-interruption-batch.json",
+      "sha256": "eda2a846cbc55e0b5b0395ddeb2134e08c57e33e72b9f6e276e5af2f5b4d25d3",
+      "cases": 7
+    },
+    {
+      "path": "current-actinia-qualification-candidate-use-reset-batch.json",
+      "sha256": "8c5843561187f7b099287ca35c9d54438d4249cc1913ede7d1d919fc15d57d19",
+      "cases": 3
+    },
+    {
+      "path": "current-actinia-qualification-candidate-opponent-reset-batch.json",
+      "sha256": "cbdfb80a6131e04961c32aea09ba83a4c92cebaf859ded062b204d73684e5f12",
+      "cases": 3
+    },
+    {
+      "path": "current-actinia-qualification-proper-revival-batch.json",
+      "sha256": "4181c948c40af8e8921fc1a9f4b06480c79afa65e0a751362c38d9e05a1e3591",
+      "cases": 6
+    }
+  ],
+  "candidate_cases": 28,
+  "production_changed": false,
+  "completion_finding": {
+    "path": "current-actinia-improper-revival-completion.json",
+    "sha256": "9c96434cede9783a3b9344f61f696c823b9e15cdd89c5b8fdbafb1bf30d1f86b",
+    "runtime_dependencies_sha256": {
+      "scripts/fresh_current_actinia_improper_revival_completion.cjs": "42b45f3fa138ef6f586413a3e699842854b682adb36cd2a6ac7fd0fc8ce98b5f",
+      "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+      "public/CCG Downloads/CCG_Scripts/c216258796.lua": "dc355e0348b247cdb9467ac7126a75d1e82820aa1bd3ac8c11619257c2012868",
+      "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+      "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+      "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+      "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+      "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+      "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+      "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+      "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+      "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+      "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+      "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+    }
+  },
+  "rule_source": "https://img.yugioh-card.com/en/downloads/rulebook/SD_RuleBook_EN_10.pdf",
+  "interpretation": "General proper-summon rule applied by inference to custom Fusion GY procedure; no exact card ruling."
+}

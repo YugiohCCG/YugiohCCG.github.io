@@ -46,7 +46,7 @@ function s.ritloc(tp)
 	return loc
 end
 function s.matfilter(c,rc)
-	return c:GetLevel()>0 and c:IsCanBeRitualMaterial(rc)
+	return c:GetLevel()>0 and c:IsCanBeRitualMaterial(rc) and c:IsReleasableByEffect()
 end
 function s.corruptionfilter(c)
 	return c:IsFaceup() and c:IsCode(259546637)

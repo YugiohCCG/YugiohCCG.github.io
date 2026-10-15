@@ -1,0 +1,53 @@
+{
+  "status": "VERIFIED_PARTIAL_PRODUCTION",
+  "baseline_cases": 3,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_symphonic_speeaker_pendulum_shared_reset_batch.py": "b388dc6bb237b54b2206c3ecd021aeaa7f9e1bd7397139c8956be5002d041846",
+    "scripts/fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "src/data/cards.json": "c98dfa92c196beb58188d4f19ded008c337bc70da002df221e7188084f32c3a5",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "scripts/fresh_current_symphonic_speeaker_pendulum_shared_reset.cjs": "795fb60d9ce59931e075a5724d5fbf4fafdb55ae6ecf3b351a1c936d63153601",
+    "public/CCG Downloads/CCG_Scripts/c238273768.lua": "0b9bcfd0614b183308ecbc120d44fde03b23352ac6855a9a2d64e9b62e85b573",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "flag": null,
+      "artifact": "current-symphonic-speeaker-pendulum-shared-reset.json",
+      "artifact_sha256": "85b55a4e0a1c2c9477898a7a416cb80940b1054f1469ed2b4854754f3e685540",
+      "expected_failures": []
+    },
+    {
+      "flag": "per-copy",
+      "artifact": "current-symphonic-speeaker-pendulum-shared-reset-per-copy.json",
+      "artifact_sha256": "fbe9bfd72d1397ea05f0335789ca2f656125f195151fa3edc4b2df15b760735b",
+      "expected_failures": [
+        "baseline",
+        "negateActivation",
+        "negateEffect"
+      ]
+    },
+    {
+      "flag": "no-reset",
+      "artifact": "current-symphonic-speeaker-pendulum-shared-reset-no-reset.json",
+      "artifact_sha256": "e9ee6358474913dfbc1d6e2da50247aeeac6ae000113daebc16a614b9ee6c457",
+      "expected_failures": [
+        "baseline",
+        "negateActivation",
+        "negateEffect"
+      ]
+    }
+  ],
+  "scope": "FullSpeeaker currentcanonicalmetadata/correctedCardData actualtwoHandPZonecopies0/4, firsteffectsuccess/actualCL2NegAct/NegEffect sharesnameduse andblockssecondcopywhileDecktargetremains. NaturalNEW_TURN0/1/0 thenactualsecondcopysequence4 destructionandDeckreplacement/properExtra/SZONEoutcomes. ControlsperCopy3/noReset3; emptylogs/fullsourceinstallparity/frozeninputs. NoLuaAPIadapter/nativeOmega/fullcard; other effects andremainingPendulums open."
+}

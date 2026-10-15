@@ -1,0 +1,61 @@
+{
+  "status": "VERIFIED_PARTIAL_PRODUCTION",
+  "baseline_cases": 6,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_symphonic_speeaker_pendulum_interruption_batch.py": "ef70c418314624fd53764a474718310b3c83ca04785e6055ee6986692a3ca112",
+    "scripts/fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "src/data/cards.json": "09f83a5a740b066a3fcb7f5f996ee5ff642d7d91ab500bf03660ac2f8ca790b0",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "scripts/fresh_current_symphonic_speeaker_pendulum_interruption.cjs": "9a96f6d13260425aa3cabe34d7874206196c36914daf9316b69e56e32f3f8e60",
+    "public/CCG Downloads/CCG_Scripts/c238273768.lua": "0b9bcfd0614b183308ecbc120d44fde03b23352ac6855a9a2d64e9b62e85b573",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "flag": null,
+      "artifact": "current-symphonic-speeaker-pendulum-interruption.json",
+      "artifact_sha256": "7e4d581d29308b56ea9dac670fdc2df0fb4b85e32f0724a85d9d5a196c5ff157",
+      "expected_failures": []
+    },
+    {
+      "flag": "no-response",
+      "artifact": "current-symphonic-speeaker-pendulum-interruption-no-response.json",
+      "artifact_sha256": "18546feea45c4b0ae112be672068cca32a6ddd23a59016b2610aa30f24dfc6e5",
+      "expected_failures": [
+        "negateActivation",
+        "negateEffect",
+        "sourceBanish",
+        "targetBanish",
+        "lateProtection"
+      ]
+    },
+    {
+      "flag": "no-operation",
+      "artifact": "current-symphonic-speeaker-pendulum-interruption-no-operation.json",
+      "artifact_sha256": "2b573c87a221b1662315be94baac33f21593e4c26b3dae5641b7f2abbe6aef54",
+      "expected_failures": [
+        "baseline"
+      ]
+    },
+    {
+      "flag": "ignore-destruction",
+      "artifact": "current-symphonic-speeaker-pendulum-interruption-ignore-destruction.json",
+      "artifact_sha256": "92a4726fa2160de5c1856e6a30f6865fa9319a1d6f23c23f8325c95edc1dbf20",
+      "expected_failures": [
+        "lateProtection"
+      ]
+    }
+  ],
+  "scope": "FullSpeeaker source/current-spec metadata/correctedCardData native six primaryPendulum cases: baseline, actualCounterTrapCL2 activationnegation/effectnegation/sourcebanishment/Decktargetbanishment/lateindestructibleeffect. Destruction/Deckplacement/source/targetlocations checked; aftertargetremoved source stilldestroysbutnoPlacement; failedselfdestructionnoPlacement. Controls5noResponse/1noPlacement/1ignoreDestroy verified; emptylogs/parity/frozeninputs. NoLuaAPIadapter/nativeOmega/fullcard; sharedreset/other effects open."
+}

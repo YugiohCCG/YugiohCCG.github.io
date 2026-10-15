@@ -1,0 +1,78 @@
+{
+  "status": "VERIFIED_PARTIAL_PRODUCTION",
+  "baseline_cases": 12,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_glitchling_mage_pendulum_group_batch.py": "f52ecb2cc573c3ed6baaca0cb61317cd152f41f5e6324e7b7c5e79228ccf4354",
+    "scripts/fresh_current_glitchling_mage_pendulum_group.cjs": "0d190370f711cc10772ffc46974248c5916746d496f40b0ccfc87e1670dcf3de",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c259072906.lua": "6cb1249b623397899487506c1e9f6a00fd5e841de22ef987a5bf573ded2253b9",
+    "src/data/cards.json": "09f83a5a740b066a3fcb7f5f996ee5ff642d7d91ab500bf03660ac2f8ca790b0",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "output/fresh-ccg-september/mage-group-before-material-repair/c259072906.lua": "fd4b60fe208b246e06c92cc993f105b7a40c6c9a44a16276ef86ddd8da7be441",
+    "output/fresh-ccg-september/mage-group-before-material-repair/installed-c259072906.lua": "fd4b60fe208b246e06c92cc993f105b7a40c6c9a44a16276ef86ddd8da7be441"
+  },
+  "runs": [
+    {
+      "flag": null,
+      "artifact": "current-glitchling-mage-pendulum-group.json",
+      "artifact_sha256": "c408dbe07ee4f8bac546d05cbee83037f09680f9351d18924152fb0d82650008",
+      "expected_failures": []
+    },
+    {
+      "flag": "old-source",
+      "artifact": "current-glitchling-mage-pendulum-group-old-source.json",
+      "artifact_sha256": "cfcd97e81ba3b6b18ea231f900b73b476442ff48481feb2bd01c39179dad05ed",
+      "expected_failures": [
+        "protected",
+        "immune"
+      ]
+    },
+    {
+      "flag": "no-material",
+      "artifact": "current-glitchling-mage-pendulum-group-no-material.json",
+      "artifact_sha256": "bd1a4a0d7ba60170acb1d298a2b8acf80ae2fb4b69b0da688b1e2526d69bf5d4",
+      "expected_failures": [
+        "baseline",
+        "two",
+        "shortTwo",
+        "fullOne",
+        "fullTwo"
+      ]
+    },
+    {
+      "flag": "no-complete",
+      "artifact": "current-glitchling-mage-pendulum-group-no-complete.json",
+      "artifact_sha256": "9aa67f73036533d085f8f96d4358d1e8153ebc487a95f650699b7c70b6a36b51",
+      "expected_failures": [
+        "baseline",
+        "two",
+        "shortTwo",
+        "fullOne",
+        "fullTwo"
+      ]
+    },
+    {
+      "flag": "no-checklist",
+      "artifact": "current-glitchling-mage-pendulum-group-no-checklist.json",
+      "artifact_sha256": "a23ae13dbc6dc2e27498ed3b0438511ef21bcf157be5314e633269c48eda5b06",
+      "expected_failures": [
+        "baseline",
+        "two",
+        "shortTwo",
+        "fullOne",
+        "fullTwo"
+      ]
+    }
+  ],
+  "scope": "Full Mage native group Ritual procedure with12cases. Actual1/2Ritual summons, field material release/proper status/shared checklist set, scale/material/partner boundaries, fullfield subgroup selecting only1when2cannotfit or levels insufficient. Protected/immune materials excluded by contextual release+explicit immunity check against actual procedure effect; original2 failures and controls5/5/5. Neutral partner uses native CHANGE_RSCALE1 so effective scales1/5 verified via diagnostics; public reader right-scale metadata anomaly pending separate investigation. No core API shim; actual original attempted immune material was not released despite Ritual proceeding. Full other effects/Extra targets/turn reset/liveOmega/card remain open."
+}

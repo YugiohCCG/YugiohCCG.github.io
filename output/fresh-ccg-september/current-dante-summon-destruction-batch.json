@@ -1,0 +1,59 @@
+{
+  "scope": "Full current Dante actual NormalSummon or neutral native Hand SpecialSummon trigger; opposing target destroyed and source shuffled, absent target/native indestructible exclusion. Actual CL2 activation/effect negation and target/source banish; source departure still permits destruction but no return. No adapters/seeded summons. GY reveal/search/shared use/nativeOmega/fullcard OPEN.",
+  "baseline_cases": 8,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_dante_summon_destruction.cjs": "ebbe858621666c2da6b4b6a6965268d767a25def0578d9bca819101c232da2e8",
+    "scripts/fresh_current_dante_summon_destruction_batch.py": "cdc2d96bfe26ffe2ca84980ba2dc127702e28cd4d5d0f73de5fa94df6ac93917",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c216958556.lua": "8056041f275334792b3a69179f084f0a733b2737788786681c13e83c93e6a5a0",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-dante-summon-destruction.json",
+      "artifact_sha256": "087cff09df8995d20a39a04563bb5198937006e2c6e2bbd77f2d79f026bf5305"
+    },
+    {
+      "control": "no-destroy",
+      "expected_failures": [
+        0,
+        1,
+        7
+      ],
+      "artifact": "current-dante-summon-destruction-no-destroy.json",
+      "artifact_sha256": "cbbf2017aa78f918b43c7f6c2764b4d2ee2c0bf26ff72ca05f5eac5ccae8835e"
+    },
+    {
+      "control": "no-return",
+      "expected_failures": [
+        0,
+        1
+      ],
+      "artifact": "current-dante-summon-destruction-no-return.json",
+      "artifact_sha256": "3b114532b6ebf56792627d576f6c80fa1f1fa123e97155d0bb986c33cd3ad81a"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "artifact": "current-dante-summon-destruction-no-response.json",
+      "artifact_sha256": "b868a81ca2a4426ba1a9293f826b67705c7adee5a1aa9c6aeb28bc71cae12fab"
+    }
+  ]
+}

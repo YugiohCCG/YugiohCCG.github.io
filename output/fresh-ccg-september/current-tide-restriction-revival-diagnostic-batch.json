@@ -1,0 +1,60 @@
+{
+  "status": "COMPATIBILITY_DIAGNOSTIC_ONLY",
+  "adapted_baseline_cases": 6,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_tide_restriction_revival_batch.py": "8550088f21280f3327360ebf486444ba1f74b19aaf3262dbcb3fed863cecf824",
+    "scripts/fresh_current_tide_restriction_revival_integration.cjs": "a883c7bfedcbba1068b6e260a75b1b2d6913b5108bec7d21407b008fb7403880",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c217645912.lua": "49b7926735d72b3643bf0cf14cb87a6a400c511f836c2436756fab75e69b602d",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-tide-restriction-revival-integration-faceup-compat.json",
+      "artifact_sha256": "3a8cebf81c1b950c6d85b4a406560786da79c0a1fd2832eec2b636eb56a4bd0c"
+    },
+    {
+      "control": "no-lock",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-tide-restriction-revival-integration-faceup-compat-no-lock.json",
+      "artifact_sha256": "b5df7d432339852e1063486711f05fe673c40793b721658fcf00fee883a340ff"
+    },
+    {
+      "control": "no-mill",
+      "expected_failures": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "artifact": "current-tide-restriction-revival-integration-faceup-compat-no-mill.json",
+      "artifact_sha256": "4b8b02fb0399f2404a8980904607a2e843446258d7ce04d0ebcb830c7e714fec"
+    },
+    {
+      "control": "no-summon",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "artifact": "current-tide-restriction-revival-integration-faceup-compat-no-summon.json",
+      "artifact_sha256": "d06cda30790537f45a8c04f08bdf6b95010c704ef16d7a2f0666dbd3f830df23"
+    }
+  ],
+  "scope": "Actual full Tide Hand activation with chosen/declined real DeckZombie mill, then actual CrewalSZONE summon: chosen mill blocks nonCrewalZombieSZONE revival, decline allows; CrewalSZONE/GY/Removed permitted, nonCrewalGY excluded. Explicit IsFaceupEx diagnostic only; Omega/fullcard OPEN"
+}

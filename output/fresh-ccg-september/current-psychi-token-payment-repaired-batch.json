@@ -1,0 +1,81 @@
+{
+  "scope": "Full initial-MZONE Psychi actual Token tribute and native LP declaration/payment, exact permanent ATK DEF gain. Includes arbitrary printed payment777, low LP2 and LP1 boundaries. No proper summon history/adapters; fullcard OPEN",
+  "baseline_cases": 13,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_psychi_token_payment.cjs": "17f8ae4ae229d6b068bd7b9b45ec4b3f14fe5a37a21dfd01dbd4b9b38b9c441a",
+    "scripts/fresh_current_psychi_token_payment_repaired_batch.py": "9b47ecf230b1592d67d9ea6786df9c82812371695414005b344d8fb24c4ba4ba",
+    "output/fresh-ccg-september/psychi-payment-candidate.lua": "2a788812c67dae4a04cfabdeb636089b6e29c002a940d1399904eec778f8c4cc",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c217332244.lua": "d75bea30aed92907d2473ebbc1d67f965aff546b4cca9d7ef72dbee9665d1122",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-psychi-token-payment.json",
+      "artifact_sha256": "84918e5cc4188b675190283ca231de3da9ce2b98b9f775fe51e28b42eaaff9e0"
+    },
+    {
+      "control": "no-pay",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "artifact": "current-psychi-token-payment-no-pay.json",
+      "artifact_sha256": "7c2f2e15bb53450160de0130e38cede2a2ae8ba2212148dd86007294e3330c28"
+    },
+    {
+      "control": "no-atk",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "artifact": "current-psychi-token-payment-no-atk.json",
+      "artifact_sha256": "d652069fa057811af6521ea666ed1b595019e956af19957efaaeedcf6a4a9c44"
+    },
+    {
+      "control": "no-def",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "artifact": "current-psychi-token-payment-no-def.json",
+      "artifact_sha256": "a48025f8f827d1c11c83b82539386b0c14dbb6bfd16bed43aa4d7b1dcc77edb9"
+    }
+  ]
+}

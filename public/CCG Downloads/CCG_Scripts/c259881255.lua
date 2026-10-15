@@ -53,63 +53,48 @@ function s.bfstg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
 end
 
+-- Track this resolution separately from counters already on the field.
+-- Each monster is attempted once, so branches and closed co-linked loops terminate.
+function s.spreadcurrent(c,tp)
+ local attempted=Group.CreateGroup()
+ local placed=Group.CreateGroup()
+ local queue={}
+ local function enqueue(tc)
+  if not attempted:IsContains(tc) then
+   attempted:AddCard(tc)
+   table.insert(queue,tc)
+  end
+ end
+ local seeds=Duel.GetMatchingGroup(function(tc)
+  return tc:IsType(TYPE_LINK) and tc:GetLinkedGroup():IsContains(c)
+ end,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
+ for tc in aux.Next(seeds) do enqueue(tc) end
+ local head=1
+ while head<=#queue do
+  local curr=queue[head]
+  head=head+1
+  local previous=curr:GetCounter(COUNTER_CURRENT)
+  curr:AddCounter(COUNTER_CURRENT,1)
+  if curr:GetCounter(COUNTER_CURRENT)>previous then
+   placed:AddCard(curr)
+   for tc in aux.Next(curr:GetMutualLinkedGroup()) do enqueue(tc) end
+  end
+ end
+ return placed,#placed
+end
+
 function s.bfsop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) then return end
 	
-	local visited = Group.CreateGroup()
-	local terminals = Group.CreateGroup()
-	local queue = {}
-	local depth = {}
-	
-	local g = Duel.GetMatchingGroup(function(tc)
-		return tc:IsControler(tp) and tc:IsType(TYPE_LINK) and tc:GetLinkedGroup():IsContains(c)
-	end, tp, LOCATION_MZONE, 0, nil)
-	
-	for tc in aux.Next(g) do
-		visited:AddCard(tc)
-		depth[tc:GetFieldID()] = 0
-		table.insert(queue, tc)
+	local placed,ct=s.spreadcurrent(c,tp)
+	if #placed==0 then return end
+	local allowed_mask=0
+	for tc in aux.Next(placed) do
+		allowed_mask=bit.bor(allowed_mask,tc:GetLinkedZone(tp))
 	end
-	
-	local head = 1
-	while head <= #queue do
-		local curr = queue[head]
-		head = head + 1
-		local lg = curr:GetLinkedGroup()
-		for tc in aux.Next(lg) do
-			if tc:IsControler(tp) and tc:IsType(TYPE_LINK) and not visited:IsContains(tc) then
-				if tc:GetLinkedGroup():IsContains(curr) then
-					visited:AddCard(tc)
-					depth[tc:GetFieldID()] = depth[curr:GetFieldID()] + 1
-					table.insert(queue, tc)
-				end
-			end
-		end
-	end
-	
-	if #visited == 0 then return end
-	
-	for tc in aux.Next(visited) do
-		tc:AddCounter(COUNTER_CURRENT, 1)
-		local tc_depth = depth[tc:GetFieldID()] or 0
-		local has_next = false
-		for mc in aux.Next(tc:GetLinkedGroup()) do
-			if visited:IsContains(mc) and mc:GetLinkedGroup():IsContains(tc)
-				and (depth[mc:GetFieldID()] or -1) > tc_depth then
-				has_next = true
-				break
-			end
-		end
-		if not has_next then terminals:AddCard(tc) end
-	end
-	
-	local allowed_mask = 0
-	for tc in aux.Next(terminals) do
-		allowed_mask = bit.bor(allowed_mask, tc:GetLinkedZone(tp))
-	end
-	allowed_mask = bit.band(allowed_mask, 0x1f)
-	
+	allowed_mask=bit.band(allowed_mask,0x1f)
+
 	local occupied_zones = 0
 	for i = 0, 4 do
 		if not Duel.CheckLocation(tp, LOCATION_MZONE, i) then
@@ -136,13 +121,14 @@ end
 function s.exfilter(tc,e,tp)
 	return tc:IsSetCard(0x8de0) and tc:IsType(TYPE_LINK) and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
-function s.excheck(g,ct,ft)
-	return #g<=ft and g:GetSum(Card.GetLink)==ct
+function s.excheck(g,ct,ft,tp)
+	return #g<=ft and (#g==1 or not Duel.IsPlayerAffectedByEffect(tp,59822133))
+		and g:GetSum(Card.GetLink)==ct
 end
 function s.handcheck(g,e,tp)
 	local ex=Duel.GetMatchingGroup(s.exfilter,tp,LOCATION_EXTRA,0,nil,e,tp)
 	local ft=Duel.GetLocationCountFromEx(tp)
-	return ft>0 and ex:CheckSubGroup(s.excheck,1,math.min(#ex,ft),#g,ft)
+	return ft>0 and ex:CheckSubGroup(s.excheck,1,math.min(#ex,ft),#g,ft,tp)
 end
 function s.excostfilter(c)
 	return c:IsSetCard(0x8de0) and c:IsAbleToGraveAsCost()
@@ -156,12 +142,12 @@ function s.excost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:SetLabel(Duel.GetOperatedGroup():FilterCount(Card.IsLocation,nil,LOCATION_GRAVE))
 end
 function s.extg(e,tp,eg,ep,ev,re,r,rp,chk)
-	local ct=e:GetLabel()
-	local ex=Duel.GetMatchingGroup(s.exfilter,tp,LOCATION_EXTRA,0,nil,e,tp)
-	local ft=Duel.GetLocationCountFromEx(tp)
-	if chk==0 then return ct>0 and ft>0
-		and ex:CheckSubGroup(s.excheck,1,math.min(#ex,ft),ct,ft) end
-	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
+ -- Legality is checked before the cost is paid, so its result label is not available yet.
+ if chk==0 then
+  local hand=Duel.GetMatchingGroup(s.excostfilter,tp,LOCATION_HAND,0,nil)
+  return hand:CheckSubGroup(s.handcheck,1,#hand,e,tp)
+ end
+ Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 end
 
 function s.exop(e,tp,eg,ep,ev,re,r,rp)
@@ -169,15 +155,15 @@ function s.exop(e,tp,eg,ep,ev,re,r,rp)
 	if ct<=0 then return end
 	local ex=Duel.GetMatchingGroup(s.exfilter,tp,LOCATION_EXTRA,0,nil,e,tp)
 	local ft=Duel.GetLocationCountFromEx(tp)
-	if ft<=0 or not ex:CheckSubGroup(s.excheck,1,math.min(#ex,ft),ct,ft) then return end
+	if ft<=0 or not ex:CheckSubGroup(s.excheck,1,math.min(#ex,ft),ct,ft,tp) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local sg=ex:SelectSubGroup(tp,s.excheck,false,1,math.min(#ex,ft),ct,ft)
+	local sg=ex:SelectSubGroup(tp,s.excheck,false,1,math.min(#ex,ft),ct,ft,tp)
 	if sg then
+		local summoned=Group.CreateGroup()
 		for tc in aux.Next(sg) do
-			if Duel.SpecialSummonStep(tc, 0, tp, tp, false, false, POS_FACEUP) then
-				tc:AddCounter(COUNTER_CURRENT, 1)
-			end
+			if Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP) then summoned:AddCard(tc) end
 		end
 		Duel.SpecialSummonComplete()
+		for tc in aux.Next(summoned) do tc:AddCounter(COUNTER_CURRENT,1) end
 	end
 end

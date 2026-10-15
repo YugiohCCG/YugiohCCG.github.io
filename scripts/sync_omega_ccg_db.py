@@ -215,7 +215,7 @@ OMEGA_SET_CODES = {
     "chronosaur": 0xdae7,
     "aquamarine": 0xf3c,
     "ohmen": 0x8de0,
-    "ohmechanic": 0x8de1,
+    "ohmenchanic": 0x8de1,
     "arckcestial": 0x4ac0,
     "bau": 0xba8,
     "bauy": 0xba8,
@@ -2883,35 +2883,35 @@ CARD_STRING_OVERRIDES = {
     "carcelthedarkohmen": [
         "Special Summon this card",
         "Apply the Special Summon restriction",
-        'Place Current Counters on 1 "Ohmechanic" monster when this card is used as Link Material',
+        'Place Current Counters on 1 "Ohmenchanic" monster when this card is used as Link Material',
     ],
     "ohmensurge": [
         "Take control of an opponent's monster when a Spell is activated",
     ],
-    "siemenstheohmechanicconductor": [
+    "siemenstheohmenchanicconductor": [
         "Special Summon from the GY (1+ Current Counters)",
         "Move a monster (2+ Current Counters)",
         "Take control of a monster (3+ Current Counters)",
     ],
-    "faradtheohmechaniccapacitor": [
+    "faradtheohmenchaniccapacitor": [
         "Banish a card (1+ Current Counters)",
         "Recycle a card from the GY or banishment (2+ Current Counters)",
         "Banish up to 3 cards from your opponent's GY (3+ Current Counters)",
     ],
-    "volttheohmechanicchocker": [
+    "volttheohmenchanicchocker": [
         "Inflict damage (1+ Current Counters)",
         "Destroy a monster (3+ Current Counters)",
     ],
-    "coulombtheohmechaniccharger": [
+    "coulombtheohmenchaniccharger": [
         "Move a monster (1+ Current Counters)",
         'Add 1 "Ohmen" Spell/Trap (2+ Current Counters)',
         "Link Summon (3+ Current Counters)",
     ],
-    "amperetheohmechanicintensity": [
+    "amperetheohmenchanicintensity": [
         "Add a card, then discard (1+ Current Counters)",
         "Place 1 Current Counter on each co-linked monster (2+ Current Counters)",
     ],
-    "carceltheohmechaniclight": [
+    "carceltheohmenchaniclight": [
         "Special Summon from the GY",
         "Destroy your opponent's monsters",
     ],
@@ -3410,13 +3410,27 @@ def build_existing_setcode_map(cards: list[dict[str, Any]], rows: list[sqlite3.R
     return setcode_map, used_codes
 
 
+def omega_description(card: dict[str, Any]) -> str:
+    text = str(card.get("text") or "").replace("\\n", "\n")
+    if "Pendulum" not in (card.get("cardTypes") or []):
+        return text
+    # CardLocalization reads exact DBTextHeader enum names on separate lines:
+    # P switches to PendulumDescription; E switches to the monster effect.
+    if text.startswith("P\n") and "\nE\n" in text:
+        return text
+    parts = re.fullmatch(r"\s*Pendulum Effect:\s*(.*?)\s*Monster Effect:\s*(.+?)\s*", text, re.S)
+    if not parts or not parts[1].strip():
+        raise ValueError(f"Missing separate Pendulum/monster text: {card.get('name')}")
+    return f"P\n{parts[1].strip()}\nE\n{parts[2].strip()}"
+
+
 def build_text_row(card_id: int, card: dict[str, Any]) -> dict[str, Any]:
     row = {
         "id": card_id,
         "name": canonical_display_name(card.get("name")),
         # Omega stores real line feeds in card descriptions. Older imports
         # accidentally persisted the two visible characters ``\n``.
-        "desc": str(card.get("text") or "").replace("\\n", "\n"),
+        "desc": omega_description(card),
     }
     for idx in range(1, 17):
         row[f"str{idx}"] = None
@@ -3595,8 +3609,8 @@ def build_data_row(
         tags.append(archetype)
     tags.extend(extract_treated_as_names(card.get("text")))
     tags.extend(extract_name_based_archetype_names(card.get("name")))
-    if "Ohmechanic" in (card.get("name") or ""):
-        tags.append("Ohmechanic")
+    if "Ohmenchanic" in (card.get("name") or ""):
+        tags.append("Ohmenchanic")
     setcodes: list[int] = []
     seen_codes: set[int] = set()
     for tag in tags:
