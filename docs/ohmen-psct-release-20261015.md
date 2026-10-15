@@ -20,3 +20,7 @@ The shared script traverses each recipient once per resolution, distinguishes ex
 Focused Lua callback tests cover all five spreading implementations with a branch, cycle, pre-existing counters and blocked counter placement. Siemens tests cover own/opponent destinations, occupied zones, opponent-zone selection orientation and control destination arguments. These are automated callback regressions, not full certification in the Omega client.
 
 Full-resolution comparisons preserve the supplied original effect text alongside the revised text, with word-level changes highlighted and original artwork beside the latest renders.
+
+## Further TCG-only wording audit
+
+Two conservative editorial reductions save 39 characters: Volt Link uses the Fire Cracker damage shorthand; Carcel Link uses the Transcode Talker co-linked-group shorthand. All other current card clauses and all gameplay scripts are unchanged by this audit. See [the per-effect audit](ohmen-tcg-wording-audit-20261015.md) for official TCG references, equivalence checks and rejected shortcuts.
