@@ -83,48 +83,43 @@ end
 function s.effcon2(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetCounter(COUNTER_CURRENT) >= 2
 end
-function s.movefilter(tc,tp)
-	if not tc:IsControler(tp) then return false end
-	local colinked = Duel.GetMatchingGroup(function(c)
-		return c:IsFaceup() and c:GetMutualLinkedGroupCount() > 0
-	end, tp, LOCATION_MZONE, 0, nil)
-	for c in aux.Next(colinked) do
-		if c:GetLinkedGroup():IsContains(tc) then return true end
-	end
-	return false
+-- Destination arrows are checked on the monster's own controller's field.
+-- The moved monster need not already be pointed to, and may belong to either player.
+function s.movezones(player,tp)
+ local linked=Duel.GetMatchingGroup(function(c)
+  return c:IsFaceup() and c:GetMutualLinkedGroupCount()>0
+ end,tp,LOCATION_MZONE,0,nil)
+ local zones=0
+ for c in aux.Next(linked) do zones=bit.bor(zones,c:GetLinkedZone(player)) end
+ zones=bit.band(zones,0x1f)
+ for i=0,4 do
+  if not Duel.CheckLocation(player,LOCATION_MZONE,i) then
+   zones=bit.band(zones,bit.bnot(bit.lshift(1,i)))
+  end
+ end
+ return zones
 end
-function s.hasfreemzone(tp)
-	for i=0,4 do
-		if Duel.CheckLocation(tp,LOCATION_MZONE,i) then return true end
-	end
-	return false
+function s.movefilter(tc,tp)
+ return s.movezones(tc:GetControler(),tp)~=0
 end
 function s.efftg2(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return s.hasfreemzone(tp)
-		and Duel.IsExistingMatchingCard(s.movefilter,tp,LOCATION_MZONE,0,1,nil,tp) end
+ if chk==0 then return Duel.IsExistingMatchingCard(s.movefilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil,tp) end
 end
 function s.effop2(e,tp,eg,ep,ev,re,r,rp)
-	if not s.hasfreemzone(tp) then return end
-	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SELECT)
-	local tc=Duel.SelectMatchingCard(tp,s.movefilter,tp,LOCATION_MZONE,0,1,1,nil,tp):GetFirst()
-	if not tc then return end
-	local free_zones = 0
-	for i=0,4 do
-		if Duel.CheckLocation(tp,LOCATION_MZONE,i) then
-			free_zones = bit.bor(free_zones, bit.lshift(1, i))
-		end
-	end
-	if free_zones == 0 then return end
-	local disable_mask = bit.bxor(free_zones, 0xff)
-	Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_TOZONE)
-	local s_field = Duel.SelectDisableField(tp, 1, LOCATION_MZONE, 0, disable_mask)
-	local nseq = 0
-	if s_field == 1 then nseq = 0
-	elseif s_field == 2 then nseq = 1
-	elseif s_field == 4 then nseq = 2
-	elseif s_field == 8 then nseq = 3
-	else nseq = 4 end
-	Duel.MoveSequence(tc, nseq)
+ Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SELECT)
+ local tc=Duel.SelectMatchingCard(tp,s.movefilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,1,nil,tp):GetFirst()
+ if not tc then return end
+ local player=tc:GetControler()
+ local zones=s.movezones(player,tp)
+ if zones==0 then return end
+ local own=player==tp
+ local selectable=own and zones or bit.lshift(zones,16)
+ Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOZONE)
+ local selected=Duel.SelectDisableField(tp,1,own and LOCATION_MZONE or 0,own and 0 or LOCATION_MZONE,bit.bnot(selectable))
+ if not own then selected=bit.rshift(selected,16) end
+ for i=0,4 do
+  if bit.band(selected,bit.lshift(1,i))~=0 then Duel.MoveSequence(tc,i) return end
+ end
 end
 
 function s.effcon3(e,tp,eg,ep,ev,re,r,rp)
@@ -186,5 +181,5 @@ function s.effop3(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_TOZONE)
 	local s_field = Duel.SelectDisableField(tp, 1, LOCATION_MZONE, 0, disable_mask)
 	
-	Duel.GetControl(tc, tp, 0, 0, s_field)
+	Duel.GetControl(tc, tp, 0, 0, 1, s_field)
 end

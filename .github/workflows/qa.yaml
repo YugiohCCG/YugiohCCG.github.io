@@ -43,5 +43,8 @@ jobs:
       - name: Test Lua parser call forms
         run: node scripts/test_lua_call_arguments.cjs
 
+      - name: Test revised Ohmen mechanics
+        run: lua scripts/test_ohmen_requested_revision.lua .
+
       - name: Run CCG QA
         run: npm run qa:ccg:ci

@@ -98,9 +98,7 @@ function s.adjustop(e,tp,eg,ep,ev,re,r,rp)
 			
 			c:AddCounter(COUNTER_CURRENT, ratings)
 			for tc in aux.Next(lg) do
-				if tc:IsControler(tp) then
-					tc:AddCounter(COUNTER_CURRENT, ratings)
-				end
+				tc:AddCounter(COUNTER_CURRENT, ratings)
 			end
 		end
 	else
