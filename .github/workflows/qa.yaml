@@ -21,7 +21,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Setup Python
@@ -45,6 +45,12 @@ jobs:
 
       - name: Test revised Ohmen mechanics
         run: lua scripts/test_ohmen_requested_revision.lua .
+
+      - name: Test Ohmen scripts in the duel engine
+        run: |
+          python scripts/prepare_ohmen_engine_tests.py --download
+          python scripts/run_ohmen_engine_regressions.py ci
+          node --no-warnings scripts/test_ohmen_engine_probes.cjs
 
       - name: Run CCG QA
         run: npm run qa:ccg:ci

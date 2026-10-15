@@ -155,11 +155,12 @@ function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 		local g = Duel.GetMatchingGroup(function(tc) return tc:IsSetCard(0x8de0) and tc:IsType(TYPE_MONSTER) and tc:IsAbleToHand() end, tp, LOCATION_DECK, 0, nil)
 		return s.check_subset(g, Group.CreateGroup(), count)
 	end
+	e:SetLabel(e:GetHandler():GetFlagEffectLabel(id))
 	Duel.SetOperationInfo(0, CATEGORY_TOHAND, nil, 1, tp, LOCATION_DECK)
 end
 
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
-	local count = e:GetHandler():GetFlagEffectLabel(id)
+	local count = e:GetLabel()
 	if not count or count <= 0 then return end
 	local g = Duel.GetMatchingGroup(function(tc) return tc:IsSetCard(0x8de0) and tc:IsType(TYPE_MONSTER) and tc:IsAbleToHand() end, tp, LOCATION_DECK, 0, nil)
 	local selected = Group.CreateGroup()

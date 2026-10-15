@@ -121,13 +121,14 @@ end
 function s.exfilter(tc,e,tp)
 	return tc:IsSetCard(0x8de0) and tc:IsType(TYPE_LINK) and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
-function s.excheck(g,ct,ft)
-	return #g<=ft and g:GetSum(Card.GetLink)==ct
+function s.excheck(g,ct,ft,tp)
+	return #g<=ft and (#g==1 or not Duel.IsPlayerAffectedByEffect(tp,59822133))
+		and g:GetSum(Card.GetLink)==ct
 end
 function s.handcheck(g,e,tp)
 	local ex=Duel.GetMatchingGroup(s.exfilter,tp,LOCATION_EXTRA,0,nil,e,tp)
 	local ft=Duel.GetLocationCountFromEx(tp)
-	return ft>0 and ex:CheckSubGroup(s.excheck,1,math.min(#ex,ft),#g,ft)
+	return ft>0 and ex:CheckSubGroup(s.excheck,1,math.min(#ex,ft),#g,ft,tp)
 end
 function s.excostfilter(c)
 	return c:IsSetCard(0x8de0) and c:IsAbleToGraveAsCost()
@@ -141,12 +142,12 @@ function s.excost(e,tp,eg,ep,ev,re,r,rp,chk)
 	e:SetLabel(Duel.GetOperatedGroup():FilterCount(Card.IsLocation,nil,LOCATION_GRAVE))
 end
 function s.extg(e,tp,eg,ep,ev,re,r,rp,chk)
-	local ct=e:GetLabel()
-	local ex=Duel.GetMatchingGroup(s.exfilter,tp,LOCATION_EXTRA,0,nil,e,tp)
-	local ft=Duel.GetLocationCountFromEx(tp)
-	if chk==0 then return ct>0 and ft>0
-		and ex:CheckSubGroup(s.excheck,1,math.min(#ex,ft),ct,ft) end
-	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
+ -- Legality is checked before the cost is paid, so its result label is not available yet.
+ if chk==0 then
+  local hand=Duel.GetMatchingGroup(s.excostfilter,tp,LOCATION_HAND,0,nil)
+  return hand:CheckSubGroup(s.handcheck,1,#hand,e,tp)
+ end
+ Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 end
 
 function s.exop(e,tp,eg,ep,ev,re,r,rp)
@@ -154,15 +155,15 @@ function s.exop(e,tp,eg,ep,ev,re,r,rp)
 	if ct<=0 then return end
 	local ex=Duel.GetMatchingGroup(s.exfilter,tp,LOCATION_EXTRA,0,nil,e,tp)
 	local ft=Duel.GetLocationCountFromEx(tp)
-	if ft<=0 or not ex:CheckSubGroup(s.excheck,1,math.min(#ex,ft),ct,ft) then return end
+	if ft<=0 or not ex:CheckSubGroup(s.excheck,1,math.min(#ex,ft),ct,ft,tp) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local sg=ex:SelectSubGroup(tp,s.excheck,false,1,math.min(#ex,ft),ct,ft)
+	local sg=ex:SelectSubGroup(tp,s.excheck,false,1,math.min(#ex,ft),ct,ft,tp)
 	if sg then
+		local summoned=Group.CreateGroup()
 		for tc in aux.Next(sg) do
-			if Duel.SpecialSummonStep(tc, 0, tp, tp, false, false, POS_FACEUP) then
-				tc:AddCounter(COUNTER_CURRENT, 1)
-			end
+			if Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP) then summoned:AddCard(tc) end
 		end
 		Duel.SpecialSummonComplete()
+		for tc in aux.Next(summoned) do tc:AddCounter(COUNTER_CURRENT,1) end
 	end
 end

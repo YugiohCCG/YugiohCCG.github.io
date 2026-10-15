@@ -32,7 +32,7 @@ end
 s.listed_series={SET_OHMEN, SET_OHMENCHANIC}
 
 function s.spfilter(tc,e,tp)
-	return tc:IsSetCard(SET_OHMEN) and not tc:IsCode(id) and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return tc:IsSetCard(SET_OHMEN) and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.counterfilter(c)
 	return c:IsSetCard(SET_OHMEN)
@@ -78,7 +78,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 end
 
 function s.matcon(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():IsLocation(LOCATION_GRAVE) and r==REASON_LINK
+	return bit.band(r,REASON_LINK)~=0
 end
 function s.matfilter(tc)
 	return tc:IsFaceup() and tc:IsSetCard(SET_OHMENCHANIC)

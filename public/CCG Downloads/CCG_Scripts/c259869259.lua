@@ -24,8 +24,8 @@ function s.initial_effect(c)
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_CONTROL)
-	e2:SetType(EFFECT_TYPE_QUICK_O)
-	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e2:SetProperty(EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_DELAY)
 	e2:SetCode(EVENT_CHAINING)
 	e2:SetRange(LOCATION_SZONE)
 	e2:SetCondition(s.control_con)
@@ -58,7 +58,6 @@ end
 
 function s.control_con(e,tp,eg,ep,ev,re,r,rp)
 	return rp==1-tp and re:IsActiveType(TYPE_SPELL)
-		and Duel.IsExistingMatchingCard(function(tc) return tc:IsFaceup() and tc:IsSetCard(SET_OHMENCHANIC) end, tp, LOCATION_MZONE, 0, 1, nil)
 end
 
 function s.control_tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
@@ -81,6 +80,7 @@ function s.control_tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local free_zones = bit.band(allowed_mask, bit.bnot(occupied_zones))
 	
 	if chk==0 then return free_zones ~= 0
+		and Duel.IsExistingMatchingCard(function(mc) return mc:IsFaceup() and mc:IsSetCard(SET_OHMENCHANIC) end,tp,LOCATION_MZONE,0,1,nil)
 		and Duel.IsExistingTarget(Card.IsControlerCanBeChanged, tp, 0, LOCATION_MZONE, 1, nil) end
 	
 	Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_CONTROL)

@@ -92,7 +92,7 @@ function s.tgtg(e,tc)
 end
 
 function s.mvfilter(tc,tp)
-	return tc:IsFaceup() and tc:IsControler(tp)
+	return tc:IsControler(tp)
 end
 function s.hasfreemzone(tp)
 	for i=0,4 do

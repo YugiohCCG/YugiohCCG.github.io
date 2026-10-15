@@ -181,5 +181,5 @@ function s.effop3(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG, tp, HINTMSG_TOZONE)
 	local s_field = Duel.SelectDisableField(tp, 1, LOCATION_MZONE, 0, disable_mask)
 	
-	Duel.GetControl(tc, tp, 0, 0, 1, s_field)
+	Duel.GetControl(tc, tp, 0, 0, s_field)
 end

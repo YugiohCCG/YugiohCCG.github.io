@@ -29,13 +29,14 @@ function s.initial_effect(c)
 	e2:SetCondition(s.atkcon)
 	e2:SetValue(s.atkval)
 	c:RegisterEffect(e2)
-	-- Co-link counter placement
+	-- Observe co-link transitions even while this card is disabled or off the field.
+	local state={}
 	local e3=Effect.CreateEffect(c)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e3:SetCode(EVENT_ADJUST)
-	e3:SetRange(LOCATION_MZONE)
-	e3:SetOperation(s.adjustop)
-	c:RegisterEffect(e3)
+	e3:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+	e3:SetOperation(function(e) s.adjustop(e,c:GetControler(),state,c) end)
+	Duel.RegisterEffect(e3,0)
 	-- Destroy opponent's monsters
 	local e4=Effect.CreateEffect(c)
 	e4:SetDescription(aux.Stringid(STRING_ID,1))
@@ -80,30 +81,21 @@ function s.atkcon(e)
 	return e:GetHandler():GetCounter(COUNTER_CURRENT) > 0
 end
 function s.atkval(e,c)
-	return c:GetBaseAttack() * 2
+	return c:GetAttack() * 2
 end
 
-function s.adjustop(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	if c:GetMutualLinkedGroupCount() > 0 then
-		if c:GetFlagEffect(id) == 0 and Duel.GetFlagEffect(tp, id) == 0 then
-			c:RegisterFlagEffect(id, RESET_EVENT+RESETS_STANDARD, 0, 1)
-			Duel.RegisterFlagEffect(tp, id, RESET_PHASE+PHASE_END, 0, 1)
-			
-			local lg=c:GetMutualLinkedGroup()
-			local ratings = 0
-			for tc in aux.Next(lg) do
-				ratings = ratings + tc:GetLink()
-			end
-			
-			c:AddCounter(COUNTER_CURRENT, ratings)
-			for tc in aux.Next(lg) do
-				tc:AddCounter(COUNTER_CURRENT, ratings)
-			end
-		end
-	else
-		c:ResetFlagEffect(id)
-	end
+function s.adjustop(e,tp,state,c)
+ local current=c:IsLocation(LOCATION_MZONE) and c:IsFaceup()
+  and c:GetMutualLinkedGroupCount()>0 and c:GetFieldID() or nil
+ local previous=state.previous
+ state.previous=current
+ if not current or current==previous or c:IsDisabled() or (tp~=0 and tp~=1) then return end
+ if Duel.GetFlagEffect(tp,id)>0 then return end
+ Duel.RegisterFlagEffect(tp,id,RESET_PHASE+PHASE_END,0,1)
+ local linked=c:GetMutualLinkedGroup()
+ local ratings=linked:GetSum(Card.GetLink)
+ c:AddCounter(COUNTER_CURRENT,ratings)
+ for tc in aux.Next(linked) do tc:AddCounter(COUNTER_CURRENT,ratings) end
 end
 
 function s.descon(e,tp,eg,ep,ev,re,r,rp)

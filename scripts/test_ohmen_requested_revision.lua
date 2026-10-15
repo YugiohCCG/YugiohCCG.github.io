@@ -41,7 +41,7 @@ Duel.GetFirstTarget=function() return victim end
 Duel.SelectDisableField=function() return 2 end
 Duel.GetControl=function(...) captured={...} end
 siemens.effop3({},0)
-assert(captured[5]==1 and captured[6]==2,'Control transfer must receive player count and explicit destination mask')
+assert(captured[5]==2,'Control transfer must pass the selected zone mask as its fifth argument')
 print('PASS: Siemens own/opponent movement, occupied destinations, selection orientation and control zone arguments')
 -- Test every copy of the shared spread implementation.
 local function group(items)
@@ -77,14 +77,15 @@ for _,code in ipairs({259174227,259726853,259650132,259107906,259881255}) do
  assert(count==0 and nextnode.attempts==0,'A failed counter placement must not propagate or loop')
 end
 print('PASS: all five spread scripts handle a cycle, a branch, existing counters and blocked placement')
+Card={GetLink=function(c) return c:GetLink() end}
 local carcel=loadcard(259033429)
 RESET_EVENT=1;RESETS_STANDARD=2;RESET_PHASE=4;PHASE_END=8
 local received={}
 local opponent={GetLink=function() return 2 end,AddCounter=function(self,t,n) received.opponent=n end,IsControler=function() return false end}
-local boss={GetMutualLinkedGroupCount=function() return 1 end,GetMutualLinkedGroup=function() return {opponent} end,
+local boss={IsLocation=function() return true end,IsFaceup=function() return true end,GetFieldID=function() return 1 end,IsDisabled=function() return false end,GetMutualLinkedGroupCount=function() return 1 end,GetMutualLinkedGroup=function() return {opponent,GetSum=function() return 2 end} end,
  GetFlagEffect=function() return 0 end,RegisterFlagEffect=function() end,
  AddCounter=function(self,t,n) received.boss=n end}
 Duel.GetFlagEffect=function() return 0 end;Duel.RegisterFlagEffect=function() end
-carcel.adjustop({GetHandler=function() return boss end},0)
+carcel.adjustop({GetHandler=function() return boss end},0,{},boss)
 assert(received.boss==2 and received.opponent==2,'Carcel must place counters on both itself and an opponent co-linked monster')
 print('PASS: Carcel includes an opponent co-linked monster in both rating total and counter recipients')

@@ -87,23 +87,10 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 			e2:SetReset(RESET_EVENT+RESETS_STANDARD)
 			tc:RegisterEffect(e2)
 			
-			local g=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,nil)
-			local total=0
-			for c in aux.Next(g) do
-				total = total + c:GetCounter(COUNTER_CURRENT)
-			end
-			if total >= 2 and Duel.IsExistingMatchingCard(Card.IsDestructable,tp,0,LOCATION_ONFIELD,1,nil)
-				and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
-				
-				local removed = 0
-				while removed < 2 do
-					local tg = g:Filter(function(c) return c:GetCounter(COUNTER_CURRENT) > 0 end, nil)
-					Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_COUNTER)
-					local dec = tg:Select(tp,1,1,nil):GetFirst()
-					dec:RemoveCounter(tp,COUNTER_CURRENT,1,REASON_EFFECT)
-					removed = removed + 1
-				end
-				
+			if Duel.IsCanRemoveCounter(tp,1,1,COUNTER_CURRENT,2,REASON_EFFECT)
+				and Duel.IsExistingMatchingCard(Card.IsDestructable,tp,0,LOCATION_ONFIELD,1,nil)
+				and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2))
+				and Duel.RemoveCounter(tp,1,1,COUNTER_CURRENT,2,REASON_EFFECT) then
 				Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 				local dg=Duel.SelectMatchingCard(tp,Card.IsDestructable,tp,0,LOCATION_ONFIELD,1,1,nil)
 				if #dg>0 then
