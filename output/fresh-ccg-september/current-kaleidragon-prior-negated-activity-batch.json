@@ -1,0 +1,54 @@
+{
+  "scope": "Native history observation: full initial-MZONE Kaleidragon actual own nonStain prior ignition negated by real CounterTrapCL2 activation/effect negation, then actual own Stain SpecialSummon effect. Public engine permits source response after negated activation, forbids after negated effect. No adapters/seeded activity/proper Fusion claim; exact custom turn-activation interpretation unresolved, bounded behavioral evidence only.",
+  "baseline_cases": 2,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_kaleidragon_prior_negated_activity.cjs": "ee847c5ddd240bab074d801394aed5365c2fc6790a0e3ddbabc3178a309b2a3a",
+    "scripts/fresh_current_kaleidragon_prior_negated_activity_batch.py": "ab114ad7392f77ab023e61ecec64448bf4a7b4d324c12b1d80e22d816bfb0ce7",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c217174535.lua": "ccb62adf4d29afdd7821ab74bf5b1cfbe77ec5e65f6ea5ec0cda7e9c5aadff67",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-kaleidragon-prior-negated-activity.json",
+      "artifact_sha256": "df9c8dd7be3c90f5a05f7c4d06f59493d0a220d13bfdf1a7329fa21b34b4d50d"
+    },
+    {
+      "control": "no-negate",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-kaleidragon-prior-negated-activity-no-negate.json",
+      "artifact_sha256": "92cef9784c46fd10ab44360610d4339dc988d104d84c2dba689583686c959ca7"
+    },
+    {
+      "control": "ignore-history",
+      "expected_failures": [
+        1
+      ],
+      "artifact": "current-kaleidragon-prior-negated-activity-ignore-history.json",
+      "artifact_sha256": "c8d344a4ead0d1026f92bed5a0d47ea466961d34c3192d8707c5848fcfa8a619"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        0,
+        1
+      ],
+      "artifact": "current-kaleidragon-prior-negated-activity-no-response.json",
+      "artifact_sha256": "bb611c3431d5fedfdd62d605c769a7c89a9a12e26cda612ebdde346cc017f1e8"
+    }
+  ]
+}

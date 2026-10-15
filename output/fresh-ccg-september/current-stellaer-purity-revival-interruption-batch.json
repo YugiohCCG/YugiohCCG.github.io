@@ -1,0 +1,59 @@
+{
+  "scope": "Full unchanged initial-MZONE Purity actual zero-material revival ignition and CounterTrap CL2 activation/effect negation, source/target banish, late native Overlay, effect-indestructibility or player CannotSS. Actual source/resource outcomes; neutral GY Xyz without revival limit. No adapters/proper Xyz history/native Omega/fullcard certification",
+  "baseline_cases": 8,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_stellaer_purity_revival_interruption.cjs": "e794fabe530228568174bad05395b13c58665d5f008352458a9aa075c9144065",
+    "scripts/fresh_current_stellaer_purity_revival_interruption_batch.py": "42030b4fad89f588fa1c2d139379e6ae358bb0c43ebd7915d46a787f53a73f33",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c214226989.lua": "1267a10260c06fbaf80a81124ca6f7ae744e14522039ef40b7688ad90648cd51",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-stellaer-purity-revival-interruption.json",
+      "artifact_sha256": "1756a517c88798cd8b078d96261f61966a8fc4957d988e5152c8b9d56e88d91f"
+    },
+    {
+      "control": "no-summon",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-stellaer-purity-revival-interruption-no-summon.json",
+      "artifact_sha256": "b3b731bcf5e66fc6d803d8c1595fc4564313fda41472d2130f5fb78e96b9393d"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "artifact": "current-stellaer-purity-revival-interruption-no-response.json",
+      "artifact_sha256": "d7e798b77910cf638731b3939d42c00fea6b2ef8a0057e20a6df59df2a8c85e9"
+    },
+    {
+      "control": "ignore-material",
+      "expected_failures": [
+        5
+      ],
+      "artifact": "current-stellaer-purity-revival-interruption-ignore-material.json",
+      "artifact_sha256": "289b3401e73ce6dd4a19f5927cb460d92bcbc2b3c5bf309abda2c1abf2749013"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "status": "COMPATIBILITY_DIAGNOSTIC_ONLY",
+  "adapted_baseline_cases": 8,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_tide_revival_shared_reset_batch.py": "e0d52db2c417a87defaf707eb5c16898150d10a1fed1501c9b2f2bab8eb718c8",
+    "scripts/fresh_current_tide_revival_use_reset.cjs": "24d40316347303fdfa013bf3e1a410dc9746f94601a7b08c9563017f6c6545f2",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c217645912.lua": "49b7926735d72b3643bf0cf14cb87a6a400c511f836c2436756fab75e69b602d",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "opponent_reset": false,
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-tide-revival-use-reset-faceup-compat.json",
+      "artifact_sha256": "313b3cd418dff87bed5d63c10f6f23b956043e0eb863e45d230b52ad232e7859"
+    },
+    {
+      "opponent_reset": false,
+      "control": "per-copy",
+      "expected_failures": [
+        0,
+        2,
+        3
+      ],
+      "artifact": "current-tide-revival-use-reset-faceup-compat-per-copy.json",
+      "artifact_sha256": "b0ff905af89a4d7b7ced4008ba6c3ed62c4c93eb900b73028ceed40573573de6"
+    },
+    {
+      "opponent_reset": false,
+      "control": "no-reset",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "artifact": "current-tide-revival-use-reset-faceup-compat-no-reset.json",
+      "artifact_sha256": "b5febd804a655c92bb29c923abcc97d2e5bd17a6cc8e3ed24bd10d1f142cd4db"
+    },
+    {
+      "opponent_reset": false,
+      "control": "no-response",
+      "expected_failures": [
+        2,
+        3
+      ],
+      "artifact": "current-tide-revival-use-reset-faceup-compat-no-response.json",
+      "artifact_sha256": "aa95a0e6347a73bf7101beed1f414414849a6b16eb3afe5db9cc8a6100921b50"
+    },
+    {
+      "opponent_reset": true,
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-tide-revival-use-reset-opponent-reset-faceup-compat.json",
+      "artifact_sha256": "eefb942d9d09d2b91816fb8760d9d2ab13e5d6f6794190363857d3530a87ff6e"
+    },
+    {
+      "opponent_reset": true,
+      "control": "per-copy",
+      "expected_failures": [
+        0,
+        2,
+        3
+      ],
+      "artifact": "current-tide-revival-use-reset-opponent-reset-faceup-compat-per-copy.json",
+      "artifact_sha256": "aaa90fa4b39015fb92709d395a3b5d673b07e9f206d78e4857247c2c3468453e"
+    },
+    {
+      "opponent_reset": true,
+      "control": "no-reset",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "artifact": "current-tide-revival-use-reset-opponent-reset-faceup-compat-no-reset.json",
+      "artifact_sha256": "850b933c53e57103e7591f54f2b830b42d0057c7177ee41719ac9e3d0175e646"
+    },
+    {
+      "opponent_reset": true,
+      "control": "no-response",
+      "expected_failures": [
+        2,
+        3
+      ],
+      "artifact": "current-tide-revival-use-reset-opponent-reset-faceup-compat-no-response.json",
+      "artifact_sha256": "d0c46e150bc04a9edc07d8c967faf9d7cbbaaa456ffd270bc8397b25e701a2a7"
+    }
+  ],
+  "scope": "Two full Tide copies, three actual ownerSZONE summons; successful/activation-negated/effect-negated chosen effect shared across Field replacement, decline preserves use; actual ownturn3 and earliest opponentturn2 reset. Explicit reference-defined IsFaceupEx shim; production unchanged; not nativeOmega or adapter-free/fullcard certification."
+}

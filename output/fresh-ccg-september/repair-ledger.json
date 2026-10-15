@@ -1,6 +1,6 @@
 {
   "scope": "Documented script repairs with current source/install parity. Public-engine regressions and explicitly bounded callback/shared-effect evidence are distinguished per row. Not full-card or native Omega certification.",
-  "fixed_cards_minimum": 79,
+  "fixed_cards_minimum": 109,
   "cards": [
     {
       "passcode": 215034223,
@@ -8,7 +8,7 @@
       "documented_repair_section": "Talismandrake Arms United discard-cost source exclusion repair",
       "script_sha256": "4c9847845d85e7973e1b96698abfcf738088a4cbc2e071c886cb2575b119cfbb",
       "batch": "talismandrake-united-batch.json",
-      "batch_sha256": "219c06de6e56825bd88dfc931c450ae938007c9400aedbd4209b40e51261ff94",
+      "batch_sha256": "a820ebb426208b27d3f2895da80fcbce975980ebb82dd5ce2f4393e95f43b223",
       "regression_control": "old-cost",
       "installed_matches": true,
       "full_card_audit": "OPEN",
@@ -20,7 +20,7 @@
       "documented_repair_section": "Enra successful-summon continuation repair and local installation",
       "script_sha256": "864314abc464259345c559bd4b33c8afc7cd23749d2126891682422413d15fd1",
       "batch": "enra-batch.json",
-      "batch_sha256": "9d3b10ec35e96d9fda4218ce63b730de54fdaa2873046482e7d1e8dac78eb9b1",
+      "batch_sha256": "d95d40974a37c3fe8e7af7d009fe4f2c277f4106810b8b8c1df1e731fc189cfe",
       "regression_control": "old-timing",
       "installed_matches": true,
       "full_card_audit": "OPEN",
@@ -32,7 +32,7 @@
       "documented_repair_section": "Ektelestis first-summon restriction repair",
       "script_sha256": "6581cde011e9fd959d1a2e6d883990d8208af066e1134ecaf8f80844ab261d01",
       "batch": "ektelestis-batch.json",
-      "batch_sha256": "de579ce9fe4405f028e7b6589b767b6a3ba2e4b28f61c3a72b785ba35122aa19",
+      "batch_sha256": "0ac49bfd90be38aacd2e4e8a8240325276892974a248a89a6be10c4a207c470c",
       "regression_control": "old-limit",
       "installed_matches": true,
       "full_card_audit": "OPEN",
@@ -44,7 +44,7 @@
       "documented_repair_section": "Polemistis summon repair and reusable roster pattern triage",
       "script_sha256": "8d8e6feb96af58338c8270644db55224de7bf9efede25de5482479f2b54c7882",
       "batch": "polemistis-batch.json",
-      "batch_sha256": "7e767bd7a6b5dcf6f1c1b66c434afeb80cd1153a58ec5c88f82ebddbe7e0dd78",
+      "batch_sha256": "0aa5b2d336c4f9837ddaec7619e5a17bcebc59d443a1b8e3ad21b9d977b662ac",
       "regression_control": "old-limit",
       "installed_matches": true,
       "full_card_audit": "OPEN",
@@ -56,7 +56,7 @@
       "documented_repair_section": "Grand Blue Prince first-Fusion versus revival repair",
       "script_sha256": "c7edf515e555ccfc56005e9735d7c1867899f6d163b0d7442eb0eb0560fd40a4",
       "batch": "grand_blue_prince-batch.json",
-      "batch_sha256": "5c79b77a77c5f01520566c88e4176d63e0777627ca639c68daf1a7621dc2470a",
+      "batch_sha256": "507933a6e4344174c4666f791d870af00f4248ba8d88f231687d0c6b592c7e90",
       "regression_control": "old-limit",
       "installed_matches": true,
       "full_card_audit": "OPEN",
@@ -68,7 +68,7 @@
       "documented_repair_section": "The Hanging Frute surviving re-set defender once-each repair",
       "script_sha256": "8693059b76823e8baf2c44f4eafa95a9e880602dd26a75cfd908dacbd9d17678",
       "batch": "hanging_frute-batch.json",
-      "batch_sha256": "1ef668139eafc942b60a52da5d227d7303200e03defe6627c99285ad92572d7d",
+      "batch_sha256": "d0d84f6e995628459731bc6facf18f6c9814408e12e60142aef9ad89e88ef5bb",
       "regression_control": "no-tracking",
       "installed_matches": true,
       "full_card_audit": "OPEN",
@@ -256,14 +256,61 @@
       "passcode": 216258796,
       "name": "Aquamarine Actinia",
       "documented_repair_section": "Gemini claim review",
-      "repair": "Activation negation remains available during Damage Step/calculation, matching Omega Baronne.",
-      "script_sha256": "dc355e0348b247cdb9467ac7126a75d1e82820aa1bd3ac8c11619257c2012868",
+      "repair": "Activation negation remains available during Damage Step/calculation, matching Omega Baronne. Additional repair: Require STATUS_PROC_COMPLETE in GY special summon procedure. Actual improper Extra-to-GY source no longer revives; old-source control reproduces offer. Proper history fixture uses real two printed-category materials, native non-bypass Fusion Summon then CompleteProcedure and actual destruction; proper revival/partner/capacity/player lock/NecroValley/shared summon use/reset verified. Eight production groups/33 cases including negation/interruption/named effect use regressions. Exact-byte both-copy backup actinia-before-revival-qualification-repair. Official Konami rulebook proper-summon restriction applied by inference. Source Fusion material-selection is separately blocked by public GetMustMaterial gap; fixture does not certify production recipe. NativeOmega/fullcard OPEN.",
+      "script_sha256": "b430ed9372b2841f4c80a91f0d5f58a576165b94bd4cb2d16c307837d196f296",
       "validation": "gemini-validation.json",
       "validation_sha256": "a52edcbcfba26b48e72c5a945c7fc6066e1f730f20b874ded3d5eb25b61cadea",
       "evidence_type": "Source-reviewed repair; callback regression plus existing focused public-engine tests where available",
       "installed_matches": true,
       "full_card_audit": "OPEN",
-      "native_omega_verified": false
+      "native_omega_verified": false,
+      "source_reconciliation": {
+        "artifact": "actinia-source-reconciliation.json",
+        "sha256": "a0c77187b54cfa63eedde5c5152f7ed89ad6ab26fefc09205f111137e8231a2d",
+        "scope": "Historical Gemini repair retained; only additional proper-summon qualification guard. Exact historical source backup and eight current native groups validated by ledger. No full-card/native Omega claim."
+      },
+      "batches": [
+        {
+          "path": "current-actinia-negation-batch.json",
+          "sha256": "fb51e4c3e097639869aab1f5f1d6225ad59666e0935bedf916105aa698439c75",
+          "cases": 8
+        },
+        {
+          "path": "current-actinia-interruption-batch.json",
+          "sha256": "d839be1f8acd8dd039138385357c09bfaacafb085737b0cac1889740295df24e",
+          "cases": 7
+        },
+        {
+          "path": "current-actinia-use-reset-batch.json",
+          "sha256": "6c908c0c85c1c76cc61205c22e94efba2b6409aa638b51289d5c190d57a4c57d",
+          "cases": 3
+        },
+        {
+          "path": "current-actinia-opponent-reset-batch.json",
+          "sha256": "1bcbbe052908760542f8e5cddc87d2eb52628a6bc743092c7828f722032627db",
+          "cases": 3
+        },
+        {
+          "path": "current-actinia-qualification-repaired-batch.json",
+          "sha256": "0f719f144847bca6c20c84c4cbeafd76363156efabda0c45742000f62a543dbd",
+          "cases": 1
+        },
+        {
+          "path": "current-actinia-proper-revival-batch.json",
+          "sha256": "ff332886f7ba5e91db8700c73842097d9d2c11ac8489d900ed522117e3d4853b",
+          "cases": 6
+        },
+        {
+          "path": "current-actinia-revival-boundaries-batch.json",
+          "sha256": "eaadccc963782e3b805d339d1aca8d8c19e6d7f36eb36b8a0799d3be05917b5f",
+          "cases": 4
+        },
+        {
+          "path": "current-actinia-revival-use-reset-batch.json",
+          "sha256": "499b4833e45fac51c5db1f284331deec589f6ff40baa3ca06a10c20785e99327",
+          "cases": 1
+        }
+      ]
     },
     {
       "passcode": 220150285,
@@ -368,7 +415,7 @@
       "repair": "Pyro monster search condition requires face-up monster. Zone-lock use also remains consumed while the same card stays face-up.",
       "script_sha256": "6a76f01e9980b1e87525e967bd586903b42119686ee5e1d56e6b0d5dedd983f1",
       "batch": "field-search-family-batch.json",
-      "batch_sha256": "558275d95c16c50d431ed2de3c249150a4947976dd14bd6d3683c86a4521bfde",
+      "batch_sha256": "81cb8408b82e6ea217407ea3952f79203a42f6326842941879c64d0a5dac7c43",
       "regression_control": "old-field-condition",
       "installed_matches": true,
       "full_card_audit": "OPEN",
@@ -385,7 +432,7 @@
       "documented_repair_section": "Surge per-copy tracking and Spherix interception repairs",
       "script_sha256": "d1c4dcb0d321e61eb2b801a024d31af75d8291acef69b30015e851e35293d7d1",
       "batch": "surge-spherix-batch.json",
-      "batch_sha256": "e3b056d4d09a87ebc1f6a7c9c06fc36a852f451802355f48825e7b993fc79aa4",
+      "batch_sha256": "1609104d62131b5e2cce71506186bd538b9425c81432e8cc82164ae8a6350d3c",
       "repair": "Independent co-link transition tracking and activation baseline",
       "evidence_type": "Surge startup/per-copy/inactive/removal/reactivation/opponent-Spell control and actual CL3 interruptions; Spherix interception/type/revival/counters/non-targeting column shuffle plus optional attachment fixtures with explicit neutral eligibility adapter. Exact isolated causal controls. Fixture summon/procedure boundaries remain explicit; no native Omega or full-card certification.",
       "installed_matches": true,
@@ -398,7 +445,7 @@
       "documented_repair_section": "Surge per-copy tracking and Spherix interception repairs",
       "script_sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a",
       "batch": "surge-spherix-batch.json",
-      "batch_sha256": "e3b056d4d09a87ebc1f6a7c9c06fc36a852f451802355f48825e7b993fc79aa4",
+      "batch_sha256": "1609104d62131b5e2cce71506186bd538b9425c81432e8cc82164ae8a6350d3c",
       "repair": "Remove invalid relation guard from continuous summon interception; preserve optional XYZ attachment choice; allow face-down opponent monsters for column shuffle. General material count/eligibility remains open.",
       "evidence_type": "Surge startup/per-copy/inactive/removal/reactivation/opponent-Spell control and actual CL3 interruptions; Spherix interception/type/revival/counters/non-targeting column shuffle plus optional attachment fixtures with explicit neutral eligibility adapter. Exact isolated causal controls. Fixture summon/procedure boundaries remain explicit; no native Omega or full-card certification.",
       "installed_matches": true,
@@ -964,6 +1011,406 @@
       "script_sha256": "8a6d1e9cfbc774b26a949aec98558659ca956846dd767b78ff7be09fb4037606",
       "batch": "current-talismandrake-heat-hand-capacity-repaired-batch.json",
       "batch_sha256": "ece31c87effea56b42669a8569314c11b188f5738c10d45aa589e00f1e5dbb2d",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 212429024,
+      "name": "Gravinity Nebulix",
+      "repair": "Append each copy additional effect to resolving Spell/Trap operation, preserve original once and original reason effect, respect native negation and source lifecycle. Shared per-link list cleared by global CHAIN_END. Exact-byte backup nebulix-before-resolution-append-repair. Eight production groups/34 cases including old-source attribution/negation controls. Native Synchro/recycle/Omega/fullcard OPEN.",
+      "script_sha256": "7b03176439555fb2bc0165feea5f560bbfe86c6d18089ac54b545bdfea663114",
+      "batches": [
+        {
+          "path": "current-gravinity-nebulix-shared-append-copies-production-batch.json",
+          "sha256": "0d3f6d063bffe69bba98eeae82ef687c1e8625e226094c2ff8457a35942f3d77",
+          "cases": 3
+        },
+        {
+          "path": "current-gravinity-nebulix-shared-append-regression-production-batch.json",
+          "sha256": "5cc7fe7f92691c67c03661ca0f4e73325b8b5a8a12fbf3784f8155055bd23dde",
+          "cases": 9
+        },
+        {
+          "path": "current-gravinity-nebulix-shared-append-repeat-production-batch.json",
+          "sha256": "4cfae636a1c5e04c1dab91a96cb6a34bbd454ff3e299cfb63d39078483932ed7",
+          "cases": 3
+        },
+        {
+          "path": "current-gravinity-nebulix-shared-append-attribution-production-batch.json",
+          "sha256": "12f89927a7b2ba97c421b48b04b8114a6e4829a52120b969936f41b48f9eb2b5",
+          "cases": 2
+        },
+        {
+          "path": "current-gravinity-nebulix-shared-append-interruption-production-batch.json",
+          "sha256": "27f344f1a40a99b2724b259f4024f0d94b865ecc56f2bc804de8c76cae77bda7",
+          "cases": 5
+        },
+        {
+          "path": "current-gravinity-nebulix-shared-append-opponent-production-batch.json",
+          "sha256": "461cdaad34725113e42dadcd5e0e5235559578a97fbe71814931430b7ff204c2",
+          "cases": 4
+        },
+        {
+          "path": "current-gravinity-nebulix-shared-append-capacity-production-batch.json",
+          "sha256": "0c3b2dc0a783b7d15b5821164dcd753fc583e37208b76377f4f26d23fcf9c956",
+          "cases": 6
+        },
+        {
+          "path": "current-gravinity-nebulix-shared-append-reentry-production-batch.json",
+          "sha256": "6fde96873e08fc48fa346a72fad77195932dcc006e6751eabbc2ea53aa0447d9",
+          "cases": 2
+        }
+      ],
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 214552846,
+      "name": "Eldora, the Intergalactic Empire",
+      "repair": "Replace premature Quick Chain response with optional resolution wrapper. Preserve original operation if declined or current source/threat cannot qualify; skip destruction when original effect negated, source departed or remaining own threat below two. Actual selfdestroy/negation and late indestructibility. Exact-byte backup eldora-before-resolution-timing-repair; nine native cases/four controls including old-source. GY matching destruction/Set/shared use/nativeOmega/fullcard OPEN. Additional attribution correction: dispatch actual source continuous custom event during resolution wrapper so native self-destruction reason effect is Eldora; preserve original callback/reason, native negation suppression and repeated resolution/reentry. Nine refreshed production groups/53 cases. Exact-byte both-copy backup eldora-before-self-destruction-attribution-repair. Native Omega/fullcard remains OPEN.",
+      "script_sha256": "c2bbc342c22f0e1bdc935c24165c022646f2a1569e08f323ae6b4d4a56fda9ff",
+      "batch": "current-eldora-resolution-repaired-batch.json",
+      "batch_sha256": "b423c42548f5d6a413406491e9923a58f131a8e9c2a2a0c99adcf0f5d7f36510",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false,
+      "additional_batches": [
+        {
+          "path": "current-eldora-reason-repaired-batch.json",
+          "sha256": "c1e3793db5550dd03111368439a2a60eeef39c36715508f2ef412bab47ec0725",
+          "cases": 1
+        },
+        {
+          "path": "current-eldora-lifecycle-repaired-batch.json",
+          "sha256": "5ca31b4cef015c68518b5fc0f8ed497c8ee4faa4d8473d6a306b2bc371b8645e",
+          "cases": 3
+        }
+      ]
+    },
+    {
+      "passcode": 217332244,
+      "name": "To Proto Psychi",
+      "repair": "Replace100-step LP choices with bounded decimal digit choices permitting every positive integer below current LP; use defined HINT_NUMBER in place of undefined HINTMSG_NUMBER. Actual native Token tribute/payment/exact ATK DEF gain;13 payment cases/three controls and7 summon cases/three controls. Exact repository/installed backups psychi-before-payment-repair. Proper-history correction permits actual native revival after printed Hand procedure while improperGY/externalHand excluded;3cases/fourcontrols, exact backup psy chi-before-proper-history-repair (directory psychi-before-proper-history-repair). Other effects/shared use/nativeOmega/fullcard OPEN.",
+      "script_sha256": "d75bea30aed92907d2473ebbc1d67f965aff546b4cca9d7ef72dbee9665d1122",
+      "batches": [
+        {
+          "path": "current-psychi-summon-procedure-batch.json",
+          "sha256": "5e30311f037503b9e6c96c8973e8a449d3c67fd97f3b305af3f5ad1f2c770766"
+        },
+        {
+          "path": "current-psychi-token-payment-repaired-batch.json",
+          "sha256": "5773ce96359ce5d8e14142ccea27683a6cb811d5bd79a2725ed50ac175c1dd62"
+        },
+        {
+          "path": "current-psychi-proper-history-repaired-batch.json",
+          "sha256": "2c7d6eca2ffb95134209513562f8ee8b4f37ef4545054ea8e788e60b045db4ec"
+        }
+      ],
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 217632789,
+      "name": "Skewy! Pawty Tyme",
+      "repair": "Check current Hand location as well as STATUS_ACT_FROM_HAND before allowing cost bypass, so unavailable-cost Hand activation is excluded before payment rather than nil selection error. Five native cases/four controls incl old-source errors; seven earlier groups refreshed. Exact both-copy backup pawty-before-hand-cost-guard. Activation limit/fullcard/nativeOmega OPEN. Portable shared activation flag plus EVENT_CHAIN_NEGATED rollback replaces legacy count encoding; three native cases/fourcontrols and8 earlier groups refreshed, exact both-copy backup pawty-before-portable-activation-repair. Uses Bear Trap-tested APIs; actual Omega duel execution still open.",
+      "script_sha256": "10da3886e2dacb7a6f286fcb22ce28b260a1f80badbd5ce00931551582a24ba4",
+      "batch": "current-pawty-cost-boundaries-repaired-batch.json",
+      "batch_sha256": "fe6d8f798ca2067a70d388e87a4cb8329e26c19f9dd12c05989767bd4e045c9a",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false,
+      "activation_batch": {
+        "path": "current-pawty-activation-reset-repaired-batch.json",
+        "sha256": "cc0179fd91f443af67f667b9607b00671f1026fbb2522ce49eadfbac53b2b1e2"
+      }
+    },
+    {
+      "passcode": 217645912,
+      "name": "Crewal Tide",
+      "repair": "Permit basic Field activation independently of optional Zombie mill. Choose optional effect at target declaration only with eligible resource, no prior nonCrewal summon and unused named playerflag; restriction applies only to chosen effect. Shared chosen-use persists through activation/effect negation and resets next turn; decline preserves use. Actual native summon history/later summon legality/three full copies/negation/reset, four groups15cases12controls including old-source. Exact both-copy backup tide-before-optional-activation-repair. Second trigger/nativeOmega/fullcard OPEN.",
+      "script_sha256": "49b7926735d72b3643bf0cf14cb87a6a400c511f836c2436756fab75e69b602d",
+      "batch": "current-tide-activation-repaired-batch.json",
+      "batch_sha256": "c381443d8601b98db1bb9eace0b2bf1484ecccc323082c0b7aad2f3a833a0361",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 218142234,
+      "name": "Maiden of Talismandrakes Seraphina",
+      "repair": "Allow Pendulum activation when the shuffle cost frees Monster Zones. Combine distinct-name and projected free-zone checks in cost eligibility and subgroup selection, remove premature target current-capacity guard. Actual neutral printed-category native Fusion history/PZone placement and7cases4controls, including mixed GY/field pool forcing MZONE cost and old-source failures. Exact both-copy backup seraphina-before-capacity-repair. Production Fusion recipe/equip/other effects/nativeOmega/fullcard OPEN.",
+      "script_sha256": "e321e1e14d7ccff7ec4359429f01340c50a1dae58bd1e0b005b77bc039a6973c",
+      "batch": "current-seraphina-capacity-repaired-batch.json",
+      "batch_sha256": "926ff047b8ed0d6975ebee275bedf9319bb3aef5e40d4ff200d3e4d80fe3b29a",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 238276573,
+      "name": "Sylvan Goleaf",
+      "repair": "Provide exact shared Sylvan helper inline when non-card file loading leaves CCGSylvan or its functions unavailable. Reproduces user Omega screenshot exact line59 nilglobal against old source with absent helper; twelve native cases pass both normal/missing-helper modes. Exact both-copy backup goleaf-before-helper-fallback.",
+      "script_sha256": "a8988db8afc695baa48b436fc2f383e25238410859bd1edba3ef11b3cd3a50a2",
+      "batch": "current-goleaf-helper-fallback-batch.json",
+      "batch_sha256": "e5969669bd607f5ce4826f0e4e16c7245cd1f19d4766a41d0690f90015048294",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 238276572,
+      "name": "Sylvan Flamushroomo",
+      "repair": "Same missing Sylvan helper root cause as Goleaf: exact shared inline fallback, existing helper preserved. Native isolated full-script loading passes normal/missing-helper; original backup fails required-function assertion. Initial registration explicitly bypassed in this loader-only fixture; effect resolution/full-card/native Omega OPEN. Eleven additional official overrides repaired separately outside711 roster.",
+      "script_sha256": "75f395cbcfc495c04e0c1eb8ffb8ca71fe80e60a103238d0633271f4792bbacb",
+      "batch": "current-sylvan-family-helper-fallback-batch.json",
+      "batch_sha256": "9c07ea42b580d04baafe9670be44c987430604d5a4128fbf5a9539dbd5a0816f",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 238276574,
+      "name": "Sylvan Flamioak",
+      "repair": "Same missing Sylvan helper root cause as Goleaf: exact shared inline fallback, existing helper preserved. Native isolated full-script loading passes normal/missing-helper; original backup fails required-function assertion. Initial registration explicitly bypassed in this loader-only fixture; effect resolution/full-card/native Omega OPEN. Eleven additional official overrides repaired separately outside711 roster.",
+      "script_sha256": "f09ef3ad9029009aa5edeb406055d0b5961a6880eee09bd78a8f85c6f32845c8",
+      "batch": "current-sylvan-family-helper-fallback-batch.json",
+      "batch_sha256": "9c07ea42b580d04baafe9670be44c987430604d5a4128fbf5a9539dbd5a0816f",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 238276575,
+      "name": "Sylvan Greetings",
+      "repair": "Same missing Sylvan helper root cause as Goleaf: exact shared inline fallback, existing helper preserved. Native isolated full-script loading passes normal/missing-helper; original backup fails required-function assertion. Initial registration explicitly bypassed in this loader-only fixture; effect resolution/full-card/native Omega OPEN. Eleven additional official overrides repaired separately outside711 roster.",
+      "script_sha256": "bf0ede633f36089923643c9967ce76c084cb97c91f07d4073b974d41f7ae9bb5",
+      "batch": "current-sylvan-family-helper-fallback-batch.json",
+      "batch_sha256": "9c07ea42b580d04baafe9670be44c987430604d5a4128fbf5a9539dbd5a0816f",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 238276576,
+      "name": "Sylvan Intervention",
+      "repair": "Same missing Sylvan helper root cause as Goleaf: exact shared inline fallback, existing helper preserved. Native isolated full-script loading passes normal/missing-helper; original backup fails required-function assertion. Initial registration explicitly bypassed in this loader-only fixture; effect resolution/full-card/native Omega OPEN. Eleven additional official overrides repaired separately outside711 roster.",
+      "script_sha256": "2a774206b228e5a2c48e25f05d0649a1f63c4b42e9443a5d48575d22ea70d8fd",
+      "batch": "current-sylvan-family-helper-fallback-batch.json",
+      "batch_sha256": "9c07ea42b580d04baafe9670be44c987430604d5a4128fbf5a9539dbd5a0816f",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 238276577,
+      "name": "Sylvan Blast",
+      "repair": "Same missing Sylvan helper root cause as Goleaf: exact shared inline fallback, existing helper preserved. Native isolated full-script loading passes normal/missing-helper; original backup fails required-function assertion. Initial registration explicitly bypassed in this loader-only fixture; effect resolution/full-card/native Omega OPEN. Eleven additional official overrides repaired separately outside711 roster.",
+      "script_sha256": "ce89f6162660f88cf711c3d6cf23fc80e5dcaf159567877cd17e14fc0d828a81",
+      "batch": "current-sylvan-family-helper-fallback-batch.json",
+      "batch_sha256": "9c07ea42b580d04baafe9670be44c987430604d5a4128fbf5a9539dbd5a0816f",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 238276578,
+      "name": "Sylvan Duchessprout",
+      "repair": "Same missing Sylvan helper root cause as Goleaf: exact shared inline fallback, existing helper preserved. Native isolated full-script loading passes normal/missing-helper; original backup fails required-function assertion. Initial registration explicitly bypassed in this loader-only fixture; effect resolution/full-card/native Omega OPEN. Eleven additional official overrides repaired separately outside711 roster.",
+      "script_sha256": "9be4fde2263aa3848c6f4a7b36232fff855eb25d55c1f52f0077d847d401f73f",
+      "batch": "current-sylvan-family-helper-fallback-batch.json",
+      "batch_sha256": "9c07ea42b580d04baafe9670be44c987430604d5a4128fbf5a9539dbd5a0816f",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 238276579,
+      "name": "Gink, the Sylvan High Champion",
+      "repair": "Same missing Sylvan helper root cause as Goleaf: exact shared inline fallback, existing helper preserved. Native isolated full-script loading passes normal/missing-helper; original backup fails required-function assertion. Initial registration explicitly bypassed in this loader-only fixture; effect resolution/full-card/native Omega OPEN. Eleven additional official overrides repaired separately outside711 roster.",
+      "script_sha256": "c12ec3a6e4cae81305217bdf1afefd683a9e3687a9f3666838c000a57b805203",
+      "batch": "current-sylvan-family-helper-fallback-batch.json",
+      "batch_sha256": "9c07ea42b580d04baafe9670be44c987430604d5a4128fbf5a9539dbd5a0816f",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 243306841,
+      "name": "Wicked Puppeteer Tragedy",
+      "repair": "Reject non-Tributable Hand/field Ritual materials using native contextual IsReleasableByEffect. Shared7filters verified by28bounded native callbacks and original14protected failures; Leotron15actual primary Pendulum Ritual cases with original4capacity/protection failures and3controls6/4/2. Exact both-copy backup and installed parity. Other effects/Deck-send/Mage group/fullcard/native Omega OPEN.",
+      "script_sha256": "f0c26da1e2f53a5f7832a99b767313d10f0463ebd51abea3bb5a7beea714e99b",
+      "batch": "current-ritual-material-release-batch.json",
+      "batch_sha256": "96679397cded3d3f550b32a5234d904159e1a07e3d365cc008567645a1fa43c8",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 257464336,
+      "name": "Guardian of Wicked Puppeteer",
+      "repair": "Reject non-Tributable Hand/field Ritual materials using native contextual IsReleasableByEffect. Shared7filters verified by28bounded native callbacks and original14protected failures; Leotron15actual primary Pendulum Ritual cases with original4capacity/protection failures and3controls6/4/2. Exact both-copy backup and installed parity. Other effects/Deck-send/Mage group/fullcard/native Omega OPEN.",
+      "script_sha256": "b207dcc9b239d8f3c1863ba7d5e0d37cf040c42de03fc499e9f82f21c939a788",
+      "batch": "current-ritual-material-release-batch.json",
+      "batch_sha256": "96679397cded3d3f550b32a5234d904159e1a07e3d365cc008567645a1fa43c8",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 259247807,
+      "name": "Glitchling Bitron",
+      "repair": "Reject non-Tributable Hand/field Ritual materials using native contextual IsReleasableByEffect. Shared7filters verified by28bounded native callbacks and original14protected failures; Leotron15actual primary Pendulum Ritual cases with original4capacity/protection failures and3controls6/4/2. Exact both-copy backup and installed parity. Other effects/Deck-send/Mage group/fullcard/native Omega OPEN.",
+      "script_sha256": "c20c63ace7ca6441a25d9238a96b1afcb2af3764c00c884cab5393434917ae84",
+      "batch": "current-ritual-material-release-batch.json",
+      "batch_sha256": "96679397cded3d3f550b32a5234d904159e1a07e3d365cc008567645a1fa43c8",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 259546637,
+      "name": "Glitchling Corruption",
+      "repair": "Reject non-Tributable Hand/field Ritual materials using native contextual IsReleasableByEffect. Shared7filters verified by28bounded native callbacks and original14protected failures; Leotron15actual primary Pendulum Ritual cases with original4capacity/protection failures and3controls6/4/2. Exact both-copy backup and installed parity. Other effects/Deck-send/Mage group/fullcard/native Omega OPEN.",
+      "script_sha256": "55276aa3e45daabb7e10c2b109870682c2463234259c5778715293e16d1f8771",
+      "batch": "current-ritual-material-release-batch.json",
+      "batch_sha256": "96679397cded3d3f550b32a5234d904159e1a07e3d365cc008567645a1fa43c8",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 259678739,
+      "name": "Glitchling Witch",
+      "repair": "Reject non-Tributable Hand/field Ritual materials using native contextual IsReleasableByEffect. Shared7filters verified by28bounded native callbacks and original14protected failures; Leotron15actual primary Pendulum Ritual cases with original4capacity/protection failures and3controls6/4/2. Exact both-copy backup and installed parity. Other effects/Deck-send/Mage group/fullcard/native Omega OPEN.",
+      "script_sha256": "4bd1b52d421d08aa846caa66ec6fe26a1811d6c52cbd8caaaaf5fff71fe24301",
+      "batch": "current-ritual-material-release-batch.json",
+      "batch_sha256": "96679397cded3d3f550b32a5234d904159e1a07e3d365cc008567645a1fa43c8",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 259873115,
+      "name": "Glitchling Leotron",
+      "repair": "Reject non-Tributable Hand/field Ritual materials using native contextual IsReleasableByEffect. Shared7filters verified by28bounded native callbacks and original14protected failures; Leotron15actual primary Pendulum Ritual cases with original4capacity/protection failures and3controls6/4/2. Exact both-copy backup and installed parity. Other effects/Deck-send/Mage group/fullcard/native Omega OPEN.",
+      "script_sha256": "530a7477006850976f3e5aa0a7f8899a01a86b843801ed1f8fae9f78acb2870e",
+      "batch": "current-ritual-material-release-batch.json",
+      "batch_sha256": "96679397cded3d3f550b32a5234d904159e1a07e3d365cc008567645a1fa43c8",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 259961648,
+      "name": "Glitchling Data-Transfert",
+      "repair": "Reject non-Tributable Hand/field Ritual materials using native contextual IsReleasableByEffect. Shared7filters verified by28bounded native callbacks and original14protected failures; Leotron15actual primary Pendulum Ritual cases with original4capacity/protection failures and3controls6/4/2. Exact both-copy backup and installed parity. Other effects/Deck-send/Mage group/fullcard/native Omega OPEN.",
+      "script_sha256": "a16891dda783a8ef5006083c3a6c684eba4b61612bd39e83e519d4282e17cf89",
+      "batch": "current-ritual-material-release-batch.json",
+      "batch_sha256": "96679397cded3d3f550b32a5234d904159e1a07e3d365cc008567645a1fa43c8",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 259072906,
+      "name": "Glitchling Mage",
+      "repair": "Reject protected non-Tributable Hand/field Ritual materials while preserving eligible Deck-send materials; Nephthys self Tribute guarded. Four full native-loaded scripts with23bounded production filter callbacks, original7protected failures and blindDeckguard3failures. Full effects/Mage group Pendulum/nativeOmega/fullcard OPEN. Also reject protected and immune field materials in actual group Pendulum Ritual procedure; pass actual procedure effect to immunity check.12nativecases/original2failures/3controls5each, properstatus/payment/checklist and1/2summons; Extra targets/reset/liveOmega/fullcard OPEN.",
+      "script_sha256": "6cb1249b623397899487506c1e9f6a00fd5e841de22ef987a5bf573ded2253b9",
+      "batch": "current-ritual-material-context-batch.json",
+      "batch_sha256": "7687161fed7c7cedebd5df889c54d3d20ca5f83915437b1e0248d97dd3d7a76b",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false,
+      "group_pendulum_batch": "current-glitchling-mage-pendulum-group-batch.json",
+      "group_pendulum_batch_sha256": "3f3a598bbc843125ceb552a62908745e522b15a7ee4047e1c20d4d3ffe4d0599"
+    },
+    {
+      "passcode": 259241946,
+      "name": "Charmelia Pray",
+      "repair": "Reject protected non-Tributable Hand/field Ritual materials while preserving eligible Deck-send materials; Nephthys self Tribute guarded. Four full native-loaded scripts with23bounded production filter callbacks, original7protected failures and blindDeckguard3failures. Full effects/Mage group Pendulum/nativeOmega/fullcard OPEN.",
+      "script_sha256": "3724a046df71e2d04de385815b7cc916999454f972dc4d0846f251976f18640d",
+      "batch": "current-ritual-material-context-batch.json",
+      "batch_sha256": "7687161fed7c7cedebd5df889c54d3d20ca5f83915437b1e0248d97dd3d7a76b",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 259288669,
+      "name": "Charmelia Elysia",
+      "repair": "Reject protected non-Tributable Hand/field Ritual materials while preserving eligible Deck-send materials; Nephthys self Tribute guarded. Four full native-loaded scripts with23bounded production filter callbacks, original7protected failures and blindDeckguard3failures. Full effects/Mage group Pendulum/nativeOmega/fullcard OPEN.",
+      "script_sha256": "e39289c0e7a774c264cde51b39944ed4da915eb8a1bfeb8a34e50882f4c4db34",
+      "batch": "current-ritual-material-context-batch.json",
+      "batch_sha256": "7687161fed7c7cedebd5df889c54d3d20ca5f83915437b1e0248d97dd3d7a76b",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 244959812,
+      "name": "Divine Phoenix of Nephthys",
+      "repair": "Reject protected non-Tributable Hand/field Ritual materials while preserving eligible Deck-send materials; Nephthys self Tribute guarded. Four full native-loaded scripts with23bounded production filter callbacks, original7protected failures and blindDeckguard3failures. Full effects/Mage group Pendulum/nativeOmega/fullcard OPEN.",
+      "script_sha256": "807f66d24fffa0f2725d73bd29ece9d188d23ee04ee6cd3752f01278fd6fd6cb",
+      "batch": "current-ritual-material-context-batch.json",
+      "batch_sha256": "7687161fed7c7cedebd5df889c54d3d20ca5f83915437b1e0248d97dd3d7a76b",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 221822671,
+      "name": "Stained Sovereign Silas",
+      "repair": "Add missing delayed flag to existing EVENT_CHAINING optional trigger; preserves event type/other flags and after-chain timing. Ten bounded native full-source isolated registration accept/decline probes withold10failures; Starry9full effectcompatibility diagnostic cases/old5failures/controls7/1/3/9. Explicit legacy chain attribute constant mapping forStarry; no nativeOmega/fullcard certification. Exactbothbackup/installparity.",
+      "script_sha256": "8a83ccaee16b9752d5000be38828da95be9a13e2970bda47eacfbfbe1fa1d2f4",
+      "batch": "current-chain-trigger-delay-batch.json",
+      "batch_sha256": "31a9001fd88ff74c04fbf67a041a270f17d64b0909f4b5f367a4bfa59cc786f8",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 238184015,
+      "name": "Gravinity Sonic Scream",
+      "repair": "Add missing delayed flag to existing EVENT_CHAINING optional trigger; preserves event type/other flags and after-chain timing. Ten bounded native full-source isolated registration accept/decline probes withold10failures; Starry9full effectcompatibility diagnostic cases/old5failures/controls7/1/3/9. Explicit legacy chain attribute constant mapping forStarry; no nativeOmega/fullcard certification. Exactbothbackup/installparity.",
+      "script_sha256": "25cb9d41a66c8c711e047ca8a86de674cd336e9e99fb9ea9b7c468efcd388a80",
+      "batch": "current-chain-trigger-delay-batch.json",
+      "batch_sha256": "31a9001fd88ff74c04fbf67a041a270f17d64b0909f4b5f367a4bfa59cc786f8",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 245837578,
+      "name": "Scarstech Beacon",
+      "repair": "Add missing delayed flag to existing EVENT_CHAINING optional trigger; preserves event type/other flags and after-chain timing. Ten bounded native full-source isolated registration accept/decline probes withold10failures; Starry9full effectcompatibility diagnostic cases/old5failures/controls7/1/3/9. Explicit legacy chain attribute constant mapping forStarry; no nativeOmega/fullcard certification. Exactbothbackup/installparity.",
+      "script_sha256": "31091b426feaffa5f7678434b954ef842f8ac849a6a81b2ea23427f3eae52ee7",
+      "batch": "current-chain-trigger-delay-batch.json",
+      "batch_sha256": "31a9001fd88ff74c04fbf67a041a270f17d64b0909f4b5f367a4bfa59cc786f8",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 248760718,
+      "name": "Starry Knight Starry Queen",
+      "repair": "Add missing delayed flag to existing EVENT_CHAINING optional trigger; preserves event type/other flags and after-chain timing. Ten bounded native full-source isolated registration accept/decline probes withold10failures; Starry9full effectcompatibility diagnostic cases/old5failures/controls7/1/3/9. Explicit legacy chain attribute constant mapping forStarry; no nativeOmega/fullcard certification. Exactbothbackup/installparity.",
+      "script_sha256": "5fc3396f32386bd3b547642db4476788e1da36ffd48d13e76cee183bb5e2faee",
+      "batch": "current-chain-trigger-delay-batch.json",
+      "batch_sha256": "31a9001fd88ff74c04fbf67a041a270f17d64b0909f4b5f367a4bfa59cc786f8",
+      "installed_matches": true,
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 259943152,
+      "name": "A.I.P Lab",
+      "repair": "Add missing delayed flag to existing EVENT_CHAINING optional trigger; preserves event type/other flags and after-chain timing. Ten bounded native full-source isolated registration accept/decline probes withold10failures; Starry9full effectcompatibility diagnostic cases/old5failures/controls7/1/3/9. Explicit legacy chain attribute constant mapping forStarry; no nativeOmega/fullcard certification. Exactbothbackup/installparity.",
+      "script_sha256": "cb05bc06b576488888d0df5fbfb0500f4c29d40d81c6f2388ef3c2bb2c7674ad",
+      "batch": "current-chain-trigger-delay-batch.json",
+      "batch_sha256": "31a9001fd88ff74c04fbf67a041a270f17d64b0909f4b5f367a4bfa59cc786f8",
       "installed_matches": true,
       "full_card_audit": "OPEN",
       "native_omega_verified": false

@@ -1,0 +1,237 @@
+{
+  "scope": "All 24 installed CCG Pendulums; client text parser reproduction and Lua wiring/parity, not full in-game behavior certification",
+  "backup": "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\pendulum-omega-text-before-repair.db",
+  "backup_sha256": "71a62b2d62b05f431196c0fbf954e938febb0db277c646b2deb200c78efee9d3",
+  "installed_database_sha256": "cfc478e5e658d95733e6625adc4c56e3cfe0a5e1f7f4fedc0e548d9bd896cc8d",
+  "format": "P newline pendulum text newline E newline monster text",
+  "client_evidence": "tmp/cpp2il_isil/IsilDump/Assembly-CSharp/Card/CardLocalization.txt constructor; DBTextHeader enum P=80 E=69",
+  "checks": [
+    {
+      "passcode": 230947464,
+      "name": "Talismandrake Spark",
+      "before_pendulum_empty": true,
+      "pendulum_text": "You cannot Pendulum Summon monsters, except Pyro Monsters. If you Fusion Summon a Pyro Fusion Monster: You can inflict 500 damage to your opponent. You can only use this effect of \"Talismandrake Spark\" once per turn.",
+      "monster_text": "If this card is Normal or Special Summoned: You can add 1 \"Talismandrake\" monster from your Deck or face-up Extra Deck to your hand, except \"Talismandrake Spark\". If a DARK Pyro Fusion Monster is Fusion Summoned to your field: You can place this card from your face-up Extra Deck in your Pendulum Zone. You can only use each effect of \"Talismandrake Spark\" once per turn.",
+      "lua_sha256": "cceccccf58a4914de681a2a3e7def9463c7cf13e29b873225b9990b49c0087c2",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 256928871,
+      "name": "Talismandrake Embers",
+      "before_pendulum_empty": true,
+      "pendulum_text": "You cannot Pendulum Summon monsters, except Pyro Monsters. You can target 1 \"Talismandrake\" Fusion Monster in your GY; Special Summon it, but return it to the Extra Deck when it leaves the field. You can only use this effect of \"Talismandrake Embers\" once per turn.",
+      "monster_text": "If this card is Summoned while you control another \"Talismandrake\" monster, except \"Talismandrake Embers\": You can draw 1 card. If a DARK Pyro Fusion monster is Fusion Summoned to your field: You can place this card from your face-up Extra Deck in your Pendulum Zone. You can only use each effect of \"Talismandrake Embers\" once per turn.",
+      "lua_sha256": "3d8845ac0f1c72add24fc8c0ab828aee5ec2b53303d4a8a2549d41fc35e29031",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 210506870,
+      "name": "Talismandrake Heat",
+      "before_pendulum_empty": true,
+      "pendulum_text": "You cannot Pendulum Summon monsters, except Pyro Monsters. You can target 1 DARK Pyro Fusion Monster in your GY; return it to the Extra Deck, and if you do, return this card to the hand. You can only use this effect of “Talismandrake Heat” once per turn.",
+      "monster_text": "Gains 200 ATK for each “Talismandrake” Spell/Trap you control that is equipped to a monster. If you control a DARK Pyro monster: You can Special Summon this card from your hand. During the Main Phase: You can Fusion Summon 1 DARK Pyro Fusion Monster from your Extra Deck, using monsters from your hand or field as material. You can only use each effect of \"Talismandrake Heat\" once per turn.",
+      "lua_sha256": "8a6d1e9cfbc774b26a949aec98558659ca956846dd767b78ff7be09fb4037606",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 245935439,
+      "name": "Talismandrake Sear",
+      "before_pendulum_empty": true,
+      "pendulum_text": "During your Main Phase, or if your opponent activates a card or effect: You can Fusion Summon 1 \"Talismandrake\" Fusion Monster from your Extra Deck, using monsters from you control or in your Pendulum Zone as material. You can only use this effect of \"Talismandrake Sear\" once per turn.",
+      "monster_text": "If this card is used as material for the Fusion Summon of a \"Talismandrake\" monster: You can Special Summon 1 \"Talismandrake\" monster from your Pendulum Zone, also, you can place 1 \"Talismandrake\" Pendulum Monster from your face-up Extra Deck in your Pendulum Zone. You can only use this effect of \"Talismandrake Sear\" once per turn.",
+      "lua_sha256": "ae29340823a8bffadac4f8b0d2051e9295769291b498b69719ef0c2919535022",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 218142234,
+      "name": "Maiden of Talismandrakes Seraphina",
+      "before_pendulum_empty": true,
+      "pendulum_text": "You can shuffle 3 \"Talismandrake\" monsters with different names from your face-up Extra Deck, field, and/or GY into the Deck; Special Summon this card from your Pendulum Zone, then you can equip 1 \"Talismandrake Arms\" Spell/Trap from your GY to this card as if it was equipped by that Spell/Trap's effect.",
+      "monster_text": "2 \"Talismandrake\" monsters + 1 Pyro Pendulum Monster\nIf this card is Fusion Summoned, or if your opponent activates a card or effect: You can target 1 \"Talismandrake Arms\" Spell/Trap in your GY; add it to your hand or equip it to this card as if it were equipped by that Spell/Trap's effect. If this card in the Monster Zone leaves the field: You can place it in your Pendulum Zone. You can only use the previous effects of “Maiden of Talismandrakes, Seraphina” once per turn. If a \"Right Talismandrake Arms\" and \"Left Talismandrake Arms\" Spell/Trap is equipped to this card (Quick Effect): You can pay 1000 LP; destroy all cards your opponent controls, also, you cannot use this effect of \"Maiden of Talismandrakes, Seraphina\" until the end of the next turn.",
+      "lua_sha256": "e321e1e14d7ccff7ec4359429f01340c50a1dae58bd1e0b005b77bc039a6973c",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 244986323,
+      "name": "Shining Brigade Origins",
+      "before_pendulum_empty": true,
+      "pendulum_text": "Your opponent cannot target \"Shining Brigade\" monsters you control with Spell/Trap effects.",
+      "monster_text": "3+ Level 2 \"Shining Brigade\" monsters\nIf this card is Summoned, or, if a monster is sent to your opponent's GY while this card is on the field: You can attach 1 face-up card your opponent controls to this card as material. (Quick Effect): You can detach 2 materials from this card; destroy 1 card your opponent controls, then banish 1 card in either player's GY. If this card is destroyed by battle or card effect, or Tributed: You can place it in your Pendulum Zone. You can only use each effect of \"Shining Brigade Origins\" once per turn.",
+      "lua_sha256": "30547e85e199cec0196393d49a9f63bd892a624ff5e8daed8b9c2caf2c2c416d",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 248760718,
+      "name": "Starry Knight Starry Queen",
+      "before_pendulum_empty": true,
+      "pendulum_text": "Monsters your opponent controls become DARK. If a DARK monster activates its effect: You can shuffle this card into the Deck, then Special Summon 1 Level 7 LIGHT Dragon from your hand, Deck, or GY. You can only use this effect of \"Starry Knight Starry Queen\" once per turn.",
+      "monster_text": "If all monsters you control are LIGHT Fairy monsters, or, if your opponent controls a DARK monster (Quick Effect): You can Set 1 \"Starry Knight\" Spell/Trap from your Deck, then Special Summon this card from your hand. (Quick Effect): You can reveal 1 LIGHT Fairy monster in your hand, then place this card in your Pendulum Zone; this turn, you can activate 1 \"Starry Knight\" Trap Card that was Set this turn. You can only use each effect of \"Starry Knight Starry Queen\" once per turn.",
+      "lua_sha256": "5fc3396f32386bd3b547642db4476788e1da36ffd48d13e76cee183bb5e2faee",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 259678739,
+      "name": "Glitchling Witch",
+      "before_pendulum_empty": true,
+      "pendulum_text": "Face-up monsters your opponent controls with a Corruption Counter cannot be Tributed, or used as material for a Fusion, Synchro, Xyz, or Link Summon.",
+      "monster_text": "You can Ritual Summon this card with \"Glitchling Data-Transfert\". You can reveal this card in your hand and 1 other Cyberse Ritual or Cyberse Normal monster; add 1 \"Glitchling\" monster from your Deck or face-up Extra Deck to your hand. If this card is Special Summoned: You can Ritual Summon 1 \"Glitchling\" Ritual Monster from your Deck or face-up Extra Deck by Tributing monsters from your hand or field whose total Levels equal or exceed the Level of the Ritual Monster. You can only use each effect of \"Glitchling Witch\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+      "lua_sha256": "4bd1b52d421d08aa846caa66ec6fe26a1811d6c52cbd8caaaaf5fff71fe24301",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 259072906,
+      "name": "Glitchling Mage",
+      "before_pendulum_empty": true,
+      "pendulum_text": "If you would conduct a Pendulum Summon while you control another Cyberse Pendulum Monster in your Pendulum Zone, you can Ritual Summon any number of Cyberse Ritual Monsters from your hand or face-up Extra Deck with a Level between the Pendulum Scales of the 2 cards in your Pendulum Zones by Tributing Cyberse monsters you control whose total Levels equal or exceed the Levels of the Ritual Monsters.",
+      "monster_text": "You can Ritual Summon this card with \"Glitchling Data-Transfert\". You can reveal this card and 1 other Cyberse Ritual or Cyberse Normal Monster in your hand; add 1 \"Glitchling\" Spell/Trap from your Deck to your hand. If this card is Special Summoned: You can Ritual Summon 1 Cyberse Ritual Monster from your hand or face-up Extra Deck by Tributing Cyberse monsters from your hand or Deck whose total Levels equal or exceed the Ritual Monster. You can only use each effect of \"Glitchling Mage\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+      "lua_sha256": "6cb1249b623397899487506c1e9f6a00fd5e841de22ef987a5bf573ded2253b9",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 259873115,
+      "name": "Glitchling Leotron",
+      "before_pendulum_empty": true,
+      "pendulum_text": "You can destroy this card, then Ritual Summon 1 \"Glitchling\" Ritual Monster from your hand, face-up Extra Deck, or GY, except \"Glitchling Leotron\", by Tributing monsters from your hand or field whose total Levels equal or exceed the Level of the Ritual Monster.",
+      "monster_text": "You can Ritual Summon this card with \"Glitchling Data-Transfert\". If this card is Ritual Summoned: You can Special Summon 1 \"Bitron\", \"Protron\" or \"Digitron\" from your hand, Deck, or GY, then you can Special Summon 1 \"Glitchling\" monster from your face-up Extra Deck or GY that mentions the Summoned monster. When your opponent activates a Spell/Trap Card or effect (Quick Effect): You can Tribute any number of other Cyberse Ritual Monsters and/or Cyberse Normal Monsters; negate that effect, and if you do, destroy Spell/Trap Cards your opponent controls up to the number of monsters Tributed to activate this effect. You can only use each effect of \"Glitchling Leotron\" once per turn, also you cannot Special Summon the turn you activate either of these effects except Cyberse Ritual, Cyberse Normal, \"Glitchling\" and Extra Deck Monsters.",
+      "lua_sha256": "530a7477006850976f3e5aa0a7f8899a01a86b843801ed1f8fae9f78acb2870e",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 259882493,
+      "name": "Vaylantz Destroyer Patrician",
+      "before_pendulum_empty": true,
+      "pendulum_text": "You can activate 1 of these effects; ● Special Summon this card to your Main Monster Zone in its same column. ● Move 1 monster in your Main Monster Zone to an adjacent (horizontal) Monster Zone. You can only use this effect of \"Vaylantz Destroyer Patrician\" once per turn.",
+      "monster_text": "This face-down card in the Extra Deck must first be either Fusion Summoned, or Special Summoned by Tributing 1 \"Vaylantz\" monster you control in the same column as another \"Vaylantz\" card. You can only Special Summon \"Vaylantz Destroyer Patrician\" from the face-down Extra Deck once per turn. If this card is Special Summoned or moved to another Main Monster Zone: You can toss a coin. ● Heads: Place 1 \"Vaylantz\" monster from your Deck or face-up Extra Deck in your Pendulum Zone. ● Tails: Set 1 Vaylantz Spell/Trap card from your Deck. You can only use this effect of \"Vaylantz Destroyer Patrician\" once per turn. If this Special Summoned card you control is destroyed: You can place this card in your Pendulum Zone.",
+      "lua_sha256": "b674d116672ee58d3ffbc78e0d6eb004dd446018cabeab8e29d3fda558550c53",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 259537607,
+      "name": "Arktos X - Vaylantz Game Master",
+      "before_pendulum_empty": true,
+      "pendulum_text": "If you control a \"Vaylantz\" Fusion monster: You can Special Summon this card to your Main Monster Zone in its same column. You can only use this effect of \"Arktos X - Vaylantz Game Master\" once per turn.",
+      "monster_text": "Each time exactly 1 monster is Normal or Special Summoned to your opponent's field: Move this card to the adjacent Main Monster Zone closer to that opponent's monster. (Quick Effect): You can move 1 monster you control to another of your Main Monster Zones. You can only use this effect of \"Arktos X - Vaylantz Game Master\" once per turn.",
+      "lua_sha256": "c7b87d72ed24774cc0239acb1be3ab5cba59ec83242126f49238da03fa29376d",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 238273768,
+      "name": "Symphonic Warrior Speeaker",
+      "before_pendulum_empty": true,
+      "pendulum_text": "During the Main Phase: You can destroy this card in your Pendulum Zone, then place 1 \"Symphonic Warrior\" Pendulum Monster from your Deck in your Pendulum Zone, except \"Symphonic Warrior Speeaker\". You can only use this effect of \"Symphonic Warrior Speeaker\" once per turn.",
+      "monster_text": "You can target 1 \"Symphonic Warrior\" monster you control; Increase its Level by 1, then Special Summon this card from your hand. If this card is Normal or Special Summoned: You can Special Summon 1 \"Symphonic Warrior\" monster from your hand, Deck or face-up Extra Deck. You cannot Special Summon from the Extra Deck face-down the turn you activate this effect except WIND Synchro Monsters. You can only use each effect of \"Symphonic Warrior Speeaker\"once per turn.",
+      "lua_sha256": "0b9bcfd0614b183308ecbc120d44fde03b23352ac6855a9a2d64e9b62e85b573",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 238273769,
+      "name": "Symphonic Warrior DDJ",
+      "before_pendulum_empty": true,
+      "pendulum_text": "Once per turn, during your Main Phase: You can flip 1 face-down Defense Position \"Symphonic Warrior\" monster you control to face-up Defense Position. If a \"Symphonic Warrior\" monster's effect is activated (except during the Damage Step): You can return this card from your field to your hand, then Special Summon 1 \"Symphonic Warrior\" monster from your Pendulum Zone. You can only use this effect of \"Symphonic Warrior DDJ\" once per turn.",
+      "monster_text": "FLIP: Special Summon 1 Level 4 or lower \"Symphonic Warrior\" monster from your Deck in face-down Defense Position, except \"Symphonic Warrior DDJ\", also you cannot Special Summon from the Extra Deck for the rest of this turn, except WIND monsters.\nIf you control a \"Symphonic Warrior\" monster (Quick Effect): You can Special Summon this card from your hand, then immediatly after this effect resolves, you can Synchro Summon 1 Synchro Monster using monsters you control, including this card. If this card is Normal or Special Summoned: You can add 1 \"Symphonic Warrior\" monster from your Deck to your hand. You can only use each effect of \"Symphonic Warrior DDJ\" once per turn.",
+      "lua_sha256": "66d74feea6db63482cf659788f8d6d18b200e661cf74fdfb98f5d189d2a7640d",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 238273770,
+      "name": "Symphonic Warrior Disccs",
+      "before_pendulum_empty": true,
+      "pendulum_text": "You can return 1 card you control to your hand; Special Summon this card from your Pendulum Zone. You can only use this effect of \"Symphonic Warrior Disccs\" once per turn.",
+      "monster_text": "If this card is Normal or Special Summoned: You can add 1 \"Symphonic Warrior\" monster, or 1 card that mentions Symphonic Counter from your Deck to your hand, except \"Symphonic Warrior Disccs\". You cannot Special Summon from the Extra Deck face-down the turn you activate this effect except WIND Synchro Monsters. You can return this card from your field to your hand; Special Summon 1 \"Symphonic Warrior\" monster from your hand, GY or face-up Extra Deck. If this card is used as Synchro Material and added to your Extra Deck face-up: You can remove 3 Symphonic Counter from the field; Special Summon 1 \"Symphonic Warrior\" monster from your hand or GY. You can only use each effect of \"Symphonic Warrior Disccs\" once per turn, and cannot activate more than 1 in the same Chain.",
+      "lua_sha256": "7a7f0eefd77ec74e110a2d8640752fd8d6685d683236539d36e7e28fe7613ccd",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 238273772,
+      "name": "Symphonic Warrior Mega Staar",
+      "before_pendulum_empty": true,
+      "pendulum_text": "You can Tribute 1 WIND Machine Synchro Monster you control; Special Summon this card from your Pendulum Zone. Monsters your opponent control lose 300 ATK and DEF for each Symphonic Counter on the field.",
+      "monster_text": "1 WIND Tuner monster + 1+ WIND Pendulum Synchro Monster\nCannot be targeted or destroyed by your opponent card effect. Monsters your opponent control lose 200 ATK and DEF for each Symphonic Counter on the field. Once per turn if \"Symph Amplifire\" is in your Field Zone (Quick Effect): You can remove any number of Symphonic Counter from the field; banish cards your opponent controls and/or in their GY up to the number of counter removed by this effect. If this card in the Monster Zone leave the field because of an opponent card or effect: You can place this card in your Pendulum Zone.",
+      "lua_sha256": "dd3c2101699086b4d3b578ec7ab7439899393660a9392fa6f703a1c6a5e7c33d",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 284639717,
+      "name": "Terrarumian Cushion Moss",
+      "before_pendulum_empty": true,
+      "pendulum_text": "If you control no monsters, or if your opponent controls a monster: You can destroy 1 other “Terrarumian” card you control, and if you do, Special Summon this card, then place 1 “Terrarumian” Pendulum Monster from your Deck to your Pendulum Zone, except “Terrarumian Cushion Moss”. You can only use this effect of “Terrarumian Cushion Moss” once per turn.",
+      "monster_text": "If this card is destroyed by card effect: You can add 1 “Terrarumian” monster from your Deck to your hand, except “Terrarumian Cushion Moss”. You can only use this effect of “Terrarumian Cushion Moss” once per turn. This card can attack while in face-up Defense Position. If it does, apply its ATK for damage calculation.",
+      "lua_sha256": "6ecf88d64e1bea15bd1c5ea7f89bb9fe043401ff6f18436f711f5c9eff3e25bf",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 284639718,
+      "name": "Terrarumian Coin Plant",
+      "before_pendulum_empty": true,
+      "pendulum_text": "Monsters your opponent controls lose 300 ATK for each “Terrarumian” Pendulum Monster in Defense Position. If you control a “Terrarumian” monster: You can destroy 1 other “Terrarumian” card you control, and if you do, Special Summon this card, then place 1 “Terrarumian” Pendulum Monster from your Deck to your Pendulum Zone, except “Terrarumian Coin Plant”. You can only use this effect of “Terrarumian Coin Plant” once per turn.",
+      "monster_text": "If this card is destroyed by card effect: You can banish 1 card in your opponent’s GY, or if you control 2 or more “Terrarumian” monsters in Defense Position, you can banish 1 random card from their hand face-up, until the End Phase instead. You can only use this effect of “Terrarumian Coin Plant” once per turn. This card can attack while in face-up Defense Position. If it does, apply its ATK for damage calculation.",
+      "lua_sha256": "5c3d3a6c8edccd2f9521532405042f0233ea261b2c84ec1f965d98dff0292300",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 284639719,
+      "name": "Terrarumian Sword Fern",
+      "before_pendulum_empty": true,
+      "pendulum_text": "If a card in your Field Zone would be destroyed or banished by an opponent’s card effect, you can destroy this card instead. If you control a “Terrarumian” monster: You can destroy 1 other “Terrarumian” card you control, and if you do, Special Summon this card, then place 1 “Terrarumian” Pendulum Monster from your Deck to your Pendulum Zone, except “Terrarumian Sword Fern”. You can only use this effect of “Terrarumian Sword Fern” once per turn.",
+      "monster_text": "If this card is Normal or Special Summoned, or if this card is destroyed by card effect: You can Set 1 “Terrarumian” Spell/Trap from your Deck. You can only use this effect of “Terrarumian Sword Fern” once per turn. This card can attack while in face-up Defense Position. If it does, apply its ATK for damage calculation.",
+      "lua_sha256": "de3a3f392f3bec0328b2e89525cae47725c3d172eeb22fd95ae90690e6538aa9",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 284639720,
+      "name": "Terrarumian Nerve Plant",
+      "before_pendulum_empty": true,
+      "pendulum_text": "“Terrarumian” Pendulum Monsters your control gain 300 DEF for each “Terrarumian” monster on the field. If you control a “Terrarumian” monster: You can destroy 1 other “Terrarumian” card you control, and if you do, Special Summon this card, then you can Set 1 “Terrarumian” Spell/Trap from your GY. You can only use this effect of “Terrarumian Nerve Plant” once per turn.",
+      "monster_text": "If this card Normal or Special Summoned, or if this card is destroyed by card effect: You can destroy 1 Spell/Trap on the field. You can only use this effect of “Terrarumian Nerve Plant” once per turn. This card can attack while in face-up Defense Position. If it does, apply its ATK for damage calculation.",
+      "lua_sha256": "52418bf0397ca210f790d3245dbb64e00be3e993415367bb5b2c2a462c191ff9",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 284639721,
+      "name": "Terrarumian Staghorn Fern",
+      "before_pendulum_empty": true,
+      "pendulum_text": "When a card or effect activated by your opponent in response to your \"Terrarumian\" card or effect activation resolves, you can negate that effect, then destroy this card. If you control a “Terrarumian” monster: You can destroy 1 other “Terrarumian” card you control, and if you do, Special Summon this card, then you can Special Summon 1 “Terrarumian” Pendulum Monster from your hand, except “Terrarumian Staghorn Fern”. You can only use each effect of “Terrarumian Staghorn Fern” once per turn.",
+      "monster_text": "If this card is destroyed by card effect: You can activate 1 of these effects.\n● Send 1 “Terrarumian” monster from your Deck to the GY, except “Terrarumian Staghorn Fern”.\n● Target 1 Level 6 or lower monster your opponent controls; send it to the GY.\nYou can only use this effect of “Terrarumian Staghorn Fern” once per turn. This card can attack while in face-up Defense Position. If it does, apply its ATK for damage calculation.",
+      "lua_sha256": "e168736c19d6e73e7e35fc424d4662275782e06aa3525851fd6da58e3fde2f43",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 284639722,
+      "name": "Terrarumian Ivy",
+      "before_pendulum_empty": true,
+      "pendulum_text": "If your \"Terrarumian\" monster battles, your opponent cannot activate cards or effects until the end of the Damage Step. If you control a “Terrarumian” monster: You can destroy 1 other “Terrarumian” card you control, and if you do, Special Summon this card, then you can Special Summon 1 “Terrarumian” Pendulum Monster from your GY, except “Terrarumian Ivy”. You can only use this effect of “Terrarumian Ivy” once per turn.",
+      "monster_text": "If this card is destroyed by card effect: You can activate 1 of these effects.\n● Target 1 “Terrarumian” monster in your GY, except “Terrarumian Ivy”; Special Summon it, but negate its effects.\n● Target 1 Special Summoned monster your opponent controls; negate its effects.\nYou can only use this effect of “Terrarumian Ivy” once per turn. This card can attack while in face-up Defense Position. If it does, apply its ATK for damage calculation.",
+      "lua_sha256": "e603a7dee12f099fcabcbfd1443205abe5e8674b491bf4403e11e4d299510241",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 284639723,
+      "name": "Terrarumian Sundew",
+      "before_pendulum_empty": true,
+      "pendulum_text": "If you control a “Terrarumian” monster: You can destroy up to 2 other “Terrarumian” cards you control, and if you do, Special Summon this card in Defense Position, then you can add 1 face-up “Terrarumian” Pendulum Monster from your Extra Deck to your hand, except “Terrarumian Sundew”. You can only use this effect of “Terrarumian Sundew” once per turn.",
+      "monster_text": "While you control this Pendulum Summoned card is in face-up Defense Position, when your opponent activates a card or effect (Quick Effect): You can Special Summon 1 \"Terrarumian\" Pendulum Monster from your Deck in Defense Position, then destroy 1 card you control. During the End Phase: You can shuffle monsters from your face-up Extra Deck into the Deck equal to the number of Pendulum Monsters destroyed by this card’s effect. This card can attack while in face-up Defense Position. If it does, apply its ATK for damage calculation.",
+      "lua_sha256": "d2b3894a34942f2c4e87d954da88197127448a19e41c7b96c6635c6c2d891c94",
+      "installed_lua_matches": true
+    },
+    {
+      "passcode": 284639724,
+      "name": "Terrarumian Trumpet Pitchers",
+      "before_pendulum_empty": true,
+      "pendulum_text": "Your opponent cannot target “Terrarumian” monsters you control with card effects. If you control a “Terrarumian” monster: You can destroy 1 other “Terrarumian” card you control, and if you do, Special Summon this card in Defense Position, then you can Special Summon 1 face-up “Terrarumian” Pendulum Monster from your Extra Deck, except “Terrarumian Trumpet Pitchers”. You can only use this effect of “Terrarumian Trumpet Pitchers” once per turn.",
+      "monster_text": "If a “Terrarumian” Pendulum Monster(s) you control is destroyed: You can Special Summon this card from your hand. If your “Terrarumian” Pendulum Monster inflicts battle damage by a direct attack, or when your opponent activated a card or effect during the Battle Phase: You can destroy 1 monster your opponent controls, and if you do, gain LP equal to its original DEF. You can only use this effect of “Terrarumian Trumpet Pitchers” once per turn. This card can attack while in face-up Defense Position. If it does, apply its ATK for damage calculation.",
+      "lua_sha256": "44144de5b9bf7ab384f888fe2bdb816341a41cce9e0d62f9fe0337adf03ef984",
+      "installed_lua_matches": true
+    }
+  ],
+  "unrelated_rows_metadata_and_prompt_strings_unchanged": true,
+  "official_installed_reference": {
+    "passcode": 41546,
+    "name": "D/D Savant Thomas",
+    "description": "P\nDuring your [b]Main Phase[/b]: [b]You can[/b] add 1 face-up \"D/D\" Pendulum Monster from your Extra Deck to your hand. [b]You can[/b] only use this effect of \"D/D Savant Thomas\" [b]once[/b] [b]per turn[/b].\nE\n[b]You can[/b] [b]target[/b] 1 \"D/D\" card in your Pendulum Zone; [b]destroy[/b] that card, [b]and if you do[/b], Special Summon 1 Level 8 \"D/D/D\" monster from your Deck in Defense Position, but for the rest of this turn, its effects (if any) are negated, [b]also[/b] any battle damage your opponent takes becomes halved. [b]You can[/b] only use this effect of \"D/D Savant Thomas\" [b]once[/b] [b]per turn[/b]."
+  },
+  "exporter_validation": {
+    "cards_checked": 711,
+    "pendulums": 24,
+    "non_pendulum_descriptions_unchanged": true
+  }
+}

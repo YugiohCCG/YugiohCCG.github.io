@@ -39,7 +39,7 @@ def export_missing_arts(cards_path: Path, assets_dir: Path, arts_dir: Path, over
             skipped += 1
             continue
 
-        output_path.write_bytes(crop_card_art_bytes(source_path))
+        output_path.write_bytes(crop_card_art_bytes(source_path, is_pendulum="Pendulum" in (card.get("cardTypes") or [])))
         exported += 1
 
     return exported, skipped

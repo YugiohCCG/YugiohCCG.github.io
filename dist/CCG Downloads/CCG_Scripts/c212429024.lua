@@ -1,6 +1,8 @@
 local s,id=GetID()
 local STRING_ID=132429024
 local SET_GRAVINITY=0x760
+s.pending={}
+s.global_check=false
 function s.initial_effect(c)
 	aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,SET_GRAVINITY),aux.NonTuner(s.ntfilter),1)
 	c:EnableReviveLimit()
@@ -22,11 +24,19 @@ function s.initial_effect(c)
 	c:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
-	e2:SetCode(EVENT_CHAIN_SOLVED)
+	e2:SetCode(EVENT_CHAIN_SOLVING)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetCondition(s.addcon)
-	e2:SetOperation(s.addop)
+	e2:SetOperation(s.wrapop)
 	c:RegisterEffect(e2)
+ if not s.global_check then
+  s.global_check=true
+  local reset=Effect.GlobalEffect()
+  reset:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+  reset:SetCode(EVENT_CHAIN_END)
+  reset:SetOperation(function() s.pending={} end)
+  Duel.RegisterEffect(reset,0)
+ end
 end
 function s.ntfilter(c)
 	return c:IsRace(RACE_CYBERSE) and c:IsType(TYPE_SYNCHRO)
@@ -73,4 +83,18 @@ function s.addop(e,tp)
 	local op=b1 and b2 and Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3)) or (b1 and 0 or 1)
 	if op==0 then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
 	elseif Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end
+end
+
+function s.wrapop(e,tp,eg,ep,ev,re,r,rp)
+ local entry=s.pending[ev]
+ if not entry then
+  entry={original=re:GetOperation(),owners={}}
+  s.pending[ev]=entry
+  Duel.ChangeChainOperation(ev,function(ce,cp,cg,cep,cev,cre,cr,crp)
+   s.pending[ev]=nil
+   if entry.original then entry.original(ce,cp,cg,cep,cev,cre,cr,crp) end
+   for _,owner in ipairs(entry.owners) do s.addop(ce,owner) end
+  end)
+ end
+ table.insert(entry.owners,tp)
 end

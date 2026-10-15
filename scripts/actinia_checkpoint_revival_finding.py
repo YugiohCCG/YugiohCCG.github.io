@@ -1,0 +1,22 @@
+import json,hashlib
+from pathlib import Path
+R=Path.cwd();O=R/'output/fresh-ccg-september'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+f=O/'current-actinia-opponent-reset-batch.json';b=json.loads(f.read_text())
+for dep,h in b['runtime_dependencies_sha256'].items():assert sha(R/dep)==h
+for run in b['runs']:
+ a=O/run['artifact'];assert sha(a)==run['artifact_sha256'];d=json.loads(a.read_text());assert [i for i,v in enumerate(d['results']) if v['failure']]==run['expected_failures'];assert not any(v['logs'] for v in d['results'])
+p=O/'progress-counts.json';d=json.loads(p.read_text());entry=d['focused_evidence']['216258796'];assert not any(a['path']==f.name for a in entry['artifacts']);entry['artifacts'].append({'path':f.name,'sha256':sha(f)});p.write_text(json.dumps(d,indent=2)+'\n',encoding='utf-8')
+fusion=O/'current-actinia-fusion-revival-probe.json';v=json.loads(fusion.read_text());assert len(v['results'])==6;assert all(r['failure'] and any('GetMustMaterial' in l['message'] for l in r['logs']) for r in v['results'])
+for dep,h in v['runtime_dependencies_sha256'].items():assert sha(R/dep)==h
+probe=O/'current-actinia-improper-revival-probe.json';v=json.loads(probe.read_text());assert len(v['results'])==1;assert not v['results'][0]['logs'];assert v['results'][0]['failure']=='Improperly summoned Fusion remains unavailable in GY despite eligible WATER Aqua partner'
+dependencies=[R/'scripts/fresh_current_actinia_improper_revival_probe.cjs',R/'scripts/fresh_current_card.cjs',R/'public/CCG Downloads/CCG_Scripts/c216258796.lua',O/'current-spec-CCG_v1.db']+[R/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((R/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))
+finding={'scope':'Unresolved diagnostic; not passing evidence or a confirmed production repair. Actual Extra-to-GY movement without completed procedure, native STATUS_PROC_COMPLETE false and ordinary IsCanBeSpecialSummoned false, but current GY special procedure offered. Confirm actual procedure completion and distinguish source condition from engine enforcement before repair. Proper Fusion path separately blocked by public GetMustMaterial compatibility gap.','artifact':probe.name,'artifact_sha256':sha(probe),'fusion_diagnostic':fusion.name,'fusion_diagnostic_sha256':sha(fusion),'runtime_dependencies_sha256':{p.relative_to(R).as_posix():sha(p) for p in dependencies}}
+assert (R/'public/CCG Downloads/CCG_Scripts/c216258796.lua').read_bytes()==Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts\c216258796.lua').read_bytes()
+(O/'current-actinia-revival-qualification-finding.json').write_text(json.dumps(finding,indent=2)+'\n',encoding='utf-8')
+note='Actinia earliest opponentturn2 reset verified: three cases/three controls, two full own copies and actual opposing original ignition. Success or native CL3 activation/effect negation consumes own shared use; same-ownturn second unavailable, immediately opponentturn2 restored. Four current groups21 passing partial cases. Full Fusion/revival diagnostic six cases blocked by captured procedure GetMustMaterial absent public API; no adapters/index certification. NEW frozen revival qualification finding: actual Extra-to-GY neutral Spell movement, native STATUS_PROC_COMPLETE false and ordinary IsCanBeSpecialSummoned false, yet full current GY special procedure offered. Empty logs and exact printed qualification assertion failure; initial direct-GY diagnostic also failed. No production change/repair certification. Counts205partial81repair0full. Next confirm actual improper GY procedure completion, isolate source condition vs engine enforcement and verify candidate if justified; proper Fusion/history/material/GY capacity/locks/use/nativeOmega/fullcard remain OPEN. Goal full711 ACTIVE.'
+f=R/'docs/CONTINUE-CCG-AUDIT.md';t=f.read_text(encoding='utf-8');start=t.index('## Exact next action:');end=t.index('\n',start);t=t[:start]+'## Exact next action: Actinia revival qualification discrepancy\n\n'+note+'\n'+t[end:];f.write_text(t,encoding='utf-8')
+f=R/'docs/CCG-AUDIT-HANDOFF.md';t=f.read_text(encoding='utf-8');i=t.index('\n');f.write_text(t[:i+1]+'\n'+note+'\n'+t[i+1:],encoding='utf-8')
+f=Path(r'C:\Users\hclar\Documents\Codex\2026-10-07\c-manual-files-applications-yugiohccg-github\outputs\Current audit snapshot.md')
+with f.open('a',encoding='utf-8') as s:s.write('\n\n'+note+'\n')
+print(json.dumps({'focused':205,'repairs':81,'actinia_cases':21,'new_finding':'revival qualification','production_changed':False}))

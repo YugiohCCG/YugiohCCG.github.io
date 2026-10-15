@@ -1,0 +1,58 @@
+{
+  "scope": "Full current initial-field Jet Drifter actually attacks/destroys opponent monster; native return Extra Deck or banish then summons real Level2 Galactica Deck/GY in Attack Position; wrong set/level and decline excluded. No adapters or proper Link history. Remaining native Link/Set/interruptions/Omega/fullcard open",
+  "baseline_cases": 9,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_jet_drifter_battle_summon.cjs": "9f469ee66a273fd47a87f78b67982550a2f5381556b07d4b71499e60cb29b420",
+    "scripts/fresh_current_jet_drifter_battle_summon_batch.py": "b594276f5f8510008101a05f27f4e35f512382fc3c1aa1ce34472c038fe264fd",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c212837324.lua": "319f375da2c3c301721bb2390de42b94886d9899a9cfb4c46ab814f1ed7df3ab",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-jet-drifter-battle-summon.json",
+      "artifact_sha256": "fbbb9e4f7d7d1b9f647926064382b97d15e0c008c13c8d61e40fffd4c8b88d11"
+    },
+    {
+      "control": "no-summon",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        8
+      ],
+      "artifact": "current-jet-drifter-battle-summon-no-summon.json",
+      "artifact_sha256": "439a6d384208b1a9e827db36d098f34c88ac06f0fda4bf9a51e7eb65c0668f22"
+    },
+    {
+      "control": "ignore-set",
+      "expected_failures": [
+        4
+      ],
+      "artifact": "current-jet-drifter-battle-summon-ignore-set.json",
+      "artifact_sha256": "e8401fb415163a6ddaf13537b49d291ed94f46890912333370522a404ce3d98d"
+    },
+    {
+      "control": "ignore-level",
+      "expected_failures": [
+        5
+      ],
+      "artifact": "current-jet-drifter-battle-summon-ignore-level.json",
+      "artifact_sha256": "47f665d628f4956e53ccd77ccc61a4b41321faed7a6e24add533aa61e135e2d0"
+    }
+  ]
+}

@@ -3,6 +3,22 @@ import hashlib,json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def verify_dependency(relative,expected):
+ p=ROOT/relative
+ if sha(p)==expected:return
+ assert relative=='output/fresh-ccg-september/current-spec-CCG_v1.db','Unreconciled dependency: '+relative
+ reconciliation=json.loads((OUT/'current-spec-name-only-reconciliation.json').read_text())
+ assert sha(p)==reconciliation['current_sha256']
+ archived=ROOT/reconciliation['archived_path']
+ assert sha(archived)==expected==reconciliation['archived_sha256']
+ import sqlite3
+ with sqlite3.connect(archived.resolve().as_uri()+'?mode=ro',uri=True) as a,sqlite3.connect(p.resolve().as_uri()+'?mode=ro',uri=True) as b:
+  assert a.execute('select name,sql from sqlite_master order by name').fetchall()==b.execute('select name,sql from sqlite_master order by name').fetchall()
+  for table in ['datas','texts']:
+   old={row[0]:row for row in a.execute('select * from '+table)};new={row[0]:row for row in b.execute('select * from '+table)};assert old.keys()==new.keys()
+   for code in old:
+    if old[code]!=new[code]:assert table=='texts' and code in [284636589,132636589] and old[code][2:]==new[code][2:] and old[code][1]=='"Terrarumian Growth' and new[code][1]=='Terrarumian Growth'
+
 def main():
  plans=[(215034223,'talismandrake_united','old-cost','Talismandrake Arms United discard-cost source exclusion repair'),(214371067,'enra','old-timing','Enra successful-summon continuation repair and local installation'),(212684822,'ektelestis','old-limit','Ektelestis first-summon restriction repair'),(254065048,'polemistis','old-limit','Polemistis summon repair and reusable roster pattern triage'),(259937946,'grand_blue_prince','old-limit','Grand Blue Prince first-Fusion versus revival repair'),(213266433,'hanging_frute','no-tracking','The Hanging Frute surviving re-set defender once-each repair')]
  roster={c['passcode']:c for c in json.loads((OUT/'baseline-remote.json').read_text(encoding='utf-8'))['cards']};handoff=(ROOT/'docs/CCG-AUDIT-HANDOFF.md').read_text(encoding='utf-8');rows=[]
@@ -32,6 +48,9 @@ def main():
     if code==210628767:
      reconciliation=OUT/'morbydrip-source-reconciliation.json';reconciled=json.loads(reconciliation.read_text());assert reconciled['script_sha256']==sha(source);assert reconciled['historical_repair_sha256']==repair['after_sha256'];assert reconciled['current_batch_sha256']==sha(OUT/'current-morbydrip-placement-repaired-batch.json')
      before=(OUT/'morbydrip-before-occupied-column-repair/source-c210628767.lua').read_bytes();after=source.read_bytes();newline=b'\r\n' if b'\r\n' in before else b'\n';assert after.replace(newline+b'\tif Duel.GetFieldCard(p,LOCATION_SZONE,sq) then return false end',b'').replace(b' or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0',b'')==before
+    elif code==216258796:
+     reconciliation=OUT/'actinia-source-reconciliation.json';reconciled=json.loads(reconciliation.read_text());assert reconciled['script_sha256']==sha(source);assert reconciled['historical_repair_sha256']==repair['after_sha256']
+     before=(OUT/'actinia-before-revival-qualification-repair/c216258796.lua').read_bytes();assert hashlib.sha256(before).hexdigest()==repair['after_sha256'];assert source.read_bytes().replace(b'\r\n',b'\n').replace(b'\n\tif not c:IsStatus(STATUS_PROC_COMPLETE) then return false end',b'')==before.replace(b'\r\n',b'\n')
     else:
      assert code==237684285,'Unreviewed historical source change'
      reconciliation=OUT/'janna-source-reconciliation.json'
@@ -57,7 +76,7 @@ def main():
   assert field['harness_sha256']==sha(ROOT/'scripts/fresh_field_search_family.cjs')
   assert field['batch_script_sha256']==sha(ROOT/'scripts/fresh_field_search_family_batch.py')
   assert field['candidate_database_sha256']==database_hash
-  for dependency,h in field['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in field['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   relevant=[r for r in field['runs'] if r['source']==259883230]
   assert any(r['control']=='old-field-condition' and r['expected_failures']==[{'facedownField':True}] for r in relevant)
   for run in relevant:
@@ -78,7 +97,7 @@ def main():
   assert zone['script_sha256']==row['script_sha256']
   assert zone['harness_sha256']==sha(ROOT/'scripts/fresh_pyre_zone_lock_count.cjs')
   assert zone['batch_script_sha256']==sha(ROOT/'scripts/fresh_pyre_zone_lock_batch.py')
-  for dependency,h in zone['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in zone['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   assert any(r['control']=='old-lock-limit' and r['status']==1 for r in zone['runs'])
   assert any(r['card_data_adapter'] and r['control'] is None and r['status']==0 for r in zone['runs'])
   for run in zone['runs']:assert run['artifact_sha256']==sha(OUT/run['artifact'])
@@ -89,7 +108,7 @@ def main():
   focused=json.loads(focused_path.read_text(encoding='utf-8'))
   assert focused['baseline_cases']==41
   assert focused['batch_script_sha256']==sha(ROOT/'scripts/fresh_surge_spherix_batch.py')
-  for dependency,h in focused['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in focused['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for code in [259869259,231088629]:
    source=ROOT/f'public/CCG Downloads/CCG_Scripts/c{code}.lua'
    assert sha(FILES/'Scripts'/source.name)==sha(source)
@@ -110,7 +129,7 @@ def main():
  onibi_path=OUT/'current-onibi-batch.json'
  if onibi_path.exists():
   batch=json.loads(onibi_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c217713649.lua'
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   assert batch['baseline_cases']==4 and len(batch['runs'])==4
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
@@ -125,11 +144,11 @@ def main():
   assert batch['script_sha256']==sha(source) and batch['baseline_cases']==5
   additional=batch['additional_regression'];assert sha(OUT/additional['batch'])==additional['sha256']
   current=json.loads((OUT/additional['batch']).read_text())
-  for dependency,h in current['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in current['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in current['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures']
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures']
@@ -140,7 +159,7 @@ def main():
  if plank_path.exists():
   batch=json.loads(plank_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c250339529.lua'
   assert batch['baseline_cases']==2
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -152,7 +171,7 @@ def main():
  if provocation_path.exists():
   batch=json.loads(provocation_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c259826112.lua'
   assert batch['baseline_cases']==3
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -164,7 +183,7 @@ def main():
  if grimoire_path.exists():
   batch=json.loads(grimoire_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c259680842.lua'
   assert batch['baseline_cases']==5
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -176,7 +195,7 @@ def main():
  if crawler_path.exists():
   batch=json.loads(crawler_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c213611313.lua'
   assert batch['baseline_cases']==4
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -188,7 +207,7 @@ def main():
  if hanabi_path.exists():
   batch=json.loads(hanabi_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c259790247.lua'
   assert batch['baseline_cases']==2
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -200,7 +219,7 @@ def main():
  if astrocyte_path.exists():
   batch=json.loads(astrocyte_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c259481543.lua'
   assert batch['baseline_cases']==4
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -212,7 +231,7 @@ def main():
  if murugan_path.exists():
   batch=json.loads(murugan_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c247755869.lua'
   assert batch['baseline_cases']==4
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -224,7 +243,7 @@ def main():
  if carcel_path.exists():
   batch=json.loads(carcel_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c259780273.lua'
   assert batch['baseline_cases']==4
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -236,7 +255,7 @@ def main():
  if devotee_path.exists():
   batch=json.loads(devotee_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c259024242.lua'
   assert batch['baseline_cases']==4
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -248,7 +267,7 @@ def main():
  if bedroom_path.exists():
   batch=json.loads(bedroom_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c259090287.lua'
   assert batch['baseline_cases']==3
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -260,7 +279,7 @@ def main():
  if bhodi_path.exists():
   batch=json.loads(bhodi_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c259072745.lua'
   assert batch['baseline_cases']==3
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -269,7 +288,7 @@ def main():
   if 'additional_regression' in batch:
    additional=batch['additional_regression'];assert sha(OUT/additional['batch'])==additional['sha256']
    stronger=json.loads((OUT/additional['batch']).read_text());assert stronger['baseline_cases']==4
-   for dependency,h in stronger['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in stronger['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in stronger['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
     data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -281,7 +300,7 @@ def main():
  if abe_path.exists():
   batch=json.loads(abe_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c259635008.lua'
   assert batch['baseline_cases']==3
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -293,7 +312,7 @@ def main():
  if machina_path.exists():
   batch=json.loads(machina_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c259247853.lua'
   assert batch['baseline_cases']==3
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -305,7 +324,7 @@ def main():
  if eisodos_path.exists():
   batch=json.loads(eisodos_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c241543138.lua'
   assert batch['baseline_cases']==3
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -317,7 +336,7 @@ def main():
  if breeze_path.exists():
   batch=json.loads(breeze_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c230998543.lua'
   assert batch['baseline_cases']==3
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -329,7 +348,7 @@ def main():
  if otakemaru_path.exists():
   batch=json.loads(otakemaru_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c221855414.lua'
   assert batch['baseline_cases']==5
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -341,14 +360,14 @@ def main():
  if volt_path.exists():
   batch=json.loads(volt_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c238274859.lua'
   assert batch['baseline_cases']==7
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
    assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures']
   summon_path=OUT/'current-volt-spirit-limit-batch.json'
   summon=json.loads(summon_path.read_text());assert summon['baseline_cases']==7
-  for dependency,h in summon['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in summon['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in summon['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -360,13 +379,13 @@ def main():
  if lightning_path.exists():
   batch=json.loads(lightning_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c259446105.lua'
   assert batch['baseline_cases']==3
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
    assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures']
   main_batch=json.loads((OUT/'current-lightning-shot-batch.json').read_text());assert main_batch['baseline_cases']==7
-  for dependency,h in main_batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in main_batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in main_batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -378,14 +397,14 @@ def main():
  if navi_path.exists():
   batch=json.loads(navi_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c259548744.lua'
   assert batch['baseline_cases']==2
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
    assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures']
   for regression_name,cases in [('current-navi-recycle-attach-batch.json',3),('current-navi-negation-batch.json',6)]:
    regression=json.loads((OUT/regression_name).read_text());assert regression['baseline_cases']==cases
-   for dependency,h in regression['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in regression['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in regression['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
     data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -397,13 +416,13 @@ def main():
  if egg_path.exists():
   batch=json.loads(egg_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c259464064.lua'
   assert batch['baseline_cases']==5
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
    assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures']
   revival=json.loads((OUT/'current-egg-revival-batch.json').read_text());assert revival['baseline_cases']==4
-  for dependency,h in revival['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in revival['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in revival['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -411,7 +430,7 @@ def main():
   assert sha(FILES/'Scripts'/source.name)==sha(source)
   for prefix,cases in [('battle',3),('extra-lock',2),('normal-search',3)]:
    regression=json.loads((OUT/f'current-egg-{prefix}-batch.json').read_text());assert regression['baseline_cases']==cases
-   for dependency,h in regression['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in regression['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in regression['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
     data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -424,7 +443,7 @@ def main():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c259615843.lua'
   for prefix,cases in [('attach',3),('attach-safety',2),('aura',6),('summon',5)]:
    batch=json.loads((OUT/f'current-shade-{prefix}-batch.json').read_text());assert batch['baseline_cases']==cases
-   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in batch['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
     data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -436,7 +455,7 @@ def main():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c259669838.lua'
   for prefix,cases in [('boost-scope',1),('shuffle',2),('necrovalley',1),('revival',4)]:
    batch=json.loads((OUT/f'current-plexus-{prefix}-batch.json').read_text());assert batch['baseline_cases']==cases
-   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in batch['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
     data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -449,7 +468,7 @@ def main():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c259113182.lua'
   for prefix,cases in [('immunity',2),('attach',6),('normal-search',4)]:
    batch=json.loads((OUT/f'current-vik-{prefix}-batch.json').read_text());assert batch['baseline_cases']==cases
-   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in batch['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
     data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -462,7 +481,7 @@ def main():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c259187643.lua'
   for prefix,cases in [('activation',4),('lock',5),('flip',4),('flip-copies',1),('flip-shared',1)]:
    batch=json.loads((OUT/f'current-calamities-{prefix}-batch.json').read_text());assert batch['baseline_cases']==cases
-   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in batch['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
     data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -475,7 +494,7 @@ def main():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c259221974.lua'
   for prefix,cases in [('summon',3),('external',2)]:
    batch=json.loads((OUT/f'current-melantha-{prefix}-batch.json').read_text());assert batch['baseline_cases']==cases
-   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in batch['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
     data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -488,7 +507,7 @@ def main():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c259748623.lua'
   for prefix,cases in [('immunity',2),('attach',6),('destroy',4),('procedure',6),('destroy-immunity',2),('necrovalley',2)]:
    batch=json.loads((OUT/f'current-argalia-{prefix}-batch.json').read_text());assert batch['baseline_cases']==cases
-   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in batch['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
     data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -501,7 +520,7 @@ def main():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c259537607.lua'
   for prefix,cases in [('pendulum',6),('movement',6),('normal-movement',5),('pendulum-late',2)]:
    batch=json.loads((OUT/f'current-arktos-{prefix}-batch.json').read_text());assert batch['baseline_cases']==cases
-   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in batch['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
     data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -514,7 +533,7 @@ def main():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c224774049.lua'
   for prefix,cases in [('outcomes',5),('interruption',2)]:
    batch=json.loads((OUT/f'current-gambling-{prefix}-batch.json').read_text());assert batch['baseline_cases']==cases
-   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in batch['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
     data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -526,7 +545,7 @@ def main():
  if nemleria_path.exists():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c259766646.lua'
   batch=json.loads(nemleria_path.read_text());assert batch['baseline_cases']==4
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -538,7 +557,7 @@ def main():
  if phlogistic_path.exists():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c219714894.lua'
   batch=json.loads(phlogistic_path.read_text());assert batch['baseline_cases']==2
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -550,7 +569,7 @@ def main():
  if nautica_path.exists():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c259797813.lua'
   batch=json.loads(nautica_path.read_text());assert batch['baseline_cases']==4
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -562,7 +581,7 @@ def main():
  if haunt_path.exists():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c241540236.lua'
   batch=json.loads(haunt_path.read_text());assert batch['baseline_cases']==5
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -573,7 +592,7 @@ def main():
  gravinity_path=OUT/'current-gravinity-transfer-recipient-choice-batch.json'
  if gravinity_path.exists():
   batch=json.loads(gravinity_path.read_text());assert batch['baseline_cases']==16 and not batch.get('diagnostic_only')
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for code in [215768254,235538173,249680945,256172827]:
    source=ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua'
    runs=[r for r in batch['runs'] if r['recipient']==code];assert len(runs)==4
@@ -589,7 +608,7 @@ def main():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c243420199.lua'
   for prefix,cases in [('extra-normal',4),('attach',7)]:
    batch=json.loads((OUT/f'current-melody-division-{prefix}-batch.json').read_text());assert batch['baseline_cases']==cases and not batch.get('diagnostic_only')
-   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in batch['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
     data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -602,7 +621,7 @@ def main():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c259459462.lua'
   for prefix,cases in [('direct-battle',3),('chain-damage',2),('unique',3)]:
    batch=json.loads((OUT/f'current-ganan-{prefix}-batch.json').read_text());assert batch['baseline_cases']==cases and not batch.get('diagnostic_only')
-   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in batch['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
     data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source)
@@ -613,7 +632,7 @@ def main():
  frozen_path=OUT/'current-frozen-girl-transfer-batch.json'
  if frozen_path.exists():
   batch=json.loads(frozen_path.read_text());assert batch['baseline_cases']==3 and not batch.get('diagnostic_only')
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for code in [222676270,223505382]:
    source=ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua'
    for run in batch['runs']:
@@ -627,7 +646,7 @@ def main():
  if swamp_path.exists():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c239935101.lua'
   batch=json.loads(swamp_path.read_text());assert batch['baseline_cases']==3 and not batch.get('diagnostic_only')
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
    data=json.loads(artifact.read_text());assert data['secondary_script_sha256']==sha(source)
@@ -640,7 +659,7 @@ def main():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c210366076.lua'
   for name,cases,secondary in [('current-frozen-girl-crewal-210366076-batch.json',3,True),('current-crewal-meeting-placement-batch.json',12,False),('current-crewal-meeting-recover-batch.json',5,False)]:
    batch=json.loads((OUT/name).read_text());assert batch['baseline_cases']==cases and not batch.get('diagnostic_only')
-   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in batch['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
     data=json.loads(artifact.read_text());assert data['secondary_script_sha256' if secondary else 'script_sha256']==sha(source)
@@ -653,7 +672,7 @@ def main():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c251699681.lua'
   for name,cases,key in [('current-teleum-bear-negation-repaired-batch.json',2,'diagnostic_cases'),('current-teleum-bear-attack-repaired-batch.json',2,'baseline_cases'),('current-teleum-bear-history-preservation-repaired-batch.json',4,'baseline_cases')]:
    batch=json.loads((OUT/name).read_text());assert batch[key]==cases
-   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    assert source.relative_to(ROOT).as_posix() in batch['runtime_dependencies_sha256']
    for run in batch['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256']
@@ -665,7 +684,7 @@ def main():
  hallo_path=OUT/'current-happy-halloween-counter-repaired-batch.json'
  if hallo_path.exists():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c255977900.lua';batch=json.loads(hallo_path.read_text());assert batch['baseline_cases']==9
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   assert sha(FILES/'Scripts'/source.name)==sha(source)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source);assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures'];assert not data['relation_guard_comparison']
@@ -676,7 +695,7 @@ def main():
  faceup_path=OUT/'current-happy-halloween-faceup-repaired-batch.json'
  if faceup_path.exists():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c255977900.lua';batch=json.loads(faceup_path.read_text());assert batch['baseline_cases']==6
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source);assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results'])
   assert any(r['control']=='original-faceup' and len(r['expected_failures'])==2 for r in batch['runs'])
@@ -686,7 +705,7 @@ def main():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c215730767.lua'
   for name,cases in [('current-helmsman-hand-capacity-repaired-batch.json',5),('current-helmsman-hand-summon-batch.json',6),('current-helmsman-hand-locks-batch.json',6),('current-helmsman-hand-negation-batch.json',4)]:
    batch=json.loads((OUT/name).read_text());assert batch['baseline_cases']==cases
-   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in batch['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source);assert [r['test'] for r in data['results'] if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results'])
   batch=json.loads(helmsman_path.read_text());assert any(r['control']=='original-capacity' and r['expected_failures']==[{'full':True}] for r in batch['runs']);assert sha(FILES/'Scripts'/source.name)==sha(source);assert not any(r['passcode']==215730767 for r in rows)
@@ -694,7 +713,7 @@ def main():
  frute_path=OUT/'current-fruteification-ritual-repaired-batch.json'
  if frute_path.exists():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c256930605.lua';batch=json.loads(frute_path.read_text());assert batch['baseline_cases']==5
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert [i for i,r in enumerate(data['results']) if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results']);assert data['legacy_chaininfo_adapter'] is False
   assert any(r['control']=='original-relation' and r['expected_failures']==[0,1,2,3] for r in batch['runs']);assert any(r['control']=='original-material' and r['expected_failures']==[4] for r in batch['runs']);assert sha(FILES/'Scripts'/source.name)==sha(source);assert not any(r['passcode']==256930605 for r in rows)
@@ -704,7 +723,7 @@ def main():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c210506870.lua'
   for name,cases in [('current-talismandrake-heat-hand-capacity-repaired-batch.json',7),('current-talismandrake-heat-hand-summon-batch.json',8)]:
    batch=json.loads((OUT/name).read_text());assert batch['baseline_cases']==cases
-   for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+   for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
    for run in batch['runs']:
     artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert [i for i,r in enumerate(data['results']) if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results'])
   batch=json.loads(heat_path.read_text());assert any(r['control']=='original-capacity' and r['expected_failures']==[6] for r in batch['runs']);assert sha(FILES/'Scripts'/source.name)==sha(source);assert not any(r['passcode']==210506870 for r in rows)
@@ -712,7 +731,7 @@ def main():
  morby_path=OUT/'current-morbydrip-placement-repaired-batch.json'
  if morby_path.exists():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c210628767.lua';batch=json.loads(morby_path.read_text());assert batch['baseline_cases']==11
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source);assert [i for i,r in enumerate(data['results']) if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results']);assert not data['in_memory_occupied_guard']
   assert any(r['control']=='original-guard' and r['expected_failures']==[6,7,8] for r in batch['runs']);assert sha(FILES/'Scripts'/source.name)==sha(source);assert sum(r['passcode']==210628767 for r in rows)==1
@@ -720,10 +739,187 @@ def main():
  morby_capacity_path=OUT/'current-morbydrip-revival-capacity-repaired-batch.json'
  if morby_capacity_path.exists():
   source=ROOT/'public/CCG Downloads/CCG_Scripts/c210628767.lua';batch=json.loads(morby_capacity_path.read_text());assert batch['baseline_cases']==7
-  for dependency,h in batch['runtime_dependencies_sha256'].items():assert sha(ROOT/dependency)==h
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for run in batch['runs']:
    artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert data['script_sha256']==sha(source);assert [i for i,r in enumerate(data['results']) if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results']);assert not data['capacity_guard_comparison']
   assert any(r['control']=='original-capacity' and r['expected_failures']==[6] for r in batch['runs']);row=next(r for r in rows if r['passcode']==210628767);row['repair']+=' Additional revival repair: recheck MZONE capacity before native SS so late full zones retain ContinuousTrap rather than consuming it toGY. Seven cases/fourcontrols including original-capacity; seven earlier Morbydrip batches refreshed/preserved. Both-copy byte backups morbydrip-before-revival-capacity-repair.';row['additional_batch']=morby_capacity_path.name;row['additional_batch_sha256']=sha(morby_capacity_path)
+ source=ROOT/'public/CCG Downloads/CCG_Scripts/c212429024.lua'
+ nebulix_batches=[]
+ for scope in ['copies','regression','repeat','attribution','interruption','opponent','capacity','reentry']:
+  p=OUT/f'current-gravinity-nebulix-shared-append-{scope}-production-batch.json'
+  if not p.exists():break
+  batch=json.loads(p.read_text())
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+  for run in batch['runs']:
+   artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert [i for i,r in enumerate(data['results']) if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results'])
+  nebulix_batches.append({'path':p.name,'sha256':sha(p),'cases':batch['baseline_cases']})
+ if len(nebulix_batches)==8:
+  assert sum(b['cases'] for b in nebulix_batches)==34
+  assert sha(FILES/'Scripts'/source.name)==sha(source)
+  rows.append({'passcode':212429024,'name':'Gravinity Nebulix','repair':'Append each copy additional effect to resolving Spell/Trap operation, preserve original once and original reason effect, respect native negation and source lifecycle. Shared per-link list cleared by global CHAIN_END. Exact-byte backup nebulix-before-resolution-append-repair. Eight production groups/34 cases including old-source attribution/negation controls. Native Synchro/recycle/Omega/fullcard OPEN.','script_sha256':sha(source),'batches':nebulix_batches,'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ source=ROOT/'public/CCG Downloads/CCG_Scripts/c214552846.lua'
+ eldora_path=OUT/'current-eldora-resolution-repaired-batch.json'
+ if eldora_path.exists():
+  batch=json.loads(eldora_path.read_text());assert batch['baseline_cases']==9
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+  for run in batch['runs']:
+   artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert [i for i,r in enumerate(data['results']) if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results'])
+  assert any(r['control']=='old-source' and r['expected_failures']==[0,4,5,6,7,8] for r in batch['runs'])
+  assert sha(FILES/'Scripts'/source.name)==sha(source)
+  rows.append({'passcode':214552846,'name':'Eldora, the Intergalactic Empire','repair':'Replace premature Quick Chain response with optional resolution wrapper. Preserve original operation if declined or current source/threat cannot qualify; skip destruction when original effect negated, source departed or remaining own threat below two. Actual selfdestroy/negation and late indestructibility. Exact-byte backup eldora-before-resolution-timing-repair; nine native cases/four controls including old-source. GY matching destruction/Set/shared use/nativeOmega/fullcard OPEN.','script_sha256':sha(source),'batch':eldora_path.name,'batch_sha256':sha(eldora_path),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ attribution_batches=[]
+ for name,cases in [('current-eldora-reason-repaired-batch.json',1),('current-eldora-lifecycle-repaired-batch.json',3)]:
+  p=OUT/name;batch=json.loads(p.read_text());assert batch['baseline_cases']==cases
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+  for run in batch['runs']:
+   artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert [i for i,r in enumerate(data['results']) if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results'])
+  if cases==1:
+   assert any(r['control']=='old-wrapper' and r['expected_failures']==[0] for r in batch['runs'])
+   assert any(r['control']=='direct-call' and r['expected_failures']==[0] for r in batch['runs'])
+  else:
+   assert any(r['control']=='no-resolution' and r['expected_failures']==[0,1,2] for r in batch['runs'])
+   assert any(r['control']=='no-reentry' and r['expected_failures']==[2] for r in batch['runs'])
+  attribution_batches.append({'path':name,'sha256':sha(p),'cases':cases})
+ row=next(r for r in rows if r['passcode']==214552846)
+ row['repair']+=' Additional attribution correction: dispatch actual source continuous custom event during resolution wrapper so native self-destruction reason effect is Eldora; preserve original callback/reason, native negation suppression and repeated resolution/reentry. Nine refreshed production groups/53 cases. Exact-byte both-copy backup eldora-before-self-destruction-attribution-repair. Native Omega/fullcard remains OPEN.'
+ row['additional_batches']=attribution_batches
+ actinia_batches=[]
+ for name,cases in [('negation',8),('interruption',7),('use-reset',3),('opponent-reset',3),('qualification-repaired',1),('proper-revival',6),('revival-boundaries',4),('revival-use-reset',1)]:
+  p=OUT/f'current-actinia-{name}-batch.json';batch=json.loads(p.read_text());assert batch['baseline_cases']==cases
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+  for run in batch['runs']:
+   artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert [i for i,r in enumerate(data['results']) if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results'])
+  if name=='qualification-repaired':assert any(r['control']=='old-source' and r['expected_failures']==[0] for r in batch['runs'])
+  actinia_batches.append({'path':p.name,'sha256':sha(p),'cases':cases})
+ source=ROOT/'public/CCG Downloads/CCG_Scripts/c216258796.lua';assert sha(FILES/'Scripts'/source.name)==sha(source);assert sum(b['cases'] for b in actinia_batches)==33
+ row=next(r for r in rows if r['passcode']==216258796)
+ row['repair']+=' Additional repair: Require STATUS_PROC_COMPLETE in GY special summon procedure. Actual improper Extra-to-GY source no longer revives; old-source control reproduces offer. Proper history fixture uses real two printed-category materials, native non-bypass Fusion Summon then CompleteProcedure and actual destruction; proper revival/partner/capacity/player lock/NecroValley/shared summon use/reset verified. Eight production groups/33 cases including negation/interruption/named effect use regressions. Exact-byte both-copy backup actinia-before-revival-qualification-repair. Official Konami rulebook proper-summon restriction applied by inference. Source Fusion material-selection is separately blocked by public GetMustMaterial gap; fixture does not certify production recipe. NativeOmega/fullcard OPEN.'
+ row['batches']=actinia_batches
+ psychi_batches=[]
+ source=ROOT/'public/CCG Downloads/CCG_Scripts/c217332244.lua'
+ assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+ backup=OUT/'psychi-before-payment-repair'
+ assert (backup/source.name).read_bytes()==(backup/('installed-'+source.name)).read_bytes()
+ old=(backup/source.name).read_text();assert 'for i=100,lp-1,100 do' in old and 'HINTMSG_NUMBER' in old
+ assert 'while place>=1 do' in source.read_text() and 'HINTMSG_NUMBER' not in source.read_text()
+ for name,cases in [('current-psychi-summon-procedure-batch.json',7),('current-psychi-token-payment-repaired-batch.json',13),('current-psychi-proper-history-repaired-batch.json',3)]:
+  p=OUT/name;batch=json.loads(p.read_text());assert batch['baseline_cases']==cases
+  for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+  for run in batch['runs']:
+   artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert [i for i,r in enumerate(data['results']) if r['failure']]==run['expected_failures'];assert not any(r['logs'] for r in data['results'])
+  psychi_batches.append({'path':name,'sha256':sha(p)})
+ assert not any(r['passcode']==217332244 for r in rows)
+ assert (OUT/'psychi-before-proper-history-repair/c217332244.lua').read_bytes()==(OUT/'psychi-before-proper-history-repair/installed-c217332244.lua').read_bytes()
+ assert 'e0:SetValue(function(e,se,sp,st) return e:GetHandler():IsStatus(STATUS_PROC_COMPLETE) end)' in source.read_text()
+ rows.append({'passcode':217332244,'name':'To Proto Psychi','repair':'Replace100-step LP choices with bounded decimal digit choices permitting every positive integer below current LP; use defined HINT_NUMBER in place of undefined HINTMSG_NUMBER. Actual native Token tribute/payment/exact ATK DEF gain;13 payment cases/three controls and7 summon cases/three controls. Exact repository/installed backups psychi-before-payment-repair. Proper-history correction permits actual native revival after printed Hand procedure while improperGY/externalHand excluded;3cases/fourcontrols, exact backup psy chi-before-proper-history-repair (directory psychi-before-proper-history-repair). Other effects/shared use/nativeOmega/fullcard OPEN.','script_sha256':sha(source),'batches':psychi_batches,'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ source=ROOT/'public/CCG Downloads/CCG_Scripts/c217632789.lua'
+ assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+ backup=OUT/'pawty-before-hand-cost-guard';assert (backup/source.name).read_bytes()==(backup/('installed-'+source.name)).read_bytes()
+ assert 'if not c:IsStatus(STATUS_ACT_FROM_HAND) then return true end' in (backup/source.name).read_text()
+ assert 'c:IsLocation(LOCATION_HAND) or c:IsStatus(STATUS_ACT_FROM_HAND)' in source.read_text()
+ p=OUT/'current-pawty-cost-boundaries-repaired-batch.json';batch=json.loads(p.read_text());assert batch['baseline_cases']==5
+ for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+ for run in batch['runs']:
+  artifact=OUT/run['artifact'];assert sha(artifact)==run['artifact_sha256'];data=json.loads(artifact.read_text());assert [i for i,v in enumerate(data['results']) if v['failure']]==run['expected_failures']
+  if run['control']=='old-source':assert run['expected_failures']==[2,3,4] and all(any('Parameter 1' in log['message'] for log in data['results'][i]['logs']) for i in [2,3,4])
+  else:assert all(not v['logs'] for v in data['results'])
+ assert not any(v['passcode']==217632789 for v in rows)
+ rows.append({'passcode':217632789,'name':'Skewy! Pawty Tyme','repair':'Check current Hand location as well as STATUS_ACT_FROM_HAND before allowing cost bypass, so unavailable-cost Hand activation is excluded before payment rather than nil selection error. Five native cases/four controls incl old-source errors; seven earlier groups refreshed. Exact both-copy backup pawty-before-hand-cost-guard. Activation limit/fullcard/nativeOmega OPEN.','script_sha256':sha(source),'batch':p.name,'batch_sha256':sha(p),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ p=OUT/'current-pawty-activation-reset-repaired-batch.json';batch=json.loads(p.read_text());assert batch['baseline_cases']==3
+ for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+ for run in batch['runs']:
+  a=OUT/run['artifact'];assert sha(a)==run['artifact_sha256'];d=json.loads(a.read_text());assert [i for i,v in enumerate(d['results']) if v['failure']]==run['expected_failures'];assert all(not v['logs'] for v in d['results'])
+ row=next(v for v in rows if v['passcode']==217632789);row['activation_batch']={'path':p.name,'sha256':sha(p)};row['repair']+=' Portable shared activation flag plus EVENT_CHAIN_NEGATED rollback replaces legacy count encoding; three native cases/fourcontrols and8 earlier groups refreshed, exact both-copy backup pawty-before-portable-activation-repair. Uses Bear Trap-tested APIs; actual Omega duel execution still open.'
+ source=ROOT/'public/CCG Downloads/CCG_Scripts/c217645912.lua'
+ p=OUT/'current-tide-activation-repaired-batch.json';batch=json.loads(p.read_text());assert batch['baseline_cases']==15
+ for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+ assert len(batch['groups'])==4 and sum(g['baseline_cases'] for g in batch['groups'])==15
+ for group in batch['groups']:
+  assert any(run['control']=='old-source' and run['expected_failures'] for run in group['runs'])
+  for run in group['runs']:
+   a=OUT/run['artifact'];assert sha(a)==run['artifact_sha256'];d=json.loads(a.read_text());assert len(d['results'])==group['baseline_cases'];assert [i for i,v in enumerate(d['results']) if v['failure']]==run['expected_failures'];assert all(not v['logs'] for v in d['results'])
+ assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+ backup=OUT/'tide-before-optional-activation-repair';assert (backup/source.name).read_bytes()==(backup/('installed-'+source.name)).read_bytes()
+ assert not any(v['passcode']==217645912 for v in rows)
+ rows.append({'passcode':217645912,'name':'Crewal Tide','repair':'Permit basic Field activation independently of optional Zombie mill. Choose optional effect at target declaration only with eligible resource, no prior nonCrewal summon and unused named playerflag; restriction applies only to chosen effect. Shared chosen-use persists through activation/effect negation and resets next turn; decline preserves use. Actual native summon history/later summon legality/three full copies/negation/reset, four groups15cases12controls including old-source. Exact both-copy backup tide-before-optional-activation-repair. Second trigger/nativeOmega/fullcard OPEN.','script_sha256':sha(source),'batch':p.name,'batch_sha256':sha(p),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ source=ROOT/'public/CCG Downloads/CCG_Scripts/c218142234.lua'
+ p=OUT/'current-seraphina-capacity-repaired-batch.json';batch=json.loads(p.read_text());assert batch['baseline_cases']==7
+ for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+ for run in batch['runs']:
+  a=OUT/run['artifact'];assert sha(a)==run['artifact_sha256'];d=json.loads(a.read_text());assert len(d['results'])==7;assert [i for i,v in enumerate(d['results']) if v['failure']]==run['expected_failures'];assert all(not v['logs'] for v in d['results'])
+ assert any(run['control']=='old-source' and run['expected_failures']==[5,6] for run in batch['runs'])
+ assert any(run['control']=='ignore-capacity' and run['expected_failures']==[4,6] for run in batch['runs'])
+ assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+ backup=OUT/'seraphina-before-capacity-repair';assert (backup/source.name).read_bytes()==(backup/('installed-'+source.name)).read_bytes()
+ assert 'aux.dncheck(g) and Duel.GetMZoneCount(tp,g)>0' in source.read_text()
+ assert not any(v['passcode']==218142234 for v in rows)
+ rows.append({'passcode':218142234,'name':'Maiden of Talismandrakes Seraphina','repair':'Allow Pendulum activation when the shuffle cost frees Monster Zones. Combine distinct-name and projected free-zone checks in cost eligibility and subgroup selection, remove premature target current-capacity guard. Actual neutral printed-category native Fusion history/PZone placement and7cases4controls, including mixed GY/field pool forcing MZONE cost and old-source failures. Exact both-copy backup seraphina-before-capacity-repair. Production Fusion recipe/equip/other effects/nativeOmega/fullcard OPEN.','script_sha256':sha(source),'batch':p.name,'batch_sha256':sha(p),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ source=ROOT/'public/CCG Downloads/CCG_Scripts/c238276573.lua'
+ p=OUT/'current-goleaf-helper-fallback-batch.json';batch=json.loads(p.read_text());assert batch['baseline_cases']==12 and batch['successful_loader_modes']==2
+ for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+ for run in batch['runs']:
+  a=OUT/run['artifact'];assert sha(a)==run['artifact_sha256'];d=json.loads(a.read_text());assert len(d['results'])==12;assert [i for i,v in enumerate(d['results']) if v['failure']]==run['expected_failures']
+  if run['old_source']:
+   assert run['expected_failures']==[0,1,2,3,4,5,11]
+   for i in run['expected_failures']:assert "global 'CCGSylvan'" in d['results'][i]['failure'] and ':59:' in d['results'][i]['failure']
+  else:assert all(not v['logs'] for v in d['results'])
+ assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+ backup=OUT/'goleaf-before-helper-fallback';assert (backup/source.name).read_bytes()==(backup/('installed-'+source.name)).read_bytes()
+ assert (ROOT/'public/CCG Downloads/CCG_Scripts/ccg_sylvan.lua').read_text().strip() in source.read_text()
+ assert not any(v['passcode']==238276573 for v in rows)
+ rows.append({'passcode':238276573,'name':'Sylvan Goleaf','repair':'Provide exact shared Sylvan helper inline when non-card file loading leaves CCGSylvan or its functions unavailable. Reproduces user Omega screenshot exact line59 nilglobal against old source with absent helper; twelve native cases pass both normal/missing-helper modes. Exact both-copy backup goleaf-before-helper-fallback.','script_sha256':sha(source),'batch':p.name,'batch_sha256':sha(p),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ p=OUT/'current-sylvan-family-helper-fallback-batch.json';batch=json.loads(p.read_text())
+ for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+ for run in batch['runs']:
+  a=OUT/run['artifact'];assert sha(a)==run['sha256'];d=json.loads(a.read_text());assert len(d['results'])==19 and sum(v['pass'] for v in d['results'])==run['passed']
+ roster={v['passcode']:v['name'] for v in json.loads((OUT/'baseline-remote.json').read_text(encoding='utf-8'))['cards']}
+ for filename in json.loads((OUT/'sylvan-family-helper-repair-files.json').read_text())['changed']:
+  code=int(filename[1:-4]);source=ROOT/'public/CCG Downloads/CCG_Scripts'/filename
+  assert source.read_bytes()==(FILES/'Scripts'/filename).read_bytes()
+  assert (OUT/'sylvan-family-before-helper-fallback'/filename).exists()
+  assert 'if not (CCGSylvan and CCGSylvan.Excavate' in source.read_text(encoding='utf-8')
+  if code not in roster:continue
+  assert not any(v['passcode']==code for v in rows)
+  rows.append({'passcode':code,'name':roster[code],'repair':'Same missing Sylvan helper root cause as Goleaf: exact shared inline fallback, existing helper preserved. Native isolated full-script loading passes normal/missing-helper; original backup fails required-function assertion. Initial registration explicitly bypassed in this loader-only fixture; effect resolution/full-card/native Omega OPEN. Eleven additional official overrides repaired separately outside711 roster.','script_sha256':sha(source),'batch':p.name,'batch_sha256':sha(p),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ p=OUT/'current-ritual-material-release-batch.json';batch=json.loads(p.read_text());assert batch['leotron_cases']==15 and batch['family_callback_cases']==28
+ for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+ for run in batch['runs']:
+  a=OUT/run['artifact'];assert sha(a)==run['artifact_sha256'];d=json.loads(a.read_text());assert all(not v['logs'] for v in d['results'])
+  actual=[i for i,v in enumerate(d['results']) if v['failure']] if run['family'] else [v['scenario'] for v in d['results'] if v['failure']]
+  assert actual==run['expected_failures']
+ for code in batch['cards']:
+  source=ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua';backup=OUT/'ritual-material-before-release-guard'
+  assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+  assert 'c:IsCanBeRitualMaterial(rc) and c:IsReleasableByEffect()' in source.read_text(encoding='utf-8')
+  assert (backup/source.name).read_bytes()==(backup/('installed-'+source.name)).read_bytes()
+  assert not any(v['passcode']==code for v in rows)
+  rows.append({'passcode':code,'name':roster[code],'repair':'Reject non-Tributable Hand/field Ritual materials using native contextual IsReleasableByEffect. Shared7filters verified by28bounded native callbacks and original14protected failures; Leotron15actual primary Pendulum Ritual cases with original4capacity/protection failures and3controls6/4/2. Exact both-copy backup and installed parity. Other effects/Deck-send/Mage group/fullcard/native Omega OPEN.','script_sha256':sha(source),'batch':p.name,'batch_sha256':sha(p),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ p=OUT/'current-ritual-material-context-batch.json';batch=json.loads(p.read_text());assert batch['family_callback_cases']==23
+ for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+ for run in batch['runs']:
+  a=OUT/run['artifact'];assert sha(a)==run['artifact_sha256'];d=json.loads(a.read_text());assert len(d['results'])==23 and all(not v['logs'] for v in d['results'])
+  assert [i for i,v in enumerate(d['results']) if v['failure']]==run['expected_failures']
+ for code in batch['cards']:
+  source=ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua';backup=OUT/'ritual-context-before-release-guard'
+  assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+  assert (backup/source.name).read_bytes()==(backup/('installed-'+source.name)).read_bytes()
+  assert not any(v['passcode']==code for v in rows)
+  rows.append({'passcode':code,'name':roster[code],'repair':'Reject protected non-Tributable Hand/field Ritual materials while preserving eligible Deck-send materials; Nephthys self Tribute guarded. Four full native-loaded scripts with23bounded production filter callbacks, original7protected failures and blindDeckguard3failures. Full effects/Mage group Pendulum/nativeOmega/fullcard OPEN.','script_sha256':sha(source),'batch':p.name,'batch_sha256':sha(p),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ p=OUT/'current-glitchling-mage-pendulum-group-batch.json';batch=json.loads(p.read_text());assert batch['baseline_cases']==12
+ for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+ for run in batch['runs']:
+  a=OUT/run['artifact'];assert sha(a)==run['artifact_sha256'];d=json.loads(a.read_text());assert len(d['results'])==12 and all(not v['logs'] for v in d['results']);assert [v['scenario'] for v in d['results'] if v['failure']]==run['expected_failures']
+ row=next(v for v in rows if v['passcode']==259072906);row['group_pendulum_batch']=p.name;row['group_pendulum_batch_sha256']=sha(p);row['repair']+=' Also reject protected and immune field materials in actual group Pendulum Ritual procedure; pass actual procedure effect to immunity check.12nativecases/original2failures/3controls5each, properstatus/payment/checklist and1/2summons; Extra targets/reset/liveOmega/fullcard OPEN.'
+ p=OUT/'current-chain-trigger-delay-batch.json';batch=json.loads(p.read_text());assert batch['family_registration_cases']==10 and batch['starry_compatibility_cases']==9
+ for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+ for run in batch['runs']:
+  a=OUT/run['artifact'];assert sha(a)==run['artifact_sha256'];d=json.loads(a.read_text());assert all(not v['logs'] for v in d['results'])
+  actual=[i for i,v in enumerate(d['results']) if v['failure']] if run['family'] else [v['scenario'] for v in d['results'] if v['failure']];assert actual==run['expected_failures']
+ for item in json.loads((OUT/'chain-trigger-delay-repair-files.json').read_text()):
+  code=int(item['file'][1:-4]);source=ROOT/'public/CCG Downloads/CCG_Scripts'/item['file'];backup=OUT/'chain-trigger-before-delay-repair'
+  assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes();assert (backup/source.name).read_bytes()==(backup/('installed-'+source.name)).read_bytes()
+  assert item['variable']+':SetProperty('+item['variable']+':GetProperty()|EFFECT_FLAG_DELAY)' in source.read_text(encoding='utf-8');assert not any(v['passcode']==code for v in rows)
+  rows.append({'passcode':code,'name':roster[code],'repair':'Add missing delayed flag to existing EVENT_CHAINING optional trigger; preserves event type/other flags and after-chain timing. Ten bounded native full-source isolated registration accept/decline probes withold10failures; Starry9full effectcompatibility diagnostic cases/old5failures/controls7/1/3/9. Explicit legacy chain attribute constant mapping forStarry; no nativeOmega/fullcard certification. Exactbothbackup/installparity.','script_sha256':sha(source),'batch':p.name,'batch_sha256':sha(p),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
  report={'scope':'Documented script repairs with current source/install parity. Public-engine regressions and explicitly bounded callback/shared-effect evidence are distinguished per row. Not full-card or native Omega certification.', 'fixed_cards_minimum':len(rows),'cards':rows}
  (OUT/'repair-ledger.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');print(json.dumps({'fixed_cards_minimum':len(rows),'status':'CURRENT_EVIDENCE_VERIFIED'}))
 if __name__=='__main__':main()

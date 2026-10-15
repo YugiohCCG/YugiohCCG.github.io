@@ -86,21 +86,21 @@
     {
       "code": 212429024,
       "path": "public/CCG Downloads/CCG_Scripts/c212429024.lua",
-      "sha256": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921",
+      "sha256": "7b03176439555fb2bc0165feea5f560bbfe86c6d18089ac54b545bdfea663114",
       "placements": [
         {
-          "line": 75,
+          "line": 85,
           "function": "addop",
           "call": "elseif Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end",
           "context": "\tlocal b1=Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)\n\tlocal b2=Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\tif not b1 and not b2 then return end\n\tlocal op=b1 and b2 and Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3)) or (b1 and 0 or 1)\n\tif op==0 then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)\n\telseif Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(tc) end\nend",
           "references": [
             {
-              "line": 28,
-              "text": "e2:SetOperation(s.addop)"
+              "line": 75,
+              "text": "function s.addop(e,tp)"
             },
             {
-              "line": 65,
-              "text": "function s.addop(e,tp)"
+              "line": 96,
+              "text": "for _,owner in ipairs(entry.owners) do s.addop(ce,owner) end"
             }
           ],
           "registration_exclusion": null,
@@ -186,10 +186,10 @@
     {
       "code": 218142234,
       "path": "public/CCG Downloads/CCG_Scripts/c218142234.lua",
-      "sha256": "56a270f23f366cbe0eac6431e88e531694be275cf6d75c60b53667e1062c4cb3",
+      "sha256": "e321e1e14d7ccff7ec4359429f01340c50a1dae58bd1e0b005b77bc039a6973c",
       "placements": [
         {
-          "line": 307,
+          "line": 310,
           "function": "penop",
           "call": "Duel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)",
           "context": "\tif chk==0 then return Duel.CheckLocation(tp,LOCATION_PZONE,0) or Duel.CheckLocation(tp,LOCATION_PZONE,1) end\nend\nfunction s.penop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) then\n\t\tDuel.MoveToField(c,tp,tp,LOCATION_PZONE,POS_FACEUP,true)\n\tend",
@@ -199,7 +199,7 @@
               "text": "e4:SetOperation(s.penop)"
             },
             {
-              "line": 304,
+              "line": 307,
               "text": "function s.penop(e,tp,eg,ep,ev,re,r,rp)"
             }
           ],

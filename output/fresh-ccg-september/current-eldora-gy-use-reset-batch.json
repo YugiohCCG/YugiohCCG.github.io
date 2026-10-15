@@ -1,0 +1,59 @@
+{
+  "scope": "Full current Eldora three actual distinct copies; initial Field plus actual native MoveToField Hand copies/Destroy. First full forced GY trigger success/native CL2 activation/effect negation, second ownturn1 source destruction shares used named limit; third ownturn3 fresh trigger. Normal anchor no matching Effect monsters/resources; no seeded use/adapters/nativeOmega/fullcard certification",
+  "baseline_cases": 3,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_eldora_gy_use_reset.cjs": "3369f3e8c590121c9a513fad60b6ff963f164f09d99f9eb1c25337b19d18c9c6",
+    "scripts/fresh_current_eldora_gy_use_reset_batch.py": "7fcdd2db8b4bc50748f786c21894fa082dc4b8f502de7ea038dd87cc586608f0",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c229786055.lua": "16114e55a4a207c5640016dc403b0d51817b0a880cdf5838b09e0837c38a6c1d",
+    "public/CCG Downloads/CCG_Scripts/c214552846.lua": "c2bbc342c22f0e1bdc935c24165c022646f2a1569e08f323ae6b4d4a56fda9ff",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-eldora-gy-use-reset.json",
+      "artifact_sha256": "27d2ac7da63bbf4432bda540c42e2f38326ae44d57e010d48360fc025721ce5a"
+    },
+    {
+      "control": "per-copy",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-eldora-gy-use-reset-per-copy.json",
+      "artifact_sha256": "1e3c7e63910378044d3b37a5064deeac848aedca74ee775dc43493f3bc421e75"
+    },
+    {
+      "control": "no-reset",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ],
+      "artifact": "current-eldora-gy-use-reset-no-reset.json",
+      "artifact_sha256": "4286fdf182b4957614c51166d32726d13d231bbffda723087c485ca8d52d6e0f"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        1,
+        2
+      ],
+      "artifact": "current-eldora-gy-use-reset-no-response.json",
+      "artifact_sha256": "de5172bc9a0b5e097633d337ff72bda69da75d5de192748401c89c5baad6de44"
+    }
+  ]
+}

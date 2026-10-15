@@ -77,13 +77,6 @@
     "reason": "Activation checks for at least one negatable monster and draw legality. Resolution enumerates all face-up monsters, applies the negate predicate individually, then counts the opponent's current face-up monsters."
   },
   {
-    "script": "c259650969.lua",
-    "script_sha256": "a19bdb4d4c2fedfc455897d5f57fd30e6e52aed764e375368937f0ad1d111ce8",
-    "kind": "target-operation-search-mismatch",
-    "line": 130,
-    "reason": "The guarded mvfilter selection is performed earlier in the operation. This second group is the post-move set of co-linked monsters that receive counters."
-  },
-  {
     "script": "c259679619.lua",
     "script_sha256": "49df75a3b346cc05e4af57e70bba003d56c87eefad178548d9821b97925a22f1",
     "kind": "target-operation-search-mismatch",
@@ -131,5 +124,19 @@
     "kind": "target-operation-search-mismatch",
     "line": 84,
     "reason": "The Pendulum target checks a destroyfilter card on the entire field and, when no Main Monster Zone is free, a zonefilter card that is the same destroyfilter restricted to MZONE. pop selects from that MZONE subset to free a zone, optionally adds a second destructible card, and checks successful destruction before Summoning. The narrowed operation selection is intentionally guarded."
+  },
+  {
+    "script": "c259650969.lua",
+    "script_sha256": "62b6ad04083471441e10f04ccf459bb1d59fad6088c2200e4bfbb63542c07df6",
+    "kind": "target-operation-search-mismatch",
+    "line": 130,
+    "reason": "Beacon may move a monster even when its new co-linked counter-recipient group is empty. Movement legality is checked at activation; the optional resulting recipients are computed after movement. Native engine movement and counter cases verify both empty and populated groups."
+  },
+  {
+    "script": "c259869259.lua",
+    "script_sha256": "f67f3999cc8a4778eabe1321cdda72c01180f522224a904af41e3f9576c6a63b",
+    "kind": "target-operation-search-mismatch",
+    "line": 95,
+    "reason": "Surge checks a free pointed zone and supporting Ohmenchanic at activation, then recomputes the surviving pointed zones at resolution. It correctly does nothing if the source or required graph is lost. Thirteen delayed-trigger engine cases verify interruptions and zone changes."
   }
 ]

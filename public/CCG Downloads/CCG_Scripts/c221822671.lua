@@ -41,6 +41,7 @@ function s.initial_effect(c)
 	e4:SetCondition(s.spcon)
 	e4:SetTarget(s.sptg)
 	e4:SetOperation(s.spop)
+	e4:SetProperty(e4:GetProperty()|EFFECT_FLAG_DELAY)
 	c:RegisterEffect(e4)
 end
 function s.faceupoppdeck(c,tp,reason)

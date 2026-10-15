@@ -12,6 +12,9 @@ async function main(){
   cards.set(boss,sylvanCard(boss));
   cards.set(greetings,sylvanCard(greetings));
   const reader=name=>{
+   if(name==='ccg_sylvan.lua'&&process.argv.includes('--missing-helper'))return '';
+   if(name==='c238276575.lua'&&process.argv.includes('--old-source'))return fs.readFileSync(path.join(ROOT,'output/fresh-ccg-september/sylvan-family-before-helper-fallback/c238276575.lua'),'utf8');
+   if(name==='c238276573.lua'&&process.argv.includes('--old-source'))return fs.readFileSync(path.join(ROOT,'output/fresh-ccg-september/goleaf-before-helper-fallback/c238276573.lua'),'utf8');
    if(name===`c${setup}.lua`)return `local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_FREE_CHAIN) e:SetOperation(function(e,tp) local tc=Duel.GetMatchingGroup(Card.IsCode,tp,LOCATION_DECK,0,nil,${top}):GetFirst() Duel.MoveSequence(tc,SEQ_DECKTOP) ${test.revive?`Duel.ConfirmDecktop(tp,1) Duel.SendtoGrave(tc,${test.cost?'REASON_COST+REASON_REVEAL':test.ordinary?'REASON_EFFECT':'REASON_EFFECT+REASON_REVEAL'})`:test.special?`local c=Duel.GetMatchingGroup(Card.IsCode,tp,LOCATION_HAND,0,nil,${boss}):GetFirst() Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)`:''} end) c:RegisterEffect(e) end`;
    if(name===`c${loss}.lua`)return `local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_FREE_CHAIN) e:SetCondition(function(e,tp) return Duel.GetCurrentChain()>0 and Duel.IsExistingMatchingCard(Card.IsCode,tp,LOCATION_GRAVE,0,1,nil,${boss}) end) e:SetOperation(function(e,tp) local tc=Duel.GetMatchingGroup(Card.IsCode,tp,LOCATION_GRAVE,0,nil,${ally}):GetFirst() Duel.Remove(tc,POS_FACEUP,REASON_EFFECT) end) c:RegisterEffect(e) end`;
    if([plant,nonplant,spell,ally,filler].some(id=>name===`c${id}.lua`))return 'local s,id=GetID() function s.initial_effect(c) end';if(name==='c0.lua')return '';
@@ -43,5 +46,5 @@ async function main(){
   results.push({...test,failure,offered,trace,logs});console.log(`${failure?'FAIL':'PASS'} ${JSON.stringify(test)}${failure?': '+failure:''}`);
  }
  const control=['--no-relation','--send-gated-level'].find(flag=>process.argv.includes(flag));
- fs.writeFileSync(path.join(ROOT,`output/fresh-ccg-september/sylvan-goleaf${control?control.slice(1):''}.json`),JSON.stringify({engine:'Public OCGCore; complete Goleaf, official Macro Cosmos seeded face-up, neutral cards and actual setup/excavation/Summon/chain-removal fixture Spells; no core/helper adapter; native Omega untested',control:control||null,results},(_,v)=>typeof v==='bigint'?String(v):v,2)+'\n');if(results.some(r=>r.failure))process.exitCode=1;
+ fs.writeFileSync(path.join(ROOT,`output/fresh-ccg-september/sylvan-goleaf${process.argv.includes('--missing-helper')?'-missing-helper':''}${process.argv.includes('--old-source')?'-old-source':''}${control?control.slice(1):''}.json`),JSON.stringify({engine:'Public OCGCore; complete Goleaf, official Macro Cosmos seeded face-up, neutral cards and actual setup/excavation/Summon/chain-removal fixture Spells; no core/helper adapter; native Omega untested',control:control||null,results},(_,v)=>typeof v==='bigint'?String(v):v,2)+'\n');if(results.some(r=>r.failure))process.exitCode=1;
 }main().catch(e=>{console.error(e);process.exitCode=1});

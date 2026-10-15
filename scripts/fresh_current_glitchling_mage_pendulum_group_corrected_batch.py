@@ -1,0 +1,16 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+paths=[Path(__file__).resolve(),ROOT/'scripts/fresh_current_glitchling_mage_pendulum_group_corrected.cjs',ROOT/'scripts/fresh_current_card.cjs',ROOT/'public/CCG Downloads/CCG_Scripts/c259072906.lua',ROOT/'src/data/cards.json',OUT/'current-spec-CCG_v1.db']+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))
+paths+=list((OUT/'mage-group-before-material-repair').glob('*.lua'))
+paths += [ROOT/'scripts/fresh_corrected_card_data_transport.cjs',ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']
+subprocess.run(['node','-e',"require('./scripts/fresh_corrected_card_data_transport.cjs').loadCorrectedTransport().catch(e=>{console.error(e);process.exitCode=1})"],check=True,capture_output=True,text=True,timeout=20)
+before={p.relative_to(ROOT).as_posix():sha(p) for p in paths};runs=[]
+for flag,expected in [(None,[]),('old-source',['protected','immune']),('no-material',['baseline','two','shortTwo','fullOne','fullTwo']),('no-complete',['baseline','two','shortTwo','fullOne','fullTwo']),('no-checklist',['baseline','two','shortTwo','fullOne','fullTwo'])]:
+ r=subprocess.run(['node','--no-warnings','scripts/fresh_current_glitchling_mage_pendulum_group_corrected.cjs']+(['--'+flag] if flag else []),capture_output=True,text=True,timeout=20);p=OUT/('current-glitchling-mage-pendulum-group-corrected'+('-'+flag if flag else '')+'.json');d=json.loads(p.read_text());assert len(d['results'])==12 and all(not v['logs'] for v in d['results']),r.stdout+r.stderr
+ assert [v['scenario'] for v in d['results'] if v['failure']]==expected;assert r.returncode==(1 if expected else 0)
+ runs.append({'flag':flag,'artifact':p.name,'artifact_sha256':sha(p),'expected_failures':expected})
+assert before=={p.relative_to(ROOT).as_posix():sha(p) for p in paths}
+assert paths[3].read_bytes()==Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts/c259072906.lua').read_bytes()
+(OUT/'current-glitchling-mage-pendulum-group-corrected-batch.json').write_text(json.dumps({'status':'VERIFIED_PARTIAL_PRODUCTION','baseline_cases':12,'runtime_dependencies_sha256':before,'runs':runs,'scope':'Full Mage native group Ritual procedure with12cases. Actual1/2Ritual summons, field material release/proper status/shared checklist set, scale/material/partner boundaries, fullfield subgroup selecting only1when2cannotfit or levels insufficient. Protected/immune materials excluded by contextual release+explicit immunity check against actual procedure effect; original2 failures and controls5/5/5. Corrected test-only32bit CardData transport with native scale readings1/5; no scale-effect override. Original runtime unchanged. No core API shim; actual original attempted immune material was not released despite Ritual proceeding. Full other effects/Extra targets/turn reset/liveOmega/card remain open.'},indent=2)+'\n',encoding='utf-8');print('Mage12PASS; original2failures;3controls5/5/5verified; parity/frozeninputs')

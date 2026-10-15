@@ -1,0 +1,55 @@
+{
+  "status": "VERIFIED_PARTIAL_PRODUCTION",
+  "baseline_cases": 4,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_symphonic_ddj_response_shared_reset_batch.py": "77a6ed940d43b9b2e108eb02f92a92ab49bd9107aa7c2c653576a50962e1fabc",
+    "scripts/fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "src/data/cards.json": "c98dfa92c196beb58188d4f19ded008c337bc70da002df221e7188084f32c3a5",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "scripts/fresh_current_symphonic_ddj_response_shared_reset.cjs": "cdb5cd0d6d7ec723381921a5df96b1fca62bd598bab0416934393351ee563fb7",
+    "public/CCG Downloads/CCG_Scripts/c238273769.lua": "66d74feea6db63482cf659788f8d6d18b200e661cf74fdfb98f5d189d2a7640d",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "flag": null,
+      "artifact": "current-symphonic-ddj-response-shared-reset.json",
+      "artifact_sha256": "893d6561f7d2d6f4e9cba855bf5d95b1f4b0b764fb7c2e84433032c1419802f2",
+      "expected_failures": []
+    },
+    {
+      "flag": "per-copy",
+      "artifact": "current-symphonic-ddj-response-shared-reset-per-copy.json",
+      "artifact_sha256": "0988e9bb849b5713d534f5d943d3f30842fd22218784297324df1c8ad1b798c4",
+      "expected_failures": [
+        "negateActivation",
+        "negateActivation",
+        "negateEffect",
+        "negateEffect"
+      ]
+    },
+    {
+      "flag": "no-reset",
+      "artifact": "current-symphonic-ddj-response-shared-reset-no-reset.json",
+      "artifact_sha256": "a9057e837f7d87ccf4d5c957e882b932a476317353a7acbcdd594879ce50a03a",
+      "expected_failures": [
+        "negateActivation",
+        "negateActivation",
+        "negateEffect",
+        "negateEffect"
+      ]
+    }
+  ],
+  "scope": "FullDDJ production/currentcanonicalmetadata/correctedCardData publiccore, two actual HAND-to-PZone copies. Both source sequences0/4 under actualMonsterCL1/DDJCL2/CounterTrapCL3 activation or effect negation; further same-turn Monster ignition cannot activate either copy. NaturalNEW_TURN0/1/0 nextown3 oppositecopy response actuallyreturnsHAND andSSremainingcopyMZONE. PerCopy4/noReset4 exactfailures, emptylogs/frozeninputs/sourceinstallparity. NoLuaAPIshim; successfulfirst-use reset andfullcard/nativeOmega stillopen."
+}

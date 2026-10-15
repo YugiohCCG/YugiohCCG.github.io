@@ -1,0 +1,58 @@
+{
+  "scope": "Full current initial-field Bray actual Quick/CounterTrap CL2 activation or effect negation, sourcebanish or one Deck resourcebanish, then actual native nonFish summon eligibility and summons through ownturn3. Successful source selfbanish applies Fish lock even when fewer than two Deck candidates remain; native negations/source relation loss do not. No adapters. Shared use/battle/native Synchro/Omega/fullcard open.",
+  "baseline_cases": 5,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_bray_interrupted_restriction.cjs": "497b07fd74b540786975145266274c8f12cb70d489c2b09ae7f2eb9d5a452852",
+    "scripts/fresh_current_bray_interrupted_restriction_batch.py": "16d4f2362000f1c4459650ed2d813faa20abeafcdcef6f641cb14a717e805ac9",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c212822164.lua": "81f0c485a88ebc89cf58c1dbf907716ed5301bff5d3c83dd24721c1cd1c33ce0",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "4eb639d06433da439cf2ba9d64da95b0f85951c4a3123da64fcacf75ac4c67dc",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-bray-interrupted-restriction.json",
+      "artifact_sha256": "7b00200649899b22f262aedc3567d5566ebff3d85c5cee8e6376631cc3a05c26"
+    },
+    {
+      "control": "no-restriction",
+      "expected_failures": [
+        0,
+        4
+      ],
+      "artifact": "current-bray-interrupted-restriction-no-restriction.json",
+      "artifact_sha256": "d15335ed63be2747ce8a8003e8362c100dfa8d949631a09f138e87acfa259d49"
+    },
+    {
+      "control": "no-reset",
+      "expected_failures": [
+        0,
+        4
+      ],
+      "artifact": "current-bray-interrupted-restriction-no-reset.json",
+      "artifact_sha256": "6da06822ed36e4d945cdca69a0c6775cd2b3fe2d453f6ed53b747caf4f5fbe2a"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "artifact": "current-bray-interrupted-restriction-no-response.json",
+      "artifact_sha256": "1bd1b62d60baa95f45717a7397b5aefc107828530f8e7bfed5d349e2c687f80c"
+    }
+  ]
+}

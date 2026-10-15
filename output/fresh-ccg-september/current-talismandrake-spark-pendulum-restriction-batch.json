@@ -1,0 +1,53 @@
+{
+  "status": "VERIFIED_PARTIAL_PRODUCTION",
+  "baseline_cases": 5,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_talismandrake_spark_embers_restriction_batch.py": "0b84fe73a7d5cacbc76c59d1e2c5427a3248d32e1a8a04ee5c230af489b1064f",
+    "scripts/fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "src/data/cards.json": "6e3d644ec1cc45ac996cfe977f250530726ce80315759edefdb995965c06a2a8",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "scripts/fresh_current_talismandrake_spark_pendulum_restriction.cjs": "d741bfdd6a5360dd2ab44cf67c9d571a97324c59756454eb9736b5a404c9240c",
+    "public/CCG Downloads/CCG_Scripts/c230947464.lua": "cceccccf58a4914de681a2a3e7def9463c7cf13e29b873225b9990b49c0087c2",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "flag": null,
+      "artifact": "current-talismandrake-spark-pendulum-restriction.json",
+      "artifact_sha256": "e631ea2aafaf61bd80e9121bd457ea9166447b0b8da9c06cddde7d4e4e12c0a0",
+      "expected_failures": []
+    },
+    {
+      "flag": "no-limit",
+      "artifact": "current-talismandrake-spark-pendulum-restriction-no-limit.json",
+      "artifact_sha256": "9aeb13eda1e7f673f15eb48438d3e99b6a539fbb31972bb49d8b485bd0302c2c",
+      "expected_failures": [
+        1,
+        3
+      ]
+    },
+    {
+      "flag": "invert-race",
+      "artifact": "current-talismandrake-spark-pendulum-restriction-invert-race.json",
+      "artifact_sha256": "b8bc99876a87226a5be59cb6fddfa4c830c6b0bb381f2338445ae23eb7fba8f2",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "scope": "Full current production card/canonical metadata/corrected CardData; actual Hand PZone activation and neutral opposite scale2. Native Pyro Pendulum SS from Hand or actual MZONE effect-GY faceupExtra, nonPyro excluded in both, ordinary nonPyro SS unaffected. No LuaAPI adapter. NoLimit2/invertRace4 exactfailures/emptylogs/frozeninputs/installedparity. Other effects/fullcard/nativeOmega OPEN."
+}

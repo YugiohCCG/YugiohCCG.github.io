@@ -74,7 +74,7 @@ function s.linkmatfilter(c)
 	return s.trigfilter(c) and c:IsReason(REASON_LINK)
 end
 function s.matfilter(c,rc)
-	return c:GetLevel()>0 and c:IsCanBeRitualMaterial(rc)
+	return c:GetLevel()>0 and c:IsCanBeRitualMaterial(rc) and c:IsReleasableByEffect()
 end
 function s.countercap(tp,lv)
 	return math.min(lv,Duel.GetCounter(tp,1,1,COUNTER_CORRUPTION))

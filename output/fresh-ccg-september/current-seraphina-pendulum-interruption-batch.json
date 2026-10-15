@@ -1,0 +1,63 @@
+{
+  "status": "VERIFIED_PARTIAL_PRODUCTION",
+  "baseline_cases": 6,
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_seraphina_pendulum_interruption_batch.py": "823d25d8229f6a0aa4c525c3c23b1b6dd2c69943ed8cfb867be1e235aa9ebae0",
+    "scripts/fresh_current_seraphina_pendulum_interruption.cjs": "a526d7b11330e81e2f5f7abe539aa4899cd7a5b7084ab4fe0dbae501043c5641",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "public/CCG Downloads/CCG_Scripts/c218142234.lua": "e321e1e14d7ccff7ec4359429f01340c50a1dae58bd1e0b005b77bc039a6973c",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db": "9e84edccdd269b6e96bce5ab684361192a3a2b08be29c994292d18b40847437e",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "control": null,
+      "expected_failures": [],
+      "artifact": "current-seraphina-pendulum-interruption.json",
+      "artifact_sha256": "9b771b5150014ad47db7c9d906845fe45e86317bc0fc29e2fc291f2567b58316"
+    },
+    {
+      "control": "no-summon",
+      "expected_failures": [
+        0
+      ],
+      "artifact": "current-seraphina-pendulum-interruption-no-summon.json",
+      "artifact_sha256": "11ac4d54ba48eee6fa3428059ca51884749129bad18efd1c79073f5abe526ebf"
+    },
+    {
+      "control": "no-cost",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "artifact": "current-seraphina-pendulum-interruption-no-cost.json",
+      "artifact_sha256": "35795a349e99cbab9ead4a526d11db3578885883c2b7ad50adba18a39e0d6415"
+    },
+    {
+      "control": "no-response",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "artifact": "current-seraphina-pendulum-interruption-no-response.json",
+      "artifact_sha256": "5a37f15748684bb8293e6ea0f1b9c286f09861df4df0de27bc21c19e7a83b761"
+    }
+  ],
+  "scope": "Full repaired Seraphina native Pendulum cost/SS after actual printed-category neutral Fusion history; real CounterTrapCL2 activation/effect negation/sourcebanishment/late4zonefill/late source-only player summon lock. Actual three shuffle costs persist. No adapters; Fusion recipe/equip/other effects/Omega/fullcard OPEN"
+}
