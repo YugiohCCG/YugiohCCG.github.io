@@ -93,7 +93,8 @@ function s.bfsop(e,tp,eg,ep,ev,re,r,rp)
 	
 	local placed,ct=s.spreadcurrent(c,tp)
 	if #placed==0 then return end
-	c:RegisterFlagEffect(id, RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END, 0, 1, ct)
+	-- Remember only this copy's summon-resolution total until it leaves or is reset.
+	c:RegisterFlagEffect(id, RESET_EVENT+RESETS_STANDARD, 0, 1, ct)
 	local allowed_mask=0
 	for tc in aux.Next(placed) do
 		allowed_mask=bit.bor(allowed_mask,tc:GetLinkedZone(tp))

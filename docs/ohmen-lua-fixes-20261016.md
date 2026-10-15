@@ -44,12 +44,12 @@ All 15 current Ohmen scripts were checked against the updated card data. Ten scr
 | Ohmen Powerload | 259434499 | Deck summon, negation, optional destruction, counters split across cards |
 | Ohmen Beacon | 259650969 | Hand/GY summon, movement including facedown monsters, counter placement and target protection |
 
-## Two rulings still pending
+## Confirmed rulings
 
-These behaviours were preserved instead of choosing new rules:
+1. **Ampere, the Yellow Ohmen:** remember the number actually placed by this copy's summon effect for as long as this copy remains face-up without resetting. End of turn no longer clears that value. The search snapshots it on activation, so removing Ampere in response does not erase the resolving search. It is not a running total of counters currently on the field.
+2. **Ohmen Powerload:** its Thunder-only Special Summon restriction applies to the whole turn, including summons before activation. Existing implementation retained.
 
-1. **Ampere, the Yellow Ohmen:** its remembered spread counter total currently expires at the end of the turn. The wording does not clearly specify whether it should remain available on later turns or accumulate.
-2. **Ohmen Powerload:** currently enforces the Thunder-only Special Summon restriction for the whole turn, including earlier summons. Confirm whether the intended rule is instead the rest of the turn after activation.
+Three added engine cases verify Ampere's search on its next own turn, including wrong-Level and wrong-archetype controls. Updated totals: **131 duel scenarios in 33 families plus 17 additional probes**, all passing.
 
 ## Reproducing and limits
 

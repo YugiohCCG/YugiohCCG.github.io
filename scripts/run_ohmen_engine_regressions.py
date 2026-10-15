@@ -9,7 +9,7 @@ recipes={
 'conductor_control':259405917,'conductor_movement':259405917,'conductor_revival':259405917,
 'intensity_battle_protection':259479044,'intensity_counter_placement':259479044,'intensity_effect_protection':259479044,'intensity_search_discard':259479044,
 'coulomb_linked_summon':259881255,'ohmen_linked_summon':259174227,'ohmen_linked_search':259107906,'ohmen_linked_followup':259174227,'volt_linked_summon':259726853,'volt_linked_followup':259726853,
-'ampere_network_counters':259650132,'ampere_two_link_search':259650132,'ampere_linked_search':259650132,'ampere_search_response':259650132,
+'ampere_network_counters':259650132,'ampere_two_link_search':259650132,'ampere_linked_search':259650132,'ampere_search_response':259650132,'ampere_later_turn_search':259650132,
 'powerload_counter_destroy':259434499,'powerload_deck_summon':259434499,'powerload_negation':259434499,
 'surge_colink_transitions':259869259,'surge_after_spell':259869259}
 label=sys.argv[1] if len(sys.argv)>1 else 'baseline'
