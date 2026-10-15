@@ -24,3 +24,8 @@ Full-resolution comparisons preserve the supplied original effect text alongside
 ## Further TCG-only wording audit
 
 Two conservative editorial reductions save 39 characters: Volt Link uses the Fire Cracker damage shorthand; Carcel Link uses the Transcode Talker co-linked-group shorthand. All other current card clauses and all gameplay scripts are unchanged by this audit. See [the per-effect audit](ohmen-tcg-wording-audit-20261015.md) for official TCG references, equivalence checks and rejected shortcuts.
+
+
+## Designer corrections — 16 October 2026
+
+Coulomb Link 3+ now ends: `immediately after this effect resolves, Link Summon an "Ohmen" monster.` The explicit materials-you-control phrase is omitted. Ampere Link 2+ now begins: `During your Main Phase:`. All other timing, costs, counters and effects are retained.

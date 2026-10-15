@@ -122,3 +122,8 @@ The references support the identified wording or operation only. None is claimed
 - **Target protection:** Unchanged. Keep your control, co-link status, Current Counter requirement and opponent-only effects. Transcode has different qualifying conditions. [Transcode Talker](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=13698&ope=2&request_locale=en)
 - **Movement / counters:** Unchanged. Keep non-targeting movement, Main Monster Zone scope, then counter placement on all your co-linked monsters. Senet differs. [Senet Switch](https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=6909&ope=2&request_locale=en)
 - **Activation limit:** Unchanged. Keep only activate 1.
+
+
+## Designer corrections — 16 October 2026
+
+Coulomb Link 3+ now ends: `immediately after this effect resolves, Link Summon an "Ohmen" monster.` The explicit materials-you-control phrase is omitted. Ampere Link 2+ now begins: `During your Main Phase:`. All other timing, costs, counters and effects are retained.
