@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import re
 import sqlite3
+from official_omega_reference import official_database
 from typing import Any
 
 from sync_omega_ccg_db import (
@@ -22,9 +23,7 @@ DEFAULT_CARDS = ROOT / "src" / "data" / "cards.json"
 DEFAULT_SCRIPTS = ROOT / "public" / "CCG Downloads" / "CCG_Scripts"
 DEFAULT_DB = ROOT / "public" / "CCG Downloads" / "CCG_Database" / "CCG_v1.db"
 DEFAULT_REPORT = ROOT / "scripts" / "output" / "omega_message_route_manifest.json"
-DEFAULT_OFFICIAL_DB = Path(
-    r"C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Bundles\db"
-)
+DEFAULT_OFFICIAL_DB = official_database()
 
 # Card scripts often keep small numeric routing constants on the same physical
 # line as ``local s,id=GetID()``.  Match a declaration at the start of a line or

@@ -4,6 +4,7 @@
 const fs = require("fs");
 const path = require("path");
 const luaparse = require("luaparse");
+const callArguments = require("./lua_call_arguments.cjs");
 
 const root = path.resolve(__dirname, "..");
 const cardsPath = path.join(root, "src", "data", "cards.json");
@@ -81,7 +82,7 @@ function callDetails(node, source) {
   return {
     name,
     line: node.loc?.start.line || null,
-    args: (node.arguments || []).map((argument) =>
+    args: callArguments(node).map((argument) =>
       normalizeExpression(source.slice(argument.range[0], argument.range[1]))
     ),
   };
@@ -304,7 +305,7 @@ const reviewedEntries = fs.existsSync(reviewedPath)
   ? JSON.parse(fs.readFileSync(reviewedPath, "utf8"))
   : [];
 const scriptHashes = new Map(scriptPaths.map((script) => {
-  const bytes = fs.readFileSync(path.join(scriptsDir, script));
+  const bytes = fs.readFileSync(path.join(scriptsDir, script), "utf8").replace(/\r\n/g, "\n");
   const hash = require("crypto").createHash("sha256").update(bytes).digest("hex");
   return [script, hash];
 }));

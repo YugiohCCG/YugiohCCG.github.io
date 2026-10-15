@@ -172,7 +172,7 @@ def build_manifest(cards_path: Path, db_path: Path, scripts_dir: Path) -> dict[s
         else:
             if row.get("name") != card.get("name"):
                 card_errors.append("database name differs from cards.json")
-            if row.get("desc") != card.get("text"):
+            if row.get("desc") != str(card.get("text") or "").replace("\\n", "\n"):
                 card_errors.append("database text differs from cards.json")
         if script is None:
             card_errors.append("missing Lua script")
