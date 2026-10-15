@@ -1,9 +1,8 @@
 --Sylvan Goleaf
-Duel.LoadScript("ccg_sylvan.lua")
---Omega may not load non-card helper filenames; keep the exact shared fallback.
-if not (CCGSylvan and CCGSylvan.Excavate and CCGSylvan.Plant and CCGSylvan.ForcedSend) then
+-- Standalone helper: Omega installs card scripts only.
+if type(CCGSylvan)~="table" then
 --Shared handling for the custom Sylvan excavation instructions.
-CCGSylvan=CCGSylvan or {}
+CCGSylvan={}
 function CCGSylvan.Plant(c)
  return c:IsType(TYPE_MONSTER) and c:IsRace(RACE_PLANT)
 end

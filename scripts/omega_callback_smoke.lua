@@ -27,7 +27,7 @@ local single_card_methods={
 	GetOwnerTarget=true,GetPreviousEquipTarget=true,
 }
 local effect_card_methods={
-	GetActivateEffect=true,
+	GetActivateEffect=true,GetReasonEffect=true,GetCardEffect=true,
 }
 
 card_mt.__len=function() return 1 end
@@ -152,9 +152,11 @@ aux=lazy_namespace(function()
 	return function() return true end
 end)
 Auxiliary=aux
+aux.CCGFaceupPlacementEffects={}
 aux.TRUE=function() return true end
 aux.Stringid=function() return 1 end
 aux.NecroValleyFilter=function(f) return f or function() return true end end
+aux.UnionEquipFilter=function(f) return f end
 aux.AddEquipProcedure=function() return effect end
 aux.AddLinkProcedure=function() return effect end
 aux.FilterBoolFunction=function(f,...)
@@ -221,6 +223,8 @@ local function argument_for(name)
 	if name=="e" or name=="se" or name=="re" or name=="te" or name=="pe" then return effect end
 	if name=="g" or name:match("g$") or name:match("^g%d+$") or name=="selected" or name=="mat" then return group end
 	if name=="f" or name=="filter" then return function() return true end end
+	if name=="state" then return {} end
+	if name=="victim" then return card end
 	if name=="chk" then return 0 end
 	if name=="chkc" then return nil end
 	if name=="c" or name=="tc" or name=="mc" or name=="rc" or name=="sc" or name=="ec" or name=="syncard"

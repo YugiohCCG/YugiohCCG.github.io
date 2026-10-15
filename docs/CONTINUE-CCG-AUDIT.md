@@ -1,5 +1,8 @@
 # Continue the 711-card effects audit
 
+Talismandrake Spark230947464 + Embers256928871 SHARED PENDULUM RESTRICTION10nativecases VERIFIED/FROZEN current-talismandrake-spark/embers-pendulum-restriction-batch.json via scripts/fresh_current_talismandrake_spark_embers_restriction_batch.py. Eachfullproduction/currentcanonicalmetadata/correctedCardData/actualHANDPZone+neutraloppositescale2. NativePyroPendulumSS fromHand/actualMZONEeffectGYfaceupExtra allowed; nonPyro excludedboth; ordinarynonPyroSS allowed. NoLuaAPIadapter; sourceinstalledparity/emptylogs/fullinputhashes verified. ControlsnoLimit2/invertRace4 eachcard exactfailures. NoLua/DBrepair. Embersnewfocusednativeevidence ->242partial109scriptrepairs0full; Sparkexistingentryextended. NEXT Spark500Fusiondamage/EmbersGYFusionrevival+redirect/SearprimaryFusion; all24/full711ACTIVE.
+
+
 MegaStaar BANISH SOFT USE/RESET3cases COMPATIBILITY DIAGNOSTIC VERIFIED/FROZEN current-symphonic-megastaar-banish-use-reset-batch.json. TwoactualnativeSynchroprocedures using4neutralprinted-categorymaterials; BOTHsourcecopiesassertactualSUMMON_TYPE_SYNCHRO/STATUS_PROC_COMPLETE, HINT701twice. FullproductionMegaStaar/officialAmplifire/currentcanonicalmetadata/correctedCardData/sameboundedlegacySynchroAPI+IsNotTuner adapters. Firstsuccess/actualCounterTrapCL2NegAct/NegEffect spendfirstcopysoftlimit; firstexcludedwhileothercopyactivatessameown1. Bothspentcopiesexcluded; naturalNEW_TURN[0,1,0] firstcopyown3activatesagain. Native3separate1countercostseachbetweenSourceCHAINING/CHAINED, actual3banishesbaseline/2firstnegated andproperCL2checked. SharedCount3/noLimit3 semanticturn1failures; noReset3semanticturn3failures. NoReset control assignsuniqueper-copyDUELcodes (plainDUELsameidincorrectlyshared;0codeinvalid; superseded), allfinalcontrolsemptylogs/frozeninputs/parity. NoLua/DBrepair;241partial109scriptrepairs0full unchanged; Megadiagnosticsseparateexcludedminimum. NEXT remainingPendulums Talismandrake Spark/Embers/Sear primaryPendulums andsharedsummonlocks; MegaStaar actualOmega/generalrecipe/fullcardstillOPEN. Full711ACTIVE.
 
 
@@ -44,7 +47,7 @@ Continue the full 711-card printed-effect audit and native behavioral tests. Kee
 
 ## Verified current state
 
-- 241 cards have focused partial evidence; 109 repaired cards confirmed; zero fully audited.
+- 242 cards have focused partial evidence; 109 repaired cards confirmed; zero fully audited.
 - All 711 scripts pass syntax. Source/installed script parity: zero mismatches.
 - Latest selected initialization: 113 cards, 85 pass, 28 known legacy API compatibility failures. Historical full-roster initialization is a separate 583-pass/128-failure result; do not conflate them.
 - Installed database metadata matches; Starry Queen text headings and two formatting-only text differences remain after display fixes. Public database still lacks 91 rows; do not publish it.

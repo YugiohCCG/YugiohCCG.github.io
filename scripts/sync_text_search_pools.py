@@ -12,13 +12,14 @@ import argparse
 import json
 import re
 import sqlite3
+from official_omega_reference import official_database
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
 CARDS = ROOT / "src" / "data" / "cards.json"
 SCRIPTS = ROOT / "public" / "CCG Downloads" / "CCG_Scripts"
-OFFICIAL_DB = Path(r"C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Bundles\db")
+OFFICIAL_DB = official_database()
 SPELL_TRAP = 0x2 | 0x4
 PROPHECIES = {
     229327103: "FIRE",
@@ -46,7 +47,7 @@ def listed(value: str, phrase: str) -> bool:
 
 def load_pool() -> list[tuple[int, str, str]]:
     rows: dict[int, tuple[str, str]] = {}
-    with sqlite3.connect(OFFICIAL_DB) as db:
+    with sqlite3.connect(f"file:{OFFICIAL_DB.resolve().as_posix()}?mode=ro", uri=True) as db:
         for card_id, name, desc in db.execute(
             "SELECT d.id,t.name,t.desc FROM datas d JOIN texts t ON t.id=d.id "
             "WHERE (d.type & ?) != 0",
@@ -62,7 +63,7 @@ def load_pool() -> list[tuple[int, str, str]]:
 def load_named_pool() -> list[tuple[int, str, int]]:
     """Load names and type bits from official Omega plus local CCG cards."""
     rows: dict[int, tuple[str, int]] = {}
-    with sqlite3.connect(OFFICIAL_DB) as db:
+    with sqlite3.connect(f"file:{OFFICIAL_DB.resolve().as_posix()}?mode=ro", uri=True) as db:
         for card_id, name, card_type in db.execute(
             "SELECT d.id,t.name,d.type FROM datas d JOIN texts t ON t.id=d.id"
         ):

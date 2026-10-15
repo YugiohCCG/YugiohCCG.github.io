@@ -1,5 +1,5 @@
 import PrintTitle from "../components/PrintTitle";
-﻿import Link from "../components/SiteLink";
+import Link from "../components/SiteLink";
 import sets from "../data/sets.json";
 import { asset } from "../utils/assets";
 import usePageMeta from "../hooks/usePageMeta";

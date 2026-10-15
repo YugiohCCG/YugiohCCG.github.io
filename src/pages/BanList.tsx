@@ -1,5 +1,5 @@
 import PrintTitle from "../components/PrintTitle";
-﻿import { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import CardTile from "../components/CardTile";
 import useRemoteJson from "../hooks/useRemoteJson";
 import type { Card } from "../types/card";
