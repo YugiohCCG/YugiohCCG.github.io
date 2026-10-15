@@ -6,6 +6,7 @@ import json
 import re
 import shutil
 import sqlite3
+from official_omega_reference import official_database
 import unicodedata
 import zlib
 from collections import Counter, defaultdict
@@ -16,7 +17,7 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CARDS_PATH = REPO_ROOT / "src" / "data" / "cards.json"
 DEFAULT_DB_PATH = Path(r"C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Databases\CCG_v1.db")
-DEFAULT_OFFICIAL_DB_PATH = Path(r"C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Bundles\db")
+DEFAULT_OFFICIAL_DB_PATH = official_database()
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "scripts" / "output"
 DEFAULT_MAP_PATH = DEFAULT_OUTPUT_DIR / "CCG_v1_id_map.json"
 DEFAULT_BACKUP_DIR = DEFAULT_OUTPUT_DIR / "db_backups"

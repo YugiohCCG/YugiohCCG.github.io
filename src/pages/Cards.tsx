@@ -1,5 +1,5 @@
 import PrintTitle from "../components/PrintTitle";
-﻿import { useMemo } from "react";
+import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import useCards from "../hooks/useCards";

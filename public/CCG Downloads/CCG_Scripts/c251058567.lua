@@ -95,6 +95,7 @@ s.search_codes={
 	[99137266]=true,
 	[100100047]=true,
 	[100100060]=true,
+	[100272031]=true,
 	[101307073]=true,
 	[120145050]=true,
 	[120186029]=true,
@@ -154,6 +155,10 @@ s.search_codes={
 	[218905439]=true,
 	[221509060]=true,
 	[227035644]=true,
+	[239935099]=true,
+	[239935100]=true,
+	[239935101]=true,
+	[239935102]=true,
 	[246830897]=true,
 	[248946297]=true,
 	[253928485]=true,
@@ -161,6 +166,7 @@ s.search_codes={
 	[256930605]=true,
 	[259679619]=true,
 	[259998396]=true,
+	[284636661]=true,
 }
 function s.initial_effect(c)
 	--Return 1 WATER Extra Deck monster; Special Summon this card

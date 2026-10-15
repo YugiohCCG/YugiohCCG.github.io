@@ -49,8 +49,12 @@ def load_historical() -> dict[int, str]:
 
 
 def git_archive(paths: list[str]) -> dict[str, bytes]:
+    # Newly added cards need not exist in the historical baseline. Archive the
+    # two containing trees, then select requested files, avoiding both missing
+    # pathspec failures and Windows command-line length limits.
     result = subprocess.run(
-        ["git", "archive", "--format=tar", BASELINE_COMMIT, *paths],
+        ["git", "archive", "--format=tar", BASELINE_COMMIT,
+         "src/data/cards.json", "public/CCG Downloads/CCG_Scripts"],
         cwd=ROOT,
         capture_output=True,
         check=False,
@@ -60,7 +64,7 @@ def git_archive(paths: list[str]) -> dict[str, bytes]:
     files: dict[str, bytes] = {}
     with tarfile.open(fileobj=io.BytesIO(result.stdout), mode="r:") as archive:
         for member in archive.getmembers():
-            if member.isfile() and (source := archive.extractfile(member)):
+            if member.name in paths and member.isfile() and (source := archive.extractfile(member)):
                 files[member.name] = source.read()
     return files
 
@@ -255,7 +259,7 @@ def main() -> int:
             errors.append(f"missing script: {passcode} ({card['name']})")
             script_hash = None
         else:
-            script_hash = sha256_bytes(script_path.read_bytes())
+            script_hash = sha256_bytes(normalized_text_bytes(script_path.read_bytes()))
         text_hash = sha256_bytes(card.get("text", "").encode("utf-8"))
         review = review_by_id.get(passcode)
         state = "pending"

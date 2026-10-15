@@ -96,5 +96,40 @@
     "kind": "target-operation-search-mismatch",
     "line": 78,
     "reason": "tgfilter only accepts a first Deck monster when another same-name copy is available. The operation then uses samefilter for the required second copy."
+  },
+  {
+    "script": "c238273770.lua",
+    "script_sha256": "7a7f0eefd77ec74e110a2d8640752fd8d6685d683236539d36e7e28fe7613ccd",
+    "kind": "target-operation-search-mismatch",
+    "line": 148,
+    "reason": "The cost returns this monster to hand and frees its Main Monster Zone. recruittg uses precruitfilter with the pre-cost released monster and a prospective self-Summon check; recruitop uses spfilter on the post-cost state. Both filters enforce the same archetype, monster, face-up Extra Deck and Summonability constraints; the zone predicates intentionally differ across payment."
+  },
+  {
+    "script": "c238274862.lua",
+    "script_sha256": "cf9e3ae66c520f1f99ae5974d00d7bec830470c33d7d3accd067544fd894857b",
+    "kind": "target-operation-search-mismatch",
+    "line": 113,
+    "reason": "eqtg targets a GY equip candidate through eqfilter. eqfilter itself requires an existing canEquipTo recipient. eqop refilters targeted cards through eqfilter before choosing that recipient, and rechecks Spell/Trap zone capacity per card. The recipient search is guarded transitively through the target filter."
+  },
+  {
+    "script": "c238276251.lua",
+    "script_sha256": "ceb4e5ef8b616320b6b3916c5cf7e8bf4971602c7f09f290b1b4b532d0f8443e",
+    "kind": "target-operation-search-mismatch",
+    "line": 59,
+    "reason": "This optional activation follow-up is chosen in acttg only if activationvictim exists; that predicate requires a destructible card and both retrieval destinations (including a victim that will reach GY). actop checks its activation label and card relation, selects a destructible victim, then separately rechecks both retrieval pools after destruction. The broad resolution selection is intentional, not an unguarded mandatory activation."
+  },
+  {
+    "script": "c238276252.lua",
+    "script_sha256": "14d226722745ed3b49c0d86bdd5ff960e4d6622040d41420c0bb1c7e3e5a7516",
+    "kind": "target-operation-search-mismatch",
+    "line": 51,
+    "reason": "The activation requires deslegal, which combines the same desfilter with prospective zone availability after destruction. Resolution selects with desfilter, destroys it, then independently rechecks the two-monster Summon legality and two free zones before Summoning. Different predicates account for the prospective and actual post-destruction states."
+  },
+  {
+    "script": "c284639723.lua",
+    "script_sha256": "d2b3894a34942f2c4e87d954da88197127448a19e41c7b96c6635c6c2d891c94",
+    "kind": "target-operation-search-mismatch",
+    "line": 84,
+    "reason": "The Pendulum target checks a destroyfilter card on the entire field and, when no Main Monster Zone is free, a zonefilter card that is the same destroyfilter restricted to MZONE. pop selects from that MZONE subset to free a zone, optionally adds a second destructible card, and checks successful destruction before Summoning. The narrowed operation selection is intentionally guarded."
   }
 ]

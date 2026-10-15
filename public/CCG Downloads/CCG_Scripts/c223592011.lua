@@ -99,6 +99,10 @@ s.search_codes={
 	[120306055]=true,
 	[120306056]=true,
 	[120306057]=true,
+	[120309042]=true,
+	[120309043]=true,
+	[120309044]=true,
+	[120309045]=true,
 	[121191283]=true,
 	[121191288]=true,
 	[121191293]=true,
@@ -139,7 +143,9 @@ s.search_codes={
 	[152000180]=true,
 	[152000190]=true,
 	[238064522]=true,
+	[238276252]=true,
 	[256110263]=true,
+	[259446105]=true,
 }
 function s.initial_effect(c)
 	--Return 1 WIND Extra Deck monster; Special Summon this card

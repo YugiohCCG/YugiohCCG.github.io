@@ -82,7 +82,7 @@ def build_archive(script_paths: list[Path], zip_path: Path) -> None:
             compresslevel=9,
         ) as archive:
             for path in script_paths:
-                archive.write(path, arcname=path.name)
+                archive.writestr(path.name, path.read_bytes().replace(b"\r\n", b"\n"))
         temp_path.replace(zip_path)
     finally:
         temp_path.unlink(missing_ok=True)
@@ -97,7 +97,7 @@ def verify_archive(script_paths: list[Path], zip_path: Path) -> None:
                 "CCG_Scripts.zip entry list does not match active/compatibility scripts"
             )
         for path in script_paths:
-            if archive.read(path.name) != path.read_bytes():
+            if archive.read(path.name) != path.read_bytes().replace(b"\r\n", b"\n"):
                 raise ValueError(f"CCG_Scripts.zip content mismatch: {path.name}")
 
 
