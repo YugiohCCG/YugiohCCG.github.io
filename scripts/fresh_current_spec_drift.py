@@ -4,7 +4,13 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/'output/fresh-ccg-september'
 FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest() if p.is_file() else None
-def norm(s): return re.sub(r'\s+',' ',(s or '').replace('\\n','\n').replace('\\r','\r')).strip()
+def norm(s):
+ text=(s or '').replace('\\n','\n').replace('\\r','\r')
+ # Omega's exact P/E header lines encode the same two labelled source sections.
+ wire=re.fullmatch(r'P\r?\n([\s\S]+?)\r?\nE\r?\n([\s\S]+)',text)
+ if wire:text='Pendulum Effect: '+wire[1]+' Monster Effect: '+wire[2]
+ return re.sub(r'\s+',' ',text).strip()
+
 def connect(p): return sqlite3.connect(p.resolve().as_uri()+'?mode=ro',uri=True)
 def differences(a,b):
  aa=norm(a).split();bb=norm(b).split()

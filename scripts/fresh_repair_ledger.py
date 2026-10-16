@@ -103,11 +103,11 @@ def main():
   for run in zone['runs']:assert run['artifact_sha256']==sha(OUT/run['artifact'])
   row['additional_regression']={'batch':zone_path.name,'batch_sha256':sha(zone_path),'scope':zone['scope']}
   row['repair']+=' Zone-lock use also remains consumed while the same card stays face-up.'
- focused_path=OUT/'surge-spherix-batch.json'
+ focused_path=OUT/'current-reconciled-surge-spherix-batch.json'
  if focused_path.exists():
   focused=json.loads(focused_path.read_text(encoding='utf-8'))
   assert focused['baseline_cases']==41
-  assert focused['batch_script_sha256']==sha(ROOT/'scripts/fresh_surge_spherix_batch.py')
+  assert focused['batch_script_sha256']==sha(ROOT/'scripts/fresh_reconciled_surge_spherix_batch.py')
   for dependency,h in focused['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
   for code in [259869259,231088629]:
    source=ROOT/f'public/CCG Downloads/CCG_Scripts/c{code}.lua'
@@ -239,7 +239,7 @@ def main():
   assert sha(FILES/'Scripts'/source.name)==sha(source)
   assert not any(r['passcode']==247755869 for r in rows)
   rows.append({'passcode':247755869,'name':roster[247755869]['name'],'repair':'Block Hand double summon under Spirit Dragon at targeting/resolution while preserving field single revival.', 'script_sha256':sha(source),'batch':murugan_path.name,'batch_sha256':sha(murugan_path),'evidence_type':batch['scope'],'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
- carcel_path=OUT/'current-carcel-spirit-limit-batch.json'
+ carcel_path=OUT/'current-reconciled-carcel-spirit-limit-batch.json'
  if carcel_path.exists():
   batch=json.loads(carcel_path.read_text());source=ROOT/'public/CCG Downloads/CCG_Scripts/c259780273.lua'
   assert batch['baseline_cases']==4
@@ -920,6 +920,15 @@ def main():
   assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes();assert (backup/source.name).read_bytes()==(backup/('installed-'+source.name)).read_bytes()
   assert item['variable']+':SetProperty('+item['variable']+':GetProperty()|EFFECT_FLAG_DELAY)' in source.read_text(encoding='utf-8');assert not any(v['passcode']==code for v in rows)
   rows.append({'passcode':code,'name':roster[code],'repair':'Add missing delayed flag to existing EVENT_CHAINING optional trigger; preserves event type/other flags and after-chain timing. Ten bounded native full-source isolated registration accept/decline probes withold10failures; Starry9full effectcompatibility diagnostic cases/old5failures/controls7/1/3/9. Explicit legacy chain attribute constant mapping forStarry; no nativeOmega/fullcard certification. Exactbothbackup/installparity.','script_sha256':sha(source),'batch':p.name,'batch_sha256':sha(p),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
+ p=OUT/'current-talismandrake-embers-pendulum-revival-batch.json';batch=json.loads(p.read_text());assert batch['baseline_cases']==8
+ for dependency,h in batch['runtime_dependencies_sha256'].items():verify_dependency(dependency,h)
+ for run in batch['runs']:
+  a=OUT/run['artifact'];assert sha(a)==run['artifact_sha256'];d=json.loads(a.read_text());assert len(d['results'])==8 and all(not v['logs'] for v in d['results'])
+  assert [i for i,v in enumerate(d['results']) if v['failure']]==run['expected_failures']
+ code=256928871;source=ROOT/f'public/CCG Downloads/CCG_Scripts/c{code}.lua';backup=OUT/'embers-before-extra-redirect-repair'
+ assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes();assert (backup/source.name).read_bytes()==(backup/('installed-'+source.name)).read_bytes()
+ assert not any(v['passcode']==code for v in rows)
+ rows.append({'passcode':code,'name':roster[code]['name'],'repair':'Pendulum revival leave-field redirect uses supported LOCATION_DECK so Fusion returns to Extra; LOCATION_EXTRA was ignored. Eight actual native cases with original GY/banish failures and four fault controls. Neutral Fusion recipe, other effects and nativeOmega/fullcard OPEN.','script_sha256':sha(source),'batch':p.name,'batch_sha256':sha(p),'installed_matches':True,'full_card_audit':'OPEN','native_omega_verified':False})
  report={'scope':'Documented script repairs with current source/install parity. Public-engine regressions and explicitly bounded callback/shared-effect evidence are distinguished per row. Not full-card or native Omega certification.', 'fixed_cards_minimum':len(rows),'cards':rows}
  (OUT/'repair-ledger.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');print(json.dumps({'fixed_cards_minimum':len(rows),'status':'CURRENT_EVIDENCE_VERIFIED'}))
 if __name__=='__main__':main()

@@ -12,6 +12,12 @@ for flag,expected in [(None,[]),('no-damage',[0]),('no-race-filter',[2]),('allow
  assert r.returncode==(1 if expected else 0)
  runs.append({'flag':flag,'artifact':p.name,'artifact_sha256':sha(p),'expected_failures':expected})
 
+r=subprocess.run(['node','--no-warnings','scripts/fresh_current_talismandrake_spark_pendulum_damage.cjs'],capture_output=True,text=True,timeout=20)
+p=OUT/'current-talismandrake-spark-pendulum-damage.json';d=json.loads(p.read_text())
+assert r.returncode==1 and [i for i,v in enumerate(d['results']) if v['failure']]==[0]
+assert 'invalid CHAININFO flag' in d['results'][0]['failure']
+assert all(not v['logs'] for v in d['results'][1:])
+runs.append({'flag':'unadapted-legacy-constants','artifact':p.name,'artifact_sha256':sha(p),'expected_compatibility_failure':[0]})
 assert before=={p.relative_to(ROOT).as_posix():sha(p) for p in paths}
 inst=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts')
 for code in [230947464]:assert (ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua').read_bytes()==(inst/f'c{code}.lua').read_bytes()

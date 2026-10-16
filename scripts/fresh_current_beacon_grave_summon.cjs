@@ -31,7 +31,7 @@ async function main(){
  if(name==='c'+lab+'.lua')return 'local s,id=GetID() function s.initial_effect(c) end';
  if([filler].some(c=>name==='c'+c+'.lua'))return 'local s,id=GetID() function s.initial_effect(c) end';if(name==='c0.lua')return '';
  const file=[path.join(ROOT,'public/CCG Downloads/CCG_Scripts',name),path.join(ROOT,'tmp/omega_scripts',name)].find(f=>fs.existsSync(f));assert(file,'Missing '+name);let lua=fs.readFileSync(file,'utf8');
- if(name==='c'+boss+'.lua'&&control){const old=control==='no-grave-summon'?'e1:SetOperation(s.activate)':'tc:IsFaceup() and tc:IsSetCard(SET_OHMECHANIC)';assert.equal(lua.split(old).length,control==='no-grave-summon'?2:3);lua=lua.replaceAll(old,control==='no-grave-summon'?'e1:SetOperation(function() end)':'tc:IsFaceup()');}if(name==='c'+boss+'.lua'&&process.argv.includes('--probe'))lua+=`
+ if(name==='c'+boss+'.lua'&&control){const old=control==='no-grave-summon'?'e1:SetOperation(s.activate)':'tc:IsFaceup() and tc:IsSetCard(SET_OHMENCHANIC)';assert.equal(lua.split(old).length,control==='no-grave-summon'?2:3);lua=lua.replaceAll(old,control==='no-grave-summon'?'e1:SetOperation(function() end)':'tc:IsFaceup()');}if(name==='c'+boss+'.lua'&&process.argv.includes('--probe'))lua+=`
 local old=s.bfscon s.bfscon=function(e,tp,...) local c=e:GetHandler() Debug.Message("bfscon seq="..c:GetSequence().." linkedzone="..Duel.GetLinkedZone(tp)) local g=Duel.GetMatchingGroup(Card.IsType,tp,LOCATION_MZONE,LOCATION_MZONE,nil,TYPE_LINK) for tc in aux.Next(g) do Debug.Message("link markers="..tc:GetLinkMarker().." contains="..tostring(tc:GetLinkedGroup():IsContains(c))) end local v=old(e,tp,...) Debug.Message("bfscon="..tostring(v)) return v end
 `;return lua;
  };

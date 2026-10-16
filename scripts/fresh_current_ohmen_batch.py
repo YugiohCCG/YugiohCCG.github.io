@@ -22,6 +22,14 @@ for prefix,harness,source,target in recipes:
  body=original.read_text(encoding='utf-8')
  assert "require('./fresh_candidate_card.cjs')" in body
  body=body.replace("require('./fresh_candidate_card.cjs')","require('./fresh_current_card.cjs')")
+ if harness=='beacon_grave_summon':
+  body=body.replace('SET_OHMECHANIC','SET_OHMENCHANIC')
+ if harness=='beacon_movement_counters':
+  # Current printed text says any monster; retain original historical fixture.
+  body=body.replace('!test.fullField&&!test.allFacedown', '!test.fullField').replace('Movement needs face-up own monster and free zone','Movement needs own monster and free zone')
+  body=body.replace('if(test.fullField||test.allFacedown)', 'if(test.fullField)')
+  body=body.replace('test.noCoLink?0:1','test.noCoLink||test.allFacedown?0:1')
+
  body,count=re.subn(r"fs\.writeFileSync\(path\.join\(ROOT,(['\"])output/fresh-ccg-september/",r"fs.writeFileSync(path.join(ROOT,\1output/fresh-ccg-september/current-data/",body)
  assert count==1,(harness,'Unexpected output routing')
  derived.write_text(body,encoding='utf-8');derived_hash=sha(derived)
@@ -35,7 +43,8 @@ for prefix,harness,source,target in recipes:
   assert result.returncode==old['status'],result.stdout+result.stderr
   data=json.loads(artifact.read_text(encoding='utf-8'))
   actual=[r['test'] for r in data['results'] if r['failure']]
-  assert actual==old['expected_failures'],(prefix,code,control,actual,old['expected_failures'])
+  expected=old['expected_failures']+([{'allFacedown':True}] if harness=='beacon_movement_counters' and control=='no-movement' else [])
+  assert actual==expected,(prefix,code,control,actual,old['expected_failures'])
   assert data['script_sha256']==sha(ROOT/f'public/CCG Downloads/CCG_Scripts/c{code}.lua')
   data['data_profile']='current-spec installed snapshot'
   data['database_snapshot_sha256']=before['output/fresh-ccg-september/current-spec-CCG_v1.db']
