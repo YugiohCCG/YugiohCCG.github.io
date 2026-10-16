@@ -11,7 +11,7 @@
   "fixed_cards_total": 109,
   "fixed_cards_minimum": 109,
   "repair_ledger_sha256": "e5b32422b77d6fa8e4b1865b765f0f1c2901b96734d0117708ac032b7729b0bf",
-  "fixed_count_note": "Documented repairs reconciled as a confirmed minimum; further historical repairs remain uncounted. Fixed does not mean fully audited.",
+  "fixed_count_note": "109 is the historical ledger count and needs revalidation after10 unrelated repaired source changes. Additional Embers redirect repair has current focused proof and standard gates; global ledger regeneration pending stale Surge/Sylvan reconciliation.",
   "ambiguous_artifacts_excluded": [
     "cassiopeia-normal.json"
   ],
@@ -5235,7 +5235,11 @@
       "artifacts": [
         {
           "path": "current-talismandrake-embers-pendulum-restriction-batch.json",
-          "sha256": "14dbc5cdba95c4b55e63ea99174e493cde8620b0df1c222d32c6b85eb4e3279b"
+          "sha256": "cc2f9cde50ccfe3c630cb87b7c70f787379c998bae36c87e242e273572a461b3"
+        },
+        {
+          "path": "current-talismandrake-embers-pendulum-revival-batch.json",
+          "sha256": "1ed72611e8bd0801170319d2ac545612d7e6b5215eaa550b2cc761b0c112cde0"
         }
       ]
     }
@@ -5289,6 +5293,66 @@
           "sha256": "48c408ef399365e93abb8b5f2e439192be91b29bbd3480587d168129829be4a8"
         }
       ]
+    },
+    "230947464": {
+      "name": "Talismandrake Spark",
+      "artifact": "current-talismandrake-spark-pendulum-damage-batch.json",
+      "sha256": "a8fcad8400a49ff0ec492e4757c1fa90e6830a26d81f85e75bcfa47a771af644",
+      "excluded_from_focused_evidence_minimum": true,
+      "reason": "Explicit test-only CHAININFO_TARGET_PLAYER9/TARGET_PARAM10 modernconstant mapping; no nativeOmega certification",
+      "additional_artifacts": [
+        {
+          "path": "current-talismandrake-spark-pendulum-damage-interruption-batch.json",
+          "sha256": "526ef837953a6eceeab3119f26bdca8dc13d35217b7b79de8ec9dc8bcc7daba0"
+        },
+        {
+          "path": "current-talismandrake-spark-pendulum-damage-use-reset-batch.json",
+          "sha256": "26611a4b08b14bb6ffa4a484d82926f4ffe6b38bab5f0a9362b9329b658315b0"
+        }
+      ]
+    }
+  },
+  "repair_count_currently_validated": false,
+  "verified_repairs_pending_global_reconciliation": [
+    {
+      "passcode": 256928871,
+      "batch": "current-talismandrake-embers-pendulum-revival-batch.json",
+      "sha256": "1ed72611e8bd0801170319d2ac545612d7e6b5215eaa550b2cc761b0c112cde0"
+    }
+  ],
+  "current_installed_initialization": {
+    "total": 711,
+    "first_decision_pass": 583,
+    "compatibility_failures": 128,
+    "batch": "current-installed-metadata-init-batch.json",
+    "sha256": "3ee1d93656a1fddbb6c3794f664ec43055d5ffe24f31de01fa2d0b617a26468d",
+    "not_effect_or_native_omega_certification": true
+  },
+  "current_source_install_mismatches": 0,
+  "current_installed_metadata_mismatches": 0,
+  "current_installed_semantic_text_mismatches": 0,
+  "revalidated_historical_repairs": {
+    "surge_spherix": {
+      "cards": [
+        259869259,
+        231088629
+      ],
+      "batch": "current-reconciled-surge-spherix-batch.json",
+      "sha256": "7369d8631ecef3de8f3cbb12630015482ecb93a706d4b2fac276b30d2f157a00",
+      "baseline_cases": 41,
+      "runs": 19,
+      "actual_installed_metadata": true,
+      "native_omega_verified": false
+    },
+    "carcel_spirit_limit": {
+      "cards": [
+        259780273
+      ],
+      "batch": "current-reconciled-carcel-spirit-limit-batch.json",
+      "sha256": "c89f7541471a7f946d234fc111932865b0b4fa5151d22a71b850fac03be32a6c",
+      "baseline_cases": 4,
+      "actual_installed_metadata": true,
+      "native_omega_verified": false
     }
   }
 }
