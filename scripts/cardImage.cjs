@@ -497,8 +497,8 @@ function parseCliArgs(argv) {
     const arg = argv[i];
     if (arg === '--dry-run') options.dryRun = true;
     else if (arg === '--limit') options.limit = Number(argv[++i] || '0') || Infinity;
-    else if (arg === '--passcode') options.passcode = Number(argv[++i]);
-    else if (arg === '--card-id') options.cardId = argv[++i];
+    else if (arg === '--passcode') options.passcode = Number(argv[++i]);// type in the passcode of the card you want to render after the --passcode flag like this: node scripts/cardImage.js --passcode 12345678  
+    else if (arg === '--card-id') options.cardId = argv[++i]; 
     else if (arg === '--cards') options.cardsPath = path.resolve(argv[++i]);
     else if (arg === '--assets') options.assetsDir = path.resolve(argv[++i]);
     else if (arg === '--render-url') options.renderUrl = argv[++i];
