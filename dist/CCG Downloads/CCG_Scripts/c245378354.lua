@@ -101,17 +101,15 @@ end
 function s.splimit(e,c)
 	return c:IsLevel(0)
 end
-function s.setfilter(c)
-	return c:IsSetCard(SET_URSARCTIC) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()
+function s.setfilter(c,tp)
+	return c:IsSetCard(SET_URSARCTIC) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil) end
+	if chk==0 then return Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil,tp) end
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
-	local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
+	local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK,0,1,1,nil,tp):GetFirst()
 	if tc and Duel.SSet(tp,tc)>0 and (tc:IsType(TYPE_QUICKPLAY) or tc:IsType(TYPE_TRAP)) then
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetDescription(aux.Stringid(STRING_ID,3))

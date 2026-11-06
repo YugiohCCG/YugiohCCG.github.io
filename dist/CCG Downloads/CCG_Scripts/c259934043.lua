@@ -57,7 +57,7 @@ function s.lightfiendlock(e,tp)
 	Duel.RegisterEffect(e1,tp)
 end
 function s.tgfilter(c)
-	return c:IsSetCard(SET_GRAYSCALE) and not c:IsCode(id) and c:IsAbleToGrave()
+	return c:IsSetCard(SET_GRAYSCALE) and c:IsType(TYPE_MONSTER) and not c:IsCode(id) and c:IsAbleToGrave()
 end
 function s.tgcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0 end

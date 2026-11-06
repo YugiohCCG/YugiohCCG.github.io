@@ -1,0 +1,290 @@
+{
+  "scope": "711-source lexical completion marker contexts, source-only. Proper procedure callbacks and helper-managed completion may differ; inspect actual summon result/control flow before any patch.",
+  "markers": [
+    {
+      "passcode": 210506870,
+      "context": "c)<=0 then return end\n\t\tfc:SetMaterial(mat)\n\t\tif mat:IsExists(Card.IsFacedown,1,nil) then\n\t\t\tDuel.ConfirmCards(1-tp,mat:Filter(Card.IsFacedown,nil))\n\t\tend\n\t\tDuel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\t\tDuel.BreakEffect()\n\t\tif Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\tfc:CompleteProcedure()\n\t\tend\n\telseif ce and mg2 then\n\t\tlocal mat=Duel.SelectFusionMaterial(t"
+    },
+    {
+      "passcode": 210506870,
+      "context": "AL+REASON_FUSION)\n\t\tDuel.BreakEffect()\n\t\tif Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\tfc:CompleteProcedure()\n\t\tend\n\telseif ce and mg2 then\n\t\tlocal mat=Duel.SelectFusionMaterial(tp,fc,mg2,nil,chkf)\n\t\tif not mat or #mat==0 then return end\n\t\tlocal fop=ce:GetOperation()\n\t\tfop(ce,e,tp,fc,mat)\n\t\tfc:CompleteProcedure()\n\tend\nend\n"
+    },
+    {
+      "passcode": 216532402,
+      "context": ",lv,lv,tp)\n\t\tif not mat or #mat==0 then return end\n\t\trc:SetMaterial(mat)\n\t\tDuel.ReleaseRitualMaterial(mat)\n\tend\n\tDuel.BreakEffect()\n\t--The Ritual monster is selected during resolution, not targeted by this effect.\n\tif rc:IsLocation(LOCATION_HAND) and Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then\n\t\trc:CompleteProcedure()\n\tend\nend\nfunction s.ctrlfilter(c)\n\treturn c:IsFaceup() and c:IsCode(C"
+    },
+    {
+      "passcode": 218261525,
+      "context": "function s.spop(e,tp,eg,ep,ev,re,r,rp)\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\tlocal g=Duel.SelectMatchingCard(tp,s.spfilter,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)\n\tlocal tc=g:GetFirst()\n\tif tc and Duel.GetLocationCountFromEx(tp,tp,nil,tc)>0 then\n\t\tDuel.SpecialSummon(tc,SUMMON_TYPE_LINK,tp,tp,false,false,POS_FACEUP)\n\t\ttc:CompleteProcedure()\n\tend\nend\n"
+    },
+    {
+      "passcode": 220150285,
+      "context": "nil,chkf)\n\t\t\ttc:SetMaterial(mat1)\n\t\t\tDuel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\t\t\tDuel.BreakEffect()\n\t\t\tDuel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)\n\t\telse\n\t\t\tlocal mat2=Duel.SelectFusionMaterial(tp,tc,mg3,nil,chkf)\n\t\t\tlocal fop=ce:GetOperation()\n\t\t\tfop(ce,e,tp,tc,mat2)\n\t\tend\n\t\ttc:CompleteProcedure()\n\tend\nend\n"
+    },
+    {
+      "passcode": 224751741,
+      "context": "t(HINT_SELECTMSG,tp,HINTMSG_FMATERIAL)\n\tlocal mat=mg:SelectSubGroup(tp,s.matcheck,false,2,2,fc,tp)\n\tif not mat or #mat~=2 then return end\n\tfc:SetMaterial(mat)\n\tDuel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tfc:CompleteProcedure()\n\tend\nend\nfunction s.dysfilter(c,tp)\n\treturn c:IsCode(CARD_DYSMANDR) a"
+    },
+    {
+      "passcode": 227035644,
+      "context": "_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\t\t\tDuel.BreakEffect()\n\t\t\tDuel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)\n\t\telse\n\t\t\taux.FCheckAdditional=s.exactlytwo\n\t\t\tlocal mat2=Duel.SelectFusionMaterial(tp,tc,mg3,nil,chkf)\n\t\t\taux.FCheckAdditional=nil\n\t\t\tlocal fop=ce:GetOperation()\n\t\t\tfop(ce,e,tp,tc,mat2)\n\t\tend\n\t\ttc:CompleteProcedure()\n\tend\nend\nfunction s.splimit(e,c)\n\treturn c:IsLocation(LOCATION_EXTRA)"
+    },
+    {
+      "passcode": 227035644,
+      "context": "_EXTRA,0,1,1,nil,e,tp,m,nil,chkf)\n\tlocal tc=g:GetFirst()\n\tif tc then\n\t\tlocal mat=Duel.SelectFusionMaterial(tp,tc,m,nil,chkf)\n\t\ttc:SetMaterial(mat)\n\t\tDuel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\t\tDuel.BreakEffect()\n\t\tDuel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)\n\t\ttc:CompleteProcedure()\n\tend\nend\n"
+    },
+    {
+      "passcode": 228635967,
+      "context": "ter2,tp,LOCATION_EXTRA,0,1,1,nil,e,tp,tc,tc:GetRank()+2)\n\tlocal sc=g:GetFirst()\n\tif sc then\n\t\tlocal mg=tc:GetOverlayGroup()\n\t\tif #mg~=0 then\n\t\t\tDuel.Overlay(sc,mg)\n\t\tend\n\t\tsc:SetMaterial(Group.FromCards(tc))\n\t\tDuel.Overlay(sc,Group.FromCards(tc))\n\t\tif Duel.SpecialSummon(sc,SUMMON_TYPE_XYZ,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\tsc:CompleteProcedure()\n\t\tend\n\tend\nend\n\n-- recycle trigger\nfunction s.thcfilter(c,tp)\n\treturn"
+    },
+    {
+      "passcode": 232449539,
+      "context": "FECT+REASON_MATERIAL+REASON_FUSION)==0 then ok=false end\n\tif ok and #banmat>0 and Duel.Remove(banmat,POS_FACEUP,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==0 then ok=false end\n\tgmat:DeleteGroup()\n\tif not ok then return end\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)~=0 then\n\t\ttc:CompleteProcedure()\n\t\ts.registerreturn(e,tp,banmat)\n\telse\n\t\tbanmat:DeleteGroup()\n\tend\nend"
+    },
+    {
+      "passcode": 238035167,
+      "context": "SON_FUSION)\n\t\t\tDuel.BreakEffect()\n\t\t\tDuel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)\n\t\telse\n\t\t\tlocal mat2=Duel.SelectFusionMaterial(tp,tc,mg3,nil,chkf)\n\t\t\tif not mat2 or #mat2==0 or Duel.GetLocationCountFromEx(tp,tp,mat2,tc)<=0 then return end\n\t\t\tlocal fop=ce:GetOperation()\n\t\t\tfop(ce,e,tp,tc,mat2)\n\t\tend\n\t\ttc:CompleteProcedure()\n\tend\nend\n"
+    },
+    {
+      "passcode": 238272434,
+      "context": "el.GetFusionMaterial(tp):Filter(s.matfilter,nil,tp)\n  local mat=Duel.SelectFusionMaterial(tp,tc,mg,nil,tp)\n  if #mat==0 then return end\n  tc:SetMaterial(mat)\n  Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n  Duel.BreakEffect()\n  if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then tc:CompleteProcedure() end\n elseif tc:IsType(TYPE_SYNCHRO) then\n  Duel.SynchroSummon(tp,tc,n"
+    },
+    {
+      "passcode": 238272435,
+      "context": "el.GetFusionMaterial(tp):Filter(s.matfilter,nil,tp)\n  local mat=Duel.SelectFusionMaterial(tp,tc,mg,nil,tp)\n  if #mat==0 then return end\n  tc:SetMaterial(mat)\n  Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n  Duel.BreakEffect()\n  if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then tc:CompleteProcedure() end\n elseif tc:IsType(TYPE_SYNCHRO) then\n  Duel.SynchroSummon(tp,tc,n"
+    },
+    {
+      "passcode": 238976759,
+      "context": ".xyzop(e,tp,eg,ep,ev,re,r,rp)\n\tif not e:GetHandler():IsRelateToEffect(e) then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\tlocal g=Duel.SelectMatchingCard(tp,s.xyzfilter,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)\n\tlocal tc=g:GetFirst()\n\tif tc and Duel.SpecialSummon(tc,SUMMON_TYPE_XYZ,tp,tp,false,false,POS_FACEUP)~=0 then\n\t\ttc:CompleteProcedure()\n\t\t-- Optionally attach materials from GY/banished\n\t\tlocal matg=Duel.G"
+    },
+    {
+      "passcode": 239245471,
+      "context": "t(HINT_SELECTMSG,tp,HINTMSG_FMATERIAL)\n\tlocal mat=mg:SelectSubGroup(tp,s.matcheck,false,2,2,fc,tp)\n\tif not mat or #mat~=2 then return end\n\tfc:SetMaterial(mat)\n\tDuel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tfc:CompleteProcedure()\n\tend\nend\nfunction s.azfilter(c,tp)\n\treturn c:IsCode(CARD_AZRYNIOR) an"
+    },
+    {
+      "passcode": 243306841,
+      "context": "rn end\n\tlocal mg=s.materialgroup(tp,rc)\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)\n\tlocal mat=mg:SelectSubGroup(tp,s.matcheck,false,1,#mg,tp)\n\tif not mat then return end\n\trc:SetMaterial(mat)\n\tDuel.ReleaseRitualMaterial(mat)\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then\n\t\trc:CompleteProcedure()\n\tend\nend\nfunction s.tgfilter(c)\n\treturn c:IsSetCard(SET_WICKED_PUPPET"
+    },
+    {
+      "passcode": 244408495,
+      "context": "ELECTMSG,tp,HINTMSG_FMATERIAL)\n\tlocal mat=Duel.SelectFusionMaterial(tp,tc,mg,nil,chkf)\n\tif #mat==0 then return end\n\ttc:SetMaterial(mat)\n\tif Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==0 then return end\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)~=0 then\n\t\ttc:CompleteProcedure()\n\tend\nend\nfunction s.thcfilter(c)\n\treturn c:IsDiscardable()\nend\nfuncti"
+    },
+    {
+      "passcode": 244959812,
+      "context": "SG_SPSUMMON)\n\t\tlocal rc=Duel.SelectMatchingCard(tp,s.ritfilter,tp,LOCATION_DECK,0,1,1,nil,e,tp,c):GetFirst()\n\t\tif not rc then return end\n\t\tlocal mat=Group.FromCards(c)\n\t\trc:SetMaterial(mat)\n\t\tDuel.ReleaseRitualMaterial(mat)\n\t\tDuel.BreakEffect()\n\t\tif Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then\n\t\t\trc:CompleteProcedure()\n\t\tend\n\tend\nend\n"
+    },
+    {
+      "passcode": 245395343,
+      "context": "c=fg:Select(tp,1,1,nil):GetFirst() local mat=Duel.SelectFusionMaterial(tp,fc,mg,nil,tp) if not mat or #mat==0 then return end\n\tfc:SetMaterial(mat) if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==#mat and Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP_ATTACK)>0 then fc:CompleteProcedure() end\nend\nfunction s.thcon(e) return Duel.IsMainPhase() end\nfunction s."
+    },
+    {
+      "passcode": 245935439,
+      "context": "c)<=0 then return end\n\t\tfc:SetMaterial(mat)\n\t\tif mat:IsExists(Card.IsFacedown,1,nil) then\n\t\t\tDuel.ConfirmCards(1-tp,mat:Filter(Card.IsFacedown,nil))\n\t\tend\n\t\tDuel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\t\tDuel.BreakEffect()\n\t\tif Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\tfc:CompleteProcedure()\n\t\tend\n\telseif ce and mg2 then\n\t\tlocal mat=Duel.SelectFusionMaterial(t"
+    },
+    {
+      "passcode": 245935439,
+      "context": "AL+REASON_FUSION)\n\t\tDuel.BreakEffect()\n\t\tif Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\tfc:CompleteProcedure()\n\t\tend\n\telseif ce and mg2 then\n\t\tlocal mat=Duel.SelectFusionMaterial(tp,fc,mg2,nil,chkf)\n\t\tif not mat or #mat==0 then return end\n\t\tlocal fop=ce:GetOperation()\n\t\tfop(ce,e,tp,fc,mat)\n\t\tfc:CompleteProcedure()\n\tend\nend\nfunction s.matcon(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandl"
+    },
+    {
+      "passcode": 250339529,
+      "context": "c,m,c,chkf)\n\t\t\ttc:SetMaterial(mat1)\n\t\t\tDuel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\t\t\tDuel.BreakEffect()\n\t\t\tDuel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)\n\t\telse\n\t\t\tlocal mat2=Duel.SelectFusionMaterial(tp,tc,mg3,c,chkf)\n\t\t\tlocal fop=ce:GetOperation()\n\t\t\tfop(ce,e,tp,tc,mat2)\n\t\tend\n\t\ttc:CompleteProcedure()\n\tend\nend\n"
+    },
+    {
+      "passcode": 255277197,
+      "context": "and #mat>0 and Duel.GetLocationCountFromEx(tp,tp,mat,tc)>0 and not aux.NecroValleyNegateCheck(mat) then\n\t\t\t\ttc:SetMaterial(mat)\n\t\t\t\tif Duel.Remove(mat,POS_FACEUP,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)>0 then\n\t\t\t\t\tDuel.BreakEffect()\n\t\t\t\t\tif Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\t\t\t\ttc:CompleteProcedure()\n\t\t\t\t\t\tlocal e1=Effect.CreateEffect(e:GetHandler())\n\t\t\t\t\t\te1:SetType(E"
+    },
+    {
+      "passcode": 256110263,
+      "context": "nt(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\t\t\t\t\tlocal sg=exg:Select(tp,1,1,nil)\n\t\t\t\t\tif #sg>0 then\n\t\t\t\t\t\tlocal sc=sg:GetFirst()\n\t\t\t\t\t\tlocal mat=Group.FromCards(Duel.CreateToken(tp,215068354)) -- Janna, Goddess of the Temple\n\t\t\t\t\t\tsc:SetMaterial(mat)\n\t\t\t\t\t\tDuel.SpecialSummon(sc,SUMMON_TYPE_SYNCHRO,tp,tp,false,false,POS_FACEUP)\n\t\t\t\t\t\tsc:CompleteProcedure()\n\t\t\t\t\tend\n\t\t\t\tend\n\t\t\tend\n\t\tend\n\tend\nend\nfunction s.retcon(e,tp,eg,ep,e"
+    },
+    {
+      "passcode": 256930605,
+      "context": "leaseRitualMaterial(mat)\n\tif needextra and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then\n\t\tDuel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEDOWN_DEFENSE)\n\tend\n\tif (not ritual:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(ritual))\n\t\tand Duel.SpecialSummon(ritual,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then\n\t\tritual:CompleteProcedure()\n\tend\nend\nfunction s.tgfilter(c)\n\treturn c:IsAttribute(ATTRIBUTE_WATER"
+    },
+    {
+      "passcode": 257239133,
+      "context": " #rg1>0 then\n\t\t\tDuel.SendtoGrave(rg1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\t\tend\n\t\tif #rg2>0 then\n\t\t\tDuel.SendtoDeck(rg2,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\t\tend\n\t\tDuel.BreakEffect()\n\t\tif Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,tc:IsLocation(LOCATION_GRAVE),false,POS_FACEUP)>0 then\n\t\t\ttc:CompleteProcedure()\n\t\t\tlocal maxlp=Duel.GetLP(tp)\n\t\t\tif maxlp>=300 then\n\t\t\t\tlocal max_mul"
+    },
+    {
+      "passcode": 257464336,
+      "context": "mg=s.materialgroup(tp,rc)\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)\n\tlocal mat=mg:SelectSubGroup(tp,s.matcheck,false,1,#mg,rc:GetLevel(),tp)\n\tif not mat then return end\n\trc:SetMaterial(mat)\n\tDuel.ReleaseRitualMaterial(mat)\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then\n\t\trc:CompleteProcedure()\n\tend\nend\n"
+    },
+    {
+      "passcode": 259072169,
+      "context": "v,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif Duel.GetLocationCountFromEx(tp,tp,nil,c)<=0 or not c:IsRelateToEffect(e) then return end\n\tlocal ec=e:GetLabelObject()\n\tif not (ec and ec:IsRelateToEffect(e) and ec:IsLocation(LOCATION_HAND) and s.egfilter(ec)) then return end\n\tif Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)>0 then\n\t\tc:CompleteProcedure()\n\t\tDuel.Overlay(c,Group.FromCards(ec))\n\t\tlocal e1=Effect.CreateEffect("
+    },
+    {
+      "passcode": 259072906,
+      "context": "function s.pzcomplete(e,tp,eg,ep,ev,re,r,rp)\n\tlocal pe=e:GetLabelObject()\n\tlocal g=eg:Filter(function(c) return c:GetReasonEffect()==pe and c:IsSummonType(SUMMON_TYPE_RITUAL) end,nil)\n\tfor tc in aux.Next(g) do tc:CompleteProcedure() end\nend\nfunction s.revealfilter(c)\n\treturn not c:IsPublic() and c:IsR"
+    },
+    {
+      "passcode": 259072906,
+      "context": "ATION_HAND)\n\tlocal deckmat=mat:Filter(Card.IsLocation,nil,LOCATION_DECK)\n\tif #handmat>0 then Duel.ReleaseRitualMaterial(handmat) end\n\tif #deckmat>0 then Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then\n\t\trc:CompleteProcedure()\n\tend\nend\n"
+    },
+    {
+      "passcode": 259138193,
+      "context": ":FilterCount(s.zeroatkdef,nil)*1000\n\tfc:SetMaterial(mat)\n\tif mat:IsExists(Card.IsFacedown,1,nil) then\n\t\tlocal cg=mat:Filter(Card.IsFacedown,nil)\n\t\tDuel.ConfirmCards(1-tp,cg)\n\tend\n\tDuel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\tif Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tfc:CompleteProcedure()\n\t\tif bonus>0 then\n\t\t\tlocal e1=Effect.CreateEffect(c)\n\t\t\te1:SetDescrip"
+    },
+    {
+      "passcode": 259156549,
+      "context": "TMSG_SPSUMMON)\n\tlocal tg=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spfilter),tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_EXTRA,0,1,1,nil,e,tp)\n\tlocal rc=tg:GetFirst()\n\tif not rc then return end\n\tif not s.zonecheck(tp,rc,nil) then return end\n\tif Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then\n\t\trc:CompleteProcedure()\n\t\tif Duel.IsExistingMatchingCard(Card.IsCanAddCounter,tp,LOCATION_ONF"
+    },
+    {
+      "passcode": 259160760,
+      "context": "t)\n\t\tif mat:IsExists(Card.IsFacedown,1,nil) then\n\t\t\tDuel.ConfirmCards(1-tp,mat:Filter(Card.IsFacedown,nil))\n\t\tend\n\t\tif Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==0 then return end\n\t\tDuel.BreakEffect()\n\t\tif Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\tfc:CompleteProcedure()\n\t\tend\n\telseif ce and mg2 then\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_F"
+    },
+    {
+      "passcode": 259160760,
+      "context": "SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\tfc:CompleteProcedure()\n\t\tend\n\telseif ce and mg2 then\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_FMATERIAL)\n\t\tlocal mat=Duel.SelectFusionMaterial(tp,fc,mg2,nil,chkf)\n\t\tif not mat or #mat==0 then return end\n\t\tlocal fop=ce:GetOperation()\n\t\tfop(ce,e,tp,fc,mat)\n\t\tfc:CompleteProcedure()\n\tend\nend\n"
+    },
+    {
+      "passcode": 259184310,
+      "context": "cription())) then\n\t\t\tlocal mat1=Duel.SelectFusionMaterial(tp,tc,mg1,nil,chkf)\n\t\t\tif not mat1 or #mat1==0 then goto cancel end\n\t\t\ttc:SetMaterial(mat1)\n\t\t\tDuel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\t\t\tDuel.BreakEffect()\n\t\t\tif Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\t\ttc:CompleteProcedure()\n\t\t\tend\n\t\telseif ce then\n\t\t\tlocal mat2=Duel.SelectFusionMaterial(tp,tc"
+    },
+    {
+      "passcode": 259184310,
+      "context": "USION)\n\t\t\tDuel.BreakEffect()\n\t\t\tif Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\t\ttc:CompleteProcedure()\n\t\t\tend\n\t\telseif ce then\n\t\t\tlocal mat2=Duel.SelectFusionMaterial(tp,tc,mg2,nil,chkf)\n\t\t\tif not mat2 or #mat2==0 then goto cancel end\n\t\t\tlocal fop=ce:GetOperation()\n\t\t\tfop(ce,e,tp,tc,mat2)\n\t\t\ttc:CompleteProcedure()\n\t\tend\n\tend\nend\nfunction s.fmeqcon(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:G"
+    },
+    {
+      "passcode": 259241946,
+      "context": "el.ReleaseRitualMaterial(handfieldmat) end\n\tif #deckmat>0 then Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end\n\tif #stmat>0 then Duel.SendtoGrave(stmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then\n\t\trc:CompleteProcedure()\n\t\treturn true\n\tend\n\treturn false\nend\nfunction s.exlimit(e,c)\n\treturn "
+    },
+    {
+      "passcode": 259247807,
+      "context": "(Card.GetLevel)\n\tif deficit<0 then deficit=0 end\n\tif deficit>0 then\n\t\tDuel.RemoveCounter(tp,1,1,COUNTER_CORRUPTION,deficit,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL)\n\tend\n\trc:SetMaterial(mat)\n\tDuel.ReleaseRitualMaterial(mat)\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then\n\t\trc:CompleteProcedure()\n\t\treturn true\n\tend\n\treturn false\nend\n"
+    },
+    {
+      "passcode": 259247853,
+      "context": "t(tp,59822133) or Duel.GetLocationCountFromEx(tp)<2 then return end local g=Duel.GetMatchingGroup(s.spf,tp,LOCATION_EXTRA,0,nil,e,tp); local sg=aux.SelectUnselectGroup(g,e,tp,2,2,aux.dncheck,1,tp,HINTMSG_SPSUMMON); if #sg==2 then for tc in aux.Next(sg) do Duel.SpecialSummonStep(tc,SUMMON_TYPE_LINK,tp,tp,false,false,POS_FACEUP); tc:CompleteProcedure() end Duel.SpecialSummonComplete() end end\n"
+    },
+    {
+      "passcode": 259264449,
+      "context": "TMSG,tp,HINTMSG_SPSUMMON)\n\tlocal sc=Duel.SelectMatchingCard(tp,s.xyzfilter,tp,LOCATION_EXTRA,0,1,1,nil,e,tp,tc):GetFirst()\n\tif not sc then return end\n\tlocal lv=tc:GetLevel()\n\tsc:SetMaterial(Group.FromCards(tc))\n\tDuel.Overlay(sc,Group.FromCards(tc))\n\tif Duel.SpecialSummon(sc,SUMMON_TYPE_XYZ,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tsc:CompleteProcedure()\n\t\tif c:IsRelateToEffect(e) and s.canoverlay(c,tp) then\n\t\t\tc:CancelToG"
+    },
+    {
+      "passcode": 259273394,
+      "context": "roup(tp,check,false,2,2,c,tp,fc)\n\tif not mat or #mat~=2 then return end\n\tfc:SetMaterial(mat)\n\tDuel.HintSelection(mat)\n\tif Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=2 then return end\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tfc:CompleteProcedure()\n\tend\nend\n"
+    },
+    {
+      "passcode": 259288669,
+      "context": "el.ReleaseRitualMaterial(handfieldmat) end\n\tif #deckmat>0 then Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end\n\tif #stmat>0 then Duel.SendtoGrave(stmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then\n\t\trc:CompleteProcedure()\n\tend\nend\nfunction s.spcon(e,tp,eg,ep,ev,re,r,rp)\n\treturn e:GetHandler"
+    },
+    {
+      "passcode": 259348317,
+      "context": "t,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\t\tDuel.BreakEffect()\n\t\tDuel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)\n\telseif ce and mg2 then\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_FMATERIAL)\n\t\tlocal mat=Duel.SelectFusionMaterial(tp,fc,mg2,nil,chkf)\n\t\tlocal fop=ce:GetOperation()\n\t\tfop(ce,e,tp,fc,mat)\n\tend\n\tfc:CompleteProcedure()\nend\nfunction s.thcon(e,tp,eg,ep,ev,re,r,rp)\n\treturn not (re and re:Ge"
+    },
+    {
+      "passcode": 259369909,
+      "context": "HINTMSG_FMATERIAL)\n\tlocal mat=mg:SelectSubGroup(tp,check,false,2,2,tp,fc)\n\tif not mat or #mat~=2 then return end\n\tfc:SetMaterial(mat)\n\tDuel.HintSelection(mat)\n\tDuel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tfc:CompleteProcedure()\n\t\tlocal e1=Effect.CreateEffect(e:GetHandler())\n\t\te1:SetType(EFFECT_TY"
+    },
+    {
+      "passcode": 259402105,
+      "context": "ionCount(tp,LOCATION_MZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\tlocal tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spfilter),tp,\n\t\tLOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil,e,tp):GetFirst()\n\tif tc and Duel.SpecialSummon(tc,SUMMON_TYPE_RITUAL,tp,tp,true,true,POS_FACEUP)>0 then\n\t\ttc:CompleteProcedure()\n\tend\nend\n"
+    },
+    {
+      "passcode": 259410628,
+      "context": "Material(tp,fc,mg,nil,tp|0x200)\n\tif not mat or #mat==0 or aux.NecroValleyNegateCheck(mat) then return end\n\tfc:SetMaterial(mat)\n\tif Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)>0 then\n\t\tDuel.BreakEffect()\n\t\tif Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\tfc:CompleteProcedure()\n\t\tend\n\tend\nend\n"
+    },
+    {
+      "passcode": 259546637,
+      "context": "(Card.GetLevel)\n\tif deficit<0 then deficit=0 end\n\tif deficit>0 then\n\t\tDuel.RemoveCounter(tp,1,1,COUNTER_CORRUPTION,deficit,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL)\n\tend\n\trc:SetMaterial(mat)\n\tDuel.ReleaseRitualMaterial(mat)\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then\n\t\trc:CompleteProcedure()\n\tend\nend\n"
+    },
+    {
+      "passcode": 259562343,
+      "context": "cription())) then\n\t\t\tlocal mat1=Duel.SelectFusionMaterial(tp,tc,mg1,nil,chkf)\n\t\t\tif not mat1 or #mat1==0 then goto cancel end\n\t\t\ttc:SetMaterial(mat1)\n\t\t\tDuel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\t\t\tDuel.BreakEffect()\n\t\t\tif Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\t\ttc:CompleteProcedure()\n\t\t\tend\n\t\telseif ce then\n\t\t\tlocal mat2=Duel.SelectFusionMaterial(tp,tc"
+    },
+    {
+      "passcode": 259562343,
+      "context": "USION)\n\t\t\tDuel.BreakEffect()\n\t\t\tif Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\t\ttc:CompleteProcedure()\n\t\t\tend\n\t\telseif ce then\n\t\t\tlocal mat2=Duel.SelectFusionMaterial(tp,tc,mg2,nil,chkf)\n\t\t\tif not mat2 or #mat2==0 then goto cancel end\n\t\t\tlocal fop=ce:GetOperation()\n\t\t\tfop(ce,e,tp,tc,mat2)\n\t\t\ttc:CompleteProcedure()\n\t\tend\n\tend\nend\n"
+    },
+    {
+      "passcode": 259678739,
+      "context": "(Card.GetLevel)\n\tif deficit<0 then deficit=0 end\n\tif deficit>0 then\n\t\tDuel.RemoveCounter(tp,1,1,COUNTER_CORRUPTION,deficit,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL)\n\tend\n\trc:SetMaterial(mat)\n\tDuel.ReleaseRitualMaterial(mat)\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then\n\t\trc:CompleteProcedure()\n\tend\nend\n"
+    },
+    {
+      "passcode": 259680842,
+      "context": "aux.FCheckAdditional=nil\n\t\tif not mat or #mat==0 then return end\n\t\tlocal used_deck=mat:IsExists(Card.IsLocation,1,nil,LOCATION_DECK)\n\t\ttc:SetMaterial(mat)\n\t\tDuel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\t\tDuel.BreakEffect()\n\t\tif Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\ttc:CompleteProcedure()\n\t\t\tif used_deck then\n\t\t\t\tDuel.Draw(1-tp,2,REASON_EFFECT)\n\t\t\tend\n\t\tend"
+    },
+    {
+      "passcode": 259680842,
+      "context": "SON_FUSION)\n\t\tDuel.BreakEffect()\n\t\tif Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\ttc:CompleteProcedure()\n\t\t\tif used_deck then\n\t\t\t\tDuel.Draw(1-tp,2,REASON_EFFECT)\n\t\t\tend\n\t\tend\n\telse\n\t\tlocal mat=Duel.SelectFusionMaterial(tp,tc,mg2,nil,chkf)\n\t\tlocal fop=ce:GetOperation()\n\t\tfop(ce,e,tp,tc,mat)\n\t\ttc:CompleteProcedure()\n\tend\nend\n"
+    },
+    {
+      "passcode": 259826112,
+      "context": " then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON); local fc=fg:Select(tp,1,1,nil):GetFirst(); local mat=Duel.SelectFusionMaterial(tp,fc,mg,nil,tp); fc:SetMaterial(mat); Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION); Duel.BreakEffect(); Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP); fc:CompleteProcedure() end end\nfunction s.gycost(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then r"
+    },
+    {
+      "passcode": 259873115,
+      "context": "(Card.GetLevel)\n\tif deficit<0 then deficit=0 end\n\tif deficit>0 then\n\t\tDuel.RemoveCounter(tp,1,1,COUNTER_CORRUPTION,deficit,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL)\n\tend\n\trc:SetMaterial(mat)\n\tDuel.ReleaseRitualMaterial(mat)\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then\n\t\trc:CompleteProcedure()\n\tend\nend\nfunction s.spcon(e,tp,eg,ep,ev,re,r,rp)\n\treturn e:GetHandler"
+    },
+    {
+      "passcode": 259934756,
+      "context": "HINTMSG_FMATERIAL)\n\tlocal mat=mg:SelectSubGroup(tp,check,false,2,2,tp,fc)\n\tif not mat or #mat~=2 then return end\n\tfc:SetMaterial(mat)\n\tDuel.HintSelection(mat)\n\tDuel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tfc:CompleteProcedure()\n\tend\nend\nfunction s.gycon(e,tp,eg,ep,ev,re,r,rp)\n\treturn e:GetHandler"
+    },
+    {
+      "passcode": 259961648,
+      "context": "(Card.GetLevel)\n\tif deficit<0 then deficit=0 end\n\tif deficit>0 then\n\t\tDuel.RemoveCounter(tp,1,1,COUNTER_CORRUPTION,deficit,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL)\n\tend\n\trc:SetMaterial(mat)\n\tDuel.ReleaseRitualMaterial(mat)\n\tDuel.BreakEffect()\n\tif Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then\n\t\trc:CompleteProcedure()\n\tend\nend\nfunction s.exfilter(c,tp)\n\treturn c:IsSummonPlayer(1-tp) and"
+    },
+    {
+      "passcode": 284636662,
+      "context": "ot Duel.IsExistingMatchingCard(s.exfilter,tp,LOCATION_EXTRA,0,1,nil,e,tp) then return end\n Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n local g=Duel.SelectMatchingCard(tp,s.exfilter,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)\n local fc=g:GetFirst()\n if fc and Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,true,true,POS_FACEUP)>0 then\n  fc:CompleteProcedure()\n end\nend\n"
+    },
+    {
+      "passcode": 284636664,
+      "context": ":Select(tp,1,1,nil):GetFirst()\n local mat=Duel.SelectFusionMaterial(tp,fc,mg,nil,tp)\n if #mat==0 then return end\n fc:SetMaterial(mat)\n if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end\n Duel.BreakEffect()\n if Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then\n  fc:CompleteProcedure()\n end\nend\nfunction s.gybancon(e)\n return e:GetHandler():IsPreviousLoca"
+    }
+  ],
+  "source_stage": "Pre-Fusion-completion-result repair snapshot; lexical context only, no full-card/procedure certification.",
+  "source_sha256": {
+    "210506870": "8a6d1e9cfbc774b26a949aec98558659ca956846dd767b78ff7be09fb4037606",
+    "216532402": "858d0b162ee93908ecac3544091b1e82a5fd76843e330518c40208f49a34cbe2",
+    "218261525": "dfd6a3a24ae81aa1da1271e04f9d0c47e483d631929eaae4d52028255e9ee0db",
+    "220150285": "4dff860979df6ec6b0aefb8a9935ce0ae1c2c2beb3a59aff42118b1206f549c4",
+    "224751741": "85e543f8c13bd8f6eb025d95329724769d675941be63f3b8c038b01c4b5fe44f",
+    "227035644": "00ba89979c877ac7d13e6af48c7dec4b5e7290a1db95146d10f7565186b60fcb",
+    "228635967": "92a9824c6e8f2da9f2e7a66693f5e1e4f40c48a64bc98a2af6d85ae3328a38e6",
+    "232449539": "408657eeb20dfaa3c98382d1d90188cccb8c874abdfaef7fa961e67d147745ea",
+    "238035167": "0c703c5a185316c5e8b0a7c085cfa14ffe3ab92de029a98862c117f1c305b458",
+    "238272434": "632b065e2bf2fcbf8369f0977f78738b245738ee57b1bffb35fac033814f8be0",
+    "238272435": "1dfba5fd7ee88f8bf20abdfc0f52a8daaa6b4348190cedd043f8baf42908c8ac",
+    "238976759": "4cf7d4ba5835a9d759cbe22e4fd08d0343a1d831942546ef42c2f59ca3df875e",
+    "239245471": "f40f2550809cdb331126de046fc24c11bbd5296cd37c9e0d9dac07474421064e",
+    "243306841": "f0c26da1e2f53a5f7832a99b767313d10f0463ebd51abea3bb5a7beea714e99b",
+    "244408495": "ad9d61d9589dfd48e7a1fceba1a50491611d0844af022c0ef64ea9e627cfad9b",
+    "244959812": "807f66d24fffa0f2725d73bd29ece9d188d23ee04ee6cd3752f01278fd6fd6cb",
+    "245395343": "4edb637fdc4a31a9a59165604884ce2775f1be4ef0380c9773bf4189c79df440",
+    "245935439": "b9c19a812969ace60f80f3cd6e544d4edd95d804b7604165285414853480eb54",
+    "250339529": "0cacdefea7bffdbe277150a4a414356c8ba4654ae346f3824ea45cc92016f70a",
+    "255277197": "f95a745af13a5ed602f20d0194c62fb75f3e3e815a87d7a4c934847a8c298c29",
+    "256110263": "aed4f2efaa4f910a44b35848686fe3973960e52a247ca41923bf0a5b335c2a1f",
+    "256930605": "e173a29e5393cda1a1cd949330bf3ad801580ece0760646094ef6457e9cf0184",
+    "257239133": "f3b9099291cf2f54c1bc6eb5b67d79bcecdceee566c2ac5453edfd67defce11c",
+    "257464336": "b207dcc9b239d8f3c1863ba7d5e0d37cf040c42de03fc499e9f82f21c939a788",
+    "259072169": "3f2cf4e56432c2c8496efebeab9266c30242685b3768ad1705d4c30f6dac54b2",
+    "259072906": "0898ca0f1d269d18088c0740d0f1ad7cb89b66fb65872b073452ca00e2de63f2",
+    "259138193": "af3d6df6fd2fcebae07371fe2adcae80708452193c7219f46d54ff1e8fbf5a71",
+    "259156549": "2ac20e77bde196c87dce77bf67c70da433a064f20738b5da8aa0f4e1a2e610b8",
+    "259160760": "41bbcf35a19ae131b48bad2b27e746a0aa5b8d6723610d27b5806fca164df10e",
+    "259184310": "b2d57fc4c4cea9bd5a53c9cd1f6b0582c3a0f08f7a935e41da999fc8a8311f62",
+    "259241946": "3724a046df71e2d04de385815b7cc916999454f972dc4d0846f251976f18640d",
+    "259247807": "f5d9c9c26971fb0d36d4638054bde74c81877133abc71edbf0ebcd3182f889cc",
+    "259247853": "bc161ee6e0b2643f4b8e7b45f9598f30ed8c257e7a91c427290044354f674502",
+    "259264449": "3ad74413a50757427626e6b803ce84c9639715d085259edb73ff53369480f5c7",
+    "259273394": "a70f71d124767d576efbbbc6bff586a4e4c2a15b0c88460cfa90fa0a623c91c3",
+    "259288669": "e39289c0e7a774c264cde51b39944ed4da915eb8a1bfeb8a34e50882f4c4db34",
+    "259348317": "6efc98b26d21ad619ff34271c19c8bfc02cab3a7246200eebe77bca8025a0a47",
+    "259369909": "0e7289e269953b367fb6bb8b8f5711003a5d690ca351e8506be83e90e7f734dc",
+    "259402105": "4de30d56064d40fd0f8e54ba4cfad18dc20cf7880a5bb5c625b6c96cb2794195",
+    "259410628": "23c4ed6c0c36c84447293d65ee94625b3ea939770bc09497249dfd0bceb5e2f9",
+    "259546637": "1db6b10c090a3c44617d91ce3736f3549316437c63a5fd4fd68899132fda596a",
+    "259562343": "f4243198ad0a8702cfb9c77a9926b92e76f14c379c4026dcca7357307fc2b913",
+    "259678739": "58e97b0137eaa386361b24493266137d689bcd84ab8871b03329571e742b84e2",
+    "259680842": "783697af4fddf6d5ee7bdf33ef2f10cb13db9b313bb2234f72ff5ca6e217c184",
+    "259826112": "63adb0c9c84c8333c9aca3b04529b6f13efe09789c404f875ab74f481f01c623",
+    "259873115": "2d7323fcaea1de5394620466447b5527917ad1603ead683e990029688fe15842",
+    "259934756": "ff9a8512626b94fc3809f5672c1ed22e31b6ba2ccdef1acb9db5060e15e182c4",
+    "259961648": "297482bab09c5e99c241e2348c50561052fa9782d1b6046b32321717e796670c",
+    "284636662": "bf5d42877865c5784133a6017b437d509eb3772c35ccb623b7e4975b43dbecc2",
+    "284636664": "8b611879d7a6ff3cc5cbf7e0aa44e4cc6edc506c5511d1908536f82f79f009e7"
+  }
+}

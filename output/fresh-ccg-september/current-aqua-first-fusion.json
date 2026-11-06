@@ -1,0 +1,682 @@
+{
+  "scope": "Actual canonical Aqua Fusion first effect: hand/Deck/face-up field/face-down field materials sent GY and Fusion Summon completed; three-material Fusion excluded. Neutral recipients use canonical Omega Fusion procedure. Explicit sterile GetMustMaterial/CheckMustMaterial adapters; legacy IsFaceupEx adapter for GY availability only. No general mandatory-material, real-recipient, Extra lock enforcement or native Omega proof.",
+  "control": null,
+  "script_sha256": "0710995ee4bc895e46eaa60a48f2ff128c2b7e0b6446c0a8ae4ecaf7ed280444",
+  "harness_sha256": "e980973e2bdb7d16f6895083e1f438f8e91da9e3335c1c3318e5f4c7d610c000",
+  "results": [
+    {
+      "test": {
+        "hand": true
+      },
+      "failure": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')",
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            227035644,
+            900004402
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 900004402,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 900004403,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            }
+          ],
+          "monster_sets": [
+            {
+              "code": 900004402,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 227035644,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        }
+      ],
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        }
+      ]
+    },
+    {
+      "test": {
+        "deck": true
+      },
+      "failure": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')",
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            227035644
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 900004403,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [
+            {
+              "code": 227035644,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ],
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        }
+      ]
+    },
+    {
+      "test": {},
+      "failure": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')",
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            227035644
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 900004402,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            },
+            {
+              "code": 900004403,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [
+            {
+              "code": 227035644,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ],
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        }
+      ]
+    },
+    {
+      "test": {
+        "facedown": true
+      },
+      "failure": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')",
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            227035644
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 900004402,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            },
+            {
+              "code": 900004403,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [
+            {
+              "code": 227035644,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ],
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        }
+      ]
+    },
+    {
+      "test": {
+        "three": true
+      },
+      "failure": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial'); stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>; [string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')",
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            227035644,
+            900004402
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 900004402,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 900004402,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            }
+          ],
+          "monster_sets": [
+            {
+              "code": 900004402,
+              "controller": 0,
+              "location": 2,
+              "sequence": 1
+            }
+          ],
+          "spell_sets": [
+            {
+              "code": 227035644,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": true
+        }
+      ],
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        },
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c227035644.lua\"]:56: in function <[string \"c227035644.lua\"]:52>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c227035644.lua\"]:69: in function <[string \"c227035644.lua\"]:63>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        }
+      ]
+    }
+  ]
+}

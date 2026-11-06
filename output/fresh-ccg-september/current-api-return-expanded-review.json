@@ -1,0 +1,23 @@
+{
+  "scope": "Expanded source-only return-value review. No new production edit or behavioral certification.",
+  "sources": 711,
+  "direct_numeric_comparisons": 2361,
+  "method_groups": 94,
+  "inventory": "current-numeric-return-comparison-inventory.json",
+  "inventory_sha256": "7a441fb1c205172ce042a97015bcbe6bda21c0b3464fb8a2b56d07a1ab9a9520",
+  "boolean_scan": "current-boolean-numeric-comparison-triage.json",
+  "boolean_scan_sha256": "d0592809d8e3313498afb31e36e968b4a46191053a2dc71d0016dd056e52c479",
+  "new_boolean_comparison_candidates": 0,
+  "qualification": "Selected boolean Duel APIs and Is-prefixed methods have no direct numeric-literal comparisons in this snapshot. Numeric inventory is not full API classification;aliases/variable comparisons/indirect returns outside this scan. Existing NegateSummon no-return comparison remains qualified in prior review,not blindly changed.",
+  "primary_api_check": {
+    "method": "Card.RemoveOverlayCard",
+    "return": "Integer,not boolean;its existing numeric comparison is not the earlier boolean-return bug.",
+    "source": "https://raw.githubusercontent.com/edo9300/ygopro-core/master/libcard.cpp",
+    "location": "RemoveOverlayCard yields lua_pushinteger at observed lines963-977"
+  },
+  "prior_semantics_review": {
+    "file": "current-api-return-semantics-review.json",
+    "sha256": "e41094573103eafda1a320924f0e3995ecc80086585a66f6e845a5b2775fd585"
+  },
+  "next_action": "Use pinned inventory to avoid repeating broad direct-return scans;follow only a concrete unreviewed API/alias or a runtime counterexample."
+}

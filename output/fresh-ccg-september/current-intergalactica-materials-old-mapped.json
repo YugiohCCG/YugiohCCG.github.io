@@ -1,0 +1,201 @@
+{
+  "mode": "old",
+  "predicate_mapping": "TEST_MAPPED original recipe predicates to base set/attribute for these unchanged-metadata materials; no production API change",
+  "scope": "Original Fusion Intergalactica and Intergalataxiakos recipe using installed real Galacticarina/To Proto Psychi metadata and original scripts. Initially banished materials (prior banishment histories not certified), optional original cost, native material selection/payment/summon. No Lua API mappings; other clauses/live open.",
+  "results": [
+    {
+      "kind": "banished",
+      "failure": "[{\"type\":2,\"message\":\"stack traceback:\\n\\t[string \\\"procedure.lua\\\"]:2275: in field 'MustMaterialCheck'\\n\\t[string \\\"procedure.lua\\\"]:976: in local 'f'\\n\\t[string \\\"utility.lua\\\"]:1202: in function <[string \\\"utility.lua\\\"]:1196>\\n\\t[C]: in method 'IsExists'\\n\\t[string \\\"utility.lua\\\"]:1203: in field 'CheckGroupRecursive'\\n\\t[string \\\"utility.lua\\\"]:1241: in function <[string \\\"utility.lua\\\"]:1230>\\n\\t(...tail calls...)\\n\\t[C]: in method 'CheckFusionMaterial'\\n\\t[string \\\"c245395343.lua\\\"]:11: in function <[string \\\"c245395343.lua\\\"]:11>\\n\\t[C]: in field 'IsExistingMatchingCard'\\n\\t[string \\\"c245395343.lua\\\"]:12: in field 'hasfusion'\\n\\t[string \\\"c245395343.lua\\\"]:21: in function <[string \\\"c245395343.lua\\\"]:19>\"},{\"type\":0,\"message\":\"[string \\\"procedure.lua\\\"]:2275: attempt to call a nil value (field 'GetMustMaterial')\"}]",
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c245395343.lua\"]:11: in function <[string \"c245395343.lua\"]:11>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c245395343.lua\"]:12: in field 'hasfusion'\n\t[string \"c245395343.lua\"]:21: in function <[string \"c245395343.lua\"]:19>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        }
+      ],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            245395343
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        }
+      ]
+    },
+    {
+      "kind": "optional-cost",
+      "failure": "[{\"type\":2,\"message\":\"stack traceback:\\n\\t[string \\\"procedure.lua\\\"]:2275: in field 'MustMaterialCheck'\\n\\t[string \\\"procedure.lua\\\"]:976: in local 'f'\\n\\t[string \\\"utility.lua\\\"]:1202: in function <[string \\\"utility.lua\\\"]:1196>\\n\\t[C]: in method 'IsExists'\\n\\t[string \\\"utility.lua\\\"]:1203: in field 'CheckGroupRecursive'\\n\\t[string \\\"utility.lua\\\"]:1241: in function <[string \\\"utility.lua\\\"]:1230>\\n\\t(...tail calls...)\\n\\t[C]: in method 'CheckFusionMaterial'\\n\\t[string \\\"c245395343.lua\\\"]:11: in function <[string \\\"c245395343.lua\\\"]:11>\\n\\t[C]: in field 'IsExistingMatchingCard'\\n\\t[string \\\"c245395343.lua\\\"]:12: in function <[string \\\"c245395343.lua\\\"]:12>\\n\\t(...tail calls...)\\n\\t[C]: in field 'IsExistingMatchingCard'\\n\\t[string \\\"c245395343.lua\\\"]:23: in function <[string \\\"c245395343.lua\\\"]:19>\"},{\"type\":0,\"message\":\"[string \\\"procedure.lua\\\"]:2275: attempt to call a nil value (field 'GetMustMaterial')\"}]",
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"procedure.lua\"]:2275: in field 'MustMaterialCheck'\n\t[string \"procedure.lua\"]:976: in local 'f'\n\t[string \"utility.lua\"]:1202: in function <[string \"utility.lua\"]:1196>\n\t[C]: in method 'IsExists'\n\t[string \"utility.lua\"]:1203: in field 'CheckGroupRecursive'\n\t[string \"utility.lua\"]:1241: in function <[string \"utility.lua\"]:1230>\n\t(...tail calls...)\n\t[C]: in method 'CheckFusionMaterial'\n\t[string \"c245395343.lua\"]:11: in function <[string \"c245395343.lua\"]:11>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c245395343.lua\"]:12: in function <[string \"c245395343.lua\"]:12>\n\t(...tail calls...)\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c245395343.lua\"]:23: in function <[string \"c245395343.lua\"]:19>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"procedure.lua\"]:2275: attempt to call a nil value (field 'GetMustMaterial')"
+        }
+      ],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            245395343
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        }
+      ]
+    },
+    {
+      "kind": "no-galactica",
+      "failure": null,
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            245395343
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [],
+          "spell_sets": [
+            {
+              "code": 245395343,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "kind": "no-galaxy",
+      "failure": null,
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            245395343
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [],
+          "monster_sets": [],
+          "spell_sets": [
+            {
+              "code": 245395343,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ]
+    }
+  ]
+}

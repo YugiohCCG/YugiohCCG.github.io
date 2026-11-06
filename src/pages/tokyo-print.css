@@ -253,6 +253,11 @@ html[data-theme="night"] .tp-demo[data-print-theme="night"] :is(.text-slate-900,
 .tp-demo .filters-shell{border:1px solid var(--tp-ink);border-top:3px solid var(--tp-red);box-shadow:none}
 .tp-demo .tp-banlist-section>h3{display:flex;align-items:baseline;gap:12px;padding:14px 18px;border-top:1px solid var(--tp-ink);border-bottom:1px solid var(--tp-ink);border-left:5px solid var(--tp-red);font-size:36px;background:var(--brand-soft);text-transform:uppercase}
 .tp-demo .tp-banlist-section>h3>span{margin-left:auto;font:12px/1 'Courier New',monospace;color:var(--tp-red)}
+.tp-demo .tp-comparison-pair{border:1px solid var(--line-strong);border-bottom:3px solid var(--tp-ink);background:var(--tp-paper)}
+.tp-demo .tp-comparison-name{font:700 20px/1.05 "Barlow Condensed",sans-serif;text-transform:uppercase}
+.tp-demo .tp-comparison-panel{border-color:var(--line-strong)}
+.tp-demo .tp-comparison-format{border-color:var(--line-strong);color:var(--tp-ink);font:700 11px/1.5 "Courier New",monospace;letter-spacing:.14em}
+.tp-demo .tp-comparison-format::before{content:"";display:inline-block;width:6px;height:6px;margin-right:7px;background:var(--tp-red);vertical-align:1px}
 .tp-demo .library-section-heading{position:relative;isolation:isolate;overflow:hidden;padding:30px 34px;margin-bottom:24px;border:1px solid var(--tp-ink);background:linear-gradient(112deg,var(--tp-paper) 0 78%,var(--tp-red) 78%)}
 .tp-demo .library-section-heading .tp-title-stamp{max-width:75%;padding:16px 20px;border:0;box-shadow:5px 5px 0 var(--tp-red);background:var(--tp-ink);margin:0}
 .tp-demo .library-section-heading .tp-title-text{color:var(--tp-paper);text-transform:uppercase;font-size:clamp(32px,4vw,54px)}
@@ -409,3 +414,4 @@ html[data-theme="night"] .tp-demo[data-print-theme="night"] :is(.text-slate-900,
 html[data-theme="night"] .tp-demo .latest-carousel{background:var(--tp-paper);background-image:none;border-color:var(--line-soft);color:var(--tp-ink)}
 html[data-theme="night"] .tp-demo .latest-carousel-nav{background:var(--tp-paper);color:var(--tp-ink);border-color:var(--tp-ink);box-shadow:3px 3px 0 var(--tp-ink)}
 html[data-theme="night"] .tp-demo .latest-carousel-card,html[data-theme="night"] .tp-demo .latest-carousel-card[data-offset="0"]{background:transparent;border-color:var(--tp-ink);box-shadow:none}
+.tp-demo .library-section-heading .library-heading-row > .tp-title-stamp{margin:0 5px 0 0}

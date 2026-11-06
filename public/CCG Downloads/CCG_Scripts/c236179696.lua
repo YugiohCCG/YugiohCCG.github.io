@@ -44,14 +44,13 @@ end
 function s.tgfilter(c)
 	return c:IsSetCard(SET_FRUTE) and c:IsAbleToGrave()
 end
-function s.setfilter(c)
-	return c:IsSetCard(SET_FRUTE) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()
+function s.setfilter(c,tp)
+	return c:IsSetCard(SET_FRUTE) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)
 		and (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup())
 end
 function s.sstg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local b1=Duel.IsExistingMatchingCard(s.tgfilter,tp,LOCATION_DECK,0,1,nil)
-	local b2=Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil)
+	local b2=Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,tp)
 	if chk==0 then return b1 or b2 end
 	if b1 and b2 then
 		e:SetLabel(Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3)))
@@ -74,10 +73,9 @@ function s.ssop(e,tp,eg,ep,ev,re,r,rp)
 			Duel.SendtoGrave(tc,REASON_EFFECT)
 		end
 	else
-		if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end
-		if not Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) then return end
+		if not Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,tp) then return end
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
-		local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil):GetFirst()
+		local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil,tp):GetFirst()
 		if tc then
 			Duel.SSet(tp,tc)
 		end

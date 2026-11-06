@@ -17,6 +17,7 @@ function s.initial_effect(c)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetTarget(s.reptg)
+	e1:SetValue(function(e,c) return s.repfilter(c,e:GetHandlerPlayer()) end)
 	e1:SetOperation(s.repop)
 	c:RegisterEffect(e1)
 	--Destroy 1 other card
@@ -81,7 +82,6 @@ function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not c:IsRelateToEffect(e) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g=Duel.SelectMatchingCard(tp,Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,c)
 	if #g>0 then Duel.Destroy(g,REASON_EFFECT) end
@@ -103,14 +103,14 @@ function s.cptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	e:SetLabelObject(te:GetLabelObject())
 	local tg=te:GetTarget()
 	if tg then tg(e,tp,ceg,cep,cev,cre,cr,crp,1) end
-	te:SetLabel(te:GetLabel())
+	te:SetLabel(e:GetLabel())
 	te:SetLabelObject(e:GetLabelObject())
 	e:SetLabelObject(te)
 	Duel.ClearOperationInfo(0)
 end
 function s.cpop(e,tp,eg,ep,ev,re,r,rp)
-	local tc=Duel.GetFirstTarget()
 	local te=e:GetLabelObject()
+	local tc=te and te:GetHandler()
 	if not (tc and te and tc:IsRelateToEffect(e) and aux.NecroValleyFilter()(tc)) then return end
 	e:SetLabelObject(te:GetLabelObject())
 	e:SetLabel(te:GetLabel())

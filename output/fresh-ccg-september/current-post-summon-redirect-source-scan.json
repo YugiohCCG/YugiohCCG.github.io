@@ -1,0 +1,137 @@
+{
+  "scope": "711-source lexical same-function SpecialSummon plus leave-field redirect scan; source candidates, not confirmed defects or full semantic certification.",
+  "candidates": [
+    {
+      "passcode": 221321849,
+      "name": "The Condescender",
+      "function": "s.spop",
+      "context": "function s.spop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 or not c:IsRelateToEffect(e)\n\t\tor not aux.NecroValleyFilter(s.spfilter)(c,e,tp) then return end\n\tif Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\te1:SetValue(LOCATION_REMOVED)\n\t\tc:RegisterEffect(e1,true)\n\tend\nend\n"
+    },
+    {
+      "passcode": 256928871,
+      "name": "Talismandrake Embers",
+      "function": "s.spop",
+      "context": "function s.spop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end\n\tlocal tc=Duel.GetFirstTarget()\n\tif tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.spfilter)(tc,e,tp)\n\t\tand Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tlocal e1=Effect.CreateEffect(e:GetHandler())\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\t--Deck redirection automatically returns Fusion Monsters to the Extra Deck.\n\t\te1:SetValue(LOCATION_DECK)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\ttc:RegisterEffect(e1,true)\n\tend\nend\n"
+    },
+    {
+      "passcode": 235448944,
+      "name": "Pawn of Aldrez",
+      "function": "s.spop",
+      "context": "function s.spop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0\n\t\tand aux.NecroValleyFilter(s.selfspfilter)(c,e,tp)\n\t\tand Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\te1:SetValue(LOCATION_DECKSHF)\n\t\tc:RegisterEffect(e1,true)\n\tend\nend\n"
+    },
+    {
+      "passcode": 259500899,
+      "name": "Diving Daughters of the Grand Blue",
+      "function": "s.spop",
+      "context": "function s.spop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 or not (c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)) then return end\n\tif Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP_DEFENSE)>0 then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\te1:SetValue(LOCATION_REMOVED)\n\t\tc:RegisterEffect(e1,true)\n\tend\nend\n"
+    },
+    {
+      "passcode": 259057226,
+      "name": "Stellaer of the Cold",
+      "function": "s.xyzop",
+      "context": "function s.xyzop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end\n\tif not Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_HAND,0,1,nil,e,tp) then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\tlocal tc=Duel.SelectMatchingCard(tp,s.spfilter,tp,LOCATION_HAND,0,1,1,nil,e,tp):GetFirst()\n\tif tc and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tlocal e1=Effect.CreateEffect(e:GetHandler())\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te1:SetValue(LOCATION_REMOVED)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\ttc:RegisterEffect(e1,true)\n\tend\nend\n"
+    },
+    {
+      "passcode": 226903348,
+      "name": "Stellaer of the Sea",
+      "function": "s.xyzop",
+      "context": "function s.xyzop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal tc=Duel.GetFirstTarget()\n\tif not (Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and tc and tc:IsRelateToEffect(e) and s.spfilter(tc,e,tp)) then return end\n\tif Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tlocal e1=Effect.CreateEffect(e:GetHandler())\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te1:SetValue(LOCATION_REMOVED)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\ttc:RegisterEffect(e1,true)\n\tend\nend\n"
+    },
+    {
+      "passcode": 236017388,
+      "name": "Slug of Crying Chaos",
+      "function": "s.spop2",
+      "context": "function s.spop2(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)\n\t\tand Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\te1:SetValue(LOCATION_REMOVED)\n\t\tc:RegisterEffect(e1,true)\n\tend\nend\n"
+    },
+    {
+      "passcode": 249018041,
+      "name": "Ram of Crying Chaos",
+      "function": "s.spop",
+      "context": "function s.spop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\tlocal g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE,0,1,1,nil,e,tp)\n\tlocal tc=g:GetFirst()\n\tif tc and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tlocal e1=Effect.CreateEffect(e:GetHandler())\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\te1:SetValue(LOCATION_REMOVED)\n\t\ttc:RegisterEffect(e1,true)\n\tend\nend\n"
+    },
+    {
+      "passcode": 255686110,
+      "name": "Iscylla, Windborne Kraken of Sunken Depths",
+      "function": "s.spop",
+      "context": "function s.spop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_UPDATE_LEVEL)\n\t\te1:SetValue(-2)\n\t\te1:SetReset(RESET_EVENT+RESETS_STANDARD)\n\t\tc:RegisterEffect(e1)\n\t\tlocal e2=Effect.CreateEffect(c)\n\t\te2:SetType(EFFECT_TYPE_SINGLE)\n\t\te2:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te2:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\te2:SetValue(LOCATION_DECKBOT)\n\t\tc:RegisterEffect(e2)\n\tend\nend\n"
+    },
+    {
+      "passcode": 245452058,
+      "name": "Altergeist Pipesiren",
+      "function": "s.spop",
+      "context": "function s.spop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))\n\t\tand Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tif c:IsPreviousLocation(LOCATION_GRAVE) then\n\t\t\tlocal e1=Effect.CreateEffect(c)\n\t\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\t\te1:SetValue(LOCATION_REMOVED)\n\t\t\tc:RegisterEffect(e1,true)\n\t\tend\n\tend\nend\n\n"
+    },
+    {
+      "passcode": 221924008,
+      "name": "Chamroshes' Aegis",
+      "function": "s.synop",
+      "context": "function s.synop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\tlocal g=Duel.SelectMatchingCard(tp,s.synfilter,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)\n\tlocal tc=g:GetFirst()\n\tif tc and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\te1:SetValue(LOCATION_REMOVED)\n\t\ttc:RegisterEffect(e1,true)\n\t\tlocal e2=Effect.CreateEffect(c)\n\t\te2:SetType(EFFECT_TYPE_SINGLE)\n\t\te2:SetCode(EFFECT_NONTUNER)\n\t\te2:SetReset(RESET_EVENT+RESETS_STANDARD)\n\t\ttc:RegisterEffect(e2,true)\n\tend\nend\n"
+    },
+    {
+      "passcode": 259815138,
+      "name": "Vampire Avenger",
+      "function": "s.spop2",
+      "context": "function s.spop2(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and aux.NecroValleyFilter(Card.IsCanBeSpecialSummoned)(c,e,0,tp,false,false)\n\t\tand Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\te1:SetValue(LOCATION_REMOVED)\n\t\tc:RegisterEffect(e1,true)\n\tend\nend\n"
+    },
+    {
+      "passcode": 259479818,
+      "name": "Vampire Traveler",
+      "function": "s.gyop",
+      "context": "function s.gyop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\tlocal tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.gyfilter),tp,LOCATION_GRAVE,0,1,1,nil,e,tp):GetFirst()\n\tif tc and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tlocal e1=Effect.CreateEffect(e:GetHandler())\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\te1:SetValue(LOCATION_REMOVED)\n\t\ttc:RegisterEffect(e1,true)\n\tend\nend\n"
+    },
+    {
+      "passcode": 244009988,
+      "name": "Scarstech Invasion",
+      "function": "s.activate",
+      "context": "function s.activate(e,tp)\n\tlocal ft=Duel.GetLocationCount(tp,LOCATION_MZONE)\n\tlocal g=Duel.GetMatchingGroup(s.spfilter,tp,LOCATION_DECK,0,nil,e,tp)\n\tif ft>0 and #g>0 then\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\t\tlocal sg=g:SelectSubGroup(tp,s.sumcheck,false,1,math.min(#g,ft),e,tp,e:GetLabel())\n\t\tif sg and Duel.SpecialSummon(sg,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\tfor tc in aux.Next(sg) do\n\t\t\t\tlocal e1=Effect.CreateEffect(e:GetHandler())\n\t\t\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\t\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\t\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\t\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\t\t\te1:SetValue(LOCATION_REMOVED)\n\t\t\t\ttc:RegisterEffect(e1,true)\n\t\t\tend\n\t\tend\n\tend\n\tlocal e1=Effect.CreateEffect(e:GetHandler())\n\te1:SetType(EFFECT_TYPE_FIELD)\n\te1:SetProperty(EFFECT_FLAG_PLAYER_TARGET+EFFECT_FLAG_OATH)\n\te1:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)\n\te1:SetTargetRange(1,0)\n\te1:SetTarget(s.splimit)\n\te1:SetReset(RESET_PHASE+PHASE_END,2)\n\tDuel.RegisterEffect(e1,tp)\nend\n"
+    },
+    {
+      "passcode": 247298564,
+      "name": "Oracle of the Herald",
+      "function": "s.spop",
+      "context": "function s.spop(e,tp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and aux.NecroValleyFilter(Card.IsCanBeSpecialSummoned)(c,e,0,tp,false,false)\n\t\tand Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\te1:SetValue(LOCATION_REMOVED)\n\t\tc:RegisterEffect(e1,true)\n\tend\nend\n"
+    },
+    {
+      "passcode": 259023461,
+      "name": "Disciple of Fire",
+      "function": "s.payop",
+      "context": "function s.payop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif e:GetLabel()==0 then\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD)\n\t\tlocal dg=Duel.SelectMatchingCard(tp,Card.IsDiscardable,tp,LOCATION_HAND,0,1,1,nil,REASON_EFFECT+REASON_DISCARD)\n\t\tif #dg==0 or Duel.SendtoGrave(dg,REASON_EFFECT+REASON_DISCARD)==0 then return end\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)\n\t\tlocal g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.firefilter),tp,LOCATION_GRAVE,0,1,1,nil)\n\t\tif #g>0 then\n\t\t\tDuel.SendtoHand(g,nil,REASON_EFFECT)\n\t\t\tDuel.ConfirmCards(1-tp,g)\n\t\tend\n\telse\n\t\tif Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 or not c:IsRelateToEffect(e)\n\t\t\tor not aux.NecroValleyFilter()(c) then return end\n\t\tif Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\tlocal e1=Effect.CreateEffect(c)\n\t\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\t\te1:SetValue(LOCATION_REMOVED)\n\t\t\tc:RegisterEffect(e1,true)\n\t\t\tlocal val=math.floor(s[tp]/2)\n\t\t\tif val>0 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then\n\t\t\t\tDuel.Recover(tp,val,REASON_EFFECT)\n\t\t\tend\n\t\tend\n\tend\nend\n"
+    },
+    {
+      "passcode": 259767503,
+      "name": "Glint the Blackbird Aerocat",
+      "function": "s.spop",
+      "context": "function s.spop(e,tp) local c=e:GetHandler(); local tc=Duel.GetFirstTarget(); if c:IsRelateToEffect(e) and Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 then c:RegisterFlagEffect(id,RESET_EVENT+RESETS_REDIRECT,0,1); local ex=Effect.CreateEffect(c); ex:SetType(EFFECT_TYPE_SINGLE); ex:SetCode(EFFECT_LEAVE_FIELD_REDIRECT); ex:SetValue(LOCATION_REMOVED); ex:SetReset(RESET_EVENT+RESETS_REDIRECT); c:RegisterEffect(ex); if tc:IsRelateToEffect(e) and tc:IsFaceup() then local ea=Effect.CreateEffect(c); ea:SetType(EFFECT_TYPE_SINGLE); ea:SetCode(EFFECT_UPDATE_ATTACK); ea:SetValue(500); ea:SetReset(RESET_EVENT+RESETS_STANDARD); tc:RegisterEffect(ea) end end end\n"
+    },
+    {
+      "passcode": 244168521,
+      "name": "Heavy-Armoured Ballista Bahariasaurus",
+      "function": "s.revop",
+      "context": "function s.revop(e,tp)\n local c=e:GetHandler()\n if not c:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0\n  or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end\n local redirect=Effect.CreateEffect(c)\n redirect:SetType(EFFECT_TYPE_SINGLE)\n redirect:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n redirect:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n redirect:SetValue(LOCATION_REMOVED)\n redirect:SetReset(RESET_EVENT+RESETS_STANDARD)\n c:RegisterEffect(redirect)\nend\n"
+    },
+    {
+      "passcode": 247755866,
+      "name": "Kali Yuga - Sampati",
+      "function": "s.revop",
+      "context": "function s.revop(e,tp)\n local c=e:GetHandler()\n if not c:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0\n  or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end\n local e1=Effect.CreateEffect(c)\n e1:SetType(EFFECT_TYPE_SINGLE)\n e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n e1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n e1:SetValue(LOCATION_REMOVED)\n e1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n c:RegisterEffect(e1,true)\nend\n"
+    },
+    {
+      "passcode": 247755868,
+      "name": "Kali Yuga - Karkotaka",
+      "function": "s.ssop",
+      "context": "function s.ssop(e,tp)\n local c=e:GetHandler()\n if not c:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0\n  or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end\n local e1=Effect.CreateEffect(c)\n e1:SetType(EFFECT_TYPE_SINGLE)\n e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n e1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n e1:SetValue(LOCATION_REMOVED)\n e1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n c:RegisterEffect(e1,true)\nend\n"
+    },
+    {
+      "passcode": 247755871,
+      "name": "Kali Yuga - Jarita",
+      "function": "s.revop",
+      "context": "function s.revop(e,tp)\n local c=e:GetHandler()\n Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)\n local g=Duel.SelectMatchingCard(tp,s.destroyfilter,tp,LOCATION_ONFIELD,0,1,1,nil,tp)\n if #g==0 or Duel.Destroy(g,REASON_EFFECT)==0 or not c:IsRelateToEffect(e)\n  or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0\n  or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end\n local redirect=Effect.CreateEffect(c)\n redirect:SetType(EFFECT_TYPE_SINGLE)\n redirect:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n redirect:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n redirect:SetValue(LOCATION_REMOVED)\n redirect:SetReset(RESET_EVENT+RESETS_REDIRECT)\n c:RegisterEffect(redirect,true)\n if Duel.IsExistingMatchingCard(s.ovfilter,tp,0,LOCATION_ONFIELD,1,nil,e)\n  and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then\n  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)\n  local og=Duel.SelectMatchingCard(tp,s.ovfilter,tp,0,LOCATION_ONFIELD,1,1,nil,e)\n  if #og>0 then Duel.Overlay(c,og) end\n end\nend\n"
+    },
+    {
+      "passcode": 247755873,
+      "name": "Kali Yuga - Ahimsaka Justijhn",
+      "function": "s.revop",
+      "context": "function s.revop(e,tp)\n local c=e:GetHandler()\n if not c:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0\n  or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end\n local redirect=Effect.CreateEffect(c)\n redirect:SetType(EFFECT_TYPE_SINGLE)\n redirect:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n redirect:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n redirect:SetValue(LOCATION_REMOVED)\n redirect:SetReset(RESET_EVENT+RESETS_REDIRECT)\n c:RegisterEffect(redirect,true)\n if Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.shufflefilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil)\n  and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,3)) then\n  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)\n  local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.shufflefilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil)\n  if #g>0 then Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT) end\n end\nend\n"
+    }
+  ]
+}

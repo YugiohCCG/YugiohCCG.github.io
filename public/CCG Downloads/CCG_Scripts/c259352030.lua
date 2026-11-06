@@ -16,6 +16,7 @@ function s.initial_effect(c)
 	e0:SetCondition(s.spcon)
 	e0:SetTarget(s.sptg)
 	e0:SetOperation(s.spop)
+	e0:SetValue(function(e) return 0,e:GetLabel()==1 and 0 or 0xff end)
 	c:RegisterEffect(e0)
 	--Must be Fusion Summoned or Special Summoned by its own procedure
 	local e1=Effect.CreateEffect(c)
@@ -57,6 +58,7 @@ function s.fselect(g,tp,sc)
 		and Duel.GetLocationCountFromEx(tp,tp,g,sc)>0
 end
 function s.spcon(e,c)
+	e:SetLabel(0)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	local g=Duel.GetMatchingGroup(s.matfilter,tp,LOCATION_HAND+LOCATION_MZONE,0,nil,c)
@@ -76,7 +78,7 @@ end
 function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local g=e:GetLabelObject()
 	c:SetMaterial(g)
-	Duel.Remove(g,POS_FACEUP,REASON_SPSUMMON)
+	if Duel.Remove(g,POS_FACEUP,REASON_SPSUMMON)~=#g then e:SetLabel(1) end
 	g:DeleteGroup()
 end
 function s.tdfilter(c)

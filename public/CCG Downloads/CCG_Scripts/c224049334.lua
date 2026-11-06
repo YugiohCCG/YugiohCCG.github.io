@@ -30,7 +30,7 @@ function s.initial_effect(c)
 end
 function s.checkop(e,tp,eg,ep,ev,re,r,rp)
 	for tc in aux.Next(eg) do
-		if tc:IsType(TYPE_SPELL+TYPE_TRAP) and tc:IsPreviousLocation(LOCATION_ONFIELD)
+		if tc:IsType(TYPE_SPELL+TYPE_TRAP)
 			and tc:IsReason(REASON_EFFECT) and (rp==0 or rp==1) and tc:IsLocation(LOCATION_GRAVE) then
 			tc:RegisterFlagEffect(id+rp,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,0,1)
 		end

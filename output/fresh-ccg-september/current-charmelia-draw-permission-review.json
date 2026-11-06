@@ -1,0 +1,72 @@
+{
+  "finding": "Charmelia Beast recovery was offered with a known positive Ritual draw count while Protector of the Sanctuary already prohibited drawing. Target legality now checks permission for positive counts, preserving zero Ritual recovery.",
+  "qualification": "Six native original-effect cases/full stock Protector:normal,pre-lock,zero-lock,actual CL2 Protector summon,Ritual departure,source banishment. Seeded typed Ritual,neutral sending/response actors; no Lua API mapping. Original Ritual history,named limits/reset,remaining protection boundaries/full-card/live open. Official FAQ24396 before/after draw-lock distinction applied by analogy to this custom mandatory then-draw clause.",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_charmelia_draw_permission.cjs": "da0bbf4c328527337e60b5f137283c4d8c7a52f2ab3c292172788bdbb70424a0",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_charmelia_draw_permission_repair.cjs": "f37550625438594cb2a8d4a14e8f1a309bf81689e8d1ad204de96346b2603142",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\c24221739.lua": "0caea1920083b1b9c67d523f872782be5ec348f9208060df26e402aecb5cfb93",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\charmelia-draw-permission-before-repair\\c259226799.lua": "2dbad3d03f8276cb541a408c56adbbcac1ed73d31c7dcc2d517b8cf66483f023",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "mode": "candidate",
+      "file": "current-charmelia-draw-permission-candidate.json",
+      "sha256": "30562c2a446f93d3d2c33523a4abf8e76c0b47d6a6e06239d686c61029d4e73c",
+      "expected_failures": []
+    },
+    {
+      "mode": "old",
+      "file": "current-charmelia-draw-permission-old.json",
+      "sha256": "62f54510a4a5a85e7ab83bf2db2d861bc7c1a9edbfcf3f6c363eed01e2b99535",
+      "expected_failures": [
+        1
+      ]
+    },
+    {
+      "mode": "no-zero-exception",
+      "file": "current-charmelia-draw-permission-no-zero-exception.json",
+      "sha256": "913aaef80c1ddff2c28e07b3b183355496bfca5b4947c4df07c31684c24ec02e",
+      "expected_failures": [
+        2
+      ]
+    },
+    {
+      "mode": "no-recovery",
+      "file": "current-charmelia-draw-permission-no-recovery.json",
+      "sha256": "01d05034f88d57425096b710848865652179665828d43ee6a2db22f0ad8fa1b0",
+      "expected_failures": [
+        0,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "mode": "no-draw",
+      "file": "current-charmelia-draw-permission-no-draw.json",
+      "sha256": "273c4fdcc13859cefd845206c8ead18cb89a520fb210f0e53ef71f748d11af2c",
+      "expected_failures": [
+        0
+      ]
+    }
+  ],
+  "manifest": "charmelia-draw-permission-repair-files.json",
+  "manifest_sha256": "cf6aefec24befe0503aa2a6c0db7a0bb375888379bf0b91444a801c204f96efa",
+  "helper_sha256": "f37550625438594cb2a8d4a14e8f1a309bf81689e8d1ad204de96346b2603142",
+  "family_scan": "current-mandatory-then-draw-source-scan.json",
+  "family_scan_sha256": "ca962eee6684012605862747231b30d81bd4cc3475b503ec2e57c13361997241"
+}

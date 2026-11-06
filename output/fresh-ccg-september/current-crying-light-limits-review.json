@@ -1,0 +1,77 @@
+{
+  "status": "SCOPED_ORIGINAL_NAMED_LIMITS_VERIFIED_NO_REPAIR",
+  "scope": "Ten original Light named-use cases: each effect shared across copies, Main/GY independent in both orders, actual CL2 activation negation consumes use; each effect consumed then reset on next own turn for player0 (turn1 to3) and player1 (turn2 to4). Actual second-turn search/recovery/cost verified. Four effective controls: removed Main limit6, removed GY limit6, wrongly shared key2, omitted activation negation2 failures. No production defect or edit.",
+  "qualification": "Original source/installed metadata; neutral typed Crying Chaos Zombie Tuner resources/helper. No Lua API mapping. Separate player reset cases do not prove simultaneous same-turn independent player scope. Remaining search bounds and live Omega open; no entire-card certification or count promotion.",
+  "runs": [
+    {
+      "file": "current-crying-light-limits-candidate.json",
+      "sha256": "afd1729627f257d4b7b52ca8c6fca7fa9ca1ca9302db751f200ff716e2417b65",
+      "expected_failures": []
+    },
+    {
+      "file": "current-crying-light-limits-no-main-limit.json",
+      "sha256": "a0d37f73a002ad35ee9b10303bb7a1725be863a2c5fa1179a34e4427d69ab869",
+      "expected_failures": [
+        0,
+        2,
+        3,
+        4,
+        6,
+        8
+      ]
+    },
+    {
+      "file": "current-crying-light-limits-no-gy-limit.json",
+      "sha256": "0f1bf608d330ed792fe3070cad8231c6b2c8a7cc6ec6c00c4fef682624e0a45b",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        5,
+        7,
+        9
+      ]
+    },
+    {
+      "file": "current-crying-light-limits-shared-key.json",
+      "sha256": "c3d9940898b6754f8d1ea629f4b16b739fb95bcb639aa34940f456a0d8d9928e",
+      "expected_failures": [
+        2,
+        3
+      ]
+    },
+    {
+      "file": "current-crying-light-limits-no-negate.json",
+      "sha256": "5e8a28ff7d2f32b9c9aa1706c1493a03dd01d8dc839dc80cd7c5a02efd21ab14",
+      "expected_failures": [
+        4,
+        5
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "e623c77c4dd50fbc29cc068a5609d9a014e0241f46dfec8e1b95823a15786c18",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-sort-transport-candidate.mjs": "3325c76fb15c479de379fa117a00933396e6b54f708128dbb02a01d5cba5e199",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_crying_light_grave.cjs": "e4b89e63f8f3bb95f4d372a8a6931478d06cd834a00f535a24dc95ed68e5ca51",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c258241424.lua": "49d176050b18c8ba43879dc1e9605d8af22de4dc0e3ef5212101d0f289afb6d1",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\c47355498.lua": "1d3862aabbbb3f381587a3028435736db2ca5818bdb4973ca30deb5632398318",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c258241424.lua": "49d176050b18c8ba43879dc1e9605d8af22de4dc0e3ef5212101d0f289afb6d1",
+    "scripts/fresh_current_crying_light_limits.cjs": "b8530854f0d0fb21c2ce7aed6810532d77053ccf1b4e84b13d60c026ed50a8ef"
+  },
+  "ineffective_probe_qualification": "Exploratory OATH flag substitutions using modern third-argument and legacy arithmetic forms did not change the observed negation boundary in this public runtime. Neither is accepted as an effective fault control or proof of flag semantics; no production API substitution made. Separate no-limit controls establish count sensitivity and no-negate proves response outcome.",
+  "historical_extension": "Earlier six-case review and five result artifacts archived under crying-light-limits-before-reset-extension with exact historical hashes verified; current harness extends the same fixture with four actual own-turn-reset cases."
+}

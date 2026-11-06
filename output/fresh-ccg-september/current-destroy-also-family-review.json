@@ -1,0 +1,94 @@
+{
+  "scope": "711 printed texts,12 lexical destroy...also matches including passive/nested false positives. Contextual source triage,not universal conjunction gameplay review. Exact pre-repair source hashes retained.",
+  "rows": [
+    {
+      "code": 224274662,
+      "name": "Armored Nova Mecha-Scaled Xyrion",
+      "phrase": "destroy it, and if you do, Special Summon 1 Rank 8 Dragon Xyz Monster from your GY, but negate its effects, also",
+      "classification": "Nested post-summon modification/cleanup requires a recipient; not same independent destruction/name-lock clause",
+      "source_sha256": "d08ac29e330e8f66c29516a1e8b586c4be58b44db90b79a8c263f6923a55fa42"
+    },
+    {
+      "code": 218142234,
+      "name": "Maiden of Talismandrakes Seraphina",
+      "phrase": "destroy all cards your opponent controls, also",
+      "classification": "Cooldown registered independently in cost, not gated by destruction;negation timing not reviewed",
+      "source_sha256": "823ffdf6b8c247b180c0ccb977ea23fbddc4101618af3f10155451ff06136715"
+    },
+    {
+      "code": 215853847,
+      "name": "Rigel the Thousand-Armed",
+      "phrase": "destroyed by battle or card effects, also",
+      "classification": "Passive cannot-be-destroyed wording, not destruction-success dependency",
+      "source_sha256": "9a563cf978c1d972531478623f806525dc556e04aa2079d3df91948f58c2179e"
+    },
+    {
+      "code": 219419648,
+      "name": "Sustained Succubus Saria",
+      "phrase": "destroyed by battle or card effects, also",
+      "classification": "Passive cannot-be-destroyed wording, not destruction-success dependency",
+      "source_sha256": "2d8d648fecc5830533ccd2876936e270eeca904a1d8a3ae3a364dd1af2ab6f65"
+    },
+    {
+      "code": 245099829,
+      "name": "Azrynior, the Abundaence of Purity",
+      "phrase": "destroyed by card effects, also",
+      "classification": "Passive cannot-be-destroyed wording, not destruction-success dependency",
+      "source_sha256": "34cfe579b8348b899c9a2f98c590e7e6561730c915d409ba525dc79ffe85d8ff"
+    },
+    {
+      "code": 223512283,
+      "name": "Dysmandr, the Depraevity of Worlds",
+      "phrase": "destroyed by battle, also",
+      "classification": "Passive cannot-be-destroyed wording, not destruction-success dependency",
+      "source_sha256": "fa9f802eb7c0b3e4a96dd1fc06de957f861642d0446ec47b1320e30feb00a085"
+    },
+    {
+      "code": 243488958,
+      "name": "Scarstech Blaster",
+      "phrase": "destroy it. Also",
+      "classification": "Confirmed failed-destruction dependency;native CL7 late protection reproduction",
+      "source_sha256": "b13b6ec8b5c81e2830a02d5062683c9f592c45157d234479af51e94a5fa53d0f"
+    },
+    {
+      "code": 223505382,
+      "name": "Gravinity Transfer Call",
+      "phrase": "destroyed by card effects until the end of this turn, also",
+      "classification": "Passive cannot-be-destroyed wording, not destruction-success dependency",
+      "source_sha256": "33733048854ce7caad3961b66912c58a83bb2feee6f6d147acf58a8071a2d428"
+    },
+    {
+      "code": 259640854,
+      "name": "Dinomorphia Triceron",
+      "phrase": "destroy 1 other \"Dinomorphia\" monster you control and 1 card your opponent controls, also",
+      "classification": "Triceron/Sylvan Gink supplementary operation already outside destruction-success branch;source-only exclusion,not gameplay certification",
+      "source_sha256": "e336d4521e17f5b41bb51d3fc1f50ca07c4b282e3ae91ab90830df3f3b601996"
+    },
+    {
+      "code": 238276579,
+      "name": "Gink, the Sylvan High Champion",
+      "phrase": "destroy that card, also",
+      "classification": "Triceron/Sylvan Gink supplementary operation already outside destruction-success branch;source-only exclusion,not gameplay certification",
+      "source_sha256": "f5d97606d70bc6a21d1d561490bdccf32a9f2cbde87cf3b4568f9582dfc1364b"
+    },
+    {
+      "code": 238276252,
+      "name": "Prayer Of Nephthys",
+      "phrase": "ur hand or field, and if you do, Special Summon 2 Level 2 \u201cNephthys\u201d monsters from your hand or GY, but negate their effects, also",
+      "classification": "Nested post-summon modification/cleanup requires a recipient; not same independent destruction/name-lock clause",
+      "source_sha256": "a32a0e883be8291675331b52f227b04e0f68695558291dd854d6dfab2aee66fc"
+    },
+    {
+      "code": 247755871,
+      "name": "Kali Yuga - Jarita",
+      "phrase": "you do, Special Summon this card, and if you do, you can attach 1 Spell/Trap your opponent controls to this card as material, also",
+      "classification": "Nested post-summon modification/cleanup requires a recipient; not same independent destruction/name-lock clause",
+      "source_sha256": "a6a0faf47ec00ed787de01ef080ea4dc984d2eff0cc9a6677bb40b749aff9b78"
+    }
+  ],
+  "confirmed_members": [
+    243488958
+  ],
+  "primary_rule": "https://www.yugioh-card.com/eu/play/understanding-card-text/part-7-conjunction-functions/",
+  "rule_application": "Also does not require either operation to succeed for the other. Applied to custom Blaster independent lock while preserving its Chain Link7 threshold and relation guard."
+}

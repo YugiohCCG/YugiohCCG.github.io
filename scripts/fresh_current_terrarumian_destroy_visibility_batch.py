@@ -1,0 +1,19 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+paths=[Path(__file__).resolve(),FILES/'Databases/CCG_v1.db',ROOT/'src/data/cards.json',OUT/'candidate-CCG_v1.db']+[ROOT/'scripts'/n for n in ['fresh_current_terrarumian_destroy_visibility.cjs','fresh_terrarumian_destroy_visibility_repair.cjs','fresh_terrarumian_cushion_pendulum.cjs','fresh_installed_card.cjs','fresh_corrected_card_data_transport.cjs']]+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))+[ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']
+for code in range(284639717,284639725):
+ p=ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua';assert p.read_bytes()==(FILES/'Scripts'/p.name).read_bytes();paths.append(p)
+manifest=OUT/'terrarumian-destroy-visibility-repair-files.json';paths.append(manifest)
+for item in json.loads(manifest.read_text())['files']:
+ p=ROOT/'public/CCG Downloads/CCG_Scripts'/item['file'];b=OUT/item['backup']/p.name;assert sha(p)==item['after_sha256'] and sha(b)==item['before_sha256'];r=subprocess.run(['node','-e',"process.stdout.write(require('./scripts/'+process.argv[2]).corrected(require('fs').readFileSync(process.argv[1],'utf8')))",str(b),item['helper']],capture_output=True);assert r.returncode==0 and r.stdout==p.read_bytes() and b.read_bytes()==(b.parent/('installed-'+b.name)).read_bytes();paths.extend([b,b.parent/('installed-'+b.name)])
+deps={str(p.resolve()):sha(p) for p in paths};runs=[]
+for old in [False,True]:
+ r=subprocess.run(['node','--no-warnings','scripts/fresh_current_terrarumian_destroy_visibility.cjs']+(['--old-source'] if old else []),capture_output=True,text=True,timeout=20)
+ p=OUT/('current-terrarumian-destroy-visibility'+('-old-source' if old else '')+'.json');d=json.loads(p.read_text());expected=[] if not old else [i for i in range(24) if i%3]
+ assert len(d['results'])==24 and [i for i,v in enumerate(d['results']) if v['failure']]==expected and all(not v['logs'] for v in d['results']) and r.returncode==bool(expected),r.stdout+r.stderr
+ runs.append({'artifact':p.name,'sha256':sha(p),'expected_failures':expected})
+assert deps=={str(p.resolve()):sha(p) for p in paths}
+(OUT/'current-terrarumian-destroy-visibility-batch.json').write_text(json.dumps({'status':'TERRARUMIAN_DESTRUCTION_RESOURCE_VISIBILITY_REPAIRED','runtime_dependencies_sha256':deps,'runs':runs,'scope':'All eight original sources, installed metadata, native Hand-to-PZone activation and destruction selection prompts. Faceup own archetype condition witness remains a valid resource; opponent monster enables Cushion. Separate faceup Spell allowed, hidden Spell/monster illegally selectable under archetype visibility rule. Production faceup-only destruction filter removes hidden entries in all16 cases. Exact backup/helper/manifests verified, no completed resolution/live Omega claim. Activation-menu-only initial experiment was nondiscriminating because witness remains selectable; final assertion inspects actual selection prompt.','ruling_status':'Official True Draco Apocalypse supplemental note requires faceup archetype destruction target despite printed omission; Infernoid Devyaty FAQ15057 says hidden Spell/Trap names cannot be identified. Custom non-targeting selection uses same public identity requirement; inferred custom semantics, not direct custom FAQ.','reference':'https://www.db.yugioh-card.com/yugiohdb/faq_search.action?cid=12984&ope=4&request_locale=ja'},indent=2)+'\n')
+print('Hidden resource selection reproduced for eight Terrarumians; production excludes all hidden entries, strict backups/parity verified')

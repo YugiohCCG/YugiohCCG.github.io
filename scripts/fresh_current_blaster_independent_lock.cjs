@@ -1,0 +1,36 @@
+'use strict';
+const fs=require('fs'),path=require('path'),assert=require('assert/strict');
+const ROOT=path.resolve(__dirname,'..'),OUT=path.join(ROOT,'output/fresh-ccg-september');
+async function main(){
+ const mod=await require('./fresh_corrected_card_data_transport.cjs').loadCorrectedTransport(),{OcgMessageType:M,OcgResponseType:R,OcgLocation:L,OcgPosition:P,OcgProcessResult:S,SelectIdleCMDAction:A,OcgQueryFlags:Q}=mod;
+ const core=await mod.default({sync:true,print(){},printErr(){}}),mode=process.argv[2]||'old',boss=243488958,own=900011111,opp=900011112,protector=900011113,victim=900011114,filler=900011115,results=[];
+ for(const test of [{link:7},{link:7,protect:true},{link:6},{link:6,protect:true}]){
+ const logs=[],trace=[],base={alias:0,setcodes:[],type:33,level:4,attribute:1,race:1n,attack:1000,defense:1000,lscale:0,rscale:0,link_marker:0};
+ const cards=new Map([[boss,require('./fresh_installed_card.cjs').candidateCard(boss)],...[own,opp,protector].map(c=>[c,{...base,code:c}]),[victim,{...base,code:victim,type:0x20002,level:0,attribute:0,race:0n,attack:0,defense:0}],[filler,{...base,code:filler,type:2}]]);
+ const reader=n=>{
+ if(n==='c0.lua')return '';
+ if(n===`c${filler}.lua`)return 'local s,id=GetID() function s.initial_effect(c) end';
+ if(n===`c${victim}.lua`)return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_IGNITION) e:SetRange(LOCATION_SZONE) e:SetOperation(function(e,tp) Duel.Hint(HINT_NUMBER,tp,709) end) c:RegisterEffect(e) end';
+ if([own,opp].some(c=>n===`c${c}.lua`))return `local s,id=GetID() function s.initial_effect(c) local a=Effect.CreateEffect(c) a:SetType(EFFECT_TYPE_IGNITION) a:SetRange(LOCATION_MZONE) a:SetOperation(function(e,tp) Duel.Hint(HINT_NUMBER,tp,701) end) c:RegisterEffect(a) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_QUICK_O) e:SetCode(EVENT_CHAINING) e:SetRange(LOCATION_MZONE) e:SetCondition(function(e,tp,eg,ep,ev) return ev<6 end) e:SetOperation(function(e,tp) Duel.Hint(HINT_NUMBER,tp,702) end) c:RegisterEffect(e) end`;
+ if(n===`c${protector}.lua`)return `local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_QUICK_O) e:SetCode(EVENT_CHAINING) e:SetRange(LOCATION_MZONE) e:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode(${boss}) end) e:SetOperation(function(e,tp) local tc=Duel.GetFieldCard(1,LOCATION_SZONE,0) assert(tc:IsCode(${victim})) local ex=Effect.CreateEffect(e:GetHandler()) ex:SetType(EFFECT_TYPE_SINGLE) ex:SetCode(EFFECT_INDESTRUCTABLE_EFFECT) ex:SetValue(1) ex:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END) tc:RegisterEffect(ex) end) c:RegisterEffect(e) end`;
+ const p=[path.join(ROOT,'public/CCG Downloads/CCG_Scripts',n),path.join(ROOT,'tmp/omega_scripts',n)].find(fs.existsSync);assert(p,n);let s=fs.readFileSync(p,'utf8');if(n===`c${boss}.lua`){const old=path.join(OUT,'blaster-independent-lock-before-repair',n);if(fs.existsSync(old))s=fs.readFileSync(old,'utf8');if(mode!=='old')s=require('./fresh_blaster_independent_lock_repair.cjs').corrected(s);if(mode==='no-destroy')s=s.replace('Duel.Destroy(tc,REASON_EFFECT)','do end');if(mode==='no-lock')s=s.replace('Duel.RegisterEffect(e1,tp)','do end');if(mode==='early-lock')s=s.replace('e:GetLabel()>=7','e:GetLabel()>=6');}return s;};
+ const d=core.createDuel({flags:mod.OcgDuelMode.MODE_MR5|mod.OcgDuelMode.PSEUDO_SHUFFLE,seed:[1n,2n,3n,4n],team1:{startingLP:8000,startingDrawCount:0,drawCountPerTurn:0},team2:{startingLP:8000,startingDrawCount:0,drawCountPerTurn:0},cardReader:c=>cards.get(c),scriptReader:reader,errorHandler:(type,message)=>logs.push({type,message})});let failure=null,turn=0,chain=0,started=false,activated=false,protectedOnce=false,done=false;
+ try{
+ for(const n of ['constant.lua','utility.lua','procedure.lua'])core.loadScript(d,n,reader(n));
+ const add=(code,location,p=0,sequence=0,position=P.FACEUP_ATTACK)=>core.duelNewCard(d,{team:p,duelist:0,code,controller:p,location,sequence,position});add(boss,L.SZONE,0,0,P.FACEDOWN_DEFENSE);add(own,L.MZONE);add(opp,L.MZONE,1);if(test.protect)add(protector,L.MZONE,1,1);add(victim,L.SZONE,1);add(victim,L.SZONE,1,1);for(const p of [0,1])for(let i=0;i<8;i++)add(filler,L.DECK,p);core.startDuel(d);
+ const query=loc=>core.duelQueryLocation(d,{flags:Q.CODE|Q.REASON,controller:1,location:loc}).filter(Boolean);
+ for(let step=0;step<280&&!done;step++){
+ const state=core.duelProcess(d),messages=core.duelGetMessage(d);trace.push(...messages);for(const m of messages){if(m.type===M.NEW_TURN)turn++;if(m.type===M.CHAINING)chain=m.chain_size;if(m.type===M.CHAIN_END)chain=0;}
+ assert(!logs.length,JSON.stringify(logs));assert(state!==S.END);if(state!==S.WAITING)continue;const p=messages.at(-1);
+ if(p.type===M.SELECT_IDLECMD){if(!started){const index=p.activates.findIndex(c=>c.code===own);assert(index>=0);started=true;core.duelSetResponse(d,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});continue;}
+ assert(activated);assert(trace.some(m=>m.type===M.CHAINING&&m.code===boss&&m.chain_size===test.link),'Actual source Chain Link threshold');assert.equal(query(L.GRAVE).filter(c=>c.code===victim).length,test.protect?0:1,'Actual target destruction result');if(test.protect)assert(protectedOnce&&trace.some(m=>m.type===M.CHAINING&&m.code===protector&&m.chain_size===test.link+1),'Actual late protection chain link');if(turn===1){core.duelSetResponse(d,{type:R.SELECT_IDLECMD,action:A.TO_EP});continue;}assert.equal(turn,2);assert.equal(p.player,1);assert.equal(p.activates.some(c=>c.code===victim),test.link<7,'Independent same-name lock remains on next player turn');assert(p.activates.some(c=>c.code===opp),'Unrelated opponent effects remain usable');done=true;
+ }else if(p.type===M.SELECT_CHAIN){let index=-1;if(!activated&&chain===test.link-1)index=p.selects.findIndex(c=>c.code===boss);else if(!activated&&chain<test.link-1)index=p.selects.findIndex(c=>c.code===(p.player===0?own:opp));else if(activated&&test.protect&&!protectedOnce)index=p.selects.findIndex(c=>c.code===protector);
+ if(index>=0){if(p.selects[index].code===boss)activated=true;if(p.selects[index].code===protector)protectedOnce=true;}core.duelSetResponse(d,{type:R.SELECT_CHAIN,index:index>=0?index:p.forced?0:null});
+ }else if(p.type===M.SELECT_CARD){const index=p.selects.findIndex(c=>c.code===victim&&c.controller===1&&c.sequence===0);assert(index>=0);core.duelSetResponse(d,{type:R.SELECT_CARD,indicies:[index]});}
+ else throw Error('Unhandled '+JSON.stringify(p,(_,v)=>typeof v==='bigint'?String(v):v));
+ }assert(done,'Step limit');
+ }catch(e){failure=e.message;}finally{core.destroyDuel(d);}results.push({test,failure,logs,trace});console.log(JSON.stringify(test),failure||'PASS');
+ }
+ fs.writeFileSync(path.join(OUT,`current-blaster-independent-lock-${mode}.json`),JSON.stringify({mode,scope:'Original field-set Blaster activation at native CL6/CL7, native CL7/CL8 late target protection, two real same-code field instances and next-turn activation availability; neutral chain actors/recipients. No Lua API mapping. Hand permission, departed targets, negation/aliases/full-card/live open.',results},(_,v)=>typeof v==='bigint'?String(v):v,2));
+}
+main().catch(e=>{console.error(e);process.exitCode=1});

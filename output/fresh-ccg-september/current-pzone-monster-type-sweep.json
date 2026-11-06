@@ -1,0 +1,432 @@
+{
+  "scope": "All current card scripts containing PZone plus current Monster type; call sites must be reviewed before classifying bugs",
+  "candidates": [
+    {
+      "file": "c215034223.lua",
+      "type_filters": [
+        "s.pzfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.pzfilter",
+          "line": 48,
+          "call": "if chk==0 then return ct>0 and Duel.IsExistingMatchingCard(s.pzfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,nil) end"
+        },
+        {
+          "filter": "s.pzfilter",
+          "line": 56,
+          "call": "local g=Duel.SelectMatchingCard(tp,s.pzfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,math.min(2,ct),nil)"
+        }
+      ]
+    },
+    {
+      "file": "c218142234.lua",
+      "type_filters": [
+        "s.pcostfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.pcostfilter",
+          "line": 82,
+          "call": "local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.pcostfilter),tp,LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_EXTRA,0,c)"
+        }
+      ]
+    },
+    {
+      "file": "c227362839.lua",
+      "type_filters": [
+        "s.darkpyrothfilter",
+        "s.pzplacefilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.darkpyrothfilter",
+          "line": 59,
+          "call": "or Duel.IsExistingMatchingCard(s.darkpyrothfilter,tp,LOCATION_DECK,0,1,nil)"
+        },
+        {
+          "filter": "s.darkpyrothfilter",
+          "line": 72,
+          "call": "if Duel.IsExistingMatchingCard(s.darkpyrothfilter,tp,LOCATION_DECK,0,1,nil) then"
+        },
+        {
+          "filter": "s.darkpyrothfilter",
+          "line": 99,
+          "call": "local g=Duel.SelectMatchingCard(tp,s.darkpyrothfilter,tp,LOCATION_DECK,0,1,1,nil)"
+        },
+        {
+          "filter": "s.pzplacefilter",
+          "line": 114,
+          "call": "and Duel.IsExistingMatchingCard(s.pzplacefilter,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_EXTRA,0,1,nil,c:GetCode())"
+        },
+        {
+          "filter": "s.pzplacefilter",
+          "line": 136,
+          "call": "and Duel.IsExistingMatchingCard(s.pzplacefilter,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_EXTRA,0,1,nil,code) then"
+        },
+        {
+          "filter": "s.pzplacefilter",
+          "line": 139,
+          "call": "local g=Duel.SelectMatchingCard(tp,s.pzplacefilter,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_EXTRA,0,1,1,nil,code)"
+        }
+      ]
+    },
+    {
+      "file": "c230947464.lua",
+      "type_filters": [
+        "s.thfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.thfilter",
+          "line": 80,
+          "call": "if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,nil) end"
+        },
+        {
+          "filter": "s.thfilter",
+          "line": 85,
+          "call": "local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,1,nil)"
+        }
+      ]
+    },
+    {
+      "file": "c238273769.lua",
+      "type_filters": [
+        "s.deckfilter",
+        "s.searchfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.deckfilter",
+          "line": 105,
+          "call": "local tc=Duel.SelectMatchingCard(tp,s.deckfilter,tp,LOCATION_DECK,0,1,1,nil,e,tp):GetFirst()"
+        },
+        {
+          "filter": "s.searchfilter",
+          "line": 144,
+          "call": "if chk==0 then return Duel.IsExistingMatchingCard(s.searchfilter,tp,LOCATION_DECK,0,1,nil) end"
+        },
+        {
+          "filter": "s.searchfilter",
+          "line": 149,
+          "call": "local g=Duel.SelectMatchingCard(tp,s.searchfilter,tp,LOCATION_DECK,0,1,1,nil)"
+        }
+      ]
+    },
+    {
+      "file": "c238273770.lua",
+      "type_filters": [
+        "s.searchfilter",
+        "s.spfilter",
+        "s.precruitfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.searchfilter",
+          "line": 108,
+          "call": "if chk==0 then return Duel.IsExistingMatchingCard(s.searchfilter,tp,LOCATION_DECK,0,1,nil) end"
+        },
+        {
+          "filter": "s.searchfilter",
+          "line": 113,
+          "call": "local g=Duel.SelectMatchingCard(tp,s.searchfilter,tp,LOCATION_DECK,0,1,1,nil)"
+        },
+        {
+          "filter": "s.spfilter",
+          "line": 148,
+          "call": "local tc=Duel.SelectMatchingCard(tp,s.spfilter,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_EXTRA,0,1,1,nil,e,tp):GetFirst()"
+        },
+        {
+          "filter": "s.spfilter",
+          "line": 162,
+          "call": "if chk==0 then return Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil,e,tp) end"
+        },
+        {
+          "filter": "s.spfilter",
+          "line": 167,
+          "call": "local tc=Duel.SelectMatchingCard(tp,s.spfilter,tp,LOCATION_HAND+LOCATION_GRAVE,0,1,1,nil,e,tp):GetFirst()"
+        },
+        {
+          "filter": "s.precruitfilter",
+          "line": 135,
+          "call": "or Duel.IsExistingMatchingCard(s.precruitfilter,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_EXTRA,0,1,nil,e,tp,c))"
+        }
+      ]
+    },
+    {
+      "file": "c244986323.lua",
+      "type_filters": [
+        "s.cfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.cfilter",
+          "line": 80,
+          "call": "return eg:IsExists(s.cfilter,1,nil,tp)"
+        }
+      ]
+    },
+    {
+      "file": "c245935439.lua",
+      "type_filters": [
+        "s.spfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.spfilter",
+          "line": 121,
+          "call": "and Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_PZONE,0,1,nil,e,tp)"
+        },
+        {
+          "filter": "s.spfilter",
+          "line": 128,
+          "call": "local g=Duel.SelectMatchingCard(tp,s.spfilter,tp,LOCATION_PZONE,0,1,1,nil,e,tp)"
+        }
+      ]
+    },
+    {
+      "file": "c256928871.lua",
+      "type_filters": [
+        "s.drfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.drfilter",
+          "line": 97,
+          "call": "return Duel.IsExistingMatchingCard(s.drfilter,tp,LOCATION_MZONE,0,1,e:GetHandler())"
+        }
+      ]
+    },
+    {
+      "file": "c259678739.lua",
+      "type_filters": [
+        "s.thfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.thfilter",
+          "line": 119,
+          "call": "and Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,nil) end"
+        },
+        {
+          "filter": "s.thfilter",
+          "line": 125,
+          "call": "local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK+LOCATION_EXTRA,0,1,1,nil)"
+        }
+      ]
+    },
+    {
+      "file": "c259873115.lua",
+      "type_filters": [
+        "s.followfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.followfilter",
+          "line": 195,
+          "call": "if Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.followfilter),tp,LOCATION_GRAVE+LOCATION_EXTRA,0,1,nil,e,tp,code)"
+        },
+        {
+          "filter": "s.followfilter",
+          "line": 198,
+          "call": "local sg=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.followfilter),tp,LOCATION_GRAVE+LOCATION_EXTRA,0,1,1,nil,e,tp,code)"
+        }
+      ]
+    },
+    {
+      "file": "c259882493.lua",
+      "type_filters": [
+        "s.vmon"
+      ],
+      "calls": [
+        {
+          "filter": "s.vmon",
+          "line": 22,
+          "call": "function s.coinop(e,tp) local res=Duel.TossCoin(tp,1); if res==COIN_HEADS and Duel.GetLocationCount(tp,LOCATION_PZONE)>0 then local g=Duel.GetMatchingGroup(s.vmon,tp,LOCATION_DECK+LOCATION_EXTRA,0,nil); if #g>0 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD); local tc=g:Select(tp,1,1,nil):GetFirst(); Duel.MoveToField(tc,tp,tp,LOCATION_PZONE,POS_FACEUP,true) end elseif res==COIN_TAILS then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET); local g=Duel.SelectMatchingCard(tp,s.vst,tp,LOCATION_DECK,0,1,1,nil); if #g>0 then Duel.SSet(tp,g) end end end"
+        }
+      ]
+    },
+    {
+      "file": "c284636589.lua",
+      "type_filters": [
+        "s.pendulumfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.pendulumfilter",
+          "line": 48,
+          "call": "and Duel.IsExistingMatchingCard(s.pendulumfilter,tp,LOCATION_DECK,0,1,nil) end"
+        },
+        {
+          "filter": "s.pendulumfilter",
+          "line": 57,
+          "call": "local pg=Duel.SelectMatchingCard(tp,s.pendulumfilter,tp,LOCATION_DECK,0,1,1,nil)"
+        }
+      ]
+    },
+    {
+      "file": "c284639717.lua",
+      "type_filters": [
+        "s.deckfilter",
+        "s.thfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.deckfilter",
+          "line": 58,
+          "call": "and Duel.IsExistingMatchingCard(s.deckfilter,tp,LOCATION_DECK,0,1,nil) end"
+        },
+        {
+          "filter": "s.deckfilter",
+          "line": 73,
+          "call": "local pg=Duel.SelectMatchingCard(tp,s.deckfilter,tp,LOCATION_DECK,0,1,1,nil)"
+        },
+        {
+          "filter": "s.thfilter",
+          "line": 85,
+          "call": "if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil) end"
+        },
+        {
+          "filter": "s.thfilter",
+          "line": 89,
+          "call": "if not Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil) then return end"
+        },
+        {
+          "filter": "s.thfilter",
+          "line": 91,
+          "call": "local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)"
+        }
+      ]
+    },
+    {
+      "file": "c284639718.lua",
+      "type_filters": [
+        "s.deckfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.deckfilter",
+          "line": 74,
+          "call": "and Duel.IsExistingMatchingCard(s.deckfilter,tp,LOCATION_DECK,0,1,nil) end"
+        },
+        {
+          "filter": "s.deckfilter",
+          "line": 89,
+          "call": "local pg=Duel.SelectMatchingCard(tp,s.deckfilter,tp,LOCATION_DECK,0,1,1,nil)"
+        }
+      ]
+    },
+    {
+      "file": "c284639719.lua",
+      "type_filters": [
+        "s.deckfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.deckfilter",
+          "line": 106,
+          "call": "and Duel.IsExistingMatchingCard(s.deckfilter,tp,LOCATION_DECK,0,1,nil) end"
+        },
+        {
+          "filter": "s.deckfilter",
+          "line": 121,
+          "call": "local pg=Duel.SelectMatchingCard(tp,s.deckfilter,tp,LOCATION_DECK,0,1,1,nil)"
+        }
+      ]
+    },
+    {
+      "file": "c284639721.lua",
+      "type_filters": [
+        "s.deckfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.deckfilter",
+          "line": 112,
+          "call": "local deckok=Duel.IsExistingMatchingCard(s.deckfilter,tp,LOCATION_DECK,0,1,nil)"
+        },
+        {
+          "filter": "s.deckfilter",
+          "line": 135,
+          "call": "if not Duel.IsExistingMatchingCard(s.deckfilter,tp,LOCATION_DECK,0,1,nil) then return end"
+        },
+        {
+          "filter": "s.deckfilter",
+          "line": 137,
+          "call": "local g=Duel.SelectMatchingCard(tp,s.deckfilter,tp,LOCATION_DECK,0,1,1,nil)"
+        }
+      ]
+    },
+    {
+      "file": "c284639722.lua",
+      "type_filters": [
+        "s.revivefilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.revivefilter",
+          "line": 108,
+          "call": "and Duel.IsExistingTarget(aux.NecroValleyFilter(s.revivefilter),tp,LOCATION_GRAVE,0,1,nil,e,tp)"
+        },
+        {
+          "filter": "s.revivefilter",
+          "line": 117,
+          "call": "Duel.SelectTarget(tp,aux.NecroValleyFilter(s.revivefilter),tp,LOCATION_GRAVE,0,1,1,nil,e,tp)"
+        },
+        {
+          "filter": "s.revivefilter",
+          "line": 140,
+          "call": "if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 or not s.revivefilter(tc,e,tp) then return end"
+        }
+      ]
+    },
+    {
+      "file": "c284639723.lua",
+      "type_filters": [
+        "s.tdfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.tdfilter",
+          "line": 141,
+          "call": "if chk==0 then return ct>0 and Duel.GetMatchingGroupCount(s.tdfilter,tp,LOCATION_EXTRA,0,nil)>=ct end"
+        },
+        {
+          "filter": "s.tdfilter",
+          "line": 146,
+          "call": "if ct<=0 or Duel.GetMatchingGroupCount(s.tdfilter,tp,LOCATION_EXTRA,0,nil)<ct then return end"
+        },
+        {
+          "filter": "s.tdfilter",
+          "line": 148,
+          "call": "local g=Duel.SelectMatchingCard(tp,s.tdfilter,tp,LOCATION_EXTRA,0,ct,ct,nil)"
+        }
+      ]
+    },
+    {
+      "file": "c284639724.lua",
+      "type_filters": [
+        "s.desfilter"
+      ],
+      "calls": [
+        {
+          "filter": "s.desfilter",
+          "line": 135,
+          "call": "if chk==0 then return Duel.IsExistingMatchingCard(s.desfilter,tp,0,LOCATION_MZONE,1,nil) end"
+        },
+        {
+          "filter": "s.desfilter",
+          "line": 139,
+          "call": "if not Duel.IsExistingMatchingCard(s.desfilter,tp,0,LOCATION_MZONE,1,nil) then return end"
+        },
+        {
+          "filter": "s.desfilter",
+          "line": 141,
+          "call": "local g=Duel.SelectMatchingCard(tp,s.desfilter,tp,0,LOCATION_MZONE,1,1,nil)"
+        }
+      ]
+    }
+  ],
+  "confirmed_bug": "c245935439.lua s.spfilter used directly on LOCATION_PZONE",
+  "other_candidates": "Deck/Extra/GY/MZONE filters; retain current type checks"
+}

@@ -1,4 +1,4 @@
--- Coulomb, the Ohmechanic Charger
+-- Coulomb, the Ohmenchanic Charger
 local s,id=GetID()
 local STRING_ID=133841490
 local COUNTER_CURRENT = 0x18f0

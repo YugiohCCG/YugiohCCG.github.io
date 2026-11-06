@@ -38,13 +38,6 @@ function s.splimit(e,c)
 end
 function s.rmop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not c:IsRelateToEffect(e) or Duel.Remove(c,POS_FACEUP,REASON_EFFECT)==0 or not c:IsLocation(LOCATION_REMOVED) then return end
-	local g=Duel.GetMatchingGroup(s.deckfilter,tp,LOCATION_DECK,0,nil)
-	if #g>=2 then
-		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-		local sg=g:Select(tp,2,2,nil)
-		Duel.Remove(sg,POS_FACEUP,REASON_EFFECT)
-	end
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
 	e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
@@ -53,4 +46,12 @@ function s.rmop(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetTarget(s.splimit)
 	e1:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e1,tp)
+	if not c:IsRelateToEffect(e) or Duel.Remove(c,POS_FACEUP,REASON_EFFECT)==0 or not c:IsLocation(LOCATION_REMOVED) then return end
+	local g=Duel.GetMatchingGroup(s.deckfilter,tp,LOCATION_DECK,0,nil)
+	if #g>=2 then
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
+		local sg=g:Select(tp,2,2,nil)
+		Duel.Remove(sg,POS_FACEUP,REASON_EFFECT)
+	end
+
 end

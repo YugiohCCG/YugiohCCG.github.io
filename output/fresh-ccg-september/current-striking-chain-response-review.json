@@ -1,0 +1,82 @@
+{
+  "scope": "Six native original set-trap chain response cases: opponent monster activation with optional follow-up accepted/declined, Spell activation, own-player exclusion, late CL3 native destruction protection, and no remaining eligible monster. Actor operation still resolves after destruction. Neutral actors; no Lua API mapping. No production changes.",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_striking_chain_response_batch.py": "a42ab7fb99349011322c121c54848ed9e9e40124c8b48bd61489f218fb874099",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_striking_chain_response.cjs": "6b7abba41f65f326f4be88f8a3feec1867b4a39b55117250267b085aa8787db4",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c250902476.lua": "27adf7726f2675cd04813234c6b154024add69876179d8811ed5bd751ea438ee",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c250902476.lua": "27adf7726f2675cd04813234c6b154024add69876179d8811ed5bd751ea438ee",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "mode": "current",
+      "file": "current-striking-chain-response-current.json",
+      "sha256": "ce70d9d60f4fa3193f65e8238d4c69e76cffab63f4e87131eeaea6b9bad1fa5a",
+      "expected_failures": []
+    },
+    {
+      "mode": "no-destroy",
+      "file": "current-striking-chain-response-no-destroy.json",
+      "sha256": "ff755848533c0c4dac868b9a56923c3f85d638cb906dfd2e5f52699ada3cf349",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        5
+      ]
+    },
+    {
+      "mode": "no-extra",
+      "file": "current-striking-chain-response-no-extra.json",
+      "sha256": "c1fd4deca2797b7c36305ffc79925366559f2fd84224042c1ca6e691fdeedab7",
+      "expected_failures": [
+        1,
+        2
+      ]
+    },
+    {
+      "mode": "own-allowed",
+      "file": "current-striking-chain-response-own-allowed.json",
+      "sha256": "a847941f38f62b89621e28ea260a88a6c215ef6bfd7c751ea7fcae7239aa1e8a",
+      "expected_failures": [
+        3
+      ]
+    },
+    {
+      "mode": "independent-extra",
+      "file": "current-striking-chain-response-independent-extra.json",
+      "sha256": "4dd71bd79a17a7c4130b13b20654e6d072bbbb38f115bb9ebf02abe4f72fb5d2",
+      "expected_failures": [
+        4
+      ]
+    }
+  ],
+  "related_evidence": [
+    {
+      "file": "current-striking-attack-scope-review.json",
+      "sha256": "da7977b6530cbaf3ea8b6c1bda74d6c480cd70e2748d2cd9d402bbaa637d91e5"
+    },
+    {
+      "file": "current-card-count-truthiness-triage.json",
+      "sha256": "80a732324735e8154659cd7c7b5fb9fa240932fbf83852b9ac5677190157f73d"
+    }
+  ],
+  "remaining_gaps": [
+    "GY/banished effect-source activation legality remains unconfirmed; no production restriction added",
+    "Source departure and return, negated activation versus effect, shared named activation count/reset",
+    "Live Omega and full-card certification"
+  ]
+}

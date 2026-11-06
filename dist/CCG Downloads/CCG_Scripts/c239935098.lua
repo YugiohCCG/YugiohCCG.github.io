@@ -97,7 +97,7 @@ function s.procop(e,tp,eg,ep,ev,re,r,rp,c)
  Duel.Remove(sg,POS_FACEUP,REASON_COST+REASON_MATERIAL+REASON_FUSION)
 end
 function s.destroyed(c,tp)
- return c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE)
+ return c:IsPreviousPosition(POS_FACEUP) and c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE)
   and bit.band(c:GetPreviousTypeOnField(),TYPE_MONSTER)~=0
   and ((bit.band(c:GetPreviousAttributeOnField(),ATTRIBUTE_WATER)~=0 and bit.band(c:GetPreviousRaceOnField(),RACE_REPTILE)~=0) or c:IsPreviousSetCard(HYDRA))
 end

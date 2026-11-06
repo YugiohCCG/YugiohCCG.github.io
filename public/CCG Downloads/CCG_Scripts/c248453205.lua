@@ -39,7 +39,12 @@ end
 function s.leaveop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local p=e:GetLabel()
-	if c:IsLocation(LOCATION_DECK) and c:IsControler(1-p) then return end
+	e:Reset()
+	if c:IsLocation(LOCATION_DECK) and c:IsControler(1-p) then
+		Duel.ShuffleDeck(1-p)
+		if not c:IsFaceup() then c:ReverseInDeck() end
+		return
+	end
 	if c:IsAbleToDeck() then
 		s.faceupoppdeck(c,p,REASON_EFFECT)
 	end
@@ -51,7 +56,7 @@ function s.registerleave(c,tp)
 	e1:SetCode(EVENT_LEAVE_FIELD)
 	e1:SetLabel(tp)
 	e1:SetOperation(s.leaveop)
-	e1:SetReset(RESET_EVENT+RESETS_STANDARD)
+	e1:SetReset(RESET_EVENT+RESET_TURN_SET+RESET_TOFIELD)
 	c:RegisterEffect(e1,true)
 end
 function s.costfilter(c,tp,needzone)

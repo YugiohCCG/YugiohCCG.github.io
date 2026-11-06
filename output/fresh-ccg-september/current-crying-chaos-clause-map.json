@@ -1,0 +1,1185 @@
+{
+  "scope": "All19 Crying Chaos cards have printed-clause/source mappings with explicit scoped evidence and behavioral gaps. Stored sound tests reused by exact source/artifact/parent/runtime verification. Search-family historical candidate-DB drift is retained and superseded only by the separate fresh four-case search review. No entire-card/live certification; current metadata comparison is recorded separately.",
+  "spec_sha256": "e623c77c4dd50fbc29cc068a5609d9a014e0241f46dfec8e1b95823a15786c18",
+  "review_script_sha256": "a8db73762ffb8a01fed1b23dd1f48235b013f944268a7d9fbd4b794a16617773",
+  "provenance_checker_sha256": "0dbf6eee95e7f753a5519448ac52be0fb3dbafefe061d7b41274f217325af011",
+  "evidence": {
+    "plague_hand": {
+      "passcode": 217118040,
+      "status": "PROVENANCE_RECONCILED_PUBLIC_ENGINE_EVIDENCE_REUSED",
+      "files": [
+        {
+          "file": "current-plague-doctor-summon.json",
+          "sha256": "40eddb6a71097f294303342c67bcf580574ada24eb2a7e87d9e9c3948f7b94fa",
+          "cases": 8,
+          "scope": "Plague Doctor actual inherent Hand summon supported by own faceup Level1/3 Zombie; GY, Level4, wrongrace, facedown, opponent and fullzone excluded. Tuner effect/shared limits/native Omega OPEN",
+          "parent": "current-plague-doctor-summon-batch.json"
+        },
+        {
+          "file": "current-plague-doctor-summon-limit.json",
+          "sha256": "66b5772f73985a0be9f9878b23e253a1213ba65c35078abd19e1f53fb6b6f1b1",
+          "cases": 2,
+          "scope": "Plague Doctor actual Hand inherent summons: shared once-per-turn exclusion despite remaining support/Hand copy/free zones; actual second summon next own turn after reset. No adapters; native Omega OPEN",
+          "parent": "current-plague-doctor-summon-limit-batch.json"
+        }
+      ]
+    },
+    "plague_tuner": {
+      "passcode": 217118040,
+      "status": "PROVENANCE_RECONCILED_PUBLIC_ENGINE_EVIDENCE_REUSED",
+      "files": [
+        {
+          "file": "current-plague-doctor-tuner.json",
+          "sha256": "ac2bb556e3dd1e75acff625e6e7a3556d7cbc4b620a53065647694bb24046e09",
+          "cases": 5,
+          "scope": "Plague Doctor actual Tuner ignition, Hand-to-GY cost with REASON_COST, type gains and expiry. Own faceup Tuner/noHand excluded; opposing/facedown Tuner allowed. No adapters; shared limits/interruption/native Omega OPEN",
+          "parent": "current-plague-doctor-tuner-batch.json"
+        },
+        {
+          "file": "current-plague-doctor-interruption.json",
+          "sha256": "26dda429a9f3af3d575c1ddff98a18c5a8b8f75466b8cb554acf633b7091fb46",
+          "cases": 5,
+          "scope": "Plague Doctor actual paid Tuner ignition with native chained removal/facedown/activation negation/effect negation; cost remains paid and no onfield Tuner predicate. Reference gains Tuner and expires. No adapters; shared limits/native Omega OPEN",
+          "parent": "current-plague-doctor-interruption-batch.json"
+        }
+      ]
+    },
+    "plague_limits": {
+      "passcode": 217118040,
+      "status": "PROVENANCE_RECONCILED_PUBLIC_ENGINE_EVIDENCE_REUSED",
+      "files": [
+        {
+          "file": "current-plague-doctor-shared-use.json",
+          "sha256": "f1ebf8452fe3332200cd24953587de14b8b81a9f2755fea852c8de01fd22eca1",
+          "cases": 2,
+          "scope": "Plague Doctor successful Tuner ignition, independent actual flip of first Tuner clears condition; shared use still excludes second copy with payable cost, next own turn reset permits actual second Tuner/cost. No adapters; native Omega OPEN",
+          "parent": "current-plague-doctor-shared-use-batch.json"
+        },
+        {
+          "file": "current-plague-doctor-negated-use.json",
+          "sha256": "aa14b423c076554ef33852cbd352cef2e73f35b03102e155e52a8708a64c3083",
+          "cases": 4,
+          "scope": "Plague Doctor first activation/effect negated Tuner ignition consumes shared use despite second payable cost and no own Tuner; next own turn resets and actual second ignition pays cost/gains Tuner. No adapters; native Omega OPEN",
+          "parent": "current-plague-doctor-negated-use-batch.json"
+        }
+      ]
+    },
+    "guardian_summon": {
+      "passcode": 252513554,
+      "status": "PROVENANCE_RECONCILED_PUBLIC_ENGINE_EVIDENCE_REUSED",
+      "files": [
+        {
+          "file": "current-guardian-crying-summon.json",
+          "sha256": "dd62c63a9f6a06ef893be33abd07ed32874c49f251fc4e05efca7162afe8a561",
+          "cases": 7,
+          "scope": "GuardianCryingChaos actual inherent Hand/GY SS with own faceup2500ATK CryingChaosmonster;2499/wrongset/facedown/opponent/fullzones exclude. Levelchange trigger declined. No adapters; levelchange/Necrovalley/nativeOmega OPEN",
+          "parent": "current-guardian-crying-summon-batch.json"
+        },
+        {
+          "file": "current-guardian-crying-necrovalley.json",
+          "sha256": "e1b4b0ed5635463271a181362762fd07a843483bb4bf2a378ce5f6b7dd99045a",
+          "cases": 4,
+          "scope": "GuardianCryingChaos actual inherent Hand/GY SS with full native opposing Necrovalley: Hand remains allowed, GY blocked; noValley reference permits both. Levelchange declined. No adapters; nativeOmega OPEN",
+          "parent": "current-guardian-crying-necrovalley-batch.json"
+        }
+      ]
+    },
+    "guardian_level": {
+      "passcode": 252513554,
+      "status": "PROVENANCE_RECONCILED_PUBLIC_ENGINE_EVIDENCE_REUSED",
+      "files": [
+        {
+          "file": "current-guardian-crying-level.json",
+          "sha256": "97aa0e616b5d3853de0c276cff7dcf9cd1fd57c3f2c7d4fff8ac020b35f14c10",
+          "cases": 5,
+          "scope": "GuardianCryingChaos actual inherent Hand/GY SS then optional +2/-2 level, decline and native EndPhase expiry. No adapters; sharedlimit/interruption/Necrovalley/nativeOmega OPEN",
+          "parent": "current-guardian-crying-level-batch.json"
+        },
+        {
+          "file": "current-guardian-crying-level-boundary.json",
+          "sha256": "2f4cab60470df34ca8d932c81ae3f94b0e8c77ac3641bf5c3345ac6dd4473658",
+          "cases": 4,
+          "scope": "Guardian native supporting field effect sets current Level 1/2/3; +2 available at all, -2 only above Level 2, native expiry. Printed metadata unchanged. Native Omega OPEN",
+          "parent": "current-guardian-crying-level-boundary-batch.json"
+        },
+        {
+          "file": "current-guardian-crying-level-interruption.json",
+          "sha256": "73291ee30d2c6e7a975feed000a4d2980647606e01a04fdab4debc20bfa68730",
+          "cases": 3,
+          "scope": "Guardian actual inherent summon and level trigger with actual chained removal or facedown interruption; reference +2 and expiry. No adapters; native Omega OPEN",
+          "parent": "current-guardian-crying-level-interruption-batch.json"
+        },
+        {
+          "file": "current-guardian-crying-level-negation.json",
+          "sha256": "5dfeb2b484403b3fdccb1c7d97f35f7c3457e87a4b1b724d1bb4350d855d64cf",
+          "cases": 3,
+          "scope": "Guardian actual inherent summon and optional level trigger activation/effect negation; native chain messages and unchanged level; reference +2 and expiry. No adapters; native Omega OPEN",
+          "parent": "current-guardian-crying-level-negation-batch.json"
+        }
+      ]
+    },
+    "guardian_limits": {
+      "passcode": 252513554,
+      "status": "PROVENANCE_RECONCILED_PUBLIC_ENGINE_EVIDENCE_REUSED",
+      "files": [
+        {
+          "file": "current-guardian-crying-level-limit.json",
+          "sha256": "066d3873cb21c4a37a20e32f369bc927a5bb3e29bbc0af445fbd6aebcaa84384",
+          "cases": 2,
+          "scope": "GuardianCryingChaos two actual inherent Hand summons: levelchange shared across copies, secondtrigger only nextownturn3 after reset. Native level values and chain/summon counts; no adapters. Interruption/Necrovalley/nativeOmega OPEN",
+          "parent": "current-guardian-crying-level-limit-batch.json"
+        },
+        {
+          "file": "current-guardian-crying-negated-use.json",
+          "sha256": "9607759f8fd8b6730b521d669e11809acc00211efd7b0f716c4e35d1cbb2e36d",
+          "cases": 4,
+          "scope": "Guardian activation/effect negated first level trigger still consumes shared once-per-turn use; second inherent summon allowed, trigger only next own turn after reset. Native messages/levels/summon counts; native Omega OPEN",
+          "parent": "current-guardian-crying-negated-use-batch.json"
+        }
+      ]
+    },
+    "light_search": {
+      "passcode": 258241424,
+      "status": "HISTORICAL_SOURCE_MATCHED_WITH_METADATA_DRIFT",
+      "files": [
+        {
+          "file": "spell-search-258241424-240976976.json",
+          "sha256": "b03748a86d2ca5c581d64281d006b214fabafa97f43dfc2f402115d1df0a541c",
+          "cases": 2,
+          "scope": "Shared full-source/canonical-target test: actual Spell activation, accepted Deck search or declined trigger. Other effects, Special Summon trigger, filters/counts/locks and native Omega remain open",
+          "parent": "spell-search-family-batch.json"
+        }
+      ]
+    },
+    "world_search": {
+      "passcode": 255953418,
+      "status": "HISTORICAL_SOURCE_MATCHED_WITH_METADATA_DRIFT",
+      "files": [
+        {
+          "file": "spell-search-255953418-240976976.json",
+          "sha256": "4b6715f5428c9d24fbc180c10e9a3d60208cfb6a0ccb40099becee615d02a43a",
+          "cases": 2,
+          "scope": "Shared full-source/canonical-target test: actual Spell activation, accepted Deck search or declined trigger. Other effects, Special Summon trigger, filters/counts/locks and native Omega remain open",
+          "parent": "spell-search-family-batch.json"
+        }
+      ]
+    },
+    "throne_pair": {
+      "passcode": 216294702,
+      "status": "PROVENANCE_RECONCILED_PUBLIC_ENGINE_EVIDENCE_REUSED",
+      "files": [
+        {
+          "file": "current-throne-summon.json",
+          "sha256": "53045b1882a37e0c2d4745bc6048feee3c4121f2fecd817ca8c3a8892884685f",
+          "cases": 7,
+          "scope": "Native Throne pair summon: own/mixed/opponent banished Zombie pairs, Level/race/faceup/two-zone eligibility. Both actual ownfield/SPSUMMONED. Explicit legacy CHAININFO_TARGET_CARDS=8 adapter. Redirect/limits/native Omega open",
+          "parent": "current-throne-summon-batch.json"
+        }
+      ]
+    },
+    "hunter_choice": {
+      "file": "current-field-set-boolean-choice-review.json",
+      "sha256": "778c1f0101c2f7453327d86c0b34892cbdb80b106b5c026ba48bab5e98467826",
+      "status": "FIELD_SET_BOOLEAN_CHOICES_REPAIRED",
+      "qualification": "Neutral ordinary Set/Add/backrow/response resources. Melissa field-seeded with real native overlay setup, not original Xyz recipe/history certification; Oracle original Link recipe and other printed clauses/use/reset/live Omega remain open. Three confirmed repairs plus one unreproduced resource qualification from a four-candidate complementary source scan, not universal Set/card certification."
+    },
+    "ram_revive": {
+      "file": "current-ram-redirect-timing-review.json",
+      "sha256": "b468f19e9fd3bfea39ffb5c628e967e28136ddb7dbe09bf101e9d2b436f6eea3",
+      "status": "RAM_REDIRECT_TIMING_REPAIRED",
+      "qualification": "Full Ram source/current installed metadata, full bundled Zombie Mammoth43642620 source/official stat identity. Neutral source helper uses explicit typed-as-Synchro GY summon with original recipe/revival limit bypass, solely to reach original registered revival trigger. Original Extra recipe probe fails missing Duel.CheckSynchroMaterial and is retained; no original source procedure/mandatory damage operation/other clauses/use/reset/live Omega certification. Stop after actual recipient departure before unrelated Mammoth damage operation; no Lua API mapping or production API replacement."
+    },
+    "negation_timing": {
+      "file": "current-crying-negation-damage-window-review.json",
+      "sha256": "311b36d29a8ee34a39670f83d2fe670cf9527159b7c9c6709317973c9444ee0a",
+      "status": "CRYING_NEGATION_DAMAGE_WINDOW_REPAIRED",
+      "qualification": "Full original source/current installed metadata; source Synchros and Catastor field-seeded, original recipes not tested. Full original Man-Eater Bug/Injection Fairy Lily/Catastor effects and actual battles. Natir explicit established CHAININFO_TARGET_CARDS=8 test mapping; Catastor explicit pure-attribute IsNonAttribute polarity mapping, with unadapted failures preserved. No production API replacements. Other clauses/named sharing/reset/live Omega remain open."
+    },
+    "throne_redirect": {
+      "file": "current-throne-bottom-redirect-review.json",
+      "sha256": "7fd10635eb6e7614f58ea0612d1924d77f2508045503aa9c3aaf383b27ba4e3e",
+      "status": "SCOPED_ORIGINAL_BOTTOM_REDIRECT_VERIFIED_NO_REPAIR",
+      "qualification": "Full original source/current installed metadata, actual targeted summon/ownership/redirect with full bundled Mammoth source and official stat identity. Neutral GY support/later-departure helper. Existing CHAININFO_TARGET_CARDS=8 mapping retained; stop after departure before unrelated Mammoth mandatory damage operation. Activation sharing/negated activation/reset and live Omega remain open."
+    },
+    "search_refresh": {
+      "file": "current-crying-search-refresh-review.json",
+      "sha256": "a0021fa5c80883230560ea8c071c861ca26c1d95b8f9bdd61341887081706293",
+      "status": "CURRENT_METADATA_SEARCH_EVIDENCE_REFRESHED_NO_REPAIR",
+      "qualification": "Full original source/target scripts; current candidate/installed actor data equality does not turn the older DB-pin mismatch into a current-provenance pass. Fresh artifacts have new names and exact current dependency pins. Search-only scope: GY effect/World Synchro trigger/other filter boundaries/limits/reset/live Omega remain open; no production changes or broad gates."
+    },
+    "light_gy": {
+      "file": "current-crying-light-grave-review.json",
+      "sha256": "9b7146450f3c0ed431447476eb9709549883991e8ece938c0820e6e0d65570ed",
+      "status": "SCOPED_ORIGINAL_GY_RECOVERY_VERIFIED_NO_REPAIR",
+      "qualification": "Current source/installed metadata, original cost/operation and full stock Necrovalley continuous effect; neutral typed resources and response helper. No Lua API mapping. Normal activation search has its existing separate refresh. Cross-copy named sharing, Main/GY independent use, negated use/reset and live Omega remain open. Not full-card certification; no broad-gate rerun or counter promotion."
+    },
+    "light_limits": {
+      "file": "current-crying-light-limits-review.json",
+      "sha256": "e8235571a5530d2d58eedc7d9eb9580f7fe907bca0c6c9a82242d295850613d3",
+      "status": "SCOPED_ORIGINAL_NAMED_LIMITS_VERIFIED_NO_REPAIR",
+      "qualification": "Original source/installed metadata; neutral typed Crying Chaos Zombie Tuner resources/helper. No Lua API mapping. Separate player reset cases do not prove simultaneous same-turn independent player scope. Remaining search bounds and live Omega open; no entire-card certification or count promotion."
+    },
+    "world_trigger": {
+      "file": "current-crying-world-trigger-review.json",
+      "sha256": "1397cd4390f2752f03af996b35a60b7a90208a393ddad8e9ecd222c94f8b2238",
+      "status": "SCOPED_ORIGINAL_WORLD_TRIGGER_VERIFIED_NO_REPAIR",
+      "qualification": "World seeded faceup Field. Native summon event supplied by neutral typed Extra recipient and helper effect treated-as-Synchro with true,true recipe/revival-limit bypass. No original Crying Chaos Synchro procedure or material history certified. Full original source/current installed metadata and original stock Necrovalley; neutral recipient/helper resources; no Lua API mapping. Named use/reset/player scope, original recipes and live Omega remain open. No broad gates/count promotion."
+    },
+    "search_boundaries": {
+      "file": "current-crying-search-boundaries-review.json",
+      "sha256": "0d2f8833d40161db7cd2adf785e90c6b0df0be2a1550192cb6f40631d89e67b8",
+      "status": "SCOPED_ORIGINAL_SEARCH_BOUNDARIES_VERIFIED_NO_REPAIR",
+      "qualification": "Full original actor sources/current installed metadata; neutral resource with controlled Level/type/set/Hand immunity and native CL2 movement helper. No Lua API mapping. Does not certify World named limits/trigger procedure, original recipes or live Omega. No count promotion/broad gates."
+    },
+    "throne_limits": {
+      "file": "current-throne-activation-limits-review.json",
+      "sha256": "83615ac0436de7088fe469c063a1a9332db3edc975860fefb78cc557d9b33a24",
+      "status": "SCOPED_ORIGINAL_THRONE_ACTIVATION_LIMIT_VERIFIED_NO_REPAIR",
+      "qualification": "Neutral same-Level Zombie resources and response helper; existing explicit CHAININFO_TARGET_CARDS=8 test mapping retained. Effect negation is not activation negation. Original activation-negation/OATH behavior remains supported-runtime qualified; no repeat of known ineffective OATH substitutions, no production API replacement. Pair eligibility/redirect existing evidence reused separately; live Omega/full-card certification remain open. No broad gates/count promotion."
+    },
+    "world_limits": {
+      "file": "current-world-named-limits-review.json",
+      "sha256": "376db94d4df31e1fab7b49f8332c7d7b58639b8d7117ff9af434923153528e52",
+      "status": "SCOPED_ORIGINAL_WORLD_NAMED_LIMITS_VERIFIED_NO_REPAIR",
+      "qualification": "Seeded Field except actual Main activation cases; neutral typed GY Synchro/helper generates treated-as-Synchro event with true,true recipe/revival-limit bypass. No original Crying Chaos Synchro recipe/material history certification; full original source/current installed metadata, no Lua API mapping. Revival activation-negation/independent player scope and original/live runtime remain qualified. No broad gates/full-card/count promotion."
+    },
+    "ram_tribute": {
+      "file": "current-ram-tribute-resource-review.json",
+      "sha256": "4ddf797e80d9bb3b963e57551fefcf782325593c2622a9619a845381d98ac38e",
+      "status": "RAM_TRIBUTE_RESOURCE_AVAILABILITY_REPAIRED",
+      "qualification": "Original Ram seeded field/current installed metadata; full bundled Axe actual activation/equip and full Mask continuous rule, controlled Equip/Trap metadata and neutral ordinary/protected recipients. No Lua API mapping; original Synchro recipe/procedure qualification retained. Original-procedure, other interruptions/use/reset/live Omega remain open. One previously counted card; no unique repair/full-card promotion."
+    },
+    "hunter_attack": {
+      "file": "current-hunter-attack-scaling-review.json",
+      "sha256": "ed2ec536aaf324ee7bfe6570ae8282748f3e9f5c5f06987a8ffb2531646b754b",
+      "status": "SCOPED_ORIGINAL_HUNTER_ATK_VERIFIED_NO_REPAIR",
+      "qualification": "Original Hunter seeded field; full source/current installed metadata, neutral typed resources/movement/control/Race/removal helpers, full bundled Skill Drain with controlled Continuous Trap metadata. No Lua API mapping. ToGY trigger/cost/search existing cases reused separately; named use/reset/other responses/original summon history/live Omega remain open. No broad gates/full-card/count promotion."
+    },
+    "zebra_revival": {
+      "file": "current-zebra-revival-review.json",
+      "sha256": "b5a5acab35286d245200c999eb9b83647429d76f62cc4012fb11d9a88641d8dc",
+      "status": "SCOPED_ORIGINAL_ZEBRA_REVIVAL_VERIFIED_NO_REPAIR",
+      "qualification": "Passcode239725695 is Zebra of Crying Chaos in current spec, not Scarecrow; queue name corrected. Source starts GY then neutral helper treated-as-Synchro summons with true,true original procedure/revival-limit bypass; no original source Synchro recipe/history certification. Full original source/current installed metadata, full stock Necrovalley/controlled Field metadata, neutral typed resources/response helper; no Lua API mapping. Material-damage clause, named use/reset/other interruptions/live Omega remain open. Explicit Necrovalley-filter omission ineffective here; native engine still blocks the outcome, not independent predicate proof or universal redundancy. No broad gates/count promotion."
+    },
+    "zebra_damage": {
+      "file": "current-zebra-material-damage-review.json",
+      "sha256": "6241f118e62c48aa19f0581d74c20de6bc3738f6eb01e3614bd90da5ef6a4918",
+      "status": "SCOPED_TEST_MAPPED_ZEBRA_MATERIAL_DAMAGE_VERIFIED_NO_REPAIR",
+      "qualification": "Original source Zebra seeded field, so its own original Synchro recipe/history remains qualified. Neutral recipient custom inherent Synchro procedure checks exact two faceup own materials, Zebra Tuner4 plus non-Tuner2, Level6 and legal Extra zone; SetMaterial and native SendtoGrave(MATERIAL+SYNCHRO), no forced event, no SpecialSummon true,true. Fusion variant uses its separate native material reason. Controlled Macro metadata/full bundled script, neutral count/response resources. Original Zebra operation unadapted fails invalid CHAININFO_TARGET_PLAYER; explicit test-only enum9 mapping permits scoped cases, confirmed by opponent LP changes (own LP unchanged). Not an original-runtime/live/full-card pass. Named use/reset/additional interactions/live remain open; no production API changes, no broad gates/count promotion."
+    }
+  },
+  "parent_provenance_reviews": {
+    "current-plague-doctor-summon-batch.json": {
+      "sha256": "0e58465dac5052db53597fd855bbf59e3953e205e2a7ea1100a57fda97e962de",
+      "scope": "Plague Doctor actual inherent Hand summon supported by own faceup Level1/3 Zombie; GY, Level4, wrongrace, facedown, opponent and fullzone excluded. Tuner effect/shared limits/native Omega OPEN",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    },
+    "current-plague-doctor-summon-limit-batch.json": {
+      "sha256": "00245afa067895e7a6dcd720a13fe14c6f857e29b62c23e08084a9a8d67255a7",
+      "scope": "Plague Doctor actual Hand inherent summons: shared once-per-turn exclusion despite remaining support/Hand copy/free zones; actual second summon next own turn after reset. No adapters; native Omega OPEN",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    },
+    "current-plague-doctor-tuner-batch.json": {
+      "sha256": "eb0ca21c3c97b86574529c004881f96896a2655d8d7a9353dd409d374769cd00",
+      "scope": "Plague Doctor actual Tuner ignition, Hand-to-GY cost with REASON_COST, type gains and expiry. Own faceup Tuner/noHand excluded; opposing/facedown Tuner allowed. No adapters; shared limits/interruption/native Omega OPEN",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    },
+    "current-plague-doctor-interruption-batch.json": {
+      "sha256": "bf6e929f336f14bba76d6c2aa3b9b9924428455a6ba2707a3865bb23c8c92414",
+      "scope": "Plague Doctor actual paid Tuner ignition with native chained removal/facedown/activation negation/effect negation; cost remains paid and no onfield Tuner predicate. Reference gains Tuner and expires. No adapters; shared limits/native Omega OPEN",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    },
+    "current-plague-doctor-shared-use-batch.json": {
+      "sha256": "85a8e586628a508d3297fff7576dd0c878aa3cba24145c8bbc92baf04c6df639",
+      "scope": "Plague Doctor successful Tuner ignition, independent actual flip of first Tuner clears condition; shared use still excludes second copy with payable cost, next own turn reset permits actual second Tuner/cost. No adapters; native Omega OPEN",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    },
+    "current-plague-doctor-negated-use-batch.json": {
+      "sha256": "83c4af9dfdd160bbaf249b1e2a5f6a7637a2b971f1ce4e63bd22236f26a586a7",
+      "scope": "Plague Doctor first activation/effect negated Tuner ignition consumes shared use despite second payable cost and no own Tuner; next own turn resets and actual second ignition pays cost/gains Tuner. No adapters; native Omega OPEN",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    },
+    "current-guardian-crying-summon-batch.json": {
+      "sha256": "7b9ae2eaf11283726e7b8ad95840630b9a13ef4932f29afd8b0d7a50cb29af59",
+      "scope": "GuardianCryingChaos actual inherent Hand/GY SS with own faceup2500ATK CryingChaosmonster;2499/wrongset/facedown/opponent/fullzones exclude. Levelchange trigger declined. No adapters; levelchange/Necrovalley/nativeOmega OPEN",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    },
+    "current-guardian-crying-necrovalley-batch.json": {
+      "sha256": "69177e0b00ad0096a1c0b5213e7329a9ad251c74baf6ebec9c4078293962d166",
+      "scope": "GuardianCryingChaos actual inherent Hand/GY SS with full native opposing Necrovalley: Hand remains allowed, GY blocked; noValley reference permits both. Levelchange declined. No adapters; nativeOmega OPEN",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    },
+    "current-guardian-crying-level-batch.json": {
+      "sha256": "8f00a62c8818b2438d458f5999c11d8d1ca2a5457cb799b56e868ada55e50b5d",
+      "scope": "GuardianCryingChaos actual inherent Hand/GY SS then optional +2/-2 level, decline and native EndPhase expiry. No adapters; sharedlimit/interruption/Necrovalley/nativeOmega OPEN",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    },
+    "current-guardian-crying-level-boundary-batch.json": {
+      "sha256": "f6befc2d90bc04120bcf9d49503568e47adcf5f1e9132e9229824901074f40d6",
+      "scope": "Guardian native supporting field effect sets current Level 1/2/3; +2 available at all, -2 only above Level 2, native expiry. Printed metadata unchanged. Native Omega OPEN",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    },
+    "current-guardian-crying-level-interruption-batch.json": {
+      "sha256": "c51757f1305203cc1255d438abc85741854a72a29fc5d51f38a5fd8c523a535d",
+      "scope": "Guardian actual inherent summon and level trigger with actual chained removal or facedown interruption; reference +2 and expiry. No adapters; native Omega OPEN",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    },
+    "current-guardian-crying-level-negation-batch.json": {
+      "sha256": "53a8b0dcea42aa820845c21de921f52492c44838aa71c72b7adbe5303f229eee",
+      "scope": "Guardian actual inherent summon and optional level trigger activation/effect negation; native chain messages and unchanged level; reference +2 and expiry. No adapters; native Omega OPEN",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    },
+    "current-guardian-crying-level-limit-batch.json": {
+      "sha256": "e90589bf725f0070a1a4a632664d40fdeb2cbdb7ac4ae897fa7afb6b104ad38b",
+      "scope": "GuardianCryingChaos two actual inherent Hand summons: levelchange shared across copies, secondtrigger only nextownturn3 after reset. Native level values and chain/summon counts; no adapters. Interruption/Necrovalley/nativeOmega OPEN",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    },
+    "current-guardian-crying-negated-use-batch.json": {
+      "sha256": "48d8064671a9992276bc13ae75239b00bdcce89c6fabdee9c08d09841399075c",
+      "scope": "Guardian activation/effect negated first level trigger still consumes shared once-per-turn use; second inherent summon allowed, trigger only next own turn after reset. Native messages/levels/summon counts; native Omega OPEN",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    },
+    "spell-search-family-batch.json": {
+      "sha256": "5405fd8518933359f05715b9628cf93a0fc4948744de45c7c247e08678c708c8",
+      "scope": "Full production source and canonical target scripts. Actual Spell activation and Deck search positive/wrong-set. Shared no-search mutation must fail positive only. Other effects, locks/count/filter edges and native Omega open.",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [
+        {
+          "dependency": "candidate-CCG_v1.db",
+          "historical_sha256": "8691bd39578eaab3db60092935945813c2675a36cffd793e2c08b81cb7de4ba2",
+          "current_sha256": "79ce1e6a07f28d665940c58208c46bb96c0ea0ef68db896acc015d0cda590939",
+          "conclusion": "Historical DB pin differs; current actor-row equality alone does not prove historical inputs. New scoped search refresh supersedes this gap."
+        }
+      ],
+      "reviewed_source_subset": [
+        255953418,
+        258241424
+      ]
+    },
+    "current-throne-summon-batch.json": {
+      "sha256": "b311e2064dd1e73a3486c1bf2f345b8e2af82eb6d1944e3871dbf6fb8c4a3044",
+      "scope": "Native Throne pair summon: own/mixed/opponent banished Zombie pairs, Level/race/faceup/two-zone eligibility. Both actual ownfield/SPSUMMONED. Explicit legacy CHAININFO_TARGET_CARDS=8 adapter. Redirect/limits/native Omega open",
+      "verification": "Stored baseline/control outcomes and source/harness/runtime pins checked. Exact reconciliations accepted only where proved; metadata drift explicitly retained. No fresh engine replay of these historical artifacts.",
+      "input_drift": [],
+      "reviewed_source_subset": null
+    }
+  },
+  "unique_dependency_pairs_checked": 153,
+  "exact_reconciled_dependencies": [
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c249018041.lua",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c249018041.lua",
+    "output/fresh-ccg-september/current-spec-CCG_v1.db"
+  ],
+  "cards": [
+    {
+      "passcode": 221047295,
+      "name": "Bookkeeper of Crying Chaos",
+      "source_sha256": "0987966575ae6e5f74d9568487738bf400484a465ed30ad8f8fd316ca9f1e68d",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Hand Quick discard/target/revive Level3-or-lower Zombie",
+          "source_functions": [
+            "spop1"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        },
+        {
+          "clause": "With own high-Level Crying Chaos Synchro, banish self to summon Level3 Zombie from Hand/GY",
+          "source_functions": [
+            "spcon2",
+            "spop2"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id)",
+        "e2:SetCountLimit(1,id+1)"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 233436485,
+      "name": "Crow of Crying Chaos",
+      "source_sha256": "85600b948270723e8f8f75528f56f702cdabd883f32172ffa825b2402b639452",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Normal Monster/flavor text; empty initial_effect and standard metadata",
+          "source_functions": [
+            "initial_effect"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "No card-specific effect to execute; standard summon/battle/live checks not certified"
+        }
+      ],
+      "named_limit_registrations": [],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 217118040,
+      "name": "Plague Doctor of Crying Chaos",
+      "source_sha256": "bd6a599afbb162e64667e4e0d75690fff4d2c172d37794aef987e84a77bc504f",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Own low-Level Zombie enables original inherent Hand summon",
+          "source_functions": [
+            "spcon"
+          ],
+          "evidence": [
+            "plague_hand"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Scoped boundary/shared-success/reset evidence reused; inherent summon-negation boundary/live Omega not certified"
+        },
+        {
+          "clause": "With no own Tuner, send Hand card as cost; become Tuner for turn",
+          "source_functions": [
+            "tuncon",
+            "tuncost",
+            "tunop"
+          ],
+          "evidence": [
+            "plague_tuner",
+            "plague_limits"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Existing interruption, paid cost, shared use/negation/reset evidence reused; live Omega/full-card certification open"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)",
+        "e2:SetCountLimit(1,id+1)"
+      ],
+      "named_limit_status": "Existing cross-copy/negation/reset evidence reused",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 218261525,
+      "name": "Scarecrow of Crying Chaos",
+      "source_sha256": "dfd6a3a24ae81aa1da1271e04f9d0c47e483d631929eaae4d52028255e9ee0db",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Synchro material sent GY: send Crying Chaos monster Deck to GY",
+          "source_functions": [
+            "tgcon",
+            "tgop"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        },
+        {
+          "clause": "Banish self plus two Zombies to summon Zombie Link2 as Link Summon",
+          "source_functions": [
+            "spcost",
+            "spop"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original payment/Link summon/history/use/reset open; completion source-only exclusion retained separately"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id)",
+        "e2:SetCountLimit(1,id)"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 236017388,
+      "name": "Slug of Crying Chaos",
+      "source_sha256": "c9dce0f136c8c4aaecf4f3fee12d31cf551b348419984733b0ac989aa20fecc7",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Normal/Special Summon: Deck Level3 Zombie Tuner summon then Zombie lock",
+          "source_functions": [
+            "spop"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        },
+        {
+          "clause": "As Synchro material, revive self then banish on leave",
+          "source_functions": [
+            "spcon2",
+            "spop2"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original material event/revival/redirect and named sharing/reset open; no artificial immediate departure assumed"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id)",
+        "e3:SetCountLimit(1,id+1)"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 240976976,
+      "name": "Witch of Crying Chaos",
+      "source_sha256": "eed87abafbc4414779ab9efb3e06753c4dfe65086545efdc40bb767976ae9f28",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Normal/Special Summon: Zombie Hand-to-GY cost, search Crying Chaos Spell/Trap",
+          "source_functions": [
+            "thcost",
+            "thop"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        },
+        {
+          "clause": "As Link/Synchro material, bottom self as cost then draw",
+          "source_functions": [
+            "drcon",
+            "drcost",
+            "drop"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id)",
+        "e3:SetCountLimit(1,id)"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 240511702,
+      "name": "Hunter of Crying Chaos",
+      "source_sha256": "1e9766d3959579ba4e5940d39a1d40c4c0b71a08c7892ef0739e92b1c1a48a03",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Continuous +400 ATK per own field/GY Zombie",
+          "source_functions": [
+            "atkval",
+            "atkfilter"
+          ],
+          "evidence": [
+            "hunter_attack"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Eight dynamic position/location/owner/Race/control/Skill Drain cases; seeded source, live Omega remains open"
+        },
+        {
+          "clause": "Sent GY: banish self then search monster or Set Spell/Trap",
+          "source_functions": [
+            "thcost",
+            "thop"
+          ],
+          "evidence": [
+            "hunter_choice"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Eight Hunter cases within24-case family cover Set/Add/capacity/actual cost; named sharing/reset and other response boundaries open"
+        }
+      ],
+      "named_limit_registrations": [
+        "e2:SetCountLimit(1,id)"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 252513554,
+      "name": "Guardian of Crying Chaos",
+      "source_sha256": "f6b8a3d49350926c4346459b2beb5d4808fe4c67d3b5597f38412b8c1af6d53e",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Own high-ATK Crying Chaos support permits inherent Hand/GY summon",
+          "source_functions": [
+            "spcon"
+          ],
+          "evidence": [
+            "guardian_summon"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Eligibility, current2500 threshold, Hand/GY and Necrovalley evidence reused; live Omega not certified"
+        },
+        {
+          "clause": "On Special Summon, optionally +/-2 Level until End Phase",
+          "source_functions": [
+            "lvop"
+          ],
+          "evidence": [
+            "guardian_level",
+            "guardian_limits"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Boundary, interruption/negation, expiry/shared-use/reset evidence reused; live Omega/full-card certification open"
+        }
+      ],
+      "named_limit_registrations": [
+        "e2:SetCountLimit(1,id+1)"
+      ],
+      "named_limit_status": "Existing cross-copy/negation/reset evidence reused",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 224943273,
+      "name": "Goat of Crying Chaos",
+      "source_sha256": "cc1213f7c9da7a28114fe04fc590b30cb1e9fdc4619be7e004cb7700922d3c73",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Link recipe: two low-Level Zombies including Crying Chaos",
+          "source_functions": [
+            "matfilter",
+            "lcheck"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        },
+        {
+          "clause": "On Link Summon search Level3 Crying Chaos Tuner",
+          "source_functions": [
+            "thcon",
+            "thop"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        },
+        {
+          "clause": "Field to GY: summon low-Level Zombie from Hand/GY",
+          "source_functions": [
+            "spcon",
+            "spop"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id)",
+        "e2:SetCountLimit(1,id+1)"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 227610954,
+      "name": "Zenatil, Criminal Bookkeeper of Crying Chaos",
+      "source_sha256": "ca59ef114c6be6189a4d4fcc87a336e49a6d9d3a0e73cdbb334b950a739e2b8f",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Link recipe includes Zombie Link monster",
+          "source_functions": [
+            "lcheck"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        },
+        {
+          "clause": "Link Summon with Crying Chaos Link: shuffle3 GY/banished cards",
+          "source_functions": [
+            "tdcon",
+            "tdop"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        },
+        {
+          "clause": "Pointing to Crying Chaos Synchro permits half linked-monster ATK gain",
+          "source_functions": [
+            "atkcon",
+            "atkop"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id)",
+        "e2:SetCountLimit(1,id+1)"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 239725695,
+      "name": "Zebra of Crying Chaos",
+      "source_sha256": "da952420bd7dc5636192499c5fd3ec3cc40ac7ec5b98855cd066c249209ac381",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Original Synchro recipe: 1 Zombie Tuner + 1 non-Tuner monster",
+          "source_functions": [
+            "initial_effect"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original recipe/proper-summon history unverified; applicable legacy-helper/runtime qualifications remain; no substitute recipe or extra failure probe used"
+        },
+        {
+          "clause": "On Synchro Summon target/revive own GY Zombie",
+          "source_functions": [
+            "spcon",
+            "spop"
+          ],
+          "evidence": [
+            "zebra_revival"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Ten original effect cases/five effective faults; source-helper typed GY summon bypasses original recipe/revival limit, original procedure/use/reset/live remain open"
+        },
+        {
+          "clause": "As Synchro material, damage per own field/GY Zombie",
+          "source_functions": [
+            "damcon",
+            "damop"
+          ],
+          "evidence": [
+            "zebra_damage"
+          ],
+          "status": "SCOPED_TEST_MAPPED_EVIDENCE",
+          "remaining": "Nine native material/count/resolution cases with explicit target-player9 mapping; unadapted original flag failure retained. Source seeded, original recipe/named use/reset/live remain open"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id)",
+        "e2:SetCountLimit(1,id+1)"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 249018041,
+      "name": "Ram of Crying Chaos",
+      "source_sha256": "d955793337068de8532094c22de15939bf84da9a7c7c4e93014c57ae5dc85ed2",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Original Synchro recipe: 1 Zombie Tuner monster + 1 non-Tuner monster",
+          "source_functions": [
+            "initial_effect"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original recipe/proper-summon history unverified; applicable legacy-helper/runtime qualifications remain; no substitute recipe or extra failure probe used"
+        },
+        {
+          "clause": "On Synchro Summon revive low-Level GY Zombie, banish on leave",
+          "source_functions": [
+            "spcon",
+            "spop"
+          ],
+          "evidence": [
+            "ram_revive"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Two original-operation redirect cases; source-helper typed GY setup bypasses source recipe/revival limit; original Synchro procedure/API gap retained"
+        },
+        {
+          "clause": "Tribute own monster to destroy selected field card",
+          "source_functions": [
+            "descost",
+            "desop"
+          ],
+          "evidence": [
+            "ram_tribute"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Seven cost/resource/actual destruction cases, old two failures and four effective faults; original source seeded, use/reset/other responses/live remain open"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id)",
+        "e2:SetCountLimit(1,id+1)"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 220305422,
+      "name": "Natir, the Swords Master of Crying Chaos",
+      "source_sha256": "f72823101a85498b2bcd8bf24092c5aaad4ba418af10acd39162c771dcda0174",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Original Synchro recipe: 1 Zombie Tuner monster + 1 non-Tuner monster",
+          "source_functions": [
+            "initial_effect"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original recipe/proper-summon history unverified; applicable legacy-helper/runtime qualifications remain; no substitute recipe or extra failure probe used"
+        },
+        {
+          "clause": "On Synchro Summon summon Level3 Zombie Tuner Deck/GY",
+          "source_functions": [
+            "spcon",
+            "spop"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        },
+        {
+          "clause": "Quick monster-effect response targeting own field/GY: banished Zombie cost then negate effect",
+          "source_functions": [
+            "negcon",
+            "negcost",
+            "negop"
+          ],
+          "evidence": [
+            "negation_timing"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Two Natir timing cases, original cost/negation; explicit chain-target mapping, original recipe/other response boundaries/use/reset/live open"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id)",
+        "e2:SetCountLimit(1,id+1)"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 234296128,
+      "name": "Revelation of Crying Chaos",
+      "source_sha256": "3d3a2cf3ae95e68153dc83e10c78ee2f8d3d157ae133a98538c2fa628a2ed11b",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Original Synchro recipe: 1 Zombie Tuner monster + 1+ non-Tuner monsters",
+          "source_functions": [
+            "initial_effect"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original recipe/proper-summon history unverified; applicable legacy-helper/runtime qualifications remain; no substitute recipe or extra failure probe used"
+        },
+        {
+          "clause": "Synchro Summon using Zombie Synchro: summon low-Level Zombie Deck/GY",
+          "source_functions": [
+            "spcon",
+            "spop"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        },
+        {
+          "clause": "Quick leave-field response: Tribute Crying Chaos, negate and gain combined stats",
+          "source_functions": [
+            "negcon",
+            "negcost",
+            "negop"
+          ],
+          "evidence": [
+            "negation_timing"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Three Revelation timing/payment/ATK cases; seeded source/Catastor attribute mapping; original recipe/other leave-field categories/use/reset/live open"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id)",
+        "e2:SetCountLimit(1,id+1)"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 233499093,
+      "name": "Dragon of Crying Chaos",
+      "source_sha256": "2eb30074d4ef9bc6ab3a2cd2f832019ea7cf3e62402a0bf408f24e8db4b971da",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Original Synchro recipe: 1 Zombie Tuner monster + 1 \"Revelation of Crying Chaos\"",
+          "source_functions": [
+            "initial_effect"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original recipe/proper-summon history unverified; applicable legacy-helper/runtime qualifications remain; no substitute recipe or extra failure probe used"
+        },
+        {
+          "clause": "On Synchro Summon return opponent field to Hand",
+          "source_functions": [
+            "thcon",
+            "thop"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        },
+        {
+          "clause": "Quick monster effect negation then shuffle GY Zombie",
+          "source_functions": [
+            "negcon",
+            "negop"
+          ],
+          "evidence": [
+            "negation_timing"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Four Dragon timing cases and actual shuffle/negation; seeded source/Catastor query mapping; original recipe/use/reset/live open"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id)",
+        "e2:SetCountLimit(1,id+1)"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 258241424,
+      "name": "Light Within the Crying Chaos",
+      "source_sha256": "49d176050b18c8ba43879dc1e9605d8af22de4dc0e3ef5212101d0f289afb6d1",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Activate to search low-Level Crying Chaos monster",
+          "source_functions": [
+            "thop"
+          ],
+          "evidence": [
+            "light_search",
+            "search_refresh",
+            "light_limits",
+            "search_boundaries"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Canonical search plus eight filter/movement cases and ten named-use/reset cases verified; live Omega and special timing overrides unverified"
+        },
+        {
+          "clause": "Banish self GY; recover or bottom Zombie Tuner from GY/banishment",
+          "source_functions": [
+            "gyop"
+          ],
+          "evidence": [
+            "light_gy",
+            "light_limits"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Fourteen recovery cases plus ten named-use/reset cases; live Omega/special timing overrides remain open; ordinary same-turn dual-player case inapplicable to own-Main-only actions"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id)",
+        "e2:SetCountLimit(1,id+1)"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 216294702,
+      "name": "A Throne of Crying Chaos",
+      "source_sha256": "6d2cc4a3b424798347233e87ea97d4673ef43dd0fd0f956f215e434408ed4c62",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Target same-Level face-up banished Zombie pair and summon to own field",
+          "source_functions": [
+            "target",
+            "activate"
+          ],
+          "evidence": [
+            "throne_pair",
+            "throne_limits"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Seven eligibility/ownership plus three sharing/effect-negation/next-own-turn cases, explicit chain-target mapping; activation-negation/OATH and live remain qualified"
+        },
+        {
+          "clause": "Revived pair return to each owner Deck bottom on leave",
+          "source_functions": [
+            "activate"
+          ],
+          "evidence": [
+            "throne_redirect"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Two mixed-owner immediate/later departure cases with real Mammoth; stop before unrelated damage, chain-target mapping retained; other interruptions/limits/live open"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 255953418,
+      "name": "A World of Crying Chaos",
+      "source_sha256": "b195d2945fdc6a9b15b5d90b0569db1a2f2fc317a4df9f0b3ebfa12466996fea",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "Field activation may search Crying Chaos monster",
+          "source_functions": [
+            "activate"
+          ],
+          "evidence": [
+            "world_search",
+            "search_refresh",
+            "search_boundaries",
+            "world_limits"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Canonical search/filter/optional/movement and named sharing/Main-trigger independence verified; search activation-negation/next-turn reset now exercised; player scope/live not fully verified"
+        },
+        {
+          "clause": "Own Crying Chaos Synchro Summon: target/revive low-Level Zombie, bottom on leave",
+          "source_functions": [
+            "spcond",
+            "spop"
+          ],
+          "evidence": [
+            "world_trigger",
+            "world_limits"
+          ],
+          "status": "SCOPED_PUBLIC_ENGINE_EVIDENCE",
+          "remaining": "Twelve effect cases plus nine named-limit cases including source replacement/effect-negation/trigger reset; neutral treated-as-Synchro event, original recipes/history/player scope/live remain open"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id)",
+        "e2:SetCountLimit(1,{id,1})"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 253472430,
+      "name": "A Whisper of Crying Chaos",
+      "source_sha256": "cbef174c4a1b9ec6426fcb5118294d11b0affe4d5b8d7e422f4f7d5e957383d5",
+      "installed_matches": true,
+      "candidate_metadata_matches_installed_now": true,
+      "clauses": [
+        {
+          "clause": "With Crying Chaos Synchro and Zombie Tuner, immediate Synchro using both",
+          "source_functions": [
+            "synchrotg",
+            "synchroop"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        },
+        {
+          "clause": "With Dragon, banish GY self to take opponent monster for turn, negate and zero stats",
+          "source_functions": [
+            "ctcon",
+            "ctop"
+          ],
+          "evidence": [],
+          "status": "SOURCE_MAPPED_BEHAVIOR_OPEN",
+          "remaining": "Original behavior, interruptions and applicable named-use/reset coverage not reconciled"
+        }
+      ],
+      "named_limit_registrations": [
+        "e1:SetCountLimit(1,id)",
+        "e2:SetCountLimit(1,{id,1})"
+      ],
+      "named_limit_status": "Source registrations mapped; behavioral named-use/sharing/negation/reset requirements remain open where printed",
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    }
+  ],
+  "next_priority": [
+    "Light ordinary printed search/recovery/named-use/reset has scoped evidence; live Omega remains open, special timing overrides not exhaustive. Ordinary simultaneous dual-player use is not an own-Main-action requirement.",
+    "Throne shared activation/effect-negation/next-own-turn reset now has three original-effect cases; activation-negation/OATH needs supported runtime, do not repeat ineffective public flag probes.",
+    "World trigger/revival/bottom plus named sharing/replacement/independence/negated-effect/reset scoped; original Synchro recipe/history and revival activation-negation/player scope/live remain.",
+    "Hunter ATK scaling now scoped in eight cases; named use/reset/other responses plus remaining material/summon clauses remain. Do not replay completed aura/timing/Set families."
+  ]
+}

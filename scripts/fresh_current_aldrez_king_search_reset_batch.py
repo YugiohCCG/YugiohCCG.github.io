@@ -1,0 +1,13 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+source=ROOT/'public/CCG Downloads/CCG_Scripts/c252210718.lua';assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+paths=[Path(__file__).resolve(),source,ROOT/'src/data/cards.json',FILES/'Databases/CCG_v1.db',OUT/'candidate-CCG_v1.db',OUT/'current-king-detach-activation-rule-review.json']+[ROOT/'scripts'/n for n in ['fresh_current_aldrez_king_search_reset.cjs','fresh_current_aldrez_king_unique.cjs','fresh_current_aldrez_king_detach_resource.cjs','fresh_current_aldrez_blitz_xyz_set.cjs','fresh_installed_card.cjs','fresh_corrected_card_data_transport.cjs']]+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))+[ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']
+deps={str(p.resolve()):sha(p) for p in paths};runs=[]
+for flag,expected in [(None,[]),('per-copy',[0,1,2]),('no-later-use',[0,1,2]),('no-search',[0,1,2]),('no-response',[1,2])]:
+ r=subprocess.run(['node','--no-warnings','scripts/fresh_current_aldrez_king_search_reset.cjs']+(['--'+flag] if flag else []),capture_output=True,text=True,timeout=20);p=OUT/('current-aldrez-king-search-reset'+('-'+flag if flag else '')+'.json');d=json.loads(p.read_text());assert len(d['results'])==3 and [i for i,v in enumerate(d['results']) if v['failure']]==expected and all(not v['logs'] and v['trace'] for v in d['results']) and r.returncode==bool(expected),r.stdout+r.stderr
+ runs.append({'artifact':p.name,'sha256':sha(p),'expected_failures':expected})
+assert deps=={str(p.resolve()):sha(p) for p in paths}
+(OUT/'current-aldrez-king-search-reset-batch.json').write_text(json.dumps({'status':'ALDREZ_KING_SEARCH_USE_RESET_VERIFIED','runtime_dependencies_sha256':deps,'runs':runs,'scope':'Full current King effects/installed metadata/corrected transport/no Lua API adapter. Three paid native fixed two-Level4-Aldrez Xyz summons, actual neutral preparation removes prior sources and supplies fresh materials. First success/effect negation/activation negation consumes named Trap search across second copy same turn; third copy on natural own turn3 resolves actual search. Six actual native material Overlay moves asserted. Effective per-copy/no-later-use/no-search/no-response controls. Original general recipe/independent effect keys/full-card/live Omega remain open.','production_change':False},indent=2)+'\n')
+print('King Trap search shared use/reset verified')

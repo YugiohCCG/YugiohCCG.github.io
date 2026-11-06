@@ -1,0 +1,87 @@
+{
+  "status": "NECROVALLEY_DECK_COST_REPAIRED",
+  "scope": "Exact original cost callbacks with official Necrovalley; Sorceress IsFaceupEx mapping qualified. Existing Seraphina seven-case full Pendulum summon/cost/capacity regression reuses its documented mapped/public recipe qualification. No full-card/native Omega certification.",
+  "finding": "Removed Necrovalley effect-movement filters only from four non-banish Graveyard-to-Deck costs. Actual Deck/Extra return cost reasons verified; Graveyard effect filters and banish costs unchanged.",
+  "runtime_dependencies_sha256": {
+    "scripts/fresh_current_necrovalley_deck_cost_batch.py": "c6b6b203c50328def0264b37d2506e3931354b24b46aefd38031256668110c74",
+    "scripts/fresh_current_necrovalley_deck_cost.cjs": "5aed3aa880957353f9aeee67b23ea1933d54d860862dd4df7d67a15f2f1b0a19",
+    "scripts/fresh_necrovalley_deck_cost_repair.cjs": "1cfaee5e83dd34034415163085b2059c5496e4434c3331a5696845cb32fc3b04",
+    "scripts/fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "scripts/fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "scripts/fresh_current_seraphina_pendulum_summon.cjs": "11da35257ed45225e38eb46051691707ec8b7b9984113e4c2a0e072fa0c3c66f",
+    "scripts/fresh_current_card.cjs": "41a29c5b66e20228b2037c1dbbdd6eb9bdfaab0da8b3a4c941c109e8947d6a68",
+    "output/fresh-ccg-september/necrovalley-deck-cost-repair-files.json": "7b4574e95a7d68f8dcf7a3a7e33a64572c5bb1a6a2bb660abc738875ebdd436c",
+    "tmp/omega_scripts/constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "tmp/omega_scripts/utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "tmp/omega_scripts/procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "tmp/omega_scripts/c47355498.lua": "1d3862aabbbb3f381587a3028435736db2ca5818bdb4973ca30deb5632398318",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "node_modules/@n1xx1/ocgcore-wasm/dist/ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "public/CCG Downloads/CCG_Scripts/c218142234.lua": "823ffdf6b8c247b180c0ccb977ea23fbddc4101618af3f10155451ff06136715",
+    "public/CCG Downloads/CCG_Scripts/c256287781.lua": "c0e52c168b64769a90064f2119be83c5de200539fca6ef6a385c9178cf2dc87c",
+    "public/CCG Downloads/CCG_Scripts/c256462992.lua": "4e2d9365eb043782cdde7f24a3c57f2595c123a2b2e82d26a964ed67ebac3dda",
+    "public/CCG Downloads/CCG_Scripts/c259360287.lua": "2bdbd1bde946287fb179cb2f401420248e54fc6f3fd23f3451e7bd511e844664"
+  },
+  "runs": [
+    {
+      "mode": "candidate",
+      "cases": 12,
+      "expected_failures": [],
+      "artifact": "current-necrovalley-deck-cost-candidate.json",
+      "sha256": "dd471e24a6164637714aeb51686cb82df5a871e670a08628a202087a4297db8b"
+    },
+    {
+      "mode": "prior",
+      "cases": 12,
+      "expected_failures": [
+        1,
+        4,
+        7,
+        10
+      ],
+      "artifact": "current-necrovalley-deck-cost-prior.json",
+      "sha256": "aaefc15ab4a66ff9c1ea46761cabbaa4c2637fdfa6211ca604c013dfba8b459a"
+    },
+    {
+      "mode": "no-payment",
+      "cases": 12,
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11
+      ],
+      "artifact": "current-necrovalley-deck-cost-no-payment.json",
+      "sha256": "57b50e794eaea1a090718e158dde2cabb0f4bffaecf881f6cfb4d539e4b0b742"
+    },
+    {
+      "mode": "existing-seraphina-regression",
+      "cases": 7,
+      "expected_failures": [],
+      "artifact": "current-necrovalley-seraphina-pendulum-regression.json",
+      "sha256": "152c210f999e80e38813f57385b683c2b7a9f4e533f65d725036f5d51ef3e0e8"
+    }
+  ],
+  "passcodes": [
+    218142234,
+    256287781,
+    256462992,
+    259360287
+  ],
+  "rules": [
+    "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=5533&ope=2&request_locale=en",
+    "https://www.yugioh-card.com/en/play/psct/psct-3/"
+  ]
+}

@@ -82,6 +82,7 @@ s.search_codes={
 	[98319530]=true,
 	[98596596]=true,
 	[100100062]=true,
+	[101307062]=true,
 	[120100001]=true,
 	[120183048]=true,
 	[120183049]=true,
@@ -162,7 +163,10 @@ s.search_codes={
 	[152000180]=true,
 	[219714894]=true,
 	[236815197]=true,
+	[247755870]=true,
+	[247755872]=true,
 	[257239133]=true,
+	[259024242]=true,
 }
 function s.initial_effect(c)
 	--Return 1 FIRE Extra Deck monster; Special Summon this card

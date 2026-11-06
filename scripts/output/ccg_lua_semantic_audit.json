@@ -1,20 +1,63 @@
 {
   "schema_version": 1,
   "summary": {
-    "active_cards": 620,
-    "scripts": 621,
-    "parsed_scripts": 621,
-    "effect_creations": 2146,
-    "callback_functions": 3866,
-    "search_calls": 2986,
+    "active_cards": 711,
+    "scripts": 712,
+    "parsed_scripts": 712,
+    "effect_creations": 2476,
+    "callback_functions": 4504,
+    "search_calls": 3544,
     "accepted_replacement_target_callbacks": 4,
     "errors": 0,
-    "review_candidates": 0,
-    "accepted_reviewed_findings": 14,
-    "stale_reviewed_findings": 0,
-    "findings_by_kind": {}
+    "review_candidates": 4,
+    "accepted_reviewed_findings": 18,
+    "stale_reviewed_findings": 2,
+    "findings_by_kind": {
+      "target-operation-search-mismatch": 4
+    }
   },
-  "findings": [],
+  "findings": [
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 676,
+      "card_id": 238273770,
+      "card_name": "Symphonic Warrior Disccs",
+      "script": "c238273770.lua",
+      "line": 148,
+      "detail": "e4: s.recruittg does not visibly guard s.recruitop's Duel.SelectMatchingCard(s.spfilter|tp|LOCATION_HAND+LOCATION_GRAVE+LOCATION_EXTRA|0)."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 687,
+      "card_id": 247755865,
+      "card_name": "Kali Yuga - Angulimala",
+      "script": "c247755865.lua",
+      "line": 55,
+      "detail": "e1: s.sstg does not visibly guard s.ssop's Duel.SelectMatchingCard(s.desfilter|tp|LOCATION_HAND+LOCATION_ONFIELD|0)."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 693,
+      "card_id": 247755871,
+      "card_name": "Kali Yuga - Jarita",
+      "script": "c247755871.lua",
+      "line": 64,
+      "detail": "e2: s.revtg does not visibly guard s.revop's Duel.SelectMatchingCard(s.destroyfilter|tp|LOCATION_ONFIELD|0)."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 704,
+      "card_id": 284639723,
+      "card_name": "Terrarumian Sundew",
+      "script": "c284639723.lua",
+      "line": 84,
+      "detail": "e1: s.ptg does not visibly guard s.pop's Duel.SelectMatchingCard(s.destroyfilter|tp|LOCATION_MZONE|0)."
+    }
+  ],
   "accepted_findings": [
     {
       "severity": "review",
@@ -70,6 +113,39 @@
       "line": 86,
       "detail": "e2: s.tgtg does not visibly guard s.tgop's Duel.SelectMatchingCard(f|tp|LOCATION_DECK|0).",
       "disposition": "The operation deliberately selects with one of two predicates chosen and stored by the target callback. Both option predicates are checked at activation."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 634,
+      "card_id": 238274862,
+      "card_name": "Vylon Observatory",
+      "script": "c238274862.lua",
+      "line": 113,
+      "detail": "e2: s.eqtg does not visibly guard s.eqop's Duel.SelectMatchingCard(s.canEquipTo|tp|LOCATION_MZONE|0).",
+      "disposition": "eqtg targets a GY equip candidate through eqfilter. eqfilter itself requires an existing canEquipTo recipient. eqop refilters targeted cards through eqfilter before choosing that recipient, and rechecks Spell/Trap zone capacity per card. The recipient search is guarded transitively through the target filter."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 672,
+      "card_id": 238276251,
+      "card_name": "Brazier of Nephthys",
+      "script": "c238276251.lua",
+      "line": 59,
+      "detail": "e1: s.acttg does not visibly guard s.actop's Duel.SelectMatchingCard(s.destroyable|tp|LOCATION_HAND+LOCATION_ONFIELD|0).",
+      "disposition": "This optional activation follow-up is chosen in acttg only if activationvictim exists; that predicate requires a destructible card and both retrieval destinations (including a victim that will reach GY). actop checks its activation label and card relation, selects a destructible victim, then separately rechecks both retrieval pools after destruction. The broad resolution selection is intentional, not an unguarded mandatory activation."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 673,
+      "card_id": 238276252,
+      "card_name": "Prayer Of Nephthys",
+      "script": "c238276252.lua",
+      "line": 51,
+      "detail": "e1: s.sptg does not visibly guard s.spop's Duel.SelectMatchingCard(s.desfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
+      "disposition": "The activation requires deslegal, which combines the same desfilter with prospective zone availability after destruction. Resolution selects with desfilter, destroys it, then independently rechecks the two-monster Summon legality and two free zones before Summoning. Different predicates account for the prospective and actual post-destruction states."
     },
     {
       "severity": "review",
@@ -146,7 +222,7 @@
       "script": "c259650969.lua",
       "line": 130,
       "detail": "e3: s.mvtg does not visibly guard s.mvop's Duel.GetMatchingGroup(function(mc)returnmc:IsFaceup()andmc:GetMutualLinkedGroupCount()>0end|tp|LOCATION_MZONE|0).",
-      "disposition": "The guarded mvfilter selection is performed earlier in the operation. This second group is the post-move set of co-linked monsters that receive counters."
+      "disposition": "Beacon may move a monster even when its new co-linked counter-recipient group is empty. Movement legality is checked at activation; the optional resulting recipients are computed after movement. Native engine movement and counter cases verify both empty and populated groups."
     },
     {
       "severity": "review",
@@ -169,9 +245,35 @@
       "line": 78,
       "detail": "e2: s.tgtg does not visibly guard s.tgop's Duel.SelectMatchingCard(s.samefilter|tp|LOCATION_DECK|0).",
       "disposition": "tgfilter only accepts a first Deck monster when another same-name copy is available. The operation then uses samefilter for the required second copy."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 299,
+      "card_id": 259869259,
+      "card_name": "Ohmen Surge",
+      "script": "c259869259.lua",
+      "line": 95,
+      "detail": "e2: s.control_tg does not visibly guard s.control_op's Duel.GetMatchingGroup(function(tc)returntc:IsFaceup()andtc:GetMutualLinkedGroupCount()>0end|tp|LOCATION_MZONE|0).",
+      "disposition": "Surge checks a free pointed zone and supporting Ohmenchanic at activation, then recomputes the surviving pointed zones at resolution. It correctly does nothing if the source or required graph is lost. Thirteen delayed-trigger engine cases verify interruptions and zone changes."
     }
   ],
-  "stale_reviewed_findings": [],
+  "stale_reviewed_findings": [
+    {
+      "script": "c238273770.lua",
+      "script_sha256": "7a7f0eefd77ec74e110a2d8640752fd8d6685d683236539d36e7e28fe7613ccd",
+      "kind": "target-operation-search-mismatch",
+      "line": 148,
+      "reason": "The cost returns this monster to hand and frees its Main Monster Zone. recruittg uses precruitfilter with the pre-cost released monster and a prospective self-Summon check; recruitop uses spfilter on the post-cost state. Both filters enforce the same archetype, monster, face-up Extra Deck and Summonability constraints; the zone predicates intentionally differ across payment."
+    },
+    {
+      "script": "c284639723.lua",
+      "script_sha256": "d2b3894a34942f2c4e87d954da88197127448a19e41c7b96c6635c6c2d891c94",
+      "kind": "target-operation-search-mismatch",
+      "line": 84,
+      "reason": "The Pendulum target checks a destroyfilter card on the entire field and, when no Main Monster Zone is free, a zonefilter card that is the same destroyfilter restricted to MZONE. pop selects from that MZONE subset to free a zone, optionally adds a second destructible card, and checks successful destruction before Summoning. The narrowed operation selection is intentionally guarded."
+    }
+  ],
   "cards": [
     {
       "ordinal": 417,
@@ -281,7 +383,7 @@
       "parsed": true,
       "effects": 2,
       "callbacks": 6,
-      "searches": 5
+      "searches": 6
     },
     {
       "ordinal": 309,
@@ -379,8 +481,8 @@
       "card_name": "Ektelestis gia Taxis",
       "script": "c212684822.lua",
       "parsed": true,
-      "effects": 5,
-      "callbacks": 7,
+      "effects": 4,
+      "callbacks": 9,
       "searches": 4
     },
     {
@@ -441,7 +543,7 @@
       "parsed": true,
       "effects": 4,
       "callbacks": 6,
-      "searches": 3
+      "searches": 4
     },
     {
       "ordinal": 58,
@@ -499,8 +601,8 @@
       "card_name": "Enra",
       "script": "c214371067.lua",
       "parsed": true,
-      "effects": 4,
-      "callbacks": 5,
+      "effects": 5,
+      "callbacks": 6,
       "searches": 4
     },
     {
@@ -779,8 +881,8 @@
       "card_name": "Skewy! Pawty Tyme",
       "script": "c217632789.lua",
       "parsed": true,
-      "effects": 2,
-      "callbacks": 5,
+      "effects": 3,
+      "callbacks": 6,
       "searches": 6
     },
     {
@@ -790,7 +892,7 @@
       "script": "c217645912.lua",
       "parsed": true,
       "effects": 3,
-      "callbacks": 7,
+      "callbacks": 6,
       "searches": 4
     },
     {
@@ -809,8 +911,8 @@
       "card_name": "Onibi",
       "script": "c217713649.lua",
       "parsed": true,
-      "effects": 2,
-      "callbacks": 4,
+      "effects": 5,
+      "callbacks": 5,
       "searches": 6
     },
     {
@@ -2401,7 +2503,7 @@
       "parsed": true,
       "effects": 4,
       "callbacks": 7,
-      "searches": 3
+      "searches": 4
     },
     {
       "ordinal": 350,
@@ -2440,8 +2542,8 @@
       "script": "c237684285.lua",
       "parsed": true,
       "effects": 5,
-      "callbacks": 9,
-      "searches": 6
+      "callbacks": 10,
+      "searches": 7
     },
     {
       "ordinal": 261,
@@ -2522,6 +2624,336 @@
       "effects": 3,
       "callbacks": 7,
       "searches": 5
+    },
+    {
+      "ordinal": 679,
+      "card_id": 238272434,
+      "card_name": "Terror Skull from Underroot",
+      "script": "c238272434.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 7,
+      "searches": 7
+    },
+    {
+      "ordinal": 680,
+      "card_id": 238272435,
+      "card_name": "Blossom Skull from Underroot",
+      "script": "c238272435.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 8,
+      "searches": 6
+    },
+    {
+      "ordinal": 681,
+      "card_id": 238272436,
+      "card_name": "Nether Skull from Underroot",
+      "script": "c238272436.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 8
+    },
+    {
+      "ordinal": 682,
+      "card_id": 238272437,
+      "card_name": "Over Skull from Underroot",
+      "script": "c238272437.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 10,
+      "searches": 3
+    },
+    {
+      "ordinal": 683,
+      "card_id": 238272438,
+      "card_name": "Terror Blossom from Underroot",
+      "script": "c238272438.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 10
+    },
+    {
+      "ordinal": 684,
+      "card_id": 238272439,
+      "card_name": "Terror Blossom from Overroot",
+      "script": "c238272439.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 10
+    },
+    {
+      "ordinal": 685,
+      "card_id": 238272440,
+      "card_name": "Terror Blossom from Afterroot",
+      "script": "c238272440.lua",
+      "parsed": true,
+      "effects": 7,
+      "callbacks": 9,
+      "searches": 10
+    },
+    {
+      "ordinal": 674,
+      "card_id": 238273768,
+      "card_name": "Symphonic Warrior Speeaker",
+      "script": "c238273768.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 6
+    },
+    {
+      "ordinal": 675,
+      "card_id": 238273769,
+      "card_name": "Symphonic Warrior DDJ",
+      "script": "c238273769.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 12,
+      "searches": 11
+    },
+    {
+      "ordinal": 676,
+      "card_id": 238273770,
+      "card_name": "Symphonic Warrior Disccs",
+      "script": "c238273770.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 14,
+      "searches": 9
+    },
+    {
+      "ordinal": 677,
+      "card_id": 238273771,
+      "card_name": "Symphonic Warrior Mettronomo",
+      "script": "c238273771.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 678,
+      "card_id": 238273772,
+      "card_name": "Symphonic Warrior Mega Staar",
+      "script": "c238273772.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 12,
+      "searches": 6
+    },
+    {
+      "ordinal": 629,
+      "card_id": 238274857,
+      "card_name": "Vylon Chevron",
+      "script": "c238274857.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 11,
+      "searches": 8
+    },
+    {
+      "ordinal": 630,
+      "card_id": 238274858,
+      "card_name": "Vylon Glome",
+      "script": "c238274858.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 9,
+      "searches": 6
+    },
+    {
+      "ordinal": 631,
+      "card_id": 238274859,
+      "card_name": "Vylon Volt",
+      "script": "c238274859.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 6
+    },
+    {
+      "ordinal": 632,
+      "card_id": 238274860,
+      "card_name": "Vylon Torus",
+      "script": "c238274860.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 11
+    },
+    {
+      "ordinal": 633,
+      "card_id": 238274861,
+      "card_name": "Vylon's Aid",
+      "script": "c238274861.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 6
+    },
+    {
+      "ordinal": 634,
+      "card_id": 238274862,
+      "card_name": "Vylon Observatory",
+      "script": "c238274862.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 8
+    },
+    {
+      "ordinal": 635,
+      "card_id": 238274863,
+      "card_name": "Vylon Eta",
+      "script": "c238274863.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 669,
+      "card_id": 238276248,
+      "card_name": "Scion of Nephthys",
+      "script": "c238276248.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 6
+    },
+    {
+      "ordinal": 670,
+      "card_id": 238276249,
+      "card_name": "Apostle of Nephthys",
+      "script": "c238276249.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 9,
+      "searches": 6
+    },
+    {
+      "ordinal": 671,
+      "card_id": 238276250,
+      "card_name": "Incarnation of Nephthys",
+      "script": "c238276250.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 10,
+      "searches": 8
+    },
+    {
+      "ordinal": 672,
+      "card_id": 238276251,
+      "card_name": "Brazier of Nephthys",
+      "script": "c238276251.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 10
+    },
+    {
+      "ordinal": 673,
+      "card_id": 238276252,
+      "card_name": "Prayer Of Nephthys",
+      "script": "c238276252.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 641,
+      "card_id": 238276572,
+      "card_name": "Sylvan Flamushroomo",
+      "script": "c238276572.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 642,
+      "card_id": 238276573,
+      "card_name": "Sylvan Goleaf",
+      "script": "c238276573.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 643,
+      "card_id": 238276574,
+      "card_name": "Sylvan Flamioak",
+      "script": "c238276574.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 644,
+      "card_id": 238276575,
+      "card_name": "Sylvan Greetings",
+      "script": "c238276575.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 645,
+      "card_id": 238276576,
+      "card_name": "Sylvan Intervention",
+      "script": "c238276576.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 1
+    },
+    {
+      "ordinal": 646,
+      "card_id": 238276577,
+      "card_name": "Sylvan Blast",
+      "script": "c238276577.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 3,
+      "searches": 4
+    },
+    {
+      "ordinal": 647,
+      "card_id": 238276578,
+      "card_name": "Sylvan Duchessprout",
+      "script": "c238276578.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 648,
+      "card_id": 238276579,
+      "card_name": "Gink, the Sylvan High Champion",
+      "script": "c238276579.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 649,
+      "card_id": 238276580,
+      "card_name": "Azale, the Sylvan High Sovereign",
+      "script": "c238276580.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 3
     },
     {
       "ordinal": 43,
@@ -2632,6 +3064,116 @@
       "effects": 2,
       "callbacks": 6,
       "searches": 5
+    },
+    {
+      "ordinal": 650,
+      "card_id": 239935093,
+      "card_name": "Heart of the Hydra",
+      "script": "c239935093.lua",
+      "parsed": true,
+      "effects": 7,
+      "callbacks": 9,
+      "searches": 5
+    },
+    {
+      "ordinal": 651,
+      "card_id": 239935094,
+      "card_name": "Winged Snake of the Swamp",
+      "script": "c239935094.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 652,
+      "card_id": 239935095,
+      "card_name": "Fierce Snake of the Swamp",
+      "script": "c239935095.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 653,
+      "card_id": 239935096,
+      "card_name": "Sparkling Snake of the Swamp",
+      "script": "c239935096.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 654,
+      "card_id": 239935097,
+      "card_name": "Three-Headed Snake of the Swamp",
+      "script": "c239935097.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 6
+    },
+    {
+      "ordinal": 655,
+      "card_id": 239935098,
+      "card_name": "Terrifying Hydra",
+      "script": "c239935098.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 6
+    },
+    {
+      "ordinal": 656,
+      "card_id": 239935099,
+      "card_name": "Rage of the Terrifying Dark Swamp",
+      "script": "c239935099.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 8,
+      "searches": 4
+    },
+    {
+      "ordinal": 657,
+      "card_id": 239935100,
+      "card_name": "Perseverance of the Hydra's Heart",
+      "script": "c239935100.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 658,
+      "card_id": 239935101,
+      "card_name": "Terrifying Dark Swamp",
+      "script": "c239935101.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 7,
+      "searches": 4
+    },
+    {
+      "ordinal": 659,
+      "card_id": 239935102,
+      "card_name": "Terrifying Fog of the Dark Swamp",
+      "script": "c239935102.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 7
+    },
+    {
+      "ordinal": 668,
+      "card_id": 239937489,
+      "card_name": "Skull Undersea Melanocetus",
+      "script": "c239937489.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 8
     },
     {
       "ordinal": 320,
@@ -2912,6 +3454,156 @@
       "effects": 7,
       "callbacks": 9,
       "searches": 7
+    },
+    {
+      "ordinal": 640,
+      "card_id": 244161756,
+      "card_name": "Lunalophosaur",
+      "script": "c244161756.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 5
+    },
+    {
+      "ordinal": 622,
+      "card_id": 244161941,
+      "card_name": "Vanquish Soul Brawl",
+      "script": "c244161941.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 7
+    },
+    {
+      "ordinal": 639,
+      "card_id": 244162598,
+      "card_name": "Moltenzoic Tristegsaurus",
+      "script": "c244162598.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 4,
+      "searches": 5
+    },
+    {
+      "ordinal": 660,
+      "card_id": 244163199,
+      "card_name": "Killamity Goldenrod",
+      "script": "c244163199.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 9,
+      "searches": 6
+    },
+    {
+      "ordinal": 661,
+      "card_id": 244163200,
+      "card_name": "Killamity Pine",
+      "script": "c244163200.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 662,
+      "card_id": 244163201,
+      "card_name": "Killamity Crimson",
+      "script": "c244163201.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 663,
+      "card_id": 244163202,
+      "card_name": "Killamity Azure",
+      "script": "c244163202.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 8,
+      "searches": 3
+    },
+    {
+      "ordinal": 664,
+      "card_id": 244163203,
+      "card_name": "Killamity Ash",
+      "script": "c244163203.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 665,
+      "card_id": 244163204,
+      "card_name": "Killamity Apparition",
+      "script": "c244163204.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 6
+    },
+    {
+      "ordinal": 666,
+      "card_id": 244163205,
+      "card_name": "Killamity Showdown",
+      "script": "c244163205.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 8
+    },
+    {
+      "ordinal": 667,
+      "card_id": 244163206,
+      "card_name": "Ruby, Killamity Convergence",
+      "script": "c244163206.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 5,
+      "searches": 5
+    },
+    {
+      "ordinal": 637,
+      "card_id": 244163508,
+      "card_name": "Machina Megaframe",
+      "script": "c244163508.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 5
+    },
+    {
+      "ordinal": 638,
+      "card_id": 244163509,
+      "card_name": "Machina Trailblazer",
+      "script": "c244163509.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 5
+    },
+    {
+      "ordinal": 621,
+      "card_id": 244165675,
+      "card_name": "Mevalkagna, Eye of Zenith",
+      "script": "c244165675.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 8,
+      "searches": 7
+    },
+    {
+      "ordinal": 636,
+      "card_id": 244168521,
+      "card_name": "Heavy-Armoured Ballista Bahariasaurus",
+      "script": "c244168521.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 5
     },
     {
       "ordinal": 10,
@@ -3232,6 +3924,126 @@
       "effects": 1,
       "callbacks": 4,
       "searches": 5
+    },
+    {
+      "ordinal": 686,
+      "card_id": 247755864,
+      "card_name": "Kali Yuga - Vritra",
+      "script": "c247755864.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 687,
+      "card_id": 247755865,
+      "card_name": "Kali Yuga - Angulimala",
+      "script": "c247755865.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 4,
+      "searches": 6
+    },
+    {
+      "ordinal": 688,
+      "card_id": 247755866,
+      "card_name": "Kali Yuga - Sampati",
+      "script": "c247755866.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 2
+    },
+    {
+      "ordinal": 689,
+      "card_id": 247755867,
+      "card_name": "Kali Yuga - Yajna",
+      "script": "c247755867.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 4,
+      "searches": 4
+    },
+    {
+      "ordinal": 690,
+      "card_id": 247755868,
+      "card_name": "Kali Yuga - Karkotaka",
+      "script": "c247755868.lua",
+      "parsed": true,
+      "effects": 6,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 691,
+      "card_id": 247755869,
+      "card_name": "Kali Yuga - Murugan",
+      "script": "c247755869.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 5
+    },
+    {
+      "ordinal": 692,
+      "card_id": 247755870,
+      "card_name": "Kali Yuga - Mayavada",
+      "script": "c247755870.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 693,
+      "card_id": 247755871,
+      "card_name": "Kali Yuga - Jarita",
+      "script": "c247755871.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 6
+    },
+    {
+      "ordinal": 694,
+      "card_id": 247755872,
+      "card_name": "Kali Yuga - Dukkha",
+      "script": "c247755872.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 4,
+      "searches": 7
+    },
+    {
+      "ordinal": 695,
+      "card_id": 247755873,
+      "card_name": "Kali Yuga - Ahimsaka Justijhn",
+      "script": "c247755873.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 6,
+      "searches": 2
+    },
+    {
+      "ordinal": 696,
+      "card_id": 247756271,
+      "card_name": "Kali Yuga - Bheki",
+      "script": "c247756271.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 5,
+      "searches": 4
+    },
+    {
+      "ordinal": 697,
+      "card_id": 247756272,
+      "card_name": "Kali Yuga - Jakarta",
+      "script": "c247756272.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 7,
+      "searches": 4
     },
     {
       "ordinal": 226,
@@ -3590,7 +4402,7 @@
       "script": "c251699681.lua",
       "parsed": true,
       "effects": 5,
-      "callbacks": 10,
+      "callbacks": 11,
       "searches": 1
     },
     {
@@ -3730,7 +4542,7 @@
       "script": "c254065048.lua",
       "parsed": true,
       "effects": 5,
-      "callbacks": 8,
+      "callbacks": 9,
       "searches": 6
     },
     {
@@ -4136,11 +4948,11 @@
     {
       "ordinal": 305,
       "card_id": 259033429,
-      "card_name": "Carcel, the Ohmechanic Light",
+      "card_name": "Carcel, the Ohmenchanic Light",
       "script": "c259033429.lua",
       "parsed": true,
       "effects": 4,
-      "callbacks": 10,
+      "callbacks": 9,
       "searches": 6
     },
     {
@@ -4199,9 +5011,9 @@
       "card_name": "Glitchling Mage",
       "script": "c259072906.lua",
       "parsed": true,
-      "effects": 6,
+      "effects": 5,
       "callbacks": 9,
-      "searches": 12
+      "searches": 13
     },
     {
       "ordinal": 562,
@@ -4389,7 +5201,7 @@
       "card_name": "Glitchling Protron",
       "script": "c259156549.lua",
       "parsed": true,
-      "effects": 5,
+      "effects": 4,
       "callbacks": 9,
       "searches": 6
     },
@@ -4629,7 +5441,7 @@
       "card_name": "Glitchling Bitron",
       "script": "c259247807.lua",
       "parsed": true,
-      "effects": 5,
+      "effects": 4,
       "callbacks": 9,
       "searches": 15
     },
@@ -4876,7 +5688,7 @@
     {
       "ordinal": 301,
       "card_id": 259350270,
-      "card_name": "Farad, the Ohmechanic Capacitor",
+      "card_name": "Farad, the Ohmenchanic Capacitor",
       "script": "c259350270.lua",
       "parsed": true,
       "effects": 4,
@@ -5046,7 +5858,7 @@
     {
       "ordinal": 300,
       "card_id": 259405917,
-      "card_name": "Siemens, the Ohmechanic Conductor",
+      "card_name": "Siemens, the Ohmenchanic Conductor",
       "script": "c259405917.lua",
       "parsed": true,
       "effects": 4,
@@ -5101,7 +5913,7 @@
       "parsed": true,
       "effects": 4,
       "callbacks": 3,
-      "searches": 7
+      "searches": 6
     },
     {
       "ordinal": 593,
@@ -5206,7 +6018,7 @@
     {
       "ordinal": 304,
       "card_id": 259479044,
-      "card_name": "Ampere, the Ohmechanic Intensity",
+      "card_name": "Ampere, the Ohmenchanic Intensity",
       "script": "c259479044.lua",
       "parsed": true,
       "effects": 4,
@@ -5269,7 +6081,7 @@
       "card_name": "Charmelia Fairy Kyubey",
       "script": "c259489283.lua",
       "parsed": true,
-      "effects": 5,
+      "effects": 4,
       "callbacks": 5,
       "searches": 4
     },
@@ -5279,7 +6091,7 @@
       "card_name": "Glitchling Digitron",
       "script": "c259494236.lua",
       "parsed": true,
-      "effects": 5,
+      "effects": 4,
       "callbacks": 10,
       "searches": 4
     },
@@ -5306,7 +6118,7 @@
     {
       "ordinal": 302,
       "card_id": 259519336,
-      "card_name": "Volt, the Ohmechanic Chocker",
+      "card_name": "Volt, the Ohmenchanic Chocker",
       "script": "c259519336.lua",
       "parsed": true,
       "effects": 4,
@@ -5561,7 +6373,7 @@
       "parsed": true,
       "effects": 3,
       "callbacks": 5,
-      "searches": 5
+      "searches": 6
     },
     {
       "ordinal": 486,
@@ -5729,7 +6541,7 @@
       "card_name": "Glitchling Witch",
       "script": "c259678739.lua",
       "parsed": true,
-      "effects": 6,
+      "effects": 5,
       "callbacks": 8,
       "searches": 8
     },
@@ -5869,7 +6681,7 @@
       "card_name": "Charmelia Fairy Morningstar",
       "script": "c259753109.lua",
       "parsed": true,
-      "effects": 5,
+      "effects": 4,
       "callbacks": 5,
       "searches": 6
     },
@@ -6021,7 +6833,7 @@
       "parsed": true,
       "effects": 3,
       "callbacks": 5,
-      "searches": 5
+      "searches": 6
     },
     {
       "ordinal": 406,
@@ -6066,7 +6878,7 @@
     {
       "ordinal": 303,
       "card_id": 259841490,
-      "card_name": "Coulomb, the Ohmechanic Charger",
+      "card_name": "Coulomb, the Ohmenchanic Charger",
       "script": "c259841490.lua",
       "parsed": true,
       "effects": 4,
@@ -6100,8 +6912,8 @@
       "script": "c259869259.lua",
       "parsed": true,
       "effects": 3,
-      "callbacks": 4,
-      "searches": 7
+      "callbacks": 3,
+      "searches": 6
     },
     {
       "ordinal": 538,
@@ -6109,7 +6921,7 @@
       "card_name": "Glitchling Leotron",
       "script": "c259873115.lua",
       "parsed": true,
-      "effects": 5,
+      "effects": 4,
       "callbacks": 10,
       "searches": 9
     },
@@ -6150,7 +6962,7 @@
       "script": "c259883230.lua",
       "parsed": true,
       "effects": 6,
-      "callbacks": 8,
+      "callbacks": 9,
       "searches": 5
     },
     {
@@ -6300,7 +7112,7 @@
       "script": "c259937946.lua",
       "parsed": true,
       "effects": 4,
-      "callbacks": 4,
+      "callbacks": 5,
       "searches": 6
     },
     {
@@ -6382,6 +7194,206 @@
       "effects": 2,
       "callbacks": 4,
       "searches": 3
+    },
+    {
+      "ordinal": 708,
+      "card_id": 284636586,
+      "card_name": "Terrarumian Terrarium",
+      "script": "c284636586.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 5,
+      "searches": 2
+    },
+    {
+      "ordinal": 709,
+      "card_id": 284636587,
+      "card_name": "Terrarumian Spores",
+      "script": "c284636587.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 5
+    },
+    {
+      "ordinal": 710,
+      "card_id": 284636588,
+      "card_name": "Terrarumian Misting",
+      "script": "c284636588.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 2,
+      "searches": 4
+    },
+    {
+      "ordinal": 711,
+      "card_id": 284636589,
+      "card_name": "Terrarumian Growth",
+      "script": "c284636589.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 7
+    },
+    {
+      "ordinal": 623,
+      "card_id": 284636661,
+      "card_name": "Aquamarine Seagrass Zostera",
+      "script": "c284636661.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 9
+    },
+    {
+      "ordinal": 624,
+      "card_id": 284636662,
+      "card_name": "Aquamarine Coral Krait",
+      "script": "c284636662.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 7,
+      "searches": 7
+    },
+    {
+      "ordinal": 625,
+      "card_id": 284636663,
+      "card_name": "Aquamarine Seafan Gorgonia",
+      "script": "c284636663.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 10,
+      "searches": 8
+    },
+    {
+      "ordinal": 626,
+      "card_id": 284636664,
+      "card_name": "Aquamarine Sand Clypeasteria",
+      "script": "c284636664.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 9,
+      "searches": 7
+    },
+    {
+      "ordinal": 627,
+      "card_id": 284636665,
+      "card_name": "Aquamarine Aquasanctuary",
+      "script": "c284636665.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 6
+    },
+    {
+      "ordinal": 628,
+      "card_id": 284636666,
+      "card_name": "Aquamarine Bubble Colony",
+      "script": "c284636666.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 4
+    },
+    {
+      "ordinal": 698,
+      "card_id": 284639717,
+      "card_name": "Terrarumian Cushion Moss",
+      "script": "c284639717.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 6,
+      "searches": 10
+    },
+    {
+      "ordinal": 699,
+      "card_id": 284639718,
+      "card_name": "Terrarumian Coin Plant",
+      "script": "c284639718.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 12
+    },
+    {
+      "ordinal": 700,
+      "card_id": 284639719,
+      "card_name": "Terrarumian Sword Fern",
+      "script": "c284639719.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 10,
+      "searches": 10
+    },
+    {
+      "ordinal": 701,
+      "card_id": 284639720,
+      "card_name": "Terrarumian Nerve Plant",
+      "script": "c284639720.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 11
+    },
+    {
+      "ordinal": 702,
+      "card_id": 284639721,
+      "card_name": "Terrarumian Staghorn Fern",
+      "script": "c284639721.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 12
+    },
+    {
+      "ordinal": 703,
+      "card_id": 284639722,
+      "card_name": "Terrarumian Ivy",
+      "script": "c284639722.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 8,
+      "searches": 11
+    },
+    {
+      "ordinal": 704,
+      "card_id": 284639723,
+      "card_name": "Terrarumian Sundew",
+      "script": "c284639723.lua",
+      "parsed": true,
+      "effects": 4,
+      "callbacks": 8,
+      "searches": 17
+    },
+    {
+      "ordinal": 705,
+      "card_id": 284639724,
+      "card_name": "Terrarumian Trumpet Pitchers",
+      "script": "c284639724.lua",
+      "parsed": true,
+      "effects": 5,
+      "callbacks": 11,
+      "searches": 10
+    },
+    {
+      "ordinal": 706,
+      "card_id": 284639725,
+      "card_name": "Terrarumian Tillandsia",
+      "script": "c284639725.lua",
+      "parsed": true,
+      "effects": 2,
+      "callbacks": 6,
+      "searches": 3
+    },
+    {
+      "ordinal": 707,
+      "card_id": 284639726,
+      "card_name": "Terrarumian Venus Flytrap",
+      "script": "c284639726.lua",
+      "parsed": true,
+      "effects": 3,
+      "callbacks": 7,
+      "searches": 4
     }
   ]
 }

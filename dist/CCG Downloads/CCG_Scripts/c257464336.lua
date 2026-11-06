@@ -48,7 +48,7 @@ function s.tgop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.matfilter(c,rc)
-	return c:IsLocation(LOCATION_HAND+LOCATION_MZONE) and c:GetLevel()>0 and c:IsCanBeRitualMaterial(rc)
+	return c:IsLocation(LOCATION_HAND+LOCATION_MZONE) and c:GetLevel()>0 and c:IsCanBeRitualMaterial(rc) and c:IsReleasableByEffect()
 end
 function s.materialgroup(tp,rc)
 	local mg=Duel.GetRitualMaterial(tp):Filter(s.matfilter,nil,rc)

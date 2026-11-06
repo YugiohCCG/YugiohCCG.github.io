@@ -1,0 +1,94 @@
+{
+  "scope": "Original Mirage Extra Deck reveal/cost gate unchanged by exploratory operation-only lock move. Both attempts stop at missing public Card.IsCanOverlay before any original operation proof. No API mapping or production edit. Do not retry without runtime change.",
+  "source_sha256": "3f2cf4e56432c2c8496efebeab9266c30242685b3768ad1705d4c30f6dac54b2",
+  "candidate_helper_sha256": "bbff6514832771a4cf751aabfd079607ce82d46a4e8cc85d45abb7b21b59b0b9",
+  "attempts": [
+    {
+      "boss": 259072169,
+      "interrupted": false,
+      "failure": "[{\"type\":2,\"message\":\"stack traceback:\\n\\t[string \\\"c259072169.lua\\\"]:69: in function <[string \\\"c259072169.lua\\\"]:68>\\n\\t[C]: in field 'IsExistingMatchingCard'\\n\\t[string \\\"c259072169.lua\\\"]:74: in function <[string \\\"c259072169.lua\\\"]:71>\"},{\"type\":0,\"message\":\"[string \\\"c259072169.lua\\\"]:69: attempt to call a nil value (method 'IsCanOverlay')\"}]",
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"c259072169.lua\"]:69: in function <[string \"c259072169.lua\"]:68>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c259072169.lua\"]:74: in function <[string \"c259072169.lua\"]:71>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"c259072169.lua\"]:69: attempt to call a nil value (method 'IsCanOverlay')"
+        }
+      ],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            90219263
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        }
+      ]
+    },
+    {
+      "boss": 259072169,
+      "interrupted": true,
+      "failure": "[{\"type\":2,\"message\":\"stack traceback:\\n\\t[string \\\"c259072169.lua\\\"]:69: in function <[string \\\"c259072169.lua\\\"]:68>\\n\\t[C]: in field 'IsExistingMatchingCard'\\n\\t[string \\\"c259072169.lua\\\"]:74: in function <[string \\\"c259072169.lua\\\"]:71>\"},{\"type\":0,\"message\":\"[string \\\"c259072169.lua\\\"]:69: attempt to call a nil value (method 'IsCanOverlay')\"}]",
+      "logs": [
+        {
+          "type": 2,
+          "message": "stack traceback:\n\t[string \"c259072169.lua\"]:69: in function <[string \"c259072169.lua\"]:68>\n\t[C]: in field 'IsExistingMatchingCard'\n\t[string \"c259072169.lua\"]:74: in function <[string \"c259072169.lua\"]:71>"
+        },
+        {
+          "type": 0,
+          "message": "[string \"c259072169.lua\"]:69: attempt to call a nil value (method 'IsCanOverlay')"
+        }
+      ],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            90219263
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        }
+      ]
+    }
+  ],
+  "conclusion": "Source-pattern candidate remains unverified for original gameplay;required native runtime capability missing.",
+  "archived_helper": "mirage-exploratory-lock-helper.cjs.txt",
+  "archived_helper_sha256": "bbff6514832771a4cf751aabfd079607ce82d46a4e8cc85d45abb7b21b59b0b9"
+}

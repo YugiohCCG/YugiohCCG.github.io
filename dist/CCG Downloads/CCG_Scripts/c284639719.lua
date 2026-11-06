@@ -80,20 +80,20 @@ function s.repop(e,tp)
  Duel.Destroy(e:GetHandler(),REASON_EFFECT+REASON_REPLACE)
 end
 function s.ownmonster(c)
- return c:IsSetCard(SET_TERRARUMIAN)
+ return c:IsFaceup() and c:IsSetCard(SET_TERRARUMIAN)
 end
 function s.pcon(e,tp)
  return Duel.IsExistingMatchingCard(s.ownmonster,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.destroyfilter(c,handler)
- return c~=handler and c:IsSetCard(SET_TERRARUMIAN) and c:IsDestructable()
+ return c~=handler and c:IsFaceup() and c:IsSetCard(SET_TERRARUMIAN) and c:IsDestructable()
 end
 function s.deckfilter(c)
  return c:IsSetCard(SET_TERRARUMIAN) and c:IsType(TYPE_MONSTER)
   and c:IsType(TYPE_PENDULUM) and not c:IsCode(id) and not c:IsForbidden()
 end
 function s.zonefilter(c,handler)
- return c:IsLocation(LOCATION_MZONE) and s.destroyfilter(c,handler)
+ return s.destroyfilter(c,handler) and Duel.GetMZoneCount(handler:GetControler(),Group.FromCards(c))>0
 end
 function s.ptg(e,tp,eg,ep,ev,re,r,rp,chk)
  local c=e:GetHandler()
@@ -125,20 +125,18 @@ end
 function s.descon(e)
  return e:GetHandler():IsReason(REASON_EFFECT)
 end
-function s.stfilter(c)
+function s.stfilter(c,tp)
  return c:IsSetCard(SET_TERRARUMIAN) and c:IsType(TYPE_SPELL+TYPE_TRAP)
-  and c:IsSSetable()
+  and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)
 end
 function s.sttg(e,tp,eg,ep,ev,re,r,rp,chk)
- if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-  and Duel.IsExistingMatchingCard(s.stfilter,tp,LOCATION_DECK,0,1,nil) end
+ if chk==0 then return Duel.IsExistingMatchingCard(s.stfilter,tp,LOCATION_DECK,0,1,nil,tp) end
  Duel.SetOperationInfo(0,CATEGORY_SEARCH,nil,1,tp,LOCATION_DECK)
 end
 function s.stop(e,tp)
- if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0
-  or not Duel.IsExistingMatchingCard(s.stfilter,tp,LOCATION_DECK,0,1,nil) then return end
+ if not Duel.IsExistingMatchingCard(s.stfilter,tp,LOCATION_DECK,0,1,nil,tp) then return end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
- local g=Duel.SelectMatchingCard(tp,s.stfilter,tp,LOCATION_DECK,0,1,1,nil)
+ local g=Duel.SelectMatchingCard(tp,s.stfilter,tp,LOCATION_DECK,0,1,1,nil,tp)
  local tc=g:GetFirst()
  if tc then Duel.SSet(tp,tc) end
 end

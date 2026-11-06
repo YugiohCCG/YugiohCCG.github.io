@@ -1,0 +1,14 @@
+{
+  "scope": "AST scan of all711 roster scripts for direct numeric comparisons on NegateEffect/NegateActivation/NegateAttack return values. Kaleidragon uses exact pre-repair backup, other710 sources current. Not universal API/semantic coverage.",
+  "matches": [
+    {
+      "passcode": 217174535,
+      "name": "Stainless Kaleidragon",
+      "line": 102,
+      "expression": "Duel.NegateEffect(ev)~=0",
+      "script_sha256": "b06e624502c919b06e468317a8c839abf82a12192779544d31bdf570d4f6446a"
+    }
+  ],
+  "primary_api_source": "https://raw.githubusercontent.com/edo9300/ygopro-core/master/libduel.cpp",
+  "exclusion": "Adjacent Destroy/RemoveOverlayCard count comparisons excluded by AST. NegateSummon returns no Lua value in the referenced engine and is not treated as this false-boolean defect."
+}

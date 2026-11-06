@@ -1,0 +1,58 @@
+{
+  "finding": "Vylon Torus requires both search roles at resolution and discards only after both cards reach the hand.",
+  "qualification": "Three native cases use the original Special Summon trigger with neutral summon setup. Both roles add and discard. Chained removal of either role causes no partial add. A move replacement during the paired add remains untested.",
+  "family_scan": {
+    "scanned": 711,
+    "explicit_pair_text_hits": [
+      215984744,
+      234178973,
+      238274860,
+      259253032,
+      259721372
+    ],
+    "qualification": "Four other explicit pairs require both groups before sending. Broader named function Merge and SendtoHand scan found twelve lexical matches. Optional pools and unrelated merges are separate."
+  },
+  "rules_source": "https://www.yugioh-card.com/eu/play/understanding-card-text/part-7-conjunction-functions/",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_vylon_pair_search_batch.py": "3fd9a7a87dc1edc37c0076be73f9922c92b18234e50880140d98ee33a9fff949",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_vylon_pair_search.cjs": "729cb3ced9b87dcd6b3717283dd3672d630a58602bc3c4595b9893e1c587119d",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_vylon_pair_search_repair.cjs": "52414607151b6e710b9d1dbfea850a093b769d51bf6129779abb1c14e6ca4d45",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\vylon-pair-search-before-repair\\c238274860.lua": "40d6938729d2f3695b3fb0da1555e5c9aa91c2efd64bc7fa1d1cd6896414fcb3",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "mode": "candidate",
+      "cases": 3,
+      "file": "current-vylon-pair-search-candidate.json",
+      "sha256": "f45b77539d38472f5b3cc4231d28d944889521c1cf5fc6f3c07d6ed83fb20ed5",
+      "expected_failures": []
+    },
+    {
+      "mode": "old",
+      "cases": 3,
+      "file": "current-vylon-pair-search-old.json",
+      "sha256": "59159ef79ccae61838a95ef829e9046b798289f2ea8e501ece552e96c3951047",
+      "expected_failures": [
+        1,
+        2
+      ]
+    }
+  ],
+  "manifest": "vylon-pair-search-repair-files.json",
+  "manifest_sha256": "a2bf4cf1f2947498b4067f4d4ba936f8b5ef56feaa010d934536355be6ba69db",
+  "helper_sha256": "52414607151b6e710b9d1dbfea850a093b769d51bf6129779abb1c14e6ca4d45"
+}

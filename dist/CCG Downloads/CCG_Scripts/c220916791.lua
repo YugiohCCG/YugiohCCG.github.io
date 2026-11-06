@@ -70,7 +70,7 @@ function s.gyfilter(c,e,tp,fd)
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local fd=e:GetHandler():IsPreviousPosition(POS_FACEDOWN_DEFENSE)
-	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and s.gyfilter(chkc,e,tp,fd) end
+	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE) and s.gyfilter(chkc,e,tp,fd) end
 	if chk==0 then return Duel.IsExistingTarget(s.gyfilter,tp,LOCATION_GRAVE,0,1,nil,e,tp,fd) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
 	local g=Duel.SelectTarget(tp,s.gyfilter,tp,LOCATION_GRAVE,0,1,1,nil,e,tp,fd)

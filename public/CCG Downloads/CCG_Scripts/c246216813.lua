@@ -64,14 +64,13 @@ end
 function s.addfilter(c)
 	return c:IsCode(CARD_FRUTEONIA) and c:IsAbleToHand()
 end
-function s.setfilter(c)
-	return c:IsSetCard(SET_FRUTE) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()
+function s.setfilter(c,tp)
+	return c:IsSetCard(SET_FRUTE) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local fd=e:GetHandler():IsPreviousPosition(POS_FACEDOWN_DEFENSE)
 	local b1=Duel.IsExistingMatchingCard(s.addfilter,tp,LOCATION_DECK,0,1,nil)
-	local b2=fd and Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil)
+	local b2=fd and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil,tp)
 	if chk==0 then return b1 or b2 end
 	if b1 and b2 then
 		e:SetLabel(Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3)))
@@ -94,9 +93,8 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 			Duel.ConfirmCards(1-tp,tc)
 		end
 	else
-		if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
-		local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
+		local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK,0,1,1,nil,tp):GetFirst()
 		if tc then
 			Duel.SSet(tp,tc)
 		end

@@ -52,7 +52,7 @@ function s.spcon1(e,c)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and Duel.IsExistingMatchingCard(aux.FilterBoolFunction(Card.IsCode,CARD_ELDORA_FIELD),tp,LOCATION_ONFIELD,0,1,nil)
+		and Duel.IsExistingMatchingCard(function(c) return c:IsFaceup() and c:IsCode(CARD_ELDORA_FIELD) end,tp,LOCATION_ONFIELD,0,1,nil)
 end
 function s.setfilter(c)
 	if not c:IsType(TYPE_SPELL+TYPE_TRAP) or not c:IsSSetable() then return false end

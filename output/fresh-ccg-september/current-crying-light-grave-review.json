@@ -1,0 +1,98 @@
+{
+  "status": "SCOPED_ORIGINAL_GY_RECOVERY_VERIFIED_NO_REPAIR",
+  "passcode": 258241424,
+  "finding": "Fourteen full original Light GY-effect cases pass: actual GY banish cost, independent Hand/bottom choices from own GY or face-up banishment, hidden/wrong race/non-Tuner/opponent exclusions, CL2 resource banishment still recoverable, resource shuffled to Deck no longer available, source returned to Deck after cost does not suppress resolution, real late Necrovalley blocks GY recovery while banished recovery remains legal, and effect negation preserves paid cost without returning resource. Native Decktop-group query proves exact bottom placement. Six independent faults fail the expected outcomes (omitted return7, omitted cost10, race1, type1, omitted Valley filter1, wrong source-relation guard7). No production defect or edit.",
+  "qualification": "Current source/installed metadata, original cost/operation and full stock Necrovalley continuous effect; neutral typed resources and response helper. No Lua API mapping. Normal activation search has its existing separate refresh. Cross-copy named sharing, Main/GY independent use, negated use/reset and live Omega remain open. Not full-card certification; no broad-gate rerun or counter promotion.",
+  "runs": [
+    {
+      "file": "current-crying-light-grave-candidate.json",
+      "sha256": "7daa4898daa034bdc043f9c68599a7b1e8435f395c5fce42bd71b432ee9886d2",
+      "expected_failures": []
+    },
+    {
+      "file": "current-crying-light-grave-no-return.json",
+      "sha256": "88dfbdc5839de6b7ecbb989892f05307930554a568272c68cddaa1a6f17ba7c2",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        8,
+        10,
+        12
+      ]
+    },
+    {
+      "file": "current-crying-light-grave-no-cost.json",
+      "sha256": "acdfb6e5da7389090a23280d2b82dd60f1365848a4b787388fb0f6e7f4e83ab7",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ]
+    },
+    {
+      "file": "current-crying-light-grave-any-race.json",
+      "sha256": "684879393f95dab2939dd4e5755c67fb13cd90d65e3258f9f503a1ad4b18cea3",
+      "expected_failures": [
+        5
+      ]
+    },
+    {
+      "file": "current-crying-light-grave-any-type.json",
+      "sha256": "b55170fdfd3fb3e58648241e90d21a333a56a4156ffd86ded8e5e020ce62adbf",
+      "expected_failures": [
+        6
+      ]
+    },
+    {
+      "file": "current-crying-light-grave-no-valley-filter.json",
+      "sha256": "ddebe62f9c8517aba6abbb58f29c20b88290dc48162f715a18d16dcbcfbb1740",
+      "expected_failures": [
+        11
+      ]
+    },
+    {
+      "file": "current-crying-light-grave-source-relation.json",
+      "sha256": "2d13512cd41010b24476e208e5bb7f5ac7b337aba12aa3f5153ccb4f4775e917",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        8,
+        10,
+        12
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "e623c77c4dd50fbc29cc068a5609d9a014e0241f46dfec8e1b95823a15786c18",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-sort-transport-candidate.mjs": "3325c76fb15c479de379fa117a00933396e6b54f708128dbb02a01d5cba5e199",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_crying_light_grave.cjs": "e4b89e63f8f3bb95f4d372a8a6931478d06cd834a00f535a24dc95ed68e5ca51",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c258241424.lua": "49d176050b18c8ba43879dc1e9605d8af22de4dc0e3ef5212101d0f289afb6d1",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\c47355498.lua": "1d3862aabbbb3f381587a3028435736db2ca5818bdb4973ca30deb5632398318",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c258241424.lua": "49d176050b18c8ba43879dc1e9605d8af22de4dc0e3ef5212101d0f289afb6d1"
+  }
+}

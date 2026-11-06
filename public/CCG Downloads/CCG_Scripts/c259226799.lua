@@ -62,7 +62,11 @@ function s.drawcount(tp)
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsAbleToHand() and aux.NecroValleyFilter()(c) end
+	if chk==0 then
+		local ct=s.drawcount(tp)
+		return c:IsAbleToHand() and aux.NecroValleyFilter()(c)
+			and (ct==0 or Duel.IsPlayerCanDraw(tp,ct))
+	end
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,c,1,tp,LOCATION_GRAVE)
 	local ct=s.drawcount(tp)
 	if ct>0 then

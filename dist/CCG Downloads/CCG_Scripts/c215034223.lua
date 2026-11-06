@@ -61,7 +61,7 @@ function s.pzop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.cfilter(c,tp,e)
-	return c:IsControler(tp) and c:IsRace(RACE_PYRO) and c:IsType(TYPE_FUSION)
+	return c:IsFaceup() and c:IsControler(tp) and c:IsRace(RACE_PYRO) and c:IsType(TYPE_FUSION)
 		and (not e or c:IsCanBeEffectTarget(e))
 		and Duel.IsExistingMatchingCard(s.armsfilter,tp,LOCATION_DECK,0,1,nil,c)
 end

@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');exports.corrected=s=>{s=require('./fresh_nautica_normal_summon_zero_repair.cjs').corrected(s);const a='s.atkzero(e,te:GetHandler()) te:Reset()';assert.equal(s.split(a).length,2);return s.replace('function s.normalzero(e,tc)\n','function s.normalzero(e,tc)\n local tp=e:GetHandlerPlayer()\n').replace(a,'s.atkzero(e,te:GetHandler()) if s.allnautica(tp) then s.negate(e,te:GetHandler()) end te:Reset()');};

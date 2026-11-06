@@ -24,10 +24,13 @@ function s.filter(c,e,tp)
 		and ((s.nsfilter(c) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false))
 			or (not s.nsfilter(c) and c:IsAbleToRemove()))
 end
+function s.revealfilter(c,e,tp)
+ return (not c:IsLocation(LOCATION_HAND) or not c:IsPublic()) and s.filter(c,e,tp)
+end
 function s.revcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.filter,tp,LOCATION_HAND+LOCATION_DECK,0,1,nil,e,tp) end
+	if chk==0 then return Duel.IsExistingMatchingCard(s.revealfilter,tp,LOCATION_HAND+LOCATION_DECK,0,1,nil,e,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
-	local tc=Duel.SelectMatchingCard(tp,s.filter,tp,LOCATION_HAND+LOCATION_DECK,0,1,1,nil,e,tp):GetFirst()
+	local tc=Duel.SelectMatchingCard(tp,s.revealfilter,tp,LOCATION_HAND+LOCATION_DECK,0,1,1,nil,e,tp):GetFirst()
 	Duel.ConfirmCards(1-tp,tc)
 	if tc:IsLocation(LOCATION_HAND) then Duel.ShuffleHand(tp) end
 	tc:CreateEffectRelation(e)

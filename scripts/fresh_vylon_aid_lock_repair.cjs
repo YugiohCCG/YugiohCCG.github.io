@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');exports.corrected=s=>{const start=s.indexOf(' local lock=Effect.CreateEffect(e:GetHandler())'),end=s.indexOf(' Duel.RegisterEffect(lock,tp)',start);assert(start>0&&end>start);const finish=end+' Duel.RegisterEffect(lock,tp)'.length,block=s.slice(start,finish),a='function s.spop(e,tp)';assert.equal(s.split(a).length,2);s=s.slice(0,start)+s.slice(finish);const nl=s.includes('\r\n')?'\r\n':'\n';return s.replace(a,a+nl+block);};

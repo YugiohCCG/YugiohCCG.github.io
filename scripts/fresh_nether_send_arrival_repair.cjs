@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');exports.corrected=(s,code=238272436)=>{assert([238272436,284636661].includes(code));const a=code===238272436?'if #g==0 or Duel.SendtoGrave(g,REASON_EFFECT)==0':'if not sent or Duel.SendtoGrave(sent,REASON_EFFECT)==0',guard=code===238272436?'g:GetFirst()':'sent';assert.equal(s.split(a).length,2);return s.replace(a,a+' or not '+guard+':IsLocation(LOCATION_GRAVE)');};

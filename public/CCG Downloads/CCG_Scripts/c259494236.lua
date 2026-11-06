@@ -6,13 +6,6 @@ local CARD_DIGITRON=32295838
 function s.initial_effect(c)
 	aux.AddCodeList(c,32295838,259961648)
 	c:EnableReviveLimit()
-	--Special Summon limit
-	local e0=Effect.CreateEffect(c)
-	e0:SetType(EFFECT_TYPE_SINGLE)
-	e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
-	e0:SetCode(EFFECT_SPSUMMON_CONDITION)
-	e0:SetValue(aux.ritlimit)
-	c:RegisterEffect(e0)
 	--If Ritual Summoned: Special Summon "Digitron"
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))

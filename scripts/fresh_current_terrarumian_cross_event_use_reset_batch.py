@@ -1,0 +1,12 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+paths=[Path(__file__).resolve(),ROOT/'scripts/fresh_current_terrarumian_cross_event_use_reset.cjs',ROOT/'scripts/fresh_installed_card.cjs',ROOT/'scripts/fresh_corrected_card_data_transport.cjs',FILES/'Databases/CCG_v1.db',*[ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{c}.lua' for c in [284639719,284639720]]]+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))+[ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']
+before={str(p.resolve()):sha(p) for p in paths};runs=[]
+for control,expected in [(None,[]),('per-copy',list(range(24))),('no-operation',list(range(24)))]:
+ r=subprocess.run(['node','--no-warnings','scripts/fresh_current_terrarumian_cross_event_use_reset.cjs']+(['--'+control] if control else []),capture_output=True,text=True,timeout=20)
+ p=OUT/('current-terrarumian-cross-event-use-reset'+('-'+control if control else '')+'.json');d=json.loads(p.read_text());assert len(d['results'])==24 and [i for i,v in enumerate(d['results']) if v['failure']]==expected and all(not v['logs'] for v in d['results']),(control,r.stdout+r.stderr);assert r.returncode==bool(expected)
+ runs.append({'control':control,'artifact':p.name,'sha256':sha(p),'expected_failures':expected})
+assert before=={str(p.resolve()):sha(p) for p in paths};assert all((ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{c}.lua').read_bytes()==(FILES/'Scripts'/f'c{c}.lua').read_bytes() for c in [284639719,284639720])
+(OUT/'current-terrarumian-cross-event-use-reset-batch.json').write_text(json.dumps({'status':'NATIVE_CROSS_EVENT_USE_RESET_VERIFIED','runtime_dependencies_sha256':before,'runs':runs,'scope':'Sword/Nerve full current installed scripts/corrected transport/no Lua API adapter. Actual Normal/Special Summon and effect destruction in both orders. First successful/activation-negated/effect-negated use consumes named limit across event/copy, next-own-turn destruction resets. Actual resource outcomes, effective per-copy/no-operation controls. Neutral summon/destroy supports; not full-card/live Omega certification.'},indent=2)+'\n',encoding='utf-8');print('Sword/Nerve native cross-event sharing and reset verified')

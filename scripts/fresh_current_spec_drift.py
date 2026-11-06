@@ -40,7 +40,21 @@ syntax={r['passcode']:r for r in json.loads(syntax_path.read_text(encoding='utf-
 load={r['passcode']:r for r in json.loads(load_path.read_text(encoding='utf-8'))['results']}
 selected_path=OUT/'current-spec-engine-load-selected.json'
 selected=None
-if selected_path.exists():
+installed_init_path=OUT/'current-installed-metadata-init.json'
+installed_init_batch_path=OUT/'current-installed-metadata-init-batch.json'
+installed_init=None;installed_dependencies={}
+if installed_init_path.exists() and installed_init_batch_path.exists():
+ installed_init_batch=json.loads(installed_init_batch_path.read_text(encoding='utf-8'))
+ assert installed_init_batch['raw_artifact']==installed_init_path.name and installed_init_batch['raw_sha256']==sha(installed_init_path),'Installed initialization artifact differs'
+ installed_init=json.loads(installed_init_path.read_text(encoding='utf-8'))
+ assert installed_init_batch['total']==len(installed_init['results'])==len(baseline)==711
+ assert installed_init_batch['same_historical_failure_ids'] is True
+ installed_dependencies=installed_init_batch['dependencies_sha256']
+ for dependency,h in installed_dependencies.items():assert sha(Path(dependency))==h,'Installed initialization dependency changed: '+dependency
+ load={r['passcode']:r for r in installed_init['results']}
+ assert set(load)==set(current),'Installed initialization roster differs'
+ for code,row in load.items():assert sha(ROOT/f'public/CCG Downloads/CCG_Scripts/c{code}.lua')==row['script_sha256'],'Installed initialization source changed'
+elif selected_path.exists():
  selected=json.loads(selected_path.read_text(encoding='utf-8'))
  for p,h in {**selected['runtime_dependencies_sha256'],**selected['loaded_script_dependencies_sha256']}.items():
   assert sha(ROOT/p)==h,'Current revalidation dependency changed: '+p
@@ -50,6 +64,8 @@ if selected_path.exists():
 paths={'candidate':OUT/'candidate-CCG_v1.db','public':ROOT/'public/CCG Downloads/CCG_Database/CCG_v1.db','installed':FILES/'Databases/CCG_v1.db'}
 before={str(p):sha(p) for p in [baseline_path,website_path,syntax_path,load_path,*paths.values()]}
 if selected:before[str(selected_path)]=sha(selected_path)
+if installed_init:
+ before.update({str(p):sha(p) for p in [installed_init_path,installed_init_batch_path]})
 connections={name:connect(p) for name,p in paths.items()}
 rows=[]
 spec_keys=['name','text','category','cardTypes','monsterType','attribute','level','rank','linkRating','linkArrows','scale','atk','def','archetype']
@@ -65,6 +81,7 @@ for old in baseline:
       'script_sha256':source_hash,'installed_script_matches':bool(source_hash and source_hash==sha(FILES/'Scripts'/source.name)),
       'syntax_current':bool(source_hash and syntax.get(code,{}).get('script_sha256')==source_hash),
       'load_current':bool(source_hash and load.get(code,{}).get('script_sha256')==source_hash),
+      'initialization_status':load.get(code,{}).get('status'),
       'database_text_matches_current':{name:bool(live and t and norm(t['text'])==norm(live['text']) and norm(t['name'])==norm(live['name'])) for name,t in texts.items()},
       'database_rows_present':{name:bool(texts[name] is not None and datas[name] is not None) for name in paths},
       'database_metadata_matches_public':{name:None if datas['public'] is None else bool(datas[name] is not None and datas[name]==datas['public']) for name in ['candidate','installed']},
@@ -74,6 +91,7 @@ for old in baseline:
  rows.append(row)
 for c in connections.values():c.close()
 assert before=={p:sha(Path(p)) for p in before},'Input changed during reconciliation'
+assert all(sha(Path(p))==h for p,h in installed_dependencies.items()),'Installed initialization dependency changed during reconciliation'
 summary={'pinned_cards':len(baseline),'current_cards':len(current),'new_passcodes':sorted(set(current)-{c['passcode'] for c in baseline}),
          'missing_current':sum(not r['current_present'] for r in rows),'changed_printed_effects':sum('text' in r['specification_delta'] for r in rows),
          'changed_specifications':sum(bool(r['specification_delta']) for r in rows),
@@ -83,11 +101,13 @@ summary={'pinned_cards':len(baseline),'current_cards':len(current),'new_passcode
          'database_text_formatting_only':{name:sum(r['database_text_formatting_only'][name] for r in rows) for name in paths},
          'source_install_mismatches':sum(not r['installed_script_matches'] for r in rows),
          'syntax_stale':sum(not r['syntax_current'] for r in rows),'load_stale':sum(not r['load_current'] for r in rows)}
+if installed_init:
+ summary['installed_initialization']={'total':len(installed_init['results']),'passed':sum(r['status']=='first_decision_pass' for r in installed_init['results']),'known_compatibility_failures':sum(r['status']!='first_decision_pass' for r in installed_init['results']),'dependencies_verified':True,'scope':'Fresh source/installed metadata; initialization only, not effect or live Omega certification. Historical selected snapshot is preserved and not used for current freshness.'}
 if selected:
  summary['current_spec_initialization_rechecks']={'total':len(selected['results']),
        'passed':sum(r['status']=='first_decision_pass' for r in selected['results']),
        'compatibility_failures':sum(r['status']!='first_decision_pass' for r in selected['results'])}
-report={'scope':'All pinned/current roster specifications reconciled read-only against frozen candidate and current public/installed databases. Metadata compared with public DB, not independently reconstructed from website. Hash freshness does not certify effect semantics; no historical evidence or DB modified.',
+report={'scope':'All pinned/current roster specifications reconciled read-only against frozen candidate and current public/installed databases. Metadata compared with public DB, not independently reconstructed from website. Initialization freshness prefers the fully validated installed-metadata batch, retaining known failures as failures and the selected snapshot as history. Hash freshness does not certify effect semantics; no historical evidence or DB modified.',
         'generator_sha256':sha(Path(__file__)),'inputs_sha256':before,'summary':summary,'cards':rows}
 (OUT/'current-specification-drift.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
 lines=['# Current specification and audit freshness','','Read-only reconciliation. Historical test data is preserved. Line breaks and literal escaped line breaks are treated as text separators. Missing public DB rows are reported separately from comparisons of existing metadata. No card is certified by this comparison.','',

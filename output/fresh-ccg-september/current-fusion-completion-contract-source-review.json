@@ -1,0 +1,88 @@
+{
+  "scope": "Source-only branch/contract reconciliation of the11 previously delegated classifications; no production edits or behavior certification.",
+  "cards": [
+    {
+      "passcode": 210506870,
+      "source_sha256": "8a6d1e9cfbc774b26a949aec98558659ca956846dd767b78ff7be09fb4037606",
+      "direct_path": "direct success guard exists; separate delegated path remains",
+      "delegated_path": "operation callback has no enforced success result; caller unconditionally completes procedure; runtime proof pending"
+    },
+    {
+      "passcode": 220150285,
+      "source_sha256": "4dff860979df6ec6b0aefb8a9935ce0ae1c2c2beb3a59aff42118b1206f549c4",
+      "direct_path": "unchecked shared post-branch completion; needs native material-dependent failure reproduction",
+      "delegated_path": "operation callback has no enforced success result; caller unconditionally completes procedure; runtime proof pending"
+    },
+    {
+      "passcode": 227035644,
+      "source_sha256": "965c8d3c11af1d99927212995f08c731d2cfe7f7fb4f951ed8db08842181783d",
+      "direct_path": "direct success guard exists; separate delegated path remains",
+      "delegated_path": "operation callback has no enforced success result; caller unconditionally completes procedure; runtime proof pending"
+    },
+    {
+      "passcode": 238035167,
+      "source_sha256": "0c703c5a185316c5e8b0a7c085cfa14ffe3ab92de029a98862c117f1c305b458",
+      "direct_path": "unchecked shared post-branch completion; needs native material-dependent failure reproduction",
+      "delegated_path": "operation callback has no enforced success result; caller unconditionally completes procedure; runtime proof pending"
+    },
+    {
+      "passcode": 245935439,
+      "source_sha256": "b9c19a812969ace60f80f3cd6e544d4edd95d804b7604165285414853480eb54",
+      "direct_path": "direct success guard exists; separate delegated path remains",
+      "delegated_path": "operation callback has no enforced success result; caller unconditionally completes procedure; runtime proof pending"
+    },
+    {
+      "passcode": 250339529,
+      "source_sha256": "0cacdefea7bffdbe277150a4a414356c8ba4654ae346f3824ea45cc92016f70a",
+      "direct_path": "unchecked shared post-branch completion; needs native material-dependent failure reproduction",
+      "delegated_path": "operation callback has no enforced success result; caller unconditionally completes procedure; runtime proof pending"
+    },
+    {
+      "passcode": 259160760,
+      "source_sha256": "41bbcf35a19ae131b48bad2b27e746a0aa5b8d6723610d27b5806fca164df10e",
+      "direct_path": "direct success guard exists; separate delegated path remains",
+      "delegated_path": "operation callback has no enforced success result; caller unconditionally completes procedure; runtime proof pending"
+    },
+    {
+      "passcode": 259184310,
+      "source_sha256": "b2d57fc4c4cea9bd5a53c9cd1f6b0582c3a0f08f7a935e41da999fc8a8311f62",
+      "direct_path": "direct success guard exists; separate delegated path remains",
+      "delegated_path": "operation callback has no enforced success result; caller unconditionally completes procedure; runtime proof pending"
+    },
+    {
+      "passcode": 259348317,
+      "source_sha256": "6efc98b26d21ad619ff34271c19c8bfc02cab3a7246200eebe77bca8025a0a47",
+      "direct_path": "unchecked shared post-branch completion; needs native material-dependent failure reproduction",
+      "delegated_path": "operation callback has no enforced success result; caller unconditionally completes procedure; runtime proof pending"
+    },
+    {
+      "passcode": 259562343,
+      "source_sha256": "f4243198ad0a8702cfb9c77a9926b92e76f14c379c4026dcca7357307fc2b913",
+      "direct_path": "direct success guard exists; separate delegated path remains",
+      "delegated_path": "operation callback has no enforced success result; caller unconditionally completes procedure; runtime proof pending"
+    },
+    {
+      "passcode": 259680842,
+      "source_sha256": "783697af4fddf6d5ee7bdf33ef2f10cb13db9b313bb2234f72ff5ca6e217c184",
+      "direct_path": "direct success guard exists; separate delegated path remains",
+      "delegated_path": "operation callback has no enforced success result; caller unconditionally completes procedure; runtime proof pending"
+    }
+  ],
+  "new_direct_candidates": [
+    220150285,
+    238035167,
+    250339529,
+    259348317
+  ],
+  "helper_findings": {
+    "legacy_chain_material": "Bundled c39980304.chain_operation and c58199906.chain_operation call Duel.SpecialSummon after material removal, return no success result and do not CompleteProcedure. A caller cannot safely assume success; reachable original-chain failure not yet reproduced.",
+    "different_contract": "The fixed-scripts/fusion/c39980304 variant uses SpecialSummonStep rather than SpecialSummon and has an extra summon-position parameter. It is not interchangeable with the legacy helper. No production helper/API substitution authorized or made."
+  },
+  "helper_sha256": {
+    "tmp/omega_scripts/c39980304.lua": "c171c51f3701e951e398e71be14575b6874e8c5388313b4613370aa97813d09a",
+    "tmp/omega_scripts/c58199906.lua": "48735c331f538ea50d72cd5bea00657eeb0eef1b1a73a50ddf8dc2c4e83151c5",
+    "tmp/omega_scripts/fixed-scripts/fusion/c39980304.lua": "29003c3f24613270b6005f3d15c6c9bc936ddb9e52519323f0537cb44922d68e"
+  },
+  "correction": "The earlier11 delegated-context classification was incomplete: Plate Montipora220150285, Moon Aurelia238035167, Planktonites250339529 and Sphinx259348317 also have unchecked direct branches sharing a post-branch completion call. Aqua direct branches already repaired; Heat/Sear direct branches already guarded.",
+  "next_action": "Reuse material-dependent native restriction/revival probe for these four direct branches as one batch. Then exercise actual legacy Chain Material with Heat/Sear, retaining helper-version/public-runtime qualifications; do not infer a fix from callback return values."
+}

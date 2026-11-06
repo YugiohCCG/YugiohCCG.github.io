@@ -1,0 +1,42 @@
+{
+  "status": "DOMESTICATION_NATIVE_REPLACEMENT_CLAUSE_NO_REPAIR",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_domestication_replacement_batch.py": "18e5d54beebe56f0fd7a9a774cd6141b614ffc0f5d04f91196c9294bdca1c507",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259201342.lua": "cbcb2673aec3fde5c9fe112cd812ed020ea2701abd4f25a724000993d2962843",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_domestication_replacement.cjs": "39a6d0e697b659c0339ae04083d5326c73f3e60596fb2030945570f2f7517947",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_meadow_events.cjs": "4ac1e5cfad1ae0dbe52e5903d5094bae938301d1e0b3d2aa5199a88a95c03406",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "artifact": "current-domestication-replacement.json",
+      "sha256": "59eb4ca99557d10aef33eac83b565e1dd99852443cf9b1cb0e83346214d7b9e0",
+      "expected_failures": []
+    },
+    {
+      "artifact": "current-domestication-replacement-no-shuffle.json",
+      "sha256": "8c3f0f25ade2a458511d4e2586b7f94db0c6dae4ed7dc23d9a981aed917666d0",
+      "expected_failures": [
+        0,
+        3,
+        4,
+        6,
+        7
+      ]
+    }
+  ],
+  "scope": "Full original Domestication/current installed metadata/corrected public engine/no Lua API adapter. Initially GY source; actual neutral own/opponent Spell effects send two Hand cards, mixed Monster/Spell or all Spells, optional decline and effect discard. One source shuffle protects exactly one selected card, two sources shuffle and protect both. Actual activation-cost send excluded, no Hand excluded, native EFFECT_CANNOT_TO_DECK source excluded. Native moves and remaining GY/Hand/Deck state asserted; omitted-shuffle controls fail every payment positive. No production change, no full-card/live Omega certification; reveal/activation-use and interruption behavior remain separate."
+}

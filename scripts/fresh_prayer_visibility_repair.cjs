@@ -1,0 +1,3 @@
+'use strict';
+const assert=require('node:assert/strict');
+exports.corrected=s=>{const rules=[['return c:IsSetCard(SET_NEPHTHYS) and c:IsType(TYPE_MONSTER) and c:IsLevel(8) and c:IsDestructable()','return (c:IsLocation(LOCATION_HAND) or c:IsFaceup()) and c:IsSetCard(SET_NEPHTHYS) and c:IsType(TYPE_MONSTER) and c:IsLevel(8) and c:IsDestructable()'],['return c:IsSetCard(SET_NEPHTHYS) and c:IsType(TYPE_MONSTER) and c:IsType(TYPE_RITUAL)','return c:IsSetCard(SET_NEPHTHYS) and c:IsType(TYPE_MONSTER) and c:IsType(TYPE_RITUAL) and (not c:IsPreviousLocation(LOCATION_ONFIELD) or c:IsPreviousPosition(POS_FACEUP))']];for(const [a,b] of rules){assert.equal(s.split(a).length,2);s=s.replace(a,b);}return s;};

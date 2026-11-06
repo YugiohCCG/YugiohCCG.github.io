@@ -1,5 +1,10 @@
+import sampleDecks from "../data/sample-decks.json";
 import PrintTitle from "../components/PrintTitle";
-import { useDeferredValue, useEffect, useMemo, useState, type DragEvent } from "react";
+import { useDeferredValue, useEffect, useMemo, useRef, useState, type DragEvent } from "react";
+import { useSearchParams } from "react-router-dom";
+import FiltersPanel from "../components/FiltersPanel";
+import { buildQuery } from "../hooks/useCards";
+import { cardMatches } from "../utils/filters";
 import Link from "../components/SiteLink";
 import useBanlistCards from "../hooks/useBanlistCards";
 import usePageMeta from "../hooks/usePageMeta";
@@ -10,7 +15,7 @@ import type { Card } from "../types/card";
 import customCardsData from "../data/cards.json";
 import { asset } from "../utils/assets";
 import { isExtraDeckCard } from "../utils/memberships";
-import { serializeOmegaDeck, type DeckSection, type DeckState } from "../utils/deck";
+import { serializeOmegaDeck, serializeXmlDeck, type DeckSection, type DeckState } from "../utils/deck";
 
 const EMPTY: DeckState = { main: [], extra: [], side: [] };
 const STORAGE_KEY = "ccg_deck_builder_v1";
@@ -73,7 +78,17 @@ export default function DeckBuilder() {
   const { data: officialCards, loading: loadingOfficial, error: officialError } = useRemoteJson<Card[]>("data/yugioh-cards.json");
   const { legalFor } = useBanlistCards("TCG");
   const [deck, setDeck] = useState<DeckState>(initialDeck);
-  const [query, setQuery] = useState("");
+  const [params, setParams] = useSearchParams();
+  const handledSample = useRef<string | null>(null);
+  const filtersDialog = useRef<HTMLDialogElement>(null);
+  const query = params.get("q") ?? "";
+  const filters = useMemo(() => ({ ...buildQuery(params), q: undefined }), [params]);
+  const setQuery = (value: string) => {
+    const next = new URLSearchParams(params);
+    if (value) next.set("q", value);
+    else next.delete("q");
+    setParams(next, { replace: true });
+  };
   const [pool, setPool] = useState<CardPool>("all");
   const [dragTarget, setDragTarget] = useState<DeckSection | null>(null);
   const [dragging, setDragging] = useState<DragPayload | null>(null);
@@ -85,8 +100,27 @@ export default function DeckBuilder() {
     const isCustom = customIds.has(card.passcode);
     if (pool === "ccg" && !isCustom) return false;
     if (pool === "yugioh" && isCustom) return false;
+    if (!cardMatches({ ...card, legal: card.legal ?? legalFor(card) ?? undefined }, filters)) return false;
     return `${card.name} ${card.text ?? ""} ${card.archetype ?? ""}`.toLowerCase().includes(deferredQuery);
-  }).slice(0, 80), [cards, customIds, deferredQuery, pool]);
+  }).slice(0, 80), [cards, customIds, deferredQuery, filters, legalFor, pool]);
+
+  useEffect(() => {
+    const id = params.get("sample");
+    if (!id) {
+      handledSample.current = null;
+      return;
+    }
+    if (handledSample.current === id) return;
+    handledSample.current = id;
+    const sample = Object.entries(sampleDecks).find(([key]) => key === id)?.[1];
+    if (sample && (!Object.values(deck).some(section => section.length) ||
+      window.confirm(`Replace your current deck with "${sample.name}"?`))) {
+      setDeck(sample.deck);
+    }
+    const next = new URLSearchParams(params);
+    next.delete("sample");
+    setParams(next, { replace: true });
+  }, [deck, params, setParams]);
 
   useEffect(() => localStorage.setItem(STORAGE_KEY, JSON.stringify(deck)), [deck]);
 
@@ -149,13 +183,14 @@ export default function DeckBuilder() {
     });
   };
 
-  const exportDeck = () => {
-    const url = URL.createObjectURL(new Blob([serializeOmegaDeck(deck)], { type: "text/plain" }));
+  const exportDeck = (format: "ydk" | "xml") => {
+    const content = format === "xml" ? serializeXmlDeck(deck, id => byId.get(id)?.name) : serializeOmegaDeck(deck);
+    const url = URL.createObjectURL(new Blob([content], { type: format === "xml" ? "application/xml" : "text/plain" }));
     const anchor = document.createElement("a");
     anchor.href = url;
-    anchor.download = "CCG-Deck.ydk";
+    anchor.download = `CCG-Deck.${format}`;
     anchor.click();
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   const respectsLimits = [...deck.main, ...deck.extra, ...deck.side].every((id) => { const card = byId.get(id); return !card || copies(id) <= copyLimit(card); });
@@ -173,8 +208,8 @@ export default function DeckBuilder() {
     <section className="card deck-builder-hero">
       <p className="deck-kicker">Omega deck workshop</p>
       <div className="deck-builder-heading">
-        <div><PrintTitle as="h1" caption="YOUR NEXT / STRATEGY" className="font-display text-4xl">Deck Builder</PrintTitle><p>Search the complete CCG and Yu-Gi-Oh! catalog. Drag cards onto a deck zone, rearrange them, then export an Omega <code>.ydk</code>.</p></div>
-        <div className="flex gap-2"><button className="btn" type="button" onClick={() => setDeck(EMPTY)}>Clear</button><button className="btn btn-primary" type="button" onClick={exportDeck} disabled={!valid}>Export .ydk</button></div>
+        <div><PrintTitle as="h1" caption="YOUR NEXT / STRATEGY" className="font-display text-4xl">Deck Builder</PrintTitle><p>Search the complete CCG and Yu-Gi-Oh! catalog. Drag cards onto a deck zone, rearrange them, then export as <code>.ydk</code> or <code>.xml</code>.</p></div>
+        <div className="flex flex-wrap gap-2"><button className="btn" type="button" onClick={() => setDeck(EMPTY)}>Clear</button><button className="btn btn-primary" type="button" onClick={() => exportDeck("ydk")} disabled={!valid}>Export .ydk</button><button className="btn" type="button" onClick={() => exportDeck("xml")} disabled={!deck.main.length && !deck.extra.length && !deck.side.length}>Export .xml</button></div>
       </div>
       <div className={`deck-validation ${valid ? "is-valid" : "is-incomplete"}`} role="status">{validationMessage}</div>
     </section>
@@ -184,6 +219,15 @@ export default function DeckBuilder() {
         <div className="deck-section-heading"><div><p className="deck-kicker">Card library</p><PrintTitle as="h2" caption="CARD / LIBRARY" className="font-display text-3xl">Find Cards</PrintTitle></div><span>{results.length} shown</span></div>
         <div className="deck-return-drop" aria-hidden={dragging?.source !== "deck"}><b>Return card to library</b><span>Drop anywhere in this panel to remove it from your deck</span></div>
         <div className="deck-search-controls"><input type="search" placeholder="Name, text, or archetype…" value={query} onChange={(event) => setQuery(event.target.value)} /><select value={pool} onChange={(event) => setPool(event.target.value as CardPool)} aria-label="Card pool"><option value="all">All cards</option><option value="ccg">CCG only</option><option value="yugioh">Yu-Gi-Oh! only</option></select></div>
+        <button type="button" className="btn mt-2" aria-haspopup="dialog" onClick={() => filtersDialog.current?.showModal()}>Filters</button>
+        <dialog ref={filtersDialog} aria-labelledby="deck-filter-title"
+          className="card m-auto max-h-[85dvh] w-[min(92vw,64rem)] overflow-y-auto text-[color:var(--ink-strong)] backdrop:bg-black/50">
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <h3 id="deck-filter-title" className="font-display text-2xl">Card Library Filters</h3>
+            <button type="button" className="btn" onClick={() => filtersDialog.current?.close()}>Close</button>
+          </div>
+          <FiltersPanel inDialog onApply={() => filtersDialog.current?.close()} />
+        </dialog>
         {loadingOfficial && <p className="deck-catalog-note" role="status">Loading the complete Yu-Gi-Oh! catalog…</p>}
         {Boolean(officialError) && <p className="deck-catalog-note is-error" role="alert">The official card catalog could not be loaded.</p>}
         <div className="deck-catalog-grid">{results.map((card) => {

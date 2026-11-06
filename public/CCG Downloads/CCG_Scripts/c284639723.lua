@@ -42,16 +42,16 @@ function s.initial_effect(c)
  c:RegisterEffect(e4)
 end
 function s.ownmonster(c)
- return c:IsSetCard(SET_TERRARUMIAN)
+ return c:IsFaceup() and c:IsSetCard(SET_TERRARUMIAN)
 end
 function s.pcon(e,tp)
  return Duel.IsExistingMatchingCard(s.ownmonster,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.destroyfilter(c,handler)
- return c~=handler and c:IsSetCard(SET_TERRARUMIAN) and c:IsDestructable()
+ return c~=handler and c:IsFaceup() and c:IsSetCard(SET_TERRARUMIAN) and c:IsDestructable()
 end
 function s.zonefilter(c,handler)
- return c:IsLocation(LOCATION_MZONE) and s.destroyfilter(c,handler)
+ return s.destroyfilter(c,handler) and Duel.GetMZoneCount(handler:GetControler(),Group.FromCards(c))>0
 end
 function s.ptg(e,tp,eg,ep,ev,re,r,rp,chk)
  local c=e:GetHandler()
@@ -79,9 +79,10 @@ function s.pop(e,tp)
  if not c:IsRelateToEffect(e)
   or not Duel.IsExistingMatchingCard(s.destroyfilter,tp,LOCATION_ONFIELD,0,1,c,c) then return end
  local g
- if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then
+ if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
+  and Duel.IsExistingMatchingCard(s.zonefilter,tp,LOCATION_MZONE,0,1,c,c) then
   Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-  g=Duel.SelectMatchingCard(tp,s.destroyfilter,tp,LOCATION_MZONE,0,1,1,c,c)
+  g=Duel.SelectMatchingCard(tp,s.zonefilter,tp,LOCATION_MZONE,0,1,1,c,c)
   local more=Duel.GetMatchingGroup(s.destroyfilter,tp,LOCATION_ONFIELD,0,g:GetFirst(),c)
   if #more>0 and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,3)) then
    Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)

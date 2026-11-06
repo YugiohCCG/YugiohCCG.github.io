@@ -17,6 +17,7 @@ function s.initial_effect(c)
 	e1:SetRange(LOCATION_HAND+LOCATION_GRAVE)
 	e1:SetCondition(s.spcon)
 	e1:SetOperation(s.spop)
+	e1:SetValue(function(e) return 0,e:GetLabel()==1 and 0 or 0xff end)
 	c:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(c)
 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
@@ -55,6 +56,7 @@ function s.rescon(g)
 	return #sg>=2 and sg:GetClassCount(Card.GetCode)>=2
 end
 function s.spcon(e,c)
+	e:SetLabel(0)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.rmfilter),tp,LOCATION_GRAVE,0,c)
@@ -64,7 +66,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.rmfilter),tp,LOCATION_GRAVE,0,c)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local sg=g:SelectSubGroup(tp,s.rescon,false,3,3)
-	Duel.Remove(sg,POS_FACEUP,REASON_COST)
+	if not sg or Duel.Remove(sg,POS_FACEUP,REASON_COST)~=#sg then e:SetLabel(1) end
 end
 function s.immval(e,te) return te:GetOwnerPlayer()~=e:GetHandlerPlayer() end
 function s.immop(e)

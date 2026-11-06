@@ -42,14 +42,14 @@ function s.listfilter(c)
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	local b1=Duel.IsExistingMatchingCard(s.fieldfilter,tp,LOCATION_DECK,0,1,nil,tp)
-	local b2=Duel.IsExistingMatchingCard(aux.FilterBoolFunction(Card.IsCode,CARD_ELDORA_FIELD),tp,LOCATION_ONFIELD,0,1,nil)
+	local b2=Duel.IsExistingMatchingCard(function(c) return c:IsFaceup() and c:IsCode(CARD_ELDORA_FIELD) end,tp,LOCATION_ONFIELD,0,1,nil)
 		and Duel.IsExistingMatchingCard(s.listfilter,tp,LOCATION_DECK,0,1,nil)
 	if chk==0 then return b1 or b2 end
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	if not e:GetHandler():IsRelateToEffect(e) then return end
 	local b1=Duel.IsExistingMatchingCard(s.fieldfilter,tp,LOCATION_DECK,0,1,nil,tp)
-	local b2=Duel.IsExistingMatchingCard(aux.FilterBoolFunction(Card.IsCode,CARD_ELDORA_FIELD),tp,LOCATION_ONFIELD,0,1,nil)
+	local b2=Duel.IsExistingMatchingCard(function(c) return c:IsFaceup() and c:IsCode(CARD_ELDORA_FIELD) end,tp,LOCATION_ONFIELD,0,1,nil)
 		and Duel.IsExistingMatchingCard(s.listfilter,tp,LOCATION_DECK,0,1,nil)
 	local op=0
 	if b1 and b2 then

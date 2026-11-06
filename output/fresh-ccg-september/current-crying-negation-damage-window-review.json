@@ -1,0 +1,174 @@
+{
+  "status": "CRYING_NEGATION_DAMAGE_WINDOW_REPAIRED",
+  "finding": "Natir/Dragon pure effect-negation responses no longer opt into Damage Step/calculation. Revelation retains before-calculation Damage Step permission for its direct ATK gain, removes calculation permission and rejects post-calculation Damage Step. Nine original-effect/native timing cases pass with actual Man-Eater Bug normal Flip Summon versus battle flip, actual Catastor start-of-Damage-Step destruction, and original Injection Fairy Lily damage-calculation activation/payment/ATK boost. Exact old source offers five forbidden responses. Omitted negation fails four actual negate/payment/ATK outcomes; omitted Revelation post-calculation guard and removed legitimate early permission each fail one.",
+  "qualification": "Full original source/current installed metadata; source Synchros and Catastor field-seeded, original recipes not tested. Full original Man-Eater Bug/Injection Fairy Lily/Catastor effects and actual battles. Natir explicit established CHAININFO_TARGET_CARDS=8 test mapping; Catastor explicit pure-attribute IsNonAttribute polarity mapping, with unadapted failures preserved. No production API replacements. Other clauses/named sharing/reset/live Omega remain open.",
+  "primary_rules": [
+    {
+      "url": "https://www.yugioh-card.com/en/downloads/rulebook/SD_RuleBook_EN_10.pdf#page=23",
+      "scope": "Printed38-39: ordinary direct ATK/DEF changes end at damage calculation; battle Flip effects activate after calculation. No printed special Damage Step timing/ATK change for Natir/Dragon."
+    },
+    {
+      "url": "https://www.yugioh-card.com/eu/play/damage-step-rules/",
+      "scope": "Detailed native event ordering and early direct ATK/DEF window."
+    },
+    {
+      "url": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4507&ope=2&request_locale=en",
+      "scope": "Official targeted destruction Flip effect used as legitimate producer."
+    }
+  ],
+  "runs": [
+    {
+      "file": "current-crying-negation-damage-window-220305422-candidate-chaininfo-compat.json",
+      "sha256": "74cc63f260e42e060d79d4f879ca4f594cbd7608c3ad548b2fcdd92888fbf36e",
+      "expected_failures": [],
+      "passcode": 220305422,
+      "mode": "candidate"
+    },
+    {
+      "file": "current-crying-negation-damage-window-220305422-prior-source-chaininfo-compat.json",
+      "sha256": "a7670963f5d3e13be9bcaa7082257140ba207589a4c7bb7eced956b66e4f1ffb",
+      "expected_failures": [
+        1
+      ],
+      "passcode": 220305422,
+      "mode": "prior-source"
+    },
+    {
+      "file": "current-crying-negation-damage-window-220305422-no-negate-chaininfo-compat.json",
+      "sha256": "123e1af489721867ba284c76a6a3fbccaba91ae78e51833a8373049139073ed5",
+      "expected_failures": [
+        0
+      ],
+      "passcode": 220305422,
+      "mode": "no-negate"
+    },
+    {
+      "file": "current-crying-negation-damage-window-234296128-candidate-attribute-compat.json",
+      "sha256": "f8a6bd7dc024917239ce0b247a04b5e78efaaa48fe183bbabc4c4a21fc629da9",
+      "expected_failures": [],
+      "passcode": 234296128,
+      "mode": "candidate"
+    },
+    {
+      "file": "current-crying-negation-damage-window-234296128-prior-source-attribute-compat.json",
+      "sha256": "caa2f6b1022b39c0184cf44ed8a0c22b87e8d0271ecd89cec25951f1f329f8de",
+      "expected_failures": [
+        1
+      ],
+      "passcode": 234296128,
+      "mode": "prior-source"
+    },
+    {
+      "file": "current-crying-negation-damage-window-234296128-no-negate-attribute-compat.json",
+      "sha256": "058a2868a062b18f318ab53f410a18a898a27ce41b7770e0d1b9e55c125db974",
+      "expected_failures": [
+        0,
+        2
+      ],
+      "passcode": 234296128,
+      "mode": "no-negate"
+    },
+    {
+      "file": "current-crying-negation-damage-window-234296128-no-after-guard-attribute-compat.json",
+      "sha256": "00d5483a1b4f4894a3ef86a5255a6909bd34d0941bb31857592e87c32050877b",
+      "expected_failures": [
+        1
+      ],
+      "passcode": 234296128,
+      "mode": "no-after-guard"
+    },
+    {
+      "file": "current-crying-negation-damage-window-234296128-no-early-step-attribute-compat.json",
+      "sha256": "ca38b3d6179f4f5564b2700800e06937042d26970cf2774a834f672329d8f192",
+      "expected_failures": [
+        2
+      ],
+      "passcode": 234296128,
+      "mode": "no-early-step"
+    },
+    {
+      "file": "current-crying-negation-damage-window-233499093-candidate-attribute-compat.json",
+      "sha256": "05aa38a2abe2f22eb3275aea7aa309395617737c07f5d7002fc4ae763ec06de8",
+      "expected_failures": [],
+      "passcode": 233499093,
+      "mode": "candidate"
+    },
+    {
+      "file": "current-crying-negation-damage-window-233499093-prior-source-attribute-compat.json",
+      "sha256": "939be619f48e913fb08c84e6fa42d46ce0fa5b77840298c709478c83f5fd4599",
+      "expected_failures": [
+        1,
+        2,
+        3
+      ],
+      "passcode": 233499093,
+      "mode": "prior-source"
+    },
+    {
+      "file": "current-crying-negation-damage-window-233499093-no-negate-attribute-compat.json",
+      "sha256": "5451e53640b570316e3c6d653d8aa6fade2d11ffc189694cbfd4ccc654fb78f2",
+      "expected_failures": [
+        0
+      ],
+      "passcode": 233499093,
+      "mode": "no-negate"
+    }
+  ],
+  "unadapted_probes": [
+    {
+      "file": "current-crying-negation-damage-window-220305422-candidate.json",
+      "sha256": "c9f4222850244c3a3a9dadf2c5761e48c701185d0e79a0a34fe77a98ecc82341",
+      "gap": "invalid CHAININFO flag",
+      "scope": "Initial unadapted fixture failure retained; mapped positives are not original-runtime certification."
+    },
+    {
+      "file": "current-crying-negation-damage-window-234296128-candidate.json",
+      "sha256": "43e7795d52afc743898d1bf5bc68a2ec470ba69175e3ce98b2fd50e5f20f1257",
+      "gap": "IsNonAttribute",
+      "scope": "Initial unadapted fixture failure retained; mapped positives are not original-runtime certification."
+    },
+    {
+      "file": "current-crying-negation-damage-window-233499093-candidate.json",
+      "sha256": "d2dae27a7be829709fb457013a993880eba6784c500149068b7c171f53ef7bc7",
+      "gap": "IsNonAttribute",
+      "scope": "Initial unadapted fixture failure retained; mapped positives are not original-runtime certification."
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c220305422.lua": "f72823101a85498b2bcd8bf24092c5aaad4ba418af10acd39162c771dcda0174",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c220305422.lua": "f72823101a85498b2bcd8bf24092c5aaad4ba418af10acd39162c771dcda0174",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\crying-negation-damage-window-before-repair\\c220305422.lua": "3eb468dd87f6156b48762f73c06b71466d84db5b302c918e2462f07b5678e8b3",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\crying-negation-damage-window-before-repair\\installed-c220305422.lua": "3eb468dd87f6156b48762f73c06b71466d84db5b302c918e2462f07b5678e8b3",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c234296128.lua": "3d3a2cf3ae95e68153dc83e10c78ee2f8d3d157ae133a98538c2fa628a2ed11b",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c234296128.lua": "3d3a2cf3ae95e68153dc83e10c78ee2f8d3d157ae133a98538c2fa628a2ed11b",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\crying-negation-damage-window-before-repair\\c234296128.lua": "21c01de6d495998e8b5e41d7bc744e34f6cb3228a1ad3cb65e261d177b46bb48",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\crying-negation-damage-window-before-repair\\installed-c234296128.lua": "21c01de6d495998e8b5e41d7bc744e34f6cb3228a1ad3cb65e261d177b46bb48",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c233499093.lua": "2eb30074d4ef9bc6ab3a2cd2f832019ea7cf3e62402a0bf408f24e8db4b971da",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c233499093.lua": "2eb30074d4ef9bc6ab3a2cd2f832019ea7cf3e62402a0bf408f24e8db4b971da",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\crying-negation-damage-window-before-repair\\c233499093.lua": "d812be135a8f2676c2f63f39832aeef4296a53b3bde05ef2629d25493d2ed1c9",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\crying-negation-damage-window-before-repair\\installed-c233499093.lua": "d812be135a8f2676c2f63f39832aeef4296a53b3bde05ef2629d25493d2ed1c9",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\crying-negation-damage-window-repair-files.json": "a7cfb3d29e7b0a0b0a1aa733e105c2b0295e30d18519bfc161320ca3fb6a5de8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "e623c77c4dd50fbc29cc068a5609d9a014e0241f46dfec8e1b95823a15786c18",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-sort-transport-candidate.mjs": "3325c76fb15c479de379fa117a00933396e6b54f708128dbb02a01d5cba5e199",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_crying_negation_damage_window.cjs": "264547c18feee77d7c6c14df4b86a7e45c1b5dca3cdf89cf22fe600d52af34b8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_crying_negation_damage_window_repair.cjs": "b2262633a091f42b7029564fbef28599f2ad3fa03a21d41fc8864b1702cca229",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\c54652250.lua": "b6b50bd872693840c593219f138371e7308e3a981b895d2094f9654fe734305b",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\c26593852.lua": "98d6254f4eb6157b86fe564649ec3678204792bc1ced350e0e4a264948883fe3",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\c79575620.lua": "82b6e307e65ad5f47e151eb958bd06faedb4edb73cc8123b11893615725b438c",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-effect-negation-damage-window-source-review.json": "556fb57c5dc22a19708d602f629c43c1ab292ea1f67aff08f2b9daed60822fbf"
+  }
+}

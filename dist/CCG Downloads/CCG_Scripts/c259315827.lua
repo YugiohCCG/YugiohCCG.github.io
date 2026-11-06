@@ -85,12 +85,12 @@ function s.repop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.repfilter2(c,tp)
-	return c:IsCode(id) and c:IsControler(tp) and c:IsLocation(LOCATION_MZONE)
+	return c:IsControler(tp) and c:IsLocation(LOCATION_MZONE)
 		and c:IsReason(REASON_EFFECT) and c:GetReasonPlayer()==1-tp
 		and not c:IsReason(REASON_DESTROY+REASON_REPLACE)
 end
 function s.reptg2(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return eg:IsExists(s.repfilter2,1,nil,tp)
+	if chk==0 then return eg:IsContains(e:GetHandler()) and s.repfilter2(e:GetHandler(),tp)
 		and Duel.IsExistingMatchingCard(s.repfilter,tp,LOCATION_SZONE,0,1,nil,e) end
 	if Duel.SelectEffectYesNo(tp,e:GetHandler(),aux.Stringid(STRING_ID,1)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)

@@ -1,22 +1,40 @@
 # Fresh CCG effect-contract validation
 
-Generated: 2026-08-25T19:42:47.808Z
+Generated: 2026-10-19T17:06:31.887Z
 
 This is an independent pass over the current roster, database, Lua scripts, and Omega script corpus. It does not consume previous audit reports or verdicts.
 
 ## Summary
 
-- Cards: 620
-- Lua scripts parsed: 620
-- Registered effects observed: 2437
-- Printed semantic contracts: 3116
-- Contracts with implementation evidence: 3116
+- Cards: 711
+- Lua scripts parsed: 711
+- Registered effects observed: 2830
+- Printed semantic contracts: 3617
+- Contracts with implementation evidence: 3612
 - Structural/API failures: 0
-- Unsatisfied semantic contracts: 0
+- Unsatisfied semantic contracts: 5
 
 ## Findings
 
-No structural, API, callback, or semantic-contract discrepancies were found.
+### 238274861 — Vylon's Aid
+
+- REVIEW: printed equip contract has no matching Omega primitive
+
+### 238276578 — Sylvan Duchessprout
+
+- REVIEW: printed once_per_turn contract has no matching Omega primitive
+
+### 238272437 — Over Skull from Underroot
+
+- REVIEW: printed synchro_summon contract has no matching Omega primitive
+
+### 284639724 — Terrarumian Trumpet Pitchers
+
+- REVIEW: printed defense_change contract has no matching Omega primitive
+
+### 284636586 — Terrarumian Terrarium
+
+- REVIEW: printed damage contract has no matching Omega primitive
 
 ## Per-card coverage
 
@@ -126,8 +144,8 @@ No structural, API, callback, or semantic-contract discrepancies were found.
 | 259135917 | Nuwa, the Domesticated | 6 | 4/4 | PASS |
 | 259911246 | Mylo in the Wild | 5 | 6/6 | PASS |
 | 259796760 | Nuwa in the Wild | 8 | 7/7 | PASS |
-| 217713649 | Onibi | 2 | 7/7 | PASS |
-| 214371067 | Enra | 4 | 8/8 | PASS |
+| 217713649 | Onibi | 8 | 7/7 | PASS |
+| 214371067 | Enra | 5 | 8/8 | PASS |
 | 229399508 | Kokeshisa | 4 | 8/8 | PASS |
 | 228033609 | Shishi | 4 | 7/7 | PASS |
 | 247378501 | Muramasa | 4 | 7/7 | PASS |
@@ -163,7 +181,7 @@ No structural, API, callback, or semantic-contract discrepancies were found.
 | 217332244 | To Proto Psychi | 9 | 11/11 | PASS |
 | 241543138 | To Proto Eisodos | 2 | 6/6 | PASS |
 | 254065048 | Polemistis gia Ataxia | 6 | 4/4 | PASS |
-| 212684822 | Ektelestis gia Taxis | 5 | 2/2 | PASS |
+| 212684822 | Ektelestis gia Taxis | 4 | 2/2 | PASS |
 | 259057226 | Stellaer of the Cold | 4 | 3/3 | PASS |
 | 234455260 | Stellaer of the Night | 3 | 2/2 | PASS |
 | 226903348 | Stellaer of the Sea | 4 | 4/4 | PASS |
@@ -186,7 +204,7 @@ No structural, API, callback, or semantic-contract discrepancies were found.
 | 245099829 | Azrynior, the Abundaence of Purity | 8 | 9/9 | PASS |
 | 223512283 | Dysmandr, the Depraevity of Worlds | 9 | 8/8 | PASS |
 | 242009896 | Extinction of Dysmandr | 2 | 3/3 | PASS |
-| 214552846 | Eldora, the Intergalactic Empire | 4 | 6/6 | PASS |
+| 214552846 | Eldora, the Intergalactic Empire | 5 | 6/6 | PASS |
 | 229786055 | Eldora in Depraevity | 1 | 4/4 | PASS |
 | 222676270 | Frozen Girl & Blood Moon | 1 | 4/4 | PASS |
 | 222782750 | Ghost Doll & Midnight Manor | 1 | 7/7 | PASS |
@@ -217,7 +235,7 @@ No structural, API, callback, or semantic-contract discrepancies were found.
 | 231872299 | Recollection: the Mine | 3 | 5/5 | PASS |
 | 241447408 | Recollection: Kaboom Papa | 5 | 2/2 | PASS |
 | 229875953 | Teleum Mortis | 4 | 3/3 | PASS |
-| 251699681 | Bear Trap | 7 | 5/5 | PASS |
+| 251699681 | Bear Trap | 8 | 5/5 | PASS |
 | 219543855 | Securitake Agent | 5 | 5/5 | PASS |
 | 226645052 | Harmony Pearlwood & the Nautical Deepwaters | 5 | 3/3 | PASS |
 | 228040066 | Melody Merheart & the Nautical Coral Reef | 4 | 3/3 | PASS |
@@ -272,7 +290,7 @@ No structural, API, callback, or semantic-contract discrepancies were found.
 | 230812008 | Shining Brigade - Loving Division | 3 | 5/5 | PASS |
 | 220124524 | Shining Brigade - Heartbeat Division | 6 | 3/3 | PASS |
 | 255668557 | Shining Brigade - Joyous Division | 4 | 4/4 | PASS |
-| 243420199 | Shining Brigade - Melody Division | 2 | 5/5 | PASS |
+| 243420199 | Shining Brigade - Melody Division | 3 | 5/5 | PASS |
 | 236616849 | Shining Brigade - Revenge Division | 5 | 5/5 | PASS |
 | 223750159 | Shining Brigade Armada | 4 | 7/7 | PASS |
 | 244986323 | Shining Brigade Origins | 7 | 8/8 | PASS |
@@ -321,12 +339,12 @@ No structural, API, callback, or semantic-contract discrepancies were found.
 | 259881255 | Coulomb, the White Ohmen | 3 | 4/4 | PASS |
 | 259780273 | Carcel, the Dark Ohmen | 3 | 4/4 | PASS |
 | 259869259 | Ohmen Surge | 3 | 4/4 | PASS |
-| 259405917 | Siemens, the Ohmechanic Conductor | 4 | 5/5 | PASS |
-| 259350270 | Farad, the Ohmechanic Capacitor | 4 | 5/5 | PASS |
-| 259519336 | Volt, the Ohmechanic Chocker | 4 | 6/6 | PASS |
-| 259841490 | Coulomb, the Ohmechanic Charger | 4 | 4/4 | PASS |
-| 259479044 | Ampere, the Ohmechanic Intensity | 5 | 5/5 | PASS |
-| 259033429 | Carcel, the Ohmechanic Light | 4 | 6/6 | PASS |
+| 259405917 | Siemens, the Ohmenchanic Conductor | 4 | 7/7 | PASS |
+| 259350270 | Farad, the Ohmenchanic Capacitor | 4 | 6/6 | PASS |
+| 259519336 | Volt, the Ohmenchanic Chocker | 4 | 6/6 | PASS |
+| 259841490 | Coulomb, the Ohmenchanic Charger | 4 | 5/5 | PASS |
+| 259479044 | Ampere, the Ohmenchanic Intensity | 5 | 6/6 | PASS |
+| 259033429 | Carcel, the Ohmenchanic Light | 4 | 6/6 | PASS |
 | 259434499 | Ohmen Powerload | 4 | 6/6 | PASS |
 | 259650969 | Ohmen Beacon | 3 | 4/4 | PASS |
 | 245452058 | Altergeist Pipesiren | 4 | 3/3 | PASS |
@@ -403,11 +421,11 @@ No structural, API, callback, or semantic-contract discrepancies were found.
 | 224800873 | Hallo-Ween! Basket of Treats | 2 | 7/7 | PASS |
 | 255977900 | Happy Hallo-Ween! | 3 | 3/3 | PASS |
 | 215621622 | A Night of Fright on Hallo-Ween! | 1 | 4/4 | PASS |
-| 221672256 | Skewy! Boo-Boo | 2 | 5/5 | PASS |
+| 221672256 | Skewy! Boo-Boo | 2 | 4/4 | PASS |
 | 258576611 | Skewy! Candee-Hex | 7 | 7/7 | PASS |
 | 252496004 | Skewy! Pumpki-Pal | 4 | 4/4 | PASS |
 | 234592047 | Skewy! Twick-or-Tweat | 1 | 2/2 | PASS |
-| 217632789 | Skewy! Pawty Tyme | 2 | 4/4 | PASS |
+| 217632789 | Skewy! Pawty Tyme | 3 | 4/4 | PASS |
 | 254375894 | Crewal Cap'n | 5 | 3/3 | PASS |
 | 237269434 | Crewal Crew | 4 | 3/3 | PASS |
 | 215730767 | Crewal Helmsman | 5 | 3/3 | PASS |
@@ -455,7 +473,7 @@ No structural, API, callback, or semantic-contract discrepancies were found.
 | 215768254 | Gravinity Star | 6 | 3/3 | PASS |
 | 212345347 | Gravinity Lapsix | 4 | 5/5 | PASS |
 | 249454272 | Gravinity Galaxix | 4 | 6/6 | PASS |
-| 212429024 | Gravinity Nebulix | 4 | 6/6 | PASS |
+| 212429024 | Gravinity Nebulix | 5 | 6/6 | PASS |
 | 231088629 | Gravinity Spherix | 7 | 8/8 | PASS |
 | 223505382 | Gravinity Transfer Call | 3 | 3/3 | PASS |
 | 247919552 | Gravinity Gravity Protection | 2 | 3/3 | PASS |
@@ -552,14 +570,14 @@ No structural, API, callback, or semantic-contract discrepancies were found.
 | 259794136 | Harpie Cyber Dancer | 3 | 5/5 | PASS |
 | 259269774 | Harpie Lady Sisters - Phoenix Formation | 4 | 8/8 | PASS |
 | 259072169 | Mirage Formation Dragon | 5 | 7/7 | PASS |
-| 259247807 | Glitchling Bitron | 6 | 9/9 | PASS |
-| 259156549 | Glitchling Protron | 5 | 7/7 | PASS |
-| 259678739 | Glitchling Witch | 10 | 6/6 | PASS |
+| 259247807 | Glitchling Bitron | 5 | 9/9 | PASS |
+| 259156549 | Glitchling Protron | 4 | 7/7 | PASS |
+| 259678739 | Glitchling Witch | 9 | 6/6 | PASS |
 | 259961648 | Glitchling Data-Transfert | 4 | 6/6 | PASS |
 | 259927462 | Glitchling Octron | 2 | 6/6 | PASS |
-| 259494236 | Glitchling Digitron | 6 | 10/10 | PASS |
-| 259072906 | Glitchling Mage | 6 | 4/4 | PASS |
-| 259873115 | Glitchling Leotron | 5 | 7/7 | PASS |
+| 259494236 | Glitchling Digitron | 5 | 10/10 | PASS |
+| 259072906 | Glitchling Mage | 5 | 4/4 | PASS |
+| 259873115 | Glitchling Leotron | 4 | 7/7 | PASS |
 | 259546637 | Glitchling Corruption | 4 | 5/5 | PASS |
 | 259253032 | Glitchling Hexatron | 8 | 9/9 | PASS |
 | 259485374 | Heart of the Cards | 2 | 1/1 | PASS |
@@ -573,8 +591,8 @@ No structural, API, callback, or semantic-contract discrepancies were found.
 | 259758604 | Charmelia Deal | 4 | 3/3 | PASS |
 | 259226799 | Charmelia Beast | 4 | 5/5 | PASS |
 | 259402105 | Magical Girl Explosion! | 6 | 6/6 | PASS |
-| 259489283 | Charmelia Fairy Kyubey | 5 | 8/8 | PASS |
-| 259753109 | Charmelia Fairy Morningstar | 7 | 8/8 | PASS |
+| 259489283 | Charmelia Fairy Kyubey | 4 | 8/8 | PASS |
+| 259753109 | Charmelia Fairy Morningstar | 6 | 8/8 | PASS |
 | 259599798 | Wyvernal Luna | 2 | 4/4 | PASS |
 | 259783008 | Wyvernal Caudina | 3 | 3/3 | PASS |
 | 259431066 | Wyvernal Myops | 7 | 6/6 | PASS |
@@ -642,3 +660,94 @@ No structural, API, callback, or semantic-contract discrepancies were found.
 | 259464064 | Egg of the Ashened Demise | 5 | 3/3 | PASS |
 | 259758294 | Ashened Face Off | 4 | 4/4 | PASS |
 | 259181235 | World Legacy Crusadia Counter | 4 | 5/5 | PASS |
+| 244165675 | Mevalkagna, Eye of Zenith | 7 | 7/7 | PASS |
+| 244161941 | Vanquish Soul Brawl | 3 | 4/4 | PASS |
+| 284636661 | Aquamarine Seagrass Zostera | 3 | 7/7 | PASS |
+| 284636662 | Aquamarine Coral Krait | 2 | 5/5 | PASS |
+| 284636663 | Aquamarine Seafan Gorgonia | 4 | 7/7 | PASS |
+| 284636664 | Aquamarine Sand Clypeasteria | 3 | 5/5 | PASS |
+| 284636665 | Aquamarine Aquasanctuary | 4 | 4/4 | PASS |
+| 284636666 | Aquamarine Bubble Colony | 5 | 5/5 | PASS |
+| 238274857 | Vylon Chevron | 6 | 8/8 | PASS |
+| 238274858 | Vylon Glome | 6 | 5/5 | PASS |
+| 238274859 | Vylon Volt | 4 | 4/4 | PASS |
+| 238274860 | Vylon Torus | 4 | 5/5 | PASS |
+| 238274861 | Vylon's Aid | 5 | 5/6 | REVIEW |
+| 238274862 | Vylon Observatory | 5 | 6/6 | PASS |
+| 238274863 | Vylon Eta | 4 | 6/6 | PASS |
+| 244168521 | Heavy-Armoured Ballista Bahariasaurus | 4 | 6/6 | PASS |
+| 244163508 | Machina Megaframe | 3 | 3/3 | PASS |
+| 244163509 | Machina Trailblazer | 3 | 4/4 | PASS |
+| 244162598 | Moltenzoic Tristegsaurus | 4 | 4/4 | PASS |
+| 244161756 | Lunalophosaur | 2 | 6/6 | PASS |
+| 238276572 | Sylvan Flamushroomo | 3 | 3/3 | PASS |
+| 238276573 | Sylvan Goleaf | 5 | 4/4 | PASS |
+| 238276574 | Sylvan Flamioak | 4 | 4/4 | PASS |
+| 238276575 | Sylvan Greetings | 3 | 3/3 | PASS |
+| 238276576 | Sylvan Intervention | 2 | 6/6 | PASS |
+| 238276577 | Sylvan Blast | 2 | 3/3 | PASS |
+| 238276578 | Sylvan Duchessprout | 3 | 5/6 | REVIEW |
+| 238276579 | Gink, the Sylvan High Champion | 2 | 5/5 | PASS |
+| 238276580 | Azale, the Sylvan High Sovereign | 3 | 6/6 | PASS |
+| 239935093 | Heart of the Hydra | 7 | 6/6 | PASS |
+| 239935094 | Winged Snake of the Swamp | 4 | 6/6 | PASS |
+| 239935095 | Fierce Snake of the Swamp | 3 | 6/6 | PASS |
+| 239935096 | Sparkling Snake of the Swamp | 3 | 6/6 | PASS |
+| 239935097 | Three-Headed Snake of the Swamp | 5 | 5/5 | PASS |
+| 239935098 | Terrifying Hydra | 6 | 8/8 | PASS |
+| 239935099 | Rage of the Terrifying Dark Swamp | 3 | 3/3 | PASS |
+| 239935100 | Perseverance of the Hydra's Heart | 4 | 4/4 | PASS |
+| 239935101 | Terrifying Dark Swamp | 6 | 4/4 | PASS |
+| 239935102 | Terrifying Fog of the Dark Swamp | 3 | 5/5 | PASS |
+| 244163199 | Killamity Goldenrod | 4 | 5/5 | PASS |
+| 244163200 | Killamity Pine | 5 | 5/5 | PASS |
+| 244163201 | Killamity Crimson | 4 | 3/3 | PASS |
+| 244163202 | Killamity Azure | 3 | 5/5 | PASS |
+| 244163203 | Killamity Ash | 4 | 3/3 | PASS |
+| 244163204 | Killamity Apparition | 2 | 3/3 | PASS |
+| 244163205 | Killamity Showdown | 4 | 5/5 | PASS |
+| 244163206 | Ruby, Killamity Convergence | 6 | 7/7 | PASS |
+| 239937489 | Skull Undersea Melanocetus | 5 | 7/7 | PASS |
+| 238276248 | Scion of Nephthys | 6 | 5/5 | PASS |
+| 238276249 | Apostle of Nephthys | 6 | 5/5 | PASS |
+| 238276250 | Incarnation of Nephthys | 6 | 9/9 | PASS |
+| 238276251 | Brazier of Nephthys | 2 | 4/4 | PASS |
+| 238276252 | Prayer Of Nephthys | 5 | 6/6 | PASS |
+| 238273768 | Symphonic Warrior Speeaker | 6 | 5/5 | PASS |
+| 238273769 | Symphonic Warrior DDJ | 7 | 5/5 | PASS |
+| 238273770 | Symphonic Warrior Disccs | 6 | 5/5 | PASS |
+| 238273771 | Symphonic Warrior Mettronomo | 4 | 5/5 | PASS |
+| 238273772 | Symphonic Warrior Mega Staar | 9 | 10/10 | PASS |
+| 238272434 | Terror Skull from Underroot | 6 | 7/7 | PASS |
+| 238272435 | Blossom Skull from Underroot | 7 | 10/10 | PASS |
+| 238272436 | Nether Skull from Underroot | 4 | 6/6 | PASS |
+| 238272437 | Over Skull from Underroot | 7 | 3/4 | REVIEW |
+| 238272438 | Terror Blossom from Underroot | 5 | 7/7 | PASS |
+| 238272439 | Terror Blossom from Overroot | 4 | 8/8 | PASS |
+| 238272440 | Terror Blossom from Afterroot | 8 | 8/8 | PASS |
+| 247755864 | Kali Yuga - Vritra | 2 | 4/4 | PASS |
+| 247755865 | Kali Yuga - Angulimala | 4 | 4/4 | PASS |
+| 247755866 | Kali Yuga - Sampati | 3 | 7/7 | PASS |
+| 247755867 | Kali Yuga - Yajna | 6 | 8/8 | PASS |
+| 247755868 | Kali Yuga - Karkotaka | 6 | 5/5 | PASS |
+| 247755869 | Kali Yuga - Murugan | 4 | 6/6 | PASS |
+| 247755870 | Kali Yuga - Mayavada | 4 | 5/5 | PASS |
+| 247755871 | Kali Yuga - Jarita | 3 | 5/5 | PASS |
+| 247755872 | Kali Yuga - Dukkha | 4 | 6/6 | PASS |
+| 247755873 | Kali Yuga - Ahimsaka Justijhn | 4 | 8/8 | PASS |
+| 247756271 | Kali Yuga - Bheki | 2 | 5/5 | PASS |
+| 247756272 | Kali Yuga - Jakarta | 4 | 8/8 | PASS |
+| 284639717 | Terrarumian Cushion Moss | 3 | 4/4 | PASS |
+| 284639718 | Terrarumian Coin Plant | 5 | 6/6 | PASS |
+| 284639719 | Terrarumian Sword Fern | 7 | 6/6 | PASS |
+| 284639720 | Terrarumian Nerve Plant | 6 | 5/5 | PASS |
+| 284639721 | Terrarumian Staghorn Fern | 4 | 6/6 | PASS |
+| 284639722 | Terrarumian Ivy | 6 | 5/5 | PASS |
+| 284639723 | Terrarumian Sundew | 4 | 6/6 | PASS |
+| 284639724 | Terrarumian Trumpet Pitchers | 6 | 6/7 | REVIEW |
+| 284639725 | Terrarumian Tillandsia | 2 | 4/4 | PASS |
+| 284639726 | Terrarumian Venus Flytrap | 3 | 5/5 | PASS |
+| 284636586 | Terrarumian Terrarium | 3 | 3/4 | REVIEW |
+| 284636587 | Terrarumian Spores | 3 | 6/6 | PASS |
+| 284636588 | Terrarumian Misting | 3 | 4/4 | PASS |
+| 284636589 | Terrarumian Growth | 2 | 6/6 | PASS |

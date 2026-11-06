@@ -98,9 +98,9 @@ function s.repop(e,tp,eg,ep,ev,re,r,rp)
 		local sg=Duel.SelectMatchingCard(p,aux.NecroValleyFilter(s.spfilter),p,LOCATION_HAND+LOCATION_GRAVE,0,1,1,nil,e,p)
 		local sc=sg:GetFirst()
 		if sc then
-			Duel.SpecialSummon(sc,0,p,p,false,false,POS_FACEUP)
-		end
-	end
+			if Duel.SpecialSummon(sc,0,p,p,false,false,POS_FACEUP)==0 then return end
+		else return end
+	else return end
 	if Duel.IsExistingMatchingCard(s.xyzfilter,p,LOCATION_MZONE,0,1,nil)
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.gymatfilter),p,LOCATION_GRAVE,LOCATION_GRAVE,1,nil)
 		and Duel.SelectYesNo(p,aux.Stringid(STRING_ID,1)) then

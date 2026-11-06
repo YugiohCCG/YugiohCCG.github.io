@@ -55,7 +55,7 @@ function s.rvopfilter(c,e,tp)
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local mg=Duel.GetRitualMaterial(tp)
-	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and s.rvtgfilter(chkc,e,tp) end
+	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE) and s.rvtgfilter(chkc,e,tp) end
 	if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.ritfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil,e,tp,mg,false) end
 	local canrv=Duel.GetFlagEffect(tp,id)==0
 		and Duel.IsExistingTarget(s.rvtgfilter,tp,LOCATION_GRAVE,0,1,nil,e,tp)

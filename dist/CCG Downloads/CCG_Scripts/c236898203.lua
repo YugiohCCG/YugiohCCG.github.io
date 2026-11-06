@@ -39,9 +39,12 @@ function s.desfilter(c,e)
 	return c:IsFaceup() and c:IsDestructable(e)
 		and (c:IsSetCard(SET_CHRONO_SAUR) or (c:IsType(TYPE_MONSTER) and c:IsRace(RACE_DINOSAUR)))
 end
+function s.spacefilter(c,e,tp)
+ return s.desfilter(c,e) and Duel.GetMZoneCount(tp,Group.FromCards(c))>0
+end
 function s.sptg1(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+	if chk==0 then return (Duel.GetLocationCount(tp,LOCATION_MZONE)>0 or Duel.IsExistingMatchingCard(s.spacefilter,tp,LOCATION_MZONE,0,1,c,e,tp))
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 		and Duel.IsExistingMatchingCard(s.desfilter,tp,LOCATION_ONFIELD,0,1,c,e) end
 	local g=Duel.GetMatchingGroup(s.desfilter,tp,LOCATION_ONFIELD,0,c,e)
@@ -50,11 +53,10 @@ function s.sptg1(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.spop1(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not c:IsRelateToEffect(e) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
 	local g=Duel.SelectMatchingCard(tp,s.desfilter,tp,LOCATION_ONFIELD,0,1,1,c,e)
 	if #g>0 and Duel.Destroy(g,REASON_EFFECT)>0 then
-		if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)~=0 then
+		if c:IsRelateToEffect(e) and Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)~=0 then
 			local end_phase=Duel.IsBattlePhase() and PHASE_BATTLE or PHASE_MAIN1
 			local e1=Effect.CreateEffect(c)
 			e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)

@@ -93,8 +93,11 @@ function s.tkop(e,tp,eg,ep,ev,re,r,rp)
 	local code,race,attr,lv,atk,def=e:GetLabel()
 	s.summontoken(e,tp,code,race,attr,lv,atk,def)
 end
+function s.gyfilter_eligible(c,e,tp)
+	return s.copyfilter(c) and s.cantoken(tp,c)
+end
 function s.gyfilter(c,e,tp)
-	return s.copyfilter(c) and c:IsCanBeEffectTarget(e) and s.cantoken(tp,c)
+	return s.gyfilter_eligible(c,e,tp) and c:IsCanBeEffectTarget(e)
 end
 function s.gytg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE)
@@ -107,6 +110,6 @@ function s.gytg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.gyop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.gyfilter)(tc,e,tp)) then return end
+	if not (tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.gyfilter_eligible)(tc,e,tp)) then return end
 	s.summontoken(e,tp,tc:GetCode(),tc:GetRace(),tc:GetAttribute(),tc:GetLevel(),tc:GetAttack(),tc:GetDefense())
 end

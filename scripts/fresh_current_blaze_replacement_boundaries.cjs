@@ -1,0 +1,20 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),Module=require('node:module'),assert=require('node:assert/strict');
+const file=path.join(__dirname,'fresh_current_blaze_replacement.cjs');let outer=fs.readFileSync(file,'utf8');const at=outer.indexOf('const m=new Module(file,module);');assert(at>0);
+const additions=String.raw`
+rep("['effectAccept','effectDecline','battleAccept','battleDecline']",boss===248788543?"['battleIndestructible']":"['graveAccept','graveDecline','handAccept','deckAccept','banishAccept','banishFDAccept','effectIndestructible','ownGrave','simultaneousDestroy','simultaneousDestroyAccept']");
+rep("eligible=scenario===(boss===255832330?'effectAccept':'battleAccept')","eligible=boss===255832330&&scenario.endsWith('Accept')");
+rep("if \${scenario.startsWith('effect')?'true':'false'} then Duel.Destroy(g,REASON_EFFECT) end", "\${scenario==='battleIndestructible'||scenario==='effectIndestructible'?'local eq=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_SZONE,nil,'+boss+') assert(eq and eq:GetEquipTarget()) local ie=Effect.CreateEffect(e:GetHandler()) ie:SetType(EFFECT_TYPE_SINGLE) ie:SetCode(EFFECT_INDESTRUCTABLE_EFFECT) ie:SetValue(1) eq:RegisterEffect(ie) assert(Duel.Destroy(eq,REASON_EFFECT)==0) assert(eq:IsLocation(LOCATION_SZONE)) ':''}\${scenario==='effectIndestructible'?'Duel.Destroy(g,REASON_EFFECT)':scenario.startsWith('grave')?'Duel.SendtoGrave(g,REASON_EFFECT)':scenario.startsWith('hand')?'Duel.SendtoHand(g,nil,REASON_EFFECT)':scenario.startsWith('deck')?'Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)':scenario.startsWith('banishFD')?'Duel.Remove(g,POS_FACEDOWN,REASON_EFFECT)':scenario.startsWith('banish')?'Duel.Remove(g,POS_FACEUP,REASON_EFFECT)':'do end'}");
+rep("scenario.startsWith(boss===255832330?'effect':'battle')","boss===255832330&&scenario!=='effectIndestructible'");
+rep("'current-blaze-'+boss+'-replacement'","'current-blaze-'+boss+'-replacement-boundaries'");
+rep("if(name==='c'+boss+'.lua'&&process.argv.includes('--replacement-candidate'))", "if(name==='c'+boss+'.lua'&&process.argv.includes('--unused-candidate'))");
+rep('own=false,ep=1',"own=false,ep=scenario==='ownGrave'?0:1");
+rep('end,tp,0,LOCATION_MZONE,nil) assert(#g==2)',"end,0,LOCATION_MZONE,0,nil) assert(#g==2) if scenario_unused then end");
+rep('if scenario_unused then end',"\${scenario.startsWith('simultaneousDestroy')?'local eq=Duel.GetFirstMatchingCard(Card.IsCode,0,LOCATION_SZONE,0,nil,'+boss+') assert(eq) g:AddCard(eq) ':''}");
+rep("scenario==='effectIndestructible'?'Duel.Destroy(g,REASON_EFFECT)'","scenario==='effectIndestructible'||scenario.startsWith('simultaneousDestroy')?'Duel.Destroy(g,REASON_EFFECT)':scenario==='ownGrave'?'Duel.SendtoGrave(g,REASON_EFFECT)'");
+rep("boss===255832330&&scenario!=='effectIndestructible'","boss===255832330&&!['effectIndestructible','ownGrave'].includes(scenario)");
+rep('return lua;};',"if(name==='c'+boss+'.lua'&&process.argv.includes('--no-send-replacement')){assert(lua.includes('e5:SetTarget(s.sendt)'));lua=lua.replace('e5:SetTarget(s.sendt)','e5:SetTarget(function() return false end)');}return lua;};");
+rep('const suffix=',"const suffix=process.argv.includes('--no-send-replacement')?'-no-send-replacement':");
+s=s.replace(/scope:'[^']*'/,"scope:'Full original Blaze GY equip/current installed metadata/corrected transport/no Lua API adapter. Initially field installed Seraphina recipient, native banish/face-down banish/GY/Hand/Deck or battle; indestructible equip protection actually resists native destruction before event. Neutral event/protection Spell. Original Fusion history/full-card/live Omega separate.'");
+`;
+outer=outer.slice(0,at)+additions+outer.slice(at);const m=new Module(file,module);m.filename=file;m.paths=module.paths;m._compile(outer,file);

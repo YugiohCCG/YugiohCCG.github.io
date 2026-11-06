@@ -23,9 +23,9 @@ function s.initial_effect(c)
 	aux.CCGGalacticaSummonEffects[e3]=true
 end
 function s.lcheck(g) return g:IsExists(function(c) return c:IsSetCard(SET_GALACTICA) and c:IsLevel(2) end,1,nil) end
-function s.setfilter(c) return c:IsFaceup() and c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() end
-function s.settg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_REMOVED,0,1,nil) end end
-function s.setop(e,tp) if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET) local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_REMOVED,0,1,1,nil):GetFirst() if tc then Duel.SSet(tp,tc) end end
+function s.setfilter(c,tp) return c:IsFaceup() and c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0) end
+function s.settg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_REMOVED,0,1,nil,tp) end end
+function s.setop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET) local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_REMOVED,0,1,1,nil,tp):GetFirst() if tc then Duel.SSet(tp,tc) end end
 function s.btcost(e,tp,eg,ep,ev,re,r,rp,chk) local c=e:GetHandler() if chk==0 then return c:GetFlagEffect(id)==0 end c:RegisterFlagEffect(id,RESET_PHASE+PHASE_DAMAGE,0,1) end
 function s.spfilter(c,e,tp,lc) return c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_LINK) and c:IsLink(2) and not c:IsCode(id)
 	and Duel.GetLocationCountFromEx(tp,tp,lc,c)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end

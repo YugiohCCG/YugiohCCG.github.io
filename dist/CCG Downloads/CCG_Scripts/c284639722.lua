@@ -41,7 +41,7 @@ function s.initial_effect(c)
  c:RegisterEffect(e4)
 end
 function s.battlefilter(c,tp)
- return c and c:IsControler(tp) and c:IsSetCard(SET_TERRARUMIAN)
+ return c and c:IsFaceup() and c:IsControler(tp) and c:IsSetCard(SET_TERRARUMIAN)
 end
 function s.actcon(e,tp)
  local p=e:GetHandlerPlayer()
@@ -52,16 +52,16 @@ function s.aclimit(e,re,tp)
  return true
 end
 function s.ownmonster(c)
- return c:IsSetCard(SET_TERRARUMIAN)
+ return c:IsFaceup() and c:IsSetCard(SET_TERRARUMIAN)
 end
 function s.pcon(e,tp)
  return Duel.IsExistingMatchingCard(s.ownmonster,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.destroyfilter(c,handler)
- return c~=handler and c:IsSetCard(SET_TERRARUMIAN) and c:IsDestructable()
+ return c~=handler and c:IsFaceup() and c:IsSetCard(SET_TERRARUMIAN) and c:IsDestructable()
 end
 function s.zonefilter(c,handler)
- return c:IsLocation(LOCATION_MZONE) and s.destroyfilter(c,handler)
+ return s.destroyfilter(c,handler) and Duel.GetMZoneCount(handler:GetControler(),Group.FromCards(c))>0
 end
 function s.ptg(e,tp,eg,ep,ev,re,r,rp,chk)
  local c=e:GetHandler()

@@ -1,0 +1,70 @@
+{
+  "status": "RAM_REDIRECT_TIMING_REPAIRED",
+  "finding": "Ram revival now uses SpecialSummonStep, installs the printed banish-on-leave redirect, then completes the summon. Actual full bundled Zombie Mammoth self-destruction with no other Zombie in GY formerly sends the revived recipient to GY before late redirect registration; candidate correctly banishes it. Separate stable-GY case preserves successful revival then actual later departure to banishment. Two scoped original-operation cases pass; exact old source fails immediate-self-destruction case, omitted redirect/completion each fail both cases.",
+  "qualification": "Full Ram source/current installed metadata, full bundled Zombie Mammoth43642620 source/official stat identity. Neutral source helper uses explicit typed-as-Synchro GY summon with original recipe/revival limit bypass, solely to reach original registered revival trigger. Original Extra recipe probe fails missing Duel.CheckSynchroMaterial and is retained; no original source procedure/mandatory damage operation/other clauses/use/reset/live Omega certification. Stop after actual recipient departure before unrelated Mammoth damage operation; no Lua API mapping or production API replacement.",
+  "primary_resource": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=7846&ope=2&request_locale=en",
+  "remaining": "22 lexical same-function summon/redirect candidates include this confirmed member and21 unproved contexts; do not mass-convert without legitimate eligible-resource/interruption proof. Embers Pendulum remains prioritized for a legitimate eligible interaction.",
+  "runs": [
+    {
+      "file": "current-ram-mammoth-redirect-probe-step-seeded-source.json",
+      "sha256": "f1f805e0da2bd61a95f5d41bd9f9e2076e7e68b9c0a75e2ad941aa05b10c3e7b",
+      "expected_failures": []
+    },
+    {
+      "file": "current-ram-mammoth-redirect-probe-seeded-source.json",
+      "sha256": "8234d6788177ad5a4d23443452cdd477776dad1facda013933b36dd19f01ab7c",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "file": "current-ram-mammoth-redirect-probe-no-redirect-step-seeded-source.json",
+      "sha256": "b5b83f81e9497d382eb770bec49673bc2b2987735eca5d498f6e92ba26ff74c1",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "file": "current-ram-mammoth-redirect-probe-no-complete-step-seeded-source.json",
+      "sha256": "3ba388774f510dc566a64bc52b146b041fa10ff794476829cc114c95acf7939c",
+      "expected_failures": [
+        0,
+        1
+      ]
+    }
+  ],
+  "unadapted_original_probe": {
+    "file": "current-ram-mammoth-redirect-probe-candidate.json",
+    "sha256": "8ba3077f46ff3255c76562ed1fdcc214d82ad890758fd7f1cbf716083e49e6b3",
+    "scope": "Preserved initial Extra-source probe before scoped seeded-source setup: missing public Duel.CheckSynchroMaterial; no original Synchro procedure proof."
+  },
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c249018041.lua": "f2894b5d08b07abee84f0f62cdcf0d9db7b7a7d8be5cdbc56e0d76afcfb8c7f1",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c249018041.lua": "f2894b5d08b07abee84f0f62cdcf0d9db7b7a7d8be5cdbc56e0d76afcfb8c7f1",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\ram-redirect-timing-before-repair\\c249018041.lua": "2dc36ca9a07e0cbc11e0630c71ebbd3e8762192e856b2896ac0637e2e14a97b9",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\ram-redirect-timing-before-repair\\installed-c249018041.lua": "2dc36ca9a07e0cbc11e0630c71ebbd3e8762192e856b2896ac0637e2e14a97b9",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\ram-redirect-timing-repair-files.json": "3bb0e5697de0bcbac7f1e2f82013954dfe5db110db897c879e0853495699aa2a",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "6e3d644ec1cc45ac996cfe977f250530726ce80315759edefdb995965c06a2a8",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-sort-transport-candidate.mjs": "3325c76fb15c479de379fa117a00933396e6b54f708128dbb02a01d5cba5e199",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\c39980304.lua": "c171c51f3701e951e398e71be14575b6874e8c5388313b4613370aa97813d09a",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_ram_mammoth_redirect_probe.cjs": "530f85f2cd5bcfef37c08ede1844a308b73d99122d2ae5fcc57b5d8bc2224f14",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_ram_redirect_timing_repair.cjs": "12d2d5d79ce152e69470d15392bb307490fd821dfa084ae0765e751de955b69b",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\c43642620.lua": "041f9ba49aaf55ddbfbaf7fbf8a3d528590f65074eed461f69962d88fb9d0d00",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-post-summon-redirect-source-scan.json": "6165751b131e0daa63d52cc1288429bcbe89c6c256446df1cd20cd1a281a01e2"
+  }
+}

@@ -32,11 +32,14 @@ function s.handfilter(c,e,tp)
  return c:IsSetCard(SET_VYLON) and c:IsType(TYPE_MONSTER)
   and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
+function s.revealfilter(c,e,tp)
+ return not c:IsPublic() and s.handfilter(c,e,tp)
+end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
  local c=e:GetHandler()
- if chk==0 then return Duel.IsExistingMatchingCard(s.handfilter,tp,LOCATION_HAND,0,1,c,e,tp) end
+ if chk==0 then return Duel.IsExistingMatchingCard(s.revealfilter,tp,LOCATION_HAND,0,1,c,e,tp) end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
- local g=Duel.SelectMatchingCard(tp,s.handfilter,tp,LOCATION_HAND,0,1,1,c,e,tp)
+ local g=Duel.SelectMatchingCard(tp,s.revealfilter,tp,LOCATION_HAND,0,1,1,c,e,tp)
  local tc=g:GetFirst()
  Duel.ConfirmCards(1-tp,g)
  e:SetLabelObject(tc)

@@ -1,0 +1,13 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+source=ROOT/'public/CCG Downloads/CCG_Scripts/c259093260.lua';assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+paths=[Path(__file__).resolve(),source,ROOT/'src/data/cards.json',FILES/'Databases/CCG_v1.db',OUT/'candidate-CCG_v1.db',OUT/'matriarch-damage-step-repair-files.json']+[ROOT/'scripts'/n for n in ['fresh_current_matriarch_revival_interruption.cjs','fresh_current_matriarch_battle_revival.cjs','fresh_current_terrarumian_ivy_participants.cjs','fresh_matriarch_damage_step_repair.cjs','fresh_installed_card.cjs','fresh_corrected_card_data_transport.cjs']]+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))+[ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']
+deps={str(p.resolve()):sha(p) for p in paths};runs=[]
+for flag,expected in [(None,[]),('no-revive',[0,3]),('no-response',[1,2,3,4,5,6])]:
+ r=subprocess.run(['node','--no-warnings','scripts/fresh_current_matriarch_revival_interruption.cjs']+(['--'+flag] if flag else []),capture_output=True,text=True,timeout=20);p=OUT/('current-matriarch-revival-interruption'+('-'+flag if flag else '')+'.json');d=json.loads(p.read_text());assert len(d['results'])==7 and [i for i,v in enumerate(d['results']) if v['failure']]==expected and all(not v['logs'] and v['trace'] for v in d['results']) and r.returncode==bool(expected),r.stdout+r.stderr
+ runs.append({'artifact':p.name,'sha256':sha(p),'expected_failures':expected})
+assert deps=={str(p.resolve()):sha(p) for p in paths}
+(OUT/'current-matriarch-revival-interruption-batch.json').write_text(json.dumps({'status':'MATRIARCH_REVIVAL_INTERRUPTION_VERIFIED','runtime_dependencies_sha256':deps,'runs':runs,'scope':'Full current Matriarch/installed metadata/corrected transport/no Lua API adapter. Natural opponent WATER battle-to-GY and actual Damage Step target revival trigger. CL2 effect/activation negation, GY target banishment, late full field and summon lock prevent revival; source banishment still permits Defense revival. Actual responses/movements asserted, effective no-revive/no-response controls. Initially field source/general Synchro/proper source history/shared use/full-card/live Omega remain open.','production_change':False},indent=2)+'\n')
+print('Matriarch revival interruptions verified')

@@ -16,7 +16,7 @@ function s.initial_effect(c)
  p:SetOperation(s.procop)
  --Check prospective zones in s.matcheck, then constrain the actual placement.
  --This also supports cores that check procedure zones before material removal.
- p:SetValue(function(e) return SUMMON_TYPE_FUSION,e:GetLabel()==1 and 0x4 or 0xff end)
+ p:SetValue(function(e) return SUMMON_TYPE_FUSION,e:GetLabel()==2 and 0 or e:GetLabel()==1 and 0x4 or 0xff end)
  c:RegisterEffect(p)
  local limit=Effect.CreateEffect(c)
  limit:SetType(EFFECT_TYPE_SINGLE)
@@ -94,10 +94,10 @@ function s.procop(e,tp,eg,ep,ev,re,r,rp,c)
  if not sg then return end
  e:SetLabel(1)
  c:SetMaterial(sg)
- Duel.Remove(sg,POS_FACEUP,REASON_COST+REASON_MATERIAL+REASON_FUSION)
+ if Duel.Remove(sg,POS_FACEUP,REASON_COST+REASON_MATERIAL+REASON_FUSION)~=#sg then e:SetLabel(2) end
 end
 function s.destroyed(c,tp)
- return c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE)
+ return c:IsPreviousPosition(POS_FACEUP) and c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE)
   and bit.band(c:GetPreviousTypeOnField(),TYPE_MONSTER)~=0
   and ((bit.band(c:GetPreviousAttributeOnField(),ATTRIBUTE_WATER)~=0 and bit.band(c:GetPreviousRaceOnField(),RACE_REPTILE)~=0) or c:IsPreviousSetCard(HYDRA))
 end

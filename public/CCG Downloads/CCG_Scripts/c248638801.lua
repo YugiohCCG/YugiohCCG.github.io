@@ -12,6 +12,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e0)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
+	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
 	e1:SetCondition(function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK) end)
 	e1:SetOperation(s.regop)
@@ -20,9 +21,10 @@ function s.initial_effect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,0))
 	e2:SetCategory(CATEGORY_ATKCHANGE+CATEGORY_TOGRAVE)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
-	e2:SetCode(EVENT_PRE_DAMAGE_CALCULATE)
+	e2:SetCode(EVENT_FREE_CHAIN)
+	e2:SetHintTiming(TIMING_DAMAGE_STEP)
 	e2:SetRange(LOCATION_MZONE)
-	e2:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DAMAGE_CAL)
+	e2:SetProperty(EFFECT_FLAG_DAMAGE_STEP)
 	e2:SetCondition(s.atkcon)
 	e2:SetCost(s.atkcost)
 	e2:SetOperation(s.atkop)
@@ -32,8 +34,8 @@ function s.matfilter(c) return c:IsType(TYPE_EFFECT) and c:IsAttribute(ATTRIBUTE
 function s.regop(e)
 	local c=e:GetHandler()
 	local g=c:GetMaterial()
-	if g:IsExists(Card.IsAttribute,1,nil,ATTRIBUTE_LIGHT) then c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD,0,1) end
-	if g:IsExists(Card.IsAttribute,1,nil,ATTRIBUTE_DARK) then c:RegisterFlagEffect(id+100,RESET_EVENT+RESETS_STANDARD,0,1) end
+	if g:IsExists(function(tc,att) return (tc:GetPreviousAttributeOnField()&att)~=0 end,1,nil,ATTRIBUTE_LIGHT) then c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD,0,1) end
+	if g:IsExists(function(tc,att) return (tc:GetPreviousAttributeOnField()&att)~=0 end,1,nil,ATTRIBUTE_DARK) then c:RegisterFlagEffect(id+100,RESET_EVENT+RESETS_STANDARD,0,1) end
 end
 function s.battlemonster(c,bc)
 	local ac=Duel.GetAttacker()
@@ -41,6 +43,7 @@ function s.battlemonster(c,bc)
 	return dc and (ac==bc and dc or dc==bc and ac)
 end
 function s.atkcon(e,tp)
+	if Duel.GetCurrentPhase()~=PHASE_DAMAGE or Duel.IsDamageCalculated() then return false end
 	local c=e:GetHandler()
 	local ac=Duel.GetAttacker()
 	local dc=Duel.GetAttackTarget()

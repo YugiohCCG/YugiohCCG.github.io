@@ -65,7 +65,7 @@ function s.revealcost(e,tp,eg,ep,ev,re,r,rp,chk)
  Duel.ConfirmCards(1-tp,e:GetHandler())
 end
 function s.destroyfilter(c,tp)
- return c:IsSetCard(SET_NEPHTHYS) and c:IsType(TYPE_MONSTER) and c:IsDestructable()
+ return (c:IsLocation(LOCATION_HAND) or c:IsFaceup()) and c:IsSetCard(SET_NEPHTHYS) and c:IsType(TYPE_MONSTER) and c:IsDestructable()
   and (Duel.GetLocationCount(tp,LOCATION_MZONE)>0 or c:IsLocation(LOCATION_MZONE) and Duel.GetMZoneCount(tp,c)>0)
 end
 function s.handtg(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -115,7 +115,7 @@ end
 function s.recoverop(e,tp)
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
  local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.recoverfilter),tp,LOCATION_GRAVE,0,1,1,nil)
- if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 then return end
+ if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 or not g:GetFirst():IsLocation(LOCATION_HAND) then return end
  Duel.ConfirmCards(1-tp,g)
  local c=e:GetHandler()
  if c:IsRelateToEffect(e) and c:IsLocation(LOCATION_GRAVE) and Duel.GetFlagEffect(tp,PHOENIX_FLAG)>0

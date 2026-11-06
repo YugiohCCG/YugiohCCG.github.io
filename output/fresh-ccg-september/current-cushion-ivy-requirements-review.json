@@ -1,0 +1,1613 @@
+{
+  "status": "CUSHION_IVY_PRINTED_CLAUSE_EVIDENCE_REVIEWED",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_cushion_ivy_requirements_review.py": "35f3576791efed3d37e546dd54c31c1f42e3c58dc96d1ed56b6004150817af8d",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_repair_ledger.py": "3b9e154131dd58ef01bf65804e7e6ed1dbc29950c4eaca4cf69f871221f26d1d",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_pendulum_requirements_review.py": "4abd76d26d97b8a8ef0ab3ad48547f2cd103ecb6e08409231c0d42d457c7a287",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "6e3d644ec1cc45ac996cfe977f250530726ce80315759edefdb995965c06a2a8",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c284639717.lua": "040875c187072156999f63287967e301cd422898516bd5dc41c076392362cbc1",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c284639722.lua": "5514950b7380227ae78bee03bb41712d49330bf59f62e3d9aa896893c6b7e8c1"
+  },
+  "review_method": "Read-only source/specification/installed parity, exact dependency verification with strict production-helper source-stage reconstruction, native result traces and recorded semantic control failures. Existing scenario scopes inspected; no scenario reruns or new production changes.",
+  "cards": [
+    {
+      "passcode": 284639717,
+      "name": "Terrarumian Cushion Moss",
+      "spec_text": "Pendulum Effect: If you control no monsters, or if your opponent controls a monster: You can destroy 1 other \u201cTerrarumian\u201d card you control, and if you do, Special Summon this card, then place 1 \u201cTerrarumian\u201d Pendulum Monster from your Deck to your Pendulum Zone, except \u201cTerrarumian Cushion Moss\u201d. You can only use this effect of \u201cTerrarumian Cushion Moss\u201d once per turn.\nMonster Effect: If this card is destroyed by card effect: You can add 1 \u201cTerrarumian\u201d monster from your Deck to your hand, except \u201cTerrarumian Cushion Moss\u201d. You can only use this effect of \u201cTerrarumian Cushion Moss\u201d once per turn. This card can attack while in face-up Defense Position. If it does, apply its ATK for damage calculation.",
+      "clauses": [
+        {
+          "clause": "Pendulum primary condition, destroy other card(s), summon self, named use/reset",
+          "evidence": [
+            "current-terrarumian-conditions-batch.json",
+            "current-terrarumian-pendulum-use-reset-batch.json",
+            "current-reconciled-terrarumian-pendulum-interruption-batch.json",
+            "current-destroy-summon-capacity-batch.json"
+          ],
+          "scope": "Condition/menu boundaries are separate from actual resolution; current native Hand placement, resource destruction/summon and CL2 controls. Sundew may destroy two and summons in Defense; Trumpet summons in Defense. Projected Main Zone repair separately verifies full Main field: destroyable Main resource permits actual summon, Extra-only resource excludes. Extra resource seeded for geometry; exact earlier source stages retained in ledger."
+        },
+        {
+          "clause": "Monster may attack in face-up Defense using ATK",
+          "evidence": [
+            "current-terrarumian-defense-attack-batch.json"
+          ],
+          "scope": "All eight native battle outcomes with controlled unequal ATK/DEF and disabled-attack/use-DEF controls; field-seeded sources."
+        },
+        {
+          "clause": "Then place different-name Deck Pendulum in PZone",
+          "evidence": [
+            "current-reconciled-terrarumian-pendulum-interruption-batch.json"
+          ],
+          "scope": "Actual primary/optional followup outcomes where specified; latter two use asserted native field-to-faceup-Extra history. No blanket claim from shared dependencies."
+        },
+        {
+          "clause": "Effect-destruction search, exclude self, named once",
+          "evidence": [
+            "current-terrarumian-monster-refresh-batch.json",
+            "current-terrarumian-destroyed-interruption-batch.json",
+            "current-terrarumian-destroyed-use-reset-batch.json"
+          ],
+          "scope": "Direct corresponding card/mode only. Monster refresh reuses old scenario logic with current source/installed metadata/corrected transport; separate interruption/reset batches supply their stated branches."
+        },
+        {
+          "clause": "Other archetype destruction resource must be faceup",
+          "evidence": [
+            "current-terrarumian-destroy-visibility-batch.json"
+          ],
+          "scope": "All eight original sources/current installed metadata/corrected public transport/no Lua API adapter. Actual Hand-to-PZone activation then native selection prompt: visible Spell allowed, hidden Spell/monster excluded; original16 hidden selection failures. Exact source/install backups/helper/parity and strict prior-stage composition. Official True Draco Apocalypse faceup archetype-destruction note and Infernoid Devyaty hidden-name ruling support custom interpretation. No expanded full-resolution/live Omega claim."
+        },
+        {
+          "clause": "Own hidden monsters count against no-monsters condition; opponent monster still enables the separate alternative",
+          "evidence": [
+            "current-terrarumian-condition-visibility-batch.json"
+          ],
+          "scope": "Native Hand-to-PZone/menu comparison cases; unchanged Cushion generic OR condition differs from the other seven archetype conditions. No new resolution/live Omega conclusion."
+        }
+      ],
+      "source_review": "Separate primary/monster named-use keys; generic ignition Main Phase timing. Cushion OR condition/self-name exclusion/search and mandatory placement chain match text. Ivy primary optional revival, shared destruction alternatives/negation, battle participants and repaired faceup visibility match reviewed clauses.",
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    },
+    {
+      "passcode": 284639722,
+      "name": "Terrarumian Ivy",
+      "spec_text": "Pendulum Effect: If your \"Terrarumian\" monster battles, your opponent cannot activate cards or effects until the end of the Damage Step. If you control a \u201cTerrarumian\u201d monster: You can destroy 1 other \u201cTerrarumian\u201d card you control, and if you do, Special Summon this card, then you can Special Summon 1 \u201cTerrarumian\u201d Pendulum Monster from your GY, except \u201cTerrarumian Ivy\u201d. You can only use this effect of \u201cTerrarumian Ivy\u201d once per turn.\nMonster Effect: If this card is destroyed by card effect: You can activate 1 of these effects.\n\u25cf Target 1 \u201cTerrarumian\u201d monster in your GY, except \u201cTerrarumian Ivy\u201d; Special Summon it, but negate its effects.\n\u25cf Target 1 Special Summoned monster your opponent controls; negate its effects.\nYou can only use this effect of \u201cTerrarumian Ivy\u201d once per turn. This card can attack while in face-up Defense Position. If it does, apply its ATK for damage calculation.",
+      "clauses": [
+        {
+          "clause": "Pendulum primary condition, destroy other card(s), summon self, named use/reset",
+          "evidence": [
+            "current-terrarumian-conditions-batch.json",
+            "current-terrarumian-pendulum-use-reset-batch.json",
+            "current-reconciled-terrarumian-pendulum-interruption-batch.json",
+            "current-destroy-summon-capacity-batch.json"
+          ],
+          "scope": "Condition/menu boundaries are separate from actual resolution; current native Hand placement, resource destruction/summon and CL2 controls. Sundew may destroy two and summons in Defense; Trumpet summons in Defense. Projected Main Zone repair separately verifies full Main field: destroyable Main resource permits actual summon, Extra-only resource excludes. Extra resource seeded for geometry; exact earlier source stages retained in ledger."
+        },
+        {
+          "clause": "Monster may attack in face-up Defense using ATK",
+          "evidence": [
+            "current-terrarumian-defense-attack-batch.json"
+          ],
+          "scope": "All eight native battle outcomes with controlled unequal ATK/DEF and disabled-attack/use-DEF controls; field-seeded sources."
+        },
+        {
+          "clause": "Optional different-name Pendulum GY recruitment",
+          "evidence": [
+            "current-reconciled-terrarumian-pendulum-interruption-batch.json",
+            "current-terrarumian-followups-batch.json"
+          ],
+          "scope": "Actual primary/optional followup outcomes where specified; latter two use asserted native field-to-faceup-Extra history. No blanket claim from shared dependencies."
+        },
+        {
+          "clause": "Effect-destruction different-name GY revive/negate or targeted opposing Special-Summoned monster negate, shared named once",
+          "evidence": [
+            "current-terrarumian-monster-refresh-batch.json",
+            "current-terrarumian-destroyed-interruption-batch.json",
+            "current-terrarumian-destroyed-use-reset-batch.json",
+            "current-terrarumian-alternate-interruption-batch.json",
+            "current-terrarumian-alternate-use-reset-batch.json"
+          ],
+          "scope": "Direct corresponding card/mode only. Monster refresh reuses old scenario logic with current source/installed metadata/corrected transport; separate interruption/reset batches supply their stated branches."
+        },
+        {
+          "clause": "Opponent activation lock while own Terrarumian battles",
+          "evidence": [
+            "current-terrarumian-secondary-refresh-batch.json",
+            "current-terrarumian-secondary-boundaries-batch.json"
+          ],
+          "scope": "Native bounded behavior; retain batch setup and interruption qualifications."
+        },
+        {
+          "clause": "Other archetype destruction resource must be faceup",
+          "evidence": [
+            "current-terrarumian-destroy-visibility-batch.json"
+          ],
+          "scope": "All eight original sources/current installed metadata/corrected public transport/no Lua API adapter. Actual Hand-to-PZone activation then native selection prompt: visible Spell allowed, hidden Spell/monster excluded; original16 hidden selection failures. Exact source/install backups/helper/parity and strict prior-stage composition. Official True Draco Apocalypse faceup archetype-destruction note and Infernoid Devyaty hidden-name ruling support custom interpretation. No expanded full-resolution/live Omega claim."
+        },
+        {
+          "clause": "Primary own Terrarumian monster condition requires a faceup monster",
+          "evidence": [
+            "current-terrarumian-condition-visibility-batch.json"
+          ],
+          "scope": "Actual native Hand-to-PZone/menu checks: own hidden alone or with opposing monster excluded; own faceup/additional faceup allowed. Full originals/installed metadata/corrected transport/no Lua API adapter, exact seven-card guard repair and historical-stage reconciliation; analogous official Six Samurai condition ruling, not direct custom FAQ."
+        },
+        {
+          "clause": "Battle activation lock recognizes a faceup own archetype participant; hidden defender does not lock before the battle flip",
+          "evidence": [
+            "current-ivy-battle-visibility-batch.json"
+          ],
+          "scope": "Original full source/current installed metadata/corrected public transport/no Lua API adapter. Actual native PZone placement and opponent-turn attack; Trap with Damage Step/Calculation permission observed before flip/after flip/after Damage Step end, faceup baseline and original/no-lock controls. Konami Performapal Ballad FAQ analogy applied by inference to custom Ivy; not a direct custom-card FAQ/live Omega verification."
+        }
+      ],
+      "source_review": "Separate primary/monster named-use keys; generic ignition Main Phase timing. Cushion OR condition/self-name exclusion/search and mandatory placement chain match text. Ivy primary optional revival, shared destruction alternatives/negation, battle participants and repaired faceup visibility match reviewed clauses.",
+      "full_card_audit": "OPEN",
+      "native_omega_verified": false
+    }
+  ],
+  "suites": [
+    {
+      "artifact": "current-terrarumian-conditions-batch.json",
+      "sha256": "7eb52b9a1eafdfd1a8b64d3db029768d76c6364e3c41b697de1021fa18b54f8a",
+      "scope": "Reused placement fixture, full eight source scripts/installed metadata/corrected transport. Actual Hand-to-PZone placement; native activation-menu eligibility only. Cushion no own monster/own-only/own+opponent OR boundaries; other seven require own Terrarumian, neither no-monster nor opponent-only satisfies. Neutral resources preserve other target requirements. Effective omitted-condition controls. Legacy DB construction overridden by installed cardReader. No Lua API adapter; actual resolution in separate native batches, no full-card/live Omega claim.",
+      "source_stages": {
+        "284639717": {
+          "sha256": "6ecf88d64e1bea15bd1c5ea7f89bb9fe043401ff6f18436f711f5c9eff3e25bf",
+          "stage": "strict_helper_reconstruction"
+        },
+        "284639722": {
+          "sha256": "e603a7dee12f099fcabcbfd1443205abe5e8674b491bf4403e11e4d299510241",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-terrarumian-conditions.json",
+          "sha256": "312345b4ec1bda7ba55da6863b44b0c6b0c696e716175f581b9f003fe7298d19",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2
+            ],
+            "284639722": [
+              15,
+              16,
+              17
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-terrarumian-conditions-no-condition.json",
+          "sha256": "2c22c3ed9c8cbee680a33e31308d148471bc02dc9d9d68accda6013d657c6e55",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2
+            ],
+            "284639722": [
+              15,
+              16,
+              17
+            ]
+          },
+          "expected_failures": [
+            1,
+            3,
+            5,
+            6,
+            8,
+            9,
+            11,
+            12,
+            14,
+            15,
+            17,
+            18,
+            20,
+            21,
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-terrarumian-pendulum-use-reset-batch.json",
+      "sha256": "68897b48bacc8bf277f9fbb2ab9101f3089832c0a53d066dfafa29045e7a7b0d",
+      "scope": "Eight full production scripts/installed metadata/corrected transport/no Lua API adapter. Two actual Hand-to-PZone copies: first primary successful/activation-negated/effect-negated named use, second copy excluded same turn, then available next own turn. Actual self-summon moves and real CL2 response asserted. Neutral resources and optional followups declined; mandatory placements native. Effective per-copy and no-summon controls. Not secondary/cross-event effects/full-card/live Omega certification.",
+      "source_stages": {
+        "284639717": {
+          "sha256": "6ecf88d64e1bea15bd1c5ea7f89bb9fe043401ff6f18436f711f5c9eff3e25bf",
+          "stage": "strict_helper_reconstruction"
+        },
+        "284639722": {
+          "sha256": "e603a7dee12f099fcabcbfd1443205abe5e8674b491bf4403e11e4d299510241",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-terrarumian-pendulum-use-reset.json",
+          "sha256": "a7f25c3f2cfea3c4e57001fd121c21bac2f059ba27c1c9e6ad4786b1523bf230",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2
+            ],
+            "284639722": [
+              15,
+              16,
+              17
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-terrarumian-pendulum-use-reset-per-copy.json",
+          "sha256": "79922dcf71671cf4924c616bfb42633474615c01511d1f73146a16fc0cf51280",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2
+            ],
+            "284639722": [
+              15,
+              16,
+              17
+            ]
+          },
+          "expected_failures": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "artifact": "current-terrarumian-pendulum-use-reset-no-summon.json",
+          "sha256": "34a8a012d5001cf6a31edda7e318be267997dbaf50a8a9e459a8bb3cf92da496",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2
+            ],
+            "284639722": [
+              15,
+              16,
+              17
+            ]
+          },
+          "expected_failures": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-reconciled-terrarumian-pendulum-interruption-batch.json",
+      "sha256": "d0595d93f6938d472b0f55c4c594d22222fab0c74cde4e950c76c66a1504eb33",
+      "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+      "source_stages": {
+        "284639717": {
+          "sha256": "6ecf88d64e1bea15bd1c5ea7f89bb9fe043401ff6f18436f711f5c9eff3e25bf",
+          "stage": "strict_helper_reconstruction"
+        },
+        "284639722": {
+          "sha256": "e603a7dee12f099fcabcbfd1443205abe5e8674b491bf4403e11e4d299510241",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-reconciled-terrarumian-pendulum-interruption.json",
+          "sha256": "ab6559bb21017067182560fa36a5e3233ea07d1e6ae0f85cfbc8793936d4d318",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "284639722": [
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-reconciled-terrarumian-pendulum-interruption-no-response.json",
+          "sha256": "59cc7ad19c649a0a145ce1d85e11cf61774da7b2eef70b3af2960956d14486b8",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "284639722": [
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41
+            ]
+          },
+          "expected_failures": [
+            [
+              284639717,
+              "activation"
+            ],
+            [
+              284639717,
+              "effect"
+            ],
+            [
+              284639717,
+              "sourceBanish"
+            ],
+            [
+              284639717,
+              "resourcesBanish"
+            ],
+            [
+              284639717,
+              "lateFull"
+            ],
+            [
+              284639717,
+              "lateLock"
+            ],
+            [
+              284639718,
+              "activation"
+            ],
+            [
+              284639718,
+              "effect"
+            ],
+            [
+              284639718,
+              "sourceBanish"
+            ],
+            [
+              284639718,
+              "resourcesBanish"
+            ],
+            [
+              284639718,
+              "lateFull"
+            ],
+            [
+              284639718,
+              "lateLock"
+            ],
+            [
+              284639719,
+              "activation"
+            ],
+            [
+              284639719,
+              "effect"
+            ],
+            [
+              284639719,
+              "sourceBanish"
+            ],
+            [
+              284639719,
+              "resourcesBanish"
+            ],
+            [
+              284639719,
+              "lateFull"
+            ],
+            [
+              284639719,
+              "lateLock"
+            ],
+            [
+              284639720,
+              "activation"
+            ],
+            [
+              284639720,
+              "effect"
+            ],
+            [
+              284639720,
+              "sourceBanish"
+            ],
+            [
+              284639720,
+              "resourcesBanish"
+            ],
+            [
+              284639720,
+              "lateFull"
+            ],
+            [
+              284639720,
+              "lateLock"
+            ],
+            [
+              284639721,
+              "activation"
+            ],
+            [
+              284639721,
+              "effect"
+            ],
+            [
+              284639721,
+              "sourceBanish"
+            ],
+            [
+              284639721,
+              "resourcesBanish"
+            ],
+            [
+              284639721,
+              "lateFull"
+            ],
+            [
+              284639721,
+              "lateLock"
+            ],
+            [
+              284639722,
+              "activation"
+            ],
+            [
+              284639722,
+              "effect"
+            ],
+            [
+              284639722,
+              "sourceBanish"
+            ],
+            [
+              284639722,
+              "resourcesBanish"
+            ],
+            [
+              284639722,
+              "lateFull"
+            ],
+            [
+              284639722,
+              "lateLock"
+            ],
+            [
+              284639723,
+              "activation"
+            ],
+            [
+              284639723,
+              "effect"
+            ],
+            [
+              284639723,
+              "sourceBanish"
+            ],
+            [
+              284639723,
+              "resourcesBanish"
+            ],
+            [
+              284639723,
+              "lateFull"
+            ],
+            [
+              284639723,
+              "lateLock"
+            ],
+            [
+              284639724,
+              "activation"
+            ],
+            [
+              284639724,
+              "effect"
+            ],
+            [
+              284639724,
+              "sourceBanish"
+            ],
+            [
+              284639724,
+              "resourcesBanish"
+            ],
+            [
+              284639724,
+              "lateFull"
+            ],
+            [
+              284639724,
+              "lateLock"
+            ]
+          ]
+        },
+        {
+          "artifact": "current-reconciled-terrarumian-pendulum-interruption-no-summon.json",
+          "sha256": "c330cba0639ceee2da8d9b814cf5c80802de02e2d0068ef6db62276f24aeb591",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "284639722": [
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41
+            ]
+          },
+          "expected_failures": [
+            [
+              284639717,
+              "baseline"
+            ],
+            [
+              284639718,
+              "baseline"
+            ],
+            [
+              284639719,
+              "baseline"
+            ],
+            [
+              284639720,
+              "baseline"
+            ],
+            [
+              284639721,
+              "baseline"
+            ],
+            [
+              284639722,
+              "baseline"
+            ],
+            [
+              284639723,
+              "baseline"
+            ],
+            [
+              284639723,
+              "lateFull"
+            ],
+            [
+              284639724,
+              "baseline"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-destroy-summon-capacity-batch.json",
+      "sha256": "e798c91c9632837ff90dc2330ca6772cca49667b0a35c7bacb0b7e9fa57448ce",
+      "scope": {
+        "Rex_Torus": "Actual native full Main field + eligible own Main resource now permits activation, real destruction/Hand summon. Full field + only Spell/Hand resource or Extra-Zone resource excludes; non-Main resource legal with open space. Native projected GetMZoneCount and effective old-source/no-projection/summon/destruction controls.",
+        "Terrarumian": "All eight full sources/actual Hand-to-PZone placement: full Main field + Main resource permits real destruction/self summon, Extra-only resource excludes. Old source wrongly offers all eight; no-projection and no-summon controls discriminate.",
+        "qualification": "Current installed metadata/corrected transport, no Lua API adapter. Extra-Zone Fusion resource field-seeded only for geometry, not recipe/history proof. Exact source/install backups and parity; original unrelated effects/full-card/live Omega remain separate.",
+        "same_pattern_review": "Destroy-before-summon capacity search brought the same projected Main/Extra distinction back to all eight prioritized Pendulums. Prior Seraphina cost-group projected capacity and Angulimala/Jarita source-loss repairs retain their separate scopes."
+      },
+      "source_stages": {
+        "284639717": {
+          "sha256": "265183e8da3c3303fa746383c7e56366c87fe26f290373e4f5e164a11fb099bb",
+          "stage": "strict_helper_reconstruction"
+        },
+        "284639722": {
+          "sha256": "af06468f80e78da86242b481b7061dc31795759cb4fa529a10d80d59cf282494",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-terrarumian-zone-capacity.json",
+          "sha256": "b97b36de94c44c333a1e5a57c5f9e119d46cc19dad66019213e0ebbb267762df",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1
+            ],
+            "284639722": [
+              10,
+              11
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-terrarumian-zone-capacity-old-source.json",
+          "sha256": "bbd5d1ba9b04db1506591dd30555d9abff3db12afe5885a1bea44198c33aca42",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1
+            ],
+            "284639722": [
+              10,
+              11
+            ]
+          },
+          "expected_failures": [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15
+          ]
+        },
+        {
+          "artifact": "current-terrarumian-zone-capacity-no-projection.json",
+          "sha256": "b31ac9f938b5559a71874d272214e24d41a9ce103f5a47218723e9a3ce1c0e52",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1
+            ],
+            "284639722": [
+              10,
+              11
+            ]
+          },
+          "expected_failures": [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15
+          ]
+        },
+        {
+          "artifact": "current-terrarumian-zone-capacity-no-summon.json",
+          "sha256": "59b07bc324793dfec1a89c3afa6fab8b42bb9a3799cd74897dfcdd6b92780939",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1
+            ],
+            "284639722": [
+              10,
+              11
+            ]
+          },
+          "expected_failures": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-terrarumian-defense-attack-batch.json",
+      "sha256": "244e42131eea0910372c61806c075b9ebdea75cdd36544b76f124654ed4c9df3",
+      "scope": "All eight full production scripts; installed metadata except explicitly controlled ATK900/DEF3000 for discriminating stat choice. Corrected transport/no Lua API adapter. Actual native battle from faceup defense against ATK1000: attacker destroyed/opponent survives. Omitted defense-attack permission and DEF-instead-of-ATK controls fail. Source seeded field; no natural summon conclusion. Controlled stats, full-card and live Omega limits explicit.",
+      "source_stages": {
+        "284639717": {
+          "sha256": "6ecf88d64e1bea15bd1c5ea7f89bb9fe043401ff6f18436f711f5c9eff3e25bf",
+          "stage": "strict_helper_reconstruction"
+        },
+        "284639722": {
+          "sha256": "e603a7dee12f099fcabcbfd1443205abe5e8674b491bf4403e11e4d299510241",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-terrarumian-284639717-defense-attack.json",
+          "sha256": "150271c204c09abcba8e9be1d619ad2b7a74d8c451b86c15f7143504543c7a47",
+          "relevant_result_indices": {
+            "284639717": [
+              0
+            ]
+          },
+          "expected_failures": false
+        },
+        {
+          "artifact": "current-terrarumian-284639717-defense-attack-no-attack.json",
+          "sha256": "45dea14c2d17783dcee16fd354c018f6270cbe60014b7be8ac299e406b8f085c",
+          "relevant_result_indices": {
+            "284639717": [
+              0
+            ]
+          },
+          "expected_failures": true
+        },
+        {
+          "artifact": "current-terrarumian-284639717-defense-attack-use-defense.json",
+          "sha256": "a38a6bff26b88fb424f9d06d4f63e6a0c2a37a6586ec74e83b900008de48b4da",
+          "relevant_result_indices": {
+            "284639717": [
+              0
+            ]
+          },
+          "expected_failures": true
+        },
+        {
+          "artifact": "current-terrarumian-284639722-defense-attack.json",
+          "sha256": "d83abd30d5aac91eb574b3d42a8a4a6fb236a93e1d9bcb01463a3f0c0d4c9d55",
+          "relevant_result_indices": {
+            "284639722": [
+              0
+            ]
+          },
+          "expected_failures": false
+        },
+        {
+          "artifact": "current-terrarumian-284639722-defense-attack-no-attack.json",
+          "sha256": "61c6346f4eb6c9d6fde99325b62c3f98e79e9bac8713a672f954feb693247834",
+          "relevant_result_indices": {
+            "284639722": [
+              0
+            ]
+          },
+          "expected_failures": true
+        },
+        {
+          "artifact": "current-terrarumian-284639722-defense-attack-use-defense.json",
+          "sha256": "432c9341a8dc1ea5e43e664716a35a91f6478e8319003445e83702ae08d291ef",
+          "relevant_result_indices": {
+            "284639722": [
+              0
+            ]
+          },
+          "expected_failures": true
+        }
+      ]
+    },
+    {
+      "artifact": "current-terrarumian-monster-refresh-batch.json",
+      "sha256": "0bb653658e60e000a80fb79ec4648b614724667149364881e206ecb6cb86f1bc",
+      "scope": "Reused eight historical scenarios with full current production scripts, actual installed metadata and corrected public-engine transport; no Lua API adapter. Native destruction search, Coin GY/temporary Hand banishment and End Phase return, Sword/Nerve normal/special/destroyed triggers, Staghorn Deck/field sending, Ivy revival/negation, Trumpet Hand recruitment and Battle Phase opponent-activation/direct-damage branches with shared count. Controls disable tested operation only. Neutral support cards retain historical metadata. Old candidate DB still read for legacy construction, but all production cardReader returns overridden by installed reader. No direct Extra seeding conclusion relied on. Not interruption/use/reset completion, full-card or live Omega certification. Sundew historical test stamps SUMMON_TYPE_PENDULUM via ordinary SpecialSummon and must be replaced with natural Pendulum procedure evidence before certification.",
+      "source_stages": {
+        "284639717": {
+          "sha256": "6ecf88d64e1bea15bd1c5ea7f89bb9fe043401ff6f18436f711f5c9eff3e25bf",
+          "stage": "strict_helper_reconstruction"
+        },
+        "284639722": {
+          "sha256": "e603a7dee12f099fcabcbfd1443205abe5e8674b491bf4403e11e4d299510241",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-terrarumian-cushion-destroyed.json",
+          "sha256": "d58d9a6aaf766ad4622af944ba73577953f4342bb5a4a51e36f10507445966f7",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-terrarumian-cushion-destroyed-no-operation.json",
+          "sha256": "8bbc4c580c4a406770b3e005b6777d0889ae44c6616882aa4f6090520516e42d",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1
+            ]
+          },
+          "expected_failures": [
+            1
+          ]
+        },
+        {
+          "artifact": "current-terrarumian-ivy-destroyed.json",
+          "sha256": "7977820ce78f649670224236c38082bb003c7ce4abfd193464ba7968f8a1ed01",
+          "relevant_result_indices": {
+            "284639722": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-terrarumian-ivy-destroyed-no-operation.json",
+          "sha256": "66463a0e8e1d2b91c3b2d6b63c8abf671f63c1af970f671d7b91af1393ffbf6a",
+          "relevant_result_indices": {
+            "284639722": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          "expected_failures": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-terrarumian-destroyed-interruption-batch.json",
+      "sha256": "92a7658903e93a24d42f9c691be3067f4e2631c4c74d338cf23421c5e8539c6a",
+      "scope": "Six full production scripts/installed metadata/corrected transport/no Lua API adapter. Native effect destruction into genuine faceup Extra then trigger CL1/CounterTrap CL2, activation/effect negation, source and resource banishment. Actual outcome/origin moves and CL2 removal timing asserted. Cushion Deck search, Coin GY banish, Sword Deck Set, Nerve resolution-selected SpellTrap destruction, Staghorn Deck send, Ivy targeted GY revival. Neutral resources. Source removal leaves independent trigger outcomes intact; Nerve selects surviving SpellTrap after resource removal. Effective no-response control. Other option branches/shared uses/resets/full cards/live Omega remain outside this batch.",
+      "source_stages": {
+        "284639717": {
+          "sha256": "6ecf88d64e1bea15bd1c5ea7f89bb9fe043401ff6f18436f711f5c9eff3e25bf",
+          "stage": "strict_helper_reconstruction"
+        },
+        "284639722": {
+          "sha256": "e603a7dee12f099fcabcbfd1443205abe5e8674b491bf4403e11e4d299510241",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-terrarumian-destroyed-interruption.json",
+          "sha256": "97d9f010c9bd0708b8c59bdab8d8bd04f1cc8efe97523223aa593cfa03f35085",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "284639722": [
+              25,
+              26,
+              27,
+              28,
+              29
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-interruption-no-response.json",
+          "sha256": "43c972c3bc04402779a6982070a2f05af696b7b1cc890dd083635feb5ebbd5c5",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "284639722": [
+              25,
+              26,
+              27,
+              28,
+              29
+            ]
+          },
+          "expected_failures": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            13,
+            14,
+            16,
+            17,
+            18,
+            19,
+            21,
+            22,
+            23,
+            24,
+            26,
+            27,
+            28,
+            29
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-terrarumian-destroyed-use-reset-batch.json",
+      "sha256": "566f49e9de91d2fd86d66b37e5d336e1938c597f44514755d11ae36940931997",
+      "scope": "Six full production scripts/installed metadata/corrected transport/no Lua API adapter. Three separately destroyed source copies: first successful/activation-negated/effect-negated named use, second copy excluded same turn, third next own turn available. Actual resource movements/outcomes before and after natural turn reset. Neutral destruction spells/resources, one selected mode/card. Effective per-copy and omitted-operation controls. Not cross-mode use, alternate-mode interruptions, full-card or live Omega certification.",
+      "source_stages": {
+        "284639717": {
+          "sha256": "6ecf88d64e1bea15bd1c5ea7f89bb9fe043401ff6f18436f711f5c9eff3e25bf",
+          "stage": "strict_helper_reconstruction"
+        },
+        "284639722": {
+          "sha256": "e603a7dee12f099fcabcbfd1443205abe5e8674b491bf4403e11e4d299510241",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-terrarumian-destroyed-use-reset.json",
+          "sha256": "982c8835e5f87ed6aa3ae71360cf4b5704202d720e2a4008dc5bd7a86030b2ac",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2
+            ],
+            "284639722": [
+              15,
+              16,
+              17
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-use-reset-per-copy.json",
+          "sha256": "3f112ec37fce0c119c75100b7dadb869e4821043c9fb2b6bc3fedcd24777cd3a",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2
+            ],
+            "284639722": [
+              15,
+              16,
+              17
+            ]
+          },
+          "expected_failures": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ]
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-use-reset-no-operation.json",
+          "sha256": "066dbf43cfe221f24c68d701b606c1e9d5750c0027f2413fb3e559db2f7833cd",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2
+            ],
+            "284639722": [
+              15,
+              16,
+              17
+            ]
+          },
+          "expected_failures": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-terrarumian-destroy-visibility-batch.json",
+      "sha256": "ec8242416b6aa2a4112d55a3e8a0e452d1b6c920842df0cfd102ccece3bb8edc",
+      "scope": "All eight original sources, installed metadata, native Hand-to-PZone activation and destruction selection prompts. Faceup own archetype condition witness remains a valid resource; opponent monster enables Cushion. Separate faceup Spell allowed, hidden Spell/monster illegally selectable under archetype visibility rule. Production faceup-only destruction filter removes hidden entries in all16 cases. Exact backup/helper/manifests verified, no completed resolution/live Omega claim. Activation-menu-only initial experiment was nondiscriminating because witness remains selectable; final assertion inspects actual selection prompt.",
+      "source_stages": {
+        "284639717": {
+          "sha256": "040875c187072156999f63287967e301cd422898516bd5dc41c076392362cbc1",
+          "stage": "exact_current"
+        },
+        "284639722": {
+          "sha256": "5514950b7380227ae78bee03bb41712d49330bf59f62e3d9aa896893c6b7e8c1",
+          "stage": "exact_current"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-terrarumian-destroy-visibility.json",
+          "sha256": "23e2a84e8e14178aa0074d5d2beeaec85221099931ae28664be4403b3aee463d",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2
+            ],
+            "284639722": [
+              15,
+              16,
+              17
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-terrarumian-destroy-visibility-old-source.json",
+          "sha256": "f4de0b8ef78f2398f726d346ecb39ef87e80d3cfe801df0f862602b89c96e2de",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2
+            ],
+            "284639722": [
+              15,
+              16,
+              17
+            ]
+          },
+          "expected_failures": [
+            1,
+            2,
+            4,
+            5,
+            7,
+            8,
+            10,
+            11,
+            13,
+            14,
+            16,
+            17,
+            19,
+            20,
+            22,
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-terrarumian-condition-visibility-batch.json",
+      "sha256": "fadf09ccfc7d57a7fb1a89d14b2e571901891256a1589b06a910e1e4a18fe722",
+      "scope": "All eight full sources/current installed metadata/corrected public transport/no Lua API adapter. Actual Hand-to-PZone activation and ignition-menu checks. Seven own-archetype-monster primary conditions now require faceup: own hidden alone or hidden plus opposing monster excluded, own faceup/additional faceup allowed. Cushion no-monsters OR opponent condition unchanged and comparison cases retained. Faceup nonmonster destruction resource keeps other activation requirements available. Original14 wrong offers and no-condition17 failures. Exact backups/helper/manifest/parity, historical stage reconciliation; analogous official Six Samurai Irou control-family condition requires faceup, inferred for custom text. Only activation-condition eligibility, no new primary-resolution/full-card/live Omega claim.",
+      "source_stages": {
+        "284639722": {
+          "sha256": "5089fa41ce2baea196aa25671f1e6e65fef65acbab7b1583dea4e6889cdb5c7d",
+          "stage": "strict_helper_reconstruction"
+        },
+        "284639717": {
+          "sha256": "265183e8da3c3303fa746383c7e56366c87fe26f290373e4f5e164a11fb099bb",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-terrarumian-condition-visibility.json",
+          "sha256": "954fb3109c1a47989baa11528e20ba7bc043eb6a230750411db8d0bb68ad7e7b",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "284639722": [
+              20,
+              21,
+              22,
+              23
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-terrarumian-condition-visibility-old-source.json",
+          "sha256": "00618db4479bd8f83defcc7df1d0413420d1fd43aacb96d633c571270bb7d72e",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "284639722": [
+              20,
+              21,
+              22,
+              23
+            ]
+          },
+          "expected_failures": [
+            5,
+            6,
+            9,
+            10,
+            13,
+            14,
+            17,
+            18,
+            21,
+            22,
+            25,
+            26,
+            29,
+            30
+          ]
+        },
+        {
+          "artifact": "current-terrarumian-condition-visibility-no-condition.json",
+          "sha256": "5ad9f0ec1e4a7b892a188a1b3a9738ae3f8dd72b6186ef3dd8599a20d447d813",
+          "relevant_result_indices": {
+            "284639717": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "284639722": [
+              20,
+              21,
+              22,
+              23
+            ]
+          },
+          "expected_failures": [
+            0,
+            1,
+            3,
+            5,
+            6,
+            9,
+            10,
+            13,
+            14,
+            17,
+            18,
+            21,
+            22,
+            25,
+            26,
+            29,
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-terrarumian-followups-batch.json",
+      "sha256": "57b4285520d465b0a1456bf24c1d61c39befdf8e89d006aa69dcb36194457f15",
+      "scope": "Four reused full-source fixtures/current installed production metadata/corrected transport/no Lua API adapter. Native Hand->PZone activation and primary summon then Staghorn Hand recruit/Ivy GY revive with missing-resource/decline controls. Sundew recycle and Trumpet recruit verify real field destruction->faceup Extra->Hand/MZone native origins; two-destruction/Sundew defense state and Trumpet defense state retained. Effective secondary-only omitted-operation controls. Neutral support data/legacy DB construction overridden for production reader. Not CL2 followup interruption/full-card/live Omega certification.",
+      "source_stages": {
+        "284639722": {
+          "sha256": "e603a7dee12f099fcabcbfd1443205abe5e8674b491bf4403e11e4d299510241",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-terrarumian-followup-grave.json",
+          "sha256": "5eae6cbd8f79f52b13b4d34b063968ff2c902f87843d8bca7c233b8263fe4149",
+          "relevant_result_indices": {
+            "284639722": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-terrarumian-followup-grave-no-followup.json",
+          "sha256": "d35e95c419b14251072917806ea2847f849da2e3dea1ec35a0e8a4e91b5649ce",
+          "relevant_result_indices": {
+            "284639722": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "expected_failures": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-terrarumian-alternate-interruption-batch.json",
+      "sha256": "aa4c50b1b0ca243004f9dd20d51671d0d8a1ad0638778ca94bb7642cdf114114",
+      "scope": "Full Coin/Staghorn/Ivy scripts/installed metadata/corrected transport/no Lua API adapter. Native destruction trigger CL1 and CounterTrap CL2 activation/effect negation, source/resource banishment. Coin Hand random banish under two neutral defense Pendulums; Staghorn opponent targeted send; Ivy opponent effect negation after actual Special Summon, observed via ATK effect. Actual moves/negation and removal timing asserted; effective no-response control. Coin End Phase return is separate baseline evidence; this batch stops before End Phase. Not cross-mode use/complete cards/live Omega certification.",
+      "source_stages": {
+        "284639722": {
+          "sha256": "e603a7dee12f099fcabcbfd1443205abe5e8674b491bf4403e11e4d299510241",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-terrarumian-alternate-interruption.json",
+          "sha256": "95d71cb16d35f2ae39bb1b38069fc3da0799362743e84df1b5b4e002856f3917",
+          "relevant_result_indices": {
+            "284639722": [
+              10,
+              11,
+              12,
+              13,
+              14
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-terrarumian-alternate-interruption-no-response.json",
+          "sha256": "67f41c85d78385a66989ddea680bf4d6111d6d73feeaf8e77d5568eae33fd57a",
+          "relevant_result_indices": {
+            "284639722": [
+              10,
+              11,
+              12,
+              13,
+              14
+            ]
+          },
+          "expected_failures": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            13,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-terrarumian-alternate-use-reset-batch.json",
+      "sha256": "bd42137a544c35f56b4787a6cbdccb0373517ebcbb95393368a209a9736f8665",
+      "scope": "Coin/Staghorn/Ivy full installed scripts/corrected transport/no Lua adapter. Both alternative modes genuinely available; both first-mode orders. First successful/activation-negated/effect-negated use, second-copy trigger excluded same turn, third next-own-turn opposite-mode succeeds. Actual resource moves and opponent ATK-based negation observed. Ivy opponent history actual Special Summon; Coin two neutral defense Pendulums and temporary Hand moves. Effective per-copy/no-operation controls. Not full-card/live Omega certification.",
+      "source_stages": {
+        "284639722": {
+          "sha256": "e603a7dee12f099fcabcbfd1443205abe5e8674b491bf4403e11e4d299510241",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-terrarumian-alternate-use-reset.json",
+          "sha256": "7595853b7f08090eea35e844199c4f192e9231c32a8e2084e5f77d968e7a6b08",
+          "relevant_result_indices": {
+            "284639722": [
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-terrarumian-alternate-use-reset-per-copy.json",
+          "sha256": "c08502c3785099b34c03574eab25622285611b45fb48222d8eb9614342564641",
+          "relevant_result_indices": {
+            "284639722": [
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ]
+          },
+          "expected_failures": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ]
+        },
+        {
+          "artifact": "current-terrarumian-alternate-use-reset-no-operation.json",
+          "sha256": "29baa669da8fb5799d413c7d9b8f99703564fd51bc050a2602d03ac627541ec4",
+          "relevant_result_indices": {
+            "284639722": [
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ]
+          },
+          "expected_failures": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-terrarumian-secondary-refresh-batch.json",
+      "sha256": "f77e2958e035fadedbb0698fa538f1ea5f847d06b7013bfd4d90698899ee7a64",
+      "scope": "Four reused full-source fixtures with installed production metadata/corrected transport; no Lua API adapter. Coin native ATK reduction under zero/one neutral defense Pendulum; Nerve native DEF boost from own/opponent Terrarumians; Ivy actual opposing battle activation lock with non-archetype boundary; Sword Field Zone destroy/banish replacement accept/decline and own-effect exclusions. Effective disabled-secondary controls. Existing neutral support data; not full-card/live Omega certification. Further dynamic count/category boundaries not inferred.",
+      "source_stages": {
+        "284639717": {
+          "sha256": "6ecf88d64e1bea15bd1c5ea7f89bb9fe043401ff6f18436f711f5c9eff3e25bf",
+          "stage": "strict_helper_reconstruction"
+        },
+        "284639722": {
+          "sha256": "e603a7dee12f099fcabcbfd1443205abe5e8674b491bf4403e11e4d299510241",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-terrarumian-ivy-battle-lock.json",
+          "sha256": "04e537414c3a583b7255968ec99a87c704c3491b75c6afe307e36b90e9891af4",
+          "relevant_result_indices": {
+            "284639722": [
+              0,
+              1
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-terrarumian-ivy-battle-lock-no-secondary.json",
+          "sha256": "4bf516a09140f1ce22301f2b2e1b592213bead6b734478b27f07eb22ccc29795",
+          "relevant_result_indices": {
+            "284639722": [
+              0,
+              1
+            ]
+          },
+          "expected_failures": [
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-terrarumian-secondary-boundaries-batch.json",
+      "sha256": "cf6ce7a9a517789a72df1c6023d6ead7ebc05e6b22fd94c192a60d7ff7515d24",
+      "scope": "Full Ivy/Sword scripts/installed metadata/corrected transport/no Lua API adapter. Actual Ivy placement and native battles with own Terrarumian attacker/defender, opponent-only participant and own nonparticipant boundaries; actual opponent trap availability/damage. Sword actual placement/Field activation then own banish/opponent GY send/protected replacement source/opposing simultaneous field+source destruction/nonField SZone exclusion. Real native indestructibility and actual final field/source locations. Effective omitted-lock/widened-replacement/protection-bypass controls. Neutral supports. Not full-card/live Omega certification.",
+      "source_stages": {
+        "284639722": {
+          "sha256": "e603a7dee12f099fcabcbfd1443205abe5e8674b491bf4403e11e4d299510241",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-terrarumian-ivy-participants.json",
+          "sha256": "9b8226e798cc4d109dd02e560187df19045f14af8b0578ee5472194e54c10d81",
+          "relevant_result_indices": {
+            "284639722": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-terrarumian-ivy-participants-no-lock.json",
+          "sha256": "7da31290e8d42e45ab9b7751fe93ec7ac1128f1fecac92752e84d5e824a48114",
+          "relevant_result_indices": {
+            "284639722": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          "expected_failures": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-ivy-battle-visibility-batch.json",
+      "sha256": "174d908e3fefb1545fbf482e6b5571848553380b5cf9c9e53df653d64c31a571",
+      "scope": "Full original Ivy/current installed metadata/corrected public transport/no Lua API adapter. Actual Hand-to-PZone placement, natural opponent-turn native attack against own faceup/facedown archetype monster. Neutral Trap permits Damage Step/Calculation and is declined to observe availability: before hidden defender flips, lock after real battle flip, restored after native Damage Step end. Faceup defender baseline/original/no-lock controls. Same activation-lock/attacker-target scan: Aldrez246496923 already requires faceup,215853847 self-participant field effect differs, Galactican250829750 pending. Other clauses/full-card/live Omega open.",
+      "source_stages": {
+        "284639722": {
+          "sha256": "a2f4790ff7a5d932f16bdf8c6c39f606ab1237795dc25c83235af335e4841523",
+          "stage": "strict_helper_reconstruction"
+        }
+      },
+      "verified_runs": [
+        {
+          "artifact": "current-ivy-battle-visibility.json",
+          "sha256": "755b44dcd4434963ce002e0c3b8cdff1ebe66f36da1efd2cebbf8787ed0f0b14",
+          "relevant_result_indices": {
+            "284639722": [
+              0,
+              1
+            ]
+          },
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-ivy-battle-visibility-old-source.json",
+          "sha256": "301fb5d7d89d82083f2c781a034172fa6889883927ae7cc455b706a3f8b150a2",
+          "relevant_result_indices": {
+            "284639722": [
+              0,
+              1
+            ]
+          },
+          "expected_failures": [
+            1
+          ]
+        },
+        {
+          "artifact": "current-ivy-battle-visibility-no-lock.json",
+          "sha256": "3d7a89bcdcace0a8961f5786ac76d8dcae80befffafaa1e996f6bb5e2627f9fe",
+          "relevant_result_indices": {
+            "284639722": [
+              0,
+              1
+            ]
+          },
+          "expected_failures": [
+            0,
+            1
+          ]
+        }
+      ]
+    }
+  ],
+  "scope_limits": [
+    "Battle suite deliberately overrides ATK900/DEF3000; actual native battle packet verifies these stats and outcome. Historical actualDefense field records printed database DEF, not the override. Initially field source is a stated battle-only setup.",
+    "Neutral supports/recipients and field-seeded Extra resource for geometry do not certify original recipient procedures or independent effects.",
+    "Ivy visibility follows official archetype-battle ruling analogy recorded in its repair batch; not a direct custom-card FAQ.",
+    "No claim about arbitrary interactions/full-card/live Omega certification; do not expand fully_checked/live counters."
+  ],
+  "new_confirmed_source_bugs": []
+}

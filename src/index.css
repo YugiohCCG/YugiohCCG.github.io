@@ -1,4 +1,4 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -851,7 +851,7 @@ html[data-theme="night"] .theme-toggle-attribute-light {
   border-radius: 9999px;
   overflow: hidden;
   background: transparent;
-  box-shadow: 0 8px 14px rgba(14, 24, 39, 0.22);
+
 }
 
 .legality-badge svg {
@@ -2016,6 +2016,14 @@ html[data-theme="night"] .downloads-page{--downloads-hero:#111927;--downloads-he
 .library-controls [role=status] { padding:12px 0; font-size:12px; color:var(--ink-muted); }
 .library-section-heading { border-bottom:1px solid var(--line-soft); padding:12px 0 18px; margin-bottom:30px; }
 .library-section-heading p { margin-top:6px; color:var(--ink-muted); font-size:13px; }
+.sample-deck-controls { font-family:"Courier New",monospace; }
+.sample-deck-controls :is(label,p) { margin:0; line-height:1.25; }
+.sample-deck-switch { position:relative; display:inline-block; width:1.9rem; height:1rem; flex:none; border:1px solid currentColor; border-radius:999px !important; }
+.sample-deck-switch::after { content:""; position:absolute; top:50%; left:2px; transform:translateY(-50%); width:.625rem; height:.625rem; border-radius:50%; background:currentColor; }
+.peer:checked + .sample-deck-switch { background:var(--tp-ink,var(--ink-strong)); }
+.peer:checked + .sample-deck-switch::after { left:auto; right:2px; background:var(--tp-paper,var(--bg-panel)); }
+.peer:focus-visible + .sample-deck-switch { outline:2px solid var(--tp-red,var(--brand)); outline-offset:3px; }
+.sample-deck-marker { display:inline-block; width:.55rem; height:.55rem; flex:none; background:var(--tp-red,var(--brand)); }
 .library-box-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:28px 24px; }
 .library-box-link { text-align:center; display:flex; flex-direction:column; align-items:center; border-radius:12px; padding:16px 6px 12px; perspective:850px; }
 .library-box-link:focus-visible { outline:2px solid var(--brand); outline-offset:4px; }

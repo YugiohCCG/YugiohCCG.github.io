@@ -33,12 +33,15 @@ end
 s.listed_series={SET_KALI_YUGA}
 function s.desfilter(c,tp)
  return c:IsSetCard(SET_KALI_YUGA) and c:IsDestructable()
-  and (Duel.GetLocationCount(tp,LOCATION_MZONE)>0 or c:IsLocation(LOCATION_MZONE))
+end
+function s.spacefilter(c,tp)
+ return s.desfilter(c,tp) and (Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+  or Duel.GetMZoneCount(tp,Group.FromCards(c))>0)
 end
 function s.sstg(e,tp,eg,ep,ev,re,r,rp,chk)
  local c=e:GetHandler()
  if chk==0 then return c:IsCanBeSpecialSummoned(e,0,tp,false,false)
-  and Duel.IsExistingMatchingCard(s.desfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,c,tp) end
+  and Duel.IsExistingMatchingCard(s.spacefilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,c,tp) end
  Duel.SetOperationInfo(0,CATEGORY_DESTROY,nil,1,tp,LOCATION_HAND+LOCATION_ONFIELD)
  Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,0,0)
 end
@@ -47,11 +50,16 @@ function s.stfilter(c)
 end
 function s.ssop(e,tp)
  local c=e:GetHandler()
- if not c:IsRelateToEffect(e) then return end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
- local g=Duel.SelectMatchingCard(tp,s.desfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,1,c,tp)
+ local g
+ if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
+  and Duel.IsExistingMatchingCard(s.spacefilter,tp,LOCATION_MZONE,0,1,c,tp) then
+  g=Duel.SelectMatchingCard(tp,s.spacefilter,tp,LOCATION_MZONE,0,1,1,c,tp)
+ else
+  g=Duel.SelectMatchingCard(tp,s.desfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,1,c,tp)
+ end
  if #g==0 or Duel.Destroy(g,REASON_EFFECT)==0 or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
- if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end
+ if not c:IsRelateToEffect(e) or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end
  if Duel.IsExistingMatchingCard(s.stfilter,tp,0,LOCATION_ONFIELD,1,nil)
   and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then
   Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)

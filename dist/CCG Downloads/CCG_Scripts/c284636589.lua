@@ -32,7 +32,7 @@ function s.maincon(e,tp)
  return ph==PHASE_MAIN1 or ph==PHASE_MAIN2
 end
 function s.destroyfilter(c)
- return c:IsSetCard(SET_TERRARUMIAN) and not c:IsCode(id) and c:IsDestructable()
+ return (c:IsLocation(LOCATION_HAND) or c:IsFaceup()) and c:IsSetCard(SET_TERRARUMIAN) and not c:IsCode(id) and c:IsDestructable()
 end
 function s.pendulumfilter(c)
  return c:IsSetCard(SET_TERRARUMIAN) and c:IsType(TYPE_MONSTER)
@@ -63,23 +63,21 @@ function s.setcost(e,tp,eg,ep,ev,re,r,rp,chk)
  if chk==0 then return c:IsAbleToRemoveAsCost() end
  Duel.Remove(c,POS_FACEUP,REASON_COST)
 end
-function s.setfilter(c)
+function s.setfilter(c,tp)
  return c:IsSetCard(SET_TERRARUMIAN) and c:IsType(TYPE_SPELL+TYPE_TRAP)
-  and not c:IsCode(id) and c:IsSSetable()
+  and not c:IsCode(id) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
  if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE)
-  and s.setfilter(chkc) end
- if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-  and Duel.IsExistingTarget(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil) end
+  and s.setfilter(chkc,tp) end
+ if chk==0 then return Duel.IsExistingTarget(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil,tp) end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
- local g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,1,nil)
+ local g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,1,nil,tp)
  Duel.SetOperationInfo(0,CATEGORY_SSET,g,1,tp,LOCATION_GRAVE)
 end
 function s.setop(e,tp)
- if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end
  local tc=Duel.GetFirstTarget()
- if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.setfilter)(tc) then
+ if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.setfilter)(tc,tp) then
   Duel.SSet(tp,tc)
  end
 end

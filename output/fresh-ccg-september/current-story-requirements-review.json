@@ -1,0 +1,60 @@
+{
+  "passcode": 245970073,
+  "name": "A Stainless Story",
+  "printed_text": "If your opponent controls more cards than you: Send 1 \"Stain\" monster from your Deck or face-up in your opponent's Deck to the GY; this effect becomes the sent monster's effect if it is Normal or Special Summoned. You can banish this card from your GY; each player draws 1 card. You can only activate 1 \"A Stainless Story\" per turn.",
+  "script_sha256": "5fbaeb0b542fff9526615b1238ea3091b33b5abc020e1f0a523105c7b886a4f9",
+  "installed_matches": true,
+  "clauses": [
+    {
+      "clause": "Opponent controls more cards; pay own Deck or faceup opposing Deck Stain monster",
+      "status": "DIRECT_SCOPED_NATIVE",
+      "evidence": "Strict equal/fewer/no-source/opponent-hidden exclusions; native hidden assertions and ReverseInDeck. Own hidden/opposing-owned faceup actual costs; copied-source whitelist static, borrowed-original-owner opposing Deck not specifically tested."
+    },
+    {
+      "clause": "Effect becomes sent monster Normal/Special Summon effect",
+      "status": "BEHAVIOR_OBSERVED_IDENTITY_PENDING",
+      "evidence": "All five current branches tested, including Bria add/bottom and Silas add/Set. Native Silas CL2 interruptions tested. Current non-Silas sent-source self-shuffle observed but this-card/other-card identity and targeting interpretation not settled; user identity clarification pending."
+    },
+    {
+      "clause": "Banish from GY; each player draws1",
+      "status": "DIRECT_SCOPED_NATIVE",
+      "evidence": "Actual prior Story Spell resolution plus reserve copy: both separately pay native banish cost and both players really draw twice same turn. Either player cannot draw prevents GY activation; effective cost/draw/feasibility controls."
+    },
+    {
+      "clause": "Activate only1 Story per turn",
+      "status": "PUBLIC_API_QUALIFIED",
+      "evidence": "Original legacy OATH public failure after activation negation retained. Test-only registration(1,id,1) proves named Hand-copy sharing, activation-negation retry versus effect-negation/success exclusion, real cost retained and natural turn3 reset; GY effects separate."
+    }
+  ],
+  "evidence": [
+    {
+      "artifact": "current-stainless-story-batch.json",
+      "sha256": "a5c1076465202f380ee72c663c276ec0d2642dd2dcbe7ed6729ec758d0915681",
+      "scope": "Full original A Stainless Story/current installed metadata/full actual five source scripts/corrected transport/no Lua API adapter. Actual opposing field-count condition and Story activation, own Deck-to-GY cost. Native Bria add/bottom, Dante opposing destruction, Feness negate observed by stat suppression, Rollo revival, Silas add/Set; effective omitted-copy controls fail all seven. Neutral recipients/opposing field identities. Non-Silas current sent-source GY-to-own-Deck self-shuffle observed, not certified interpretation of copied this-card identity. Opponent Deck costs/activation negatives/interruptions/named activation limit/GY draw and full-card/live Omega remain separate."
+    },
+    {
+      "artifact": "current-story-eligibility-batch.json",
+      "sha256": "9d4abd5f0c6761a9f63fa8577b933bdb6602efa4eb8335f05835f31849864e14",
+      "scope": "Full original Story/current installed metadata/actual Dante source/corrected transport/no Lua API adapter. Explicit facedown native Deck seeds asserted hidden inside real prep activation; opposing positive uses actual ReverseInDeck and native faceup assertion. Hidden own Deck or faceup opposing-owned Deck source pays native Deck-to-GY cost and copied destruction; hidden opposing source/no source/equal or fewer opposing field cards exclude actual activation. Effective omitted-copy/allowed-hidden-opponent/allowed-equal-field controls. Neutral preparation/opposing targets; copied this-card identity/target interpretation, opponent Deck borrowed-owner cases/interruptions/use/draw/full-card/live Omega remain separate."
+    },
+    {
+      "artifact": "current-story-draw-batch.json",
+      "sha256": "ceab322f7673c67d5e5230c9d9f056b85b63dae531d27688fcd78edbd1c0add3",
+      "scope": "Full original Story/current installed metadata/full actual Silas cost-source/corrected transport/no Lua API adapter. Real normal Spell activation from Hand with own Deck cost and original copied Silas search, plus reserve GY copy. Two original GY copies separately banish as native REASON_COST and actually draw one each for both players twice in same turn; normal Spell activation does not impose unsupported GY once-per-turn. Native both-player Hand counts/DRAW messages/GY candidate counts and own/opponent CANNOT_DRAW exclusion. Effective omitted-draw/omitted-cost/ignored-draw-feasibility controls. Neutral search/field/global draw-restriction fixtures. Source identity/normal Spell activation oath/interruptions/full-card/live Omega separate."
+    },
+    {
+      "artifact": "current-story-activation-uses-batch.json",
+      "sha256": "2e11d70611fe7b291b444777e5b8dfadd1d933855cd930b0bda8124fef70ffa4",
+      "scope": "Full original Story/actual Silas cost-source/installed metadata/corrected transport. Original legacy oath registration passes success/effect-negated shared activation and reset but public engine wrongly blocks retry after activation negation; preserved separately. Explicit test-only SetCountLimit(1,id,1) modern OATH registration passes all. Three Hand copies/reserve real Deck sources/search cards, actual native Deck-to-GY REASON_COST retained after both negations, copied search suppressed when negated, other-copy retry only after activation negation, other copies excluded after success/effect negation and natural own-turn3 reset. Effective per-copy/no-response controls; no-reset control explicitly gates turn3 condition to simulate unavailable reset, not alternate native API certification. Production unchanged. Neutral targets/response; no copied-identity/target semantics/full-card/live Omega certification."
+    },
+    {
+      "artifact": "current-story-interruptions-batch.json",
+      "sha256": "d0bc8b44b1e520f5b14672c6c74a5ad67a45c7745a28a44c75a3f51ebf1cb68b",
+      "scope": "Full original Story/full actual Silas cost-source/installed metadata/corrected transport/no Lua API adapter. Native normal activation and own Deck cost, cost REASON_COST asserted before actual CL2 response. Copied Silas search survives banishing activated Spell or paid source, fails after sole search card banishment/activation or effect negation. Four actual sequential Sets fill own SZones during chain, changing field-count prerequisite and preventing Set; operation still legally adds Hand. Native movement/cost/search/CL2/field-state assertions, omitted-copy and omitted-response controls. Neutral recipient/response/fill cards. No copied self-shuffle/other-card identity interpretation, other copied-branch interruptions/normal activation flag equivalence/full-card/live Omega certification."
+    }
+  ],
+  "scope": "Existing saved evidence validated read-only against exact current runtime dependencies and outcomes. Static registration, native behavior, fixed preparation and public API mapping kept distinct. No new passing counts.",
+  "full_card_audit": "OPEN",
+  "live_omega_verified": false,
+  "next": "Pending copied this-card identity and targeting interpretation prevent full-card conclusion. Other copied-branch interruptions and opposing Deck borrowed-owner cost scope remain separate. Do not repeat completed Silas/draw/activation suites merely for counts."
+}

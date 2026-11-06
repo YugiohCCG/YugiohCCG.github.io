@@ -1,0 +1,19 @@
+{
+  "scope": "Bounded source/control-flow reconciliation only; no runtime or full-card certification.",
+  "cards": [
+    {
+      "passcode": 218261525,
+      "source_sha256": "dfd6a3a24ae81aa1da1271e04f9d0c47e483d631929eaae4d52028255e9ee0db",
+      "finding": "Fresh legal recipient filter and Extra Deck capacity check precede summon without intervening material movement.",
+      "conclusion": "No reachable state-changing failure identified in this source review; unchanged. This is a source-only exclusion from the confirmed failed-after-material-payment family, not a gameplay/full-card pass."
+    },
+    {
+      "passcode": 256110263,
+      "source_sha256": "aed4f2efaa4f910a44b35848686fe3973960e52a247ca41923bf0a5b335c2a1f",
+      "finding": "Outer Extra Deck capacity and recipient eligibility checked after actual source target banishment. Only neutral material-token creation/SetMaterial intervene; original Janna initialization merely registers effects and performs no move, summon or material payment.",
+      "conclusion": "No reachable state-changing failure identified in this source review; unchanged. This is a source-only exclusion from the confirmed failed-after-material-payment family, not a gameplay/full-card pass."
+    }
+  ],
+  "janna_source_sha256": "3727c960d3b0bf24e4d573f80b3bf652dafa31a5a0f437a0cdf265c254dfec11",
+  "next_action": "Do not force a failed return or blanket-edit. Revisit only with a concrete contradictory interaction; advance independent printed-clause/mechanic coverage."
+}

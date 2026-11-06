@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-25",
+  "runtime": "Omega v2.9.306; native Windows computer-use @oai/sky",
+  "deck": "Existing CCG Test - Talismandrake",
+  "setup": "Local Host, KurAI bot, Master Rule5, All pool, Unlimited,20-card opening hand. Unmodified production metadata/scripts during reproduction.",
+  "observations": [
+    {
+      "card": 245935439,
+      "result": "Original native Hand to Pendulum Zone activation successful"
+    },
+    {
+      "card": 230947464,
+      "result": "Original native Normal Summon, optional search accepted, Deck count20 to19; searched Embers"
+    },
+    {
+      "card": 210506870,
+      "result": "Original Hand ignition self summon with Spark on field; original monster Fusion effect selected Enkindle241706191; native field Spark and Hand Sear paid as materials; Enkindle summoned ATK2800, Spark face-up Extra and Sear GY"
+    },
+    {
+      "card": 245935439,
+      "result": "Native material followup target evaluation errors with Sear in GY and another Sear in PZone",
+      "exact_error": "[string \"245935439\"]:112: attempt to call a nil value (method 'IsOriginalType')",
+      "before_sha256": "574dd4c4e6b09543424b6e0aec51e95680f05e78f58ac89f8aca00373d15950f"
+    }
+  ],
+  "qualification": "Direct native scoped observation; original Heat recipe positive with Enkindle only. No entire-card live certification. Sear failure overrides prior assumption of Omega compatibility for this method. Patched native outcome still pending."
+}

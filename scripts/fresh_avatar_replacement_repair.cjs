@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');exports.corrected=(s,code=244790302)=>{assert([244790302,248788543].includes(code));const v=code===244790302?'e1':'e4',a=v+':SetTarget(s.reptg)',nl=s.includes('\r\n')?'\r\n':'\n',value=code===244790302?'s.repfilter(c,e:GetHandlerPlayer())':'c==e:GetHandler():GetEquipTarget()';assert.equal(s.split(a).length,2);assert(!s.includes(v+':SetValue(function(e,c) return '+value));return s.replace(a,a+nl+'\t'+v+':SetValue(function(e,c) return '+value+' end)');};

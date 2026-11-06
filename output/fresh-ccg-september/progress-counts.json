@@ -8,10 +8,10 @@
   "focused_evidence_cards_minimum": 242,
   "initially_missing_scripts": 91,
   "scripts_still_missing": 0,
-  "fixed_cards_total": 109,
-  "fixed_cards_minimum": 109,
-  "repair_ledger_sha256": "e5b32422b77d6fa8e4b1865b765f0f1c2901b96734d0117708ac032b7729b0bf",
-  "fixed_count_note": "109 is the historical ledger count and needs revalidation after10 unrelated repaired source changes. Additional Embers redirect repair has current focused proof and standard gates; global ledger regeneration pending stale Surge/Sylvan reconciliation.",
+  "fixed_cards_total": 266,
+  "fixed_cards_minimum": 266,
+  "repair_ledger_sha256": "386a8aedf219b9b4ed2383691d5e7df60dc84b0cc2b6aca4880cde2a151e9609",
+  "fixed_count_note": "266 unique bounded repaired cards. Scion and Stagger received further zone choice and destruction fallback repairs. Six original native cases pass. All 711 scripts parse, 583 initialize with 128 known compatibility failures, 38 Ohmen cases pass and source and installed copies match.",
   "ambiguous_artifacts_excluded": [
     "cassiopeia-normal.json"
   ],
@@ -5240,6 +5240,14 @@
         {
           "path": "current-talismandrake-embers-pendulum-revival-batch.json",
           "sha256": "1ed72611e8bd0801170319d2ac545612d7e6b5215eaa550b2cc761b0c112cde0"
+        },
+        {
+          "path": "current-talismandrake-embers-pendulum-interruption-batch.json",
+          "sha256": "3cc8973080f76658c2ae5ad95666a12b49762bad2dd0e530eb306449ad657829"
+        },
+        {
+          "path": "current-talismandrake-embers-pendulum-use-reset-batch.json",
+          "sha256": "aed5fca577a0439c12cd7ec4fd2d4e5b527d3d8752d52eaadff58e7b043b834d"
         }
       ]
     }
@@ -5310,22 +5318,33 @@
           "sha256": "26611a4b08b14bb6ffa4a484d82926f4ffe6b38bab5f0a9362b9329b658315b0"
         }
       ]
+    },
+    "245935439": {
+      "name": "Talismandrake Sear",
+      "artifact": "current-talismandrake-sear-pendulum-fusion-batch.json",
+      "sha256": "c3db59786a46e78eca3a91ad5422140662fc82893688b0cf41bf69c90c5ef3c8",
+      "excluded_from_focused_evidence_minimum": true,
+      "reason": "Explicit bounded missing mandatory-material API adapters; neutral recipe, not actual Omega/production Fusion recipe certification",
+      "additional_artifacts": [
+        {
+          "path": "current-talismandrake-sear-pendulum-response-batch.json",
+          "sha256": "9527b39cdc15a54c57c4c48fe365afc5aa9fc5ad96621427aa2ef60030343e74"
+        },
+        {
+          "path": "current-talismandrake-sear-pendulum-use-reset-batch.json",
+          "sha256": "1ed5610ad2bcf3fc9fd3a866b442faf7448506488d66f21f21ba8d27ab515b76"
+        }
+      ]
     }
   },
-  "repair_count_currently_validated": false,
-  "verified_repairs_pending_global_reconciliation": [
-    {
-      "passcode": 256928871,
-      "batch": "current-talismandrake-embers-pendulum-revival-batch.json",
-      "sha256": "1ed72611e8bd0801170319d2ac545612d7e6b5215eaa550b2cc761b0c112cde0"
-    }
-  ],
+  "repair_count_currently_validated": 222,
+  "verified_repairs_pending_global_reconciliation": [],
   "current_installed_initialization": {
     "total": 711,
     "first_decision_pass": 583,
     "compatibility_failures": 128,
     "batch": "current-installed-metadata-init-batch.json",
-    "sha256": "3ee1d93656a1fddbb6c3794f664ec43055d5ffe24f31de01fa2d0b617a26468d",
+    "sha256": "dbe0e2a6569e285c6f42bd9fab002b9a6521c45af5d6419cc96d22846c57e814",
     "not_effect_or_native_omega_certification": true
   },
   "current_source_install_mismatches": 0,
@@ -5353,6 +5372,289 @@
       "baseline_cases": 4,
       "actual_installed_metadata": true,
       "native_omega_verified": false
+    },
+    "sylvan_standalone": {
+      "cards": [
+        238276572,
+        238276573,
+        238276574,
+        238276575,
+        238276576,
+        238276577,
+        238276578,
+        238276579
+      ],
+      "batch": "current-reconciled-sylvan-standalone-batch.json",
+      "sha256": "6b83de9e3a5fc383d66d4704bdad88999134d26d10874c0e1a6a0ca394f81581",
+      "goleaf_cases": 12,
+      "goleaf_namespaces": 2,
+      "loader_only_cards": 8,
+      "loader_namespaces": 2,
+      "actual_installed_metadata": true,
+      "native_omega_verified": false
+    },
+    "ritual-material-release": {
+      "batch": "current-reconciled-ritual-material-release-batch.json",
+      "sha256": "b87fda83b4e7527fc18e8770d919307eeb0a21be1967327c50365e1ebe5a23fe",
+      "actual_installed_metadata": true,
+      "native_omega_verified": false
+    },
+    "ritual-material-context": {
+      "batch": "current-reconciled-ritual-material-context-batch.json",
+      "sha256": "72494ebc48634b22fe4ce8fd48f24fe1bc16f95129de13500be5a3c650067971",
+      "actual_installed_metadata": true,
+      "native_omega_verified": false
+    },
+    "glitchling-mage-pendulum-group": {
+      "batch": "current-reconciled-glitchling-mage-pendulum-group-batch.json",
+      "sha256": "9920e4a9e1408e3549329d422b4b6a5ae2663e455d3d118b8217a1e7453f319f",
+      "actual_installed_metadata": true,
+      "native_omega_verified": false
+    },
+    "chain-trigger-delay": {
+      "batch": "current-reconciled-chain-trigger-delay-batch.json",
+      "sha256": "0a997a81827bfd62940fc712c7eaeca9162ab9b968434fe9997ccb1d5985c558",
+      "actual_installed_metadata": true,
+      "native_omega_verified": false
     }
+  },
+  "current_additional_native_evidence": {
+    "talismandrake_extra_placement": {
+      "path": "current-talismandrake-extra-placement-batch.json",
+      "sha256": "a5734acc8e26a1c200992d472fa4e5b77c7221d1ebc99e44b323a40923479863",
+      "cards": [
+        230947464,
+        256928871
+      ],
+      "baseline_cases": 16,
+      "full_card_audit": "OPEN"
+    },
+    "talismandrake_extra_placement_interruption": {
+      "path": "current-talismandrake-extra-placement-interruption-batch.json",
+      "sha256": "dc4863df33ca5ff48461f8bb9e2c840deed1ffd2e724fe3288eec28dd42a3bee",
+      "cards": [
+        230947464,
+        256928871
+      ],
+      "baseline_cases": 14,
+      "full_card_audit": "OPEN"
+    },
+    "talismandrake_extra_placement_use_reset": {
+      "path": "current-talismandrake-extra-placement-use-reset-batch.json",
+      "sha256": "c760787d587b97494ede5d488d176ea69bee318ce2fa4a5960d9f73c30434919",
+      "cards": [
+        230947464,
+        256928871
+      ],
+      "baseline_cases": 6,
+      "full_card_audit": "OPEN"
+    },
+    "spark_summon_search": {
+      "path": "current-talismandrake-spark-summon-search-batch.json",
+      "sha256": "76cb0d33ac7c0cd86bc77a25f1b4d7b5138def62cb607ed63fb26de43908fae1",
+      "cards": [
+        230947464
+      ],
+      "baseline_cases": 9,
+      "full_card_audit": "OPEN"
+    },
+    "spark_search_interruption": {
+      "path": "current-talismandrake-spark-search-interruption-batch.json",
+      "sha256": "f1bdbf0df719ff4c0ad54bccae78287b6637f91e4e5cfc2c391bd11d042d383c",
+      "cards": [
+        230947464
+      ],
+      "baseline_cases": 7,
+      "full_card_audit": "OPEN"
+    },
+    "symphonic_pendulum_installed_refresh": {
+      "path": "current-reconciled-symphonic-pendulum-refresh-summary.json",
+      "sha256": "0284a7d6af8305e42562b665d78920b6a8b817e2239af3e872afa3e7d1f0b43d",
+      "cards": [
+        238273768,
+        238273769,
+        238273770
+      ],
+      "baseline_cases": 46,
+      "full_card_audit": "OPEN"
+    },
+    "speeaker_hand_level": {
+      "path": "current-symphonic-speeaker-hand-level-batch.json",
+      "sha256": "c037a59bb1b336ce43770c2d4565d7ca0adc24f2196ebe5345d6e4edc9f24ac8",
+      "cards": [
+        238273768
+      ],
+      "baseline_cases": 9,
+      "full_card_audit": "OPEN"
+    },
+    "speeaker_hand_interruption": {
+      "path": "current-symphonic-speeaker-hand-interruption-batch.json",
+      "sha256": "e1cf41d31e46fc55b69efabe08be95c37713a5fad026c2d910e662dbd5cf2cac",
+      "cards": [
+        238273768
+      ],
+      "baseline_cases": 11,
+      "full_card_audit": "OPEN"
+    },
+    "speeaker_hand_use_reset": {
+      "path": "current-symphonic-speeaker-hand-use-reset-batch.json",
+      "sha256": "2f7e0bd830ec7f388eaa198de7578a2a9b782ead20d7d3e9027c66fc9fc6c3c8",
+      "cards": [
+        238273768
+      ],
+      "baseline_cases": 3,
+      "full_card_audit": "OPEN"
+    },
+    "speeaker_recruit": {
+      "path": "current-symphonic-speeaker-recruit-batch.json",
+      "sha256": "db7b06379d772bbbab1e6bcfc5ce72c3d7c00b614abb0409cb6feec6b2860a2c",
+      "cards": [
+        238273768
+      ],
+      "baseline_cases": 10,
+      "full_card_audit": "OPEN"
+    },
+    "speeaker_recruit_interruption": {
+      "path": "current-symphonic-speeaker-recruit-interruption-batch.json",
+      "sha256": "1618b1736d464f3a2da6a0eb2475c9ba23a44fdda7f5ed0e44b87b2a0b1d8b30",
+      "cards": [
+        238273768
+      ],
+      "baseline_cases": 8,
+      "full_card_audit": "OPEN"
+    },
+    "speeaker_recruit_use_reset": {
+      "path": "current-symphonic-speeaker-recruit-use-reset-batch.json",
+      "sha256": "fa394fdee8f030c32d4480a00c1103aa18636409ff9a6e6c783aa1ece4de64ee",
+      "cards": [
+        238273768
+      ],
+      "baseline_cases": 3,
+      "full_card_audit": "OPEN"
+    },
+    "speeaker_extra_restriction": {
+      "path": "current-symphonic-speeaker-extra-restriction-batch.json",
+      "sha256": "b3891ecf2e984858ac9395554ce410df31c13365406d15b075cda0e9723b87f0",
+      "cards": [
+        238273768
+      ],
+      "baseline_cases": 9,
+      "full_card_audit": "OPEN"
+    },
+    "speeaker_extra_expiry": {
+      "path": "current-symphonic-speeaker-extra-expiry-batch.json",
+      "sha256": "4a77e9f8430143faa23b74769b3b1a8f5926d0f1a6a1a97a91428c7c1e199552",
+      "cards": [
+        238273768
+      ],
+      "baseline_cases": 3,
+      "full_card_audit": "OPEN"
+    },
+    "speeaker_extra_opponent_expiry": {
+      "path": "current-symphonic-speeaker-extra-opponent-expiry-batch.json",
+      "sha256": "c547cc3c1046ed8e34a3c2326da8e293a729e7e0e9b7f3bde64cea7905217d52",
+      "cards": [
+        238273768
+      ],
+      "baseline_cases": 3,
+      "full_card_audit": "OPEN"
+    },
+    "ddj_flip_recruit": {
+      "path": "current-symphonic-ddj-flip-recruit-batch.json",
+      "sha256": "22005b6ef51c7cec3d5dd502188795fb055ccfd9c29d0b06b555493b80caf592",
+      "cards": [
+        238273769
+      ],
+      "baseline_cases": 8,
+      "full_card_audit": "OPEN"
+    },
+    "ddj_flip_interruption": {
+      "path": "current-symphonic-ddj-flip-interruption-batch.json",
+      "sha256": "a1962fe5d5fec1dfffe3c142cc8dd63acaa8530cb4926b5abfb398718c09c456",
+      "cards": [
+        238273769
+      ],
+      "baseline_cases": 8,
+      "full_card_audit": "OPEN"
+    }
+  },
+  "current_additional_compatibility_diagnostics": {
+    "embers_summon_draw": {
+      "path": "current-talismandrake-embers-summon-draw-batch.json",
+      "sha256": "b5f43725ff844ef0dd086ee228447d2ed9412316abce65f2ffadf01ae61610dc",
+      "cards": [
+        256928871
+      ],
+      "baseline_cases": 9,
+      "excluded_from_focused_minimum": true,
+      "full_card_audit": "OPEN"
+    },
+    "embers_draw_interruption": {
+      "path": "current-talismandrake-embers-draw-interruption-batch.json",
+      "sha256": "c9ff5f2c2c085f14661e56b1cc9ba3fde737f356db8a8e665b5f7642f35ba4dd",
+      "cards": [
+        256928871
+      ],
+      "baseline_cases": 6,
+      "full_card_audit": "OPEN"
+    }
+  },
+  "current_additional_mixed_evidence": {
+    "talismandrake_summon_use_reset": {
+      "path": "current-talismandrake-summon-use-reset-batch.json",
+      "sha256": "cf70eeeb3c55f13c6fe0fe77de673e5cff15ba37b09213b732c8f3e81ea9151c",
+      "native_cards": [
+        230947464
+      ],
+      "compatibility_cards": [
+        256928871
+      ],
+      "baseline_cases": 7,
+      "full_card_audit": "OPEN"
+    },
+    "heat_pendulum_installed_refresh": {
+      "path": "current-reconciled-talismandrake-heat-pendulum-batch.json",
+      "sha256": "ec97d72964a97bf94d9015354203b039718b2d7d3c6bd88ec2d45e3ea4558049",
+      "cards": [
+        210506870
+      ],
+      "baseline_cases": 26,
+      "full_card_audit": "OPEN"
+    },
+    "pendulum_megastaar_terrarumian_vaylantz_refresh": {
+      "path": "current-pendulum-megastaar-terrarumian-vaylantz-refresh-summary.json",
+      "sha256": "805a8ddd7b2aa400d958b7ce9def59483e3b2fcb701b4cefe2b732bfcda1020f",
+      "baseline_cases": 136,
+      "full_card_audit": "OPEN"
+    },
+    "pendulum_starry_glitchling_refresh": {
+      "path": "current-pendulum-starry-glitchling-refresh-summary.json",
+      "sha256": "307391d0ac2d3911f2caea4e91bb16036b34573b0ca8bbf6fc9a97cb849cb499",
+      "baseline_cases": 61,
+      "full_card_audit": "OPEN"
+    },
+    "heat_monster_installed_refresh": {
+      "path": "current-reconciled-talismandrake-heat-monster-batch.json",
+      "sha256": "6f056a7b2a0b5448107f81cc1f215935d20569ea7c15fdba5615a63e89ed0d43",
+      "cards": [
+        210506870
+      ],
+      "baseline_cases": 26,
+      "full_card_audit": "OPEN"
+    }
+  },
+  "current_crying_chaos_clause_map": {
+    "path": "current-crying-chaos-clause-map.json",
+    "sha256": "309ccd37caa1bbf37113104a71147b62e75ecf6c26d77dca3e93a8749211fc20",
+    "cards": 19,
+    "clause_groups": 44,
+    "scoped_evidence_groups": 19,
+    "full_card_promotions": 0,
+    "note": "Zebra material-damage clause now explicitly TEST_MAPPED, nine cases/eight controls with retained unadapted CHAININFO failure;19 cards/44 clauses/19 scoped. Production/counts unchanged."
+  },
+  "current_count_limit_key_source_scan": {
+    "path": "current-count-limit-key-source-scan.json",
+    "sha256": "893487019c4c532776f7a55b6e84140fd1112a924d2d110a2f4be3b701ef864a",
+    "scope": "Source-only numeric key collisions; no repair/full-card promotion"
   }
 }

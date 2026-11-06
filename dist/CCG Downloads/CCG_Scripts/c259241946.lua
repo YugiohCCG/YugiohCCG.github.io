@@ -22,7 +22,7 @@ end
 function s.monmatfilter(c,rc)
 	return c:IsType(TYPE_MONSTER) and c:GetLevel()>0
 		and (not c:IsLocation(LOCATION_DECK) or c:IsAbleToGrave())
-		and c:IsCanBeRitualMaterial(rc)
+		and c:IsCanBeRitualMaterial(rc) and (c:IsLocation(LOCATION_DECK) or c:IsReleasableByEffect())
 end
 function s.stmatfilter(c)
 	return c:IsFaceup() and c:IsSetCard(SET_CHARMELIA) and c:IsType(TYPE_CONTINUOUS)

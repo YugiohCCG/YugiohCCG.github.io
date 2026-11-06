@@ -1,0 +1,78 @@
+{
+  "scope": "Five original continuous-protection native combat cases: first/second distinct battle recipients, effect-before-battle, battle-before-effect, non-archetype first victim and actual facedown battle flip. One shared allowance across destruction causes verified. Seeded source/neutral combatants; no original recipient procedure claim or Lua API mapping. No production edits.",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_charmelia_battle_protection_batch.py": "8602358bcab861c3f41e15ccbe4df2dd1cd2fa36f25d6614df3e8a52a47331ae",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_charmelia_battle_protection.cjs": "1698a0f092d7e7aa0dbf15011cf32dee8511040f903da3c27e71e5aa16e44e22",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259226799.lua": "9e630839669bb2e3cdf874d879cfffd2de22cc7a8c1d720f6eab8c863468070e",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259226799.lua": "9e630839669bb2e3cdf874d879cfffd2de22cc7a8c1d720f6eab8c863468070e",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "mode": "current",
+      "file": "current-charmelia-battle-protection-current.json",
+      "sha256": "fa76710642af3486561496fb97f7c9cd71746b4cb3636dff5953a374db99674e",
+      "expected_failures": []
+    },
+    {
+      "mode": "no-protection",
+      "file": "current-charmelia-battle-protection-no-protection.json",
+      "sha256": "4013bd81feff63962fdb0583d1f45bd3d158b757f52754514a63505bcf02f570",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "mode": "unlimited",
+      "file": "current-charmelia-battle-protection-unlimited.json",
+      "sha256": "77221c06f5095e2e4ddfa152845510e93e389a2333e2bc883b6fc5c3db32fa59",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "mode": "split-limits",
+      "file": "current-charmelia-battle-protection-split-limits.json",
+      "sha256": "c2c48442a5be4deb74b59205f7e1e54993742dfdc501906082aa240861860db1",
+      "expected_failures": [
+        1,
+        2
+      ]
+    }
+  ],
+  "related_evidence": [
+    {
+      "file": "current-charmelia-beast-clause-review.json",
+      "sha256": "f2e2a161e3fa1f0a947a717fb00da26c8e25dad35104477409d109b166031258"
+    },
+    {
+      "file": "current-charmelia-draw-permission-review.json",
+      "sha256": "8c789d2d54dd52d4bba3d1e81e5d4714c2acdef2cdaef6074f739483c96c5550"
+    }
+  ],
+  "remaining_gaps": [
+    "Simultaneous destruction and multiple source-copy behavior",
+    "Recovery named cross-copy use/reset, negation and remaining eligibility/interruption boundaries",
+    "Original recipient summon procedures/live Omega/full-card certification"
+  ]
+}

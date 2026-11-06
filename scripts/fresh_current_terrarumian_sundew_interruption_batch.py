@@ -1,0 +1,12 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+paths=[Path(__file__).resolve(),ROOT/'scripts/fresh_current_terrarumian_sundew_interruption.cjs',ROOT/'scripts/fresh_installed_card.cjs',ROOT/'scripts/fresh_corrected_card_data_transport.cjs',OUT/'candidate-CCG_v1.db',FILES/'Databases/CCG_v1.db',ROOT/'public/CCG Downloads/CCG_Scripts/c284639723.lua']+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))+[ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']
+before={str(p.resolve()):sha(p) for p in paths};runs=[]
+for control,expected in [(None,[]),('no-response',[1,2,3,4,5,6])]:
+ r=subprocess.run(['node','--no-warnings','scripts/fresh_current_terrarumian_sundew_interruption.cjs']+(['--'+control] if control else []),capture_output=True,text=True,timeout=20)
+ p=OUT/('current-terrarumian-sundew-interruption'+('-'+control if control else '')+'.json');d=json.loads(p.read_text());assert len(d['results'])==7 and [i for i,v in enumerate(d['results']) if v['failure']]==expected and all(not v['logs'] for v in d['results']),(control,r.stdout+r.stderr);assert r.returncode==bool(expected)
+ runs.append({'control':control,'artifact':p.name,'sha256':sha(p),'expected_failures':expected})
+assert before=={str(p.resolve()):sha(p) for p in paths};assert (ROOT/'public/CCG Downloads/CCG_Scripts/c284639723.lua').read_bytes()==(FILES/'Scripts/c284639723.lua').read_bytes()
+(OUT/'current-terrarumian-sundew-interruption-batch.json').write_text(json.dumps({'status':'NATIVE_SUNDEW_INTERRUPTION_VERIFIED','runtime_dependencies_sha256':before,'runs':runs,'scope':'Full Sundew/current installed metadata/corrected transport/no Lua API adapter. Activated neutral scales and original Omega native Pendulum summon procedure. Actual opponent CL1, Sundew CL2, neutral CounterTrap CL3: activation/effect negation, source banishment, Deck recruit banishment, late native summon lock or four-monster fill. Actual Deck recruitment and field/Extra moves checked. Source removal permits independent recruitment/destruction but leaves no source for End Phase flag return. Effective no-response control. Not use/reset/full-card/live Omega certification.'},indent=2)+'\n',encoding='utf-8');print('Sundew native interruptions and effective controls verified')

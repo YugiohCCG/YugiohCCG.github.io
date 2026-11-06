@@ -29,7 +29,7 @@ function s.ffilter(c)
 	return c:IsFusionSetCard(SET_STAIN) and not c:IsFusionAttribute(ATTRIBUTE_LIGHT)
 end
 function s.cfilter(c,tp,sc)
-	return c==sc or c:IsControler(tp) and c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and not c:IsAttribute(ATTRIBUTE_LIGHT)
+	return c==sc or c:IsFaceup() and c:IsControler(tp) and c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and not c:IsAttribute(ATTRIBUTE_LIGHT)
 end
 function s.trcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(s.cfilter,1,nil,tp,e:GetHandler())
@@ -59,9 +59,10 @@ function s.trtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.trop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and tc:IsFaceup()) then return end
-	local atk=math.max(tc:GetAttack(),0)
-	if atk>0 then Duel.Recover(tp,atk,REASON_EFFECT) end
+	if tc and tc:IsRelateToEffect(e) and tc:IsFaceup() then
+		local atk=math.max(tc:GetAttack(),0)
+		if atk>0 then Duel.Recover(tp,atk,REASON_EFFECT) end
+	end
 	local g=Duel.GetMatchingGroup(s.posfilter,tp,0,LOCATION_MZONE,tc,tc)
 	if #g>0 then
 		Duel.ChangePosition(g,POS_FACEDOWN_DEFENSE)

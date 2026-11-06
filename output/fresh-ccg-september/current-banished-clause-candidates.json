@@ -1,0 +1,35 @@
+{
+  "scope": "Lexical function-level candidates only; not confirmed defects. Inspect printed clauses/call context and existing evidence before tests or repairs.",
+  "candidates": [
+    {
+      "passcode": 212837324,
+      "name": "Galactican Jet Drifter",
+      "filter": "setop",
+      "body": "function s.setop(e,tp) if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET) local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_REMOVED,0,1,1,nil):GetFirst() if tc and Duel.SSet(tp,tc)>0 and (tc:IsType(TYPE_TRAP) or tc:IsType(TYPE_QUICKPLAY)) then local te=Effect.CreateEffect(e:GetHandler()) te:SetType(EFFECT_TYPE_SINGLE) te:SetProperty(EFFECT_FLAG_SET_AVAILABLE) te:SetCode(tc:IsType(TYPE_TRAP) and EFFECT_TRAP_ACT_IN_SET_TURN or EFFECT_QP_ACT_IN_SET_TURN) te:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END) tc:RegisterEffect(te) end end\n"
+    },
+    {
+      "passcode": 239935094,
+      "name": "Winged Snake of the Swamp",
+      "filter": "setfilter",
+      "body": "function s.setfilter(c,tp)\n --These are the Dark Swamp Spell/Traps in the pinned website roster.\n return c:IsCode(239935099,239935100,239935101,239935102) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()\n  and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    },
+    {
+      "passcode": 239935099,
+      "name": "Rage of the Terrifying Dark Swamp",
+      "filter": "repfilter",
+      "body": "function s.repfilter(c,tp)\n return c:IsControler(tp) and c:IsLocation(LOCATION_ONFIELD) and c:IsCode(SWAMP)\n  and c:IsReason(REASON_EFFECT) and not c:IsReason(REASON_REPLACE)\nend\n"
+    },
+    {
+      "passcode": 259820516,
+      "name": "Expulsion of the Pyre",
+      "filter": "rdf",
+      "body": "function s.rdf(c) return not c:IsCode(id) and (c:IsSetCard(SET_PYRE) and c:IsType(TYPE_SPELL) or c:IsRace(RACE_PYRO)) and c:IsAbleToDeck() end\n"
+    },
+    {
+      "passcode": 259944344,
+      "name": "World Legacy Surfacing",
+      "filter": "thop",
+      "body": "function s.thop(e,tp) local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.thf),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,nil); if #g==0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); local sg=g:Select(tp,1,1,nil); local first=sg:GetFirst(); local other=g:Filter(function(c,krawler) return krawler and c:IsSetCard(SET_WORLD_LEGACY) and c:IsType(TYPE_SPELL+TYPE_TRAP) or not krawler and c:IsSetCard(SET_KRAWLER) and c:IsType(TYPE_MONSTER) end,nil,first:IsSetCard(SET_KRAWLER) and first:IsType(TYPE_MONSTER)); if #other>0 and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); sg:Merge(other:Select(tp,1,1,nil)) end if Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,sg) end end\n"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+'use strict';
+const assert=require('node:assert/strict');
+function corrected(s){const a='\tif not (tc and tc:IsRelateToEffect(e) and tc:IsFaceup()) then return end\n\tlocal atk=math.max(tc:GetAttack(),0)\n\tif atk>0 then Duel.Recover(tp,atk,REASON_EFFECT) end',b='\tif tc and tc:IsRelateToEffect(e) and tc:IsFaceup() then\n\t\tlocal atk=math.max(tc:GetAttack(),0)\n\t\tif atk>0 then Duel.Recover(tp,atk,REASON_EFFECT) end\n\tend';const aa=s.includes('\r\n')?a.replaceAll('\n','\r\n'):a,bb=s.includes('\r\n')?b.replaceAll('\n','\r\n'):b;assert.equal(s.split(aa).length-1,1);return s.replace(aa,bb);}module.exports={corrected};

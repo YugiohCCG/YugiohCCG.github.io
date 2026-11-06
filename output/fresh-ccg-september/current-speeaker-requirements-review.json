@@ -1,0 +1,565 @@
+{
+  "status": "SPEEAKER_PRINTED_CLAUSE_EVIDENCE_REVIEWED",
+  "passcode": 238273768,
+  "name": "Symphonic Warrior Speeaker",
+  "spec_text": "Pendulum Effect: During the Main Phase: You can destroy this card in your Pendulum Zone, then place 1 \"Symphonic Warrior\" Pendulum Monster from your Deck in your Pendulum Zone, except \"Symphonic Warrior Speeaker\". You can only use this effect of \"Symphonic Warrior Speeaker\" once per turn.\nMonster Effect: You can target 1 \"Symphonic Warrior\" monster you control; Increase its Level by 1, then Special Summon this card from your hand. If this card is Normal or Special Summoned: You can Special Summon 1 \"Symphonic Warrior\" monster from your hand, Deck or face-up Extra Deck. You cannot Special Summon from the Extra Deck face-down the turn you activate this effect except WIND Synchro Monsters. You can only use each effect of \"Symphonic Warrior Speeaker\"once per turn.",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_speeaker_requirements_review.py": "dab5c605afda03fae2588e66e0cd760dcbd257aa2d13edf08506e9b3da86acc1",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_repair_ledger.py": "3b9e154131dd58ef01bf65804e7e6ed1dbc29950c4eaca4cf69f871221f26d1d",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c238273768.lua": "0b9bcfd0614b183308ecbc120d44fde03b23352ac6855a9a2d64e9b62e85b573",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "6e3d644ec1cc45ac996cfe977f250530726ce80315759edefdb995965c06a2a8",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666"
+  },
+  "review_method": "Read-only source/specification/actual installed source parity plus exact dependencies, native result traces, semantic failure controls and recorded scenario scopes for twelve existing suites. No new duel scenarios or production edits.",
+  "clauses": [
+    {
+      "clause": "Main Phase PZone self-destruction, different-name Symphonic Deck Pendulum placement and named use/reset",
+      "suites": [
+        "current-reconciled-symphonic-speeaker-pendulum-batch.json",
+        "current-reconciled-symphonic-speeaker-pendulum-interruption-batch.json",
+        "current-reconciled-symphonic-speeaker-pendulum-shared-reset-batch.json"
+      ],
+      "finding": "Native Hand-to-PZone/destruction/real faceup Extra destination/replacement; membership/type/self/empty-resource/opposite-zone/full-MZone boundaries, actual CL2 negation/removal/protection, shared copies/reset."
+    },
+    {
+      "clause": "Own Symphonic target Level+1 then Hand self summon, named use/reset",
+      "suites": [
+        "current-symphonic-speeaker-hand-level-batch.json",
+        "current-symphonic-speeaker-hand-interruption-batch.json",
+        "current-symphonic-speeaker-hand-use-reset-batch.json"
+      ],
+      "finding": "Actual target Level/source summon, owner/faceup/positive-Level/capacity/targetability/immunity/summon-lock and native interruption boundaries; separate named key, shared copies/reset."
+    },
+    {
+      "clause": "Normal/Special Summon Hand/Deck/faceup Extra recruit, named use/reset and full-turn facedown-Extra WIND Synchro oath",
+      "suites": [
+        "current-symphonic-speeaker-recruit-batch.json",
+        "current-symphonic-speeaker-recruit-interruption-batch.json",
+        "current-symphonic-speeaker-recruit-use-reset-batch.json",
+        "current-symphonic-speeaker-extra-restriction-batch.json",
+        "current-symphonic-speeaker-extra-expiry-batch.json",
+        "current-symphonic-speeaker-extra-opponent-expiry-batch.json"
+      ],
+      "finding": "Actual Normal/Special triggers, genuine field-to-faceup-Extra provenance and Extra summon with full Main Zones, source/resource/capacity/negation interruptions, shared Normal/Special copies/reset. Prior/prospective Fusion/nonWIND Synchro exclusions, WIND Synchro/faceup Pendulum allowance, activation/effect-negation oath distinction, natural opponent-turn expiry."
+    }
+  ],
+  "suites": [
+    {
+      "artifact": "current-reconciled-symphonic-speeaker-pendulum-batch.json",
+      "sha256": "a3648b51d01abb4f031f4650af9c397aa4b2b578f4805e25471fd6637475fdf2",
+      "scope": "Full production Speeaker actualinstalledmetadata/corrected32bitCardData. NativeHandPZoneactivation, actualselfdestructiontofaceupExtra andDeckplacementofdistinctSymphonicPendulum. Seven cases baseline/wrongset/nonPend/samename/noDecktarget/oppositePZoneoccupied/fullMZONE. RealcontinuousSpellblocker/nativephysicalfieldbounds; nontargeting/repeatcheck. Nooperation3fails, emptylogs/parity/frozeninputs. No Lua API shim/nativeOmega/fullcard certification. Other effects/interruptions/reset open.",
+      "results_verified": [
+        {
+          "artifact": "current-reconciled-symphonic-speeaker-pendulum.json",
+          "sha256": "fcffc487c7325ffa00748efea61c77fd45e6ce7727241128dad6914179c3c3ef",
+          "baseline": true,
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-speeaker-pendulum-no-operation.json",
+          "sha256": "c5bafe21022887062faf66a38c1f67ee5442ff20b78b38cd783afae54aaf0618",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            5,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-reconciled-symphonic-speeaker-pendulum-interruption-batch.json",
+      "sha256": "154d55afe19eaa80d92ead8c09421c6c81cf476c000a737df9e99b39c450ec51",
+      "scope": "FullSpeeaker source/actualinstalledmetadata/correctedCardData native six primaryPendulum cases: baseline, actualCounterTrapCL2 activationnegation/effectnegation/sourcebanishment/Decktargetbanishment/lateindestructibleeffect. Destruction/Deckplacement/source/targetlocations checked; aftertargetremoved source stilldestroysbutnoPlacement; failedselfdestructionnoPlacement. Controls5noResponse/1noPlacement/1ignoreDestroy verified; emptylogs/parity/frozeninputs. NoLuaAPIadapter/nativeOmega/fullcard; sharedreset/other effects open.",
+      "results_verified": [
+        {
+          "artifact": "current-reconciled-symphonic-speeaker-pendulum-interruption.json",
+          "sha256": "7e4d581d29308b56ea9dac670fdc2df0fb4b85e32f0724a85d9d5a196c5ff157",
+          "baseline": true,
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-speeaker-pendulum-interruption-no-response.json",
+          "sha256": "18546feea45c4b0ae112be672068cca32a6ddd23a59016b2610aa30f24dfc6e5",
+          "baseline": false,
+          "expected_failures": [
+            "negateActivation",
+            "negateEffect",
+            "sourceBanish",
+            "targetBanish",
+            "lateProtection"
+          ]
+        },
+        {
+          "artifact": "current-reconciled-symphonic-speeaker-pendulum-interruption-no-operation.json",
+          "sha256": "2b573c87a221b1662315be94baac33f21593e4c26b3dae5641b7f2abbe6aef54",
+          "baseline": false,
+          "expected_failures": [
+            "baseline"
+          ]
+        },
+        {
+          "artifact": "current-reconciled-symphonic-speeaker-pendulum-interruption-ignore-destruction.json",
+          "sha256": "92a4726fa2160de5c1856e6a30f6865fa9319a1d6f23c23f8325c95edc1dbf20",
+          "baseline": false,
+          "expected_failures": [
+            "lateProtection"
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-reconciled-symphonic-speeaker-pendulum-shared-reset-batch.json",
+      "sha256": "04a27c242ddafc3a2cb4b88949db847321761857a5359f394e674ee7eb1301eb",
+      "scope": "FullSpeeaker actualinstalledmetadata/correctedCardData actualtwoHandPZonecopies0/4, firsteffectsuccess/actualCL2NegAct/NegEffect sharesnameduse andblockssecondcopywhileDecktargetremains. NaturalNEW_TURN0/1/0 thenactualsecondcopysequence4 destructionandDeckreplacement/properExtra/SZONEoutcomes. ControlsperCopy3/noReset3; emptylogs/fullsourceinstallparity/frozeninputs. NoLuaAPIadapter/nativeOmega/fullcard; other effects andremainingPendulums open.",
+      "results_verified": [
+        {
+          "artifact": "current-reconciled-symphonic-speeaker-pendulum-shared-reset.json",
+          "sha256": "85b55a4e0a1c2c9477898a7a416cb80940b1054f1469ed2b4854754f3e685540",
+          "baseline": true,
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-speeaker-pendulum-shared-reset-per-copy.json",
+          "sha256": "fbe9bfd72d1397ea05f0335789ca2f656125f195151fa3edc4b2df15b760735b",
+          "baseline": false,
+          "expected_failures": [
+            "baseline",
+            "negateActivation",
+            "negateEffect"
+          ]
+        },
+        {
+          "artifact": "current-reconciled-symphonic-speeaker-pendulum-shared-reset-no-reset.json",
+          "sha256": "e9ee6358474913dfbc1d6e2da50247aeeac6ae000113daebc16a614b9ee6c457",
+          "baseline": false,
+          "expected_failures": [
+            "baseline",
+            "negateActivation",
+            "negateEffect"
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-symphonic-speeaker-hand-level-batch.json",
+      "sha256": "c037a59bb1b336ce43770c2d4565d7ca0adc24f2196ebe5345d6e4edc9f24ac8",
+      "scope": "Full Speeaker/actual installed metadata/corrected transport/no Lua API adapter; native targeted Hand ignition Level3->4 and self Special Summon. Wrongset/facedown/opponent/level-lessXYZ/full field/untargetable/summon lock exclude activation. Immune target permits activation but causes neither Level increase nor self summon. Nine cases/four controls each1 semantic failure, emptylogs/frozeninputs/parity. Interruptions/shared use/recruit/Extra lock/liveOmega/fullcard open.",
+      "results_verified": [
+        {
+          "artifact": "current-symphonic-speeaker-hand-level.json",
+          "sha256": "b1c707fe096b7bc7aa6860c640f1e668b96692295381885a5e3ce04d1aac651d",
+          "baseline": true,
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-level-no-summon.json",
+          "sha256": "22b505444b24486d8d3ebd156dbfbf8e76bc7cf2ab5d07935f71fe7a1b5523d8",
+          "baseline": false,
+          "expected_failures": [
+            0
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-level-no-level.json",
+          "sha256": "63d4715e857fa47ed218c5dee425100399bb146d1566709b6561fc414f6ab405",
+          "baseline": false,
+          "expected_failures": [
+            0
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-level-no-immunity.json",
+          "sha256": "d5002c667f8859cfd3a9e377642b9fec4525dc57e1aa902caa64bf12729ee97c",
+          "baseline": false,
+          "expected_failures": [
+            6
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-level-allow-set.json",
+          "sha256": "a9c91c6504e24803eb558dab5134e81063c54722efad1d235ab5e489fe5872d4",
+          "baseline": false,
+          "expected_failures": [
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-symphonic-speeaker-hand-interruption-batch.json",
+      "sha256": "e1cf41d31e46fc55b69efabe08be95c37713a5fad026c2d910e662dbd5cf2cac",
+      "scope": "Full Speeaker/actual installed metadata/corrected transport/no Lua API adapter. Eleven native Hand effect cases: baseline, actual CL2 activation/effect negation, target banish/roundtrip/facedown/immunity, source banish/roundtrip, late full field/summon lock. Exact native Level and self SS outcomes; Level still increases when source leaves or field fills/summon blocked. Roundtrip and banish moves checked; noResponse10/noRelation4/noSS1/noLevel5/noImmunity1 exact failures. Shareduse/recruit/Extraactivitylock/liveOmega/fullcard open.",
+      "results_verified": [
+        {
+          "artifact": "current-symphonic-speeaker-hand-interruption.json",
+          "sha256": "49d69d5075189de662c9bde1563555c7837a91bfdaced8413486201508b9d821",
+          "baseline": true,
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-interruption-no-response.json",
+          "sha256": "505998116418a9b2f17c39e3875a9c50850af4c4436af9120832a0c852599697",
+          "baseline": false,
+          "expected_failures": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-interruption-no-relation.json",
+          "sha256": "a06513bc89afbc1467d4713ed0a95c900d1803d7f10f68126be48ad2a5db006a",
+          "baseline": false,
+          "expected_failures": [
+            3,
+            4,
+            7,
+            8
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-interruption-no-summon.json",
+          "sha256": "c447101186c0fdab64df020acdbef42766ebeee23c18cbd218061fff2429b6a2",
+          "baseline": false,
+          "expected_failures": [
+            0
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-interruption-no-level.json",
+          "sha256": "30da7b6788cbf7fa4aa1e271b01802fa49c2fb3217c61b1cc4940f7dbf1afed0",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-interruption-no-immunity.json",
+          "sha256": "10ecfbcf1825ad36d7adb6b5bee7b887c8d979034eda07536581c9357fac5dc2",
+          "baseline": false,
+          "expected_failures": [
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-symphonic-speeaker-hand-use-reset-batch.json",
+      "sha256": "2f7e0bd830ec7f388eaa198de7578a2a9b782ead20d7d3e9027c66fc9fc6c3c8",
+      "scope": "Full Speeaker/current installed metadata/corrected transport/no Lua API adapter. Two Hand copies, first success/actual CL2 negate activation/effect spends named Hand use, remaining valid Hand copy unavailable same turn. Natural NEW_TURN0/1/0 opposite copy next own turn raises same target and summons. Exact accumulated Level/source summon and Hand reserve counts. Optional recruitment declined. PerCopy3turn1/noReset3turn3/noSS3/noLevel3 exact failures. Recruitment/Extra restriction/liveOmega/fullcard open.",
+      "results_verified": [
+        {
+          "artifact": "current-symphonic-speeaker-hand-use-reset.json",
+          "sha256": "f05321fdd491d0881cfd394ec4cbc1960d5ca4ffa1746a9e4eef1f62d1d12e7e",
+          "baseline": true,
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-use-reset-per-copy.json",
+          "sha256": "1a759b0a592d1e1bd33b1093096f4a0690381e9255d2bba830907571dc761175",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-use-reset-no-reset.json",
+          "sha256": "e73e326adae7cb2572660c92c8c96d5d2e7500adfb398a284aa046118cdf7656",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-use-reset-no-summon.json",
+          "sha256": "f4e1eaaf1930e45df7fa79fd3cb61bf32cc439791a337e95de1548cb4fb1871f",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-use-reset-no-level.json",
+          "sha256": "dea9ca8abaccbc4331366258037622535104d40b487e36f13e8b7a9ee6099ad2",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-symphonic-speeaker-recruit-batch.json",
+      "sha256": "db7b06379d772bbbab1e6bcfc5ce72c3d7c00b614abb0409cb6feec6b2860a2c",
+      "scope": "Full Speeaker/actual installed metadata/corrected transport/no Lua API adapter. Ten native recruitment cases: actual Normal/Special Summon, Hand/Deck/faceup Extra, wrongset/GY/full main Deck/noCandidate/decline. Extra partner enters by actual Hand SS then SendGY redirection; native Extra->MZone move required. Full Main Monster Zones still allow Extra Zone summon. Controls noSS5/allowSet1/allowGY1/noExCapacity1 exact failures. Direct main-deck Pendulum Extra seeding was invalid and corrected before freezing. Recruitment locks/interruption/shared use/liveOmega/fullcard open.",
+      "results_verified": [
+        {
+          "artifact": "current-symphonic-speeaker-recruit.json",
+          "sha256": "bd5523924a4820e987cc5be2cec0bd347371d4abdec3676f7f88fd6feeaa485c",
+          "baseline": true,
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-recruit-no-summon.json",
+          "sha256": "3796f654e5929ae3bab7b67e1297b691d8f9e1193b0e9aaf097d46f06c3dc533",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            1,
+            2,
+            3,
+            7
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-recruit-allow-set.json",
+          "sha256": "0d37c28ae64a49173a036e7068ac8c7b203cabb715cb7cceb5ef66ca81955aa7",
+          "baseline": false,
+          "expected_failures": [
+            4
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-recruit-allow-grave.json",
+          "sha256": "a10fb19a9d8d36cb289c84475c5cc7844805a9cb59517a08bd578b1dc1df2841",
+          "baseline": false,
+          "expected_failures": [
+            5
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-recruit-no-extra-capacity.json",
+          "sha256": "dbf1a739173598053cfcecd57fc5b5e19518b2bf422c8149c152d63e3aa4258d",
+          "baseline": false,
+          "expected_failures": [
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-symphonic-speeaker-recruit-interruption-batch.json",
+      "sha256": "1618b1736d464f3a2da6a0eb2475c9ba23a44fdda7f5ed0e44b87b2a0b1d8b30",
+      "scope": "Full Speeaker/current installed metadata/corrected transport/no Lua API adapter. Eight actual recruitment cases: baseline and CL2 activation/effect negation, source banish, sole Deck candidate banish, replacement entering Deck, late field fill and summon lock. Recruitment can resolve after source leaves and chooses candidate at resolution. Actual CL2/banish/full-field witnesses, noResponse7/noSS3 exact failures. Shared use/Extra activity restriction/liveOmega/fullcard open.",
+      "results_verified": [
+        {
+          "artifact": "current-symphonic-speeaker-recruit-interruption.json",
+          "sha256": "a5950d6e5804ab8d5ffef34a2f0db4123f326dbde1b8450604e4a3054a421231",
+          "baseline": true,
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-recruit-interruption-no-response.json",
+          "sha256": "5ab74dd68e00d5dfcf547a4267956f2e71a6777542cecdc919919cc128c37e4d",
+          "baseline": false,
+          "expected_failures": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-recruit-interruption-no-summon.json",
+          "sha256": "2ca5c22173faa1e4e6b82ed6f49bb8135ac1057fdb04793b59dbf35f7bf38063",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            3,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-symphonic-speeaker-recruit-use-reset-batch.json",
+      "sha256": "fa394fdee8f030c32d4480a00c1103aa18636409ff9a6e6c783aa1ece4de64ee",
+      "scope": "Full Speeaker/current installed metadata/corrected transport/no Lua API adapter. First Normal Summon triggers actual Deck recruitment or actual CL2 negate activation/effect. Second-copy Special Summon same turn cannot trigger recruitment despite remaining Deck reserves and space. Third-copy next own turn recruits. Exact native source/recruit counts and NEW_TURN0/1/0. PerCopy/splitSummon3turn1/noReset3turn3/noResult3 exact failures. Extra activity restriction/liveOmega/fullcard open.",
+      "results_verified": [
+        {
+          "artifact": "current-symphonic-speeaker-recruit-use-reset.json",
+          "sha256": "06c860340f96acdcc6958b59428cf51eb61ed4cf551598fca9972dc4e0826d33",
+          "baseline": true,
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-recruit-use-reset-per-copy.json",
+          "sha256": "505fecff8a033b1ab43e83a6098326cb387cbedf3a58b36b0665762811668235",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-recruit-use-reset-no-reset.json",
+          "sha256": "9158955602b2ab6f640aa6b72c3078ca47f5a45b37b902e2f7f26952adff0250",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-recruit-use-reset-split-summon.json",
+          "sha256": "85f0d1d284d24244f217390e3113082d3b7f990c0418ac8d05a71c35b91def20",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-recruit-use-reset-no-result.json",
+          "sha256": "a64ec08dcb428332fe2b2a3cdd1660c71190a6931f064fdcab39926621282987",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-symphonic-speeaker-extra-restriction-batch.json",
+      "sha256": "b3891ecf2e984858ac9395554ce410df31c13365406d15b075cda0e9723b87f0",
+      "scope": "Full Speeaker/installedmetadata/correctedtransport/noLuaAPIadapter. Nine native restriction cases: post-use facedown Fusion and nonWIND Synchro blocked, WIND Synchro and real faceup Extra Pendulum allowed; prior actual Fusion excludes recruitment, prior WIND Synchro/faceupPend allow it. Activation negation refunds OATH restriction, effect negation retains it. Neutral fixed Extra summons establish native origin/type/history; not general production Fusion/Synchro recipe proof. Controls4/1/1 semantic failures. Expiry/liveOmega/fullcard open.",
+      "results_verified": [
+        {
+          "artifact": "current-symphonic-speeaker-extra-restriction.json",
+          "sha256": "8587775c1c570f96a8e69617cb515cbdc33aabd821af968a82ad0c8acf97533d",
+          "baseline": true,
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-extra-restriction-no-lock.json",
+          "sha256": "b2b5c830abaab471d73968db9f38e7eb8426401973bbb1eeddead9f7debf7d73",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            2,
+            4,
+            8
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-extra-restriction-no-prior.json",
+          "sha256": "dcf6c44885cb3166621a0fb91091776baa98bef694e72c40ca874bf9be604a42",
+          "baseline": false,
+          "expected_failures": [
+            4
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-extra-restriction-wrong-allowance.json",
+          "sha256": "802808a71f91216b3cfe6f0eab8026a73ea5862d9b4f2a2e35675450268d8e73",
+          "baseline": false,
+          "expected_failures": [
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-symphonic-speeaker-extra-expiry-batch.json",
+      "sha256": "4a77e9f8430143faa23b74769b3b1a8f5926d0f1a6a1a97a91428c7c1e199552",
+      "scope": "Full Speeaker/current installed metadata/corrected transport/no Lua API adapter. Three native cases: successful recruitment, actual source banish after recruitment, actual CL2 negate effect. Native Fusion Extra eligibility blocked own1 in all; natural NEW_TURN0/1/0 next own3 allows and actually summons Extra Fusion. Source remains banished in removal case. Neutral fixed Extra summon probe does not certify Fusion recipe. Controls noLock3turn1/noReset3turn3 semantic failures. Opponentturn timing/liveOmega/fullcard open.",
+      "results_verified": [
+        {
+          "artifact": "current-symphonic-speeaker-extra-expiry.json",
+          "sha256": "5c15c5283ed9901f25a4a07b35c13f4c42cc6c3ec127d1f7780aa9d5cf039d60",
+          "baseline": true,
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-extra-expiry-no-lock.json",
+          "sha256": "6081876a49107832b343bef58144bdd6d5a28ab29896825798255f5a424c903c",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-extra-expiry-no-reset.json",
+          "sha256": "79d1e195c8473316b2b91d388144873ff77cc9b6c71627ffec50d281ceb74004",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "current-symphonic-speeaker-extra-opponent-expiry-batch.json",
+      "sha256": "c547cc3c1046ed8e34a3c2326da8e293a729e7e0e9b7f3bde64cea7905217d52",
+      "scope": "Full Speeaker/installedmetadata/correctedtransport/no Lua API adapter. Successful recruitment/source banish/actual CL2 effect negation retain own1 restriction; natural next opponent turn2 Quick probe permits and actually summons Extra Fusion (native origin move and NEW_TURN0/1 checked). NoLock3turn1/noReset3turn2 semantic failures. Confirms expiry by next opponent turn, not neutral Fusion recipe/liveOmega/fullcard certification.",
+      "results_verified": [
+        {
+          "artifact": "current-symphonic-speeaker-extra-opponent-expiry.json",
+          "sha256": "e8a98e3c11d5874d5f6c30b4fb6e9d8fe2c8e41cb10ca72ef2ff5d8d043c796a",
+          "baseline": true,
+          "expected_failures": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-extra-opponent-expiry-no-lock.json",
+          "sha256": "689205573ce3c4f334ad4de02e5dfa0f42ca2d4584f7ea5d20003155bfa2051f",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-extra-opponent-expiry-no-reset.json",
+          "sha256": "c7ad995849c6a5e2afff91882aa83fa3745608c51703f5f8c637d98c5646fbd2",
+          "baseline": false,
+          "expected_failures": [
+            0,
+            1,
+            2
+          ]
+        }
+      ]
+    }
+  ],
+  "source_review": "Three printed effect families use distinct named keys id/id+100/id+200; Normal/Special recruit clones share id+200. Generic ignition timing supplies own Main Phase; native Pendulum procedure registered. No new confirmed source defect found in these reviewed clauses.",
+  "scope_limits": [
+    "Neutral supporting identities and neutral paid Extra recipient procedures retain original fixture scope; no certification of those recipient cards or general Fusion/Synchro recipes.",
+    "Saved passing/negative cases establish their stated behavior, not arbitrary interactions or live Omega verification."
+  ],
+  "full_card_audit": "OPEN",
+  "native_omega_verified": false,
+  "counter_policy": "Do not increment fully_checked or live certification from this review."
+}

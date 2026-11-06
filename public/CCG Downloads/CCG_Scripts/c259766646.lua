@@ -21,15 +21,14 @@ s.listed_series={SET_NEMLERIA}
 function s.exfilter(c)
 	return c:IsCode(CARD_DREAMING_NEMLERIA) and not c:IsForbidden() and c:IsAbleToExtra()
 end
-function s.setfilter(c)
+function s.setfilter(c,tp)
 	return c:IsSetCard(SET_NEMLERIA)
-		and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) and c:IsSSetable()
+		and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
 		return Duel.IsExistingMatchingCard(s.exfilter,tp,LOCATION_HAND|LOCATION_DECK,0,1,nil)
-			and Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-			and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_DECK|LOCATION_GRAVE,0,1,nil)
+			and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_DECK|LOCATION_GRAVE,0,1,nil,tp)
 	end
 	Duel.SetOperationInfo(0,CATEGORY_TOEXTRA,nil,1,tp,LOCATION_HAND|LOCATION_DECK)
 end
@@ -40,8 +39,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	if not tc then return end
 	Duel.SendtoExtraP(tg,tp,REASON_EFFECT)
 	if not tc:IsLocation(LOCATION_EXTRA) then return end
-	if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end
-	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_DECK|LOCATION_GRAVE,0,nil)
+	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_DECK|LOCATION_GRAVE,0,nil,tp)
 	if #g==0 then return end
 	Duel.BreakEffect()
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)

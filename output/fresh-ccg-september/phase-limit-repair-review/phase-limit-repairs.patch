@@ -1,0 +1,52 @@
+--- C:\Manual Files\Applications\YugiohCCG.github.io\public\CCG Downloads\CCG_Scripts\c259265448.lua
++++ C:\Manual Files\Applications\YugiohCCG.github.io\public\CCG Downloads\CCG_Scripts\c259265448.lua
+@@ -28,7 +28,6 @@
+ 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
+ 	e2:SetCode(EVENT_PHASE+PHASE_BATTLE_START)
+ 	e2:SetRange(LOCATION_SZONE)
+-	e2:SetCountLimit(1,id+100)
+ 	e2:SetCondition(s.spcon)
+ 	e2:SetTarget(s.sptg)
+ 	e2:SetOperation(s.spop)
+--- C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts\c259265448.lua
++++ C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts\c259265448.lua
+@@ -28,7 +28,6 @@
+ 	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F)
+ 	e2:SetCode(EVENT_PHASE+PHASE_BATTLE_START)
+ 	e2:SetRange(LOCATION_SZONE)
+-	e2:SetCountLimit(1,id+100)
+ 	e2:SetCondition(s.spcon)
+ 	e2:SetTarget(s.sptg)
+ 	e2:SetOperation(s.spop)
+--- C:\Manual Files\Applications\YugiohCCG.github.io\public\CCG Downloads\CCG_Scripts\c228169392.lua
++++ C:\Manual Files\Applications\YugiohCCG.github.io\public\CCG Downloads\CCG_Scripts\c228169392.lua
+@@ -43,11 +43,11 @@
+ function s.atkcost(e,tp,eg,ep,ev,re,r,rp,chk)
+ 	local c=e:GetHandler()
+ 	local dg=Duel.GetDecktopGroup(tp,4)
+-	if chk==0 then return c:GetOverlayGroup():IsExists(s.costfilter,1,nil) and #dg==4 and dg:FilterCount(s.costfilter,nil)==4 end
++	if chk==0 then return c:GetFlagEffect(id+1000)==0 and c:GetOverlayGroup():IsExists(s.costfilter,1,nil) and #dg==4 and dg:FilterCount(s.costfilter,nil)==4 end
+ 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
+ 	local og=c:GetOverlayGroup():FilterSelect(tp,s.costfilter,1,1,nil)
+ 	Duel.Remove(og,POS_FACEUP,REASON_COST)
+-	Duel.DisableShuffleCheck()
++	c:RegisterFlagEffect(id+1000,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_BATTLE,0,1) Duel.DisableShuffleCheck()
+ 	Duel.Remove(dg,POS_FACEUP,REASON_COST)
+ end
+ function s.atkop(e,tp,eg,ep,ev,re,r,rp)
+--- C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts\c228169392.lua
++++ C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts\c228169392.lua
+@@ -43,11 +43,11 @@
+ function s.atkcost(e,tp,eg,ep,ev,re,r,rp,chk)
+ 	local c=e:GetHandler()
+ 	local dg=Duel.GetDecktopGroup(tp,4)
+-	if chk==0 then return c:GetOverlayGroup():IsExists(s.costfilter,1,nil) and #dg==4 and dg:FilterCount(s.costfilter,nil)==4 end
++	if chk==0 then return c:GetFlagEffect(id+1000)==0 and c:GetOverlayGroup():IsExists(s.costfilter,1,nil) and #dg==4 and dg:FilterCount(s.costfilter,nil)==4 end
+ 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
+ 	local og=c:GetOverlayGroup():FilterSelect(tp,s.costfilter,1,1,nil)
+ 	Duel.Remove(og,POS_FACEUP,REASON_COST)
+-	Duel.DisableShuffleCheck()
++	c:RegisterFlagEffect(id+1000,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_BATTLE,0,1) Duel.DisableShuffleCheck()
+ 	Duel.Remove(dg,POS_FACEUP,REASON_COST)
+ end
+ function s.atkop(e,tp,eg,ep,ev,re,r,rp)

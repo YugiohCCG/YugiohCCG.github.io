@@ -64,10 +64,13 @@ end
 function s.selffilter(c,e,tp)
 	return c:IsCanBeSpecialSummoned(e,0,tp,false,false) and aux.NecroValleyFilter()(c)
 end
+function s.revealfilter(c,e,tp)
+ return not c:IsPublic() and s.handfilter(c,e,tp)
+end
 function s.xyzcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(s.handfilter,tp,LOCATION_HAND,0,1,nil,e,tp) end
+	if chk==0 then return Duel.IsExistingMatchingCard(s.revealfilter,tp,LOCATION_HAND,0,1,nil,e,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM)
-	local tc=Duel.SelectMatchingCard(tp,s.handfilter,tp,LOCATION_HAND,0,1,1,nil,e,tp):GetFirst()
+	local tc=Duel.SelectMatchingCard(tp,s.revealfilter,tp,LOCATION_HAND,0,1,1,nil,e,tp):GetFirst()
 	Duel.ConfirmCards(1-tp,tc)
 	Duel.ShuffleHand(tp)
 	tc:CreateEffectRelation(e)

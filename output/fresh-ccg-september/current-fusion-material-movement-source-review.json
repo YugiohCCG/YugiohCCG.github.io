@@ -1,0 +1,465 @@
+{
+  "scope": "Roster source triage only. Direct SendtoGrave or SendtoDeck with REASON_FUSION and a Fusion SpecialSummon within the next six lines. Includes already guarded paths and misses calls outside this shape.",
+  "cards_scanned": 711,
+  "sites": [
+    {
+      "passcode": 244408495,
+      "name": "Stained Scioness Silia",
+      "line": 65,
+      "statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==0 then return end",
+      "current_statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "verified repair",
+      "runtime_dependency": [
+        "CheckFusionMaterial",
+        "SelectFusionMaterial"
+      ],
+      "evidence": "current-silia-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 232449539,
+      "name": "Abstain from Light",
+      "line": 106,
+      "statement": "if #gmat>0 and Duel.SendtoGrave(gmat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==0 then ok=false end",
+      "current_statement": "if #gmat>0 and Duel.SendtoGrave(gmat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#gmat then ok=false end",
+      "triage": "verified grave-send repair",
+      "runtime_dependency": [
+        "CheckFusionMaterial",
+        "SelectFusionMaterial"
+      ],
+      "evidence": "current-abstain-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 210506870,
+      "name": "Talismandrake Heat",
+      "line": 156,
+      "statement": "Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "verified repair",
+      "prior_fixture": "fresh_current_heat_fusion.cjs",
+      "evidence": "current-talismandrake-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 245935439,
+      "name": "Talismandrake Sear",
+      "line": 92,
+      "statement": "Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "verified repair",
+      "evidence": "current-talismandrake-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 259410628,
+      "name": "Domestica in the Wild",
+      "line": 104,
+      "statement": "if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)>0 then",
+      "current_statement": "if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==#mat then",
+      "triage": "verified repair",
+      "runtime_dependency": [
+        "CheckFusionMaterial",
+        "SelectFusionMaterial"
+      ],
+      "evidence": "current-domestica-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 259369909,
+      "name": "Serene Mermaid of the Grand Blue",
+      "line": 99,
+      "statement": "Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "verified repair"
+    },
+    {
+      "passcode": 259934756,
+      "name": "Jelly Lass of the Grand Blue",
+      "line": 97,
+      "statement": "Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "verified repair"
+    },
+    {
+      "passcode": 259273394,
+      "name": "Jelly Miss of the Grand Blue",
+      "line": 132,
+      "statement": "if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=2 then return end",
+      "current_statement": "if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=2 then return end",
+      "triage": "full count guard present"
+    },
+    {
+      "passcode": 239245471,
+      "name": "Birth of Azrynior",
+      "line": 96,
+      "statement": "Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "verified repair"
+    },
+    {
+      "passcode": 224751741,
+      "name": "Fall of Azrynior",
+      "line": 100,
+      "statement": "Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "verified repair"
+    },
+    {
+      "passcode": 220150285,
+      "name": "Aquamarine Plate Montipora",
+      "line": 110,
+      "statement": "Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat1 then return end",
+      "triage": "verified repair",
+      "prior_fixture": "fresh_current_fusion_completion_direct_extension.cjs",
+      "evidence": "current-montipora-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 227035644,
+      "name": "Aqua Fusion",
+      "line": 111,
+      "statement": "Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat1 then return end",
+      "triage": "verified repair",
+      "prior_fixture": "fresh_current_aqua_first_fusion.cjs / fresh_current_aqua_contact_fusion.cjs",
+      "evidence": "current-aqua-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 227035644,
+      "name": "Aqua Fusion",
+      "line": 166,
+      "statement": "Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "verified repair",
+      "prior_fixture": "fresh_current_aqua_first_fusion.cjs / fresh_current_aqua_contact_fusion.cjs",
+      "evidence": "current-aqua-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 250339529,
+      "name": "Aquamarine Planktonites",
+      "line": 105,
+      "statement": "Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat1 then return end",
+      "triage": "verified repair",
+      "prior_fixture": "fresh_current_fusion_completion_direct_extension.cjs",
+      "evidence": "current-planktonites-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 257239133,
+      "name": "Phlogistic Uprising!",
+      "line": 75,
+      "statement": "Duel.SendtoGrave(rg1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "moved=moved+Duel.SendtoGrave(rg1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "triage": "verified repair",
+      "evidence": "current-phlogistic-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 257239133,
+      "name": "Phlogistic Uprising!",
+      "line": 78,
+      "statement": "Duel.SendtoDeck(rg2,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "moved=moved+Duel.SendtoDeck(rg2,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "triage": "verified repair",
+      "evidence": "current-phlogistic-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 259184310,
+      "name": "Red-Eyes Meteor Metal Dragon",
+      "line": 148,
+      "statement": "Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat1 then return end",
+      "triage": "verified repair",
+      "prior_fixture": "fresh_current_chain_material_completion_family.cjs",
+      "evidence": "current-red-eyes-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 259562343,
+      "name": "Red-Eyes Roar",
+      "line": 169,
+      "statement": "Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat1 then return end",
+      "triage": "verified repair",
+      "prior_fixture": "fresh_current_chain_material_completion_family.cjs",
+      "evidence": "current-red-eyes-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 259138193,
+      "name": "Digita Leet",
+      "line": 99,
+      "statement": "Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "verified repair",
+      "evidence": "current-digita-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 259348317,
+      "name": "Wyvernal Sphinx",
+      "line": 108,
+      "statement": "Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "verified repair",
+      "prior_fixture": "fresh_current_chain_material_completion_family.cjs",
+      "evidence": "current-sphinx-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 259160760,
+      "name": "Wyvernal Sanctuary",
+      "line": 127,
+      "statement": "if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==0 then return end",
+      "current_statement": "if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "verified repair",
+      "runtime_dependency": [
+        "CheckFusionMaterial",
+        "SelectFusionMaterial"
+      ],
+      "evidence": "current-sanctuary-material-movement-{normal,replace-before,replace}.json"
+    },
+    {
+      "passcode": 259680842,
+      "name": "Grimoire of Eclipse",
+      "line": 94,
+      "statement": "Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "verified repair",
+      "prior_fixture": "fresh_current_grimoire_fusion.cjs",
+      "evidence": "current-grimoire-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 284636664,
+      "name": "Aquamarine Sand Clypeasteria",
+      "line": 87,
+      "statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "current_statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "full count guard present"
+    },
+    {
+      "passcode": 238272434,
+      "name": "Terror Skull from Underroot",
+      "line": 124,
+      "statement": "Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "verified repair",
+      "evidence": "current-underroot-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 238272435,
+      "name": "Blossom Skull from Underroot",
+      "line": 157,
+      "statement": "Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "current_statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "triage": "verified repair",
+      "evidence": "current-underroot-material-movement-cases.jsonl"
+    }
+  ],
+  "next_action": "Review named summon procedures in current-summon-procedure-material-movement-source-review.json, starting with c259363148.",
+  "additional_sites": [
+    {
+      "passcode": 232449539,
+      "name": "Abstain from Light",
+      "line": 107,
+      "statement": "if ok and #banmat>0 and Duel.Remove(banmat,POS_FACEUP,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==0 then ok=false end",
+      "triage": "verified opponent-Deck banish repair",
+      "current_statement": "if ok and #banmat>0 and Duel.Remove(banmat,POS_FACEUP,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#banmat then ok=false end",
+      "evidence": "current-abstain-deck-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 255277197,
+      "name": "Chaos Fusion",
+      "line": 83,
+      "statement": "if Duel.Remove(mat,POS_FACEUP,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)>0 then",
+      "triage": "verified repair",
+      "current_statement": "if Duel.Remove(mat,POS_FACEUP,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==#mat then",
+      "evidence": "current-chaos-fusion-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 238035167,
+      "name": "Aquamarine Moon Aurelia",
+      "line": 117,
+      "statement": "Duel.Remove(mat1,POS_FACEUP,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)",
+      "prior_fixture": "fresh_current_fusion_completion_direct_extension.cjs",
+      "triage": "verified repair",
+      "current_statement": "if Duel.Remove(mat1,POS_FACEUP,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat1 then return end",
+      "evidence": "current-aurelia-material-movement-cases.jsonl"
+    },
+    {
+      "passcode": 245395343,
+      "name": "Fusion Intergalactica",
+      "line": 39,
+      "statement": "fc:SetMaterial(mat) if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==#mat and Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP_ATTACK)>0 then fc:CompleteProcedure() end",
+      "triage": "full count guard present"
+    },
+    {
+      "passcode": 259826112,
+      "name": "Dinomorphia Provocation",
+      "line": 11,
+      "statement": "function s.op(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET); local g=Duel.SelectMatchingCard(tp,s.tf,tp,LOCATION_DECK,0,1,1,nil); if #g==0 or Duel.SSet(tp,g)==0 then return end local mg=Duel.GetFusionMaterial(tp):Filter(function(c) return not c:IsImmuneToEffect(e) end,nil); local fg=Duel.GetMatchingGroup(function(c,e,tp,mg) return c:IsSetCard(SET_DINOMORPHIA) and c:IsType(TYPE_FUSION) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and c:CheckFusionMaterial(mg) end,tp,LOCATION_EXTRA,0,nil,e,tp,mg); if #fg>0 and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON); local fc=fg:Select(tp,1,1,nil):GetFirst(); local mat=Duel.SelectFusionMaterial(tp,fc,mg,nil,tp); fc:SetMaterial(mat); Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION); Duel.BreakEffect(); if Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then fc:CompleteProcedure() end end end",
+      "triage": "verified repair",
+      "current_statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end",
+      "evidence": "current-provocation-material-movement-cases.jsonl"
+    }
+  ],
+  "additional_scope": "Same or next 11 lines, including banish, return to hand and release; heuristic and includes already guarded paths.",
+  "whole_roster_rescan": {
+    "cards_scanned": 711,
+    "scope": "Every same-line explicit movement call with REASON_FUSION, regardless of distance from summoning.",
+    "sites": [
+      {
+        "passcode": 244408495,
+        "name": "Stained Scioness Silia",
+        "line": 65
+      },
+      {
+        "passcode": 232449539,
+        "name": "Abstain from Light",
+        "line": 106
+      },
+      {
+        "passcode": 232449539,
+        "name": "Abstain from Light",
+        "line": 107
+      },
+      {
+        "passcode": 210506870,
+        "name": "Talismandrake Heat",
+        "line": 156
+      },
+      {
+        "passcode": 245935439,
+        "name": "Talismandrake Sear",
+        "line": 92
+      },
+      {
+        "passcode": 259410628,
+        "name": "Domestica in the Wild",
+        "line": 104
+      },
+      {
+        "passcode": 255277197,
+        "name": "Chaos Fusion",
+        "line": 83
+      },
+      {
+        "passcode": 259369909,
+        "name": "Serene Mermaid of the Grand Blue",
+        "line": 99
+      },
+      {
+        "passcode": 259934756,
+        "name": "Jelly Lass of the Grand Blue",
+        "line": 97
+      },
+      {
+        "passcode": 259273394,
+        "name": "Jelly Miss of the Grand Blue",
+        "line": 132
+      },
+      {
+        "passcode": 239245471,
+        "name": "Birth of Azrynior",
+        "line": 96
+      },
+      {
+        "passcode": 224751741,
+        "name": "Fall of Azrynior",
+        "line": 100
+      },
+      {
+        "passcode": 238035167,
+        "name": "Aquamarine Moon Aurelia",
+        "line": 117
+      },
+      {
+        "passcode": 220150285,
+        "name": "Aquamarine Plate Montipora",
+        "line": 110
+      },
+      {
+        "passcode": 227035644,
+        "name": "Aqua Fusion",
+        "line": 111
+      },
+      {
+        "passcode": 227035644,
+        "name": "Aqua Fusion",
+        "line": 166
+      },
+      {
+        "passcode": 250339529,
+        "name": "Aquamarine Planktonites",
+        "line": 105
+      },
+      {
+        "passcode": 257239133,
+        "name": "Phlogistic Uprising!",
+        "line": 76
+      },
+      {
+        "passcode": 257239133,
+        "name": "Phlogistic Uprising!",
+        "line": 79
+      },
+      {
+        "passcode": 245395343,
+        "name": "Fusion Intergalactica",
+        "line": 39
+      },
+      {
+        "passcode": 259184310,
+        "name": "Red-Eyes Meteor Metal Dragon",
+        "line": 148
+      },
+      {
+        "passcode": 259562343,
+        "name": "Red-Eyes Roar",
+        "line": 169
+      },
+      {
+        "passcode": 259138193,
+        "name": "Digita Leet",
+        "line": 99
+      },
+      {
+        "passcode": 259348317,
+        "name": "Wyvernal Sphinx",
+        "line": 108
+      },
+      {
+        "passcode": 259160760,
+        "name": "Wyvernal Sanctuary",
+        "line": 127
+      },
+      {
+        "passcode": 259680842,
+        "name": "Grimoire of Eclipse",
+        "line": 94
+      },
+      {
+        "passcode": 259826112,
+        "name": "Dinomorphia Provocation",
+        "line": 11
+      },
+      {
+        "passcode": 284636664,
+        "name": "Aquamarine Sand Clypeasteria",
+        "line": 87
+      },
+      {
+        "passcode": 239935098,
+        "name": "Terrifying Hydra",
+        "line": 97
+      },
+      {
+        "passcode": 238272434,
+        "name": "Terror Skull from Underroot",
+        "line": 124
+      },
+      {
+        "passcode": 238272435,
+        "name": "Blossom Skull from Underroot",
+        "line": 157
+      }
+    ],
+    "additional_card": {
+      "passcode": 239935098,
+      "name": "Terrifying Hydra",
+      "assessment": "Verified partial banish cost repair",
+      "evidence": "current-hydra-banish-cost-replacement.json"
+    }
+  }
+}

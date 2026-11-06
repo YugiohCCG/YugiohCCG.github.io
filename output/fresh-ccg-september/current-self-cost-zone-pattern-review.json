@@ -1,0 +1,34 @@
+{
+  "status": "SOURCE_REVIEW_NO_NEW_CONFIRMED_DEFECT",
+  "scope": "Two source-only shared-pattern scans over current711 files; no gameplay/full-card certification. Self-cost scan has38 whole-file candidates and zero matches for the specific paired literal-handler-relation heuristic; absence of heuristic match is not semantic exclusion of all38. Tribute-zone scan has6 paired candidates individually reviewed below. No production changes or broad gate cycle needed.",
+  "inputs_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "6e3d644ec1cc45ac996cfe977f250530726ce80315759edefdb995965c06a2a8"
+  },
+  "heuristic_limits": [
+    "Other alias/format/callback/helper forms may be missed",
+    "Repeated effect variable names can mispair callbacks; inspect registrations",
+    "Public IsCostChecked behavior and replacement/locked-zone edge cases are not established by source review"
+  ],
+  "tribute_zone_review": {
+    "211682274": "Self-Tribute target check explicitly permits handler on MZONE before cost payment; post-payment operation still checks current zone. No missing self-freed-zone defect in this branch.",
+    "218837030": "Target uses IsCostChecked and field replacement resource alternative; requires existing paid-cost/runtime qualification review, not blanket GetLocationCount replacement.",
+    "220916791": "Target permits pre-cost release via not IsCostChecked; source review only, no new behavior claim.",
+    "245378354": "Target uses IsCostChecked and field replacement resource alternative; no blanket zone-only rejection.",
+    "248453205": "Cost filters for field resource when zone needed; target distinguishes pre-cost availability. No unconditional positive-zone gate.",
+    "259624110": "Target explicitly includes releasable linked monster as a zone-freeing option; no unconditional positive-zone gate."
+  },
+  "source_sha256": {
+    "211682274": "281974e292561adb8ac343beded96168c08f2a18239c04529798810ee1521b1b",
+    "218837030": "b7fb1d8e1ed553419cfbbb4286a593dd8ed4f5087553b94e45cfaeef9a8d0ab9",
+    "220916791": "254dd78b0389f8a0dadcb7096241373f0cf4bcac1565061550a1561746f2b50d",
+    "245378354": "7a9b3e731e6dbeeeb5ebead4c892f895b107a48ec0e86737320df03ff7ef6630",
+    "248453205": "1c7d17993f7a7ef21d23f5cc4e94c6672ef2d9e8ddee89da166049c7e83c67b1",
+    "259624110": "542762b34287984f0115d3941f70d47ce9b45da7075871321472a3c3ee70c996"
+  },
+  "evidence": [
+    "current-self-cost-relation-candidates.json",
+    "current-self-cost-relation-paired.json",
+    "current-tribute-zone-candidates.json"
+  ],
+  "next_action": "Use existing per-card evidence to reconcile the six reviewed cards remaining printed clauses and runtime qualifications; do not repeat these narrow lexical scans or infer full-zone behavior from source alone."
+}

@@ -1,0 +1,49 @@
+{
+  "finding": "Red-Eyes Turbo Dragon and Booster Dragon now resolve destruction or negation on the same target after a control change.",
+  "qualification": "Four native activation cases verify paid Equip cost and destruction or negation. Both originals fail after actual chained control changes. Fusion recipes and other effects remain open.",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_redeyes_target_control_batch.py": "a973a849966e144c2b79ba446509a838e574aa1560d657262449cf66cceaa21e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_redeyes_target_control.cjs": "849799d440f9b32290bb2909f817e8697444fe0dbaf61b8acebda81043a70166",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_redeyes_target_control_repair.cjs": "514351172a66abed4ac7d8ad5812a9f3749f732858a56ce189d687d0364a35a2",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\redeyes-target-control-before-repair\\c259114673.lua": "b5dee8a20777ca674cd84a6607a0f3b7184573f6e8fc6ec7ce6736e209e8268b",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\redeyes-target-control-before-repair\\c259628203.lua": "04385c8732ea3d6478076a48eb6d27a8b7a94bc570253b3ad1cd809b6ba76ea4",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "mode": "candidate",
+      "cases": 4,
+      "file": "current-redeyes-target-control-candidate.json",
+      "sha256": "c27e55f874c14d1d4239bfe273897b47989f3f8b725e0faa075184c3069af5ac",
+      "expected_failures": []
+    },
+    {
+      "mode": "old",
+      "cases": 4,
+      "file": "current-redeyes-target-control-old.json",
+      "sha256": "640e41fd5b3375c5e4c847f4e32277c4279ad684c4128c94c5927d9566d03f08",
+      "expected_failures": [
+        1,
+        3
+      ]
+    }
+  ],
+  "manifest": "redeyes-target-control-repair-files.json",
+  "manifest_sha256": "c165faddfbf542c167d2a501de2741f9873e75e1b790c487ac6f20e43dc14728",
+  "helper_sha256": "514351172a66abed4ac7d8ad5812a9f3749f732858a56ce189d687d0364a35a2",
+  "family_scan": "current-rush-target-control-review.json",
+  "family_scan_sha256": "d5cdea9c5148e11cee6b66db5567b86b4ca0e79778ad2b7a25a3fadd2b8bdeb5"
+}

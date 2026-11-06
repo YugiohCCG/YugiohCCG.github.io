@@ -87,9 +87,11 @@ end
 function s.lvcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(s.lvfilter,1,nil)
 end
-function s.tgfilter(c,e)
+function s.tgfilter_eligible(c)
 	return c:IsFaceup() and c:IsRace(RACE_BEAST) and c:GetLevel()>0
-		and c:IsCanBeEffectTarget(e)
+end
+function s.tgfilter(c,e)
+	return s.tgfilter_eligible(c) and c:IsCanBeEffectTarget(e)
 end
 function s.lvtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and s.tgfilter(chkc,e) end
@@ -99,8 +101,8 @@ function s.lvtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.lvop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and tc:IsControler(tp)
-		and tc:IsLocation(LOCATION_MZONE) and s.tgfilter(tc,e)) then return end
+	if not (tc and tc:IsRelateToEffect(e)
+		and tc:IsLocation(LOCATION_MZONE) and s.tgfilter_eligible(tc)) then return end
 	local canup=true
 	local candown=tc:GetLevel()>3
 	local opt=0

@@ -1,0 +1,33 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),Module=require('node:module'),assert=require('node:assert/strict');
+const file=path.join(__dirname,'fresh_current_seraphina_wipe.cjs');let s=fs.readFileSync(file,'utf8');
+function replace(a,b){assert(s.includes(a),a);s=s.replace(a,b);}
+replace("['old-source','no-wipe','no-response']","['early-reset','late-reset','per-copy','no-response']");
+replace("['baseline','banishSource','faceDownSource','removeArms','negateActivation','negateEffect','noLeft','noRight','lowLP']","['baseline','negateActivation','negateEffect']");
+const prep=`local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_IGNITION) e:SetRange(LOCATION_MZONE) e:SetCountLimit(1) e:SetDescription(776) e:SetOperation(function(e,tp) for seq=0,1 do local fc=Duel.GetFieldCard(tp,LOCATION_MZONE,seq) assert(fc:IsCode(218142234)) for _,code in ipairs({238136421,215921734}) do local ec=Duel.GetFirstMatchingCard(Card.IsCode,tp,LOCATION_HAND,0,nil,code) assert(ec and Duel.Equip(tp,ec,fc)) local lim=Effect.CreateEffect(ec) lim:SetType(EFFECT_TYPE_SINGLE) lim:SetCode(EFFECT_EQUIP_LIMIT) lim:SetProperty(EFFECT_FLAG_CANNOT_DISABLE) lim:SetValue(function(e,c) return c==e:GetLabelObject() end) lim:SetLabelObject(fc) lim:SetReset(RESET_EVENT+RESETS_STANDARD) ec:RegisterEffect(lim) end end end) c:RegisterEffect(e) local f=e:Clone() f:SetDescription(777) f:SetOperation(function(e,tp) local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_GRAVE,nil,900004702) assert(tc and Duel.SpecialSummon(tc,0,tp,1-tp,false,false,POS_FACEUP)>0) end) c:RegisterEffect(f) end`;
+const prepLine=s.match(/   if\(name==='c'\+probe\+'.lua'\)return [^\r\n]+/);assert(prepLine);s=s.replace(prepLine[0],"   if(name==='c'+probe+'.lua')return "+JSON.stringify(prep)+";");
+replace("const reader=name=>{","cards.set(filler+1,{...base,code:filler+1,type:2});const reader=name=>{");
+replace("if(name==='c0.lua')return '';","if(name==='c0.lua')return '';if(name==='c'+(filler+1)+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_FREE_CHAIN) c:RegisterEffect(e) end';");
+replace("if(control==='old-source')", "if(control==='early-reset')lua=lua.replace('id+200,RESET_PHASE+PHASE_END,0,2','id+200,RESET_PHASE+PHASE_END,0,1');if(control==='late-reset')lua=lua.replace('id+200,RESET_PHASE+PHASE_END,0,2','id+200,RESET_PHASE+PHASE_END,0,3');if(control==='per-copy')lua=lua.replace('Duel.GetFlagEffect(tp,id+200)','e:GetHandler():GetFlagEffect(id+200)').replace('Duel.RegisterFlagEffect(tp,id+200','e:GetHandler():RegisterFlagEffect(id+200');if(control==='old-source')");
+replace('let failure=null,prepared=false','let turn=0,stage=0,opponentActed=false,blockedOpponent=false;let failure=null,prepared=false');
+replace('add(boss,L.MZONE);','add(boss,L.MZONE);add(boss,L.MZONE,0,1);add(left,L.HAND);add(right,L.HAND);add(filler+1,L.HAND,1);');
+replace('step<160','step<450');
+replace('trace.push(...messages);assert(!logs.length','trace.push(...messages);for(const m of messages)if(m.type===M.NEW_TURN)turn++;assert(!logs.length');
+const start=s.indexOf('    if(p.type===M.SELECT_IDLECMD){'),end=s.indexOf('}else if(p.type===M.SELECT_CHAIN)',start);assert(start>=0&&end>start);
+s=s.slice(0,start)+`    if(p.type===M.SELECT_IDLECMD){
+     const wipes=p.activates.filter(c=>c.code===boss&&Number(c.description)===132142234*16+3),choose=index=>{assert(index>=0,'Expected native action');core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});};
+     if(stage===0){stage=1;choose(p.activates.findIndex(c=>c.code===probe&&Number(c.description)===776));continue;}
+     if(stage===1){assert.equal(wipes.length,2,'Two independently equipped sources available');stage=2;choose(p.activates.findIndex(c=>c.code===boss&&c.sequence===0&&Number(c.description)===132142234*16+3));continue;}
+     if(stage===2){assert.equal(turn,1);const success=scenario==='baseline';assert.equal(query(1,L.GRAVE).some(c=>c.code===victim),success,'First actual wipe or negation');assert.equal(chained,scenario!=='baseline');stage=3;if(success){choose(p.activates.findIndex(c=>c.code===probe&&Number(c.description)===777));continue;}}
+     if(stage===3){assert.equal(query(1,L.MZONE).filter(c=>c.code===victim).length,1,'Real opposing target retained/restored');
+      if(turn===1){assert.equal(wipes.length,0,'Shared cooldown blocks both equipped copies immediately');core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.TO_EP});continue;}
+      if(turn===2){if(!opponentActed){opponentActed=true;choose(p.activates.findIndex(c=>c.code===filler+1));continue;}assert(blockedOpponent,'Actual opposing-turn response exclusion');core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.TO_EP});continue;}
+      assert.equal(turn,3);assert.equal(wipes.length,2,'Both equipped sources legal after next End Phase');stage=4;choose(p.activates.findIndex(c=>c.code===boss&&c.sequence===1&&Number(c.description)===132142234*16+3));continue;
+     }
+     assert.equal(stage,4);assert.equal(turn,3);assert(query(1,L.GRAVE).some(c=>c.code===victim),'Different source actually destroys restored target');assert.equal(trace.filter(m=>m.type===M.PAY_LPCOST&&m.amount===1000).length,2,'Both actual 1000 LP payments');assert.equal(trace.filter(m=>m.type===M.CHAINING&&m.code===boss&&Number(m.description)===132142234*16+3).length,2,'Two actual source activations');done=true;
+    `+s.slice(end);
+replace("else if(p.type===M.SELECT_CHAIN){const index=", "else if(p.type===M.SELECT_CHAIN){if(stage===3&&turn===2&&p.player===0){assert(!p.selects.some(c=>c.code===boss&&Number(c.description)===132142234*16+3),'Cooldown also blocks opponent-turn Quick activation');blockedOpponent=true;}const index=");
+replace("else if(p.type===M.SELECT_YESNO)","else if(p.type===M.SELECT_POSITION)core.duelSetResponse(duel,{type:R.SELECT_POSITION,position:P.FACEUP_ATTACK});else if(p.type===M.SELECT_YESNO)");
+replace("'current-seraphina-wipe'+", "'current-seraphina-wipe-cooldown'+");
+s=s.replace(/scope:'[^']*'/,"scope:'Two actual independently equipped full-source Seraphina field seeds; first success/activation negation/effect negation on turn1, actual opposing target restoration, same-turn two-copy exclusion, native opponent-turn Spell response exclusion, different-source actual wipe/payment on turn3. Current installed metadata/corrected transport/no Lua API adapter; neutral equip setup, no original Fusion recipe/live Omega claim.'");
+s=s.replace('exports.corrected=corrected;','').replace("if(require.main===module)main()","main()");const m=new Module(file,module);m.filename=file;m.paths=module.paths;m._compile(s,file);

@@ -1,0 +1,94 @@
+{
+  "status": "SCOPED_ORIGINAL_HUNTER_ATK_VERIFIED_NO_REPAIR",
+  "scope": "Eight full original Hunter/current installed metadata cases: self counts; mixed own faceup field/GY Zombies counted, facedown/nonZombie/opponent/Hand/banished/Deck excluded; native field-to-GY preserves count then banishment reduces it; actual source control change uses new controller field/GY; actual current Race change updates value; full original Skill Drain activation/1000LP payment suppresses ATK effect and actual Spell effect removes Drain restoring bonus. Native ATK/DEF queries at each stage; DEF remains400 throughout. Six effective controls: rate8/no-GY3/no-field8/both players3/facedown1/original-owner1 failures. No production defect/edit.",
+  "qualification": "Original Hunter seeded field; full source/current installed metadata, neutral typed resources/movement/control/Race/removal helpers, full bundled Skill Drain with controlled Continuous Trap metadata. No Lua API mapping. ToGY trigger/cost/search existing cases reused separately; named use/reset/other responses/original summon history/live Omega remain open. No broad gates/full-card/count promotion.",
+  "runs": [
+    {
+      "file": "current-hunter-attack-scaling-candidate.json",
+      "sha256": "7d9cfae9addf5b699357bd6b042c6afff682b4e2064f4e73727a555ece395753",
+      "expected_failures": []
+    },
+    {
+      "file": "current-hunter-attack-scaling-wrong-rate.json",
+      "sha256": "431d97d8bddb7deab62de7b675f1a65a60788f544d83ce6527b1e1e87eacdf10",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "file": "current-hunter-attack-scaling-no-grave.json",
+      "sha256": "62214a835765bfcb3966b4b438ac94583b9eac14f963f01dd342c1f87f55f1a9",
+      "expected_failures": [
+        1,
+        4,
+        5
+      ]
+    },
+    {
+      "file": "current-hunter-attack-scaling-no-field.json",
+      "sha256": "58e16f6e4c1bfa5bce5b80c9780efc01f7f0b397597ea207e126dcfbafc544fb",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "file": "current-hunter-attack-scaling-any-player.json",
+      "sha256": "0b09239305d2095ed603e3379e87630ef197dded6c5962b0b94108c220d679d7",
+      "expected_failures": [
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "file": "current-hunter-attack-scaling-any-position.json",
+      "sha256": "0d7142d049250499cc4dc678a1020f860233a614a4154b250766296e146f99b1",
+      "expected_failures": [
+        1
+      ]
+    },
+    {
+      "file": "current-hunter-attack-scaling-owner-scope.json",
+      "sha256": "7befd1589ca933a362baebff287fa25dcde97036c5b1c9dbb24fea85ff27e635",
+      "expected_failures": [
+        5
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "e623c77c4dd50fbc29cc068a5609d9a014e0241f46dfec8e1b95823a15786c18",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-sort-transport-candidate.mjs": "3325c76fb15c479de379fa117a00933396e6b54f708128dbb02a01d5cba5e199",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_hunter_attack_scaling.cjs": "dca0ac6daa6ffb4846b5ce54c4d49ed807bc80261c58c86502dc684787563c76",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c240511702.lua": "1e9766d3959579ba4e5940d39a1d40c4c0b71a08c7892ef0739e92b1c1a48a03",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c240511702.lua": "1e9766d3959579ba4e5940d39a1d40c4c0b71a08c7892ef0739e92b1c1a48a03",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\c82732705.lua": "5b67b786c37d8dc4781426e7d4f8f7b655cdeceb56cd055e41ce98a2c57cf6bb"
+  }
+}

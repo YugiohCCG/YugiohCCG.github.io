@@ -1,0 +1,83 @@
+{
+  "scope": "Source-only GY chkc branches without literal controller check; referenced filters/event restrictions may already enforce scope. Not confirmed defects.",
+  "candidates": [
+    {
+      "passcode": 212413422,
+      "name": "Gaia, the Iron Clad Knight",
+      "branch": "chkc:IsLocation(LOCATION_ONFIELD+LOCATION_GRAVE) and s.drgfilter3(chkc,e,tp,c)",
+      "text": "(This card is always treated as a \"Gaia The Fierce Knight\" monster.) If there is a face-up Dragon monster on the field: You can Special Summon this card from your hand. If this card is Special Summoned: You can target 1 Dragon monster on the field or in either GY; banish this card and that target, and if you do, Special Summon 1 Fusion Monster from your Extra Deck that specifically lists a \"Gaia The Fierce Knight\" monster as Fusion Material, and if you do that, it gains 2600 ATK until the End Phase. If another \"Gaia The Fierce Knight\" monster(s) is banished while this card is banished: You can shuffle this card into the Deck; return that banished monster(s) to the GY. You can only use each effect of \"Gaia, The Iron Clad Knight\" once per turn."
+    },
+    {
+      "passcode": 220916791,
+      "name": "The White Frute",
+      "branch": "chkc:IsLocation(LOCATION_GRAVE) and s.gyfilter(chkc,e,tp,fd)",
+      "text": "You can Tribute 1 WATER monster; Special Summon this card from your hand, then add 1 \"Frute\" monster from your Deck to your hand, except \"The White Frute\". If this card is Tributed: You can target 1 \"Frute\" monster in your GY, except \"The White Frute\"; add it to your hand, or, if this card was Tributed in face-down Defense Position, you can Special Summon it in face-up or face-down Defense Position instead. You can only use each effect of \"The White Frute\" once per turn."
+    },
+    {
+      "passcode": 224822244,
+      "name": "Stained Raptor Rollo",
+      "branch": "chkc:IsLocation(LOCATION_GRAVE) and s.spfilter(chkc,e,tp) and aux.NecroValleyFilter(s.spfilter)(chkc,e,tp)",
+      "text": "If this card is Normal or Special Summoned: You can target 1 \"Stain\" monster in your GY or 1 monster in your opponent's GY; Special Summon it to your field, and if you do, shuffle this card into the Deck. When an attack is declared involving this card and an opponent's monster: You can shuffle this card face-up into your opponent's Deck, also, after that, place that opponent's monster on top of the Deck. You can only use each effect of \"Stained Raptor Rollo\" once per turn."
+    },
+    {
+      "passcode": 225091736,
+      "name": "Stained Bird Bria",
+      "branch": "chkc:IsLocation(LOCATION_GRAVE+LOCATION_REMOVED) and s.botfilter(chkc,tp)",
+      "text": "If this card is in your hand: You can discard 1 card; shuffle this card face-up into your opponent's Deck, also, add 1 \"Stain\" card from your Deck to your hand, then, if your opponent controls more cards than you, draw 1 card. If this card is Normal or Special Summoned: You can target 1 card in either GY or banishment; place it on the bottom of the Deck, or, if it is your \"Stain\" card, add it to the hand instead, and if you do, shuffle this card into the Deck. You can only use each effect of \"Stained Bird Bria\" once per turn."
+    },
+    {
+      "passcode": 236179696,
+      "name": "The Flying Frute",
+      "branch": "chkc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter(s.rmfilter)(chkc)",
+      "text": "2 WATER monsters\nYou can also use face-down monsters you control to Link Summon this card. You can only use each of the following effects of \"The Flying Frute\" once per turn. If this card is Link Summoned: You can apply 1 of these effects.\n\u25cf Send 1 \"Frute\" card from your Deck to the GY.\n\u25cf Set 1 \"Frute\" Spell/Trap from your GY or banishment.\n(Quick Effect): You can Tribute 1 other WATER monster from your hand or field, then target 1 card in either GY; banish it."
+    },
+    {
+      "passcode": 244165675,
+      "name": "Mevalkagna, Eye of Zenith",
+      "branch": "chkc:IsLocation(LOCATION_GRAVE) and g:IsContains(chkc)",
+      "text": "If this card is in your hand: You can target 3 monsters in either GY with different Types and/or Attributes; banish them, and if you do, Special Summon this card, also it gains the Types and Attributes of those banished monsters. During your Main or Battle Phase (Quick Effect): You can reduce this card's ATK by 1000, and if you do, take control of 1 monster your opponent controls with the same Type and/or Attribute with this card, also it must attack, if able. During the End Phase, destroy all monsters on the field that battled this turn. You can only use each effect of \"Mevalkagna, Eye of Zenith\" once per turn."
+    },
+    {
+      "passcode": 246900181,
+      "name": "Unbinding the Soul",
+      "branch": "chkc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter(s.filter)(chkc)",
+      "text": "Target up to 2 monsters in either GY; shuffle them into the Deck."
+    },
+    {
+      "passcode": 247756272,
+      "name": "Kali Yuga - Jakarta",
+      "branch": "chkc:IsLocation(LOCATION_GRAVE) and chkc:IsAbleToRemove()",
+      "text": "1 \"Kali Yuga\" monster + 1 FIRE Tuner\nMust first be Synchro Summoned or Special Summoned from your Extra Deck by banishing 1 \u201cKali Yuga\u201d monster + 1 FIRE Tuner monster whose total Level equals 8 from your GY. (This is treated as a Synchro Summon.) You can only Synchro Summon \"Kali Yuga - Jakarta\" once per turn this way. When your opponent activates a Spell/Trap effect (Quick Effect): You can negate that effect, and if you do, take 2000 LP or banish this card face-down. If this card is destroyed by battle or card effect: You can target 1 card in either player's GY; banish it. You can only use each effect of \"Kali Yuga - Jakarta\" once per turn."
+    },
+    {
+      "passcode": 256930605,
+      "name": "Fruteification",
+      "branch": "chkc:IsLocation(LOCATION_GRAVE) and s.rvtgfilter(chkc,e,tp)",
+      "text": "When this card is activated, you can also target 1 non-Ritual \"Frute\" monster in your GY, but for the rest of this turn, you cannot target a monster to activate this effect of \"Fruteification\"; Special Summon the targeted monster in face-down Defense Position (if any), also, Ritual Summon 1 WATER Ritual Monster from your hand or GY by Tributing monsters from your hand or field, whose total Levels equal or exceed the Level of the Ritual Monster. You can banish this card from your GY; send 1 WATER Ritual Monster from your Deck to the GY. You can only use this effect of \"Fruteification\" once per Duel."
+    },
+    {
+      "passcode": 259499577,
+      "name": "A.I.P Ex Hive Mind",
+      "branch": "chkc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter(s.tgfilter)(chkc,tp)",
+      "text": "Once per turn: You can target 1 monster in either GY; then apply 1 of the following effects based on which player owns the target. O You: Shuffle it into the Deck, then draw 1 card. O Your opponent: Shuffle it into the Deck, then Xyz Summon 1 \"A.1.P Ex\" monster from your Extra Deck by using monsters you control as material. You can only use this effect of \"A.1.P Ex Hive Mind\" once per turn."
+    },
+    {
+      "passcode": 259626409,
+      "name": "Grayshade the Phantom of Grayscale",
+      "branch": "chkc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter(s.spellfilter)(chkc,e)",
+      "text": "2+ Level 8 monsters, including a LIGHT Fiend monster Cannot be used as Link Material, except the Link Summon of a \"Grayscale\" monster. You can only use each of the following effects of \"Grayshade the Phantom of Grayscale\" once per turn. When your opponent activates a Spell/Trap Card (Quick Effect): You can detach 1 material from this card, then target 1 Spell in either GY; the activated effect becomes \" your opponent attaches that target to 1 \"Grayscale\" Xyz Monster they control as material\". During the End Phase: You can detach 2 materials from this card, then target 1 \"Grayscale\" card in your GY; add it to your hand."
+    },
+    {
+      "passcode": 259652372,
+      "name": "Eclipse Observer Aaliyah",
+      "branch": "chkc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter(s.tdfilter)(chkc,e)",
+      "text": "If your opponent has 6 or more cards in their hand (Quick Effect): You can Special Summon this card from your hand. If this card is Normal or Special Summoned: You can destroy 1 Spell/Trap your opponent controls. If your opponent draws 2 or more cards at the same time: You can target 1 card in either GY; place it on the bottom of the Deck. You can only use each effect of \"Eclipse Observer Aaliyah\" once per turn."
+    },
+    {
+      "passcode": 259937946,
+      "name": "Grand Blue Prince",
+      "branch": "chkc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter(s.tdfilter)(chkc)",
+      "text": "1 \"Grand Blue Princess\" + 1 \"Grand Blue\" monster\nMust first be Fusion Summoned using only monsters in your possession. If this card is Special Summoned: You can target 1 WATER monster in your GY; Special Summon it in Defense Position, but negate its effects. (Quick Effect): You can target 1 card in either player's GY; shuffle it into the Deck, and if you do, you can send 1 \"Grand Blue\" card from your Deck to the GY. You can only use each effect of \"Grand Blue Prince\" once per turn."
+    }
+  ]
+}

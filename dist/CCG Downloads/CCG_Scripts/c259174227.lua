@@ -48,63 +48,48 @@ function s.bfstg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_GRAVE)
 end
 
+-- Track this resolution separately from counters already on the field.
+-- Each monster is attempted once, so branches and closed co-linked loops terminate.
+function s.spreadcurrent(c,tp)
+ local attempted=Group.CreateGroup()
+ local placed=Group.CreateGroup()
+ local queue={}
+ local function enqueue(tc)
+  if not attempted:IsContains(tc) then
+   attempted:AddCard(tc)
+   table.insert(queue,tc)
+  end
+ end
+ local seeds=Duel.GetMatchingGroup(function(tc)
+  return tc:IsType(TYPE_LINK) and tc:GetLinkedGroup():IsContains(c)
+ end,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
+ for tc in aux.Next(seeds) do enqueue(tc) end
+ local head=1
+ while head<=#queue do
+  local curr=queue[head]
+  head=head+1
+  local previous=curr:GetCounter(COUNTER_CURRENT)
+  curr:AddCounter(COUNTER_CURRENT,1)
+  if curr:GetCounter(COUNTER_CURRENT)>previous then
+   placed:AddCard(curr)
+   for tc in aux.Next(curr:GetMutualLinkedGroup()) do enqueue(tc) end
+  end
+ end
+ return placed,#placed
+end
+
 function s.bfsop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not c:IsRelateToEffect(e) then return end
 	
-	local visited = Group.CreateGroup()
-	local terminals = Group.CreateGroup()
-	local queue = {}
-	local depth = {}
-	
-	local g = Duel.GetMatchingGroup(function(tc)
-		return tc:IsControler(tp) and tc:IsType(TYPE_LINK) and tc:GetLinkedGroup():IsContains(c)
-	end, tp, LOCATION_MZONE, 0, nil)
-	
-	for tc in aux.Next(g) do
-		visited:AddCard(tc)
-		depth[tc:GetFieldID()] = 0
-		table.insert(queue, tc)
+	local placed,ct=s.spreadcurrent(c,tp)
+	if #placed==0 then return end
+	local allowed_mask=0
+	for tc in aux.Next(placed) do
+		allowed_mask=bit.bor(allowed_mask,tc:GetLinkedZone(tp))
 	end
-	
-	local head = 1
-	while head <= #queue do
-		local curr = queue[head]
-		head = head + 1
-		local lg = curr:GetLinkedGroup()
-		for tc in aux.Next(lg) do
-			if tc:IsControler(tp) and tc:IsType(TYPE_LINK) and not visited:IsContains(tc) then
-				if tc:GetLinkedGroup():IsContains(curr) then
-					visited:AddCard(tc)
-					depth[tc:GetFieldID()] = depth[curr:GetFieldID()] + 1
-					table.insert(queue, tc)
-				end
-			end
-		end
-	end
-	
-	if #visited == 0 then return end
-	
-	for tc in aux.Next(visited) do
-		tc:AddCounter(COUNTER_CURRENT, 1)
-		local tc_depth = depth[tc:GetFieldID()] or 0
-		local has_next = false
-		for mc in aux.Next(tc:GetLinkedGroup()) do
-			if visited:IsContains(mc) and mc:GetLinkedGroup():IsContains(tc)
-				and (depth[mc:GetFieldID()] or -1) > tc_depth then
-				has_next = true
-				break
-			end
-		end
-		if not has_next then terminals:AddCard(tc) end
-	end
-	
-	local allowed_mask = 0
-	for tc in aux.Next(terminals) do
-		allowed_mask = bit.bor(allowed_mask, tc:GetLinkedZone(tp))
-	end
-	allowed_mask = bit.band(allowed_mask, 0x1f)
-	
+	allowed_mask=bit.band(allowed_mask,0x1f)
+
 	local occupied_zones = 0
 	for i = 0, 4 do
 		if not Duel.CheckLocation(tp, LOCATION_MZONE, i) then

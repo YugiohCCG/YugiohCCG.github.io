@@ -18,7 +18,6 @@ function s.initial_effect(c)
 	e1:SetCategory(CATEGORY_TODECK+CATEGORY_SPECIAL_SUMMON+CATEGORY_EQUIP)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_PZONE)
-	e1:SetCountLimit(1,id)
 	e1:SetCost(s.pcost)
 	e1:SetTarget(s.psptg)
 	e1:SetOperation(s.pspop)
@@ -79,7 +78,7 @@ function s.pcostcheck(g,tp)
 end
 function s.pcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.pcostfilter),tp,LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_EXTRA,0,c)
+	local g=Duel.GetMatchingGroup(s.pcostfilter,tp,LOCATION_ONFIELD+LOCATION_GRAVE+LOCATION_EXTRA,0,c)
 	if chk==0 then return g:CheckSubGroup(s.pcostcheck,3,3,tp) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local sg=g:SelectSubGroup(tp,s.pcostcheck,false,3,3,tp)
@@ -333,7 +332,6 @@ function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not (c:IsRelateToEffect(e) and c:IsFaceup()) then return end
 	local g=Duel.GetMatchingGroup(s.desfilter,tp,0,LOCATION_ONFIELD,nil)
 	if #g>0 then
 		Duel.Destroy(g,REASON_EFFECT)

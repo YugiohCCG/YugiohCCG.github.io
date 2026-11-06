@@ -26,6 +26,7 @@ function s.initial_effect(c)
 	e1:SetCondition(s.spcon)
 	e1:SetTarget(s.sptg)
 	e1:SetOperation(s.spop)
+	e1:SetValue(function(e) return 0,e:GetLabel()==1 and 0 or 0xff end)
 	c:RegisterEffect(e1)
 	--Gain the ATK/DEF currently lost by monsters on the field
 	local e2=Effect.CreateEffect(c)
@@ -75,6 +76,7 @@ function s.spcheck(g,tp,fc)
 	return Duel.GetLocationCountFromEx(tp,tp,g,fc)>0
 end
 function s.spcon(e,c)
+	e:SetLabel(0)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	local rg=Duel.GetReleaseGroup(tp,false,REASON_SPSUMMON):Filter(s.spfilter,nil,c)
@@ -96,7 +98,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local g=e:GetLabelObject()
 	if not g then return end
 	c:SetMaterial(g)
-	Duel.Release(g,REASON_SPSUMMON+REASON_MATERIAL)
+	if Duel.Release(g,REASON_SPSUMMON+REASON_MATERIAL)~=#g then e:SetLabel(1) end
 	g:DeleteGroup()
 end
 function s.atkloss(c)

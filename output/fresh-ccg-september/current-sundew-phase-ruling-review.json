@@ -1,0 +1,78 @@
+{
+  "status": "SUNDEW_PHASE_LIMIT_SUPPORTED_BY_PRIMARY_OFFICIAL_ANALOGIES",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_sundew_phase_ruling_review.py": "07d4ba6a1facacc58a46150853479f8de7fb7104a36e1ec476ce6171ae4ec126",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_repair_ledger.py": "3b9e154131dd58ef01bf65804e7e6ed1dbc29950c4eaca4cf69f871221f26d1d",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "6e3d644ec1cc45ac996cfe977f250530726ce80315759edefdb995965c06a2a8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c284639723.lua": "3d359cf9b87ee15f21c1e38eb987dde7551b343e9b5ab3b020f77b5ac38918a7",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-sundew-end-phase-batch.json": "b2a0d207df13135abab7486f953c3bed8962277d35049415706e0a35f4cca809"
+  },
+  "official_rule_notes": [
+    {
+      "url": "https://www.db.yugioh-card.com/yugiohdb/faq_search.action?cid=7839&ope=4&request_locale=ja",
+      "card": "Genex Neutron",
+      "official_supplement_date": "2023-11-24",
+      "checked_date": "2026-10-23",
+      "original_excerpt": "エンドフェイズに１度のみ発動できます。",
+      "paraphrase": "Optional End Phase trigger can activate only once in that End Phase; neither activation negation nor effect negation permits another activation. Printed text has no separate once-per-turn sentence."
+    },
+    {
+      "url": "https://www.db.yugioh-card.com/yugiohdb/faq_search.action?cid=7737&ope=4&request_locale=ja",
+      "card": "Magical Android",
+      "official_supplement_date": "2015-02-12",
+      "checked_date": "2026-10-23",
+      "original_excerpt": "同一のエンドフェイズにて効果が再び発動する事はありません。",
+      "paraphrase": "Mandatory End Phase trigger likewise does not activate again within the same End Phase after activation or effect negation. Printed text has no separate once-per-turn sentence."
+    }
+  ],
+  "existing_native_evidence": {
+    "artifact": "current-sundew-end-phase-batch.json",
+    "sha256": "b2a0d207df13135abab7486f953c3bed8962277d35049415706e0a35f4cca809",
+    "verified_runs": [
+      {
+        "artifact": "current-sundew-end-phase.json",
+        "sha256": "2ae6ee09f2fd494640c77673249a742a56dac2773ffbd4d5fdbe774bc3322f1c",
+        "expected_failures": []
+      },
+      {
+        "artifact": "current-sundew-end-phase-no-phase-limit.json",
+        "sha256": "20c5065b46b208ff9d3fe2f0b373f2e03235fddc9e7dd1d2db055943646d18e5",
+        "expected_failures": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "artifact": "current-sundew-end-phase-no-response.json",
+        "sha256": "f4c3c611247bebe9d8761a0a31c0df08e3e7f67f3902da5dbbcc7c4f42b86a01",
+        "expected_failures": [
+          1,
+          2
+        ]
+      },
+      {
+        "artifact": "current-sundew-end-phase-no-return.json",
+        "sha256": "a80e867b59df37fdd0513f955c5bb5ad6132ed15e54db9275070bde75a57a882",
+        "expected_failures": [
+          0
+        ]
+      }
+    ],
+    "scope": "Current full Sundew/installed metadata/corrected transport/no Lua API adapter. Native Pendulum history and two real field-to-faceup-Extra origins; spare legal resource remains after success. Exactly one End Phase offer after success, activation negation or effect negation. Effective limit/response/operation controls. Neutral setup and Counter Trap. Supports retaining phase limit; not full-card/live Omega certification."
+  },
+  "conclusion": "Retain per-source once-per-phase End Phase trigger limit. Official optional and mandatory phase-trigger notes independently support the existing native success/activation-negation/effect-negation controls. Applied to custom Sundew by analogy; no direct custom-card ruling or live Omega proof. Retained destroyed-Pendulum count alone does not grant a second activation.",
+  "previous_reference": {
+    "reference": {
+      "url": "https://ygorganization.com/perfect-rulebook-2017/",
+      "pages": "195-196",
+      "provenance": "Unofficial English translation of OCG Perfect Rulebook 2017; Japanese original not inspected",
+      "interpretation": "End Phase trigger cannot activate again after activation negation; supports current once-per-phase implementation, not an additional printed named OPT."
+    },
+    "disposition": "Historical unofficial translation kept; Japanese Perfect Rulebook original still not inspected. Primary Konami notes now provide independent ruling provenance, so an untranslated book is no longer the sole support."
+  },
+  "production_change": false,
+  "full_card_audit": "OPEN",
+  "native_omega_verified": false
+}

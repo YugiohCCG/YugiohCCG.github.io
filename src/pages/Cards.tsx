@@ -14,7 +14,7 @@ import {
 } from "../utils/filters";
 
 import FiltersPanel from "../components/FiltersPanel";
-import CardsToolbar from "../components/CardsToolbar";
+import CardsToolbar, { cardGridColumns } from "../components/CardsToolbar";
 import VirtualizedCardList from "../components/VirtualizedCardList";
 import CardTile from "../components/CardTile";
 import usePageMeta from "../hooks/usePageMeta";
@@ -126,7 +126,7 @@ export default function Cards() {
       {view === "list" ? (
         <VirtualizedCardList items={results} />
       ) : (
-        <div className="cards-grid grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className={`cards-grid grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ${cardGridColumns(params.get("columns"))}`}>
           {results.map((card) => (
             <CardTile key={`${(card as any).id ?? card.name}-${card.name}`} card={card} />
           ))}

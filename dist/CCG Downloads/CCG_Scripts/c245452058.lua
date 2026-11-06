@@ -35,7 +35,7 @@ end
 s.listed_series={SET_ALTERGEIST}
 
 function s.spfilter(c,tp)
-	return c:IsSetCard(SET_ALTERGEIST) and c:IsSummonPlayer(tp)
+	return c:IsFaceup() and c:IsSetCard(SET_ALTERGEIST) and c:IsSummonPlayer(tp)
 end
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(s.spfilter,1,nil,tp)

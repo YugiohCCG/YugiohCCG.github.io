@@ -73,6 +73,7 @@ function s.oppsummon(e,tp)
 		Duel.Hint(HINT_SELECTMSG,p,HINTMSG_SUMMON)
 		tc=Duel.SelectMatchingCard(p,s.oppnsfilter,p,LOCATION_HAND,0,1,1,nil):GetFirst()
 		if tc then
+			s.normalzero(e,tc)
 			Duel.Summon(p,tc,true,nil)
 		end
 	end
@@ -115,7 +116,20 @@ function s.drop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local g=Duel.SelectMatchingCard(tp,s.tdfilter,tp,LOCATION_GRAVE,0,3,3,nil)
 	if #g==3 and Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_EFFECT)==3 then
+		local ct=g:FilterCount(Card.IsLocation,nil,LOCATION_DECK)
+		if ct>1 then Duel.SortDeckbottom(tp,tp,ct) end
 		Duel.BreakEffect()
 		Duel.Draw(tp,1,REASON_EFFECT)
 	end
+end
+
+--The Normal Summon is performed after the resolving effect finishes.
+function s.normalzero(e,tc)
+ local e1=Effect.CreateEffect(e:GetHandler())
+ e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
+ e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+ e1:SetCode(EVENT_SUMMON_SUCCESS)
+ e1:SetOperation(function(te) s.atkzero(e,te:GetHandler()) te:Reset() end)
+ e1:SetReset(RESET_EVENT+RESETS_STANDARD-RESET_TOFIELD+RESET_PHASE+PHASE_END)
+ tc:RegisterEffect(e1)
 end

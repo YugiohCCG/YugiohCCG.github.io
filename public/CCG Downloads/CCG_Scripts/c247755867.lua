@@ -70,8 +70,8 @@ end
 function s.setop(e,tp)
  local c=e:GetHandler()
  local tc=Duel.GetFirstTarget()
- if not c:IsRelateToEffect(e) or not tc or not tc:IsRelateToEffect(e)
-  or Duel.Destroy(tc,REASON_EFFECT)==0 or Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 or not c:IsSSetable() then return end
+ if not tc or not tc:IsRelateToEffect(e) or Duel.Destroy(tc,REASON_EFFECT)==0 then return end
+ if not c:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 or not c:IsSSetable() then return end
  if Duel.SSet(tp,c)>0 then
   local e1=Effect.CreateEffect(c)
   e1:SetType(EFFECT_TYPE_SINGLE)

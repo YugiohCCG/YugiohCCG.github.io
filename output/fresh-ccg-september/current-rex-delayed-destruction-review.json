@@ -1,0 +1,96 @@
+{
+  "finding": "Chrono-Saur Rex delayed destruction follows a card through departure-return or face-down reset in both original Battle Phase summon branches.",
+  "qualification": "Eight original-effect Battle Phase cases and effective omitted-tracking/destruction controls, native dinosaur destruction/Hand summon and attack-trigger GY summon, current installed metadata. No Lua API mapping. Four Main1 diagnostics retain the same stable-recipient deadline failure before/after; three reset negatives there are not independent tracking proof. Main1 deadline, other clauses/full-card/live remain open.",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_rex_delayed_destruction.cjs": "6bb001104615a63112451856f185f16987d3956e1c6fef643c04aa307c813499",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_rex_delayed_destruction_repair.cjs": "f08972e55359a87b447eee2be8c039890fcc7bab100aa1b51e5a489fef33bb2b",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\rex-delayed-destruction-before-repair\\c236898203.lua": "592a3747ebd4abf4cbda7b65c5b3add3f682237069038cbaec538a4a0155f8b8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "mode": "candidate",
+      "file": "current-rex-delayed-destruction-candidate.json",
+      "sha256": "3fad0bfe6b76997f9fe8052b212ddcd6f5cd03870cbfb9bdf341e81e96e5f455",
+      "expected_failures": []
+    },
+    {
+      "mode": "old",
+      "file": "current-rex-delayed-destruction-old.json",
+      "sha256": "fa4ac55d3376965013a202822603566e149ff393556bce9e2ecb40f08f305cd2",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "mode": "no-tracking",
+      "file": "current-rex-delayed-destruction-no-tracking.json",
+      "sha256": "5c1dbd9f707c0b47131f50a9d202e5ac908e350118e5874f3a9b4ff20fdf939d",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "mode": "no-destroy",
+      "file": "current-rex-delayed-destruction-no-destroy.json",
+      "sha256": "ddefed131f6075ed8664726722ffdd91de8cb78e2ba166e116a5a031e2994c0d",
+      "expected_failures": [
+        0,
+        4
+      ]
+    }
+  ],
+  "main1_diagnostics": [
+    {
+      "mode": "old",
+      "file": "current-rex-delayed-destruction-old-main1-diagnostic.json",
+      "sha256": "ce01d6d0c9daa50662d8fd33244c18204dbe81a9e4747cb375599a86c9251543",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "mode": "candidate",
+      "file": "current-rex-delayed-destruction-candidate-main1-diagnostic.json",
+      "sha256": "fc9b3613825d64c4468ca0f95fcc71e40071e87c653a9de2979c218560c990a0",
+      "expected_failures": [
+        0
+      ]
+    }
+  ],
+  "manifest": "rex-delayed-destruction-repair-files.json",
+  "manifest_sha256": "6ed65e35808b073b354b77da669b2045d58296943c0e6d9adbe15253e5785619",
+  "helper_sha256": "f08972e55359a87b447eee2be8c039890fcc7bab100aa1b51e5a489fef33bb2b",
+  "family_followup": {
+    "259307285": "Previously repaired; retain existing evidence.",
+    "259911246": "Mylo stored-group position reset is a candidate; original effects not yet tested.",
+    "232449539": "Abstain stored banished group candidate; validate actual departure/rebanishment before patch.",
+    "259303191": "Tome of Eclipse stored banished group candidate; validate actual departure/rebanishment before patch.",
+    "221827483": "Delayed source revival candidate; require actual source history.",
+    "241957394": "Already uses resetting flag.",
+    "284639718": "Already uses resetting flag."
+  }
+}

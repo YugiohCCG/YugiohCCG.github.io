@@ -1,0 +1,1 @@
+'use strict';const assert=require('assert/strict');exports.corrected=s=>{const a='Duel.IsExistingMatchingCard(Card.IsCode,tp,LOCATION_MZONE,0,1,nil,225161820)';assert.equal(s.split(a).length,2);return s.replace(a,'Duel.IsExistingMatchingCard(function(c) return c:IsFaceup() and c:IsCode(225161820) end,tp,LOCATION_MZONE,0,1,nil)');};

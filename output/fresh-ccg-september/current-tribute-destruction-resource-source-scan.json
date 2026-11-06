@@ -1,0 +1,52 @@
+{
+  "scope": "All711 files, bounded lexical same-variable named cost/operation association: named cost contains Duel.Release and named operation Duel.Destroy. No anonymous/dynamic/clone alias coverage or whole-card certification. Five candidates: one scoped repair, three different negation families, one distinct resource qualification. No blanket edits.",
+  "cards_scanned": 711,
+  "candidates": [
+    {
+      "passcode": 259093260,
+      "name": "Grand Blue Matriarch",
+      "cost": "negcost",
+      "operation": "negop",
+      "source_sha256": "b0e89ad4bf20ab732ee4394577dab04ea5bc633255ffdb72c8de1ababa4774e6",
+      "status": "SOURCE_ONLY_DIFFERENT_NEGATION_FAMILY",
+      "reason": "Negation response has independently meaningful negate operation; destruction conditional on response/result/remaining resources. Not sole mandatory unrestricted destruction; no native pass inferred"
+    },
+    {
+      "passcode": 242009896,
+      "name": "Extinction of Dysmandr",
+      "cost": "descost",
+      "operation": "desop",
+      "source_sha256": "dabf4ab0f296d3d1c481573f09a52326fc2ef54189a74400c5effb00b32d19e4",
+      "status": "DISTINCT_RESOURCE_QUALIFICATION",
+      "reason": "Releases filtered Token; selects distinct Effect-monster reference then conditional mass destruction. No shared unrestricted single-card guarantee inferred; remains independently qualified"
+    },
+    {
+      "passcode": 249018041,
+      "name": "Ram of Crying Chaos",
+      "cost": "descost",
+      "operation": "desop",
+      "source_sha256": "d955793337068de8532094c22de15939bf84da9a7c7c4e93014c57ae5dc85ed2",
+      "status": "REPAIRED_SCOPED_NATIVE_PROOF",
+      "reason": "Cost leaves independent field card, excludes its equipped-card bundle"
+    },
+    {
+      "passcode": 259494236,
+      "name": "Glitchling Digitron",
+      "cost": "negcost",
+      "operation": "negop",
+      "source_sha256": "0a29df5cb0ce00f5031a623c4cd7f5e42382a9f38ba0cdadc1c14dd01e336d85",
+      "status": "SOURCE_ONLY_DIFFERENT_NEGATION_FAMILY",
+      "reason": "Negation response has independently meaningful negate operation; destruction conditional on response/result/remaining resources. Not sole mandatory unrestricted destruction; no native pass inferred"
+    },
+    {
+      "passcode": 259873115,
+      "name": "Glitchling Leotron",
+      "cost": "negcost",
+      "operation": "negop",
+      "source_sha256": "2d7323fcaea1de5394620466447b5527917ad1603ead683e990029688fe15842",
+      "status": "SOURCE_ONLY_DIFFERENT_NEGATION_FAMILY",
+      "reason": "Negation response has independently meaningful negate operation; destruction conditional on response/result/remaining resources. Not sole mandatory unrestricted destruction; no native pass inferred"
+    }
+  ],
+  "evidence": "current-ram-tribute-resource-review.json"
+}

@@ -1,0 +1,44 @@
+{
+  "scope": "711-source lexical pairing of NegateEffect and explicit damage timing flags; three candidates only, not universal semantic coverage. Registration/operation pairing manually reviewed; no production edit or broad-gate rerun.",
+  "cards": [
+    {
+      "passcode": 220305422,
+      "name": "Natir, the Swords Master of Crying Chaos",
+      "source_sha256": "3eb468dd87f6156b48762f73c06b71466d84db5b302c918e2462f07b5678e8b3",
+      "registration": "EVENT_CHAINING Quick e2 explicitly permits Damage Step and damage calculation",
+      "printed_behavior": "Negate effect; no printed specific Damage Step timing or ATK/DEF change",
+      "native_status": "UNREPRODUCED_SOURCE_CANDIDATE",
+      "next_boundary": "Test normal Main Phase positive versus actual Damage Step monster-effect response exclusion"
+    },
+    {
+      "passcode": 234296128,
+      "name": "Revelation of Crying Chaos",
+      "source_sha256": "21c01de6d495998e8b5e41d7bc744e34f6cb3228a1ad3cb65e261d177b46bb48",
+      "registration": "EVENT_CHAINING Quick e2 explicitly permits Damage Step and damage calculation",
+      "printed_behavior": "Negate effect, then gain Tribute ATK+DEF if source remains",
+      "native_status": "UNREPRODUCED_SOURCE_CANDIDATE",
+      "next_boundary": "Preserve direct ATK gain opportunity before calculation; test exclusion after calculation and during calculation"
+    },
+    {
+      "passcode": 233499093,
+      "name": "Dragon of Crying Chaos",
+      "source_sha256": "d812be135a8f2676c2f63f39832aeef4296a53b3bde05ef2629d25493d2ed1c9",
+      "registration": "EVENT_CHAINING Quick e2 explicitly permits Damage Step and damage calculation",
+      "printed_behavior": "Negate effect; no printed specific Damage Step timing or ATK/DEF change",
+      "native_status": "UNREPRODUCED_SOURCE_CANDIDATE",
+      "next_boundary": "Test normal Main Phase positive versus actual Damage Step monster-effect response exclusion"
+    }
+  ],
+  "rule_support": [
+    {
+      "url": "https://www.yugioh-card.com/eu/play/damage-step-rules/",
+      "finding": "Official sequence places ordinary ATK/DEF modifications before calculation and Flip effects after calculation. Revelation ATK gain requires a separate timing conclusion."
+    },
+    {
+      "url": "https://www.db.yugioh-card.com/yugiohdb/card_search.action?cid=4507&ope=2&request_locale=en",
+      "finding": "Man-Eater Bug provides an actual targeted monster destruction Flip effect for normal Flip Summon versus battle-flip response comparison."
+    }
+  ],
+  "next_action": "Use original Man-Eater Bug/Main Flip Summon versus after-calculation battle flip for all3; source-seeded Synchros with original costs/negation. Preserve original source recipe qualifications. For Revelation additionally use a legitimate start-of-Damage-Step destruction effect (e.g. actual Ally of Justice Catastor with non-DARK battle target) to prove allowed ATK-gain boundary before changing flags. Reuse established explicit CHAININFO_TARGET_CARDS mapping only if needed and retain one unadapted failure; do not production-map APIs.",
+  "inference": "Pure effect-negation permissions and Revelation post-calculation/Calculation permissions appear broader than printed effects. Runtime/rule-sensitive classification still pending; no blanket removal of Revelation Damage Step eligibility."
+}

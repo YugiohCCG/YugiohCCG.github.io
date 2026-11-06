@@ -98,8 +98,17 @@ function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 		local mat=Duel.SelectFusionMaterial(tp,fc,mg2,nil,chkf)
 		if not mat or #mat==0 then return end
 		local fop=ce:GetOperation()
+		--Chain Material callbacks do not return the summon result.
+		local complete=Effect.CreateEffect(e:GetHandler())
+		complete:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+		complete:SetCode(EVENT_SPSUMMON_SUCCESS)
+		complete:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+		complete:SetOperation(function(se,sp,sg)
+			if sg:IsContains(fc) and fc:IsSummonType(SUMMON_TYPE_FUSION) then fc:CompleteProcedure() end
+		end)
+		Duel.RegisterEffect(complete,tp)
 		fop(ce,e,tp,fc,mat)
-		fc:CompleteProcedure()
+		complete:Reset()
 	end
 end
 function s.matcon(e,tp,eg,ep,ev,re,r,rp)
@@ -109,7 +118,7 @@ function s.matcon(e,tp,eg,ep,ev,re,r,rp)
 		and rc and rc:IsSetCard(SET_TALISMANDRAKE)
 end
 function s.spfilter(c,e,tp)
-	return c:IsSetCard(SET_TALISMANDRAKE) and c:IsType(TYPE_MONSTER)
+	return c:IsSetCard(SET_TALISMANDRAKE) and (c:GetOriginalType()&TYPE_MONSTER)~=0
 		and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.pzfilter(c)

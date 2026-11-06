@@ -60,7 +60,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)
 	if cansp and (not canhand or Duel.SelectOption(tp,aux.Stringid(STRING_ID,1),aux.Stringid(STRING_ID,2))==1) then
 		Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
-	elseif canhand and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
+	elseif canhand and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) then
 		Duel.ConfirmCards(1-tp,tc)
 		if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsRelateToEffect(e)
 			and c:IsCanBeSpecialSummoned(e,0,tp,false,false) then
@@ -94,8 +94,8 @@ function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 		or not (c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)) then return end
 	if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and s.eqfilter(tc) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0) then return end
-	if Duel.Equip(tp,tc,c,false) then
+	if tc and tc:IsRelateToEffect(e) and s.eqfilter(tc) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0
+		and Duel.Equip(tp,tc,c,false) then
 		local e1=Effect.CreateEffect(c)
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetProperty(EFFECT_FLAG_OWNER_RELATE)
@@ -103,12 +103,12 @@ function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 		e1:SetValue(s.eqlimit)
 		tc:RegisterEffect(e1)
-		local dg=c:GetColumnGroup():Filter(Card.IsDestructable,nil)
-		if #dg>0 then
-			Duel.BreakEffect()
-			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-			local sg=dg:Select(tp,1,1,nil)
-			Duel.Destroy(sg,REASON_EFFECT)
-		end
+	end
+	local dg=c:GetColumnGroup():Filter(Card.IsDestructable,nil)
+	if #dg>0 then
+		Duel.BreakEffect()
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
+		local sg=dg:Select(tp,1,1,nil)
+		Duel.Destroy(sg,REASON_EFFECT)
 	end
 end

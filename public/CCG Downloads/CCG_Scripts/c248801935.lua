@@ -22,7 +22,8 @@ function s.initial_effect(c)
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,0))
 	e3:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH)
-	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e3:SetRange(LOCATION_SZONE)
 	e3:SetCode(EVENT_EQUIP)
 	e3:SetProperty(EFFECT_FLAG_DELAY)
 	e3:SetCountLimit(1,id)
@@ -74,7 +75,7 @@ function s.eqlimit(e,c)
 	return c:IsType(TYPE_SPIRIT)
 end
 function s.thcon(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():GetEquipTarget()~=nil
+	return eg:IsContains(e:GetHandler()) and e:GetHandler():GetEquipTarget()~=nil
 end
 function s.thfilter(c,att)
 	return c:IsType(TYPE_SPIRIT) and c:IsType(TYPE_MONSTER) and not c:IsAttribute(att) and c:IsAbleToHand()

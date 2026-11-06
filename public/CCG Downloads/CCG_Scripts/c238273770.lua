@@ -23,7 +23,7 @@ function s.initial_effect(c)
  e2:SetCode(EVENT_SUMMON_SUCCESS)
  e2:SetProperty(EFFECT_FLAG_DELAY)
  e2:SetCountLimit(1,id+100)
- e2:SetCondition(s.chaincon)
+ --Check the chain guard at activation cost, not when a delayed summon event occurs.
  e2:SetCost(s.searchcost)
  e2:SetTarget(s.searchtg)
  e2:SetOperation(s.searchop)

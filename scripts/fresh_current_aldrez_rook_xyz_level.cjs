@@ -1,0 +1,2 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),Module=require('node:module');const parent=path.join(__dirname,'fresh_current_aldrez_knight_xyz_level.cjs'),script=fs.readFileSync(parent,'utf8').replaceAll('238282350','231129918').replaceAll('current-aldrez-knight-xyz-level','current-aldrez-rook-xyz-level').replaceAll('Full Knight','Full Rook');const m=new Module(parent,module);m.filename=parent;m.paths=module.paths;m._compile(script,parent);

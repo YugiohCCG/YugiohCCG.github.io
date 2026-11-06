@@ -41,7 +41,7 @@ function s.initial_effect(c)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_DESTROYED)
 	e3:SetRange(LOCATION_GRAVE)
-	e3:SetProperty(EFFECT_FLAG_DELAY)
+	e3:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_DAMAGE_STEP)
 	e3:SetCountLimit(1,id)
 	e3:SetCondition(s.gyspcon)
 	e3:SetCost(s.gyspcost)
@@ -154,7 +154,7 @@ function s.upop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.desfilter(c,tp)
-	return c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_ONFIELD) and c:IsPreviousSetCard(SET_URSARCTIC)
+	return c:IsPreviousPosition(POS_FACEUP) and c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_ONFIELD) and c:IsPreviousSetCard(SET_URSARCTIC)
 		and c:IsReason(REASON_BATTLE+REASON_EFFECT)
 end
 function s.gyspcon(e,tp,eg,ep,ev,re,r,rp)

@@ -1,22 +1,28 @@
-﻿import type { Card } from "../types/card";
+import type { Card } from "../types/card";
 import { useImageViewer } from "./ImageViewer";
 import { asset } from "../utils/assets";
-import LegalityBadge, { legalStatus } from "./LegalityBadge";
+import LegalityBadge, { legalStatus, type LegalityStatus } from "./LegalityBadge";
 import Link from "./SiteLink";
 
-type Props = { card: Card; imageHeight?: number; detailsEnabled?: boolean };
+type Props = {
+  card: Card;
+  imageHeight?: number;
+  detailsEnabled?: boolean;
+  imageOnly?: boolean;
+  statusOverride?: LegalityStatus;
+};
 
-export default function CardTile({ card, imageHeight, detailsEnabled = true }: Props) {
+export default function CardTile({ card, imageHeight, detailsEnabled = true, imageOnly = false, statusOverride }: Props) {
   const { open } = useImageViewer();
   const imgSrc = asset(card.image);
-  const status = legalStatus(card.legal);
+  const status = statusOverride ?? legalStatus(card.legal);
 
   return (
     <div className="relative h-full w-full tp-card-tile">
-      <div className="card h-full">
+      <div className={`card h-full ${imageOnly ? "![background:transparent] !border-0 !shadow-none" : ""}`}>
         <button
           type="button"
-          className="w-full cursor-zoom-in overflow-hidden rounded-lg border border-slate-300 bg-slate-50"
+          className={`w-full cursor-zoom-in overflow-hidden rounded-lg ${imageOnly ? "" : "border border-slate-300 bg-slate-50"}`}
           style={imageHeight ? { height: imageHeight } : { aspectRatio: "1 / 1.45965417867" }}
           onClick={() => open(imgSrc, card.name, status)}
           title="Click to enlarge"
@@ -29,7 +35,7 @@ export default function CardTile({ card, imageHeight, detailsEnabled = true }: P
           />
         </button>
 
-        <div className="mt-3 space-y-1 tp-card-tile-copy">
+        {!imageOnly && <div className="mt-3 space-y-1 tp-card-tile-copy">
           <h3 className="line-clamp-2 text-sm font-bold uppercase tracking-wide text-slate-800">{card.name}</h3>
           <p className="text-xs text-slate-700">{card.set || card.category}</p>
           {detailsEnabled && card.passcode != null && (
@@ -40,7 +46,7 @@ export default function CardTile({ card, imageHeight, detailsEnabled = true }: P
               Card details
             </Link>
           )}
-        </div>
+        </div>}
       </div>
 
       {status && (

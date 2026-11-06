@@ -103,6 +103,7 @@ function s.oppsummon(e,tp)
 		Duel.Hint(HINT_SELECTMSG,p,HINTMSG_SUMMON)
 		tc=Duel.SelectMatchingCard(p,s.oppnsfilter,p,LOCATION_HAND,0,1,1,nil):GetFirst()
 		if tc then
+			s.normalzero(e,tc)
 			Duel.Summon(p,tc,true,nil)
 		end
 	end
@@ -130,4 +131,16 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if tc and s.allnautica(tp) then
 		s.negate(e,tc)
 	end
+end
+
+--The Normal Summon is performed after the resolving effect finishes.
+function s.normalzero(e,tc)
+ local tp=e:GetHandlerPlayer()
+ local e1=Effect.CreateEffect(e:GetHandler())
+ e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
+ e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+ e1:SetCode(EVENT_SUMMON_SUCCESS)
+ e1:SetOperation(function(te) s.atkzero(e,te:GetHandler()) if s.allnautica(tp) then s.negate(e,te:GetHandler()) end te:Reset() end)
+ e1:SetReset(RESET_EVENT+RESETS_STANDARD-RESET_TOFIELD+RESET_PHASE+PHASE_END)
+ tc:RegisterEffect(e1)
 end

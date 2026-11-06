@@ -1,0 +1,12 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+source=ROOT/'public/CCG Downloads/CCG_Scripts/c238272437.lua';assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+paths=[Path(__file__).resolve(),source,FILES/'Databases/CCG_v1.db']+[ROOT/'scripts'/n for n in ['fresh_current_underroot_return_boundaries.cjs','fresh_underroot_over_banish.cjs','fresh_installed_card.cjs','fresh_corrected_card_data_transport.cjs']]+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))+[ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']
+deps={str(p.resolve()):sha(p) for p in paths};runs=[]
+for control,expected in [(None,[]),('no-return',[0,1,2,3]),('any-origin',[6,7])]:
+ r=subprocess.run(['node','--no-warnings','scripts/fresh_current_underroot_return_boundaries.cjs']+(['--'+control] if control else []),capture_output=True,text=True,timeout=20)
+ p=OUT/('current-underroot-return-boundaries'+('-'+control if control else '')+'.json');d=json.loads(p.read_text());assert len(d['results'])==8 and [i for i,v in enumerate(d['results']) if v['failure']]==expected and all(not v['logs'] for v in d['results']),(control,r.stdout+r.stderr);assert r.returncode==bool(expected);runs.append({'artifact':p.name,'sha256':sha(p),'expected_failures':expected})
+assert deps=={str(p.resolve()):sha(p) for p in paths}
+(OUT/'current-underroot-return-boundaries-batch.json').write_text(json.dumps({'status':'UNDERROOT_NATIVE_RETURN_BOUNDARIES_NO_REPAIR','runtime_dependencies_sha256':deps,'runs':runs,'scope':'Full original source/current installed metadata/corrected public engine/no Lua API adapter; reuses existing return fixture only for uncovered boundaries. Initially face-up or face-down banished source really returns to GY/Hand; actual move asserts face-down origin where claimed, optional decline/full Main Zones retain destination; Deck origin excludes trigger. Native offer/summon/state/moves and effective omitted-trigger/widened-origin controls. No production change; shared-use/reset/negation/non-Tuner/other clauses/full-card/live Omega remain open.'},indent=2)+'\n');print('Underroot native return boundary evidence retained; no production change')

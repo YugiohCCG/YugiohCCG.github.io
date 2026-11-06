@@ -1,0 +1,34 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto'),{pathToFileURL}=require('node:url'),{candidateCard}=require('./fresh_installed_card.cjs');
+const ROOT=path.resolve(__dirname,'..'),source=259100752,spell=900004601,filler=900004602;
+(async()=>{
+ const mod=await require('./fresh_corrected_card_data_transport.cjs').loadCorrectedTransport(),{OcgMessageType:M,OcgResponseType:R,OcgLocation:L,OcgPosition:P,OcgProcessResult:S,SelectIdleCMDAction:A,OcgQueryFlags:Q}=mod;
+ const core=await mod.default({sync:true,print(){},printErr(){}}),results=[];
+ for(const test of [{n:1},{n:1,redirect:true},{n:2,redirect:true},{n:1,macro:true},{n:2,banish:true}]){
+  const logs=[],trace=[],base={alias:0,setcodes:[],type:17,level:1,attribute:1,race:1n,attack:100,defense:100,lscale:0,rscale:0,link_marker:0},cards=new Map([[source,candidateCard(source)],[spell,{...base,code:spell,setcodes:[],race:8n,setcodes:[0x4ac0]}],[filler,{...base,code:filler,setcodes:[]}]]);
+  cards.set(900004603,{...base,code:900004603});cards.set(59822133,{...base,code:59822133,type:0x2021,level:9,attribute:16,race:8192n,attack:2500,defense:3000});const reader=name=>{if(name==='c0.lua')return '';if(name==='c900004603.lua')return `local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(${test.own?'EFFECT_TYPE_IGNITION':'EFFECT_TYPE_QUICK_O'}) e:SetCode(EVENT_FREE_CHAIN) e:SetRange(LOCATION_MZONE) e:SetCountLimit(1) e:SetOperation(function(e,tp) local g=Duel.GetMatchingGroup(Card.IsCode,0,LOCATION_MZONE,0,nil,900004601) ${test.banish?'Duel.Remove(g,POS_FACEUP,REASON_EFFECT)':test.redirect?'Duel.Destroy(g,REASON_EFFECT,LOCATION_REMOVED)':'Duel.Destroy(g,REASON_EFFECT)'} end) c:RegisterEffect(e) local o=Effect.CreateEffect(c) o:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS) o:SetCode(EVENT_CHAIN_SOLVED) o:SetOperation(function(e,tp,eg,ep,ev,re) if re:GetHandler()==c then Duel.Hint(HINT_MESSAGE,0,900011500+(Duel.GetFlagEffectLabel(0,${source}) or 0)) end end) Duel.RegisterEffect(o,0) end`;if(name==='c'+filler+'.lua')return 'local s,id=GetID() function s.initial_effect(c) end';if(name==='c'+spell+'.lua')return test.macro?'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_SINGLE) e:SetCode(EFFECT_TO_GRAVE_REDIRECT) e:SetValue(LOCATION_REMOVED) c:RegisterEffect(e) end':'local s,id=GetID() function s.initial_effect(c) end';const file=[path.join(ROOT,'public/CCG Downloads/CCG_Scripts',name),path.join(ROOT,'tmp/omega_scripts',name)].find(p=>fs.existsSync(p));assert(file,name);let body=fs.readFileSync(file,'utf8');if(name==='c'+source+'.lua'){
+ const backup=path.join(ROOT,'output/fresh-ccg-september/rage-event-overlap-before-repair',name);
+ if(fs.existsSync(backup))body=fs.readFileSync(backup,'utf8');
+ if(process.argv[2]==='candidate')body=require('./fresh_rage_event_overlap_repair.cjs').corrected(body,source);
+}return body;};
+  const duel=core.createDuel({flags:mod.OcgDuelMode.MODE_MR5|mod.OcgDuelMode.PSEUDO_SHUFFLE,seed:[1n,2n,3n,4n],team1:{startingLP:8000,startingDrawCount:0,drawCountPerTurn:0},team2:{startingLP:8000,startingDrawCount:0,drawCountPerTurn:0},cardReader:c=>cards.get(c),scriptReader:reader,errorHandler:(type,message)=>logs.push({type,message})});let failure=null,activated=0,done=false,potActivated=false;
+  try{
+   for(const name of ['constant.lua','utility.lua','procedure.lua'])core.loadScript(duel,name,reader(name));
+   const add=(code,location,player=0)=>core.duelNewCard(duel,{team:player,duelist:0,code,controller:player,location,sequence:0,position:P.FACEDOWN_DEFENSE});add(source,L.HAND);for(let i=0;i<test.n;i++)core.duelNewCard(duel,{team:0,duelist:0,code:spell,controller:0,location:L.MZONE,sequence:i,position:P.FACEUP_ATTACK});core.duelNewCard(duel,{team:test.own?0:1,duelist:0,code:900004603,controller:test.own?0:1,location:L.MZONE,sequence:test.own?4:0,position:P.FACEUP_ATTACK});for(const player of [0,1])for(let i=0;i<8;i++)add(filler,L.DECK,player);core.startDuel(duel);
+   for(let step=0;step<250&&!done;step++){
+    const state=core.duelProcess(duel),messages=core.duelGetMessage(duel);trace.push(...messages);assert(!logs.some(x=>x.type===0),JSON.stringify(logs));if(state!==S.WAITING)continue;const p=messages.at(-1);
+    if(p.type===M.SELECT_IDLECMD){if(activated<1){if(test.own){const index=p.activates.findIndex(c=>c.code===900004603);assert(index>=0);activated++;core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});}else core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.TO_EP});continue;}const dest=test.redirect||test.banish||test.macro?L.REMOVED:L.GRAVE;
+      assert.equal(trace.filter(m=>m.type===M.MOVE&&m.card===spell&&m.to.location===dest).length,test.n,'Actual affected-card destination');
+      assert(trace.some(m=>m.type===M.HINT&&String(m.hint)===String(900011500+test.n)),'One count per destruction or banishment');
+      assert.equal(p.activates.some(c=>c.code===source),test.n>=2,'Pot activation threshold');
+      done=true;}
+    else if(p.type===M.SELECT_CHAIN){let index=-1;if(index<0&&activated<1){index=p.selects.findIndex(c=>c.code===900004603);if(index>=0)activated++;}core.duelSetResponse(duel,{type:R.SELECT_CHAIN,index:index>=0?index:p.forced?0:null});}
+    else if(p.type===M.SELECT_EFFECTYN)core.duelSetResponse(duel,{type:R.SELECT_EFFECTYN,yes:true});
+    else if(p.type===M.SELECT_YESNO)core.duelSetResponse(duel,{type:R.SELECT_YESNO,yes:!test.decline});
+    else if(p.type===M.SELECT_CARD){assert.equal(p.max,test.spirit||test.oneRecipient?1:2,'Spirit selection maximum');core.duelSetResponse(duel,{type:R.SELECT_CARD,indicies:Array.from({length:p.max},(_,i)=>i)});}
+    else if(p.type===M.SELECT_PLACE){let location=L.MZONE,sequence=[0,1,2,3,4,5,6].find(i=>(p.field_mask&(1<<i))===0);if(sequence===undefined){location=L.SZONE;sequence=[0,1,2,3,4].find(i=>(p.field_mask&(1<<(8+i)))===0);}assert(sequence!==undefined);core.duelSetResponse(duel,{type:R.SELECT_PLACE,places:[{player:p.player,location,sequence}]});}
+    else if(p.type===M.SELECT_POSITION)core.duelSetResponse(duel,{type:R.SELECT_POSITION,position:P.FACEUP_ATTACK});else throw Error('Unhandled '+p.type);
+   }assert(done,'Step limit');
+  }catch(e){failure=e.message;}finally{core.destroyDuel(duel);}results.push({test,failure,trace,logs});console.log((failure?'FAIL':'PASS')+' '+JSON.stringify(test)+(failure?': '+failure:''));
+ }
+ fs.writeFileSync(path.join(ROOT,'output/fresh-ccg-september',`current-rage-event-overlap-${process.argv[2]}.json`),JSON.stringify({scope:'Original global count and activation threshold. Direct banishment and destruction to GY or banishment. Draw resolution remains outside this fixture.',results},(_,v)=>typeof v==='bigint'?String(v):v,2));
+})().catch(e=>{console.error(e);process.exitCode=1;});

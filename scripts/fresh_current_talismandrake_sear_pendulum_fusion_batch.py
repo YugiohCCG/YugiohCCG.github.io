@@ -1,0 +1,22 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+paths=[Path(__file__).resolve(),ROOT/'scripts/fresh_corrected_card_data_transport.cjs',ROOT/'scripts/fresh_installed_card.cjs',Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Databases\CCG_v1.db'),ROOT/'src/data/cards.json',ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']+[ROOT/'scripts/fresh_current_talismandrake_sear_pendulum_fusion.cjs']+[ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua' for code in [245935439]]+[ROOT/'tmp/omega_scripts'/name for name in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))
+before={str(p.resolve()):sha(p) for p in paths};runs=[]
+for flag,expected in [(None,[]),('no-fusion',[0,1,2,6]),('no-material',[0,1,2,6]),('no-complete',[0,1,2,6]),('allow-hand',[3])]:
+ r=subprocess.run(['node','--no-warnings','scripts/fresh_current_talismandrake_sear_pendulum_fusion.cjs','--material-api-compat']+(['--'+flag] if flag else []),capture_output=True,text=True,timeout=20)
+ p=OUT/('current-talismandrake-sear-pendulum-fusion-material-api-compat'+('-'+flag if flag else '')+'.json');d=json.loads(p.read_text())
+ assert len(d['results'])==7 and all(not v['logs'] for v in d['results']),r.stdout+r.stderr
+ assert [i for i,v in enumerate(d['results']) if v['failure']]==expected,(flag,r.stdout)
+ assert r.returncode==(1 if expected else 0)
+ runs.append({'flag':flag,'artifact':p.name,'artifact_sha256':sha(p),'expected_failures':expected})
+
+r=subprocess.run(['node','--no-warnings','scripts/fresh_current_talismandrake_sear_pendulum_fusion.cjs'],capture_output=True,text=True,timeout=20)
+p=OUT/'current-talismandrake-sear-pendulum-fusion.json';d=json.loads(p.read_text());assert r.returncode==1 and [i for i,v in enumerate(d['results']) if v['failure']]==[0,1,2,6]
+assert all('GetMustMaterial' in d['results'][i]['failure'] for i in [0,1,2,6])
+runs.append({'flag':'unadapted-legacy-api','artifact':p.name,'artifact_sha256':sha(p),'expected_compatibility_failures':[0,1,2,6]})
+assert before=={str(p.resolve()):sha(p) for p in paths}
+inst=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files\Scripts')
+for code in [245935439]:assert (ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua').read_bytes()==(inst/f'c{code}.lua').read_bytes()
+(OUT/'current-talismandrake-sear-pendulum-fusion-batch.json').write_text(json.dumps({'status':'VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC','baseline_cases':7,'runtime_dependencies_sha256':before,'runs':runs,'scope':'FullSear/actualinstalledmetadata/correctedCardData, actualHANDPZone andfullnativeFusionoperations usingneutralexact2materialrecipefunctionfilters. Actualfield2,field+otherPZone,SearsourcePZone+field andfull5MZONE materialsfreezones -> nativeFusion/propercompletion observedCHAIN_END701; Handonly/wrongFusionarchetype/immuneMaterial excluded. Explicitboundedtestonly missingGetMustMaterial(empty)/CheckMustMaterial(trueonlywhennoaffectedplayer) adapter; notmandatorymaterialrules/realproductionFusionrecipes/nativeOmega/fullcard certification. NoFusion4/noMaterial4/noComplete4/allowHand1exactfailures, emptylogs/frozeninputs/parity. Source-as-material secondaryeffect/response/sharedreset stillopen.'},indent=2)+'\n',encoding='utf-8');print('Sear7FusionCOMPATPASS;controls4/4/4/1verified; frozeninputs/parity')

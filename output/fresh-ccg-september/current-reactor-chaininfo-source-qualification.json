@@ -1,0 +1,14 @@
+{
+  "scope": "Source/runtime qualification, not an original-effect gameplay pass. No production patch or mapped fixture.",
+  "code": 241056746,
+  "name": "Reactor Shocker",
+  "source_sha256": "6cf5df2a1b8caed32165e1fb672d9e45fe8a27bfb193db8006f6c1c7d4396be9",
+  "legacy_constants_sha256": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+  "qualification": "Local CHAININFO_TRIGGERING_PLAYER=4/TRIGGERING_EFFECT=2 are legacy bit flags. Current primary engine constants define PLAYER=2/EFFECT=1 and4 means triggering location. Existing known CHAININFO incompatibility prevents interpreting original count logic in public engine without a test-only mapping; do not change production API constants to suit public core.",
+  "primary_source": "https://raw.githubusercontent.com/ProjectIgnis/CardScripts/master/constant.lua",
+  "unresolved": [
+    "Mandatory conditional draw permission at activation",
+    "Bottom-deck step dependency when draw condition fails",
+    "Original counts, chain response lock and actual outcomes in supported runtime"
+  ]
+}

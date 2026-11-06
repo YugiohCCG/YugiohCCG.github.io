@@ -9,7 +9,7 @@ function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c) e1:SetType(EFFECT_TYPE_FIELD) e1:SetCode(EFFECT_SPSUMMON_PROC) e1:SetProperty(EFFECT_FLAG_UNCOPYABLE) e1:SetRange(LOCATION_HAND) e1:SetCountLimit(1,id) e1:SetCondition(s.spcon) c:RegisterEffect(e1)
 	local e2=Effect.CreateEffect(c) e2:SetDescription(aux.Stringid(STRING_ID,0)) e2:SetCategory(CATEGORY_RELEASE+CATEGORY_SPECIAL_SUMMON) e2:SetType(EFFECT_TYPE_QUICK_O) e2:SetCode(EVENT_FREE_CHAIN) e2:SetRange(LOCATION_MZONE) e2:SetCountLimit(1,id+100) e2:SetCondition(s.qcon) e2:SetCost(s.qcost) e2:SetTarget(s.qtg) e2:SetOperation(s.qop) c:RegisterEffect(e2)
 end
-function s.desfilter(c,p) local rc=c:GetReasonCard() return c:IsPreviousControler(p) and c:IsLocation(LOCATION_GRAVE) and ((c:IsReason(REASON_EFFECT) and c:GetReasonPlayer()==1-p) or rc and rc:IsCode(ELDORA)) end
+function s.desfilter(c,p) local re=c:GetReasonEffect() local rc=re and re:GetHandler() return c:IsPreviousControler(p) and c:IsPreviousLocation(LOCATION_MZONE) and c:IsLocation(LOCATION_GRAVE) and ((c:IsReason(REASON_EFFECT) and c:GetReasonPlayer()==1-p) or rc and rc:IsCode(ELDORA)) end
 function s.regop(e,tp,eg)
 	local turn=Duel.GetTurnCount()
 	for p=0,1 do

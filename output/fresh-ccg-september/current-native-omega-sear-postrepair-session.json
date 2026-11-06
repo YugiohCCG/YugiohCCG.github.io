@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-25",
+  "runtime": "Native Omega v2.9.306; fresh process/window199680 after repair; @oai/sky observed control",
+  "setup": "Existing CCG Test - Talismandrake; local Host/KurAI, All pool, Unlimited, MR5,20-card start; actual production metadata and scripts, no neutral card or Lua API substitution.",
+  "source": {
+    "245935439": {
+      "source_sha256": "b9c19a812969ace60f80f3cd6e544d4edd95d804b7604165285414853480eb54",
+      "installed_matches": true
+    },
+    "210506870": {
+      "source_sha256": "8a6d1e9cfbc774b26a949aec98558659ca956846dd767b78ff7be09fb4037606",
+      "installed_matches": true
+    },
+    "218142234": {
+      "source_sha256": "e9a5463d665cd1394d532cd2a4839125f3d8507dee5540fee67d8810279ce099",
+      "installed_matches": true
+    },
+    "256928871": {
+      "source_sha256": "0186f6772c21261eddc4d0ed85f17cf2e19db08a80fe4f8df66ae39cc8ba8743",
+      "installed_matches": true
+    },
+    "215034223": {
+      "source_sha256": "a23cfa1786cc0c642a1aacab4ac9bf2e5b23268ce99f86976ff2a340b4322c7a",
+      "installed_matches": true
+    },
+    "241706191": {
+      "source_sha256": "8522fc1f08fa8af259f114699b6bcb4e9a364f7a2189ae6f702210716ee59663",
+      "installed_matches": true
+    }
+  },
+  "database_sha256": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+  "spec_sha256": "6e3d644ec1cc45ac996cfe977f250530726ce80315759edefdb995965c06a2a8",
+  "observations": [
+    {
+      "card": 210506870,
+      "result": "Original Heat Hand ignition self-summoned with naturally Normal Summoned Embers on field. Heat original monster Fusion effect selected Seraphina; actual field Embers plus Hand Sear/Heat used, proper native Seraphina ATK3000 summoned."
+    },
+    {
+      "card": 218142234,
+      "result": "Original registered three-material Fusion recipe selected and paid through Heat original effect. Native Fusion Summoned Seraphina on field. GY Arms recovery not offered at this initial summon because no eligible resource; no wording/shared-key conclusion."
+    },
+    {
+      "card": 245935439,
+      "result": "Hand Sear actually used as Seraphina Fusion material and sent to GY. Original optional secondary trigger offered and activated as CL1; other Embers Extra placement trigger declined. Repaired original-type filter accepts another Sear in PZone. That Sear actually Special Summoned from PZone in Attack Position ATK2000, vacating zone. Optional placement accepted: genuinely face-up Extra Embers (original Normal Summoned field material) moved into left PZone. No nil-method error."
+    },
+    {
+      "card": 215034223,
+      "result": "Original Hand Arms United activated, discarded Right Arms Halberd to GY, placed third Sear from Deck in right PZone; Deck19 from20."
+    },
+    {
+      "card": 245935439,
+      "result": "Original Pendulum Main Phase Fusion effect activated after secondary effect used earlier same turn (separate key). Selected original Enkindle recipe; right PZone Sear plus natural field Heat actually paid and moved to face-up Extra. Enkindle Fusion Summoned ATK2800. No secondary Sear material trigger offered again (named secondary use already spent); generic fast-response prompt only.",
+      "scope": "Original native PZone+field recipe/material path, not every recipient/Quick branch/reset."
+    }
+  ],
+  "prior_native_failure": "current-native-omega-pendulum-session.json",
+  "outcome_screenshot": {
+    "artifact": "native-omega-evidence/sear-repaired-and-original-fusions.jpg",
+    "sha256": "04c4c2ec9135ffe81cae1b8725380c3e348724efba06a976d58e608e224e8630"
+  },
+  "qualification": "Scoped live Omega behavior only. Confirms Sear native API repair and original Heat\u2192Seraphina/Sear\u2192Enkindle procedure positives. Does not certify entire cards, all recipes/mandatory-material boundaries, all timing/limits, or Seraphina wording. Embers own placement trigger declined; Sear caused placement, so do not attribute this positive to Embers own trigger."
+}

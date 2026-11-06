@@ -18,7 +18,7 @@ function s.initial_effect(c)
 	e1:SetCondition(s.spcon)
 	e1:SetTarget(s.sptg)
 	e1:SetOperation(s.spop)
-	e1:SetValue(SUMMON_VALUE_SELF)
+	e1:SetValue(function(e) return SUMMON_VALUE_SELF,e:GetLabel()==1 and 0 or 0xff end)
 	c:RegisterEffect(e1)
 	--Must first be Special Summoned by its own procedure
 	local e2=Effect.CreateEffect(c)
@@ -65,6 +65,7 @@ function s.matfilter(c,fc)
 		and c:IsAbleToDeckOrExtraAsCost()
 end
 function s.spcon(e,c)
+	e:SetLabel(0)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	if Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)>0 then return false end
@@ -85,11 +86,12 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local g=e:GetLabelObject()
 	if not g then return end
 	if aux.NecroValleyNegateCheck(g) then
+		e:SetLabel(1)
 		g:DeleteGroup()
 		return
 	end
 	c:SetMaterial(g)
-	Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_COST)
+	if Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_COST)~=#g then e:SetLabel(1) end
 	g:DeleteGroup()
 end
 function s.splimit(e,se,sp,st)

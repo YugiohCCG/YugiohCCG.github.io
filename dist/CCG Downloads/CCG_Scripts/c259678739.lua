@@ -7,13 +7,6 @@ function s.initial_effect(c)
 	aux.AddCodeList(c,259961648)
 	c:EnableReviveLimit()
 	aux.EnablePendulumAttribute(c)
-	--Special Summon limit
-	local e0=Effect.CreateEffect(c)
-	e0:SetType(EFFECT_TYPE_SINGLE)
-	e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
-	e0:SetCode(EFFECT_SPSUMMON_CONDITION)
-	e0:SetValue(aux.ritlimit)
-	c:RegisterEffect(e0)
 	--Countered opponent monsters cannot be Tributed
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
@@ -98,7 +91,7 @@ function s.register_lock(e,tp)
 	Duel.RegisterEffect(e1,tp)
 end
 function s.revealfilter(c)
-	return c:IsRace(RACE_CYBERSE) and (c:IsType(TYPE_RITUAL) or c:IsType(TYPE_NORMAL))
+	return not c:IsPublic() and c:IsRace(RACE_CYBERSE) and (c:IsType(TYPE_RITUAL) or c:IsType(TYPE_NORMAL))
 end
 function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -129,10 +122,10 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.matfilter(c,rc)
-	return c:GetLevel()>0 and c:IsCanBeRitualMaterial(rc)
+	return c:GetLevel()>0 and c:IsCanBeRitualMaterial(rc) and c:IsReleasableByEffect()
 end
 function s.corruptionfilter(c)
-	return c:IsFaceup() and c:IsCode(CARD_CORRUPTION)
+	return c:IsFaceup() and not c:IsDisabled() and c:IsCode(CARD_CORRUPTION)
 end
 function s.countercap(tp,lv)
 	if not Duel.IsExistingMatchingCard(s.corruptionfilter,tp,LOCATION_SZONE,0,1,nil) then return 0 end

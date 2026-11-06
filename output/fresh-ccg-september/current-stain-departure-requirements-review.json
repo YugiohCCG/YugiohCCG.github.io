@@ -1,0 +1,47 @@
+{
+  "scope": "Read-only exact saved evidence and current source/install consolidation; no gameplay reruns or count expansion. First departure fix does not certify other reset or whole-card behavior.",
+  "cards": [
+    {
+      "passcode": 248453205,
+      "name": "Shattering Sustained",
+      "printed_text": "Tribute 1 \"Stain\" monster from your hand, face-up field, or face-up in your opponent's Deck; Special Summon 1 Level 4 or lower \"Stain\" monster from your hand, Deck, or GY, but shuffle it face-up into your opponent's Deck when it leaves the field, then you can Tribute 1 face-up \"Stain\" monster in your opponent's Deck. During your End Phase, if this card is in your GY: You can banish 1 \"Stain\" monster from your GY; Set this card. You can only use each effect of \"Shattering Sustained\" once per turn.",
+      "script_sha256": "1c7d17993f7a7ef21d23f5cc4e94c6672ef2d9e8ddee89da166049c7e83c67b1",
+      "installed_matches": true,
+      "direct_scoped_evidence": {
+        "artifact": "current-stain-departures-batch.json",
+        "sha256": "d5babdc95d8aca2d0daed69a08c0a661ba0cb9742c98cbe153621720a884fd48",
+        "clause": "Granted first-departure opposing faceup Deck transfer",
+        "scope": "Full original Silhouette Hand trigger after actual opponent Deck departure, or original Shattering Hand tribute/native cost/Deck recruit; installed metadata/corrected transport/no Lua API adapter. Original watchers fail every GY/destruction/Hand/faceup banish/facedown banish/own Deck/opponent Deck departure. Repaired single watchers survive first departure, reset before transfer, preserve TURN_SET/TOFIELD reset semantics, and ensure already-opponent-Deck faceup state without toggling an already-faceup card. Actual source/recruit reaches opposing Deck faceup for all seven destinations. Effective omitted-watch/reverse controls, exact before-byte backups/helper/manifest/source-install parity. Exact same single continuous LeaveField/standard-reset pattern only these two. Neutral departure Spell/Deck event or Stain tribute/recruit identities. No setting/control-change/other effects/whole-card/live Omega certification."
+      },
+      "other_unproven_clauses": [
+        "Tribute origins beyond tested Hand/optional opposing Deck Tribute; End Phase GY Set; interruptions/uses"
+      ],
+      "retained_semantics_not_certified": [
+        "TURN_SET/reset after setting; control change; return-to-field lifecycle"
+      ],
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    },
+    {
+      "passcode": 256608976,
+      "name": "Stained Silhouette",
+      "printed_text": "If a card(s) leaves your opponent's Deck, except during the Draw Phase: You can Special Summon this card from your hand, but shuffle this card face-up into your opponent's Deck when it leaves the field. If your opponent controls a card (Quick Effect): You can reveal 1 \"Stain\" card in your hand, then activate 1 of these effects;\n\u25cf Special Summon 1 Level 4 or lower \"Stain\" monster from your Deck or GY.\n\u25cf Until the End Phase, this card's name becomes the original name of 1 face-up monster your opponent controls, and it gains that monster's original effects.\nYou can only use each effect of \"Stained Silhouette\" once per turn.",
+      "script_sha256": "bfb9d8711033fb5a0e38660a0acd06d67fe9a2b1a649d0106d37f7fe3f74ae06",
+      "installed_matches": true,
+      "direct_scoped_evidence": {
+        "artifact": "current-stain-departures-batch.json",
+        "sha256": "d5babdc95d8aca2d0daed69a08c0a661ba0cb9742c98cbe153621720a884fd48",
+        "clause": "Granted first-departure opposing faceup Deck transfer",
+        "scope": "Full original Silhouette Hand trigger after actual opponent Deck departure, or original Shattering Hand tribute/native cost/Deck recruit; installed metadata/corrected transport/no Lua API adapter. Original watchers fail every GY/destruction/Hand/faceup banish/facedown banish/own Deck/opponent Deck departure. Repaired single watchers survive first departure, reset before transfer, preserve TURN_SET/TOFIELD reset semantics, and ensure already-opponent-Deck faceup state without toggling an already-faceup card. Actual source/recruit reaches opposing Deck faceup for all seven destinations. Effective omitted-watch/reverse controls, exact before-byte backups/helper/manifest/source-install parity. Exact same single continuous LeaveField/standard-reset pattern only these two. Neutral departure Spell/Deck event or Stain tribute/recruit identities. No setting/control-change/other effects/whole-card/live Omega certification."
+      },
+      "other_unproven_clauses": [
+        "Draw Phase exclusion/other opponent Deck departures and trigger timing; reveal-cost Quick recruit/copy interruptions/uses"
+      ],
+      "retained_semantics_not_certified": [
+        "TURN_SET/reset after setting; control change; return-to-field lifecycle"
+      ],
+      "full_card_audit": "OPEN",
+      "live_omega_verified": false
+    }
+  ]
+}

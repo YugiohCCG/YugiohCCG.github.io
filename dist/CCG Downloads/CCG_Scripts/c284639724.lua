@@ -27,7 +27,7 @@ function s.initial_effect(c)
  e3:SetDescription(aux.Stringid(MSG_ID,1))
  e3:SetCategory(CATEGORY_SPECIAL_SUMMON)
  e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
- e3:SetProperty(EFFECT_FLAG_DELAY)
+ e3:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_DAMAGE_STEP)
  e3:SetCode(EVENT_DESTROYED)
  e3:SetRange(LOCATION_HAND)
  e3:SetCondition(s.spcon)
@@ -60,16 +60,16 @@ function s.tgtg(e,c)
  return c:IsFaceup() and c:IsSetCard(SET_TERRARUMIAN)
 end
 function s.ownmonster(c)
- return c:IsSetCard(SET_TERRARUMIAN)
+ return c:IsFaceup() and c:IsSetCard(SET_TERRARUMIAN)
 end
 function s.pcon(e,tp)
  return Duel.IsExistingMatchingCard(s.ownmonster,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.destroyfilter(c,handler)
- return c~=handler and c:IsSetCard(SET_TERRARUMIAN) and c:IsDestructable()
+ return c~=handler and c:IsFaceup() and c:IsSetCard(SET_TERRARUMIAN) and c:IsDestructable()
 end
 function s.zonefilter(c,handler)
- return c:IsLocation(LOCATION_MZONE) and s.destroyfilter(c,handler)
+ return s.destroyfilter(c,handler) and Duel.GetMZoneCount(handler:GetControler(),Group.FromCards(c))>0
 end
 function s.ptg(e,tp,eg,ep,ev,re,r,rp,chk)
  local c=e:GetHandler()
@@ -103,7 +103,7 @@ function s.pop(e,tp)
 end
 function s.spcheck(c,tp)
  return c:IsSetCard(SET_TERRARUMIAN) and c:IsType(TYPE_PENDULUM)
-  and c:IsPreviousControler(tp)
+  and c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE) and c:IsPreviousPosition(POS_FACEUP)
 end
 function s.spcon(e,tp,eg)
  return eg:IsExists(s.spcheck,1,nil,tp)

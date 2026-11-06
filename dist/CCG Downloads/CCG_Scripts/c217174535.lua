@@ -104,7 +104,7 @@ function s.actnegop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.lookfilter(c,tp,sc)
-	return c==sc or c:IsControler(tp) and c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and c~=sc
+	return c==sc or c:IsFaceup() and c:IsControler(tp) and c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and c~=sc
 end
 function s.lookcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(s.lookfilter,1,nil,tp,e:GetHandler())

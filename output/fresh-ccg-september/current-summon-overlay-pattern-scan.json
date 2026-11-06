@@ -1,0 +1,70 @@
+{
+  "scope": "711-source same-function SpecialSummon/Overlay lexical scan; not universal sequencing coverage.",
+  "candidates": [
+    {
+      "passcode": 227531376,
+      "function": "spop",
+      "body": "function s.spop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif not c:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0\n\t\tor Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEDOWN_DEFENSE)==0 then return end\n\tlocal g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS)\n\tlocal rc=re:GetHandler()\n\tlocal xc=g:Filter(s.xyzfilter,nil):GetFirst()\n\tif not rc or not xc or rc==xc or not rc:IsRelateToEffect(e) or not xc:IsRelateToEffect(e)\n\t\tor rc:IsImmuneToEffect(e) or not s.rcfilter(rc,e) then return end\n\tlocal dam=math.abs(math.max(0,rc:GetTextAttack())-math.max(0,xc:GetTextAttack()))\n\tlocal og=rc:GetOverlayGroup()\n\tif #og>0 then Duel.SendtoGrave(og,REASON_RULE) end\n\tDuel.Overlay(xc,rc)\n\tif rc:IsLocation(LOCATION_OVERLAY) and dam>0 then Duel.Damage(tp,dam,REASON_EFFECT) end\nend\n"
+    },
+    {
+      "passcode": 228635967,
+      "function": "activate",
+      "body": "function s.activate(e,tp,eg,ep,ev,re,r,rp)\n\tlocal tc=Duel.GetFirstTarget()\n\tif not tc or tc:IsFacedown() or not tc:IsRelateToEffect(e)\n\t\tor tc:IsControler(1-tp) or tc:IsImmuneToEffect(e)\n\t\tor not aux.MustMaterialCheck(tc,tp,EFFECT_MUST_BE_XMATERIAL) then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\tlocal g=Duel.SelectMatchingCard(tp,s.filter2,tp,LOCATION_EXTRA,0,1,1,nil,e,tp,tc,tc:GetRank()+2)\n\tlocal sc=g:GetFirst()\n\tif sc then\n\t\tlocal mg=tc:GetOverlayGroup()\n\t\tif #mg~=0 then\n\t\t\tDuel.Overlay(sc,mg)\n\t\tend\n\t\tsc:SetMaterial(Group.FromCards(tc))\n\t\tDuel.Overlay(sc,Group.FromCards(tc))\n\t\tif Duel.SpecialSummon(sc,SUMMON_TYPE_XYZ,tp,tp,false,false,POS_FACEUP)>0 then\n\t\t\tsc:CompleteProcedure()\n\t\tend\n\tend\nend\n\n-- recycle trigger\n"
+    },
+    {
+      "passcode": 231088629,
+      "function": "spop",
+      "body": "function s.spop(e,tp)\n\tlocal c=e:GetHandler()\n\tif not c:IsRelateToEffect(e) or Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)==0 or not c:IsType(TYPE_XYZ) then return end\n\tlocal g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.xyzmat),tp,LOCATION_GRAVE,0,nil,c)\n\tif #g>=2 and Duel.SelectYesNo(tp,94) then\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)\n\t\tDuel.Overlay(c,g:Select(tp,2,2,nil))\n\tend\nend\n"
+    },
+    {
+      "passcode": 231129918,
+      "function": "revop",
+      "body": "function s.revop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end\n\tlocal g=eg:Filter(aux.NecroValleyFilter(s.revfilter),nil,e,tp):Filter(Card.IsRelateToEffect,nil,e)\n\tif #g==0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\tlocal tc=g:Select(tp,1,1,nil):GetFirst()\n\tif tc\n\t\tand Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0\n\t\tand Duel.IsExistingMatchingCard(s.ovfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,tc,tc,e)\n\t\tand Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then\n\t\tDuel.BreakEffect()\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)\n\t\tlocal g=Duel.SelectMatchingCard(tp,s.ovfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,tc,tc,e)\n\t\tif #g>0 then\n\t\t\tDuel.Overlay(tc,g)\n\t\tend\n\tend\nend\n"
+    },
+    {
+      "passcode": 238272439,
+      "function": "attachop",
+      "body": "function s.attachop(e,tp)\n local kept=e:GetLabelObject()\n if not kept then return end\n e:SetLabelObject(nil)\n local g=kept:Filter(Card.IsRelateToEffect,nil,e)\n kept:DeleteGroup()\n local fc=g:Filter(Card.IsLocation,nil,LOCATION_ONFIELD):GetFirst()\n local tc=g:Filter(Card.IsLocation,nil,LOCATION_GRAVE+LOCATION_REMOVED):GetFirst()\n local c=e:GetHandler()\n if not c:IsRelateToEffect(e) or not c:IsFaceup() or not c:IsLocation(LOCATION_MZONE)\n  or not fc or fc:IsImmuneToEffect(e) or not fc:IsCanOverlay() then return end\n local og=fc:GetOverlayGroup()\n if #og>0 then Duel.SendtoGrave(og,REASON_RULE) end\n Duel.Overlay(c,Group.FromCards(fc))\n if not fc:IsLocation(LOCATION_OVERLAY) or not tc then return end\n local player=e:GetLabel()\n local set,summon=s.placeoptions(tc,e,tp,player,nil)\n if summon and (not set or Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,3))) then\n  Duel.SpecialSummon(tc,0,tp,player,false,false,POS_FACEUP)\n elseif set then\n  if tc:IsType(TYPE_MONSTER) then Duel.SpecialSummon(tc,0,tp,player,false,false,POS_FACEDOWN_DEFENSE)\n  else Duel.SSet(tp,tc,player) end\n end\nend\n"
+    },
+    {
+      "passcode": 238282350,
+      "function": "revop",
+      "body": "function s.revop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end\n\tlocal g=eg:Filter(aux.NecroValleyFilter(s.revfilter),nil,e,tp):Filter(Card.IsRelateToEffect,nil,e)\n\tif #g==0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\tlocal tc=g:Select(tp,1,1,nil):GetFirst()\n\tif tc\n\t\tand Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0\n\t\tand Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.ovfilter),tp,LOCATION_GRAVE,LOCATION_GRAVE,1,nil)\n\t\tand Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then\n\t\tDuel.BreakEffect()\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)\n\t\tlocal g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.ovfilter),tp,LOCATION_GRAVE,LOCATION_GRAVE,1,1,nil)\n\t\tif #g>0 then\n\t\t\tDuel.Overlay(tc,g)\n\t\tend\n\tend\nend\n"
+    },
+    {
+      "passcode": 238976759,
+      "function": "xyzop",
+      "body": "function s.xyzop(e,tp,eg,ep,ev,re,r,rp)\n\tif not e:GetHandler():IsRelateToEffect(e) then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\tlocal g=Duel.SelectMatchingCard(tp,s.xyzfilter,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)\n\tlocal tc=g:GetFirst()\n\tif tc and Duel.SpecialSummon(tc,SUMMON_TYPE_XYZ,tp,tp,false,false,POS_FACEUP)~=0 then\n\t\ttc:CompleteProcedure()\n\t\t-- Optionally attach materials from GY/banished\n\t\tlocal matg=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.matfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,nil)\n\t\tif #matg>0 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then\n\t\t\tDuel.BreakEffect()\n\t\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)\n\t\t\tlocal sg=matg:Select(tp,1,99,nil)\n\t\t\tif #sg>0 then\n\t\t\t\tDuel.Overlay(tc,sg)\n\t\t\tend\n\t\tend\n\tend\nend\n"
+    },
+    {
+      "passcode": 247755871,
+      "function": "revop",
+      "body": "function s.revop(e,tp)\n local c=e:GetHandler()\n Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)\n local g=Duel.SelectMatchingCard(tp,s.destroyfilter,tp,LOCATION_ONFIELD,0,1,1,nil,tp)\n if #g==0 or Duel.Destroy(g,REASON_EFFECT)==0 or not c:IsRelateToEffect(e)\n  or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0\n  or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end\n local redirect=Effect.CreateEffect(c)\n redirect:SetType(EFFECT_TYPE_SINGLE)\n redirect:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n redirect:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n redirect:SetValue(LOCATION_REMOVED)\n redirect:SetReset(RESET_EVENT+RESETS_REDIRECT)\n c:RegisterEffect(redirect,true)\n if Duel.IsExistingMatchingCard(s.ovfilter,tp,0,LOCATION_ONFIELD,1,nil,e)\n  and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then\n  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)\n  local og=Duel.SelectMatchingCard(tp,s.ovfilter,tp,0,LOCATION_ONFIELD,1,1,nil,e)\n  if #og>0 then Duel.Overlay(c,og) end\n end\nend\n"
+    },
+    {
+      "passcode": 256831125,
+      "function": "sphspop",
+      "body": "function s.sphspop(e,tp)\n\tlocal c=e:GetHandler()\n\tif not c:IsRelateToEffect(e) or Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)==0 or not c:IsType(TYPE_XYZ) then return end\n\tlocal g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.sphxyzmat),tp,LOCATION_GRAVE,0,nil,c)\n\tif #g>=2 then\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)\n\t\tDuel.Overlay(c,g:Select(tp,2,2,nil))\n\tend\nend\n"
+    },
+    {
+      "passcode": 259072169,
+      "function": "exop",
+      "body": "function s.exop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif Duel.GetLocationCountFromEx(tp,tp,nil,c)<=0 or not c:IsRelateToEffect(e) then return end\n\tlocal ec=e:GetLabelObject()\n\tif not (ec and ec:IsRelateToEffect(e) and ec:IsLocation(LOCATION_HAND) and s.egfilter(ec)) then return end\n\tif Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)>0 then\n\t\tc:CompleteProcedure()\n\t\tDuel.Overlay(c,Group.FromCards(ec))\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_FIELD)\n\t\te1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)\n\t\te1:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)\n\t\te1:SetTargetRange(1,0)\n\t\te1:SetTarget(s.splimit)\n\t\te1:SetReset(RESET_PHASE+PHASE_END,2)\n\t\tDuel.RegisterEffect(e1,tp)\n\tend\nend\n"
+    },
+    {
+      "passcode": 259137697,
+      "function": "gyspop",
+      "body": "function s.gyspop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end\n\tlocal c=e:GetHandler()\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\tlocal g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE,0,1,1,nil,e,tp)\n\tlocal tc=g:GetFirst()\n\tif tc and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0\n\t\tand tc:IsType(TYPE_XYZ) and c:IsLocation(LOCATION_GRAVE)\n\t\tand aux.NecroValleyFilter(Card.IsCanOverlay)(c)\n\t\tand Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then\n\t\tDuel.Overlay(tc,Group.FromCards(c))\n\tend\nend\n"
+    },
+    {
+      "passcode": 259264449,
+      "function": "activate",
+      "body": "function s.activate(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tlocal tc=Duel.GetFirstTarget()\n\tif not (tc and tc:IsRelateToEffect(e) and tc:IsFaceup() and tc:IsControler(tp)) then return end\n\tif not aux.MustMaterialCheck(tc,tp,EFFECT_MUST_BE_XMATERIAL) then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\tlocal sc=Duel.SelectMatchingCard(tp,s.xyzfilter,tp,LOCATION_EXTRA,0,1,1,nil,e,tp,tc):GetFirst()\n\tif not sc then return end\n\tlocal lv=tc:GetLevel()\n\tsc:SetMaterial(Group.FromCards(tc))\n\tDuel.Overlay(sc,Group.FromCards(tc))\n\tif Duel.SpecialSummon(sc,SUMMON_TYPE_XYZ,tp,tp,false,false,POS_FACEUP)>0 then\n\t\tsc:CompleteProcedure()\n\t\tif c:IsRelateToEffect(e) and s.canoverlay(c,tp) then\n\t\t\tc:CancelToGrave()\n\t\t\tDuel.Overlay(sc,c)\n\t\tend\n\t\tlocal diff=sc:GetRank()-lv\n\t\tif diff>0 then\n\t\t\tDuel.Draw(1-tp,diff,REASON_EFFECT)\n\t\tend\n\tend\nend\n"
+    },
+    {
+      "passcode": 259624110,
+      "function": "repop",
+      "body": "function s.repop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal p=1-tp\n\tif Duel.GetLocationCount(p,LOCATION_MZONE)>0\n\t\tand Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),p,LOCATION_HAND+LOCATION_GRAVE,0,1,nil,e,p) then\n\t\tDuel.Hint(HINT_SELECTMSG,p,HINTMSG_SPSUMMON)\n\t\tlocal sg=Duel.SelectMatchingCard(p,aux.NecroValleyFilter(s.spfilter),p,LOCATION_HAND+LOCATION_GRAVE,0,1,1,nil,e,p)\n\t\tlocal sc=sg:GetFirst()\n\t\tif sc then\n\t\t\tDuel.SpecialSummon(sc,0,p,p,false,false,POS_FACEUP)\n\t\tend\n\tend\n\tif Duel.IsExistingMatchingCard(s.xyzfilter,p,LOCATION_MZONE,0,1,nil)\n\t\tand Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.gymatfilter),p,LOCATION_GRAVE,LOCATION_GRAVE,1,nil)\n\t\tand Duel.SelectYesNo(p,aux.Stringid(STRING_ID,1)) then\n\t\tDuel.Hint(HINT_SELECTMSG,p,HINTMSG_XMATERIAL)\n\t\tlocal mg=Duel.SelectMatchingCard(p,aux.NecroValleyFilter(s.gymatfilter),p,LOCATION_GRAVE,LOCATION_GRAVE,1,1,nil)\n\t\tDuel.Hint(HINT_SELECTMSG,p,HINTMSG_FACEUP)\n\t\tlocal xc=Duel.SelectMatchingCard(p,s.xyzfilter,p,LOCATION_MZONE,0,1,1,nil):GetFirst()\n\t\tif xc and #mg>0 then\n\t\t\tDuel.Overlay(xc,mg)\n\t\tend\n\tend\nend\n"
+    }
+  ]
+}
