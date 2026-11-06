@@ -105,7 +105,7 @@ function s.revivefilter(c,e,tp)
   and not c:IsCode(id) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.oppfilter(c)
- return c:IsFaceup() and c:IsSummonType(SUMMON_TYPE_SPECIAL)
+ return aux.NegateMonsterFilter(c) and c:IsSummonType(SUMMON_TYPE_SPECIAL)
 end
 function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
  local ownok=Duel.GetLocationCount(tp,LOCATION_MZONE)>0

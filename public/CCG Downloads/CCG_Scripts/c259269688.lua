@@ -32,7 +32,7 @@ function s.xlfilter(c)
 		and (c:IsType(TYPE_XYZ) or c:IsType(TYPE_LINK))
 end
 function s.negfilter(c,e)
-	return c:IsFaceup() and not c:IsDisabled() and c:IsCanBeEffectTarget(e)
+	return aux.NegateMonsterFilter(c) and c:IsCanBeEffectTarget(e)
 end
 function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local ct=Duel.GetMatchingGroupCount(s.xlfilter,tp,LOCATION_MZONE,0,nil)
@@ -68,6 +68,7 @@ function s.negop(e,tp,eg,ep,ev,re,r,rp)
 				e3:SetCode(EFFECT_DISABLE_TRAPMONSTER)
 				tc:RegisterEffect(e3)
 			end
+			Duel.AdjustInstantly(tc)
 			if tc:IsDisabled() and not tc:IsAttribute(ATTRIBUTE_LIGHT) and not tc:IsType(TYPE_TOKEN)
 				and tc:IsCanOverlay() and not tc:IsImmuneToEffect(e) then
 				og:AddCard(tc)
