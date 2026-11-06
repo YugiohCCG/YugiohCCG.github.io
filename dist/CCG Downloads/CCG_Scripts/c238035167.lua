@@ -114,7 +114,7 @@ function s.fsop(e,tp,eg,ep,ev,re,r,rp)
 			local mat1=Duel.SelectFusionMaterial(tp,tc,m,nil,chkf)
 			if #mat1==0 or Duel.GetLocationCountFromEx(tp,tp,mat1,tc)<=0 then return end
 			tc:SetMaterial(mat1)
-			Duel.Remove(mat1,POS_FACEUP,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
+			if Duel.Remove(mat1,POS_FACEUP,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat1 then return end
 			Duel.BreakEffect()
 			if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then tc:CompleteProcedure() end
 		else

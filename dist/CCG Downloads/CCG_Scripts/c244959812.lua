@@ -112,6 +112,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 		local mat=Group.FromCards(c)
 		rc:SetMaterial(mat)
 		Duel.ReleaseRitualMaterial(mat)
+		if c:IsLocation(LOCATION_MZONE) then return end
 		Duel.BreakEffect()
 		if Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
 			rc:CompleteProcedure()

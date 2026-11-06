@@ -76,9 +76,12 @@ function s.ritualsummon(e,tp)
 	local handfieldmat=monmat:Filter(Card.IsLocation,nil,LOCATION_HAND+LOCATION_MZONE)
 	local deckmat=monmat:Filter(Card.IsLocation,nil,LOCATION_DECK)
 	rc:SetMaterial(monmat)
+	local locations={}
+	for mc in aux.Next(handfieldmat) do locations[mc]=mc:GetLocation() end
 	if #handfieldmat>0 then Duel.ReleaseRitualMaterial(handfieldmat) end
-	if #deckmat>0 then Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end
-	if #stmat>0 then Duel.SendtoGrave(stmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end
+	local deckpaid=#deckmat==0 or Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL)==#deckmat
+	local stpaid=#stmat==0 or Duel.SendtoGrave(stmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL)==#stmat
+	if not deckpaid or not stpaid or handfieldmat:IsExists(function(mc) return mc:GetLocation()==locations[mc] end,1,nil) then return end
 	Duel.BreakEffect()
 	if Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
 		rc:CompleteProcedure()

@@ -52,9 +52,12 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.SpecialSummonComplete()
 	end
 end
+function s.desreleasefilter(c,tp)
+	return Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,LOCATION_ONFIELD)>1+c:GetEquipCount()
+end
 function s.descost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.CheckReleaseGroup(tp,nil,1,nil) end
-	local sg=Duel.SelectReleaseGroup(tp,nil,1,1,nil)
+	if chk==0 then return Duel.CheckReleaseGroup(tp,s.desreleasefilter,1,nil,tp) end
+	local sg=Duel.SelectReleaseGroup(tp,s.desreleasefilter,1,1,nil,tp)
 	Duel.Release(sg,REASON_COST)
 end
 function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)

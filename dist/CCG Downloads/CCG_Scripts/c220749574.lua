@@ -24,7 +24,7 @@ function s.initial_effect(c)
 	e3:SetCondition(s.spcon)
 	e3:SetTarget(s.sptg)
 	e3:SetOperation(s.spop)
-	e3:SetValue(SUMMON_VALUE_SELF)
+	e3:SetValue(function(e) return SUMMON_VALUE_SELF,e:GetLabel()==1 and 0 or 0xff end)
 	c:RegisterEffect(e3)
 	--Treat this card as Level 1 for the Xyz Summon of an Aqua monster
 	local e4=Effect.CreateEffect(c)
@@ -60,6 +60,7 @@ function s.spfilter(c)
 	return c:IsRace(RACE_AQUA) and c:IsAbleToDeckAsCost() and aux.NecroValleyFilter()(c)
 end
 function s.spcon(e,c)
+	e:SetLabel(0)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
@@ -78,8 +79,11 @@ end
 function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local g=e:GetLabelObject()
 	if not g then return end
-	Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_COST)
-	Duel.SortDeckbottom(tp,tp,2)
+	if Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_COST)==#g then
+		Duel.SortDeckbottom(tp,tp,2)
+	else
+		e:SetLabel(1)
+	end
 	g:DeleteGroup()
 end
 function s.xyzlv(e,c,rc)

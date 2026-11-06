@@ -29,6 +29,7 @@ function s.initial_effect(c)
  e2:SetCondition(s.altcon)
  e2:SetTarget(s.alttg)
  e2:SetOperation(s.altop)
+ e2:SetValue(function(e) return 0,e:GetLabel()==1 and 0 or 0xff end)
  c:RegisterEffect(e2)
  local e3=Effect.CreateEffect(c)
  e3:SetType(EFFECT_TYPE_SINGLE)
@@ -83,6 +84,7 @@ function s.altcheck(g,tp,fc)
   and Duel.GetLocationCountFromEx(tp,tp,nil,fc)>0
 end
 function s.altcon(e,c)
+ e:SetLabel(0)
  if c==nil then return true end
  local tp=c:GetControler()
  local g=Duel.GetMatchingGroup(s.altfilter,tp,LOCATION_GRAVE,0,nil,c)
@@ -101,7 +103,7 @@ function s.altop(e,tp,eg,ep,ev,re,r,rp,c)
  local g=e:GetLabelObject()
  if not g then return end
  c:SetMaterial(g)
- Duel.Remove(g,POS_FACEUP,REASON_SPSUMMON)
+ if Duel.Remove(g,POS_FACEUP,REASON_SPSUMMON)~=#g then e:SetLabel(1) end
  g:DeleteGroup()
 end
 function s.otheraqua(c,handler)

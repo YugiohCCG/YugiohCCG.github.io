@@ -41,11 +41,11 @@ function s.copycon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_SPECIAL+SUMMON_VALUE_SELF)
 end
 function s.copyfilter(c)
-	return c:IsFaceup() and not c:IsType(TYPE_TOKEN)
+	return c:IsFaceup()
 end
 function s.copyop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not c:IsRelateToEffect(e) or c:IsFacedown() then return end
+	if c:IsFacedown() then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local g=Duel.SelectMatchingCard(tp,s.copyfilter,tp,0,LOCATION_MZONE,1,1,nil)
 	local tc=g:GetFirst()

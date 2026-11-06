@@ -85,7 +85,10 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	Auxiliary.GCheckAdditional=nil
 	if not mat or #mat==0 then return end
 	ritual:SetMaterial(mat)
+	local locations={}
+	for mc in aux.Next(mat) do locations[mc]=mc:GetLocation() end
 	Duel.ReleaseRitualMaterial(mat)
+	if mat:IsExists(function(mc) return mc:GetLocation()==locations[mc] end,1,nil) then return end
 	if needextra and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then
 		Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEDOWN_DEFENSE)
 	end

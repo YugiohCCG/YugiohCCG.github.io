@@ -11,6 +11,7 @@ function s.initial_effect(c)
 	e1:SetCondition(s.spcon)
 	e1:SetTarget(s.sptg)
 	e1:SetOperation(s.spop)
+	e1:SetValue(function(e) return 0,e:GetLabel()==1 and 0 or 0xff end)
 	c:RegisterEffect(e1)
 	-- search Bau card
 	local e2=Effect.CreateEffect(c)
@@ -57,6 +58,7 @@ function s.spcheck(g,tp,c)
 	return g:IsExists(Card.IsSetCard,1,nil,0xba8) and Duel.GetMZoneCount(tp,g)>0
 end
 function s.spcon(e,c)
+	e:SetLabel(0)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	local rg=Duel.GetMatchingGroup(s.spfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,c)
@@ -76,7 +78,7 @@ end
 function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local g=e:GetLabelObject()
 	if not g then return end
-	Duel.Remove(g,POS_FACEUP,REASON_COST)
+	if Duel.Remove(g,POS_FACEUP,REASON_COST)~=#g then e:SetLabel(1) end
 	g:DeleteGroup()
 end
 

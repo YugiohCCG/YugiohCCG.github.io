@@ -79,9 +79,12 @@ end
 function s.retcon(e,tp,eg,ep,ev,re,r,rp)
 	return ep==1-tp and #eg>=2 and not (re and re:GetHandler():IsCode(id))
 end
-function s.qpfilter(c,e)
+function s.qpfilter_eligible(c,e)
 	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE)) and c:IsType(TYPE_QUICKPLAY)
-		and c:IsAbleToHand() and c:IsCanBeEffectTarget(e)
+		and c:IsAbleToHand()
+end
+function s.qpfilter(c,e)
+	return s.qpfilter_eligible(c,e) and c:IsCanBeEffectTarget(e)
 end
 function s.rettg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter(s.qpfilter)(chkc,e) end
@@ -92,7 +95,7 @@ function s.rettg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.retop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.qpfilter)(tc,e) then
+	if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.qpfilter_eligible)(tc,e) then
 		Duel.SendtoHand(tc,nil,REASON_EFFECT)
 		Duel.ConfirmCards(1-tp,tc)
 	end

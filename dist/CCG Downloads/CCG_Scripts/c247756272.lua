@@ -19,6 +19,7 @@ function s.initial_effect(c)
  e2:SetValue(SUMMON_TYPE_SYNCHRO)
  e2:SetCondition(s.proccon)
  e2:SetOperation(s.procop)
+ e2:SetValue(function(e) return 0,e:GetLabel()==1 and 0 or 0xff end)
  c:RegisterEffect(e2)
  local e3=Effect.CreateEffect(c)
  e3:SetDescription(aux.Stringid(MSG_ID,1))
@@ -56,6 +57,7 @@ function s.pair(g)
   or (b:IsSetCard(0xa121) and a:IsType(TYPE_TUNER) and a:IsAttribute(ATTRIBUTE_FIRE))
 end
 function s.proccon(e,c)
+ e:SetLabel(0)
  if c==nil then return true end
  local tp=c:GetControler()
  if Duel.GetFlagEffect(tp,id)>0 or Duel.GetLocationCountFromEx(tp,tp,nil,c)<=0 then return false end
@@ -66,9 +68,12 @@ function s.procop(e,tp,eg,ep,ev,re,r,rp,c)
  local g=Duel.GetMatchingGroup(s.material,tp,LOCATION_GRAVE,0,nil)
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
  local sg=g:SelectSubGroup(tp,s.pair,false,2,2)
- if not sg then return end
+ if not sg then e:SetLabel(1) return end
  c:SetMaterial(sg)
- Duel.Remove(sg,POS_FACEUP,REASON_MATERIAL+REASON_SYNCHRO)
+ if Duel.Remove(sg,POS_FACEUP,REASON_MATERIAL+REASON_SYNCHRO)~=#sg then
+  e:SetLabel(1)
+  return
+ end
  Duel.RegisterFlagEffect(tp,id,RESET_PHASE+PHASE_END,0,1)
 end
 function s.remtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)

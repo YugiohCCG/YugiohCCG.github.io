@@ -101,7 +101,7 @@ function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 	local mat=Duel.SelectFusionMaterial(tp,fc,mg,nil,tp|0x200)
 	if not mat or #mat==0 or aux.NecroValleyNegateCheck(mat) then return end
 	fc:SetMaterial(mat)
-	if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)>0 then
+	if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==#mat then
 		Duel.BreakEffect()
 		if Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then
 			fc:CompleteProcedure()

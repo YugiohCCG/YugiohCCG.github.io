@@ -22,8 +22,8 @@ function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_REMOVE,g,#g,0,0)
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,1-tp,#g)
 end
-function s.retfilter(c)
-	return c:IsLocation(LOCATION_REMOVED) and c:IsFaceup() and c:IsAbleToGrave()
+function s.retfilter(c,fid)
+	return c:IsLocation(LOCATION_REMOVED) and c:IsFaceup() and c:IsAbleToGrave() and c:GetFlagEffectLabel(id)==fid
 end
 function s.oppcard(c,tp)
 	return c:GetOwner()==1-tp
@@ -37,12 +37,17 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	if ct==0 then return end
 	local og=rg:Filter(s.oppcard,nil,tp)
 	if #og>0 then
+		local fid=e:GetHandler():GetFieldID()
+		for tc in aux.Next(og) do
+			tc:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,0,1,fid)
+		end
 		og:KeepAlive()
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 		e1:SetCode(EVENT_PHASE+PHASE_END)
 		e1:SetCountLimit(1)
 		e1:SetReset(RESET_PHASE+PHASE_END)
+		e1:SetLabel(fid)
 		e1:SetLabelObject(og)
 		e1:SetOperation(s.retop)
 		Duel.RegisterEffect(e1,tp)
@@ -52,7 +57,7 @@ end
 function s.retop(e,tp,eg,ep,ev,re,r,rp)
 	local g=e:GetLabelObject()
 	if not g then return end
-	local sg=g:Filter(aux.NecroValleyFilter(s.retfilter),nil)
+	local sg=g:Filter(aux.NecroValleyFilter(s.retfilter),nil,e:GetLabel())
 	if #sg>0 then
 		Duel.SendtoGrave(sg,REASON_EFFECT+REASON_RETURN)
 	end

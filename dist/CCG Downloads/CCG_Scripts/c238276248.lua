@@ -66,17 +66,24 @@ function s.revealcost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.destroyfilter(c,tp)
  return (c:IsLocation(LOCATION_HAND) or c:IsFaceup()) and c:IsSetCard(SET_NEPHTHYS) and c:IsType(TYPE_MONSTER) and c:IsDestructable()
-  and (Duel.GetLocationCount(tp,LOCATION_MZONE)>0 or c:IsLocation(LOCATION_MZONE) and Duel.GetMZoneCount(tp,c)>0)
+ 
+end
+function s.spacefilter(c,tp)
+ return s.destroyfilter(c,tp) and (Duel.GetLocationCount(tp,LOCATION_MZONE)>0 or c:IsLocation(LOCATION_MZONE) and Duel.GetMZoneCount(tp,c)>0)
 end
 function s.handtg(e,tp,eg,ep,ev,re,r,rp,chk)
  if chk==0 then return e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false)
-  and Duel.IsExistingMatchingCard(s.destroyfilter,tp,LOCATION_HAND+LOCATION_MZONE,0,1,nil,tp) end
+  and Duel.IsExistingMatchingCard(s.spacefilter,tp,LOCATION_HAND+LOCATION_MZONE,0,1,nil,tp) end
  Duel.SetOperationInfo(0,CATEGORY_DESTROY,nil,1,tp,LOCATION_HAND+LOCATION_MZONE)
  Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,tp,LOCATION_HAND)
 end
 function s.handop(e,tp)
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
- local g=Duel.SelectMatchingCard(tp,s.destroyfilter,tp,LOCATION_HAND+LOCATION_MZONE,0,1,1,nil,tp)
+ local opensZone=Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
+  and Duel.IsExistingMatchingCard(s.spacefilter,tp,LOCATION_MZONE,0,1,nil,tp)
+ local filter=opensZone and s.spacefilter or s.destroyfilter
+ local location=opensZone and LOCATION_MZONE or LOCATION_HAND+LOCATION_MZONE
+ local g=Duel.SelectMatchingCard(tp,filter,tp,location,0,1,1,nil,tp)
  if #g==0 or Duel.Destroy(g,REASON_EFFECT)==0 then return end
  local c=e:GetHandler()
  if c:IsRelateToEffect(e) and c:IsLocation(LOCATION_HAND) then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP) end

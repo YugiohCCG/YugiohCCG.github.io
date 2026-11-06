@@ -81,7 +81,11 @@ function s.pop(e,tp)
  if not c:IsRelateToEffect(e)
   or not Duel.IsExistingMatchingCard(s.destroyfilter,tp,LOCATION_ONFIELD,0,1,c,c) then return end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
- local g=Duel.SelectMatchingCard(tp,s.destroyfilter,tp,LOCATION_ONFIELD,0,1,1,c,c)
+ local freeZone=Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
+  and Duel.IsExistingMatchingCard(s.zonefilter,tp,LOCATION_MZONE,0,1,c,c)
+ local filter=freeZone and s.zonefilter or s.destroyfilter
+ local location=freeZone and LOCATION_MZONE or LOCATION_ONFIELD
+ local g=Duel.SelectMatchingCard(tp,filter,tp,location,0,1,1,c,c)
  if #g==0 or Duel.Destroy(g,REASON_EFFECT)==0 then return end
  if not c:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
   or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end

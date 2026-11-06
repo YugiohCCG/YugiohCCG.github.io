@@ -64,6 +64,12 @@ function s.spop2(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(s.darkfilter,tp,LOCATION_MZONE,0,nil)
 	if #g<2 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local dg=g:Select(tp,2,2,nil)
+	local dg
+	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 and g:CheckSubGroup(s.spacecheck,2,2,tp) then
+		dg=g:SelectSubGroup(tp,s.spacecheck,false,2,2,tp)
+	else
+		dg=g:Select(tp,2,2,nil)
+	end
+	if not dg then return end
 	if Duel.Destroy(dg,REASON_EFFECT)==2 and c:IsRelateToEffect(e) then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP) end
 end

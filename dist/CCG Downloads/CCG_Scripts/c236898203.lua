@@ -54,15 +54,23 @@ end
 function s.spop1(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local g=Duel.SelectMatchingCard(tp,s.desfilter,tp,LOCATION_ONFIELD,0,1,1,c,e)
+	local g
+ if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
+  and Duel.IsExistingMatchingCard(s.spacefilter,tp,LOCATION_MZONE,0,1,c,e,tp) then
+  g=Duel.SelectMatchingCard(tp,s.spacefilter,tp,LOCATION_MZONE,0,1,1,c,e,tp)
+ else
+  g=Duel.SelectMatchingCard(tp,s.desfilter,tp,LOCATION_ONFIELD,0,1,1,c,e)
+ end
 	if #g>0 and Duel.Destroy(g,REASON_EFFECT)>0 then
 		if c:IsRelateToEffect(e) and Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)~=0 then
 			local end_phase=Duel.IsBattlePhase() and PHASE_BATTLE or PHASE_MAIN1
+			local fid=c:GetFieldID()
+			c:RegisterFlagEffect(id+200,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+end_phase,0,1)
 			local e1=Effect.CreateEffect(c)
 			e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 			e1:SetCode(EVENT_PHASE+end_phase)
 			e1:SetCountLimit(1)
-			e1:SetLabel(Duel.GetCurrentPhase())
+			e1:SetLabel(fid)
 			e1:SetLabelObject(c)
 			e1:SetReset(RESET_PHASE+end_phase)
 			e1:SetOperation(s.desop)
@@ -72,7 +80,8 @@ function s.spop1(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=e:GetLabelObject()
-	if tc and tc:IsLocation(LOCATION_MZONE) then
+	if tc and tc:IsLocation(LOCATION_MZONE) and tc:GetFieldID()==e:GetLabel()
+		and tc:GetFlagEffect(id+200)>0 then
 		Duel.Destroy(tc,REASON_EFFECT)
 	end
 end
@@ -90,10 +99,13 @@ function s.spop2(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)
 		and Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)~=0 then
+		local fid=c:GetFieldID()
+		c:RegisterFlagEffect(id+200,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_BATTLE,0,1)
 		local e1=Effect.CreateEffect(c)
 		e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 		e1:SetCode(EVENT_PHASE+PHASE_BATTLE)
 		e1:SetCountLimit(1)
+		e1:SetLabel(fid)
 		e1:SetLabelObject(c)
 		e1:SetReset(RESET_PHASE+PHASE_BATTLE)
 		e1:SetOperation(s.desop)

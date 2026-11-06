@@ -14,6 +14,7 @@ function s.initial_effect(c)
 	e0:SetCondition(s.spcon)
 	e0:SetTarget(s.sptg)
 	e0:SetOperation(s.spop)
+	e0:SetValue(function(e) return 0,e:GetLabel()==1 and 0 or 0xff end)
 	c:RegisterEffect(e0)
 	--spsummon condition
 	local e1=Effect.CreateEffect(c)
@@ -57,6 +58,7 @@ function s.matcheck(g,tp,sc)
 		and Duel.GetLocationCountFromEx(tp,tp,g,sc)>0
 end
 function s.spcon(e,c)
+	e:SetLabel(0)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	local mg=Duel.GetMatchingGroup(s.matfilter,tp,LOCATION_ONFIELD,0,nil)
@@ -75,7 +77,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local g=e:GetLabelObject()
 	if not g then return end
 	c:SetMaterial(g)
-	Duel.SendtoGrave(g,REASON_COST)
+	if Duel.SendtoGrave(g,REASON_COST)~=#g then e:SetLabel(1) end
 	g:DeleteGroup()
 end
 function s.splimit(e,se,sp,st)

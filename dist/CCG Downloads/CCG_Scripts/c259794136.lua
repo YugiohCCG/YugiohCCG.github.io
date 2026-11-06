@@ -19,6 +19,7 @@ function s.initial_effect(c)
 	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetCondition(s.spcon)
 	e1:SetOperation(s.spop)
+	e1:SetValue(function(e) return 0,e:GetLabel()==1 and 0 or 0xff end)
 	c:RegisterEffect(e1)
 	--Send 1 "Harpie" monster; Normal Summon 1 Winged Beast
 	local e2=Effect.CreateEffect(c)
@@ -52,6 +53,7 @@ function s.spfilter(c,tp)
 		and c:IsAbleToHandAsCost() and Duel.GetMZoneCount(tp,c)>0
 end
 function s.spcon(e,c)
+	e:SetLabel(0)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	return (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
@@ -60,7 +62,7 @@ end
 function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND)
 	local g=Duel.SelectMatchingCard(tp,s.spfilter,tp,LOCATION_MZONE,0,1,1,nil,tp)
-	Duel.SendtoHand(g,nil,REASON_COST)
+	if Duel.SendtoHand(g,nil,REASON_COST)~=#g then e:SetLabel(1) end
 end
 function s.harpiemon(c)
 	return c:IsSetCard(SET_HARPIE) and c:IsType(TYPE_MONSTER) and c:IsAbleToGraveAsCost()

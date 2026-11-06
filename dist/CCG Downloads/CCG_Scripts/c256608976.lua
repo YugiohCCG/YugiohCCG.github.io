@@ -94,7 +94,7 @@ function s.spfilter(c,e,tp)
 	return c:IsSetCard(SET_STAIN) and c:IsLevelBelow(4) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.copyfilter(c)
-	return c:IsFaceup() and c:IsType(TYPE_MONSTER) and not c:IsType(TYPE_TOKEN)
+	return c:IsFaceup() and c:IsType(TYPE_MONSTER)
 end
 function s.efftg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local b1=Duel.GetLocationCount(tp,LOCATION_MZONE)>0

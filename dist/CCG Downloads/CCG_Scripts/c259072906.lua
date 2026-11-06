@@ -159,6 +159,7 @@ function s.pzritproc(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
 		tc:SetMaterial(mat)
 	end
 	Duel.ReleaseRitualMaterial(mat)
+	if mat:IsExists(Card.IsLocation,1,nil,LOCATION_MZONE) then return end
 	aux.PendulumChecklist=s.pendulumchecklist()|(0x1<<tp)
 	sg:Merge(rituals)
 	Duel.HintSelection(Group.FromCards(e:GetHandler()))
@@ -245,7 +246,8 @@ function s.ritop(e,tp,eg,ep,ev,re,r,rp)
 	local handmat=mat:Filter(Card.IsLocation,nil,LOCATION_HAND)
 	local deckmat=mat:Filter(Card.IsLocation,nil,LOCATION_DECK)
 	if #handmat>0 then Duel.ReleaseRitualMaterial(handmat) end
-	if #deckmat>0 then Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end
+	if #deckmat>0 and Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL)~=#deckmat then return end
+	if handmat:IsExists(Card.IsLocation,1,nil,LOCATION_HAND) then return end
 	Duel.BreakEffect()
 	if Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
 		rc:CompleteProcedure()

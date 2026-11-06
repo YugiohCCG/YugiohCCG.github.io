@@ -42,7 +42,8 @@ function s.activate(e,tp)
 	local tc=Duel.GetFirstTarget()
 	if not tc or not tc:IsRelateToEffect(e) then return end
 	local code=tc:GetCode()
-	if Duel.Destroy(tc,REASON_EFFECT)>0 and e:GetLabel()>=7 then
+	Duel.Destroy(tc,REASON_EFFECT)
+	if e:GetLabel()>=7 then
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_FIELD)
 		e1:SetProperty(EFFECT_FLAG_PLAYER_TARGET)

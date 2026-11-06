@@ -47,7 +47,7 @@ function s.activate1(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.condition2(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.GetAttacker():IsControler(1-tp)
+	return Duel.GetAttacker()~=nil
 end
 function s.target2(e,tp,eg,ep,ev,re,r,rp,chk)
 	local a=Duel.GetAttacker()

@@ -91,7 +91,7 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 		if not mat or #mat==0 then return end
 		local used_deck=mat:IsExists(Card.IsLocation,1,nil,LOCATION_DECK)
 		tc:SetMaterial(mat)
-		Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
+		if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end
 		Duel.BreakEffect()
 		if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then
 			tc:CompleteProcedure()

@@ -108,7 +108,7 @@ function s.fsop(e,tp,eg,ep,ev,re,r,rp)
 			local mat1=Duel.SelectFusionMaterial(tp,tc,m,nil,chkf)
 			aux.FCheckAdditional=nil
 			tc:SetMaterial(mat1)
-			Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
+			if Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat1 then return end
 			Duel.BreakEffect()
 			if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then tc:CompleteProcedure() end
 		else
@@ -163,7 +163,7 @@ function s.cfop(e,tp,eg,ep,ev,re,r,rp)
 	if tc then
 		local mat=Duel.SelectFusionMaterial(tp,tc,m,nil,chkf)
 		tc:SetMaterial(mat)
-		Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
+		if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end
 		Duel.BreakEffect()
 		if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then tc:CompleteProcedure() end
 	end

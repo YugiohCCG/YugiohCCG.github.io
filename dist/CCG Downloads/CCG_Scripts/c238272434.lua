@@ -121,7 +121,7 @@ function s.exop(e,tp)
   local mat=Duel.SelectFusionMaterial(tp,tc,mg,nil,tp)
   if #mat==0 then return end
   tc:SetMaterial(mat)
-  Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
+  if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end
   Duel.BreakEffect()
   if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then tc:CompleteProcedure() end
  elseif tc:IsType(TYPE_SYNCHRO) then

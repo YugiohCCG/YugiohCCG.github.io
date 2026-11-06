@@ -71,28 +71,34 @@ function s.postg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g=Duel.GetMatchingGroup(s.posfilter,tp,LOCATION_MZONE,LOCATION_MZONE,e:GetHandler())
 	Duel.SetOperationInfo(0,CATEGORY_POSITION,g,#g,0,0)
 end
-function s.retfilter(c)
-	return c:IsLocation(LOCATION_MZONE) and c:IsFacedown()
+function s.retfilter(c,fid)
+	return c:IsLocation(LOCATION_MZONE) and c:IsFacedown() and c:GetFlagEffectLabel(id)==fid
 end
 function s.endop(e,tp,eg,ep,ev,re,r,rp)
 	local g=e:GetLabelObject()
 	if g then
-		local sg=g:Filter(s.retfilter,nil)
+		local pos,fid=e:GetLabel()
+		local sg=g:Filter(s.retfilter,nil,fid)
 		if #sg>0 then
-			Duel.ChangePosition(sg,e:GetLabel())
+			Duel.ChangePosition(sg,pos)
 		end
 		g:DeleteGroup()
 	end
 	e:Reset()
 end
 function s.registerend(c,tp,g,pos)
+	g=g:Filter(Card.IsFacedown,nil)
 	if #g==0 then return end
+	local fid=c:GetFieldID()
+	for tc in aux.Next(g) do
+		tc:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END,0,1,fid)
+	end
 	g:KeepAlive()
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e1:SetCode(EVENT_PHASE+PHASE_END)
 	e1:SetCountLimit(1)
-	e1:SetLabel(pos)
+	e1:SetLabel(pos,fid)
 	e1:SetLabelObject(g)
 	e1:SetOperation(s.endop)
 	e1:SetReset(RESET_PHASE+PHASE_END)

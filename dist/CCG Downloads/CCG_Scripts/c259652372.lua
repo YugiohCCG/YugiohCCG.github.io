@@ -76,8 +76,11 @@ end
 function s.tdcon(e,tp,eg,ep,ev,re,r,rp)
 	return ep==1-tp and #eg>=2
 end
+function s.tdfilter_eligible(c,e)
+	return c:IsAbleToDeck()
+end
 function s.tdfilter(c,e)
-	return c:IsAbleToDeck() and c:IsCanBeEffectTarget(e)
+	return s.tdfilter_eligible(c,e) and c:IsCanBeEffectTarget(e)
 end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter(s.tdfilter)(chkc,e) end
@@ -88,7 +91,7 @@ function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.tdfilter)(tc,e) then
+	if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.tdfilter_eligible)(tc,e) then
 		Duel.SendtoDeck(tc,nil,SEQ_DECKBOTTOM,REASON_EFFECT)
 	end
 end

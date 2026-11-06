@@ -55,7 +55,13 @@ end
 function s.spop(e,tp)
  local c=e:GetHandler()
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
- local g=Duel.SelectMatchingCard(tp,s.desfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,1,c)
+ local g
+ if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
+  and Duel.IsExistingMatchingCard(s.spacefilter,tp,LOCATION_MZONE,0,1,c,e,tp) then
+  g=Duel.SelectMatchingCard(tp,s.spacefilter,tp,LOCATION_MZONE,0,1,1,c,e,tp)
+ else
+  g=Duel.SelectMatchingCard(tp,s.desfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,1,c)
+ end
  if #g>0 and Duel.Destroy(g,REASON_EFFECT)>0 and c:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then
   Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
  end
@@ -72,19 +78,20 @@ function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
  Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,2,tp,LOCATION_DECK)
 end
 function s.thop(e,tp)
- local g=Group.CreateGroup()
- if Duel.IsExistingMatchingCard(s.monfilter,tp,LOCATION_DECK,0,1,nil) then
-  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
-  g:Merge(Duel.SelectMatchingCard(tp,s.monfilter,tp,LOCATION_DECK,0,1,1,nil))
- end
- if Duel.IsExistingMatchingCard(s.spellfilter,tp,LOCATION_DECK,0,1,nil) then
-  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
-  g:Merge(Duel.SelectMatchingCard(tp,s.spellfilter,tp,LOCATION_DECK,0,1,1,nil))
- end
- if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
-  Duel.ConfirmCards(1-tp,g)
-  if #g==2 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD); Duel.DiscardHand(tp,aux.TRUE,1,1,REASON_EFFECT+REASON_DISCARD) end
- end
+ if not (Duel.IsExistingMatchingCard(s.monfilter,tp,LOCATION_DECK,0,1,nil)
+  and Duel.IsExistingMatchingCard(s.spellfilter,tp,LOCATION_DECK,0,1,nil)) then return end
+ Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
+ local g=Duel.SelectMatchingCard(tp,s.monfilter,tp,LOCATION_DECK,0,1,1,nil)
+ Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
+ g:Merge(Duel.SelectMatchingCard(tp,s.spellfilter,tp,LOCATION_DECK,0,1,1,nil))
+ if #g~=2 then return end
+ Duel.SendtoHand(g,nil,REASON_EFFECT)
+ local added=g:Filter(Card.IsLocation,nil,LOCATION_HAND)
+ if #added>0 then Duel.ConfirmCards(1-tp,added) end
+ if #added~=2 then return end
+ Duel.BreakEffect()
+ Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD)
+ Duel.DiscardHand(tp,aux.TRUE,1,1,REASON_EFFECT+REASON_DISCARD)
 end
 function s.matcon(e,tp,eg,ep,ev,re,r,rp)
  local c=e:GetHandler()

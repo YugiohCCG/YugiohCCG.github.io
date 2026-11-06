@@ -36,18 +36,16 @@ end
 function s.thmonfilter(c)
 	return c:IsSetCard(0x6F4) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()
 end
-function s.thstfilter(c)
-	return c:IsSetCard(0x6F4) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()
+function s.thstfilter(c,tp)
+	return c:IsSetCard(0x6F4) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.thmonfilter,tp,LOCATION_DECK,0,1,nil)
-		or (Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-			and Duel.IsExistingMatchingCard(s.thstfilter,tp,LOCATION_DECK,0,1,nil)) end
+		or (Duel.IsExistingMatchingCard(s.thstfilter,tp,LOCATION_DECK,0,1,nil,tp)) end
 end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local b1=Duel.IsExistingMatchingCard(s.thmonfilter,tp,LOCATION_DECK,0,1,nil)
-	local b2=Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and Duel.IsExistingMatchingCard(s.thstfilter,tp,LOCATION_DECK,0,1,nil)
+	local b2=Duel.IsExistingMatchingCard(s.thstfilter,tp,LOCATION_DECK,0,1,nil,tp)
 	if not (b1 or b2) then return end
 	local op=b1 and b2 and Duel.SelectOption(tp,aux.Stringid(STRING_ID,1),aux.Stringid(STRING_ID,2)) or (b1 and 0 or 1)
 	if op==0 then
@@ -58,7 +56,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		end
 	else
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
-		local tc=Duel.SelectMatchingCard(tp,s.thstfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
+		local tc=Duel.SelectMatchingCard(tp,s.thstfilter,tp,LOCATION_DECK,0,1,1,nil,tp):GetFirst()
 		if tc then Duel.SSet(tp,tc) end
 	end
 end

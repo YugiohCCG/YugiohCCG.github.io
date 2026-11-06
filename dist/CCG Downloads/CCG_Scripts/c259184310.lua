@@ -145,7 +145,7 @@ function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 			local mat1=Duel.SelectFusionMaterial(tp,tc,mg1,nil,chkf)
 			if not mat1 or #mat1==0 then goto cancel end
 			tc:SetMaterial(mat1)
-			Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
+			if Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat1 then return end
 			Duel.BreakEffect()
 			if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then
 				tc:CompleteProcedure()
@@ -172,8 +172,11 @@ function s.fmeqcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	return c:IsReason(REASON_MATERIAL) and c:IsReason(REASON_FUSION)
 end
+function s.fmeqfilter_eligible(c)
+	return c:IsFaceup() and s.isredeyes(c) and c:IsType(TYPE_MONSTER)
+end
 function s.fmeqfilter(c,e)
-	return c:IsFaceup() and s.isredeyes(c) and c:IsType(TYPE_MONSTER) and c:IsCanBeEffectTarget(e)
+	return s.fmeqfilter_eligible(c) and c:IsCanBeEffectTarget(e)
 end
 function s.fmeqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and chkc:IsControler(tp) and s.fmeqfilter(chkc,e)
@@ -188,8 +191,8 @@ function s.fmeqop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
 	if c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)
-		and tc and tc:IsRelateToEffect(e) and tc:IsControler(tp)
-		and tc:IsLocation(LOCATION_MZONE) and s.fmeqfilter(tc,e) then
+		and tc and tc:IsRelateToEffect(e)
+		and tc:IsLocation(LOCATION_MZONE) and s.fmeqfilter_eligible(tc) then
 		s.equipcard(e,tp,c,tc)
 	end
 end

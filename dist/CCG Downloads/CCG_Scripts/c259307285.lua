@@ -14,7 +14,23 @@ function s.handcon(e)
 end
 function s.spfilter(c,e,tp) return c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_ATTACK) end
 function s.retreg(e,tp,tc)
-	local te=Effect.CreateEffect(e:GetHandler()) te:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS) te:SetCode(EVENT_PHASE+PHASE_BATTLE) te:SetLabelObject(tc) te:SetReset(RESET_PHASE+PHASE_BATTLE) te:SetOperation(function(te) local rc=te:GetLabelObject() if rc and rc:IsLocation(LOCATION_MZONE) then Duel.SendtoHand(rc,nil,REASON_EFFECT) end end) Duel.RegisterEffect(te,tp)
+	local fid=tc:GetFieldID()
+	tc:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_BATTLE,0,1,fid)
+	local te=Effect.CreateEffect(e:GetHandler())
+	te:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+	te:SetCode(EVENT_PHASE+PHASE_BATTLE)
+	te:SetCountLimit(1)
+	te:SetLabel(fid)
+	te:SetLabelObject(tc)
+	te:SetReset(RESET_PHASE+PHASE_BATTLE)
+	te:SetOperation(function(te)
+		local rc=te:GetLabelObject()
+		if rc and rc:IsLocation(LOCATION_MZONE) and rc:GetFieldID()==te:GetLabel()
+			and rc:GetFlagEffect(id)>0 then
+			Duel.SendtoHand(rc,nil,REASON_EFFECT)
+		end
+	end)
+	Duel.RegisterEffect(te,tp)
 end
 function s.trysp(e,tp) if Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_HAND,0,1,nil,e,tp) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON) local tc=Duel.SelectMatchingCard(tp,s.spfilter,tp,LOCATION_HAND,0,1,1,nil,e,tp):GetFirst() if tc and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP_ATTACK)>0 then s.retreg(e,tp,tc) end end end
 function s.atkop(e,tp) local ac=Duel.GetAttacker() if Duel.NegateAttack() and ac and Duel.Destroy(ac,REASON_EFFECT)>0 then s.trysp(e,tp) end end

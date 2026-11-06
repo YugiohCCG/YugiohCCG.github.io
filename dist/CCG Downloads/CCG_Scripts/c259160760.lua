@@ -124,7 +124,7 @@ function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 		if mat:IsExists(Card.IsFacedown,1,nil) then
 			Duel.ConfirmCards(1-tp,mat:Filter(Card.IsFacedown,nil))
 		end
-		if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==0 then return end
+		if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end
 		Duel.BreakEffect()
 		if Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then
 			fc:CompleteProcedure()

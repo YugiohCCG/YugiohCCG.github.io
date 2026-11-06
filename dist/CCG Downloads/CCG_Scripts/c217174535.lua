@@ -99,7 +99,7 @@ function s.actnegtg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.actnegop(e,tp,eg,ep,ev,re,r,rp)
 	local rc=re:GetHandler()
-	if Duel.NegateEffect(ev)~=0 then
+	if Duel.NegateEffect(ev) then
 		if rc:IsRelateToEffect(re) then Duel.Destroy(rc,REASON_EFFECT) end
 	end
 end

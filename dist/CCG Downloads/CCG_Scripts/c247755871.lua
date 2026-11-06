@@ -46,7 +46,6 @@ function s.placeop(e,tp)
 end
 function s.destroyfilter(c,tp)
  return c:IsDestructable() and ((c:IsFaceup() and c:IsSetCard(SET_KALI_YUGA)) or c:IsType(TYPE_SPELL+TYPE_TRAP))
-  and (Duel.GetLocationCount(tp,LOCATION_MZONE)>0 or c:IsLocation(LOCATION_MZONE))
 end
 function s.spacefilter(c,tp)
  return s.destroyfilter(c,tp) and (Duel.GetLocationCount(tp,LOCATION_MZONE)>0
@@ -61,7 +60,13 @@ end
 function s.revop(e,tp)
  local c=e:GetHandler()
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
- local g=Duel.SelectMatchingCard(tp,s.destroyfilter,tp,LOCATION_ONFIELD,0,1,1,nil,tp)
+ local g
+ if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
+  and Duel.IsExistingMatchingCard(s.spacefilter,tp,LOCATION_MZONE,0,1,nil,tp) then
+  g=Duel.SelectMatchingCard(tp,s.spacefilter,tp,LOCATION_MZONE,0,1,1,nil,tp)
+ else
+  g=Duel.SelectMatchingCard(tp,s.destroyfilter,tp,LOCATION_ONFIELD,0,1,1,nil,tp)
+ end
  if #g==0 or Duel.Destroy(g,REASON_EFFECT)==0 or not c:IsRelateToEffect(e)
   or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
   or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end

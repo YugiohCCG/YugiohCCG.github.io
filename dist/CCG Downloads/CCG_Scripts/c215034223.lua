@@ -85,7 +85,7 @@ function s.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and s.cfilter(tc,tp,e) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0) then return end
+	if not (tc and tc:IsRelateToEffect(e) and s.cfilter(tc,tp) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_EQUIP)
 	local g=Duel.SelectMatchingCard(tp,s.armsfilter,tp,LOCATION_DECK,0,1,1,nil,tc)
 	local ec=g:GetFirst()
