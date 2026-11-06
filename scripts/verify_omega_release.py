@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+from urllib.parse import unquote, urlsplit
 import re
 import shutil
 import sqlite3
@@ -126,7 +127,7 @@ def audit_source_metadata(audit: Audit, cards: list[dict]) -> None:
             failures.append(f"{prefix}: invalid/missing image path {image_value!r}")
         else:
             image_paths.append(image_value)
-            if not (REPO_ROOT / "public" / image_value.lstrip("/")).is_file():
+            if not (REPO_ROOT / "public" / unquote(urlsplit(image_value).path).lstrip("/")).is_file():
                 failures.append(f"{prefix}: image path does not exist: {image_value}")
         if "\\n" in str(card.get("text") or ""):
             failures.append(f"{prefix}: description contains a literal backslash-n")
@@ -251,7 +252,7 @@ def audit_printed_star_counts(audit: Audit, cards: list[dict]) -> None:
             continue
         field = "rank" if "Xyz" in card_types else "level"
         expected = card.get(field)
-        image_path = REPO_ROOT / "public" / str(card.get("image") or "").lstrip("/")
+        image_path = REPO_ROOT / "public" / unquote(urlsplit(str(card.get("image") or "")).path).lstrip("/")
         detected = detect_star_count(image_path)
         checked += 1
         if detected != expected:

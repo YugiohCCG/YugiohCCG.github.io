@@ -52,5 +52,11 @@ jobs:
           python scripts/run_ohmen_engine_regressions.py ci
           node --no-warnings scripts/test_ohmen_engine_probes.cjs
 
+      - name: Test new Floowandereeze and Fiendsmith scripts
+        run: |
+          lua scripts/test_release_lua_contracts.lua .
+          node --no-warnings scripts/fresh_new_floo_fiendsmith_duels.cjs
+          node --no-warnings scripts/fresh_new_floo_fiendsmith_effects.cjs
+
       - name: Run CCG QA
         run: npm run qa:ccg:ci

@@ -4,7 +4,7 @@ local SET_FIENDSMITH=0x1b0
 function s.initial_effect(c)
 	local e=Effect.CreateEffect(c)
 	e:SetDescription(aux.Stringid(STRING_ID,0))
-	e:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
 	e:SetCode(EVENT_SUMMON_SUCCESS)
 	e:SetProperty(EFFECT_FLAG_DELAY)
 	e:SetCountLimit(1,id)
