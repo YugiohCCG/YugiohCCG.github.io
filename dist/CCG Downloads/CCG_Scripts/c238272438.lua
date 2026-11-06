@@ -14,6 +14,7 @@ function s.initial_effect(c)
  p:SetRange(LOCATION_EXTRA)
  p:SetCondition(s.altcon)
  p:SetOperation(s.altop)
+ p:SetValue(function(e) return 0,e:GetLabel()==1 and 0 or 0xff end)
  c:RegisterEffect(p)
  local limit=Effect.CreateEffect(c)
  limit:SetType(EFFECT_TYPE_SINGLE)
@@ -60,6 +61,7 @@ function s.altfilter(c,fc)
   and c:IsCanBeFusionMaterial(fc,SUMMON_TYPE_SPECIAL) and c:IsAbleToRemoveAsCost()
 end
 function s.altcon(e,c)
+ e:SetLabel(0)
  if c==nil then return true end
  local tp=c:GetControler()
  return Duel.GetFlagEffect(tp,id)==0 and Duel.GetLocationCountFromEx(tp)>0
@@ -70,7 +72,10 @@ function s.altop(e,tp,eg,ep,ev,re,r,rp,c)
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
  local sg=g:Select(tp,2,2,nil)
  c:SetMaterial(sg)
- Duel.Remove(sg,POS_FACEUP,REASON_COST+REASON_MATERIAL)
+ if Duel.Remove(sg,POS_FACEUP,REASON_COST+REASON_MATERIAL)~=#sg then
+  e:SetLabel(1)
+  return
+ end
  Duel.RegisterFlagEffect(tp,id,RESET_PHASE+PHASE_END,0,1)
 end
 function s.thfilter(c)

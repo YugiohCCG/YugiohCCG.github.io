@@ -42,6 +42,14 @@ function s.splimit(e,c)
  return not c:IsAttribute(ATTRIBUTE_LIGHT)
 end
 function s.spop(e,tp)
+ local lock=Effect.CreateEffect(e:GetHandler())
+ lock:SetType(EFFECT_TYPE_FIELD)
+ lock:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
+ lock:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+ lock:SetTargetRange(1,0)
+ lock:SetTarget(s.splimit)
+ lock:SetReset(RESET_PHASE+PHASE_END)
+ Duel.RegisterEffect(lock,tp)
  local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e)
   :Filter(aux.NecroValleyFilter(s.spfilter),nil,e,tp)
  if Duel.GetLocationCount(tp,LOCATION_MZONE)<#g or (#g>1 and Duel.IsPlayerAffectedByEffect(tp,59822133)) then return end
@@ -62,14 +70,7 @@ function s.spop(e,tp)
  end
  if count==0 then return end
  Duel.SpecialSummonComplete()
- local lock=Effect.CreateEffect(e:GetHandler())
- lock:SetType(EFFECT_TYPE_FIELD)
- lock:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
- lock:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
- lock:SetTargetRange(1,0)
- lock:SetTarget(s.splimit)
- lock:SetReset(RESET_PHASE+PHASE_END)
- Duel.RegisterEffect(lock,tp)
+
 end
 function s.costfilter(c)
  return c:IsSetCard(SET_VYLON) and c:IsType(TYPE_SYNCHRO) and c:IsAbleToRemoveAsCost()

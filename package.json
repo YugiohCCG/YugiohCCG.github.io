@@ -35,7 +35,7 @@
     "dev": "vite",
     "prebuild": "python -B scripts/generate_archetype_catalog.py && python -B scripts/generate_website_metadata.py && node scripts/sync-public-cards.cjs",
     "build": "tsc --noEmit && vite build",
-    "postbuild": "node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
+    "postbuild": "python -B scripts/prepare_pages_payload.py",
     "preview": "vite preview",
     "sync:public-cards": "node scripts/sync-public-cards.cjs",
     "sync:website-metadata": "python -B scripts/generate_website_metadata.py",

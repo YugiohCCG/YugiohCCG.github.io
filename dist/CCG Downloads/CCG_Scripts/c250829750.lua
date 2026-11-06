@@ -30,7 +30,7 @@ function s.actop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.RaiseEvent(tc,4179255,te,0,tp,tp,Duel.GetCurrentChain())
 	end
 end
-function s.actcon(e,tp) local a=Duel.GetAttacker() local d=Duel.GetAttackTarget() return (a and a:IsControler(tp) and a:IsSetCard(SET_GALACTICA)) or (d and d:IsControler(tp) and d:IsSetCard(SET_GALACTICA)) end
+function s.actcon(e) local tp=e:GetHandlerPlayer() local a=Duel.GetAttacker() local d=Duel.GetAttackTarget() return (a and a:IsFaceup() and a:IsControler(tp) and a:IsSetCard(SET_GALACTICA)) or (d and d:IsFaceup() and d:IsControler(tp) and d:IsSetCard(SET_GALACTICA)) end
 function s.repfilter(c,tp) return c:IsFaceup() and c:IsSetCard(SET_GALACTICA) and c:IsControler(tp) and c:IsOnField() and c:IsReason(REASON_EFFECT) and c:GetReasonPlayer()==1-tp and not c:IsReason(REASON_REPLACE) end
 function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return e:GetHandler():IsAbleToRemove() and eg:IsExists(s.repfilter,1,nil,tp) end return Duel.SelectEffectYesNo(tp,e:GetHandler(),96) end
 function s.repval(e,c) return s.repfilter(c,e:GetHandlerPlayer()) end

@@ -82,7 +82,7 @@ function s.eqcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SendtoGrave(g,REASON_COST)
 end
 function s.negfilter(c,e)
-	return c:IsFaceup() and not c:IsDisabled() and c:IsCanBeEffectTarget(e)
+	return aux.NegateMonsterFilter(c) and c:IsCanBeEffectTarget(e)
 end
 function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_MZONE) and s.negfilter(chkc,e) end
@@ -92,7 +92,7 @@ function s.negtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.negop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) and tc:IsControler(1-tp)
+	if tc and tc:IsRelateToEffect(e)
 		and tc:IsLocation(LOCATION_MZONE) and tc:IsFaceup() and not tc:IsDisabled()
 		and tc:IsCanBeDisabledByEffect(e,false) then
 		Duel.NegateRelatedChain(tc,RESET_TURN_SET)

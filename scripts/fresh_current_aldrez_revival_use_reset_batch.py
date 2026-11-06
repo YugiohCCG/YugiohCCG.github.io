@@ -1,0 +1,20 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+source=ROOT/'public/CCG Downloads/CCG_Scripts/c238282350.lua';assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+paths=[Path(__file__).resolve(),ROOT/'src/data/cards.json',FILES/'Databases/CCG_v1.db',OUT/'candidate-CCG_v1.db',OUT/'aldrez-revival-damage-step-repair-files.json']+[ROOT/'public/CCG Downloads/CCG_Scripts'/('c'+str(c)+'.lua') for c in [238282350,231129918]]+[ROOT/'scripts'/n for n in ['fresh_current_aldrez_revival_use_reset.cjs','fresh_current_aldrez_knight_revival.cjs','fresh_aldrez_revival_damage_step_repair.cjs','fresh_current_aldrez_blitz_xyz_set.cjs','fresh_installed_card.cjs','fresh_corrected_card_data_transport.cjs']]+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))+[ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']
+for code in [238282350,231129918]:
+ p=ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua';assert p.read_bytes()==(FILES/'Scripts'/p.name).read_bytes()
+deps={str(p.resolve()):sha(p) for p in paths};runs=[]
+for family in ['knight','rook']:
+ for mapped,flag in [(False,None),(True,None),(True,'per-copy'),(True,'no-revive'),(True,'no-response'),(True,'shared-key'),(True,'no-quick')]:
+  expected=([0,1,2,3] if family=='knight' else [0,3]) if not mapped else [0,1,2,3] if flag=='no-revive' else [0,1,2] if flag=='per-copy' else [1,2] if flag=='no-response' else [3] if flag in ['shared-key','no-quick'] else []
+  args=(['--rook'] if family=='rook' else [])+(['--overlay-map'] if mapped else [])+(['--'+flag] if flag else [])
+  r=subprocess.run(['node','--no-warnings','scripts/fresh_current_aldrez_revival_use_reset.cjs']+args,capture_output=True,text=True,timeout=20);p=OUT/('current-aldrez-revival-use-reset-'+family+('-overlay-map' if mapped else '')+('-'+flag if flag else '')+'.json');d=json.loads(p.read_text());assert len(d['results'])==4 and [i for i,v in enumerate(d['results']) if v['failure']]==expected and r.returncode==bool(expected),r.stdout+r.stderr
+  if mapped:assert all(not v['logs'] for v in d['results'])
+  else:assert all(('IsCanOverlay' in v['failure'] and v['logs']) if i in expected else (not v['failure'] and not v['logs']) for i,v in enumerate(d['results']))
+  runs.append({'artifact':p.name,'sha256':sha(p),'expected_failures':expected,'neutral_overlay_mapping':mapped,'known_compatibility_failure':not mapped})
+assert deps=={str(p.resolve()):sha(p) for p in paths}
+(OUT/'current-aldrez-revival-use-reset-batch.json').write_text(json.dumps({'status':'ALDREZ_REVIVAL_SHARED_USE_RESET_VERIFIED','runtime_dependencies_sha256':deps,'runs':runs,'scope':'Full Knight/Rook/current installed metadata/corrected transport. Three GY copies, three actual paid proper native Rank4 Xyz summons and opponent-caused GY events. First success/effect or activation negation consumes named use, unused second copy excluded; next natural opponent turn fresh source banish cost and actual revival. Optional attachment declined. Explicit neutral-only IsCanOverlay mapping excludes production GY source copies and does not claim general attachment semantics; unadapted errors retained, Rook negation cases need no mapping because no remaining field candidate. Effective per-copy/no-revive/no-response controls. Actual Quick resource to Hand (Knight native discard cost) then same source field-to-GY and actual opponent set Quick-Play removal on the same natural turn, source banish cost and revival prove separate Quick/GY keys. Native Quick prompts declined until explicit activation. Effective collapsed-key/omitted-Quick controls. Initial source field history/original recipes/full-card/live Omega separate.','production_change':False},indent=2)+'\n')
+print('Knight/Rook revival shared use/reset verified with mapping qualifications')

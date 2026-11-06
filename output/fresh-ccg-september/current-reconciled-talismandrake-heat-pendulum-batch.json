@@ -1,0 +1,237 @@
+{
+  "status": "VERIFIED_PARTIAL_CURRENT_INSTALLED_METADATA",
+  "baseline_cases": 26,
+  "runs": [
+    {
+      "part": "recycle",
+      "control": null,
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-recycle.json",
+      "artifact_sha256": "b61dd22917eed1a73bfe1b1ef8553aeef998ad06909a1a6fbfd6b17b48451f16",
+      "expected_failures": []
+    },
+    {
+      "part": "recycle",
+      "control": "no-extra",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-recycle-no-extra.json",
+      "artifact_sha256": "f69052fbc320c6fcbb8e54ef94f173081c20a608568235ca4438c5e9b3b7bacd",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "part": "recycle",
+      "control": "no-hand",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-recycle-no-hand.json",
+      "artifact_sha256": "b24771d94c6e66cd69c4cce538c0f9da80df00ae16880c991d9eae8f82033a1a",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "part": "recycle",
+      "control": "allow-any",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-recycle-allow-any.json",
+      "artifact_sha256": "18d18df009b378ecb613903482eee9f338ed74f7d9bf0bdc40de68fd8ea8727e",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        8
+      ]
+    },
+    {
+      "part": "recycle",
+      "control": "no-lock",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-recycle-no-lock.json",
+      "artifact_sha256": "1381a20679b3eb253ea6cafad26132b138198a1937ca2201f05264b59d72c3a6",
+      "expected_failures": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "part": "interruption",
+      "control": null,
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-interruption.json",
+      "artifact_sha256": "d75e96d08376a4fb26e77f0791b04f0d1b1c563b442bb7319f9358639e73725e",
+      "expected_failures": []
+    },
+    {
+      "part": "interruption",
+      "control": "no-extra",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-interruption-no-extra.json",
+      "artifact_sha256": "2240473d1892a0aa008dfe27ea3b1f6512dfd85f450adfd18611d4d7b420a2f0",
+      "expected_failures": [
+        0,
+        7
+      ]
+    },
+    {
+      "part": "interruption",
+      "control": "no-hand",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-interruption-no-hand.json",
+      "artifact_sha256": "e0799d031df3ceb6d3eea0fa236418220e5470b86a0ed3f3d49c775d28e84064",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "part": "interruption",
+      "control": "no-response",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-interruption-no-response.json",
+      "artifact_sha256": "f0b7f61c996b3720fdc0407c7c51ae38db41c987eb3f0f43e4cbdea3b9c402f2",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "part": "use-reset",
+      "control": null,
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-use-reset.json",
+      "artifact_sha256": "b3bbe598c6cd4e87946ac19413a65c9c401b4594ff336170c4ce66acc353080c",
+      "expected_failures": []
+    },
+    {
+      "part": "use-reset",
+      "control": "no-extra",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-use-reset-no-extra.json",
+      "artifact_sha256": "53ee2c36d533168469a54df3b76d0912c67ab2565538ee2f11b40a973e312daf",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "part": "use-reset",
+      "control": "no-hand",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-use-reset-no-hand.json",
+      "artifact_sha256": "e3f1f798d39be82f4b57d58238ca854a5e17c37a8767c41466a0bde9617ca3e2",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "part": "use-reset",
+      "control": "no-response",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-use-reset-no-response.json",
+      "artifact_sha256": "0436cf264fbbd83b1c840256ddeeceec697250a875ee54bf6bae56ad3d521984",
+      "expected_failures": [
+        1,
+        2
+      ]
+    },
+    {
+      "part": "use-reset",
+      "control": "per-copy",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-use-reset-per-copy.json",
+      "artifact_sha256": "ca3c0fdfc575d817e637b1df60f599b363a9eb7bcb76bf36533e11ba320f4d63",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "part": "use-reset",
+      "control": "no-reset",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-use-reset-no-reset.json",
+      "artifact_sha256": "d0e4bd9f61cf55916b95261f727455ca76d4a478412b076234527d421fc4aa9c",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "part": "restriction",
+      "control": null,
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-restriction.json",
+      "artifact_sha256": "3f15b4e26237fa7d3e804cfc12eb16480618400aed6fd39914c06e77a09437a3",
+      "expected_failures": []
+    },
+    {
+      "part": "restriction",
+      "control": "no-limit",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-restriction-no-limit.json",
+      "artifact_sha256": "9fd091a8d1c9bb4650ac97ec5d72434355c5bbf6f41eb2c11067dc385f40493f",
+      "expected_failures": [
+        1,
+        3
+      ]
+    },
+    {
+      "part": "restriction",
+      "control": "invert-race",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-restriction-invert-race.json",
+      "artifact_sha256": "c669284242014610dc1e587cb980d2b0890cee43945974ee2ac798847aab1f3d",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "part": "restriction",
+      "control": "no-departure",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-restriction-no-departure.json",
+      "artifact_sha256": "8d0429666c6686bfc06f82d0016fd2fc1381d0db1f5578b83db5c7f201d0aa99",
+      "expected_failures": [
+        2,
+        3
+      ]
+    },
+    {
+      "part": "restriction",
+      "control": "no-ordinary",
+      "artifact": "current-reconciled-talismandrake-heat-pendulum-restriction-no-ordinary.json",
+      "artifact_sha256": "3c3dc04e0f5307b2ba7214a3a9c484c4574475551ed66f11f32fb559848eae32",
+      "expected_failures": [
+        4
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_reconciled_talismandrake_heat_pendulum_batch.py": "7c5bf48b2e2967f3889f4726f6debc4ab0417a872014566a5ff5a4b850f70e64",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "6e3d644ec1cc45ac996cfe977f250530726ce80315759edefdb995965c06a2a8",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-talismandrake-heat-pendulum-recycle-batch.json": "f39d4fda99d9f9ca7fa16b059229ad98054f8ae90ed5e8e66e18dbe7138028c0",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_reconciled_talismandrake_heat_pendulum_recycle.cjs": "6902870390d0ed6c11edea5676b27d217924915ac30c79d5399b890b465a7c90",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c210506870.lua": "8a6d1e9cfbc774b26a949aec98558659ca956846dd767b78ff7be09fb4037606",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c227362839.lua": "be1dfa27843c22abf315f555237c42beae192907e7b81c681a443f9e6d2ff5f4",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-talismandrake-heat-pendulum-interruption-batch.json": "3e9219b8576c26935e10ad5ccd270cfc8985ca218d1c64d0e688fec9118c578b",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_reconciled_talismandrake_heat_pendulum_interruption.cjs": "4eafe8c0339d2df8d9467e1df2f344e22aafd39102b2f4e2be93b20ebe692613",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-talismandrake-heat-pendulum-use-reset-batch.json": "2a655956e88b9e692f26275daca927aba304926b8793e7c7036b8365687053bf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_reconciled_talismandrake_heat_pendulum_use_reset.cjs": "3b663676c38ee7aa410023351da48db5b5f7adf1a648ca098571ae2df9ad5a1d",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-talismandrake-heat-pendulum-restriction-batch.json": "07e6b503ef42052316079bfb899d33b714959fb57fb5ff0b2639c5205d018c9d",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_reconciled_talismandrake_heat_pendulum_restriction.cjs": "7bc7cf9c03bab156c2cf32cedab37a260920f43d571835b6fc172342d6e2935d"
+  },
+  "scope": "Four derived Heat Pendulum fixtures refreshed against actual installed metadata/corrected CardData: recycle9/interruption9/shared use reset3/native Pendulum restriction5. Preserve original artifacts, controls and open interpretations. Full current Heat/Pyre scripts. Existing test-only GetChainInfo target-cards8 compatibility rewrite retained where used; no production changes/nativeOmega/fullcard certification.",
+  "open_interpretations": {
+    "interruption": "Actual source PZONE-toHand/HandPZONE-return also suppresses full Fusion target Extra return; native source/PZONE effect-reset/target relation verification needed, observational assertions are not correctness certification."
+  }
+}

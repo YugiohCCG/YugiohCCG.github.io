@@ -17,7 +17,7 @@ function s.initial_effect(c)
  e2:SetDescription(aux.Stringid(MSG_ID,1))
  e2:SetCategory(CATEGORY_TOHAND+CATEGORY_DESTROY)
  e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
- e2:SetProperty(EFFECT_FLAG_DELAY)
+ e2:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_DAMAGE_STEP)
  e2:SetCode(EVENT_DESTROYED)
  e2:SetRange(LOCATION_GRAVE)
  e2:SetCountLimit(1,id)
@@ -67,7 +67,7 @@ function s.ssop(e,tp)
  if summoned then Duel.SpecialSummonComplete() end
 end
 function s.destroyed(c,tp)
- return c:IsPreviousLocation(LOCATION_MZONE) and c:IsPreviousControler(tp)
+ return c:IsPreviousPosition(POS_FACEUP) and c:IsPreviousLocation(LOCATION_MZONE) and c:IsPreviousControler(tp)
   and c:IsPreviousSetCard(SET_KALI_YUGA)
   and bit.band(c:GetPreviousTypeOnField(),TYPE_MONSTER)~=0
   and (c:IsReason(REASON_BATTLE) or c:IsReason(REASON_EFFECT))

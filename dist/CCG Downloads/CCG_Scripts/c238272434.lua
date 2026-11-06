@@ -31,7 +31,7 @@ function s.initial_effect(c)
  local e4=Effect.CreateEffect(c)
  e4:SetDescription(aux.Stringid(MSG_ID,2))
  e4:SetCategory(CATEGORY_TOHAND)
- e4:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+ e4:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F)
  e4:SetProperty(EFFECT_FLAG_DELAY)
  e4:SetCode(EVENT_MOVE)
  e4:SetCountLimit(1,id+200)
@@ -121,7 +121,7 @@ function s.exop(e,tp)
   local mat=Duel.SelectFusionMaterial(tp,tc,mg,nil,tp)
   if #mat==0 then return end
   tc:SetMaterial(mat)
-  Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
+  if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end
   Duel.BreakEffect()
   if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then tc:CompleteProcedure() end
  elseif tc:IsType(TYPE_SYNCHRO) then

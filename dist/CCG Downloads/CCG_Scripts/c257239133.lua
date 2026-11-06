@@ -71,12 +71,14 @@ function s.fsop(e,tp,eg,ep,ev,re,r,rp)
 		tc:SetMaterial(mat1)
 		local rg1=mat1:Filter(Card.IsLocation,nil,LOCATION_HAND+LOCATION_MZONE)
 		local rg2=mat1:Filter(Card.IsLocation,nil,LOCATION_GRAVE)
+		local moved=0
 		if #rg1>0 then
-			Duel.SendtoGrave(rg1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
+			moved=moved+Duel.SendtoGrave(rg1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
 		end
 		if #rg2>0 then
-			Duel.SendtoDeck(rg2,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
+			moved=moved+Duel.SendtoDeck(rg2,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
 		end
+		if moved~=#mat1 then return end
 		Duel.BreakEffect()
 		if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,tc:IsLocation(LOCATION_GRAVE),false,POS_FACEUP)>0 then
 			tc:CompleteProcedure()

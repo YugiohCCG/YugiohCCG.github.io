@@ -1,0 +1,267 @@
+{
+  "status": "VERIFIED_PARTIAL_CURRENT_INSTALLED_METADATA",
+  "baseline_cases": 26,
+  "runs": [
+    {
+      "part": "hand-summon",
+      "control": null,
+      "artifact": "current-reconciled-talismandrake-heat-monster-hand-summon.json",
+      "artifact_sha256": "570ca7a27d289048da15d0262f02cf3ea46395288ee5cb4e461c46738c9967c3",
+      "expected_failures": []
+    },
+    {
+      "part": "hand-summon",
+      "control": "no-summon",
+      "artifact": "current-reconciled-talismandrake-heat-monster-hand-summon-no-summon.json",
+      "artifact_sha256": "2a78187b4d20f7906d4ca72bd1472f4d0192230c38d4c0af09b96f6768cb9c17",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "part": "hand-summon",
+      "control": "no-condition",
+      "artifact": "current-reconciled-talismandrake-heat-monster-hand-summon-no-condition.json",
+      "artifact_sha256": "1afd69479bb590a76101c66fa5343073e042328debab05bd74deb918fa7f9b80",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "part": "hand-summon",
+      "control": "no-lock",
+      "artifact": "current-reconciled-talismandrake-heat-monster-hand-summon-no-lock.json",
+      "artifact_sha256": "779b607a8972cbda4dc9592f2eadd72349c176bd4b9ab461056b86340a0ca1e6",
+      "expected_failures": [
+        7
+      ]
+    },
+    {
+      "part": "hand-capacity-repaired",
+      "control": null,
+      "artifact": "current-reconciled-talismandrake-heat-monster-hand-capacity-repaired.json",
+      "artifact_sha256": "df907e046fb6758c0fcef306b2de5c8b9ad8f723236a684ef70843d646541197",
+      "expected_failures": []
+    },
+    {
+      "part": "hand-capacity-repaired",
+      "control": "original-capacity",
+      "artifact": "current-reconciled-talismandrake-heat-monster-hand-capacity-repaired-original-capacity.json",
+      "artifact_sha256": "07b4a83b289ce5d91ceed241eef28320dbbf6249d2d82158a5c8abf37f15ec31",
+      "expected_failures": [
+        6
+      ]
+    },
+    {
+      "part": "hand-capacity-repaired",
+      "control": "no-summon",
+      "artifact": "current-reconciled-talismandrake-heat-monster-hand-capacity-repaired-no-summon.json",
+      "artifact_sha256": "b301732161d52a2c31d244f0269d1062b7ae2908d8ef7b3e9b79cc2d70485d8e",
+      "expected_failures": [
+        0,
+        4
+      ]
+    },
+    {
+      "part": "hand-capacity-repaired",
+      "control": "no-response",
+      "artifact": "current-reconciled-talismandrake-heat-monster-hand-capacity-repaired-no-response.json",
+      "artifact_sha256": "f65b804a20a85b4e6913e8af4f5de85fa2b6dc14933398b2efb003a190fc1de1",
+      "expected_failures": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "part": "hand-use-reset",
+      "control": null,
+      "artifact": "current-reconciled-talismandrake-heat-monster-hand-use-reset.json",
+      "artifact_sha256": "7321f0b79fb1617619c1cbcb3d3929cce6a16654331f0cc28ab1ccceae2ea754",
+      "expected_failures": []
+    },
+    {
+      "part": "hand-use-reset",
+      "control": "no-summon",
+      "artifact": "current-reconciled-talismandrake-heat-monster-hand-use-reset-no-summon.json",
+      "artifact_sha256": "8f0c133356c20168fa73b7d65adc56534cd586b87a55e0d1b925c628d982d2ea",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "part": "hand-use-reset",
+      "control": "no-response",
+      "artifact": "current-reconciled-talismandrake-heat-monster-hand-use-reset-no-response.json",
+      "artifact_sha256": "e4f92e1bed44bdd85aee72f812a156873afaab32f0e8dfbcfcee4146a2b59be6",
+      "expected_failures": [
+        1,
+        2
+      ]
+    },
+    {
+      "part": "hand-use-reset",
+      "control": "per-copy",
+      "artifact": "current-reconciled-talismandrake-heat-monster-hand-use-reset-per-copy.json",
+      "artifact_sha256": "6e1439c68c6df8cbee8afdf6b02b33964f6627aea5f08d4444bf433b519a4cbb",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "part": "hand-use-reset",
+      "control": "no-reset",
+      "artifact": "current-reconciled-talismandrake-heat-monster-hand-use-reset-no-reset.json",
+      "artifact_sha256": "3bcae673c38a7772503f2ac713db1d871649cfd195fbc07d450e9df544580055",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "part": "equip-atk",
+      "control": null,
+      "artifact": "current-reconciled-talismandrake-heat-monster-equip-atk.json",
+      "artifact_sha256": "23aaed85713ec4090d4e710e4b7a5f0eead03013a5d14f156ed4df98acfa60cb",
+      "expected_failures": []
+    },
+    {
+      "part": "equip-atk",
+      "control": "no-gain",
+      "artifact": "current-reconciled-talismandrake-heat-monster-equip-atk-no-gain.json",
+      "artifact_sha256": "0ac947fb6cd70adc4b76f000d9ac465c0c9c4ce0bee59eb70171dda8910882ee",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "part": "equip-atk",
+      "control": "no-equip",
+      "artifact": "current-reconciled-talismandrake-heat-monster-equip-atk-no-equip.json",
+      "artifact_sha256": "f43455423be18ff5d0a50092b196a0b8518d9465a54392857008f58ab9700f72",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "part": "equip-atk",
+      "control": "no-departure",
+      "artifact": "current-reconciled-talismandrake-heat-monster-equip-atk-no-departure.json",
+      "artifact_sha256": "2fc8a9008638c007b09648cf0b6e6e2b449dbcd7eaf8a2b2132435b70e6618ae",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "part": "equip-filter",
+      "control": null,
+      "artifact": "current-reconciled-talismandrake-heat-monster-equip-filter.json",
+      "artifact_sha256": "d8ee7a242df873e94d4ca0a5e5c9c9f2880f378b8ad1834210ccd099ef22ee23",
+      "expected_failures": []
+    },
+    {
+      "part": "equip-filter",
+      "control": "no-gain",
+      "artifact": "current-reconciled-talismandrake-heat-monster-equip-filter-no-gain.json",
+      "artifact_sha256": "ba83be6dea066a28c3b2a261a927a34cb414d2da99da53cfbc9d8bb59a17a56f",
+      "expected_failures": [
+        0,
+        1,
+        4
+      ]
+    },
+    {
+      "part": "equip-filter",
+      "control": "no-equip",
+      "artifact": "current-reconciled-talismandrake-heat-monster-equip-filter-no-equip.json",
+      "artifact_sha256": "1596ea3aa0e78b926c2f6e99a89b63b4db41c9a361b6c1ca3316a4dda90dbf74",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "part": "equip-filter",
+      "control": "no-departure",
+      "artifact": "current-reconciled-talismandrake-heat-monster-equip-filter-no-departure.json",
+      "artifact_sha256": "2277613d32c82773c61ebc95c965e3206a32d48c6ff4243bfeb5a843d368c66d",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "part": "equip-filter",
+      "control": "allow-any-set",
+      "artifact": "current-reconciled-talismandrake-heat-monster-equip-filter-allow-any-set.json",
+      "artifact_sha256": "520042fb60e657efa5155b6b55ac52726b2515d05970d5bd375243ae8ac6739e",
+      "expected_failures": [
+        2
+      ]
+    },
+    {
+      "part": "equip-filter",
+      "control": "allow-opponent",
+      "artifact": "current-reconciled-talismandrake-heat-monster-equip-filter-allow-opponent.json",
+      "artifact_sha256": "5fddd873a0054ef644c802c68266a0e5311b47c27ffedb0f83cdd7784782f7cf",
+      "expected_failures": [
+        3
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_reconciled_talismandrake_heat_monster_batch.py": "b532553aaa568848bc0801deed44567f4fc43a52db3d35d52d3cbd2316abddb1",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "6e3d644ec1cc45ac996cfe977f250530726ce80315759edefdb995965c06a2a8",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-talismandrake-heat-hand-summon-batch.json": "9cb503f9661fc1e29d3b93628278c49e57909c14a699b9040bec8c0d632e807e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_reconciled_talismandrake_heat_monster_hand_summon.cjs": "779b97b6769df475f450fc7f7fca019e2700b65274e5e53c11dc3931fee655ce",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c210506870.lua": "8a6d1e9cfbc774b26a949aec98558659ca956846dd767b78ff7be09fb4037606",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-talismandrake-heat-hand-capacity-repaired-batch.json": "ece31c87effea56b42669a8569314c11b188f5738c10d45aa589e00f1e5dbb2d",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_reconciled_talismandrake_heat_monster_hand_capacity_repaired.cjs": "73ac14ee1025cc2ee9b72a56bb63a0e4f9539067b8b919a4e7e91c14aec225d2",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-talismandrake-heat-hand-use-reset-batch.json": "d21b2d8db687a0b6f6b904cf8e51dfd2ac03a80941a056686957ffae6808cc1c",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_reconciled_talismandrake_heat_monster_hand_use_reset.cjs": "5f2c2a3d027a8fc25e18de129d0fc61a302f085889cb2801d6f48c22470798f0",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-talismandrake-heat-equip-atk-batch.json": "74eebd9e80a7273de27249fd6c525288b3a3d20e6909de5676f615aed9f0c7d5",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_reconciled_talismandrake_heat_monster_equip_atk.cjs": "28527ca1e50034a61c5f6715a222620f2f4605575f206f86582f6550d0f705d0",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c215921734.lua": "600e766d4f89f9482b83d18fd85af413f1f312802a52e605fe51dbb38e4876e6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c238136421.lua": "088d06d4ed6c3a66534b2cb1ef4f51b1bc4df34886fecc2d7948250eb8f32132",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\current-talismandrake-heat-equip-filter-batch.json": "e1aae7abfb65527b2c163cf97c9bea3903f2d6177e94842dffdc93956f8b2bfb",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_reconciled_talismandrake_heat_monster_equip_filter.cjs": "26e843ddec93b0ec14c6f7456f03e50fe83a95e928582230de6766d462c6f779"
+  },
+  "scope": "Five derived current Heat monster fixtures/actual installed metadata/corrected CardData: hand summon8/capacity-interruption7/sharedreset3/equip ATK3/equipfilter5. Original artifacts and exact semantic controls retained. Full current source; existing test-only chain-info adaptations retained where used. No production changes/nativeOmega/fullcard certification.",
+  "open_interpretations": {}
+}

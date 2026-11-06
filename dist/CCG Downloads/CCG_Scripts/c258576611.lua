@@ -58,7 +58,7 @@ function s.ctop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.SelectMatchingCard(tp,s.ctfilter,tp,0,LOCATION_MZONE,1,1,nil,ct):GetFirst()
 	if tc then tc:AddCounter(COUNTER_CANDY,ct) end
 end
-function s.discon(e,tp)
+function s.discon(e) local tp=e:GetHandlerPlayer()
 	return Duel.IsExistingMatchingCard(s.skewyfilter,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.distg(e,c)

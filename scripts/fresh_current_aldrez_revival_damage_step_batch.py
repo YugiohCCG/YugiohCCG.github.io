@@ -1,0 +1,16 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+source=ROOT/'public/CCG Downloads/CCG_Scripts/c238282350.lua';assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+paths=[Path(__file__).resolve(),ROOT/'src/data/cards.json',FILES/'Databases/CCG_v1.db',OUT/'candidate-CCG_v1.db',OUT/'aldrez-revival-damage-step-repair-files.json']+[ROOT/'public/CCG Downloads/CCG_Scripts'/('c'+str(c)+'.lua') for c in [238282350,231129918]]+[ROOT/'scripts'/n for n in ['fresh_current_aldrez_knight_revival.cjs','fresh_current_aldrez_rook_revival.cjs','fresh_aldrez_revival_damage_step_repair.cjs','fresh_current_aldrez_blitz_xyz_set.cjs','fresh_installed_card.cjs','fresh_corrected_card_data_transport.cjs']]+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))+[ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']
+deps={str(p.resolve()):sha(p) for p in paths};runs=[]
+for family in ['knight','rook']:
+ for mapped,flag,expected in [(False,None,[0,1,2,11,12]),(True,None,[]),(True,'old-source',[12]),(True,'no-revive',[0,1,2,11,12]),(True,'no-attach',[0,2,11,12]),(True,'ignore-reason-player',[3,4]),(True,'no-response',[6,7,8,9,10,11])]:
+  r=subprocess.run(['node','--no-warnings','scripts/fresh_current_aldrez_'+family+'_revival.cjs']+(['--overlay-map'] if mapped else [])+(['--'+flag] if flag else []),capture_output=True,text=True,timeout=20);p=OUT/('current-aldrez-'+family+'-revival'+('-overlay-map' if mapped else '')+('-'+flag if flag else '')+'.json');d=json.loads(p.read_text());assert len(d['results'])==14 and [i for i,v in enumerate(d['results']) if v['failure']]==expected and r.returncode==bool(expected),r.stdout+r.stderr
+  if mapped:assert all(not v['logs'] for v in d['results'])
+  else:assert all(('IsCanOverlay' in v['failure'] and v['logs']) if i in [0,1,2,11,12] else (not v['failure'] and not v['logs']) for i,v in enumerate(d['results']))
+  runs.append({'artifact':p.name,'sha256':sha(p),'expected_failures':expected,'count':14,'neutral_overlay_mapping':mapped,'known_compatibility_failure':not mapped})
+assert deps=={str(p.resolve()):sha(p) for p in paths}
+(OUT/'current-aldrez-revival-damage-step-batch.json').write_text(json.dumps({'status':'ALDREZ_REVIVAL_DAMAGE_STEP_REPAIRED','runtime_dependencies_sha256':deps,'runs':runs,'scope':'Knight/Rook original effects/current installed metadata/corrected transport. Missing FIELD TO_GRAVE Damage Step permission repaired. Paid proper two-material Xyz, native opponent battle/destruction2000damage/actual revival/source banish cost; wrong-set negative and original flag failures. Optional Knight either-GY and Rook either-field attachment need explicit neutral-only missing IsCanOverlay mappings; unadapted errors retained separately. Effective outcomes/reason/response controls; original general recipes/shared limits/full-card/live Omega remain separate.','production_change':True},indent=2)+'\n')
+print('Knight/Rook Damage Step repair verified; overlay API qualification retained')

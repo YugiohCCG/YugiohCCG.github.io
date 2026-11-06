@@ -1,0 +1,92 @@
+{
+  "status": "EIGHT_BOUNDED_FOLLOWUPS_REPAIRED",
+  "cards": [
+    {
+      "passcode": 218905439,
+      "name": "Nautical Adventures & Torrential Seas",
+      "source_sha256": "d0667109b1c79b94930723b9fce17ca5d29ee4db5cf35b43017035fa8efa600e",
+      "installed_matches": true,
+      "finding": "REPAIRED source/local Omega. Original Trap targets own Nautica/opponent monster and returns both field-to-Hand, then selected returned monster Normal/Special Summons. current-adventures-summon-followup-review.json covers absent target, immunity acquired on summon, disabled/field reset/negated summon then revival. Explicit public target-card flag8 mapping; unadapted failure separate.",
+      "scope": "Source/spec review; full native effect proof only Scarlet, remaining original effects require focused regressions.",
+      "text": "Target 1 \"Nautica\" monster you control and 1 monster your opponent controls; return those targets to the hand, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK is becomes 0. If your WATER Monster is Xyz Summoned while this card is in the GY: You can attach this card to it as Xyz material, but banish this card when detached. You can only use each effect of \"Nautical Adventures & Torrential Seas\" once per turn."
+    },
+    {
+      "passcode": 220749574,
+      "name": "Scarlet Seareef & the Nautical Creatures",
+      "source_sha256": "da2ed25e6cc7f8e58993efff68d4170de1265344b2e95eb2dd3ee3680909bab4",
+      "installed_matches": true,
+      "finding": "REPAIRED: one-shot successful-Normal-Summon listener applies original-source ATK0 with immunity/disabled/reset/negated-summon boundaries verified in current-scarlet-summon-followup-review.json.",
+      "scope": "Source/spec review; full native effect proof only Scarlet, remaining original effects require focused regressions.",
+      "text": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by placing 2 Aqua Monsters from your GY on the bottom of your Deck in any order. You can treat this card as a Level 1 monster when you Xyz Summon an Aqua monster. You can discard 1 card; shuffle this card from your hand into the Deck, then add 1 \"Exploring the Nautical Waters\" from your Deck to your hand. If this card is Special Summoned: You can draw 1 card, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0."
+    },
+    {
+      "passcode": 223158720,
+      "name": "Nautical Backwashing & Oceanic Waves",
+      "source_sha256": "0c7c7ea1bbf4e5892ab977db9d19adb4046c52e520e0a7b037bbc796c3966281",
+      "installed_matches": true,
+      "finding": "REPAIRED source/local Omega. Original Trap activation targets own GY Nautica/actually returns to Hand, then native opponent Normal/Special Summon. Eight-case current-backwashing-summon-followup-review.json covers missing resource/immunity/disabled target/field reset/negated summon then revival with effective prior-source/fault controls; no Lua API mapping.",
+      "scope": "Source/spec review; full native effect proof only Scarlet, remaining original effects require focused regressions.",
+      "text": "Target 1 \"Nautica\" monster in your GY; return that target to the hand, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0. You can banish this card from your GY; place 3 Aqua monsters from your GY on the bottom of your Deck in any order, then draw 1 card. You can only use 1 effect of \"Nautical Backwashing & Oceanic Waves\" per turn and only once that turn."
+    },
+    {
+      "passcode": 225109525,
+      "name": "Evander Coldwater & the Nautical Abyss",
+      "source_sha256": "ff188daef4afc247a7c7deb5c70efe5a134976b99e3170c6b57b278b5e235116",
+      "installed_matches": true,
+      "finding": "REPAIRED source/local Omega with original effect/current installed metadata and no Lua API mapping: current-evander-summon-followup-review.json. Initially-field full-source Xyz, actual native Overlay setup and original detach cost/opponent target return; immunity/disabled/reset/negated summon then revival. Original Xyz recipe/proper history remains qualified.",
+      "scope": "Source/spec review; full native effect proof only Scarlet, remaining original effects require focused regressions.",
+      "text": "2+ Level 1 Aqua monsters\nGains 500 ATK for each \"Nautica\" card attached to it as Xyz Material. Once per turn (Quick Effect): You can detach 1 material from this card, then target 1 monster your opponent controls; return it to the hand, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0."
+    },
+    {
+      "passcode": 248946297,
+      "name": "Exploring the Nautical Waters",
+      "source_sha256": "36e9ff8fccabfca70def74507305f9f17e313d0db889f4ed4ae9c96aca0d2d1a",
+      "installed_matches": true,
+      "finding": "REPAIRED source/local Omega with original effect/current installed metadata and no Lua API mapping: current-exploring-summon-followup-review.json. Original Hand Spell/Deck Nautica search; Hand Normal/Hand Special/Deck Special tested; Deck-only effect negation independently proved with700DEF modifier and omission fault. Normal helper return is irrelevant to Deck-only negation; no speculative return-value patch.",
+      "scope": "Source/spec review; full native effect proof only Scarlet, remaining original effects require focused regressions.",
+      "text": "Add 1 \"Nautica\" monster from your Deck to your hand, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand or Deck in Attack Position, but its ATK becomes 0, then, if that monster was Special Summoned from the Deck this way, negate its effects. You cannot Special Summon monsters the turn you use this effect, except WATER Monsters. You can only activate 1 \"Exploring the Nautical Waters\" per turn."
+    },
+    {
+      "passcode": 259114562,
+      "name": "Bobbie Bluefin & the Nautical Nocturnes",
+      "source_sha256": "07e6b2966c1ffa3d5257e4b79002f7a8fb3142c30549783b9e068e80c757f484",
+      "installed_matches": true,
+      "finding": "REPAIRED source/local Omega: deferred successful Normal Summon listener applies ATK0 and conditional all-own-Nautica negation. Actual original Hand trigger/self summon, ten boundaries and separate effective omitted-ATK/negation controls in current-bobbie-summon-followup-review.json; no Lua API mapping.",
+      "scope": "Bounded original followup behavior; full card/live Omega open.",
+      "text": "Cannot be Normal Summoned/Set. If your opponent Normal or Special Summons a monster: You can Special Summon this card from your hand, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0, and if you do, if all monsters you control are \"Nautica\" monsters, negate its effects. You can only use this effect of \"Bobbie Bluefin & the Nautical Nocturnes\" once per turn."
+    },
+    {
+      "passcode": 259844716,
+      "name": "Yurei",
+      "source_sha256": "118f95009b721887f7aa54212dc3aa1f738ec801d6c86d08388ab03b4d730b55",
+      "installed_matches": true,
+      "finding": "REPAIRED original Hand attack trigger/deferred Normal Summon/Spirit doubling and End Phase expiry;9cases and effective prior-source/omitted-double controls. See current-remaining-normal-summon-review.json.",
+      "scope": "Bounded original followup/integration behavior, no Lua API mapping; other printed clauses/full-card/live Omega remain open.",
+      "text": "Cannot be Special Summoned. When your opponent activates a card or effect that would destroy a card on the field (Quick Effect): You can reveal this card in your hand; Tribute 1 Spirit monster from your hand or field, and if you do, negate that effect. When an attack is declared involving your Spirit monster (Quick Effect): Immediately after this effect resolves, Normal Summon this card, and if you do, that Spirit monster's ATK is doubled until the end of this turn. You can only use 1 of the previous effects of \"Yurei\" per turn, and only once that turn. Once per turn, during the End Phase, if this card was Tributed, Normal Summoned, or flipped face-up this turn: Return it to the hand."
+    },
+    {
+      "passcode": 259941091,
+      "name": "Nautica Oceanica",
+      "source_sha256": "00580a754b22317ca36baf594d2e58f9b27bc2fa1d4eedba6d01ee5951973bce",
+      "installed_matches": true,
+      "finding": "REPAIRED actual original Harmony/Melody/Emma Hand trigger observer, deferred Normal ATK0/immunity and immunity-aware existing lock (also Special path). Seven cases/source with exact original metadata failures, meta-only nil/lock failures and independent omitted-ATK/immunity/old-lock controls. See current-remaining-normal-summon-review.json.",
+      "scope": "Bounded original followup/integration behavior, no Lua API mapping; other printed clauses/full-card/live Omega remain open.",
+      "text": "Monsters Normal or Special Summoned from the hand in Attack Position cannot activate their effects. If you activate a \"Nautica\" card effect that would Summon a monster, you can add 1 of these additional effects to that card's effect at resolution depending on where it would be Summoned from. \u25cf Your hand: Then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, also it is unaffected by \"Nautica Oceanica\", but its ATK becomes 0. \u25cf Your opponent's hand: Add 1 \"Nautica\" monster from your Deck or GY to the hand, then place 1 card from your hand on the bottom of your Deck."
+    }
+  ],
+  "primary": "https://raw.githubusercontent.com/edo9300/ygopro-core/master/libduel.cpp",
+  "rule": "Duel.Summon queues/reserves the summon while a chain is resolving and yields without return values. Immediate location checks or numeric return checks are unsound.",
+  "candidate": "fresh_nautica_normal_summon_zero_repair.cjs: one-shot successful-Normal-Summon listener preserves source effect owner and immunity; first pre-summon ATK candidate rejected by actual immunity test.",
+  "production_change": true,
+  "native_omega_verified": false,
+  "remaining_same_pattern_candidates": [],
+  "metadata_integration_repair": {
+    "passcodes": [
+      226645052,
+      228040066,
+      214349717
+    ],
+    "evidence": "current-remaining-normal-summon-review.json",
+    "scope": "Exact own-Hand summon operation reports tp/LOCATION_HAND; not independent full-card audits."
+  }
+}

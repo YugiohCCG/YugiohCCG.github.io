@@ -1,0 +1,28 @@
+{
+  "scanned": 711,
+  "scope": "Exact-loss printed-text family and SelectDisableField source-family review; bounded checks, not full-card audits.",
+  "exact_loss_cards": [
+    {
+      "passcode": 254894701,
+      "name": "Nifal, the Scarstech War Machine",
+      "qualification": "Native exact-loss repair verified."
+    },
+    {
+      "passcode": 242838495,
+      "name": "Ratsach, the Scarstech Cruiser",
+      "qualification": "Native exact-loss repair verified."
+    },
+    {
+      "passcode": 259086544,
+      "name": "Qerets, the Scarstech Mother Ship",
+      "qualification": "Same missing post-reduction check in source; original targeting trigger uses legacy CHAININFO_TARGET_CARDS. Unchanged pending original runtime qualification."
+    }
+  ],
+  "zone_scan": "current-zone-picker-family-triage.json",
+  "zone_scan_sha256": "ff880bb50de13d8f9f3b139369b9a28e04a8b22fa53a82393d026b21dbd8b4ba",
+  "primary_sources": [
+    "https://www.yugioh-card.com/eu/play/understanding-card-text/part-7-conjunction-functions/",
+    "https://raw.githubusercontent.com/edo9300/ygopro-core/master/libduel.cpp"
+  ],
+  "qualification": "Then/and-if-do require preceding operation. SelectDisableField excludes occupied zones; SelectFieldZone permits them. Native original effect tests exercise failed loss and occupied zone. Main five zones only; Extra Monster Zone interpretation and full geometry remain open."
+}

@@ -49,7 +49,7 @@ function s.aclimit(e,re,tp)
 end
 function s.linksum(c)
 	if c:IsType(TYPE_LINK) then return c:GetLink() end
-	return 1
+	return 0
 end
 function s.atktg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsFaceup() end

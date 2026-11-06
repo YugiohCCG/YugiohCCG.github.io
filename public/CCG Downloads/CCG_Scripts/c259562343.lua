@@ -166,7 +166,7 @@ function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 			local mat1=Duel.SelectFusionMaterial(tp,tc,mg1,nil,chkf)
 			if not mat1 or #mat1==0 then goto cancel end
 			tc:SetMaterial(mat1)
-			Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
+			if Duel.SendtoGrave(mat1,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat1 then return end
 			Duel.BreakEffect()
 			if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then
 				tc:CompleteProcedure()
@@ -175,8 +175,17 @@ function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 			local mat2=Duel.SelectFusionMaterial(tp,tc,mg2,nil,chkf)
 			if not mat2 or #mat2==0 then goto cancel end
 			local fop=ce:GetOperation()
+			--Chain Material callbacks do not return the summon result.
+			local complete=Effect.CreateEffect(e:GetHandler())
+			complete:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+			complete:SetCode(EVENT_SPSUMMON_SUCCESS)
+			complete:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+			complete:SetOperation(function(se,sp,sg)
+				if sg:IsContains(tc) and tc:IsSummonType(SUMMON_TYPE_FUSION) then tc:CompleteProcedure() end
+			end)
+			Duel.RegisterEffect(complete,tp)
 			fop(ce,e,tp,tc,mat2)
-			tc:CompleteProcedure()
+			complete:Reset()
 		end
 	end
 end

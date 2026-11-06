@@ -1,0 +1,632 @@
+{
+  "scope": "Full original Hunter/current installed metadata seeded field; actual queried ATK/DEF across self/mixed position/owner/location, native movement/control/current Race changes and full stock Skill Drain activation/payment/removal. Neutral typed resources/helpers; no Lua API mapping. ToGY trigger/search/source summon history/use/reset/live outside scope.",
+  "mode": "no-field",
+  "results": [
+    {
+      "test": {
+        "kind": "sourceOnly"
+      },
+      "failure": "Original dynamic own-field/GY Zombie ATK\n\n2100 !== 2500\n",
+      "samples": [],
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 240511702,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "test": {
+        "kind": "mixed"
+      },
+      "failure": "Original dynamic own-field/GY Zombie ATK\n\n2500 !== 3300\n",
+      "samples": [],
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            900010241
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 900010241,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 240511702,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            },
+            {
+              "code": 900010241,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            },
+            {
+              "code": 900010242,
+              "controller": 0,
+              "location": 4,
+              "sequence": 2
+            },
+            {
+              "code": 900010241,
+              "controller": 0,
+              "location": 4,
+              "sequence": 3
+            }
+          ],
+          "monster_sets": [
+            {
+              "code": 900010241,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "test": {
+        "kind": "otherLocations"
+      },
+      "failure": "Original dynamic own-field/GY Zombie ATK\n\n2100 !== 2500\n",
+      "samples": [],
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            900010241
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [
+            {
+              "code": 900010241,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 240511702,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            }
+          ],
+          "monster_sets": [
+            {
+              "code": 900010241,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "test": {
+        "kind": "opponentResources"
+      },
+      "failure": "Original dynamic own-field/GY Zombie ATK\n\n2100 !== 2500\n",
+      "samples": [],
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 240511702,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "test": {
+        "kind": "movement"
+      },
+      "failure": "Original dynamic own-field/GY Zombie ATK\n\n2100 !== 2900\n",
+      "samples": [],
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 240511702,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            },
+            {
+              "code": 900010241,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            },
+            {
+              "code": 900010243,
+              "controller": 0,
+              "location": 4,
+              "sequence": 4
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [
+            {
+              "code": 900010243,
+              "controller": 0,
+              "location": 4,
+              "sequence": 4,
+              "description": "0",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "test": {
+        "kind": "controlChange"
+      },
+      "failure": "Original dynamic own-field/GY Zombie ATK\n\n2500 !== 3300\n",
+      "samples": [],
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 240511702,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            },
+            {
+              "code": 900010241,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            },
+            {
+              "code": 900010243,
+              "controller": 0,
+              "location": 4,
+              "sequence": 4
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [
+            {
+              "code": 900010243,
+              "controller": 0,
+              "location": 4,
+              "sequence": 4,
+              "description": "0",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "test": {
+        "kind": "raceChange"
+      },
+      "failure": "Original dynamic own-field/GY Zombie ATK\n\n2100 !== 2500\n",
+      "samples": [],
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 240511702,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            },
+            {
+              "code": 900010242,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            },
+            {
+              "code": 900010243,
+              "controller": 0,
+              "location": 4,
+              "sequence": 4
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [],
+          "activates": [
+            {
+              "code": 900010243,
+              "controller": 0,
+              "location": 4,
+              "sequence": 4,
+              "description": "0",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "test": {
+        "kind": "skillDrain"
+      },
+      "failure": "Original dynamic own-field/GY Zombie ATK\n\n2100 !== 2900\n",
+      "samples": [],
+      "logs": [],
+      "trace": [
+        {
+          "type": 40,
+          "player": 0
+        },
+        {
+          "type": 33,
+          "player": 0,
+          "cards": [
+            900010243
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 1
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "27"
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "20"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 1,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 82732705,
+              "controller": 0,
+              "location": 8,
+              "sequence": 0,
+              "position": 8,
+              "description": "0",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 2
+        },
+        {
+          "type": 2,
+          "hint_type": 1,
+          "player": 0,
+          "hint": "21"
+        },
+        {
+          "type": 16,
+          "player": 0,
+          "spe_count": 0,
+          "forced": false,
+          "hint_timing": 2,
+          "hint_timing_other": 0,
+          "selects": [
+            {
+              "code": 82732705,
+              "controller": 0,
+              "location": 8,
+              "sequence": 0,
+              "position": 8,
+              "description": "0",
+              "client_mode": 0
+            }
+          ]
+        },
+        {
+          "type": 41,
+          "phase": 4
+        },
+        {
+          "type": 11,
+          "player": 0,
+          "summons": [],
+          "special_summons": [],
+          "pos_changes": [
+            {
+              "code": 240511702,
+              "controller": 0,
+              "location": 4,
+              "sequence": 0
+            },
+            {
+              "code": 900010241,
+              "controller": 0,
+              "location": 4,
+              "sequence": 1
+            }
+          ],
+          "monster_sets": [],
+          "spell_sets": [
+            {
+              "code": 900010243,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0
+            }
+          ],
+          "activates": [
+            {
+              "code": 900010243,
+              "controller": 0,
+              "location": 2,
+              "sequence": 0,
+              "description": "0",
+              "client_mode": 0
+            },
+            {
+              "code": 82732705,
+              "controller": 0,
+              "location": 8,
+              "sequence": 0,
+              "description": "0",
+              "client_mode": 0
+            }
+          ],
+          "to_bp": false,
+          "to_ep": true,
+          "shuffle": false
+        }
+      ]
+    }
+  ]
+}

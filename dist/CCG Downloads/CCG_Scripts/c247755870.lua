@@ -36,9 +36,12 @@ end
 function s.ownfilter(c)
  return c:IsSetCard(SET_KALI_YUGA) and c:IsDestructable()
 end
+function s.discardfilter(c)
+ return c:IsDiscardable(REASON_EFFECT)
+end
 function s.possible(e,tp)
  return Duel.GetFlagEffect(tp,id)==0 and Duel.IsExistingTarget(s.oppfilter,tp,0,LOCATION_ONFIELD,1,nil)
-  and (Duel.GetFieldGroupCount(tp,LOCATION_HAND,0)>0
+  and (Duel.IsExistingMatchingCard(s.discardfilter,tp,LOCATION_HAND,0,1,nil)
    or Duel.IsExistingMatchingCard(s.ownfilter,tp,LOCATION_ONFIELD,0,1,e:GetHandler()))
 end
 function s.acttg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
@@ -62,12 +65,12 @@ function s.desop(e,tp)
  if e:GetLabel()==0 or not c:IsRelateToEffect(e) or not c:IsFaceup()
   or not tc or not tc:IsRelateToEffect(e) or Duel.Destroy(tc,REASON_EFFECT)==0 then return end
  local destroy=Duel.IsExistingMatchingCard(s.ownfilter,tp,LOCATION_ONFIELD,0,1,c)
- local discard=Duel.GetFieldGroupCount(tp,LOCATION_HAND,0)>0
+ local discard=Duel.IsExistingMatchingCard(s.discardfilter,tp,LOCATION_HAND,0,1,nil)
  if not destroy and not discard then return end
  local option=0
  if destroy and discard then option=Duel.SelectOption(tp,aux.Stringid(MSG_ID,2),aux.Stringid(MSG_ID,3))
  elseif discard then option=1 end
- if option==1 then Duel.DiscardHand(tp,nil,1,1,REASON_EFFECT+REASON_DISCARD)
+ if option==1 then Duel.DiscardHand(tp,s.discardfilter,1,1,REASON_EFFECT+REASON_DISCARD)
  else
   Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
   local g=Duel.SelectMatchingCard(tp,s.ownfilter,tp,LOCATION_ONFIELD,0,1,1,c)

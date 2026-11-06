@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');exports.corrected=(s,code=238272436)=>{assert([238272436,259640854].includes(code));const a=code===238272436?'return (c:IsSetCard(SET_RROOT) or c:IsCode(11110218,63086455,85698115)) and c:IsAbleToDeck()':'return c:IsSetCard(SET_DINOMORPHIA) and c:IsType(TYPE_TRAP) and c:IsAbleToDeck()';assert.equal(s.split(a).length,2);return s.replace(a,'return (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup()) and '+a.slice(7));};

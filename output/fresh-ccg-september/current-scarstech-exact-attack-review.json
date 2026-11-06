@@ -1,0 +1,96 @@
+{
+  "finding": "Nifal and Ratsach continued after failing to lose exactly 3000 ATK; now require actual reduction. Nifal also incorrectly excluded occupied zones from its destruction selection; uses SelectFieldZone.",
+  "qualification": "Five native original-effect cases: both exact-loss success/failure and Nifal occupied-zone selection. Original failures and independent missing-check/loss/outcome controls detected. Neutral support; no API mappings. Original Link recipes, full-card behavior and full destruction geometry remain open. Qerets same source candidate remains unchanged due legacy target-chain information.",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_scarstech_exact_attack_batch.py": "18ca44a271646c2ce9e6a74e8d5c4b1b9c13b239b10cc0d0adb3882e645f2187",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_scarstech_exact_attack.cjs": "f6049eab6614b667a439844df579045c440634166b4fa3acf98352ad9e607824",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_scarstech_exact_attack_repair.cjs": "3c8be5c751397d4843c776b3f0c6b902edea739fedf1d90ec39563e7964173aa",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_nifal_occupied_zone.cjs": "96c116249af95d906dc11f108b81dab66fccf74b94b0e84aad05a536a55bb812",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\scarstech-exact-attack-before-repair\\c254894701.lua": "9270fd2cd4cc9a827f9cd2d439cb0807b738639eae798b0bec6562e8ae4139ec",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\scarstech-exact-attack-before-repair\\c242838495.lua": "a614e2749baafee1e8b78aa6e5024fe4d6c6757e3406743c9a3f58f8f399c1d7",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "mode": "candidate",
+      "cases": 4,
+      "file": "current-scarstech-exact-attack-candidate.json",
+      "sha256": "e45b41d440f122fba9ae7db9abc0c560451c0907ffbae9acac61545046854f4d",
+      "expected_failures": []
+    },
+    {
+      "mode": "old",
+      "cases": 4,
+      "file": "current-scarstech-exact-attack-old.json",
+      "sha256": "07699ef02ba403d88af917040ffa744660e06ed38c74d2bbc31071bb52eaa1b4",
+      "expected_failures": [
+        1,
+        3
+      ]
+    },
+    {
+      "mode": "no-check",
+      "cases": 4,
+      "file": "current-scarstech-exact-attack-no-check.json",
+      "sha256": "7492d562cb8866b1086ce5941d093520622277153f3c249e687da57d7751ce40",
+      "expected_failures": [
+        1,
+        3
+      ]
+    },
+    {
+      "mode": "no-loss",
+      "cases": 4,
+      "file": "current-scarstech-exact-attack-no-loss.json",
+      "sha256": "351405e88b11b3343d7af8e68e571258b615fc925d20df9de9bd470b28becab5",
+      "expected_failures": [
+        0,
+        2
+      ]
+    },
+    {
+      "mode": "no-outcome",
+      "cases": 4,
+      "file": "current-scarstech-exact-attack-no-outcome.json",
+      "sha256": "7ad83058f725b7fc94dbe6449841aad1b8350882f4d076a53cfa0031f7861f23",
+      "expected_failures": [
+        0,
+        2
+      ]
+    },
+    {
+      "mode": "candidate",
+      "cases": 1,
+      "file": "current-nifal-occupied-zone-candidate.json",
+      "sha256": "e6e5b13b30d34181e05758594063d1187b60478b25fa403b30100b7cc6cce255",
+      "expected_failures": []
+    },
+    {
+      "mode": "old",
+      "cases": 1,
+      "file": "current-nifal-occupied-zone-old.json",
+      "sha256": "a580009d69b56463b768b5f4645f4a0504f0fd4af41f0c916c202d97778e42fe",
+      "expected_failures": [
+        0
+      ]
+    }
+  ],
+  "manifest": "scarstech-exact-attack-repair-files.json",
+  "manifest_sha256": "91cf85f39c257c52028ddede720ea9e00b821975997c4834a72070c4b94d70e2",
+  "helper_sha256": "3c8be5c751397d4843c776b3f0c6b902edea739fedf1d90ec39563e7964173aa",
+  "family_scan": "current-scarstech-exact-attack-family-review.json",
+  "family_scan_sha256": "5112817ec0fecea9d50f447b5c5e971e587a1aea9a522ceb94316689791b5a26"
+}

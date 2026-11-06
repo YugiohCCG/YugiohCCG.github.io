@@ -1,0 +1,12 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+paths=[Path(__file__).resolve(),ROOT/'scripts/fresh_current_seraphina_wipe_cooldown.cjs',ROOT/'scripts/fresh_current_seraphina_wipe.cjs',ROOT/'scripts/fresh_installed_card.cjs',ROOT/'scripts/fresh_corrected_card_data_transport.cjs',FILES/'Databases/CCG_v1.db']+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))+[ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']
+for code in [218142234,238136421,215921734]:paths += [ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua',FILES/'Scripts'/f'c{code}.lua']
+before={str(p.resolve()):sha(p) for p in paths};runs=[]
+for control,expected in [(None,[]),('early-reset',[0,1,2]),('late-reset',[0,1,2]),('per-copy',[0,1,2]),('no-response',[1,2])]:
+ r=subprocess.run(['node','--no-warnings','scripts/fresh_current_seraphina_wipe_cooldown.cjs']+(['--'+control] if control else []),capture_output=True,text=True,timeout=20);p=OUT/('current-seraphina-wipe-cooldown'+('-'+control if control else '')+'.json');d=json.loads(p.read_text());assert r.returncode==bool(expected) and len(d['results'])==3 and [i for i,v in enumerate(d['results']) if v['failure']]==expected,(control,r.stdout+r.stderr);assert all(not v['logs'] for v in d['results']);runs.append({'control':control,'artifact':p.name,'sha256':sha(p),'expected_failures':expected})
+assert before=={str(p.resolve()):sha(p) for p in paths}
+for code in [218142234,238136421,215921734]:assert (ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua').read_bytes()==(FILES/'Scripts'/f'c{code}.lua').read_bytes()
+(OUT/'current-seraphina-wipe-cooldown-batch.json').write_text(json.dumps({'status':'NATIVE_SERAPHINA_WIPE_COOLDOWN_VERIFIED','runtime_dependencies_sha256':before,'runs':runs,'scope':d['scope']+' Native two paid effects, real restored victim and independently maintained Arms conditions prove exclusions are cooldown-driven. Production unchanged; shared monster-recovery/placement wording remains separate.'},indent=2)+'\n',encoding='utf-8');print('Seraphina cooldown native two-copy/three-turn/negation scope and effective controls verified')

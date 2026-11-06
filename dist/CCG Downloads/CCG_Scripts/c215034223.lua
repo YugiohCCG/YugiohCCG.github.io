@@ -61,7 +61,7 @@ function s.pzop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.cfilter(c,tp,e)
-	return c:IsControler(tp) and c:IsRace(RACE_PYRO) and c:IsType(TYPE_FUSION)
+	return c:IsFaceup() and c:IsControler(tp) and c:IsRace(RACE_PYRO) and c:IsType(TYPE_FUSION)
 		and (not e or c:IsCanBeEffectTarget(e))
 		and Duel.IsExistingMatchingCard(s.armsfilter,tp,LOCATION_DECK,0,1,nil,c)
 end
@@ -85,7 +85,7 @@ function s.eqtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and s.cfilter(tc,tp,e) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0) then return end
+	if not (tc and tc:IsRelateToEffect(e) and s.cfilter(tc,tp) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_EQUIP)
 	local g=Duel.SelectMatchingCard(tp,s.armsfilter,tp,LOCATION_DECK,0,1,1,nil,tc)
 	local ec=g:GetFirst()

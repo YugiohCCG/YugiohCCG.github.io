@@ -1,4 +1,4 @@
--- Farad, the Ohmechanic Capacitor
+-- Farad, the Ohmenchanic Capacitor
 local s,id=GetID()
 local STRING_ID=133350270
 local COUNTER_CURRENT = 0x18f0
@@ -85,7 +85,7 @@ function s.effcon2(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetCounter(COUNTER_CURRENT) >= 2 and Duel.IsMainPhase()
 end
 function s.thfilter(tc)
-	return tc:IsSetCard(SET_OHMEN) and tc:IsFaceupEx() and tc:IsAbleToHand()
+	return tc:IsSetCard(SET_OHMEN) and (not tc:IsLocation(LOCATION_REMOVED) or tc:IsFaceup()) and tc:IsAbleToHand()
 		and (not tc:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(tc))
 end
 function s.efftg2(e,tp,eg,ep,ev,re,r,rp,chk,chkc)

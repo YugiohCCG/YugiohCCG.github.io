@@ -5,7 +5,7 @@ async function main(){
  const mod=await import(pathToFileURL(path.join(path.dirname(require.resolve('@n1xx1/ocgcore-wasm')),'dist/index.js')).href);
  const {OcgMessageType:M,OcgResponseType:R,OcgLocation:L,OcgPosition:P,OcgProcessResult:S,SelectIdleCMDAction:A}=mod;
  const core=await mod.default({sync:true,print(){},printErr(){}}),field=284636665,aqua=900000171,filler=900000172;
- const db=new DatabaseSync(path.join(ROOT,'output/fresh-ccg-september/candidate-CCG_v1.db'),{readOnly:true}),r=db.prepare('select * from datas where id=?').get(field);db.close();
+ const db=new DatabaseSync(path.join(ROOT,'public/CCG Downloads/CCG_Database/CCG_v1.db'),{readOnly:true}),r=db.prepare('select * from datas where id=?').get(field);db.close();
  const base={alias:0,setcodes:[],type:17,level:4,attribute:16,race:0x20n,attack:1000,defense:1000,lscale:0,rscale:0,link_marker:0};
  const cards=new Map([[field,{...base,code:field,setcodes:[0x0f3c],type:Number(r.type),level:0,attribute:0,race:0n,attack:0,defense:0}],[aqua,{...base,code:aqua,setcodes:[0x0f3c]}],[filler,{...base,code:filler}]]);
  const results=[];

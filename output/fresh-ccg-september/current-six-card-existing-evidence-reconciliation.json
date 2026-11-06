@@ -1,0 +1,85 @@
+{
+  "scope": "Read-only freshness/scope reconciliation plus bounded new Grayterror and White Frute evidence references; hash matches do not certify entire cards. Dedicated Ursarctic own-effect evidence remains missing by passcode search; White Frute now has original Tribute/retarget/Defense-choice evidence, while Fruteification recipient roles alone remain insufficient.",
+  "pisaster_batches": [
+    {
+      "artifact": "current-aquamarine-pisaster-hand-batch.json",
+      "scope": "Public OCGCore, full production Pisaster Giga/current metadata; neutral supporting cards. Actual printed hand summon procedure with neutral partner; shared copy limit and actual renewed own-turn-3 summon; native Omega unverified; no native Omega certification.",
+      "cases": 8,
+      "dependency_drift": [
+        "output/fresh-ccg-september/current-spec-CCG_v1.db"
+      ]
+    },
+    {
+      "artifact": "current-aquamarine-pisaster-tribute-batch.json",
+      "scope": "Public OCGCore, full production Pisaster Giga/current metadata; neutral supporting cards. Actual production Tribute cost then Deck summon, neutral target; shared named use and actual renewed own-turn3 Deck summon; full sources initially MZONE (not native arrival evidence). Native Omega unverified; no native Omega certification.",
+      "cases": 8,
+      "dependency_drift": [
+        "output/fresh-ccg-september/current-spec-CCG_v1.db"
+      ]
+    },
+    {
+      "artifact": "current-aquamarine-pisaster-tribute-interruption-batch.json",
+      "scope": "Full current Pisaster actual Hand procedure, actual paid tribute, native Deck summon or CL2 activation/effect negation, target banish, player restriction, late capacity. Neutral partner/CounterTrap/targets, no adapters. Recovery/native Omega/full-card gaps remain open.",
+      "cases": 7,
+      "dependency_drift": [
+        "output/fresh-ccg-september/current-spec-CCG_v1.db"
+      ]
+    },
+    {
+      "artifact": "current-aquamarine-pisaster-tribute-use-reset-batch.json",
+      "scope": "Full current Pisaster first actual native Hand arrival/tribute, actual success or CL2 activation/effect negation consumes shared named use across second initially MZONE full copy; actual own-turn3 second tribute/Deck summon. No adapters or seeded use/count. Second copy native arrival remains integration gap; recovery/native Omega/full-card open.",
+      "cases": 3,
+      "dependency_drift": [
+        "output/fresh-ccg-september/current-spec-CCG_v1.db"
+      ]
+    },
+    {
+      "artifact": "current-aquamarine-pisaster-recovery-exclusions-batch.json",
+      "scope": "Public OCGCore, full production Pisaster Giga/current metadata; neutral banishment Spell and recovery target. Actual source banishment from GY/Hand/field and excluded recovery triggers for nonmonster/wrongset/self targets. Positive recovery API/native Omega remain unverified; allow-target negative control removes entire filter (not a compatibility adapter); native Omega unverified; no native Omega certification.",
+      "cases": 6,
+      "dependency_drift": [
+        "output/fresh-ccg-september/current-spec-CCG_v1.db"
+      ]
+    }
+  ],
+  "cards": {
+    "211682274": {
+      "resolved_scope": "Existing Hand procedure/Tribute behavior/limits/interruption scopes retained with unchanged source/harness dependencies.",
+      "remaining": "Referenced metadata DB hash drift; positive recovery missing API/native qualification and whole-card proof remain open. Do not replay paid summon histories solely for DB drift."
+    },
+    "218837030": {
+      "source_clauses": [
+        "Main-Phase Hand Quick summon, Level7+ Tribute/replacement and Level-only lock",
+        "Special Summon target destroy",
+        "Ursarctic activation cost/replacement draw trigger"
+      ],
+      "remaining": "Original Hand Effect.IsCostChecked and successful draw CHAININFO public incompatibilities; phase/replacement/limits/reset remain qualified. Independently audit original Special Summon success clause.",
+      "resolved_scope": "current-ursarctic-original-runtime-review.json: original no-Level filter predicate and actual draw-exclusion cases verified within scope; unadapted Hand/draw failures retained."
+    },
+    "245378354": {
+      "source_clauses": [
+        "Shared Ursarctic Hand cost/replacement/Level-only lock",
+        "Special Summon Deck Set and same-turn permission",
+        "Ursarctic activation cost/replacement draw trigger"
+      ],
+      "remaining": "Original Hand/draw API qualifications unchanged via exact unmodified function comparison. Set same-turn permission activation/reset and named use plus other original effect boundaries remain open.",
+      "resolved_scope": "current-ursarctic-original-runtime-review.json: original no-Level filter predicate and actual draw-exclusion cases verified within scope; unadapted Hand/draw failures retained. current-field-set-zone-family-review.json proves actual original Special Summon Set trigger, full/newly-filled backrow Field Zone boundary and Trap exclusion; Set capacity repaired, no API mapping."
+    },
+    "220916791": {
+      "source_clauses": [
+        "Water Tribute/Hand summon then named-exclusion search",
+        "Tributed recovery, face-down Tribute unlocks defense summon alternatives"
+      ],
+      "remaining": "Own Hand Tribute/summon/search effect, separate/shared named limits/reset and full-card/live Omega remain open.",
+      "resolved_scope": "current-frute-retarget-owner-review.json proves original actual Tribute trigger, native retarget ownership, own-GY add to Hand and both Defense summon outcomes after actual face-down Tribute; source/installed controller guard repaired, no API mapping."
+    },
+    "248453205": {
+      "resolved_scope": "Existing native departure batch proves recruited monster lifecycle redirection to opposing face-up Deck, multiple destinations and controls.",
+      "remaining": "Other cost origins, optional second Deck Tribute and End Phase self-Set/cost/limit remain independently unreconciled."
+    },
+    "259624110": {
+      "resolved_scope": "current-grayterror-then-review.json now proves original linked Tribute and chain rewrite, summon/attachment/decline and interrupted-resource/summon restriction boundaries; no API mapping.",
+      "remaining": "Original Link procedure, aura, material restriction, named reset and timing/other-controller boundaries remain open."
+    }
+  }
+}

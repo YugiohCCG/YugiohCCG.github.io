@@ -1,0 +1,10 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),Module=require('node:module'),assert=require('node:assert/strict');
+const file=path.join(__dirname,'fresh_current_trumpet_destroyed_origin.cjs');let s=fs.readFileSync(file,'utf8');
+assert(s.includes("origin:'facedown',allowed:true"));s=s.replace("origin:'facedown',allowed:true","origin:'facedown',allowed:false");
+assert(s.includes("lua=require('./fresh_trumpet_destroyed_origin_repair.cjs').corrected(lua)"));s=s.replace("lua=require('./fresh_trumpet_destroyed_origin_repair.cjs').corrected(lua)","lua=lua.replace('and c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE)','and c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE) and c:IsPreviousPosition(POS_FACEUP)')");
+s=s.replaceAll('current-trumpet-destroyed-origin','current-trumpet-destroyed-visibility');
+s=s.replace("if(process.argv.includes('--old-source'))", "if(process.argv.includes('--before-visibility'))lua=fs.readFileSync(path.join(ROOT,'output/fresh-ccg-september/trumpet-before-destroyed-visibility-repair',name),'utf8');if(process.argv.includes('--old-source'))");
+s=s.replace("(process.argv.includes('--old-source')?'-old-source':", "(process.argv.includes('--before-visibility')?'-before-visibility':process.argv.includes('--old-source')?'-old-source':");
+s=s.replace('Actual destruction from native own faceup/facedown MZone','Ruling-corrected expectation: hidden MZone effect destruction excluded; actual destruction from native own faceup/facedown MZone');
+const m=new Module(file,module);m.filename=file;m.paths=module.paths;m._compile(s,file);

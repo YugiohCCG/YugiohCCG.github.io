@@ -23,6 +23,7 @@ function s.initial_effect(c)
 	e1:SetCondition(s.sprcon)
 	e1:SetTarget(s.sprtg)
 	e1:SetOperation(s.sprop)
+	e1:SetValue(function(e) return 0,e:GetLabel()==1 and 0 or 0xff end)
 	c:RegisterEffect(e1)
 	--Tribute 1 Level 8 "Ursarctic" monster and this card; Special Summon 1 Level 7 "Ursarctic" Synchro
 	local e2=Effect.CreateEffect(c)
@@ -41,7 +42,7 @@ function s.initial_effect(c)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_DESTROYED)
 	e3:SetRange(LOCATION_GRAVE)
-	e3:SetProperty(EFFECT_FLAG_DELAY)
+	e3:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_DAMAGE_STEP)
 	e3:SetCountLimit(1,id)
 	e3:SetCondition(s.gyspcon)
 	e3:SetCost(s.gyspcost)
@@ -82,6 +83,7 @@ function s.fselect(g,tp,sc)
 		and Duel.GetLocationCountFromEx(tp,tp,g,sc)>0
 end
 function s.sprcon(e,c)
+	e:SetLabel(0)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	local g=Duel.GetMatchingGroup(s.tgrfilter,tp,LOCATION_MZONE,0,nil)
@@ -100,7 +102,7 @@ function s.sprtg(e,tp,eg,ep,ev,re,r,rp,chk,c)
 end
 function s.sprop(e,tp,eg,ep,ev,re,r,rp,c)
 	local g=e:GetLabelObject()
-	Duel.SendtoGrave(g,REASON_SPSUMMON)
+	if Duel.SendtoGrave(g,REASON_SPSUMMON)~=#g then e:SetLabel(1) end
 	g:DeleteGroup()
 end
 function s.rfilter(c,tp)
@@ -154,7 +156,7 @@ function s.upop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.desfilter(c,tp)
-	return c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_ONFIELD) and c:IsPreviousSetCard(SET_URSARCTIC)
+	return c:IsPreviousPosition(POS_FACEUP) and c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_ONFIELD) and c:IsPreviousSetCard(SET_URSARCTIC)
 		and c:IsReason(REASON_BATTLE+REASON_EFFECT)
 end
 function s.gyspcon(e,tp,eg,ep,ev,re,r,rp)

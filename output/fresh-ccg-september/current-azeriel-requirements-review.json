@@ -1,0 +1,122 @@
+{
+  "passcode": 237089049,
+  "name": "Azeriel, Arckcestial of Demise",
+  "printed_text": "2 Level 4 \"Arckcestial\" monsters, including a LIGHT Synchro Monster\nIf this card is Xyz Summoned: You can send 1 \"Arckcestial\" monster from your Deck to the GY. You can detach 1 material from this card; add 1 \"Rank-Up-Magic\" Spell from your Deck to your hand. If you Special Summon an \"Arckcestial\" Xyz or Synchro Monster(s): You can Special Summon this card from your GY in Defense Position, then you can add 1 \"Rank-Up-Magic\" Spell from your GY to your hand. If this card is detached from an \"Arckcestial\" Xyz Monster to activate that monster's effect: You can destroy 1 face-up card on the field. You can only use each effect of \"Azeriel, Arckcestial of Demise\" once per turn.",
+  "script_sha256": "6c1c92fa737a23c243e5a213b7774a4ac02e631edd8a8feb4bd34bffad143ccd",
+  "installed_matches": true,
+  "clauses": [
+    {
+      "clause": "Two Level4 Arckcestial including LIGHT Synchro Xyz recipe",
+      "status": "OPEN_ORIGINAL_GENERAL_RECIPE",
+      "evidence": "Actual paid fixed Xyz preparations use native material groups/overlays/type/proper completion and printed identities. Original level-free recipe/helper runtime and broad material substitutions remain unverified."
+    },
+    {
+      "clause": "Optional Xyz-Summoned send1 Arckcestial monster Deck to GY",
+      "status": "REPAIRED_DIRECT_SCOPED_NATIVE",
+      "evidence": "Real source Xyz history, original optional send/decline/missing/CL2 negation; new actual Meadow Spell-only/mixed counterexamples repaired with TYPE_MONSTER, old-source/no-send controls."
+    },
+    {
+      "clause": "Detach1 material to add Rank-Up-Magic Spell from Deck",
+      "status": "DIRECT_SCOPED_NATIVE",
+      "evidence": "Native paid history, actual detach REASON_COST/search/reveal, missing material/candidate/type/set, actual activation/effect negation with cost retained and same-copy named limit."
+    },
+    {
+      "clause": "Own Special Summon Arckcestial Xyz/Synchro: revive GY in Defense then optional RUM recovery",
+      "status": "REPAIRED_DIRECT_SCOPED_NATIVE",
+      "evidence": "Real paid source/event histories followed by ordinary Special Summon (not fake type/proper-status seeds); faceup/own/set/card-type/mixed boundaries, Defense revival. Optional actual GY-to-Hand/reveal versus decline/missing/CL2 removal/negation. Face-down property filter repaired."
+    },
+    {
+      "clause": "Detached as activated Arckcestial Xyz effect cost: destroy faceup field card",
+      "status": "DIRECT_SCOPED_NATIVE",
+      "evidence": "Real paid source/carrier Xyz/overlay attachment/native selected detach; cost/effect distinction and archetype negative, faceup-only destruction, CL2 negation/source banish and controls."
+    },
+    {
+      "clause": "Each named effect once per turn",
+      "status": "PARTIAL_NATIVE_PLUS_STATIC",
+      "evidence": "Four distinct integer named-use keys statically confirmed. Search key now has actual two-copy sharing/exclusion after success/activation/effect negation with resources and natural reset/different-copy payment/search. Other three keys retain static registration evidence, not direct copy/reset gameplay. Do not add three duplicate counter suites solely to mirror identical native registration absent a concrete uncertainty."
+    }
+  ],
+  "evidence": [
+    {
+      "artifact": "current-azeriel-visibility-batch.json",
+      "sha256": "f30a2c3eab72c5edcec42c8f1e44aca176ee714568d90a015b811bc720cfe8dc",
+      "scope": "Full original Azeriel/current installed metadata/corrected transport/no Lua API adapter. Improper GY source moves to Extra and genuinely overlays two Level4 Arckcestial materials including LIGHT Synchro, native paid Xyz Summon/completion then GY. Neutral event Synchro/Xyz separately pays real material/Tuner-sum or overlays, native proper summon/completion then GY, followed by ordinary Special Summon type0 explicitly checked not Xyz/Synchro Summon. Faceup own archetype Synchro/Xyz/mixed events qualify and actually revive Azeriel in Defense; face-down/wrong-set/wrong-type/opponent exclude. Old-source and omitted-revival controls. Field-seeded material identities, fixed paid preparation not original general Xyz/Synchro helper certification. Optional Rank-Up-Magic followup has no candidate; other Azeriel effects/limits/full-card/live Omega remain separate.",
+      "exact_repair_stage_reconciliation": [
+        {
+          "path": "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c237089049.lua",
+          "saved_sha256": "89a14e91da886fad77d96ece144c60875a62a0b26ac9102ede3fd005b714e79b",
+          "current_sha256": "6c1c92fa737a23c243e5a213b7774a4ac02e631edd8a8feb4bd34bffad143ccd",
+          "basis": "Exact source/install before bytes and strict monster-filter repair helper; remaining code unchanged, not a gameplay rerun."
+        }
+      ]
+    },
+    {
+      "artifact": "current-azeriel-followup-batch.json",
+      "sha256": "74e0556b87bc9882cb719e57508573b28601b432db0adceae645873af3dc84e3",
+      "scope": "Full current Azeriel/installed metadata/corrected transport/no Lua API adapter. Reused actual fixed paid Xyz source and Synchro event preparation, proper completion/GY then ordinary revival. Native Defense revival followed by optional neutral RUM identity GY-to-Hand, decline/missing candidate, actual CL2 RUM banish and effect negation. Omitted recovery and no-response controls fail exact relevant scenarios. No original general summon helper, individual RUM activation, full-card or live Omega certification.",
+      "exact_repair_stage_reconciliation": [
+        {
+          "path": "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c237089049.lua",
+          "saved_sha256": "89a14e91da886fad77d96ece144c60875a62a0b26ac9102ede3fd005b714e79b",
+          "current_sha256": "6c1c92fa737a23c243e5a213b7774a4ac02e631edd8a8feb4bd34bffad143ccd",
+          "basis": "Exact source/install before bytes and strict monster-filter repair helper; remaining code unchanged, not a gameplay rerun."
+        }
+      ]
+    },
+    {
+      "artifact": "current-azeriel-deck-send-batch.json",
+      "sha256": "c8210a16ed72b9dbcdc6bd96acf43621633eee3a2106d8c18f5f4307c98a2de0",
+      "scope": "Full current Azeriel/installed metadata/corrected transport/no Lua API adapter. Actual paid fixed two-Level4 Arckcestial Xyz setup including LIGHT Synchro, actual overlay/Xyz Summon/proper completion. Native trigger and Deck-to-GY send; decline/missing candidate and actual CL2 effect negation. Omitted send/no-response controls fail exact relevant cases. Neutral material/resource/response identities; not original general Xyz recipe/full-card/live Omega certification.",
+      "exact_repair_stage_reconciliation": [
+        {
+          "path": "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c237089049.lua",
+          "saved_sha256": "89a14e91da886fad77d96ece144c60875a62a0b26ac9102ede3fd005b714e79b",
+          "current_sha256": "6c1c92fa737a23c243e5a213b7774a4ac02e631edd8a8feb4bd34bffad143ccd",
+          "basis": "Exact source/install before bytes and strict monster-filter repair helper; remaining code unchanged, not a gameplay rerun."
+        }
+      ]
+    },
+    {
+      "artifact": "current-azeriel-search-batch.json",
+      "sha256": "a544c12e229572added07d9b432f1dde140614b0c85d0363dce97a1d48f65f91",
+      "scope": "Full current Azeriel/installed metadata/corrected transport/no Lua API adapter. Real paid fixed two-Level4 Arckcestial Xyz setup including LIGHT Synchro/native overlays/proper completion. Actual ignition detach with native cost reason and RUM Deck search/opponent confirmation; missing resources/material/type/set exclusion, actual CL2 effect/activation negation retain cost and same-copy named use despite another Deck candidate. Exact omitted search/cost/response controls. Neutral material/recipe/RUM/response identities, not original general Xyz recipe/cross-copy reset/RUM activation/full-card/live Omega certification.",
+      "exact_repair_stage_reconciliation": [
+        {
+          "path": "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c237089049.lua",
+          "saved_sha256": "89a14e91da886fad77d96ece144c60875a62a0b26ac9102ede3fd005b714e79b",
+          "current_sha256": "6c1c92fa737a23c243e5a213b7774a4ac02e631edd8a8feb4bd34bffad143ccd",
+          "basis": "Exact source/install before bytes and strict monster-filter repair helper; remaining code unchanged, not a gameplay rerun."
+        }
+      ]
+    },
+    {
+      "artifact": "current-azeriel-detached-batch.json",
+      "sha256": "95fe810860bf4c05ec543802ad6e8e4da3952532d9379771d1b422e3df17f36a",
+      "scope": "Full original repaired Azeriel/current installed metadata/corrected transport/no Lua API adapter. Initially improper GY source and neutral carrier each move Extra inside preparation, really overlay two Level4 field materials/native Xyz Summon/type/proper completion; source materials include LIGHT Arckcestial Synchro card identity. Actual source overlay-material transfer then attachment under carrier and native selected source detach; native cost/effect reasons and overlay-to-GY movement asserted. Cost of activated same-archetype Xyz triggers original faceup-only card destruction; effect detach/wrong archetype exclude; actual CL2 effect negation stops destruction while source banishment does not. Facedown candidate excluded. Effective omitted-destruction/no-response controls. Field-seeded material identities/fixed paid recipes/neutral carrier/response, not original general Xyz/Synchro helpers/cross-copy named uses/full-card/live Omega certification.",
+      "exact_repair_stage_reconciliation": [
+        {
+          "path": "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c237089049.lua",
+          "saved_sha256": "89a14e91da886fad77d96ece144c60875a62a0b26ac9102ede3fd005b714e79b",
+          "current_sha256": "6c1c92fa737a23c243e5a213b7774a4ac02e631edd8a8feb4bd34bffad143ccd",
+          "basis": "Exact source/install before bytes and strict monster-filter repair helper; remaining code unchanged, not a gameplay rerun."
+        }
+      ]
+    },
+    {
+      "artifact": "current-deck-monster-type-batch.json",
+      "sha256": "a5ebfa04254f042e9ded5a2b3f74382634349b3cd1e2d93ebd3a7a6f86316644",
+      "scope": "Full Azeriel/Aquamarine Asthenosoma/Grayling sources and actual archetype Meadow/Calling/Eclipse Spell scripts, installed metadata/corrected transport/no Lua API adapter. Native original paid Xyz-trigger (Azeriel fixed real recipe), Hand discard ignition with native source cost (Asthenosoma), field ignition (Grayling). Monster-only/actual Spell-only/mixed pools: original sources actually send forbidden Spells; corrected sources exclude Spell-only activation and Spell selection with monsters available, actually send monster. Effective omitted-send controls and exact source/install backups/helper/parity. Earlier Azeriel visibility fix preserved. Neutral monster/material/fixed Xyz setup; no general recipes/other effects/full-card/live Omega certification.",
+      "exact_repair_stage_reconciliation": []
+    },
+    {
+      "artifact": "current-azeriel-search-uses-batch.json",
+      "sha256": "cef9665d7816505c4b600a858a3405100d66a21c652dce02d50f2541f45290d6",
+      "scope": "Full original current Azeriel/installed metadata/corrected transport/no Lua API adapter. Two actual copies each really overlay distinct two-Level4 Arckcestial field materials including LIGHT Synchro card identity, native Xyz Summon/type/proper completion. Actual first search/cost or CL2 effect/activation negation spends named search use; other copy excluded despite materials/candidates. Natural own-turn3 resets both; different actual field-sequence copy really pays/detaches and searches. Exact native cost reasons/search counts/source sequences/CL2. Effective per-copy/no-response controls; no-reset explicitly gates turn3 condition to simulate unavailable reset, not alternate native count API certification. Neutral field material/RUM/response identities/fixed paid recipes; other three named keys/general original helpers/full-card/live Omega remain separate.",
+      "exact_repair_stage_reconciliation": []
+    }
+  ],
+  "scope": "Existing saved evidence validated read-only against exact current runtime dependencies and outcomes. Static registration, native behavior, fixed preparation and public API mapping kept distinct. No new passing counts.",
+  "full_card_audit": "OPEN",
+  "live_omega_verified": false,
+  "next": "Original general Xyz recipe remains unverified. Search copy/reset now directly proven; retain static-vs-gameplay distinction for other keys and neutral material/recipe qualifications. Identify a concrete missing behavior before more fixtures. Exact source-stage reconciliation is not rerun evidence."
+}

@@ -49,9 +49,12 @@ function s.spop1(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.darkfilter(c) return c:IsFaceup() and c:IsAttribute(ATTRIBUTE_DARK) and c:IsType(TYPE_MONSTER) and c:IsDestructable() end
+function s.spacecheck(g,tp)
+ return Duel.GetMZoneCount(tp,g)>0
+end
 function s.sptg2(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return Duel.GetMatchingGroupCount(s.darkfilter,tp,LOCATION_MZONE,0,nil)>=2
+	if chk==0 then return Duel.GetMatchingGroup(s.darkfilter,tp,LOCATION_MZONE,0,nil):CheckSubGroup(s.spacecheck,2,2,tp)
 		and aux.NecroValleyFilter(Card.IsCanBeSpecialSummoned)(c,e,0,tp,false,false) end
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,nil,2,tp,LOCATION_MZONE)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,c,1,tp,LOCATION_GRAVE)
@@ -61,6 +64,12 @@ function s.spop2(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(s.darkfilter,tp,LOCATION_MZONE,0,nil)
 	if #g<2 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
-	local dg=g:Select(tp,2,2,nil)
+	local dg
+	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 and g:CheckSubGroup(s.spacecheck,2,2,tp) then
+		dg=g:SelectSubGroup(tp,s.spacecheck,false,2,2,tp)
+	else
+		dg=g:Select(tp,2,2,nil)
+	end
+	if not dg then return end
 	if Duel.Destroy(dg,REASON_EFFECT)==2 and c:IsRelateToEffect(e) then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP) end
 end

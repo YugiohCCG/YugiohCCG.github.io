@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');exports.corrected=s=>{const a='function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)';const at=s.indexOf(a),end=s.indexOf('\nfunction ',at+1);assert(at>0&&end>at);let body=s.slice(at,end);const old='Duel.GetLocationCount(tp,LOCATION_MZONE)>0';assert.equal(body.split(old).length,2);body=body.replace(old,'Duel.GetMZoneCount(tp,e:GetHandler())>0');return s.slice(0,at)+body+s.slice(end);};

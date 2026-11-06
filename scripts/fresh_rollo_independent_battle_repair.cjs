@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');exports.corrected=s=>{const nl=s.includes('\r\n')?'\r\n':'\n';const a='if not (c:IsRelateToEffect(e) and tc and tc:IsControler(1-tp)) then return end',b='if s.faceupoppdeck(c,tp,REASON_EFFECT) and tc:IsRelateToBattle() then';assert.equal(s.split(a).length,2);assert.equal(s.split(b).length,2);return s.replace(a,'if not (tc and tc:IsControler(1-tp)) then return end').replace(b,'if c:IsRelateToEffect(e) then s.faceupoppdeck(c,tp,REASON_EFFECT) end'+nl+'\tif tc:IsRelateToBattle() then');};

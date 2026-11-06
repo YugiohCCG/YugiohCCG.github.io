@@ -64,7 +64,7 @@ function s.splimit(e,c,sump,sumtype,sumpos,targetp,se)
 	return not (c:IsAttribute(ATTRIBUTE_LIGHT) and c:IsRace(RACE_SPELLCASTER))
 end
 function s.spcfilter(c,tp)
-	return c:IsSummonPlayer(1-tp) and not c:IsAttribute(ATTRIBUTE_LIGHT)
+	return c:IsFaceup() and c:IsSummonPlayer(1-tp) and not c:IsAttribute(ATTRIBUTE_LIGHT)
 end
 function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(s.spcfilter,1,nil,tp)

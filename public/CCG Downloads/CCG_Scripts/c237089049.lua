@@ -72,7 +72,7 @@ function s.tgcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_XYZ)
 end
 function s.tgfilter(c)
-	return c:IsSetCard(0x4ac0) and c:IsAbleToGrave()
+	return c:IsSetCard(0x4ac0) and c:IsType(TYPE_MONSTER) and c:IsAbleToGrave()
 end
 function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.tgfilter,tp,LOCATION_DECK,0,1,nil) end
@@ -109,7 +109,7 @@ end
 
 -- Special Summon from GY
 function s.spfilter2(c,tp)
-	return c:IsSummonPlayer(tp) and c:IsSetCard(0x4ac0) and (c:IsType(TYPE_SYNCHRO) or c:IsType(TYPE_XYZ))
+	return c:IsFaceup() and c:IsSummonPlayer(tp) and c:IsSetCard(0x4ac0) and (c:IsType(TYPE_SYNCHRO) or c:IsType(TYPE_XYZ))
 end
 function s.spcon2(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(s.spfilter2,1,nil,tp)

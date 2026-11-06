@@ -1,0 +1,13 @@
+{
+  "scope": "711 AST sources;initial effect variable SetType/SetOperation associations containing continuous type and relation check. Variable reuse/helpers outside scope;candidate source triage only.",
+  "hits": [
+    {
+      "passcode": 256469525,
+      "name": "Dynatos, the Challenger",
+      "effect": "e2",
+      "type": "EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS",
+      "operation": "s.copyop",
+      "body": "function s.copyop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif not c:IsRelateToEffect(e) or c:IsFacedown() then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)\n\tlocal g=Duel.SelectMatchingCard(tp,s.copyfilter,tp,0,LOCATION_MZONE,1,1,nil)\n\tlocal tc=g:GetFirst()\n\tif tc then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_SET_BASE_ATTACK)\n\t\te1:SetValue(tc:GetAttack()+100)\n\t\te1:SetReset(RESET_EVENT+RESETS_STANDARD)\n\t\tc:RegisterEffect(e1)\n\t\tlocal e2=e1:Clone()\n\t\te2:SetCode(EFFECT_SET_BASE_DEFENSE)\n\t\te2:SetValue(tc:GetDefense()+100)\n\t\tc:RegisterEffect(e2)\n\t\tc:CopyEffect(tc:GetOriginalCode(),RESET_EVENT+RESETS_STANDARD,1)\n\tend\nend"
+    }
+  ]
+}

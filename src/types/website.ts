@@ -2,6 +2,7 @@ export type ReleaseArtifact = {
   label: string;
   group: "installer" | "database" | "scripts" | "banlist" | "arts" | "pics" | "holograms";
   path: string;
+  url?: string;
   bytes: number;
   sha256: string;
 };

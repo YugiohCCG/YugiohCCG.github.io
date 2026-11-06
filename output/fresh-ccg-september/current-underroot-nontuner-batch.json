@@ -1,0 +1,53 @@
+{
+  "status": "UNDERROOT_NATIVE_NONTUNER_ELIGIBILITY_NO_REPAIR",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_underroot_nontuner_batch.py": "3738c13fdc0e33ae1fb75168b506fe5f7c7cb3f72faea0cc469a0747929289fb",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c238272437.lua": "5d0cb6d627be8ff66a9f493fcd473cb1397918cc4e3050800b8d50b3790b39f8",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_underroot_nontuner.cjs": "9f2636fd4c69f448d9445edea96f6fb9bf8a09dae8780597b52266aca69044b8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_underroot_over_banish.cjs": "4ec4d8874775ad32cbca622e6580b986046e55fc8c9946e7642878bdf9c0a872",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "artifact": "current-underroot-nontuner.json",
+      "sha256": "fbd7100c3e93d0f61c13d8faa8a390b6b0f69c4751ade88231138652edf6493e",
+      "expected_failures": []
+    },
+    {
+      "artifact": "current-underroot-nontuner-no-nontuner.json",
+      "sha256": "11254b8ed65c2a7dd747fb2e344951f72c30a7db4e98092007990362af8c5355",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        5,
+        6
+      ]
+    },
+    {
+      "artifact": "current-underroot-nontuner-any-recipient.json",
+      "sha256": "489b56a9b79a90bf0434991c2858422d2b12ff35c58ab8f01b3be3bedd8c6064",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        5,
+        6
+      ]
+    }
+  ],
+  "scope": "Full original Underroot/current installed metadata/corrected public engine/no Lua API adapter. Native other-Underroot Normal/Special and self Special Summon trigger original decrease by0/1/2 and optional non-Tuner grant; unrelated archetype Normal/Special events excluded, grant decline preserves level change. Original callback changes native IsNotTuner(Synchro,player) only for rroot recipient, neutral other Synchro remains excluded; original material eligibility also checked. Native hint exports actual eligibility mask for JS assertion; controls omit grant or widen recipient and fail all five positives. No production change. Not a completed Synchro summon or original recipe/live Omega/full-card certification; effect shared-use/interruptions remain separate."
+}

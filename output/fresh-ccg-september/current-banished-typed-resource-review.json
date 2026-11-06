@@ -1,0 +1,53 @@
+{
+  "status": "TYPED_BANISHED_RESOURCE_REPAIRED",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_banished_typed_resource.cjs": "cd0ef7b99390869866c9be7462ef498ec412d2e11ef8bc661922e0399776c3ba",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_banished_typed_resource_repair.cjs": "149d30ca87fb46dff188b4c79093ece238a44adcf184091c0ac73762ab8c69bd",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "6e3d644ec1cc45ac996cfe977f250530726ce80315759edefdb995965c06a2a8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\banished-typed-resource-repair-files.json": "696ee11a5d2412c435f70eed350181a609e9e65b46320fa8d88b276ba1b28cac",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c225091736.lua": "486950802e36f5c4fc4621b7c6b6798c51bcbd1f43960eaf2eec5d16bdcabea5",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c225091736.lua": "486950802e36f5c4fc4621b7c6b6798c51bcbd1f43960eaf2eec5d16bdcabea5",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\banished-typed-resource-before-repair\\c225091736.lua": "3a749412c17b7f81fdd362d040cc8d94f1347498069d6b3b9e9b9f51f5d35942",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\banished-typed-resource-before-repair\\installed-c225091736.lua": "3a749412c17b7f81fdd362d040cc8d94f1347498069d6b3b9e9b9f51f5d35942",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259754412.lua": "7edb5abb88df191a59eed9b5526bba3f9f063638fc5548ded168ffcb2e4ea55e",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259754412.lua": "7edb5abb88df191a59eed9b5526bba3f9f063638fc5548ded168ffcb2e4ea55e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\banished-typed-resource-before-repair\\c259754412.lua": "7ece8abd9350af38aaa5eb149b3bed0e036c893dc95d2f9598483f196ce1031c",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\banished-typed-resource-before-repair\\installed-c259754412.lua": "7ece8abd9350af38aaa5eb149b3bed0e036c893dc95d2f9598483f196ce1031c",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde"
+  },
+  "runs": {
+    "candidate": {
+      "file": "current-banished-typed-resource-candidate.json",
+      "sha256": "ef76a26fc0da3db11bb27797b6f403e853ba332502fd408918ee1a3a9904b89c",
+      "expected_failures": []
+    },
+    "prior-source": {
+      "file": "current-banished-typed-resource-prior-source.json",
+      "sha256": "eaaf9c889df9b514781c3faece86e6f37cba5552b8d84461be503fbb9f498611",
+      "expected_failures": [
+        1,
+        5
+      ]
+    },
+    "no-typed": {
+      "file": "current-banished-typed-resource-no-typed.json",
+      "sha256": "4d52a65a1fe7deb35c3c58d809ebf9c4fe24549f8ed47925d596ef7aaa3d420d",
+      "expected_failures": [
+        0,
+        2,
+        3,
+        4,
+        6
+      ]
+    }
+  },
+  "finding": "Bria named add-to-Hand mode and Ankylos named Trap Set effect now exclude face-down banished resources. Bria generic bottom-Deck option is preserved. Seven full original summon/trigger cases; exact old fails two hidden-resource boundaries; omitted typed mode fails five positives.",
+  "qualification": "Original scripts/installed metadata, synthetic resource identities; no Lua API mapping. Scoped original effects, no full-card/live certification.",
+  "primary_rule": "https://www.db.yugioh-card.com/yugiohdb/faq_search.action?fid=19644&keyword=&ope=5&request_locale=ja&tag=-1",
+  "remaining": "Other printed clauses and original live runtime unresolved. Five scan exclusions are source-only; Lamina public IsCanBeSpecialSummoned excludes face-down banishment in predicate diagnostic."
+}

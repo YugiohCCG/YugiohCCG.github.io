@@ -1,0 +1,12 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+paths=[Path(__file__).resolve(),ROOT/'scripts/fresh_current_seraphina_recovery.cjs',ROOT/'scripts/fresh_installed_card.cjs',ROOT/'scripts/fresh_corrected_card_data_transport.cjs',ROOT/'src/data/cards.json',FILES/'Databases/CCG_v1.db']+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))+[ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']
+for code in [218142234,238136421,215034223]:paths += [ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua',FILES/'Scripts'/f'c{code}.lua']
+before={str(p.resolve()):sha(p) for p in paths};runs=[]
+for control,expected in [(None,[]),('no-recovery',[0,2,4,5]),('no-equip',[1,3]),('no-response',[5,6,7,8])]:
+ r=subprocess.run(['node','--no-warnings','scripts/fresh_current_seraphina_recovery.cjs']+(['--'+control] if control else []),capture_output=True,text=True,timeout=20);p=OUT/('current-seraphina-recovery'+('-'+control if control else '')+'.json');d=json.loads(p.read_text());assert r.returncode==bool(expected) and len(d['results'])==9 and [i for i,v in enumerate(d['results']) if v['failure']]==expected,(control,r.stdout+r.stderr);assert all(not v['logs'] for v in d['results']);runs.append({'control':control,'artifact':p.name,'sha256':sha(p),'expected_failures':expected})
+assert before=={str(p.resolve()):sha(p) for p in paths}
+for code in [218142234,238136421,215034223]:assert (ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua').read_bytes()==(FILES/'Scripts'/f'c{code}.lua').read_bytes()
+(OUT/'current-seraphina-recovery-batch.json').write_text(json.dumps({'status':'NATIVE_SERAPHINA_MONSTER_RECOVERY_VERIFIED','runtime_dependencies_sha256':before,'runs':runs,'scope':d['scope']+' Actual CL1 recovery after Fusion or after opponent activation chain has ended, with native CL2 interventions asserted. Both Hand and equip outcomes, real Fusion payments/proper status, native suppression protection/stat effects; omitted recovery/equip/response controls. Production unchanged. No shared-use wording conclusion or new full-card count.'},indent=2)+'\n',encoding='utf-8');print('Missing Seraphina monster recovery branches/interruption and effective controls verified')

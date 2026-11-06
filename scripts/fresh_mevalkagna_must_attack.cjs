@@ -5,7 +5,7 @@ async function main(){
  const mod=await import(pathToFileURL(path.join(path.dirname(require.resolve('@n1xx1/ocgcore-wasm')),'dist/index.js')).href);
  const {OcgMessageType:M,OcgResponseType:R,OcgLocation:L,OcgPosition:P,OcgProcessResult:S,SelectIdleCMDAction:A}=mod;
  const core=await mod.default({sync:true,print(){},printErr(){}}),meval=244165675,victim=900000141,filler=900000142;
- const db=new DatabaseSync(path.join(ROOT,'output/fresh-ccg-september/candidate-CCG_v1.db'),{readOnly:true}),r=db.prepare('select * from datas where id=?').get(meval);db.close();
+ const db=new DatabaseSync(path.join(ROOT,'public/CCG Downloads/CCG_Database/CCG_v1.db'),{readOnly:true}),r=db.prepare('select * from datas where id=?').get(meval);db.close();
  const base={alias:0,setcodes:[],type:17,level:4,attribute:16,race:0x20n,attack:1000,defense:1000,lscale:0,rscale:0,link_marker:0};
  const cards=new Map([[meval,{...base,code:meval,type:Number(r.type),level:Number(r.level)&255,attribute:Number(r.attribute),race:BigInt(r.race),attack:Number(r.atk),defense:Number(r.def)}],[victim,{...base,code:victim,race:BigInt(r.race),attribute:8}],[filler,{...base,code:filler}]]);
  const trace=[],logs=[];

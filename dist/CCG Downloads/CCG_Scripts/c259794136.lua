@@ -19,6 +19,7 @@ function s.initial_effect(c)
 	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
 	e1:SetCondition(s.spcon)
 	e1:SetOperation(s.spop)
+	e1:SetValue(function(e) return 0,e:GetLabel()==1 and 0 or 0xff end)
 	c:RegisterEffect(e1)
 	--Send 1 "Harpie" monster; Normal Summon 1 Winged Beast
 	local e2=Effect.CreateEffect(c)
@@ -52,6 +53,7 @@ function s.spfilter(c,tp)
 		and c:IsAbleToHandAsCost() and Duel.GetMZoneCount(tp,c)>0
 end
 function s.spcon(e,c)
+	e:SetLabel(0)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	return (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
@@ -60,7 +62,7 @@ end
 function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND)
 	local g=Duel.SelectMatchingCard(tp,s.spfilter,tp,LOCATION_MZONE,0,1,1,nil,tp)
-	Duel.SendtoHand(g,nil,REASON_COST)
+	if Duel.SendtoHand(g,nil,REASON_COST)~=#g then e:SetLabel(1) end
 end
 function s.harpiemon(c)
 	return c:IsSetCard(SET_HARPIE) and c:IsType(TYPE_MONSTER) and c:IsAbleToGraveAsCost()
@@ -91,21 +93,19 @@ function s.setcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	return c:IsPreviousLocation(LOCATION_ONFIELD)
 end
-function s.gysetfilter(c)
-	return c:IsType(TYPE_SPELL+TYPE_TRAP) and aux.IsCodeListed(c,CARD_HARPIE_LADY) and c:IsSSetable()
+function s.gysetfilter(c,tp)
+	return c:IsType(TYPE_SPELL+TYPE_TRAP) and aux.IsCodeListed(c,CARD_HARPIE_LADY) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)
 end
 function s.dksetfilter(c)
 	return c:IsCode(CARD_HARPIES_HUNTING_GROUND) and c:IsSSetable()
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and (Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.gysetfilter),tp,LOCATION_GRAVE,0,1,nil)
+	if chk==0 then return (Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.gysetfilter),tp,LOCATION_GRAVE,0,1,nil,tp)
 			or Duel.IsExistingMatchingCard(s.dksetfilter,tp,LOCATION_DECK,0,1,nil)) end
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
-	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.gysetfilter),tp,LOCATION_GRAVE,0,nil)
+	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.gysetfilter),tp,LOCATION_GRAVE,0,nil,tp)
 	local dg=Duel.GetMatchingGroup(s.dksetfilter,tp,LOCATION_DECK,0,nil)
 	g:Merge(dg)
 	if #g==0 then return end

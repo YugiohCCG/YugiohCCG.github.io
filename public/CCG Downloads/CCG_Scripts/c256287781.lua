@@ -80,7 +80,7 @@ function s.costcheck(g)
 	return #g==4
 end
 function s.chcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.costfilter),tp,LOCATION_GRAVE,0,nil)
+	local g=Duel.GetMatchingGroup(s.costfilter,tp,LOCATION_GRAVE,0,nil)
 	if chk==0 then return g:CheckSubGroup(s.costcheck,4,4) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local sg=g:SelectSubGroup(tp,s.costcheck,false,4,4)

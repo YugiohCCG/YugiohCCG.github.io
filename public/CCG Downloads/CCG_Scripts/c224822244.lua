@@ -82,8 +82,9 @@ function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	local d=Duel.GetAttackTarget()
 	local tc=nil
 	if a==c then tc=d elseif d==c then tc=a end
-	if not (c:IsRelateToEffect(e) and tc and tc:IsControler(1-tp)) then return end
-	if s.faceupoppdeck(c,tp,REASON_EFFECT) and tc:IsRelateToBattle() then
+	if not (tc and tc:IsControler(1-tp)) then return end
+	if c:IsRelateToEffect(e) then s.faceupoppdeck(c,tp,REASON_EFFECT) end
+	if tc:IsRelateToBattle() then
 		Duel.SendtoDeck(tc,nil,SEQ_DECKTOP,REASON_EFFECT)
 	end
 end

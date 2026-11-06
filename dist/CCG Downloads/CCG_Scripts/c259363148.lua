@@ -21,6 +21,8 @@ function s.initial_effect(c)
 	e0:SetCondition(s.contactcon)
 	e0:SetTarget(s.contacttg)
 	e0:SetOperation(s.contactop)
+	-- No placement is legal after an incomplete material payment.
+	e0:SetValue(function(e) return 0,e:GetLabel()==1 and 0 or 0xff end)
 	c:RegisterEffect(e0)
 	--Must be Special Summoned by its own procedure first
 	local e0b=Effect.CreateEffect(c)
@@ -81,6 +83,7 @@ function s.contactcheck(g,tp,c)
 	return Duel.GetLocationCountFromEx(tp,tp,g,c)>0
 end
 function s.contactcon(e,c)
+	e:SetLabel(0)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	local g=Duel.GetMatchingGroup(s.contactfilter,tp,LOCATION_HAND|LOCATION_MZONE,0,nil)
@@ -102,7 +105,7 @@ function s.contactop(e,tp,eg,ep,ev,re,r,rp,c)
 		c:SetMaterial(g)
 	end
 	Duel.ConfirmCards(1-tp,g)
-	Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_COST|REASON_MATERIAL)
+	if Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_COST|REASON_MATERIAL)~=#g then e:SetLabel(1) end
 	g:DeleteGroup()
 end
 function s.splimit(e,se,sp,st)

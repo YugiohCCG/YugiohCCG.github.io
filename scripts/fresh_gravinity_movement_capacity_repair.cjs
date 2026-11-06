@@ -1,0 +1,1 @@
+const assert=require('node:assert/strict');exports.corrected=s=>{const a='if not c:IsLocation(LOCATION_SZONE) or not c:IsControler(tp) then return end';assert.equal(s.split(a).length,2);return s.replace(a,'if not c:IsLocation(LOCATION_SZONE) or not c:IsControler(tp) or Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end')};

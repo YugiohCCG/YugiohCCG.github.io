@@ -1,0 +1,12 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),Module=require('node:module'),assert=require('node:assert/strict');
+const file=path.join(__dirname,'fresh_current_leotron_extra_zone.cjs');let s=fs.readFileSync(file,'utf8');
+s=s.replaceAll("['extra','blockedExtra','releaseExtra']","['extra','blockedExtra','releaseExtra','extraFull']").replaceAll("['extra','blockedExtra','releaseExtra','grave']","['extra','blockedExtra','releaseExtra','extraFull','grave']");
+s=s.replaceAll('ritual-before-zone-subgroup-repair','ritual-before-main-space-repair').replaceAll('fresh_ritual_zone_repair.cjs','fresh_ritual_main_space_repair.cjs');
+const pos=s.indexOf('const m=new Module');assert(pos>0);
+const changes=String.raw`rep("const success=['hand','extra','releaseExtra','grave','fullField']","const success=['hand','extra','releaseExtra','extraFull','grave','fullField']");
+rep('Duel.Hint(HINT_NUMBER,tp,701)',"\${scenario==='extraFull'?'local g=Duel.GetMatchingGroup(Card.IsCode,tp,LOCATION_DECK,0,nil,900002304) local sg=Group.CreateGroup() for tc in aux.Next(g) do if #sg<4 then sg:AddCard(tc) end end assert(Duel.SpecialSummon(sg,0,tp,tp,false,false,POS_FACEUP)==4)':''} Duel.Hint(HINT_NUMBER,tp,701)");
+if(family===259873115)rep("'current-leotron-extra-zone'","'current-leotron-extra-zone-main-space'");
+if(family!==259873115)s=s.replace('current-ritual-extra-zone-'+family,'current-ritual-extra-zone-'+family+'-main-space');
+`;
+s=s.slice(0,pos)+changes+s.slice(pos);const m=new Module(file,module);m.filename=file;m.paths=module.paths;m._compile(s,file);

@@ -1,0 +1,1 @@
+'use strict';const assert=require('assert/strict');exports.corrected=s=>{assert.equal(s.split('Duel.SetChainLimit(aux.FALSE)').length,3);return s.replaceAll('Duel.SetChainLimit(aux.FALSE)','Duel.SetChainLimit(function(_,rp,tp) return rp~=tp end)');};

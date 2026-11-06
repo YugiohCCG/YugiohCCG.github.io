@@ -1,0 +1,124 @@
+{
+  "scanned": 711,
+  "cards": [
+    {
+      "passcode": 241056746,
+      "name": "Reactor Shocker",
+      "text": "Neither player can activate cards or effects in response to this card's activation. When your opponent activates an effect and you have a card effect in the same Chain: You can negate all other activated effects in this Chain, then, if the number of your effects in this Chain is equal to or greater than your opponent’s, draw cards equal to that number, then, if one of your effects is Chain Link 1, place 1 card from your hand on the bottom of your Deck. You can only use this effect of \"Reactor Shocker\" once per turn.",
+      "limits": [
+        "\tDuel.SetChainLimit(aux.FALSE)"
+      ]
+    },
+    {
+      "passcode": 210923192,
+      "name": "Aldrez Opening",
+      "text": "\"Aldrez\" monsters you control gain 500 ATK/DEF. Your opponent cannot activate cards or effects when you Normal or Special Summon a \"Aldrez\" monster(s). You can target up to 3 \"Aldrez\" cards in your GY or banishment; shuffle them into the Deck, and if you do, you can draw 1 card. You can only use this effect of \"Aldrez Opening\" once per turn.",
+      "limits": [
+        "\t\tDuel.SetChainLimitTillChainEnd(s.chainlm)\r",
+        "\t\tDuel.SetChainLimitTillChainEnd(s.chainlm)\r",
+        "\treturn tp==rp\r"
+      ]
+    },
+    {
+      "passcode": 213266433,
+      "name": "The Hanging Frute",
+      "text": "You can Ritual Summon this card with “Fruteification”. \"Frute\" monsters you control can attack all face-down Defense Position monsters your opponent controls, once each. You can only use each of the following effects of “The Hanging Frute” once per turn. If this card is Special Summoned: You can Special Summon 1 \"Frute\" monster from your GY in face-down Defense Position. When your opponent activates a card or effect (Quick Effect): You can Tribute 1 other WATER monster from your hand or field; for the rest of this turn, monsters you control are unaffected by effects previously activated in this Chain, then, if you activated this effect in response to an opponent's monster effect on the field, change it to face-down Defense Position.",
+      "limits": []
+    },
+    {
+      "passcode": 259265448,
+      "name": "Domestic Underworld",
+      "text": "If a Level 1 Beast or Winged Beast Monster is sent from your hand to the GY, once per turn: You can shuffle that card into the Deck, then add 1 Level 1 Beast or Winged Beast Monster with a different name from your Deck to your hand, and if you do, you can send it to the GY. At the start of the Battle Phase, if you control no monsters: Special Summon any number of \"Domestica\" Fairy monsters with different names from your GY, but send them to the GY at the end of that Battle Phase. Cards and effects cannot be activated in response to this effect's activation.",
+      "limits": [
+        "\tDuel.SetChainLimit(aux.FALSE)"
+      ]
+    },
+    {
+      "passcode": 226827770,
+      "name": "The One Called Forth",
+      "text": "At the start of your Main Phase 1: Declare the name of 1 monster you do not control; for the rest of this turn, the activation of your cards and effects that include an effect that Summons a monster with that name cannot be negated, also your opponent cannot activate cards or effects when that monster is Summoned.",
+      "limits": [
+        "\t\tDuel.SetChainLimitTillChainEnd(s.chainlm)",
+        "\treturn tp==rp"
+      ]
+    },
+    {
+      "passcode": 249746105,
+      "name": "Aquamarine Physalia",
+      "text": "1 \"Aquamarine\" Fusion monster + 1 \"Aquamarine\" monster\nDuring the Main Phase (Quick Effect): You banish 1 \"Aquamarine\" card from your GY; destroy 1 card your opponent controls. You can use this effect of \"Aquamarine Physalia\" a number of times per turn, up to the number of Level 7 or higher \"Aquamarine\" monsters you control, except \"Aquamarine Physalia\". If you control \"Aquamarine Glaucus\", your opponent cannot activate monster effects in response to this card's effect activation.",
+      "limits": [
+        "\t\tDuel.SetChainLimit(s.chainlimit)",
+        "\treturn tp==rp or not re:IsActiveType(TYPE_MONSTER)"
+      ]
+    },
+    {
+      "passcode": 259471193,
+      "name": "Dreadful Soul Drain",
+      "text": "At the start of your Main Phase 1: Discard 2 cards; return all monsters on the field to the hand. If this face-up card is sent from the field to the GY: Draw cards (max. 2) equal to the number of monsters on the field. You cannot activate cards or effects in response to the activation of this card and its effects.",
+      "limits": [
+        "\tDuel.SetChainLimit(aux.FALSE)",
+        "\tDuel.SetChainLimit(aux.FALSE)"
+      ]
+    },
+    {
+      "passcode": 259924331,
+      "name": "Pray for Your Life!",
+      "text": "Add 1 \"Bob\" and \"Umi\" or 1 card that lists \"Bob\" in its text from your Deck to your hand, then, if you activated this card in response to your opponent's monster effect, halve the ATK and DEF of all face-up monsters your opponent currently controls. You can only activate 1 \"Pray for your Life!\" per turn.",
+      "limits": []
+    },
+    {
+      "passcode": 259568843,
+      "name": "Charmelia Robin",
+      "text": "When your opponent activates a card or effect in response to the activation of your \"Charmelia\" card or effect (Quick Effect): You can discard this card, or banish it from your GY; Special Summon 1 \"Charmelia\" monster from your hand or GY. If this card is Tributed for a Ritual Summon: You can add 1 \"Charmelia\" card from your Deck or GY to your hand. You can only use each effect of \"Charmelia Robin\" once per turn.",
+      "limits": []
+    },
+    {
+      "passcode": 259402105,
+      "name": "Magical Girl Explosion!",
+      "text": "(This card is always treated as a \"Charmelia\" card.) If your opponent controls more cards than you do, they cannot activate cards or effects in response to this card's effect activations. Once per turn, during the Main Phase: You can Tribute 1 \"Charmelia\" monster from your hand or face-up field; negate the effects of 1 monster your opponent controls, and if you do, banish that monster face-down. If your opponent controls a monster Special Summoned from the Extra Deck: You can Special Summon 1 \"Charmelia\" Ritual Monster from your hand, Deck, or GY, ignoring its Summoning Conditions (this is treated as a Ritual Summon). You can only use each effect of \"Magical Girl Explosion!\" once per turn.",
+      "limits": [
+        "\treturn rp==tp",
+        "\t\tDuel.SetChainLimit(s.chainlimit)"
+      ]
+    },
+    {
+      "passcode": 259612312,
+      "name": "Eclipse Observer Seara",
+      "text": "1 Tuner + 1+ non-Tuner monster If this card is Synchro Summoned: You can return all Spell/Trap Cards your opponent controls to the hand. If your opponent has 6 or more cards in their hand, they cannot activate cards or effects in response to this effect's activation. When your opponent activates a Spell/Trap Card (Quick Effect): You can negate the activation, and if you do, destroy that card, then your opponent draws 2 cards. If this card is sent to the GY: You can Set up to 2 \"Eclipse\" Quick-Play Spells from your GY or banishment. You can only use each effect of \"Eclipse Observer Seara\" once per turn.",
+      "limits": [
+        "\treturn rp==tp",
+        "\t\tDuel.SetChainLimit(s.chainlimit)"
+      ]
+    },
+    {
+      "passcode": 239935094,
+      "name": "Winged Snake of the Swamp",
+      "text": "If this card is Normal or Special Summoned, or if this card is sent to the GY by a card that mentions \"Terrifying Dark Swamp\": You can target 1 card in your opponent's GY; banish it. If \"Terrifying Dark Swamp\" is on your field or in your GY, your opponent cannot activate the target's effects in response to this effect. If this card is banished for the Fusion Summon of a WATER Reptile monster: You can Set 1 \"Dark Swamp\" Spell/Trap from your Deck or banishment. You can only use each effect of \"Winged Snake of the Swamp\" once per turn.",
+      "limits": [
+        "  Duel.SetChainLimit(function(re,rp,tp) return rp==tp or re:GetHandler()~=tc end)\r"
+      ]
+    },
+    {
+      "passcode": 239935095,
+      "name": "Fierce Snake of the Swamp",
+      "text": "You can discard this card; send 1 WATER Reptile monster from your Deck to the GY, except \"Fierce Snake of the Swamp\". If this card is Special Summoned, or if this card is sent to the GY by a card that mentions \"Terrifying Dark Swamp\", except by the effect of \"Fierce Snake of the Swamp\": You can target 1 Spell/Trap on the field; destroy it. If \"Terrifying Dark Swamp\" is on your field or GY, your opponent cannot activate the target or its effects in response to this effect. You can only use each effect of \"Fierce Snake of the Swamp\" once per turn.",
+      "limits": [
+        "  Duel.SetChainLimit(function(re,rp,tp) return rp==tp or re:GetHandler()~=tc end)"
+      ]
+    },
+    {
+      "passcode": 239935096,
+      "name": "Sparkling Snake of the Swamp",
+      "text": "You can discard this card; send 1 WATER Reptile monster from your Deck to the GY, except \"Sparkling Snake of the Swamp\". If this card is Special Summoned, or if this card is sent to the GY by a card that mentions \"Terrifying Dark Swamp\", except by the effect of \"Sparkling Snake of the Swamp\": You can target 1 monster on the field; destroy it. If \"Terrifying Dark Swamp\" is on your field or GY, your opponent cannot activate the target's effect in response to this effect. You can only use each effect of \"Sparkling Snake of the Swamp\" once per turn.",
+      "limits": [
+        "  Duel.SetChainLimit(function(re,rp,tp) return rp==tp or re:GetHandler()~=tc end)\r"
+      ]
+    },
+    {
+      "passcode": 284639721,
+      "name": "Terrarumian Staghorn Fern",
+      "text": "Pendulum Effect: When a card or effect activated by your opponent in response to your \"Terrarumian\" card or effect activation resolves, you can negate that effect, then destroy this card. If you control a “Terrarumian” monster: You can destroy 1 other “Terrarumian” card you control, and if you do, Special Summon this card, then you can Special Summon 1 “Terrarumian” Pendulum Monster from your hand, except “Terrarumian Staghorn Fern”. You can only use each effect of “Terrarumian Staghorn Fern” once per turn.\nMonster Effect: If this card is destroyed by card effect: You can activate 1 of these effects.\n● Send 1 “Terrarumian” monster from your Deck to the GY, except “Terrarumian Staghorn Fern”.\n● Target 1 Level 6 or lower monster your opponent controls; send it to the GY.\nYou can only use this effect of “Terrarumian Staghorn Fern” once per turn. This card can attack while in face-up Defense Position. If it does, apply its ATK for damage calculation.",
+      "limits": []
+    }
+  ]
+}

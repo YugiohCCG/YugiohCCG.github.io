@@ -1,0 +1,13 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+source=ROOT/'public/CCG Downloads/CCG_Scripts/c231892575.lua';assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+paths=[Path(__file__).resolve(),source,ROOT/'src/data/cards.json',FILES/'Databases/CCG_v1.db',OUT/'candidate-CCG_v1.db']+[ROOT/'scripts'/n for n in ['fresh_current_aldrez_queen_protection_state.cjs','fresh_current_aldrez_queen_protection.cjs','fresh_current_terrarumian_ivy_participants.cjs','fresh_installed_card.cjs','fresh_corrected_card_data_transport.cjs']]+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))+[ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']
+deps={str(p.resolve()):sha(p) for p in paths};runs=[]
+for flag,expected in [(None,[]),('no-change',[0,1,2,3,4,5,6])]:
+ r=subprocess.run(['node','--no-warnings','scripts/fresh_current_aldrez_queen_protection_state.cjs']+(['--'+flag] if flag else []),capture_output=True,text=True,timeout=20);p=OUT/('current-aldrez-queen-protection-state'+('-'+flag if flag else '')+'.json');d=json.loads(p.read_text());assert len(d['results'])==7 and [i for i,v in enumerate(d['results']) if v['failure']]==expected and all(not v['logs'] and v['trace'] for v in d['results']) and r.returncode==bool(expected),r.stdout+r.stderr
+ runs.append({'artifact':p.name,'sha256':sha(p),'expected_failures':expected})
+assert deps=={str(p.resolve()):sha(p) for p in paths}
+(OUT/'current-aldrez-queen-protection-state-batch.json').write_text(json.dumps({'status':'ALDREZ_QUEEN_PROTECTION_STATE_VERIFIED','runtime_dependencies_sha256':deps,'runs':runs,'scope':'Full Queen/current installed metadata/corrected transport/no Lua API adapter. Actual supporter removal/flip/control change ends both protections; other Queen removal/flip/disable ends its targeting protection while original Queen battle protection remains with valid supporter. Actual faceup restoration restores protections, own targeted activation allowed. Native position/move/control/disabled state and opponent targeted activation/declared attack menus; no completed battle/initial source history/full-card/live Omega certification. Effective no-change control, no ignored Lua errors.','production_change':False},indent=2)+'\n')
+print('Queen protection state transitions verified with effective controls')

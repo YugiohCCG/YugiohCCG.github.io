@@ -34,7 +34,7 @@ function s.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
-	Duel.SetChainLimit(aux.FALSE)
+	Duel.SetChainLimit(function(_,rp,tp) return rp~=tp end)
 	local g=Duel.GetMatchingGroup(Card.IsAbleToHand,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,g,#g,0,0)
 end
@@ -49,7 +49,7 @@ end
 function s.drtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local ct=math.min(2,Duel.GetFieldGroupCount(tp,LOCATION_MZONE,LOCATION_MZONE))
 	if chk==0 then return ct>0 and Duel.IsPlayerCanDraw(tp,ct) end
-	Duel.SetChainLimit(aux.FALSE)
+	Duel.SetChainLimit(function(_,rp,tp) return rp~=tp end)
 	Duel.SetTargetPlayer(tp)
 	Duel.SetTargetParam(ct)
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,ct)

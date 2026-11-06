@@ -24,6 +24,7 @@ function s.initial_effect(c)
 	e2:SetCondition(function(e,tp,eg,ep,ev) return ev>=3 end)
 	e2:SetTarget(s.lktg)
 	e2:SetOperation(s.lkop)
+	e2:SetProperty(e2:GetProperty()|EFFECT_FLAG_DELAY)
 	c:RegisterEffect(e2)
 end
 function s.darkfilter(c) return not c:IsAttribute(ATTRIBUTE_DARK) end

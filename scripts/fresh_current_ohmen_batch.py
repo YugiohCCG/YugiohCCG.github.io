@@ -1,5 +1,5 @@
 """Replay prior effect scenarios against current metadata without overwriting history."""
-import hashlib,json,re,subprocess
+import errno,hashlib,json,re,subprocess,time
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'output/fresh-ccg-september';CURRENT=OUT/'current-data';CURRENT.mkdir(exist_ok=True)
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -49,7 +49,12 @@ for prefix,harness,source,target in recipes:
   data['data_profile']='current-spec installed snapshot'
   data['database_snapshot_sha256']=before['output/fresh-ccg-september/current-spec-CCG_v1.db']
   data['original_harness_sha256']=sha(original);data['derived_harness_sha256']=derived_hash
-  artifact.write_text(json.dumps(data,indent=2)+'\n',encoding='utf-8')
+  for attempt in range(4):
+   try:
+    artifact.write_text(json.dumps(data,indent=2)+'\n',encoding='utf-8');break
+   except OSError as error:
+    if error.errno!=errno.EINVAL or attempt==3:raise
+    time.sleep(0.05*(2**attempt))
   assert sha(derived)==derived_hash
   runs.append({'family':prefix,'passcode':code,'control':control,'status':result.returncode,'cases':len(data['results']),
                'expected_failures':actual,'artifact':artifact.relative_to(OUT).as_posix(),'artifact_sha256':sha(artifact),

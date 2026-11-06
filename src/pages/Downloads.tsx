@@ -14,7 +14,7 @@ const GROUP_DETAILS: Record<ReleaseArtifact["group"], { label: string; descripti
   banlist: { label: "Banlist", description: "The current CCG format restrictions.", icon: "shield" },
   arts: { label: "Card Arts", description: "Artwork displayed throughout Omega.", icon: "image" },
   pics: { label: "Full Card Images", description: "Readable, full-resolution card renders.", icon: "cards" },
-  holograms: { label: "Holograms", description: "Transparent duel-field card projections.", icon: "sparkle" },
+  holograms: { label: "Holograms", description: "Duel-field card projections.", icon: "sparkle" },
 };
 
 const INSTALL_PATHS = [
@@ -67,11 +67,12 @@ function CopyButton({ value, label = "Copy" }: { value: string; label?: string }
 
 function DownloadButton({ file, prominent = false }: { file: ReleaseArtifact; prominent?: boolean }) {
   const [progress, setProgress] = useState<number | null>(null);
+  const downloadUrl = file.url ?? asset(file.path);
   const download = async () => {
     setProgress(0);
     try {
-      const response = await fetch(asset(file.path));
-      if (!response.ok || !response.body) { setProgress(null); window.location.assign(asset(file.path)); return; }
+      const response = await fetch(downloadUrl);
+      if (!response.ok || !response.body) { setProgress(null); window.location.assign(downloadUrl); return; }
       const reader = response.body.getReader();
       const chunks: BlobPart[] = [];
       let received = 0;
@@ -91,7 +92,7 @@ function DownloadButton({ file, prominent = false }: { file: ReleaseArtifact; pr
       setProgress(null);
     } catch {
       setProgress(null);
-      window.location.assign(asset(file.path));
+      window.location.assign(downloadUrl);
     }
   };
   return <button type="button" className={`download-action${prominent ? " is-hero" : ""}`} onClick={download} disabled={progress != null}>

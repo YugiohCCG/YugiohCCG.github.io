@@ -2,6 +2,7 @@
 --Omega references: Vaylantz Genesis Grand Duke (c76075139), Vaylantz Dominator Duke (c13291886)
 local s,id=GetID(); local MSG_ID=133882493; local SET_VAYLANTZ=0x17d
 function s.initial_effect(c)
+ Duel.AddCustomActivityCounter(id,ACTIVITY_SPSUMMON,s.excounter)
  c:EnableReviveLimit(); aux.AddFusionProcFunRep(c,function(x) return x:IsFusionSetCard(SET_VAYLANTZ) end,2,true); aux.EnablePendulumAttribute(c,false)
  local e0=Effect.CreateEffect(c); e0:SetType(EFFECT_TYPE_SINGLE); e0:SetCode(EFFECT_SPSUMMON_CONDITION); e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE); e0:SetValue(s.splimit); c:RegisterEffect(e0)
  local e1=Effect.CreateEffect(c); e1:SetType(EFFECT_TYPE_FIELD); e1:SetCode(EFFECT_SPSUMMON_PROC); e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE); e1:SetRange(LOCATION_EXTRA); e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH); e1:SetCondition(s.excon); e1:SetTarget(s.extg); e1:SetOperation(s.exop); c:RegisterEffect(e1)
@@ -9,9 +10,10 @@ function s.initial_effect(c)
  local e3=Effect.CreateEffect(c); e3:SetCategory(CATEGORY_COIN); e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O); e3:SetCode(EVENT_SPSUMMON_SUCCESS); e3:SetProperty(EFFECT_FLAG_DELAY); e3:SetCountLimit(1,id+100); e3:SetOperation(s.coinop); c:RegisterEffect(e3); local e4=e3:Clone(); e4:SetCode(EVENT_MOVE); e4:SetCondition(function(e) local c=e:GetHandler(); return c:IsLocation(LOCATION_MZONE) and c:GetPreviousLocation()==LOCATION_MZONE and c:GetPreviousSequence()~=c:GetSequence() end); c:RegisterEffect(e4)
  local e5=Effect.CreateEffect(c); e5:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O); e5:SetCode(EVENT_DESTROYED); e5:SetProperty(EFFECT_FLAG_DELAY); e5:SetCondition(function(e,tp) local c=e:GetHandler(); return c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE) and c:IsPreviousPosition(POS_FACEUP) and c:IsSummonType(SUMMON_TYPE_SPECIAL) end); e5:SetTarget(s.pztg); e5:SetOperation(s.pzop); c:RegisterEffect(e5)
 end
-function s.splimit(e,se,sp,st) local c=e:GetHandler(); return not (c:IsLocation(LOCATION_EXTRA) and c:IsFacedown()) or st&SUMMON_TYPE_FUSION==SUMMON_TYPE_FUSION or se==e end
+function s.excounter(c) return not (c:IsCode(id) and c:IsSummonLocation(LOCATION_EXTRA) and c:IsPreviousPosition(POS_FACEDOWN)) end
+function s.splimit(e,se,sp,st) local c=e:GetHandler(); return not (c:IsLocation(LOCATION_EXTRA) and c:IsFacedown()) or (Duel.GetCustomActivityCount(id,sp,ACTIVITY_SPSUMMON)==0 and (st&SUMMON_TYPE_FUSION==SUMMON_TYPE_FUSION or se==e)) end
 function s.rel(c,tp,sc) local seq=c:GetSequence(); return c:IsFaceup() and c:IsSetCard(SET_VAYLANTZ) and c:IsReleasable() and Duel.IsExistingMatchingCard(function(x,s) return x~=c and x:IsFaceup() and x:IsSetCard(SET_VAYLANTZ) and x:GetSequence()==s end,tp,LOCATION_ONFIELD,0,1,nil,seq) end
-function s.excon(e,c) if c==nil then return true end local tp=c:GetControler(); return c:IsFacedown() and Duel.IsExistingMatchingCard(s.rel,tp,LOCATION_MZONE,0,1,nil,tp,c) and Duel.GetLocationCountFromEx(tp,tp,nil,c)>0 end
+function s.excon(e,c) if c==nil then return true end local tp=c:GetControler(); return c:IsFacedown() and Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0 and Duel.IsExistingMatchingCard(s.rel,tp,LOCATION_MZONE,0,1,nil,tp,c) and Duel.GetLocationCountFromEx(tp,tp,nil,c)>0 end
 function s.extg(e,tp,eg,ep,ev,re,r,rp,chk,c) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE); local g=Duel.SelectMatchingCard(tp,s.rel,tp,LOCATION_MZONE,0,1,1,nil,tp,c); if #g==0 then return false end e:SetLabelObject(g:GetFirst()); return true end
 function s.exop(e,tp) Duel.Release(e:GetLabelObject(),REASON_SPSUMMON) end
 function s.movef(c) local seq=c:GetSequence(); return c:IsLocation(LOCATION_MZONE) and seq<5 and (seq>0 and Duel.CheckLocation(c:GetControler(),LOCATION_MZONE,seq-1) or seq<4 and Duel.CheckLocation(c:GetControler(),LOCATION_MZONE,seq+1)) end

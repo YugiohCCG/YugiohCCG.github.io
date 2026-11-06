@@ -62,7 +62,7 @@ function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 	local mat=Duel.SelectFusionMaterial(tp,tc,mg,nil,chkf)
 	if #mat==0 then return end
 	tc:SetMaterial(mat)
-	if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==0 then return end
+	if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end
 	Duel.BreakEffect()
 	if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)~=0 then
 		tc:CompleteProcedure()

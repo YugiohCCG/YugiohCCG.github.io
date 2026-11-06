@@ -71,7 +71,7 @@ function s.actop(e,tp)
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
  local g=Duel.SelectMatchingCard(tp,s.sendfilter,tp,LOCATION_DECK,0,1,1,nil)
  local sent=g:GetFirst()
- if not sent or Duel.SendtoGrave(sent,REASON_EFFECT)==0
+ if not sent or Duel.SendtoGrave(sent,REASON_EFFECT)==0 or not sent:IsLocation(LOCATION_GRAVE)
   or not Duel.IsExistingMatchingCard(s.banishmonster,tp,LOCATION_GRAVE,0,1,sent) then return end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
  local rg=Duel.SelectMatchingCard(tp,s.banishmonster,tp,LOCATION_GRAVE,0,1,1,sent)

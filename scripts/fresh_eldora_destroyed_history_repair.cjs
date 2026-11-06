@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');exports.corrected=s=>{for(const [a,b] of [['local rc=c:GetReasonCard()','local re=c:GetReasonEffect() local rc=re and re:GetHandler()'],['return c:IsPreviousControler(p) and c:IsLocation(LOCATION_GRAVE)','return c:IsPreviousControler(p) and c:IsPreviousLocation(LOCATION_MZONE) and c:IsLocation(LOCATION_GRAVE)']]){assert.equal(s.split(a).length,2);s=s.replace(a,b);}return s;};

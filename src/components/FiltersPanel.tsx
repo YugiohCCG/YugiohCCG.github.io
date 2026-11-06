@@ -185,7 +185,7 @@ const putListNum = (p: URLSearchParams, k: string, vals: number[]) => {
   for (const v of vals) p.append(k, String(v));
 };
 
-export default function FiltersPanel() {
+export default function FiltersPanel({ inDialog = false, onApply }: { inDialog?: boolean; onApply?: () => void } = {}) {
   const { indexes } = useCards({ includeTCG: false, includeCustom: true, includeTest: false });
   const [params, setParams] = useSearchParams();
 
@@ -273,6 +273,7 @@ export default function FiltersPanel() {
 
     p.set("filters", collapsed ? "0" : "1");
     setParams(p, { replace: true });
+    onApply?.();
   };
 
   const reset = () => {
@@ -328,7 +329,7 @@ export default function FiltersPanel() {
         </select>
 
         <div className="flex gap-2 md:justify-end">
-          <button
+          {!inDialog && <button
             type="button"
             className="btn"
             onClick={() => {
@@ -340,13 +341,13 @@ export default function FiltersPanel() {
             }}
           >
             {collapsed ? "Show Filters" : "Hide Filters"}
-          </button>
+          </button>}
           <button type="button" className="btn" onClick={reset}>Reset</button>
           <button type="submit" className="btn btn-primary">Apply</button>
         </div>
       </form>
 
-      {!collapsed && (
+      {(inDialog || !collapsed) && (
         <div className="mt-2 flex flex-col gap-2 filters-expanded">
           {/* Order: Category -> Icon -> Attribute -> Monster Type (Type) -> Card Type */}
           <Section title="Category" onClear={category ? () => setCategory("") : undefined}>

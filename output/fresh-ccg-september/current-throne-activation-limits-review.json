@@ -1,0 +1,49 @@
+{
+  "status": "SCOPED_ORIGINAL_THRONE_ACTIVATION_LIMIT_VERIFIED_NO_REPAIR",
+  "scope": "Three full original Throne/current installed metadata cases: two copies initially have eligible pairs, first actual pair summoned while another same-Level pair and sufficient zones remain; second copy blocked by shared activation count. Actual CL2 NegateEffect suppresses summon but consumes activation. Next own turn (native turn1 to3), second original copy actually activates/summons remaining pair. Removed count fails3; omitted effect negation fails1. No production defect/edit.",
+  "qualification": "Neutral same-Level Zombie resources and response helper; existing explicit CHAININFO_TARGET_CARDS=8 test mapping retained. Effect negation is not activation negation. Original activation-negation/OATH behavior remains supported-runtime qualified; no repeat of known ineffective OATH substitutions, no production API replacement. Pair eligibility/redirect existing evidence reused separately; live Omega/full-card certification remain open. No broad gates/count promotion.",
+  "runs": [
+    {
+      "file": "current-throne-activation-limits-candidate.json",
+      "sha256": "ea39dbe067a205eb430d271404fb06641fd6157924cc60325f92af14f512615d",
+      "expected_failures": []
+    },
+    {
+      "file": "current-throne-activation-limits-no-limit.json",
+      "sha256": "219894b6249487db6cb98c58d664697c39cb061c7a8a432226ec07de798a45e1",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "file": "current-throne-activation-limits-no-negate.json",
+      "sha256": "fe8052c7c8503e7f70fa423a8af7dacbccf22ea1f17c1c7fe3126ecc5c988fc8",
+      "expected_failures": [
+        1
+      ]
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "e623c77c4dd50fbc29cc068a5609d9a014e0241f46dfec8e1b95823a15786c18",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-sort-transport-candidate.mjs": "3325c76fb15c479de379fa117a00933396e6b54f708128dbb02a01d5cba5e199",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_throne_activation_limits.cjs": "e09272e2b170ee9bed849bda7a763013499118ef57c4a1c1e43e294e81e60ed2",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c216294702.lua": "6d2cc4a3b424798347233e87ea97d4673ef43dd0fd0f956f215e434408ed4c62",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c216294702.lua": "6d2cc4a3b424798347233e87ea97d4673ef43dd0fd0f956f215e434408ed4c62"
+  }
+}

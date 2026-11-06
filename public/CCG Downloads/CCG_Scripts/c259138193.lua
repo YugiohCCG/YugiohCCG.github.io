@@ -51,10 +51,10 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
 	if not c:IsRelateToEffect(e) then return end
-	local should_banish=tc and tc:IsRelateToEffect(e) and tc:IsControler(tp)
+	local should_banish=tc and tc:IsRelateToEffect(e)
 		and tc:IsLocation(LOCATION_MZONE) and tc:IsFaceup() and s.haspositiveatkdef(tc)
 	if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 and should_banish
-		and tc:IsRelateToEffect(e) and tc:IsControler(tp)
+		and tc:IsRelateToEffect(e)
 		and tc:IsLocation(LOCATION_MZONE) and tc:IsAbleToRemove() then
 		Duel.BreakEffect()
 		Duel.Remove(tc,POS_FACEUP,REASON_EFFECT)
@@ -96,7 +96,7 @@ function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 		local cg=mat:Filter(Card.IsFacedown,nil)
 		Duel.ConfirmCards(1-tp,cg)
 	end
-	Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
+	if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end
 	if Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then
 		fc:CompleteProcedure()
 		if bonus>0 then

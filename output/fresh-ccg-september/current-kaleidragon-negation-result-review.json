@@ -1,0 +1,70 @@
+{
+  "finding": "Stainless Kaleidragon compares boolean NegateEffect result to numeric zero, so false~=0 wrongly permits destruction after unsuccessful negation.",
+  "qualification": "Four original-effect native chain cases: success, CL3 already-negated effect, CL3 late cannot-dis-effect protection, CL3 source departure. Seeded Fusion source, neutral original chain actors; original Fusion procedure, named lock/reset and other clauses/live remain open. No Lua API mapping or substituted return values.",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_kaleidragon_negation_result.cjs": "9121c389d0a06ec04300f7fa19a2e5a556a7b256af0112658d4ec62e995d2502",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_kaleidragon_negation_result_repair.cjs": "d78e918bb595f50e24fba359c1501823bae37ea560e162e9593c195cacae3df7",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\kaleidragon-negation-result-before-repair\\c217174535.lua": "b06e624502c919b06e468317a8c839abf82a12192779544d31bdf570d4f6446a",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "mode": "candidate",
+      "file": "current-kaleidragon-negation-result-candidate.json",
+      "sha256": "69f4f670ab5e8a0c37852661b0a91c835cc0dc43a1cdbcef1f6135314a1d465a",
+      "expected_failures": []
+    },
+    {
+      "mode": "old",
+      "file": "current-kaleidragon-negation-result-old.json",
+      "sha256": "3d17ae3d91dbea7fd55e0b6fbf97c665558b2944c8ebf2dd7720b96603370b0d",
+      "expected_failures": [
+        1,
+        2
+      ]
+    },
+    {
+      "mode": "no-destroy",
+      "file": "current-kaleidragon-negation-result-no-destroy.json",
+      "sha256": "8de68b54cc68f8ddc70ccaea9b32c7669b8096d7423b07ef38e2a30d04bd5632",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "mode": "no-relation",
+      "file": "current-kaleidragon-negation-result-no-relation.json",
+      "sha256": "0a8782dde992a6bd5bfafa5d74fbe2fdd2aa3a9acf83e52f8c0183ba03cde8c9",
+      "expected_failures": [
+        3
+      ]
+    },
+    {
+      "mode": "no-negation",
+      "file": "current-kaleidragon-negation-result-no-negation.json",
+      "sha256": "5ac5e16acb014ff263fc50b1f7db182aa8d1eca97e774ad95b8c05e18d9b7559",
+      "expected_failures": [
+        0,
+        3
+      ]
+    }
+  ],
+  "manifest": "kaleidragon-negation-result-repair-files.json",
+  "manifest_sha256": "83b6d49fb737113cf128edc7b0eec15fefb9adb66323f4ba2372d9542b5a282f",
+  "helper_sha256": "d78e918bb595f50e24fba359c1501823bae37ea560e162e9593c195cacae3df7",
+  "family_scan": "current-negation-boolean-comparison-scan.json",
+  "family_scan_sha256": "6d5d7608664ef72341c8c88f4bf287e37bd88f1d5fa73b65c3a64e4d1bc6a829"
+}

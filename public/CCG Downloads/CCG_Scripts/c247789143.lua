@@ -154,7 +154,7 @@ function s.chainop(e,tp,eg,ep,ev,re,r,rp)
 		e1:SetReset(RESET_EVENT+RESETS_STANDARD)
 		c:RegisterEffect(e1)
 		if not (c:IsRelateToEffect(e) and c:IsFaceup() and c:GetAttack()==atk-2000) then return end
-		local g1=Duel.GetMatchingGroup(s.banfilter,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
+		local g1=Duel.GetMatchingGroup(s.banpairfilter,tp,LOCATION_MZONE,LOCATION_MZONE,nil,tp)
 		local g2=Duel.GetMatchingGroup(s.stainfilter,tp,LOCATION_MZONE,0,nil)
 		if #g1==0 or #g2==0 then return end
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)

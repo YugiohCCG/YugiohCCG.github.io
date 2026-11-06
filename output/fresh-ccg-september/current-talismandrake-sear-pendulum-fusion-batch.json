@@ -1,0 +1,85 @@
+{
+  "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+  "baseline_cases": 7,
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_talismandrake_sear_pendulum_fusion_batch.py": "a1651f5efeda2bf49557da13cfd0038d630df44c59bb2924880cad6a00034589",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "6e3d644ec1cc45ac996cfe977f250530726ce80315759edefdb995965c06a2a8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_talismandrake_sear_pendulum_fusion.cjs": "86aee94d4d2e15c7a629f69ee3d67e241eb94c39bcd0da828102eeb5b3963ca4",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c245935439.lua": "574dd4c4e6b09543424b6e0aec51e95680f05e78f58ac89f8aca00373d15950f",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e"
+  },
+  "runs": [
+    {
+      "flag": null,
+      "artifact": "current-talismandrake-sear-pendulum-fusion-material-api-compat.json",
+      "artifact_sha256": "31ca761f68ec5ae5fe820da77b1d8dc2911dbbea72152d67f06fbefb92396a5f",
+      "expected_failures": []
+    },
+    {
+      "flag": "no-fusion",
+      "artifact": "current-talismandrake-sear-pendulum-fusion-material-api-compat-no-fusion.json",
+      "artifact_sha256": "567df2e24c6486feb5ab39c19a2af7df8b65261fc621fd71b579cc499aa3724c",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        6
+      ]
+    },
+    {
+      "flag": "no-material",
+      "artifact": "current-talismandrake-sear-pendulum-fusion-material-api-compat-no-material.json",
+      "artifact_sha256": "441374387a8e7a98e898777c2a31afdcf08439efc7d26d016326f9c625f674a0",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        6
+      ]
+    },
+    {
+      "flag": "no-complete",
+      "artifact": "current-talismandrake-sear-pendulum-fusion-material-api-compat-no-complete.json",
+      "artifact_sha256": "1ac06631040161ab13622778bb404a039cd01f705596e46db919c6beab406397",
+      "expected_failures": [
+        0,
+        1,
+        2,
+        6
+      ]
+    },
+    {
+      "flag": "allow-hand",
+      "artifact": "current-talismandrake-sear-pendulum-fusion-material-api-compat-allow-hand.json",
+      "artifact_sha256": "b5aa2e28c939a228c910993045f3f32ac7786193996e0200e6423e758d92cb1c",
+      "expected_failures": [
+        3
+      ]
+    },
+    {
+      "flag": "unadapted-legacy-api",
+      "artifact": "current-talismandrake-sear-pendulum-fusion.json",
+      "artifact_sha256": "3f598a08c63463db24310e6a624ee5031a396ffa8957f551bf85742f3bf65056",
+      "expected_compatibility_failures": [
+        0,
+        1,
+        2,
+        6
+      ]
+    }
+  ],
+  "scope": "FullSear/actualinstalledmetadata/correctedCardData, actualHANDPZone andfullnativeFusionoperations usingneutralexact2materialrecipefunctionfilters. Actualfield2,field+otherPZone,SearsourcePZone+field andfull5MZONE materialsfreezones -> nativeFusion/propercompletion observedCHAIN_END701; Handonly/wrongFusionarchetype/immuneMaterial excluded. Explicitboundedtestonly missingGetMustMaterial(empty)/CheckMustMaterial(trueonlywhennoaffectedplayer) adapter; notmandatorymaterialrules/realproductionFusionrecipes/nativeOmega/fullcard certification. NoFusion4/noMaterial4/noComplete4/allowHand1exactfailures, emptylogs/frozeninputs/parity. Source-as-material secondaryeffect/response/sharedreset stillopen."
+}

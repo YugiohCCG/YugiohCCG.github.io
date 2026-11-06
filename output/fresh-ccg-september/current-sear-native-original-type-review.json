@@ -1,0 +1,50 @@
+{
+  "status": "NATIVE_SEAR_TYPE_REPAIR_SCOPED_VERIFIED",
+  "native_postrepair_evidence": "current-native-omega-sear-postrepair-session.json",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_talismandrake_sear_material_use_reset.cjs": "9427b44dcc125e72122043879beb4db1b82f3149438b6b7f94b3b7b6240bcb9f",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_sear_native_original_type_repair.cjs": "c2b66ca93ee08fb660a8230cbc70ff00c8ba29e66c88947edaa069265deb18a4",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c245935439.lua": "b9c19a812969ace60f80f3cd6e544d4edd95d804b7604165285414853480eb54",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\sear-native-original-type-repair-files.json": "1d591bf01126f151d47e1ec91e9d1dd329846545be67218211c119ac896ae8c5",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\sear-before-native-original-type-repair\\c245935439.lua": "574dd4c4e6b09543424b6e0aec51e95680f05e78f58ac89f8aca00373d15950f",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\sear-before-native-original-type-repair\\installed-c245935439.lua": "574dd4c4e6b09543424b6e0aec51e95680f05e78f58ac89f8aca00373d15950f"
+  },
+  "native_evidence": "current-native-omega-pendulum-session.json",
+  "manifest": "sear-native-original-type-repair-files.json",
+  "finding": "Native Omega245935439:112 nil IsOriginalType in material-trigger eligibility. Sole occurrence in711 scripts. Replaced with GetOriginalType bitmask; original monster in PZone remains eligible.",
+  "runs": [
+    {
+      "artifact": "current-sear-native-type-use-reset.json",
+      "sha256": "5ab387202824afe147a53a5b674efefa54bf03f5cfe21b62a010801b8bc879fa",
+      "expected_failures": []
+    },
+    {
+      "artifact": "current-sear-native-type-use-reset-no-followup-summon.json",
+      "sha256": "e826967582cdf6aa450d3bfae5efc9d52eae504c12fdc74c0844d7c0d0bfc015",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "artifact": "current-sear-native-type-use-reset-per-copy.json",
+      "sha256": "c078e094354f434332eb74d27d63027c8382682187f4612e880630113c0c5f1d",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "artifact": "current-sear-native-type-use-reset-no-reset.json",
+      "sha256": "3ceb3c2dbfe731c83cb8f0b0c9455247f0f92843ce18d9554e5e92a70fa5c0d6",
+      "expected_failures": [
+        0,
+        1,
+        2
+      ]
+    }
+  ],
+  "qualification": "Existing public secondary-use/reset harness reused unchanged via output-name-only Module compilation; native reason/proper-history neutral fixed operation, no Lua API adapter. Old API works in public engine, so public old-source pass is not a native-runtime fault control. Fresh-process native Sear recruitment/optional placement and original PZone Fusion procedure are directly observed in the postrepair session. Other clauses/full-card/live certification remain open."
+}

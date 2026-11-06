@@ -1,0 +1,71 @@
+{
+  "passcode": 247789143,
+  "name": "Stained Sorceress Silphia",
+  "printed_text": "2 \"Stain\" monsters with different names\nDuring your turn, \"Stain\" monsters you control gain 600 ATK. You can only control 1 \"Stained Sorceress Silphia\". If this card is Fusion Summoned: You can activate this effect; shuffle 1 \"Stain\" monster from your Deck face-up into your opponent's Deck during the Standby Phase of the next turn. Once per Chain, when your opponent activates a card or effect (Quick Effect): You can activate 1 of these effects.\n\u25cfThis card gains 300 ATK.\n\u25cfThis card loses exactly 2000 ATK, and if it does, banish 1 monster on the field and 1 \"Stain\" monster you control until the End Phase.",
+  "script_sha256": "2fc293d43e38ec9c58e62c52dfd34a03cf1c48f7c46a3b814ccf7fd493812f0d",
+  "installed_matches": true,
+  "helper_static_review_sha256": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+  "clauses": [
+    {
+      "clause": "Fusion recipe: two differently named Stain monsters",
+      "status": "OPEN_ORIGINAL_RECIPE_RUNTIME",
+      "evidence": "Source filter plus helper forwarding mg/sg statically reviewed. Delayed suite genuinely pays a fixed two-different-name Stain Fusion, but does not exercise original general recipe selection/substitution/mandatory materials."
+    },
+    {
+      "clause": "Own-turn Stain ATK+600",
+      "status": "BOUNDED_NATIVE_PLUS_STATIC",
+      "evidence": "Native source ATK2200 on own turn and1600 on opponent turn in Quick/return suites; static own-MZone Stain target predicate and600 value. Other-recipient/disable boundaries not separately certified."
+    },
+    {
+      "clause": "Control only one Silphia",
+      "status": "STATIC_NATIVE_REGISTRATION",
+      "evidence": "Exact native SetUniqueOnField(1,0,id) registration reviewed; no dedicated two-copy summon/transfer interaction run."
+    },
+    {
+      "clause": "Optional Fusion trigger, next Standby one Stain monster faceup into opponent Deck",
+      "status": "DIRECT_SCOPED_NATIVE",
+      "evidence": "Delayed suite paid preparation/native next-turn Standby and cross-player faceup Deck move; decline/ordinary/type/set/resource boundaries, source removal, no repeat and effective controls."
+    },
+    {
+      "clause": "Once per Chain opponent activation: gain300",
+      "status": "PUBLIC_API_QUALIFIED",
+      "evidence": "Unadapted failures preserved. Explicit test-only SetCountLimit(1,0,8) verifies own-turn native300 gain, same-chain exclusion and next-chain reuse after success/effect/activation negation; production legacy constant unchanged."
+    },
+    {
+      "clause": "Lose exactly2000 then temporarily banish field monster and own Stain",
+      "status": "REPAIRED_DIRECT_SCOPED_NATIVE",
+      "evidence": "Original one-card counterexample, corrected first valid-pair selection, exact ATK loss/two distinct banishments, native CL4 interruption/resource/ATK boundaries and End Phase original-controller returns, effective controls."
+    }
+  ],
+  "evidence": [
+    {
+      "artifact": "current-silphia-pair-batch.json",
+      "sha256": "5f3831a42ab457020bb7f1a0b7adcecf235cd705b0d10427f47599255d5cfadd",
+      "scope": "Full current Silphia/installed metadata/corrected transport/no Lua API adapter. Field-seeded source on own turn has native2200ATK; actual neutral opponent Trap CL2 then Silphia Quick CL3 selects printed second option. Native exact2000ATK loss and two actual distinct temporary banishments. Single own Stain cannot be chosen first if no other Stain remains; two own Stains permit either. Original source actually banishes only one in single-Stain case. Effective omitted-banish controls; exact source/install backups/helper/parity. Same sequential first/second exclusion pattern found only Silphia. No source Fusion history/original recipe/End Phase return/full-card/live Omega certification."
+    },
+    {
+      "artifact": "current-silphia-returns-batch.json",
+      "sha256": "010bcfb49a0230fb8d7294b4621ae324cafd4339c555e2ae706af73c59f3a744",
+      "scope": "Full repaired Silphia/current installed metadata/corrected transport/no Lua API adapter. Initially field source on own turn native2200ATK, actual neutral opponent normal Trap CL2/Silphia Quick CL3/second option/exact2000ATK loss and two real temporary banishments. Natural End Phase returns source and own or opponent other monster to original controller; actual removed-to-field moves and native ATK1600 after leave-field reset/opponent turn. Effective omitted-return/omitted-registration controls fail both cases. Neutral event/other monster identities, no source Fusion history/original general recipe/whole-card/live Omega certification."
+    },
+    {
+      "artifact": "current-silphia-chain-uses-batch.json",
+      "sha256": "a22e53309b06de06b1f0ab6619fa8b5cf7bfeaef1e78770e93f56d5c80defa79",
+      "scope": "Full original Silphia/current installed metadata/corrected transport. Unadapted legacy count registration fails all three scenarios by wrongly blocking second-chain reuse in public engine. Qualified test-only branch changes only e3 count registration to SetCountLimit(1,0,8), modern public chain flag, leaves production unchanged. Native opponent CL2/source Quick CL3/+300 option/opponent CL4, no second source use in same chain; separate next-chain source really gains300 after success or prior effect/activation negation. Exact native ATK/chain counts/CL4 and no-limit/no-gain/no-response controls. Initially field source and neutral events, no original Fusion history/general recipes/live Omega/full-card certification. Existing Crawler mapping4 is SINGLE flag rather than modern CHAIN8; frozen Crawler results need scope review before any stronger chain-reset claim."
+    },
+    {
+      "artifact": "current-silphia-delayed-deck-batch.json",
+      "sha256": "2f76c5169f90bb84c01b18ca9cfffc227e168c58cf3bb35ff3b7b1b13f880f6f",
+      "scope": "Full original repaired Silphia/installed metadata/corrected transport/no Lua API adapter. Initially improper GY source actually moves Extra and pays two differently named Stain Hand Fusion materials/native reasons/type/completion, original optional Fusion trigger registers delayed effect. Actual own Deck-to-opponent Deck faceup transfer occurs at natural turn2 Standby (native phase asserted), exactly once through turn3 Standby despite spare candidate. Actual CL2 source banishment before registration resolution does not prevent delayed transfer; decline/wrong set/Spell/missing resource exclude transfer. Ordinary negative has prior paid proper Fusion then actual banish-to-GY and ordinary revival within preparation, final summon not Fusion and no delayed offer. Effective no-delay/no-reverse/repeat controls. Neutral recipe/material/Deck/response identities, no original general Fusion helper or whole-card/live Omega certification."
+    },
+    {
+      "artifact": "current-silphia-interruptions-batch.json",
+      "sha256": "9c32d77b920e1f8306aacac644cfe6481495ba85a6fd40b6c1c187a759d9526d",
+      "scope": "Full repaired Silphia/current installed metadata/corrected transport/no Lua API adapter. Initially field source native own-turn2200ATK, actual neutral opponent normal Trap CL2/Quick CL3/second-option/response CL4. Effect/activation negation, source banish/facedown, ATK reduced below2000, partner banishment, reverse update prevent native temporary pair; actual exact ATK outcomes and REASON_TEMPORARY distinguish response removal. Partner lost still permits exact2000ATK loss before pair resource recheck, without one-card banishment. Effective omitted-banish/no-response controls. Neutral source setup/event/response/partner, original Fusion history/recipe/full-card/live Omega separate."
+    }
+  ],
+  "scope": "Existing saved evidence validated read-only against exact current runtime dependencies and outcomes. Static registration, native behavior, fixed preparation and public API mapping kept distinct. No new passing counts.",
+  "full_card_audit": "OPEN",
+  "live_omega_verified": false,
+  "next": "Original general Fusion runtime/API and static-only uniqueness/other-recipient buff scope remain unproven. Do not replay covered Quick/delayed branches or call neutral paid setup original recipe certification."
+}

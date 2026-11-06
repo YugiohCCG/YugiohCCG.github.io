@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import type React from "react";
 
-export type LegalityStatus = "banned" | "limited" | "semi" | "tobereleased";
+export type LegalityStatus = "banned" | "limited" | "semi" | "unlimited" | "tobereleased";
 
 type LegalLike = {
   banned?: boolean;
@@ -24,6 +24,7 @@ const LABEL: Record<LegalityStatus, string> = {
   banned: "Banned",
   limited: "Limited",
   semi: "Semi-Limited",
+  unlimited: "Unlimited",
   tobereleased: "To Be Released",
 };
 
@@ -75,7 +76,7 @@ function renderIcon(status: LegalityStatus) {
     );
   }
 
-  if (status === "semi" || status === "limited") {
+  if (status === "semi" || status === "limited" || status === "unlimited") {
     return (
       <svg viewBox="0 0 64 64" aria-hidden="true">
         {outer}
@@ -88,7 +89,7 @@ function renderIcon(status: LegalityStatus) {
           fill="#f7d300"
           fontFamily="'Barlow Condensed', 'Trebuchet MS', 'Segoe UI', sans-serif"
         >
-          {status === "limited" ? "1" : "2"}
+          {status === "limited" ? "1" : status === "semi" ? "2" : "3"}
         </text>
       </svg>
     );

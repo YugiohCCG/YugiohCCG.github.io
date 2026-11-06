@@ -3,7 +3,7 @@ local s,id=GetID()
 local HEART=239935093
 local TOKEN=239935103
 local MSG_ID=133935098
-local HYDRA=0xa124
+local SET_HYDRA=0xa124
 function s.initial_effect(c)
  c:EnableReviveLimit()
  aux.AddCodeList(c,HEART)
@@ -16,7 +16,7 @@ function s.initial_effect(c)
  p:SetOperation(s.procop)
  --Check prospective zones in s.matcheck, then constrain the actual placement.
  --This also supports cores that check procedure zones before material removal.
- p:SetValue(function(e) return SUMMON_TYPE_FUSION,e:GetLabel()==1 and 0x4 or 0xff end)
+ p:SetValue(function(e) return SUMMON_TYPE_FUSION,e:GetLabel()==2 and 0 or e:GetLabel()==1 and 0x4 or 0xff end)
  c:RegisterEffect(p)
  local limit=Effect.CreateEffect(c)
  limit:SetType(EFFECT_TYPE_SINGLE)
@@ -29,7 +29,7 @@ function s.initial_effect(c)
  boost:SetCode(EFFECT_UPDATE_ATTACK)
  boost:SetRange(LOCATION_MZONE)
  boost:SetTargetRange(LOCATION_MZONE,0)
- boost:SetTarget(function(e,tc) return tc:IsSetCard(HYDRA) end)
+ boost:SetTarget(function(e,tc) return tc:IsSetCard(SET_HYDRA) end)
  boost:SetValue(function(e) return 900*Duel.GetMatchingGroupCount(s.waterreptile,e:GetHandlerPlayer(),LOCATION_MZONE,0,nil) end)
  c:RegisterEffect(boost)
  local defense=boost:Clone()
@@ -59,7 +59,7 @@ function s.initial_effect(c)
  c:RegisterEffect(wipe)
 end
 s.listed_names={HEART,TOKEN}
-s.listed_series={HYDRA}
+s.listed_series={SET_HYDRA}
 function s.waterreptile(c)
  return c:IsFaceup() and c:IsType(TYPE_MONSTER) and c:IsAttribute(ATTRIBUTE_WATER) and c:IsRace(RACE_REPTILE)
 end
@@ -94,12 +94,12 @@ function s.procop(e,tp,eg,ep,ev,re,r,rp,c)
  if not sg then return end
  e:SetLabel(1)
  c:SetMaterial(sg)
- Duel.Remove(sg,POS_FACEUP,REASON_COST+REASON_MATERIAL+REASON_FUSION)
+ if Duel.Remove(sg,POS_FACEUP,REASON_COST+REASON_MATERIAL+REASON_FUSION)~=#sg then e:SetLabel(2) end
 end
 function s.destroyed(c,tp)
- return c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE)
+ return c:IsPreviousPosition(POS_FACEUP) and c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE)
   and bit.band(c:GetPreviousTypeOnField(),TYPE_MONSTER)~=0
-  and ((bit.band(c:GetPreviousAttributeOnField(),ATTRIBUTE_WATER)~=0 and bit.band(c:GetPreviousRaceOnField(),RACE_REPTILE)~=0) or c:IsPreviousSetCard(HYDRA))
+  and ((bit.band(c:GetPreviousAttributeOnField(),ATTRIBUTE_WATER)~=0 and bit.band(c:GetPreviousRaceOnField(),RACE_REPTILE)~=0) or c:IsPreviousSetCard(SET_HYDRA))
 end
 function s.destroycon(e,tp,eg)
  return eg:IsExists(s.destroyed,1,nil,tp)
@@ -111,7 +111,7 @@ function s.tokentg(e,tp,eg,ep,ev,re,r,rp,chk)
  local c=e:GetHandler()
  if chk==0 then
   if c:IsLocation(LOCATION_MZONE) then return Duel.GetLocationCount(tp,LOCATION_MZONE)>=2
-   and Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN,HYDRA,TYPE_MONSTER+TYPE_NORMAL+TYPE_TOKEN,0,0,1,RACE_REPTILE,ATTRIBUTE_WATER)
+   and Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN,SET_HYDRA,TYPE_MONSTER+TYPE_NORMAL+TYPE_TOKEN,0,0,1,RACE_REPTILE,ATTRIBUTE_WATER)
    and not Duel.IsPlayerAffectedByEffect(tp,59822133) end
   return c:IsFaceup() and s.centerfree(tp) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP,tp,0x4)
  end
@@ -126,7 +126,7 @@ function s.tokenop(e,tp)
   ct=1
  end
  if Duel.GetLocationCount(tp,LOCATION_MZONE)<ct or (ct==2 and Duel.IsPlayerAffectedByEffect(tp,59822133))
-  or not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN,HYDRA,TYPE_MONSTER+TYPE_NORMAL+TYPE_TOKEN,0,0,1,RACE_REPTILE,ATTRIBUTE_WATER) then return end
+  or not Duel.IsPlayerCanSpecialSummonMonster(tp,TOKEN,SET_HYDRA,TYPE_MONSTER+TYPE_NORMAL+TYPE_TOKEN,0,0,1,RACE_REPTILE,ATTRIBUTE_WATER) then return end
  for i=1,ct do
   local token=Duel.CreateToken(tp,TOKEN)
   Duel.SpecialSummonStep(token,0,tp,tp,false,false,POS_FACEUP)

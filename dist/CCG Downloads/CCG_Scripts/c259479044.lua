@@ -1,9 +1,9 @@
--- Ampere, the Ohmechanic Intensity
+-- Ampere, the Ohmenchanic Intensity
 local s,id=GetID()
 local STRING_ID=133479044
 local COUNTER_CURRENT = 0x18f0
 local SET_OHMEN = 0x8de0
-local SET_OHMECHANIC = 0x8de1
+local SET_OHMENCHANIC = 0x8de1
 function s.initial_effect(c)
 	-- Link Summon
 	c:EnableReviveLimit()
@@ -43,7 +43,7 @@ function s.initial_effect(c)
 	e4:SetType(EFFECT_TYPE_FIELD)
 	e4:SetCode(EFFECT_INDESTRUCTABLE_BATTLE)
 	e4:SetRange(LOCATION_MZONE)
-	e4:SetTargetRange(LOCATION_MZONE,0)
+	e4:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)
 	e4:SetCondition(s.effcon3)
 	e4:SetTarget(s.indtg)
 	e4:SetValue(1)
@@ -52,7 +52,7 @@ function s.initial_effect(c)
 	e5:SetCode(EFFECT_INDESTRUCTABLE_EFFECT)
 	c:RegisterEffect(e5)
 end
-s.listed_series={SET_OHMEN, SET_OHMECHANIC}
+s.listed_series={SET_OHMEN, SET_OHMENCHANIC}
 
 function s.lcheck(g)
 	return g:IsExists(Card.IsSetCard,1,nil,SET_OHMEN) and g:FilterCount(Card.IsRace,nil,RACE_THUNDER)==#g
@@ -104,5 +104,5 @@ function s.effcon3(e)
 end
 function s.indtg(e,tc)
 	local c=e:GetHandler()
-	return tc:IsSetCard(SET_OHMECHANIC) and c:GetMutualLinkedGroup():IsContains(tc)
+	return tc:IsSetCard(SET_OHMENCHANIC) and c:GetMutualLinkedGroup():IsContains(tc)
 end

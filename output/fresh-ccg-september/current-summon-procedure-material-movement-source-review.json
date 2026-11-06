@@ -1,0 +1,339 @@
+{
+  "cards_scanned": 711,
+  "cards_with_matched_procedure": 69,
+  "scope": "Named EFFECT_SPSUMMON_PROC operation callbacks with direct movement and common group argument names. Source triage, including ambiguous reused effect variables.",
+  "sites": [
+    {
+      "passcode": 259670933,
+      "name": "Domestica Kyrie",
+      "operation": "spop",
+      "statement": "Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_COST)",
+      "status": "verified payment repair with neutral recipe compatibility"
+    },
+    {
+      "passcode": 235051048,
+      "name": "Ursarctic Octantis",
+      "operation": "sprop",
+      "statement": "Duel.SendtoGrave(g,REASON_SPSUMMON)",
+      "status": "verified procedure payment repair"
+    },
+    {
+      "passcode": 244921711,
+      "name": "Ursarctic Hextanius",
+      "operation": "sprop",
+      "statement": "Duel.SendtoGrave(g,REASON_SPSUMMON)",
+      "status": "verified procedure payment repair"
+    },
+    {
+      "passcode": 249093610,
+      "name": "Ursarctic Nordbar",
+      "operation": "sprop",
+      "statement": "Duel.SendtoGrave(g,REASON_SPSUMMON)",
+      "status": "verified procedure payment repair"
+    },
+    {
+      "passcode": 244013196,
+      "name": "To Proto Chrono",
+      "operation": "spop",
+      "statement": "Duel.Remove(g,POS_FACEUP,REASON_COST)",
+      "status": "verified banish payment repair"
+    },
+    {
+      "passcode": 246380598,
+      "name": "To Proto Taxis",
+      "operation": "spop",
+      "statement": "Duel.Remove(g,POS_FACEUP,REASON_COST)",
+      "status": "verified banish payment repair"
+    },
+    {
+      "passcode": 224225695,
+      "name": "To Proto Ataxia",
+      "operation": "spop",
+      "statement": "Duel.Remove(g,POS_FACEUP,REASON_COST)",
+      "status": "verified banish payment repair"
+    },
+    {
+      "passcode": 217332244,
+      "name": "To Proto Psychi",
+      "operation": "spop",
+      "statement": "Duel.Remove(g,POS_FACEUP,REASON_COST)",
+      "status": "verified banish payment repair"
+    },
+    {
+      "passcode": 254065048,
+      "name": "Polemistis gia Ataxia",
+      "operation": "spop",
+      "statement": "Duel.Release(g,REASON_SPSUMMON+REASON_MATERIAL)",
+      "status": "verified procedure payment repair",
+      "fixture_requirements": "Two Level 2 or higher Protogenic Tokens and the matching face-up To Proto controller. Test whether native EFFECT_RELEASE_REPLACE intercepts one selected token after eligibility."
+    },
+    {
+      "passcode": 212684822,
+      "name": "Ektelestis gia Taxis",
+      "operation": "spop",
+      "statement": "Duel.Release(g,REASON_SPSUMMON+REASON_MATERIAL)",
+      "status": "verified procedure payment repair",
+      "fixture_requirements": "Two Level 2 or higher Protogenic Tokens and the matching face-up To Proto controller. Test whether native EFFECT_RELEASE_REPLACE intercepts one selected token after eligibility."
+    },
+    {
+      "passcode": 220749574,
+      "name": "Scarlet Seareef & the Nautical Creatures",
+      "operation": "spop",
+      "statement": "Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_COST)",
+      "status": "verified payment repair"
+    },
+    {
+      "passcode": 259944943,
+      "name": "Bob, but Stronger!",
+      "operation": "spop",
+      "statement": "Duel.SendtoGrave(g,REASON_COST)",
+      "status": "verified procedure payment repair"
+    },
+    {
+      "passcode": 221924008,
+      "name": "Chamroshes' Aegis",
+      "operation": "sprop",
+      "statement": "Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_COST+REASON_MATERIAL)",
+      "status": "verified payment repair with legacy visibility adapter"
+    },
+    {
+      "passcode": 221511784,
+      "name": "Bau",
+      "operation": "spop",
+      "statement": "Duel.Remove(g,POS_FACEUP,REASON_COST)",
+      "status": "verified procedure payment repair"
+    },
+    {
+      "passcode": 239179363,
+      "name": "Scarstech Kaiser",
+      "operation": "spop",
+      "statement": "Duel.Remove(sg,POS_FACEUP,REASON_COST)",
+      "status": "verified procedure payment repair"
+    },
+    {
+      "passcode": 259363148,
+      "name": "Gladiator Beast Satyrius",
+      "operation": "contactop",
+      "statement": "Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_COST|REASON_MATERIAL)",
+      "status": "verified payment repair"
+    },
+    {
+      "passcode": 259352030,
+      "name": "Thunder Dragon Behemoth",
+      "operation": "spop",
+      "statement": "Duel.Remove(g,POS_FACEUP,REASON_SPSUMMON)",
+      "status": "verified procedure payment repair"
+    },
+    {
+      "passcode": 259794136,
+      "name": "Harpie Cyber Dancer",
+      "operation": "spop",
+      "statement": "Duel.SendtoHand(g,nil,REASON_COST)",
+      "status": "verified procedure payment repair"
+    },
+    {
+      "passcode": 259533644,
+      "name": "Wyvernal Crenata",
+      "operation": "spop",
+      "statement": "Duel.SendtoGrave(g,REASON_COST)",
+      "status": "verified procedure payment repair"
+    },
+    {
+      "passcode": 284636666,
+      "name": "Aquamarine Bubble Colony",
+      "operation": "altop",
+      "statement": "Duel.Remove(g,POS_FACEUP,REASON_SPSUMMON)",
+      "status": "verified procedure payment repair"
+    },
+    {
+      "passcode": 239935098,
+      "name": "Terrifying Hydra",
+      "operation": "procop",
+      "statement": "if Duel.Remove(sg,POS_FACEUP,REASON_COST+REASON_MATERIAL+REASON_FUSION)~=#sg then e:SetLabel(2) end",
+      "status": "verified Hydra repair"
+    },
+    {
+      "passcode": 238272438,
+      "name": "Terror Blossom from Underroot",
+      "operation": "altop",
+      "statement": "Duel.Remove(sg,POS_FACEUP,REASON_COST+REASON_MATERIAL)",
+      "status": "verified procedure payment repair"
+    },
+    {
+      "passcode": 247756272,
+      "name": "Kali Yuga - Jakarta",
+      "operation": "procop",
+      "statement": "Duel.Remove(sg,POS_FACEUP,REASON_MATERIAL+REASON_SYNCHRO)",
+      "status": "verified alternate procedure payment repair; ordinary Synchro path isolated in fixture"
+    }
+  ],
+  "next_action": "Reconcile the direct Ritual payment batch, then extend the scan to delegated material helpers.",
+  "ritual_followup": {
+    "cards_scanned": 711,
+    "scope": "Explicit ritual material movement calls; native return behavior and helper routes require review.",
+    "sites": [
+      {
+        "passcode": 256930605,
+        "name": "Fruteification",
+        "line": 88,
+        "statement": "Duel.ReleaseRitualMaterial(mat)",
+        "payment_kind": "ritual release helper",
+        "status": "verified release repair"
+      },
+      {
+        "passcode": 216532402,
+        "name": "Sacred Feather of Nephthys",
+        "line": 103,
+        "statement": "if Duel.SendtoGrave(mat,REASON_EFFECT+REASON_RELEASE+REASON_MATERIAL+REASON_RITUAL)==0 then return end",
+        "payment_kind": "zero-only send check",
+        "status": "existing zero check sufficient for exactly one Deck material"
+      },
+      {
+        "passcode": 216532402,
+        "name": "Sacred Feather of Nephthys",
+        "line": 109,
+        "statement": "Duel.ReleaseRitualMaterial(mat)",
+        "payment_kind": "ritual release helper",
+        "status": "verified normal release repair"
+      },
+      {
+        "passcode": 257464336,
+        "name": "Guardian of Wicked Puppeteer",
+        "line": 86,
+        "statement": "Duel.ReleaseRitualMaterial(mat)",
+        "payment_kind": "ritual release helper",
+        "status": "verified release repair"
+      },
+      {
+        "passcode": 243306841,
+        "name": "Wicked Puppeteer Tragedy",
+        "line": 64,
+        "statement": "Duel.ReleaseRitualMaterial(mat)",
+        "payment_kind": "ritual release helper",
+        "status": "verified release repair"
+      },
+      {
+        "passcode": 244959812,
+        "name": "Divine Phoenix of Nephthys",
+        "line": 114,
+        "statement": "Duel.ReleaseRitualMaterial(mat)",
+        "payment_kind": "ritual release helper",
+        "status": "verified self-release repair"
+      },
+      {
+        "passcode": 259247807,
+        "name": "Glitchling Bitron",
+        "line": 232,
+        "statement": "Duel.ReleaseRitualMaterial(mat)",
+        "payment_kind": "ritual release helper",
+        "status": "verified copied Data-Transfert release repair"
+      },
+      {
+        "passcode": 259678739,
+        "name": "Glitchling Witch",
+        "line": 184,
+        "statement": "Duel.ReleaseRitualMaterial(mat)",
+        "payment_kind": "ritual release helper",
+        "status": "verified trigger release repair"
+      },
+      {
+        "passcode": 259961648,
+        "name": "Glitchling Data-Transfert",
+        "line": 110,
+        "statement": "Duel.ReleaseRitualMaterial(mat)",
+        "payment_kind": "ritual release helper",
+        "status": "verified release repair"
+      },
+      {
+        "passcode": 259072906,
+        "name": "Glitchling Mage",
+        "line": 161,
+        "statement": "Duel.ReleaseRitualMaterial(mat)",
+        "payment_kind": "ritual release helper",
+        "status": "verified Pendulum release repair"
+      },
+      {
+        "passcode": 259072906,
+        "name": "Glitchling Mage",
+        "line": 247,
+        "statement": "if #handmat>0 then Duel.ReleaseRitualMaterial(handmat) end",
+        "payment_kind": "ritual release helper",
+        "status": "verified trigger material payment repair"
+      },
+      {
+        "passcode": 259072906,
+        "name": "Glitchling Mage",
+        "line": 248,
+        "statement": "if #deckmat>0 then Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end",
+        "payment_kind": "unchecked explicit send",
+        "status": "verified trigger material payment repair"
+      },
+      {
+        "passcode": 259873115,
+        "name": "Glitchling Leotron",
+        "line": 145,
+        "statement": "Duel.ReleaseRitualMaterial(mat)",
+        "payment_kind": "ritual release helper",
+        "status": "verified release repair"
+      },
+      {
+        "passcode": 259546637,
+        "name": "Glitchling Corruption",
+        "line": 165,
+        "statement": "Duel.ReleaseRitualMaterial(mat)",
+        "payment_kind": "ritual release helper",
+        "status": "verified Tribute-trigger release repair"
+      },
+      {
+        "passcode": 259288669,
+        "name": "Charmelia Elysia",
+        "line": 100,
+        "statement": "if #handfieldmat>0 then Duel.ReleaseRitualMaterial(handfieldmat) end",
+        "payment_kind": "ritual release helper",
+        "status": "verified split payment repair"
+      },
+      {
+        "passcode": 259288669,
+        "name": "Charmelia Elysia",
+        "line": 101,
+        "statement": "if #deckmat>0 then Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end",
+        "payment_kind": "unchecked explicit send",
+        "status": "verified split payment repair"
+      },
+      {
+        "passcode": 259288669,
+        "name": "Charmelia Elysia",
+        "line": 102,
+        "statement": "if #stmat>0 then Duel.SendtoGrave(stmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end",
+        "payment_kind": "unchecked explicit send",
+        "status": "verified split payment repair"
+      },
+      {
+        "passcode": 259241946,
+        "name": "Charmelia Pray",
+        "line": 79,
+        "statement": "if #handfieldmat>0 then Duel.ReleaseRitualMaterial(handfieldmat) end",
+        "payment_kind": "ritual release helper",
+        "status": "verified split payment repair"
+      },
+      {
+        "passcode": 259241946,
+        "name": "Charmelia Pray",
+        "line": 80,
+        "statement": "if #deckmat>0 then Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end",
+        "payment_kind": "unchecked explicit send",
+        "status": "verified split payment repair"
+      },
+      {
+        "passcode": 259241946,
+        "name": "Charmelia Pray",
+        "line": 81,
+        "statement": "if #stmat>0 then Duel.SendtoGrave(stmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end",
+        "payment_kind": "unchecked explicit send",
+        "status": "verified split payment repair"
+      }
+    ],
+    "engine_note": "Public core ReleaseRitualMaterial yields without pushing a material count. Confirm actual movement using native duel evidence before applying a guard. Direct SendtoGrave count checks are separate.",
+    "engine_reference": "https://github.com/edo9300/ygopro-core/blob/master/libduel.cpp"
+  }
+}

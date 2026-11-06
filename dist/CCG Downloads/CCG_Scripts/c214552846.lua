@@ -89,7 +89,7 @@ function s.resolve_negop(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.setcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	return c:IsReason(REASON_DESTROY) and c:IsPreviousLocation(LOCATION_ONFIELD)
+	return c:IsReason(REASON_DESTROY)
 end
 function s.tgfilter(c,e)
 	return c:IsType(TYPE_MONSTER) and c:IsCanBeEffectTarget(e)

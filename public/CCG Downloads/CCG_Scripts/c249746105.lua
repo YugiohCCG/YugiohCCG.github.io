@@ -47,7 +47,7 @@ end
 function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsDestructable,tp,0,LOCATION_ONFIELD,1,nil) end
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,nil,1,0,0)
-	if Duel.IsExistingMatchingCard(Card.IsCode,tp,LOCATION_MZONE,0,1,nil,225161820) then -- Glaucus
+	if Duel.IsExistingMatchingCard(function(c) return c:IsFaceup() and c:IsCode(225161820) end,tp,LOCATION_MZONE,0,1,nil) then -- Glaucus
 		Duel.SetChainLimit(s.chainlimit)
 	end
 end

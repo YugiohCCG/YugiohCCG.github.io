@@ -1,0 +1,25 @@
+{
+  "scope": "Bounded API return semantics source review across711 parsed roster scripts; not universal API coverage, gameplay testing, or full-card certification. No production changes.",
+  "source_aggregate_sha256": "be8701e8d0c604cfc896593286d2aa5e3c759e11730d50c1d683d0568b5a2b4e",
+  "artifacts": [
+    {
+      "file": "current-api-numeric-comparison-triage.json",
+      "sha256": "a702fda1b478087dd6063c378957444edca3f662bef148837eb20cd1311b0650"
+    },
+    {
+      "file": "current-count-api-truthiness-triage.json",
+      "sha256": "17485666bea278c417c90e17ed595ef70b4c0fc22dda5a36cba3cdf4f5ee7e1e"
+    },
+    {
+      "file": "current-count-api-return-triage.json",
+      "sha256": "b4afd04c7050f9b1c7c4a19ff3fd7e3a3f0bdbd017db1ece44edf4400214497d"
+    }
+  ],
+  "conclusions": {
+    "direct_numeric_comparisons": "25 SSet count comparisons are type-correct. Kaleidragon NegateSummon comparison is not a false-boolean defect: referenced core returns no value; branch remains always taken and no gameplay defect proven.",
+    "selected_count_calls_in_boolean_context": "No direct selected count-returning Duel calls in If/While/Repeat truth contexts including and/or/not. Does not prove absence of variable-mediated issues.",
+    "numeric_helpers": "10 returned values context-reviewed:2 EFFECT_EXTRA_ATTACK value callbacks;3 Aquamarine count-limited cost helpers compare maxima numerically;4 Galactican leavechoice indices compared <0/==0;Charmelia drawcount compared >0 and passed numerically to Draw. No boolean mistake identified."
+  },
+  "primary_api_source": "https://raw.githubusercontent.com/edo9300/ygopro-core/master/libduel.cpp",
+  "next_action": "Stop replaying this bounded API family. Continue unreconciled original clauses, starting Charmelia Beast259226799 after checking its listed evidence."
+}

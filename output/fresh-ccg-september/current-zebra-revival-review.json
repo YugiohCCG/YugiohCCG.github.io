@@ -1,0 +1,83 @@
+{
+  "status": "SCOPED_ORIGINAL_ZEBRA_REVIVAL_VERIFIED_NO_REPAIR",
+  "scope": "Ten original Zebra/current installed metadata revival cases: ordinary/high-Level own GY Zombie positives, wrong Race/banished/opponent-GY/ordinary non-Synchro summon exclusions, actual CL2 source departure still resolves, target GY-to-Hand movement prevents revival, full original late Necrovalley blocks revival and optional decline. Five effective faults: no revival3, any summon1, any Race1, omitted target relation1 (wrongly revives moved Hand recipient), wrong source relation1. No defect or production edit.",
+  "qualification": "Passcode239725695 is Zebra of Crying Chaos in current spec, not Scarecrow; queue name corrected. Source starts GY then neutral helper treated-as-Synchro summons with true,true original procedure/revival-limit bypass; no original source Synchro recipe/history certification. Full original source/current installed metadata, full stock Necrovalley/controlled Field metadata, neutral typed resources/response helper; no Lua API mapping. Material-damage clause, named use/reset/other interruptions/live Omega remain open. Explicit Necrovalley-filter omission ineffective here; native engine still blocks the outcome, not independent predicate proof or universal redundancy. No broad gates/count promotion.",
+  "runs": [
+    {
+      "file": "current-zebra-revival-candidate.json",
+      "sha256": "e540c985aec9d8426af3d736c2c2e9c615e97a223db5a56dc1224d10a9f2409d",
+      "expected_failures": [],
+      "control_status": "BASELINE"
+    },
+    {
+      "file": "current-zebra-revival-no-revive.json",
+      "sha256": "eccb414f0ac1a02d16718c5a8f90b9e82f2a0b0612c8ff15acebd1abf6ad7713",
+      "expected_failures": [
+        0,
+        1,
+        6
+      ],
+      "control_status": "EFFECTIVE"
+    },
+    {
+      "file": "current-zebra-revival-any-summon.json",
+      "sha256": "ff14a67d3f253162aa625ace364595b9c45690e8d0f670e9ed90c6fe24d1bf42",
+      "expected_failures": [
+        5
+      ],
+      "control_status": "EFFECTIVE"
+    },
+    {
+      "file": "current-zebra-revival-any-race.json",
+      "sha256": "5149fdf425781b2d46b722ee3a423cb5c597cc5dd354e8ad77ac311c1f690cef",
+      "expected_failures": [
+        2
+      ],
+      "control_status": "EFFECTIVE"
+    },
+    {
+      "file": "current-zebra-revival-no-relation.json",
+      "sha256": "0af53f49fb54220b682c9140718038fd3d76f1923e78ed0ea45ebf72f293bc36",
+      "expected_failures": [
+        7
+      ],
+      "control_status": "EFFECTIVE"
+    },
+    {
+      "file": "current-zebra-revival-no-valley.json",
+      "sha256": "9264cb4b588aec7023f103c7e9af5e67e807ffd000e123fdad3e2764c541c07d",
+      "expected_failures": [],
+      "control_status": "INEFFECTIVE_NOT_FAULT_PROOF"
+    },
+    {
+      "file": "current-zebra-revival-source-relation.json",
+      "sha256": "34d1384b743d20a3e050dd0fc64a49098559501b0e4d841896bceb8da8608cf2",
+      "expected_failures": [
+        6
+      ],
+      "control_status": "EFFECTIVE"
+    }
+  ],
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\src\\data\\cards.json": "e623c77c4dd50fbc29cc068a5609d9a014e0241f46dfec8e1b95823a15786c18",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-sort-transport-candidate.mjs": "3325c76fb15c479de379fa117a00933396e6b54f708128dbb02a01d5cba5e199",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\c47355498.lua": "1d3862aabbbb3f381587a3028435736db2ca5818bdb4973ca30deb5632398318",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_zebra_revival.cjs": "7fa3f08145c6cfaa0d95badfde576aa4ae18a5a77b4fe746836fb66d31c361e4",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c239725695.lua": "da952420bd7dc5636192499c5fd3ec3cc40ac7ec5b98855cd066c249209ac381",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239725695.lua": "da952420bd7dc5636192499c5fd3ec3cc40ac7ec5b98855cd066c249209ac381"
+  }
+}

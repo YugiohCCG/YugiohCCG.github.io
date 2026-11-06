@@ -1,0 +1,1 @@
+'use strict';const assert=require('assert/strict');exports.corrected=(s,code)=>{assert([259366507,244972185].includes(code));const a='aux.FilterBoolFunction(Card.IsCode,CARD_ELDORA_FIELD)',n=code===259366507?1:2;assert.equal(s.split(a).length,n+1);return s.replaceAll(a,'function(c) return c:IsFaceup() and c:IsCode(CARD_ELDORA_FIELD) end');};

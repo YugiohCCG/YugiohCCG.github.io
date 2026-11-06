@@ -75,7 +75,7 @@ function collectNums(p: URLSearchParams, keys: string[]): number[] {
   return Array.from(new Set(out)).sort((a, b) => a - b);
 }
 
-function buildQuery(params: URLSearchParams): Query {
+export function buildQuery(params: URLSearchParams): Query {
   const q: Query = {
     q: getOne(params, "q") || undefined,
     set: getOne(params, "set") || undefined,

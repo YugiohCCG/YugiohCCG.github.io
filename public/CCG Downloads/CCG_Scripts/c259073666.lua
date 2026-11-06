@@ -70,7 +70,10 @@ function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 		and aux.NecroValleyFilter(s.tdfilter)(chkc,e) end
 	if chk==0 then return Duel.IsExistingTarget(aux.NecroValleyFilter(s.tdfilter),tp,LOCATION_GRAVE,0,1,nil,e) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
-	local g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.tdfilter),tp,LOCATION_GRAVE,0,1,4,nil,e)
+	local max=4
+	if not Duel.IsPlayerCanDraw(tp,1) then max=1
+	elseif not Duel.IsPlayerCanDraw(tp,2) then max=3 end
+	local g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.tdfilter),tp,LOCATION_GRAVE,0,1,max,nil,e)
 	Duel.SetOperationInfo(0,CATEGORY_TODECK,g,#g,tp,LOCATION_GRAVE)
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,math.floor(#g/2))
 end

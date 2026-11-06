@@ -1,0 +1,40 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const ROOT=path.resolve(__dirname,'..'),OUT=path.join(ROOT,'output/fresh-ccg-september');
+async function main(){
+const mod=await require('./fresh_corrected_card_data_transport.cjs').loadCorrectedTransport(),{candidateCard}=require('./fresh_installed_card.cjs');
+const {OcgMessageType:M,OcgResponseType:R,OcgLocation:L,OcgPosition:P,OcgProcessResult:S,SelectIdleCMDAction:A,OcgQueryFlags:Q}=mod,core=await mod.default({sync:true,print(){},printErr(){}}),control=process.argv.includes('--no-response')?'no-response':null,results=[];
+const spell=900007101,resource=900007102,response=900007103,filler=900007104,defender=900007105;
+for(const boss of [284639718,284639721,284639722])for(const scenario of ['baseline','activation','effect','sourceBanish','resourceBanish']){
+const base={alias:0,setcodes:[],type:17,level:4,attribute:2,race:0x400n,attack:1000,defense:1000,lscale:0,rscale:0,link_marker:0};
+const resourceLoc=boss===284639718?L.HAND:L.MZONE,resourcePlayer=1;
+const cards=new Map([[defender,{...base,code:defender,setcodes:[0xa122],type:0x1000021}],[boss,candidateCard(boss)],[spell,{...base,code:spell,type:2}],[response,{...base,code:response,type:0x100004}],[filler,{...base,code:filler}],[resource,{...base,code:resource,setcodes:[0xa122],type:boss===284639719?4:boss===284639720?0x20002:33}]]),trace=[],logs=[];
+const reader=name=>{if(name==='c0.lua')return '';if(name===`c${spell}.lua`)return `local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_FREE_CHAIN) e:SetOperation(function(e,tp) ${boss===284639722?`Duel.SpecialSummon(Duel.GetMatchingGroup(Card.IsCode,1-tp,LOCATION_GRAVE,0,nil,${resource}),0,tp,1-tp,false,false,POS_FACEUP)`:String()} Duel.Destroy(Duel.GetMatchingGroup(Card.IsCode,tp,LOCATION_MZONE,0,nil,${boss}),REASON_EFFECT) end) c:RegisterEffect(e) end`;
+if(name===`c${response}.lua`)return `local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_CHAINING) e:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode(${boss}) end) e:SetOperation(function(e,tp,eg,ep,ev,re) ${control?'do end':scenario==='activation'?'Duel.NegateActivation(ev)':scenario==='effect'?'Duel.NegateEffect(ev)':scenario==='sourceBanish'?'Duel.Remove(re:GetHandler(),POS_FACEUP,REASON_EFFECT)':`Duel.Remove(Duel.GetMatchingGroup(Card.IsCode,${resourcePlayer},${resourceLoc},0,nil,${resource}),POS_FACEUP,REASON_EFFECT)`} end) c:RegisterEffect(e) end`;
+if(name===`c${resource}.lua`&&boss===284639722)return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_SINGLE) e:SetCode(EFFECT_UPDATE_ATTACK) e:SetValue(500) c:RegisterEffect(e) end';if([resource,filler,defender].some(c=>name===`c${c}.lua`))return 'local s,id=GetID() function s.initial_effect(c) end';const file=[path.join(ROOT,'public/CCG Downloads/CCG_Scripts',name),path.join(ROOT,'tmp/omega_scripts',name)].find(fs.existsSync);assert(file,name);return fs.readFileSync(file,'utf8');};
+const duel=core.createDuel({flags:mod.OcgDuelMode.MODE_MR5|mod.OcgDuelMode.PSEUDO_SHUFFLE,seed:[1n,2n,3n,4n],team1:{startingLP:8000,startingDrawCount:0,drawCountPerTurn:0},team2:{startingLP:8000,startingDrawCount:0,drawCountPerTurn:0},cardReader:c=>{assert(cards.has(c));return cards.get(c)},scriptReader:reader,errorHandler:(type,message)=>logs.push({type,message})});
+let failure=null,activated=false,triggered=false,interrupted=false,done=false;
+try{
+for(const n of ['constant.lua','utility.lua','procedure.lua'])assert(core.loadScript(duel,n,reader(n)));
+const add=(code,location,player=0,position=P.FACEUP_ATTACK,sequence=0)=>core.duelNewCard(duel,{team:player,duelist:0,code,controller:player,location,sequence,position});
+add(boss,L.MZONE);add(spell,L.HAND);add(resource,boss===284639722?L.GRAVE:resourceLoc,resourcePlayer);if(boss===284639718){add(defender,L.MZONE,0,P.FACEUP_DEFENSE,1);add(defender,L.MZONE,0,P.FACEUP_DEFENSE,2);}if(scenario!=='baseline')add(response,L.SZONE,1,P.FACEDOWN_DEFENSE,1);for(const p of [0,1])for(let i=0;i<6;i++)add(filler,L.DECK,p);core.startDuel(duel);
+for(let step=0;step<150&&!done;step++){
+const state=core.duelProcess(duel),messages=core.duelGetMessage(duel);trace.push(...messages);assert(!logs.length,JSON.stringify(logs));assert(state!==S.END);if(state!==S.WAITING)continue;const p=messages.at(-1);
+if(p.type===M.SELECT_IDLECMD){if(!activated){const index=p.activates.findIndex(c=>c.code===spell);assert(index>=0);activated=true;core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});continue;}
+assert(triggered,'Native destroyed trigger');assert.equal(interrupted,scenario!=='baseline');if(interrupted)assert(trace.some(m=>m.type===M.CHAINING&&m.code===response&&m.chain_size===2),'CL2 response');
+const moves=trace.filter(m=>m.type===M.MOVE&&m.card===resource),success=['baseline','sourceBanish'].includes(scenario);
+if(boss===284639722){const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.ATTACK,controller:1,location:L.MZONE}).find(c=>c?.code===resource);if(scenario==='resourceBanish')assert(!c);else assert.equal(c?.attack,success?1000:1500,'Actual opponent effect negation');}
+else if(scenario!=='resourceBanish')assert.equal(moves.some(m=>m.from.location===resourceLoc&&m.to.location===(boss===284639718?L.REMOVED:L.GRAVE)),success,'Actual alternate effect outcome');
+if(scenario==='sourceBanish')assert(trace.some(m=>m.type===M.MOVE&&m.card===boss&&m.to.location===L.REMOVED));if(scenario==='resourceBanish'){const resolution=trace.findLastIndex(m=>m.type===M.CHAIN_SOLVING&&m.chain_size===1);assert(trace.some((m,i)=>i<resolution&&m.type===M.MOVE&&m.card===resource&&m.to.location===L.REMOVED),'Resource removed before resolution');}
+done=true;
+}else if(p.type===M.SELECT_EFFECTYN){assert.equal(p.code,boss);triggered=true;core.duelSetResponse(duel,{type:R.SELECT_EFFECTYN,yes:true});}
+else if(p.type===M.SELECT_CHAIN){const index=p.selects.findIndex(c=>c.code===response);if(index>=0&&!interrupted){interrupted=true;core.duelSetResponse(duel,{type:R.SELECT_CHAIN,index});}else core.duelSetResponse(duel,{type:R.SELECT_CHAIN,index:p.forced?0:null});}
+else if(p.type===M.SELECT_CARD){let index=p.selects.findIndex(c=>c.code===resource);if(index<0&&boss===284639720&&scenario==='resourceBanish')index=p.selects.findIndex(c=>c.code===response);assert(index>=0,'Expected resolution/target resource');core.duelSetResponse(duel,{type:R.SELECT_CARD,indicies:[index]});}
+else if(p.type===M.SELECT_POSITION)core.duelSetResponse(duel,{type:R.SELECT_POSITION,position:P.FACEUP_ATTACK});
+else if(p.type===M.SELECT_PLACE){const shift=[0,8,16,24].find(v=>[0,1,2,3,4].some(i=>(p.field_mask&(1<<(v+i)))===0)),sequence=[0,1,2,3,4].find(i=>(p.field_mask&(1<<(shift+i)))===0);assert(shift!==undefined);core.duelSetResponse(duel,{type:R.SELECT_PLACE,places:[{player:shift>=16?1-p.player:p.player,location:shift%16===8?L.SZONE:L.MZONE,sequence}]});}
+else if(p.type===M.SELECT_YESNO)core.duelSetResponse(duel,{type:R.SELECT_YESNO,yes:true});else throw Error('Unhandled '+JSON.stringify(p));
+}assert(done,'Step limit');
+}catch(e){failure=e.message}finally{core.destroyDuel(duel)}results.push({passcode:boss,scenario,failure,trace,logs});if(failure)console.log('FAIL '+boss+' '+scenario+': '+failure);
+}
+fs.writeFileSync(path.join(OUT,'current-terrarumian-alternate-interruption'+(control?'-'+control:'')+'.json'),JSON.stringify({scope:'Three full scripts/installed metadata/corrected transport/no Lua adapter. Coin Hand random banish with two neutral defense Pendulums, Staghorn targeted opponent send, Ivy opponent effect negation after native Special Summon. Actual destruction triggers and CL2 interruptions. Not full-card/live Omega.',results},(_,v)=>typeof v==='bigint'?String(v):v,2)+'\n');if(results.some(v=>v.failure))process.exitCode=1;else console.log('Destroyed-trigger interruptions verified');
+}main().catch(e=>{console.error(e);process.exitCode=1});

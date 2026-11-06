@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');exports.playerOnly=s=>{const a='function s.actcon(e,tp)';assert.equal(s.split(a).length,2);return s.replace(a,'function s.actcon(e) local tp=e:GetHandlerPlayer()');};exports.corrected=s=>{s=exports.playerOnly(s);for(const x of ['a','d']){const a=x+' and '+x+':IsControler(tp)';assert.equal(s.split(a).length,2);s=s.replace(a,x+' and '+x+':IsFaceup() and '+x+':IsControler(tp)');}return s;};

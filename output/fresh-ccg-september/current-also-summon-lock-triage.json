@@ -1,0 +1,415 @@
+{
+  "scope": "711 printed texts:also/cannot Special Summon family;AST restriction-function early returns/nesting candidates only. Helper call gates not exhaustively followed;no blanket exclusions.",
+  "cards": [
+    {
+      "passcode": 245378354,
+      "name": "Ursarctic Mikailus",
+      "functions": [
+        {
+          "fn": "s.spop",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 218837030,
+      "name": "Ursarctic Megailus",
+      "functions": [
+        {
+          "fn": "s.spop",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 220150285,
+      "name": "Aquamarine Plate Montipora",
+      "functions": [
+        {
+          "fn": "s.thop",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259650132,
+      "name": "Ampere, the Yellow Ohmen",
+      "functions": [
+        {
+          "fn": "s.thop",
+          "earlyReturns": [
+            "return",
+            "return tc:IsSetCard(0x8de0) and tc:IsType(TYPE_MONSTER) and tc:IsAbleToHand()",
+            "return false",
+            "return false",
+            "return ok"
+          ],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259366591,
+      "name": "Arckcestial Crystal Shards",
+      "functions": [
+        {
+          "fn": "s.spop",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 228860650,
+      "name": "Arckcestial Orb",
+      "functions": [
+        {
+          "fn": "s.spop1",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 258328859,
+      "name": "Arckcestial Descend",
+      "functions": [
+        {
+          "fn": "s.activate",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 258590942,
+      "name": "Arckcestial Meadow",
+      "functions": [
+        {
+          "fn": "s.activate",
+          "earlyReturns": [
+            "return"
+          ],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 220856437,
+      "name": "Bauy Magician",
+      "functions": [
+        {
+          "fn": "s.spop2",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 233957828,
+      "name": "Toddler Pumpkien",
+      "functions": [
+        {
+          "fn": "s.zcost",
+          "earlyReturns": [
+            "return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0"
+          ],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 212822164,
+      "name": "Bray, Shell of the Ghoti",
+      "functions": [
+        {
+          "fn": "s.rmop",
+          "earlyReturns": [
+            "return"
+          ],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 257677549,
+      "name": "Ghostrick Slime",
+      "functions": [
+        {
+          "fn": "s.spop",
+          "earlyReturns": [
+            "return"
+          ],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259472680,
+      "name": "Nemleria Dream Devourer - Soleil",
+      "functions": [
+        {
+          "fn": "s.spop",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259898110,
+      "name": "Nemleria Dream Creator - Veilleuse",
+      "functions": [
+        {
+          "fn": "s.thop",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259934043,
+      "name": "Grayling the Grayscale Imp",
+      "functions": [
+        {
+          "fn": "s.lightfiendlock",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259664027,
+      "name": "A.I.P Ex Shrieker",
+      "functions": [
+        {
+          "fn": "s.exlock",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259466138,
+      "name": "Red-Eyes Gearfried, the Iron Knight",
+      "functions": [
+        {
+          "fn": "s.thop",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259072169,
+      "name": "Mirage Formation Dragon",
+      "functions": [
+        {
+          "fn": "s.exop",
+          "earlyReturns": [
+            "return",
+            "return"
+          ],
+          "lockBranches": [
+            "Duel.SpecialSummon(c,0,tp,tp,true,false,POS_FACEUP)>0"
+          ]
+        }
+      ]
+    },
+    {
+      "passcode": 259247807,
+      "name": "Glitchling Bitron",
+      "functions": [
+        {
+          "fn": "s.register_lock",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259156549,
+      "name": "Glitchling Protron",
+      "functions": [
+        {
+          "fn": "s.register_lock",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259678739,
+      "name": "Glitchling Witch",
+      "functions": [
+        {
+          "fn": "s.register_lock",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259494236,
+      "name": "Glitchling Digitron",
+      "functions": [
+        {
+          "fn": "s.register_lock",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259072906,
+      "name": "Glitchling Mage",
+      "functions": [
+        {
+          "fn": "s.register_lock",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259873115,
+      "name": "Glitchling Leotron",
+      "functions": [
+        {
+          "fn": "s.register_lock",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259763531,
+      "name": "Wyvernal Lymantria",
+      "functions": [
+        {
+          "fn": "s.register_lock",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259223502,
+      "name": "Ether Mademoiselle",
+      "functions": [
+        {
+          "fn": "s.spop",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259454809,
+      "name": "Raven the Lightning II Aerocat",
+      "functions": [
+        {
+          "fn": "s.selfop",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 259935441,
+      "name": "Dinomorphia Hideout",
+      "functions": [
+        {
+          "fn": "s.lock",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 284636663,
+      "name": "Aquamarine Seafan Gorgonia",
+      "functions": [
+        {
+          "fn": "s.lockcost",
+          "earlyReturns": [
+            "return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0"
+          ],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 238274861,
+      "name": "Vylon's Aid",
+      "functions": [
+        {
+          "fn": "s.spop",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 239935093,
+      "name": "Heart of the Hydra",
+      "functions": [
+        {
+          "fn": "s.placecost",
+          "earlyReturns": [
+            "return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0"
+          ],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 239935100,
+      "name": "Perseverance of the Hydra's Heart",
+      "functions": [
+        {
+          "fn": "s.cost",
+          "earlyReturns": [
+            "return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0"
+          ],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 244163201,
+      "name": "Killamity Crimson",
+      "functions": [
+        {
+          "fn": "s.spop",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 244163203,
+      "name": "Killamity Ash",
+      "functions": [
+        {
+          "fn": "s.operation",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    },
+    {
+      "passcode": 238273769,
+      "name": "Symphonic Warrior DDJ",
+      "functions": [
+        {
+          "fn": "s.deckop",
+          "earlyReturns": [],
+          "lockBranches": []
+        }
+      ]
+    }
+  ]
+}

@@ -32,6 +32,7 @@ local effect_card_methods={
 
 card_mt.__len=function() return 1 end
 card_mt.__index=function(_,key)
+	if key=="GetTributeRequirement" then return function() return 1,2 end end
 	if numeric_card_methods[key] then return function() return 1 end end
 	if group_card_methods[key] then return function() return group end end
 	if single_card_methods[key] then return function() return card end end
@@ -224,7 +225,7 @@ local function argument_for(name)
 	if name=="g" or name:match("g$") or name:match("^g%d+$") or name=="selected" or name=="mat" then return group end
 	if name=="f" or name=="filter" then return function() return true end end
 	if name=="state" then return {} end
-	if name=="victim" then return card end
+	if name=="victim" or name=="handler" then return card end
 	if name=="chk" then return 0 end
 	if name=="chkc" then return nil end
 	if name=="c" or name=="tc" or name=="mc" or name=="rc" or name=="sc" or name=="ec" or name=="syncard"

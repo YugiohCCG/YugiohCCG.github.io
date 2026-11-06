@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');exports.corrected=(code,s)=>{if(code===237089049)return require('./fresh_azeriel_monster_filter_repair.cjs').corrected(s);const sets={251191343:'SET_AQUAMARINE',259934043:'SET_GRAYSCALE'};assert(sets[code]);const a='return c:IsSetCard('+sets[code]+') and not c:IsCode(id) and c:IsAbleToGrave()',b=a.replace(' and not c:IsCode(id)',' and c:IsType(TYPE_MONSTER) and not c:IsCode(id)');assert.equal(s.split(a).length,2);return s.replace(a,b);};

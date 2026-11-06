@@ -88,7 +88,7 @@ end
 function s.ritfilter(c,e,tp,mc)
 	return c:IsSetCard(SET_NEPHTHYS) and c:IsType(TYPE_RITUAL)
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true)
-		and mc:IsCanBeRitualMaterial(c) and mc:GetLevel()>=c:GetLevel()
+		and mc:IsCanBeRitualMaterial(c) and mc:IsReleasableByEffect() and mc:GetLevel()>=c:GetLevel()
 		and Duel.GetMZoneCount(tp,Group.FromCards(mc))>0
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -112,6 +112,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 		local mat=Group.FromCards(c)
 		rc:SetMaterial(mat)
 		Duel.ReleaseRitualMaterial(mat)
+		if c:IsLocation(LOCATION_MZONE) then return end
 		Duel.BreakEffect()
 		if Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
 			rc:CompleteProcedure()

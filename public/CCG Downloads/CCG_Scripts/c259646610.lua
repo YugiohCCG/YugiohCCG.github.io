@@ -42,9 +42,11 @@ end
 function s.immval(e,te)
 	return te:GetOwnerPlayer()==1-e:GetHandlerPlayer() and te:IsActivated()
 end
-function s.tgfilter(c,e)
+function s.tgfilter_eligible(c,e)
 	return c:IsFaceup() and c:IsSetCard(SET_ORCUST) and c:IsAbleToGrave()
-		and c:IsCanBeEffectTarget(e)
+end
+function s.tgfilter(c,e)
+	return s.tgfilter_eligible(c,e) and c:IsCanBeEffectTarget(e)
 end
 function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_REMOVED)
@@ -56,7 +58,7 @@ function s.tgtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.tgop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.tgfilter)(tc,e) then
+	if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.tgfilter_eligible)(tc,e) then
 		Duel.SendtoGrave(tc,REASON_EFFECT+REASON_RETURN)
 	end
 end

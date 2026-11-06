@@ -1,0 +1,66 @@
+{
+  "finding": "Wyvernal Gathering allowed two-to-four GY targets under an existing draw lock, making the required floor(count/2) draw unavailable. Selection now allows only cardinalities with permitted draw counts, retaining one-card/zero-draw activation.",
+  "qualification": "Five native original cost/target-selection cases with full stock Protector; stops at selection and makes no new operation/draw outcome claim. Typed Insect targets, no Lua API mapping. Existing operation uses explicit legacy TARGET_CARDS mapping and is not upgraded. Primary before/after rule applied by analogy; other clauses/full-card/live open.",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_wyvernal_draw_permission.cjs": "3eee4cf352e2303012cf60e4362495d42b1db47e4405c12f938418fc24e0cd9a",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_wyvernal_draw_permission_repair.cjs": "441b74afbc361921d12a65e0b71813ff2cc50b9528fcf004ce49469623df3212",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\c24221739.lua": "0caea1920083b1b9c67d523f872782be5ec348f9208060df26e402aecb5cfb93",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\wyvernal-draw-permission-before-repair\\c259073666.lua": "0f734153a9fea75f0f8c6ed6054a8442928d10fa18ef8e95309d877ba42dc5b3",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "mode": "candidate",
+      "file": "current-wyvernal-draw-permission-candidate.json",
+      "sha256": "cde7e8ffacc0afb49030b71fd37bc4f410ba3df278cd52bdb11b6ca4fc091d7a",
+      "expected_failures": []
+    },
+    {
+      "mode": "old",
+      "file": "current-wyvernal-draw-permission-old.json",
+      "sha256": "f9dd1ca4508337905ad3420df4b98e810f50fa699d00e3119fc050be91f71e43",
+      "expected_failures": [
+        1
+      ]
+    },
+    {
+      "mode": "too-strict",
+      "file": "current-wyvernal-draw-permission-too-strict.json",
+      "sha256": "0c7a473b850d0fe698a7973b9a57171e359e0e48e9e5a1b761852af17ce52804",
+      "expected_failures": [
+        0
+      ]
+    },
+    {
+      "mode": "no-limit",
+      "file": "current-wyvernal-draw-permission-no-limit.json",
+      "sha256": "8b9668719bd4b07c038fe9b8c1c69a34072e329a64d745364167edcf7b2907a9",
+      "expected_failures": [
+        1
+      ]
+    }
+  ],
+  "manifest": "wyvernal-draw-permission-repair-files.json",
+  "manifest_sha256": "114d3e7f66d61ccad30d9e812cb323c1362714e73b4c6298254bab6c321a93a8",
+  "helper_sha256": "441b74afbc361921d12a65e0b71813ff2cc50b9528fcf004ce49469623df3212",
+  "family_scan": "current-mandatory-then-draw-source-scan.json",
+  "family_scan_sha256": "ca962eee6684012605862747231b30d81bd4cc3475b503ec2e57c13361997241",
+  "reused_operation": {
+    "file": "current-wyvernal-recycle-batch.json",
+    "sha256": "c42a1f5a072a85ea58064feaa71eec65800a0c5e4f556b18d7bc9a0b8e6ae227",
+    "qualification": "Historical4 mapped recycle/draw cases and controls verified at exact stored hashes/dependencies with new target-helper source composition. Explicit CHAININFO_TARGET_CARDS=8 mapping remains; no rerun or original-operation certification."
+  }
+}

@@ -1,0 +1,13 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+source=ROOT/'public/CCG Downloads/CCG_Scripts/c235448944.lua';assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+paths=[Path(__file__).resolve(),source,ROOT/'src/data/cards.json',FILES/'Databases/CCG_v1.db',OUT/'candidate-CCG_v1.db']+[ROOT/'scripts'/n for n in ['fresh_current_aldrez_pawn_summon.cjs','fresh_current_recollection_iron_activation.cjs','fresh_installed_card.cjs','fresh_corrected_card_data_transport.cjs']]+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))+[ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']
+deps={str(p.resolve()):sha(p) for p in paths};runs=[]
+for flag,expected in [(None,[]),('no-draw',[9,13,14,15]),('per-copy',[0,1,8]),('allow-any',[2,3,5]),('both-sides',[4]),('no-response',[11,12,14,15]),('per-draw-copy',[13,14,15])]:
+ r=subprocess.run(['node','--no-warnings','scripts/fresh_current_aldrez_pawn_summon.cjs']+(['--'+flag] if flag else []),capture_output=True,text=True,timeout=20);p=OUT/('current-aldrez-pawn-summon'+('-'+flag if flag else '')+'.json');d=json.loads(p.read_text());assert len(d['results'])==16 and [i for i,v in enumerate(d['results']) if v['failure']]==expected and all(not v['logs'] and v['trace'] for v in d['results']) and r.returncode==bool(expected),r.stdout+r.stderr
+ runs.append({'artifact':p.name,'sha256':sha(p),'expected_failures':expected})
+assert deps=={str(p.resolve()):sha(p) for p in paths}
+(OUT/'current-aldrez-pawn-summon-batch.json').write_text(json.dumps({'status':'ALDREZ_PAWN_SUMMON_VERIFIED','runtime_dependencies_sha256':deps,'runs':runs,'scope':'Full Pawn/current installed metadata/corrected transport/no Lua API adapter. Actual Hand summon eligibility including own other Aldrez Monster/Spell, facedown/wrong set/opponent/Pawn-only/full/absent exclusions. Shared procedure count across copies/natural reset with actual later summon; Normal-only draw/decline/CL2 negations, no draw after Special Summon. Effective controls. Three actual Normal Summons (second via neutral effect ignoring normal summon count) prove shared draw use after success/either negation and natural reset with actual later draw. Effective per-draw-copy control; Link material families/full-card/live Omega separate.','production_change':False},indent=2)+'\n')
+print('Pawn summon/draw verified with effective controls')

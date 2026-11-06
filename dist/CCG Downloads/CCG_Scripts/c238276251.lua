@@ -18,7 +18,7 @@ function s.initial_effect(c)
  e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
  e2:SetCode(EVENT_DESTROYED)
  e2:SetRange(LOCATION_SZONE)
- e2:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET)
+ e2:SetProperty(EFFECT_FLAG_DELAY+EFFECT_FLAG_CARD_TARGET+EFFECT_FLAG_DAMAGE_STEP)
  e2:SetCountLimit(1)
  e2:SetCondition(s.descon)
  e2:SetTarget(s.destg)
@@ -67,7 +67,7 @@ function s.actop(e,tp)
  if #low==2 then Duel.SendtoHand(low,nil,REASON_EFFECT) Duel.ConfirmCards(1-tp,low) end
 end
 function s.descon(e,tp,eg)
- return eg:IsExists(Card.IsSetCard,1,nil,SET_NEPHTHYS)
+ return eg:IsExists(function(c) return c:IsSetCard(SET_NEPHTHYS) and (not c:IsPreviousLocation(LOCATION_ONFIELD) or c:IsPreviousPosition(POS_FACEUP)) end,1,nil)
 end
 function s.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
  if chkc then return chkc:IsControler(1-tp) and chkc:IsOnField() and chkc:IsDestructable() end

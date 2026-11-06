@@ -29,7 +29,7 @@ end
 s.listed_series={SET_WICKED_PUPPETEER}
 s.listed_names={CARD_ORCHIS}
 function s.matfilter(c,rc)
-	return c:IsLocation(LOCATION_HAND+LOCATION_MZONE) and c:GetLevel()>0 and c:IsCanBeRitualMaterial(rc)
+	return c:IsLocation(LOCATION_HAND+LOCATION_MZONE) and c:GetLevel()>0 and c:IsCanBeRitualMaterial(rc) and c:IsReleasableByEffect()
 end
 function s.materialgroup(tp,rc)
 	local mg=Duel.GetRitualMaterial(tp):Filter(s.matfilter,nil,rc)
@@ -61,7 +61,10 @@ function s.ritop(e,tp,eg,ep,ev,re,r,rp)
 	local mat=mg:SelectSubGroup(tp,s.matcheck,false,1,#mg,tp)
 	if not mat then return end
 	rc:SetMaterial(mat)
+	local locations={}
+	for mc in aux.Next(mat) do locations[mc]=mc:GetLocation() end
 	Duel.ReleaseRitualMaterial(mat)
+	if mat:IsExists(function(mc) return mc:GetLocation()==locations[mc] end,1,nil) then return end
 	Duel.BreakEffect()
 	if Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
 		rc:CompleteProcedure()

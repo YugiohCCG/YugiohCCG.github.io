@@ -1,0 +1,47 @@
+{
+  "scope": "711 AST sources;IsExistingMatchingCard field-location calls whose direct or named local filter uses IsCode without explicit IsFaceup. Helper recursion/compound indirect predicates outside scope;candidate scan only.",
+  "hits": [
+    {
+      "passcode": 227745087,
+      "name": "The Green Frute",
+      "call": "Duel.IsExistingMatchingCard(s.rlfilter,tp,LOCATION_HAND+LOCATION_MZONE,0,1,e:GetHandler(),needzone)",
+      "filter": "function s.rlfilter(c,needzone)\n\treturn c:IsAttribute(ATTRIBUTE_WATER) and not c:IsCode(id) and c:IsReleasable()\n\t\tand (not needzone or c:IsLocation(LOCATION_MZONE))\nend"
+    },
+    {
+      "passcode": 259366507,
+      "name": "Aquila, Zephorion's Predictor",
+      "call": "Duel.IsExistingMatchingCard(aux.FilterBoolFunction(Card.IsCode,CARD_ELDORA_FIELD),tp,LOCATION_ONFIELD,0,1,nil)",
+      "filter": "aux.FilterBoolFunction(Card.IsCode,CARD_ELDORA_FIELD)"
+    },
+    {
+      "passcode": 244972185,
+      "name": "The Spires of Zephorion Prime",
+      "call": "Duel.IsExistingMatchingCard(aux.FilterBoolFunction(Card.IsCode,CARD_ELDORA_FIELD),tp,LOCATION_ONFIELD,0,1,nil)",
+      "filter": "aux.FilterBoolFunction(Card.IsCode,CARD_ELDORA_FIELD)"
+    },
+    {
+      "passcode": 244972185,
+      "name": "The Spires of Zephorion Prime",
+      "call": "Duel.IsExistingMatchingCard(aux.FilterBoolFunction(Card.IsCode,CARD_ELDORA_FIELD),tp,LOCATION_ONFIELD,0,1,nil)",
+      "filter": "aux.FilterBoolFunction(Card.IsCode,CARD_ELDORA_FIELD)"
+    },
+    {
+      "passcode": 249746105,
+      "name": "Aquamarine Physalia",
+      "call": "Duel.IsExistingMatchingCard(Card.IsCode,tp,LOCATION_MZONE,0,1,nil,225161820)",
+      "filter": "Card.IsCode"
+    },
+    {
+      "passcode": 215621622,
+      "name": "A Night of Fright on Hallo-Ween!",
+      "call": "Duel.IsExistingMatchingCard(s.costfilter,tp,LOCATION_MZONE,0,1,nil,tp)",
+      "filter": "function s.costfilter(c,tp)\n\treturn c:IsCode(WEEN) and c:IsAbleToGraveAsCost() and Duel.GetMZoneCount(tp,c)>0\nend"
+    },
+    {
+      "passcode": 259934043,
+      "name": "Grayling the Grayscale Imp",
+      "call": "Duel.IsExistingMatchingCard(Card.IsCode,tp,LOCATION_ONFIELD+LOCATION_GRAVE,0,1,nil,c:GetCode())",
+      "filter": "Card.IsCode"
+    }
+  ]
+}

@@ -97,8 +97,8 @@ end
 function s.deftg(e,c)
 	return c:IsFaceup() and c:IsSetCard(SET_GRAND_BLUE) and e:GetHandler():GetLinkedGroup():IsContains(c)
 end
-function s.setfilter(c)
-	return c:IsSetCard(SET_GRAND_BLUE) and c:IsType(TYPE_SPELL) and c:IsSSetable()
+function s.setfilter(c,tp)
+	return c:IsSetCard(SET_GRAND_BLUE) and c:IsType(TYPE_SPELL) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)
 end
 function s.thfilter(c)
 	return c:IsSetCard(SET_GRAND_BLUE) and c:IsType(TYPE_SPELL) and c:IsAbleToHand()
@@ -106,8 +106,7 @@ end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local canadd=Duel.GetFieldGroupCount(tp,0,LOCATION_ONFIELD)>0
 		and Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil)
-	if chk==0 then return (Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil)) or canadd end
+	if chk==0 then return (Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil,tp)) or canadd end
 	if canadd then
 		Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
 	end
@@ -115,8 +114,7 @@ end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local canadd=Duel.GetFieldGroupCount(tp,0,LOCATION_ONFIELD)>0
 		and Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil)
-	local canset=Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil)
+	local canset=Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil,tp)
 	if not (canadd or canset) then return end
 	local op=0
 	if canadd and canset then
@@ -126,7 +124,7 @@ function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	end
 	if op==0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
-		local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
+		local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK,0,1,1,nil,tp):GetFirst()
 		if tc then
 			Duel.SSet(tp,tc)
 		end

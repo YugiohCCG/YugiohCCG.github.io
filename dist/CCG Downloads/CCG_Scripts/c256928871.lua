@@ -58,9 +58,11 @@ end
 function s.splimit(e,c,sump,sumtype,sumpos,targetp,se)
 	return bit.band(sumtype,SUMMON_TYPE_PENDULUM)==SUMMON_TYPE_PENDULUM and not c:IsRace(RACE_PYRO)
 end
+function s.spfilter_eligible(c,e,tp)
+	return c:IsSetCard(SET_TALISMANDRAKE) and c:IsType(TYPE_FUSION) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+end
 function s.spfilter(c,e,tp)
-	return c:IsSetCard(SET_TALISMANDRAKE) and c:IsType(TYPE_FUSION)
-		and c:IsCanBeEffectTarget(e) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return s.spfilter_eligible(c,e,tp) and c:IsCanBeEffectTarget(e)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then
@@ -78,13 +80,14 @@ end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.spfilter)(tc,e,tp)
+	if tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter(s.spfilter_eligible)(tc,e,tp)
 		and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 then
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)
 		e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
-		e1:SetValue(LOCATION_EXTRA)
+		--Deck redirection automatically returns Fusion Monsters to the Extra Deck.
+		e1:SetValue(LOCATION_DECK)
 		e1:SetReset(RESET_EVENT+RESETS_REDIRECT)
 		tc:RegisterEffect(e1,true)
 	end

@@ -58,17 +58,16 @@ function s.plop(e,tp)
 	if c:IsRelateToEffect(e) and Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true) then s.trapify(c) end
 end
 function s.trapcon(e) return e:GetHandler():IsType(TYPE_TRAP) end
-function s.setfilter(c) return c:IsSetCard(SET_GRAVINITY) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() end
+function s.setfilter(c,tp) return c:IsSetCard(SET_GRAVINITY) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0) end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil) end
+	if chk==0 then return Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil,tp) end
 end
 function s.setop(e,tp)
 	local c=e:GetHandler()
 	local all=c:GetFlagEffect(TRANSFER_CALL)>0
 	if all then c:ResetFlagEffect(TRANSFER_CALL) all=Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) end
-	if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
-	local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
+	local tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK,0,1,1,nil,tp):GetFirst()
 	if tc and Duel.SSet(tp,tc)>0 and Duel.IsTurnPlayer(1-tp) and (tc:IsType(TYPE_TRAP) or tc:IsType(TYPE_QUICKPLAY)) then
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)
@@ -81,7 +80,7 @@ function s.setop(e,tp)
 end
 function s.mvcon(e,tp) return e:GetHandler():IsType(TYPE_TRAP) and e:GetHandler():GetSequence()<5 and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 end
 function s.domove(c,tp)
-	if not c:IsLocation(LOCATION_SZONE) or not c:IsControler(tp) then return end
+	if not c:IsLocation(LOCATION_SZONE) or not c:IsControler(tp) or Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOZONE)
 	local fd=Duel.SelectDisableField(tp,1,LOCATION_SZONE,0,0)
 	local seq=math.floor(math.log(fd,2)+0.5)-8

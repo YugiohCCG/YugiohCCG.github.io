@@ -5,7 +5,7 @@ async function main(){
  const mod=await import(pathToFileURL(path.join(path.dirname(require.resolve('@n1xx1/ocgcore-wasm')),'dist/index.js')).href);
  const {OcgMessageType:M,OcgResponseType:R,OcgLocation:L,OcgPosition:P,OcgProcessResult:S,SelectIdleCMDAction:A}=mod;
  const core=await mod.default({sync:true,print(){},printErr(){}}),id=238274858,target=900000061,search=900000062,filler=900000063;
- const db=new DatabaseSync(path.join(ROOT,'output/fresh-ccg-september/candidate-CCG_v1.db'),{readOnly:true});
+ const db=new DatabaseSync(path.join(ROOT,'public/CCG Downloads/CCG_Database/CCG_v1.db'),{readOnly:true});
  const row=db.prepare('select * from datas where id=?').get(id);db.close();
  const bytes=row.setcode,setcodes=Array.from({length:bytes.length/2},(_,i)=>bytes[i*2]|bytes[i*2+1]<<8).filter(Boolean);
  const base={alias:0,setcodes:[],type:0x21,level:4,attribute:16,race:0x20n,attack:1000,defense:1000,lscale:0,rscale:0,link_marker:0};
@@ -38,12 +38,12 @@ async function main(){
      if(!valid){if(p.activates.some(c=>c.code===id))throw Error('Union equip offered on non-Vylon');done=true;break;}
      if(searchStarted){
       if(core.duelQueryCount(duel,0,L.HAND)!==1)throw Error('Vylon search failed');
-      if(p.activates.some(c=>c.code===id))throw Error('Glome offered a second Union action in the same turn');
+      if(p.activates.some(c=>c.code===id&&BigInt(c.description)===BigInt(132274858)*16n))throw Error('Glome offered another equip action while already equipped');
       done=true;break;
      }
      if(equipped){
       if(core.duelQueryCount(duel,0,L.SZONE)!==1)throw Error('Union did not equip');
-      const index=p.activates.findIndex(c=>c.code===id);if(index<0)throw Error('Equipped search unavailable');
+      const index=p.activates.findIndex(c=>c.code===id&&BigInt(c.description)===BigInt(132274858)*16n+2n);if(index<0)throw Error('Equipped search unavailable');
       searchStarted=true;core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});
      }else{
       const index=p.activates.findIndex(c=>c.code===id);if(index<0)throw Error('Hand equip unavailable');

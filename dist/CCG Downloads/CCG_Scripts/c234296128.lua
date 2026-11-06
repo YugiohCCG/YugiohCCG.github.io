@@ -19,7 +19,7 @@ function s.initial_effect(c)
 	e2:SetCategory(CATEGORY_DISABLE+CATEGORY_ATKCHANGE)
 	e2:SetType(EFFECT_TYPE_QUICK_O)
 	e2:SetCode(EVENT_CHAINING)
-	e2:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DAMAGE_CAL)
+	e2:SetProperty(EFFECT_FLAG_DAMAGE_STEP)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetCountLimit(1,id+1)
 	e2:SetCondition(s.negcon)
@@ -57,6 +57,7 @@ function s.tfilter(c,tp)
 	return c:IsControler(tp) and c:IsLocation(LOCATION_ONFIELD)
 end
 function s.negcon(e,tp,eg,ep,ev,re,r,rp)
+	if Duel.GetCurrentPhase()==PHASE_DAMAGE and Duel.IsDamageCalculated() then return false end
 	if ep==tp or not Duel.IsChainDisablable(ev) then return false end
 	local ex1,tg1,tc1=Duel.GetOperationInfo(ev,CATEGORY_DESTROY)
 	local ex2,tg2,tc2=Duel.GetOperationInfo(ev,CATEGORY_REMOVE)

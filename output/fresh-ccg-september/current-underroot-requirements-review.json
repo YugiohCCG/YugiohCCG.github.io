@@ -1,0 +1,45 @@
+{
+  "passcode": 238272437,
+  "name": "Over Skull from Underroot",
+  "printed_text": "You can banish this card from your hand or field; Special Summon 1 \"Underroot\" monster from your Deck. If this card or another \"Underroot\" monster is Normal or Special Summoned, while this card is face-up on your field: You can decrease this card level by up to 2, also you can treat it as a non-Tuner monster for the Synchro Summon of a \"rroot\" monster. If this card in your banishment is returned to the GY or hand: You can Special Summon this card. You can only use each effect of \"Over Skull from Underroot\" once per turn.",
+  "spec_sha256": "6e3d644ec1cc45ac996cfe977f250530726ce80315759edefdb995965c06a2a8",
+  "source_sha256": "5d0cb6d627be8ff66a9f493fcd473cb1397918cc4e3050800b8d50b3790b39f8",
+  "installed_matches": true,
+  "clauses": [
+    {
+      "clause": "Self-banish Hand/field Deck recruit; named once",
+      "evidence": [
+        "current-underroot-projected-space-batch.json",
+        "current-underroot-recruit-uses-batch.json"
+      ],
+      "scope": "Native costs/recruitment, projected capacity, eligibility, copies/use/reset and actual CL2 interruptions."
+    },
+    {
+      "clause": "Own Underroot Normal/Special event: decrease Level up to2 and optional rroot non-Tuner treatment; shared named once",
+      "evidence": [
+        "current-underroot-nontuner-batch.json",
+        "current-underroot-level-uses-batch.json"
+      ],
+      "scope": "Native event actors, choices0/1/2, grant/decline and unrelated-event exclusions, context-specific native material eligibility, copies/Normal-Special sharing/reset/CL2 controls. No completed Synchro using original recipient recipe."
+    },
+    {
+      "clause": "Return from banishment to GY/Hand: optional self summon; shared named once",
+      "evidence": [
+        "current-underroot-return-boundaries-batch.json",
+        "current-underroot-return-uses-batch.json"
+      ],
+      "scope": "Native actual return moves/summons, face-down banishment origin, decline/full-field/Deck-origin exclusions, copies/GY-Hand sharing/reset/CL2 negation controls."
+    }
+  ],
+  "evidence_sha256": {
+    "current-underroot-projected-space-batch.json": "ccbf81863a284948f1005506272b78743006646d01745e48fabc84643a60a8e5",
+    "current-underroot-recruit-uses-batch.json": "32a611bd8c1674866390e7d3db0e8ee87f453410ab53ed6fa8fd1caca01ca63e",
+    "current-underroot-nontuner-batch.json": "a46b960e6f12e3c1e0c5cb4884e95436df663a0f86fd6f0440768411f7ff3766",
+    "current-underroot-level-uses-batch.json": "bfdedf840ec9b8f84f2b361b0e00e31c653b074c7a95a3b362495871993d508f",
+    "current-underroot-return-boundaries-batch.json": "b7783a75f98176d8a922ecaf6e262b5a55a8a20bafe35934764783cf9f68f975",
+    "current-underroot-return-uses-batch.json": "904d55265ddf0e0c8199d0a7c4a3fd74c79c12c6ad0ab4b6ac8aea07864f7dd8"
+  },
+  "full_card_audit": "OPEN",
+  "native_omega_verified": false,
+  "qualification": "Printed clauses mapped to direct bounded native evidence. Initially field/banished normal-source seeds and neutral support/recipient identities qualified in batches. Material eligibility is not completed Synchro/original recipe evidence. No full-card or live Omega conclusion; do not clone completed variants merely for counts."
+}

@@ -43,11 +43,11 @@ end
 function s.atkcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	local dg=Duel.GetDecktopGroup(tp,4)
-	if chk==0 then return c:GetOverlayGroup():IsExists(s.costfilter,1,nil) and #dg==4 and dg:FilterCount(s.costfilter,nil)==4 end
+	if chk==0 then return c:GetFlagEffect(id+1000)==0 and c:GetOverlayGroup():IsExists(s.costfilter,1,nil) and #dg==4 and dg:FilterCount(s.costfilter,nil)==4 end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local og=c:GetOverlayGroup():FilterSelect(tp,s.costfilter,1,1,nil)
 	Duel.Remove(og,POS_FACEUP,REASON_COST)
-	Duel.DisableShuffleCheck()
+	c:RegisterFlagEffect(id+1000,RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_BATTLE,0,1) Duel.DisableShuffleCheck()
 	Duel.Remove(dg,POS_FACEUP,REASON_COST)
 end
 function s.atkop(e,tp,eg,ep,ev,re,r,rp)

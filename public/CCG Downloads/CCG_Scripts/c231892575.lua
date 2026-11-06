@@ -18,6 +18,7 @@ function s.initial_effect(c)
 	e2:SetCode(EFFECT_CANNOT_BE_EFFECT_TARGET)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetTargetRange(LOCATION_MZONE,0)
+	e2:SetCondition(s.atkcon)
 	e2:SetTarget(s.tglimit)
 	e2:SetValue(aux.tgoval)
 	c:RegisterEffect(e2)
@@ -47,14 +48,17 @@ end
 function s.otheraldrezmonster(c,sc)
 	return c:IsFaceup() and c:IsSetCard(SET_ALDREZ) and c:IsType(TYPE_MONSTER) and c~=sc
 end
+function s.supportfilter(c)
+	return c:IsFaceup() and c:IsSetCard(SET_ALDREZ) and c:IsType(TYPE_MONSTER) and not c:IsCode(id)
+end
 function s.atkcon(e)
-	return Duel.IsExistingMatchingCard(s.otheraldrezmonster,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil,e:GetHandler())
+	return Duel.IsExistingMatchingCard(s.supportfilter,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil)
 end
 function s.tglimit(e,c)
 	return s.otheraldrezmonster(c,e:GetHandler())
 end
 function s.hspcon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.IsExistingMatchingCard(s.otheraldrezmonster,tp,LOCATION_MZONE,0,1,nil,e:GetHandler())
+	return Duel.IsExistingMatchingCard(s.supportfilter,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.hsptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()

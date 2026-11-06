@@ -1,0 +1,1652 @@
+{
+  "scope": "Dependency freshness discovery only; valid hashes do not establish semantic effect coverage or full audit. Legacy schemas without runtime_dependencies_sha256 excluded. Historical evidence retained, not certified current.",
+  "cards": {
+    "230947464": {
+      "name": "Talismandrake Spark",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-extra-placement-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Spark and Embers full source actual Extra-to-PZone trigger: source summoned then destroyed to faceup Extra, two actual Fusion-materials/reason/Fusion summon/proper completion via neutral fixed recipe operation. Eight cases each: own DARK Pyro Fusion any archetype accepted; wrong race/attribute/nonFusion/nonFusionSummon/opponent/fullPZones excluded. Setup Spell preseed SZONE2 preserves both actual PZones. No Lua API adapter. Focused native eligibility; interruptions/shared reset/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-extra-placement-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Spark/Embers source/installedmetadata/no Lua API adapter; actual Extra trigger and CL2 activation/effect negation, source banish, actual Extra-to-EMZ-to-Extra roundtrip, late both-PZone occupation; removing Fusion trigger card does not prevent source placement. Actual source and neutral two-material Fusion history. Seven native cases each, controls6/2/2 exact failures. Shared use/reset/liveOmega/fullcard remain open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-extra-placement-use-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Spark/Embers source actual Extra placement shared named use/reset across copies. Three neutral fixed-two-material Fusion operations, each new source HAND->MZONE->faceupExtra; previous placed source returned Extra to free PZones. Success/actual CL2 negated activation/effect spends named use, second newcopy same turn excluded with space/Extra reserves, third Fusion next own turn activates one of multiple copies. Native NEW_TURN0/1/0, exact Fusion/placement counts. No Lua API adapter. PerCopy3turn1/noReset3turn3/noPlacement3 failures per card. Other monster effects/general Fusion recipes/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-spark-pendulum-damage-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullSpark/currentcanonicalmetadata/correctedCardData/actualHandPZone. NeutralSpell setsactual2materialgroup/sendsmaterials/reallySpecialSummons withFusiontype andCompleteProcedure afterward. Exact500nativeDAMAGE andoptionaltrigger onownPyroFusion; decline/nonPyro/ordinarySS/nonFusion/opponentcontroller exclude. ExplicittestonlyCHAININFO_TARGET_PLAYER9/TARGET_PARAM10 modernconstantcompatibility perProjectIgnis; unadaptedlegacyconstants error inpubliccore. NoDamage1/noRace1/allowOrdinary1/allowOpponent1semanticfailures, emptylogs/frozeninputs/parity. Compatibilitydiagnostic notOmega/fullcard; printedFusionrecipe/sharedusage/reset/interruptions open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-spark-pendulum-damage-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullSpark/currentcanonicalmetadata/correctedCardData/actualHANDPZone/twoactualmaterialneutralFusion. ExplicittestonlyCHAININFO_TARGET_PLAYER9/TARGET_PARAM10 mapping, notOmega certification. Fivecases baseline500/actualCounterTrapCL2NegAct0/NegEffect0/sourceBanish0/FusionBanish500. ActualREMOVEDsource/Fusion, nativeFusionMZONEpresence andCL2, oneoptionaloffer, exactnativeDAMAGE checked. Sourceleave0 isobservedpubliccorebehavior, notindependentactualOmega rulecertification. NoDamage2/noResponse4 semanticfailures, emptylogs/frozeninputs/parity. NoLua/DBrepair; sharednamedlimit/reset andremainingcard/full711 open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-spark-pendulum-damage-use-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullSpark/currentcanonicalmetadata/correctedCardData/twoactualHANDPZonecopies remain. Threeactualneutral2materialFusionSS events: twoown1 thennaturalNEW_TURN0/1/0 own3. Namedsharedoptionaluse1own1 evenafteractualCL2NegAct/NegEffect; own3renewedoffer2total. ExactDAMAGE1000baseline/500negatedfirst, actualFusionMZONEcounts3/nativehistoryHINT3/CL2 andbothPZonecopieschecked. ExplicitCHAININFO_PLAYER9/PARAM10 testonlycompat mapping, notOmega/fullcard certification. PerCopy3turn1/noReset3turn3 exactsemanticfailures, emptylogs/frozeninputs/parity. Othermonstereffects/remainingPend/full711 open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-spark-pendulum-restriction-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full current production card/canonical metadata/corrected CardData; actual Hand PZone activation and neutral opposite scale2. Native Pyro Pendulum SS from Hand or actual MZONE effect-GY faceupExtra, nonPyro excluded in both, ordinary nonPyro SS unaffected. No LuaAPI adapter. NoLimit2/invertRace4 exactfailures/emptylogs/frozeninputs/installedparity. Other effects/fullcard/nativeOmega OPEN.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-spark-search-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Spark source/current installed metadata/corrected transport/no Lua API adapter; native Special Summon search with actual CL2 negated activation/effect, source banish, only candidate banish, candidate replaced with new Deck card, late cannot-to-hand restriction. Search still resolves after source leave and selects replacement at resolution. Seven baseline cases; noResponse6/noSearch3 exact failures/empty logs/frozen inputs/parity. Normal/Extra interruptions/shared use/reset/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-spark-summon-search-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Spark actual Normal/Special Summon search Deck or faceup Extra. Nine native eligibility cases, facedown Fusion Extra/wrongset/nonmonster/samename/noCandidate/FlipSummon excluded. Actual installed metadata/corrected transport/no Lua API adapter. Controls noSearch3/allowSelf1/allowSet1/allowNonmonster1; removing faceup guard alone still excludes facedown Fusion via native IsAbleToHand exact failures. Shared limits/interruptions/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-summon-use-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SPARK_COMPATIBILITY_EMBERS",
+          "scope": "Full Spark3 native/Embers4 compatibility cases: first Normal Summon (additional Embers Flip case), second copy Special Summon same turn, third next own turn. Success/actual CL2 activation/effect negation spend shared named search/draw use; other copies/summon-type clones cannot bypass; next-turn native reset. Exact result/source summon counts and NEW_TURN0/1/0. PerCopy/noReset/splitSummon/noResult controls each Spark3/Embers4 failures. Explicit test-only CHAININFO9/10 mapping for Embers; no Lua adapter Spark. No liveOmega/fullcard certification.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": []
+    },
+    "256928871": {
+      "name": "Talismandrake Embers",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-embers-draw-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "Full Embers/current installed metadata/corrected transport; actual Special Summon draw, actual CL2 negated activation/effect/source banish/ally banish/late cannot-draw. Trigger condition need not remain true after ally leaves. Explicit test-only CHAININFO target-player9/param10 mapping. Six compatibility diagnostic cases; controls noResponse5/noDraw3 exact failures. Shared limits/other summon interruptions/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-embers-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullrepairedEmbers/actualinstalledmetadata/correctedCardData/noLuaAPIadapter; actualneutral2materialproperFusionGY andHANDPZone targetactivation. Eightcases baseline/actualCounterCL2NegAct/NegEffect/sourceBanish/targetBanish/targetGY-MZONE-GYroundtrip/latefivezonefill/latesummonlock. Baselineactualtargetrevival thenactualGYattemptredirectExtra. Interruptionspreventrevival; source/targetREMOVED, targetroundtrip2nativeMZONEtoGYmoves, late5fill andCL2 checked. NoResponse7/noRevive1/noRedirect1/noRelation2 exactsemanticfailures, emptylogs/frozeninputs/parity. Otherfullcard/nativeOmega/productionFusionrecipe remainopen.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-embers-pendulum-restriction-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full current production card/canonical metadata/corrected CardData; actual Hand PZone activation and neutral opposite scale2. Native Pyro Pendulum SS from Hand or actual MZONE effect-GY faceupExtra, nonPyro excluded in both, ordinary nonPyro SS unaffected. No LuaAPI adapter. NoLimit2/invertRace4 exactfailures/emptylogs/frozeninputs/installedparity. Other effects/fullcard/nativeOmega OPEN.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-embers-pendulum-revival-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullrepairedEmbers/currentcanonicalmetadata/correctedCardData/noLuaAPIadapter. Actualneutral2materialFusionSS/properCompleteProcedure/GY then actualHANDPZone targetedrevival. Fouractualleaveattempts GY/banish/Hand/Deck allendExtra; wrongarchetype/nonFusion/notproper/full5MZONE excluded. OldLOCATION_EXTRA sourcefailsGY/banish; replacementLOCATION_DECK supportedinlegacyandmoderncore andautomaticallyroutesFusionExtra. Old2/noRevive4/noRedirect2/wrongSet1/nonFusion1exactfailures, emptylogs/frozeninputs/sourceinstallparity. FullproductionFusionrecipe/othermonstereffects/nativeOmega/fullcard OPEN.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-embers-pendulum-use-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullrepairedEmbers/actualinstalledmetadata/correctedCardData/noLuaAPIadapter. TwoactualHANDPZonecopies0/4; twoactualneutral2materialproperFusion histories nativeFusiontype/properstatusasserted beforeactualGYarrival. Firstsuccess/actualCL2NegAct/NegEffect spendsnameduse, othercopyblockedown1 whileproperGYreserveremains. NaturalNEW_TURN0/1/0 oppositePZone4copyactualrevivesown3; expectedMZONE2baseline/1negated andremainingGY0/1, twoPZonecopies stay. PerCopy3semanticturn1/noReset3semanticturn3failures, emptylogs/frozeninputs/parity. ProductionFusionrecipe/otherfullcardeffects/nativeOmega remainopen.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-embers-summon-draw-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "Full Embers/actual installed metadata/corrected transport; actual Normal/Special/Flip Summon draw with eligible faceup different-name Talismandrake. Noally/samename/wrongset/facedown/opponent/PZone allies excluded. Explicit test-only CHAININFO target-player=9/param=10 mapping for modern public engine; unadapted all3 positive cases reproduce invalid CHAININFO. Controls noDraw3/allowSelf1/allowSet1/allowFacedown1 exact failures. Native Omega/shared limits/interruptions/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-extra-placement-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Spark and Embers full source actual Extra-to-PZone trigger: source summoned then destroyed to faceup Extra, two actual Fusion-materials/reason/Fusion summon/proper completion via neutral fixed recipe operation. Eight cases each: own DARK Pyro Fusion any archetype accepted; wrong race/attribute/nonFusion/nonFusionSummon/opponent/fullPZones excluded. Setup Spell preseed SZONE2 preserves both actual PZones. No Lua API adapter. Focused native eligibility; interruptions/shared reset/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-extra-placement-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Spark/Embers source/installedmetadata/no Lua API adapter; actual Extra trigger and CL2 activation/effect negation, source banish, actual Extra-to-EMZ-to-Extra roundtrip, late both-PZone occupation; removing Fusion trigger card does not prevent source placement. Actual source and neutral two-material Fusion history. Seven native cases each, controls6/2/2 exact failures. Shared use/reset/liveOmega/fullcard remain open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-extra-placement-use-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Spark/Embers source actual Extra placement shared named use/reset across copies. Three neutral fixed-two-material Fusion operations, each new source HAND->MZONE->faceupExtra; previous placed source returned Extra to free PZones. Success/actual CL2 negated activation/effect spends named use, second newcopy same turn excluded with space/Extra reserves, third Fusion next own turn activates one of multiple copies. Native NEW_TURN0/1/0, exact Fusion/placement counts. No Lua API adapter. PerCopy3turn1/noReset3turn3/noPlacement3 failures per card. Other monster effects/general Fusion recipes/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-summon-use-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SPARK_COMPATIBILITY_EMBERS",
+          "scope": "Full Spark3 native/Embers4 compatibility cases: first Normal Summon (additional Embers Flip case), second copy Special Summon same turn, third next own turn. Success/actual CL2 activation/effect negation spend shared named search/draw use; other copies/summon-type clones cannot bypass; next-turn native reset. Exact result/source summon counts and NEW_TURN0/1/0. PerCopy/noReset/splitSummon/noResult controls each Spark3/Embers4 failures. Explicit test-only CHAININFO9/10 mapping for Embers; no Lua adapter Spark. No liveOmega/fullcard certification.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": []
+    },
+    "210506870": {
+      "name": "Talismandrake Heat",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-talismandrake-heat-monster-batch.json",
+          "status": "VERIFIED_PARTIAL_CURRENT_INSTALLED_METADATA",
+          "scope": "Five derived current Heat monster fixtures/actual installed metadata/corrected CardData: hand summon8/capacity-interruption7/sharedreset3/equip ATK3/equipfilter5. Original artifacts and exact semantic controls retained. Full current source; existing test-only chain-info adaptations retained where used. No production changes/nativeOmega/fullcard certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-talismandrake-heat-pendulum-batch.json",
+          "status": "VERIFIED_PARTIAL_CURRENT_INSTALLED_METADATA",
+          "scope": "Four derived Heat Pendulum fixtures refreshed against actual installed metadata/corrected CardData: recycle9/interruption9/shared use reset3/native Pendulum restriction5. Preserve original artifacts, controls and open interpretations. Full current Heat/Pyre scripts. Existing test-only GetChainInfo target-cards8 compatibility rewrite retained where used; no production changes/nativeOmega/fullcard certification.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-talismandrake-heat-equip-atk-batch.json",
+          "status": null,
+          "scope": "Full production Heat continuous ATK with full Halberd215921734/Suppressor238136421 native GY equip effects on own neutral DARKPyro recipient; one/two actual equips, faceup unequipped full Spell exclusion, actual helper fieldGY departures remove gains. No adapters; broader filter/Pendulum/Fusion/fullcard OPEN",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-talismandrake-heat-equip-filter-batch.json",
+          "status": null,
+          "scope": "Full production Heat continuous ATK with explicitly neutral Spell/Trap/archetype/opponent equipped cards via actual native Equip and EquipLimit; wrongset/opponent exclusion and actual recipientGY rule equip destruction. No adapters; fullcard OPEN",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-talismandrake-heat-hand-capacity-repaired-batch.json",
+          "status": null,
+          "scope": "Full production Heat Hand summon native CL2 negation/sourceGY/prerequisiteGY/playerSSlock/four actual Deck summons filling all zones; source retention capacity diagnostic and explicit in-memory guard comparison. No API adapters; fullcard OPEN",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-talismandrake-heat-hand-interruption-comparison-batch.json",
+          "status": null,
+          "scope": "DIAGNOSTIC unmodified fullzone case fails Hand retention; minimal hspop capacityguard comparison passes seven cases/two discriminating controls. Not production repair/indexed; full-card open.",
+          "stale_dependencies": [
+            "public/CCG Downloads/CCG_Scripts/c210506870.lua",
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-talismandrake-heat-hand-summon-batch.json",
+          "status": null,
+          "scope": "Full production Talismandrake Heat actual native Hand summon with neutral own faceup DARK Pyro prerequisite; facedown/wrongrace/wrongattribute/opponent-only/no-resource/fullzone/playerSSlock exclusions. No adapters; Pendulum/equipATK/Fusion/shareduses/fullcard OPEN",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-talismandrake-heat-hand-use-reset-batch.json",
+          "status": null,
+          "scope": "Full production Heat two actual Hand copies shared selfsummon use including native activation/effect negation and actual next-ownturn3 native Hand summons. No adapters/seeded history; remaining printed effects/fullcard OPEN",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-talismandrake-heat-pendulum-interruption-batch.json",
+          "status": null,
+          "scope": "Full Heat actual Pendulum placement/recycle full Pyre target; native CL2 activation/effect negation, target banish/banishGYreturn, sourceHand/HandPZONEreturn, sourceCannotHand/targetCannotDeck. No adapters; shareduse/Fusion/fullcard OPEN",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-talismandrake-heat-pendulum-recycle-batch.json",
+          "status": null,
+          "scope": "Full production Heat actual native Hand Pendulum placement then full Pyre227362839 GYtoExtra and sourcePZONEtoHand; wrongrace/attribute/type/opponent/absent/NC/sourceHandlock/targetDecklock eligibility. No adapters or seeded procedure for return; fullcard OPEN",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-talismandrake-heat-pendulum-restriction-batch.json",
+          "status": null,
+          "scope": "Full Heat actual native Hand Pendulum placement plus explicit neutral scale2/native Pendulum summon of neutral Pyro Hand or actual field-effectGY faceupExtra; nonPyro excluded in both, ordinary neutral SS unaffected. No adapters; fullcard OPEN",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-talismandrake-heat-pendulum-use-reset-batch.json",
+          "status": null,
+          "scope": "Full production Heat two actual native Pendulum placements/full PyreGYcopies, shared named recycle use including native activation/effect negation and actual next-ownturn3 targetExtra/sourceHand returns. No adapters/seeded history; fullcard OPEN",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        }
+      ]
+    },
+    "245935439": {
+      "name": "Talismandrake Sear",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-sear-material-followup-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "Sear actual Fusion-material trigger: summon partner from actual PZone, optional source Extra to PZone, decline either, wrong archetype and full field. Full source/installed metadata/corrected transport; explicit test-only absent mandatory-material API adapter and neutral Fusion recipe. Original source fails 3; controls fail 2/1/3. Not live Omega/full card certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-sear-material-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "Seven actual Sear Fusion-material followup interruptions: baseline, CL2 negate activation/effect, source/partner banish, late full field and summon lock. Optional Extra-to-PZone placement remains independent when summon fails; source leaving Extra prevents source placement while partner can summon. Full source and installed metadata; explicit bounded mandatory-material API adapter and neutral Fusion recipe. No liveOmega/fullcard certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-sear-material-use-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full source actual secondary effect triggered by three neutral fixed two-material Fusion operations using real native material reason, Fusion summon and proper completion, Sear from Hand to GY. Shared use across copies/negated activation/negated effect spend use; natural turn0/1/0 reset. No Lua API adapter. Primary Fusion recipe/general Fusion legality/liveOmega/fullcard remain open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-sear-pendulum-fusion-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullSear/actualinstalledmetadata/correctedCardData, actualHANDPZone andfullnativeFusionoperations usingneutralexact2materialrecipefunctionfilters. Actualfield2,field+otherPZone,SearsourcePZone+field andfull5MZONE materialsfreezones -> nativeFusion/propercompletion observedCHAIN_END701; Handonly/wrongFusionarchetype/immuneMaterial excluded. Explicitboundedtestonly missingGetMustMaterial(empty)/CheckMustMaterial(trueonlywhennoaffectedplayer) adapter; notmandatorymaterialrules/realproductionFusionrecipes/nativeOmega/fullcard certification. NoFusion4/noMaterial4/noComplete4/allowHand1exactfailures, emptylogs/frozeninputs/parity. Source-as-material secondaryeffect/response/sharedreset stillopen.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-sear-pendulum-response-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullSear/actualinstalledmetadata/correctedCardData/actualHANDPZone, sameexplicitboundedmissingmandatorymaterialAPIadapter andneutral2coderecipefunctionfilters. ActualopponentSpell/MonsterCL1 -> SearQuickFusionCL2; ownSpell/Monsterexcluded. Field+PZoneactualmaterials supported. ActualCounterTrapCL3 NegAct/NegEffect/sourceBanish/materialBanish/lateSSlock preventFusion; actualREMOVEDsource/material verified. Success3nativeFusion/actualmaterials/properCHAIN_END701; exactCL2/CL3counts. NoFusion3/noMaterial3/noComplete3/allowOwn2/noResponse5semanticfailures/emptylogs/frozeninputs/parity. Compatibilitydiagnostic notnativeOmega/generalproductionFusionrecipes/fullcard; usage/secondarytrigger open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-talismandrake-sear-pendulum-use-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullSear/actualinstalledmetadata/correctedCardData/sameexplicitboundedmissingmandatorymaterialAPIadapter/neutral2coderecipe. ActualtwoHANDPZonecopies0/4 and4fieldmaterialreserves/twoFusionExtra. FirstIGNsuccess/actualCL2NegAct/NegEffect spendsnameduse; othercopyIGN excludedsameown1 despiteusable2or4materials. OwnneutralSpellCL1/opponentQuickPlayCL2 actualactivation checksQuickmodealsospent(notCounterTrap-speed exclusion). NaturalNEW_TURN0/1/0 oppositecopyown3actualFusion;MZONEFusion2baseline/1negated, actualmaterialsGYNORMAL/ExtraPendcounts/reserve/properHINT701 checked. PerCopy3turn1/noReset3turn3/splitModes3turn1exactsemanticfailures,emptylogs/frozeninputs/parity. Compatibilitydiagnostic notOmega/generalFusionrecipes/fullcard; secondarymaterialeffect stillopen.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": []
+    },
+    "218142234": {
+      "name": "Maiden of Talismandrakes Seraphina",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-origins-batch.json",
+          "status": "ORIGINS_TWO_BOUNDED_REPAIRS_VERIFIED",
+          "scope": "Origins self-placement relation and empty-GY activation repaired in source/local Omega. No-adapter native cases verify placement with actual moved-source/negation/zone controls; real detach/destroy/banish (including GY-empty after setup, redirects and GY banish lock), actual opposing Spell/Trap targeting exclusion and allowed own/Monster/wrong-set/wrong-side controls. Attachment Flip/opponent GY and native Xyz3/4 summon plus Special-summon attachment use explicit bounded legacy API adapters, with separate unadapted failure probes. Not general recipes/live Omega/full-card certification; named use/reset and natural Pendulum summon history beyond these cases not certified.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-seraphina-capacity-repaired-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Native prior checked printed-category Fusion history/PZone placement; mixed full-field pool prefers GY cards but must pay at least one MZONE card freeing zone. Repair installed; production recipe/Omega/fullcard OPEN.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-seraphina-halberd-battle-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full Seraphina actual Pendulum shuffle/SS/Halberd equip then native ownturn3 battle versus defense1000, decline/noPierce, strongerDEF5000, attackposition1000 and equalDEF. Exact native damage bothplayers asserted. No adapters; neutral checked Fusion history, production recipe/other Arms/Omega/fullcard OPEN",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-seraphina-pendulum-equip-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full repaired Seraphina Pendulum summon/cost plus full production four ArmsGY scripts; actual optional equip, native relationship/SpellEquip type/ATKDEF/Pierce/target-protection registration observer. Decline and wrong-code exclude equip. Printed-category neutral Fusion history; no adapters; battle/replacement/protection interactions/Omega/fullcard OPEN",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-seraphina-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full repaired Seraphina native Pendulum cost/SS after actual printed-category neutral Fusion history; real CounterTrapCL2 activation/effect negation/sourcebanishment/late4zonefill/late source-only player summon lock. Actual three shuffle costs persist. No adapters; Fusion recipe/equip/other effects/Omega/fullcard OPEN",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-seraphina-pendulum-use-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Two full Seraphina copies with actual printed-category neutral Fusion history and actual left/rightPZone placements. First success/CounterTrapCL2 activation/effect negation consumes shared Pendulum use; actual ownturn3 second-copy summon resets, two real three-card costs retained. No adapters; production Fusion recipe/other effects/Omega/fullcard OPEN",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-seraphina-sabre-battle-replacement-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full Seraphina actual Pendulum cost/SS/fullSabre equip and native ownturn3 battle against5000ATK: optional Sabre sacrifice preserves source, decline/noEquip source leaves, weak1000ATK excludes replacement. Actual damage/source locations/equip sacrifice asserted. No adapters; printed-category neutral Fusion history, recipe/other effects/Omega/fullcard OPEN",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-seraphina-shield-leave-replacement-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full Seraphina Pendulum/Shield equip then actual opposing non-targeting destruction/banishment/hand/deck effects; decline/own-effect/noEquip boundaries. Actual source preservation and native Shield sacrifice REASON_REPLACE checked. No adapters; neutral printed-category Fusion history/recipe/other effects/Omega/fullcard OPEN",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-seraphina-suppressor-target-protection-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full Seraphina Pendulum/fullSuppressor equip; actual opposing targeting effect excluded, own targeting allowed, equipdecline/Halberd permits opponent target, opposing non-target destruction allowed. Native Card.IsCanBeEffectTarget and actual target/operation used, no adapters; checked neutral Fusion history, other effects/Omega/fullcard OPEN",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-seraphina-capacity-candidate-batch.json",
+          "status": "SUPERSEDED_PRE_INSTALL_DIAGNOSTIC_NOT_CURRENT_EVIDENCE",
+          "scope": "Native prior checked printed-category Fusion history/PZone placement; mixed full-field pool prefers GY cards but must pay at least one MZONE card freeing zone. Candidate not installed; production recipe/Omega/fullcard OPEN.",
+          "stale_dependencies": [
+            "scripts/fresh_current_seraphina_pendulum_summon.cjs",
+            "public/CCG Downloads/CCG_Scripts/c218142234.lua"
+          ]
+        }
+      ]
+    },
+    "244986323": {
+      "name": "Shining Brigade Origins",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-origins-batch.json",
+          "status": "ORIGINS_TWO_BOUNDED_REPAIRS_VERIFIED",
+          "scope": "Origins self-placement relation and empty-GY activation repaired in source/local Omega. No-adapter native cases verify placement with actual moved-source/negation/zone controls; real detach/destroy/banish (including GY-empty after setup, redirects and GY banish lock), actual opposing Spell/Trap targeting exclusion and allowed own/Monster/wrong-set/wrong-side controls. Attachment Flip/opponent GY and native Xyz3/4 summon plus Special-summon attachment use explicit bounded legacy API adapters, with separate unadapted failure probes. Not general recipes/live Omega/full-card certification; named use/reset and natural Pendulum summon history beyond these cases not certified.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": []
+    },
+    "248760718": {
+      "name": "Starry Knight Starry Queen",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-chain-trigger-delay-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Five production EVENT_CHAINING FIELD+TRIGGER_O registrations add EFFECT_FLAG_DELAY, preserving other flags and trigger timing after original chain resolves. Native full-source registrations isolated via neutral condition/cost/target/operation substitutions;10accept/decline cases pass, original10fail. Full StarryQueen9effect cases andold5failures/4controls7/1/3/9 under explicit constantcompatremap legacy0x100000 to modern22: diagnostic only, not nativeOmega/fullcard. Captured officialOmega c35191415 demonstrates same delayed trigger pattern. Two other matches alreadyDELAY skipped. Exactbacks/sourceinstallparity/frozeninputs. Previous quick and CHAIN_SOLVED alternatives superseded without productionuse.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-starry-queen-opponent-pendulum-batch.json",
+          "status": "VERIFIED_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "Full repaired StarryQueen actualown1 placement/setup andnativeopponent2 monsterIGN. OriginalLIGHT opponent becomesDARK; originalDARK tested. Nativeattrs beforeactivation; delayednewchain1/actualDeckshuffle/Lvl7LIGHTDragonSSHandDeckGY. Decline/wrongLevel/fullfield/disable/removal boundaries. Original5fails; controls6/7/4/9; emptylogs/parity/frozeninputs. Explicit triggeringattribute constant mapping0x100000 to22; corrected32bit testtransport. Compatibilitydiagnostic only, notnativeOmega/fullcard. Remaininginterruptions/shareduses/Trappermission open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-starry-queen-permission-expiry-batch.json",
+          "status": "VERIFIED_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "Full source unusedgrant expiresnativeEndPhase; sourcepresent andactualbanishedbeforeEndPhase cases. NativeNEW_TURNplayers0/1, actualown1permission freshTrapavailable unused, nativeQuickeffectSetsnewTrapfromHandonopponent2, realresponsewindowexcludesfreshTrap. ControlsnoExpiry2/noSet2 proveexpiry/freshSetessential. Emptylogs/parity/frozeninputs, explicitattributeconstantmapping22/correctedCardData: compatibilitydiagnosticnotnativeOmega/fullcard. Shareduses/negations remainopen.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-starry-queen-permission-interruption-batch.json",
+          "status": "VERIFIED_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "Starry4native permission interruption cases fullsourceactualLIGHTFairyreveal/PZoneMovecostbeforeCHAINED; CounterTrapCL2 negatesactivation/effect orbanishessource. Negationsgrantnopermissionretaincost; sourcebanish grantsoneactualTrapactivation/consumption. ControlsnoResponse3/noPermission2; emptylogs/parity/frozeninputs. Explicit chainattributeconstant22 mapping/correctedCardData compatibilitydiagnosticnotunadaptedOmega/fullcard. Nameduse/resetother effects open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-starry-queen-permission-lifecycle-batch.json",
+          "status": "VERIFIED_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "Starry2native permission lifecycle cases: sourceactualbanishmentaftergrant leavespermissionactive; oldTrapactualHandSetturn1 andnaturalturns0/1/0 thenfreshSets/permission/oldTrapactivationpreservesfreshTrappermission. ActualfreshTrapactivationconsumesone. Fullsource/reveal/cost/movement/Trapresolutions. ControlsnoPermission2/unlimited2/noRemoval1; frozeninputs/emptylogs/parity. Explicitchainattribute22mappingandcorrectedCardData testtransport, compatibilitydiagnosticnotnativeOmega/fullcard. Remainingendphase/negations/shareduses.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-starry-queen-permission-shared-reset-batch.json",
+          "status": "VERIFIED_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "Starry3native shared two-copy use/reset cases success/NegAct/NegEffect; cost/reveal/movementbeforeCHAINED retained; own1secondcopyblockedwithfreeoppositePZone. NaturalNEW_TURN0/1/0 thenoldTrapresolution/freshTrapHandSet, secondcopycostactualPZoneMove andnewfreshpermission. CopiesactuallySZONE0/4. ControlsperCopy3/noReset3, emptylogs/parity/frozeninputs. Explicitattributeconstant22/correctedCardData compatibilitydiagnosticnotOmega/fullcard.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-starry-queen-set-turn-permission-batch.json",
+          "status": "VERIFIED_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullStarryQueen monsterPZone effect, actualhandLIGHTFairyreveal/ConfirmCards andnativeMoveToFieldcost, nativeHandSets of3cards thenoneStarryTrapactivation/effectresolution/GY; remainingSetturnTrapsblocked. Wrongset/QuickPlay/noReveal exclusions. Controls3noPermission/3unlimited/1wrongTarget verified; emptylogs/sourceinstallparity/frozeninputs. CorrectedCardData transport andexplicit chainattribute constant0x100000 to22 compatibilitymapping; notunadaptedOmega/fullcard. Lifecycle/negations/shareduses other effects open.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-chain-trigger-delay-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Five production EVENT_CHAINING FIELD+TRIGGER_O registrations add EFFECT_FLAG_DELAY, preserving other flags and trigger timing after original chain resolves. Native full-source registrations isolated via neutral condition/cost/target/operation substitutions;10accept/decline cases pass, original10fail. Full StarryQueen9effect cases andold5failures/4controls7/1/3/9 under explicit constantcompatremap legacy0x100000 to modern22: diagnostic only, not nativeOmega/fullcard. Captured officialOmega c35191415 demonstrates same delayed trigger pattern. Two other matches alreadyDELAY skipped. Exactbacks/sourceinstallparity/frozeninputs. Previous quick and CHAIN_SOLVED alternatives superseded without productionuse.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-starry-queen-opponent-pendulum-batch.json",
+          "status": "VERIFIED_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "Full repaired StarryQueen actualown1 placement/setup andnativeopponent2 monsterIGN. OriginalLIGHT opponent becomesDARK; originalDARK tested. Nativeattrs beforeactivation; delayednewchain1/actualDeckshuffle/Lvl7LIGHTDragonSSHandDeckGY. Decline/wrongLevel/fullfield/disable/removal boundaries. Original5fails; controls6/7/4/9; emptylogs/parity/frozeninputs. Explicit triggeringattribute constant mapping0x100000 to22; corrected32bit testtransport. Compatibilitydiagnostic only, notnativeOmega/fullcard. Remaininginterruptions/shareduses/Trappermission open.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-starry-queen-permission-expiry-batch.json",
+          "status": "VERIFIED_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "Full source unusedgrant expiresnativeEndPhase; sourcepresent andactualbanishedbeforeEndPhase cases. NativeNEW_TURNplayers0/1, actualown1permission freshTrapavailable unused, nativeQuickeffectSetsnewTrapfromHandonopponent2, realresponsewindowexcludesfreshTrap. ControlsnoExpiry2/noSet2 proveexpiry/freshSetessential. Emptylogs/parity/frozeninputs, explicitattributeconstantmapping22/correctedCardData: compatibilitydiagnosticnotnativeOmega/fullcard. Shareduses/negations remainopen.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-starry-queen-permission-interruption-batch.json",
+          "status": "VERIFIED_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "Starry4native permission interruption cases fullsourceactualLIGHTFairyreveal/PZoneMovecostbeforeCHAINED; CounterTrapCL2 negatesactivation/effect orbanishessource. Negationsgrantnopermissionretaincost; sourcebanish grantsoneactualTrapactivation/consumption. ControlsnoResponse3/noPermission2; emptylogs/parity/frozeninputs. Explicit chainattributeconstant22 mapping/correctedCardData compatibilitydiagnosticnotunadaptedOmega/fullcard. Nameduse/resetother effects open.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-starry-queen-permission-lifecycle-batch.json",
+          "status": "VERIFIED_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "Starry2native permission lifecycle cases: sourceactualbanishmentaftergrant leavespermissionactive; oldTrapactualHandSetturn1 andnaturalturns0/1/0 thenfreshSets/permission/oldTrapactivationpreservesfreshTrappermission. ActualfreshTrapactivationconsumesone. Fullsource/reveal/cost/movement/Trapresolutions. ControlsnoPermission2/unlimited2/noRemoval1; frozeninputs/emptylogs/parity. Explicitchainattribute22mappingandcorrectedCardData testtransport, compatibilitydiagnosticnotnativeOmega/fullcard. Remainingendphase/negations/shareduses.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-starry-queen-permission-shared-reset-batch.json",
+          "status": "VERIFIED_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "Starry3native shared two-copy use/reset cases success/NegAct/NegEffect; cost/reveal/movementbeforeCHAINED retained; own1secondcopyblockedwithfreeoppositePZone. NaturalNEW_TURN0/1/0 thenoldTrapresolution/freshTrapHandSet, secondcopycostactualPZoneMove andnewfreshpermission. CopiesactuallySZONE0/4. ControlsperCopy3/noReset3, emptylogs/parity/frozeninputs. Explicitattributeconstant22/correctedCardData compatibilitydiagnosticnotOmega/fullcard.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-starry-queen-set-turn-permission-batch.json",
+          "status": "VERIFIED_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullStarryQueen monsterPZone effect, actualhandLIGHTFairyreveal/ConfirmCards andnativeMoveToFieldcost, nativeHandSets of3cards thenoneStarryTrapactivation/effectresolution/GY; remainingSetturnTrapsblocked. Wrongset/QuickPlay/noReveal exclusions. Controls3noPermission/3unlimited/1wrongTarget verified; emptylogs/sourceinstallparity/frozeninputs. CorrectedCardData transport andexplicit chainattribute constant0x100000 to22 compatibilitymapping; notunadaptedOmega/fullcard. Lifecycle/negations/shareduses other effects open.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "259678739": {
+      "name": "Glitchling Witch",
+      "current": [
+        {
+          "artifact": "current-glitchling-followup-batch.json",
+          "status": "RITUAL_REVIVAL_FAMILY_REPAIRED",
+          "scope": "Native public engine, full affected scripts, installed metadata, corrected transport; no Lua API adapter. Witch/Mage Ritual followups and Leotron recruitment/negation tested with actual payment, origins and interruptions. Neutral fixed paid Ritual setup; three named normals use neutral metadata. Native revive limit still rejects unprepared Hand/GY. Original-source failures and actual revival controls retained. No general named Ritual Spell, counter supplementation, complete-card or live Omega certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-glitchling-monster-batch.json",
+          "status": "PUBLIC_REVEAL_COST_FAMILY_REPAIRED",
+          "scope": "Witch/Mage full-source native searches, actual two-card reveal, source/partner public controls, named shared use, genuine Hand-field-faceup Extra-Hand search path, prior forbidden summon exclusion, allowed categories, effect/activation negation and actual next-turn oath expiry. Five sibling scripts have bounded production cost chk0 calls under native public/private/wrong-set states plus Protogenesis Deck control; not their full effects. No Lua API adapters. Exact backups, current source/install parity. Other Glitchling Ritual/Leotron monster branches and live Omega remain open.",
+          "stale_dependencies": [
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259678739.lua",
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259072906.lua"
+          ]
+        },
+        {
+          "artifact": "current-glitchling-witch-pendulum-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Actual native full Witch hand-to-PZone activation, counters added/removed, disable/sourcebanishment lifecycle. Six native release/material eligibility methods for both players per case. Own countered monsters remain eligible; opposing countered monsters blocked. No actual material summon or full Witch monster-effect/fullcard/live Omega certification. No API shim; four effective fault controls2/2/2/7 expected failures, emptylogs/frozeninputs/sourceinstallparity.",
+          "stale_dependencies": [
+            "public/CCG Downloads/CCG_Scripts/c259678739.lua",
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-reconciled-glitchling-witch-pendulum-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Actual native full Witch hand-to-PZone activation, counters added/removed, disable/sourcebanishment lifecycle. Six native release/material eligibility methods for both players per case. Own countered monsters remain eligible; opposing countered monsters blocked. No actual material summon or full Witch monster-effect/fullcard/live Omega certification. No API shim; four effective fault controls2/2/2/7 expected failures, emptylogs/frozeninputs/sourceinstallparity.",
+          "stale_dependencies": [
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259678739.lua"
+          ]
+        },
+        {
+          "artifact": "current-reconciled-ritual-material-release-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Seven production filters add contextual native IsReleasableByEffect. Leotron15full primary Pendulum Ritual cases pass; original4failures reproduced; controls6/4/2. Family28native callbacks pass with actual protected/unprotected Hand/field cards; original14protected cases fail. Source/install parity/exact backups. Other effects/Deck-send andMage group contexts/nativeOmega/fullcard remain open.",
+          "stale_dependencies": [
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259247807.lua",
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259678739.lua",
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259873115.lua"
+          ]
+        },
+        {
+          "artifact": "current-ritual-material-release-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Seven production filters add contextual native IsReleasableByEffect. Leotron15full primary Pendulum Ritual cases pass; original4failures reproduced; controls6/4/2. Family28native callbacks pass with actual protected/unprotected Hand/field cards; original14protected cases fail. Source/install parity/exact backups. Other effects/Deck-send andMage group contexts/nativeOmega/fullcard remain open.",
+          "stale_dependencies": [
+            "public/CCG Downloads/CCG_Scripts/c259247807.lua",
+            "public/CCG Downloads/CCG_Scripts/c259678739.lua",
+            "public/CCG Downloads/CCG_Scripts/c259873115.lua",
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "259072906": {
+      "name": "Glitchling Mage",
+      "current": [
+        {
+          "artifact": "current-glitchling-followup-batch.json",
+          "status": "RITUAL_REVIVAL_FAMILY_REPAIRED",
+          "scope": "Native public engine, full affected scripts, installed metadata, corrected transport; no Lua API adapter. Witch/Mage Ritual followups and Leotron recruitment/negation tested with actual payment, origins and interruptions. Neutral fixed paid Ritual setup; three named normals use neutral metadata. Native revive limit still rejects unprepared Hand/GY. Original-source failures and actual revival controls retained. No general named Ritual Spell, counter supplementation, complete-card or live Omega certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-glitchling-mage-pendulum-both-zones-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full Mage native group Ritual procedure with24cases,12perleft/rightPZone. Native option1163 available before Ritual onbaseline/two cases with eligible neutralnormal reserve; afteractualRitual normal procedure unavailable andreserve remainsinHand. Actual1/2Ritual summons, field material release/proper status/shared checklist set, scale/material/partner boundaries, fullfield subgroup selecting only1when2cannotfit or levels insufficient. Protected/immune materials excluded by contextual release+explicit immunity check against actual procedure effect; original4 failures and controls10/10/10. Corrected test-only32bit CardData transport with native scale readings1/5; no scale-effect override. Original runtime unchanged. No core API shim; actual original attempted immune material was not released despite Ritual proceeding. Full other effects/Extra targets/turn reset/liveOmega/card remain open.",
+          "stale_dependencies": [
+            "public/CCG Downloads/CCG_Scripts/c259072906.lua",
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-glitchling-mage-pendulum-extra-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Mage full production native procedure bothPZones:4ExtraRitual scenarios with actual Hand-to-PZone destruction producingfaceupExtra history; no proper-status seeding. OneExtraRitualSS/nativefieldmaterialpayment/properstatus; twoeligibleExtra targets tested withonlyoneEMZ capacity, second excluded fromnative selection. CorrectedCardData testtransport/no gameplay APIshim. Controlsnomaterial4/nocomplete4/noexcapacity2 verify. Fullcard/nativeOmega/linked-zone expansions/turnreset/other effects remainopen.",
+          "stale_dependencies": [
+            "public/CCG Downloads/CCG_Scripts/c259072906.lua",
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-glitchling-mage-pendulum-group-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full Mage native group Ritual procedure with12cases. Actual1/2Ritual summons, field material release/proper status/shared checklist set, scale/material/partner boundaries, fullfield subgroup selecting only1when2cannotfit or levels insufficient. Protected/immune materials excluded by contextual release+explicit immunity check against actual procedure effect; original2 failures and controls5/5/5. Neutral partner uses native CHANGE_RSCALE1 so effective scales1/5 verified via diagnostics; public reader right-scale metadata anomaly pending separate investigation. No core API shim; actual original attempted immune material was not released despite Ritual proceeding. Full other effects/Extra targets/turn reset/liveOmega/card remain open.",
+          "stale_dependencies": [
+            "public/CCG Downloads/CCG_Scripts/c259072906.lua",
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-glitchling-mage-pendulum-group-corrected-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full Mage native group Ritual procedure with12cases. Actual1/2Ritual summons, field material release/proper status/shared checklist set, scale/material/partner boundaries, fullfield subgroup selecting only1when2cannotfit or levels insufficient. Protected/immune materials excluded by contextual release+explicit immunity check against actual procedure effect; original2 failures and controls5/5/5. Corrected test-only32bit CardData transport with native scale readings1/5; no scale-effect override. Original runtime unchanged. No core API shim; actual original attempted immune material was not released despite Ritual proceeding. Full other effects/Extra targets/turn reset/liveOmega/card remain open.",
+          "stale_dependencies": [
+            "public/CCG Downloads/CCG_Scripts/c259072906.lua",
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-glitchling-mage-pendulum-turn-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Mage native left/right PZone Ritual spend and natural turn progression. Actual nativeNEW_TURN players0/1/0, firstown1Ritual payment/properstatus/checklist/normalPendblocked, nextown3normalPend reserveSS and nativePendulum summontype observed. No seededflags/timejump/APIshim; corrected32bitCardData testtransport. Captured utility PendulumReset no-reset mutation and source no-checklist controls each2fail. Production source/helper/install unchanged. Other effects/fullcard/nativeOmega remainopen.",
+          "stale_dependencies": [
+            "public/CCG Downloads/CCG_Scripts/c259072906.lua",
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-glitchling-monster-batch.json",
+          "status": "PUBLIC_REVEAL_COST_FAMILY_REPAIRED",
+          "scope": "Witch/Mage full-source native searches, actual two-card reveal, source/partner public controls, named shared use, genuine Hand-field-faceup Extra-Hand search path, prior forbidden summon exclusion, allowed categories, effect/activation negation and actual next-turn oath expiry. Five sibling scripts have bounded production cost chk0 calls under native public/private/wrong-set states plus Protogenesis Deck control; not their full effects. No Lua API adapters. Exact backups, current source/install parity. Other Glitchling Ritual/Leotron monster branches and live Omega remain open.",
+          "stale_dependencies": [
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259678739.lua",
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259072906.lua"
+          ]
+        },
+        {
+          "artifact": "current-reconciled-glitchling-mage-pendulum-both-zones-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full Mage native group Ritual procedure with24cases,12perleft/rightPZone. Native option1163 available before Ritual onbaseline/two cases with eligible neutralnormal reserve; afteractualRitual normal procedure unavailable andreserve remainsinHand. Actual1/2Ritual summons, field material release/proper status/shared checklist set, scale/material/partner boundaries, fullfield subgroup selecting only1when2cannotfit or levels insufficient. Protected/immune materials excluded by contextual release+explicit immunity check against actual procedure effect; original4 failures and controls10/10/10. Corrected test-only32bit CardData transport with native scale readings1/5; no scale-effect override. Original runtime unchanged. No core API shim; actual original attempted immune material was not released despite Ritual proceeding. Full other effects/Extra targets/turn reset/liveOmega/card remain open.",
+          "stale_dependencies": [
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259072906.lua"
+          ]
+        },
+        {
+          "artifact": "current-reconciled-glitchling-mage-pendulum-extra-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Mage full production native procedure bothPZones:4ExtraRitual scenarios with actual Hand-to-PZone destruction producingfaceupExtra history; no proper-status seeding. OneExtraRitualSS/nativefieldmaterialpayment/properstatus; twoeligibleExtra targets tested withonlyoneEMZ capacity, second excluded fromnative selection. CorrectedCardData testtransport/no gameplay APIshim. Controlsnomaterial4/nocomplete4/noexcapacity2 verify. Fullcard/nativeOmega/linked-zone expansions/turnreset/other effects remainopen.",
+          "stale_dependencies": [
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259072906.lua"
+          ]
+        },
+        {
+          "artifact": "current-reconciled-glitchling-mage-pendulum-group-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full Mage native group Ritual procedure with12cases. Actual1/2Ritual summons, field material release/proper status/shared checklist set, scale/material/partner boundaries, fullfield subgroup selecting only1when2cannotfit or levels insufficient. Protected/immune materials excluded by contextual release+explicit immunity check against actual procedure effect; original2 failures and controls5/5/5. Neutral partner uses native CHANGE_RSCALE1 so effective scales1/5 verified via diagnostics; public reader right-scale metadata anomaly pending separate investigation. No core API shim; actual original attempted immune material was not released despite Ritual proceeding. Full other effects/Extra targets/turn reset/liveOmega/card remain open.",
+          "stale_dependencies": [
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259072906.lua"
+          ]
+        },
+        {
+          "artifact": "current-reconciled-glitchling-mage-pendulum-turn-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Mage native left/right PZone Ritual spend and natural turn progression. Actual nativeNEW_TURN players0/1/0, firstown1Ritual payment/properstatus/checklist/normalPendblocked, nextown3normalPend reserveSS and nativePendulum summontype observed. No seededflags/timejump/APIshim; corrected32bitCardData testtransport. Captured utility PendulumReset no-reset mutation and source no-checklist controls each2fail. Production source/helper/install unchanged. Other effects/fullcard/nativeOmega remainopen.",
+          "stale_dependencies": [
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259072906.lua"
+          ]
+        },
+        {
+          "artifact": "current-reconciled-ritual-material-context-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Four full production native loaded scripts;23bounded callback checks for contextual Tribute eligibility Hand/field vs Deck send, and Nephthys self material. Original7protected failures reproduced; blind Deck guard3fails. Native source/install parity/exactbothbackups/fullfrozeninputs. No actual full Ritual effect/group-Pendulum/liveOmega/fullcard certification; Mage group-Pendulum and other effects remain open.",
+          "stale_dependencies": [
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259072906.lua"
+          ]
+        },
+        {
+          "artifact": "current-ritual-material-context-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Four full production native loaded scripts;23bounded callback checks for contextual Tribute eligibility Hand/field vs Deck send, and Nephthys self material. Original7protected failures reproduced; blind Deck guard3fails. Native source/install parity/exactbothbackups/fullfrozeninputs. No actual full Ritual effect/group-Pendulum/liveOmega/fullcard certification; Mage group-Pendulum and other effects remain open.",
+          "stale_dependencies": [
+            "public/CCG Downloads/CCG_Scripts/c259072906.lua",
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "259873115": {
+      "name": "Glitchling Leotron",
+      "current": [
+        {
+          "artifact": "current-glitchling-followup-batch.json",
+          "status": "RITUAL_REVIVAL_FAMILY_REPAIRED",
+          "scope": "Native public engine, full affected scripts, installed metadata, corrected transport; no Lua API adapter. Witch/Mage Ritual followups and Leotron recruitment/negation tested with actual payment, origins and interruptions. Neutral fixed paid Ritual setup; three named normals use neutral metadata. Native revive limit still rejects unprepared Hand/GY. Original-source failures and actual revival controls retained. No general named Ritual Spell, counter supplementation, complete-card or live Omega certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-glitchling-leotron-pendulum-candidate-batch.json",
+          "status": "VERIFIED_CANDIDATE_ONLY_PRODUCTION_REPAIR_PENDING",
+          "scope": "Full production Leotron source native15cases; current source fails4protected/capacity cases, including resolution step-limit after late fill. Candidate passes15including actual hand/faceupExtra/properGY Ritual summons, native release of material, fullfield material freeing zone, actual Ritual summon type/CompleteProcedure status and realCL2 activation/effectnegation/source/target/materialremoval/latefill. Neutral real prior Ritual history for Extra/GY; no status seeding, no API shim. Neutral setup/blockers carry native UNRELEASABLE_NONSUM; engine IsCanBeRitualMaterial alone does not filter them. Other Leotron effects/counter substitution/realGlitchling targetscript/fullcard/liveOmega open. Next apply verified fix across matching Tribute-based material filters after family bounded regressions, then required gates/ledger.",
+          "stale_dependencies": [
+            "scripts/fresh_current_glitchling_leotron_pendulum_ritual.cjs",
+            "public/CCG Downloads/CCG_Scripts/c259873115.lua",
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-reconciled-ritual-material-release-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Seven production filters add contextual native IsReleasableByEffect. Leotron15full primary Pendulum Ritual cases pass; original4failures reproduced; controls6/4/2. Family28native callbacks pass with actual protected/unprotected Hand/field cards; original14protected cases fail. Source/install parity/exact backups. Other effects/Deck-send andMage group contexts/nativeOmega/fullcard remain open.",
+          "stale_dependencies": [
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259247807.lua",
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259678739.lua",
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c259873115.lua"
+          ]
+        },
+        {
+          "artifact": "current-ritual-material-release-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Seven production filters add contextual native IsReleasableByEffect. Leotron15full primary Pendulum Ritual cases pass; original4failures reproduced; controls6/4/2. Family28native callbacks pass with actual protected/unprotected Hand/field cards; original14protected cases fail. Source/install parity/exact backups. Other effects/Deck-send andMage group contexts/nativeOmega/fullcard remain open.",
+          "stale_dependencies": [
+            "public/CCG Downloads/CCG_Scripts/c259247807.lua",
+            "public/CCG Downloads/CCG_Scripts/c259678739.lua",
+            "public/CCG Downloads/CCG_Scripts/c259873115.lua",
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "259882493": {
+      "name": "Vaylantz Destroyer Patrician",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-vaylantz-pendulum-column-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Actual native left/right PZone placements and same-column self summons, initial full-field exclusion, actual CL2 negations/sourcebanishment/late correct-column occupancy, Arktos faceup Vaylantz Fusion condition boundaries. Patrician actual neutral2material Fusion history and CompleteProcedure, not seeded proper-summon status. Production Fusion recipe, alternative move/coin/other monster effects/live Omega/full-card remain open. No API shim; fullsource/install parity; three effective controls16/8/8 failures.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-vaylantz-pendulum-column-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Actual native left/right PZone placements and same-column self summons, initial full-field exclusion, actual CL2 negations/sourcebanishment/late correct-column occupancy, Arktos faceup Vaylantz Fusion condition boundaries. Patrician actual neutral2material Fusion history and CompleteProcedure, not seeded proper-summon status. Production Fusion recipe, alternative move/coin/other monster effects/live Omega/full-card remain open. No API shim; fullsource/install parity; three effective controls16/8/8 failures.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "259537607": {
+      "name": "Arktos X - Vaylantz Game Master",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-vaylantz-pendulum-column-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Actual native left/right PZone placements and same-column self summons, initial full-field exclusion, actual CL2 negations/sourcebanishment/late correct-column occupancy, Arktos faceup Vaylantz Fusion condition boundaries. Patrician actual neutral2material Fusion history and CompleteProcedure, not seeded proper-summon status. Production Fusion recipe, alternative move/coin/other monster effects/live Omega/full-card remain open. No API shim; fullsource/install parity; three effective controls16/8/8 failures.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-arktos-movement-batch.json",
+          "status": null,
+          "scope": "Initially-field canonical Arktos X automatic movement after actual neutral Hand effect summons: mirrored left/right, same column, blocked destination, own summon and simultaneous group exclusions. No adapters/ignored limits. Normal summon, Pendulum/Quick effects/proper source summon/native Omega open.",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-arktos-normal-movement-batch.json",
+          "status": null,
+          "scope": "Initially-field canonical Arktos X automatic movement after actual neutral native Normal Summon: mirrored left/right, same column, blocked destination, own summon exclusion. No adapters/ignored limits. Pendulum/Quick/proper source summon/native Omega open",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-arktos-pendulum-batch.json",
+          "status": null,
+          "scope": "Canonical Arktos X Pendulum effect native Hand activation to left/right Pendulum Zone, neutral faceup Vaylantz Fusion support, actual same-column summon. Wrong set/type/facedown/occupied column exclude. No adapters/ignored limits. Proper Fusion support procedure, named limits/late relation/native Omega open.",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-arktos-pendulum-late-batch.json",
+          "status": null,
+          "scope": "Native Arktos Pendulum effect with opponent CL2 removing Fusion support or actually summoning blocker into same-column zone. Support departure permits summon; blocked destination leaves source in Pendulum Zone after resolution eligibility recheck. No adapters/ignored summon limits; native Omega open",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-arktos-pendulum-limit-batch.json",
+          "status": null,
+          "scope": "Canonical two Hand Arktos copies actually activated into opposite Pendulum Zones: first effect summons left, second blocked same turn; next own turn second actually summons right. Neutral seeded Vaylantz Fusion support, no adapters/ignored limits. Proper support/native Omega open.",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-arktos-pendulum-relation-batch.json",
+          "status": null,
+          "scope": "Native Arktos Pendulum activation and summon effect interrupted by actual opponent CL2 source PZONE-to-Hand, optionally real MoveToField return to PZONE. Old relation lost prevents summon. Neutral Fusion support seeded; no adapters/ignored summon limits. Native Omega open.",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-arktos-quick-batch.json",
+          "status": null,
+          "scope": "Initially-field canonical Arktos X native Quick relocation selects self/neutral ally/facedown ally, actually moves to Main Zone4, preserves facedown position; full Main Zones block activation. No adapters/ignored limits. Named limit/renewal, other destinations and opponent-turn/native Omega open.",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-arktos-quick-immunity-batch.json",
+          "status": null,
+          "scope": "Initially-field canonical Arktos native Quick selects neutral ally with native immunity to other cards, chooses Main Zone3/4; engine MoveSequence retains immune ally in original Zone0. Removing fixture immunity permits movement. No adapters/ignored limits. Late immunity/native Omega open.",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-arktos-quick-limit-batch.json",
+          "status": null,
+          "scope": "Two initially-field canonical Arktos copies: actual first Quick relocation, both copies unavailable same turn; next own turn actual second relocation. Other copy remains field and free destinations available. No adapters/ignored limits. Native Omega open.",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-arktos-quick-zones-batch.json",
+          "status": null,
+          "scope": "Initially-field canonical Arktos X Quick self relocation from Main Zone4 to native selected destinations0/1/2/3; Zone0 also actually activated in opponent turn2 chain response. No adapters/ignored limits. Named limits/renewal and interruptions/native Omega open",
+          "stale_dependencies": [
+            "output/fresh-ccg-september/current-spec-CCG_v1.db"
+          ]
+        },
+        {
+          "artifact": "current-vaylantz-pendulum-column-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Actual native left/right PZone placements and same-column self summons, initial full-field exclusion, actual CL2 negations/sourcebanishment/late correct-column occupancy, Arktos faceup Vaylantz Fusion condition boundaries. Patrician actual neutral2material Fusion history and CompleteProcedure, not seeded proper-summon status. Production Fusion recipe, alternative move/coin/other monster effects/live Omega/full-card remain open. No API shim; fullsource/install parity; three effective controls16/8/8 failures.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "238273768": {
+      "name": "Symphonic Warrior Speeaker",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-speeaker-pendulum-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production Speeaker actualinstalledmetadata/corrected32bitCardData. NativeHandPZoneactivation, actualselfdestructiontofaceupExtra andDeckplacementofdistinctSymphonicPendulum. Seven cases baseline/wrongset/nonPend/samename/noDecktarget/oppositePZoneoccupied/fullMZONE. RealcontinuousSpellblocker/nativephysicalfieldbounds; nontargeting/repeatcheck. Nooperation3fails, emptylogs/parity/frozeninputs. No Lua API shim/nativeOmega/fullcard certification. Other effects/interruptions/reset open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-speeaker-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullSpeeaker source/actualinstalledmetadata/correctedCardData native six primaryPendulum cases: baseline, actualCounterTrapCL2 activationnegation/effectnegation/sourcebanishment/Decktargetbanishment/lateindestructibleeffect. Destruction/Deckplacement/source/targetlocations checked; aftertargetremoved source stilldestroysbutnoPlacement; failedselfdestructionnoPlacement. Controls5noResponse/1noPlacement/1ignoreDestroy verified; emptylogs/parity/frozeninputs. NoLuaAPIadapter/nativeOmega/fullcard; sharedreset/other effects open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-speeaker-pendulum-shared-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullSpeeaker actualinstalledmetadata/correctedCardData actualtwoHandPZonecopies0/4, firsteffectsuccess/actualCL2NegAct/NegEffect sharesnameduse andblockssecondcopywhileDecktargetremains. NaturalNEW_TURN0/1/0 thenactualsecondcopysequence4 destructionandDeckreplacement/properExtra/SZONEoutcomes. ControlsperCopy3/noReset3; emptylogs/fullsourceinstallparity/frozeninputs. NoLuaAPIadapter/nativeOmega/fullcard; other effects andremainingPendulums open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-extra-expiry-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Speeaker/current installed metadata/corrected transport/no Lua API adapter. Three native cases: successful recruitment, actual source banish after recruitment, actual CL2 negate effect. Native Fusion Extra eligibility blocked own1 in all; natural NEW_TURN0/1/0 next own3 allows and actually summons Extra Fusion. Source remains banished in removal case. Neutral fixed Extra summon probe does not certify Fusion recipe. Controls noLock3turn1/noReset3turn3 semantic failures. Opponentturn timing/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-extra-opponent-expiry-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Speeaker/installedmetadata/correctedtransport/no Lua API adapter. Successful recruitment/source banish/actual CL2 effect negation retain own1 restriction; natural next opponent turn2 Quick probe permits and actually summons Extra Fusion (native origin move and NEW_TURN0/1 checked). NoLock3turn1/noReset3turn2 semantic failures. Confirms expiry by next opponent turn, not neutral Fusion recipe/liveOmega/fullcard certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-extra-restriction-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Speeaker/installedmetadata/correctedtransport/noLuaAPIadapter. Nine native restriction cases: post-use facedown Fusion and nonWIND Synchro blocked, WIND Synchro and real faceup Extra Pendulum allowed; prior actual Fusion excludes recruitment, prior WIND Synchro/faceupPend allow it. Activation negation refunds OATH restriction, effect negation retains it. Neutral fixed Extra summons establish native origin/type/history; not general production Fusion/Synchro recipe proof. Controls4/1/1 semantic failures. Expiry/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Speeaker/actual installed metadata/corrected transport/no Lua API adapter. Eleven native Hand effect cases: baseline, actual CL2 activation/effect negation, target banish/roundtrip/facedown/immunity, source banish/roundtrip, late full field/summon lock. Exact native Level and self SS outcomes; Level still increases when source leaves or field fills/summon blocked. Roundtrip and banish moves checked; noResponse10/noRelation4/noSS1/noLevel5/noImmunity1 exact failures. Shareduse/recruit/Extraactivitylock/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-level-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Speeaker/actual installed metadata/corrected transport/no Lua API adapter; native targeted Hand ignition Level3->4 and self Special Summon. Wrongset/facedown/opponent/level-lessXYZ/full field/untargetable/summon lock exclude activation. Immune target permits activation but causes neither Level increase nor self summon. Nine cases/four controls each1 semantic failure, emptylogs/frozeninputs/parity. Interruptions/shared use/recruit/Extra lock/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-hand-use-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Speeaker/current installed metadata/corrected transport/no Lua API adapter. Two Hand copies, first success/actual CL2 negate activation/effect spends named Hand use, remaining valid Hand copy unavailable same turn. Natural NEW_TURN0/1/0 opposite copy next own turn raises same target and summons. Exact accumulated Level/source summon and Hand reserve counts. Optional recruitment declined. PerCopy3turn1/noReset3turn3/noSS3/noLevel3 exact failures. Recruitment/Extra restriction/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-recruit-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Speeaker/actual installed metadata/corrected transport/no Lua API adapter. Ten native recruitment cases: actual Normal/Special Summon, Hand/Deck/faceup Extra, wrongset/GY/full main Deck/noCandidate/decline. Extra partner enters by actual Hand SS then SendGY redirection; native Extra->MZone move required. Full Main Monster Zones still allow Extra Zone summon. Controls noSS5/allowSet1/allowGY1/noExCapacity1 exact failures. Direct main-deck Pendulum Extra seeding was invalid and corrected before freezing. Recruitment locks/interruption/shared use/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-recruit-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Speeaker/current installed metadata/corrected transport/no Lua API adapter. Eight actual recruitment cases: baseline and CL2 activation/effect negation, source banish, sole Deck candidate banish, replacement entering Deck, late field fill and summon lock. Recruitment can resolve after source leaves and chooses candidate at resolution. Actual CL2/banish/full-field witnesses, noResponse7/noSS3 exact failures. Shared use/Extra activity restriction/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-symphonic-speeaker-recruit-use-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full Speeaker/current installed metadata/corrected transport/no Lua API adapter. First Normal Summon triggers actual Deck recruitment or actual CL2 negate activation/effect. Second-copy Special Summon same turn cannot trigger recruitment despite remaining Deck reserves and space. Third-copy next own turn recruits. Exact native source/recruit counts and NEW_TURN0/1/0. PerCopy/splitSummon3turn1/noReset3turn3/noResult3 exact failures. Extra activity restriction/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-symphonic-speeaker-pendulum-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production Speeaker current-spec metadata/corrected32bitCardData. NativeHandPZoneactivation, actualselfdestructiontofaceupExtra andDeckplacementofdistinctSymphonicPendulum. Seven cases baseline/wrongset/nonPend/samename/noDecktarget/oppositePZoneoccupied/fullMZONE. RealcontinuousSpellblocker/nativephysicalfieldbounds; nontargeting/repeatcheck. Nooperation3fails, emptylogs/parity/frozeninputs. No Lua API shim/nativeOmega/fullcard certification. Other effects/interruptions/reset open.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullSpeeaker source/current-spec metadata/correctedCardData native six primaryPendulum cases: baseline, actualCounterTrapCL2 activationnegation/effectnegation/sourcebanishment/Decktargetbanishment/lateindestructibleeffect. Destruction/Deckplacement/source/targetlocations checked; aftertargetremoved source stilldestroysbutnoPlacement; failedselfdestructionnoPlacement. Controls5noResponse/1noPlacement/1ignoreDestroy verified; emptylogs/parity/frozeninputs. NoLuaAPIadapter/nativeOmega/fullcard; sharedreset/other effects open.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-speeaker-pendulum-shared-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullSpeeaker currentcanonicalmetadata/correctedCardData actualtwoHandPZonecopies0/4, firsteffectsuccess/actualCL2NegAct/NegEffect sharesnameduse andblockssecondcopywhileDecktargetremains. NaturalNEW_TURN0/1/0 thenactualsecondcopysequence4 destructionandDeckreplacement/properExtra/SZONEoutcomes. ControlsperCopy3/noReset3; emptylogs/fullsourceinstallparity/frozeninputs. NoLuaAPIadapter/nativeOmega/fullcard; other effects andremainingPendulums open.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "238273769": {
+      "name": "Symphonic Warrior DDJ",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-ddj-response-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullDDJ production actualinstalledmetadata/correctedCardData:5native HandPZoneplacements, realSymphonicmonsterIGN responseCL2, sourceHandreturn/partnerPZoneSS; wrongmonsterarchetype/noPartner/wrongPartner/fullMZONE exclude. Oldeventtype/Monster-onlyPZonefilter controls failpositivecase; emptylogs/fullsourceinstallparity/frozeninputs. No LuaAPIshim/nativeOmega/fullcard; responseinterruptions/usereset/other effects open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-ddj-response-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullDDJ actualinstalledmetadata/correctedCardData native7response interruption cases: realneutralSymphonicMonsterIGN CL1/DDJresponseCL2/CounterTrapCL3 activationnegation/effectnegation/sourcebanish/partnerbanish/late4MZONEfill/latespecificpartnerSSlock. Native sourceHandreturn andpartnerMZONEsummon outcomes/actualREMOVED/zonefill checked; CL3 response asserted. Controls6noResponse/4noReturn/1noSSfailures, emptylogs/parity/frozeninputs. NoLuaAPIshim/nativeOmega/fullcard. Usage/reset/other effects open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-ddj-response-shared-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullDDJ production/actualinstalledmetadata/correctedCardData publiccore, two actual HAND-to-PZone copies. Both source sequences0/4 under actualMonsterCL1/DDJCL2/CounterTrapCL3 activation or effect negation; further same-turn Monster ignition cannot activate either copy. NaturalNEW_TURN0/1/0 nextown3 oppositecopy response actuallyreturnsHAND andSSremainingcopyMZONE. PerCopy4/noReset4 exactfailures, emptylogs/frozeninputs/sourceinstallparity. NoLuaAPIshim; successfulfirst-use reset andfullcard/nativeOmega stillopen.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-symphonic-ddj-flip-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full DDJ/installedmetadata/correctedtransport/no Lua API adapter. Eight actual Flip trigger cases baseline/CL2 negate activation/effect/source banish/Deck candidate banish/replacement/late full field/specific recruit lock. Recruit faceDownDEF where legal. WIND Extra lock independently applies on successful resolution even when recruitment fails or source leaves, not after either negation. Native future Extra eligibility/actual WIND SS and negated DARK SS checked (latefull callback only). All player effects scanned to identify relevant WIND lock. Controls7/3/6 exact semantic failures/emptylogs/frozeninputs/parity. Neutral summons not general Extra recipes/liveOmega/fullcard certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-symphonic-ddj-flip-recruit-batch.json",
+          "status": "VERIFIED_PARTIAL_NATIVE_SECONDARY_EFFECT",
+          "scope": "Full DDJ/current installed metadata/corrected transport/no Lua API adapter. Eight actual Flip Summon forced trigger cases: baseline/Level4 recruit facedownDefense; Level5/wrongset/samename/nonmonster/fullfield/noCandidate do not recruit. Native resolved player restriction and target callback reject DARK Extra and allow WIND Extra independently of recruitment. Four controls noSS2/faceup2/allowLevel1/noLock8 exact semantic failures/emptylogs/frozeninputs/parity. Actual future summon legality/interruptions/shared reset/liveOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-symphonic-ddj-monster-batch.json",
+          "status": "PARTIAL_NATIVE_WITH_SYNCHRO_COMPATIBILITY_BLOCKER",
+          "scope": "Current installed metadata, complete DDJ source, corrected test transport, no Lua API adapter. Hand Quick summon eligibility/full field/named shared use; Normal/Special summon search including self and no candidate. Flip named shared use/reset across actual turns, restriction expiry with real DARK Extra summon. Immediate Synchro accept/decline and Pendulum material redirect now verified with a neutral native fixed two-material recipe; accepted material leaves field before delayed summon-search trigger window, while decline permits search. Unadapted Omega helper still blocked by missing public-engine Duel.CheckSynchroMaterial; no live Omega certification; no production changes.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-reconciled-symphonic-pendulum-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production DDJ/Disccs actualinstalledmetadata/corrected32bit testtransport. Native hand-to-PZone activation; DDJ actualfaceDownSymphonicflip tofaceupDEF andwrongset/faceup/opponent exclusion4cases; Disccs actualreturncost/selfSS evenfullMZONE andnoCost exclusion3cases, repeateduseblocked/nontargeting checked. Nooperation1/2failures; emptylogs/sourceinstallparity/frozeninputs. No API shim, notnativeOmega/fullcard. Other effects/reset/interruptions/otherSymphonicPendulums open.",
+          "stale_dependencies": [
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c238273770.lua"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-ddj-response-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullDDJ production current-spec metadata/correctedCardData:5native HandPZoneplacements, realSymphonicmonsterIGN responseCL2, sourceHandreturn/partnerPZoneSS; wrongmonsterarchetype/noPartner/wrongPartner/fullMZONE exclude. Oldeventtype/Monster-onlyPZonefilter controls failpositivecase; emptylogs/fullsourceinstallparity/frozeninputs. No LuaAPIshim/nativeOmega/fullcard; responseinterruptions/usereset/other effects open.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-ddj-response-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullDDJ currentcanonicalmetadata/correctedCardData native7response interruption cases: realneutralSymphonicMonsterIGN CL1/DDJresponseCL2/CounterTrapCL3 activationnegation/effectnegation/sourcebanish/partnerbanish/late4MZONEfill/latespecificpartnerSSlock. Native sourceHandreturn andpartnerMZONEsummon outcomes/actualREMOVED/zonefill checked; CL3 response asserted. Controls6noResponse/4noReturn/1noSSfailures, emptylogs/parity/frozeninputs. NoLuaAPIshim/nativeOmega/fullcard. Usage/reset/other effects open.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-ddj-response-shared-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullDDJ production/currentcanonicalmetadata/correctedCardData publiccore, two actual HAND-to-PZone copies. Both source sequences0/4 under actualMonsterCL1/DDJCL2/CounterTrapCL3 activation or effect negation; further same-turn Monster ignition cannot activate either copy. NaturalNEW_TURN0/1/0 nextown3 oppositecopy response actuallyreturnsHAND andSSremainingcopyMZONE. PerCopy4/noReset4 exactfailures, emptylogs/frozeninputs/sourceinstallparity. NoLuaAPIshim; successfulfirst-use reset andfullcard/nativeOmega stillopen.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-pendulum-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production DDJ/Disccs current-spec metadata/corrected32bit testtransport. Native hand-to-PZone activation; DDJ actualfaceDownSymphonicflip tofaceupDEF andwrongset/faceup/opponent exclusion4cases; Disccs actualreturncost/selfSS evenfullMZONE andnoCost exclusion3cases, repeateduseblocked/nontargeting checked. Nooperation1/2failures; emptylogs/sourceinstallparity/frozeninputs. No API shim, notnativeOmega/fullcard. Other effects/reset/interruptions/otherSymphonicPendulums open.",
+          "stale_dependencies": [
+            "src/data/cards.json",
+            "public/CCG Downloads/CCG_Scripts/c238273770.lua"
+          ]
+        }
+      ]
+    },
+    "238273770": {
+      "name": "Symphonic Warrior Disccs",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-symphonic-disccs-monster-batch.json",
+          "status": "PARTIAL_NATIVE_DELAYED_SEARCH_REPAIRED",
+          "scope": "Complete Disccs, current installed metadata, corrected test transport, no Lua API adapter. Native Normal/Special search with member/nonmonster/wrong-set/self controls and all four counter mention codes; actual return cost and recruitment from Hand/GY/face-up Extra, full field, self. Extra origin uses Hand summon then native Pendulum redirect. Native prior Extra activity, type/attribute/faceup restriction, oath negations/expiry/source removal, named shared monster uses/resets, simultaneous search/material chain exclusion, counter material Hand/GY recruitment and interruptions now checked. Neutral native fixed Synchro recipe, not general Omega recipe certification. Confirmed delayed search-chain guard repair: keep guard at activation cost, not event condition, so a new-chain trigger survives an in-chain Disccs summon. Old source loses material-first new-chain search; disabled chain guard still rejected by both simultaneous-order tests. Source/installed byte backups and parity verified. Live Omega/full-card certification remain open.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-reconciled-symphonic-disccs-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullDisccs production/actualinstalledmetadata/correctedCardData native4primaryPendulum baseline/CL2activationnegation/effectnegation/sourcebanishment. ActualcostcardMZONEtoHANDMOVEbetweenCHAINING/CHAINED stayspaid, interruptionspreventselfSS, sourceREMOVEDchecked. NativeCL2/non-targeting/repeatchecks. Noresponse3/noSS1/noCost4failures; emptylogs/parity/frozeninputs. NoLuaAPIshim/nativeOmega/fullcard; sharedreset/other effects open.",
+          "stale_dependencies": [
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c238273770.lua"
+          ]
+        },
+        {
+          "artifact": "current-reconciled-symphonic-disccs-pendulum-shared-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullDisccs actualinstalledmetadata/correctedCardData two actual Hand-to-PZone copies0/4. First success or actual CL2 NegAct/NegEffect spends shared named use despite another valid cost card. Natural NEW_TURN0/1/0 then second copy sequence4 pays another return cost and summons; HAND and MZONE outcomes verified. PerCopy3/noReset3 controls; emptylogs/sourceinstallparity/frozeninputs. Public test core, noLuaAPIshim; not native Omega or fullcard certification.",
+          "stale_dependencies": [
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c238273770.lua"
+          ]
+        },
+        {
+          "artifact": "current-reconciled-symphonic-pendulum-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production DDJ/Disccs actualinstalledmetadata/corrected32bit testtransport. Native hand-to-PZone activation; DDJ actualfaceDownSymphonicflip tofaceupDEF andwrongset/faceup/opponent exclusion4cases; Disccs actualreturncost/selfSS evenfullMZONE andnoCost exclusion3cases, repeateduseblocked/nontargeting checked. Nooperation1/2failures; emptylogs/sourceinstallparity/frozeninputs. No API shim, notnativeOmega/fullcard. Other effects/reset/interruptions/otherSymphonicPendulums open.",
+          "stale_dependencies": [
+            "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c238273770.lua"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-disccs-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullDisccs production/currentcanonicalmetadata/correctedCardData native4primaryPendulum baseline/CL2activationnegation/effectnegation/sourcebanishment. ActualcostcardMZONEtoHANDMOVEbetweenCHAINING/CHAINED stayspaid, interruptionspreventselfSS, sourceREMOVEDchecked. NativeCL2/non-targeting/repeatchecks. Noresponse3/noSS1/noCost4failures; emptylogs/parity/frozeninputs. NoLuaAPIshim/nativeOmega/fullcard; sharedreset/other effects open.",
+          "stale_dependencies": [
+            "src/data/cards.json",
+            "public/CCG Downloads/CCG_Scripts/c238273770.lua"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-disccs-pendulum-shared-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "FullDisccs currentcanonicalmetadata/correctedCardData two actual Hand-to-PZone copies0/4. First success or actual CL2 NegAct/NegEffect spends shared named use despite another valid cost card. Natural NEW_TURN0/1/0 then second copy sequence4 pays another return cost and summons; HAND and MZONE outcomes verified. PerCopy3/noReset3 controls; emptylogs/sourceinstallparity/frozeninputs. Public test core, noLuaAPIshim; not native Omega or fullcard certification.",
+          "stale_dependencies": [
+            "src/data/cards.json",
+            "public/CCG Downloads/CCG_Scripts/c238273770.lua"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-pendulum-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production DDJ/Disccs current-spec metadata/corrected32bit testtransport. Native hand-to-PZone activation; DDJ actualfaceDownSymphonicflip tofaceupDEF andwrongset/faceup/opponent exclusion4cases; Disccs actualreturncost/selfSS evenfullMZONE andnoCost exclusion3cases, repeateduseblocked/nontargeting checked. Nooperation1/2failures; emptylogs/sourceinstallparity/frozeninputs. No API shim, notnativeOmega/fullcard. Other effects/reset/interruptions/otherSymphonicPendulums open.",
+          "stale_dependencies": [
+            "src/data/cards.json",
+            "public/CCG Downloads/CCG_Scripts/c238273770.lua"
+          ]
+        }
+      ]
+    },
+    "238273772": {
+      "name": "Symphonic Warrior Mega Staar",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-megastaar-banish-use-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar+officialAmplifire/actualinstalledmetadata/correctedCardData. TwoactualnativeSynchroprocedures usingboundedlegacySynchroAPI/IsNotTuner adapters, bothcopiesnativeproperstatus/typeasserted HINT701twice. First success/actualCL2NegAct/NegEffect spendscopylimit, othercopyseparatelyactivates sameown1 whilefirstexcluded. Afterbothown1excluded, naturalNEW_TURN0/1/0 firstcopyown3activatesagain. Threeactual1countercosts eachbeforeCHAINED, expected3banishbaseline/2firstnegated, actualCounterCL2count andreserve checked. SharedCount3/noLimit3turn1fail; noReset3turn3fail; emptylogs/frozeninputs/parity. Compatibilitydiagnostic notnativeOmega/generalrecipe/fullcard; remainingPendulums/full711 open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-megastaar-battle-leave-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar/actualinstalledmetadata/correctedCardData/actualpropernativeSynchrohistory via explicitboundedlegacySynchroAPI+IsNotTuner adapters. NaturalNEW_TURN0/1/0 actualown3 attack versus6000ATKopponent, nativeATTACK/exactbattleDAMAGE/properHINT701. Actualoptional battleleaveprompt followedPZoneplacement, decline/fullPZones retainactualfaceupExtra; versus1000ATK MegaStaar survives/nooffer. Optionalchoicecountchecked so missingtriggercontrolalsofailsdecline. NoPlacement1/noBattleTrigger2exactfailures, emptylogs/frozeninputs/parity. Compatibilitydiagnostic notOmega/generalrecipe/fullcard; banishsoftuse/reset remainsopen.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-megastaar-counter-banish-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar andloadedofficialAmplifirescript, currentcanonicalMegaStaar metadata/correctedCardData, actualpropernativeSynchrohistory withboundedlegacySynchroAPI/IsNotTuner adapters. Actualcounters2own+1opponent; remove2banish2field/GY, remove3banish1, separateGYonly/fieldonly. CostnativeREMOVE_COUNTER aftersourceCHAININGbeforeCHAINED, non-targeting/nativeREMOVEDcounts/selection/softonceperturn checked. PZone/noAmplifire/opponentField/facedownField/zeroCounters excluded. NoBanish4/noCost4/noFieldCheck3exactfailures, emptylogs/frozeninputs/parity. Testcompatibilitydiagnostic notnativeOmega/generalrecipe/fullcard; interruptions/sharedreset/remainingeffects open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-megastaar-counter-banish-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar+officialAmplifire, actualpropernativeSynchrohistory withboundedtestonlylegacySynchroAPI/IsNotTuner adapters/actualinstalledmetadata/correctedCardData. Sixcases baseline/actualCounterTrapCL2NegAct/NegEffect/sourceBanish/AmplifireBanish/GYcandidateDeckreturn. Actual2countercostbeforeCHAINED retainedall6; negationssuppressbanish, sourceandAmplifireleaveallowbanish2, lateGYdeparturebanishesremainingfieldcandidate1. NativeREMOVEDsource/Amplifire andGYcandidateDECK/CL2/non-targeting/countlimit checked. NoBanish4/noCost6/noResponse5 exactfailures, emptylogs/frozeninputs/parity. NotnativeOmega/generalrecipe/fullcard certification; protection/leave/reseteffects open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-megastaar-counter-transition-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar actualpropernativeSynchrohistory with explicitboundedlegacySynchroAPI/IsNotTuner adapters, actualinstalledmetadata/correctedCardData; notOmega/generalrecipe/fullcard certification. ActualownDestroytoExtra/PZone plusactualtributeSS switchesopposingATKDEF from-300counter to-200counter. Fourcounterdistributions bothfields2+1/opponentonly3/ownonly3/zero, actualAddCounter; ownmonster5000/4000 unaffected. SeparateactualSpellbanishesbothholdercards, nativeREMOVEDbothplayers checked, opposingATKDEF return5000/4000. NoPendStats3/noMonsterStats3/ownOnly2exactfailures, emptylogs/frozeninputs/parity. Counterspendingbanish andremainingfullcardeffects open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-megastaar-leave-proper-history-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar/actualinstalledmetadata/correctedCardData; actualpropernativeSynchrohistory withboundedlegacySynchroAPI/IsNotTuner adapters. ActualopponentnontargetsendGY/banish allowPZoneplacement; ownsend/decline/fullPZones excludeplacement. Nativeopponenteffectdestructionprevented, owneffectdestructionallowed. NativeIsCanBeEffectTarget probe deniesopponent/allowsown; noactualtargetingSpell tested. RealSynchroHandreturn actuallygoesfacedownExtraanddoesnottrigger inpubliccore; contrastsoldseededfixture, actualOmega rulingnotverified. HINTproperhistory andtargeteligibility checked, fullSZONE fixturecorrectlyusesmiddlespellslot. NoPlacement2/noTargetProtection6/noDestructionProtection1exactfailures, emptylogs/frozeninputs/parity. Publiccompatibilitydiagnostic notnativeOmega/generalrecipe/fullcard; battle/actualtargetedchain/reset remainopen.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-megastaar-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar actualpropernativeSynchrohistory with explicitbounded missinglegacySynchroAPI/IsNotTuner adapters; notOmega/generalrecipe certification. ActualownDestroytoExtra/PZone, Tribute costMOVEbetweenSourceCHAINING/CHAINED, paidcostretained underbaseline/CL2NegAct/NegEffect/sourceBanish/latefiveMZONEfill/lateSSlock. SourceMZONE onlybaseline, nativeREMOVED/filler5/CounterCL2 checked. NoSS1/noCost6/noResponse5exactfailures, emptylogs/frozeninputs/parity/actualinstalledmetadata/correctedCardData. Continuous counters, other effects, actualOmega/fullcard open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-megastaar-pendulum-proper-history-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar source/actualinstalledmetadata/correctedCardData; actual native Synchro procedure uses explicit bounded test-only CheckSynchroMaterial/SelectSynchroMaterial and Card.IsNotTuner signature adapters with 2WIND Tuner+8WIND Pendulum Synchro. Original Omega procedure creates native summon type and proper history; own Spell asserts both then actualdestroys toExtra andmovesPZone, never CompleteProcedure. Sixcases baseline/fullfield/noCost/wrongattribute/race/type. Cost actualrelease andselfSS checked; noSS2/noCost2/wrongleveltotal6 exactfailures, emptylogs/parity/frozeninputs. Bounded adapter not productionrecipe/actualOmega/fullcard certification; remainingcontinuous andinterruption effects open.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-symphonic-megastaar-targeted-activation-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar/actualinstalledmetadata/correctedCardData, actualpropernativeSynchrohistory withsameboundedtestonlylegacySynchroAPI/IsNotTuner adapters. ActualnativeIsExistingTarget/SelectTarget Spell availability: opponent chainedQuickPlay has nolegal activation; ownSpell actuallyselectsMegaStaar, nativeBECOME_TARGET, resolvesSendtoGrave intoactualfaceupExtra. Nativefield/PZone/Extra/properhistory outcomeschecked. RemoveProtection1/protectOwn1/noTargetOperation1exactsemanticfailures, emptylogs/frozeninputs/sourceinstallparity. Compatibilitydiagnostic notactualOmega/generalrecipe/fullcard; battleleave andsoftuse/reset stillopen.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-symphonic-megastaar-banish-use-reset-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar+officialAmplifire/currentcanonicalmetadata/correctedCardData. TwoactualnativeSynchroprocedures usingboundedlegacySynchroAPI/IsNotTuner adapters, bothcopiesnativeproperstatus/typeasserted HINT701twice. First success/actualCL2NegAct/NegEffect spendscopylimit, othercopyseparatelyactivates sameown1 whilefirstexcluded. Afterbothown1excluded, naturalNEW_TURN0/1/0 firstcopyown3activatesagain. Threeactual1countercosts eachbeforeCHAINED, expected3banishbaseline/2firstnegated, actualCounterCL2count andreserve checked. SharedCount3/noLimit3turn1fail; noReset3turn3fail; emptylogs/frozeninputs/parity. Compatibilitydiagnostic notnativeOmega/generalrecipe/fullcard; remainingPendulums/full711 open.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-symphonic-megastaar-battle-leave-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar/currentcanonicalmetadata/correctedCardData/actualpropernativeSynchrohistory via explicitboundedlegacySynchroAPI+IsNotTuner adapters. NaturalNEW_TURN0/1/0 actualown3 attack versus6000ATKopponent, nativeATTACK/exactbattleDAMAGE/properHINT701. Actualoptional battleleaveprompt followedPZoneplacement, decline/fullPZones retainactualfaceupExtra; versus1000ATK MegaStaar survives/nooffer. Optionalchoicecountchecked so missingtriggercontrolalsofailsdecline. NoPlacement1/noBattleTrigger2exactfailures, emptylogs/frozeninputs/parity. Compatibilitydiagnostic notOmega/generalrecipe/fullcard; banishsoftuse/reset remainsopen.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-megastaar-counter-banish-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar andloadedofficialAmplifirescript, currentcanonicalMegaStaar metadata/correctedCardData, actualpropernativeSynchrohistory withboundedlegacySynchroAPI/IsNotTuner adapters. Actualcounters2own+1opponent; remove2banish2field/GY, remove3banish1, separateGYonly/fieldonly. CostnativeREMOVE_COUNTER aftersourceCHAININGbeforeCHAINED, non-targeting/nativeREMOVEDcounts/selection/softonceperturn checked. PZone/noAmplifire/opponentField/facedownField/zeroCounters excluded. NoBanish4/noCost4/noFieldCheck3exactfailures, emptylogs/frozeninputs/parity. Testcompatibilitydiagnostic notnativeOmega/generalrecipe/fullcard; interruptions/sharedreset/remainingeffects open.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-megastaar-counter-banish-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar+officialAmplifire, actualpropernativeSynchrohistory withboundedtestonlylegacySynchroAPI/IsNotTuner adapters/currentcanonicalmetadata/correctedCardData. Sixcases baseline/actualCounterTrapCL2NegAct/NegEffect/sourceBanish/AmplifireBanish/GYcandidateDeckreturn. Actual2countercostbeforeCHAINED retainedall6; negationssuppressbanish, sourceandAmplifireleaveallowbanish2, lateGYdeparturebanishesremainingfieldcandidate1. NativeREMOVEDsource/Amplifire andGYcandidateDECK/CL2/non-targeting/countlimit checked. NoBanish4/noCost6/noResponse5 exactfailures, emptylogs/frozeninputs/parity. NotnativeOmega/generalrecipe/fullcard certification; protection/leave/reseteffects open.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-megastaar-counter-transition-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar actualpropernativeSynchrohistory with explicitboundedlegacySynchroAPI/IsNotTuner adapters, currentcanonicalmetadata/correctedCardData; notOmega/generalrecipe/fullcard certification. ActualownDestroytoExtra/PZone plusactualtributeSS switchesopposingATKDEF from-300counter to-200counter. Fourcounterdistributions bothfields2+1/opponentonly3/ownonly3/zero, actualAddCounter; ownmonster5000/4000 unaffected. SeparateactualSpellbanishesbothholdercards, nativeREMOVEDbothplayers checked, opposingATKDEF return5000/4000. NoPendStats3/noMonsterStats3/ownOnly2exactfailures, emptylogs/frozeninputs/parity. Counterspendingbanish andremainingfullcardeffects open.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-megastaar-leave-proper-history-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar/currentcanonicalmetadata/correctedCardData; actualpropernativeSynchrohistory withboundedlegacySynchroAPI/IsNotTuner adapters. ActualopponentnontargetsendGY/banish allowPZoneplacement; ownsend/decline/fullPZones excludeplacement. Nativeopponenteffectdestructionprevented, owneffectdestructionallowed. NativeIsCanBeEffectTarget probe deniesopponent/allowsown; noactualtargetingSpell tested. RealSynchroHandreturn actuallygoesfacedownExtraanddoesnottrigger inpubliccore; contrastsoldseededfixture, actualOmega rulingnotverified. HINTproperhistory andtargeteligibility checked, fullSZONE fixturecorrectlyusesmiddlespellslot. NoPlacement2/noTargetProtection6/noDestructionProtection1exactfailures, emptylogs/frozeninputs/parity. Publiccompatibilitydiagnostic notnativeOmega/generalrecipe/fullcard; battle/actualtargetedchain/reset remainopen.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-megastaar-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar actualpropernativeSynchrohistory with explicitbounded missinglegacySynchroAPI/IsNotTuner adapters; notOmega/generalrecipe certification. ActualownDestroytoExtra/PZone, Tribute costMOVEbetweenSourceCHAINING/CHAINED, paidcostretained underbaseline/CL2NegAct/NegEffect/sourceBanish/latefiveMZONEfill/lateSSlock. SourceMZONE onlybaseline, nativeREMOVED/filler5/CounterCL2 checked. NoSS1/noCost6/noResponse5exactfailures, emptylogs/frozeninputs/parity/currentcanonicalmetadata/correctedCardData. Continuous counters, other effects, actualOmega/fullcard open.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-megastaar-pendulum-proper-history-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar source/currentcanonicalmetadata/correctedCardData; actual native Synchro procedure uses explicit bounded test-only CheckSynchroMaterial/SelectSynchroMaterial and Card.IsNotTuner signature adapters with 2WIND Tuner+8WIND Pendulum Synchro. Original Omega procedure creates native summon type and proper history; own Spell asserts both then actualdestroys toExtra andmovesPZone, never CompleteProcedure. Sixcases baseline/fullfield/noCost/wrongattribute/race/type. Cost actualrelease andselfSS checked; noSS2/noCost2/wrongleveltotal6 exactfailures, emptylogs/parity/frozeninputs. Bounded adapter not productionrecipe/actualOmega/fullcard certification; remainingcontinuous andinterruption effects open.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        },
+        {
+          "artifact": "current-symphonic-megastaar-targeted-activation-batch.json",
+          "status": "VERIFIED_PARTIAL_COMPATIBILITY_DIAGNOSTIC",
+          "scope": "FullMegaStaar/currentcanonicalmetadata/correctedCardData, actualpropernativeSynchrohistory withsameboundedtestonlylegacySynchroAPI/IsNotTuner adapters. ActualnativeIsExistingTarget/SelectTarget Spell availability: opponent chainedQuickPlay has nolegal activation; ownSpell actuallyselectsMegaStaar, nativeBECOME_TARGET, resolvesSendtoGrave intoactualfaceupExtra. Nativefield/PZone/Extra/properhistory outcomeschecked. RemoveProtection1/protectOwn1/noTargetOperation1exactsemanticfailures, emptylogs/frozeninputs/sourceinstallparity. Compatibilitydiagnostic notactualOmega/generalrecipe/fullcard; battleleave andsoftuse/reset stillopen.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "284639717": {
+      "name": "Terrarumian Cushion Moss",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-interruption-batch.json",
+          "status": "NATIVE_DESTROYED_INTERRUPTION_VERIFIED",
+          "scope": "Six full production scripts/installed metadata/corrected transport/no Lua API adapter. Native effect destruction into genuine faceup Extra then trigger CL1/CounterTrap CL2, activation/effect negation, source and resource banishment. Actual outcome/origin moves and CL2 removal timing asserted. Cushion Deck search, Coin GY banish, Sword Deck Set, Nerve resolution-selected SpellTrap destruction, Staghorn Deck send, Ivy targeted GY revival. Neutral resources. Source removal leaves independent trigger outcomes intact; Nerve selects surviving SpellTrap after resource removal. Effective no-response control. Other option branches/shared uses/resets/full cards/live Omega remain outside this batch.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-use-reset-batch.json",
+          "status": "NATIVE_DESTROYED_USE_RESET_VERIFIED",
+          "scope": "Six full production scripts/installed metadata/corrected transport/no Lua API adapter. Three separately destroyed source copies: first successful/activation-negated/effect-negated named use, second copy excluded same turn, third next own turn available. Actual resource movements/outcomes before and after natural turn reset. Neutral destruction spells/resources, one selected mode/card. Effective per-copy and omitted-operation controls. Not cross-mode use, alternate-mode interruptions, full-card or live Omega certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-monster-refresh-batch.json",
+          "status": "BOUNDED_NATIVE_MONSTER_REFRESH",
+          "scope": "Reused eight historical scenarios with full current production scripts, actual installed metadata and corrected public-engine transport; no Lua API adapter. Native destruction search, Coin GY/temporary Hand banishment and End Phase return, Sword/Nerve normal/special/destroyed triggers, Staghorn Deck/field sending, Ivy revival/negation, Trumpet Hand recruitment and Battle Phase opponent-activation/direct-damage branches with shared count. Controls disable tested operation only. Neutral support cards retain historical metadata. Old candidate DB still read for legacy construction, but all production cardReader returns overridden by installed reader. No direct Extra seeding conclusion relied on. Not interruption/use/reset completion, full-card or live Omega certification. Sundew historical test stamps SUMMON_TYPE_PENDULUM via ordinary SpecialSummon and must be replaced with natural Pendulum procedure evidence before certification.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "284639718": {
+      "name": "Terrarumian Coin Plant",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-alternate-interruption-batch.json",
+          "status": "NATIVE_ALTERNATE_INTERRUPTION_VERIFIED",
+          "scope": "Full Coin/Staghorn/Ivy scripts/installed metadata/corrected transport/no Lua API adapter. Native destruction trigger CL1 and CounterTrap CL2 activation/effect negation, source/resource banishment. Coin Hand random banish under two neutral defense Pendulums; Staghorn opponent targeted send; Ivy opponent effect negation after actual Special Summon, observed via ATK effect. Actual moves/negation and removal timing asserted; effective no-response control. Coin End Phase return is separate baseline evidence; this batch stops before End Phase. Not cross-mode use/complete cards/live Omega certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-interruption-batch.json",
+          "status": "NATIVE_DESTROYED_INTERRUPTION_VERIFIED",
+          "scope": "Six full production scripts/installed metadata/corrected transport/no Lua API adapter. Native effect destruction into genuine faceup Extra then trigger CL1/CounterTrap CL2, activation/effect negation, source and resource banishment. Actual outcome/origin moves and CL2 removal timing asserted. Cushion Deck search, Coin GY banish, Sword Deck Set, Nerve resolution-selected SpellTrap destruction, Staghorn Deck send, Ivy targeted GY revival. Neutral resources. Source removal leaves independent trigger outcomes intact; Nerve selects surviving SpellTrap after resource removal. Effective no-response control. Other option branches/shared uses/resets/full cards/live Omega remain outside this batch.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-use-reset-batch.json",
+          "status": "NATIVE_DESTROYED_USE_RESET_VERIFIED",
+          "scope": "Six full production scripts/installed metadata/corrected transport/no Lua API adapter. Three separately destroyed source copies: first successful/activation-negated/effect-negated named use, second copy excluded same turn, third next own turn available. Actual resource movements/outcomes before and after natural turn reset. Neutral destruction spells/resources, one selected mode/card. Effective per-copy and omitted-operation controls. Not cross-mode use, alternate-mode interruptions, full-card or live Omega certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-monster-refresh-batch.json",
+          "status": "BOUNDED_NATIVE_MONSTER_REFRESH",
+          "scope": "Reused eight historical scenarios with full current production scripts, actual installed metadata and corrected public-engine transport; no Lua API adapter. Native destruction search, Coin GY/temporary Hand banishment and End Phase return, Sword/Nerve normal/special/destroyed triggers, Staghorn Deck/field sending, Ivy revival/negation, Trumpet Hand recruitment and Battle Phase opponent-activation/direct-damage branches with shared count. Controls disable tested operation only. Neutral support cards retain historical metadata. Old candidate DB still read for legacy construction, but all production cardReader returns overridden by installed reader. No direct Extra seeding conclusion relied on. Not interruption/use/reset completion, full-card or live Omega certification. Sundew historical test stamps SUMMON_TYPE_PENDULUM via ordinary SpecialSummon and must be replaced with natural Pendulum procedure evidence before certification.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "284639719": {
+      "name": "Terrarumian Sword Fern",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-interruption-batch.json",
+          "status": "NATIVE_DESTROYED_INTERRUPTION_VERIFIED",
+          "scope": "Six full production scripts/installed metadata/corrected transport/no Lua API adapter. Native effect destruction into genuine faceup Extra then trigger CL1/CounterTrap CL2, activation/effect negation, source and resource banishment. Actual outcome/origin moves and CL2 removal timing asserted. Cushion Deck search, Coin GY banish, Sword Deck Set, Nerve resolution-selected SpellTrap destruction, Staghorn Deck send, Ivy targeted GY revival. Neutral resources. Source removal leaves independent trigger outcomes intact; Nerve selects surviving SpellTrap after resource removal. Effective no-response control. Other option branches/shared uses/resets/full cards/live Omega remain outside this batch.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-use-reset-batch.json",
+          "status": "NATIVE_DESTROYED_USE_RESET_VERIFIED",
+          "scope": "Six full production scripts/installed metadata/corrected transport/no Lua API adapter. Three separately destroyed source copies: first successful/activation-negated/effect-negated named use, second copy excluded same turn, third next own turn available. Actual resource movements/outcomes before and after natural turn reset. Neutral destruction spells/resources, one selected mode/card. Effective per-copy and omitted-operation controls. Not cross-mode use, alternate-mode interruptions, full-card or live Omega certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-monster-refresh-batch.json",
+          "status": "BOUNDED_NATIVE_MONSTER_REFRESH",
+          "scope": "Reused eight historical scenarios with full current production scripts, actual installed metadata and corrected public-engine transport; no Lua API adapter. Native destruction search, Coin GY/temporary Hand banishment and End Phase return, Sword/Nerve normal/special/destroyed triggers, Staghorn Deck/field sending, Ivy revival/negation, Trumpet Hand recruitment and Battle Phase opponent-activation/direct-damage branches with shared count. Controls disable tested operation only. Neutral support cards retain historical metadata. Old candidate DB still read for legacy construction, but all production cardReader returns overridden by installed reader. No direct Extra seeding conclusion relied on. Not interruption/use/reset completion, full-card or live Omega certification. Sundew historical test stamps SUMMON_TYPE_PENDULUM via ordinary SpecialSummon and must be replaced with natural Pendulum procedure evidence before certification.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "284639720": {
+      "name": "Terrarumian Nerve Plant",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-interruption-batch.json",
+          "status": "NATIVE_DESTROYED_INTERRUPTION_VERIFIED",
+          "scope": "Six full production scripts/installed metadata/corrected transport/no Lua API adapter. Native effect destruction into genuine faceup Extra then trigger CL1/CounterTrap CL2, activation/effect negation, source and resource banishment. Actual outcome/origin moves and CL2 removal timing asserted. Cushion Deck search, Coin GY banish, Sword Deck Set, Nerve resolution-selected SpellTrap destruction, Staghorn Deck send, Ivy targeted GY revival. Neutral resources. Source removal leaves independent trigger outcomes intact; Nerve selects surviving SpellTrap after resource removal. Effective no-response control. Other option branches/shared uses/resets/full cards/live Omega remain outside this batch.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-use-reset-batch.json",
+          "status": "NATIVE_DESTROYED_USE_RESET_VERIFIED",
+          "scope": "Six full production scripts/installed metadata/corrected transport/no Lua API adapter. Three separately destroyed source copies: first successful/activation-negated/effect-negated named use, second copy excluded same turn, third next own turn available. Actual resource movements/outcomes before and after natural turn reset. Neutral destruction spells/resources, one selected mode/card. Effective per-copy and omitted-operation controls. Not cross-mode use, alternate-mode interruptions, full-card or live Omega certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-monster-refresh-batch.json",
+          "status": "BOUNDED_NATIVE_MONSTER_REFRESH",
+          "scope": "Reused eight historical scenarios with full current production scripts, actual installed metadata and corrected public-engine transport; no Lua API adapter. Native destruction search, Coin GY/temporary Hand banishment and End Phase return, Sword/Nerve normal/special/destroyed triggers, Staghorn Deck/field sending, Ivy revival/negation, Trumpet Hand recruitment and Battle Phase opponent-activation/direct-damage branches with shared count. Controls disable tested operation only. Neutral support cards retain historical metadata. Old candidate DB still read for legacy construction, but all production cardReader returns overridden by installed reader. No direct Extra seeding conclusion relied on. Not interruption/use/reset completion, full-card or live Omega certification. Sundew historical test stamps SUMMON_TYPE_PENDULUM via ordinary SpecialSummon and must be replaced with natural Pendulum procedure evidence before certification.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "284639721": {
+      "name": "Terrarumian Staghorn Fern",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-alternate-interruption-batch.json",
+          "status": "NATIVE_ALTERNATE_INTERRUPTION_VERIFIED",
+          "scope": "Full Coin/Staghorn/Ivy scripts/installed metadata/corrected transport/no Lua API adapter. Native destruction trigger CL1 and CounterTrap CL2 activation/effect negation, source/resource banishment. Coin Hand random banish under two neutral defense Pendulums; Staghorn opponent targeted send; Ivy opponent effect negation after actual Special Summon, observed via ATK effect. Actual moves/negation and removal timing asserted; effective no-response control. Coin End Phase return is separate baseline evidence; this batch stops before End Phase. Not cross-mode use/complete cards/live Omega certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-interruption-batch.json",
+          "status": "NATIVE_DESTROYED_INTERRUPTION_VERIFIED",
+          "scope": "Six full production scripts/installed metadata/corrected transport/no Lua API adapter. Native effect destruction into genuine faceup Extra then trigger CL1/CounterTrap CL2, activation/effect negation, source and resource banishment. Actual outcome/origin moves and CL2 removal timing asserted. Cushion Deck search, Coin GY banish, Sword Deck Set, Nerve resolution-selected SpellTrap destruction, Staghorn Deck send, Ivy targeted GY revival. Neutral resources. Source removal leaves independent trigger outcomes intact; Nerve selects surviving SpellTrap after resource removal. Effective no-response control. Other option branches/shared uses/resets/full cards/live Omega remain outside this batch.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-use-reset-batch.json",
+          "status": "NATIVE_DESTROYED_USE_RESET_VERIFIED",
+          "scope": "Six full production scripts/installed metadata/corrected transport/no Lua API adapter. Three separately destroyed source copies: first successful/activation-negated/effect-negated named use, second copy excluded same turn, third next own turn available. Actual resource movements/outcomes before and after natural turn reset. Neutral destruction spells/resources, one selected mode/card. Effective per-copy and omitted-operation controls. Not cross-mode use, alternate-mode interruptions, full-card or live Omega certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-monster-refresh-batch.json",
+          "status": "BOUNDED_NATIVE_MONSTER_REFRESH",
+          "scope": "Reused eight historical scenarios with full current production scripts, actual installed metadata and corrected public-engine transport; no Lua API adapter. Native destruction search, Coin GY/temporary Hand banishment and End Phase return, Sword/Nerve normal/special/destroyed triggers, Staghorn Deck/field sending, Ivy revival/negation, Trumpet Hand recruitment and Battle Phase opponent-activation/direct-damage branches with shared count. Controls disable tested operation only. Neutral support cards retain historical metadata. Old candidate DB still read for legacy construction, but all production cardReader returns overridden by installed reader. No direct Extra seeding conclusion relied on. Not interruption/use/reset completion, full-card or live Omega certification. Sundew historical test stamps SUMMON_TYPE_PENDULUM via ordinary SpecialSummon and must be replaced with natural Pendulum procedure evidence before certification.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "284639722": {
+      "name": "Terrarumian Ivy",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-alternate-interruption-batch.json",
+          "status": "NATIVE_ALTERNATE_INTERRUPTION_VERIFIED",
+          "scope": "Full Coin/Staghorn/Ivy scripts/installed metadata/corrected transport/no Lua API adapter. Native destruction trigger CL1 and CounterTrap CL2 activation/effect negation, source/resource banishment. Coin Hand random banish under two neutral defense Pendulums; Staghorn opponent targeted send; Ivy opponent effect negation after actual Special Summon, observed via ATK effect. Actual moves/negation and removal timing asserted; effective no-response control. Coin End Phase return is separate baseline evidence; this batch stops before End Phase. Not cross-mode use/complete cards/live Omega certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-interruption-batch.json",
+          "status": "NATIVE_DESTROYED_INTERRUPTION_VERIFIED",
+          "scope": "Six full production scripts/installed metadata/corrected transport/no Lua API adapter. Native effect destruction into genuine faceup Extra then trigger CL1/CounterTrap CL2, activation/effect negation, source and resource banishment. Actual outcome/origin moves and CL2 removal timing asserted. Cushion Deck search, Coin GY banish, Sword Deck Set, Nerve resolution-selected SpellTrap destruction, Staghorn Deck send, Ivy targeted GY revival. Neutral resources. Source removal leaves independent trigger outcomes intact; Nerve selects surviving SpellTrap after resource removal. Effective no-response control. Other option branches/shared uses/resets/full cards/live Omega remain outside this batch.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-destroyed-use-reset-batch.json",
+          "status": "NATIVE_DESTROYED_USE_RESET_VERIFIED",
+          "scope": "Six full production scripts/installed metadata/corrected transport/no Lua API adapter. Three separately destroyed source copies: first successful/activation-negated/effect-negated named use, second copy excluded same turn, third next own turn available. Actual resource movements/outcomes before and after natural turn reset. Neutral destruction spells/resources, one selected mode/card. Effective per-copy and omitted-operation controls. Not cross-mode use, alternate-mode interruptions, full-card or live Omega certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-monster-refresh-batch.json",
+          "status": "BOUNDED_NATIVE_MONSTER_REFRESH",
+          "scope": "Reused eight historical scenarios with full current production scripts, actual installed metadata and corrected public-engine transport; no Lua API adapter. Native destruction search, Coin GY/temporary Hand banishment and End Phase return, Sword/Nerve normal/special/destroyed triggers, Staghorn Deck/field sending, Ivy revival/negation, Trumpet Hand recruitment and Battle Phase opponent-activation/direct-damage branches with shared count. Controls disable tested operation only. Neutral support cards retain historical metadata. Old candidate DB still read for legacy construction, but all production cardReader returns overridden by installed reader. No direct Extra seeding conclusion relied on. Not interruption/use/reset completion, full-card or live Omega certification. Sundew historical test stamps SUMMON_TYPE_PENDULUM via ordinary SpecialSummon and must be replaced with natural Pendulum procedure evidence before certification.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "284639723": {
+      "name": "Terrarumian Sundew",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-monster-refresh-batch.json",
+          "status": "BOUNDED_NATIVE_MONSTER_REFRESH",
+          "scope": "Reused eight historical scenarios with full current production scripts, actual installed metadata and corrected public-engine transport; no Lua API adapter. Native destruction search, Coin GY/temporary Hand banishment and End Phase return, Sword/Nerve normal/special/destroyed triggers, Staghorn Deck/field sending, Ivy revival/negation, Trumpet Hand recruitment and Battle Phase opponent-activation/direct-damage branches with shared count. Controls disable tested operation only. Neutral support cards retain historical metadata. Old candidate DB still read for legacy construction, but all production cardReader returns overridden by installed reader. No direct Extra seeding conclusion relied on. Not interruption/use/reset completion, full-card or live Omega certification. Sundew historical test stamps SUMMON_TYPE_PENDULUM via ordinary SpecialSummon and must be replaced with natural Pendulum procedure evidence before certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-sundew-interruption-batch.json",
+          "status": "NATIVE_SUNDEW_INTERRUPTION_VERIFIED",
+          "scope": "Full Sundew/current installed metadata/corrected transport/no Lua API adapter. Activated neutral scales and original Omega native Pendulum summon procedure. Actual opponent CL1, Sundew CL2, neutral CounterTrap CL3: activation/effect negation, source banishment, Deck recruit banishment, late native summon lock or four-monster fill. Actual Deck recruitment and field/Extra moves checked. Source removal permits independent recruitment/destruction but leaves no source for End Phase flag return. Effective no-response control. Not use/reset/full-card/live Omega certification.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-sundew-natural-batch.json",
+          "status": "NATIVE_NATURAL_PENDULUM_SETUP_VERIFIED",
+          "scope": "Full Sundew script/installed metadata/corrected transport/no Lua API adapter. Neutral scales actually activated then original Omega Pendulum procedure selected via native menu, Sundew selected from Hand, native position selected. Actual opponent activation triggers Quick recruitment/destruction; genuine field-to-faceup Extra redirect then End Phase return. Ordinary-Special-Summon and Attack Position negatives. Effective disabled-operation controls. Legacy DB construction overridden for production metadata. Not full-card/shared-use/reset/CL2 interruption/live Omega certification.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    },
+    "284639724": {
+      "name": "Terrarumian Trumpet Pitchers",
+      "current": [
+        {
+          "artifact": "current-ohmen-effects-batch.json",
+          "status": null,
+          "scope": "Replay of prior actual-duel Ohmen/Beacon scenarios with current installed metadata. Original frozen-reader harnesses/results preserved. Existing fixture/procedure/native Omega limitations remain; this does not certify entire cards.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-reconciled-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": []
+        },
+        {
+          "artifact": "current-terrarumian-monster-refresh-batch.json",
+          "status": "BOUNDED_NATIVE_MONSTER_REFRESH",
+          "scope": "Reused eight historical scenarios with full current production scripts, actual installed metadata and corrected public-engine transport; no Lua API adapter. Native destruction search, Coin GY/temporary Hand banishment and End Phase return, Sword/Nerve normal/special/destroyed triggers, Staghorn Deck/field sending, Ivy revival/negation, Trumpet Hand recruitment and Battle Phase opponent-activation/direct-damage branches with shared count. Controls disable tested operation only. Neutral support cards retain historical metadata. Old candidate DB still read for legacy construction, but all production cardReader returns overridden by installed reader. No direct Extra seeding conclusion relied on. Not interruption/use/reset completion, full-card or live Omega certification. Sundew historical test stamps SUMMON_TYPE_PENDULUM via ordinary SpecialSummon and must be replaced with natural Pendulum procedure evidence before certification.",
+          "stale_dependencies": []
+        }
+      ],
+      "stale": [
+        {
+          "artifact": "current-terrarumian-pendulum-interruption-batch.json",
+          "status": "VERIFIED_PARTIAL_PRODUCTION",
+          "scope": "Full production primary Pendulum effects, actual native placement/activation and CL2 interruptions;56 cases and2 effective fault controls, empty logs, source/install parity. Current specification metadata. No API shim. Secondary-effects/full-card/live Omega remain open. Ineffective no-relation exploratory control excluded: native field-effect lifecycle alone prevented resolution after source left; no attribution to explicit relation guard.",
+          "stale_dependencies": [
+            "src/data/cards.json"
+          ]
+        }
+      ]
+    }
+  }
+}

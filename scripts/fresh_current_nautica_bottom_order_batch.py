@@ -1,0 +1,19 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+paths=[Path(__file__).resolve(),ROOT/'src/data/cards.json',FILES/'Databases/CCG_v1.db',OUT/'candidate-CCG_v1.db',OUT/'nautica-bottom-order-repair-files.json']
+paths += [ROOT/'scripts'/n for n in ['fresh_current_scarlet_hand_summon.cjs','fresh_current_scarlet_search_timing.cjs','fresh_current_nautical_backwashing_order.cjs','fresh_current_altergeist_regissae_negate.cjs','fresh_nautica_bottom_order_repair.cjs','fresh_corrected_sort_transport.cjs','fresh_corrected_card_data_transport.cjs','fresh_installed_card.cjs']]
+dist=ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist';paths += list(dist.glob('*.js'))+[dist/'index-card-data-transport-candidate.mjs',dist/'index-card-data-sort-transport-candidate.mjs']+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]
+for code in [220749574,223158720]:
+ p=ROOT/'public/CCG Downloads/CCG_Scripts'/f'c{code}.lua';assert p.read_bytes()==(FILES/'Scripts'/p.name).read_bytes();paths += [p,OUT/'nautica-before-bottom-order-repair'/p.name]
+deps={str(p.resolve()):sha(p) for p in paths};runs=[]
+for code,prefix,count,controls in [(220749574,'scarlet-hand-summon',7,[('old-order',[0,1]),('no-order',[0,1]),('no-cost',[0,1]),('ignore-race',[3])]),(223158720,'nautical-backwashing-order',4,[('old-order',[0,1,2]),('no-order',[0,1,2]),('exclude-extra',[2,3]),('no-draw',[0,1,2,3])])]:
+ for flag,expected,transport in [(None,[],True)]+[(f,x,True) for f,x in controls]+[(None,([0,1,2] if code==223158720 else [0,1]),False)]:
+  args=['node','--no-warnings',f'scripts/fresh_current_{prefix.replace("-","_")}.cjs']+(['--sort-transport'] if transport else [])+(['--'+flag] if flag else [])
+  r=subprocess.run(args,capture_output=True,text=True,timeout=20);p=OUT/('current-'+prefix+('' if transport else '-original-sort-transport')+('-'+flag if flag else '')+'.json');d=json.loads(p.read_text());assert len(d['results'])==count and [i for i,x in enumerate(d['results']) if x['failure']]==expected and all(not x['logs'] and x['trace'] for x in d['results']) and r.returncode==bool(expected),r.stdout+r.stderr
+  if not transport:assert all('Unhandled {"type":1}' in d['results'][i]['failure'] for i in expected)
+  runs.append({'passcode':code,'artifact':p.name,'sha256':sha(p),'cases':count,'expected_failures':expected,'sort_transport_corrected':transport})
+assert deps=={str(p.resolve()):sha(p) for p in paths}
+(OUT/'current-nautica-bottom-order-batch.json').write_text(json.dumps({'status':'NAUTICA_BOTTOM_ORDER_REPAIRED','runtime_dependencies_sha256':deps,'runs':runs,'scope':'Full current effects/installed metadata. Scarlet original Hand procedure returns two actual GY Aquas; Backwashing original banish cost returns three/draws. Native sorting menu accepts both permutations; actual bottom sequence asserted. Scarlet one/wrong race/opponent/full/Extra Deck exclusions, no Normal/Set; Backwashing permits Extra Deck resources, returns them to Extra Deck and sorts only actual Main Deck returns. Effective original/order/cost/race/resource/draw controls. Test-only card-data and SORT_CARD response serialization corrections; original sort serializer fails with native RETRY, retained separately. No Lua API adapter; not live Omega/full-card certification. Ten printed bottom/any-order cards reviewed: Brawl chooses sequentially, seven Sylvans sort then move top cards; Official Konami Favorite Contact FAQ confirms bottom-return effects may return Extra Deck monsters to Extra Deck; rejected exclusion fault proves legal eligibility.'},indent=2)+'\n')
+print('Nautica bottom-order repairs verified; transport qualification retained')

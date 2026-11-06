@@ -1,0 +1,23 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),Module=require('node:module'),assert=require('node:assert/strict');
+function corrected(code,s){assert([247755865,247755871].includes(code));const filter=code===247755865?'desfilter':'destroyfilter',fn=code===247755865?'sstg':'revtg',at=s.indexOf('function s.'+fn+'('),old=code===247755865?'Duel.IsExistingMatchingCard(s.desfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,c,tp)':'Duel.IsExistingMatchingCard(s.destroyfilter,tp,LOCATION_ONFIELD,0,1,nil,tp)';assert(at>=0&&!s.includes('function s.spacefilter('));assert.equal(s.split(old).length,2);const nl=s.includes('\r\n')?'\r\n':'\n',helper=['function s.spacefilter(c,tp)',' return s.'+filter+'(c,tp) and (Duel.GetLocationCount(tp,LOCATION_MZONE)>0','  or Duel.GetMZoneCount(tp,Group.FromCards(c))>0)','end',''].join(nl);return (s.slice(0,at)+helper+s.slice(at)).replace(old,old.replace('s.'+filter,'s.spacefilter'));}exports.corrected=corrected;
+function main(){
+ const kind=process.argv[2];assert(['angulimala','jarita'].includes(kind));const file=path.join(__dirname,kind==='angulimala'?'fresh_current_destroy_summon_capacity.cjs':'fresh_current_jarita_revival.cjs');let s=fs.readFileSync(file,'utf8');
+ function replace(a,b){assert(s.includes(a),a);s=s.replace(a,b);}
+ if(kind==='angulimala'){
+  replace('[236898203,238274860]','[247755865]');replace('./fresh_current_destroy_summon_capacity.cjs','./fresh_current_kali_zone_capacity.cjs');replace('destroy-summon-before-capacity-repair','kali-before-zone-capacity-repair');replace('current-destroy-summon-capacity','current-kali-zone-capacity-angulimala');
+  s=s.replace(/scope:'Full Rex\/Torus[^']*'/,"scope:'Full Angulimala/current installed metadata/corrected transport; shared native Hand harness Main-resource destruction/summon versus full Main field plus only Hand/Extra resource exclusions. Field-seeded neutral Fusion resource for geometry, no Lua API adapter/live Omega or other-mode claim.'");
+ }else{
+  replace('[{},{decline:true},{wrongset:true},{spell:true,wrongset:true},{full:true,spell:true,wrongset:true},{full:true,field:true},{banishSource:true},{banishResource:true},{activation:true},{effect:true}]','[{full:true,field:true},{full:true,extra:true},{spell:true,wrongset:true},{full:true,spell:true,wrongset:true}]');
+  replace('assert(fc:IsLocation(LOCATION_GRAVE)) FILL','assert(fc:IsLocation(LOCATION_GRAVE)) __EXTRA_RESOURCE__ FILL');
+  replace(".replace('FILL',test.full?", ".replace('__EXTRA_RESOURCE__',test.extra?'local ec=Duel.GetFirstMatchingCard(Card.IsCode,tp,LOCATION_HAND+LOCATION_EXTRA,0,nil,900001051) assert(ec) assert(Duel.SpecialSummon(ec,SUMMON_TYPE_FUSION,tp,tp,false,true,POS_FACEUP,0x20)>0 and ec:GetSequence()==5)':'do end').replace('FILL',test.full?");
+  replace('const full=s.match', "replace('add(ally,test.spell?L.SZONE:L.MZONE);','add(ally,test.extra?L.HAND:test.spell?L.SZONE:L.MZONE);');replace('const reader=name=>{',\"if(test.extra)cards.set(ally,{...cards.get(ally),type:0x41});const reader=name=>{\");const full=s.match");
+  replace('./fresh_current_jarita_revival.cjs','./fresh_current_kali_zone_capacity.cjs');replace('.corrected(source)','.corrected(247755871,source)');replace('jarita-before-revival-order-repair','kali-before-zone-capacity-repair');
+  replace("['no-redirect','old-source','no-final-relation','no-response','no-complete']","['old-source','no-projection','no-summon','no-complete']");
+  replace('const m=new Module(file,module);', "replace('return source;',\"if(name==='c'+boss+'.lua'){if(process.argv.includes('--no-projection'))source=source.replace('Duel.GetMZoneCount(tp,Group.FromCards(c))>0','true');if(process.argv.includes('--no-summon'))source=source.replace('Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)','(function() return 0 end)()');}return source;\");const m=new Module(file,module);");
+  replace('current-jarita-revival','current-kali-zone-capacity-jarita');
+  s=s.replace(/scope:'[^']*'/,"scope:'Full Jarita/current installed metadata/corrected transport with retained actual paid two-Level4-Kali Xyz history before GY revival. Native full Main field plus Main resource permits actual destruction/revival; only Extra resource or Spell with no Main space excludes; Spell works with open Main space. Neutral Extra resource placed for geometry after source Xyz->GY, no general recipe/history claim for resource. No Lua API adapter/full-card/live Omega certification.'");
+ }
+ const invoke=s.lastIndexOf('if(require.main===module)main()');assert(invoke>=0);s=s.slice(0,invoke)+s.slice(invoke).replace('if(require.main===module)main()','main()');const m=new Module(file,module);m.filename=file;m.paths=module.paths;m._compile(s,file);
+}
+if(require.main===module)main();

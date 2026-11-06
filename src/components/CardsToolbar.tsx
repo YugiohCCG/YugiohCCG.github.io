@@ -41,6 +41,14 @@ export default function CardsToolbar({ total }: { total: number }) {
     setParams(p, { replace: true });
   };
 
+  const gridWidth = view === "grid" && (
+    <GridWidthSelect columns={params.get("columns") ?? "6"} onChange={(columns) => {
+      const next = new URLSearchParams(params);
+      next.set("columns", columns);
+      setParams(next, { replace: true });
+    }} />
+  );
+
   const arrow = (k: string) => {
     if (k !== sort) return null;
     return <span className="ml-1">{dir === "asc" ? "^" : "v"}</span>;
@@ -49,7 +57,8 @@ export default function CardsToolbar({ total }: { total: number }) {
   if (print) return <div className="tp-cards-toolbar">
     <div className="tp-results-count"><strong>{total.toLocaleString()}</strong><span>cards found</span></div>
     <div className="tp-sort-controls"><label htmlFor="tp-card-sort">Sort by</label><select id="tp-card-sort" value={sort} onChange={(event) => setSort(event.target.value)}>{SORTS.map((item) => <option key={item.key} value={item.key}>{item.label}</option>)}</select><button type="button" className="tp-sort-direction" onClick={() => setSort(sort)} aria-label={`Sort ${dir === "asc" ? "descending" : "ascending"}`} title={dir === "asc" ? "Ascending order" : "Descending order"}>{dir === "asc" ? "↑" : "↓"}</button></div>
-    <div className="tp-view-switch" role="group" aria-label="Card display"><button type="button" aria-pressed={view === "grid"} onClick={() => setView("grid")}><span aria-hidden="true">▦</span> Grid</button><button type="button" aria-pressed={view === "list"} onClick={() => setView("list")}><span aria-hidden="true">☰</span> List</button></div>
+    <GridViewSwitch view={view} setView={setView} />
+    {gridWidth}
   </div>;
 
   return (
@@ -58,6 +67,7 @@ export default function CardsToolbar({ total }: { total: number }) {
         <div className="text-sm text-slate-600">{total.toLocaleString()} cards</div>
 
         <div className="flex flex-wrap items-center gap-2">
+          {gridWidth}
           <div className="flex flex-wrap gap-1 rounded-lg border border-slate-300 bg-white p-1">
             {SORTS.map((s) => (
               <button
@@ -101,4 +111,28 @@ export default function CardsToolbar({ total }: { total: number }) {
       </div>
     </div>
   );
+}
+
+export function GridViewSwitch({ view, setView }: { view: "grid" | "list"; setView: (view: "grid" | "list") => void }) {
+  return (
+    <div className="tp-view-switch" role="group" aria-label="Card display"><button type="button" aria-pressed={view === "grid"} onClick={() => setView("grid")}><span aria-hidden="true">▦</span> Grid</button><button type="button" aria-pressed={view === "list"} onClick={() => setView("list")}><span aria-hidden="true">☰</span> List</button></div>
+  );
+}
+
+export function GridWidthSelect({ columns, onChange }: { columns: string; onChange: (columns: string) => void }) {
+  return (
+    <label className="tp-sort-controls flex items-center gap-2 text-xs font-bold">
+      <span>Cards per row</span>
+      <select value={columns === "4" || columns === "8" ? columns : "6"} onChange={(event) => onChange(event.target.value)}
+        className="rounded-md border border-[color:var(--line-strong)] px-2 py-1">
+        <option value="4">4</option>
+        <option value="6">6</option>
+        <option value="8">8</option>
+      </select>
+    </label>
+  );
+}
+
+export function cardGridColumns(columns: string | null) {
+  return columns === "8" ? "xl:grid-cols-8" : columns === "4" ? "" : "xl:grid-cols-6";
 }

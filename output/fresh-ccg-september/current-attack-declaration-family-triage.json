@@ -1,0 +1,126 @@
+{
+  "scanned": 711,
+  "cards": [
+    {
+      "passcode": 224822244,
+      "name": "Stained Raptor Rollo",
+      "text": "If this card is Normal or Special Summoned: You can target 1 \"Stain\" monster in your GY or 1 monster in your opponent's GY; Special Summon it to your field, and if you do, shuffle this card into the Deck. When an attack is declared involving this card and an opponent's monster: You can shuffle this card face-up into your opponent's Deck, also, after that, place that opponent's monster on top of the Deck. You can only use each effect of \"Stained Raptor Rollo\" once per turn.",
+      "attackSource": [
+        "\te3:SetCode(EVENT_ATTACK_ANNOUNCE)",
+        "\treturn ((c:IsControler(tp) and c:IsSetCard(SET_STAIN)) or c:IsControler(1-tp))",
+        "\tlocal a=Duel.GetAttacker()",
+        "\treturn (a==c and d and d:IsControler(1-tp)) or (d==c and a and a:IsControler(1-tp))",
+        "\tlocal a=Duel.GetAttacker()",
+        "\tlocal a=Duel.GetAttacker()",
+        "\tif not (tc and tc:IsControler(1-tp)) then return end"
+      ]
+    },
+    {
+      "passcode": 219419648,
+      "name": "Sustained Succubus Saria",
+      "text": "1 \"Stain\" monster + 1 LIGHT or DARK \"Stain\" monster\nCannot be destroyed by battle or card effects, also your opponent takes any battle damage you would have taken from battles involving this card. You can only use each of the following effects of \"Sustained Succubus Saria\" once per turn. If this card is Fusion Summoned: You can add 1 \"Stain\" card from your Deck, GY, or banishment to your hand. When an attack is declared involving a \"Stain\" monster you control and an opponent's monster: You can shuffle 1 card on the field and up to 1 \"Stain\" card in your GY into the Deck, also you can make this card's ATK become 0.",
+      "attackSource": [
+        "\te5:SetCode(EVENT_ATTACK_ANNOUNCE)",
+        "\treturn c:IsControler(tp) and c:IsFaceup() and c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER)",
+        "\tlocal a=Duel.GetAttacker()",
+        "\treturn (s.stainmonster(a,tp) and d:IsControler(1-tp)) or (s.stainmonster(d,tp) and a:IsControler(1-tp))"
+      ]
+    },
+    {
+      "passcode": 251699681,
+      "name": "Bear Trap",
+      "text": "When your opponent would Summon a monster, or declares an attack: Negate the Summon or attack, and if you do, destroy that monster. If you control a \"Vir Pedicae Mortis\" monster and this card is in your GY, except the turn it was sent there: You can Set this card, but banish it when it leaves the field. You can only activate 1 \"Bear Trap\" per turn",
+      "attackSource": [
+        "\te4:SetCode(EVENT_ATTACK_ANNOUNCE)\r",
+        "\tlocal ac=Duel.GetAttacker()\r",
+        "\treturn ac and ac:IsControler(1-tp)\r",
+        "\tlocal ac=Duel.GetAttacker()\r",
+        "\tlocal ac=Duel.GetAttacker()\r"
+      ]
+    },
+    {
+      "passcode": 232824319,
+      "name": "Shining Brigade - Companion Team",
+      "text": "1 non-Link \"Shining Brigade\" monster\nWhile you control another \"Shining Brigade\" monster, this card cannot be targeted for attacks or by card effects. Once per turn, when a monster on the field declares an attack: Special Summon 1 \"Shining Brigade\" monster from your hand or Deck. You can only control 1 \"Shining Brigade - Companion Team\".",
+      "attackSource": [
+        "\te3:SetCode(EVENT_ATTACK_ANNOUNCE)"
+      ]
+    },
+    {
+      "passcode": 236898203,
+      "name": "Chrono-Saur Rex",
+      "text": "During the Main Phase 1 or Battle Phase (Quick Effect): You can destroy 1 \"Chrono-Saur\" card or 1 Dinosaur monster you control, and if you do, Special Summon this card from hand. Destroy this card Summoned this way at the end of the Phase it was Summoned. When you declare an attack: You can Special Summon this card from your GY, but destroy this card at the end of the Battle Phase. You can only use each effect of \"Chrono-Saur Rex\" once per turn.",
+      "attackSource": [
+        "\te2:SetCode(EVENT_ATTACK_ANNOUNCE)",
+        "\treturn Duel.GetAttacker():IsControler(tp)"
+      ]
+    },
+    {
+      "passcode": 213990492,
+      "name": "Eridani, Squire of Zephorion Prime",
+      "text": "If \"Eldora, the Intergalactic Empire\" is in your field or GY (Quick Effect): You can Special Summon this card from your hand. If \"Eldora, the Intergalactic Empire\" is in your GY, your opponent cannot declare an attack. If this card is destroyed by \"Eldora, the Intergalactic Empire\" or your opponent's card effect: You can declare 1 Monster Card name; cards with that name cannot be destroyed by battle or card effects until the end of this turn. You can only use each effect of \"Eridani, Squire of Zephorion Prime\" once per turn.",
+      "attackSource": [
+        "\te2:SetCode(EFFECT_CANNOT_ATTACK_ANNOUNCE)"
+      ]
+    },
+    {
+      "passcode": 250902476,
+      "name": "Striking Mirror Force",
+      "text": "When your opponent activates a card or effect, or a monster declares an attack: Destroy that card, then you can destroy 1 Attack Position monster your opponent controls. You can only activate 1 \"Striking Mirror Force\" per turn.",
+      "attackSource": [
+        "\te2:SetCode(EVENT_ATTACK_ANNOUNCE)",
+        "\treturn Duel.GetAttacker():IsControler(1-tp)",
+        "\tlocal a=Duel.GetAttacker()",
+        "\tlocal a=Duel.GetAttacker()"
+      ]
+    },
+    {
+      "passcode": 253152295,
+      "name": "Yummy Kuriboh",
+      "text": "When your opponent's monster declares an attack: You can Special Summon this card and 1 Level 1 monster from your hand or GY, and if you do, negate that attack. You can only use this effect of \"Yummy Kuriboh\" once per turn. Level 1 monsters cannot be destroyed by battle.",
+      "attackSource": [
+        "\te1:SetCode(EVENT_ATTACK_ANNOUNCE)",
+        "\treturn Duel.GetAttacker():IsControler(1-tp)"
+      ]
+    },
+    {
+      "passcode": 259307285,
+      "name": "Attack on Gravity",
+      "text": "(This card is always treated as a \"Galactica\" card.) If only your opponent controls a monster and your opponent declares an attack, you can activate this card from your hand. When your opponent declares an attack, OR activates a card or effect during the Battle Phase: Negate the attack or activation, and if you do, destroy that card, and if you do that, you can Special Summon 1 monster from your hand in Attack Position, but return it to the hand at the end of the Battle Phase.",
+      "attackSource": [
+        "\tlocal e1=Effect.CreateEffect(c) e1:SetDescription(aux.Stringid(STRING_ID,0)) e1:SetCategory(CATEGORY_NEGATE+CATEGORY_DESTROY+CATEGORY_SPECIAL_SUMMON) e1:SetType(EFFECT_TYPE_ACTIVATE) e1:SetCode(EVENT_ATTACK_ANNOUNCE) e1:SetCondition(s.atkcon) e1:SetOperation(s.atkop) c:RegisterEffect(e1)",
+        "function s.atkcon(e,tp) return Duel.GetAttacker():IsControler(1-tp) end",
+        "\tlocal ac=Duel.GetAttacker()",
+        "\treturn Duel.GetCurrentChain()==0 and ac and ac:IsControler(1-tp)",
+        "function s.atkop(e,tp) local ac=Duel.GetAttacker() if Duel.NegateAttack() and ac and Duel.Destroy(ac,REASON_EFFECT)>0 then s.trysp(e,tp) end end"
+      ]
+    },
+    {
+      "passcode": 219002796,
+      "name": "Intergalacticanes Majoris",
+      "text": "1 Level 2 \"Galactica\" monster + 1 Machine monster. Must first be Fusion Summoned using \"Fusion Intergalactica\". This card is unaffected by your opponent's card effects, except during the Battle Phase. Also, your opponent cannot declare an attack. If this card was Fusion Summoned using \"Galacticanes Auriga\", it gains 1000 ATK. If this card destroys a monster by battle or inflicts battle damage to your opponent: You can banish 1 card your opponent controls.",
+      "attackSource": [
+        "\tlocal e2=Effect.CreateEffect(c) e2:SetType(EFFECT_TYPE_FIELD) e2:SetCode(EFFECT_CANNOT_ATTACK_ANNOUNCE) e2:SetRange(LOCATION_MZONE) e2:SetProperty(EFFECT_FLAG_PLAYER_TARGET) e2:SetTargetRange(0,1) c:RegisterEffect(e2)"
+      ]
+    },
+    {
+      "passcode": 221827483,
+      "name": "To Protogenis Intergalataxiakos",
+      "text": "(This card is also treated as a \"Galactica\" card.) 1 Level 2 \"Galactica\" monster + 1 LIGHT Galaxy monster. Must be Fusion Summoned using \"Fusion Intergalactica\". Your opponent cannot declare an attack. If this card destroys a monster by battle or inflicts battle damage to your opponent: It becomes unaffected by your opponent's card effects until the start of your next Battle Phase. If this card is banished from the field: You can banish 1 card on the field, also Special Summon this card during your next Standby Phase.",
+      "attackSource": [
+        "\tlocal e1=Effect.CreateEffect(c) e1:SetType(EFFECT_TYPE_FIELD) e1:SetCode(EFFECT_CANNOT_ATTACK_ANNOUNCE) e1:SetRange(LOCATION_MZONE) e1:SetTargetRange(0,1) c:RegisterEffect(e1)"
+      ]
+    },
+    {
+      "passcode": 259844716,
+      "name": "Yurei",
+      "text": "Cannot be Special Summoned. When your opponent activates a card or effect that would destroy a card on the field (Quick Effect): You can reveal this card in your hand; Tribute 1 Spirit monster from your hand or field, and if you do, negate that effect. When an attack is declared involving your Spirit monster (Quick Effect): Immediately after this effect resolves, Normal Summon this card, and if you do, that Spirit monster's ATK is doubled until the end of this turn. You can only use 1 of the previous effects of \"Yurei\" per turn, and only once that turn. Once per turn, during the End Phase, if this card was Tributed, Normal Summoned, or flipped face-up this turn: Return it to the hand.",
+      "attackSource": [
+        " local e2=Effect.CreateEffect(c); e2:SetDescription(aux.Stringid(STRING_ID,1)); e2:SetCategory(CATEGORY_SUMMON+CATEGORY_ATKCHANGE); e2:SetType(EFFECT_TYPE_QUICK_O); e2:SetCode(EVENT_ATTACK_ANNOUNCE); e2:SetRange(LOCATION_HAND); e2:SetCountLimit(1,id); e2:SetCondition(s.atkcon); e2:SetTarget(s.sumtg); e2:SetOperation(s.sumop); c:RegisterEffect(e2)",
+        "function s.atkcon(e,tp) local a=Duel.GetAttacker(); local d=Duel.GetAttackTarget(); return (a and a:IsControler(tp) and a:IsType(TYPE_SPIRIT)) or (d and d:IsControler(tp) and d:IsType(TYPE_SPIRIT)) end",
+        " local c=e:GetHandler(); local tc=Duel.GetAttacker()",
+        " if not (tc and tc:IsControler(tp) and tc:IsType(TYPE_SPIRIT)) then tc=Duel.GetAttackTarget() end"
+      ]
+    }
+  ]
+}

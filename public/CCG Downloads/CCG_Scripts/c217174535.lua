@@ -99,12 +99,12 @@ function s.actnegtg(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.actnegop(e,tp,eg,ep,ev,re,r,rp)
 	local rc=re:GetHandler()
-	if Duel.NegateEffect(ev)~=0 then
+	if Duel.NegateEffect(ev) then
 		if rc:IsRelateToEffect(re) then Duel.Destroy(rc,REASON_EFFECT) end
 	end
 end
 function s.lookfilter(c,tp,sc)
-	return c==sc or c:IsControler(tp) and c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and c~=sc
+	return c==sc or c:IsFaceup() and c:IsControler(tp) and c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and c~=sc
 end
 function s.lookcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(s.lookfilter,1,nil,tp,e:GetHandler())

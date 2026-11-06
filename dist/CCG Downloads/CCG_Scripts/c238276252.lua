@@ -30,7 +30,7 @@ end
 s.listed_series={SET_NEPHTHYS}
 s.listed_names={CARD_PHOENIX_WING_WIND_BLAST}
 function s.desfilter(c)
- return c:IsSetCard(SET_NEPHTHYS) and c:IsType(TYPE_MONSTER) and c:IsLevel(8) and c:IsDestructable()
+ return (c:IsLocation(LOCATION_HAND) or c:IsFaceup()) and c:IsSetCard(SET_NEPHTHYS) and c:IsType(TYPE_MONSTER) and c:IsLevel(8) and c:IsDestructable()
 end
 function s.deslegal(c,tp)
  return s.desfilter(c) and Duel.GetMZoneCount(tp,c)>1
@@ -92,7 +92,7 @@ function s.endop(e,tp)
  g:DeleteGroup()
 end
 function s.ritualdestroyed(c)
- return c:IsSetCard(SET_NEPHTHYS) and c:IsType(TYPE_MONSTER) and c:IsType(TYPE_RITUAL)
+ return c:IsSetCard(SET_NEPHTHYS) and c:IsType(TYPE_MONSTER) and c:IsType(TYPE_RITUAL) and (not c:IsPreviousLocation(LOCATION_ONFIELD) or c:IsPreviousPosition(POS_FACEUP))
 end
 function s.thcon(e,tp,eg)
  return not eg:IsContains(e:GetHandler()) and eg:IsExists(s.ritualdestroyed,1,nil)

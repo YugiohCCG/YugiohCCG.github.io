@@ -1,0 +1,62 @@
+{
+  "finding": "Teleum Mortis and Phantasm Spiral Resurgence incorrectly restricted Equip activation/target selection to own monsters; printed equip limits contain no controller restriction. Both fields now eligible.",
+  "qualification": "12 original native activation/selection/equip-relation cases: own/opponent eligible recipients and wrong-kind/facedown exclusions for both repairs and unchanged Kanmuriyama. Neutral recipients,no API mapping. Retargeting chkc branch source-corrected but not separately native-tested; remaining effects,control change and live/full-card open.",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_equip_controller_batch.py": "a0289eb87e8342f1280d71bfdfb9ca84141f7b60145fc113961c56871841e0e5",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_equip_controller.cjs": "5e5cfb13f5a15240f20aa04193900d893db05810d20ad40b6d47bce4adf39794",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_equip_controller_repair.cjs": "a42455aadcd3fffbb29c3840318ed902d9725f2cde9ef03f25d5c70c0134e59b",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\c248801935.lua": "98cac33543c8c0785c60e075743df6425a7bdbe50afa850bbebc8d72edbadffb",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c248801935.lua": "98cac33543c8c0785c60e075743df6425a7bdbe50afa850bbebc8d72edbadffb",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\equip-controller-before-repair\\c229875953.lua": "39fe0910149ac7020aea633f8f9c7e4b10b798be394a40a2dbb8b831466e8beb",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\equip-controller-before-repair\\c219047593.lua": "b263b5e604a263909dd0a6b168dd95e661fabda6574d40bab127b0a712db50fb",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "mode": "candidate",
+      "file": "current-equip-controller-candidate.json",
+      "sha256": "a9efbef131410ac74420e4af6113de91b9b79b363c4c654b4227c2d93ccdcaf5",
+      "expected_failures": []
+    },
+    {
+      "mode": "old",
+      "file": "current-equip-controller-old.json",
+      "sha256": "a40cc8622053efadb833f718c065fc89eeb13e27aa4ec52d10bbe92170cd0cf4",
+      "expected_failures": [
+        1,
+        5
+      ]
+    },
+    {
+      "mode": "no-equip",
+      "file": "current-equip-controller-no-equip.json",
+      "sha256": "580069e17268be412bf232808e58d444f6e846dc5846841f5246fcd422394716",
+      "expected_failures": [
+        0,
+        1,
+        4,
+        5,
+        8,
+        9
+      ]
+    }
+  ],
+  "manifest": "equip-controller-repair-files.json",
+  "manifest_sha256": "32c9985f8f2a0ca0c54b073303e3a40e6339291f69a9e481d8d1e97f17547a6d",
+  "helper_sha256": "a42455aadcd3fffbb29c3840318ed902d9725f2cde9ef03f25d5c70c0134e59b",
+  "family_scan": "current-equip-controller-family-review.json",
+  "family_scan_sha256": "5ac45f71b5b0a032cb3a61a5085d04b60b221eb94abc564b5432a0bab1b3f5dc"
+}

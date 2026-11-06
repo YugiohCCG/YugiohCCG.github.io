@@ -80,7 +80,7 @@ function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 			aux.FCheckAdditional=nil
 			if mat and #mat>0 and Duel.GetLocationCountFromEx(tp,tp,mat,tc)>0 and not aux.NecroValleyNegateCheck(mat) then
 				tc:SetMaterial(mat)
-				if Duel.Remove(mat,POS_FACEUP,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)>0 then
+				if Duel.Remove(mat,POS_FACEUP,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==#mat then
 					Duel.BreakEffect()
 					if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then
 						tc:CompleteProcedure()

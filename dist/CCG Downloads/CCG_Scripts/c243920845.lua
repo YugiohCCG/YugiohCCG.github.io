@@ -47,6 +47,7 @@ s.search_codes={
 	[11593137]=true,
 	[12071500]=true,
 	[12644061]=true,
+	[13068112]=true,
 	[13486638]=true,
 	[13604200]=true,
 	[13935001]=true,
@@ -212,10 +213,12 @@ s.search_codes={
 	[85325774]=true,
 	[85555787]=true,
 	[85562745]=true,
+	[86457955]=true,
 	[86509711]=true,
 	[86547356]=true,
 	[87091930]=true,
 	[87210505]=true,
+	[87465873]=true,
 	[88001391]=true,
 	[88346805]=true,
 	[88504133]=true,
@@ -256,6 +259,7 @@ s.search_codes={
 	[100100080]=true,
 	[100100513]=true,
 	[100101003]=true,
+	[100270002]=true,
 	[120130040]=true,
 	[120130041]=true,
 	[120150041]=true,
@@ -326,6 +330,13 @@ s.search_codes={
 	[120305025]=true,
 	[120305026]=true,
 	[120306060]=true,
+	[120309015]=true,
+	[120309016]=true,
+	[120309017]=true,
+	[120309019]=true,
+	[120310052]=true,
+	[120310062]=true,
+	[120311026]=true,
 	[121191224]=true,
 	[121191263]=true,
 	[121191286]=true,
@@ -466,11 +477,16 @@ s.search_codes={
 	[224751741]=true,
 	[238136421]=true,
 	[239245471]=true,
+	[239935099]=true,
+	[239935100]=true,
+	[239935101]=true,
+	[239935102]=true,
 	[248788543]=true,
 	[251331463]=true,
 	[255277197]=true,
 	[255832330]=true,
 	[259017109]=true,
+	[259758294]=true,
 	[419712005]=true,
 	[511002648]=true,
 }
@@ -487,9 +503,12 @@ function s.initial_effect(c)
 	e1:SetOperation(s.spop)
 	c:RegisterEffect(e1)
 end
-function s.rtfilter(c,e,tp)
+function s.rteligible(c)
 	return c:IsFaceup() and c:IsAttribute(ATTRIBUTE_SEARCH) and c:IsSummonLocation(LOCATION_EXTRA)
-		and c:IsAbleToExtra() and c:IsCanBeEffectTarget(e) and Duel.GetMZoneCount(tp,c)>0
+		and c:IsAbleToExtra()
+end
+function s.rtfilter(c,e,tp)
+	return s.rteligible(c) and c:IsCanBeEffectTarget(e) and Duel.GetMZoneCount(tp,c)>0
 end
 function s.thfilter(c)
 	if not (c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsAbleToHand()) then return false end
@@ -514,7 +533,7 @@ end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and s.rtfilter(tc,e,tp)) then return end
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsControler(tp) and tc:IsLocation(LOCATION_MZONE) and s.rteligible(tc) and Duel.GetMZoneCount(tp,tc)>0) then return end
 	if Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==0 or not tc:IsLocation(LOCATION_EXTRA) then return end
 	if not (c:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0) then return end
 	if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end

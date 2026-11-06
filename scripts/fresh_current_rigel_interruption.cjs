@@ -1,0 +1,23 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),Module=require('node:module'),assert=require('node:assert/strict');
+const file=path.join(__dirname,'fresh_current_rigel_material_atk.cjs');let s=fs.readFileSync(file,'utf8');
+function rep(a,b){assert(s.includes(a),a);s=s.replace(a,b);}
+rep('filler=900009103;','filler=900009103,response=900009207;');
+rep('SelectIdleCMDAction:A,OcgQueryFlags:Q}','SelectIdleCMDAction:A,OcgQueryFlags:Q,SelectBattleCMDAction:B}');
+rep("[['ordinary',0,0],['mixed',1,2],['links',2,4]]","[['baseline',1,2],['effect',1,2],['activation',1,2],['sourceBanish',1,2]]");
+rep(' const procedure=(final)=>',' cards.set(response,{...base,code:response,type:0x100004});const procedure=(final)=>');
+rep("if(name==='c0.lua')return '';", "if(name==='c0.lua')return '';if(name==='c'+response+'.lua')return `local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_CHAINING) e:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode(${boss}) end) e:SetOperation(function(e,tp,eg,ep,ev,re) ${process.argv.includes('--no-response')?'do end':scenario==='effect'?'assert(Duel.NegateEffect(ev))':scenario==='activation'?'assert(Duel.NegateActivation(ev))':`assert(Duel.Remove(re:GetHandler(),POS_FACEUP,REASON_EFFECT)==1)`} end) c:RegisterEffect(e) end`;");
+rep("if(process.argv.includes('--no-bonus'))lua=lua.replace('e1:SetValue(val)','e1:SetValue(0)');", "if(process.argv.includes('--no-use-limit'))lua=lua.replace('e5:SetCountLimit(1,id)','do end');if(process.argv.includes('--no-relation'))lua=lua.replace('if not (c:IsRelateToEffect(e) and c:IsFaceup()) then return end','do end');");
+rep('activated=false,done=false','activated=false,interrupted=false,turn=0,done=false');
+rep('add(boss,L.EXTRA,0,0,P.FACEDOWN_DEFENSE);',"add(boss,L.EXTRA,0,0,P.FACEDOWN_DEFENSE);add(filler,L.MZONE,0,4);if(scenario!=='baseline')add(response,L.SZONE,1,0,P.FACEDOWN_DEFENSE);");
+rep('trace.push(...ms);','trace.push(...ms);turn+=ms.filter(m=>m.type===M.NEW_TURN).length;');
+rep('if(p.type===M.SELECT_IDLECMD){if(made<preps)', 'if(p.type===M.SELECT_IDLECMD){if(p.player!==0||turn<3){core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.TO_EP});continue;}if(made<preps)');
+const a=s.indexOf('else{const c=core.duelQueryLocation'),b=s.indexOf('\n  else if(p.type===M.SELECT_CARD)',a);assert(a>0&&b>a);
+s=s.slice(0,a)+`else{const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.ATTACK,controller:0,location:L.MZONE}).find(c=>c?.code===boss);assert.equal(interrupted,scenario!=='baseline');assert(!p.activates.some(c=>c.code===boss),'Named use consumed after successful or negated activation');if(scenario==='sourceBanish'){assert(!c);assert(trace.some(m=>m.type===M.MOVE&&m.card===boss&&m.to.location===L.REMOVED),'Actual source banishment');}else assert.equal(c.attack,scenario==='baseline'?4000:2000,'Actual resolved ATK');core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.TO_BP});}}
+  else if(p.type===M.SELECT_BATTLECMD){assert.equal(p.attacks.some(c=>c.code===filler),scenario!=='baseline','Other monster attack lock only after successful source-related resolution');assert(trace.some(m=>m.type===M.CHAINING&&m.code===boss&&m.chain_size===1));if(scenario!=='baseline')assert(trace.some(m=>m.type===M.CHAINING&&m.code===response&&m.chain_size===2),'Actual CL2 interruption');done=true;}
+`+s.slice(b);
+rep("else if(p.type===M.SELECT_CHAIN)core.duelSetResponse(duel,{type:R.SELECT_CHAIN,index:null});", "else if(p.type===M.SELECT_CHAIN){const i=p.selects.findIndex(c=>c.code===response);if(i>=0&&!interrupted){interrupted=true;core.duelSetResponse(duel,{type:R.SELECT_CHAIN,index:i});}else core.duelSetResponse(duel,{type:R.SELECT_CHAIN,index:null});}");
+rep("const suffix=process.argv.includes('--old-source')?'-old-source':process.argv.includes('--candidate')?'-candidate':process.argv.includes('--no-bonus')?'-no-bonus':process.argv.includes('--original-procedure')?'-original-procedure':'';","const control=['no-response','no-use-limit','no-relation'].find(v=>process.argv.includes('--'+v));const suffix=control?'-'+control:'';");
+rep('current-rigel-material-atk','current-rigel-interruption');
+s=s.replace(/scope:'Full Rigel effect source[^']*'/,"scope:'Full Rigel/current installed metadata/corrected transport/no Lua API adapter. Paid fixed Link source with genuine Link2 materials. Actual CL1 ignition/CL2 effect or activation negation or source banishment, native ATK and ally attack menu, named use consumed. Original general Link helper/full-card/live Omega separate. Link monsters cannot be turned facedown, so no illegal facedown fixture.'");
+const m=new Module(file,module);m.filename=file;m.paths=module.paths;m._compile(s,file);

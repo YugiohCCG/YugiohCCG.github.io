@@ -1,17 +1,12 @@
 local s,id=GetID()
 local STRING_ID=133072906
 local SET_GLITCHLING=0x9894
+local COUNTER_CORRUPTION=0x1994
+local CARD_CORRUPTION=259546637
 function s.initial_effect(c)
 	aux.AddCodeList(c,259961648)
 	c:EnableReviveLimit()
 	aux.EnablePendulumAttribute(c)
-	--Special Summon limit
-	local e0=Effect.CreateEffect(c)
-	e0:SetType(EFFECT_TYPE_SINGLE)
-	e0:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
-	e0:SetCode(EFFECT_SPSUMMON_CONDITION)
-	e0:SetValue(aux.ritlimit)
-	c:RegisterEffect(e0)
 	--Pendulum Effect: replace the regular Pendulum Summon with a Ritual Summon
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(STRING_ID,0))
@@ -56,6 +51,7 @@ function s.initial_effect(c)
 	Duel.AddCustomActivityCounter(id,ACTIVITY_SPSUMMON,s.counterfilter)
 end
 s.listed_series={SET_GLITCHLING}
+s.counter_add_list={COUNTER_CORRUPTION}
 function s.splimit(e,c)
 	return not (c:IsLocation(LOCATION_EXTRA)
 		or c:IsSetCard(SET_GLITCHLING)
@@ -76,6 +72,13 @@ function s.register_lock(e,tp)
 	e1:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e1,tp)
 end
+function s.corruptionfilter(c)
+	return c:IsFaceup() and not c:IsDisabled() and c:IsCode(CARD_CORRUPTION)
+end
+function s.countercap(tp,lv)
+	if not Duel.IsExistingMatchingCard(s.corruptionfilter,tp,LOCATION_SZONE,0,1,nil) then return 0 end
+	return math.min(lv,Duel.GetCounter(tp,1,1,COUNTER_CORRUPTION))
+end
 function s.otherpzone(c,pc)
 	return c:IsFaceup() and c~=pc and c:IsRace(RACE_CYBERSE) and c:IsType(TYPE_PENDULUM)
 end
@@ -93,8 +96,8 @@ function s.pzritfilter(c,e,tp,lscale,rscale)
 		and (not c:IsLocation(LOCATION_EXTRA) or c:IsFaceup())
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true)
 end
-function s.pzmatfilter(c)
-	return c:IsFaceup() and c:IsRace(RACE_CYBERSE) and c:GetLevel()>0
+function s.pzmatfilter(c,e)
+	return c:IsFaceup() and c:IsRace(RACE_CYBERSE) and c:GetLevel()>0 and c:IsReleasableByEffect() and not c:IsImmuneToEffect(e)
 end
 function s.pzexcheck(sg,tp,mat)
 	local exct=sg:FilterCount(Card.IsLocation,nil,LOCATION_EXTRA)
@@ -107,7 +110,8 @@ function s.pzmatcheck(g,lv,ct,tp,sg)
 			if not mc:IsCanBeRitualMaterial(rc) then return false end
 		end
 	end
-	return g:GetSum(Card.GetLevel)>=lv and Duel.GetMZoneCount(tp,g)>=ct and s.pzexcheck(sg,tp,g)
+	return g:GetSum(Card.GetLevel)+s.countercap(tp,lv)>=lv and Duel.GetMZoneCount(tp,g)>=sg:FilterCount(Card.IsLocation,nil,LOCATION_HAND)
+		and Duel.GetUsableMZoneCount(tp)+#g>=ct and s.pzexcheck(sg,tp,g)
 end
 function s.pzritcheck(g,e,tp,mg)
 	local lv=g:GetSum(Card.GetLevel)
@@ -123,7 +127,7 @@ function s.pzritgroup(e,tp,og)
 	else
 		rg=Duel.GetMatchingGroup(s.pzritfilter,tp,LOCATION_HAND+LOCATION_EXTRA,0,nil,e,tp,lscale,rscale)
 	end
-	local mg=Duel.GetMatchingGroup(s.pzmatfilter,tp,LOCATION_MZONE,0,nil)
+	local mg=Duel.GetMatchingGroup(s.pzmatfilter,tp,LOCATION_MZONE,0,nil,e)
 	return rg,mg
 end
 function s.pendulumchecklist()
@@ -149,10 +153,13 @@ function s.pzritproc(e,tp,eg,ep,ev,re,r,rp,c,sg,og)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 	local mat=mg:SelectSubGroup(tp,s.pzmatcheck,true,1,#mg,lv,#rituals,tp,rituals)
 	if not mat then return end
+	local deficit=lv-mat:GetSum(Card.GetLevel)
+	if deficit>0 and not Duel.RemoveCounter(tp,1,1,COUNTER_CORRUPTION,deficit,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) then return end
 	for tc in aux.Next(rituals) do
 		tc:SetMaterial(mat)
 	end
 	Duel.ReleaseRitualMaterial(mat)
+	if mat:IsExists(Card.IsLocation,1,nil,LOCATION_MZONE) then return end
 	aux.PendulumChecklist=s.pendulumchecklist()|(0x1<<tp)
 	sg:Merge(rituals)
 	Duel.HintSelection(Group.FromCards(e:GetHandler()))
@@ -165,7 +172,7 @@ function s.pzcomplete(e,tp,eg,ep,ev,re,r,rp)
 	for tc in aux.Next(g) do tc:CompleteProcedure() end
 end
 function s.revealfilter(c)
-	return c:IsRace(RACE_CYBERSE) and (c:IsType(TYPE_RITUAL) or c:IsType(TYPE_NORMAL))
+	return not c:IsPublic() and c:IsRace(RACE_CYBERSE) and (c:IsType(TYPE_RITUAL) or c:IsType(TYPE_NORMAL))
 end
 function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -195,26 +202,26 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.ritfilter(c,e,tp)
-	return c:IsRace(RACE_CYBERSE) and c:IsType(TYPE_RITUAL)
+	return (c:IsLocation(LOCATION_EXTRA) or Duel.GetLocationCount(tp,LOCATION_MZONE)>0) and c:IsRace(RACE_CYBERSE) and c:IsType(TYPE_RITUAL)
 		and (not c:IsLocation(LOCATION_EXTRA) or c:IsFaceup())
 		and (not c:IsLocation(LOCATION_EXTRA) or Duel.GetLocationCountFromEx(tp,tp,nil,c)>0)
 		and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_RITUAL,tp,false,true)
 end
 function s.ritmatfilter(c,rc)
-	return c:IsRace(RACE_CYBERSE) and c:GetLevel()>0 and (not c:IsLocation(LOCATION_DECK) or c:IsAbleToGrave()) and c:IsCanBeRitualMaterial(rc)
+	return c:IsRace(RACE_CYBERSE) and c:GetLevel()>0 and (not c:IsLocation(LOCATION_DECK) or c:IsAbleToGrave()) and c:IsCanBeRitualMaterial(rc) and (c:IsLocation(LOCATION_DECK) or c:IsReleasableByEffect())
 end
-function s.ritcheck(g,lv)
-	return g:GetSum(Card.GetLevel)>=lv
+function s.ritcheck(g,lv,ct)
+	local counters=not g:IsExists(Card.IsLocation,1,nil,LOCATION_DECK) and ct or 0
+	return g:GetSum(Card.GetLevel)+counters>=lv
 end
 function s.canritual(c,e,tp)
 	if not s.ritfilter(c,e,tp) then return false end
 	local mg=Duel.GetMatchingGroup(s.ritmatfilter,tp,LOCATION_HAND+LOCATION_DECK,0,c,c)
 	mg:RemoveCard(c)
-	return #mg>0 and mg:CheckSubGroup(s.ritcheck,1,#mg,c:GetLevel())
+	return #mg>0 and mg:CheckSubGroup(s.ritcheck,1,#mg,c:GetLevel(),s.countercap(tp,c:GetLevel()))
 end
 function s.rittg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0
-		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 		and Duel.IsExistingMatchingCard(s.ritfilter,tp,LOCATION_HAND+LOCATION_EXTRA,0,1,nil,e,tp)
 		and Duel.IsExistingMatchingCard(s.canritual,tp,LOCATION_HAND+LOCATION_EXTRA,0,1,nil,e,tp) end
 	s.register_lock(e,tp)
@@ -222,7 +229,6 @@ function s.rittg(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.SetOperationInfo(0,CATEGORY_TOGRAVE,nil,1,tp,LOCATION_DECK)
 end
 function s.ritop(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
 	::cancel::
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local tg=Duel.SelectMatchingCard(tp,s.canritual,tp,LOCATION_HAND+LOCATION_EXTRA,0,1,1,nil,e,tp)
@@ -231,14 +237,17 @@ function s.ritop(e,tp,eg,ep,ev,re,r,rp)
 	local mg=Duel.GetMatchingGroup(s.ritmatfilter,tp,LOCATION_HAND+LOCATION_DECK,0,rc,rc)
 	mg:RemoveCard(rc)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
-	local mat=mg:SelectSubGroup(tp,s.ritcheck,true,1,#mg,rc:GetLevel())
+	local mat=mg:SelectSubGroup(tp,s.ritcheck,true,1,#mg,rc:GetLevel(),s.countercap(tp,rc:GetLevel()))
 	if not mat then goto cancel end
 	if rc:IsLocation(LOCATION_EXTRA) and Duel.GetLocationCountFromEx(tp,tp,nil,rc)<=0 then return end
+	local deficit=rc:GetLevel()-mat:GetSum(Card.GetLevel)
+	if deficit>0 and not Duel.RemoveCounter(tp,1,1,COUNTER_CORRUPTION,deficit,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) then return end
 	rc:SetMaterial(mat)
 	local handmat=mat:Filter(Card.IsLocation,nil,LOCATION_HAND)
 	local deckmat=mat:Filter(Card.IsLocation,nil,LOCATION_DECK)
 	if #handmat>0 then Duel.ReleaseRitualMaterial(handmat) end
-	if #deckmat>0 then Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL) end
+	if #deckmat>0 and Duel.SendtoGrave(deckmat,REASON_EFFECT+REASON_MATERIAL+REASON_RITUAL)~=#deckmat then return end
+	if handmat:IsExists(Card.IsLocation,1,nil,LOCATION_HAND) then return end
 	Duel.BreakEffect()
 	if Duel.SpecialSummon(rc,SUMMON_TYPE_RITUAL,tp,tp,false,true,POS_FACEUP)>0 then
 		rc:CompleteProcedure()

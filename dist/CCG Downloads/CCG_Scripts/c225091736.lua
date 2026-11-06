@@ -73,7 +73,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.ownstain(c,tp)
-	return c:IsControler(tp) and c:IsSetCard(SET_STAIN) and c:IsAbleToHand()
+	return (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup()) and c:IsControler(tp) and c:IsSetCard(SET_STAIN) and c:IsAbleToHand()
 end
 function s.botfilter(c,tp)
 	if c:IsLocation(LOCATION_GRAVE) then

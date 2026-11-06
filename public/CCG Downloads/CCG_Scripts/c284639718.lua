@@ -48,20 +48,20 @@ function s.atkval(e,c)
  return -300*Duel.GetMatchingGroupCount(s.deffilter,e:GetHandlerPlayer(),LOCATION_MZONE,LOCATION_MZONE,nil)
 end
 function s.ownmonster(c)
- return c:IsSetCard(SET_TERRARUMIAN)
+ return c:IsFaceup() and c:IsSetCard(SET_TERRARUMIAN)
 end
 function s.pcon(e,tp)
  return Duel.IsExistingMatchingCard(s.ownmonster,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.destroyfilter(c,handler)
- return c~=handler and c:IsSetCard(SET_TERRARUMIAN) and c:IsDestructable()
+ return c~=handler and c:IsFaceup() and c:IsSetCard(SET_TERRARUMIAN) and c:IsDestructable()
 end
 function s.deckfilter(c)
  return c:IsSetCard(SET_TERRARUMIAN) and c:IsType(TYPE_MONSTER)
   and c:IsType(TYPE_PENDULUM) and not c:IsCode(id) and not c:IsForbidden()
 end
 function s.zonefilter(c,handler)
- return c:IsLocation(LOCATION_MZONE) and s.destroyfilter(c,handler)
+ return s.destroyfilter(c,handler) and Duel.GetMZoneCount(handler:GetControler(),Group.FromCards(c))>0
 end
 function s.ptg(e,tp,eg,ep,ev,re,r,rp,chk)
  local c=e:GetHandler()
@@ -80,7 +80,11 @@ function s.pop(e,tp)
  if not c:IsRelateToEffect(e)
   or not Duel.IsExistingMatchingCard(s.destroyfilter,tp,LOCATION_ONFIELD,0,1,c,c) then return end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
- local g=Duel.SelectMatchingCard(tp,s.destroyfilter,tp,LOCATION_ONFIELD,0,1,1,c,c)
+ local freeZone=Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
+  and Duel.IsExistingMatchingCard(s.zonefilter,tp,LOCATION_MZONE,0,1,c,c)
+ local filter=freeZone and s.zonefilter or s.destroyfilter
+ local location=freeZone and LOCATION_MZONE or LOCATION_ONFIELD
+ local g=Duel.SelectMatchingCard(tp,filter,tp,location,0,1,1,c,c)
  if #g==0 or Duel.Destroy(g,REASON_EFFECT)==0 then return end
  if not c:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
   or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end
@@ -96,8 +100,11 @@ end
 function s.gyfilter(c)
  return c:IsAbleToRemove()
 end
+function s.handfilter(c)
+ return c:IsFaceup() and c:IsDefensePos() and c:IsSetCard(SET_TERRARUMIAN)
+end
 function s.handok(tp)
- return Duel.GetMatchingGroupCount(s.deffilter,tp,LOCATION_MZONE,0,nil)>=2
+ return Duel.GetMatchingGroupCount(s.handfilter,tp,LOCATION_MZONE,0,nil)>=2
   and Duel.GetFieldGroupCount(tp,0,LOCATION_HAND)>0
 end
 function s.rmtg(e,tp,eg,ep,ev,re,r,rp,chk)

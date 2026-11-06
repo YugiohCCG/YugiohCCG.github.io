@@ -41,7 +41,7 @@ function s.initial_effect(c)
  c:RegisterEffect(e4)
 end
 function s.battlefilter(c,tp)
- return c and c:IsControler(tp) and c:IsSetCard(SET_TERRARUMIAN)
+ return c and c:IsFaceup() and c:IsControler(tp) and c:IsSetCard(SET_TERRARUMIAN)
 end
 function s.actcon(e,tp)
  local p=e:GetHandlerPlayer()
@@ -52,16 +52,16 @@ function s.aclimit(e,re,tp)
  return true
 end
 function s.ownmonster(c)
- return c:IsSetCard(SET_TERRARUMIAN)
+ return c:IsFaceup() and c:IsSetCard(SET_TERRARUMIAN)
 end
 function s.pcon(e,tp)
  return Duel.IsExistingMatchingCard(s.ownmonster,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.destroyfilter(c,handler)
- return c~=handler and c:IsSetCard(SET_TERRARUMIAN) and c:IsDestructable()
+ return c~=handler and c:IsFaceup() and c:IsSetCard(SET_TERRARUMIAN) and c:IsDestructable()
 end
 function s.zonefilter(c,handler)
- return c:IsLocation(LOCATION_MZONE) and s.destroyfilter(c,handler)
+ return s.destroyfilter(c,handler) and Duel.GetMZoneCount(handler:GetControler(),Group.FromCards(c))>0
 end
 function s.ptg(e,tp,eg,ep,ev,re,r,rp,chk)
  local c=e:GetHandler()
@@ -81,7 +81,11 @@ function s.pop(e,tp)
  if not c:IsRelateToEffect(e)
   or not Duel.IsExistingMatchingCard(s.destroyfilter,tp,LOCATION_ONFIELD,0,1,c,c) then return end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
- local g=Duel.SelectMatchingCard(tp,s.destroyfilter,tp,LOCATION_ONFIELD,0,1,1,c,c)
+ local freeZone=Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
+  and Duel.IsExistingMatchingCard(s.zonefilter,tp,LOCATION_MZONE,0,1,c,c)
+ local filter=freeZone and s.zonefilter or s.destroyfilter
+ local location=freeZone and LOCATION_MZONE or LOCATION_ONFIELD
+ local g=Duel.SelectMatchingCard(tp,filter,tp,location,0,1,1,c,c)
  if #g==0 or Duel.Destroy(g,REASON_EFFECT)==0 then return end
  if not c:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
   or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end
@@ -101,7 +105,7 @@ function s.revivefilter(c,e,tp)
   and not c:IsCode(id) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function s.oppfilter(c)
- return c:IsFaceup() and c:IsSummonType(SUMMON_TYPE_SPECIAL)
+ return aux.NegateMonsterFilter(c) and c:IsSummonType(SUMMON_TYPE_SPECIAL)
 end
 function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
  local ownok=Duel.GetLocationCount(tp,LOCATION_MZONE)>0

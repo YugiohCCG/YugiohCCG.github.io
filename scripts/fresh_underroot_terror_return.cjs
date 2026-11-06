@@ -6,7 +6,7 @@ async function main(){
  const {OcgMessageType:M,OcgResponseType:R,OcgLocation:L,OcgPosition:P,OcgProcessResult:S,SelectIdleCMDAction:A,OcgQueryFlags:Q}=mod;
  const officialTrap=process.argv.includes('--official-trap');
  const core=await mod.default({sync:true,print(){},printErr(){}}),blossom=process.argv.includes('--blossom'),terror=blossom?238272435:238272434,under=officialTrap?11110218:900000691,spell=900000692,filler=900000693;
- const db=new DatabaseSync(path.join(ROOT,'output/fresh-ccg-september/candidate-CCG_v1.db'),{readOnly:true}),r=db.prepare('select * from datas where id=?').get(terror);db.close();
+ const db=new DatabaseSync(path.join(ROOT,'public/CCG Downloads/CCG_Database/CCG_v1.db'),{readOnly:true}),r=db.prepare('select * from datas where id=?').get(terror);db.close();
  const base={alias:0,setcodes:[],type:33,level:3,attribute:1,race:1n,attack:300,defense:200,lscale:0,rscale:0,link_marker:0},results=[];
  for(const from of ['grave','removed']){
   const trace=[],logs=[],cards=new Map([[terror,{...base,code:terror,setcodes:[0xA110,0xA111],type:Number(r.type),level:Number(r.level)&255,attribute:Number(r.attribute),race:BigInt(r.race),attack:Number(r.atk),defense:Number(r.def)}],[under,{...base,code:under,setcodes:[0xA110,0xA111]}],[spell,{...base,code:spell,type:2,level:0,attribute:0,race:0n,attack:0,defense:0}],[filler,{...base,code:filler}]]);
@@ -20,7 +20,7 @@ async function main(){
    const add=(code,location)=>core.duelNewCard(duel,{team:0,duelist:0,code,controller:0,location,sequence:0,position:P.FACEUP_ATTACK});add(terror,from==='grave'?L.GRAVE:L.REMOVED);if(!blossom)add(under,from==='grave'?L.REMOVED:L.GRAVE);add(spell,L.HAND);for(const player of [0,1])for(let i=0;i<5;i++)core.duelNewCard(duel,{team:player,duelist:0,code:filler,controller:player,location:L.DECK,sequence:0,position:P.FACEUP_ATTACK});
    core.startDuel(duel);
    for(let step=0;step<95&&!done;step++){
-    const state=core.duelProcess(duel),messages=core.duelGetMessage(duel);trace.push(...messages);if(logs.some(l=>l.type===0))throw Error(logs.filter(l=>l.type===0).map(l=>l.message).join('; '));if(state===S.END)throw Error('Duel ended');if(state!==S.WAITING)continue;
+    const state=core.duelProcess(duel),messages=core.duelGetMessage(duel);trace.push(...messages);if(messages.some(m=>m.type===M.CHAINING&&m.code===terror))triggered=true;if(logs.some(l=>l.type===0))throw Error(logs.filter(l=>l.type===0).map(l=>l.message).join('; '));if(state===S.END)throw Error('Duel ended');if(state!==S.WAITING)continue;
     const p=messages.at(-1);if(!p)throw Error('Missing prompt');
     if(p.type===M.SELECT_IDLECMD){if(!activated){const index=p.activates.findIndex(c=>c.code===spell);if(index<0)throw Error('Move Spell unavailable');activated=true;core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});}else{const h=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:blossom?L.MZONE:L.HAND});if(!triggered||!h.some(c=>c?.code===terror)||!blossom&&!h.some(c=>c?.code===under))throw Error(`Recovery mismatch triggered=${triggered}`);done=true;}}
     else if(p.type===M.SELECT_CHAIN){const index=p.player===0?p.selects.findIndex(c=>c.code===terror):-1;if(index>=0)triggered=true;core.duelSetResponse(duel,{type:R.SELECT_CHAIN,index:index>=0?index:null});}

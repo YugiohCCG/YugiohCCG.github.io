@@ -73,7 +73,7 @@ function s.deckop(e,tp)
 end
 function s.mvcon(e,tp) return e:GetHandler():IsType(TYPE_TRAP) and e:GetHandler():GetSequence()<5 and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 end
 function s.domove(c,tp)
-	if not c:IsLocation(LOCATION_SZONE) or not c:IsControler(tp) then return end
+	if not c:IsLocation(LOCATION_SZONE) or not c:IsControler(tp) or Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOZONE)
 	local fd=Duel.SelectDisableField(tp,1,LOCATION_SZONE,0,0)
 	local seq=math.floor(math.log(fd,2)+0.5)-8

@@ -1,0 +1,31 @@
+{
+  "scanned": 711,
+  "return_callers": [
+    {
+      "passcode": 247789143,
+      "name": "Stained Sorceress Silphia",
+      "source_sha256": "2fc293d43e38ec9c58e62c52dfd34a03cf1c48f7c46a3b814ccf7fd493812f0d",
+      "finding": "Schedules the selected group and checks banishment location. Test departure and a later temporary banishment. Also test partial movement at initial removal."
+    },
+    {
+      "passcode": 256110263,
+      "name": "Windborne Eye of the Storm",
+      "source_sha256": "aed4f2efaa4f910a44b35848686fe3973960e52a247ca41923bf0a5b335c2a1f",
+      "finding": "Already marks the banished card and checks the marker before return."
+    },
+    {
+      "passcode": 215006791,
+      "name": "Muntith, Windborne Skydragon of the Shining Sun",
+      "source_sha256": "c1c8167aeb448cd156955be8b1909af3dda32cee0e12c2596c5cd7c4ffeb0cd8",
+      "finding": "Already marks the banishment and filters the return group by the marker."
+    },
+    {
+      "passcode": 241504188,
+      "name": "Shining Brigade - Absolute Supremacy",
+      "source_sha256": "6f7efc87931c17e4f58f3ba03e97b81199b08a7e6523031afa508c7f4e10b007",
+      "finding": "Schedules the card directly with no explicit marker. Test departure and a later temporary banishment."
+    }
+  ],
+  "scope": "Source triage. Existing Silphia tests cover ordinary own and opposing returns. They do not distinguish a later temporary banishment. Two candidates require original native reproduction.",
+  "paired_effects": "Kaboom Papa already requires both selected roles and two destructions before its wipe. Brazier already checks the merged pair. Triceron target-group resolution uses legacy CHAININFO_TARGET_CARDS."
+}

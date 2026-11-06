@@ -1,0 +1,74 @@
+{
+  "finding": "Six GY or banished target effects now preserve selected targets after late targeting protection.",
+  "qualification": "Twelve original native cases cover two Eclipse draws, Galatea return, Ether revival, Branching token and Embers revival and departure redirect. Neutral draw, Fusion and summon setups. Six old protection cases fail.",
+  "family_scan_scope": "711-script scan for named operation calls to NecroValleyFilter wrapping a targetability predicate found eight cards. Six repaired. Morningstar passes nil at resolution and already skips targetability. Orcustograph original setup requires missing CheckSynchroMaterial and remains queued.",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_off_field_target_protection_batch.py": "1a5f68c2919519f57175639486eef1cd668c8e2457cede96ab94ae545121af85",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_off_field_target_protection.cjs": "fb0e203b3e168076294da27d047a911f308cc4d86fd817ce633ea73b49101cdb",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_off_field_target_protection_embers.cjs": "519451c5bdd1f0dd4a9a8dad8725bd334eda9a8fa910b8fd13dc9c8f31baea4b",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_off_field_target_protection_repair.cjs": "f74cd8973c066f1825c82c152e59a72deec0b588d445f4241d4aa898f203e9ed",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\off-field-target-protection-before-repair\\c259652372.lua": "9e2ec5bb30388b45725e77282b599522a8ba770653de8289ebcfa5bb53bcd968",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\off-field-target-protection-before-repair\\c259926839.lua": "22c95ddf69daa4620853fc825bd0efb7880ad01d2a9fb469b03a69e32fadbb5a",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\off-field-target-protection-before-repair\\c259646610.lua": "33d7f598f8ffefe9e3e1eeaef1b4cc4f1ab36819726b56783fc38b531d1df45e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\off-field-target-protection-before-repair\\c259223502.lua": "5406f877d77fd308b72f627f4ae351588117b70988e497f1c34c51e7d53450f1",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\off-field-target-protection-before-repair\\c222257685.lua": "5ff9f9803f3c14211a479419c69b4a039e9cdd2fab5dfa7d5ff9a625d1f03807",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\off-field-target-protection-before-repair\\c256928871.lua": "0186f6772c21261eddc4d0ed85f17cf2e19db08a80fe4f8df66ae39cc8ba8743",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "mode": "candidate",
+      "cases": 10,
+      "file": "current-off-field-target-protection-candidate.json",
+      "sha256": "f1d1397ba6d0632f193c3ddfd92b8eeb95f879a24658f1d039f0d047b369d9b9",
+      "expected_failures": []
+    },
+    {
+      "mode": "old",
+      "cases": 10,
+      "file": "current-off-field-target-protection-old.json",
+      "sha256": "835389d72bb9854dca14d389b25a7b8d61894b1a7edf6a90fa98567231ca0571",
+      "expected_failures": [
+        1,
+        3,
+        5,
+        7,
+        9
+      ]
+    },
+    {
+      "mode": "candidate",
+      "cases": 2,
+      "file": "current-off-field-target-protection-embers-candidate.json",
+      "sha256": "2c6de64cf82f399c4ecd1129140fa8a3598846eb14e1b017cc3a33653d5dc42e",
+      "expected_failures": []
+    },
+    {
+      "mode": "old",
+      "cases": 2,
+      "file": "current-off-field-target-protection-embers-old.json",
+      "sha256": "8840c4f3579e39d29c5a7fa082bc310ecb794462306277bea7b6ee3e3fb76bf4",
+      "expected_failures": [
+        1
+      ]
+    }
+  ],
+  "manifest": "off-field-target-protection-repair-files.json",
+  "manifest_sha256": "433e1e6bf278396369707d66042c885c188b1b1bda4ee18faf6894be66664e5b",
+  "helper_sha256": "f74cd8973c066f1825c82c152e59a72deec0b588d445f4241d4aa898f203e9ed",
+  "family_scan": "current-rush-target-control-review.json",
+  "family_scan_sha256": "d5cdea9c5148e11cee6b66db5567b86b4ca0e79778ad2b7a25a3fadd2b8bdeb5"
+}

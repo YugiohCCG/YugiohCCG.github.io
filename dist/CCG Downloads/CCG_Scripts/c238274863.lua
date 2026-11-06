@@ -32,6 +32,7 @@ function s.initial_effect(c)
  e3:SetCode(EFFECT_DESTROY_REPLACE)
  e3:SetCountLimit(1,id+200)
  e3:SetTarget(s.reptg)
+ e3:SetValue(function(e,c) return c==e:GetHandler():GetEquipTarget() end)
  e3:SetOperation(s.repop)
  c:RegisterEffect(e3)
 end

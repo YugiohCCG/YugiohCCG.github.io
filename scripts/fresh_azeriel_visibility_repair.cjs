@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');function corrected(s){const a='return c:IsSummonPlayer(tp) and c:IsSetCard(0x4ac0) and (c:IsType(TYPE_SYNCHRO) or c:IsType(TYPE_XYZ))',b='return c:IsFaceup() and c:IsSummonPlayer(tp) and c:IsSetCard(0x4ac0) and (c:IsType(TYPE_SYNCHRO) or c:IsType(TYPE_XYZ))';assert.equal(s.split(a).length-1,1);return s.replace(a,b);}module.exports={corrected};

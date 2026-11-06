@@ -626,7 +626,7 @@ Neither player can Summon Effect Monsters to Main Monster Zones in this card's c
 <details>
 <summary>Exact current source text</summary>
 
-You can reveal this card in your hand and 1 "Ohmen" monster in your Deck; Special Summon both monsters. You cannot Special Summon monsters the turn you use this effect except "Ohmen" monsters. If this card is used as Link Material: You can target 1 "Ohmechanic" monster you control; place 1 Current Counter on it for each "Ohmen" monster you control. You can only use each effect of "Carcel, the Dark Ohmen" once per turn.
+You can reveal this card in your hand and 1 "Ohmen" monster in your Deck; Special Summon both monsters. You cannot Special Summon monsters the turn you use this effect except "Ohmen" monsters. If this card is used as Link Material: You can target 1 "Ohmenchanic" monster you control; place 1 Current Counter on it for each "Ohmen" monster you control. You can only use each effect of "Carcel, the Dark Ohmen" once per turn.
 
 </details>
 
@@ -646,11 +646,11 @@ You can reveal this card in your hand and 1 "Ohmen" monster in your Deck; Specia
 <details>
 <summary>Exact current source text</summary>
 
-If your monster becomes co-linked, place 1 Current Counter on it. If your opponent activates a Spell Card or effect, and you control an "Ohmechanic" monster: You can target 1 monster your opponents controls; place that target in your zone your co-linked monster points to, and take control of it. You can only activate 1 "Ohmen Surge" per turn
+If your monster becomes co-linked, place 1 Current Counter on it. If your opponent activates a Spell Card or effect, and you control an "Ohmenchanic" monster: You can target 1 monster your opponents controls; place that target in your zone your co-linked monster points to, and take control of it. You can only activate 1 "Ohmen Surge" per turn
 
 </details>
 
-### 31. Siemens, the Ohmechanic Conductor - 259405917
+### 31. Siemens, the Ohmenchanic Conductor - 259405917
 
 - **Source ordinal:** 300. **Script:** [`c259405917.lua`](<../public/CCG Downloads/CCG_Scripts/c259405917.lua>)
 - **Problem/question to solve:** Prevented the move effect from activating without a free Main Monster Zone. Custom co-link destination movement remains an in-engine UI/ruling risk.
@@ -671,11 +671,11 @@ This card's ATK become 0 while it has no Current Counters on it. This card gains
 1+: During your Main Phase: You can Special Summon 1 "Ohmen" monster from your GY.
 2+: (Quick Effect): Move 1 monster on the controller's field that your co-linked monster points to.
 3+: (Quick Effect): You can remove all Current Counters from this card, then target 1 monster your opponents controls; place that target in your Main Monster Zone your co-linked monster points to.
-You can only use each effect of "Siemens, the Ohmechanic Conductor" once per turn.
+You can only use each effect of "Siemens, the Ohmenchanic Conductor" once per turn.
 
 </details>
 
-### 32. Farad, the Ohmechanic Capacitor - 259350270
+### 32. Farad, the Ohmenchanic Capacitor - 259350270
 
 - **Source ordinal:** 301. **Script:** [`c259350270.lua`](<../public/CCG Downloads/CCG_Scripts/c259350270.lua>)
 - **Problem/question to solve:** Custom Current Counter traversal/removal across mutually linked cards needs engine validation.
@@ -696,11 +696,11 @@ This card's ATK become 0 while it has no Current Counters on it. This card gains
 1+: During the Main Phase: You can target 1 card your opponents control; banish it.
 2+: During the Main Phase: You can target 1 "Ohmen" card in your GY or banishment; add it to your hand.
 3+: (Quick effect): remove all Current Counters on this card and Link Monsters co-linked to it; banish up to 3 cards in your opponent GY.
-You can only use each effect of "Farad, the Ohmechanic Capacitor" once per turn.
+You can only use each effect of "Farad, the Ohmenchanic Capacitor" once per turn.
 
 </details>
 
-### 33. Coulomb, the Ohmechanic Charger - 259841490
+### 33. Coulomb, the Ohmenchanic Charger - 259841490
 
 - **Source ordinal:** 303. **Script:** [`c259841490.lua`](<../public/CCG Downloads/CCG_Scripts/c259841490.lua>)
 - **Problem/question to solve:** Prevented the Link-monster move effect from activating without a free Main Monster Zone. Immediate Link Summon and custom zone movement need live Extra Monster Zone validation.
@@ -721,11 +721,11 @@ This card ATK become 0 while it has no Current Counters on it. This card gains e
 1+: You can move 1 Link monster you controls to another of your Main Monster zones, then place 1 Current Counter on it.
 2+: During your Main Phase: you can add 1 "Ohmen" Spell/Trap card from your Deck yo your hand.
 3+: During the Main Phase (Quick Effect): You can remove all Current Counters from this card; immediately after this effect resolves, Link Summon 1 "Ohmen" monster from your Extra Deck using monsters you control as material.
-You can only use each effect of "Coulomb, the Ohmechanic Charger" once per turn.
+You can only use each effect of "Coulomb, the Ohmenchanic Charger" once per turn.
 
 </details>
 
-### 34. Ampere, the Ohmechanic Intensity - 259479044
+### 34. Ampere, the Ohmenchanic Intensity - 259479044
 
 - **Source ordinal:** 304. **Script:** [`c259479044.lua`](<../public/CCG Downloads/CCG_Scripts/c259479044.lua>)
 - **Problem/question to solve:** Custom counter placement/protection over co-linked monsters needs live validation.
@@ -744,12 +744,12 @@ You can only use each effect of "Coulomb, the Ohmechanic Charger" once per turn.
 This card's ATK become 0 while it has no Current Counters on it. This card gains the following effects based on the number of Current Counters on it:
 1+: During your Main Phase: You can add 1 "Ohmen" monster from your Deck to your hand, then discard 1 card.
 2+: Place 1 Current Counter on each monster this card is co-linked to.
-3+: "Ohmechanic" monsters co-linked to this card cannot be destroyed by battle or card effects.
-You can only use each effect of "Ampere, the Ohmechanic Intensity" once per turn.
+3+: "Ohmenchanic" monsters co-linked to this card cannot be destroyed by battle or card effects.
+You can only use each effect of "Ampere, the Ohmenchanic Intensity" once per turn.
 
 </details>
 
-### 35. Carcel, the Ohmechanic Light - 259033429
+### 35. Carcel, the Ohmenchanic Light - 259033429
 
 - **Source ordinal:** 305. **Script:** [`c259033429.lua`](<../public/CCG Downloads/CCG_Scripts/c259033429.lua>)
 - **Problem/question to solve:** Moved mass Current Counter removal out of target and into cost. EVENT_ADJUST co-link transition tracking and mass counter consumption need live validation.
@@ -765,8 +765,8 @@ You can only use each effect of "Ampere, the Ohmechanic Intensity" once per turn
 <details>
 <summary>Exact current source text</summary>
 
-3+ monsters including an "Ohmechanic" monster
-If this card is Link Summoned, You can Special Summon 1 "Ohmen" monster from your GY. This card's ATK is doubled while it has a Current Counter on it. If this card becomes co-linked, place Current Counters equal to the combined Link Ratings of all monsters co-linked to this card on this card, and all monsters you control that are co-linked to this card. When your opponent activates a card or effect (Quick Effect): You can remove all Current Counters on your field (min 5); destroy all monsters your opponent controls. You can only use each effect of "Carcel, the Ohmechanic Light" once per turn.
+3+ monsters including an "Ohmenchanic" monster
+If this card is Link Summoned, You can Special Summon 1 "Ohmen" monster from your GY. This card's ATK is doubled while it has a Current Counter on it. If this card becomes co-linked, place Current Counters equal to the combined Link Ratings of all monsters co-linked to this card on this card, and all monsters you control that are co-linked to this card. When your opponent activates a card or effect (Quick Effect): You can remove all Current Counters on your field (min 5); destroy all monsters your opponent controls. You can only use each effect of "Carcel, the Ohmenchanic Light" once per turn.
 
 </details>
 
@@ -786,7 +786,7 @@ If this card is Link Summoned, You can Special Summon 1 "Ohmen" monster from you
 <details>
 <summary>Exact current source text</summary>
 
-When this card is activated: You can Special Summon 1 Thunder monster from your hand, or, if you control an "Ohmechanic" monster, you can Special Summon 1 "Ohmen" monster from your GY instead. Co-linked monsters you controls with a Current Counter cannot be targeted by your opponent card effect. Once per turn: You can move 1 monster you control to another Main Monster zone, then place 1 Current Counter on all co-linked monsters you control. You can only activate 1 "Ohmen Beacon" per turn.
+When this card is activated: You can Special Summon 1 Thunder monster from your hand, or, if you control an "Ohmenchanic" monster, you can Special Summon 1 "Ohmen" monster from your GY instead. Co-linked monsters you controls with a Current Counter cannot be targeted by your opponent card effect. Once per turn: You can move 1 monster you control to another Main Monster zone, then place 1 Current Counter on all co-linked monsters you control. You can only activate 1 "Ohmen Beacon" per turn.
 
 </details>
 
@@ -2449,7 +2449,7 @@ If you control a "NiuHao" monster, apply 1 of these effects.\n Change 1 monster 
 
 </details>
 
-### 119. Volt, the Ohmechanic Chocker - 259519336
+### 119. Volt, the Ohmenchanic Chocker - 259519336
 
 - **Source ordinal:** 302. **Script:** [`c259519336.lua`](<../public/CCG Downloads/CCG_Scripts/c259519336.lua>)
 - **Problem/question to solve:** Moved all-counter payment to cost and made the destruction correctly non-targeting. Custom counter-threshold continuous/Quick interaction needs live validation after the confirmed fixes.
@@ -2468,9 +2468,9 @@ If you control a "NiuHao" monster, apply 1 of these effects.\n Change 1 monster 
 2 monsters including an "Ohmen" monster
 This card's ATK becomes 0 while it has no Current Counters on it. This card gains the following effects based on the number of Current Counters on it:
 1+: During your Main Phase: You can remove all Current Counters on this card; inflict 300 damage to your opponent for each.
-2+: "Ohmechanic" monsters you control gain 500 ATK.
+2+: "Ohmenchanic" monsters you control gain 500 ATK.
 3+: During the Main Phase (Quick Effect): You can destroy 1 monster your opponent controls.
-You can only use each effect of "Volt, the Ohmechanic Chocker" once per turn.
+You can only use each effect of "Volt, the Ohmenchanic Chocker" once per turn.
 
 </details>
 

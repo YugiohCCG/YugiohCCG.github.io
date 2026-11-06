@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');exports.corrected=s=>{const nl=s.includes('\r\n')?'\r\n':'\n',a='function s.handok(tp)',b='Duel.GetMatchingGroupCount(s.deffilter,tp,LOCATION_MZONE,0,nil)>=2';assert.equal(s.split(a).length,2);assert.equal(s.split(b).length,2);return s.replace(a,['function s.handfilter(c)',' return c:IsFaceup() and c:IsDefensePos() and c:IsSetCard(SET_TERRARUMIAN)','end',a].join(nl)).replace(b,'Duel.GetMatchingGroupCount(s.handfilter,tp,LOCATION_MZONE,0,nil)>=2');};

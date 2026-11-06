@@ -15,14 +15,14 @@
   },
   {
     "script": "c224751741.lua",
-    "script_sha256": "85e543f8c13bd8f6eb025d95329724769d675941be63f3b8c038b01c4b5fe44f",
+    "script_sha256": "8fb3b581d0cc16176d86c19c32666ef21e0149afbb932b7176be6f99711907ee",
     "kind": "target-operation-search-mismatch",
     "line": 88,
     "reason": "Fusion materials are collected after the mandatory Token is created; the activation guard separately proves a Dragon material and a summonable named Fusion."
   },
   {
     "script": "c224751741.lua",
-    "script_sha256": "85e543f8c13bd8f6eb025d95329724769d675941be63f3b8c038b01c4b5fe44f",
+    "script_sha256": "8fb3b581d0cc16176d86c19c32666ef21e0149afbb932b7176be6f99711907ee",
     "kind": "target-operation-search-mismatch",
     "line": 95,
     "reason": "The second material-group read applies the selected Fusion Monster to the same post-Token material pool; activation legality is established by dragonmat and fusfilter."
@@ -36,14 +36,14 @@
   },
   {
     "script": "c239245471.lua",
-    "script_sha256": "f40f2550809cdb331126de046fc24c11bbd5296cd37c9e0d9dac07474421064e",
+    "script_sha256": "4cc17955ed2e61f6b9f9d4493a26a1d3645011c7b6ff509186f35ba18d4a634b",
     "kind": "target-operation-search-mismatch",
     "line": 84,
     "reason": "Fusion materials are collected after the mandatory Token is created; the activation guard separately proves a Dragon material and a summonable named Fusion."
   },
   {
     "script": "c239245471.lua",
-    "script_sha256": "f40f2550809cdb331126de046fc24c11bbd5296cd37c9e0d9dac07474421064e",
+    "script_sha256": "4cc17955ed2e61f6b9f9d4493a26a1d3645011c7b6ff509186f35ba18d4a634b",
     "kind": "target-operation-search-mismatch",
     "line": 91,
     "reason": "The second material-group read applies the selected Fusion Monster to the same post-Token material pool; activation legality is established by dragonmat and fusfilter."
@@ -61,13 +61,6 @@
     "kind": "target-operation-search-mismatch",
     "line": 84,
     "reason": "rmfilter validates that each banishable card has the corresponding named summon available; the later spfilter selection uses the code determined by the card actually banished."
-  },
-  {
-    "script": "c247789143.lua",
-    "script_sha256": "14e256cac1d35c738ff8489906d78733b1020a2effcb1d7fbf5f7426d36c47ae",
-    "kind": "target-operation-search-mismatch",
-    "line": 157,
-    "reason": "banpairfilter proves the two required groups exist. Resolution then materializes the generic monster group and the own Stain group separately."
   },
   {
     "script": "c259614765.lua",
@@ -92,38 +85,31 @@
   },
   {
     "script": "c238273770.lua",
-    "script_sha256": "7a7f0eefd77ec74e110a2d8640752fd8d6685d683236539d36e7e28fe7613ccd",
+    "script_sha256": "a269f9dcbb1a5afc99299b8b6a41ff2bb44d25d0698d82b7cc414d9dfc30ab7e",
     "kind": "target-operation-search-mismatch",
     "line": 148,
     "reason": "The cost returns this monster to hand and frees its Main Monster Zone. recruittg uses precruitfilter with the pre-cost released monster and a prospective self-Summon check; recruitop uses spfilter on the post-cost state. Both filters enforce the same archetype, monster, face-up Extra Deck and Summonability constraints; the zone predicates intentionally differ across payment."
   },
   {
     "script": "c238274862.lua",
-    "script_sha256": "cf9e3ae66c520f1f99ae5974d00d7bec830470c33d7d3accd067544fd894857b",
+    "script_sha256": "dc58130d52584d14f0c2c62138affd8390c02f3c1875a9c798084dc343d768fe",
     "kind": "target-operation-search-mismatch",
     "line": 113,
     "reason": "eqtg targets a GY equip candidate through eqfilter. eqfilter itself requires an existing canEquipTo recipient. eqop refilters targeted cards through eqfilter before choosing that recipient, and rechecks Spell/Trap zone capacity per card. The recipient search is guarded transitively through the target filter."
   },
   {
     "script": "c238276251.lua",
-    "script_sha256": "ceb4e5ef8b616320b6b3916c5cf7e8bf4971602c7f09f290b1b4b532d0f8443e",
+    "script_sha256": "b8182f05ee5c90319e289a1b69293e90e8ba42a844144310db66de3fb3cd56e2",
     "kind": "target-operation-search-mismatch",
     "line": 59,
     "reason": "This optional activation follow-up is chosen in acttg only if activationvictim exists; that predicate requires a destructible card and both retrieval destinations (including a victim that will reach GY). actop checks its activation label and card relation, selects a destructible victim, then separately rechecks both retrieval pools after destruction. The broad resolution selection is intentional, not an unguarded mandatory activation."
   },
   {
     "script": "c238276252.lua",
-    "script_sha256": "14d226722745ed3b49c0d86bdd5ff960e4d6622040d41420c0bb1c7e3e5a7516",
+    "script_sha256": "a32a0e883be8291675331b52f227b04e0f68695558291dd854d6dfab2aee66fc",
     "kind": "target-operation-search-mismatch",
     "line": 51,
     "reason": "The activation requires deslegal, which combines the same desfilter with prospective zone availability after destruction. Resolution selects with desfilter, destroys it, then independently rechecks the two-monster Summon legality and two free zones before Summoning. Different predicates account for the prospective and actual post-destruction states."
-  },
-  {
-    "script": "c284639723.lua",
-    "script_sha256": "d2b3894a34942f2c4e87d954da88197127448a19e41c7b96c6635c6c2d891c94",
-    "kind": "target-operation-search-mismatch",
-    "line": 84,
-    "reason": "The Pendulum target checks a destroyfilter card on the entire field and, when no Main Monster Zone is free, a zonefilter card that is the same destroyfilter restricted to MZONE. pop selects from that MZONE subset to free a zone, optionally adds a second destructible card, and checks successful destruction before Summoning. The narrowed operation selection is intentionally guarded."
   },
   {
     "script": "c259650969.lua",
@@ -138,5 +124,26 @@
     "kind": "target-operation-search-mismatch",
     "line": 95,
     "reason": "Surge checks a free pointed zone and supporting Ohmenchanic at activation, then recomputes the surviving pointed zones at resolution. It correctly does nothing if the source or required graph is lost. Thirteen delayed-trigger engine cases verify interruptions and zone changes."
+  },
+  {
+    "script": "c239932270.lua",
+    "script_sha256": "b1d27a4598c05f176172a1aeef171baf4f7c453775ce23c7783baa8db3178fa9",
+    "kind": "target-operation-search-mismatch",
+    "line": 76,
+    "reason": "Activation uses s.options to validate selectable mode. The own-monster search occurs only in a banish-selected mode and both own and opposing removable monster groups are explicitly rechecked immediately before selection."
+  },
+  {
+    "script": "c247755865.lua",
+    "script_sha256": "de672bc9869379b37d627762d7c875fa616e26a71d0c644fd9450da99b3bded9",
+    "kind": "target-operation-search-mismatch",
+    "line": 59,
+    "reason": "The target uses spacefilter, which includes desfilter and proves a zone exists or can be opened by the victim. Resolution selects the MZONE subset when needed, otherwise desfilter, then checks actual destruction and free zone before summoning."
+  },
+  {
+    "script": "c247755871.lua",
+    "script_sha256": "ede5cd5cb4b85d287ca21fb195f474b388efe87da0ee41ce8251abc78ce2ef0f",
+    "kind": "target-operation-search-mismatch",
+    "line": 68,
+    "reason": "The target uses spacefilter including destroyfilter and prospective zone opening. Resolution narrows to an MZONE victim when full, checks actual destruction, related source and available zone before revival; the optional opponent overlay is independently guarded."
   }
 ]

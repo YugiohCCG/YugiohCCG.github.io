@@ -82,6 +82,7 @@ s.search_codes={
 	[98319530]=true,
 	[98596596]=true,
 	[100100062]=true,
+	[101307062]=true,
 	[120100001]=true,
 	[120183048]=true,
 	[120183049]=true,
@@ -162,7 +163,10 @@ s.search_codes={
 	[152000180]=true,
 	[219714894]=true,
 	[236815197]=true,
+	[247755870]=true,
+	[247755872]=true,
 	[257239133]=true,
+	[259024242]=true,
 }
 function s.initial_effect(c)
 	--Return 1 FIRE Extra Deck monster; Special Summon this card
@@ -177,9 +181,12 @@ function s.initial_effect(c)
 	e1:SetOperation(s.spop)
 	c:RegisterEffect(e1)
 end
-function s.rtfilter(c,e,tp)
+function s.rteligible(c)
 	return c:IsFaceup() and c:IsAttribute(ATTRIBUTE_SEARCH) and c:IsSummonLocation(LOCATION_EXTRA)
-		and c:IsAbleToExtra() and c:IsCanBeEffectTarget(e) and Duel.GetMZoneCount(tp,c)>0
+		and c:IsAbleToExtra()
+end
+function s.rtfilter(c,e,tp)
+	return s.rteligible(c) and c:IsCanBeEffectTarget(e) and Duel.GetMZoneCount(tp,c)>0
 end
 function s.thfilter(c)
 	if not (c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsAbleToHand()) then return false end
@@ -204,7 +211,7 @@ end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
-	if not (tc and tc:IsRelateToEffect(e) and s.rtfilter(tc,e,tp)) then return end
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsControler(tp) and tc:IsLocation(LOCATION_MZONE) and s.rteligible(tc) and Duel.GetMZoneCount(tp,tc)>0) then return end
 	if Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==0 or not tc:IsLocation(LOCATION_EXTRA) then return end
 	if not (c:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0) then return end
 	if Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)==0 then return end

@@ -1,0 +1,22 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),Module=require('node:module'),assert=require('node:assert/strict');
+const file=path.join(__dirname,'fresh_current_dragar_also.cjs');let s=fs.readFileSync(file,'utf8');
+s=s.replace("['baseline','targetBanish','targetFaceDown','targetBounce','banishSource','negateActivation','negateEffect','zeroAttack','untargetableOther','cannotSetOther']","['normal','special','light','wrongSet','opponent','facedown','groupMixed']");
+const pos=s.indexOf('const m=new Module');assert(pos>0);
+const eventReader="if(name==='c0.lua')return '';if(name==='c900006002.lua'||name==='c900006003.lua')return 'local s,id=GetID() function s.initial_effect(c) end';if(name==='c900006001.lua')return `local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_FREE_CHAIN) e:SetOperation(function(e,tp) local g=Duel.GetMatchingGroup(function(c) return c:IsCode(900006002) or (${scenario==='groupMixed'?'true':'false'} and c:IsCode(900006003)) end,tp,LOCATION_HAND,0,nil) assert(#g==${scenario==='groupMixed'?2:1}) assert(Duel.SpecialSummon(g,0,tp,${scenario==='opponent'?'1-tp':'tp'},false,false,${scenario==='facedown'?'POS_FACEDOWN_DEFENSE':'POS_FACEUP_ATTACK'})==#g) end) c:RegisterEffect(e) end`;";
+const inject=String.raw`
+rep('const reader=name=>{',"const eligible=['normal','special','groupMixed'].includes(scenario);cards.set(900006001,{...base,code:900006001,type:2});cards.set(900006002,{...base,code:900006002,type:33,setcodes:scenario==='wrongSet'?[]:[0xbc5],attribute:scenario==='light'?16:32});cards.set(900006003,{...base,code:900006003,type:33});const reader=name=>{");
+rep("if(name==='c0.lua')return '';",${JSON.stringify(eventReader)});
+rep('add(boss,L.EXTRA,0,P.FACEDOWN_DEFENSE);',"add(900006001,L.HAND);add(900006002,L.HAND);if(scenario==='groupMixed')add(900006003,L.HAND);add(boss,L.EXTRA,0,P.FACEDOWN_DEFENSE);");
+rep('let failure=null,activated=false','let eventDone=false;let failure=null,activated=false');
+rep('     const success=',"     if(!eventDone){eventDone=true;const index=scenario==='normal'?p.summons.findIndex(c=>c.code===900006002):p.activates.findIndex(c=>c.code===900006001);assert(index>=0,'Actual event action');core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:scenario==='normal'?A.SELECT_SUMMON:A.SELECT_ACTIVATE,index});continue;}const success=");
+rep("!['negateActivation','negateEffect'].includes(scenario)",'eligible');
+rep("assert(offered,'Full source trigger')","assert.equal(offered,eligible,'Native event visibility/group membership')");
+rep("assert(trace.some(m=>m.type===M.MOVE&&m.card===900005101&&m.from.location===L.MZONE&&m.to.location===L.GRAVE),'Actual Tribute cost')","assert.equal(trace.some(m=>m.type===M.MOVE&&m.card===900005101&&m.from.location===L.MZONE&&m.to.location===L.GRAVE),eligible,'Actual Tribute cost')");
+rep("const yes=p.code===boss&&!offered;if(yes)offered=true;","if(!eventDone){core.duelSetResponse(duel,{type:R.SELECT_EFFECTYN,yes:false});continue;}const yes=p.code===boss&&!offered&&eligible;if(p.code===boss)offered=true;");
+rep('if(p.player===0&&!offered){',"if(p.player===0&&!offered){if(!eventDone){core.duelSetResponse(duel,{type:R.SELECT_CHAIN,index:null});continue;}");
+rep("'current-dragar-also'","'current-dragar-events'");
+rep('return s;',"if(name==='c'+boss+'.lua'){if(process.argv.includes('--visibility-old'))s=fs.readFileSync(path.join(OUT,'summon-visibility-before-repair',name),'utf8');if(process.argv.includes('--visibility-candidate'))s=require('./fresh_summon_visibility_repair.cjs').corrected(boss,s);}return s;");
+rep("'current-dragar-events'","'current-dragar-events'+(process.argv.includes('--visibility-old')?'-visibility-old':process.argv.includes('--visibility-candidate')?'-visibility-candidate':'')");
+`;
+s=s.slice(0,pos)+inject+s.slice(pos);const m=new Module(file,module);m.filename=file;m.paths=module.paths;m._compile(s,file);

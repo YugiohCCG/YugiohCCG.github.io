@@ -1,0 +1,71 @@
+{
+  "finding": "Scarstech Blaster wrongly required target destruction for the independent Also same-name lock. Lock now applies at Chain Link7+ even when late protection prevents destruction.",
+  "qualification": "Four original field-set source cases at actual CL6/CL7, actual late-protection CL7/CL8 response, two distinct same-code field recipients and next-player-turn availability. Unrelated opponent effect stays usable. Neutral actors/recipients,no Lua API mapping. Hand permission,departed target,negation/aliases/full-card/live remain open. Primary conjunction rule applied to custom wording.",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_blaster_independent_lock.cjs": "5b30bb62bf4037d926e11a7f6fc3ec402400fbcd29d1f07887a3b702315fdc60",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_blaster_independent_lock_repair.cjs": "41ae8ca22e65dbb239d3ea2efbe82247a1253c8d330490cb022329a59b3255b4",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\blaster-independent-lock-before-repair\\c243488958.lua": "b13b6ec8b5c81e2830a02d5062683c9f592c45157d234479af51e94a5fa53d0f",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "mode": "candidate",
+      "file": "current-blaster-independent-lock-candidate.json",
+      "sha256": "ab07149c8857076943cee00ac6cfbcc42cd6d4d3d52176e5954a3fcb72bb0782",
+      "expected_failures": []
+    },
+    {
+      "mode": "old",
+      "file": "current-blaster-independent-lock-old.json",
+      "sha256": "ac951ec998cf8ec22147498bfe45edb760f1b6e498db79a2be07442a826383a7",
+      "expected_failures": [
+        1
+      ]
+    },
+    {
+      "mode": "no-lock",
+      "file": "current-blaster-independent-lock-no-lock.json",
+      "sha256": "7c35cceec4d17e04b6e62635cdd820eb22f89557c83a9aff7f1391c08afb6f98",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "mode": "early-lock",
+      "file": "current-blaster-independent-lock-early-lock.json",
+      "sha256": "af87a89461e9cfdafb74fb62a4c2d60cb19d341f532e168538b5aac36b167607",
+      "expected_failures": [
+        2,
+        3
+      ]
+    },
+    {
+      "mode": "no-destroy",
+      "file": "current-blaster-independent-lock-no-destroy.json",
+      "sha256": "69cf41121177bd17b4dcf699c4ca7a120a9659d041280b1bf7cf88ee7faac1c0",
+      "expected_failures": [
+        0,
+        2
+      ]
+    }
+  ],
+  "manifest": "blaster-independent-lock-repair-files.json",
+  "manifest_sha256": "5df1da6288b2511afa7a8169bf38629d603f16fcdccd069684e5200675804de2",
+  "helper_sha256": "41ae8ca22e65dbb239d3ea2efbe82247a1253c8d330490cb022329a59b3255b4",
+  "family_scan": "current-destroy-also-family-review.json",
+  "family_scan_sha256": "ce4cee29bef4c86c03bc876526fac009391aa694cc010950cff897692bf45b2a"
+}

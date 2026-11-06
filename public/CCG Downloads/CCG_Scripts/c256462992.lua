@@ -65,7 +65,7 @@ function s.excostfilter(c)
 end
 function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return c:IsAbleToExtraAsCost() and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter(s.excostfilter)(c)) end
+	if chk==0 then return c:IsAbleToExtraAsCost() end
 	Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_COST)
 end
 function s.thfilter(c)

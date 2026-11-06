@@ -1,0 +1,13 @@
+import hashlib,json,subprocess
+from pathlib import Path
+ROOT=Path.cwd();OUT=ROOT/'output/fresh-ccg-september';FILES=Path(r'C:\Program Files (x86)\YGO Omega\YGO Omega_Data\Files')
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+source=ROOT/'public/CCG Downloads/CCG_Scripts/c259093260.lua';assert source.read_bytes()==(FILES/'Scripts'/source.name).read_bytes()
+paths=[Path(__file__).resolve(),source,ROOT/'src/data/cards.json',FILES/'Databases/CCG_v1.db',OUT/'candidate-CCG_v1.db',OUT/'matriarch-damage-step-repair-files.json']+[ROOT/'scripts'/n for n in ['fresh_current_matriarch_revival_use_reset.cjs','fresh_current_matriarch_negate.cjs','fresh_current_altergeist_regissae_negate.cjs','fresh_installed_card.cjs','fresh_corrected_card_data_transport.cjs']]+[ROOT/'tmp/omega_scripts'/n for n in ['constant.lua','utility.lua','procedure.lua']]+list((ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist').glob('*.js'))+[ROOT/'node_modules/@n1xx1/ocgcore-wasm/dist/index-card-data-transport-candidate.mjs']
+deps={str(p.resolve()):sha(p) for p in paths};runs=[]
+for flag,expected in [(None,[]),('no-revive',[0,1,2]),('no-response',[1,2]),('per-copy',[0,1,2]),('no-later-use',[0,1,2])]:
+ r=subprocess.run(['node','--no-warnings','scripts/fresh_current_matriarch_revival_use_reset.cjs']+(['--'+flag] if flag else []),capture_output=True,text=True,timeout=20);p=OUT/('current-matriarch-revival-use-reset'+('-'+flag if flag else '')+'.json');d=json.loads(p.read_text());assert len(d['results'])==3 and [i for i,v in enumerate(d['results']) if v['failure']]==expected and all(not v['logs'] and v['trace'] for v in d['results']) and r.returncode==bool(expected),r.stdout+r.stderr
+ runs.append({'artifact':p.name,'sha256':sha(p),'expected_failures':expected})
+assert deps=={str(p.resolve()):sha(p) for p in paths}
+(OUT/'current-matriarch-revival-use-reset-batch.json').write_text(json.dumps({'status':'MATRIARCH_REVIVAL_USE_RESET_VERIFIED','runtime_dependencies_sha256':deps,'runs':runs,'scope':'Full current Matriarch/installed metadata/corrected transport/no Lua API adapter. Two initial field sources, three actual opponent neutral Spell effects send separate owned WATER field monsters to GY. Success/effect negation/activation negation consumes shared named revival; second same-turn event has no further activation/revival, natural opponent turn4 restores actual Defense revival. Actual three field-to-GY moves and original effect chain/outcomes asserted. Effective per-copy/no-later-use/no-revive/no-response controls. General Synchro/proper source history/full-card/live Omega remain open.','production_change':False},indent=2)+'\n')
+print('Matriarch revival shared use/reset verified')

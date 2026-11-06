@@ -106,7 +106,10 @@ function s.ritop(e,tp,eg,ep,ev,re,r,rp)
 		mat=mg:SelectSubGroup(tp,s.matcheck,true,1,lv,lv,tp)
 		if not mat or #mat==0 then return end
 		rc:SetMaterial(mat)
+		local locations={}
+		for mc in aux.Next(mat) do locations[mc]=mc:GetLocation() end
 		Duel.ReleaseRitualMaterial(mat)
+		if mat:IsExists(function(mc) return mc:GetLocation()==locations[mc] end,1,nil) then return end
 	end
 	Duel.BreakEffect()
 	--The Ritual monster is selected during resolution, not targeted by this effect.

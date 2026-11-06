@@ -1,0 +1,59 @@
+[
+  {
+    "card_id": "CARD-00235",
+    "passcode": 238064522,
+    "name": "Windborne Galesong Flock",
+    "type": "Missing Activation Code",
+    "severity": "CRITICAL",
+    "defect": "Spell/Trap activate effect if rc does not set activation event code (missing SetCode(EVENT_FREE_CHAIN))",
+    "proposed_change": "Add if rc:SetCode(EVENT_FREE_CHAIN)."
+  },
+  {
+    "card_id": "CARD-00588",
+    "passcode": 259935441,
+    "name": "Dinomorphia Hideout",
+    "type": "Missing Activation Code",
+    "severity": "CRITICAL",
+    "defect": "Spell/Trap activate effect function s.handcon(e,tp,eg,ep,ev,re,r,rp) local rc=re does not set activation event code (missing SetCode(EVENT_FREE_CHAIN))",
+    "proposed_change": "Add function s.handcon(e,tp,eg,ep,ev,re,r,rp) local rc=re:SetCode(EVENT_FREE_CHAIN)."
+  },
+  {
+    "card_id": "CARD-00593",
+    "passcode": 259944344,
+    "name": "World Legacy Surfacing",
+    "type": "Missing Activation Code",
+    "severity": "CRITICAL",
+    "defect": "Spell/Trap activate effect function s.chainfilter(re) return not re does not set activation event code (missing SetCode(EVENT_FREE_CHAIN))",
+    "proposed_change": "Add function s.chainfilter(re) return not re:SetCode(EVENT_FREE_CHAIN)."
+  },
+  {
+    "card_id": "CARD-00593",
+    "passcode": 259944344,
+    "name": "World Legacy Surfacing",
+    "type": "Target Re-check Omission",
+    "severity": "LOW",
+    "function": "cptg",
+    "defect": "Target function s.cptg calls Duel.SelectTarget but does not handle 'chkc' parameter for target validity re-check during chain resolution",
+    "proposed_change": "Add `if chkc then return ... end` to s.cptg."
+  },
+  {
+    "card_id": "CARD-0692",
+    "passcode": 284639721,
+    "name": "Terrarumian Staghorn Fern",
+    "type": "Target Re-check Omission",
+    "severity": "LOW",
+    "function": "destg",
+    "defect": "Target function s.destg calls Duel.SelectTarget but does not handle 'chkc' parameter for target validity re-check during chain resolution",
+    "proposed_change": "Add `if chkc then return ... end` to s.destg."
+  },
+  {
+    "card_id": "CARD-0693",
+    "passcode": 284639722,
+    "name": "Terrarumian Ivy",
+    "type": "Target Re-check Omission",
+    "severity": "LOW",
+    "function": "destg",
+    "defect": "Target function s.destg calls Duel.SelectTarget but does not handle 'chkc' parameter for target validity re-check during chain resolution",
+    "proposed_change": "Add `if chkc then return ... end` to s.destg."
+  }
+]

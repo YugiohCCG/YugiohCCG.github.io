@@ -57,7 +57,9 @@ function s.thop(e,tp)
 	e1:SetCode(EFFECT_UPDATE_ATTACK)
 	e1:SetValue(-3000)
 	e1:SetReset(RESET_EVENT+RESETS_STANDARD)
+	local atk=c:GetAttack()
 	c:RegisterEffect(e1)
+	if atk-c:GetAttack()~=3000 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local tc=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
 	if tc and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,tc) end

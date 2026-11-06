@@ -79,7 +79,7 @@ function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	local from_gy=c:IsLocation(LOCATION_GRAVE)
 	if c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)
-		and tc and tc:IsRelateToEffect(e) and tc:IsControler(tp)
+		and tc and tc:IsRelateToEffect(e)
 		and tc:IsLocation(LOCATION_MZONE) and tc:IsFaceup() then
 		s.equipcard(e,tp,c,tc,from_gy)
 	end

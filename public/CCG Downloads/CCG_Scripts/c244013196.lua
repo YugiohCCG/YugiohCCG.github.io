@@ -29,7 +29,7 @@ function s.initial_effect(c)
 	e3:SetCondition(s.spcon)
 	e3:SetTarget(s.sptg)
 	e3:SetOperation(s.spop)
-	e3:SetValue(SUMMON_VALUE_SELF)
+	e3:SetValue(function(e) return SUMMON_VALUE_SELF,e:GetLabel()==1 and 0 or 0xff end)
 	c:RegisterEffect(e3)
 	--Tribute a Token; negate a monster, gain its stats, and advance turn counters
 	local e4=Effect.CreateEffect(c)
@@ -66,6 +66,7 @@ function s.spfilter(c,tp)
 		and c:IsAbleToRemoveAsCost() and Duel.GetMZoneCount(tp,c)>0
 end
 function s.spcon(e,c)
+	e:SetLabel(0)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	return Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_MZONE,0,1,c,tp)
@@ -83,7 +84,7 @@ end
 function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local g=e:GetLabelObject()
 	if not g then return end
-	Duel.Remove(g,POS_FACEUP,REASON_COST)
+	if Duel.Remove(g,POS_FACEUP,REASON_COST)~=#g then e:SetLabel(1) end
 	g:DeleteGroup()
 end
 function s.tkfilter(c)

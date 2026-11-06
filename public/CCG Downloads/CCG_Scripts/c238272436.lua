@@ -41,7 +41,7 @@ end
 function s.mvfilter(c,e,tp)
  return c:IsControler(tp) and c:IsType(TYPE_MONSTER)
   and (c:IsLocation(LOCATION_GRAVE) and c:IsAbleToRemove()
-   or c:IsLocation(LOCATION_REMOVED) and c:IsAbleToGrave())
+   or c:IsLocation(LOCATION_REMOVED) and c:IsFaceup() and c:IsAbleToGrave())
   and c:IsCanBeEffectTarget(e)
 end
 function s.mvcon(e,tp,eg)
@@ -98,7 +98,7 @@ function s.sendop(e,tp)
  if not Duel.IsExistingMatchingCard(s.sendfilter,tp,LOCATION_DECK,0,1,nil) then return end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
  local g=Duel.SelectMatchingCard(tp,s.sendfilter,tp,LOCATION_DECK,0,1,1,nil)
- if #g==0 or Duel.SendtoGrave(g,REASON_EFFECT)==0
+ if #g==0 or Duel.SendtoGrave(g,REASON_EFFECT)==0 or not g:GetFirst():IsLocation(LOCATION_GRAVE)
   or not Duel.IsExistingMatchingCard(s.removefilter,tp,LOCATION_GRAVE,0,1,nil) then return end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
  local rg=Duel.SelectMatchingCard(tp,s.removefilter,tp,LOCATION_GRAVE,0,1,1,nil)
@@ -114,7 +114,7 @@ function s.typecount(tp)
  return n
 end
 function s.tdfilter(c)
- return (c:IsSetCard(SET_RROOT) or c:IsCode(11110218,63086455,85698115)) and c:IsAbleToDeck()
+ return (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup()) and (c:IsSetCard(SET_RROOT) or c:IsCode(11110218,63086455,85698115)) and c:IsAbleToDeck()
 end
 function s.tdcost(e,tp,eg,ep,ev,re,r,rp,chk)
  local c=e:GetHandler()

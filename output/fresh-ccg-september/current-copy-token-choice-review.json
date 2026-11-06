@@ -1,0 +1,84 @@
+{
+  "finding": "Dynatos continuous summon-success copy operation incorrectly required a chain relation,so never applied. Dynatos and Stained Silhouette also excluded Tokens without a printed limitation. Remove continuous relation check and both token exclusions.",
+  "qualification": "Four native original cases: Dynatos inherent summon and base/current ATK/DEF+100;Silhouette original reveal/copy branch and current name observed through neutral Card.GetCode operation. Sole seeded opposing neutral Normal monster or Token. No API mapping;no original Token-creation history claim. Actual copied effect semantics,other branches/counts/interruptions and live/full-card remain open.",
+  "runtime_dependencies_sha256": {
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_copy_token_choice_batch.py": "de133032aee56d41e0e7c0511acb32649ee80a81f6950b4861b42c08e4dac2b3",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_current_copy_token_choice.cjs": "c4af34c19d3dd855814d24813f65b57886ab58ba14d9f9cabdfc4d788d5b95f6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_copy_token_choice_repair.cjs": "cea2677036b1f1bc0a673f94097cb0a380118ad51f3ecb9eb1bff1c8958ef891",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_installed_card.cjs": "e3d4d554051ad4442fd49cad01bc083bbd6b14909b14d66f67e07432dfef08c8",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\fresh_corrected_card_data_transport.cjs": "c2a59050f2b89e51bf91e9c2ce1af0f9668f39895c595a792abd945081d84bcf",
+    "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Databases\\CCG_v1.db": "1df34c5f43660e79094969b354cbb5b7f15dd2fcd1e872970e9832df27340666",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\copy-token-choice-before-repair\\c256469525.lua": "dc27046aaa2c71926929ee93ee641481548fa9725e3dccbc9a3f78e2841fda89",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\output\\fresh-ccg-september\\copy-token-choice-before-repair\\c256608976.lua": "bfb9d8711033fb5a0e38660a0acd06d67fe9a2b1a649d0106d37f7fe3f74ae06",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\constant.lua": "3e6f6c90ccfe40b2d1033aa17ad52a247f92c45e6eea7b926601639ead95a6cf",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\utility.lua": "2da4e3953185402e274eef327c8a22002deb43565f489d8ed19a2c8fb89b5369",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts\\procedure.lua": "beb17f4b3dcfd38a4f1d8354fdad0facaf0de308d91e852fe41114c35f548bde",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-6GYI7QPM.js": "50ccbfa03faa5890150ba6b4641eb54e9f396bdc3dd2e902b5e6d9a494a7e114",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\chunk-L5TW24SS.js": "c423002451d97362435b1d0f2b043a7fa848fefa27a05ef6b411c35ff77c5057",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index.js": "4593e458968b385edcd975780647a9a5d3eeffc8b3f72a977a88191cf56f5906",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-ROQIC75H.js": "059a7e0eda07cb59d5a1a224676c1c12e093fb2e7e3736cf09a0c656e1f039b6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.jspi-W7UMOWZG.js": "062925346cee311bdc82d2dcbf5a2f08f01bded93bd5d6596786bd1d17013eb6",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-MMMSWPBB.js": "ac731c26515b1bf6b497711c5b78c926df033196ccdbf8961ac7926710b28345",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\ocgcore.sync-ORIXRHXI.js": "db21d338bda2e9467f973363e5e069ba2ca4daa05fa6d0a71bb53a0027c6078e",
+    "C:\\Manual Files\\Applications\\YugiohCCG.github.io\\node_modules\\@n1xx1\\ocgcore-wasm\\dist\\index-card-data-transport-candidate.mjs": "d22c63a641a4bdebafc05897654e1a1209677a0bf71c0b06a0ab5f88a314b461"
+  },
+  "runs": [
+    {
+      "mode": "candidate",
+      "file": "current-copy-token-choice-candidate.json",
+      "sha256": "18935fca87edd4c392ca068c948cf021266460c7daa0fb3363348eb72c9dcdbf",
+      "expected_failures": []
+    },
+    {
+      "mode": "old",
+      "file": "current-copy-token-choice-old.json",
+      "sha256": "03ca4d1ef2503264f98c96379d357edcd41d5f192c71e8522cf97b638bd51de4",
+      "expected_failures": [
+        0,
+        1,
+        3
+      ]
+    },
+    {
+      "mode": "no-relate-fix",
+      "file": "current-copy-token-choice-no-relate-fix.json",
+      "sha256": "bf6d5108cdf21b52e5a2f55dadebb07ddee2acc77f463a4b9c1ec25ffe132dea",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "mode": "tokens-excluded",
+      "file": "current-copy-token-choice-tokens-excluded.json",
+      "sha256": "408027949466312b2d35af9edb1ab6a0f107a45566d193a01290da47d7848dfd",
+      "expected_failures": [
+        1,
+        3
+      ]
+    },
+    {
+      "mode": "no-stats",
+      "file": "current-copy-token-choice-no-stats.json",
+      "sha256": "183c2c7b393be0a8e1d619ae44136b1b55ba7bb6e6c0a530cff2edf7ff65c841",
+      "expected_failures": [
+        0,
+        1
+      ]
+    },
+    {
+      "mode": "no-name",
+      "file": "current-copy-token-choice-no-name.json",
+      "sha256": "db38c55e692e15af959eacbbd0312d7eaeeb9d1371fc1139584eb4d00ec45c16",
+      "expected_failures": [
+        2,
+        3
+      ]
+    }
+  ],
+  "manifest": "copy-token-choice-repair-files.json",
+  "manifest_sha256": "b796aa25b74bc57698bdbeef8eb68195e96d66962e7428b32102b001803df4c0",
+  "helper_sha256": "cea2677036b1f1bc0a673f94097cb0a380118ad51f3ecb9eb1bff1c8958ef891",
+  "family_scan": "current-copy-token-choice-family-review.json",
+  "family_scan_sha256": "d69b0e6fea48efc3ff6f38bdd8d8170197b7425f8a4de948c7b478b18cabf627"
+}

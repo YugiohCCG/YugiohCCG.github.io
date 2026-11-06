@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');exports.corrected=s=>{const nl=s.includes('\r\n')?'\r\n':'\n';s=s.replaceAll('\r\n','\n');const a='\tlocal tc=Duel.GetFirstTarget()\n\tlocal te=e:GetLabelObject()',b='\tlocal te=e:GetLabelObject()\n\tlocal tc=te and te:GetHandler()';assert.equal(s.split(a).length,2);s=s.replace(a,b);const c='te:SetLabel(te:GetLabel())';assert.equal(s.split(c).length,2);return s.replace(c,'te:SetLabel(e:GetLabel())').replaceAll('\n',nl);};

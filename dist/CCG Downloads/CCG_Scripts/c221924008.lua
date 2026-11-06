@@ -12,7 +12,7 @@ function s.initial_effect(c)
 	e1:SetCondition(s.sprcon)
 	e1:SetTarget(s.sprtg)
 	e1:SetOperation(s.sprop)
-	e1:SetValue(SUMMON_VALUE_SELF)
+	e1:SetValue(function(e) return SUMMON_VALUE_SELF,e:GetLabel()==1 and 0 or 0xff end)
 	c:RegisterEffect(e1)
 	-- apply the Extra Deck restriction only after this Summon succeeds
 	local e4=Effect.CreateEffect(c)
@@ -47,6 +47,7 @@ function s.sprfilter(c)
 	return c:IsFaceupEx() and c:IsType(TYPE_TUNER) and c:IsLevelBelow(3) and c:IsAbleToDeck()
 end
 function s.sprcon(e,c)
+	e:SetLabel(0)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.sprfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,nil)
@@ -66,7 +67,7 @@ end
 function s.sprop(e,tp,eg,ep,ev,re,r,rp,c,og,min,max)
 	local sg=e:GetLabelObject()
 	if not sg then return end
-	Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_COST+REASON_MATERIAL)
+	if Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_COST+REASON_MATERIAL)~=#sg then e:SetLabel(1) end
 	sg:DeleteGroup()
 
 end

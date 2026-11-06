@@ -1,0 +1,62 @@
+{
+  "scope": "Manual semantic disposition of five frozen structural-contract warnings against current printed text and source/install parity. Not runtime/effect completion or live Omega certification; historical report unchanged.",
+  "spec_sha256": "6e3d644ec1cc45ac996cfe977f250530726ce80315759edefdb995965c06a2a8",
+  "frozen_report_sha256": "ba7547de7061b9796f60b07860bb196ef7f0977bc6854b35fa98604dc3fd32ca",
+  "cards": [
+    {
+      "passcode": 238274861,
+      "warning": "equip",
+      "disposition": "CLASSIFIER_MISMATCH",
+      "reason": "Printed effect searches an Equip Spell; it does not equip a card.",
+      "source_sha256": "45efc50a41d107cc2d7bbbc456cf270a7f22f9fc1a080572c9e2f38f5c42db09",
+      "source_evidence": [
+        "CATEGORY_TOHAND+CATEGORY_SEARCH",
+        "c:IsType(TYPE_EQUIP) and c:IsType(TYPE_SPELL)"
+      ]
+    },
+    {
+      "passcode": 238276578,
+      "warning": "once_per_turn",
+      "disposition": "CLASSIFIER_MISMATCH",
+      "reason": "Printed once-per-turn Special Summon limit is explicitly registered; not a SetCountLimit requirement.",
+      "source_sha256": "2b4d81bb32e6a6c5987b689d009b608b72142e253a4c820696a23df627982103",
+      "source_evidence": [
+        "c:SetSPSummonOnce(id)"
+      ]
+    },
+    {
+      "passcode": 238272437,
+      "warning": "synchro_summon",
+      "disposition": "CLASSIFIER_MISMATCH",
+      "reason": "Printed Synchro clause permits non-Tuner treatment for rroot; it does not perform a Synchro Summon.",
+      "source_sha256": "5d0cb6d627be8ff66a9f493fcd473cb1397918cc4e3050800b8d50b3790b39f8",
+      "source_evidence": [
+        "nt:SetCode(EFFECT_NONTUNER)",
+        "sc:IsSetCard(SET_RROOT)"
+      ]
+    },
+    {
+      "passcode": 284639724,
+      "warning": "defense_change",
+      "disposition": "CLASSIFIER_MISMATCH",
+      "reason": "Original DEF supplies LP recovery; no DEF modification is printed.",
+      "source_sha256": "bd077983facf5fd252e2179c503fabbbc37ff46d6710c9ceca42b9c224241d31",
+      "source_evidence": [
+        "tc:GetBaseDefense()",
+        "Duel.Recover(tp,value,REASON_EFFECT)"
+      ]
+    },
+    {
+      "passcode": 284636586,
+      "warning": "damage",
+      "disposition": "CLASSIFIER_MISMATCH",
+      "reason": "Damage calculation names timing of ATK gain, not effect damage.",
+      "source_sha256": "9b7b3dc7d69aa3a57f7375c3342e266a4d21db632fd0a8c6ea7e9d040f420556",
+      "source_evidence": [
+        "e3:SetCode(EFFECT_UPDATE_ATTACK)",
+        "e3:SetValue(900)",
+        "Duel.GetCurrentPhase()==PHASE_DAMAGE_CAL"
+      ]
+    }
+  ]
+}

@@ -31,11 +31,13 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
   },
   "source_install_mismatches": 0,
   "syntax_stale": 0,
-  "load_stale": 17,
-  "current_spec_initialization_rechecks": {
-    "total": 114,
-    "passed": 86,
-    "compatibility_failures": 28
+  "load_stale": 0,
+  "installed_initialization": {
+    "total": 711,
+    "passed": 583,
+    "known_compatibility_failures": 128,
+    "dependencies_verified": true,
+    "scope": "Fresh source/installed metadata; initialization only, not effect or live Omega certification. Historical selected snapshot is preserved and not used for current freshness."
   }
 }
 ```
@@ -76,7 +78,6 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
 
 | Card | Text mismatches | Metadata differs from public | Evidence stale | Installed script differs |
 |---|---|---|---|---|
-| 210506870 Talismandrake Heat | — | — | load | — |
 | 212055290 Advent of Cosmic Beings | — | candidate | — | — |
 | 212684822 Ektelestis gia Taxis | — | candidate | — | — |
 | 213611313 Scarstech Crawler | candidate | — | — | — |
@@ -84,12 +85,9 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
 | 220305422 Natir, the Swords Master of Crying Chaos | candidate | — | — | — |
 | 221321849 The Condescender | — | candidate | — | — |
 | 221672256 Skewy! Boo-Boo | candidate | — | — | — |
-| 223558392 Prophecy of Boulders | — | — | load | — |
-| 223592011 Prophecy of Storms | — | — | load | — |
 | 224274662 Armored Nova Mecha-Scaled Xyrion | — | candidate | — | — |
 | 224751741 Fall of Azrynior | — | candidate | — | — |
 | 227035644 Aqua Fusion | candidate | — | — | — |
-| 229327103 Prophecy of Infernos | — | — | load | — |
 | 234818744 Primite Dragon Citrine | — | candidate | — | — |
 | 236239443 Restoration of Azrynior | — | candidate | — | — |
 | 236551669 Pride of the Stellaers | — | candidate | — | — |
@@ -101,24 +99,13 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
 | 238274861 Vylon's Aid | — | candidate | — | — |
 | 238274862 Vylon Observatory | — | candidate | — | — |
 | 238274863 Vylon Eta | — | candidate | — | — |
-| 238276572 Sylvan Flamushroomo | — | — | load | — |
-| 238276574 Sylvan Flamioak | — | — | load | — |
-| 238276575 Sylvan Greetings | — | — | load | — |
-| 238276576 Sylvan Intervention | — | — | load | — |
-| 238276577 Sylvan Blast | — | — | load | — |
-| 238276578 Sylvan Duchessprout | — | — | load | — |
-| 238276579 Gink, the Sylvan High Champion | — | — | load | — |
 | 239245471 Birth of Azrynior | — | candidate | — | — |
 | 241957394 Chapter II Verse IV | — | candidate | — | — |
-| 243920845 Prophecy of Shadows | — | — | load | — |
 | 244161941 Vanquish Soul Brawl | — | candidate | — | — |
-| 244920555 Prophecy of Rays | — | — | load | — |
 | 246393365 Rei-Tachi Ga Kita Hi | — | candidate | — | — |
 | 248760718 Starry Knight Starry Queen | candidate | — | — | — |
-| 251058567 Prophecy of Waterfalls | — | — | load | — |
 | 254065048 Polemistis gia Ataxia | — | candidate | — | — |
 | 255686110 Iscylla, Windborne Kraken of Sunken Depths | candidate | — | — | — |
-| 256930605 Fruteification | — | — | load | — |
 | 259023461 Disciple of Fire | — | candidate | — | — |
 | 259033429 Carcel, the Ohmenchanic Light | candidate | candidate | — | — |
 | 259072745 Bhodi, the Corrupted Halloween Tree | — | candidate | — | — |
@@ -139,12 +126,11 @@ Read-only reconciliation. Historical test data is preserved. Line breaks and lit
 | 259384841 Divinity to Infinity | — | candidate | — | — |
 | 259402105 Magical Girl Explosion! | — | candidate | — | — |
 | 259405917 Siemens, the Ohmenchanic Conductor | candidate | candidate | — | — |
-| 259434499 Ohmen Powerload | — | — | load | — |
 | 259479044 Ampere, the Ohmenchanic Intensity | candidate | candidate | — | — |
 | 259485374 Heart of the Cards | — | candidate | — | — |
 | 259519336 Volt, the Ohmenchanic Chocker | candidate | candidate | — | — |
 | 259650132 Ampere, the Yellow Ohmen | candidate | candidate | — | — |
-| 259650969 Ohmen Beacon | candidate | — | load | — |
+| 259650969 Ohmen Beacon | candidate | — | — | — |
 | 259687425 Retaliation Rebound | — | candidate | — | — |
 | 259726853 Volt, the Green Ohmen | candidate | candidate | — | — |
 | 259755133 Rush at the Gnome | — | candidate | — | — |

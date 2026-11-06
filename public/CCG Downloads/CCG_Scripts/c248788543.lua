@@ -95,7 +95,7 @@ function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
 	if not (c:IsRelateToEffect(e) and aux.NecroValleyFilter(s.gyfilter)(c)
-		and tc and tc:IsRelateToEffect(e) and s.eqfilter(tc,e) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0) then return end
+		and tc and tc:IsRelateToEffect(e) and s.eqfilter(tc) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0) then return end
 	if not Duel.Equip(tp,c,tc) then return end
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
@@ -123,6 +123,7 @@ function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 	e4:SetCode(EFFECT_DESTROY_REPLACE)
 	e4:SetRange(LOCATION_SZONE)
 	e4:SetTarget(s.reptg)
+	e4:SetValue(function(e,c) return c==e:GetHandler():GetEquipTarget() end)
 	e4:SetOperation(s.repop)
 	e4:SetReset(RESET_EVENT+RESETS_STANDARD)
 	c:RegisterEffect(e4)
