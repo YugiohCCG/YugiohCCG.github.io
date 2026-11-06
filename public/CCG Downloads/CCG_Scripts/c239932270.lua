@@ -1,8 +1,9 @@
 local s,id=GetID()
+local STRING_ID=133932270
 local SET_FLOO=0x16d
 function s.initial_effect(c)
 	local e=Effect.CreateEffect(c)
-	e:SetDescription(aux.Stringid(id,0))
+	e:SetDescription(aux.Stringid(STRING_ID,0))
 	e:SetType(EFFECT_TYPE_ACTIVATE)
 	e:SetCode(EVENT_FREE_CHAIN)
 	e:SetCountLimit(1,id)
@@ -10,7 +11,7 @@ function s.initial_effect(c)
 	e:SetOperation(s.operation)
 	c:RegisterEffect(e)
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetCategory(CATEGORY_TOHAND)
 	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_REMOVE)
@@ -46,10 +47,10 @@ function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	local place,banish=s.options(e,tp)
 	if chk==0 then return place or banish end
 	local options,modes={},{}
-	if place then options[#options+1]=aux.Stringid(id,2) modes[#modes+1]=1 end
-	if banish then options[#options+1]=aux.Stringid(id,3) modes[#modes+1]=2 end
+	if place then options[#options+1]=aux.Stringid(STRING_ID,2) modes[#modes+1]=1 end
+	if banish then options[#options+1]=aux.Stringid(STRING_ID,3) modes[#modes+1]=2 end
 	if place and banish and Duel.IsExistingMatchingCard(s.tribute,tp,LOCATION_MZONE,0,1,nil) then
-		options[#options+1]=aux.Stringid(id,4)
+		options[#options+1]=aux.Stringid(STRING_ID,4)
 		modes[#modes+1]=3
 	end
 	e:SetLabel(modes[#modes==1 and 1 or Duel.SelectOption(tp,table.unpack(options))+1])

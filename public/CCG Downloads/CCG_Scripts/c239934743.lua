@@ -1,8 +1,9 @@
 local s,id=GetID()
+local STRING_ID=133934743
 local SET_FIENDSMITH=0x1b0
 function s.initial_effect(c)
 	local e=Effect.CreateEffect(c)
-	e:SetDescription(aux.Stringid(id,0))
+	e:SetDescription(aux.Stringid(STRING_ID,0))
 	e:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
 	e:SetCode(EVENT_SUMMON_SUCCESS)
 	e:SetProperty(EFFECT_FLAG_DELAY)
@@ -14,7 +15,7 @@ function s.initial_effect(c)
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
 	c:RegisterEffect(e2)
 	local e3=Effect.CreateEffect(c)
-	e3:SetDescription(aux.Stringid(id,1))
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetType(EFFECT_TYPE_QUICK_O)
 	e3:SetCode(EVENT_FREE_CHAIN)
 	e3:SetRange(LOCATION_HAND+LOCATION_GRAVE)
@@ -38,7 +39,7 @@ function s.sendop(e,tp)
 	if not c or Duel.SendtoGrave(c,REASON_EFFECT)==0 or not c:IsLocation(LOCATION_GRAVE) then return end
 	local filter=aux.NecroValleyFilter(Card.IsAbleToHand)
 	if not Duel.IsExistingMatchingCard(filter,tp,0,LOCATION_ONFIELD+LOCATION_GRAVE,1,nil)
-		or not Duel.SelectYesNo(tp,aux.Stringid(id,2)) then return end
+		or not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RTOHAND)
 	local g=Duel.SelectMatchingCard(tp,filter,tp,0,LOCATION_ONFIELD+LOCATION_GRAVE,1,1,nil)
 	Duel.SendtoHand(g,nil,REASON_EFFECT)

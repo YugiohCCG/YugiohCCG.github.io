@@ -1,8 +1,9 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+process.env.CCG_INSTALLED_CARD_DB ||= require('node:path').resolve(__dirname,'../public/CCG Downloads/CCG_Database/CCG_v1.db');
 const {candidateCard}=require('./fresh_installed_card.cjs');
 const {loadCorrectedTransport}=require('./fresh_corrected_card_data_transport.cjs');
-const installed=process.env.CCG_OMEGA_SCRIPTS||'C:/Program Files (x86)/YGO Omega/YGO Omega_Data/Files/Scripts';
+const installed=process.env.CCG_OMEGA_SCRIPTS||path.resolve(__dirname,'../public/CCG Downloads/CCG_Scripts');
 const omega=path.resolve(__dirname,'../tmp/omega_scripts');
 const [hot,sky,journey,soprana,offer]=[239932270,239932271,239932272,239934743,239934744];
 const fixtures=Array.from({length:8},(_,i)=>900009001+i);
@@ -104,7 +105,7 @@ function s.initial_effect(c)
 end`;
    if([...fixtures,engraver,bauWorld,bau].some(code=>name==='c'+code+'.lua'))return neutral;
    const source=path.resolve(__dirname,'../public/CCG Downloads/CCG_Scripts',name);
-   const file=[process.env.CCG_TEST_SOURCE&&t.family&&source,path.join(installed,name),path.join(omega,name)].find(f=>f&&fs.existsSync(f));
+   const file=[process.env.CCG_TEST_SOURCE&&t.family&&source,path.join(installed,name),path.resolve(__dirname,'../tmp/ohmen-reference',name),path.join(omega,name)].find(f=>f&&fs.existsSync(f));
    assert(file,name);return fs.readFileSync(file,'utf8');
   };
   const logs=[],team={startingLP:8000,startingDrawCount:0,drawCountPerTurn:0};

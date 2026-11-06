@@ -3227,602 +3227,6 @@
       ]
     },
     {
-      "passcode": 259377794,
-      "text_sha256": "772c3b9fdb70aef514e6f17c416437270f3727b34f2e8297c1eaa1a0ca5beae9",
-      "script_sha256": "08c46be9eaff384e003ea586530a083db08139d9aac30770601a43272a2fec30",
-      "verdict": "PASS",
-      "provenance": {
-        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
-        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
-        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
-      },
-      "effects": [
-        {
-          "clause": "This card cannot be Summoned while you control a monster.",
-          "lua": "c259377794.lua uses registered condition/target/operation callbacks; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
-          "official_omega": [
-            "c86099788.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "If this card is Normal Summoned: You can add 1 \"Domestica\" Fairy Monster from your Deck to your hand.",
-          "lua": "c259377794.lua uses Duel.SendtoDeck, Duel.SendtoHand; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
-          "official_omega": [
-            "c32807846.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "During the Battle Phase, if all monsters you control are Fairy Monsters (Quick Effect): You can shuffle this card from your GY into the Deck, and if you do, Fairy Monsters you control gain 550 ATK until the end of that Battle Phase.",
-          "lua": "c259377794.lua uses Duel.SendtoDeck; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
-          "official_omega": [
-            "c37742478.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "You can only use each effect of \"Pip, the Domesticated\" once per turn.",
-          "lua": "c259377794.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
-          "official_omega": [
-            "c14558127.lua"
-          ],
-          "verdict": "PASS"
-        }
-      ]
-    },
-    {
-      "passcode": 259737127,
-      "text_sha256": "3ef50e9be6fbc8cf4ad47ba2e127a6ef47c5b882f125cd3072b5d4303a512f34",
-      "script_sha256": "80027151ba8e1af581599459143f203be337307ce7f41d67d56d302a483c7a92",
-      "verdict": "PASS",
-      "provenance": {
-        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
-        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
-        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
-      },
-      "effects": [
-        {
-          "clause": "This card cannot be Summoned while you control a Monster.",
-          "lua": "c259737127.lua uses registered condition/target/operation callbacks; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
-          "official_omega": [
-            "c86099788.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "If this card is sent from the hand to the GY: You can draw 1 card, then send up to 2 cards from your hand to the GY.",
-          "lua": "c259737127.lua uses Duel.Draw; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
-          "official_omega": [
-            "c55144522.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "During the Battle Phase (Quick Effect): You can shuffle this card from your GY into the Deck, then send 1 Level 1 Beast or Winged Beast Monster from your Deck to the GY but shuffle it into the Deck at the end of that Battle Phase.",
-          "lua": "c259737127.lua uses Duel.SendtoDeck; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
-          "official_omega": [
-            "c81439173.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "You can only use each effect of \"Tove, the Domesticated\" once per turn.",
-          "lua": "c259737127.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
-          "official_omega": [
-            "c14558127.lua"
-          ],
-          "verdict": "PASS"
-        }
-      ]
-    },
-    {
-      "passcode": 259264881,
-      "text_sha256": "645a6c19fd6a80dfdc13b0c0d8eec8f3011eaaeb39c64de354b9467a0b87ca87",
-      "script_sha256": "a8f4de405595ced33454151991548ed4af20b6476af26c684e8f03099620d2fb",
-      "verdict": "PASS",
-      "provenance": {
-        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
-        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
-        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
-      },
-      "effects": [
-        {
-          "clause": "Except during the Battle Phase, this card cannot be Summoned while you control a monster, except by Tribute Summon where the required Tribute(s) are the only monster(s) you control.",
-          "lua": "Current canonical Lua registers CANNOT_SUMMON, CANNOT_FLIP_SUMMON, and an SPSUMMON_CONDITION. Outside the Battle Phase, one existing monster is allowed only for the Level 5 Tribute Summon that uses that sole monster; Flip and Special Summons are prohibited while another monster remains.",
-          "official_omega": [
-            "c86099788.lua"
-          ],
-          "verdict": "PASS",
-          "notes": "Rejected against current Lua: the reported missing Flip Summon prohibition is already present as EFFECT_CANNOT_FLIP_SUMMON with the field-state condition."
-        },
-        {
-          "clause": "You can Normal Summon/Set this card in addition to your Normal Summon/Set (You can only gain this effect once per turn).",
-          "lua": "c259264881.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
-          "official_omega": [
-            "c14558127.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "You can Tribute this card; add 1 \"Domestica\" monster from your Deck to your hand, then send 1 card from your hand to the GY.",
-          "lua": "c259264881.lua uses Duel.SendtoHand; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
-          "official_omega": [
-            "c32807846.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "You can only use this effect of \"Domestica Praerie\" once per turn.",
-          "lua": "c259264881.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
-          "official_omega": [
-            "c14558127.lua"
-          ],
-          "verdict": "PASS"
-        }
-      ]
-    },
-    {
-      "passcode": 259337739,
-      "text_sha256": "e5647d8b1b9bd63fc361a65251687503c32a59943cac3dbff1c879b51deb983e",
-      "script_sha256": "83e85257118bf53f4fe58270811b26e2db31473c8561fa905135870f9f65f335",
-      "verdict": "PASS",
-      "provenance": {
-        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
-        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
-        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
-      },
-      "effects": [
-        {
-          "clause": "Except during the Battle Phase, this card cannot be Summoned while you control a monster, except by Tribute Summon where the required Tribute(s) are the only monster(s) you control.",
-          "lua": "Current canonical Lua registers CANNOT_SUMMON, CANNOT_FLIP_SUMMON, and an SPSUMMON_CONDITION. Outside the Battle Phase, one existing monster is allowed only for the Level 5 Tribute Summon that uses that sole monster; Flip and Special Summons are prohibited while another monster remains.",
-          "official_omega": [
-            "c86099788.lua"
-          ],
-          "verdict": "PASS",
-          "notes": "Rejected against current Lua: the reported missing Flip Summon prohibition is already present as EFFECT_CANNOT_FLIP_SUMMON with the field-state condition."
-        },
-        {
-          "clause": "You can Normal Summon/Set this card in addition to your Normal Summon/Set (You can only gain this effect once per turn).",
-          "lua": "c259337739.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
-          "official_omega": [
-            "c14558127.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "You can Tribute this card; add 1 \"Domestica\" Spell/Trap from your Deck to your hand, then send 1 card from your hand to the GY.",
-          "lua": "c259337739.lua uses Duel.SendtoHand; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
-          "official_omega": [
-            "c32807846.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "You can only use this effect of \"Domestica Anjelie\" once per turn.",
-          "lua": "c259337739.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
-          "official_omega": [
-            "c14558127.lua"
-          ],
-          "verdict": "PASS"
-        }
-      ]
-    },
-    {
-      "passcode": 259245149,
-      "text_sha256": "857a79a7d12b2ad4300c606c39eeccb6da76387f6accd04313e6ed7e1d924e76",
-      "script_sha256": "a32689013cfe93d55df5c9b7bfa3cec49210483621b4ccd88af9e82e1a7a2f12",
-      "verdict": "PASS",
-      "provenance": {
-        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
-        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
-        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
-      },
-      "effects": [
-        {
-          "clause": "Except during the Battle Phase, this card cannot be Summoned while you control a monster, except by a Tribute Summon whose required Tributes are the only monsters you control.",
-          "lua": "add_lv5_summon_limit registers CANNOT_SUMMON/CANNOT_FLIP_SUMMON outside the Battle Phase when too many monsters remain, and SPSUMMON_CONDITION permits Special Summon only in the Battle Phase or with an empty field.",
-          "official_omega": [
-            "c86099788.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "You can Normal Summon/Set this card in addition to your Normal Summon/Set; only one such additional count can be gained per turn.",
-          "lua": "add_extra_summon registers targeted EFFECT_EXTRA_SUMMON_COUNT and EFFECT_EXTRA_SET_COUNT while Lunalie is in hand/field.",
-          "official_omega": [
-            "c3113836.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "Tribute this card; add 1 \"Domestica\" card from your GY to your hand, then you can send 1 card from your hand to the GY.",
-          "lua": "cost releases the handler; thtg/thop select a Necrovalley-legal Domestica in the GY, add it, then optionally select and send one hand card.",
-          "official_omega": [
-            "c48686504.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "You can only use the Tribute/recovery effect once per turn.",
-          "lua": "e3 uses SetCountLimit(1,id), a shared-name hard once-per-turn key.",
-          "official_omega": [
-            "c14558127.lua"
-          ],
-          "verdict": "PASS"
-        }
-      ]
-    },
-    {
-      "passcode": 259201342,
-      "text_sha256": "e8341f0c79e36ef6c70647c1052da625a34bfa4f9aef0c45e367cf729f35c9e9",
-      "script_sha256": "cbcb2673aec3fde5c9fe112cd812ed020ea2701abd4f25a724000993d2962843",
-      "verdict": "PASS",
-      "provenance": {
-        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
-        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
-        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
-      },
-      "effects": [
-        {
-          "clause": "Reveal 1 Beast or Winged Beast Fusion Monster in your Extra Deck and 1 Fusion Material listed on it in your Deck, then send that Extra Deck monster to the GY.",
-          "lua": "exfilter limits the revealed Extra Deck card to a Beast/Winged Beast Fusion able to go to GY and requires a listed Deck material; activate confirms both cards, shuffles after revealing the Deck card, and sends only the Fusion.",
-          "official_omega": [
-            "c2390019.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "You can only activate 1 \"Domestication\" per turn.",
-          "lua": "The activation effect uses SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH).",
-          "official_omega": [
-            "c35261759.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "If a card would be sent from your hand to the GY by card effect, you can shuffle this card from your GY into the Deck instead.",
-          "lua": "EFFECT_SEND_REPLACE watches effect-reason sends from the controller’s hand, lets the player choose one affected card, and sends Domestication from GY to the shuffled Deck with REASON_REPLACE.",
-          "official_omega": [
-            "c66594927.lua"
-          ],
-          "verdict": "PASS"
-        }
-      ]
-    },
-    {
-      "passcode": 259265448,
-      "text_sha256": "5002fe42c79207e778f27f0946da9b2f08f815ca6a8208cb6fa15fd1f1e2dc0d",
-      "script_sha256": "37fed2eb58916db905650edfb76f9bb933acd6f06cc1df0e77fab804b72a0f6b",
-      "verdict": "PASS",
-      "provenance": {
-        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
-        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
-        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
-      },
-      "effects": [
-        {
-          "clause": "If a Level 1 Beast or Winged Beast is sent from your hand to the GY, once per turn: shuffle that card into the Deck.",
-          "lua": "EVENT_TO_GRAVE with DELAY checks previous hand/controller, Level 1 and race; the selected event card is returned with Necrovalley handling and e1 has a once-per-turn key.",
-          "official_omega": [
-            "c98301564.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "Then add a differently named Level 1 Beast or Winged Beast from your Deck, and if you do, you can send it to the GY.",
-          "lua": "The returned card’s code is captured, the Deck search excludes that code, confirms the added card, then optionally sends that same card.",
-          "official_omega": [
-            "c9126351.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "At the start of the Battle Phase, if you control no monsters, Special Summon any number of differently named \"Domestica\" Fairy monsters from your GY.",
-          "lua": "A forced PHASE_BATTLE_START trigger rechecks an empty field, computes open zones, and SelectSubGroup enforces distinct codes for one through all available zones.",
-          "official_omega": [
-            "c54447022.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "Send those summoned monsters to the GY at the end of that Battle Phase.",
-          "lua": "Each successfully summoned monster receives a standard-reset PHASE_BATTLE continuous effect that sends itself at that phase’s end.",
-          "official_omega": [
-            "c97219708.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "Cards and effects cannot be activated in response to this effect’s activation.",
-          "lua": "The target function calls Duel.SetChainLimit(aux.FALSE).",
-          "official_omega": [
-            "c48130397.lua"
-          ],
-          "verdict": "PASS"
-        }
-      ]
-    },
-    {
-      "passcode": 259668626,
-      "text_sha256": "5a031e36ab93ba63620be5523c70970e83df98035521aba1927a7343fb988464",
-      "script_sha256": "f86f174e064f55b7a7ffa05949a228faf3d7c449212a8d1c24086a64ada4180d",
-      "verdict": "PASS",
-      "provenance": {
-        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
-        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
-        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
-      },
-      "effects": [
-        {
-          "clause": "This card in your hand can be used as Tribute when you Normal Summon a NATURE monster.",
-          "lua": "A hand-range EFFECT_EXTRA_RELEASE_SUM returns true only for NATURE tribute-summon candidates and has its own HOPT key.",
-          "official_omega": [
-            "c55521751.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "If sent from the hand to the GY: You can Set this card.",
-          "lua": "A delayed single EVENT_TO_GRAVE trigger checks previous hand/controller and SSets the handler from GY into an open S/T zone.",
-          "official_omega": [
-            "c2006591.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "If Set by that effect, this Set card cannot be destroyed by card effects.",
-          "lua": "After the successful Set, a SET_AVAILABLE single EFFECT_INDESTRUCTABLE_EFFECT applies only while the card remains face-down and resets on the standard event set.",
-          "official_omega": [
-            "c1804528.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "If NATURE monster(s) return from your GY to the Deck (max. 2), draw that many, then send that many cards from hand to GY.",
-          "lua": "EVENT_TO_DECK counts qualifying previous-GY NATURE monsters now in Deck/Extra, caps at two, draws exactly the label count, then selects exactly that many able hand cards to send.",
-          "official_omega": [
-            "c95238394.lua",
-            "c59750328.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "You can only use each effect once per turn.",
-          "lua": "The three independently usable effects use id, id+100, and id+200 count keys.",
-          "official_omega": [
-            "c14558127.lua"
-          ],
-          "verdict": "PASS"
-        }
-      ]
-    },
-    {
-      "passcode": 259410628,
-      "text_sha256": "ca93f88bdb018d93b6369ddd57b826885928a3de5c2442e42976672046250a65",
-      "script_sha256": "23c4ed6c0c36c84447293d65ee94625b3ea939770bc09497249dfd0bceb5e2f9",
-      "verdict": "PASS",
-      "provenance": {
-        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
-        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
-        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
-      },
-      "effects": [
-        {
-          "clause": "This card in your hand can be used as Tribute when Normal Summoning a NATURE monster.",
-          "lua": "Hand-range EFFECT_EXTRA_RELEASE_SUM is attribute-filtered and independently count-limited.",
-          "official_omega": [
-            "c55521751.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "If sent from hand to GY: Set this card, and if you do, it can be activated this turn.",
-          "lua": "The delayed EVENT_TO_GRAVE trigger SSets the card and grants EFFECT_TRAP_ACT_IN_SET_TURN with SET_AVAILABLE until it leaves/reset.",
-          "official_omega": [
-            "c80101899.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "During the Main Phase, you may also Tribute a monster you control to activate this effect.",
-          "lua": "The quick effect is Main-Phase conditioned; fuscost makes the Tribute genuinely optional and releases one selected releasable monster only if chosen.",
-          "official_omega": [
-            "c29280589.lua",
-            "c48686504.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "Reveal 1 Beast or Winged Beast Fusion Monster, then you can Fusion Summon it by shuffling materials from your GY into the Deck.",
-          "lua": "Resolution reveals a summonable race-filtered Fusion, builds only GY fusion material, optionally selects a legal group, shuffles it with fusion/material reasons, Special Summons, and completes the procedure.",
-          "official_omega": [
-            "c95238394.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "You can only use each effect once per turn.",
-          "lua": "id/id+100/id+200 independently count the release permission, Set trigger and Fusion effect.",
-          "official_omega": [
-            "c14558127.lua"
-          ],
-          "verdict": "PASS"
-        }
-      ]
-    },
-    {
-      "passcode": 259670933,
-      "text_sha256": "379d7cbb87dc9fc9c91c9f19ff6fe70e00d44e7c4ff8d1acdec7aa093fe8af0e",
-      "script_sha256": "88c6453ff080fe412d523adb05f9bc164f1876bb8d84ac3333d97120b208d3f0",
-      "verdict": "PASS",
-      "provenance": {
-        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
-        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
-        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
-      },
-      "effects": [
-        {
-          "clause": "2 \"Domestica\" monsters except \"Domestica Kyrie\".",
-          "lua": "AddFusionProcFunRep requires exactly two Domestica Fusion materials and fusfilter excludes this passcode.",
-          "official_omega": [
-            "c10817524.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "Must first be Special Summoned from the Extra Deck by shuffling those required materials from your GY into the Deck while you control no monsters; no Polymerization.",
-          "lua": "A custom Extra Deck SPSUMMON_PROC requires an empty monster zone, selects exactly two legal GY Fusion materials, records them as material, and shuffles them as cost; SPSUMMON_CONDITION blocks another initial Extra Deck summon method.",
-          "official_omega": [
-            "c79229522.lua",
-            "c95238394.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "You can only Special Summon \"Domestica Kyrie\" once per turn this way.",
-          "lua": "c:SetSPSummonOnce(id) applies the once-per-turn special-summon identity restriction.",
-          "official_omega": [
-            "c10443957.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "If Special Summoned from the Extra Deck: activate 1 \"Domestic Underworld\" from Deck or GY.",
-          "lua": "A delayed summon trigger checks previous Extra Deck location, selects the exact code from Deck/GY, sends an existing Field Spell by rule, and moves Underworld face-up to the Field Zone.",
-          "official_omega": [
-            "c89208725.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "During the turn this card in your GY was Tributed (Quick Effect): send 1 \"Domestica\" monster from Deck to GY.",
-          "lua": "EVENT_RELEASE records a flag through the current End Phase; the GY quick effect requires that flag and performs an archetype monster Deck send.",
-          "official_omega": [
-            "c64025981.lua",
-            "c81439173.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "You can only use each activated effect once per turn.",
-          "lua": "The summon-trigger and GY quick effect use separate id+100/id+200 keys.",
-          "official_omega": [
-            "c14558127.lua"
-          ],
-          "verdict": "PASS"
-        }
-      ]
-    },
-    {
-      "passcode": 259394179,
-      "text_sha256": "01ad696340c1c665626740f0a6deae3603b16ff47598a7739d7b7e7b8a97c51f",
-      "script_sha256": "809946f0accfd12853d0dd2211f5a048d8cbe66d6e805446121cefedd43a8a99",
-      "verdict": "FIXED",
-      "provenance": {
-        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
-        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
-        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
-      },
-      "effects": [
-        {
-          "clause": "\"Pip, The Domesticated\" + 1 \"Domestica\" Fairy monster.",
-          "lua": "The Fusion procedure requires the exact Pip code plus one Domestica Fairy and enables revive limit.",
-          "official_omega": [
-            "c72926163.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "Cannot be Summoned while you control a monster.",
-          "lua": "The uncopyable single effects now combine the conditional Special Summon prohibition with EFFECT_CANNOT_FLIP_SUMMON, whose condition checks for another controlled monster.",
-          "official_omega": [
-            "c86099788.lua"
-          ],
-          "verdict": "FIXED",
-          "notes": "Confirmed and corrected: the Fusion previously prohibited only Special Summons, so a face-down copy could be Flip Summoned while its controller had another monster."
-        },
-        {
-          "clause": "During the Main Phase, while you control no other monster (Quick Effect), Tribute this card; send all monsters on the field to the GY.",
-          "lua": "A Main-Phase quick effect checks no other controlled monster, releases the handler as cost, then sends every able monster on both fields.",
-          "official_omega": [
-            "c90448279.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "The previous effect is once per turn.",
-          "lua": "The quick effect uses SetCountLimit(1,id).",
-          "official_omega": [
-            "c14558127.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "If sent to the GY: return this card to the Extra Deck; also add the named Pip from Deck to hand, then send it to GY.",
-          "lua": "A mandatory delayed EVENT_TO_GRAVE trigger independently returns the Fusion, then searches/confirms Pip and sends that same successfully added card.",
-          "official_omega": [
-            "c95238394.lua"
-          ],
-          "verdict": "PASS"
-        }
-      ]
-    },
-    {
-      "passcode": 259718504,
-      "text_sha256": "79d7dacdc828c0728a1838c2856dbfa369e2aaba593a750932badd3da6e8a7ce",
-      "script_sha256": "0846e7d889caa7ef2b83ff94a8664a54a53c1eec17d421c1c7cf51855374f16b",
-      "verdict": "FIXED",
-      "provenance": {
-        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
-        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
-        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
-      },
-      "effects": [
-        {
-          "clause": "\"Tove, The Domesticated\" + 1 \"Domestica\" Fairy monster.",
-          "lua": "The Fusion procedure requires the exact Tove code plus one Domestica Fairy.",
-          "official_omega": [
-            "c72926163.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "Cannot be Summoned while you control a monster.",
-          "lua": "The uncopyable single effects now combine the conditional Special Summon prohibition with EFFECT_CANNOT_FLIP_SUMMON, whose condition checks for another controlled monster.",
-          "official_omega": [
-            "c86099788.lua"
-          ],
-          "verdict": "FIXED",
-          "notes": "Confirmed and corrected: the unqualified Summon restriction also prohibits a Flip Summon while another monster is controlled."
-        },
-        {
-          "clause": "Main Phase/no other monster Quick Effect: Tribute this card; return all cards in both Spell/Trap Zones to hand except \"Domestic Underworld\".",
-          "lua": "The quick effect enforces timing/field condition, releases itself, and sends every hand-returnable S/T-zone card other than the exact protected code to hand.",
-          "official_omega": [
-            "c42703248.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "The previous effect is once per turn.",
-          "lua": "SetCountLimit(1,id) is attached to the quick effect.",
-          "official_omega": [
-            "c14558127.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "If sent to GY: return this card to Extra Deck; also add named Tove from Deck, then send it to GY.",
-          "lua": "The mandatory delayed trigger implements independent return and search branches, then sends the same added Tove.",
-          "official_omega": [
-            "c95238394.lua"
-          ],
-          "verdict": "PASS"
-        }
-      ]
-    },
-    {
       "passcode": 216620496,
       "text_sha256": "6462f94f17fc0443d517895167bfb1560704c5f7a976a66b9eb8f15f6d2aa726",
       "script_sha256": "ce4aff03f438723f79c7f4e97649370d7f7e157ddb2e3035a9fc053e52660848",
@@ -8036,43 +7440,6 @@
           "lua": "Hand Quick Effect checks TOHAND/TODECK/TOEXTRA from removed, SPECIAL_SUMMON from removed, and REMOVE from Deck via operation metadata, discards, and NegateActivation; HOPT.",
           "official_omega": [
             "c73642296.lua"
-          ],
-          "verdict": "PASS"
-        }
-      ]
-    },
-    {
-      "passcode": 259290896,
-      "text_sha256": "19a4fff5c892f4122fe13d9d79fe0b5bb10579cff2b7b76a74db6657f31dd365",
-      "script_sha256": "f63697268d41ff8e5d643674d4aa3480d5d72c3b03ad69f665754bf6413efd2d",
-      "verdict": "PASS",
-      "provenance": {
-        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
-        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
-        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
-      },
-      "effects": [
-        {
-          "clause": "If the opponent controls a card, activate this Trap from hand.",
-          "lua": "EFFECT_TRAP_ACT_IN_HAND condition checks any opponent on-field card.",
-          "official_omega": [
-            "c40366667.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "When an effect targets a card you own: negate that effect, then if a Trap is in your GY destroy that card.",
-          "lua": "Activation condition inspects CHAININFO_TARGET_CARDS by owner; resolution NegateEffect then conditionally destroys the chain event card if a Trap remains in own GY.",
-          "official_omega": [
-            "c40366667.lua"
-          ],
-          "verdict": "PASS"
-        },
-        {
-          "clause": "If activated from hand, cannot activate NATURE, ELECTRIC, METAL or ICE monster effects for the rest of the Duel. Only 1 activation per turn.",
-          "lua": "Captures STATUS_ACT_FROM_HAND, registers a no-reset CANNOT_ACTIVATE field effect for the four custom attribute bits, and uses an oath activation count.",
-          "official_omega": [
-            "c40366667.lua"
           ],
           "verdict": "PASS"
         }
@@ -28764,6 +28131,641 @@
           "official_omega": [
             "c55838342.lua",
             "c82956214.lua"
+          ],
+          "verdict": "PASS"
+        }
+      ]
+    }
+  ],
+  "retired_reviews": [
+    {
+      "passcode": 259377794,
+      "text_sha256": "772c3b9fdb70aef514e6f17c416437270f3727b34f2e8297c1eaa1a0ca5beae9",
+      "script_sha256": "08c46be9eaff384e003ea586530a083db08139d9aac30770601a43272a2fec30",
+      "verdict": "PASS",
+      "provenance": {
+        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
+        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
+        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
+      },
+      "effects": [
+        {
+          "clause": "This card cannot be Summoned while you control a monster.",
+          "lua": "c259377794.lua uses registered condition/target/operation callbacks; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_omega": [
+            "c86099788.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "If this card is Normal Summoned: You can add 1 \"Domestica\" Fairy Monster from your Deck to your hand.",
+          "lua": "c259377794.lua uses Duel.SendtoDeck, Duel.SendtoHand; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_omega": [
+            "c32807846.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "During the Battle Phase, if all monsters you control are Fairy Monsters (Quick Effect): You can shuffle this card from your GY into the Deck, and if you do, Fairy Monsters you control gain 550 ATK until the end of that Battle Phase.",
+          "lua": "c259377794.lua uses Duel.SendtoDeck; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_omega": [
+            "c37742478.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "You can only use each effect of \"Pip, the Domesticated\" once per turn.",
+          "lua": "c259377794.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_omega": [
+            "c14558127.lua"
+          ],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 259737127,
+      "text_sha256": "3ef50e9be6fbc8cf4ad47ba2e127a6ef47c5b882f125cd3072b5d4303a512f34",
+      "script_sha256": "80027151ba8e1af581599459143f203be337307ce7f41d67d56d302a483c7a92",
+      "verdict": "PASS",
+      "provenance": {
+        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
+        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
+        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
+      },
+      "effects": [
+        {
+          "clause": "This card cannot be Summoned while you control a Monster.",
+          "lua": "c259737127.lua uses registered condition/target/operation callbacks; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_omega": [
+            "c86099788.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "If this card is sent from the hand to the GY: You can draw 1 card, then send up to 2 cards from your hand to the GY.",
+          "lua": "c259737127.lua uses Duel.Draw; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_omega": [
+            "c55144522.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "During the Battle Phase (Quick Effect): You can shuffle this card from your GY into the Deck, then send 1 Level 1 Beast or Winged Beast Monster from your Deck to the GY but shuffle it into the Deck at the end of that Battle Phase.",
+          "lua": "c259737127.lua uses Duel.SendtoDeck; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_omega": [
+            "c81439173.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "You can only use each effect of \"Tove, the Domesticated\" once per turn.",
+          "lua": "c259737127.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_omega": [
+            "c14558127.lua"
+          ],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 259264881,
+      "text_sha256": "645a6c19fd6a80dfdc13b0c0d8eec8f3011eaaeb39c64de354b9467a0b87ca87",
+      "script_sha256": "a8f4de405595ced33454151991548ed4af20b6476af26c684e8f03099620d2fb",
+      "verdict": "PASS",
+      "provenance": {
+        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
+        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
+        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
+      },
+      "effects": [
+        {
+          "clause": "Except during the Battle Phase, this card cannot be Summoned while you control a monster, except by Tribute Summon where the required Tribute(s) are the only monster(s) you control.",
+          "lua": "Current canonical Lua registers CANNOT_SUMMON, CANNOT_FLIP_SUMMON, and an SPSUMMON_CONDITION. Outside the Battle Phase, one existing monster is allowed only for the Level 5 Tribute Summon that uses that sole monster; Flip and Special Summons are prohibited while another monster remains.",
+          "official_omega": [
+            "c86099788.lua"
+          ],
+          "verdict": "PASS",
+          "notes": "Rejected against current Lua: the reported missing Flip Summon prohibition is already present as EFFECT_CANNOT_FLIP_SUMMON with the field-state condition."
+        },
+        {
+          "clause": "You can Normal Summon/Set this card in addition to your Normal Summon/Set (You can only gain this effect once per turn).",
+          "lua": "c259264881.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_omega": [
+            "c14558127.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "You can Tribute this card; add 1 \"Domestica\" monster from your Deck to your hand, then send 1 card from your hand to the GY.",
+          "lua": "c259264881.lua uses Duel.SendtoHand; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_omega": [
+            "c32807846.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "You can only use this effect of \"Domestica Praerie\" once per turn.",
+          "lua": "c259264881.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_omega": [
+            "c14558127.lua"
+          ],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 259337739,
+      "text_sha256": "e5647d8b1b9bd63fc361a65251687503c32a59943cac3dbff1c879b51deb983e",
+      "script_sha256": "83e85257118bf53f4fe58270811b26e2db31473c8561fa905135870f9f65f335",
+      "verdict": "PASS",
+      "provenance": {
+        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
+        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
+        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
+      },
+      "effects": [
+        {
+          "clause": "Except during the Battle Phase, this card cannot be Summoned while you control a monster, except by Tribute Summon where the required Tribute(s) are the only monster(s) you control.",
+          "lua": "Current canonical Lua registers CANNOT_SUMMON, CANNOT_FLIP_SUMMON, and an SPSUMMON_CONDITION. Outside the Battle Phase, one existing monster is allowed only for the Level 5 Tribute Summon that uses that sole monster; Flip and Special Summons are prohibited while another monster remains.",
+          "official_omega": [
+            "c86099788.lua"
+          ],
+          "verdict": "PASS",
+          "notes": "Rejected against current Lua: the reported missing Flip Summon prohibition is already present as EFFECT_CANNOT_FLIP_SUMMON with the field-state condition."
+        },
+        {
+          "clause": "You can Normal Summon/Set this card in addition to your Normal Summon/Set (You can only gain this effect once per turn).",
+          "lua": "c259337739.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_omega": [
+            "c14558127.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "You can Tribute this card; add 1 \"Domestica\" Spell/Trap from your Deck to your hand, then send 1 card from your hand to the GY.",
+          "lua": "c259337739.lua uses Duel.SendtoHand; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_omega": [
+            "c32807846.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "You can only use this effect of \"Domestica Anjelie\" once per turn.",
+          "lua": "c259337739.lua uses SetCountLimit; literal review found the printed condition, cost, target, operation order, count limit, and stated duration represented without a concrete mismatch.",
+          "official_omega": [
+            "c14558127.lua"
+          ],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 259245149,
+      "text_sha256": "857a79a7d12b2ad4300c606c39eeccb6da76387f6accd04313e6ed7e1d924e76",
+      "script_sha256": "a32689013cfe93d55df5c9b7bfa3cec49210483621b4ccd88af9e82e1a7a2f12",
+      "verdict": "PASS",
+      "provenance": {
+        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
+        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
+        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
+      },
+      "effects": [
+        {
+          "clause": "Except during the Battle Phase, this card cannot be Summoned while you control a monster, except by a Tribute Summon whose required Tributes are the only monsters you control.",
+          "lua": "add_lv5_summon_limit registers CANNOT_SUMMON/CANNOT_FLIP_SUMMON outside the Battle Phase when too many monsters remain, and SPSUMMON_CONDITION permits Special Summon only in the Battle Phase or with an empty field.",
+          "official_omega": [
+            "c86099788.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "You can Normal Summon/Set this card in addition to your Normal Summon/Set; only one such additional count can be gained per turn.",
+          "lua": "add_extra_summon registers targeted EFFECT_EXTRA_SUMMON_COUNT and EFFECT_EXTRA_SET_COUNT while Lunalie is in hand/field.",
+          "official_omega": [
+            "c3113836.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "Tribute this card; add 1 \"Domestica\" card from your GY to your hand, then you can send 1 card from your hand to the GY.",
+          "lua": "cost releases the handler; thtg/thop select a Necrovalley-legal Domestica in the GY, add it, then optionally select and send one hand card.",
+          "official_omega": [
+            "c48686504.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "You can only use the Tribute/recovery effect once per turn.",
+          "lua": "e3 uses SetCountLimit(1,id), a shared-name hard once-per-turn key.",
+          "official_omega": [
+            "c14558127.lua"
+          ],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 259201342,
+      "text_sha256": "e8341f0c79e36ef6c70647c1052da625a34bfa4f9aef0c45e367cf729f35c9e9",
+      "script_sha256": "cbcb2673aec3fde5c9fe112cd812ed020ea2701abd4f25a724000993d2962843",
+      "verdict": "PASS",
+      "provenance": {
+        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
+        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
+        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
+      },
+      "effects": [
+        {
+          "clause": "Reveal 1 Beast or Winged Beast Fusion Monster in your Extra Deck and 1 Fusion Material listed on it in your Deck, then send that Extra Deck monster to the GY.",
+          "lua": "exfilter limits the revealed Extra Deck card to a Beast/Winged Beast Fusion able to go to GY and requires a listed Deck material; activate confirms both cards, shuffles after revealing the Deck card, and sends only the Fusion.",
+          "official_omega": [
+            "c2390019.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "You can only activate 1 \"Domestication\" per turn.",
+          "lua": "The activation effect uses SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH).",
+          "official_omega": [
+            "c35261759.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "If a card would be sent from your hand to the GY by card effect, you can shuffle this card from your GY into the Deck instead.",
+          "lua": "EFFECT_SEND_REPLACE watches effect-reason sends from the controller’s hand, lets the player choose one affected card, and sends Domestication from GY to the shuffled Deck with REASON_REPLACE.",
+          "official_omega": [
+            "c66594927.lua"
+          ],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 259265448,
+      "text_sha256": "5002fe42c79207e778f27f0946da9b2f08f815ca6a8208cb6fa15fd1f1e2dc0d",
+      "script_sha256": "37fed2eb58916db905650edfb76f9bb933acd6f06cc1df0e77fab804b72a0f6b",
+      "verdict": "PASS",
+      "provenance": {
+        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
+        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
+        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
+      },
+      "effects": [
+        {
+          "clause": "If a Level 1 Beast or Winged Beast is sent from your hand to the GY, once per turn: shuffle that card into the Deck.",
+          "lua": "EVENT_TO_GRAVE with DELAY checks previous hand/controller, Level 1 and race; the selected event card is returned with Necrovalley handling and e1 has a once-per-turn key.",
+          "official_omega": [
+            "c98301564.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "Then add a differently named Level 1 Beast or Winged Beast from your Deck, and if you do, you can send it to the GY.",
+          "lua": "The returned card’s code is captured, the Deck search excludes that code, confirms the added card, then optionally sends that same card.",
+          "official_omega": [
+            "c9126351.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "At the start of the Battle Phase, if you control no monsters, Special Summon any number of differently named \"Domestica\" Fairy monsters from your GY.",
+          "lua": "A forced PHASE_BATTLE_START trigger rechecks an empty field, computes open zones, and SelectSubGroup enforces distinct codes for one through all available zones.",
+          "official_omega": [
+            "c54447022.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "Send those summoned monsters to the GY at the end of that Battle Phase.",
+          "lua": "Each successfully summoned monster receives a standard-reset PHASE_BATTLE continuous effect that sends itself at that phase’s end.",
+          "official_omega": [
+            "c97219708.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "Cards and effects cannot be activated in response to this effect’s activation.",
+          "lua": "The target function calls Duel.SetChainLimit(aux.FALSE).",
+          "official_omega": [
+            "c48130397.lua"
+          ],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 259668626,
+      "text_sha256": "5a031e36ab93ba63620be5523c70970e83df98035521aba1927a7343fb988464",
+      "script_sha256": "f86f174e064f55b7a7ffa05949a228faf3d7c449212a8d1c24086a64ada4180d",
+      "verdict": "PASS",
+      "provenance": {
+        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
+        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
+        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
+      },
+      "effects": [
+        {
+          "clause": "This card in your hand can be used as Tribute when you Normal Summon a NATURE monster.",
+          "lua": "A hand-range EFFECT_EXTRA_RELEASE_SUM returns true only for NATURE tribute-summon candidates and has its own HOPT key.",
+          "official_omega": [
+            "c55521751.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "If sent from the hand to the GY: You can Set this card.",
+          "lua": "A delayed single EVENT_TO_GRAVE trigger checks previous hand/controller and SSets the handler from GY into an open S/T zone.",
+          "official_omega": [
+            "c2006591.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "If Set by that effect, this Set card cannot be destroyed by card effects.",
+          "lua": "After the successful Set, a SET_AVAILABLE single EFFECT_INDESTRUCTABLE_EFFECT applies only while the card remains face-down and resets on the standard event set.",
+          "official_omega": [
+            "c1804528.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "If NATURE monster(s) return from your GY to the Deck (max. 2), draw that many, then send that many cards from hand to GY.",
+          "lua": "EVENT_TO_DECK counts qualifying previous-GY NATURE monsters now in Deck/Extra, caps at two, draws exactly the label count, then selects exactly that many able hand cards to send.",
+          "official_omega": [
+            "c95238394.lua",
+            "c59750328.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "You can only use each effect once per turn.",
+          "lua": "The three independently usable effects use id, id+100, and id+200 count keys.",
+          "official_omega": [
+            "c14558127.lua"
+          ],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 259410628,
+      "text_sha256": "ca93f88bdb018d93b6369ddd57b826885928a3de5c2442e42976672046250a65",
+      "script_sha256": "23c4ed6c0c36c84447293d65ee94625b3ea939770bc09497249dfd0bceb5e2f9",
+      "verdict": "PASS",
+      "provenance": {
+        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
+        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
+        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
+      },
+      "effects": [
+        {
+          "clause": "This card in your hand can be used as Tribute when Normal Summoning a NATURE monster.",
+          "lua": "Hand-range EFFECT_EXTRA_RELEASE_SUM is attribute-filtered and independently count-limited.",
+          "official_omega": [
+            "c55521751.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "If sent from hand to GY: Set this card, and if you do, it can be activated this turn.",
+          "lua": "The delayed EVENT_TO_GRAVE trigger SSets the card and grants EFFECT_TRAP_ACT_IN_SET_TURN with SET_AVAILABLE until it leaves/reset.",
+          "official_omega": [
+            "c80101899.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "During the Main Phase, you may also Tribute a monster you control to activate this effect.",
+          "lua": "The quick effect is Main-Phase conditioned; fuscost makes the Tribute genuinely optional and releases one selected releasable monster only if chosen.",
+          "official_omega": [
+            "c29280589.lua",
+            "c48686504.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "Reveal 1 Beast or Winged Beast Fusion Monster, then you can Fusion Summon it by shuffling materials from your GY into the Deck.",
+          "lua": "Resolution reveals a summonable race-filtered Fusion, builds only GY fusion material, optionally selects a legal group, shuffles it with fusion/material reasons, Special Summons, and completes the procedure.",
+          "official_omega": [
+            "c95238394.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "You can only use each effect once per turn.",
+          "lua": "id/id+100/id+200 independently count the release permission, Set trigger and Fusion effect.",
+          "official_omega": [
+            "c14558127.lua"
+          ],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 259670933,
+      "text_sha256": "379d7cbb87dc9fc9c91c9f19ff6fe70e00d44e7c4ff8d1acdec7aa093fe8af0e",
+      "script_sha256": "88c6453ff080fe412d523adb05f9bc164f1876bb8d84ac3333d97120b208d3f0",
+      "verdict": "PASS",
+      "provenance": {
+        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
+        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
+        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
+      },
+      "effects": [
+        {
+          "clause": "2 \"Domestica\" monsters except \"Domestica Kyrie\".",
+          "lua": "AddFusionProcFunRep requires exactly two Domestica Fusion materials and fusfilter excludes this passcode.",
+          "official_omega": [
+            "c10817524.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "Must first be Special Summoned from the Extra Deck by shuffling those required materials from your GY into the Deck while you control no monsters; no Polymerization.",
+          "lua": "A custom Extra Deck SPSUMMON_PROC requires an empty monster zone, selects exactly two legal GY Fusion materials, records them as material, and shuffles them as cost; SPSUMMON_CONDITION blocks another initial Extra Deck summon method.",
+          "official_omega": [
+            "c79229522.lua",
+            "c95238394.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "You can only Special Summon \"Domestica Kyrie\" once per turn this way.",
+          "lua": "c:SetSPSummonOnce(id) applies the once-per-turn special-summon identity restriction.",
+          "official_omega": [
+            "c10443957.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "If Special Summoned from the Extra Deck: activate 1 \"Domestic Underworld\" from Deck or GY.",
+          "lua": "A delayed summon trigger checks previous Extra Deck location, selects the exact code from Deck/GY, sends an existing Field Spell by rule, and moves Underworld face-up to the Field Zone.",
+          "official_omega": [
+            "c89208725.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "During the turn this card in your GY was Tributed (Quick Effect): send 1 \"Domestica\" monster from Deck to GY.",
+          "lua": "EVENT_RELEASE records a flag through the current End Phase; the GY quick effect requires that flag and performs an archetype monster Deck send.",
+          "official_omega": [
+            "c64025981.lua",
+            "c81439173.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "You can only use each activated effect once per turn.",
+          "lua": "The summon-trigger and GY quick effect use separate id+100/id+200 keys.",
+          "official_omega": [
+            "c14558127.lua"
+          ],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 259394179,
+      "text_sha256": "01ad696340c1c665626740f0a6deae3603b16ff47598a7739d7b7e7b8a97c51f",
+      "script_sha256": "809946f0accfd12853d0dd2211f5a048d8cbe66d6e805446121cefedd43a8a99",
+      "verdict": "FIXED",
+      "provenance": {
+        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
+        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
+        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
+      },
+      "effects": [
+        {
+          "clause": "\"Pip, The Domesticated\" + 1 \"Domestica\" Fairy monster.",
+          "lua": "The Fusion procedure requires the exact Pip code plus one Domestica Fairy and enables revive limit.",
+          "official_omega": [
+            "c72926163.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "Cannot be Summoned while you control a monster.",
+          "lua": "The uncopyable single effects now combine the conditional Special Summon prohibition with EFFECT_CANNOT_FLIP_SUMMON, whose condition checks for another controlled monster.",
+          "official_omega": [
+            "c86099788.lua"
+          ],
+          "verdict": "FIXED",
+          "notes": "Confirmed and corrected: the Fusion previously prohibited only Special Summons, so a face-down copy could be Flip Summoned while its controller had another monster."
+        },
+        {
+          "clause": "During the Main Phase, while you control no other monster (Quick Effect), Tribute this card; send all monsters on the field to the GY.",
+          "lua": "A Main-Phase quick effect checks no other controlled monster, releases the handler as cost, then sends every able monster on both fields.",
+          "official_omega": [
+            "c90448279.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "The previous effect is once per turn.",
+          "lua": "The quick effect uses SetCountLimit(1,id).",
+          "official_omega": [
+            "c14558127.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "If sent to the GY: return this card to the Extra Deck; also add the named Pip from Deck to hand, then send it to GY.",
+          "lua": "A mandatory delayed EVENT_TO_GRAVE trigger independently returns the Fusion, then searches/confirms Pip and sends that same successfully added card.",
+          "official_omega": [
+            "c95238394.lua"
+          ],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 259718504,
+      "text_sha256": "79d7dacdc828c0728a1838c2856dbfa369e2aaba593a750932badd3da6e8a7ce",
+      "script_sha256": "0846e7d889caa7ef2b83ff94a8664a54a53c1eec17d421c1c7cf51855374f16b",
+      "verdict": "FIXED",
+      "provenance": {
+        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
+        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
+        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
+      },
+      "effects": [
+        {
+          "clause": "\"Tove, The Domesticated\" + 1 \"Domestica\" Fairy monster.",
+          "lua": "The Fusion procedure requires the exact Tove code plus one Domestica Fairy.",
+          "official_omega": [
+            "c72926163.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "Cannot be Summoned while you control a monster.",
+          "lua": "The uncopyable single effects now combine the conditional Special Summon prohibition with EFFECT_CANNOT_FLIP_SUMMON, whose condition checks for another controlled monster.",
+          "official_omega": [
+            "c86099788.lua"
+          ],
+          "verdict": "FIXED",
+          "notes": "Confirmed and corrected: the unqualified Summon restriction also prohibits a Flip Summon while another monster is controlled."
+        },
+        {
+          "clause": "Main Phase/no other monster Quick Effect: Tribute this card; return all cards in both Spell/Trap Zones to hand except \"Domestic Underworld\".",
+          "lua": "The quick effect enforces timing/field condition, releases itself, and sends every hand-returnable S/T-zone card other than the exact protected code to hand.",
+          "official_omega": [
+            "c42703248.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "The previous effect is once per turn.",
+          "lua": "SetCountLimit(1,id) is attached to the quick effect.",
+          "official_omega": [
+            "c14558127.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "If sent to GY: return this card to Extra Deck; also add named Tove from Deck, then send it to GY.",
+          "lua": "The mandatory delayed trigger implements independent return and search branches, then sends the same added Tove.",
+          "official_omega": [
+            "c95238394.lua"
+          ],
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "passcode": 259290896,
+      "text_sha256": "19a4fff5c892f4122fe13d9d79fe0b5bb10579cff2b7b76a74db6657f31dd365",
+      "script_sha256": "f63697268d41ff8e5d643674d4aa3480d5d72c3b03ad69f665754bf6413efd2d",
+      "verdict": "PASS",
+      "provenance": {
+        "superseding_audit": "scripts/output/ccg_effect_by_effect_official_reference_audit.json",
+        "method": "Fresh card-by-card, effect-by-effect review against official Omega database and scripts.",
+        "legacy_policy": "Still-applicable manual unresolved classifications are preserved; all other conclusions are superseded by the fresh audit."
+      },
+      "effects": [
+        {
+          "clause": "If the opponent controls a card, activate this Trap from hand.",
+          "lua": "EFFECT_TRAP_ACT_IN_HAND condition checks any opponent on-field card.",
+          "official_omega": [
+            "c40366667.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "When an effect targets a card you own: negate that effect, then if a Trap is in your GY destroy that card.",
+          "lua": "Activation condition inspects CHAININFO_TARGET_CARDS by owner; resolution NegateEffect then conditionally destroys the chain event card if a Trap remains in own GY.",
+          "official_omega": [
+            "c40366667.lua"
+          ],
+          "verdict": "PASS"
+        },
+        {
+          "clause": "If activated from hand, cannot activate NATURE, ELECTRIC, METAL or ICE monster effects for the rest of the Duel. Only 1 activation per turn.",
+          "lua": "Captures STATUS_ACT_FROM_HAND, registers a no-reset CANNOT_ACTIVATE field effect for the four custom attribute bits, and uses an oath activation count.",
+          "official_omega": [
+            "c40366667.lua"
           ],
           "verdict": "PASS"
         }

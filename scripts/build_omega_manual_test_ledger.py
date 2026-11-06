@@ -20,6 +20,15 @@ DECK_MANIFEST = ROOT / "scripts" / "output" / "omega_test_decks" / "CCG Test Dec
 LEDGER = ROOT / "scripts" / "output" / "omega_manual_test_ledger.json"
 STATUS_REPORT = ROOT / "docs" / "ccg-live-test-status.md"
 RESOLVED_GUIDE_EXCLUSIONS = {
+    259245149: "Retired from the active card catalog; historical review retained in the guide.",
+    259264881: "Retired from the active card catalog; historical review retained in the guide.",
+    259290896: "Retired from the active card catalog; historical review retained in the guide.",
+    259337739: "Retired from the active card catalog; historical review retained in the guide.",
+    259377794: "Retired from the active card catalog; historical review retained in the guide.",
+    259410628: "Retired from the active card catalog; historical review retained in the guide.",
+    259668626: "Retired from the active card catalog; historical review retained in the guide.",
+    259670933: "Retired from the active card catalog; historical review retained in the guide.",
+    259737127: "Retired from the active card catalog; historical review retained in the guide.",
     224467692: "Scarstech Prologue is a Normal Monster (Omega type 17); flavor text and an empty script are correct.",
     212684822: "Ektelestis requirements, reflected half damage, and Taxis add/send behavior are fully implemented.",
     215984744: "Recollection, Bear Trap/Mortis, and Mine matching resolve through current name/set pools.",

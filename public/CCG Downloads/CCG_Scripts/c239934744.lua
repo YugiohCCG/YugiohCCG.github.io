@@ -1,4 +1,5 @@
 local s,id=GetID()
+local STRING_ID=133934744
 local SET_FIENDSMITH=0x1b0
 local ENGRAVER=60764609
 function s.initial_effect(c)
@@ -12,7 +13,7 @@ function s.initial_effect(c)
 		Duel.RegisterEffect(ge,0)
 	end
 	local e=Effect.CreateEffect(c)
-	e:SetDescription(aux.Stringid(id,0))
+	e:SetDescription(aux.Stringid(STRING_ID,0))
 	e:SetType(EFFECT_TYPE_ACTIVATE)
 	e:SetCode(EVENT_FREE_CHAIN)
 	e:SetCountLimit(1,id)
@@ -21,7 +22,7 @@ function s.initial_effect(c)
 	e:SetOperation(s.spop)
 	c:RegisterEffect(e)
 	local e2=Effect.CreateEffect(c)
-	e2:SetDescription(aux.Stringid(id,1))
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_GRAVE)
 	e2:SetCountLimit(1,id+100)
@@ -73,7 +74,7 @@ function s.spop(e,tp)
 	if not tc or Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)==0 then return end
 	local mg=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_MZONE,0,nil)
 	if not mg:IsExists(s.engraver,1,nil,tp,mg)
-		or not Duel.SelectYesNo(tp,aux.Stringid(id,2)) then return end
+		or not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_LMATERIAL)
 	local mc=Duel.SelectMatchingCard(tp,s.engraver,tp,LOCATION_MZONE,0,1,1,nil,tp,mg):GetFirst()
 	if not mc then return end

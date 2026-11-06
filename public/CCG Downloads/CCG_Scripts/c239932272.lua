@@ -1,4 +1,5 @@
 local s,id=GetID()
+local STRING_ID=133932272
 local SET_FLOO=0x16d
 local summon_effects={
 	{17827173,"thtg","thop",true},
@@ -73,7 +74,7 @@ end
 function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return c:IsAbleToRemove() and eg:IsExists(s.repfilter,1,nil,tp) end
-	if not Duel.SelectYesNo(tp,aux.Stringid(id,0)) then return false end
+	if not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then return false end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESREPLACE)
 	local tc=eg:FilterSelect(tp,s.repfilter,1,1,nil,tp):GetFirst()
 	if not tc or Duel.Remove(c,POS_FACEUP,REASON_EFFECT+REASON_REPLACE)==0 then return false end

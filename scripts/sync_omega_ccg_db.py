@@ -426,6 +426,12 @@ EXTRA_TOKEN_CARDS = [
 ]
 
 CARD_STRING_OVERRIDES = {
+    "floowandereezeandthehotwinds": ["Choose an effect", "Place a Field Spell", "Banish both monsters", "Apply both effects", "Return this card to the hand"],
+    "floowandereezeandthemagnificentsky": ["Banish materials to Tribute Summon", "Change a Defense Position monster to Attack Position"],
+    "floowandereezeandthemythicjourney": ["Banish this card instead of destroying a card"],
+    "fiendsmithssoprana": ["Send an equipped monster to the GY; Special Summon this card", "Send a Fiendsmith Fusion; return a card to the hand", "Special Summon a Fiendsmith Fusion from the GY"],
+    "fiendsmithsoffertorium": ["Discard a card; add Fiendsmith Engraver", "Special Summon Fiendsmith Engraver", "Link Summon a Fiendsmith monster"],
+
     "terrifyinghydra": ["Summon Hydra Head Tokens or revive in the center zone", "Destroy all opponent field cards"],
     "kaliyugajakarta": ["Negate an opponent Spell/Trap effect", "Banish a card from either GY", "Take 2000 damage", "Banish this card face-down"],
     "azalethesylvanhighsovereign": ["Detach materials; excavate and revive Sylvans", "Excavate until a non-Plant; destroy opponent cards", "Select excavated cards to keep on top"],
