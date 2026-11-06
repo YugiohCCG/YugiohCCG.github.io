@@ -58,5 +58,13 @@ jobs:
           node --no-warnings scripts/fresh_new_floo_fiendsmith_duels.cjs
           node --no-warnings scripts/fresh_new_floo_fiendsmith_effects.cjs
 
+      - name: Verify complete Omega release downloads
+        run: |
+          python -m pip install Pillow==10.4.0 numpy==2.2.6 opencv-python-headless==4.13.0.92
+          python scripts/test_release_regressions.py
+          python scripts/verify_omega_archetypes.py
+          python scripts/verify_omega_message_routes.py
+          python scripts/verify_omega_release.py
+
       - name: Run CCG QA
         run: npm run qa:ccg:ci

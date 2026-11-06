@@ -1,31 +1,29 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-23T12:59:26.636237+00:00",
+  "generated_at": "2026-11-06T17:47:11.065375+00:00",
   "sources": [
     "scripts/output/ccg_effect_review_ledger.json",
     "scripts/output/omega_manual_test_ledger.json"
   ],
   "summary": {
-    "active_cards": 620,
-    "current_reviews": 609,
-    "objectively_resolved": 585,
-    "unresolved_skips": 35,
-    "regression_only": 79,
-    "manual_scenarios": 97,
+    "active_cards": 703,
+    "current_reviews": 703,
+    "objectively_resolved": 666,
+    "unresolved_skips": 37,
+    "regression_only": 70,
+    "manual_scenarios": 88,
     "static_verdicts": {
-      "FIXED": 117,
-      "MANUAL_RULING": 8,
-      "PASS": 468,
-      "UNSUPPORTED": 27
+      "FIXED": 125,
+      "MANUAL_RULING": 9,
+      "PASS": 541,
+      "UNSUPPORTED": 28
     },
-    "errors": 1
+    "errors": 0
   },
-  "errors": [
-    "effect ledger contains stale or pending reviews"
-  ],
+  "errors": [],
   "unresolved": [
     {
-      "guide_number": 42,
+      "guide_number": 41,
       "source_ordinal": 3,
       "card_id": 221321849,
       "card_name": "The Condescender",
@@ -62,13 +60,19 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "798ba9af1f9a3aaefa68a85e37e934eabd48c22cd2fc45c0fbbad566d9d36666",
-      "script_sha256": "da7f1d9f09cea168992997001329bd225be1c7abb5ba6c8c4a8b79047c57b3be",
+      "script_sha256": "52b3cff5c7a24b61b438b6cb53066f03584b6e2d4be1281238990c1700ba9867",
       "effect_details": [
         {
           "verdict": "MANUAL_RULING",
           "clause": "If your \"Stain\" monster was shuffled into either Deck this turn, you can also banish \"Stain\" monsters from face-up in your opponent's Deck as material, but return them to the GY during the End Phase.",
           "implementation": "A global EVENT_MOVE approximation flags Stain monsters moved from outside a Deck into a Deck by effect, enabling face-up opponent-Deck Stain monsters as Fusion material and scheduling used cards to return to the GY in the End Phase. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "EVENT_MOVE does not identify whether movement into a Deck was a shuffle, and it cannot reliably cover cost-based or rule-based shuffles. The current REASON_EFFECT tracker is only an approximation. Resolution: rewrite the condition as 'If your Stain monster was moved into a Deck by a card effect this turn', or add a core shuffle event/reason and use it in c232449539.lua."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Deck-shuffle condition includes costs as well as effects; material payment must move the full selected groups.",
+          "reason": ""
         }
       ]
     },
@@ -83,13 +87,19 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "not_applicable_static_decision",
       "text_sha256": "4e33fa557d4913fdfb90f864fc33d6d1878f2fc814d6bc214268aa2103b59c40",
-      "script_sha256": "6f84d0cd6f7193e73956957524eac9a54fc66f5c198c08835c710b181016c744",
+      "script_sha256": "603f4f18b4feb511a4e85a8e773699ddbad76f4e517d6ec3b28ed05bc47b3073",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If a Pyro Fusion Monster is Special Summoned to your field (except during the Damage Step): You can banish this card from your GY, then target 1 of those monsters; equip 1 \"Talismandrake Arms\" Spell/Trap from your Deck to it as if it were equipped by that Spell/Trap's effect.",
           "implementation": "The trigger equips one of the four supported Arms cards and recreates its equip effects. Sabre/Shield values now count only Equip Spells whose equip target is controlled by the equipped monster's controller; battle replacement is implemented, and Shield approximates leave-field replacement with destroy/send replacements. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "Equipping Blaze Shield 'as if equipped by that card's effect' inherits its optional all-destination leave-field replacement. Omega only provides destroy/send replacement hooks, so return-to-hand, return-to-Deck, and banish departures are not replaced. Resolution: narrow Blaze Shield to destruction/sending, or add a generic optional leave-field replacement hook and use it in the recreated equip effects in c215034223.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Activation cannot discard its own Spell; equip target must be face-up and targetability is not reimposed at resolution.",
+          "reason": ""
         }
       ]
     },
@@ -104,13 +114,19 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "not_applicable_static_decision",
       "text_sha256": "193d05cf4416908db85fb626c7043cb4591b0e0075055795bb64e6f82eb7db6f",
-      "script_sha256": "963629994577e7d175d2e696dab4fb3bbe3d2b753d4b47a63fcb5c806eedd329",
+      "script_sha256": "72657ba2218ac36dc7c7700f87e1ee56792ef6aee518866be03f736d9400de11",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "● The equipped monster gains 500 DEF for each Equip Spell equipped to a monster you control, also, if it would leave the field by your opponent's card effect, you can destroy this card instead.",
           "implementation": "The equipped monster's DEF count now includes only Equip Spells attached to monsters its controller controls. Opponent-effect destroy/send departures can be replaced by destroying this card. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "Omega has optional EFFECT_DESTROY_REPLACE and EFFECT_SEND_REPLACE hooks, but no optional replacement covering every return, banish, destroy, and send way the equipped monster can leave by an opponent's effect. Resolution: change the text to the supported destinations (for example, 'destroyed or sent to the GY'), or add a generic optional leave-field replacement hook and replace both partial hooks in c255832330.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Target immunity acquired after targeting does not invalidate the equipped monster at resolution.",
+          "reason": ""
         }
       ]
     },
@@ -167,7 +183,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "not_applicable_static_decision",
       "text_sha256": "30a01388d8914cb14dc057779d815554cb5e3d3a5b8a489dc4c05dba071212ec",
-      "script_sha256": "56a270f23f366cbe0eac6431e88e531694be275cf6d75c60b53667e1062c4cb3",
+      "script_sha256": "66da1f5be9716c72ca78113ca7518ec84f2b434f3db3e7adb6b6e42e76ec358c",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -180,11 +196,17 @@
           "clause": "If this card is Fusion Summoned, or if your opponent activates a card or effect: You can target 1 \"Talismandrake Arms\" Spell/Trap in your GY; add it to your hand or equip it to this card as if it were equipped by that Spell/Trap's effect.",
           "implementation": "The Fusion-Summon/opponent-activation branches target an Arms card in the GY and add or equip it; recreated Equip values are controller-correct and Shield uses available destroy/send replacement hooks. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "If this effect equips Blaze Shield, its recreated optional leave-field replacement cannot cover return-to-hand, return-to-Deck, or banish departures with current Omega hooks. Resolution: narrow Blaze Shield's text, or add a generic optional leave-field replacement hook and use it in c218142234.lua's recreated Shield effects."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Pendulum cost checks available monster space after all three distinct-name returns; the unrestricted Pendulum effect has no invented once-per-turn limit, and destruction resolves independently of the handler.",
+          "reason": ""
         }
       ]
     },
     {
-      "guide_number": 90,
+      "guide_number": 81,
       "source_ordinal": 56,
       "card_id": 213266433,
       "card_name": "The Hanging Frute",
@@ -194,18 +216,24 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "def7ca7c5586ebdf2cdfaf65e78f42ad0a7e5a29132a7558ea9cf1c2e2924b25",
-      "script_sha256": "c92c6e0702fb0b15383a57f03b7d6e1b16940ae57d5ec580e0f07b21795f936b",
+      "script_sha256": "f6556d5db6969a9e4799dfbe72ea32b79df188831dbb297a5eec1f72fb3e902b",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "\"Frute\" monsters you control can attack all face-down Defense Position monsters your opponent controls, once each.",
           "implementation": "The Lua directly implements granting every Frute one attack on each face-down Defense monster only using custom location/filter/event handling; that bespoke component remains unmatched. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "The text does not resolve whether each Frute retains one ordinary attack against a non-qualifying monster in addition to attacks on every face-down Defense Position monster. The current first-attack tracker also cannot preserve exact once-each identity if a battled monster changes position and is Set again. Resolution: issue a ruling for the ordinary-attack interaction and change the text to match it; then replace c213266433.lua's approximation with a ruling-specific attack procedure (or add filtered attack-all bookkeeping to the engine)."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Each defender tracks the attacking monster field instance; copied chain-effect immunity persists to End Phase rather than expiring with the chain.",
+          "reason": ""
         }
       ]
     },
     {
-      "guide_number": 62,
+      "guide_number": 54,
       "source_ordinal": 87,
       "card_id": 244921711,
       "card_name": "Ursarctic Hextanius",
@@ -215,13 +243,40 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "27ad96a4e3d7f4be13213918479de9c0e2b439f872abc5cf263e1a800e67330a",
-      "script_sha256": "f8cb036b595c5f005f96c2f3ccd9e08fad2dc2547a23f8ef8b63a13a02172e82",
+      "script_sha256": "1e61795a9c67337c2945d2279b06ff89c61342513f5254979a86726679d80dc7",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "For the Special Summon of any Ursarctic Synchro, this card can be Level 7 or 8 and a non-Tuner.",
           "implementation": "The alternate Level/non-Tuner values are consumed by the three CCG Ursarctic procedures that explicitly call Hextanius-aware helpers; the card cannot inject those choices into unrelated official Extra Deck procedures. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "Official Ursarctic Extra Deck monsters use bespoke non-Synchro EFFECT_SPSUMMON_PROC scripts that read card Levels directly and expose no material-side hook for Hextanius to become Level 7/8 and a non-Tuner. Only the CCG procedures that explicitly call Hextanius-aware helpers can honor the text. Resolution: update every Ursarctic summon procedure that must recognize Hextanius (including official scripts), or revise the text to limit the substitution to named CCG Ursarctic monsters."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Custom summon clears previous failure state and records incomplete two-material payment before the engine checks the permitted zone.",
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "guide_number": null,
+      "source_ordinal": 99,
+      "card_id": 229996802,
+      "card_name": "Takama No Hara",
+      "workstream": "Fresh official-reference audit (static decision)",
+      "problem": "EFFECT_CANNOT_TO_HAND is reason-agnostic, so the current Lua also blocks returning the target as a cost. Master Rule Omega has no EFFECT_CANNOT_TO_HAND_EFFECT equivalent that limits the prohibition to card effects. Resolution: remove 'by card effect' from the text, or add an effect-only hand-return prohibition to the engine and use it in c229996802.lua.",
+      "static_verdict": "UNSUPPORTED",
+      "disposition": "SKIPPED_MANUAL_INPUT",
+      "live_status": "not_applicable_static_decision",
+      "text_sha256": "eaf79d5572b9bd8f1eeae1b78b32a544fa3f54ee388bbf7f143a17416262ee96",
+      "script_sha256": "16337484b59e8c8a1e15b239284e7f50a0fa18487f10bcc5adeadfd3626f8d78",
+      "effect_details": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Banish this from GY, target a Spirit you control; it cannot return to hand by card effect until End Phase.",
+          "implementation": "The selected face-up Spirit receives EFFECT_CANNOT_TO_HAND through the End Phase; this enforces the destination but the core prohibition is reason-agnostic. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
+          "reason": "EFFECT_CANNOT_TO_HAND is reason-agnostic, so the current Lua also blocks returning the target as a cost. Master Rule Omega has no EFFECT_CANNOT_TO_HAND_EFFECT equivalent that limits the prohibition to card effects. Resolution: remove 'by card effect' from the text, or add an effect-only hand-return prohibition to the engine and use it in c229996802.lua."
         }
       ]
     },
@@ -247,28 +302,7 @@
       ]
     },
     {
-      "guide_number": null,
-      "source_ordinal": 111,
-      "card_id": 229996802,
-      "card_name": "Takama No Hara",
-      "workstream": "Fresh official-reference audit (static decision)",
-      "problem": "EFFECT_CANNOT_TO_HAND is reason-agnostic, so the current Lua also blocks returning the target as a cost. Master Rule Omega has no EFFECT_CANNOT_TO_HAND_EFFECT equivalent that limits the prohibition to card effects. Resolution: remove 'by card effect' from the text, or add an effect-only hand-return prohibition to the engine and use it in c229996802.lua.",
-      "static_verdict": "UNSUPPORTED",
-      "disposition": "SKIPPED_MANUAL_INPUT",
-      "live_status": "not_applicable_static_decision",
-      "text_sha256": "eaf79d5572b9bd8f1eeae1b78b32a544fa3f54ee388bbf7f143a17416262ee96",
-      "script_sha256": "16337484b59e8c8a1e15b239284e7f50a0fa18487f10bcc5adeadfd3626f8d78",
-      "effect_details": [
-        {
-          "verdict": "UNSUPPORTED",
-          "clause": "Banish this from GY, target a Spirit you control; it cannot return to hand by card effect until End Phase.",
-          "implementation": "The selected face-up Spirit receives EFFECT_CANNOT_TO_HAND through the End Phase; this enforces the destination but the core prohibition is reason-agnostic. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
-          "reason": "EFFECT_CANNOT_TO_HAND is reason-agnostic, so the current Lua also blocks returning the target as a cost. Master Rule Omega has no EFFECT_CANNOT_TO_HAND_EFFECT equivalent that limits the prohibition to card effects. Resolution: remove 'by card effect' from the text, or add an effect-only hand-return prohibition to the engine and use it in c229996802.lua."
-        }
-      ]
-    },
-    {
-      "guide_number": 37,
+      "guide_number": 36,
       "source_ordinal": 113,
       "card_id": 221855414,
       "card_name": "Otakemaru the Accuser",
@@ -278,18 +312,24 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "2d742c1fccf35b346fec3aaa6b85d886d6820956c6e0dfe3d94ed20fda1f046b",
-      "script_sha256": "6f4bd03cf45fe0fdfb3c037f62e430b411f13a3e78b331c8ebcece61eb2cb375",
+      "script_sha256": "595e04870885f25810346f7183d13020c561ac48093996e2d7ddc02cc955ce0b",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If Special Summoned: other Spirit monsters cannot return to hand or Extra Deck by card effect during this turn’s End Phase.",
           "implementation": "The Special Summon trigger installs End-Phase-only CANNOT_TO_HAND/CANNOT_TO_DECK effects for other face-up Spirit monsters; those destination effects also apply to costs and non-effect movement. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "EFFECT_CANNOT_TO_HAND and EFFECT_CANNOT_TO_DECK are reason-agnostic, so the current Lua also blocks costs and other non-effect movement during the End Phase. EFFECT_SPIRIT_DONOT_RETURN would cover only the built-in Spirit return and not arbitrary card effects. Resolution: remove 'by card effect', narrow the text to built-in Spirit returns, or add effect-only hand/Extra-Deck return prohibitions and use them in c221855414.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "The End Phase return trigger is limited once per copy so an unsuccessful return cannot reopen indefinitely.",
+          "reason": ""
         }
       ]
     },
     {
-      "guide_number": 66,
+      "guide_number": 58,
       "source_ordinal": 116,
       "card_id": 259369909,
       "card_name": "Serene Mermaid of the Grand Blue",
@@ -299,18 +339,51 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "f68cee6fc31125d6e440367e06f6abf6f360a6f188b7c275accc7a8522cd8962",
-      "script_sha256": "0e7289e269953b367fb6bb8b8f5711003a5d690ca351e8506be83e90e7f734dc",
+      "script_sha256": "a880c9bae7c53794ad73dbe3ed6ea4faa9ab7fa4bc275996c74be6164afbfb40",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "After the Fusion Summon, for the rest of the turn you may only Special Summon from Extra Deck using Grand Blue monsters as materials.",
           "implementation": "Four material prohibitions prevent non-Grand-Blue cards from being used as Fusion, Synchro, Xyz, or Link Material for the rest of the turn, but materialless Extra Deck procedures are not represented by those hooks. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "Omega's prospective Extra Deck Special Summon restriction callback does not expose the material group. The Lua instead prohibits non-Grand Blue cards from being Fusion, Synchro, Xyz, or Link Material, which does not reject materialless or nonstandard Extra Deck procedures. Resolution: rewrite the restriction as four material prohibitions matching the Lua, or add a summon-limit API that receives the prospective material group and replace the approximation in c259369909.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Fusion requires the entire selected material group to move.",
+          "reason": ""
         }
       ]
     },
     {
-      "guide_number": 38,
+      "guide_number": null,
+      "source_ordinal": 123,
+      "card_id": 244013196,
+      "card_name": "To Proto Chrono",
+      "workstream": "Fresh official-reference audit (static decision)",
+      "problem": "Omega stores some Card TurnCounter values but has no enumerable 'turn count' for every active effect or reset duration. The phrase 'all effects' turn count' also does not define which players, cards, locations, counters, or durations are included. Resolution: define the exact counters/effects and locations to advance, or replace the clause with a supported operation such as Pyro Clock of Destiny's global turn-count advance.",
+      "static_verdict": "MANUAL_RULING",
+      "disposition": "SKIPPED_MANUAL_INPUT",
+      "live_status": "not_applicable_static_decision",
+      "text_sha256": "011cede40051732935ea3fbba782e06968853fd65c0014f9ca08e3c9afa18696",
+      "script_sha256": "2e700b0aea3875931f695213a37aa7e0b15cb8ec99d48d541842e807629f651e",
+      "effect_details": [
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "If the gain occurs, increase all effects’ turn count by 1.",
+          "implementation": "The operation increments Card TurnCounter values on cards in accessible locations, which covers conventional card-maintained turn counters but cannot enumerate or advance arbitrary effect-local reset durations. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
+          "reason": "Omega stores some Card TurnCounter values but has no enumerable 'turn count' for every active effect or reset duration. The phrase 'all effects' turn count' also does not define which players, cards, locations, counters, or durations are included. Resolution: define the exact counters/effects and locations to advance, or replace the clause with a supported operation such as Pyro Clock of Destiny's global turn-count advance."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Custom summon aborts its zone allocation if the required banish payment fails and clears the failure flag on the next attempt.",
+          "reason": ""
+        }
+      ]
+    },
+    {
+      "guide_number": 37,
       "source_ordinal": 126,
       "card_id": 211964444,
       "card_name": "Priestess of Nephthys",
@@ -320,61 +393,25 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "1163b4f44d667447a493e787bab5373a968472d3468d9a9d936dcdcac48c19af",
-      "script_sha256": "188b5824f7f4bd4f6c6ed65e1dbf6d0572b5dfd62068c212b99133e004205c2c",
+      "script_sha256": "bdd6341340d89246d15aba4d1aa8e6c87446d50448fb3ebe3d6bd83a637cbcc9",
       "effect_details": [
         {
           "verdict": "MANUAL_RULING",
           "clause": "Then apply that destroyed card’s Standby Phase-activated effect.",
           "implementation": "After the selected Deck monster is destroyed, CheckActivateEffect(true,true,true) obtains an effect and directly invokes its target and operation outside the original Standby Phase event. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "'That destroyed card's Standby Phase-activated effect' does not identify which effect to apply when the monster has multiple Standby Phase triggers. Omega also has no API for invoking one arbitrary trigger outside its event while preserving its event data and targeting semantics. Resolution: identify the intended effect by exact text/index or restrict the eligible monsters to an enumerated list, then script those operations; otherwise add a core trigger-invocation API."
-        }
-      ]
-    },
-    {
-      "guide_number": null,
-      "source_ordinal": 135,
-      "card_id": 244013196,
-      "card_name": "To Proto Chrono",
-      "workstream": "Fresh official-reference audit (static decision)",
-      "problem": "Omega stores some Card TurnCounter values but has no enumerable 'turn count' for every active effect or reset duration. The phrase 'all effects' turn count' also does not define which players, cards, locations, counters, or durations are included. Resolution: define the exact counters/effects and locations to advance, or replace the clause with a supported operation such as Pyro Clock of Destiny's global turn-count advance.",
-      "static_verdict": "MANUAL_RULING",
-      "disposition": "SKIPPED_MANUAL_INPUT",
-      "live_status": "not_applicable_static_decision",
-      "text_sha256": "011cede40051732935ea3fbba782e06968853fd65c0014f9ca08e3c9afa18696",
-      "script_sha256": "059ad0e9ec10efaec10910211dd86015351335f413899d8cc37f749d83577388",
-      "effect_details": [
+        },
         {
           "verdict": "MANUAL_RULING",
-          "clause": "If the gain occurs, increase all effects’ turn count by 1.",
-          "implementation": "The operation increments Card TurnCounter values on cards in accessible locations, which covers conventional card-maintained turn counters but cannot enumerate or advance arbitrary effect-local reset durations. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
-          "reason": "Omega stores some Card TurnCounter values but has no enumerable 'turn count' for every active effect or reset duration. The phrase 'all effects' turn count' also does not define which players, cards, locations, counters, or durations are included. Resolution: define the exact counters/effects and locations to advance, or replace the clause with a supported operation such as Pyro Clock of Destiny's global turn-count advance."
-        }
-      ]
-    },
-    {
-      "guide_number": 21,
-      "source_ordinal": 139,
-      "card_id": 217332244,
-      "card_name": "To Proto Psychi",
-      "workstream": "Damage and stat-layer behavior",
-      "problem": "100-LP increment UI.",
-      "static_verdict": "UNSUPPORTED",
-      "disposition": "SKIPPED_MANUAL_INPUT",
-      "live_status": "pending",
-      "text_sha256": "f6807763c30b730f56f9861ec6331a1f8f130fa3f1cb2529679ceb7146a5792e",
-      "script_sha256": "495f8ec124b10da53d9e6a426350a6563dd193b992d2dec85209f4424e4d01bc",
-      "effect_details": [
-        {
-          "verdict": "UNSUPPORTED",
-          "clause": "Quick Effect: Tribute a Token, then pay any amount of LP.",
-          "implementation": "The cost offers LP payments in 100-point increments plus LP minus 1, then applies the chosen payment as permanent ATK/DEF gain. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
-          "reason": "The finite AnnounceNumber UI accepts an explicit option list and has no unrestricted integer-entry prompt. Enumerating every integer from 1 to LP-1 is not a supported/practical Omega selection, so the Lua currently offers 100-LP increments plus LP-1. Resolution: change 'any amount' to 'any amount in multiples of 100 (or all but 1 LP)', or add an integer-range prompt to Omega and use it in c217332244.lua."
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Standby effect is selected explicitly and invoked with its own handler and effect relation instead of an arbitrary activation effect.",
+          "reason": ""
         }
       ]
     },
     {
       "guide_number": null,
-      "source_ordinal": 141,
+      "source_ordinal": 129,
       "card_id": 254065048,
       "card_name": "Polemistis gia Ataxia",
       "workstream": "Fresh official-reference audit (static decision)",
@@ -383,19 +420,25 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "not_applicable_static_decision",
       "text_sha256": "6f1f4b2e49ed9e81046477f3cffe82cb73af94e644395904cee0ea6ef2ceb68d",
-      "script_sha256": "13de90d1df28f5ceff53adc5d3ef938a605489e65347624ba1f46481d2d8fe3c",
+      "script_sha256": "499ec26fb53ab53d6fc364d86fb9f1b72d049370385c97c9dd971a2055383f31",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If monster(s) loses ATK/DEF, this card gains ATK/DEF equal to amount lost.",
           "implementation": "Continuous UPDATE_ATTACK and UPDATE_DEFENSE values sum each current face-up monster's deficit from GetBaseAttack/GetBaseDefense. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "Omega has no event reporting historical ATK/DEF loss. The text also omits whether gains accumulate, disappear when the losing monster leaves, or continuously track current deficits; the Lua currently models live deficits from base values. Resolution: state the duration and whether the gain is event-based or continuously recalculated. Then implement that ruling, adding an ATK/DEF-loss event to the engine if historical loss must be tracked."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "The required Tokens must be controlled; incomplete Tribute payment prevents summoning, while a properly summoned copy can later be revived.",
+          "reason": ""
         }
       ]
     },
     {
       "guide_number": null,
-      "source_ordinal": 146,
+      "source_ordinal": 134,
       "card_id": 225106953,
       "card_name": "Stellaer of the Gems",
       "workstream": "Fresh official-reference audit (static decision)",
@@ -415,6 +458,33 @@
       ]
     },
     {
+      "guide_number": 21,
+      "source_ordinal": 139,
+      "card_id": 217332244,
+      "card_name": "To Proto Psychi",
+      "workstream": "Damage and stat-layer behavior",
+      "problem": "100-LP increment UI.",
+      "static_verdict": "UNSUPPORTED",
+      "disposition": "SKIPPED_MANUAL_INPUT",
+      "live_status": "pending",
+      "text_sha256": "f6807763c30b730f56f9861ec6331a1f8f130fa3f1cb2529679ceb7146a5792e",
+      "script_sha256": "e693a6769ed6137e0870afe37762bf1f7c10dd5a3865ac9cc0f89480d69bc062",
+      "effect_details": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Quick Effect: Tribute a Token, then pay any amount of LP.",
+          "implementation": "The cost offers LP payments in 100-point increments plus LP minus 1, then applies the chosen payment as permanent ATK/DEF gain. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
+          "reason": "The finite AnnounceNumber UI accepts an explicit option list and has no unrestricted integer-entry prompt. Enumerating every integer from 1 to LP-1 is not a supported/practical Omega selection, so the Lua currently offers 100-LP increments plus LP-1. Resolution: change 'any amount' to 'any amount in multiples of 100 (or all but 1 LP)', or add an integer-range prompt to Omega and use it in c217332244.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "First proper summon is enforced; any positive integer LP payment below current LP is expressible by bounded decimal digits, while failed banish payment prevents summoning.",
+          "reason": ""
+        }
+      ]
+    },
+    {
       "guide_number": 3,
       "source_ordinal": 165,
       "card_id": 214552846,
@@ -425,13 +495,19 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "b0ccdc2c2ec7b4a162ccefe8b5b74f1eb72eeead1c08812e794c192dee5c560d",
-      "script_sha256": "7a37e100146c21e0fb35034edcf559abe267782c3b913b42f796fbec408bd5f2",
+      "script_sha256": "cd120eb55110b9200ada5e20fe639a59152242058087a183df97314647148cc0",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "When an opponent effect that would destroy two or more monsters you control resolves, destroy this card, then negate that effect.",
           "implementation": "Field-zone Quick Effect responds at EVENT_CHAINING, infers two-or-more own Monster destruction from chain operation metadata, destroys itself at resolution, then calls NegateEffect if destruction succeeded. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "The printed trigger says 'when ... resolves', but chains cannot be started during another effect's resolution. The Lua necessarily responds at activation and predicts destruction from CATEGORY_DESTROY metadata, which cannot identify effects whose victims/count are chosen only while resolving. Resolution: rewrite this as 'When your opponent activates a card or effect that would destroy 2 or more monsters you control' and accept category-based prediction, or define a new engine replacement/interception event before destruction resolves."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "The optional destruction-negation choice is evaluated during effect resolution, tracks that chain operation and retains the original operation when declined; destroyed-to-GY trigger has no invented prior-field requirement.",
+          "reason": ""
         }
       ]
     },
@@ -446,19 +522,25 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "da97e0afe745141d2c3cb191c2116e3b9fe28df05246cc228807674f59f90cba",
-      "script_sha256": "e5c7252ddee671e613ba039e5471240504cb8b7b1a146bf08889ca7bd5a55694",
+      "script_sha256": "fd2e2097aed99695f38370d2e984f47396c750644913db010ff242231574cffe",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "When an effect includes face-up placement from hand/Deck/GY, placing monsters in SZONE, or Setting from hand/Deck/GY: discard this card; negate that effect. HOPT.",
           "implementation": "Ash-style hand Quick Effect checks custom CCG Set markers, CATEGORY_SET when available, CATEGORY_EQUIP, or any CATEGORY_LEAVE_GRAVE operation; discards as cost and NegateEffect; HOPT. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "Omega has no universal categories for face-up Spell/Trap placement, placing Monster Cards in the Spell & Trap Zone, or every Set from hand/Deck/GY. CATEGORY_LEAVE_GRAVE is overbroad, while custom markers only cover scripts that opt in. Resolution: narrow the three bullets to engine-detectable categories, require all relevant scripts to publish dedicated placement/Set markers, or add core operation categories and update c222676270.lua to use them."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "The negation condition recognizes registered face-up-placement effects in addition to Set and Equip categories.",
+          "reason": ""
         }
       ]
     },
     {
       "guide_number": null,
-      "source_ordinal": 223,
+      "source_ordinal": 210,
       "card_id": 234296128,
       "card_name": "Revelation of Crying Chaos",
       "workstream": "Fresh official-reference audit (static decision)",
@@ -467,18 +549,24 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "not_applicable_static_decision",
       "text_sha256": "36f04c3ba73a5cb8f6af586124fab476024442329d54dfc4cb564a0f8231f94c",
-      "script_sha256": "21c01de6d495998e8b5e41d7bc744e34f6cb3228a1ad3cb65e261d177b46bb48",
+      "script_sha256": "3d3a2cf3ae95e68153dc83e10c78ee2f8d3d157ae133a98538c2fa628a2ed11b",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "When your opponent activates a card or effect that would make a card you control leave the field (Quick Effect): You can Tribute 1 \"Crying Chaos\" monster you control; Negate that effect, and if you do, this card gains ATK equal to the Tributed monster's combined ATK and DEF until the end of this turn.",
           "implementation": "negcon recognizes the standard leave-field operation-info categories; negcost Tributes a Crying Chaos monster and stores its current GetAttack()+GetDefense(); negop negates and applies that value through the End Phase.",
           "reason": "Omega can inspect declared operation-info categories and chain targets, but arbitrary Lua operations need not declare either, so the engine cannot determine every effect that would make a controlled card leave the field. Exact resolution requires an engine API exposing the resolving operation's affected cards/destinations, or card text restricted to declared targets and enumerated leave-field categories."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "ATK modification allows the negation before damage calculation, but not during or after damage calculation.",
+          "reason": ""
         }
       ]
     },
     {
-      "guide_number": 82,
+      "guide_number": 73,
       "source_ordinal": 237,
       "card_id": 256110263,
       "card_name": "Windborne Eye of the Storm",
@@ -500,7 +588,7 @@
     },
     {
       "guide_number": null,
-      "source_ordinal": 258,
+      "source_ordinal": 245,
       "card_id": 226827770,
       "card_name": "The One Called Forth",
       "workstream": "Fresh official-reference audit (static decision)",
@@ -521,7 +609,7 @@
     },
     {
       "guide_number": null,
-      "source_ordinal": 272,
+      "source_ordinal": 259,
       "card_id": 259366507,
       "card_name": "Aquila, Zephorion's Predictor",
       "workstream": "Fresh official-reference audit (static decision)",
@@ -530,13 +618,19 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "not_applicable_static_decision",
       "text_sha256": "9836aa4e9f51d62200c2ba5d3e3213cb9a94009ef915f5e61765c688c35ab507",
-      "script_sha256": "303733c6cdaa74b15df5f9351a074ade0d2e35d2dfe1d02971b371a5a96a0f0f",
+      "script_sha256": "bca20cabe4e040ae7a6f31a8ac4e7af71febb170695c2392b94c81bfe14ed7ae",
       "effect_details": [
         {
           "verdict": "MANUAL_RULING",
           "clause": "If this card is Summoned: You can Set 1 \"Eldora\" and/or \"Verse IX\" \"Chapter II\" Spell/Trap directly from your Deck or GY.",
           "implementation": "The Summon triggers now Set an Eldora Spell/Trap from Deck/GY and no longer falsely include Chapter II Verse IV. The current 577-card catalog contains no card whose name matches both quoted fragments 'Verse IX' and 'Chapter II'.",
           "reason": "The quoted conjunction names no card in the current 577-card database: no Spell/Trap contains both 'Verse IX' and 'Chapter II'. Exact resolution requires adding/naming the intended card (for example Chapter II Verse IX) or correcting the printed quoted name; until then only the unambiguous Eldora branch can be implemented."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Named field support must be face-up so hidden field cards do not satisfy a name condition.",
+          "reason": ""
         }
       ]
     },
@@ -572,19 +666,25 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "fdc6efcad5dd3bc12c2d58b947f191731812a7bb2a56c4851ab843a965281a9b",
-      "script_sha256": "6187e701d8ebb70b261d205d9cd13f5e4a97b11586c19a5ee8b4751c58339067",
+      "script_sha256": "639ec7e5b56218629c420087241db72f881167b041b18bb88af27d25223fee10",
       "effect_details": [
         {
           "verdict": "MANUAL_RULING",
           "clause": "And if you do, this effect becomes that monster's original effect.",
           "implementation": "After banishing the corresponding Myutant monster, the handler uses CopyEffect with a standard state-change reset, granting that card's copyable effects rather than replacing and executing only this resolving effect.",
           "reason": "The text does not identify which of an arbitrary monster's effects is meant or provide that effect's event, activation condition, cost, target, or parameters. CopyEffect grants the card's copyable effects for a duration; it cannot make this already-resolving effect become and execute an unspecified original effect. Exact resolution requires wording that grants copied effects for a stated duration, or selection of one specifically activatable effect with defined cost/target semantics."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Reveal choice must have the corresponding monster available for banishment; copied destruction triggers survive the move into the graveyard.",
+          "reason": ""
         }
       ]
     },
     {
       "guide_number": null,
-      "source_ordinal": 403,
+      "source_ordinal": 390,
       "card_id": 228472690,
       "card_name": "Ghostrick Cutifer",
       "workstream": "Fresh official-reference audit (static decision)",
@@ -604,7 +704,7 @@
       ]
     },
     {
-      "guide_number": 88,
+      "guide_number": 79,
       "source_ordinal": 404,
       "card_id": 239335848,
       "card_name": "Ghostrick Oni",
@@ -632,7 +732,7 @@
     },
     {
       "guide_number": null,
-      "source_ordinal": 434,
+      "source_ordinal": 421,
       "card_id": 212429024,
       "card_name": "Gravinity Nebulix",
       "workstream": "Fresh official-reference audit (static decision)",
@@ -641,18 +741,24 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "not_applicable_static_decision",
       "text_sha256": "ce6e68d8bb7defb61130bd9edc31461bc26437c9c6cb2f711b924a73b8b94acb",
-      "script_sha256": "61a2ba1a491052627f2dca8ab51fbbb6ac26744b3421646f936d3441ab368921",
+      "script_sha256": "19f23fa732d6bb3dd9c7b3d26fbf17e5db2b4c4c7707f252364118be21f2e0fc",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "When a \"Gravinity\" Spell/Trap effect resolves, you can also add this additional effect to that card's effect at resolution.",
           "implementation": "c212429024.lua implements this printed clause with 4 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: aux.AddSynchroProcedure(c,aux.FilterBoolFunction(Card.IsSetCard,SET_GRAVINITY),aux.NonTuner(s.ntfilter),1) | e0:SetType(EFFECT_TYPE_SINGLE) | e0:SetCode(EFFECT_CANNOT_DISABLE_SPSUMMON) | e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O) | e1:SetCode(EVENT_SPSUMMON_SUCCESS) | e1:SetCondition(s.tdcon) | e1:SetTarget(s.tdtg)",
           "reason": "The Lua waits for EVENT_CHAIN_SOLVED and performs a second operation after the original chain link has resolved. Omega exposes no general API for injecting arbitrary text into another resolving effect, so this is only an approximation of adding the bullet at resolution."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "The extra effect is appended inside the same chain operation, supports multiple owners and clears per-chain wrapping state at Chain end.",
+          "reason": ""
         }
       ]
     },
     {
-      "guide_number": 89,
+      "guide_number": 80,
       "source_ordinal": 435,
       "card_id": 231088629,
       "card_name": "Gravinity Spherix",
@@ -662,7 +768,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "0b23600bcb23c6f641b350ee1cd08ba93a84dcedc7dc3925cf6505a15e3501a1",
-      "script_sha256": "a64693dbd99554bb567b66e84627192f772d4a9c11e951be300c6dcd7848f0ba",
+      "script_sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -675,6 +781,12 @@
           "clause": "● During the Main Phase, if this card is a Continuous Trap: You can Special Summon this card, ignoring its summoning conditions, then, if this card is an Xyz Monster, you can attach the minimum number of monsters that can be used for this card's Xyz Summon from your GY to this card as material.",
           "implementation": "After the granted Ignition Effect Special Summons the handler, s.spop gathers Level-equal, overlay-eligible monsters from the controller's GY and overlays exactly two. Omega's Xyz helpers receive their material filter and min/max only inside each Extra Deck card's registered summon-procedure closures; the summoned card exposes no supported API that returns those values.",
           "reason": "Omega cannot generically recover an arbitrary Xyz Monster's printed minimum material count or material predicate after that card has already been Special Summoned to the field. Card.IsXyzSummonable can test a prospective Extra Deck summon but cannot extract the registered procedure from this already-summoned card. The current two same-Level attachments are therefore only an approximation and are not exact for level-free, variable-count, alternate, or non-Level procedures."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Nonactivated summon replacement has no chain relation requirement; optional Xyz attachment is offered and a face-down opponent monster can be shuffled.",
+          "reason": ""
         }
       ]
     },
@@ -706,7 +818,7 @@
       ]
     },
     {
-      "guide_number": 95,
+      "guide_number": 86,
       "source_ordinal": 439,
       "card_id": 238184015,
       "card_name": "Gravinity Sonic Scream",
@@ -716,19 +828,25 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "53c1369012a0ccb2b24dc7c9e7d9affb54bd916dd47a85e42934c04e5eb4c871",
-      "script_sha256": "2e343cb26301b091e96df4c4cb623f0dc1d923d647141c546d9235da972718df",
+      "script_sha256": "2e871ad20c62e31aa4ed33d403386fcec312a775ceeb8fc6260c4095789aa9f9",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If you activate the effect of a \"Gravinity\" Synchro Monster Card: You can banish this card from your GY; this effect becomes that card's activated effect.",
           "implementation": "c238184015.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e2:SetRange(LOCATION_GRAVE) | and (not rc:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(rc))",
           "reason": "The Lua directly invokes the prior Effect operation with mismatched effect/context arguments. Generic effect replacement/copying is engine-sensitive and this does not reproduce target, cost, label, category, or chain metadata for every possible Gravinity Synchro effect."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "The optional Synchro activation If trigger is delayed.",
+          "reason": ""
         }
       ]
     },
     {
       "guide_number": null,
-      "source_ordinal": 539,
+      "source_ordinal": 526,
       "card_id": 259546637,
       "card_name": "Glitchling Corruption",
       "workstream": "Fresh official-reference audit (static decision)",
@@ -737,19 +855,25 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "not_applicable_static_decision",
       "text_sha256": "37a566fb4e22e31b8e791dab9b65e9429c82a2f18fe8db2754b66de282d148bf",
-      "script_sha256": "e822e4908a6872c865cb7c2dc64fc7a6ea264b759edfdc39e856d41f4d9d3ade",
+      "script_sha256": "bfdf80b2b61612d57b41d91cc0b1d7743040c2c6863ead4b2c09772cb018ea95",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If you would Ritual Summon a Cyberse Ritual Monster using hand/field Tributes, Corruption Counters from the field can satisfy up to its Level.",
           "implementation": "The current Lua can spend counters only inside this card's own triggered Ritual operation. EFFECT_EXTRA_RITUAL_MATERIAL contributes actual Card objects; it cannot contribute a scalar Level amount or remove counters for every unrelated Ritual procedure.",
           "reason": "Genuine engine limitation: Omega has no card-local, generic hook that adds a counter-derived scalar to all Cyberse Ritual Summon material checks and atomically removes the chosen counters. Monkey-patching shared Ritual helpers would miss bespoke Ritual scripts and affect unrelated cards globally."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Ritual selection incorporates post-material zones and requires all releasable selected materials to leave their prior locations.",
+          "reason": ""
         }
       ]
     },
     {
       "guide_number": null,
-      "source_ordinal": 540,
+      "source_ordinal": 527,
       "card_id": 259253032,
       "card_name": "Glitchling Hexatron",
       "workstream": "Fresh official-reference audit (static decision)",
@@ -770,7 +894,7 @@
     },
     {
       "guide_number": null,
-      "source_ordinal": 556,
+      "source_ordinal": 543,
       "card_id": 259431066,
       "card_name": "Wyvernal Myops",
       "workstream": "Fresh official-reference audit (static decision)",
@@ -788,6 +912,84 @@
           "reason": "Ruling/text limitation: 'target 1 card your opponent controls' permits a face-down Monster or Set Spell/Trap by its written target criteria, but the text never states what 'negate its effects' must do while that card is face-down. Omega's official persistent-negation helpers and analogues only define face-up, disableable targets. Resolution needed: either errata the target to '1 face-up card your opponent controls' (the current safe behavior), or provide an authoritative ruling for face-down targets, after which distg/disop can be changed to that exact behavior. No unsupported face-down lingering negation was invented."
         }
       ]
+    },
+    {
+      "guide_number": null,
+      "source_ordinal": 623,
+      "card_id": 244168521,
+      "card_name": "Heavy-Armoured Ballista Bahariasaurus",
+      "workstream": "Fresh official-reference audit (static decision)",
+      "problem": "The custom wording adjacent zones does not define whether it includes vertical Spell/Trap zones. Current Lua destroys only the two horizontally adjacent opponent Main Monster Zones; retain this explicit interpretation pending a designer ruling.",
+      "static_verdict": "MANUAL_RULING",
+      "disposition": "SKIPPED_MANUAL_INPUT",
+      "live_status": "not_applicable_static_decision",
+      "text_sha256": "a4ffc5fe0669f57ab69936e77cfe8528b0cf5899bc5bf35222cf907453f1f0e3",
+      "script_sha256": "0aef4d91b65d5f3251e574ef5382d8422226fd4b8b81b5d4fece3365f514c069",
+      "effect_details": [
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "2+ monsters, including a FIRE or Dinosaur monster\nYou cannot Summon/Set monsters to any Extra Monster Zone this card points to. If this card is Special Summoned: You can target 1 Dinosaur monster in your GY; Special Summon it to your opponent's field, then destroy it and any cards in its adjacent zones. If this card is destroyed: You can send 1 Spell Card from your hand or field to the GY; Special Summon this card, but banish it when it leaves the field. You can only use each effect of \"Heavy-Armoured Ballista Bahariasaurus\" once per turn.",
+          "implementation": "Link material check accepts FIRE or Dinosaur and linked Extra Monster Zones are disabled.",
+          "reason": ""
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "2+ monsters, including a FIRE or Dinosaur monster\nYou cannot Summon/Set monsters to any Extra Monster Zone this card points to. If this card is Special Summoned: You can target 1 Dinosaur monster in your GY; Special Summon it to your opponent's field, then destroy it and any cards in its adjacent zones. If this card is destroyed: You can send 1 Spell Card from your hand or field to the GY; Special Summon this card, but banish it when it leaves the field. You can only use each effect of \"Heavy-Armoured Ballista Bahariasaurus\" once per turn.",
+          "implementation": "GY Dinosaur is targeted then summoned to opponent; current implementation destroys that monster and horizontally adjacent opponent Monster Zones.",
+          "reason": ""
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "2+ monsters, including a FIRE or Dinosaur monster\nYou cannot Summon/Set monsters to any Extra Monster Zone this card points to. If this card is Special Summoned: You can target 1 Dinosaur monster in your GY; Special Summon it to your opponent's field, then destroy it and any cards in its adjacent zones. If this card is destroyed: You can send 1 Spell Card from your hand or field to the GY; Special Summon this card, but banish it when it leaves the field. You can only use each effect of \"Heavy-Armoured Ballista Bahariasaurus\" once per turn.",
+          "implementation": "Destruction revival pays a Spell cost and grants leave-field banishment; independent hard limits. Adjacency interpretation is retained for designer review rather than claiming all possible meanings of adjacent zones.",
+          "reason": ""
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "2+ monsters, including a FIRE or Dinosaur monster\nYou cannot Summon/Set monsters to any Extra Monster Zone this card points to. If this card is Special Summoned: You can target 1 Dinosaur monster in your GY; Special Summon it to your opponent's field, then destroy it and any cards in its adjacent zones. If this card is destroyed: You can send 1 Spell Card from your hand or field to the GY; Special Summon this card, but banish it when it leaves the field. You can only use each effect of \"Heavy-Armoured Ballista Bahariasaurus\" once per turn.",
+          "implementation": "The custom wording adjacent zones does not define whether it includes vertical Spell/Trap zones. Current Lua destroys only the two horizontally adjacent opponent Main Monster Zones; retain this explicit interpretation pending a designer ruling.",
+          "reason": "The custom wording adjacent zones does not define whether it includes vertical Spell/Trap zones. Current Lua destroys only the two horizontally adjacent opponent Main Monster Zones; retain this explicit interpretation pending a designer ruling."
+        }
+      ]
+    },
+    {
+      "guide_number": null,
+      "source_ordinal": 637,
+      "card_id": 239935093,
+      "card_name": "Heart of the Hydra",
+      "workstream": "Fresh official-reference audit (static decision)",
+      "problem": "The current Deck-destination replacement also prevents fixed top/bottom effect returns. The printed protection only forbids shuffling Hydra monsters into the Deck; this narrower distinction is not implemented by the current replacement.",
+      "static_verdict": "UNSUPPORTED",
+      "disposition": "SKIPPED_MANUAL_INPUT",
+      "live_status": "not_applicable_static_decision",
+      "text_sha256": "709a70f442105e631592588e0d8bda9e82ee77f035a56e99419e7ea9d2fd6ec3",
+      "script_sha256": "83686e5064d513bbfc6d58771f567e15283d5830bcfb9893b5daf531789ba97c",
+      "effect_details": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "You can only control 1 face-up \"Heart of the Hydra\". If this card is in your hand, field or GY: You can send 1 WATER Reptile monster from your Deck to the GY, except \"Heart of the Hydra\", and if you do, place this card face-up in its owner's Spell & Trap Zone as a Continuous Spell, but if it was placed from the GY, banish it when it leaves the field. You can only use this effect of \"Heart of the Hydra\" once per turn, also you cannot Special Summon monsters the turn you activate this effect, except WATER Reptile monsters.\nWhile this card is a Continuous Spell, it gains these effects.\n• Cannot be destroyed by your opponent's card effects while you control \"Terrifying Dark Swamp\".\n• \"Hydra\" monsters you control cannot be shuffled into the Deck by card effects.\n• Once per turn: You can add 1 \"Dark Swamp\" Spell/Trap from your Deck to your hand.",
+          "implementation": "Unique face-up Heart; send-another-WATER-Reptile precedes owner-zone Continuous Spell placement with a turn-wide WATER Reptile oath and GY-origin banish redirect.",
+          "reason": ""
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "You can only control 1 face-up \"Heart of the Hydra\". If this card is in your hand, field or GY: You can send 1 WATER Reptile monster from your Deck to the GY, except \"Heart of the Hydra\", and if you do, place this card face-up in its owner's Spell & Trap Zone as a Continuous Spell, but if it was placed from the GY, banish it when it leaves the field. You can only use this effect of \"Heart of the Hydra\" once per turn, also you cannot Special Summon monsters the turn you activate this effect, except WATER Reptile monsters.\nWhile this card is a Continuous Spell, it gains these effects.\n• Cannot be destroyed by your opponent's card effects while you control \"Terrifying Dark Swamp\".\n• \"Hydra\" monsters you control cannot be shuffled into the Deck by card effects.\n• Once per turn: You can add 1 \"Dark Swamp\" Spell/Trap from your Deck to your hand.",
+          "implementation": "Swamp protection checks a visible named field card; Hydra effect-Deck-return replacement currently covers every Deck destination, broader than the printed shuffle wording.",
+          "reason": ""
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "You can only control 1 face-up \"Heart of the Hydra\". If this card is in your hand, field or GY: You can send 1 WATER Reptile monster from your Deck to the GY, except \"Heart of the Hydra\", and if you do, place this card face-up in its owner's Spell & Trap Zone as a Continuous Spell, but if it was placed from the GY, banish it when it leaves the field. You can only use this effect of \"Heart of the Hydra\" once per turn, also you cannot Special Summon monsters the turn you activate this effect, except WATER Reptile monsters.\nWhile this card is a Continuous Spell, it gains these effects.\n• Cannot be destroyed by your opponent's card effects while you control \"Terrifying Dark Swamp\".\n• \"Hydra\" monsters you control cannot be shuffled into the Deck by card effects.\n• Once per turn: You can add 1 \"Dark Swamp\" Spell/Trap from your Deck to your hand.",
+          "implementation": "Continuous Spell form enables a soft once-per-turn Dark Swamp Spell/Trap search.",
+          "reason": ""
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "You can only control 1 face-up \"Heart of the Hydra\". If this card is in your hand, field or GY: You can send 1 WATER Reptile monster from your Deck to the GY, except \"Heart of the Hydra\", and if you do, place this card face-up in its owner's Spell & Trap Zone as a Continuous Spell, but if it was placed from the GY, banish it when it leaves the field. You can only use this effect of \"Heart of the Hydra\" once per turn, also you cannot Special Summon monsters the turn you activate this effect, except WATER Reptile monsters.\nWhile this card is a Continuous Spell, it gains these effects.\n• Cannot be destroyed by your opponent's card effects while you control \"Terrifying Dark Swamp\".\n• \"Hydra\" monsters you control cannot be shuffled into the Deck by card effects.\n• Once per turn: You can add 1 \"Dark Swamp\" Spell/Trap from your Deck to your hand.",
+          "implementation": "The current Deck-destination replacement also prevents fixed top/bottom effect returns. The printed protection only forbids shuffling Hydra monsters into the Deck; this narrower distinction is not implemented by the current replacement.",
+          "reason": "The current Deck-destination replacement also prevents fixed top/bottom effect returns. The printed protection only forbids shuffling Hydra monsters into the Deck; this narrower distinction is not implemented by the current replacement."
+        }
+      ]
     }
   ],
   "regression_only": [
@@ -802,7 +1004,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "b6da06bcbef6bdf537a0cb90a35aa1298723cedbd2fd693a4b49c69bcf7e45c6",
-      "script_sha256": "7528263c1c15817389d8d10acc71ced2bd8f601e31e6bc9dcabc0291f18ba34d",
+      "script_sha256": "63eb66bab1d92e47ee498e0f87cd507436847ef6c0538f41d3618215b627cbca",
       "effect_details": []
     },
     {
@@ -816,7 +1018,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "9897ace5aa87598926dd055d12e129849aaeb1f1ceb6ebbace7c07308a983be8",
-      "script_sha256": "230a1d4314ee160c9d8518ab4cc1dcec5e11685203e8226e9e1330c3ec977ee1",
+      "script_sha256": "c0e52c168b64769a90064f2119be83c5de200539fca6ef6a385c9178cf2dc87c",
       "effect_details": []
     },
     {
@@ -885,8 +1087,8 @@
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "17a5429a6fe70f081cc363741eaf6b280d34106b328bdd0d24b125aee3038df0",
-      "script_sha256": "9b058123a25f2511dad3e895da18a15872644ea3184f5e27804683bffd0a2ab8",
+      "text_sha256": "da3fddce4d5bb7904e814e6ca043b2a7d4c95b303ae424adeec21db87fe189fe",
+      "script_sha256": "a2f84e3aadaac108310aa614d7ae180cbeaff17b4633247b2d5390933d6eb29b",
       "effect_details": []
     },
     {
@@ -899,78 +1101,78 @@
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "8e38491481784700932743cef1225891a57f672a8e67ff3d9ffb851d4a115fbe",
-      "script_sha256": "b4c52bde914a2722165c6b6464c3b382ef715f71e80111550ed3ee6396ab20c7",
+      "text_sha256": "1a38224fe6d6618af220b61c9586fbaf73e6dd042c0811524ed558bd06f34776",
+      "script_sha256": "f67f3999cc8a4778eabe1321cdda72c01180f522224a904af41e3f9576c6a63b",
       "effect_details": []
     },
     {
       "guide_number": 14,
       "source_ordinal": 300,
       "card_id": 259405917,
-      "card_name": "Siemens, the Ohmechanic Conductor",
+      "card_name": "Siemens, the Ohmenchanic Conductor",
       "workstream": "Co-link, counter, and zone topology",
       "problem": "Prevented the move effect from activating without a free Main Monster Zone. Custom co-link destination movement remains an in-engine UI/ruling risk.",
       "static_verdict": "FIXED",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "6f51816f110f7c2df5832ba6190d4e37876949033c3d126aef1dfaed1d6f6b95",
-      "script_sha256": "4eefd3bc863e1c36114cc8d3ffe407acd882be4ff44b3e88d1285c1e2457079c",
+      "text_sha256": "e191586b67a876a49bf51101caf7b559d9612e1bc321ef522bbcc31acf865fec",
+      "script_sha256": "40c345d98df2688005a92f5fe87202ee4888c195c3c746f4e35ecaf94a5b109a",
       "effect_details": []
     },
     {
       "guide_number": 15,
       "source_ordinal": 301,
       "card_id": 259350270,
-      "card_name": "Farad, the Ohmechanic Capacitor",
+      "card_name": "Farad, the Ohmenchanic Capacitor",
       "workstream": "Co-link, counter, and zone topology",
       "problem": "Custom Current Counter traversal/removal across mutually linked cards needs engine validation.",
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "88e72a6cac9b6d664e34ef2e52f150c6118e3274804d7dec2380d55717b22358",
-      "script_sha256": "09bccf37e8b2fd5634e7753dd06282dd21e43d0bc43a3b838ee5d86b6a7f2b7f",
+      "text_sha256": "610f6ee87816333d3e102b2f2c0d30ce0d4049e5e071655e6d53031c370be08e",
+      "script_sha256": "499bcd211dec8099e1acdbd5c7b1aaf7f7aee96d7a2a8d99026dd3c5e802b027",
       "effect_details": []
     },
     {
       "guide_number": 16,
       "source_ordinal": 303,
       "card_id": 259841490,
-      "card_name": "Coulomb, the Ohmechanic Charger",
+      "card_name": "Coulomb, the Ohmenchanic Charger",
       "workstream": "Co-link, counter, and zone topology",
       "problem": "Prevented the Link-monster move effect from activating without a free Main Monster Zone. Immediate Link Summon and custom zone movement need live Extra Monster Zone validation.",
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "de1636ac62a2c15c41005a660cbc0bccdabc5700957f990853051dda60658b17",
-      "script_sha256": "2f2c4b469fe82858e4c1741aa5e6f2be5cc2f35a5acb8ba06e8f406aa2467d72",
+      "text_sha256": "26bdd0393eaffa10c1c959e69a8248a5418330fc6d7f0f814919f850eb30f21a",
+      "script_sha256": "d4c4e563c9dd1e8ce6dadb794d80f507c7d9bab0405233e7e7f0d593f5581911",
       "effect_details": []
     },
     {
       "guide_number": 17,
       "source_ordinal": 304,
       "card_id": 259479044,
-      "card_name": "Ampere, the Ohmechanic Intensity",
+      "card_name": "Ampere, the Ohmenchanic Intensity",
       "workstream": "Co-link, counter, and zone topology",
       "problem": "Custom counter placement/protection over co-linked monsters needs live validation.",
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "27fc953bad49c52c5e747ca145e3668ba94e62e00abd2b14befd8a97bcfaac20",
-      "script_sha256": "0a1568b7c650c9e929505252e880052bccd1831e3337ab99a86f9984cbaa30fd",
+      "text_sha256": "37c17774712c45cef984b747a13538c59deaedbdb57d79c4821b2a814ea19cd1",
+      "script_sha256": "53a9d40c1ec86dc32389b584cad7d15d725b0e1b109e7c4e84db09fe6ef75323",
       "effect_details": []
     },
     {
       "guide_number": 18,
       "source_ordinal": 305,
       "card_id": 259033429,
-      "card_name": "Carcel, the Ohmechanic Light",
+      "card_name": "Carcel, the Ohmenchanic Light",
       "workstream": "Co-link, counter, and zone topology",
       "problem": "Moved mass Current Counter removal out of target and into cost. EVENT_ADJUST co-link transition tracking and mass counter consumption need live validation.",
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "54bfe660006adb208e0c4001ac436ba9258fc0fc5e51b399da93dc8a58870599",
-      "script_sha256": "7c5ed34206e350dd87d22f04ecbbfc098ae9dba37fc266e1c43ff14cc73e4401",
+      "text_sha256": "297efa165c6ef1e83b3f78d20f7e7bd5f561b689f7dce2e4094d5850debeb7e7",
+      "script_sha256": "05ec7a98d3a748a89d7011c004cff0d2d480fbb2ebdddf1750daa592a74dd5f4",
       "effect_details": []
     },
     {
@@ -983,8 +1185,8 @@
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "6f5a0f885650d5fcd6c7f75749a16f11c616c2976a6d29f1ad36e3a739995e36",
-      "script_sha256": "a19bdb4d4c2fedfc455897d5f57fd30e6e52aed764e375368937f0ad1d111ce8",
+      "text_sha256": "736bb700d02be2ebeab23ad81fe20936b8c954d5914912e755a54cf91e5f2c6b",
+      "script_sha256": "62b6ad04083471441e10f04ccf459bb1d59fad6088c2200e4bfbb63542c07df6",
       "effect_details": []
     },
     {
@@ -998,7 +1200,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "1f0094d61e4c449a37c23cf00af05a6a3aede9c579907b4b1f2e5a0c94175ab0",
-      "script_sha256": "8562d8f5a4d6ec11b634df6f970ddebd040c8e69510204245c290dc78fc2a58b",
+      "script_sha256": "0f8e7477065855169ae40f17a93849f14472628a5da25eaf6c4fd2580fffbc76",
       "effect_details": []
     },
     {
@@ -1012,7 +1214,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "bd2d0bb1f45b76923b996d016116f1632632b43ef987b7b62361478aa5a0cee8",
-      "script_sha256": "b263b5e604a263909dd0a6b168dd95e661fabda6574d40bab127b0a712db50fb",
+      "script_sha256": "448aa27cd19ddb41ae7404f6a16ea321dbc0878d098accdd76fe3d1b95821278",
       "effect_details": []
     },
     {
@@ -1026,7 +1228,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "0dbf2f19d1489149d555e5a3671145a599edf8a32eb8edd95e1197014dbf2a78",
-      "script_sha256": "512674bd8aa507223e515bc79c5117a3ab7fe6b9fb2b084a8a4040814e79c408",
+      "script_sha256": "1c7d17993f7a7ef21d23f5cc4e94c6672ef2d9e8ddee89da166049c7e83c67b1",
       "effect_details": []
     },
     {
@@ -1040,7 +1242,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "0a1fcfe1b1a2df8052bc6fbd0d9afcc06284eb86e2f95abf88e58c289f7aca8c",
-      "script_sha256": "da1dae7440764368fd5f677265fe714ba93dab8375ab074c96cf559d54254e65",
+      "script_sha256": "0072275852826b48c42de7588ce746f818438850807cdd3f1b6ffc7a972df88e",
       "effect_details": []
     },
     {
@@ -1082,7 +1284,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "d3ea1576054a1d1c10f23e4a4e8d3b3396669e63dd8ed998737c7671b2de4035",
-      "script_sha256": "d491f4b36e13b073f09e62ae2fca075f72cbcafa0b12b14e5e609e4b7f610e88",
+      "script_sha256": "08a2316941d9fe6fdfbc439c19ea36115c28e13491202c458825cefc45ddcd40",
       "effect_details": []
     },
     {
@@ -1115,20 +1317,6 @@
     },
     {
       "guide_number": 32,
-      "source_ordinal": 70,
-      "card_id": 259737127,
-      "card_name": "Tove, the Domesticated",
-      "workstream": "Timing, delayed state, and reset behavior",
-      "problem": "summon restriction/draw-send/GY delayed Battle Phase return [implemented].",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "3ef50e9be6fbc8cf4ad47ba2e127a6ef47c5b882f125cd3072b5d4303a512f34",
-      "script_sha256": "80027151ba8e1af581599459143f203be337307ce7f41d67d56d302a483c7a92",
-      "effect_details": []
-    },
-    {
-      "guide_number": 33,
       "source_ordinal": 101,
       "card_id": 259686203,
       "card_name": "Mylo, the Domesticated",
@@ -1142,7 +1330,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 34,
+      "guide_number": 33,
       "source_ordinal": 102,
       "card_id": 259135917,
       "card_name": "Nuwa, the Domesticated",
@@ -1156,7 +1344,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 35,
+      "guide_number": 34,
       "source_ordinal": 103,
       "card_id": 259911246,
       "card_name": "Mylo in the Wild",
@@ -1166,11 +1354,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "dda6a9006f30d878c353df9fc4f44879effc64e719bef010d8db652294046db9",
-      "script_sha256": "da5f27fd3857324e374728ba4ccc56294313b0801b9a29e6f38ff87d4ae56199",
+      "script_sha256": "9605fd427a1b9926b80ba74039f0e5bedad2776d9bcbb13f266c53aaccb11356",
       "effect_details": []
     },
     {
-      "guide_number": 36,
+      "guide_number": 35,
       "source_ordinal": 110,
       "card_id": 248801935,
       "card_name": "Kanmuriyama",
@@ -1180,11 +1368,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "fbe483670c4f46fcada84dfaa406796ee7e68f99c47b46f5269dd6445d8edad9",
-      "script_sha256": "98cac33543c8c0785c60e075743df6425a7bdbe50afa850bbebc8d72edbadffb",
+      "script_sha256": "af10d049ca7e5588e7b68b775bc404b86eb0a97fe581551396dd43aee405fc95",
       "effect_details": []
     },
     {
-      "guide_number": 39,
+      "guide_number": 38,
       "source_ordinal": 132,
       "card_id": 246524183,
       "card_name": "Protogenesis",
@@ -1194,11 +1382,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "8361147a31a89cab93e4951b66cb0914688a8cb7bb6fa3d564397bf3ce1d4200",
-      "script_sha256": "c040c02d92b3a10b9bb68e28a7b584d3eca1942cbb1302f62c37d00360a6c2ac",
+      "script_sha256": "34dd66ffdabd990d556cc8063a559e81004f8084ddae9643af38dea276602fa9",
       "effect_details": []
     },
     {
-      "guide_number": 40,
+      "guide_number": 39,
       "source_ordinal": 267,
       "card_id": 236898203,
       "card_name": "Chrono-Saur Rex",
@@ -1208,11 +1396,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "6e1ea123186ac9457d6ccc965573d2c881f603e01acad36968f0711eb9714b3b",
-      "script_sha256": "22359ea024f9405e028116045475e67e90fd4b9e91daa46e13d3e51406875fb8",
+      "script_sha256": "1f985806629fbac8ab9c0e289673585aa21f2cab3efa1986b74ae3f5a113a968",
       "effect_details": []
     },
     {
-      "guide_number": 41,
+      "guide_number": 40,
       "source_ordinal": 444,
       "card_id": 231523659,
       "card_name": "Stardust Comet",
@@ -1226,7 +1414,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 43,
+      "guide_number": 42,
       "source_ordinal": 6,
       "card_id": 247499445,
       "card_name": "Stained Fox Feness",
@@ -1240,7 +1428,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 44,
+      "guide_number": 43,
       "source_ordinal": 46,
       "card_id": 236158052,
       "card_name": "The Blue Frute",
@@ -1254,7 +1442,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 45,
+      "guide_number": 44,
       "source_ordinal": 47,
       "card_id": 235607781,
       "card_name": "The Yellow Frute",
@@ -1268,7 +1456,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 46,
+      "guide_number": 45,
       "source_ordinal": 48,
       "card_id": 246216813,
       "card_name": "The Red Frute",
@@ -1278,11 +1466,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "7a19fbdb28505ce4b879aeb2b61a2529565d1a2f587105b2a0b79e695b469adc",
-      "script_sha256": "0bfefd24d2f9c0b602987ee8cad6e7986f74886f5b7f0b14475a3391c78e8521",
+      "script_sha256": "3f76a254062080317c681c5715994499e97369fd08b9b009080c2b10603bcb52",
       "effect_details": []
     },
     {
-      "guide_number": 47,
+      "guide_number": 46,
       "source_ordinal": 49,
       "card_id": 227745087,
       "card_name": "The Green Frute",
@@ -1296,7 +1484,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 48,
+      "guide_number": 47,
       "source_ordinal": 50,
       "card_id": 220916791,
       "card_name": "The White Frute",
@@ -1306,11 +1494,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "e38a64337c37cd5057f397db0cdfdf45cb46974568c4092417388d353a182108",
-      "script_sha256": "254dd78b0389f8a0dadcb7096241373f0cf4bcac1565061550a1561746f2b50d",
+      "script_sha256": "010b35df5eab6a85314db04ac586157663e8161eebe32278a563fb6273aa8f9c",
       "effect_details": []
     },
     {
-      "guide_number": 49,
+      "guide_number": 48,
       "source_ordinal": 51,
       "card_id": 246830897,
       "card_name": "Fruteonia",
@@ -1324,7 +1512,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 50,
+      "guide_number": 49,
       "source_ordinal": 52,
       "card_id": 216140411,
       "card_name": "Fruteopia",
@@ -1338,7 +1526,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 51,
+      "guide_number": 50,
       "source_ordinal": 54,
       "card_id": 256930605,
       "card_name": "Fruteification",
@@ -1348,11 +1536,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "607d84c6ba667c2bc311f5f0ae0498e921b42a48baa582dab4e66ba5689a730c",
-      "script_sha256": "9c68121434c5db376cd94ace47e44d368920119a7f081d595b9988098b5d60de",
+      "script_sha256": "937f78984933f3476fc6cb609e7f5a289cbf1b8c47cda50653a785d7e692f6b3",
       "effect_details": []
     },
     {
-      "guide_number": 52,
+      "guide_number": 51,
       "source_ordinal": 57,
       "card_id": 248290754,
       "card_name": "The Fruteful Moon",
@@ -1362,109 +1550,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "e04c6c07465452a8be2e913264a794514ef4034e315024d8a76d20aa3bf0adfd",
-      "script_sha256": "2204267b29585f51d74cb7f4866b14ab32ac4a3a00c9d17ccc42c4594e03643e",
+      "script_sha256": "f996ef2f574d0fc809cdc604f3737bb3c638a79f43b0733ee221dcaea8351598",
       "effect_details": []
     },
     {
-      "guide_number": 53,
-      "source_ordinal": 69,
-      "card_id": 259377794,
-      "card_name": "Pip, the Domesticated",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "custom Tribute Summon support.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "772c3b9fdb70aef514e6f17c416437270f3727b34f2e8297c1eaa1a0ca5beae9",
-      "script_sha256": "08c46be9eaff384e003ea586530a083db08139d9aac30770601a43272a2fec30",
-      "effect_details": []
-    },
-    {
-      "guide_number": 54,
-      "source_ordinal": 71,
-      "card_id": 259264881,
-      "card_name": "Domestica Praerie",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "custom Tribute UI.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "645a6c19fd6a80dfdc13b0c0d8eec8f3011eaaeb39c64de354b9467a0b87ca87",
-      "script_sha256": "a8f4de405595ced33454151991548ed4af20b6476af26c684e8f03099620d2fb",
-      "effect_details": []
-    },
-    {
-      "guide_number": 55,
-      "source_ordinal": 72,
-      "card_id": 259337739,
-      "card_name": "Domestica Anjelie",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "custom Tribute UI.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "e5647d8b1b9bd63fc361a65251687503c32a59943cac3dbff1c879b51deb983e",
-      "script_sha256": "83e85257118bf53f4fe58270811b26e2db31473c8561fa905135870f9f65f335",
-      "effect_details": []
-    },
-    {
-      "guide_number": 56,
-      "source_ordinal": 73,
-      "card_id": 259245149,
-      "card_name": "Domestica Lunalie",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "custom Tribute UI.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "857a79a7d12b2ad4300c606c39eeccb6da76387f6accd04313e6ed7e1d924e76",
-      "script_sha256": "a32689013cfe93d55df5c9b7bfa3cec49210483621b4ccd88af9e82e1a7a2f12",
-      "effect_details": []
-    },
-    {
-      "guide_number": 57,
-      "source_ordinal": 76,
-      "card_id": 259668626,
-      "card_name": "Domestica in the Underworld",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "extra Tribute UI.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "5a031e36ab93ba63620be5523c70970e83df98035521aba1927a7343fb988464",
-      "script_sha256": "f86f174e064f55b7a7ffa05949a228faf3d7c449212a8d1c24086a64ada4180d",
-      "effect_details": []
-    },
-    {
-      "guide_number": 58,
-      "source_ordinal": 77,
-      "card_id": 259410628,
-      "card_name": "Domestica in the Wild",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "Fusion UI.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "ca93f88bdb018d93b6369ddd57b826885928a3de5c2442e42976672046250a65",
-      "script_sha256": "23c4ed6c0c36c84447293d65ee94625b3ea939770bc09497249dfd0bceb5e2f9",
-      "effect_details": []
-    },
-    {
-      "guide_number": 59,
-      "source_ordinal": 78,
-      "card_id": 259670933,
-      "card_name": "Domestica Kyrie",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "custom procedure.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "379d7cbb87dc9fc9c91c9f19ff6fe70e00d44e7c4ff8d1acdec7aa093fe8af0e",
-      "script_sha256": "88c6453ff080fe412d523adb05f9bc164f1876bb8d84ac3333d97120b208d3f0",
-      "effect_details": []
-    },
-    {
-      "guide_number": 60,
+      "guide_number": 52,
       "source_ordinal": 85,
       "card_id": 247831166,
       "card_name": "Ursarctic Leoship",
@@ -1478,7 +1568,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 61,
+      "guide_number": 53,
       "source_ordinal": 86,
       "card_id": 235051048,
       "card_name": "Ursarctic Octantis",
@@ -1488,11 +1578,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "733379eb22523fb223f1da80beabbbd549ca80eeb3f13fc5b97bc731978ae987",
-      "script_sha256": "f8ecd4df0acaa993c38bc6631720eef258467418f05162911f156faae1ee0b5d",
+      "script_sha256": "4e5e27b39e6fa41875fa95298dfa4ac75ffb71dad0e6cfe63f9f751dce66443b",
       "effect_details": []
     },
     {
-      "guide_number": 63,
+      "guide_number": 55,
       "source_ordinal": 88,
       "card_id": 249093610,
       "card_name": "Ursarctic Nordbar",
@@ -1502,11 +1592,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "e12520f2a637c8349c22f1d260e416088b6e6d0ba116a5dc6bf4cd31dfdb401e",
-      "script_sha256": "dc111a23ee61f33cbcd95a41c47bd1a93a6873fd18b63e58fe1eff7cfd62fdc4",
+      "script_sha256": "538414b1d92d7df7cc3b9df7228dbe604dd4c51a3c321323412df9846a0db5e3",
       "effect_details": []
     },
     {
-      "guide_number": 64,
+      "guide_number": 56,
       "source_ordinal": 90,
       "card_id": 222257685,
       "card_name": "Branching to Guidance",
@@ -1516,11 +1606,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "37e32f8029bbfb2bce6c1264b0675cdc260cfee8d266f457acb269599423c7c7",
-      "script_sha256": "5ff9f9803f3c14211a479419c69b4a039e9cdd2fab5dfa7d5ff9a625d1f03807",
+      "script_sha256": "6f2bd0c551d8b883060a17cce91aebbc7f85ef91f3fbd76b6feea60a3d94cc50",
       "effect_details": []
     },
     {
-      "guide_number": 65,
+      "guide_number": 57,
       "source_ordinal": 105,
       "card_id": 217713649,
       "card_name": "Onibi",
@@ -1529,12 +1619,12 @@
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "e1a5d1fb25a0758adfbb17a7e1cdd1c2ced8dbe1c238cfea08d8621670f01414",
-      "script_sha256": "1dc352d9f21e36069f85ebb62f629d27b7c0e86eb9a181811c994c73f845b552",
+      "text_sha256": "1fc6dd08a7635be9c1d081f1c29ee81fd7314f8e6fe773985ff55c864e6f0fc1",
+      "script_sha256": "c252c171e96739970dafeb824cdfeb70b6de924b2c06a83916c9173e51e8af20",
       "effect_details": []
     },
     {
-      "guide_number": 67,
+      "guide_number": 59,
       "source_ordinal": 123,
       "card_id": 259093260,
       "card_name": "Grand Blue Matriarch",
@@ -1544,11 +1634,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "5d1ce287f847813c76ff1e2adf18d0f5f67dd60b0a548d243ccb9441fbe19c1f",
-      "script_sha256": "4360ce296565120595a6e8ce3d22adea14c4cc1bfc85ed993eaf9427c200d9aa",
+      "script_sha256": "b0e89ad4bf20ab732ee4394577dab04ea5bc633255ffdb72c8de1ababa4774e6",
       "effect_details": []
     },
     {
-      "guide_number": 68,
+      "guide_number": 60,
       "source_ordinal": 127,
       "card_id": 216532402,
       "card_name": "Sacred Feather of Nephthys",
@@ -1558,11 +1648,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "b4bacf98e02e3a9d74318856acec05555b4e76ac84d2755415c4fff01a200e4b",
-      "script_sha256": "0113973f94750d6f422cc718954dd11279ad2739a8de4c517b11395901c94e09",
+      "script_sha256": "d250257747a944e54f930c5b30d30dff31e925d8abcbad2c8a4d838f742e2865",
       "effect_details": []
     },
     {
-      "guide_number": 69,
+      "guide_number": 61,
       "source_ordinal": 128,
       "card_id": 259581666,
       "card_name": "Stellaer of the Frozen",
@@ -1576,7 +1666,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 70,
+      "guide_number": 62,
       "source_ordinal": 137,
       "card_id": 259219942,
       "card_name": "Stellaer of the Plants",
@@ -1590,7 +1680,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 71,
+      "guide_number": 63,
       "source_ordinal": 147,
       "card_id": 230998543,
       "card_name": "Stellaer of the Breeze",
@@ -1600,11 +1690,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "3ed98b4e0452d5d1b6305a4f8922edc33ee76ab6292e744357e2c5c8e9feb22e",
-      "script_sha256": "4f2d9d7d7aa945541ad455902b8752e838d01bf169e5450c037bfa1ce19a6cb2",
+      "script_sha256": "182cb38eb7c1a33dffbacc3274a4d57796b98090282df91b7d94037c6f39466d",
       "effect_details": []
     },
     {
-      "guide_number": 72,
+      "guide_number": 64,
       "source_ordinal": 161,
       "card_id": 236239443,
       "card_name": "Restoration of Azrynior",
@@ -1618,21 +1708,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 73,
-      "source_ordinal": 169,
-      "card_id": 259290896,
-      "card_name": "Dominus Sentinel",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "custom Attributes.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "19a4fff5c892f4122fe13d9d79fe0b5bb10579cff2b7b76a74db6657f31dd365",
-      "script_sha256": "f63697268d41ff8e5d643674d4aa3480d5d72c3b03ad69f665754bf6413efd2d",
-      "effect_details": []
-    },
-    {
-      "guide_number": 74,
+      "guide_number": 65,
       "source_ordinal": 187,
       "card_id": 244778917,
       "card_name": "Vir Pedicae Mortis - Fearless Hunter",
@@ -1646,7 +1722,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 75,
+      "guide_number": 66,
       "source_ordinal": 201,
       "card_id": 259114562,
       "card_name": "Bobbie Bluefin & the Nautical Nocturnes",
@@ -1656,11 +1732,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "39e3c3098d7dcc02ba710d9aa523c8cbfd770e0c4553f6c341c492465552d490",
-      "script_sha256": "621373d5613f3ca5203b97c7a764e7f1615162bf3725cc326d0b183a1bc85510",
+      "script_sha256": "07e6b2966c1ffa3d5257e4b79002f7a8fb3142c30549783b9e068e80c757f484",
       "effect_details": []
     },
     {
-      "guide_number": 76,
+      "guide_number": 67,
       "source_ordinal": 202,
       "card_id": 220749574,
       "card_name": "Scarlet Seareef & the Nautical Creatures",
@@ -1670,11 +1746,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "491c52682153d34b8202bd8da14c5a10c798e51fec2eb533ae7edfbad3e4efa6",
-      "script_sha256": "5a327e4a71f6716ef97a703809a12a61ef3792e10f7f6149a1ec75df464fe30c",
+      "script_sha256": "e81e4165a9908456ee1f21b4649d85e1e599f1545df9396ffac96c6c90cf31fd",
       "effect_details": []
     },
     {
-      "guide_number": 77,
+      "guide_number": 68,
       "source_ordinal": 203,
       "card_id": 225109525,
       "card_name": "Evander Coldwater & the Nautical Abyss",
@@ -1684,11 +1760,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "0a7244c2d675bdf07f3c71e70e390e0cb70464374f63b1fc61a66e01d35d2dae",
-      "script_sha256": "767904210a34228937694b9645461825fa12cbd8ee8c9ccdee6999431c17ae49",
+      "script_sha256": "ff188daef4afc247a7c7deb5c70efe5a134976b99e3170c6b57b278b5e235116",
       "effect_details": []
     },
     {
-      "guide_number": 78,
+      "guide_number": 69,
       "source_ordinal": 204,
       "card_id": 223158720,
       "card_name": "Nautical Backwashing & Oceanic Waves",
@@ -1698,11 +1774,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "fef64d3fb1fe26550df2d08052b83a38dc1da9ba910bfb5f716704770f34e7da",
-      "script_sha256": "678b3236921b61886f42ed5a53d5ce605819304dff3951f2d1100f7af34b663a",
+      "script_sha256": "0c7c7ea1bbf4e5892ab977db9d19adb4046c52e520e0a7b037bbc796c3966281",
       "effect_details": []
     },
     {
-      "guide_number": 79,
+      "guide_number": 70,
       "source_ordinal": 206,
       "card_id": 248946297,
       "card_name": "Exploring the Nautical Waters",
@@ -1712,11 +1788,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "5416941dae03ca59145447b515352535f5ae5224d28003db966bb990e8ba5f1d",
-      "script_sha256": "65bffd60208a9911d01ff0778ad9d674665abe6892cb3470f7e8ae3a8dd1069c",
+      "script_sha256": "36e9ff8fccabfca70def74507305f9f17e313d0db889f4ed4ae9c96aca0d2d1a",
       "effect_details": []
     },
     {
-      "guide_number": 80,
+      "guide_number": 71,
       "source_ordinal": 207,
       "card_id": 218905439,
       "card_name": "Nautical Adventures & Torrential Seas",
@@ -1726,11 +1802,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "e3b3620d129c388d41cfdc6eda2f7bf0e2a67bbae3c31aff87f6d9f5a8f3ca02",
-      "script_sha256": "2514cad060df2c026238babb6251ae46edb6f8c95fcc3cdc0f947437a5ce697e",
+      "script_sha256": "d0667109b1c79b94930723b9fce17ca5d29ee4db5cf35b43017035fa8efa600e",
       "effect_details": []
     },
     {
-      "guide_number": 81,
+      "guide_number": 72,
       "source_ordinal": 209,
       "card_id": 259944943,
       "card_name": "Bob, but Stronger!",
@@ -1740,11 +1816,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "bff0c57151cb3d53bfadc528dee29a68e083075c667f3d6ff1d41c47df426263",
-      "script_sha256": "354928a6362dac1f88f394cdf6b77c8d6c63d72e47fdd7ff9318fcf95067844b",
+      "script_sha256": "0d924496acb0207b2e842c6803116a7fa4dad257139ad0563c90b1047a42a763",
       "effect_details": []
     },
     {
-      "guide_number": 83,
+      "guide_number": 74,
       "source_ordinal": 306,
       "card_id": 259434499,
       "card_name": "Ohmen Powerload",
@@ -1754,11 +1830,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "bbff55673b95d32d5b9e43f4dcc9eaa07b1d84bb17551225f874aefc305b5ebe",
-      "script_sha256": "484af90753a26412ace9c39eda553749b835982e85e82b971a61e2fff7163525",
+      "script_sha256": "15c8d2b65ba4d5a0e6178bc9bc4061dde85b52e665cd582c3a06a5510c013d67",
       "effect_details": []
     },
     {
-      "guide_number": 84,
+      "guide_number": 75,
       "source_ordinal": 321,
       "card_id": 257239133,
       "card_name": "Phlogistic Uprising!",
@@ -1768,11 +1844,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "9ceb82efc3500adaf0e1432b15d6dccd8a110eb2d37f1fefd93dfccc25a4c496",
-      "script_sha256": "f3b9099291cf2f54c1bc6eb5b67d79bcecdceee566c2ac5453edfd67defce11c",
+      "script_sha256": "1149113aa794e9472e8bd117dd03bb91883b3fc4b6a17bb69ee75218405bd9ca",
       "effect_details": []
     },
     {
-      "guide_number": 85,
+      "guide_number": 76,
       "source_ordinal": 330,
       "card_id": 221924008,
       "card_name": "Chamroshes' Aegis",
@@ -1782,11 +1858,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "7f0e3dc26e0a76d80b4c6589864a7a0b3a10ebbb3640a8466f72be0349663689",
-      "script_sha256": "ab21cb40f6e7cd4f573b7afb0e3982213b6f37c2cf17cf6b00efda93386a475d",
+      "script_sha256": "dea9a4b1bd6004efd3aeea4500e2c50ef1d01c4cfa3f77ea91558b530ba29f71",
       "effect_details": []
     },
     {
-      "guide_number": 86,
+      "guide_number": 77,
       "source_ordinal": 370,
       "card_id": 240575550,
       "card_name": "Ghoti from a Deeper Depth Than the Deepest Deep",
@@ -1800,7 +1876,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 87,
+      "guide_number": 78,
       "source_ordinal": 374,
       "card_id": 259308265,
       "card_name": "Pumpqueen the Queen of Ghosts",
@@ -1814,7 +1890,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 91,
+      "guide_number": 82,
       "source_ordinal": 60,
       "card_id": 229499914,
       "card_name": "Sacred Treasure - Chunyin",
@@ -1828,7 +1904,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 92,
+      "guide_number": 83,
       "source_ordinal": 120,
       "card_id": 259679619,
       "card_name": "City Within the Grand Blue",
@@ -1842,21 +1918,21 @@
       "effect_details": []
     },
     {
-      "guide_number": 93,
+      "guide_number": 84,
       "source_ordinal": 302,
       "card_id": 259519336,
-      "card_name": "Volt, the Ohmechanic Chocker",
+      "card_name": "Volt, the Ohmenchanic Chocker",
       "workstream": "Other custom engine behavior",
       "problem": "Moved all-counter payment to cost and made the destruction correctly non-targeting. Custom counter-threshold continuous/Quick interaction needs live validation after the confirmed fixes.",
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "408546d85534bd14ed3ea0ee1603ff7ff9a90a8481dc6f9a7b69f22aab69e700",
-      "script_sha256": "4dbf59bb1e71443a68d3809d520e921528a04b849f1b65fc384b12a9abf213d6",
+      "text_sha256": "504367c71baad6888642063604ca4f6eb8179344cb712d2ef07a9dcf985902ce",
+      "script_sha256": "505e65fe4869515b987af541966e8a53b7545384f12257f74db32abad60ec0a1",
       "effect_details": []
     },
     {
-      "guide_number": 94,
+      "guide_number": 85,
       "source_ordinal": 353,
       "card_id": 215105971,
       "card_name": "Urphiel, the High Arckcestial",
@@ -1866,11 +1942,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "a66d5bdd5350e351b7697a496808ecce0e0a4b46cbf461568f085e7ee9d6d120",
-      "script_sha256": "3e3db905d720579dd0706b194e30e30aa95edbc1f9df5733e590f18bc92ac57c",
+      "script_sha256": "c6afae0e8e11abd09d21971c3659e5af50f3b4bed5b3d8cf3daf5e77c5b21c91",
       "effect_details": []
     },
     {
-      "guide_number": 96,
+      "guide_number": 87,
       "source_ordinal": 443,
       "card_id": 248940511,
       "card_name": "Flower Cardian Moonflare",
@@ -1884,7 +1960,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 97,
+      "guide_number": 88,
       "source_ordinal": 457,
       "card_id": 259307285,
       "card_name": "Attack on Gravity",
@@ -1894,7 +1970,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "c3f95ca6fb9a52d2bb0d35c53791a030e4c2771006873c6914cb32e92fe58383",
-      "script_sha256": "cdcd46f2c8642e95f5790518c1b0285b9ccb3535181586d5327c46eb78070a10",
+      "script_sha256": "57b20843ada628a41ad4e30515a27b7b5946bc0a7281e256f4dbd18781607ac9",
       "effect_details": []
     }
   ],
@@ -1910,7 +1986,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "b6da06bcbef6bdf537a0cb90a35aa1298723cedbd2fd693a4b49c69bcf7e45c6",
-      "script_sha256": "7528263c1c15817389d8d10acc71ced2bd8f601e31e6bc9dcabc0291f18ba34d",
+      "script_sha256": "63eb66bab1d92e47ee498e0f87cd507436847ef6c0538f41d3618215b627cbca",
       "effect_details": []
     },
     {
@@ -1924,7 +2000,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "9897ace5aa87598926dd055d12e129849aaeb1f1ceb6ebbace7c07308a983be8",
-      "script_sha256": "230a1d4314ee160c9d8518ab4cc1dcec5e11685203e8226e9e1330c3ec977ee1",
+      "script_sha256": "c0e52c168b64769a90064f2119be83c5de200539fca6ef6a385c9178cf2dc87c",
       "effect_details": []
     },
     {
@@ -1938,13 +2014,19 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "b0ccdc2c2ec7b4a162ccefe8b5b74f1eb72eeead1c08812e794c192dee5c560d",
-      "script_sha256": "7a37e100146c21e0fb35034edcf559abe267782c3b913b42f796fbec408bd5f2",
+      "script_sha256": "cd120eb55110b9200ada5e20fe639a59152242058087a183df97314647148cc0",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "When an opponent effect that would destroy two or more monsters you control resolves, destroy this card, then negate that effect.",
           "implementation": "Field-zone Quick Effect responds at EVENT_CHAINING, infers two-or-more own Monster destruction from chain operation metadata, destroys itself at resolution, then calls NegateEffect if destruction succeeded. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "The printed trigger says 'when ... resolves', but chains cannot be started during another effect's resolution. The Lua necessarily responds at activation and predicts destruction from CATEGORY_DESTROY metadata, which cannot identify effects whose victims/count are chosen only while resolving. Resolution: rewrite this as 'When your opponent activates a card or effect that would destroy 2 or more monsters you control' and accept category-based prediction, or define a new engine replacement/interception event before destruction resolves."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "The optional destruction-negation choice is evaluated during effect resolution, tracks that chain operation and retains the original operation when declined; destroyed-to-GY trigger has no invented prior-field requirement.",
+          "reason": ""
         }
       ]
     },
@@ -1959,13 +2041,19 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "da97e0afe745141d2c3cb191c2116e3b9fe28df05246cc228807674f59f90cba",
-      "script_sha256": "e5c7252ddee671e613ba039e5471240504cb8b7b1a146bf08889ca7bd5a55694",
+      "script_sha256": "fd2e2097aed99695f38370d2e984f47396c750644913db010ff242231574cffe",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "When an effect includes face-up placement from hand/Deck/GY, placing monsters in SZONE, or Setting from hand/Deck/GY: discard this card; negate that effect. HOPT.",
           "implementation": "Ash-style hand Quick Effect checks custom CCG Set markers, CATEGORY_SET when available, CATEGORY_EQUIP, or any CATEGORY_LEAVE_GRAVE operation; discards as cost and NegateEffect; HOPT. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "Omega has no universal categories for face-up Spell/Trap placement, placing Monster Cards in the Spell & Trap Zone, or every Set from hand/Deck/GY. CATEGORY_LEAVE_GRAVE is overbroad, while custom markers only cover scripts that opt in. Resolution: narrow the three bullets to engine-detectable categories, require all relevant scripts to publish dedicated placement/Set markers, or add core operation categories and update c222676270.lua to use them."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "The negation condition recognizes registered face-up-placement effects in addition to Set and Equip categories.",
+          "reason": ""
         }
       ]
     },
@@ -2029,13 +2117,19 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "fdc6efcad5dd3bc12c2d58b947f191731812a7bb2a56c4851ab843a965281a9b",
-      "script_sha256": "6187e701d8ebb70b261d205d9cd13f5e4a97b11586c19a5ee8b4751c58339067",
+      "script_sha256": "639ec7e5b56218629c420087241db72f881167b041b18bb88af27d25223fee10",
       "effect_details": [
         {
           "verdict": "MANUAL_RULING",
           "clause": "And if you do, this effect becomes that monster's original effect.",
           "implementation": "After banishing the corresponding Myutant monster, the handler uses CopyEffect with a standard state-change reset, granting that card's copyable effects rather than replacing and executing only this resolving effect.",
           "reason": "The text does not identify which of an arbitrary monster's effects is meant or provide that effect's event, activation condition, cost, target, or parameters. CopyEffect grants the card's copyable effects for a duration; it cannot make this already-resolving effect become and execute an unspecified original effect. Exact resolution requires wording that grants copied effects for a stated duration, or selection of one specifically activatable effect with defined cost/target semantics."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Reveal choice must have the corresponding monster available for banishment; copied destruction triggers survive the move into the graveyard.",
+          "reason": ""
         }
       ]
     },
@@ -2104,8 +2198,8 @@
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "17a5429a6fe70f081cc363741eaf6b280d34106b328bdd0d24b125aee3038df0",
-      "script_sha256": "9b058123a25f2511dad3e895da18a15872644ea3184f5e27804683bffd0a2ab8",
+      "text_sha256": "da3fddce4d5bb7904e814e6ca043b2a7d4c95b303ae424adeec21db87fe189fe",
+      "script_sha256": "a2f84e3aadaac108310aa614d7ae180cbeaff17b4633247b2d5390933d6eb29b",
       "effect_details": []
     },
     {
@@ -2118,78 +2212,78 @@
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "8e38491481784700932743cef1225891a57f672a8e67ff3d9ffb851d4a115fbe",
-      "script_sha256": "b4c52bde914a2722165c6b6464c3b382ef715f71e80111550ed3ee6396ab20c7",
+      "text_sha256": "1a38224fe6d6618af220b61c9586fbaf73e6dd042c0811524ed558bd06f34776",
+      "script_sha256": "f67f3999cc8a4778eabe1321cdda72c01180f522224a904af41e3f9576c6a63b",
       "effect_details": []
     },
     {
       "guide_number": 14,
       "source_ordinal": 300,
       "card_id": 259405917,
-      "card_name": "Siemens, the Ohmechanic Conductor",
+      "card_name": "Siemens, the Ohmenchanic Conductor",
       "workstream": "Co-link, counter, and zone topology",
       "problem": "Prevented the move effect from activating without a free Main Monster Zone. Custom co-link destination movement remains an in-engine UI/ruling risk.",
       "static_verdict": "FIXED",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "6f51816f110f7c2df5832ba6190d4e37876949033c3d126aef1dfaed1d6f6b95",
-      "script_sha256": "4eefd3bc863e1c36114cc8d3ffe407acd882be4ff44b3e88d1285c1e2457079c",
+      "text_sha256": "e191586b67a876a49bf51101caf7b559d9612e1bc321ef522bbcc31acf865fec",
+      "script_sha256": "40c345d98df2688005a92f5fe87202ee4888c195c3c746f4e35ecaf94a5b109a",
       "effect_details": []
     },
     {
       "guide_number": 15,
       "source_ordinal": 301,
       "card_id": 259350270,
-      "card_name": "Farad, the Ohmechanic Capacitor",
+      "card_name": "Farad, the Ohmenchanic Capacitor",
       "workstream": "Co-link, counter, and zone topology",
       "problem": "Custom Current Counter traversal/removal across mutually linked cards needs engine validation.",
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "88e72a6cac9b6d664e34ef2e52f150c6118e3274804d7dec2380d55717b22358",
-      "script_sha256": "09bccf37e8b2fd5634e7753dd06282dd21e43d0bc43a3b838ee5d86b6a7f2b7f",
+      "text_sha256": "610f6ee87816333d3e102b2f2c0d30ce0d4049e5e071655e6d53031c370be08e",
+      "script_sha256": "499bcd211dec8099e1acdbd5c7b1aaf7f7aee96d7a2a8d99026dd3c5e802b027",
       "effect_details": []
     },
     {
       "guide_number": 16,
       "source_ordinal": 303,
       "card_id": 259841490,
-      "card_name": "Coulomb, the Ohmechanic Charger",
+      "card_name": "Coulomb, the Ohmenchanic Charger",
       "workstream": "Co-link, counter, and zone topology",
       "problem": "Prevented the Link-monster move effect from activating without a free Main Monster Zone. Immediate Link Summon and custom zone movement need live Extra Monster Zone validation.",
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "de1636ac62a2c15c41005a660cbc0bccdabc5700957f990853051dda60658b17",
-      "script_sha256": "2f2c4b469fe82858e4c1741aa5e6f2be5cc2f35a5acb8ba06e8f406aa2467d72",
+      "text_sha256": "26bdd0393eaffa10c1c959e69a8248a5418330fc6d7f0f814919f850eb30f21a",
+      "script_sha256": "d4c4e563c9dd1e8ce6dadb794d80f507c7d9bab0405233e7e7f0d593f5581911",
       "effect_details": []
     },
     {
       "guide_number": 17,
       "source_ordinal": 304,
       "card_id": 259479044,
-      "card_name": "Ampere, the Ohmechanic Intensity",
+      "card_name": "Ampere, the Ohmenchanic Intensity",
       "workstream": "Co-link, counter, and zone topology",
       "problem": "Custom counter placement/protection over co-linked monsters needs live validation.",
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "27fc953bad49c52c5e747ca145e3668ba94e62e00abd2b14befd8a97bcfaac20",
-      "script_sha256": "0a1568b7c650c9e929505252e880052bccd1831e3337ab99a86f9984cbaa30fd",
+      "text_sha256": "37c17774712c45cef984b747a13538c59deaedbdb57d79c4821b2a814ea19cd1",
+      "script_sha256": "53a9d40c1ec86dc32389b584cad7d15d725b0e1b109e7c4e84db09fe6ef75323",
       "effect_details": []
     },
     {
       "guide_number": 18,
       "source_ordinal": 305,
       "card_id": 259033429,
-      "card_name": "Carcel, the Ohmechanic Light",
+      "card_name": "Carcel, the Ohmenchanic Light",
       "workstream": "Co-link, counter, and zone topology",
       "problem": "Moved mass Current Counter removal out of target and into cost. EVENT_ADJUST co-link transition tracking and mass counter consumption need live validation.",
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "54bfe660006adb208e0c4001ac436ba9258fc0fc5e51b399da93dc8a58870599",
-      "script_sha256": "7c5ed34206e350dd87d22f04ecbbfc098ae9dba37fc266e1c43ff14cc73e4401",
+      "text_sha256": "297efa165c6ef1e83b3f78d20f7e7bd5f561b689f7dce2e4094d5850debeb7e7",
+      "script_sha256": "05ec7a98d3a748a89d7011c004cff0d2d480fbb2ebdddf1750daa592a74dd5f4",
       "effect_details": []
     },
     {
@@ -2202,8 +2296,8 @@
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "6f5a0f885650d5fcd6c7f75749a16f11c616c2976a6d29f1ad36e3a739995e36",
-      "script_sha256": "a19bdb4d4c2fedfc455897d5f57fd30e6e52aed764e375368937f0ad1d111ce8",
+      "text_sha256": "736bb700d02be2ebeab23ad81fe20936b8c954d5914912e755a54cf91e5f2c6b",
+      "script_sha256": "62b6ad04083471441e10f04ccf459bb1d59fad6088c2200e4bfbb63542c07df6",
       "effect_details": []
     },
     {
@@ -2217,7 +2311,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "1f0094d61e4c449a37c23cf00af05a6a3aede9c579907b4b1f2e5a0c94175ab0",
-      "script_sha256": "8562d8f5a4d6ec11b634df6f970ddebd040c8e69510204245c290dc78fc2a58b",
+      "script_sha256": "0f8e7477065855169ae40f17a93849f14472628a5da25eaf6c4fd2580fffbc76",
       "effect_details": []
     },
     {
@@ -2231,13 +2325,19 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "f6807763c30b730f56f9861ec6331a1f8f130fa3f1cb2529679ceb7146a5792e",
-      "script_sha256": "495f8ec124b10da53d9e6a426350a6563dd193b992d2dec85209f4424e4d01bc",
+      "script_sha256": "e693a6769ed6137e0870afe37762bf1f7c10dd5a3865ac9cc0f89480d69bc062",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "Quick Effect: Tribute a Token, then pay any amount of LP.",
           "implementation": "The cost offers LP payments in 100-point increments plus LP minus 1, then applies the chosen payment as permanent ATK/DEF gain. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "The finite AnnounceNumber UI accepts an explicit option list and has no unrestricted integer-entry prompt. Enumerating every integer from 1 to LP-1 is not a supported/practical Omega selection, so the Lua currently offers 100-LP increments plus LP-1. Resolution: change 'any amount' to 'any amount in multiples of 100 (or all but 1 LP)', or add an integer-range prompt to Omega and use it in c217332244.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "First proper summon is enforced; any positive integer LP payment below current LP is expressible by bounded decimal digits, while failed banish payment prevents summoning.",
+          "reason": ""
         }
       ]
     },
@@ -2252,7 +2352,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "bd2d0bb1f45b76923b996d016116f1632632b43ef987b7b62361478aa5a0cee8",
-      "script_sha256": "b263b5e604a263909dd0a6b168dd95e661fabda6574d40bab127b0a712db50fb",
+      "script_sha256": "448aa27cd19ddb41ae7404f6a16ea321dbc0878d098accdd76fe3d1b95821278",
       "effect_details": []
     },
     {
@@ -2266,13 +2366,19 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "798ba9af1f9a3aaefa68a85e37e934eabd48c22cd2fc45c0fbbad566d9d36666",
-      "script_sha256": "da7f1d9f09cea168992997001329bd225be1c7abb5ba6c8c4a8b79047c57b3be",
+      "script_sha256": "52b3cff5c7a24b61b438b6cb53066f03584b6e2d4be1281238990c1700ba9867",
       "effect_details": [
         {
           "verdict": "MANUAL_RULING",
           "clause": "If your \"Stain\" monster was shuffled into either Deck this turn, you can also banish \"Stain\" monsters from face-up in your opponent's Deck as material, but return them to the GY during the End Phase.",
           "implementation": "A global EVENT_MOVE approximation flags Stain monsters moved from outside a Deck into a Deck by effect, enabling face-up opponent-Deck Stain monsters as Fusion material and scheduling used cards to return to the GY in the End Phase. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "EVENT_MOVE does not identify whether movement into a Deck was a shuffle, and it cannot reliably cover cost-based or rule-based shuffles. The current REASON_EFFECT tracker is only an approximation. Resolution: rewrite the condition as 'If your Stain monster was moved into a Deck by a card effect this turn', or add a core shuffle event/reason and use it in c232449539.lua."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Deck-shuffle condition includes costs as well as effects; material payment must move the full selected groups.",
+          "reason": ""
         }
       ]
     },
@@ -2287,7 +2393,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "0dbf2f19d1489149d555e5a3671145a599edf8a32eb8edd95e1197014dbf2a78",
-      "script_sha256": "512674bd8aa507223e515bc79c5117a3ab7fe6b9fb2b084a8a4040814e79c408",
+      "script_sha256": "1c7d17993f7a7ef21d23f5cc4e94c6672ef2d9e8ddee89da166049c7e83c67b1",
       "effect_details": []
     },
     {
@@ -2301,7 +2407,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "0a1fcfe1b1a2df8052bc6fbd0d9afcc06284eb86e2f95abf88e58c289f7aca8c",
-      "script_sha256": "da1dae7440764368fd5f677265fe714ba93dab8375ab074c96cf559d54254e65",
+      "script_sha256": "0072275852826b48c42de7588ce746f818438850807cdd3f1b6ffc7a972df88e",
       "effect_details": []
     },
     {
@@ -2364,7 +2470,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "d3ea1576054a1d1c10f23e4a4e8d3b3396669e63dd8ed998737c7671b2de4035",
-      "script_sha256": "d491f4b36e13b073f09e62ae2fca075f72cbcafa0b12b14e5e609e4b7f610e88",
+      "script_sha256": "08a2316941d9fe6fdfbc439c19ea36115c28e13491202c458825cefc45ddcd40",
       "effect_details": []
     },
     {
@@ -2397,20 +2503,6 @@
     },
     {
       "guide_number": 32,
-      "source_ordinal": 70,
-      "card_id": 259737127,
-      "card_name": "Tove, the Domesticated",
-      "workstream": "Timing, delayed state, and reset behavior",
-      "problem": "summon restriction/draw-send/GY delayed Battle Phase return [implemented].",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "3ef50e9be6fbc8cf4ad47ba2e127a6ef47c5b882f125cd3072b5d4303a512f34",
-      "script_sha256": "80027151ba8e1af581599459143f203be337307ce7f41d67d56d302a483c7a92",
-      "effect_details": []
-    },
-    {
-      "guide_number": 33,
       "source_ordinal": 101,
       "card_id": 259686203,
       "card_name": "Mylo, the Domesticated",
@@ -2424,7 +2516,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 34,
+      "guide_number": 33,
       "source_ordinal": 102,
       "card_id": 259135917,
       "card_name": "Nuwa, the Domesticated",
@@ -2438,7 +2530,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 35,
+      "guide_number": 34,
       "source_ordinal": 103,
       "card_id": 259911246,
       "card_name": "Mylo in the Wild",
@@ -2448,11 +2540,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "dda6a9006f30d878c353df9fc4f44879effc64e719bef010d8db652294046db9",
-      "script_sha256": "da5f27fd3857324e374728ba4ccc56294313b0801b9a29e6f38ff87d4ae56199",
+      "script_sha256": "9605fd427a1b9926b80ba74039f0e5bedad2776d9bcbb13f266c53aaccb11356",
       "effect_details": []
     },
     {
-      "guide_number": 36,
+      "guide_number": 35,
       "source_ordinal": 110,
       "card_id": 248801935,
       "card_name": "Kanmuriyama",
@@ -2462,11 +2554,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "fbe483670c4f46fcada84dfaa406796ee7e68f99c47b46f5269dd6445d8edad9",
-      "script_sha256": "98cac33543c8c0785c60e075743df6425a7bdbe50afa850bbebc8d72edbadffb",
+      "script_sha256": "af10d049ca7e5588e7b68b775bc404b86eb0a97fe581551396dd43aee405fc95",
       "effect_details": []
     },
     {
-      "guide_number": 37,
+      "guide_number": 36,
       "source_ordinal": 113,
       "card_id": 221855414,
       "card_name": "Otakemaru the Accuser",
@@ -2476,18 +2568,24 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "2d742c1fccf35b346fec3aaa6b85d886d6820956c6e0dfe3d94ed20fda1f046b",
-      "script_sha256": "6f4bd03cf45fe0fdfb3c037f62e430b411f13a3e78b331c8ebcece61eb2cb375",
+      "script_sha256": "595e04870885f25810346f7183d13020c561ac48093996e2d7ddc02cc955ce0b",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If Special Summoned: other Spirit monsters cannot return to hand or Extra Deck by card effect during this turn’s End Phase.",
           "implementation": "The Special Summon trigger installs End-Phase-only CANNOT_TO_HAND/CANNOT_TO_DECK effects for other face-up Spirit monsters; those destination effects also apply to costs and non-effect movement. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "EFFECT_CANNOT_TO_HAND and EFFECT_CANNOT_TO_DECK are reason-agnostic, so the current Lua also blocks costs and other non-effect movement during the End Phase. EFFECT_SPIRIT_DONOT_RETURN would cover only the built-in Spirit return and not arbitrary card effects. Resolution: remove 'by card effect', narrow the text to built-in Spirit returns, or add effect-only hand/Extra-Deck return prohibitions and use them in c221855414.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "The End Phase return trigger is limited once per copy so an unsuccessful return cannot reopen indefinitely.",
+          "reason": ""
         }
       ]
     },
     {
-      "guide_number": 38,
+      "guide_number": 37,
       "source_ordinal": 126,
       "card_id": 211964444,
       "card_name": "Priestess of Nephthys",
@@ -2497,18 +2595,24 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "1163b4f44d667447a493e787bab5373a968472d3468d9a9d936dcdcac48c19af",
-      "script_sha256": "188b5824f7f4bd4f6c6ed65e1dbf6d0572b5dfd62068c212b99133e004205c2c",
+      "script_sha256": "bdd6341340d89246d15aba4d1aa8e6c87446d50448fb3ebe3d6bd83a637cbcc9",
       "effect_details": [
         {
           "verdict": "MANUAL_RULING",
           "clause": "Then apply that destroyed card’s Standby Phase-activated effect.",
           "implementation": "After the selected Deck monster is destroyed, CheckActivateEffect(true,true,true) obtains an effect and directly invokes its target and operation outside the original Standby Phase event. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "'That destroyed card's Standby Phase-activated effect' does not identify which effect to apply when the monster has multiple Standby Phase triggers. Omega also has no API for invoking one arbitrary trigger outside its event while preserving its event data and targeting semantics. Resolution: identify the intended effect by exact text/index or restrict the eligible monsters to an enumerated list, then script those operations; otherwise add a core trigger-invocation API."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Standby effect is selected explicitly and invoked with its own handler and effect relation instead of an arbitrary activation effect.",
+          "reason": ""
         }
       ]
     },
     {
-      "guide_number": 39,
+      "guide_number": 38,
       "source_ordinal": 132,
       "card_id": 246524183,
       "card_name": "Protogenesis",
@@ -2518,11 +2622,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "8361147a31a89cab93e4951b66cb0914688a8cb7bb6fa3d564397bf3ce1d4200",
-      "script_sha256": "c040c02d92b3a10b9bb68e28a7b584d3eca1942cbb1302f62c37d00360a6c2ac",
+      "script_sha256": "34dd66ffdabd990d556cc8063a559e81004f8084ddae9643af38dea276602fa9",
       "effect_details": []
     },
     {
-      "guide_number": 40,
+      "guide_number": 39,
       "source_ordinal": 267,
       "card_id": 236898203,
       "card_name": "Chrono-Saur Rex",
@@ -2532,11 +2636,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "6e1ea123186ac9457d6ccc965573d2c881f603e01acad36968f0711eb9714b3b",
-      "script_sha256": "22359ea024f9405e028116045475e67e90fd4b9e91daa46e13d3e51406875fb8",
+      "script_sha256": "1f985806629fbac8ab9c0e289673585aa21f2cab3efa1986b74ae3f5a113a968",
       "effect_details": []
     },
     {
-      "guide_number": 41,
+      "guide_number": 40,
       "source_ordinal": 444,
       "card_id": 231523659,
       "card_name": "Stardust Comet",
@@ -2550,7 +2654,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 42,
+      "guide_number": 41,
       "source_ordinal": 3,
       "card_id": 221321849,
       "card_name": "The Condescender",
@@ -2577,7 +2681,7 @@
       ]
     },
     {
-      "guide_number": 43,
+      "guide_number": 42,
       "source_ordinal": 6,
       "card_id": 247499445,
       "card_name": "Stained Fox Feness",
@@ -2591,7 +2695,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 44,
+      "guide_number": 43,
       "source_ordinal": 46,
       "card_id": 236158052,
       "card_name": "The Blue Frute",
@@ -2605,7 +2709,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 45,
+      "guide_number": 44,
       "source_ordinal": 47,
       "card_id": 235607781,
       "card_name": "The Yellow Frute",
@@ -2619,7 +2723,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 46,
+      "guide_number": 45,
       "source_ordinal": 48,
       "card_id": 246216813,
       "card_name": "The Red Frute",
@@ -2629,11 +2733,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "7a19fbdb28505ce4b879aeb2b61a2529565d1a2f587105b2a0b79e695b469adc",
-      "script_sha256": "0bfefd24d2f9c0b602987ee8cad6e7986f74886f5b7f0b14475a3391c78e8521",
+      "script_sha256": "3f76a254062080317c681c5715994499e97369fd08b9b009080c2b10603bcb52",
       "effect_details": []
     },
     {
-      "guide_number": 47,
+      "guide_number": 46,
       "source_ordinal": 49,
       "card_id": 227745087,
       "card_name": "The Green Frute",
@@ -2647,7 +2751,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 48,
+      "guide_number": 47,
       "source_ordinal": 50,
       "card_id": 220916791,
       "card_name": "The White Frute",
@@ -2657,11 +2761,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "e38a64337c37cd5057f397db0cdfdf45cb46974568c4092417388d353a182108",
-      "script_sha256": "254dd78b0389f8a0dadcb7096241373f0cf4bcac1565061550a1561746f2b50d",
+      "script_sha256": "010b35df5eab6a85314db04ac586157663e8161eebe32278a563fb6273aa8f9c",
       "effect_details": []
     },
     {
-      "guide_number": 49,
+      "guide_number": 48,
       "source_ordinal": 51,
       "card_id": 246830897,
       "card_name": "Fruteonia",
@@ -2675,7 +2779,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 50,
+      "guide_number": 49,
       "source_ordinal": 52,
       "card_id": 216140411,
       "card_name": "Fruteopia",
@@ -2689,7 +2793,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 51,
+      "guide_number": 50,
       "source_ordinal": 54,
       "card_id": 256930605,
       "card_name": "Fruteification",
@@ -2699,11 +2803,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "607d84c6ba667c2bc311f5f0ae0498e921b42a48baa582dab4e66ba5689a730c",
-      "script_sha256": "9c68121434c5db376cd94ace47e44d368920119a7f081d595b9988098b5d60de",
+      "script_sha256": "937f78984933f3476fc6cb609e7f5a289cbf1b8c47cda50653a785d7e692f6b3",
       "effect_details": []
     },
     {
-      "guide_number": 52,
+      "guide_number": 51,
       "source_ordinal": 57,
       "card_id": 248290754,
       "card_name": "The Fruteful Moon",
@@ -2713,109 +2817,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "e04c6c07465452a8be2e913264a794514ef4034e315024d8a76d20aa3bf0adfd",
-      "script_sha256": "2204267b29585f51d74cb7f4866b14ab32ac4a3a00c9d17ccc42c4594e03643e",
+      "script_sha256": "f996ef2f574d0fc809cdc604f3737bb3c638a79f43b0733ee221dcaea8351598",
       "effect_details": []
     },
     {
-      "guide_number": 53,
-      "source_ordinal": 69,
-      "card_id": 259377794,
-      "card_name": "Pip, the Domesticated",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "custom Tribute Summon support.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "772c3b9fdb70aef514e6f17c416437270f3727b34f2e8297c1eaa1a0ca5beae9",
-      "script_sha256": "08c46be9eaff384e003ea586530a083db08139d9aac30770601a43272a2fec30",
-      "effect_details": []
-    },
-    {
-      "guide_number": 54,
-      "source_ordinal": 71,
-      "card_id": 259264881,
-      "card_name": "Domestica Praerie",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "custom Tribute UI.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "645a6c19fd6a80dfdc13b0c0d8eec8f3011eaaeb39c64de354b9467a0b87ca87",
-      "script_sha256": "a8f4de405595ced33454151991548ed4af20b6476af26c684e8f03099620d2fb",
-      "effect_details": []
-    },
-    {
-      "guide_number": 55,
-      "source_ordinal": 72,
-      "card_id": 259337739,
-      "card_name": "Domestica Anjelie",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "custom Tribute UI.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "e5647d8b1b9bd63fc361a65251687503c32a59943cac3dbff1c879b51deb983e",
-      "script_sha256": "83e85257118bf53f4fe58270811b26e2db31473c8561fa905135870f9f65f335",
-      "effect_details": []
-    },
-    {
-      "guide_number": 56,
-      "source_ordinal": 73,
-      "card_id": 259245149,
-      "card_name": "Domestica Lunalie",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "custom Tribute UI.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "857a79a7d12b2ad4300c606c39eeccb6da76387f6accd04313e6ed7e1d924e76",
-      "script_sha256": "a32689013cfe93d55df5c9b7bfa3cec49210483621b4ccd88af9e82e1a7a2f12",
-      "effect_details": []
-    },
-    {
-      "guide_number": 57,
-      "source_ordinal": 76,
-      "card_id": 259668626,
-      "card_name": "Domestica in the Underworld",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "extra Tribute UI.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "5a031e36ab93ba63620be5523c70970e83df98035521aba1927a7343fb988464",
-      "script_sha256": "f86f174e064f55b7a7ffa05949a228faf3d7c449212a8d1c24086a64ada4180d",
-      "effect_details": []
-    },
-    {
-      "guide_number": 58,
-      "source_ordinal": 77,
-      "card_id": 259410628,
-      "card_name": "Domestica in the Wild",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "Fusion UI.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "ca93f88bdb018d93b6369ddd57b826885928a3de5c2442e42976672046250a65",
-      "script_sha256": "23c4ed6c0c36c84447293d65ee94625b3ea939770bc09497249dfd0bceb5e2f9",
-      "effect_details": []
-    },
-    {
-      "guide_number": 59,
-      "source_ordinal": 78,
-      "card_id": 259670933,
-      "card_name": "Domestica Kyrie",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "custom procedure.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "379d7cbb87dc9fc9c91c9f19ff6fe70e00d44e7c4ff8d1acdec7aa093fe8af0e",
-      "script_sha256": "88c6453ff080fe412d523adb05f9bc164f1876bb8d84ac3333d97120b208d3f0",
-      "effect_details": []
-    },
-    {
-      "guide_number": 60,
+      "guide_number": 52,
       "source_ordinal": 85,
       "card_id": 247831166,
       "card_name": "Ursarctic Leoship",
@@ -2829,7 +2835,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 61,
+      "guide_number": 53,
       "source_ordinal": 86,
       "card_id": 235051048,
       "card_name": "Ursarctic Octantis",
@@ -2839,11 +2845,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "733379eb22523fb223f1da80beabbbd549ca80eeb3f13fc5b97bc731978ae987",
-      "script_sha256": "f8ecd4df0acaa993c38bc6631720eef258467418f05162911f156faae1ee0b5d",
+      "script_sha256": "4e5e27b39e6fa41875fa95298dfa4ac75ffb71dad0e6cfe63f9f751dce66443b",
       "effect_details": []
     },
     {
-      "guide_number": 62,
+      "guide_number": 54,
       "source_ordinal": 87,
       "card_id": 244921711,
       "card_name": "Ursarctic Hextanius",
@@ -2853,18 +2859,24 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "27ad96a4e3d7f4be13213918479de9c0e2b439f872abc5cf263e1a800e67330a",
-      "script_sha256": "f8cb036b595c5f005f96c2f3ccd9e08fad2dc2547a23f8ef8b63a13a02172e82",
+      "script_sha256": "1e61795a9c67337c2945d2279b06ff89c61342513f5254979a86726679d80dc7",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "For the Special Summon of any Ursarctic Synchro, this card can be Level 7 or 8 and a non-Tuner.",
           "implementation": "The alternate Level/non-Tuner values are consumed by the three CCG Ursarctic procedures that explicitly call Hextanius-aware helpers; the card cannot inject those choices into unrelated official Extra Deck procedures. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "Official Ursarctic Extra Deck monsters use bespoke non-Synchro EFFECT_SPSUMMON_PROC scripts that read card Levels directly and expose no material-side hook for Hextanius to become Level 7/8 and a non-Tuner. Only the CCG procedures that explicitly call Hextanius-aware helpers can honor the text. Resolution: update every Ursarctic summon procedure that must recognize Hextanius (including official scripts), or revise the text to limit the substitution to named CCG Ursarctic monsters."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Custom summon clears previous failure state and records incomplete two-material payment before the engine checks the permitted zone.",
+          "reason": ""
         }
       ]
     },
     {
-      "guide_number": 63,
+      "guide_number": 55,
       "source_ordinal": 88,
       "card_id": 249093610,
       "card_name": "Ursarctic Nordbar",
@@ -2874,11 +2886,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "e12520f2a637c8349c22f1d260e416088b6e6d0ba116a5dc6bf4cd31dfdb401e",
-      "script_sha256": "dc111a23ee61f33cbcd95a41c47bd1a93a6873fd18b63e58fe1eff7cfd62fdc4",
+      "script_sha256": "538414b1d92d7df7cc3b9df7228dbe604dd4c51a3c321323412df9846a0db5e3",
       "effect_details": []
     },
     {
-      "guide_number": 64,
+      "guide_number": 56,
       "source_ordinal": 90,
       "card_id": 222257685,
       "card_name": "Branching to Guidance",
@@ -2888,11 +2900,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "37e32f8029bbfb2bce6c1264b0675cdc260cfee8d266f457acb269599423c7c7",
-      "script_sha256": "5ff9f9803f3c14211a479419c69b4a039e9cdd2fab5dfa7d5ff9a625d1f03807",
+      "script_sha256": "6f2bd0c551d8b883060a17cce91aebbc7f85ef91f3fbd76b6feea60a3d94cc50",
       "effect_details": []
     },
     {
-      "guide_number": 65,
+      "guide_number": 57,
       "source_ordinal": 105,
       "card_id": 217713649,
       "card_name": "Onibi",
@@ -2901,12 +2913,12 @@
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "e1a5d1fb25a0758adfbb17a7e1cdd1c2ced8dbe1c238cfea08d8621670f01414",
-      "script_sha256": "1dc352d9f21e36069f85ebb62f629d27b7c0e86eb9a181811c994c73f845b552",
+      "text_sha256": "1fc6dd08a7635be9c1d081f1c29ee81fd7314f8e6fe773985ff55c864e6f0fc1",
+      "script_sha256": "c252c171e96739970dafeb824cdfeb70b6de924b2c06a83916c9173e51e8af20",
       "effect_details": []
     },
     {
-      "guide_number": 66,
+      "guide_number": 58,
       "source_ordinal": 116,
       "card_id": 259369909,
       "card_name": "Serene Mermaid of the Grand Blue",
@@ -2916,18 +2928,24 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "f68cee6fc31125d6e440367e06f6abf6f360a6f188b7c275accc7a8522cd8962",
-      "script_sha256": "0e7289e269953b367fb6bb8b8f5711003a5d690ca351e8506be83e90e7f734dc",
+      "script_sha256": "a880c9bae7c53794ad73dbe3ed6ea4faa9ab7fa4bc275996c74be6164afbfb40",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "After the Fusion Summon, for the rest of the turn you may only Special Summon from Extra Deck using Grand Blue monsters as materials.",
           "implementation": "Four material prohibitions prevent non-Grand-Blue cards from being used as Fusion, Synchro, Xyz, or Link Material for the rest of the turn, but materialless Extra Deck procedures are not represented by those hooks. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "Omega's prospective Extra Deck Special Summon restriction callback does not expose the material group. The Lua instead prohibits non-Grand Blue cards from being Fusion, Synchro, Xyz, or Link Material, which does not reject materialless or nonstandard Extra Deck procedures. Resolution: rewrite the restriction as four material prohibitions matching the Lua, or add a summon-limit API that receives the prospective material group and replace the approximation in c259369909.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Fusion requires the entire selected material group to move.",
+          "reason": ""
         }
       ]
     },
     {
-      "guide_number": 67,
+      "guide_number": 59,
       "source_ordinal": 123,
       "card_id": 259093260,
       "card_name": "Grand Blue Matriarch",
@@ -2937,11 +2955,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "5d1ce287f847813c76ff1e2adf18d0f5f67dd60b0a548d243ccb9441fbe19c1f",
-      "script_sha256": "4360ce296565120595a6e8ce3d22adea14c4cc1bfc85ed993eaf9427c200d9aa",
+      "script_sha256": "b0e89ad4bf20ab732ee4394577dab04ea5bc633255ffdb72c8de1ababa4774e6",
       "effect_details": []
     },
     {
-      "guide_number": 68,
+      "guide_number": 60,
       "source_ordinal": 127,
       "card_id": 216532402,
       "card_name": "Sacred Feather of Nephthys",
@@ -2951,11 +2969,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "b4bacf98e02e3a9d74318856acec05555b4e76ac84d2755415c4fff01a200e4b",
-      "script_sha256": "0113973f94750d6f422cc718954dd11279ad2739a8de4c517b11395901c94e09",
+      "script_sha256": "d250257747a944e54f930c5b30d30dff31e925d8abcbad2c8a4d838f742e2865",
       "effect_details": []
     },
     {
-      "guide_number": 69,
+      "guide_number": 61,
       "source_ordinal": 128,
       "card_id": 259581666,
       "card_name": "Stellaer of the Frozen",
@@ -2969,7 +2987,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 70,
+      "guide_number": 62,
       "source_ordinal": 137,
       "card_id": 259219942,
       "card_name": "Stellaer of the Plants",
@@ -2983,7 +3001,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 71,
+      "guide_number": 63,
       "source_ordinal": 147,
       "card_id": 230998543,
       "card_name": "Stellaer of the Breeze",
@@ -2993,11 +3011,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "3ed98b4e0452d5d1b6305a4f8922edc33ee76ab6292e744357e2c5c8e9feb22e",
-      "script_sha256": "4f2d9d7d7aa945541ad455902b8752e838d01bf169e5450c037bfa1ce19a6cb2",
+      "script_sha256": "182cb38eb7c1a33dffbacc3274a4d57796b98090282df91b7d94037c6f39466d",
       "effect_details": []
     },
     {
-      "guide_number": 72,
+      "guide_number": 64,
       "source_ordinal": 161,
       "card_id": 236239443,
       "card_name": "Restoration of Azrynior",
@@ -3011,21 +3029,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 73,
-      "source_ordinal": 169,
-      "card_id": 259290896,
-      "card_name": "Dominus Sentinel",
-      "workstream": "Summon, material, and selection UI",
-      "problem": "custom Attributes.",
-      "static_verdict": "PASS",
-      "disposition": "REGRESSION_ONLY",
-      "live_status": "pending",
-      "text_sha256": "19a4fff5c892f4122fe13d9d79fe0b5bb10579cff2b7b76a74db6657f31dd365",
-      "script_sha256": "f63697268d41ff8e5d643674d4aa3480d5d72c3b03ad69f665754bf6413efd2d",
-      "effect_details": []
-    },
-    {
-      "guide_number": 74,
+      "guide_number": 65,
       "source_ordinal": 187,
       "card_id": 244778917,
       "card_name": "Vir Pedicae Mortis - Fearless Hunter",
@@ -3039,7 +3043,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 75,
+      "guide_number": 66,
       "source_ordinal": 201,
       "card_id": 259114562,
       "card_name": "Bobbie Bluefin & the Nautical Nocturnes",
@@ -3049,11 +3053,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "39e3c3098d7dcc02ba710d9aa523c8cbfd770e0c4553f6c341c492465552d490",
-      "script_sha256": "621373d5613f3ca5203b97c7a764e7f1615162bf3725cc326d0b183a1bc85510",
+      "script_sha256": "07e6b2966c1ffa3d5257e4b79002f7a8fb3142c30549783b9e068e80c757f484",
       "effect_details": []
     },
     {
-      "guide_number": 76,
+      "guide_number": 67,
       "source_ordinal": 202,
       "card_id": 220749574,
       "card_name": "Scarlet Seareef & the Nautical Creatures",
@@ -3063,11 +3067,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "491c52682153d34b8202bd8da14c5a10c798e51fec2eb533ae7edfbad3e4efa6",
-      "script_sha256": "5a327e4a71f6716ef97a703809a12a61ef3792e10f7f6149a1ec75df464fe30c",
+      "script_sha256": "e81e4165a9908456ee1f21b4649d85e1e599f1545df9396ffac96c6c90cf31fd",
       "effect_details": []
     },
     {
-      "guide_number": 77,
+      "guide_number": 68,
       "source_ordinal": 203,
       "card_id": 225109525,
       "card_name": "Evander Coldwater & the Nautical Abyss",
@@ -3077,11 +3081,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "0a7244c2d675bdf07f3c71e70e390e0cb70464374f63b1fc61a66e01d35d2dae",
-      "script_sha256": "767904210a34228937694b9645461825fa12cbd8ee8c9ccdee6999431c17ae49",
+      "script_sha256": "ff188daef4afc247a7c7deb5c70efe5a134976b99e3170c6b57b278b5e235116",
       "effect_details": []
     },
     {
-      "guide_number": 78,
+      "guide_number": 69,
       "source_ordinal": 204,
       "card_id": 223158720,
       "card_name": "Nautical Backwashing & Oceanic Waves",
@@ -3091,11 +3095,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "fef64d3fb1fe26550df2d08052b83a38dc1da9ba910bfb5f716704770f34e7da",
-      "script_sha256": "678b3236921b61886f42ed5a53d5ce605819304dff3951f2d1100f7af34b663a",
+      "script_sha256": "0c7c7ea1bbf4e5892ab977db9d19adb4046c52e520e0a7b037bbc796c3966281",
       "effect_details": []
     },
     {
-      "guide_number": 79,
+      "guide_number": 70,
       "source_ordinal": 206,
       "card_id": 248946297,
       "card_name": "Exploring the Nautical Waters",
@@ -3105,11 +3109,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "5416941dae03ca59145447b515352535f5ae5224d28003db966bb990e8ba5f1d",
-      "script_sha256": "65bffd60208a9911d01ff0778ad9d674665abe6892cb3470f7e8ae3a8dd1069c",
+      "script_sha256": "36e9ff8fccabfca70def74507305f9f17e313d0db889f4ed4ae9c96aca0d2d1a",
       "effect_details": []
     },
     {
-      "guide_number": 80,
+      "guide_number": 71,
       "source_ordinal": 207,
       "card_id": 218905439,
       "card_name": "Nautical Adventures & Torrential Seas",
@@ -3119,11 +3123,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "e3b3620d129c388d41cfdc6eda2f7bf0e2a67bbae3c31aff87f6d9f5a8f3ca02",
-      "script_sha256": "2514cad060df2c026238babb6251ae46edb6f8c95fcc3cdc0f947437a5ce697e",
+      "script_sha256": "d0667109b1c79b94930723b9fce17ca5d29ee4db5cf35b43017035fa8efa600e",
       "effect_details": []
     },
     {
-      "guide_number": 81,
+      "guide_number": 72,
       "source_ordinal": 209,
       "card_id": 259944943,
       "card_name": "Bob, but Stronger!",
@@ -3133,11 +3137,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "bff0c57151cb3d53bfadc528dee29a68e083075c667f3d6ff1d41c47df426263",
-      "script_sha256": "354928a6362dac1f88f394cdf6b77c8d6c63d72e47fdd7ff9318fcf95067844b",
+      "script_sha256": "0d924496acb0207b2e842c6803116a7fa4dad257139ad0563c90b1047a42a763",
       "effect_details": []
     },
     {
-      "guide_number": 82,
+      "guide_number": 73,
       "source_ordinal": 237,
       "card_id": 256110263,
       "card_name": "Windborne Eye of the Storm",
@@ -3158,7 +3162,7 @@
       ]
     },
     {
-      "guide_number": 83,
+      "guide_number": 74,
       "source_ordinal": 306,
       "card_id": 259434499,
       "card_name": "Ohmen Powerload",
@@ -3168,11 +3172,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "bbff55673b95d32d5b9e43f4dcc9eaa07b1d84bb17551225f874aefc305b5ebe",
-      "script_sha256": "484af90753a26412ace9c39eda553749b835982e85e82b971a61e2fff7163525",
+      "script_sha256": "15c8d2b65ba4d5a0e6178bc9bc4061dde85b52e665cd582c3a06a5510c013d67",
       "effect_details": []
     },
     {
-      "guide_number": 84,
+      "guide_number": 75,
       "source_ordinal": 321,
       "card_id": 257239133,
       "card_name": "Phlogistic Uprising!",
@@ -3182,11 +3186,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "9ceb82efc3500adaf0e1432b15d6dccd8a110eb2d37f1fefd93dfccc25a4c496",
-      "script_sha256": "f3b9099291cf2f54c1bc6eb5b67d79bcecdceee566c2ac5453edfd67defce11c",
+      "script_sha256": "1149113aa794e9472e8bd117dd03bb91883b3fc4b6a17bb69ee75218405bd9ca",
       "effect_details": []
     },
     {
-      "guide_number": 85,
+      "guide_number": 76,
       "source_ordinal": 330,
       "card_id": 221924008,
       "card_name": "Chamroshes' Aegis",
@@ -3196,11 +3200,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "7f0e3dc26e0a76d80b4c6589864a7a0b3a10ebbb3640a8466f72be0349663689",
-      "script_sha256": "ab21cb40f6e7cd4f573b7afb0e3982213b6f37c2cf17cf6b00efda93386a475d",
+      "script_sha256": "dea9a4b1bd6004efd3aeea4500e2c50ef1d01c4cfa3f77ea91558b530ba29f71",
       "effect_details": []
     },
     {
-      "guide_number": 86,
+      "guide_number": 77,
       "source_ordinal": 370,
       "card_id": 240575550,
       "card_name": "Ghoti from a Deeper Depth Than the Deepest Deep",
@@ -3214,7 +3218,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 87,
+      "guide_number": 78,
       "source_ordinal": 374,
       "card_id": 259308265,
       "card_name": "Pumpqueen the Queen of Ghosts",
@@ -3228,7 +3232,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 88,
+      "guide_number": 79,
       "source_ordinal": 404,
       "card_id": 239335848,
       "card_name": "Ghostrick Oni",
@@ -3255,7 +3259,7 @@
       ]
     },
     {
-      "guide_number": 89,
+      "guide_number": 80,
       "source_ordinal": 435,
       "card_id": 231088629,
       "card_name": "Gravinity Spherix",
@@ -3265,7 +3269,7 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "0b23600bcb23c6f641b350ee1cd08ba93a84dcedc7dc3925cf6505a15e3501a1",
-      "script_sha256": "a64693dbd99554bb567b66e84627192f772d4a9c11e951be300c6dcd7848f0ba",
+      "script_sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
@@ -3278,11 +3282,17 @@
           "clause": "● During the Main Phase, if this card is a Continuous Trap: You can Special Summon this card, ignoring its summoning conditions, then, if this card is an Xyz Monster, you can attach the minimum number of monsters that can be used for this card's Xyz Summon from your GY to this card as material.",
           "implementation": "After the granted Ignition Effect Special Summons the handler, s.spop gathers Level-equal, overlay-eligible monsters from the controller's GY and overlays exactly two. Omega's Xyz helpers receive their material filter and min/max only inside each Extra Deck card's registered summon-procedure closures; the summoned card exposes no supported API that returns those values.",
           "reason": "Omega cannot generically recover an arbitrary Xyz Monster's printed minimum material count or material predicate after that card has already been Special Summoned to the field. Card.IsXyzSummonable can test a prospective Extra Deck summon but cannot extract the registered procedure from this already-summoned card. The current two same-Level attachments are therefore only an approximation and are not exact for level-free, variable-count, alternate, or non-Level procedures."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Nonactivated summon replacement has no chain relation requirement; optional Xyz attachment is offered and a face-down opponent monster can be shuffled.",
+          "reason": ""
         }
       ]
     },
     {
-      "guide_number": 90,
+      "guide_number": 81,
       "source_ordinal": 56,
       "card_id": 213266433,
       "card_name": "The Hanging Frute",
@@ -3292,18 +3302,24 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "def7ca7c5586ebdf2cdfaf65e78f42ad0a7e5a29132a7558ea9cf1c2e2924b25",
-      "script_sha256": "c92c6e0702fb0b15383a57f03b7d6e1b16940ae57d5ec580e0f07b21795f936b",
+      "script_sha256": "f6556d5db6969a9e4799dfbe72ea32b79df188831dbb297a5eec1f72fb3e902b",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "\"Frute\" monsters you control can attack all face-down Defense Position monsters your opponent controls, once each.",
           "implementation": "The Lua directly implements granting every Frute one attack on each face-down Defense monster only using custom location/filter/event handling; that bespoke component remains unmatched. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.",
           "reason": "The text does not resolve whether each Frute retains one ordinary attack against a non-qualifying monster in addition to attacks on every face-down Defense Position monster. The current first-attack tracker also cannot preserve exact once-each identity if a battled monster changes position and is Set again. Resolution: issue a ruling for the ordinary-attack interaction and change the text to match it; then replace c213266433.lua's approximation with a ruling-specific attack procedure (or add filtered attack-all bookkeeping to the engine)."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "Each defender tracks the attacking monster field instance; copied chain-effect immunity persists to End Phase rather than expiring with the chain.",
+          "reason": ""
         }
       ]
     },
     {
-      "guide_number": 91,
+      "guide_number": 82,
       "source_ordinal": 60,
       "card_id": 229499914,
       "card_name": "Sacred Treasure - Chunyin",
@@ -3317,7 +3333,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 92,
+      "guide_number": 83,
       "source_ordinal": 120,
       "card_id": 259679619,
       "card_name": "City Within the Grand Blue",
@@ -3331,21 +3347,21 @@
       "effect_details": []
     },
     {
-      "guide_number": 93,
+      "guide_number": 84,
       "source_ordinal": 302,
       "card_id": 259519336,
-      "card_name": "Volt, the Ohmechanic Chocker",
+      "card_name": "Volt, the Ohmenchanic Chocker",
       "workstream": "Other custom engine behavior",
       "problem": "Moved all-counter payment to cost and made the destruction correctly non-targeting. Custom counter-threshold continuous/Quick interaction needs live validation after the confirmed fixes.",
       "static_verdict": "PASS",
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
-      "text_sha256": "408546d85534bd14ed3ea0ee1603ff7ff9a90a8481dc6f9a7b69f22aab69e700",
-      "script_sha256": "4dbf59bb1e71443a68d3809d520e921528a04b849f1b65fc384b12a9abf213d6",
+      "text_sha256": "504367c71baad6888642063604ca4f6eb8179344cb712d2ef07a9dcf985902ce",
+      "script_sha256": "505e65fe4869515b987af541966e8a53b7545384f12257f74db32abad60ec0a1",
       "effect_details": []
     },
     {
-      "guide_number": 94,
+      "guide_number": 85,
       "source_ordinal": 353,
       "card_id": 215105971,
       "card_name": "Urphiel, the High Arckcestial",
@@ -3355,11 +3371,11 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "a66d5bdd5350e351b7697a496808ecce0e0a4b46cbf461568f085e7ee9d6d120",
-      "script_sha256": "3e3db905d720579dd0706b194e30e30aa95edbc1f9df5733e590f18bc92ac57c",
+      "script_sha256": "c6afae0e8e11abd09d21971c3659e5af50f3b4bed5b3d8cf3daf5e77c5b21c91",
       "effect_details": []
     },
     {
-      "guide_number": 95,
+      "guide_number": 86,
       "source_ordinal": 439,
       "card_id": 238184015,
       "card_name": "Gravinity Sonic Scream",
@@ -3369,18 +3385,24 @@
       "disposition": "SKIPPED_MANUAL_INPUT",
       "live_status": "pending",
       "text_sha256": "53c1369012a0ccb2b24dc7c9e7d9affb54bd916dd47a85e42934c04e5eb4c871",
-      "script_sha256": "2e343cb26301b091e96df4c4cb623f0dc1d923d647141c546d9235da972718df",
+      "script_sha256": "2e871ad20c62e31aa4ed33d403386fcec312a775ceeb8fc6260c4095789aa9f9",
       "effect_details": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If you activate the effect of a \"Gravinity\" Synchro Monster Card: You can banish this card from your GY; this effect becomes that card's activated effect.",
           "implementation": "c238184015.lua implements this printed clause with 3 registered Effect.CreateEffect blocks overall; the directly relevant current Lua is: e2:SetRange(LOCATION_GRAVE) | and (not rc:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(rc))",
           "reason": "The Lua directly invokes the prior Effect operation with mismatched effect/context arguments. Generic effect replacement/copying is engine-sensitive and this does not reproduce target, cost, label, category, or chain metadata for every possible Gravinity Synchro effect."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "implementation": "The optional Synchro activation If trigger is delayed.",
+          "reason": ""
         }
       ]
     },
     {
-      "guide_number": 96,
+      "guide_number": 87,
       "source_ordinal": 443,
       "card_id": 248940511,
       "card_name": "Flower Cardian Moonflare",
@@ -3394,7 +3416,7 @@
       "effect_details": []
     },
     {
-      "guide_number": 97,
+      "guide_number": 88,
       "source_ordinal": 457,
       "card_id": 259307285,
       "card_name": "Attack on Gravity",
@@ -3404,7 +3426,7 @@
       "disposition": "REGRESSION_ONLY",
       "live_status": "pending",
       "text_sha256": "c3f95ca6fb9a52d2bb0d35c53791a030e4c2771006873c6914cb32e92fe58383",
-      "script_sha256": "cdcd46f2c8642e95f5790518c1b0285b9ccb3535181586d5327c46eb78070a10",
+      "script_sha256": "57b20843ada628a41ad4e30515a27b7b5946bc0a7281e256f4dbd18781607ac9",
       "effect_details": []
     }
   ]

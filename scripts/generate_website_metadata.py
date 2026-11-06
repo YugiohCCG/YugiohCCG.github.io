@@ -59,7 +59,10 @@ def build_release_manifest() -> dict[str, object]:
         (downloads / "YGO_Omega_Images", "YGO_Omega_Holograms_v*.zip", "Holograms", "holograms"),
     )
     for directory, pattern, label, group in patterns:
-        for index, path in enumerate(sorted(directory.glob(pattern)), start=1):
+        canonical = re.compile(re.escape(pattern).replace(r"\*", r"\d+"))
+        parts = [path for path in directory.glob(pattern) if canonical.fullmatch(path.name)]
+        parts.sort(key=lambda path: int(re.search(r"_v(\d+)\.zip$", path.name).group(1)))
+        for index, path in enumerate(parts, start=1):
             files.append(artifact(path, f"{label} Part {index}", group))
 
     cards = json.loads(CARDS_PATH.read_text(encoding="utf-8"))

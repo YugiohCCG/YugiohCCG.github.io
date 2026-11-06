@@ -74,65 +74,26 @@ function s.handspop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 	end
 end
-function s.linkfilter(c,mc)
-	local mg=Group.FromCards(mc)
-	return Card.IsLinkSummonable and c:IsSetCard(SET_GRAYSCALE)
-		and c:IsType(TYPE_LINK) and c:IsLinkSummonable(mg)
+function s.linkfilter(c,mg,mc)
+	return c:IsSetCard(SET_GRAYSCALE) and c:IsType(TYPE_LINK) and c:IsLinkSummonable(mg,mc)
+end
+function s.linkmaterials(tp)
+	local mg=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_MZONE,0,nil)
+	mg:Merge(Duel.GetMatchingGroup(Card.IsType,tp,LOCATION_HAND,0,nil,TYPE_MONSTER))
+	return mg
 end
 function s.linktg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then
-		local ex=s.registerextra(c)
-		local res=Duel.IsExistingMatchingCard(s.linkfilter,tp,LOCATION_EXTRA,0,1,nil,c)
-		if ex then ex:Reset() end
-		return res
-	end
+	if chk==0 then return Duel.IsExistingMatchingCard(s.linkfilter,tp,LOCATION_EXTRA,0,1,nil,s.linkmaterials(tp),c) end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_EXTRA)
 end
-function s.linkop(e,tp,eg,ep,ev,re,r,rp)
-	if not Card.IsLinkSummonable then return end
+function s.linkop(e,tp)
 	local c=e:GetHandler()
-	local ex=nil
-	if c:IsRelateToEffect(e) then
-		ex=s.registerextra(c)
-	end
+	if not c:IsRelateToEffect(e) or not c:IsFaceup() or not c:IsControler(tp) then return end
+	local mg=s.linkmaterials(tp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
-	local tc=Duel.SelectMatchingCard(tp,s.linkfilter,tp,LOCATION_EXTRA,0,1,1,nil,c):GetFirst()
-	if tc then
-		Duel.LinkSummon(tp,tc,Group.FromCards(c))
-		if ex then
-			s.resetextra(c,tp,ex)
-		end
-	elseif ex then
-		ex:Reset()
-	end
-end
-function s.registerextra(c)
-	local e1=Effect.CreateEffect(c)
-	e1:SetType(EFFECT_TYPE_FIELD)
-	e1:SetCode(EFFECT_EXTRA_LINK_MATERIAL)
-	e1:SetRange(LOCATION_MZONE)
-	e1:SetTargetRange(LOCATION_HAND,0)
-	e1:SetTarget(s.handmatfilter)
-	e1:SetValue(s.extraval)
-	e1:SetReset(RESET_EVENT+RESETS_STANDARD)
-	c:RegisterEffect(e1)
-	return e1
-end
-function s.resetextra(c,tp,ex)
-	local ev=Duel.GetCurrentChain()==1 and EVENT_SPSUMMON or EVENT_SPSUMMON_SUCCESS
-	local e1=Effect.CreateEffect(c)
-	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
-	e1:SetCode(ev)
-	e1:SetOperation(function(e) ex:Reset() e:Reset() end)
-	Duel.RegisterEffect(e1,tp)
-end
-function s.handmatfilter(e,c)
-	return c:IsType(TYPE_MONSTER)
-end
-function s.extraval(e,lc,mg,c,tp)
-	if not lc:IsSetCard(SET_GRAYSCALE) then return false,nil end
-	return true,not mg or mg:IsContains(e:GetHandler())
+	local tc=Duel.SelectMatchingCard(tp,s.linkfilter,tp,LOCATION_EXTRA,0,1,1,nil,mg,c):GetFirst()
+	if tc then Duel.LinkSummon(tp,tc,mg,c) end
 end
 function s.xyzspfilter(c,tp)
 	return c:IsControler(tp) and c:IsFaceup() and c:IsSetCard(SET_GRAYSCALE) and c:IsType(TYPE_XYZ)

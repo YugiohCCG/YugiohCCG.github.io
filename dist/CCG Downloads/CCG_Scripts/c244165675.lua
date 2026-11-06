@@ -127,7 +127,7 @@ function s.ctop(e,tp)
  must:SetRange(LOCATION_MZONE)
  must:SetTargetRange(LOCATION_MZONE,0)
  must:SetTarget(function(e,mc) return mc==e:GetHandler() end)
- must:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
+ must:SetReset(RESET_EVENT+RESETS_STANDARD)
  tc:RegisterEffect(must)
 end
 function s.battledfilter(c)

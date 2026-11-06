@@ -11,9 +11,6 @@ from typing import Any, Callable
 import cv2
 import numpy as np
 from PIL import Image, ImageOps
-from winrt.windows.graphics.imaging import BitmapDecoder
-from winrt.windows.media.ocr import OcrEngine
-from winrt.windows.storage import FileAccessMode, StorageFile
 
 from card_star_detector import detect_star_count as detect_printed_star_count
 
@@ -346,6 +343,11 @@ SPELL_TRAP_ICON_MODEL: ImageKNN | None = None
 
 
 async def ocr_path(path: Path) -> str:
+    # Keep metadata parsers usable on Linux CI; OCR itself requires Windows.
+    from winrt.windows.graphics.imaging import BitmapDecoder
+    from winrt.windows.media.ocr import OcrEngine
+    from winrt.windows.storage import FileAccessMode, StorageFile
+
     file = await StorageFile.get_file_from_path_async(str(path))
     stream = await file.open_async(FileAccessMode.READ)
     decoder = await BitmapDecoder.create_async(stream)

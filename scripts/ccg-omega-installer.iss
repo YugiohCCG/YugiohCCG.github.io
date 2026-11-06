@@ -46,7 +46,7 @@ const
   VICTORY_REASON_PREFIX = '!victory 0x24 ';
   VICTORY_REASON_LINE = '!victory 0x24 Victory by the effect of "Scarstech Circuit"';
   IMAGE_PART_COUNT = 1;
-  PICS_PART_COUNT = 4;
+  PICS_PART_COUNT = 3;
   HOLOGRAM_PART_COUNT = 3;
 
 function URLDownloadToFile(Caller: Integer; URL, FileName: string; Reserved: Integer; Bind: Integer): Integer;
