@@ -38,8 +38,8 @@ const
   IMAGES_URL_FALLBACK_FMT = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%%20Downloads/YGO_Omega_Images_v%d.zip';
   PICS_URL_PRIMARY_FMT = 'https://yugiohccg.github.io/CCG%%20Downloads/YGO_Omega_Images/YGO_Omega_Pics_v%d.zip';
   PICS_URL_FALLBACK_FMT = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%%20Downloads/YGO_Omega_Images/YGO_Omega_Pics_v%d.zip';
-  HOLOGRAMS_URL_PRIMARY_FMT = 'https://yugiohccg.github.io/CCG%%20Downloads/YGO_Omega_Images/YGO_Omega_Holograms_v%d.zip';
-  HOLOGRAMS_URL_FALLBACK_FMT = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%%20Downloads/YGO_Omega_Images/YGO_Omega_Holograms_v%d.zip';
+  HOLOGRAMS_URL_PRIMARY_FMT = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%%20Downloads/YGO_Omega_Images/YGO_Omega_Holograms_v%d.zip';
+  HOLOGRAMS_URL_FALLBACK_FMT = 'https://github.com/YugiohCCG/YugiohCCG.github.io/raw/refs/heads/main/public/CCG%%20Downloads/YGO_Omega_Images/YGO_Omega_Holograms_v%d.zip';
   DB_ZIP_NAME = 'CCG_Database.zip';
   DB_NAME = 'CCG_v1.db';
   BANLIST_NAME = 'CCG_Banlist.lflist.conf';

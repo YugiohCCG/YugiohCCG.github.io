@@ -9,6 +9,7 @@ import re
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import quote
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,13 +32,16 @@ def sha256(path: Path) -> str:
 
 def artifact(path: Path, label: str, group: str) -> dict[str, object]:
     relative = path.relative_to(PUBLIC).as_posix()
-    return {
+    result = {
         "label": label,
         "group": group,
         "path": relative,
         "bytes": path.stat().st_size,
         "sha256": sha256(path),
     }
+    if group == "holograms":
+        result["url"] = "https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/" + quote(relative, safe="/")
+    return result
 
 
 def build_release_manifest() -> dict[str, object]:

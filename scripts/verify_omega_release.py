@@ -4,7 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from urllib.parse import unquote, urlsplit
+from urllib.parse import quote, unquote, urlsplit
 import re
 import shutil
 import sqlite3
@@ -795,7 +795,8 @@ def audit_website_downloads(audit: Audit, groups: dict[str, list[Path]]) -> None
         "website downloads: page does not consume the generated release manifest",
     )
     audit.require(
-        "function DownloadButton" in source and "fetch(asset(file.path))" in source,
+        "function DownloadButton" in source and "fetch(downloadUrl)" in source
+        and "file.url ?? asset(file.path)" in source,
         "website downloads: generated artifact paths are not used for downloads",
     )
     audit.require(sum(len(parts) for parts in groups.values()) > 0, "website downloads: image archives are missing")
@@ -821,6 +822,8 @@ def audit_release_manifest(audit: Audit, groups: dict[str, list[Path]]) -> None:
     actual = {REPO_ROOT / "public" / str(row.get("path")) for row in rows}
     audit.require(actual == expected, "release manifest: artifact membership differs from release")
     for row in rows:
+        expected_url = ("https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/" + quote(str(row.get("path")), safe="/")) if row.get("group") == "holograms" else None
+        audit.require(row.get("url") == expected_url, f"release manifest: incorrect download URL for {row.get('path')}")
         path = REPO_ROOT / "public" / str(row.get("path"))
         if not path.is_file():
             audit.errors.append(f"release manifest: missing {path.name}")

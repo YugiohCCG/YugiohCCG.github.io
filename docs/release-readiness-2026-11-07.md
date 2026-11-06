@@ -9,3 +9,5 @@ Evenly Matched is unrestricted. Medicurius the Power Patron of Illusions is bann
 Static semantic reviews are not live Omega certification. Known unsupported mechanics and designer ruling questions remain explicitly classified in the review ledger; historical records are retained in `scripts/output/release-review-history.json`.
 
 Publication proceeds after the final GitHub checks pass. The deployed Pages build and live card/download metadata must then be verified.
+
+The Pages payload is 878,819,922 bytes, below the 1 GB hosting limit. Hologram archives remain in the repository and are downloaded from GitHub Raw by the website and installer; the Pages package excludes those external archives and unused duplicate ZIPs. The production build enforces the size limit.
