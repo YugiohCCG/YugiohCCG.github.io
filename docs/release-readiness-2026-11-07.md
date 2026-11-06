@@ -1,14 +1,11 @@
 # Release readiness ? 2026-11-07
 
-The website update is not published yet. PR #42 must remain unmerged until the missing Vanquish Soul Brawl image is supplied and the complete download audit passes.
+The supplied Vanquish Soul Brawl image is included at `public/assets/cards/Vanquish_Soul_Brawl.png`, and all 703 Art/Pic payloads are present. The complete Omega release audit passes locally, including simulated installation, installer, database/script parity, artwork and artifact checksums. Banlist line endings are pinned to LF so checksums match Linux CI and Windows builds.
 
-- `qa:ccg:ci`: 15/15 checks pass locally, including website tests, lint, production build, database/source parity, all 703 current effect reviews, strict Lua semantic audit, callback and script ZIP checks.
-- Ohmen: all 33 engine fixture families and targeted engine probes pass. New Floowandereeze/Fiendsmith activation and effect fixtures pass. Targeted Mevalkagna, Aquasanctuary, Glome, Volt, Terror Skull recovery and Brawl recycle regressions pass.
-- Corrected official shared archetype codes, signed-safe prompt carriers, current database and script payload, image URL query handling, printed-star detection and canonical download-part selection.
-- Rebuilt installer, database ZIP and image archives. Full download audit passes every check except the absent Brawl source image and its corresponding Art/Pic entries.
-- Required source asset: `public/assets/cards/Vanquish_Soul_Brawl.jpeg` (card 244161941). It must be the actual approved card image, not a placeholder.
-- Evenly Matched is unrestricted. Medicurius the Power Patron of Illusions is banned. Ohmenchanic spelling is retained.
+The existing 15-check QA suite passes locally. All 33 Ohmen engine fixture families, targeted engine probes, new Floowandereeze/Fiendsmith fixtures, targeted card regressions, and release Lua/asset regression tests pass. Full download verification now runs in CI.
+
+Evenly Matched is unrestricted. Medicurius the Power Patron of Illusions is banned. Ohmenchanic spelling is retained.
 
 Static semantic reviews are not live Omega certification. Known unsupported mechanics and designer ruling questions remain explicitly classified in the review ledger; historical records are retained in `scripts/output/release-review-history.json`.
 
-After the image is provided, add its Art/Pic to the retained `tmp/release_staging` exports, rebuild archive parts and installer, regenerate metadata/build, rerun the complete release audit and GitHub CI, then merge PR #42 and verify Pages deployment.
+Publication proceeds after the final GitHub checks pass. The deployed Pages build and live card/download metadata must then be verified.
