@@ -84,12 +84,13 @@ function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)
 	if #g>0 then
 		Duel.SendtoGrave(g,REASON_COST)
+		g:GetFirst():CreateEffectRelation(e)
 		g:KeepAlive()
 		e:SetLabelObject(g)
 	end
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return e:GetLabelObject()~=nil end
+	if chk==0 then return true end
 	local g=e:GetLabelObject()
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,g,1,tp,LOCATION_GRAVE)
 end
@@ -97,7 +98,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local g=e:GetLabelObject()
 	if not g then return end
 	local tc=g:GetFirst()
-	if tc and tc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter(Card.IsAbleToHand)(tc) then
+	if tc and tc:IsRelateToEffect(e) and tc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter(Card.IsAbleToHand)(tc) then
 		Duel.SendtoHand(tc,nil,REASON_EFFECT)
 		Duel.ConfirmCards(1-tp,tc)
 	end

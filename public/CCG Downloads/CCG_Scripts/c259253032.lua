@@ -114,6 +114,7 @@ function s.ctcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if tc and ct>0 and tc:RemoveCounter(tp,COUNTER_CORRUPTION,ct,REASON_COST) then
 		e:SetLabel(ct)
 		e:SetLabelObject(tc)
+		tc:CreateEffectRelation(e)
 	end
 end
 function s.cttg(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -130,7 +131,7 @@ function s.ctop(e,tp,eg,ep,ev,re,r,rp)
 	local mc=g:GetFirst()
 	if not mc then return end
 	if Duel.Destroy(mc,REASON_EFFECT)>0 then
-		if not (oc and oc:IsFaceup() and oc:IsLocation(LOCATION_MZONE)
+		if not (oc and oc:IsRelateToEffect(e) and oc:IsFaceup() and oc:IsLocation(LOCATION_MZONE)
 			and oc:IsCanBeDisabledByEffect(e,false)) then return end
 		Duel.NegateRelatedChain(oc,RESET_TURN_SET)
 		local e1=Effect.CreateEffect(e:GetHandler())

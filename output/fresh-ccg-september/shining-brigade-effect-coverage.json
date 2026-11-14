@@ -1,0 +1,559 @@
+{
+  "archetype": "Shining Brigade",
+  "cardCount": 16,
+  "effectGroupCount": 43,
+  "unmatchedEffectGroups": [],
+  "cards": [
+    {
+      "code": 215142357,
+      "name": "Shining Brigade - Stand Together!",
+      "printedText": "\"Shining Brigade\" Spell/Trap Cards you control cannot be destroyed or banished while you control 2 or more \"Shining Brigade\" monsters. Once per turn: You can detach 1 material from a \"Shining Brigade\" Xyz Monster you control; attach 1 \"Shining Brigade\" monster from your hand or GY as material. If a \"Shining Brigade\" monster you control activates its effect: You can draw 1 card. You can only use this effect of \"Shining Brigade - Stand Together!\" once per turn.",
+      "effectGroups": [
+        {
+          "effect": "Spell/Trap destruction and banish protection",
+          "scenarioNames": [
+            "Stand Together protection faceup",
+            "Stand Together protection facedown",
+            "Stand Together protection wrong-set",
+            "Stand Together banish protection faceup",
+            "Stand Together banish protection facedown",
+            "Stand Together banish protection wrong-set"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Detach and attach",
+          "scenarioNames": [
+            "Attachment family 215142357 baseline",
+            "Attachment family 215142357 recipient immunity",
+            "Stand Together rejects recipient that left and returned",
+            "Stand Together cost resource boundary no-material",
+            "Stand Together cost resource boundary no-attach-card"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Draw after Brigade effect",
+          "scenarioNames": [
+            "Stand Together draw field",
+            "Stand Together draw wrong-set",
+            "Stand Together draw grave"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 220124524,
+      "name": "Shining Brigade - Heartbeat Division",
+      "printedText": "If this card is Normal or Special Summoned: you can Special Summon 1 \"Shining Brigade\" monster from your hand. You cannot Special Summon monsters the turn you use this effect, except \"Shining Brigade\" monsters. You can only use this effect of \"Shining Brigade - Heartbeat Division\" once per turn. A \"Shining Brigade\" monster that has this card as material gains the following effect.\n\u25cf Once per turn, when your opponent activates a monster effect: You can detach 1 material from this card; banish that monster.",
+      "effectGroups": [
+        {
+          "effect": "Summon from hand and turn restriction",
+          "scenarioNames": [
+            "Brigade summon trigger 220124524 prior outsider false",
+            "Brigade summon trigger 220124524 prior outsider true",
+            "Brigade Special Summon trigger 220124524 prior outsider false",
+            "Brigade Special Summon trigger 220124524 prior outsider true",
+            "Heartbeat summon lock survives effect negation",
+            "Heartbeat use lock survives activation negation"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Inherited banish response",
+          "scenarioNames": [
+            "Heartbeat attached by effect grants banish response",
+            "Heartbeat material requires Brigade recipient",
+            "Heartbeat detached material no longer grants response",
+            "Heartbeat native Xyz material grants response"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 223750159,
+      "name": "Shining Brigade Armada",
+      "printedText": "2+ Level 2 \"Shining Brigade\" monsters\n(Quick Effect): You can detach 1 material from this card; draw 1 card. If this card is destroyed by battle or card effect: Special Summon \"Shining Brigade\" monsters from your GY or banishment up to the number of cards your opponent controls, but negate their effects. You can only use each effect of \"Shining Brigade Armada\" once per turn.",
+      "effectGroups": [
+        {
+          "effect": "Detach to draw",
+          "scenarioNames": [
+            "Armada draw detach cost 0",
+            "Armada draw detach cost 1",
+            "Armada draw limit shared across loaded copies"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Revive and negate summoned effects",
+          "scenarioNames": [
+            "Armada destroyed revives up to opponent card count 0",
+            "Armada destroyed revives up to opponent card count 1",
+            "Armada destroyed revives up to opponent card count 2"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Xyz recipe",
+          "scenarioNames": [
+            "Brigade native Xyz recipe 223750159 legal",
+            "Brigade native Xyz recipe 223750159 wrong-level",
+            "Brigade native Xyz recipe 223750159 wrong-set"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 230812008,
+      "name": "Shining Brigade - Loving Division",
+      "printedText": "During the Main Phase: You can target 1 \"Shining Brigade\" card in your GY; banish it, and if you do, Special Summon this card from your hand or GY. You can only use this effect of \"Shining Brigade - Loving Division\" once per turn. A \"Shining Brigade\" monster that has this card as material gains the following effect.\n\u25cf Once per turn: You can Set 1 \"Shining Brigade\" Trap from your Deck, GY, or banishment (that Set card can be activated this turn).",
+      "effectGroups": [
+        {
+          "effect": "Banish GY card and self-summon",
+          "scenarioNames": [
+            "Loving Division self summon hand",
+            "Loving Division self summon grave",
+            "Loving Division self summon wrong-set",
+            "Loving Division self summon self-only"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Inherited Trap Set and same-turn activation",
+          "scenarioNames": [
+            "Loving material sets activatable Trap from 1",
+            "Loving material sets activatable Trap from 16",
+            "Loving material sets activatable Trap from 32"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 232038002,
+      "name": "Shining Brigade - Forward Division",
+      "printedText": "If this card is Normal or Special Summoned: You can add 1 \"Shining Brigade\" Spell from your Deck or GY to your hand. You cannot Special Summon monsters the turn you use this effect, except \"Shining Brigade\" monsters. You can only use this effect of \"Shining Brigade - Forward Division\" once per turn. A \"Shining Brigade\" monster that has this card as material gains the following effect.\n\u25cf Each turn, negate the effect of your opponent's first Spell Card or effect that resolves.",
+      "effectGroups": [
+        {
+          "effect": "Summon-triggered search and restriction",
+          "scenarioNames": [
+            "Brigade summon trigger 232038002 prior outsider false",
+            "Brigade summon trigger 232038002 prior outsider true",
+            "Brigade Special Summon trigger 232038002 prior outsider false",
+            "Brigade Special Summon trigger 232038002 prior outsider true",
+            "Forward summon lock survives effect negation",
+            "Forward use lock survives activation negation"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Inherited first Spell negation",
+          "scenarioNames": [
+            "Forward inherited first Spell negation attached",
+            "Forward inherited first Spell negation wrong-host",
+            "Forward inherited first Spell negation detached",
+            "Forward inherited first Spell negation monster-first"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 232100722,
+      "name": "Shining Brigade - Flowering Division",
+      "printedText": "You can Special Summon this card (from your hand) by shuffling 1 \"Shining Brigade\" card from your banishment or GY into the Deck. You can only Special Summon \"Shining Brigade - Flowering Division\" once per turn this way. A \"Shining Brigade\" monster that has this card as material gains the following effect.\n\u25cf Once per turn: You can add 1 \"Shining Brigade\" card from your GY or banishment to your hand.",
+      "effectGroups": [
+        {
+          "effect": "Shuffle-cost hand summon and use limit",
+          "scenarioNames": [
+            "Flowering native hand summon cost 16",
+            "Flowering native hand summon cost 32",
+            "Flowering summon rejects facedown banished cost",
+            "Flowering summon limit shared across copies"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Inherited recovery",
+          "scenarioNames": [
+            "Flowering inherited recovery grave",
+            "Flowering inherited recovery banished",
+            "Flowering inherited recovery facedown",
+            "Flowering inherited recovery wrong-host"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 232824319,
+      "name": "Shining Brigade - Companion Team",
+      "printedText": "1 non-Link \"Shining Brigade\" monster\nWhile you control another \"Shining Brigade\" monster, this card cannot be targeted for attacks or by card effects. Once per turn, when a monster on the field declares an attack: Special Summon 1 \"Shining Brigade\" monster from your hand or Deck. You can only control 1 \"Shining Brigade - Companion Team\".",
+      "effectGroups": [
+        {
+          "effect": "Targeting protection",
+          "scenarioNames": [
+            "Companion Team targeting protection faceup",
+            "Companion Team targeting protection facedown",
+            "Companion Team targeting protection wrong-set"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Battle targeting protection and attack-triggered summon",
+          "scenarioNames": [
+            "Companion Team summons on opponent attack",
+            "Companion attack targeting without Brigade support"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Unique control",
+          "scenarioNames": [
+            "Companion Team unique control restriction"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Link recipe",
+          "scenarioNames": [
+            "Brigade native Link recipe 232824319 legal",
+            "Brigade native Link recipe 232824319 wrong-set",
+            "Brigade native Link recipe 232824319 link-material"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 236616849,
+      "name": "Shining Brigade - Revenge Division",
+      "printedText": "2+ Level 2 \"Shining Brigade\" monsters\nIf a \"Shining Brigade\" card you control leaves the field because of your opponent's card: You can Special Summon this card from your GY, then inflict damage to your opponent equal to the ATK of the monster your opponent controls with the highest ATK. Once per turn, during your Standby Phase: Attach 1 \"Shining Brigade\" card from your Deck to this card as material. You can detach 2 materials from this card: Double the ATK/DEF of all \"Shining Brigade\" monsters you control until the End Phase. You can only use each effect of \"Shining Brigade - Revenge Division\" once per turn.",
+      "effectGroups": [
+        {
+          "effect": "Revival and highest ATK damage",
+          "scenarioNames": [
+            "Revenge revival and highest ATK damage opponent",
+            "Revenge revival and highest ATK damage own",
+            "Revenge revival and highest ATK damage wrong-set",
+            "Revenge revival and highest ATK damage empty-field"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Standby attachment",
+          "scenarioNames": [
+            "Revenge Standby attachment monster",
+            "Revenge Standby attachment spell",
+            "Revenge Standby attachment wrong-set",
+            "Revenge Standby attachment own-only"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Double ATK/DEF",
+          "scenarioNames": [
+            "Revenge Division doubles stats normal",
+            "Revenge Division doubles stats immune",
+            "Revenge Division doubles stats expiry"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Xyz recipe",
+          "scenarioNames": [
+            "Brigade native Xyz recipe 236616849 legal",
+            "Brigade native Xyz recipe 236616849 wrong-level",
+            "Brigade native Xyz recipe 236616849 wrong-set"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 238841732,
+      "name": "Let's Go, Shining Brigade!",
+      "printedText": "If you control no monsters: Special Summon 1 \"Shining Brigade\" monster from your Deck. You cannot Special Summon monsters the turn you activate this effect, except LIGHT Monsters. You can banish this card from your GY; add 1 \"Shining Brigade\" Spell/Trap from your Deck to your hand. You can only activate 1 \"Let's Go, Shining Brigade!\" effect per turn, and only once that turn.",
+      "effectGroups": [
+        {
+          "effect": "Deck summon and LIGHT restriction",
+          "scenarioNames": [
+            "Lets Go Brigade summon",
+            "Lets Go Brigade controlled-monster",
+            "Lets Go prior summon LIGHT restriction false",
+            "Lets Go prior summon LIGHT restriction true",
+            "Lets Go applies LIGHT summon lock"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "GY search and shared use limit",
+          "scenarioNames": [
+            "Lets Go Brigade grave-search"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 238976759,
+      "name": "We're the Shining Brigade!",
+      "printedText": "When this card is activated: You can add 1 \"Shining Brigade\" monster from your Deck to your hand. During your Main Phase: You can discard any number of cards from your hand (min 2); Special Summon 1 \"Shining Brigade\" Xyz Monster from your Extra Deck, then you can attach \"Shining Brigade\" monsters from your GY or banishment to that monster as material. (This is treated as an Xyz Summon.) You can only use each effect of \"We're the Shining Brigade!\" once per turn.",
+      "effectGroups": [
+        {
+          "effect": "Activation search",
+          "scenarioNames": [
+            "Brigade Field Spell activation search false",
+            "Brigade Field Spell activation search true"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Discard and Xyz Summon, optional attachment",
+          "scenarioNames": [
+            "Brigade summon-then-attach baseline",
+            "Brigade summon-then-attach recipient immunity"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Use limits and discard minimum",
+          "scenarioNames": [
+            "Brigade Field Spell both effects same turn",
+            "Brigade Field Spell needs two discard cards"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 241504188,
+      "name": "Shining Brigade - Absolute Supremacy",
+      "printedText": "2+ monsters, including a \"Shining Brigade\" monster\n\"Shining Brigade\" monsters cannot be destroyed by battle. When your opponent activates a monster effect or a Spell/Trap Card (Quick Effect): You can banish this card from your field until the End Phase; negate the activation, and if you do, banish it and all cards in your opponent's GY with the same name as that card. You can only use this effect of \"Shining Brigade - Absolute Supremacy\" once per turn.",
+      "effectGroups": [
+        {
+          "effect": "Battle protection on both fields",
+          "scenarioNames": [
+            "Supremacy battle protection own",
+            "Supremacy battle protection opponent",
+            "Supremacy battle protection wrong-set"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Negation, banishment and temporary return",
+          "scenarioNames": [
+            "Absolute Supremacy negate spell",
+            "Absolute Supremacy negate monster",
+            "Absolute Supremacy negate return",
+            "Supremacy negates banish-protected monster",
+            "Supremacy banishes activated card without GY copies"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Link recipe",
+          "scenarioNames": [
+            "Brigade native Link recipe 241504188 legal",
+            "Brigade native Link recipe 241504188 wrong-set",
+            "Brigade native Link recipe 241504188 link-material"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 243194249,
+      "name": "Shining Brigade - Hope Division",
+      "printedText": "If your opponent controls a monster, you can Special Summon this card (from your hand or GY). You can only Special Summon \"Shining Brigade - Hope Division\" once per turn this way. (Quick Effect): You can Tribute this card; Special Summon 2 Level 2 \"Shining Brigade\" monsters from your Deck, except \"Shining Brigade - Hope Division\", but they cannot attack or activate their effects this turn. You can only use this effect of \"Shining Brigade - Hope Division\" once per turn. You cannot Special Summon monsters the turn you activate this effect, except \"Shining Brigade\" monsters.",
+      "effectGroups": [
+        {
+          "effect": "Hand/GY summon and shared use limit",
+          "scenarioNames": [
+            "Hope own summon location 2 opponent false",
+            "Hope own summon location 2 opponent true",
+            "Hope own summon location 16 opponent false",
+            "Hope own summon location 16 opponent true",
+            "Hope summon limit shared with copy in 2",
+            "Hope summon limit shared with copy in 16"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Tribute to summon two and turn restrictions",
+          "scenarioNames": [
+            "Hope Division two-monster summon normal",
+            "Hope Division two-monster summon one-target",
+            "Hope Division two-monster summon wrong-level",
+            "Hope Division two-monster summon prior-non-brigade",
+            "Hope Division needs two legal monsters at resolution",
+            "Hope both summon restrictions expire after End Phase"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 243420199,
+      "name": "Shining Brigade - Melody Division",
+      "printedText": "During your Main Phase, you can Normal Summon/Set 1 \"Shining Brigade\" monster in addition to your Normal Summon/Set (You can only gain this effect once per turn). You can banish this card from your GY: Attach 1 \"Shining Brigade\" monster from your Deck or GY to a \"Shining Brigade\" Xyz Monster you control as material. You can only use this effect of \"Shining Brigade - Melody Division\" once per turn.",
+      "effectGroups": [
+        {
+          "effect": "Extra Normal Summon/Set",
+          "scenarioNames": [
+            "Melody extra Normal Summon one-copy",
+            "Melody extra Normal Summon two-copies",
+            "Melody extra Normal Summon wrong-set",
+            "Melody shared summon-set allowance false",
+            "Melody shared summon-set allowance true"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "GY attachment",
+          "scenarioNames": [
+            "Recipient immunity family 243420199 baseline",
+            "Recipient immunity family 243420199 immune"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 244986323,
+      "name": "Shining Brigade Origins",
+      "printedText": "P\nYour opponent cannot target \"Shining Brigade\" monsters you control with Spell/Trap effects.\nE\n3+ Level 2 \"Shining Brigade\" monsters\nIf this card is Summoned, or, if a monster is sent to your opponent's GY while this card is on the field: You can attach 1 face-up card your opponent controls to this card as material. (Quick Effect): You can detach 2 materials from this card; destroy 1 card your opponent controls, then banish 1 card in either player's GY. If this card is destroyed by battle or card effect, or Tributed: You can place it in your Pendulum Zone. You can only use each effect of \"Shining Brigade Origins\" once per turn.",
+      "effectGroups": [
+        {
+          "effect": "Pendulum targeting protection",
+          "scenarioNames": [
+            "Origins Pendulum targeting protection spell",
+            "Origins Pendulum targeting protection trap",
+            "Origins Pendulum targeting protection monster",
+            "Origins Pendulum targeting protection wrong-set"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Summon/GY attachment",
+          "scenarioNames": [
+            "Origins attachment trigger opponent-grave",
+            "Origins attachment trigger own-grave",
+            "Origins attachment trigger immune",
+            "Origins attachment trigger summoned",
+            "Origins attachment trigger spell-target"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Destroy then banish",
+          "scenarioNames": [
+            "Origins destroy then banish normal",
+            "Origins destroy then banish indestructible",
+            "Origins destroy then banish one-material"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Pendulum placement",
+          "scenarioNames": [
+            "Origins Pendulum placement destroyed",
+            "Origins Pendulum placement Tribute",
+            "Origins cannot occupy full Pendulum Zones"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Xyz recipe",
+          "scenarioNames": [
+            "Brigade native Xyz recipe 244986323 legal",
+            "Brigade native Xyz recipe 244986323 wrong-level",
+            "Brigade native Xyz recipe 244986323 wrong-set"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 249629457,
+      "name": "Shining Brigade - Last Stand",
+      "printedText": "When your opponent activates a Spell/Trap effect, or a monster effect on the field: You can return 1 \"Shining Brigade\" monster you control to the hand; negate that effect. During the End Phase: You can shuffle up to 3 cards from your GY or banishment into your Deck, then, if you shuffled at least 2 \"Shining Brigade\" cards with this effect, draw 1 card. You can only use each effect of \"Shining Brigade - Last Stand\" once per turn.",
+      "effectGroups": [
+        {
+          "effect": "Negate with return cost",
+          "scenarioNames": [
+            "Last Stand negate spell",
+            "Last Stand negate field-monster",
+            "Last Stand negate grave-monster"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "End Phase recycle and draw threshold",
+          "scenarioNames": [
+            "Last Stand recycling Brigade count 0",
+            "Last Stand recycling Brigade count 1",
+            "Last Stand recycling Brigade count 2"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    },
+    {
+      "code": 255668557,
+      "name": "Shining Brigade - Joyous Division",
+      "printedText": "When a \"Shining Brigade\" monster is Special Summoned: You can Special Summon this card from your GY or banishment. You can only use this effect of \"Shining Brigade - Joyous Division\" once per turn. A \"Shining Brigade\" monster that has this card as material gains the following effect.\n\u25cf Once per turn, during the Main Phase (Quick Effect): You can roll a 6-sided die; banish cards from your opponent's GY up to half the number rolled (rounded up).",
+      "effectGroups": [
+        {
+          "effect": "Revive on Brigade summon",
+          "scenarioNames": [
+            "Joyous revival trigger grave",
+            "Joyous revival trigger banished",
+            "Joyous revival trigger facedown",
+            "Joyous revival trigger wrong-set",
+            "Joyous revival trigger opponent",
+            "Joyous revival trigger missed-timing"
+          ],
+          "status": "scenario coverage"
+        },
+        {
+          "effect": "Inherited die-based banishment",
+          "scenarioNames": [
+            "Joyous attached by effect grants grave banish",
+            "Joyous material wrong-host",
+            "Joyous material detached",
+            "Joyous native die banish cap seed 1",
+            "Joyous native die banish cap seed 2",
+            "Joyous native die banish cap seed 3",
+            "Joyous native die banish cap seed 5",
+            "Joyous native die banish cap seed 7",
+            "Joyous native die banish cap seed 8"
+          ],
+          "status": "scenario coverage"
+        }
+      ],
+      "status": "bounded OCGCore coverage; not full interaction or live Omega verification"
+    }
+  ],
+  "scope": "Manually mapped printed primary effect groups and recipes to named passing installed OCGCore scenarios. Matching verifies evidence exists, not exhaustive correctness. Full edge-case gaps remain in shining-brigade-audit-progress.json.",
+  "scriptParityReport": "current-ccg-script-install-parity.json",
+  "regressionReport": "current-installed-effects-regression.json"
+}

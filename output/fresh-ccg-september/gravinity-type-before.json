@@ -1,0 +1,138 @@
+{
+  "scope": "Listed OCGCore scenarios with installed scripts and installed card data. Neutral fixture resources and API adapters are used. Full-card and live Omega verification remain open.",
+  "compatibility": "Legacy Link and fixture Xyz argument translation and procedures, selected chain target mapping, basic Level 12 Xyz material eligibility/selection bridge for ordinary fixture monsters, ordinary fixture overlay eligibility. Graydeux alternate Xyz cases isolate that procedure from the unsupported ordinary Xyz API.",
+  "pendingCases": [
+    "A Stainless Story: --story-shuffle-probe tests whether copied self-shuffle must move the activating Spell instead of the sent monster; current source moves the sent monster. Ruling/intent unresolved.",
+    "Ghostrick 239335848: conversion of recipient effects to Quick Effects is currently unimplemented.",
+    "Sarifiel: hypothetical effect immunity of a GY material. The --grave-immune-probe reproduces attachment; expected ruling needs confirmation before a production change."
+  ],
+  "installedScripts": {
+    "212429024": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c212429024.lua",
+      "sha256": "7b03176439555fb2bc0165feea5f560bbfe86c6d18089ac54b545bdfea663114"
+    },
+    "215768254": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c215768254.lua",
+      "sha256": "b1b2080dece4b1df28f559104ac22764db135327cbd20c4009442513f5f94129"
+    },
+    "223505382": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c223505382.lua",
+      "sha256": "33733048854ce7caad3961b66912c58a83bb2feee6f6d147acf58a8071a2d428"
+    },
+    "235538173": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c235538173.lua",
+      "sha256": "8f513a463f25cebec74dd51f9d6ea31bdc511259473ef6e19e7809d59f82ab0e"
+    },
+    "238184015": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c238184015.lua",
+      "sha256": "25cb9d41a66c8c711e047ca8a86de674cd336e9e99fb9ea9b7c468efcd388a80"
+    },
+    "239932270": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932270.lua",
+      "sha256": "23f103f1f12b741e3bd998447f55ef18fafc2c1daae7332fbedfe4ac58a68d7d"
+    },
+    "239932271": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932271.lua",
+      "sha256": "c4b1cda43b88b195c3c0c7f4e309388f524d68a1ab8b41a6eb14acfadaf3dbd6"
+    },
+    "239932272": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932272.lua",
+      "sha256": "e107250638c5e514f7918a2b36e92da5596f8dbfa881cc2ecbb4cd841d3994d9"
+    },
+    "239934743": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934743.lua",
+      "sha256": "f245ec3b9c813950718073f7917b946d99f6a6464b2d0f3efaaa4c90d2f4cffa"
+    },
+    "239934744": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934744.lua",
+      "sha256": "39cdb3edb81a79a5b36ddc921cefa54b4b1fbad2b5664771e46e392e446bcd91"
+    },
+    "249680945": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c249680945.lua",
+      "sha256": "e96ae45b2bb7ef2160c4e995defe462f41a83dfc9a5021f108cd77b6f5bca654"
+    },
+    "256172827": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c256172827.lua",
+      "sha256": "9847590a58eb5263d0e74389c88d5590525a92ef0f57c88701250ce10b259d7e"
+    },
+    "256831125": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c256831125.lua",
+      "sha256": "19228e5f6c00ee1fc0d78b5b975118451370486b4e6fde5d9668428dbde7a83f"
+    }
+  },
+  "results": [
+    {
+      "name": "Gravinity trap type survives negation 256172827",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c900009001.lua\"]:1: in function <[string \"c900009001.lua\"]:1>\n[string \"c900009001.lua\"]:1: Applied Trap type survives negation"
+    },
+    {
+      "name": "Gravinity trap type survives negation 249680945",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravinity trap type survives negation 235538173",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravinity trap type survives negation 215768254",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravinity placement helper type survives negation 212429024",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c900009001.lua\"]:1: in function <[string \"c900009001.lua\"]:1>\n[string \"c900009001.lua\"]:1: Applied Trap type survives negation"
+    },
+    {
+      "name": "Gravinity placement helper type survives negation 238184015",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c900009001.lua\"]:1: in function <[string \"c900009001.lua\"]:1>\n[string \"c900009001.lua\"]:1: Applied Trap type survives negation"
+    },
+    {
+      "name": "Gravinity placement helper type survives negation 256831125",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c900009001.lua\"]:1: in function <[string \"c900009001.lua\"]:1>\n[string \"c900009001.lua\"]:1: Applied Trap type survives negation"
+    },
+    {
+      "name": "Transfer Call applied Trap type survives negation",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravinity trap type survives setting 256172827",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c900009001.lua\"]:1: in function <[string \"c900009001.lua\"]:1>\n[string \"c900009001.lua\"]:1: Applied Trap type survives setting"
+    },
+    {
+      "name": "Gravinity trap type survives setting 249680945",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravinity trap type survives setting 235538173",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravinity trap type survives setting 215768254",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravinity placement helper type survives setting 212429024",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c900009001.lua\"]:1: in function <[string \"c900009001.lua\"]:1>\n[string \"c900009001.lua\"]:1: Applied Trap type survives setting"
+    },
+    {
+      "name": "Gravinity placement helper type survives setting 238184015",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c900009001.lua\"]:1: in function <[string \"c900009001.lua\"]:1>\n[string \"c900009001.lua\"]:1: Applied Trap type survives setting"
+    },
+    {
+      "name": "Gravinity placement helper type survives setting 256831125",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c900009001.lua\"]:1: in function <[string \"c900009001.lua\"]:1>\n[string \"c900009001.lua\"]:1: Applied Trap type survives setting"
+    },
+    {
+      "name": "Transfer Call applied Trap type survives setting",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c900009001.lua\"]:1: in function <[string \"c900009001.lua\"]:1>\n[string \"c900009001.lua\"]:1: Applied Trap type survives setting"
+    }
+  ]
+}

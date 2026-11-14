@@ -30,7 +30,7 @@ function s.initial_effect(c)
 end
 s.listed_series={0x4ac0}
 function s.thfilter(c)
-	return c:IsSetCard(0x4ac0) and c:IsAbleToHand()
+	return c:IsSetCard(0x4ac0) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand()
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end

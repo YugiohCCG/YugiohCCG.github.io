@@ -14,5 +14,17 @@ function s.af(c) return c:IsFaceup() and c:IsSetCard(SET_AEROCAT) and c:IsType(T
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and s.af(chkc) end if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false) and Duel.IsExistingTarget(s.af,tp,LOCATION_MZONE,0,1,nil) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP); Duel.SelectTarget(tp,s.af,tp,LOCATION_MZONE,0,1,1,nil); Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0) end
 function s.spop(e,tp) local c=e:GetHandler(); local tc=Duel.GetFirstTarget(); if c:IsRelateToEffect(e) and Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)>0 then c:RegisterFlagEffect(id,RESET_EVENT+RESETS_REDIRECT,0,1); local ex=Effect.CreateEffect(c); ex:SetType(EFFECT_TYPE_SINGLE); ex:SetCode(EFFECT_LEAVE_FIELD_REDIRECT); ex:SetValue(LOCATION_REMOVED); ex:SetReset(RESET_EVENT+RESETS_REDIRECT); c:RegisterEffect(ex); if tc:IsRelateToEffect(e) and tc:IsFaceup() then local ea=Effect.CreateEffect(c); ea:SetType(EFFECT_TYPE_SINGLE); ea:SetCode(EFFECT_UPDATE_ATTACK); ea:SetValue(500); ea:SetReset(RESET_EVENT+RESETS_STANDARD); tc:RegisterEffect(ea) end end end
 function s.xyz(c) return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:IsRank(6) and c:IsAttribute(ATTRIBUTE_WIND) end
-function s.ovtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and s.xyz(chkc) end if chk==0 then return Duel.IsExistingTarget(s.xyz,tp,LOCATION_MZONE,0,1,nil) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL); Duel.SelectTarget(tp,s.xyz,tp,LOCATION_MZONE,0,1,1,nil) end
-function s.ovop(e) local c=e:GetHandler(); local tc=Duel.GetFirstTarget(); if c:IsRelateToEffect(e) and tc:IsRelateToEffect(e) then Duel.Overlay(tc,Group.FromCards(c)) end end
+function s.ovtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+ if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and s.xyz(chkc) end
+ if chk==0 then return aux.NecroValleyFilter()(e:GetHandler()) and Duel.IsExistingTarget(s.xyz,tp,LOCATION_MZONE,0,1,nil) end
+ Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
+ Duel.SelectTarget(tp,s.xyz,tp,LOCATION_MZONE,0,1,1,nil)
+end
+function s.ovop(e,tp)
+ local c=e:GetHandler()
+ local tc=Duel.GetFirstTarget()
+ if c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c) and tc and tc:IsRelateToEffect(e)
+  and tc:IsControler(tp) and not tc:IsImmuneToEffect(e) then
+  Duel.Overlay(tc,Group.FromCards(c))
+ end
+end

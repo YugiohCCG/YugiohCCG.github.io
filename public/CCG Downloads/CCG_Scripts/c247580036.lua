@@ -41,7 +41,11 @@ function s.trcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return #g1>0 end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 	local tc=g1:Select(tp,1,1,nil):GetFirst()
-	Duel.Release(tc,REASON_COST)
+	if tc:IsLocation(LOCATION_DECK) then
+		Duel.SendtoGrave(tc,REASON_COST+REASON_RELEASE)
+	else
+		Duel.Release(tc,REASON_COST)
+	end
 end
 function s.tgfilter(c)
 	return c:IsFaceup() and c:IsType(TYPE_MONSTER)

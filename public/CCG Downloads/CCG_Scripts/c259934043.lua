@@ -83,16 +83,20 @@ function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	s.lightfiendlock(e,tp)
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.effectdiscard,tp,LOCATION_HAND,0,1,nil)
 		and Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil,tp) end
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
 end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
-	if Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_EFFECT+REASON_DISCARD)==0 then return end
+	if Duel.DiscardHand(tp,s.effectdiscard,1,1,REASON_EFFECT+REASON_DISCARD)==0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil,tp)
 	if #g>0 then
 		Duel.SendtoHand(g,nil,REASON_EFFECT)
 		Duel.ConfirmCards(1-tp,g)
 	end
+end
+
+function s.effectdiscard(c)
+	return c:IsDiscardable(REASON_EFFECT)
 end

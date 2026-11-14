@@ -43,7 +43,7 @@ function s.lockcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0 end
 	local lock=Effect.CreateEffect(e:GetHandler())
 	lock:SetType(EFFECT_TYPE_FIELD)
-	lock:SetProperty(EFFECT_FLAG_PLAYER_TARGET+EFFECT_FLAG_OATH)
+	lock:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
 	lock:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON)
 	lock:SetTargetRange(1,0)
 	lock:SetTarget(function(_,c) return not s.lightfiend(c) end)

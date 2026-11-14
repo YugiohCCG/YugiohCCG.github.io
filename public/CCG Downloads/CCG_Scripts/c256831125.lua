@@ -44,7 +44,7 @@ function s.initial_effect(c)
 end
 function s.prottg(e,c) return c:IsSetCard(SET_GRAVINITY) and (c:GetOriginalType()&TYPE_SYNCHRO)~=0 end
 function s.coltg(e,c)
-	return Duel.IsExistingMatchingCard(function(gc,oc) return gc:IsSetCard(SET_GRAVINITY) and oc:GetColumnGroup():IsContains(gc) end,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil,c)
+	return Duel.IsExistingMatchingCard(function(gc,oc) return gc:IsFaceup() and gc:IsSetCard(SET_GRAVINITY) and oc:GetColumnGroup():IsContains(gc) end,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil,c)
 end
 function s.copyfilter(c) return c:IsSetCard(SET_GRAVINITY) and c:IsType(TYPE_SYNCHRO) and c:IsLevel(11) end
 function s.copycost(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -111,8 +111,9 @@ function s.trapify(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetCode(EFFECT_CHANGE_TYPE)
+	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
 	e1:SetValue(TYPE_TRAP+TYPE_CONTINUOUS)
-	e1:SetReset(RESET_EVENT+RESETS_STANDARD)
+	e1:SetReset(RESET_EVENT+RESETS_STANDARD-RESET_TURN_SET)
 	c:RegisterEffect(e1)
 end
 function s.nebop(e,tp)

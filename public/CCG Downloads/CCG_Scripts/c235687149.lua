@@ -57,7 +57,7 @@ function s.ovop(e,tp,eg,ep,ev,re,r,rp)
 	if #g==0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
 	local xc=Duel.SelectMatchingCard(tp,s.xyzfilter2,tp,LOCATION_MZONE,0,1,1,nil):GetFirst()
-	if not xc then return end
+	if not xc or xc:IsImmuneToEffect(e) then return end
 	for tc in aux.Next(g) do
 		local og=tc:GetOverlayGroup()
 		if #og>0 then Duel.SendtoGrave(og,REASON_RULE) end

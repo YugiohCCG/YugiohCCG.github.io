@@ -47,7 +47,7 @@ function s.protect(e)
  end,1,nil)
 end
 function s.chaincon(e)
- return e:GetHandler():GetFlagEffect(id)==0
+ return Duel.GetFlagEffect(e:GetHandlerPlayer(),id)==0
 end
 function s.drawcon(e)
  return s.chaincon(e) and (Duel.GetCurrentPhase()==PHASE_MAIN1 or Duel.GetCurrentPhase()==PHASE_MAIN2)
@@ -59,7 +59,7 @@ function s.drawtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
  if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_ONFIELD) and s.drawfilter(chkc) end
  if chk==0 then return Duel.IsPlayerCanDraw(tp,1)
   and Duel.IsExistingTarget(s.drawfilter,tp,LOCATION_ONFIELD,0,1,nil) end
- e:GetHandler():RegisterFlagEffect(id,RESET_CHAIN,0,1)
+ Duel.RegisterFlagEffect(tp,id,RESET_CHAIN,0,1)
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
  local g=Duel.SelectTarget(tp,s.drawfilter,tp,LOCATION_ONFIELD,0,1,1,nil)
  Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,1,0,0)
@@ -78,7 +78,7 @@ function s.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
  if chk==0 then return linked:IsExists(function(c)
   return Duel.IsExistingTarget(Card.IsDestructable,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,c)
  end,1,nil) end
- e:GetHandler():RegisterFlagEffect(id,RESET_CHAIN,0,1)
+ Duel.RegisterFlagEffect(tp,id,RESET_CHAIN,0,1)
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)
  local first=linked:Select(tp,1,1,nil)
  Duel.SetTargetCard(first)

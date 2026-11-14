@@ -106,7 +106,11 @@ function s.thop(e,tp)
  local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.thfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil)
  if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 then return end
  Duel.ConfirmCards(1-tp,g)
- if Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil) then
-  Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_EFFECT+REASON_DISCARD)
+ if Duel.IsExistingMatchingCard(s.effectdiscard,tp,LOCATION_HAND,0,1,nil) then
+  Duel.DiscardHand(tp,s.effectdiscard,1,1,REASON_EFFECT+REASON_DISCARD)
  end
+end
+
+function s.effectdiscard(c)
+	return c:IsDiscardable(REASON_EFFECT)
 end

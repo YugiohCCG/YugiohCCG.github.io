@@ -94,7 +94,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local rc=re:GetHandler()
 	local xc=g:Filter(s.xyzfilter,nil):GetFirst()
 	if not rc or not xc or rc==xc or not rc:IsRelateToEffect(e) or not xc:IsRelateToEffect(e)
-		or rc:IsImmuneToEffect(e) or not s.rcfilter(rc,e) then return end
+		or rc:IsImmuneToEffect(e) or xc:IsImmuneToEffect(e) or not s.rcfilter(rc,e) then return end
 	local dam=math.abs(math.max(0,rc:GetTextAttack())-math.max(0,xc:GetTextAttack()))
 	local og=rc:GetOverlayGroup()
 	if #og>0 then Duel.SendtoGrave(og,REASON_RULE) end

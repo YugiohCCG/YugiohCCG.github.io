@@ -39,11 +39,14 @@ function s.initial_effect(c)
 end
 s.listed_series={SET_AQUAMARINE}
 
+function s.spfilter1(c)
+	return c:IsFaceup() and c:IsSetCard(SET_AQUAMARINE)
+end
 function s.spcon1(e,c)
 	if c==nil then return true end
 	local tp=c:GetControler()
 	return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-		and Duel.IsExistingMatchingCard(aux.FilterBoolFunction(Card.IsSetCard,SET_AQUAMARINE),tp,LOCATION_MZONE,0,1,nil)
+		and Duel.IsExistingMatchingCard(s.spfilter1,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.thfilter(c)
 	return c:IsSetCard(SET_AQUAMARINE) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsAbleToHand()

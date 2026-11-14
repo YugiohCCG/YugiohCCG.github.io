@@ -1,0 +1,49 @@
+{
+  "backup": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Backup\\ccg-ghostrick-destination-20261110-042758",
+  "changes": [
+    {
+      "name": "c228472690.lua",
+      "before": "8a7de890e6d61de4e46d8ca34202d7458390802d1357990a9f8bd572b130b81b",
+      "after": "65e507308d30f74cc06041bc7147bf70a01827efefc465754b4c96598fe8b6e8"
+    },
+    {
+      "name": "c257677549.lua",
+      "before": "623346c90117dbf6cb8b18a253771138cd81d90050a887bae1c27c1dc66045e3",
+      "after": "148f91aaae2d1bc3ce761333db52053e3350d5410cb35930398a28f8c92e2ad6"
+    }
+  ],
+  "status": "INSTALLED_AND_OCGCORE_VERIFIED",
+  "scope": "Cutifer full main rows, Field Zone replacement, Set monster control and immediate Flip Summon eligibility. Slime face-down Special Summon with ordinary and Link targets.",
+  "baseline": {
+    "FAIL": 4,
+    "PASS": 4
+  },
+  "focused": {
+    "PASS": 8
+  },
+  "broader": {
+    "PASS": 655
+  },
+  "familyScan": {
+    "cardTexts": 703,
+    "matchingCardTexts": [
+      215068354,
+      233212369,
+      211873618,
+      257677549,
+      228472690,
+      210696007,
+      259481543
+    ],
+    "matchingFaceDownMoveScripts": [
+      228472690,
+      239932270
+    ],
+    "findings": "Cutifer was the only matching on-field control effect using a face-down move with destination routing. Hot Winds uses a GY resource with explicit Field Zone routing. Other matching Set effects use SSet or have separate optional position selection."
+  },
+  "open": [
+    "Live Omega duel verification",
+    "Camella hidden banishment checks at chain resolution",
+    "Oni printed Xyz Summon versus current transfer"
+  ]
+}

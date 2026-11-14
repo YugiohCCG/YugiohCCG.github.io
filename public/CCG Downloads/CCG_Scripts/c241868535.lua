@@ -24,7 +24,7 @@ function s.initial_effect(c)
 	local e2=e1:Clone()
 	e2:SetCode(EVENT_SPSUMMON_SUCCESS)
 	c:RegisterEffect(e2)
-	--If your "Vir Pedicae Mortis" monster battles: send 1 "Recollection"; it gains 500 ATK
+	--At the start of the Damage Step: send 1 "Recollection"; the battling monster gains 500 ATK
 	local e3=Effect.CreateEffect(c)
 	e3:SetDescription(aux.Stringid(STRING_ID,1))
 	e3:SetCategory(CATEGORY_TOGRAVE+CATEGORY_ATKCHANGE)

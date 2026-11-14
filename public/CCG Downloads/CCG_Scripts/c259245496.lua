@@ -85,7 +85,7 @@ function s.repfilter(c,p,e)
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),p,LOCATION_GRAVE,0,1,nil,e,p,zone)
 end
 function s.chtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	local p=1-tp
+	local p=tp
 	if chk==0 then return Duel.IsExistingMatchingCard(s.repfilter,p,LOCATION_MZONE,0,1,nil,p,e) end
 end
 function s.chop(e,tp,eg,ep,ev,re,r,rp)

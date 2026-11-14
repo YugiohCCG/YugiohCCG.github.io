@@ -4,6 +4,7 @@ local STRING_ID=133072169
 local SET_HARPIE=0x64
 local CARD_HARPIE_LADY=76812113
 local CARD_HARPIE_LADY_SISTERS=12206212
+local CARD_HARPIES_HUNTING_GROUND=75782277
 local CARD_ELEGANT_EGOTIST=90219263
 local HARP_CODE_LIST={CARD_HARPIE_LADY,CARD_HARPIE_LADY_SISTERS,91932350,27927359,54415063,80316585,259794136,id}
 function s.initial_effect(c)
@@ -119,20 +120,29 @@ function s.harplady(c)
 	return c:IsFaceup() and c:IsType(TYPE_MONSTER) and s.isharpielady(c)
 end
 function s.setfilter(c)
-	return c:IsType(TYPE_SPELL+TYPE_TRAP) and aux.IsCodeListed(c,CARD_HARPIE_LADY) and c:IsSSetable()
+	return c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()
+		and (c:IsCode(CARD_HARPIES_HUNTING_GROUND) or aux.IsCodeListed(c,CARD_HARPIE_LADY))
+end
+function s.setgroup(g,slots)
+	local fields=g:FilterCount(Card.IsType,nil,TYPE_FIELD)
+	return fields<=1 and #g-fields<=slots and aux.dncheck(g)
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
-	local ct=math.min(Duel.GetMatchingGroupCount(s.harplady,tp,LOCATION_MZONE,0,nil),Duel.GetLocationCount(tp,LOCATION_SZONE))
-	local g=Duel.GetMatchingGroup(s.setfilter,tp,LOCATION_DECK,0,nil)
-	if chk==0 then return ct>0 and g:CheckSubGroup(aux.dncheck,1,ct) end
+	if chk==0 then
+		local ct=Duel.GetMatchingGroupCount(s.harplady,tp,LOCATION_MZONE,0,nil)
+		local slots=Duel.GetLocationCount(tp,LOCATION_SZONE)
+		local g=Duel.GetMatchingGroup(s.setfilter,tp,LOCATION_DECK,0,nil)
+		return ct>0 and g:CheckSubGroup(s.setgroup,1,ct,slots)
+	end
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
-	local ct=math.min(Duel.GetMatchingGroupCount(s.harplady,tp,LOCATION_MZONE,0,nil),Duel.GetLocationCount(tp,LOCATION_SZONE))
+	local ct=Duel.GetMatchingGroupCount(s.harplady,tp,LOCATION_MZONE,0,nil)
 	if ct<=0 then return end
+	local slots=Duel.GetLocationCount(tp,LOCATION_SZONE)
 	local g=Duel.GetMatchingGroup(s.setfilter,tp,LOCATION_DECK,0,nil)
 	if #g==0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
-	local sg=g:SelectSubGroup(tp,aux.dncheck,false,1,ct)
+	local sg=g:SelectSubGroup(tp,s.setgroup,false,1,ct,slots)
 	if sg and #sg>0 then
 		Duel.SSet(tp,sg)
 	end

@@ -9,7 +9,11 @@ function s.initial_effect(c)
 	e1:SetCategory(CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_HANDES)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	if Duel.GetReadyChain then
+		e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	else
+		e1:SetCountLimit(1,id,1) -- EFFECT_COUNT_CODE_OATH in modern cores
+	end
 	e1:SetTarget(s.thtg)
 	e1:SetOperation(s.thop)
 	c:RegisterEffect(e1)
@@ -30,6 +34,10 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.ConfirmCards(1-tp,g)
 		Duel.ShuffleHand(tp)
 		Duel.BreakEffect()
-		Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_EFFECT+REASON_DISCARD)
+		Duel.DiscardHand(tp,s.effectdiscard,1,1,REASON_EFFECT+REASON_DISCARD)
 	end
+end
+
+function s.effectdiscard(c)
+	return c:IsDiscardable(REASON_EFFECT)
 end

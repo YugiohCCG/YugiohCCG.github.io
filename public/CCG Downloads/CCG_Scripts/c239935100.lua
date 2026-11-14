@@ -45,14 +45,17 @@ end
 function s.destroyfilter(c)
  return c:IsFaceup() and (c:GetOriginalType()&TYPE_MONSTER)~=0 and s.waterreptile(c) and c:IsDestructable()
 end
-function s.takefilter(c,e,tp)
+function s.takefilter(c,e,tp,ft)
+ ft=ft or Duel.GetLocationCount(tp,LOCATION_SZONE)
  return c:IsType(TYPE_MONSTER) and s.waterreptile(c)
   and (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup())
   and ((Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false))
-   or (Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and not c:IsForbidden()))
+   or (ft>0 and not c:IsForbidden()))
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
- if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.takefilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,e,tp) end
+ local ft=Duel.GetLocationCount(tp,LOCATION_SZONE)
+ if e:IsHasType(EFFECT_TYPE_ACTIVATE) and not e:GetHandler():IsLocation(LOCATION_SZONE) then ft=ft-1 end
+  if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.takefilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,e,tp,ft) end
  Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_GRAVE+LOCATION_REMOVED)
  Duel.SetOperationInfo(0,CATEGORY_DESTROY,nil,1,tp,LOCATION_ONFIELD)
 end

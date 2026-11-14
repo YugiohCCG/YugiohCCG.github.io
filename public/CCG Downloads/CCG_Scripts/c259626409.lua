@@ -82,17 +82,19 @@ function s.chop(e,tp,eg,ep,ev,re,r,rp)
 	if not (tc and tc:IsRelateToEffect(e) and tc:IsLocation(LOCATION_GRAVE)
 		and aux.NecroValleyFilter()(tc)) then return end
 	re:SetLabelObject(tc)
+	tc:CreateEffectRelation(re)
 	Duel.ChangeTargetCard(ev,Group.FromCards(tc))
 	Duel.ChangeChainOperation(ev,s.repop)
 end
 function s.repop(e,tp,eg,ep,ev,re,r,rp)
 	local p=1-tp
 	local tc=e:GetLabelObject()
-	if not (tc and tc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter()(tc)) then return end
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsLocation(LOCATION_GRAVE)
+		and aux.NecroValleyFilter()(tc)) then return end
 	if not Duel.IsExistingMatchingCard(s.xyzgray,p,LOCATION_MZONE,0,1,nil) then return end
 	Duel.Hint(HINT_SELECTMSG,p,HINTMSG_FACEUP)
 	local xc=Duel.SelectMatchingCard(p,s.xyzgray,p,LOCATION_MZONE,0,1,1,nil):GetFirst()
-	if xc then
+	if xc and not xc:IsImmuneToEffect(e) then
 		Duel.Overlay(xc,Group.FromCards(tc))
 	end
 end

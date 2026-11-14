@@ -1,0 +1,190 @@
+{
+  "scope": "Current installed Transfer Call plus four actual recipients. Eight bounded native-core scenarios each: primary/movement first, accept/decline, full-row handling, primary/movement shared usage after second-copy setup. Secondary copy is placed with actual source trapify helper; spare eligible Deck resource and open SZONE confirmed natively. Other effects, negated-activation/negated-effect permission boundaries, complete material recipes and live Omega remain separate/open.",
+  "passed": 32,
+  "recipients": [
+    {
+      "id": 256172827,
+      "report": "current-gravinity-movement-capacity-256172827-installed.json",
+      "script_sha256": "3071d2569a141ba1b2a1178072aa0e94ed179047f05fb9b03bd96b7884cb6364",
+      "passed": 8,
+      "tests": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        },
+        {
+          "blocked": true
+        },
+        {
+          "blocked": true,
+          "decline": true
+        },
+        {
+          "repeatPrimary": true
+        },
+        {
+          "repeatPrimary": true,
+          "moveFirst": true
+        }
+      ]
+    },
+    {
+      "id": 249680945,
+      "report": "current-gravinity-movement-capacity-249680945-installed.json",
+      "script_sha256": "e96ae45b2bb7ef2160c4e995defe462f41a83dfc9a5021f108cd77b6f5bca654",
+      "passed": 8,
+      "tests": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        },
+        {
+          "blocked": true
+        },
+        {
+          "blocked": true,
+          "decline": true
+        },
+        {
+          "repeatPrimary": true
+        },
+        {
+          "repeatPrimary": true,
+          "moveFirst": true
+        }
+      ]
+    },
+    {
+      "id": 235538173,
+      "report": "current-gravinity-movement-capacity-235538173-installed.json",
+      "script_sha256": "8f513a463f25cebec74dd51f9d6ea31bdc511259473ef6e19e7809d59f82ab0e",
+      "passed": 8,
+      "tests": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        },
+        {
+          "blocked": true
+        },
+        {
+          "blocked": true,
+          "decline": true
+        },
+        {
+          "repeatPrimary": true
+        },
+        {
+          "repeatPrimary": true,
+          "moveFirst": true
+        }
+      ]
+    },
+    {
+      "id": 215768254,
+      "report": "current-gravinity-movement-capacity-215768254-installed.json",
+      "script_sha256": "b1b2080dece4b1df28f559104ac22764db135327cbd20c4009442513f5f94129",
+      "passed": 8,
+      "tests": [
+        {},
+        {
+          "decline": true
+        },
+        {
+          "moveFirst": true
+        },
+        {
+          "moveFirst": true,
+          "decline": true
+        },
+        {
+          "blocked": true
+        },
+        {
+          "blocked": true,
+          "decline": true
+        },
+        {
+          "repeatPrimary": true
+        },
+        {
+          "repeatPrimary": true,
+          "moveFirst": true
+        }
+      ]
+    }
+  ],
+  "negativeControls": [
+    {
+      "id": 256172827,
+      "mode": "no-shared-primary-limit",
+      "report": "current-gravinity-movement-capacity-256172827-no-shared-primary-limit.json",
+      "expectedFailure": "Primary once-per-turn shared with new copy"
+    },
+    {
+      "id": 256172827,
+      "mode": "no-shared-movement-limit",
+      "report": "current-gravinity-movement-capacity-256172827-no-shared-movement-limit.json",
+      "expectedFailure": "Selected once-per-turn shared with new copy"
+    },
+    {
+      "id": 249680945,
+      "mode": "no-shared-primary-limit",
+      "report": "current-gravinity-movement-capacity-249680945-no-shared-primary-limit.json",
+      "expectedFailure": "Primary once-per-turn shared with new copy"
+    },
+    {
+      "id": 249680945,
+      "mode": "no-shared-movement-limit",
+      "report": "current-gravinity-movement-capacity-249680945-no-shared-movement-limit.json",
+      "expectedFailure": "Selected once-per-turn shared with new copy"
+    },
+    {
+      "id": 235538173,
+      "mode": "no-shared-primary-limit",
+      "report": "current-gravinity-movement-capacity-235538173-no-shared-primary-limit.json",
+      "expectedFailure": "Primary once-per-turn shared with new copy"
+    },
+    {
+      "id": 235538173,
+      "mode": "no-shared-movement-limit",
+      "report": "current-gravinity-movement-capacity-235538173-no-shared-movement-limit.json",
+      "expectedFailure": "Selected once-per-turn shared with new copy"
+    },
+    {
+      "id": 215768254,
+      "mode": "no-shared-primary-limit",
+      "report": "current-gravinity-movement-capacity-215768254-no-shared-primary-limit.json",
+      "expectedFailure": "Primary once-per-turn shared with new copy"
+    },
+    {
+      "id": 215768254,
+      "mode": "no-shared-movement-limit",
+      "report": "current-gravinity-movement-capacity-215768254-no-shared-movement-limit.json",
+      "expectedFailure": "Selected once-per-turn shared with new copy"
+    }
+  ],
+  "fixtureCorrection": "Initial shared-limit control falsely passed because the first action exhausted the sole eligible Deck resource. A spare eligible resource was added and native eligibility/free-zone assertions now precede the limit check. All eight mutations fail.",
+  "productionLuaChanges": []
+}

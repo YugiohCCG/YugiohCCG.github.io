@@ -1,0 +1,23 @@
+[
+  {
+    "code": 219543855,
+    "name": "Securitake Agent",
+    "printedText": "1 monster your opponent owns\nYou can only Link Summon \"Securitake Agent\" once per turn. If this card is Link Summoned: You can target 1 monster in your opponent's GY that was sent there this turn; Special Summon it to your field, but negate its effects.",
+    "review": "Source-reviewed alternative limit implementation; no missing-limit bug established.",
+    "mechanism": "EVENT_SPSUMMON_SUCCESS Link condition registers EFFECT_CANNOT_SPECIAL_SUMMON for same-name Link Summons."
+  },
+  {
+    "code": 238276578,
+    "name": "Sylvan Duchessprout",
+    "printedText": "1 \"Sylvan\" monster\nYou can only Special Summon \"Sylvan Duchessprout\" once per turn. If this card is Link Summoned: You can excavate the top 2 cards of your Deck, then send any excavated Plant monsters to the GY, also place the other cards on the bottom of your Deck in any order. You can banish this card from your GY, then target 1 \"Sylvan\" monster you control, and declare a Level from 1 to 8; it becomes that Level.",
+    "review": "Source-reviewed alternative limit implementation; no missing-limit bug established.",
+    "mechanism": "Native c:SetSPSummonOnce(id)."
+  },
+  {
+    "code": 245400676,
+    "name": "To Proto Archegoni",
+    "printedText": "1 \"Protogenic Essence Token\"\nYou can only Link Summon \"To Proto Archegoni\" once per turn. If this card is Link Summoned: You can discard 1 card; add 1 Spell/Trap from your Deck or GY to your hand that lists \"To Proto\" in its text or name. (Quick Effect): You can banish this card from your field or GY, then target 1 Galaxy Monster you control; that target cannot be destroyed by battle or your opponent's card effects until the end of this turn.",
+    "review": "Source-reviewed alternative limit implementation; no missing-limit bug established.",
+    "mechanism": "EVENT_SPSUMMON_SUCCESS Link condition registers EFFECT_CANNOT_SPECIAL_SUMMON for same-name Link Summons."
+  }
+]
