@@ -14,6 +14,7 @@ from typing import Any
 
 from sync_omega_ccg_db import (
     canonical_display_name,
+    omega_description,
     decode_setcodes,
     extract_name_based_archetype_names,
     extract_treated_as_names,
@@ -172,7 +173,7 @@ def build_manifest(cards_path: Path, db_path: Path, scripts_dir: Path) -> dict[s
         else:
             if row.get("name") != card.get("name"):
                 card_errors.append("database name differs from cards.json")
-            if row.get("desc") != str(card.get("text") or "").replace("\\n", "\n"):
+            if row.get("desc") != omega_description(card):
                 card_errors.append("database text differs from cards.json")
         if script is None:
             card_errors.append("missing Lua script")

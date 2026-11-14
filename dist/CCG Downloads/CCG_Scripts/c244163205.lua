@@ -49,7 +49,8 @@ function s.operation(e,tp)
  if not tc or not tc:IsRelateToEffect(e) or not tc:IsControler(1-tp) or not tc:IsLocation(LOCATION_MZONE) or tc:IsImmuneToEffect(e) then return end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SELECT)
  local g=Duel.SelectMatchingCard(tp,s.xyzfilter,tp,LOCATION_MZONE,0,1,1,nil)
- if #g>0 then Duel.Overlay(g:GetFirst(),Group.FromCards(tc)) end
+ local xc=g:GetFirst()
+ if xc and not xc:IsImmuneToEffect(e) then Duel.Overlay(xc,Group.FromCards(tc)) end
 end
 function s.negcon(e)
  return Duel.IsExistingMatchingCard(function(c) return s.xyzfilter(c) and c:IsSetCard(SET_KILLAMITY) end,e:GetHandlerPlayer(),LOCATION_MZONE,0,1,nil)

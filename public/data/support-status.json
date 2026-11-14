@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-23T12:59:26.636237+00:00",
+  "generated_at": "2026-11-06T18:17:54.794076+00:00",
   "summary": {
-    "active_cards": 620,
+    "active_cards": 703,
     "verdicts": {
-      "FIXED": 117,
-      "MANUAL_RULING": 8,
-      "PASS": 468,
-      "UNSUPPORTED": 27
+      "FIXED": 125,
+      "MANUAL_RULING": 9,
+      "PASS": 541,
+      "UNSUPPORTED": 28
     },
-    "unresolved_cards": 35
+    "unresolved_cards": 37
   },
   "cards": [
     {
@@ -124,12 +124,17 @@
       "name": "Abstain from Light",
       "verdict": "MANUAL_RULING",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "MANUAL_RULING",
           "clause": "If your \"Stain\" monster was shuffled into either Deck this turn, you can also banish \"Stain\" monsters from face-up in your opponent's Deck as material, but return them to the GY during the End Phase.",
           "notes": "EVENT_MOVE does not identify whether movement into a Deck was a shuffle, and it cannot reliably cover cost-based or rule-based shuffles. The current REASON_EFFECT tracker is only an approximation. Resolution: rewrite the condition as 'If your Stain monster was moved into a Deck by a card effect this turn', or add a core shuffle event/reason and use it in c232449539.lua."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "Deck-shuffle condition includes costs as well as effects; material payment must move the full selected groups."
         }
       ]
     },
@@ -145,7 +150,7 @@
       "passcode": 244790302,
       "name": "Stained Avatar",
       "verdict": "PASS",
-      "review_state": "stale",
+      "review_state": "current",
       "issue_count": 0,
       "issues": []
     },
@@ -234,12 +239,17 @@
       "name": "Talismandrake Arms United",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If a Pyro Fusion Monster is Special Summoned to your field (except during the Damage Step): You can banish this card from your GY, then target 1 of those monsters; equip 1 \"Talismandrake Arms\" Spell/Trap from your Deck to it as if it were equipped by that Spell/Trap's effect.",
           "notes": "Equipping Blaze Shield 'as if equipped by that card's effect' inherits its optional all-destination leave-field replacement. Omega only provides destroy/send replacement hooks, so return-to-hand, return-to-Deck, and banish departures are not replaced. Resolution: narrow Blaze Shield to destruction/sending, or add a generic optional leave-field replacement hook and use it in the recreated equip effects in c215034223.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "Activation cannot discard its own Spell; equip target must be face-up and targetability is not reimposed at resolution."
         }
       ]
     },
@@ -272,12 +282,17 @@
       "name": "Left Talismandrake Arms - Blaze Shield",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "● The equipped monster gains 500 DEF for each Equip Spell equipped to a monster you control, also, if it would leave the field by your opponent's card effect, you can destroy this card instead.",
           "notes": "Omega has optional EFFECT_DESTROY_REPLACE and EFFECT_SEND_REPLACE hooks, but no optional replacement covering every return, banish, destroy, and send way the equipped monster can leave by an opponent's effect. Resolution: change the text to the supported destinations (for example, 'destroyed or sent to the GY'), or add a generic optional leave-field replacement hook and replace both partial hooks in c255832330.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "Target immunity acquired after targeting does not invalidate the equipped monster at resolution."
         }
       ]
     },
@@ -322,7 +337,7 @@
       "name": "Maiden of Talismandrakes Seraphina",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 2,
+      "issue_count": 3,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
@@ -333,6 +348,11 @@
           "verdict": "UNSUPPORTED",
           "clause": "If this card is Fusion Summoned, or if your opponent activates a card or effect: You can target 1 \"Talismandrake Arms\" Spell/Trap in your GY; add it to your hand or equip it to this card as if it were equipped by that Spell/Trap's effect.",
           "notes": "If this effect equips Blaze Shield, its recreated optional leave-field replacement cannot cover return-to-hand, return-to-Deck, or banish departures with current Omega hooks. Resolution: narrow Blaze Shield's text, or add a generic optional leave-field replacement hook and use it in c218142234.lua's recreated Shield effects."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "Pendulum cost checks available monster space after all three distinct-name returns; the unrestricted Pendulum effect has no invented once-per-turn limit, and destruction resolves independently of the handler."
         }
       ]
     },
@@ -509,12 +529,17 @@
       "name": "The Hanging Frute",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "\"Frute\" monsters you control can attack all face-down Defense Position monsters your opponent controls, once each.",
           "notes": "The text does not resolve whether each Frute retains one ordinary attack against a non-qualifying monster in addition to attacks on every face-down Defense Position monster. The current first-attack tracker also cannot preserve exact once-each identity if a battled monster changes position and is Set again. Resolution: issue a ruling for the ordinary-attack interaction and change the text to match it; then replace c213266433.lua's approximation with a ruling-specific attack procedure (or add filtered attack-all bookkeeping to the engine)."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "Each defender tracks the attacking monster field instance; copied chain-effect immunity persists to End Phase rather than expiring with the chain."
         }
       ]
     },
@@ -610,102 +635,6 @@
       "passcode": 250556612,
       "name": "NiuHao - Zao",
       "verdict": "PASS",
-      "review_state": "stale",
-      "issue_count": 0,
-      "issues": []
-    },
-    {
-      "passcode": 259377794,
-      "name": "Pip, the Domesticated",
-      "verdict": "PASS",
-      "review_state": "current",
-      "issue_count": 0,
-      "issues": []
-    },
-    {
-      "passcode": 259737127,
-      "name": "Tove, the Domesticated",
-      "verdict": "PASS",
-      "review_state": "current",
-      "issue_count": 0,
-      "issues": []
-    },
-    {
-      "passcode": 259264881,
-      "name": "Domestica Praerie",
-      "verdict": "PASS",
-      "review_state": "current",
-      "issue_count": 0,
-      "issues": []
-    },
-    {
-      "passcode": 259337739,
-      "name": "Domestica Anjelie",
-      "verdict": "PASS",
-      "review_state": "current",
-      "issue_count": 0,
-      "issues": []
-    },
-    {
-      "passcode": 259245149,
-      "name": "Domestica Lunalie",
-      "verdict": "PASS",
-      "review_state": "current",
-      "issue_count": 0,
-      "issues": []
-    },
-    {
-      "passcode": 259201342,
-      "name": "Domestication",
-      "verdict": "PASS",
-      "review_state": "current",
-      "issue_count": 0,
-      "issues": []
-    },
-    {
-      "passcode": 259265448,
-      "name": "Domestic Underworld",
-      "verdict": "PASS",
-      "review_state": "current",
-      "issue_count": 0,
-      "issues": []
-    },
-    {
-      "passcode": 259668626,
-      "name": "Domestica in the Underworld",
-      "verdict": "PASS",
-      "review_state": "current",
-      "issue_count": 0,
-      "issues": []
-    },
-    {
-      "passcode": 259410628,
-      "name": "Domestica in the Wild",
-      "verdict": "PASS",
-      "review_state": "current",
-      "issue_count": 0,
-      "issues": []
-    },
-    {
-      "passcode": 259670933,
-      "name": "Domestica Kyrie",
-      "verdict": "PASS",
-      "review_state": "current",
-      "issue_count": 0,
-      "issues": []
-    },
-    {
-      "passcode": 259394179,
-      "name": "Pip in the Wild",
-      "verdict": "FIXED",
-      "review_state": "current",
-      "issue_count": 0,
-      "issues": []
-    },
-    {
-      "passcode": 259718504,
-      "name": "Tove in the Wild",
-      "verdict": "FIXED",
       "review_state": "current",
       "issue_count": 0,
       "issues": []
@@ -763,12 +692,17 @@
       "name": "Ursarctic Hextanius",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "For the Special Summon of any Ursarctic Synchro, this card can be Level 7 or 8 and a non-Tuner.",
           "notes": "Official Ursarctic Extra Deck monsters use bespoke non-Synchro EFFECT_SPSUMMON_PROC scripts that read card Levels directly and expose no material-side hook for Hextanius to become Level 7/8 and a non-Tuner. Only the CCG procedures that explicitly call Hextanius-aware helpers can honor the text. Resolution: update every Ursarctic summon procedure that must recognize Hextanius (including official scripts), or revise the text to limit the substitution to named CCG Ursarctic monsters."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "Custom summon clears previous failure state and records incomplete two-material payment before the engine checks the permitted zone."
         }
       ]
     },
@@ -989,12 +923,17 @@
       "name": "Otakemaru the Accuser",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If Special Summoned: other Spirit monsters cannot return to hand or Extra Deck by card effect during this turn’s End Phase.",
           "notes": "EFFECT_CANNOT_TO_HAND and EFFECT_CANNOT_TO_DECK are reason-agnostic, so the current Lua also blocks costs and other non-effect movement during the End Phase. EFFECT_SPIRIT_DONOT_RETURN would cover only the built-in Spirit return and not arbitrary card effects. Resolution: remove 'by card effect', narrow the text to built-in Spirit returns, or add effect-only hand/Extra-Deck return prohibitions and use them in c221855414.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "The End Phase return trigger is limited once per copy so an unsuccessful return cannot reopen indefinitely."
         }
       ]
     },
@@ -1019,12 +958,17 @@
       "name": "Serene Mermaid of the Grand Blue",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "After the Fusion Summon, for the rest of the turn you may only Special Summon from Extra Deck using Grand Blue monsters as materials.",
           "notes": "Omega's prospective Extra Deck Special Summon restriction callback does not expose the material group. The Lua instead prohibits non-Grand Blue cards from being Fusion, Synchro, Xyz, or Link Material, which does not reject materialless or nonstandard Extra Deck procedures. Resolution: rewrite the restriction as four material prohibitions matching the Lua, or add a summon-limit API that receives the prospective material group and replace the approximation in c259369909.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "Fusion requires the entire selected material group to move."
         }
       ]
     },
@@ -1105,12 +1049,17 @@
       "name": "Priestess of Nephthys",
       "verdict": "MANUAL_RULING",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "MANUAL_RULING",
           "clause": "Then apply that destroyed card’s Standby Phase-activated effect.",
           "notes": "'That destroyed card's Standby Phase-activated effect' does not identify which effect to apply when the monster has multiple Standby Phase triggers. Omega also has no API for invoking one arbitrary trigger outside its event while preserving its event data and targeting semantics. Resolution: identify the intended effect by exact text/index or restrict the eligible monsters to an enumerated list, then script those operations; otherwise add a core trigger-invocation API."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "Standby effect is selected explicitly and invoked with its own handler and effect relation instead of an arbitrary activation effect."
         }
       ]
     },
@@ -1183,12 +1132,17 @@
       "name": "To Proto Chrono",
       "verdict": "MANUAL_RULING",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "MANUAL_RULING",
           "clause": "If the gain occurs, increase all effects’ turn count by 1.",
           "notes": "Omega stores some Card TurnCounter values but has no enumerable 'turn count' for every active effect or reset duration. The phrase 'all effects' turn count' also does not define which players, cards, locations, counters, or durations are included. Resolution: define the exact counters/effects and locations to advance, or replace the clause with a supported operation such as Pyro Clock of Destiny's global turn-count advance."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "Custom summon aborts its zone allocation if the required banish payment fails and clears the failure flag on the next attempt."
         }
       ]
     },
@@ -1221,12 +1175,17 @@
       "name": "To Proto Psychi",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "Quick Effect: Tribute a Token, then pay any amount of LP.",
           "notes": "The finite AnnounceNumber UI accepts an explicit option list and has no unrestricted integer-entry prompt. Enumerating every integer from 1 to LP-1 is not a supported/practical Omega selection, so the Lua currently offers 100-LP increments plus LP-1. Resolution: change 'any amount' to 'any amount in multiples of 100 (or all but 1 LP)', or add an integer-range prompt to Omega and use it in c217332244.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "First proper summon is enforced; any positive integer LP payment below current LP is expressible by bounded decimal digits, while failed banish payment prevents summoning."
         }
       ]
     },
@@ -1243,12 +1202,17 @@
       "name": "Polemistis gia Ataxia",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If monster(s) loses ATK/DEF, this card gains ATK/DEF equal to amount lost.",
           "notes": "Omega has no event reporting historical ATK/DEF loss. The text also omits whether gains accumulate, disappear when the losing monster leaves, or continuously track current deficits; the Lua currently models live deficits from base values. Resolution: state the duration and whether the gain is event-based or continuously recalculated. Then implement that ruling, adding an ATK/DEF-loss event to the engine if historical loss must be tracked."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "The required Tokens must be controlled; incomplete Tribute payment prevents summoning, while a properly summoned copy can later be revived."
         }
       ]
     },
@@ -1447,12 +1411,17 @@
       "name": "Eldora, the Intergalactic Empire",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "When an opponent effect that would destroy two or more monsters you control resolves, destroy this card, then negate that effect.",
           "notes": "The printed trigger says 'when ... resolves', but chains cannot be started during another effect's resolution. The Lua necessarily responds at activation and predicts destruction from CATEGORY_DESTROY metadata, which cannot identify effects whose victims/count are chosen only while resolving. Resolution: rewrite this as 'When your opponent activates a card or effect that would destroy 2 or more monsters you control' and accept category-based prediction, or define a new engine replacement/interception event before destruction resolves."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "The optional destruction-negation choice is evaluated during effect resolution, tracks that chain operation and retains the original operation when declined; destroyed-to-GY trigger has no invented prior-field requirement."
         }
       ]
     },
@@ -1469,26 +1438,23 @@
       "name": "Frozen Girl & Blood Moon",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "When an effect includes face-up placement from hand/Deck/GY, placing monsters in SZONE, or Setting from hand/Deck/GY: discard this card; negate that effect. HOPT.",
           "notes": "Omega has no universal categories for face-up Spell/Trap placement, placing Monster Cards in the Spell & Trap Zone, or every Set from hand/Deck/GY. CATEGORY_LEAVE_GRAVE is overbroad, while custom markers only cover scripts that opt in. Resolution: narrow the three bullets to engine-detectable categories, require all relevant scripts to publish dedicated placement/Set markers, or add core operation categories and update c222676270.lua to use them."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "The negation condition recognizes registered face-up-placement effects in addition to Set and Equip categories."
         }
       ]
     },
     {
       "passcode": 222782750,
       "name": "Ghost Doll & Midnight Manor",
-      "verdict": "PASS",
-      "review_state": "current",
-      "issue_count": 0,
-      "issues": []
-    },
-    {
-      "passcode": 259290896,
-      "name": "Dominus Sentinel",
       "verdict": "PASS",
       "review_state": "current",
       "issue_count": 0,
@@ -1923,12 +1889,17 @@
       "name": "Revelation of Crying Chaos",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "When your opponent activates a card or effect that would make a card you control leave the field (Quick Effect): You can Tribute 1 \"Crying Chaos\" monster you control; Negate that effect, and if you do, this card gains ATK equal to the Tributed monster's combined ATK and DEF until the end of this turn.",
           "notes": "Omega can inspect declared operation-info categories and chain targets, but arbitrary Lua operations need not declare either, so the engine cannot determine every effect that would make a controlled card leave the field. Exact resolution requires an engine API exposing the resolving operation's affected cards/destinations, or card text restricted to declared targets and enumerated leave-field categories."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "ATK modification allows the negation before damage calculation, but not during or after damage calculation."
         }
       ]
     },
@@ -2142,7 +2113,7 @@
       "passcode": 220124524,
       "name": "Shining Brigade - Heartbeat Division",
       "verdict": "PASS",
-      "review_state": "stale",
+      "review_state": "current",
       "issue_count": 0,
       "issues": []
     },
@@ -2333,12 +2304,17 @@
       "name": "Aquila, Zephorion's Predictor",
       "verdict": "MANUAL_RULING",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "MANUAL_RULING",
           "clause": "If this card is Summoned: You can Set 1 \"Eldora\" and/or \"Verse IX\" \"Chapter II\" Spell/Trap directly from your Deck or GY.",
           "notes": "The quoted conjunction names no card in the current 577-card database: no Spell/Trap contains both 'Verse IX' and 'Chapter II'. Exact resolution requires adding/naming the intended card (for example Chapter II Verse IX) or correcting the printed quoted name; until then only the unambiguous Eldora branch can be implemented."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "Named field support must be face-up so hidden field cards do not satisfy a name condition."
         }
       ]
     },
@@ -2566,7 +2542,7 @@
     },
     {
       "passcode": 259405917,
-      "name": "Siemens, the Ohmechanic Conductor",
+      "name": "Siemens, the Ohmenchanic Conductor",
       "verdict": "FIXED",
       "review_state": "current",
       "issue_count": 0,
@@ -2574,7 +2550,7 @@
     },
     {
       "passcode": 259350270,
-      "name": "Farad, the Ohmechanic Capacitor",
+      "name": "Farad, the Ohmenchanic Capacitor",
       "verdict": "PASS",
       "review_state": "current",
       "issue_count": 0,
@@ -2582,7 +2558,7 @@
     },
     {
       "passcode": 259519336,
-      "name": "Volt, the Ohmechanic Chocker",
+      "name": "Volt, the Ohmenchanic Chocker",
       "verdict": "PASS",
       "review_state": "current",
       "issue_count": 0,
@@ -2590,7 +2566,7 @@
     },
     {
       "passcode": 259841490,
-      "name": "Coulomb, the Ohmechanic Charger",
+      "name": "Coulomb, the Ohmenchanic Charger",
       "verdict": "PASS",
       "review_state": "current",
       "issue_count": 0,
@@ -2598,7 +2574,7 @@
     },
     {
       "passcode": 259479044,
-      "name": "Ampere, the Ohmechanic Intensity",
+      "name": "Ampere, the Ohmenchanic Intensity",
       "verdict": "PASS",
       "review_state": "current",
       "issue_count": 0,
@@ -2606,7 +2582,7 @@
     },
     {
       "passcode": 259033429,
-      "name": "Carcel, the Ohmechanic Light",
+      "name": "Carcel, the Ohmenchanic Light",
       "verdict": "PASS",
       "review_state": "current",
       "issue_count": 0,
@@ -2720,7 +2696,7 @@
       "passcode": 224811863,
       "name": "Shaman of Fire",
       "verdict": "PASS",
-      "review_state": "stale",
+      "review_state": "current",
       "issue_count": 0,
       "issues": []
     },
@@ -2840,7 +2816,7 @@
       "passcode": 223770816,
       "name": "Blazing Gaia the Spiral Knight",
       "verdict": "PASS",
-      "review_state": "stale",
+      "review_state": "current",
       "issue_count": 0,
       "issues": []
     },
@@ -3153,12 +3129,17 @@
       "name": "Myutant Amalgamate",
       "verdict": "MANUAL_RULING",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "MANUAL_RULING",
           "clause": "And if you do, this effect becomes that monster's original effect.",
           "notes": "The text does not identify which of an arbitrary monster's effects is meant or provide that effect's event, activation condition, cost, target, or parameters. CopyEffect grants the card's copyable effects for a duration; it cannot make this already-resolving effect become and execute an unspecified original effect. Exact resolution requires wording that grants copied effects for a stated duration, or selection of one specifically activatable effect with defined cost/target semantics."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "Reveal choice must have the corresponding monster available for banishment; copied destruction triggers survive the move into the graveyard."
         }
       ]
     },
@@ -3583,7 +3564,7 @@
       "passcode": 249680945,
       "name": "Gravinity Orbit",
       "verdict": "FIXED",
-      "review_state": "stale",
+      "review_state": "current",
       "issue_count": 0,
       "issues": []
     },
@@ -3599,7 +3580,7 @@
       "passcode": 235538173,
       "name": "Gravinity Plasma",
       "verdict": "FIXED",
-      "review_state": "stale",
+      "review_state": "current",
       "issue_count": 0,
       "issues": []
     },
@@ -3639,7 +3620,7 @@
       "passcode": 215768254,
       "name": "Gravinity Star",
       "verdict": "FIXED",
-      "review_state": "stale",
+      "review_state": "current",
       "issue_count": 0,
       "issues": []
     },
@@ -3647,7 +3628,7 @@
       "passcode": 212345347,
       "name": "Gravinity Lapsix",
       "verdict": "FIXED",
-      "review_state": "stale",
+      "review_state": "current",
       "issue_count": 0,
       "issues": []
     },
@@ -3664,12 +3645,17 @@
       "name": "Gravinity Nebulix",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "When a \"Gravinity\" Spell/Trap effect resolves, you can also add this additional effect to that card's effect at resolution.",
           "notes": "The Lua waits for EVENT_CHAIN_SOLVED and performs a second operation after the original chain link has resolved. Omega exposes no general API for injecting arbitrary text into another resolving effect, so this is only an approximation of adding the bullet at resolution."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "The extra effect is appended inside the same chain operation, supports multiple owners and clears per-chain wrapping state at Chain end."
         }
       ]
     },
@@ -3678,7 +3664,7 @@
       "name": "Gravinity Spherix",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 2,
+      "issue_count": 3,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
@@ -3689,6 +3675,11 @@
           "verdict": "UNSUPPORTED",
           "clause": "● During the Main Phase, if this card is a Continuous Trap: You can Special Summon this card, ignoring its summoning conditions, then, if this card is an Xyz Monster, you can attach the minimum number of monsters that can be used for this card's Xyz Summon from your GY to this card as material.",
           "notes": "Omega cannot generically recover an arbitrary Xyz Monster's printed minimum material count or material predicate after that card has already been Special Summoned to the field. Card.IsXyzSummonable can test a prospective Extra Deck summon but cannot extract the registered procedure from this already-summoned card. The current two same-Level attachments are therefore only an approximation and are not exact for level-free, variable-count, alternate, or non-Level procedures."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "Nonactivated summon replacement has no chain relation requirement; optional Xyz attachment is offered and a face-down opponent monster can be shuffled."
         }
       ]
     },
@@ -3704,7 +3695,7 @@
       "passcode": 247919552,
       "name": "Gravinity Gravity Protection",
       "verdict": "PASS",
-      "review_state": "stale",
+      "review_state": "current",
       "issue_count": 0,
       "issues": []
     },
@@ -3732,12 +3723,17 @@
       "name": "Gravinity Sonic Scream",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If you activate the effect of a \"Gravinity\" Synchro Monster Card: You can banish this card from your GY; this effect becomes that card's activated effect.",
           "notes": "The Lua directly invokes the prior Effect operation with mismatched effect/context arguments. Generic effect replacement/copying is engine-sensitive and this does not reproduce target, cost, label, category, or chain metadata for every possible Gravinity Synchro effect."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "The optional Synchro activation If trigger is delayed."
         }
       ]
     },
@@ -4137,7 +4133,7 @@
       "passcode": 259229055,
       "name": "Graydeux, the Eternal Grayscale Entity",
       "verdict": "PASS",
-      "review_state": "stale",
+      "review_state": "current",
       "issue_count": 0,
       "issues": []
     },
@@ -4538,12 +4534,17 @@
       "name": "Glitchling Corruption",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If you would Ritual Summon a Cyberse Ritual Monster using hand/field Tributes, Corruption Counters from the field can satisfy up to its Level.",
           "notes": "Genuine engine limitation: Omega has no card-local, generic hook that adds a counter-derived scalar to all Cyberse Ritual Summon material checks and atomically removes the chosen counters. Monkey-patching shared Ritual helpers would miss bespoke Ritual scripts and affect unrelated cards globally."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Current source delta; all printed effects reconciled with preceding review",
+          "notes": "Ritual selection incorporates post-material zones and requires all releasable selected materials to leave their prior locations."
         }
       ]
     },
@@ -5202,6 +5203,816 @@
     {
       "passcode": 259181235,
       "name": "World Legacy Crusadia Counter",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244165675,
+      "name": "Mevalkagna, Eye of Zenith",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244161941,
+      "name": "Vanquish Soul Brawl",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284636661,
+      "name": "Aquamarine Seagrass Zostera",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284636662,
+      "name": "Aquamarine Coral Krait",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284636663,
+      "name": "Aquamarine Seafan Gorgonia",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284636664,
+      "name": "Aquamarine Sand Clypeasteria",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284636665,
+      "name": "Aquamarine Aquasanctuary",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284636666,
+      "name": "Aquamarine Bubble Colony",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238274857,
+      "name": "Vylon Chevron",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238274858,
+      "name": "Vylon Glome",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238274859,
+      "name": "Vylon Volt",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238274860,
+      "name": "Vylon Torus",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238274861,
+      "name": "Vylon's Aid",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238274862,
+      "name": "Vylon Observatory",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238274863,
+      "name": "Vylon Eta",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244168521,
+      "name": "Heavy-Armoured Ballista Bahariasaurus",
+      "verdict": "MANUAL_RULING",
+      "review_state": "current",
+      "issue_count": 4,
+      "issues": [
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "2+ monsters, including a FIRE or Dinosaur monster\nYou cannot Summon/Set monsters to any Extra Monster Zone this card points to. If this card is Special Summoned: You can target 1 Dinosaur monster in your GY; Special Summon it to your opponent's field, then destroy it and any cards in its adjacent zones. If this card is destroyed: You can send 1 Spell Card from your hand or field to the GY; Special Summon this card, but banish it when it leaves the field. You can only use each effect of \"Heavy-Armoured Ballista Bahariasaurus\" once per turn.",
+          "notes": "Link material check accepts FIRE or Dinosaur and linked Extra Monster Zones are disabled."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "2+ monsters, including a FIRE or Dinosaur monster\nYou cannot Summon/Set monsters to any Extra Monster Zone this card points to. If this card is Special Summoned: You can target 1 Dinosaur monster in your GY; Special Summon it to your opponent's field, then destroy it and any cards in its adjacent zones. If this card is destroyed: You can send 1 Spell Card from your hand or field to the GY; Special Summon this card, but banish it when it leaves the field. You can only use each effect of \"Heavy-Armoured Ballista Bahariasaurus\" once per turn.",
+          "notes": "GY Dinosaur is targeted then summoned to opponent; current implementation destroys that monster and horizontally adjacent opponent Monster Zones."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "2+ monsters, including a FIRE or Dinosaur monster\nYou cannot Summon/Set monsters to any Extra Monster Zone this card points to. If this card is Special Summoned: You can target 1 Dinosaur monster in your GY; Special Summon it to your opponent's field, then destroy it and any cards in its adjacent zones. If this card is destroyed: You can send 1 Spell Card from your hand or field to the GY; Special Summon this card, but banish it when it leaves the field. You can only use each effect of \"Heavy-Armoured Ballista Bahariasaurus\" once per turn.",
+          "notes": "Destruction revival pays a Spell cost and grants leave-field banishment; independent hard limits. Adjacency interpretation is retained for designer review rather than claiming all possible meanings of adjacent zones."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "2+ monsters, including a FIRE or Dinosaur monster\nYou cannot Summon/Set monsters to any Extra Monster Zone this card points to. If this card is Special Summoned: You can target 1 Dinosaur monster in your GY; Special Summon it to your opponent's field, then destroy it and any cards in its adjacent zones. If this card is destroyed: You can send 1 Spell Card from your hand or field to the GY; Special Summon this card, but banish it when it leaves the field. You can only use each effect of \"Heavy-Armoured Ballista Bahariasaurus\" once per turn.",
+          "notes": "The custom wording adjacent zones does not define whether it includes vertical Spell/Trap zones. Current Lua destroys only the two horizontally adjacent opponent Main Monster Zones; retain this explicit interpretation pending a designer ruling."
+        }
+      ]
+    },
+    {
+      "passcode": 244163508,
+      "name": "Machina Megaframe",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244163509,
+      "name": "Machina Trailblazer",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244162598,
+      "name": "Moltenzoic Tristegsaurus",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244161756,
+      "name": "Lunalophosaur",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238276572,
+      "name": "Sylvan Flamushroomo",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238276573,
+      "name": "Sylvan Goleaf",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238276574,
+      "name": "Sylvan Flamioak",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238276575,
+      "name": "Sylvan Greetings",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238276576,
+      "name": "Sylvan Intervention",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238276577,
+      "name": "Sylvan Blast",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238276578,
+      "name": "Sylvan Duchessprout",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238276579,
+      "name": "Gink, the Sylvan High Champion",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238276580,
+      "name": "Azale, the Sylvan High Sovereign",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239935093,
+      "name": "Heart of the Hydra",
+      "verdict": "UNSUPPORTED",
+      "review_state": "current",
+      "issue_count": 4,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "You can only control 1 face-up \"Heart of the Hydra\". If this card is in your hand, field or GY: You can send 1 WATER Reptile monster from your Deck to the GY, except \"Heart of the Hydra\", and if you do, place this card face-up in its owner's Spell & Trap Zone as a Continuous Spell, but if it was placed from the GY, banish it when it leaves the field. You can only use this effect of \"Heart of the Hydra\" once per turn, also you cannot Special Summon monsters the turn you activate this effect, except WATER Reptile monsters.\nWhile this card is a Continuous Spell, it gains these effects.\n• Cannot be destroyed by your opponent's card effects while you control \"Terrifying Dark Swamp\".\n• \"Hydra\" monsters you control cannot be shuffled into the Deck by card effects.\n• Once per turn: You can add 1 \"Dark Swamp\" Spell/Trap from your Deck to your hand.",
+          "notes": "Unique face-up Heart; send-another-WATER-Reptile precedes owner-zone Continuous Spell placement with a turn-wide WATER Reptile oath and GY-origin banish redirect."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "You can only control 1 face-up \"Heart of the Hydra\". If this card is in your hand, field or GY: You can send 1 WATER Reptile monster from your Deck to the GY, except \"Heart of the Hydra\", and if you do, place this card face-up in its owner's Spell & Trap Zone as a Continuous Spell, but if it was placed from the GY, banish it when it leaves the field. You can only use this effect of \"Heart of the Hydra\" once per turn, also you cannot Special Summon monsters the turn you activate this effect, except WATER Reptile monsters.\nWhile this card is a Continuous Spell, it gains these effects.\n• Cannot be destroyed by your opponent's card effects while you control \"Terrifying Dark Swamp\".\n• \"Hydra\" monsters you control cannot be shuffled into the Deck by card effects.\n• Once per turn: You can add 1 \"Dark Swamp\" Spell/Trap from your Deck to your hand.",
+          "notes": "Swamp protection checks a visible named field card; Hydra effect-Deck-return replacement currently covers every Deck destination, broader than the printed shuffle wording."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "You can only control 1 face-up \"Heart of the Hydra\". If this card is in your hand, field or GY: You can send 1 WATER Reptile monster from your Deck to the GY, except \"Heart of the Hydra\", and if you do, place this card face-up in its owner's Spell & Trap Zone as a Continuous Spell, but if it was placed from the GY, banish it when it leaves the field. You can only use this effect of \"Heart of the Hydra\" once per turn, also you cannot Special Summon monsters the turn you activate this effect, except WATER Reptile monsters.\nWhile this card is a Continuous Spell, it gains these effects.\n• Cannot be destroyed by your opponent's card effects while you control \"Terrifying Dark Swamp\".\n• \"Hydra\" monsters you control cannot be shuffled into the Deck by card effects.\n• Once per turn: You can add 1 \"Dark Swamp\" Spell/Trap from your Deck to your hand.",
+          "notes": "Continuous Spell form enables a soft once-per-turn Dark Swamp Spell/Trap search."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "You can only control 1 face-up \"Heart of the Hydra\". If this card is in your hand, field or GY: You can send 1 WATER Reptile monster from your Deck to the GY, except \"Heart of the Hydra\", and if you do, place this card face-up in its owner's Spell & Trap Zone as a Continuous Spell, but if it was placed from the GY, banish it when it leaves the field. You can only use this effect of \"Heart of the Hydra\" once per turn, also you cannot Special Summon monsters the turn you activate this effect, except WATER Reptile monsters.\nWhile this card is a Continuous Spell, it gains these effects.\n• Cannot be destroyed by your opponent's card effects while you control \"Terrifying Dark Swamp\".\n• \"Hydra\" monsters you control cannot be shuffled into the Deck by card effects.\n• Once per turn: You can add 1 \"Dark Swamp\" Spell/Trap from your Deck to your hand.",
+          "notes": "The current Deck-destination replacement also prevents fixed top/bottom effect returns. The printed protection only forbids shuffling Hydra monsters into the Deck; this narrower distinction is not implemented by the current replacement."
+        }
+      ]
+    },
+    {
+      "passcode": 239935094,
+      "name": "Winged Snake of the Swamp",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239935095,
+      "name": "Fierce Snake of the Swamp",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239935096,
+      "name": "Sparkling Snake of the Swamp",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239935097,
+      "name": "Three-Headed Snake of the Swamp",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239935098,
+      "name": "Terrifying Hydra",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239935099,
+      "name": "Rage of the Terrifying Dark Swamp",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239935100,
+      "name": "Perseverance of the Hydra's Heart",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239935101,
+      "name": "Terrifying Dark Swamp",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239935102,
+      "name": "Terrifying Fog of the Dark Swamp",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244163199,
+      "name": "Killamity Goldenrod",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244163200,
+      "name": "Killamity Pine",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244163201,
+      "name": "Killamity Crimson",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244163202,
+      "name": "Killamity Azure",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244163203,
+      "name": "Killamity Ash",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244163204,
+      "name": "Killamity Apparition",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244163205,
+      "name": "Killamity Showdown",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 244163206,
+      "name": "Ruby, Killamity Convergence",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239937489,
+      "name": "Skull Undersea Melanocetus",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238276248,
+      "name": "Scion of Nephthys",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238276249,
+      "name": "Apostle of Nephthys",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238276250,
+      "name": "Incarnation of Nephthys",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238276251,
+      "name": "Brazier of Nephthys",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238276252,
+      "name": "Prayer Of Nephthys",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238273768,
+      "name": "Symphonic Warrior Speeaker",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238273769,
+      "name": "Symphonic Warrior DDJ",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238273770,
+      "name": "Symphonic Warrior Disccs",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238273771,
+      "name": "Symphonic Warrior Mettronomo",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238273772,
+      "name": "Symphonic Warrior Mega Staar",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238272434,
+      "name": "Terror Skull from Underroot",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238272435,
+      "name": "Blossom Skull from Underroot",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238272436,
+      "name": "Nether Skull from Underroot",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238272437,
+      "name": "Over Skull from Underroot",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238272438,
+      "name": "Terror Blossom from Underroot",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238272439,
+      "name": "Terror Blossom from Overroot",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 238272440,
+      "name": "Terror Blossom from Afterroot",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247755864,
+      "name": "Kali Yuga - Vritra",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247755865,
+      "name": "Kali Yuga - Angulimala",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247755866,
+      "name": "Kali Yuga - Sampati",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247755867,
+      "name": "Kali Yuga - Yajna",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247755868,
+      "name": "Kali Yuga - Karkotaka",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247755869,
+      "name": "Kali Yuga - Murugan",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247755870,
+      "name": "Kali Yuga - Mayavada",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247755871,
+      "name": "Kali Yuga - Jarita",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247755872,
+      "name": "Kali Yuga - Dukkha",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247755873,
+      "name": "Kali Yuga - Ahimsaka Justijhn",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247756271,
+      "name": "Kali Yuga - Bheki",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 247756272,
+      "name": "Kali Yuga - Jakarta",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284639717,
+      "name": "Terrarumian Cushion Moss",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284639718,
+      "name": "Terrarumian Coin Plant",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284639719,
+      "name": "Terrarumian Sword Fern",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284639720,
+      "name": "Terrarumian Nerve Plant",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284639721,
+      "name": "Terrarumian Staghorn Fern",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284639722,
+      "name": "Terrarumian Ivy",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284639723,
+      "name": "Terrarumian Sundew",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284639724,
+      "name": "Terrarumian Trumpet Pitchers",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284639725,
+      "name": "Terrarumian Tillandsia",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284639726,
+      "name": "Terrarumian Venus Flytrap",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284636586,
+      "name": "Terrarumian Terrarium",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284636587,
+      "name": "Terrarumian Spores",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284636588,
+      "name": "Terrarumian Misting",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 284636589,
+      "name": "Terrarumian Growth",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239934743,
+      "name": "Fiendsmith's Soprana",
+      "verdict": "FIXED",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239934744,
+      "name": "Fiendsmith's Offertorium",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239932270,
+      "name": "Floowandereeze and the Hot Winds",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239932271,
+      "name": "Floowandereeze and the Magnificent Sky",
+      "verdict": "PASS",
+      "review_state": "current",
+      "issue_count": 0,
+      "issues": []
+    },
+    {
+      "passcode": 239932272,
+      "name": "Floowandereeze and the Mythic Journey",
       "verdict": "PASS",
       "review_state": "current",
       "issue_count": 0,

@@ -138,6 +138,10 @@ TREATED_AS_RE = re.compile(
 )
 
 OFFICIAL_SHARED_SET_CODES = {
+    "vylon": 0x30,
+    "fiendsmith": 0x1B0,
+    "floowandereeze": 0x16D,
+    "vanquishsoul": 0x195,
     "symphonicwarrior": 0x1066,
     "sylvan": 0x90,
     "gladiator": 0x19,
@@ -426,6 +430,12 @@ EXTRA_TOKEN_CARDS = [
 ]
 
 CARD_STRING_OVERRIDES = {
+    "floowandereezeandthehotwinds": ["Choose an effect", "Banish a hand card; return this card", "Place a Field or Continuous Spell", "Banish both monsters", "Apply both effects"],
+    "floowandereezeandthemagnificentsky": ["Banish materials to Tribute Summon", "Change a Defense Position monster to Attack Position"],
+    "floowandereezeandthemythicjourney": ["Banish this card instead of destroying a card"],
+    "fiendsmithssoprana": ["Send a Fiendsmith from Extra Deck; optionally return a card", "Summon a LIGHT Fiend Monster Card from your Spell/Trap Zone", "Return an opponent field or GY card?"],
+    "fiendsmithsoffertorium": ["Summon Fiendsmith Engraver; optionally Link Summon", "Banish this card; Set a Fiendsmith Trap", "Link Summon a Fiendsmith monster?"],
+
     "terrifyinghydra": ["Summon Hydra Head Tokens or revive in the center zone", "Destroy all opponent field cards"],
     "kaliyugajakarta": ["Negate an opponent Spell/Trap effect", "Banish a card from either GY", "Take 2000 damage", "Banish this card face-down"],
     "azalethesylvanhighsovereign": ["Detach materials; excavate and revive Sylvans", "Excavate until a non-Plant; destroy opponent cards", "Select excavated cards to keep on top"],

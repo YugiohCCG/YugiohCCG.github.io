@@ -1,8 +1,9 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+process.env.CCG_INSTALLED_CARD_DB ||= require('node:path').resolve(__dirname,'../public/CCG Downloads/CCG_Database/CCG_v1.db');
 const {candidateCard}=require('./fresh_installed_card.cjs');
 const {loadCorrectedTransport}=require('./fresh_corrected_card_data_transport.cjs');
-const installed=process.env.CCG_OMEGA_SCRIPTS||'C:/Program Files (x86)/YGO Omega/YGO Omega_Data/Files/Scripts';
+const installed=process.env.CCG_OMEGA_SCRIPTS||path.resolve(__dirname,'../public/CCG Downloads/CCG_Scripts');
 const omega=path.resolve(__dirname,'../tmp/omega_scripts');
 const [hot,sky,journey,soprana,offer]=[239932270,239932271,239932272,239934743,239934744];
 const fixtures=Array.from({length:8},(_,i)=>900009001+i);
@@ -875,7 +876,7 @@ function s.initial_effect(c)
 end`;
    if([...fixtures,engraver,bauWorld,bau,dysmandr,extinction,token,grayToken].some(code=>name==='c'+code+'.lua'))return neutral;
    const source=path.resolve(__dirname,'../public/CCG Downloads/CCG_Scripts',name);
-   const file=[process.env.CCG_TEST_SOURCE&&t.family&&source,path.join(installed,name),path.join(omega,name)].find(f=>f&&fs.existsSync(f));
+   const file=[process.env.CCG_TEST_SOURCE&&t.family&&source,path.join(installed,name),path.resolve(__dirname,'../tmp/ohmen-reference',name),path.join(omega,name)].find(f=>f&&fs.existsSync(f));
    assert(file,name);let lua=fs.readFileSync(file,'utf8');if(t.stainOptionalFixture&&name==='c248453205.lua')lua=lua.replace('local rg=','local fixture=Duel.GetFieldGroup(tp,0,LOCATION_DECK):Filter(Card.IsCode,nil,'+wing+'):GetFirst() fixture:ReverseInDeck() assert(fixture:IsFaceup()) local rg=');if(t.nauticaOverlay&&process.argv.includes('--nautica-control-before')&&name==='c218905439.lua')lua=lua.replace('tc:IsControler(tp) and not tc:IsImmuneToEffect(e)) then return end','not tc:IsImmuneToEffect(e)) then return end');if(t.chainLimitCopies&&process.argv.includes('--shared-chain-no-flag')&&name==='c284639726.lua')lua=lua.replace('return e:GetHandler():GetFlagEffect(id)==0','return true').replace('return Duel.GetFlagEffect(e:GetHandlerPlayer(),id)==0','return true');if(t.megalSharedChain&&process.argv.includes('--megal-chain-no-flag')&&name==='c259179054.lua')lua=lua.replaceAll('Duel.GetFlagEffect(tp,id)==0','true');if(t.disccsChainCallbacks&&process.argv.includes('--disccs-chain-no-flag')&&name==='c238273770.lua')lua=lua.replaceAll('Duel.GetFlagEffect(tp,id+400)==0','true');if((t.pendulumLeaveBattle&&process.argv.includes('--pendulum-leave-no-damage')||process.argv.includes('--leave-field-no-damage'))&&name==='c'+t.family+'.lua')lua=lua.replaceAll('EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DELAY','EFFECT_FLAG_DELAY');if(t.damageBanishEvent&&process.argv.includes('--damage-banish-permissive')&&name==='c'+t.family+'.lua'){const v=({212413422:'e3',216620496:'e2',253128790:'e1',259542408:'e6',259605536:'e4'})[t.family];lua=lua.replace(v+':SetProperty(',v+':SetProperty(EFFECT_FLAG_DAMAGE_STEP+');}return lua;
   };
   const logs=[],team={startingLP:8000,startingDrawCount:0,drawCountPerTurn:0};

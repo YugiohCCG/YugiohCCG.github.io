@@ -34,7 +34,7 @@ function s.spcon1(e,tp,eg,ep,ev,re,r,rp)
 	return ph==PHASE_MAIN1 or ph==PHASE_MAIN2
 end
 function s.cfilter(c)
-	return c:IsSetCard(0x4ac0) and c:IsAbleToGraveAsCost()
+	return c:IsSetCard(0x4ac0) and c:IsDiscardable(REASON_COST) and c:IsAbleToGraveAsCost()
 end
 function s.spcost1(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
@@ -82,7 +82,7 @@ function s.attop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
 	if c:IsRelateToEffect(e) and c:IsCanOverlay() and aux.NecroValleyFilter()(c)
-		and tc and tc:IsRelateToEffect(e) and not tc:IsFacedown() then
+		and tc and tc:IsRelateToEffect(e) and tc:IsControler(tp) and not tc:IsImmuneToEffect(e) then
 		Duel.Overlay(tc,Group.FromCards(c))
 	end
 end

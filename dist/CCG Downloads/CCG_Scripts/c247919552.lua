@@ -21,7 +21,9 @@ function s.zonefilter(c,tp)
 		and Duel.IsExistingMatchingCard(s.oppcolfilter,tp,0,LOCATION_ONFIELD,1,nil,c)
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	local b1=Duel.GetFlagEffect(tp,id)==0 and Duel.GetLocationCount(tp,LOCATION_SZONE)>0
+	local ft=Duel.GetLocationCount(tp,LOCATION_SZONE)
+	if e:IsHasType(EFFECT_TYPE_ACTIVATE) and not e:GetHandler():IsLocation(LOCATION_SZONE) then ft=ft-1 end
+	local b1=Duel.GetFlagEffect(tp,id)==0 and ft>0
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.placefilter),tp,LOCATION_MZONE+LOCATION_GRAVE,0,1,nil)
 	local mg=Duel.GetMatchingGroup(s.matfilter,tp,LOCATION_MZONE+LOCATION_SZONE,0,nil)
 	local b2=Duel.GetFlagEffect(tp,id+100)==0 and Duel.IsExistingMatchingCard(s.synfilter,tp,LOCATION_EXTRA,0,1,nil,mg)

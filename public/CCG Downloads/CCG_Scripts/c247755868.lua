@@ -93,7 +93,7 @@ function s.lvop(e,tp)
   limit:SetType(EFFECT_TYPE_SINGLE)
   limit:SetCode(code)
   limit:SetValue(s.matlimit)
-  limit:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
+  limit:SetReset(RESET_EVENT+RESETS_STANDARD)
   c:RegisterEffect(limit)
  end
 end

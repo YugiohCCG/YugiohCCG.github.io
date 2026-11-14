@@ -5,7 +5,7 @@ async function main(){
  const mod=await import(pathToFileURL(path.join(path.dirname(require.resolve('@n1xx1/ocgcore-wasm')),'dist/index.js')).href);
  const {OcgMessageType:M,OcgResponseType:R,OcgLocation:L,OcgPosition:P,OcgProcessResult:S,SelectIdleCMDAction:A}=mod;
  const core=await mod.default({sync:true,print(){},printErr(){}}),volt=238274859,glome=238274858,filler=900000071;
- const dbpath=path.join(ROOT,'output/fresh-ccg-september/candidate-CCG_v1.db'),db=new DatabaseSync(dbpath,{readOnly:true}),query=db.prepare('select * from datas where id=?');
+ const dbpath=path.join(ROOT,'public/CCG Downloads/CCG_Database/CCG_v1.db'),db=new DatabaseSync(dbpath,{readOnly:true}),query=db.prepare('select * from datas where id=?');
  const base={alias:0,setcodes:[],type:17,level:4,attribute:16,race:0x20n,attack:1000,defense:1000,lscale:0,rscale:0,link_marker:0};
  const data=new Map([[filler,{...base,code:filler}]]);
  for(const code of [volt,glome]){

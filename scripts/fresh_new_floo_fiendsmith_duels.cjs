@@ -3,8 +3,9 @@ const fs=require('node:fs');
 const path=require('node:path');
 const assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
+process.env.CCG_INSTALLED_CARD_DB ||= require('node:path').resolve(__dirname,'../public/CCG Downloads/CCG_Database/CCG_v1.db');
 const {candidateCard}=require('./fresh_installed_card.cjs');
-const library=process.env.CCG_OMEGA_SCRIPTS||'C:/Program Files (x86)/YGO Omega/YGO Omega_Data/Files/Scripts';
+const library=process.env.CCG_OMEGA_SCRIPTS||path.resolve(__dirname,'../public/CCG Downloads/CCG_Scripts');
 const omega=path.join(root,'tmp/omega_scripts');
 const neutral='local s,id=GetID() function s.initial_effect(c) end';
 
@@ -33,7 +34,7 @@ async function main(){
   const reader=name=>{
    if(name==='c0.lua')return '';
    if(name==='c'+boss+'.lua'||name==='c'+deckMaterial+'.lua'||name==='c'+filler+'.lua'||name==='c'+search+'.lua'||name==='c'+test.resource+'.lua'&&test.code!==239932272)return neutral;
-   const file=[path.join(library,name),path.join(omega,name)].find(fs.existsSync);
+   const file=[path.join(library,name),path.resolve(__dirname,'../tmp/ohmen-reference',name),path.join(omega,name)].find(fs.existsSync);
    assert(file,name);
    return fs.readFileSync(file,'utf8');
   };

@@ -9,6 +9,7 @@ import re
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import quote
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,13 +32,16 @@ def sha256(path: Path) -> str:
 
 def artifact(path: Path, label: str, group: str) -> dict[str, object]:
     relative = path.relative_to(PUBLIC).as_posix()
-    return {
+    result = {
         "label": label,
         "group": group,
         "path": relative,
         "bytes": path.stat().st_size,
         "sha256": sha256(path),
     }
+    if group == "holograms":
+        result["url"] = "https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/" + quote(relative, safe="/")
+    return result
 
 
 def build_release_manifest() -> dict[str, object]:
@@ -59,7 +63,10 @@ def build_release_manifest() -> dict[str, object]:
         (downloads / "YGO_Omega_Images", "YGO_Omega_Holograms_v*.zip", "Holograms", "holograms"),
     )
     for directory, pattern, label, group in patterns:
-        for index, path in enumerate(sorted(directory.glob(pattern)), start=1):
+        canonical = re.compile(re.escape(pattern).replace(r"\*", r"\d+"))
+        parts = [path for path in directory.glob(pattern) if canonical.fullmatch(path.name)]
+        parts.sort(key=lambda path: int(re.search(r"_v(\d+)\.zip$", path.name).group(1)))
+        for index, path in enumerate(parts, start=1):
             files.append(artifact(path, f"{label} Part {index}", group))
 
     cards = json.loads(CARDS_PATH.read_text(encoding="utf-8"))

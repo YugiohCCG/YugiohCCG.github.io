@@ -63,8 +63,11 @@ end
 function s.rmlimit(e,c,rp,r,re)
 	return c:IsControler(e:GetHandlerPlayer()) and c:IsSetCard(SET_SHINING_BRIGADE) and c:IsType(TYPE_SPELL+TYPE_TRAP)
 end
+function s.protmonster(c)
+	return c:IsFaceup() and c:IsSetCard(SET_SHINING_BRIGADE)
+end
 function s.protcon(e)
-	return Duel.IsExistingMatchingCard(aux.FilterBoolFunction(Card.IsSetCard,SET_SHINING_BRIGADE),e:GetHandlerPlayer(),LOCATION_MZONE,0,2,nil)
+	return Duel.IsExistingMatchingCard(s.protmonster,e:GetHandlerPlayer(),LOCATION_MZONE,0,2,nil)
 end
 function s.xyzfilter(c)
 	return c:IsFaceup() and c:IsSetCard(SET_SHINING_BRIGADE) and c:IsType(TYPE_XYZ) and c:GetOverlayCount()>0
@@ -80,14 +83,16 @@ function s.atcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if not xyz then return end
 	xyz:RemoveOverlayCard(tp,1,1,REASON_COST)
 	e:SetLabelObject(xyz)
+	e:SetLabel(xyz:GetFieldID())
 end
 function s.attg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.attfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil) end
 end
 function s.atop(e,tp,eg,ep,ev,re,r,rp)
 	local xyz=e:GetLabelObject()
-	if not (xyz and xyz:IsFaceup() and xyz:IsLocation(LOCATION_MZONE)
-		and xyz:IsControler(tp) and xyz:IsSetCard(SET_SHINING_BRIGADE) and xyz:IsType(TYPE_XYZ)) then return end
+	if not (xyz and xyz:GetFieldID()==e:GetLabel() and xyz:IsFaceup() and xyz:IsLocation(LOCATION_MZONE)
+		and xyz:IsControler(tp) and xyz:IsSetCard(SET_SHINING_BRIGADE) and xyz:IsType(TYPE_XYZ)
+		and not xyz:IsImmuneToEffect(e)) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
 	local g2=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.attfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,1,nil)
 	if #g2>0 then

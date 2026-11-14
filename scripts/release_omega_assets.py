@@ -311,6 +311,9 @@ def find_iscc(override: Path | None) -> Path | None:
     on_path = shutil.which("ISCC") or shutil.which("ISCC.exe")
     if on_path:
         return Path(on_path)
+    local_programs = Path(os.environ.get("LOCALAPPDATA", "")) / "Programs" / "Inno Setup 6" / "ISCC.exe"
+    if local_programs.is_file():
+        return local_programs
     for candidate in ISCC_CANDIDATE_PATHS:
         if candidate.exists():
             return candidate

@@ -41,17 +41,27 @@ end
 function s.setcardfilter(c)
 	return c:IsSetCard(0x21fc) and not c:IsCode(id) and c:IsSSetable()
 end
+function s.setgroup(g,ft)
+	local fields=g:FilterCount(Card.IsType,nil,TYPE_FIELD)
+	return fields<=1 and #g-fields<=math.max(0,ft)
+end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return false end
+	local ft=Duel.GetLocationCount(tp,LOCATION_SZONE)
+	if e:IsHasType(EFFECT_TYPE_ACTIVATE) and not e:GetHandler():IsLocation(LOCATION_SZONE) then ft=ft-1 end
 	local b1=Duel.IsExistingTarget(aux.NecroValleyFilter(s.thcardfilter),tp,LOCATION_GRAVE,0,1,nil)
-	local b2=Duel.GetLocationCount(tp,LOCATION_SZONE)>0
-		and Duel.IsExistingTarget(aux.NecroValleyFilter(s.setcardfilter),tp,LOCATION_GRAVE,0,1,nil)
+	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(function(c,te) return s.setcardfilter(c) and c:IsCanBeEffectTarget(te) end),tp,LOCATION_GRAVE,0,nil,e)
+	local b2=g:CheckSubGroup(s.setgroup,1,2,ft)
 	if chk==0 then return b1 or b2 end
 	local op=b1 and b2 and Duel.SelectOption(tp,1190,1153) or (b1 and 0 or 1)
 	e:SetLabel(op)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
-	local f=op==0 and aux.NecroValleyFilter(s.thcardfilter) or aux.NecroValleyFilter(s.setcardfilter)
-	Duel.SelectTarget(tp,f,tp,LOCATION_GRAVE,0,1,2,nil)
+	if op==0 then
+		Duel.SelectTarget(tp,aux.NecroValleyFilter(s.thcardfilter),tp,LOCATION_GRAVE,0,1,2,nil)
+	else
+		local sg=g:SelectSubGroup(tp,s.setgroup,false,1,2,ft)
+		Duel.SetTargetCard(sg)
+	end
 end
 function s.spfilter(c,e,tp)
 	return c:IsSetCard(0x21fc) and not c:IsType(TYPE_SYNCHRO) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)

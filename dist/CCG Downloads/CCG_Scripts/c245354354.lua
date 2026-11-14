@@ -55,7 +55,7 @@ function s.spop1(e,tp,eg,ep,ev,re,r,rp)
 end
 function s.spfilter2(c,e,tp)
 	return c:IsSetCard(0x4ac0) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
-		and Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,c)
+		and Duel.IsExistingMatchingCard(s.effectdiscard,tp,LOCATION_HAND,0,1,c)
 end
 function s.sptg2(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
@@ -95,4 +95,8 @@ function s.synop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.BreakEffect()
 		Duel.DiscardHand(tp,nil,1,1,REASON_EFFECT+REASON_DISCARD)
 	end
+end
+
+function s.effectdiscard(c)
+	return c:IsDiscardable(REASON_EFFECT)
 end

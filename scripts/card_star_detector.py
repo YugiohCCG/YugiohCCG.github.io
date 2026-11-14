@@ -17,7 +17,7 @@ def detect_star_slots(image_path: Path) -> tuple[int | None, list[int]]:
     image = cv2.resize(image, (1388, 2026))
     component_roi = image[215:335, :]
     component_hsv = cv2.cvtColor(component_roi, cv2.COLOR_BGR2HSV)
-    yellow_mask = cv2.inRange(component_hsv, (14, 85, 100), (45, 255, 255))
+    yellow_mask = cv2.inRange(component_hsv, (14, 130, 100), (45, 255, 255))
     component_count, _, stats, _ = cv2.connectedComponentsWithStats(yellow_mask)
     candidates: list[tuple[int, int, int, int]] = []
     for index in range(1, component_count):

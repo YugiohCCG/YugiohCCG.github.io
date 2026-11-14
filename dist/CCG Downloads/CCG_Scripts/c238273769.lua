@@ -116,7 +116,7 @@ function s.deckop(e,tp)
  Duel.RegisterEffect(lock,tp)
 end
 function s.handcon(e,tp)
- return Duel.IsExistingMatchingCard(Card.IsSetCard,tp,LOCATION_MZONE,0,1,nil,SET_SYMPHONIC)
+ return Duel.IsExistingMatchingCard(aux.AND(Card.IsFaceup,Card.IsSetCard),tp,LOCATION_MZONE,0,1,nil,SET_SYMPHONIC)
 end
 function s.handtg(e,tp,eg,ep,ev,re,r,rp,chk)
  if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0

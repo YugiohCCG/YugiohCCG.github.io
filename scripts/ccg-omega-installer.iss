@@ -38,15 +38,15 @@ const
   IMAGES_URL_FALLBACK_FMT = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%%20Downloads/YGO_Omega_Images_v%d.zip';
   PICS_URL_PRIMARY_FMT = 'https://yugiohccg.github.io/CCG%%20Downloads/YGO_Omega_Images/YGO_Omega_Pics_v%d.zip';
   PICS_URL_FALLBACK_FMT = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%%20Downloads/YGO_Omega_Images/YGO_Omega_Pics_v%d.zip';
-  HOLOGRAMS_URL_PRIMARY_FMT = 'https://yugiohccg.github.io/CCG%%20Downloads/YGO_Omega_Images/YGO_Omega_Holograms_v%d.zip';
-  HOLOGRAMS_URL_FALLBACK_FMT = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%%20Downloads/YGO_Omega_Images/YGO_Omega_Holograms_v%d.zip';
+  HOLOGRAMS_URL_PRIMARY_FMT = 'https://raw.githubusercontent.com/YugiohCCG/YugiohCCG.github.io/main/public/CCG%%20Downloads/YGO_Omega_Images/YGO_Omega_Holograms_v%d.zip';
+  HOLOGRAMS_URL_FALLBACK_FMT = 'https://github.com/YugiohCCG/YugiohCCG.github.io/raw/refs/heads/main/public/CCG%%20Downloads/YGO_Omega_Images/YGO_Omega_Holograms_v%d.zip';
   DB_ZIP_NAME = 'CCG_Database.zip';
   DB_NAME = 'CCG_v1.db';
   BANLIST_NAME = 'CCG_Banlist.lflist.conf';
   VICTORY_REASON_PREFIX = '!victory 0x24 ';
   VICTORY_REASON_LINE = '!victory 0x24 Victory by the effect of "Scarstech Circuit"';
   IMAGE_PART_COUNT = 1;
-  PICS_PART_COUNT = 4;
+  PICS_PART_COUNT = 3;
   HOLOGRAM_PART_COUNT = 3;
 
 function URLDownloadToFile(Caller: Integer; URL, FileName: string; Reserved: Integer; Bind: Integer): Integer;

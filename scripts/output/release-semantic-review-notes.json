@@ -1,0 +1,716 @@
+{
+  "method": "Static semantic review; previous reviewed records retained separately. Live gameplay limitations remain explicit.",
+  "delta_reviews": {
+    "225091736": "Face-up banishment guard prevents treating a hidden banished card as a known Stain card.",
+    "224822244": "The independent also-after-that deck placement still resolves when the handler has moved; the battle counterpart is rechecked separately.",
+    "244408495": "Fusion completion requires every selected material to move, rather than merely one.",
+    "221822671": "Delayed optional trigger property preserves the If trigger after the opponent effect resolves.",
+    "256608976": "Leave-field redirect persists through the movement, resets once, and restores face-up opponent-deck placement; copying permits face-up Tokens as printed.",
+    "232449539": "Deck-shuffle condition includes costs as well as effects; material payment must move the full selected groups.",
+    "248453205": "Leave-field redirect survives movement, resets once, and preserves the face-up shuffled result.",
+    "244790302": "Replacement value identifies protected cards; copied activation keeps the selected source relation and transfers target labels without treating copied targets as the source.",
+    "247789143": "Operation selects a valid two-card banishment pair through the same paired predicate used by activation.",
+    "247580036": "Face-up public-information trigger guard is enforced; the independent also position change does not depend on successful LP recovery.",
+    "217174535": "NegateEffect is tested as a boolean; other-monster summon checks require face-up Stain identity.",
+    "224049334": "Destroyed Spell/Trap tracking correctly includes cards destroyed outside the field, as the printed clause does not restrict their prior location.",
+    "256928871": "Targetability is checked at selection, not imposed again at resolution; Fusion redirect uses Deck destination to route Extra Deck monsters correctly.",
+    "210506870": "Hand summon rechecks space; Fusion payment requires all materials; Chain Material only completes the procedure for an actual successful Fusion Summon.",
+    "245935439": "All Fusion materials must move; procedure completion follows actual summon success; Pendulum Zone materials retain their original Monster type.",
+    "215034223": "Activation cannot discard its own Spell; equip target must be face-up and targetability is not reimposed at resolution.",
+    "238136421": "Target immunity acquired after targeting does not invalidate the equipped monster at resolution.",
+    "215921734": "Target immunity acquired after targeting does not invalidate the equipped monster at resolution.",
+    "248788543": "Targetability is not reimposed at resolution; replacement value restricts protection to the equipped monster.",
+    "255832330": "Target immunity acquired after targeting does not invalidate the equipped monster at resolution.",
+    "218142234": "Pendulum cost checks available monster space after all three distinct-name returns; the unrestricted Pendulum effect has no invented once-per-turn limit, and destruction resolves independently of the handler.",
+    "231892575": "Both protections and hand summon require another differently named Aldrez monster, not another Queen copy.",
+    "238282350": "Graveyard revival If trigger remains available when the opponent sends the Xyz during the Damage Step.",
+    "231129918": "Graveyard revival If trigger remains available when the opponent sends the Xyz during the Damage Step.",
+    "246216813": "Field Spell setting uses the Field Zone and remains legal with a full ordinary backrow.",
+    "220916791": "Retargeting is restricted to the controller own graveyard.",
+    "256930605": "The Ritual Monster cannot be its own material; selected materials must actually move and optional revival remains separate from Ritual completion.",
+    "236179696": "Field Spell setting uses the Field Zone; banished cards must remain face-up and graveyard selection retains Necrovalley filtering.",
+    "213266433": "Each defender tracks the attacking monster field instance; copied chain-effect immunity persists to End Phase rather than expiring with the chain.",
+    "248290754": "Field Spell setting does not incorrectly require an empty ordinary Spell/Trap Zone.",
+    "250556612": "Copied activation inherits properties, target labels and label object before its operation and preserves mutations when chaining the two copied effects.",
+    "255277197": "Fusion is completed only when the full banished material group moved.",
+    "245378354": "Field Spell setting uses the Field Zone independently of ordinary backrow space.",
+    "235051048": "Custom summon records incomplete payment and denies its zone; battle/effect destruction trigger supports the Damage Step and requires known face-up prior identity.",
+    "244921711": "Custom summon clears previous failure state and records incomplete two-material payment before the engine checks the permitted zone.",
+    "249093610": "Custom summon clears previous failure state and records incomplete two-material payment before the engine checks the permitted zone.",
+    "222257685": "Targetability is checked only when selecting the graveyard target; other eligibility and Necrovalley remain checked at resolution.",
+    "215853847": "ATK uses the combined Link Rating of Link materials; a non-Link material contributes zero.",
+    "229327103": "Generated printed-text pool matches the pinned official plus custom catalog; resolution rechecks controlled field identity and Extra Deck return eligibility without reimposing targetability.",
+    "251058567": "Generated printed-text pool matches the pinned official plus custom catalog; resolution rechecks controlled field identity and Extra Deck return eligibility without reimposing targetability.",
+    "223558392": "Generated printed-text pool matches the pinned official plus custom catalog; resolution rechecks controlled field identity and Extra Deck return eligibility without reimposing targetability.",
+    "223592011": "Generated printed-text pool matches the pinned official plus custom catalog; resolution rechecks controlled field identity and Extra Deck return eligibility without reimposing targetability.",
+    "244920555": "Generated printed-text pool matches the pinned official plus custom catalog; resolution rechecks controlled field identity and Extra Deck return eligibility without reimposing targetability.",
+    "243920845": "Generated printed-text pool matches the pinned official plus custom catalog; resolution rechecks controlled field identity and Extra Deck return eligibility without reimposing targetability.",
+    "259911246": "End Phase position restoration is tied to the original field instance and only successfully turned face-down monsters are registered.",
+    "217713649": "Immediate Normal Summon follow-up waits for actual summon success and clears on negation; both Spirit return routes share one hard once-per-turn counter.",
+    "214371067": "The second Normal Summon follows actual successful arrival rather than checking field location before the chain finishes.",
+    "248801935": "Equip event is a field event; the event group must contain this Equip Spell before its search triggers.",
+    "221855414": "The End Phase return trigger is limited once per copy so an unsuccessful return cannot reopen indefinitely.",
+    "259429721": "Hand addition is confirmed before the hand summon; the independent also-after-that column destruction is not cancelled by an unavailable equip target.",
+    "259369909": "Fusion requires the entire selected material group to move.",
+    "259934756": "Fusion requires the entire selected material group to move.",
+    "259578863": "Field Spell setting is legal without an ordinary backrow slot; add-to-hand alternative remains independently checked.",
+    "259093260": "The opponent-turn graveyard If trigger remains available in the Damage Step.",
+    "259937946": "Must first Fusion Summon applies in Extra Deck; a properly summoned copy may later be revived normally.",
+    "211964444": "Standby effect is selected explicitly and invoked with its own handler and effect relation instead of an arbitrary activation effect.",
+    "216532402": "Deck Tribute uses RELEASE reason and raises the Tribute event; Ritual payment must move all materials and the resolving choice is validated by location rather than a nonexistent target relation.",
+    "256287781": "Necrovalley does not prevent moving cards from the graveyard as an activation cost.",
+    "246524183": "A reveal cost requires a nonpublic hand card; Deck reveals remain eligible.",
+    "244013196": "Custom summon aborts its zone allocation if the required banish payment fails and clears the failure flag on the next attempt.",
+    "246380598": "Custom summon aborts its zone allocation if the required banish payment fails and clears the failure flag on the next attempt.",
+    "224225695": "Custom summon aborts its zone allocation if the required banish payment fails and clears the failure flag on the next attempt.",
+    "217332244": "First proper summon is enforced; any positive integer LP payment below current LP is expressible by bounded decimal digits, while failed banish payment prevents summoning.",
+    "241543138": "The two-Token summon is rejected under the one-monster-at-a-time restriction at both activation and resolution.",
+    "254065048": "The required Tokens must be controlled; incomplete Tribute payment prevents summoning, while a properly summoned copy can later be revived.",
+    "212684822": "Controlled Token payment must fully succeed; pre-battle-damage handling moves half the would-be damage to the opponent and removes the original damage.",
+    "230998543": "Reveal cost excludes already public hand cards and the simultaneous two-monster summon obeys the one-at-a-time restriction.",
+    "259655976": "The printed Main Phase effect is ignition, alternate summoning checks known face-up Xyz identity, and then-draw timing follows a BreakEffect.",
+    "212184534": "Alternate summoning checks known face-up Xyz identity and then-draw timing follows a BreakEffect.",
+    "215445495": "Alternate summoning checks known face-up Xyz identity and then-draw timing follows a BreakEffect.",
+    "216505735": "Alternate summoning checks known face-up Xyz identity and then-draw timing follows a BreakEffect.",
+    "231400558": "Alternate summoning checks known face-up Xyz identity and then-draw timing follows a BreakEffect.",
+    "239245471": "Fusion payment requires both selected materials to move.",
+    "224751741": "Fusion payment requires both selected materials to move.",
+    "214552846": "The optional destruction-negation choice is evaluated during effect resolution, tracks that chain operation and retains the original operation when declined; destroyed-to-GY trigger has no invented prior-field requirement.",
+    "222676270": "The negation condition recognizes registered face-up-placement effects in addition to Set and Equip categories.",
+    "219047593": "Equip only to a non-Effect monster permits either player field; no controller restriction is printed.",
+    "257464336": "Ritual materials must be releasable and every selected material must actually leave its prior location before Ritual Summoning.",
+    "243306841": "Ritual materials must be releasable and every selected material must actually leave its prior location before Ritual Summoning.",
+    "244959812": "The sole Tribute must be releasable and must leave the Monster Zone before the Deck Ritual Summon.",
+    "229875953": "Equip eligibility permits either player matching monster because no controller restriction is printed.",
+    "251699681": "Negated activations are removed from the permanent activated-card count and per-turn activation count.",
+    "226645052": "Operation information correctly declares the hand origin of the Special Summon.",
+    "228040066": "Operation information correctly declares the hand origin of the Special Summon.",
+    "214349717": "Operation information correctly declares the hand origin of the Special Summon.",
+    "259114562": "The opponent Normal Summon receives zero ATK and conditional negation on actual summon success rather than during the resolving chain.",
+    "220749574": "Both bottom-deck cost cards must move and their order is selectable; Normal Summon ATK modification waits for summon success.",
+    "225109525": "The deferred Normal Summon receives zero ATK only on its successful arrival.",
+    "223158720": "The three returned Aqua monsters can be ordered at the bottom of the Deck; deferred Normal Summon ATK is applied on success.",
+    "238711686": "Field Spell setting uses the Field Zone rather than requiring ordinary Spell/Trap Zone capacity.",
+    "248946297": "Normal Summon zero-ATK modification is deferred until actual summon success; Deck Special Summon handling remains distinct.",
+    "218905439": "Deferred opponent Normal Summon receives zero ATK on actual arrival.",
+    "259944943": "The contact summon aborts when either required card fails to move and clears its prior failure state.",
+    "240511702": "Field Spell setting remains legal with a full ordinary backrow; add-monster alternative remains independently checked.",
+    "249018041": "Revival redirect is installed before summon-success events; Tribute cost is rejected when no destruction candidate remains after the Tribute and its equips leave.",
+    "220305422": "Effect negation alone does not grant Damage Step or damage-calculation activation permission.",
+    "234296128": "ATK modification allows the negation before damage calculation, but not during or after damage calculation.",
+    "233499093": "Effect negation alone does not grant Damage Step or damage-calculation activation permission.",
+    "215068354": "Resolve available add/set counts when the Deck no longer holds the originally registered count.",
+    "215006791": "Only-Windborne material checks require an actual nonempty material group.",
+    "237684285": "Target protection correctly permits only controller Windborne effects; return count bounds the mandatory hand shuffle and nonempty material is required.",
+    "224774049": "Failure to add a declared card still loses LP when the Deck becomes empty before resolution.",
+    "255686110": "The nonactivated stat increase is continuous and scales by every added Windborne card.",
+    "220124524": "The summon restriction is applied during resolution instead of mutating state in the target legality callback.",
+    "243420199": "Extra Normal Summon and Set share the additional-usage mechanism with zero extra Tribute requirement.",
+    "244986323": "Detached material can satisfy the later graveyard banish; Damage Step trigger is enabled and Pendulum placement rechecks the original handler relation.",
+    "215142357": "Activation provenance uses GetActivateLocation rather than the handler current location after a cost moved it.",
+    "259235389": "The attack-target response is the printed Quick Effect rather than an optional trigger.",
+    "236898203": "Destruction can open a full Monster Zone; destruction resolves independently and delayed self-destruction is bound to the successfully summoned field instance.",
+    "251236672": "The destruction If trigger remains available in the Damage Step.",
+    "259366507": "Named field support must be face-up so hidden field cards do not satisfy a name condition.",
+    "244972185": "The alternative search explicitly requires the named field support to be face-up at activation and resolution.",
+    "238035167": "All banished materials must move and Fusion procedure completion follows actual normal or Chain Material summon success.",
+    "220150285": "Material eligibility is filtered consistently at activation and resolution; full movement and successful summon are required before completing Fusion procedure.",
+    "211682274": "Recovery is restricted to banished Aquamarine monsters, as printed.",
+    "251191343": "Deck send is restricted to Aquamarine monsters, as printed.",
+    "227035644": "Fusion material is a Monster eligible for Fusion and not immune; all materials must move, banishment remains face-up, and completion follows summon success.",
+    "250339529": "Fusion material is filtered consistently, includes this card and must all move before successful procedure completion.",
+    "216258796": "Activation-negation effects are allowed in the Damage Step/calculation; graveyard self-summon requires a properly completed prior procedure.",
+    "249746105": "The named support must be face-up for its response restriction.",
+    "259174227": "Counter traversal tracks only successfully placed counters in this resolution, includes either player pointing seed, terminates cycles, and uses all affected arrows; 33-family Ohmen engine suite passes.",
+    "259726853": "Counter traversal tracks only successfully placed counters in this resolution, includes either player pointing seed, terminates cycles, and uses all affected arrows; 33-family Ohmen engine suite passes.",
+    "259650132": "Counter traversal counts only successful placements; the search total persists across turns for the same field instance and is captured at activation; engine suite passes.",
+    "259107906": "Counter traversal uses all successful placements and eligible linked destinations, with finite visits through loops; engine suite passes.",
+    "259881255": "Counter traversal uses successful placements; cost/target legality does not depend on a label not yet paid, simultaneous summons obey restriction and counters follow completed summons; engine suite passes.",
+    "259780273": "Correct Ohmenchanic spelling retains setcode; a second Dark Ohmen is legal, simultaneous summons obey restriction and Link-material reason is tested as a bitmask; engine suite passes.",
+    "259869259": "Independent co-link transition state tracks inactive periods and field instances; opponent Spell condition is a delayed If trigger with support checked at targeting; engine suite passes.",
+    "259405917": "Movement checks legal destination arrows on either moved monster controller field, not its starting zone; engine suite passes.",
+    "259350270": "Correct spelling retains setcode; recovery excludes hidden banishment but permits graveyard monsters under normal eligibility checks.",
+    "259519336": "Ohmenchanic spelling changes the symbolic name only and retains the same setcode.",
+    "259841490": "Card title spelling correction only; effects are unchanged.",
+    "259479044": "Correct setcode name is retained; printed co-linked protection can include either player qualifying monsters.",
+    "259033429": "Counter transitions use field-instance state even when disabled, add to every co-linked monster and double current ATK; engine suite passes.",
+    "259434499": "Engine counter-removal APIs determine removability and successful payment before destruction; engine suite passes.",
+    "259650969": "Correct setcode spelling is retained; moving a controlled face-down monster is legal because no face-up requirement is printed.",
+    "245452058": "Summon trigger requires the summoned Altergeist to have publicly known face-up identity.",
+    "259152704": "Plant, Insect and Beast checks use Race rather than the retired custom Nature attribute for materials, summon targets and protection.",
+    "212055290": "Current simple activation searches a Level 4 or lower Galaxy/Celestial Warrior monster and has an activation once-per-turn limit; reviewed current script independently because old source blob is unavailable.",
+    "250902476": "Attack declaration effect is not restricted to an opponent attack because the printed clause says a monster declares an attack.",
+    "224811863": "Copied Spell activation transfers scalar labels and label objects between target and operation and preserves subsequent mutations.",
+    "257239133": "Fusion may complete only when the combined graveyard and Deck movements cover the full selected material group.",
+    "219714894": "ATK gain uses actual damage inflicted after damage replacement, not the originally requested amount.",
+    "248760718": "The optional If Dark-monster activation trigger retains its delayed timing.",
+    "221924008": "Custom summon records incomplete three-material shuffle and denies the summon zone after unsuccessful payment.",
+    "212413422": "Legacy Gaia Fusion material declarations have explicit known-card fallbacks; handler field instance is preserved and banishment event identity must be face-up Monster.",
+    "223770816": "Extra Deck returns are not revealed as hand additions; copied Spiral activation transfers properties and label state through resolution.",
+    "256469525": "Printed effect copying permits Tokens, and an inherent successful summon operation is not rejected for lacking a chain relation.",
+    "259366591": "The independent also summon restriction applies even if summon space disappears during the chain.",
+    "258590942": "The opponent summoned non-LIGHT monster must be face-up for its Attribute to be known.",
+    "237089049": "Deck send requires an Arckcestial Monster; summoned trigger checks face-up Synchro/Xyz identity.",
+    "215105971": "Leave-field event uses recorded reason player and requires the Xyz to have been under its actual owner control.",
+    "220856437": "The independent also Link restriction applies even if no summon space remains on resolution.",
+    "219826457": "Target ownership is checked at activation; equip can still resolve if the targeted monster control changes afterward.",
+    "221511784": "The required two-card banish payment must fully succeed and prior failure state is cleared before a new procedure attempt.",
+    "256462992": "Necrovalley does not prohibit returning the handler from GY to Extra Deck as the activation cost.",
+    "228169392": "The once-per-Battle-Phase flag prevents a repeated start-of-Battle-Phase activation and resets at that Battle Phase end.",
+    "259072745": "Up-to-two revival is capped at one while simultaneous multiple summons are prohibited.",
+    "259471193": "Only the controller is barred from responding; the opponent retains responses as printed.",
+    "212822164": "The independent also Fish summon restriction applies even when the handler cannot be banished on resolution.",
+    "255283389": "Deck cards remain eligible without a face-up check; banished recovery requires public face-up identity.",
+    "211699737": "Reveal choice must have the corresponding monster available for banishment; copied destruction triggers survive the move into the graveyard.",
+    "255977900": "Nonactivated counter placement does not require a chain relation; the Continuous Spell must remain face-up for its resolving summon effect.",
+    "221672256": "Sending any Skewy card as cost can include the handler; negation no longer incorrectly requires returning it to hand.",
+    "258576611": "The continuous condition derives its controller from the Effect, matching the engine single-argument callback contract.",
+    "217632789": "Hand activation pays the additional cost; negated activation releases the shared turn flag while successfully activated copies consume it.",
+    "215730767": "Hand summon rechecks Monster Zone capacity during resolution.",
+    "210628767": "Facedown targets are permitted; Extra Monster Zones map to correct columns and failed blocker destruction prevents illegal placement; later summon rechecks space and End Phase event is limited once.",
+    "210366076": "Explicit face-up-placement metadata supports the placement negation card; Continuous Trap checks use supported predicates and recovery cannot target the handler already banished as cost.",
+    "217645912": "Activating without the optional Deck send is permitted; the turn restriction and shared send-use flag are applied only if that optional effect is chosen.",
+    "212052682": "The flip If trigger is delayed and its soft once-per-turn Set flag survives the card turning face-down.",
+    "257677549": "The independent also summon restriction applies even if the handler summon fails.",
+    "241540236": "The optional If activation trigger is delayed.",
+    "259552732": "An opponent face-down monster is a valid initial target; the later level modification is optional rather than forced.",
+    "245837578": "The optional chain-activation If trigger is delayed.",
+    "253934904": "Destruction choices must open Monster Zone space when the field is full; both DARK monsters must be destroyed before revival.",
+    "239179363": "The three-card banish procedure fails cleanly on incomplete or cancelled selection and clears prior failure state.",
+    "243488958": "The independent Also name lock is applied at Chain Link 7 even when destruction is unsuccessful.",
+    "249680945": "Continuous Trap typing survives a Set and cannot be negated; Transfer follow-up is optional and movement rechecks available backrow space.",
+    "254894701": "Exact 3000 ATK loss is verified before zone destruction; occupied and empty zones are selected through the proper field-zone API.",
+    "235538173": "Continuous Trap typing survives a Set and cannot be negated; Transfer follow-up remains optional and movement rechecks backrow space.",
+    "242838495": "The search follows only an actual exact 3000 ATK decrease.",
+    "256172827": "Transfer follow-up is optional and movement rechecks available ordinary backrow space.",
+    "213611313": "Once-per-chain revival is enforced and discarding the only eligible hand summon candidate is prohibited.",
+    "248638801": "Damage Step timing excludes damage calculation; Link material Attributes are read from their prior field state and retained even if the summon effect is disabled.",
+    "215768254": "Trap type persists through Set and cannot be disabled; Field Spell setting uses its own zone and Transfer follow-up is optional.",
+    "212345347": "Placed Continuous Trap typing survives Set and cannot be disabled.",
+    "212429024": "The extra effect is appended inside the same chain operation, supports multiple owners and clears per-chain wrapping state at Chain end.",
+    "231088629": "Nonactivated summon replacement has no chain relation requirement; optional Xyz attachment is offered and a face-down opponent monster can be shuffled.",
+    "223505382": "Explicit face-up-placement metadata makes the Deck placement detectable to the placement negation condition.",
+    "247919552": "Continuous Trap type persists through Set and cannot be disabled.",
+    "238184015": "The optional Synchro activation If trigger is delayed.",
+    "250829750": "The player-targeted condition gets the controller from its Effect and only recognizes face-up Galactica combatants.",
+    "259307285": "Delayed return is bound to the original field instance and runs once, not on a later re-summoned copy.",
+    "256005703": "Field Spell setting uses its own zone; return-or-banish alternatives are rechecked explicitly without Lua and/or accidentally falling through after a failed Deck return.",
+    "212837324": "Field Spell setting and legal leave-field choices are rechecked, and Deck/GY summon requires available post-return space.",
+    "259482393": "Destruction provenance uses the recorded reason Effect and confirms the monster previously occupied the Monster Zone.",
+    "250917339": "Destruction provenance uses the recorded reason Effect and confirms the monster previously occupied the Monster Zone.",
+    "253520299": "Return-or-banish choice offers only currently legal alternatives and cannot fall through to banishment if a chosen return fails.",
+    "236473882": "Return-or-banish choice is rechecked and Extra Deck summon space is computed after the handler leaves.",
+    "219002796": "The opponent attack restriction is explicitly a player-targeting field effect.",
+    "259363148": "Fusion material declaration is available to engine legality checks; returning either Main or Extra Deck materials is allowed and both must successfully move before the contact summon.",
+    "259766646": "Dreaming Nemleria must be able to reach the face-up Extra Deck; subsequent Field Spell setting has independent zone capacity.",
+    "259090287": "Simultaneous summons respect the one-at-a-time restriction and the continuous condition derives controller from the Effect.",
+    "259472680": "The independent also Nemleria restriction applies when the resolving summon cannot succeed.",
+    "259934043": "Deck send is restricted to a Grayscale Monster as printed.",
+    "259624110": "Optional material attachment follows only a successful Special Summon, matching then sequencing.",
+    "259229055": "The prospective changed effect is checked against this resolving effect, not the opponent original effect.",
+    "259121126": "Field Spell setting does not require ordinary backrow space.",
+    "259943152": "The Beast activation If trigger is delayed; targetability and control are not incorrectly reimposed on the later target resolution.",
+    "259992800": "A targeted monster changing controller does not alone invalidate its equip target relation.",
+    "259184310": "Full Fusion payment and successful summon completion are enforced; target eligibility excludes targetability/controller rechecks after targeting.",
+    "259562343": "Full Fusion payment and successful normal or Chain Material summon completion are enforced.",
+    "259114673": "A target changing control does not alone invalidate its destruction effect relation.",
+    "259628203": "A target changing control does not alone invalidate its negation effect relation.",
+    "259755133": "Material and Tribute restrictions still apply to the related face-up targeted monster after a control change.",
+    "259138193": "The related initial target can still be banished after a control change and Fusion requires all selected material to move.",
+    "259352030": "Custom summon clears failure state and requires complete hand-plus-field banish payment.",
+    "259459462": "Ignore-battle-target implements the printed permission for direct attacks while this monster is present.",
+    "259315827": "Non-destruction replacement protects only the actual handler in the affected group rather than every same-named copy.",
+    "259023461": "Use flags are spent on activation even if negated; the graveyard once-only clause is tracked and later LP gain remains optional.",
+    "259360287": "Graveyard return as an activation cost is not prohibited by Necrovalley.",
+    "259794136": "Custom summon aborts incomplete return payment; Field Spell setting uses its own zone and graveyard targeting retains Necrovalley.",
+    "259247807": "No printed Ritual-only restriction is invented beyond the revive limit; materials must be releasable and actually move, while disabled Corruption support provides no substitution.",
+    "259156549": "The printed Ritual Monster has a revive limit but no universal Ritual-only summon restriction.",
+    "259678739": "Reveal cost excludes public cards; Ritual-only restriction is removed, full material payment is enforced and disabled Corruption support cannot substitute.",
+    "259961648": "Ritual subgroup selection checks the post-material summon zone, materials must be releasable and actually move, and disabled Corruption cannot provide counter substitution.",
+    "259494236": "The Ritual Monster has revive-limit rules but no additional unprinted Ritual-only restriction.",
+    "259072906": "Cyberse Ritual replacement enforces releasable nonimmune field material, mixed hand/Extra zone counts, counter payment and successful movement; Deck materials cannot combine with the Corruption hand/field substitution.",
+    "259873115": "The unprinted Pendulum once-per-turn and Ritual-only restriction are removed; material subgroup selection enforces post-payment zones and complete payment with enabled Corruption support.",
+    "259546637": "Ritual selection incorporates post-material zones and requires all releasable selected materials to leave their prior locations.",
+    "259646610": "Targetability is checked at selection rather than reimposed during related banished-card return resolution.",
+    "259790247": "The fixed two-monster summon respects simultaneous-summon restrictions during activation and resolution.",
+    "259288669": "Ritual materials are legally releasable and all hand/field, Deck and Spell/Trap payment groups must fully move.",
+    "259241946": "Ritual materials are legally releasable and all hand/field, Deck and Spell/Trap payment groups must fully move.",
+    "259226799": "Mandatory follow-up draw legality is established for the current Ritual Monster count.",
+    "259489283": "Revive limit remains without inventing a universal Ritual-only summon restriction.",
+    "259753109": "Revive limit remains without inventing a universal Ritual-only summon restriction.",
+    "259533644": "The inherent summon aborts incomplete Insect cost payment; Field Spell setting uses its own zone.",
+    "259348317": "Either a Wyvernal Fusion or an Insect Fusion enables Quick timing; Fusion procedure completion requires full payment and actual summon success.",
+    "259763531": "Wyvernal-or-Insect alternatives apply consistently to the second material, WIND search, Extra Deck restriction and revival.",
+    "259160760": "Wyvernal-or-Insect alternatives apply consistently to cost, summon event and Fusion material; all shuffled materials and successful normal/Chain Material summon are verified.",
+    "259073666": "Wyvernal-or-Insect targets are allowed and the target count is capped so its mandatory follow-up draw remains legal.",
+    "259652372": "Targetability is not rechecked after selection; related graveyard target still requires Deck eligibility and Necrovalley clearance.",
+    "259926839": "Targetability is not rechecked at resolution; the related Eclipse Quick-Play target retains type, hand eligibility and Necrovalley checks.",
+    "259680842": "Deck Fusion material is filtered for immunity and eligibility; all payment must move and procedure completion follows actual normal/Chain Material summon success.",
+    "259264449": "Overlay compatibility follows the native capable-overlay restrictions, rejecting Tokens, forbidden off-field cards and protected opponent cards.",
+    "259303191": "Delayed graveyard return is pinned to this banishment instance rather than a card that left and was rebanished.",
+    "259126370": "The mandatory two-card hand addition must succeed and only a nonempty excavated remainder is shuffled.",
+    "259223502": "Related revive target does not acquire an additional targetability check at resolution.",
+    "259792415": "Supported Spell-type predicate is used; the battle-ending trigger recognizes any controller monster that destroyed its battle opponent, not only this handler.",
+    "259384841": "Supported Spell/Trap type predicate replaces the unavailable convenience API.",
+    "259844716": "Tribute is an effect after the reveal cost and may include this Spirit; successful deferred Normal Summon doubles only the original battle monster instance.",
+    "259635008": "Supported level-existence API is used; fixed two-monster revival obeys simultaneous-summon restrictions.",
+    "259221974": "Its own Special Summon effect explicitly bypasses the card own no-other-summon condition without relaxing unrelated procedure requirements.",
+    "259797813": "Activation search is optional and separately verifies a recoverable Nautica monster.",
+    "259941091": "Summon-history tracking works before the Field Spell appears and its continuous lock is sourced correctly; negated chains do not get added outcomes and deferred Normal Summon modifications wait for success.",
+    "259454809": "Reveal cost requires another nonpublic Aerocat card.",
+    "259767503": "Supported Spell/Trap-type predicate replaces unavailable convenience API.",
+    "259113182": "A recipient immune to this effect cannot have the handler attached as material.",
+    "259548744": "Native overlay capability is checked and graveyard return choices obey Necrovalley.",
+    "259615843": "Attachment uses overlay eligibility, immunity and control restrictions; recipient Xyz must differ from the selected attached card.",
+    "259095349": "Native overlay capability replaces the unavailable attachment predicate.",
+    "259748623": "Supported Monster-type predicate and overlay capability are used; opponent GY attachment obeys Necrovalley and recipient immunity.",
+    "259446105": "CancelToGrave prevents the negated activated card from being sent to GY after successful Deck return.",
+    "259391738": "Banishment identity must be face-up; retargeting is restricted to own legal zones and resolution uses related original target cards.",
+    "259754412": "Supported Trap-type predicate is used; banished identity must be face-up.",
+    "259640854": "Related targets resolve through the original chain target group; independent also-after-that Trap recovery does not require both destructions and banishment identity is public.",
+    "259826112": "Supported Trap predicate is used; immune Fusion materials are excluded and all materials plus actual summon success are required before procedure completion.",
+    "259935441": "Exact Normal Trap type replaces an unavailable helper method.",
+    "259481543": "Fixed simultaneous two-monster summon respects one-at-a-time restriction at activation and resolution.",
+    "259774818": "Original chain target group and supported Spell/Trap predicate replace unavailable helpers.",
+    "259322868": "A face-down field card can include backrow; leave-field reason is a Krawler Monster Effect, not an arbitrary same-named reason card.",
+    "259669838": "Unqualified all-Krawler stat gain affects both players monsters as printed.",
+    "259944344": "The lock restricts Spell/Trap card activations rather than already-face-up effects; copied FLIP targets use legal targeting and original related target group, and recovery excludes hidden banishment.",
+    "259187643": "Optional activation search can be declined without imposing its lock; the soft once-per-turn trigger shares its usage across event clones.",
+    "259247853": "The simultaneous two-Link summon respects one-at-a-time restrictions.",
+    "259296151": "Supported Monster-type predicate replaces an unavailable convenience API.",
+    "259100752": "A destroyed-and-banished card is counted once rather than twice across the two event trackers.",
+    "259024242": "Supported Spell predicate is used and the fixed two-Token summon obeys one-at-a-time restrictions.",
+    "259820516": "Supported Spell predicate, public face-up banishment and own-zone targeting are enforced; all three original related targets must return before drawing.",
+    "259883230": "Search requires a face-up Pyro; once-while-face-up lock is spent on activation and persists until the source resets.",
+    "259542408": "Supported Spell-type predicate replaces an unavailable convenience API.",
+    "259295979": "Destruction resolves through the original chain target group filtered for effect relation.",
+    "259882493": "Face-down Extra Deck summon count is shared by alternate and Fusion routes, summon history uses a supported API and Spell/Trap type checks use supported predicates.",
+    "259537607": "Summon zone mask is passed in the actual SpecialSummon zone parameter and rechecked; column movement handles either Extra Monster Zone and hidden opponent monsters.",
+    "259253329": "Damage Step exclusion uses supported phase constants rather than an unavailable helper API.",
+    "259464064": "Named Field Spell must be face-up; destruction trigger is available during the Damage Step.",
+    "254215159": "After successful face-up negation, AdjustInstantly applies disable effects before banishment; no unrelated activation-chain relation is required for the non-targeting selected card.",
+    "239127930": "Immediate Galactica Link legality and summon both use own face-up Monster Zone group, enforcing printed controlled-material restriction.",
+    "259937399": "Grayscale immediate Link uses own face-up field plus hand group with source as mandatory material, removing mutation of temporary extra-material effects; hand use is explicitly printed.",
+    "259632020": "Discard is resolving effect, not activation cost; explicit REASON_EFFECT discard predicate now matches the operation.",
+    "259269688": "Target selection uses engine negateable-monster predicate; AdjustInstantly applies disable before checking non-LIGHT cards for optional overlay."
+  },
+  "new_card_reviews": {
+    "244165675": [
+      "Three distinct Race/Attribute pairs are targeted, all three must banish, and gained Race/Attribute bits come from successful banishment.",
+      "Own Main/Battle Quick effect requires exact1000ATK loss and matching controlled target; must-attack duration now persists until the affected monster resets, as no turn limit is printed.",
+      "Mandatory End Phase destruction checks all battle participants; three effects have independent hard limits."
+    ],
+    "244161941": [
+      "Nonpublic reveal establishes a different-Attribute legal VS summon; End Phase return tracks its field instance and now expires after that End Phase rather than retrying next turns.",
+      "Opponent Monster Zone departure must come from controller VS Effect; self plus two other GY VS cards are individually placed in selectable bottom order."
+    ],
+    "284636661": [
+      "Set-turn activation checks and pays an archetype discard; Trap Monster attributes and revive legality are checked.",
+      "Successful self-summon precedes optional Deck send plus a different GY monster banish; Quick GY target obeys activation Necrovalley and effect relation."
+    ],
+    "284636662": [
+      "Fusion recipe uses one Level7+ Aquamarine Fusion plus two WATER monsters; send uses a shared per-name turn count bounded by other Level8+ archetype Fusions.",
+      "Related face-up send target is rechecked; opponent-caused departure of the Fusion Summoned handler enables an Extra Deck Fusion-treated summon with completed procedure."
+    ],
+    "284636663": [
+      "MainPhase hand summon requires visible Aquamarine support; summon trigger Sets an eligible Spell/Trap using Field Zone when needed.",
+      "GY banishment plus archetype presence searches the named sanctuary from Deck/GY then discards; three independent hard limits and Extra Deck turn-oath tracking are enforced."
+    ],
+    "284636664": [
+      "MainPhase hand summon requires visible archetype support and rechecks field space.",
+      "Summon trigger performs a real Fusion using public banished materials, full movement to GY and successful completion.",
+      "GY banishment triggers an other-archetype GY banish cost then revives the related handler; three hard limits are independent."
+    ],
+    "284636665": [
+      "Optional search then discard is separate from activation legality and excludes itself.",
+      "Level7+ Aquamarine Fusion presence restricts attacks to those monsters, including direct-attack prevention.",
+      "Fusion-summon trigger excludes Damage Step and targets a GY archetype monster; its printed soft once-per-turn is now per copy, while activation retains its named limit."
+    ],
+    "284636666": [
+      "Distinct-name Fusion subgroups respect mandatory materials, extra checks and available Extra Deck zones.",
+      "GY banish alternate procedure requires2+ distinct names and full payment, with revive limit and unique-on-field restriction.",
+      "Battle protection requires another archetype monster; additional attacks count other differently named high-Level Fusion monsters."
+    ],
+    "238274857": [
+      "Summon trigger sends a Vylon cost, recruits another Level4-or-lower Vylon and applies prior-activity plus remainder LIGHT Synchro oath.",
+      "MainPhase Quick Synchro requires this Tuner as material; GY-from-field trigger pays500LP and equips to the related monster with fixed equip limit; independent named count keys."
+    ],
+    "238274858": [
+      "Union equip and unequip share the standard Union usage flag, legal recipient and capacity checks; soft once-per-turn is now per copy rather than incorrectly shared across all copies.",
+      "Search requires proper Union state; equipped-from-field GY trigger revives a non-Tuner Vylon; hard limits remain distinct."
+    ],
+    "238274859": [
+      "Nonpublic other-Vylon reveal retains its effect relation, requires simultaneous capacity and obeys one-at-a-time restriction.",
+      "Independent remainder-of-turn LIGHT summon restriction is now installed whenever the effect resolves, including interruption.",
+      "Summon trigger equips a compatible Vylon Union from Deck/GY to another related Vylon and sets Union state; separate hard limits."
+    ],
+    "238274860": [
+      "Hand summon destroys another Vylon and accounts for opening space at full field; handler must remain related for its summon.",
+      "Summon search requires both Monster and Spell, confirms only actual additions and discards only if both reached hand.",
+      "GY Synchro material trigger requires a LIGHT reason card and revives eligible Vylon from hand/GY under separate count keys."
+    ],
+    "238274861": [
+      "Two LIGHT GY targets are selected with simultaneous capacity, Necrovalley and one-at-a-time restrictions; related valid targets receive negation before summon completion.",
+      "Independent LIGHT summon lock is installed even if revival fails.",
+      "GY cost banishes this plus a Vylon Synchro, then searches an Equip Spell; archetype treated-as name is stored in database setcodes."
+    ],
+    "238274862": [
+      "Field activation can decline the Tuner summon; choosing it enforces named once-per-turn, prior LIGHT activity and turn oath.",
+      "Destroyed face-up Spell/Trap count limits related GY equips, each recipient is independently rechecked for normal Equip or Union legality.",
+      "Monster Cards in Spell/Trap Zone are granted extra material status only for a Vylon Synchro; card identity/type is database-backed."
+    ],
+    "238274863": [
+      "LIGHT Tuner plus LIGHT non-Tuner Synchro recipe, properly Synchro Summoned search of Vylon Equip Spell from Deck/GY.",
+      "GY equip targets a Vylon Synchro with fixed Equip limit and space checks; optional destruction replacement now explicitly protects only that equipped monster."
+    ],
+    "244168521": [
+      "Link material check accepts FIRE or Dinosaur and linked Extra Monster Zones are disabled.",
+      "GY Dinosaur is targeted then summoned to opponent; current implementation destroys that monster and horizontally adjacent opponent Monster Zones.",
+      "Destruction revival pays a Spell cost and grants leave-field banishment; independent hard limits. Adjacency interpretation is retained for designer review rather than claiming all possible meanings of adjacent zones."
+    ],
+    "244163508": [
+      "Normal/Special shared trigger searches a Machina Monster.",
+      "GY arrival with face-up Machina support sends Level10 Machina from Deck and requires that actual send before related self-revival; independent hard count."
+    ],
+    "244163509": [
+      "Hand summon requires a visible EARTH/DARK Machine and related handler.",
+      "Shared summon trigger Sets a Machina Spell/Trap before optional non-targeted monster destruction, under separate hard limit."
+    ],
+    "244162598": [
+      "Dinosaur Tuner plus one non-Tuner recipe; shared summon/Battle-Phase-destruction trigger targets an own Monster and opponent card before owner-field GY revival.",
+      "Destruction-triggered next-Battle-Phase revival retains a field-instance label and expires at that next Battle Phase; both effects have separate count keys."
+    ],
+    "244161756": [
+      "Discard cost searches Lost World from Deck/GY under Necrovalley.",
+      "Optional Jurraegg Tokens require Dinosaur support, capacity on both fields, token legality and simultaneous-summon permission.",
+      "GY self-banish cost precedes non-targeted destruction of a controlled low-Level Dinosaur."
+    ],
+    "238276572": [
+      "Summon trigger reveals any available nonpublic Sylvan hand subset and bounds excavation by current Deck size; shared standalone excavation helper sends Plants with reveal provenance and orders others at bottom.",
+      "Excavated-to-GY trigger uses Deck origin and REASON_REVEAL plus EFFECT and revives a Sylvan from hand/GY with named once-per-turn."
+    ],
+    "238276573": [
+      "Normal/Special trigger places a selected Sylvan monster on top after shuffling remaining Deck.",
+      "Soft once-per-turn excavation applies the first excavated Plant Level through a field-reset Level effect.",
+      "Named excavation-to-GY trigger targets a related Sylvan GY monster for revival."
+    ],
+    "238276574": [
+      "Soft once-per-turn chooses1..3 bounded by Deck size and uses the shared excavation routine.",
+      "Any Sylvan Special Summon can trigger related hand/GY self-summon; own Normal/Special trigger searches a Sylvan Spell/Trap with independent hard counts."
+    ],
+    "238276575": [
+      "Five-card excavation can add up to2 Sylvan Spell/Traps, sends forced Sylvan excavation cards and Plants and orders remainder; independent Plant remainder restriction applies.",
+      "Effect-caused GY arrival by a Sylvan source revives a Sylvan; this secondary trigger has no added unprinted hard limit."
+    ],
+    "238276576": [
+      "Self-send activation cost precedes constrained three-Sylvan GY targeting; two surviving legal return targets are ordered on top before the third related monster is revived when possible.",
+      "GY banishment replacement protects controlled Plant monsters from effect destruction with a matching replacement value predicate."
+    ],
+    "238276577": [
+      "Optional activation top-stack is capped by distinct Plant Attributes and combines Deck/GY choices with ordered top placement.",
+      "Soft once-per-turn Plant Tribute records Level/Rank/Link Rating and excavates that count using standalone shared routines; forced excavation-to-GY status is handled in the helper."
+    ],
+    "238276578": [
+      "One-Sylvan Link recipe and named summon-once rule; actual Link Summon enables two-card excavation.",
+      "GY banish targets an existing-Level Sylvan, declares1..8 and applies the stored Level to the related face-up target."
+    ],
+    "238276579": [
+      "Rank6 recipe permits2+ materials; search and subsequent one-card excavation require available Deck resources.",
+      "Opponent Spell/Trap effect can be negated after detaching and excavating a bounded count if at least one Plant appears; Plants and forced Sylvan Spell/Trap excavations go to GY and otherwise cards are ordered at bottom."
+    ],
+    "238276580": [
+      "Rank8 recipe uses3; mandatory Xyz trigger can detach zero through all materials and revives up to the excavated Plant count within zone/simultaneous limits.",
+      "Opponent target protection is field-limited.",
+      "Opponent-turn Quick excavation stops at first non-Plant, caps chosen destruction by excavated count and orders remaining cards at bottom; printed hard limits retained."
+    ],
+    "239935093": [
+      "Unique face-up Heart; send-another-WATER-Reptile precedes owner-zone Continuous Spell placement with a turn-wide WATER Reptile oath and GY-origin banish redirect.",
+      "Swamp protection checks a visible named field card; Hydra effect-Deck-return replacement currently covers every Deck destination, broader than the printed shuffle wording.",
+      "Continuous Spell form enables a soft once-per-turn Dark Swamp Spell/Trap search."
+    ],
+    "239935094": [
+      "Normal/Special and mentioned-card GY events share the target-opponent-GY banishment count; Swamp in visible field/GY prevents the chosen card responding.",
+      "WATER Reptile Fusion-material banishment enables public Dark Swamp Spell/Trap setting from Deck/banishment with separate count and Field Spell zone handling."
+    ],
+    "239935095": [
+      "Discard cost sends another WATER Reptile from Deck.",
+      "Special Summon or mentioned-card GY arrival except its own effect targets any field Spell/Trap, with Swamp response protection and a shared hard count."
+    ],
+    "239935096": [
+      "Discard cost sends another WATER Reptile from Deck.",
+      "Special Summon or mentioned-card GY arrival except its own effect targets any field Monster, with Swamp response protection and a shared hard count."
+    ],
+    "239935097": [
+      "Normal/Special or mentioned-card GY event places an own field/GY WATER Reptile in its owner Continuous Spell zone before searching a low-Level mentioned monster.",
+      "Fusion-material banishment has an explicit permanent once-per-Duel flag, then chooses another face-up banished WATER Reptile to return to hand or place as a Continuous Spell."
+    ],
+    "239935098": [
+      "Extra Deck first summon requires Heart plus four differently named WATER Reptiles banished from field/GY, checks center zone and complete payment; subsequent proper revival is allowed.",
+      "Hydra gains 900 per WATER Reptile; destruction trigger creates two tokens on field or revives itself centrally then creates one, subject to token and summon restrictions.",
+      "Soft once-per-turn field wipe requires five WATER Reptiles including face-up Heart."
+    ],
+    "239935099": [
+      "Main/Battle Step activation destroys a WATER Reptile from hand, field or Deck; optional any-field follow-up destruction only follows hand/field destruction.",
+      "GY banish replacement protects controlled Swamp from effect destruction/banishment with matching group predicate; named activation limit."
+    ],
+    "239935100": [
+      "WATER Reptile activity oath covers entire turn; choose GY/face-up banished monster to summon or place as Continuous Spell, then destroy own WATER Reptile Monster Card after success.",
+      "GY banish replacement protects own WATER Reptile Monster Cards from effect banishment while Swamp is face-up."
+    ],
+    "239935101": [
+      "Activation places Deck WATER Reptile as Continuous Spell, retains placement metadata; activation hard limit.",
+      "Damage Step start destroys own battling Hydra then optionally zeros opponent counterpart after success; opponent End Phase shuffles up to two face-up banished WATER Reptiles, separate named limit."
+    ],
+    "239935102": [
+      "Hand activation requires Swamp and opponent monster majority; negates effects activated in S/T, GY or banishment, then destroys related source and controlled WATER Reptile Monster Card.",
+      "GY recovery banishes two including itself and recovers Dark Swamp Spell from GY/face-up banishment; both effects share named use limit."
+    ],
+    "244163199": [
+      "Empty-field hand summon and Special Summon Set from Deck have independent named limits and zone checks.",
+      "GY targets Rank12 and overlays only related nonimmune target; optional gained ignition detaches monster as cost, records its Attribute and summons different Attribute Killamity from Deck."
+    ],
+    "244163200": [
+      "Quick hand summon requires no own monsters or face-up Level/Rank12; optional Rank12 Xyz summon using own face-up monsters occurs only on own turn after successful summon.",
+      "Opponent-effect departure of prior Rank12 triggers simultaneous two-card GY revival with negation, requires two zones and summon legality; Xmaterial grants attack-all only to Rank12."
+    ],
+    "244163201": [
+      "Reveal Rank12 Extra Deck cost, empty-field/LevelRank12 condition and hand summon; independent Extra Deck Rank12 restriction lasts rest of resolving turn.",
+      "Summon trigger searches other-name Killamity monster; Xmaterial grants piercing to Rank12 only; independent named limits."
+    ],
+    "244163202": [
+      "Discard as cost revives self; summon trigger non-targeting opponent monster bounce, independent named limits.",
+      "Rank12 Xmaterial replacement twice per turn protects own face-up Level/Rank12 from battle/effect destruction by detaching one; value matches selected replacement group."
+    ],
+    "244163203": [
+      "Deck Level12 send as cost summons self; resolving independent ExtraDeck Rank12 restriction lasts turn.",
+      "Summon trigger recruits Killamity from hand/GY with Necrovalley filter and free-zone check; Rank12 Xmaterial immunity excludes opponent activated effects."
+    ],
+    "244163204": [
+      "Reveal nonpublic monster records Attribute, searches different Attribute Killamity; activation use and GY draw independent hard limits.",
+      "Banish self and detach Rank12 material as costs; draw one then optionally second only if opponent field card count is higher."
+    ],
+    "244163205": [
+      "Target opponent face-up monster matching Race/Attribute of own overlay monster; related nonimmune victim attaches to chosen own Rank12 at resolution.",
+      "Own Rank12 Killamity condition and GY self-banish cost enable nontargeting face-up opponent card negation through End Phase."
+    ],
+    "244163206": [
+      "Two-plus Level12 Xyz procedure; continuous 200 ATK/DEF per material; Xyz summon trigger negates opponent face-up cards until they reset.",
+      "Main/Battle quick effect attaches one to four own cards including Killamity monster, max one on field; optional opponent selection assigns distinct Monster/Spell/Trap slots and max one on field, Necrovalley-aware."
+    ],
+    "239937489": [
+      "Fish-only Link procedure; summon registers Fusion/Link material bans through that turn.",
+      "Fish banish cost from hand/field/GY draws, optional opponent field banish only if cost originated on field.",
+      "Face-up banishment Quick revival tributes Fish from hand/field and checks prospective zone, then banishes opponent GY card; both quick effects share one hard use."
+    ],
+    "238276248": [
+      "Quick reveal hand summons after successful destruction of Nephthys monster; activation accounts for zone opened by destruction.",
+      "Normal/Special summon searches Ritual or Level8 Nephthys; next own Standby flag excludes current Standby, recovers GY Nephthys and optionally revives if Phoenix activation recorded this turn."
+    ],
+    "238276249": [
+      "Quick reveal destroys another hand card, locks only that physical destroyed card from activation this turn, summons self then optionally searches Nephthys Spell if destroyed card archetype qualifies.",
+      "Normal/Special summon destroys opponent monster without targeting; delayed next own Standby revival tracks destruction by effect and skips current Standby, independent named limits."
+    ],
+    "238276250": [
+      "Tribute/destruction trigger reveals self and hand Ritual then sends eligible Ritual Spell as cost; legality excludes self as prospective material; self must destroy before invoking stored activation operation.",
+      "GY banish trigger derives maximum actual tribute-material count from summoned Ritual group and destroys up to count; next own Standby targets exactly two GY Nephthys monsters to shuffle."
+    ],
+    "238276251": [
+      "Optional activation destruction checks prospective low/high recruitment including victim reaching GY, then requires successful destruction and both search categories at resolution; activation oath.",
+      "Soft once per copy destruction trigger targets opponent card after Nephthys destruction; requires field identification for prior field cards and related face-up source to resolve."
+    ],
+    "238276252": [
+      "Activation requires Level8 destruction that opens two zones and exactly two summonable Level2 Nephthys; destruction occurs during resolution, then negated summons get field-instance tracked End Phase destruction.",
+      "While already in GY, Ritual destruction trigger banishes self as cost and recovers eligible archetype S/T or Phoenix Wing Wind Blast excluding self from Deck/GY/face-up banishment."
+    ],
+    "238273768": [
+      "Pendulum ignition destroys self before replacing with other-name Deck scale; named limit.",
+      "Hand targets own archetype level-bearing monster, applies permanent-until-reset plus1 then summons; Normal/Special trigger recruits hand/Deck/face-up Extra with location-specific zone legality.",
+      "Full-turn activity counter and oath block face-down Extra summons except WIND Synchro, while face-up Extra remains permitted."
+    ],
+    "238273769": [
+      "Pendulum soft flip changes facedown Defense archetype to faceup Defense; response outside Damage Step returns self then summons other scale, named use.",
+      "Mandatory Flip recruits other-name Level4-or-lower facedown and independently imposes resolving WIND Extra restriction.",
+      "Archetype presence enables Quick hand summon then optional immediate Synchro using this mandatory material; summon search independent named limits."
+    ],
+    "238273770": [
+      "Pendulum bounce cost opens prospective zone then summons self; monster summon searches archetype or pinned Symphonic Counter mentions excluding self with full-turn WIND Synchro face-down Extra oath.",
+      "Self return as cost permits prospective hand/GY/face-up Extra recruitment including returned self; post-cost actual group and zone checks preserve changed locations.",
+      "Synchro-material move to face-up Extra removes three counters and recruits hand/GY; activation-time chain flag prevents more than one monster effect same chain."
+    ],
+    "238273771": [
+      "Face-up Symph Amplifire allows once-per-name hand summon procedure.",
+      "Tribute cost validates distinct-name Deck subgroup with exact Level sum, prospective free zones and one-summon restriction; resolution rechecks group.",
+      "GY banish targets own level-bearing archetype, choose plus1 or minus1 while disallowing zero Level; independent named limits."
+    ],
+    "238273772": [
+      "WIND Tuner plus WIND Pendulum Synchro non-Tuner procedure; Pendulum tribute WIND Machine Synchro summons self with prospective zone check and -300 per field counter.",
+      "Monster targeting/destruction protection is opponent-only and continuous -200 per field counter; soft Quick banish requires own Amplifire, removes chosen positive counter count and banishes up to count.",
+      "Opponent battle/effect departure from own MonsterZone allows related self placement into available PendulumZone."
+    ],
+    "238272434": [
+      "Normal/Special search Underroot monster; Quick optional zero-to-two Level reduction tests prospective legal rroot Fusion/Synchro/Xyz summon before committing, Fusion pool restricted own hand/field.",
+      "GY-to-banishment or reverse move recovers self then optional other Underroot from same origin location; source relatedness and destination checked. Corrected imperative recovery to mandatory Trigger_F."
+    ],
+    "238272435": [
+      "Quick discard targets either field ExtraDeck type, records owner/name/type/LevelRankLink before return; owner optional same-type-and-size different-name summon, non-rroot negation.",
+      "Ignition optional Level reduction shares prospective rroot summon logic; move GY/banishment trigger revives with relation/zone checks."
+    ],
+    "238272436": [
+      "Monster movement to own GY/face-up banishment targets that event card to switch destination then summons self from eligible locations and optionally reduces Level.",
+      "Summon sends Deck Underroot then requires actual GY destination before banish; GY self-banish recycles up to distinct controlled Fusion/Synchro/Xyz/Link types from GY/face-up banishment."
+    ],
+    "238272437": [
+      "Hand/field self-banish cost recruits Deck Underroot with prospective zone check.",
+      "Own Underroot Normal/Special summon trigger allows zero-to-two Level decrease and optional non-Tuner treatment only for rroot Synchro; banishment-to-hand/GY move revives with shared use."
+    ],
+    "238272438": [
+      "Two-rroot Fusion or once-per-name GY banish alternate procedure, complete payment guard; summon searches Underroot.",
+      "Quick targets up to three opponent GY/banishment cards, retains target group and switches destinations for related targets.",
+      "Battling opponent monster quick send requires different-name opponent GY summon candidate, then summons it to opponent Defense; no printed use limit."
+    ],
+    "238272439": [
+      "Two Level1 Xyz; Special Summon sets Overroot Trap and grants same-turn activation.",
+      "Quick targets either field card and same controller GY/banishment card, checks prospective zones, overlays first then sets second or optionally summons rroot; group relatedness and source checks.",
+      "Shared rroot battle effect sends opponent battling monster then summons different-name opponent GY monster to opponent Defense."
+    ],
+    "238272440": [
+      "Level3 Tuner plus one non-Tuner Synchro; conditional Level1 offered for rroot Synchro/Ritual/Xyz material without changing actual Level.",
+      "Special Summon sets Afterroot Trap with same-turn activation; Quick pairs opponent Extra-type monster field/GY, banishes first then opponent optionally revives second negated.",
+      "Shared rroot battle send then different-name opponent GY Defense summon; independent named limits on first two activated effects."
+    ],
+    "247755864": [
+      "Ignition destroys self before Attack Position Deck recruit with prospective zone check.",
+      "Mandatory destroyed-to-GY revival records destroying Vritra identity from reason card/effect, discards after successful revive only when matching; independent hard limits."
+    ],
+    "247755865": [
+      "Hand/GY Main ignition and BattleStart trigger share limit; destroy other own archetype card during resolution with prospective zone opening, summon related self then optional opponent S/T destruction.",
+      "Normal/Special trigger chooses Deck archetype card then legal hand/GY destination; independent named limit."
+    ],
+    "247755866": [
+      "FIRE Tuner and one archetype Synchro material procedure, own unique face-up restriction.",
+      "Soft once opponent monster activation negate pays1000 then destroys any other field/own hand card; archetype-effect destruction GY revive hard once with leave-field banish redirect."
+    ],
+    "247755867": [
+      "Continuous own archetype 300 ATK/DEF boost; ignition destroys own hand/field archetype and draws only on success.",
+      "GY target own archetype accounting prospective S/T zone, destroy then Set related self and apply banish redirect; independent named use."
+    ],
+    "247755868": [
+      "Global destruction recorder tracks either player archetype battle/effect destruction this turn; hand/GY summon gains banish redirect.",
+      "Target own archetype and declare Level4-8 for turn; successful Level change restricts source material to Kali Yuga; removed unprinted End Phase expiration of material restriction."
+    ],
+    "247755869": [
+      "Hand/field ignition targets GY archetype for negated Attack summon and independently also summons hand source, checks two zones and multi-summon ban from hand.",
+      "Own archetype field destruction trigger recovers self then destroys own hand/field card or pays2000; effects share hard once."
+    ],
+    "247755870": [
+      "Face-up opponent destruction targets then destroys other own archetype or effect-discards; optional activation application and face-up Quick effect share player turn flag.",
+      "End Phase GY effect banishes FIRE monster as cost then places related self face-up with banish redirect; independent named limit."
+    ],
+    "247755871": [
+      "Two Level4 archetype Xyz, own uniqueness; detach cost places Deck Continuous archetype S/T with zone/forbidden check.",
+      "GY destroys own archetype or S/T during resolution accounting opened zone, revives self with banish redirect then optionally overlays opponent S/T nonimmune to effect."
+    ],
+    "247755872": [
+      "Own FIRE continuous300ATK/100DEF; optional activation archetype monster search with named use.",
+      "Main ignition hand/GY summon then own destruction or2000LP choice; source relatedness, summon success and legal follow-up checked."
+    ],
+    "247755873": [
+      "Two FIRE Level8 Xyz or once-per-turn alternate overlay using FIRE Xyz revived from GY/banishment this turn tracked by global summon recorder; own uniqueness.",
+      "Every Special Summon optionally draws then gains1000 only on draw success; archetype effect destruction GY revival hard once applies banish redirect then optional FIRE level-bearing shuffle."
+    ],
+    "247756271": [
+      "Normal-only summon trigger destroys Deck archetype monster then400damage.",
+      "Battle/effect destruction GY trigger destroys own hand/face-up archetype then recovers related self and gains400; independent hard limits."
+    ],
+    "247756272": [
+      "Standard FIRE Tuner/archetype Synchro or two GY materials totaling8 banished with successful complete payment and once-per-turn alternate flag; corrected custom procedure value to preserve SYNCHRO summon type rather than overwritten zero.",
+      "Opponent S/T effect negate then choose2000selfdamage or facedown selfbanish; destruction target banishes either GY card, independent hard limits."
+    ],
+    "284639717": [
+      "Pendulum condition empty own field or opponent monster; destroy other own archetype opens prospective zone, summon self then replace scale from Deck excluding name.",
+      "Effect destruction searches other-name archetype monster; Defense attack uses ATK, independent named limits."
+    ],
+    "284639718": [
+      "Pendulum opponent ATK loss counts archetype Defense Pendulum monsters across both fields; own archetype enables shared destroy/summon/other-name scale sequence.",
+      "Effect destruction non-targeting banishes opponent GY or, with two own Defense archetypes, random hand card face-up temporarily; field-instance flag returns only still-banished card at End Phase; Defense attack uses ATK."
+    ],
+    "284639719": [
+      "Pendulum replacement destroys self instead of own FieldZone opponent-effect destruction or banishment, with matching replacement value and confirmed-destruction exclusion.",
+      "Shared archetype destruction/summon/scale sequence; Normal/Special/effect destruction share Deck S/T Set limit and FieldSpell zone exception; Defense attack uses ATK."
+    ],
+    "284639720": [
+      "Pendulum grants own archetype Pendulum300DEF per archetype monster either field; own archetype enables other-card destroy/summon then optional GY S/T Set.",
+      "Normal/Special/effect destruction share non-targeting any-field S/T destruction and hard limit; Defense attack uses ATK."
+    ],
+    "284639721": [
+      "Chain-solving optional negation requires opponent immediate response to own archetype effect, shared once flag, then destroys self.",
+      "Archetype enables destroy/summon then optional other-name hand Pendulum summon; effect destruction chooses Deck archetype send excluding self or target opponent Level6-or-lower send; Defense attack uses ATK."
+    ],
+    "284639722": [
+      "Pendulum blocks opponent activation while own archetype battles; destroy-other/summon sequence then optional other-name Pendulum GY revive.",
+      "Effect destruction chooses targeted other-name archetype GY revive negated or opponent Special Summoned monster negation using engine negate filter; Defense attack uses ATK."
+    ],
+    "284639723": [
+      "Pendulum destroys one or two other own archetype cards accounting zone opening, summons self in Defense then optional other-name face-up Extra recovery; counts destroyed Pendulums.",
+      "Pendulum Summoned Defense source responds to opponent effect with Deck Defense summon then own destruction; no printed use limit. End Phase shuffles exact recorded destroyed Pendulum count from face-up Extra, soft once; Defense attack uses ATK."
+    ],
+    "284639724": [
+      "Pendulum protects own archetype from opponent targeting; destroy/summon in Defense then optional other-name face-up Extra Pendulum summon with Extra zone check.",
+      "Own archetype Pendulum destruction permits hand summon without use limit; direct battle damage or opponent BattlePhase activation share hard-limit destroy opponent monster then gain originalDEF; Defense attack uses ATK."
+    ],
+    "284639725": [
+      "Exactly two archetype Pendulum Link materials; Link Summon search then optional destroy own different-name field card.",
+      "Effect-destroyed-to-GY revival checks proper summon legality, zone and related self; independent named limits."
+    ],
+    "284639726": [
+      "Plant Link material group includes archetype Pendulum; linked Defense archetype Pendulum grants attack-target protection.",
+      "MainPhase Quick targets own archetype destroy then draw; ignition targets linked archetype monster plus distinct field card and destroys related targets; independent hard limits and same-chain flag."
+    ],
+    "284636586": [
+      "Optional activation takes archetype Pendulum from Deck to hand or destroys chosen card, legal option selection; activation oath.",
+      "Per-monster first battle destruction protection each turn; own archetype Pendulum gains900ATK only during damage calculation."
+    ],
+    "284636587": [
+      "Own Pendulum presence permits activation negation of either player monster effect or S/T card activation, destroys related source then optional own archetype destruction.",
+      "GY tribute own archetype sets self with banish redirect, independent named use."
+    ],
+    "284636588": [
+      "Targets opponent face-up cards up to own destructible archetype Pendulum count; stores target count and group, destroys up to available own cards but requires full original count destroyed before negation.",
+      "Related face-up targets negated through End Phase using disableability checks; named activation oath."
+    ],
+    "284636589": [
+      "MainPhase activation destroys other-name own hand/field archetype then places Deck Pendulum into available scale; GY banish cost targets other-name archetype S/T to Set, field spell zone exception.",
+      "Both effects share one named use restriction and GY actions respect Necrovalley."
+    ],
+    "239934743": [
+      "Corrected Normal/Special summon send to mandatory trigger; Extra Deck Fiendsmith must actually reach GY before optional non-targeting opponent field/GY bounce.",
+      "Opponent-turn hand/GY Quick targets own face-up original LIGHT Fiend Monster Card in S/T, summons then sends related hand source to GY; independent hard limits."
+    ],
+    "239934744": [
+      "Full-turn LIGHT Fiend activity oath applies to both effects; summons hand/Deck Engraver then optional immediate archetype Link with Engraver mandatory material.",
+      "Global LIGHT Fiend GY departure records either player; GY self-banish sets Deck/face-up banished archetype Trap with zone check; independent hard limits."
+    ],
+    "239932270": [
+      "Select legal place, banish, or both mode when own Tribute WingedBeast exists; placing Field/Continuous Spell from Deck/GY respects zone/Necrovalley and banish mode requires Normal Summoned own WingedBeast plus opponent monster.",
+      "Banish trigger pays hand banish then recovers related self; independent named use."
+    ],
+    "239932271": [
+      "Custom Tribute procedure banishes hand/field monster plus Deck Floo, checks prospective zone and Tribute requirement and marks summon Advance; named limit.",
+      "Own MainPhase Level7+ WingedBeast Tribute success targets opponent Defense monster for Attack change, separate named limit."
+    ],
+    "239932272": [
+      "Shows eligible hand/field/banished Floo and invokes pinned official Normal/Tribute summon target/operation functions; per-name turn flags prevent showing same name again, no overall activation limit printed.",
+      "GY destruction replacement banishes self to protect one selected own face-up Floo Spell or Level7+ WingedBeast from battle/effect destruction, matching value and hard limit."
+    ]
+  },
+  "known_gaps": {
+    "239935093": {
+      "verdict": "UNSUPPORTED",
+      "reason": "The current Deck-destination replacement also prevents fixed top/bottom effect returns. The printed protection only forbids shuffling Hydra monsters into the Deck; this narrower distinction is not implemented by the current replacement."
+    },
+    "244168521": {
+      "verdict": "MANUAL_RULING",
+      "reason": "The custom wording adjacent zones does not define whether it includes vertical Spell/Trap zones. Current Lua destroys only the two horizontally adjacent opponent Main Monster Zones; retain this explicit interpretation pending a designer ruling."
+    }
+  }
+}

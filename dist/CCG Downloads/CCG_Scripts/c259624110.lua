@@ -108,7 +108,7 @@ function s.repop(e,tp,eg,ep,ev,re,r,rp)
 		local mg=Duel.SelectMatchingCard(p,aux.NecroValleyFilter(s.gymatfilter),p,LOCATION_GRAVE,LOCATION_GRAVE,1,1,nil)
 		Duel.Hint(HINT_SELECTMSG,p,HINTMSG_FACEUP)
 		local xc=Duel.SelectMatchingCard(p,s.xyzfilter,p,LOCATION_MZONE,0,1,1,nil):GetFirst()
-		if xc and #mg>0 then
+		if xc and not xc:IsImmuneToEffect(e) and #mg>0 then
 			Duel.Overlay(xc,mg)
 		end
 	end

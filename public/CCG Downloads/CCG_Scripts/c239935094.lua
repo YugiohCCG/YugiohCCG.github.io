@@ -1,5 +1,6 @@
 --Winged Snake of the Swamp
 local s,id=GetID()
+local SET_DARK_SWAMP=0xa123
 local SWAMP=239935101
 local MSG_ID=133935094
 function s.initial_effect(c)
@@ -69,8 +70,8 @@ function s.fusioncon(e)
   and rc:IsType(TYPE_FUSION) and rc:IsRace(RACE_REPTILE) and rc:IsAttribute(ATTRIBUTE_WATER)
 end
 function s.setfilter(c,tp)
- --These are the Dark Swamp Spell/Traps in the pinned website roster.
- return (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup()) and c:IsCode(239935099,239935100,239935101,239935102) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()
+ --Use the same archetype membership as the published database.
+ return (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup()) and c:IsSetCard(SET_DARK_SWAMP) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()
   and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)

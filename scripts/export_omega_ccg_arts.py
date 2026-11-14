@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from urllib.parse import unquote, urlsplit
 from pathlib import Path
 from card_art_crop import crop_card_art_bytes
 
@@ -34,7 +35,7 @@ def export_missing_arts(cards_path: Path, assets_dir: Path, arts_dir: Path, over
             skipped += 1
             continue
 
-        source_path = assets_dir / image_ref.split("/assets/cards/", 1)[1]
+        source_path = assets_dir / unquote(urlsplit(image_ref).path.split("/assets/cards/", 1)[1])
         if not source_path.exists():
             skipped += 1
             continue

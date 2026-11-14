@@ -60,6 +60,8 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 		Duel.RegisterEffect(e1,tp)
 		
 		-- Change chain operation
+		re:SetLabelObject(tc)
+		tc:CreateEffectRelation(re)
 		Duel.ChangeTargetCard(ev,Group.FromCards(tc))
 		Duel.ChangeChainOperation(ev,s.repop)
 	end
@@ -77,7 +79,7 @@ function s.repop(e,tp,eg,ep,ev,re,r,rp)
 	if #tg==0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 	if Duel.Release(tg:Select(tp,1,1,nil),REASON_EFFECT)>0 then
-		local tc=Duel.GetFirstTarget()
+		local tc=e:GetLabelObject()
 		if tc and tc:IsRelateToEffect(e) and tc:IsFaceup() and tc:IsType(TYPE_EFFECT) then
 			local race=tc:GetRace()
 			local attr=tc:GetAttribute()

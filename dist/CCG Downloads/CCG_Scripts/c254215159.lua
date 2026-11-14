@@ -92,7 +92,8 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	e2:SetCode(EFFECT_DISABLE_EFFECT)
 	e2:SetValue(RESET_TURN_SET)
 	tc:RegisterEffect(e2)
-	if tc:IsRelateToEffect(e) and tc:IsDisabled() then Duel.Remove(tc,POS_FACEUP,REASON_EFFECT) end
+	Duel.AdjustInstantly(tc)
+	if tc:IsDisabled() then Duel.Remove(tc,POS_FACEUP,REASON_EFFECT) end
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and e:GetHandler():IsSSetable() end

@@ -109,7 +109,7 @@ function s.sendcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g=Duel.SelectMatchingCard(tp,s.stfilter,tp,LOCATION_DECK,0,1,1,nil,e,tp)
 	local tc=g:GetFirst()
 	if tc and Duel.SendtoGrave(tc,REASON_COST)>0 and tc:IsLocation(LOCATION_GRAVE) then
-		e:SetLabelObject(tc)
+		e:SetLabel(tc:GetCode())
 	end
 end
 function s.stfilter(c,e,tp)
@@ -125,12 +125,11 @@ function s.sendtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	s.register_lock(e,tp)
 end
 function s.sendop(e,tp,eg,ep,ev,re,r,rp)
-	local tc=e:GetLabelObject()
-	if not tc or not tc:IsLocation(LOCATION_GRAVE) then return end
+	local code=e:GetLabel()
 	local applied=false
-	if tc:IsCode(CARD_DATA_TRANSFERT) then
+	if code==CARD_DATA_TRANSFERT then
 		applied=s.dataop(e,tp)
-	elseif tc:IsCode(CARD_CORRUPTION) then
+	elseif code==CARD_CORRUPTION then
 		applied=s.corruptionop(e,tp)
 	end
 	if not applied then return end
