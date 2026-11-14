@@ -88,6 +88,8 @@ export default function BanList() {
     const legal = card.legal;
     const ccg = legal?.banned ? 0 : legal?.limited ? 1 : legal?.semiLimited ? 2 : 3;
     const key = card.name.toUpperCase().replace(/[^A-Z0-9]/g, "");
+    const releaseDate = (tcgBaseline.releaseDates as Partial<Record<string, string>>)[key];
+    if (releaseDate && Date.now() < Date.parse(`${releaseDate}T00:00:00`)) return [];
     const tcg = (tcgBaseline.limits as Record<string, number>)[key] ?? 3;
     return ccg !== tcg ? [{ card, ccg, tcg }] : [];
   });

@@ -10,7 +10,11 @@ function s.initial_effect(c)
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	if Duel.GetReadyChain then
+		e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	else
+		e1:SetCountLimit(1,id,1) -- EFFECT_COUNT_CODE_OATH in modern cores
+	end
 	c:RegisterEffect(e1)
 	--Opponent's monsters lose 500 ATK for each "Vir Pedicae Mortis" monster you control
 	local e2=Effect.CreateEffect(c)

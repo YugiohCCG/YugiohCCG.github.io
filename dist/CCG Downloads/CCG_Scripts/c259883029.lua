@@ -54,7 +54,7 @@ function s.attachop(e,tp,eg,ep,ev,re,r,rp)
 	if not Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_MZONE,0,1,nil) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 	local xc=Duel.SelectMatchingCard(tp,s.xyzfilter,tp,LOCATION_MZONE,0,1,1,nil):GetFirst()
-	if xc then
+	if xc and not xc:IsImmuneToEffect(e) then
 		local og=tc:GetOverlayGroup()
 		if #og>0 then Duel.SendtoGrave(og,REASON_RULE) end
 		Duel.Overlay(xc,Group.FromCards(tc))

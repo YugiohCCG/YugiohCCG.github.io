@@ -3,6 +3,7 @@ local s,id=GetID()
 local STRING_ID=133447408
 local CARD_PEDICAES_PAPA=241868535
 local CARD_RECOLLECTION_MINE=231872299
+local CARD_MYSTIC_MINE=76375976
 function s.initial_effect(c)
 	aux.AddCodeList(c,241868535)
 	--Destroy 1 "Mine" Field Spell and 1 "Pedicae's Papa", and if you do, destroy all cards
@@ -11,14 +12,18 @@ function s.initial_effect(c)
 	e1:SetCategory(CATEGORY_DESTROY)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	if Duel.GetReadyChain then
+		e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	else
+		e1:SetCountLimit(1,id,1) -- EFFECT_COUNT_CODE_OATH in modern cores
+	end
 	e1:SetTarget(s.target)
 	e1:SetOperation(s.activate)
 	c:RegisterEffect(e1)
 end
-s.listed_names={CARD_PEDICAES_PAPA,CARD_RECOLLECTION_MINE}
+s.listed_names={CARD_PEDICAES_PAPA,CARD_RECOLLECTION_MINE,CARD_MYSTIC_MINE}
 function s.minefilter(c)
-	return c:IsFaceup() and c:IsCode(CARD_RECOLLECTION_MINE) and c:IsType(TYPE_FIELD) and c:IsDestructable()
+	return c:IsFaceup() and c:IsCode(CARD_RECOLLECTION_MINE,CARD_MYSTIC_MINE) and c:IsType(TYPE_FIELD) and c:IsDestructable()
 end
 function s.papafilter(c)
 	return c:IsFaceup() and c:IsCode(CARD_PEDICAES_PAPA) and c:IsDestructable()

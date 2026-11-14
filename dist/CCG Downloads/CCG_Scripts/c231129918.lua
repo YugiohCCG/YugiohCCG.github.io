@@ -108,7 +108,7 @@ function s.revop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local tc=g:Select(tp,1,1,nil):GetFirst()
 	if tc
-		and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0
+		and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 and not tc:IsImmuneToEffect(e)
 		and Duel.IsExistingMatchingCard(s.ovfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,tc,tc,e)
 		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then
 		Duel.BreakEffect()

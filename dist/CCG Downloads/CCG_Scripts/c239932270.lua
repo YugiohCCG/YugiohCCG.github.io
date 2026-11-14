@@ -22,9 +22,10 @@ function s.initial_effect(c)
 	e2:SetOperation(s.retop)
 	c:RegisterEffect(e2)
 end
-function s.placefilter(c,e,tp)
+function s.placefilter(c,e,tp,ft)
+	ft=ft or Duel.GetLocationCount(tp,LOCATION_SZONE)
 	return c:IsSetCard(SET_FLOO) and c:IsType(TYPE_SPELL)
-		and (c:IsType(TYPE_FIELD) or c:IsType(TYPE_CONTINUOUS) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0)
+		and (c:IsType(TYPE_FIELD) or c:IsType(TYPE_CONTINUOUS) and ft>0)
 		and not c:IsForbidden()
 end
 function s.own(c,e)
@@ -38,7 +39,9 @@ function s.tribute(c)
 	return c:IsFaceup() and c:IsRace(RACE_WINDBEAST) and c:IsSummonType(SUMMON_TYPE_ADVANCE)
 end
 function s.options(e,tp)
-	local place=Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.placefilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil,e,tp)
+	local ft=Duel.GetLocationCount(tp,LOCATION_SZONE)
+ if e:IsHasType(EFFECT_TYPE_ACTIVATE) and not e:GetHandler():IsLocation(LOCATION_SZONE) then ft=ft-1 end
+ 	local place=Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.placefilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil,e,tp,ft)
 	local banish=Duel.IsExistingMatchingCard(s.own,tp,LOCATION_MZONE,0,1,nil,e)
 		and Duel.IsExistingMatchingCard(s.removable,tp,0,LOCATION_MZONE,1,nil,e)
 	return place,banish

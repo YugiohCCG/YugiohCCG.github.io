@@ -46,8 +46,8 @@ function s.actop(e,tp)
  local g=Duel.SelectMatchingCard(tp,s.searchfilter,tp,LOCATION_DECK,0,1,1,nil)
  if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 then return end
  Duel.ConfirmCards(1-tp,g)
- if Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil) then
-  Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_EFFECT+REASON_DISCARD)
+ if Duel.IsExistingMatchingCard(s.effectdiscard,tp,LOCATION_HAND,0,1,nil) then
+  Duel.DiscardHand(tp,s.effectdiscard,1,1,REASON_EFFECT+REASON_DISCARD)
  end
 end
 function s.highfusion(c)
@@ -88,4 +88,8 @@ function s.spop(e,tp)
   and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then
   Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)
  end
+end
+
+function s.effectdiscard(c)
+	return c:IsDiscardable(REASON_EFFECT)
 end

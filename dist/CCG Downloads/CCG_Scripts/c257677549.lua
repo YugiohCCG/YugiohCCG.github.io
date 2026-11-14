@@ -46,7 +46,7 @@ end
 function s.spcon(e,tp,eg) return eg:IsExists(Card.IsSummonPlayer,1,nil,1-tp) end
 function s.spfilter(c,eg,e,tp)
 	return eg:IsContains(c) and c:IsSummonPlayer(1-tp) and c:IsLocation(LOCATION_MZONE)
-		and c:IsCanTurnSet() and c:IsCanBeEffectTarget(e)
+		and c:IsCanBeEffectTarget(e)
 end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	local c=e:GetHandler()
@@ -71,7 +71,8 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.RegisterEffect(e1,tp)
 	if not c:IsRelateToEffect(e) or Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEDOWN_DEFENSE)==0 then return end
 	local tc=Duel.GetFirstTarget()
-	if tc and tc:IsRelateToEffect(e) and tc:IsFaceup() and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
+	if tc and tc:IsRelateToEffect(e) and tc:IsFaceup() and tc:IsCanTurnSet()
+		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 		Duel.ChangePosition(tc,POS_FACEDOWN_DEFENSE)
 	end
 end

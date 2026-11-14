@@ -4,6 +4,8 @@ local STRING_ID=133103500
 local SET_VIR_PEDICAE_MORTIS=0x39e2
 local CARD_BEAR_TRAP=251699681
 local CARD_FEARLESS_HUNTER=244778917
+local MODERN_MUST_BE_MATERIAL=312
+local MODERN_CHAIN_TARGET_CARDS=8
 function s.initial_effect(c)
 	aux.AddCodeList(c,251699681)
 	c:EnableReviveLimit()
@@ -60,13 +62,30 @@ function s.GetLinkCount(c,lc)
 			return 1+0x10000*2
 		end
 	end
-	return Auxiliary.GetLinkCount(c)
+	return c:IsType(TYPE_LINK) and (1+c:GetLink()*0x10000) or 1
 end
 function s.LCheckGoal(sg,tp,lc,gf,lmat)
 	return sg:CheckWithSumEqual(s.GetLinkCount,lc:GetLink(),#sg,#sg,lc)
 		and Duel.GetLocationCountFromEx(tp,tp,sg,lc)>0 and (not gf or gf(sg,lc,tp))
 		and not sg:IsExists(Auxiliary.LUncompatibilityFilter,1,nil,sg,lc,tp)
 		and (not lmat or sg:IsContains(lmat))
+end
+function s.GetMandatoryMaterials(tp,lc,mg)
+	if Duel.GetMustMaterial then
+		return Duel.GetMustMaterial(tp,EFFECT_MUST_BE_LMATERIAL)
+	end
+	local field=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_MZONE,0,nil)
+	if Auxiliary.GetMustBeMaterialGroup then
+		return Auxiliary.GetMustBeMaterialGroup(tp,field,tp,lc,mg,REASON_LINK)
+	end
+	-- Modern core with Omega's legacy helper library.
+	local required=Group.CreateGroup()
+	for _,effect in ipairs({Duel.GetPlayerEffect(tp,MODERN_MUST_BE_MATERIAL)}) do
+		local value=effect:GetValue()
+		if type(value)=="function" then value=value(effect,field,tp,lc,mg) end
+		if value&REASON_LINK~=0 then required:AddCard(effect:GetHandler()) end
+	end
+	return required
 end
 function s.LinkCondition(f,minct,maxct,gf)
 	return function(e,c,og,lmat,min,max)
@@ -90,7 +109,7 @@ function s.LinkCondition(f,minct,maxct,gf)
 			if not Auxiliary.LConditionFilter(lmat,f,c,e) then return false end
 			mg:AddCard(lmat)
 		end
-		local fg=Duel.GetMustMaterial(tp,EFFECT_MUST_BE_LMATERIAL)
+		local fg=s.GetMandatoryMaterials(tp,c,mg)
 		if fg:IsExists(Auxiliary.MustMaterialCounterFilter,1,nil,mg) then return false end
 		Duel.SetSelectedCard(fg)
 		return mg:CheckSubGroup(s.LCheckGoal,minc,maxc,tp,c,gf,lmat)
@@ -115,7 +134,7 @@ function s.LinkTarget(f,minct,maxct,gf)
 			if not Auxiliary.LConditionFilter(lmat,f,c,e) then return false end
 			mg:AddCard(lmat)
 		end
-		local fg=Duel.GetMustMaterial(tp,EFFECT_MUST_BE_LMATERIAL)
+		local fg=s.GetMandatoryMaterials(tp,c,mg)
 		Duel.SetSelectedCard(fg)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_LMATERIAL)
 		local cancel=Duel.IsSummonCancelable()
@@ -165,7 +184,9 @@ function s.destg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	Duel.SetOperationInfo(0,CATEGORY_DESTROY,g,#g,0,0)
 end
 function s.desop(e,tp,eg,ep,ev,re,r,rp)
-	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e)
+	local targets=Duel.GetChainInfo(0,Duel.GetReadyChain and CHAININFO_TARGET_CARDS or MODERN_CHAIN_TARGET_CARDS)
+	if not targets then return end
+	local g=targets:Filter(Card.IsRelateToEffect,nil,e)
 	if #g>0 then
 		Duel.Destroy(g,REASON_EFFECT)
 	end

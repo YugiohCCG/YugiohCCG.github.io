@@ -1,0 +1,346 @@
+{
+  "archetype": "Gravinity",
+  "status": "In progress; no full-archetype correctness claim",
+  "cards": [
+    {
+      "id": 212345347,
+      "name": "Gravinity Lapsix",
+      "sourceExists": true,
+      "sha256": "5ba1398b3e0a3fae63e6caa966d97cbf295ac7f0f9a1c2ab50ec54527daa448b",
+      "thisBatch": "Not yet reviewed in this batch; prior reports are separate evidence."
+    },
+    {
+      "id": 212429024,
+      "name": "Gravinity Nebulix",
+      "sourceExists": true,
+      "sha256": "24f52c34ba5a607b0330de340b568f5375fec6cdb63a3b8fee76fe8df715b94a",
+      "thisBatch": "Applied Trap type lifetime fixed and runtime verified; see family report for component/full-path distinction. Other effects remain separately tracked."
+    },
+    {
+      "id": 215768254,
+      "name": "Gravinity Star",
+      "sourceExists": true,
+      "sha256": "b1b2080dece4b1df28f559104ac22764db135327cbd20c4009442513f5f94129",
+      "thisBatch": "Continuous Trap normal/removal/leave-return runtime verified"
+    },
+    {
+      "id": 223505382,
+      "name": "Gravinity Transfer Call",
+      "sourceExists": true,
+      "sha256": "0a6123ab16f5c20eb220d1150bd9242f15ef01cef731378f9a27c1978cef510d",
+      "thisBatch": "Applied Trap type lifetime fixed and runtime verified; see family report for component/full-path distinction. Other effects remain separately tracked."
+    },
+    {
+      "id": 231088629,
+      "name": "Gravinity Spherix",
+      "sourceExists": true,
+      "sha256": "306f4104abc81d10caf2e627efbeb97894a0ab525778e8287b88c2779fdc177a",
+      "thisBatch": "Not yet reviewed in this batch; prior reports are separate evidence."
+    },
+    {
+      "id": 235538173,
+      "name": "Gravinity Plasma",
+      "sourceExists": true,
+      "sha256": "8f513a463f25cebec74dd51f9d6ea31bdc511259473ef6e19e7809d59f82ab0e",
+      "thisBatch": "Continuous Trap normal/removal/leave-return runtime verified"
+    },
+    {
+      "id": 238184015,
+      "name": "Gravinity Sonic Scream",
+      "sourceExists": true,
+      "sha256": "8c9dc42ce9f59d1a4a3b27b9883bfb79342dc0e9f0fb695b5885b67b7ac44300",
+      "thisBatch": "Applied Trap type lifetime fixed and runtime verified; see family report for component/full-path distinction. Other effects remain separately tracked."
+    },
+    {
+      "id": 247919552,
+      "name": "Gravinity Gravity Protection",
+      "sourceExists": true,
+      "sha256": "b55394158b1215d87dd19b6ef3cf5253c09b2aba2492fb91aa59610d540420c3",
+      "thisBatch": "Not yet reviewed in this batch; prior reports are separate evidence."
+    },
+    {
+      "id": 249454272,
+      "name": "Gravinity Galaxix",
+      "sourceExists": true,
+      "sha256": "eed3e1ceac3415bb30e9f28eb9b1e1f5b337d6a0b1a6a597ed8feeca60be3b98",
+      "thisBatch": "Field Spell recovery capacity fixed; eight summon-trigger/Set/activation scenarios verified. Actual recipe and remaining effects open."
+    },
+    {
+      "id": 249680945,
+      "name": "Gravinity Orbit",
+      "sourceExists": true,
+      "sha256": "e96ae45b2bb7ef2160c4e995defe462f41a83dfc9a5021f108cd77b6f5bca654",
+      "thisBatch": "Continuous Trap normal/removal/leave-return runtime verified"
+    },
+    {
+      "id": 256172827,
+      "name": "Gravinity Pulse",
+      "sourceExists": true,
+      "sha256": "3071d2569a141ba1b2a1178072aa0e94ed179047f05fb9b03bd96b7884cb6364",
+      "thisBatch": "Applied Trap type lifetime fixed and runtime verified; see family report for component/full-path distinction. Other effects remain separately tracked."
+    },
+    {
+      "id": 256831125,
+      "name": "Gravinity Axis Matter",
+      "sourceExists": true,
+      "sha256": "c94b7818f9d2f586674a5f8ab83c724b6f7d161c8ffda1484c4c3a86aec80259",
+      "thisBatch": "Applied Trap type lifetime fixed and runtime verified; see family report for component/full-path distinction. Other effects remain separately tracked."
+    }
+  ],
+  "continuousTrapInterruption": {
+    "scenarios": [
+      {
+        "name": "Gravinity Continuous Trap interruption 249680945 normal",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity Continuous Trap interruption 249680945 removed",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity Continuous Trap interruption 249680945 blink",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity Continuous Trap interruption 235538173 normal",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity Continuous Trap interruption 235538173 removed",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity Continuous Trap interruption 235538173 blink",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity Continuous Trap interruption 215768254 normal",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity Continuous Trap interruption 215768254 removed",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity Continuous Trap interruption 215768254 blink",
+        "status": "PASS"
+      }
+    ],
+    "method": "Installed card scripts and metadata. Helper places and applies actual source trapify function. Opponent chains removal or GY-to-SZONE return to actual card effect. Normal positive cases prove each resource action. Core automatically prevents removed/re-entered Continuous Trap effect resolution; no production guard changes made.",
+    "fixed": []
+  },
+  "latestInstalledRegression": {
+    "report": "current-installed-effects-regression.json",
+    "passed": 610,
+    "failed": 0
+  },
+  "appliedTrapTypeFamily": {
+    "report": "continuous-trap-type-scan.json",
+    "fixed": [
+      256172827,
+      212429024,
+      238184015,
+      256831125,
+      223505382
+    ],
+    "scenarios": [
+      {
+        "name": "Gravinity trap type survives negation 256172827",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity trap type survives negation 249680945",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity trap type survives negation 235538173",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity trap type survives negation 215768254",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity placement helper type survives negation 212429024",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity placement helper type survives negation 238184015",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity placement helper type survives negation 256831125",
+        "status": "PASS"
+      },
+      {
+        "name": "Transfer Call applied Trap type survives negation",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity trap type survives setting 256172827",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity trap type survives setting 249680945",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity trap type survives setting 235538173",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity trap type survives setting 215768254",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity placement helper type survives setting 212429024",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity placement helper type survives setting 238184015",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity placement helper type survives setting 256831125",
+        "status": "PASS"
+      },
+      {
+        "name": "Transfer Call applied Trap type survives setting",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity trap type resets after leaving 256172827",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity trap type resets after leaving 249680945",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity trap type resets after leaving 235538173",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity trap type resets after leaving 215768254",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity placement helper type resets after leaving 212429024",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity placement helper type resets after leaving 238184015",
+        "status": "PASS"
+      },
+      {
+        "name": "Gravinity placement helper type resets after leaving 256831125",
+        "status": "PASS"
+      },
+      {
+        "name": "Transfer Call applied Trap type resets after leaving",
+        "status": "PASS"
+      }
+    ],
+    "scope": "Pulse, Orbit, Plasma, Star use actual hand placement. Transfer Call uses actual Deck placement. Nebulix/Sonic Scream/Axis call their real placement helper on a neutral monster; complete trigger/copy/negation sequences remain outside those component tests."
+  },
+  "gravityProtectionPrimaryScenarios": [
+    {
+      "name": "Gravity Protection column shuffle two-columns",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravity Protection column shuffle one-column",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravity Protection column shuffle wrong-columns",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravity Protection Trap placement two-slots",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravity Protection Trap placement one-slot",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravity Protection Trap placement wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravity Protection Synchro valid",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravity Protection Synchro wrong-material-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Gravity Protection Synchro wrong-Synchro-set",
+      "status": "PASS"
+    }
+  ],
+  "gravityProtectionScope": "All three action branches have positive/negative scenarios. Synchro branch uses neutral fixed two-material native procedure; fixtures pre-consume placement flag to isolate Synchro legality. Column cases check actual candidate list, return count, and same-name shuffle usage across copies; no claim of exhaustive interaction coverage.",
+  "activationPlacementCapacity": {
+    "report": "activation-szone-capacity-scan.json",
+    "fixedArchetypeCards": [
+      247919552,
+      223505382
+    ],
+    "libraryFixes": 9,
+    "equipReview": "Completed four candidates; Red-Eyes Roar additionally fixed, three self-equipping cards unchanged."
+  },
+  "nextFocus": "Finish related Field Spell Set-capacity family triage, beginning Myutant Amalgamate and Bauy setters. Return afterward to Lapsix/Galaxix remaining effects and actual material recipes.",
+  "transferCombinedEffectsVerification": {
+    "report": "gravinity-transfer-current-verification.json",
+    "passed": 32,
+    "negativeControls": 8,
+    "recipients": [
+      256172827,
+      249680945,
+      235538173,
+      215768254
+    ],
+    "scope": "Current installed Transfer Call plus four actual recipients. Eight bounded native-core scenarios each: primary/movement first, accept/decline, full-row handling, primary/movement shared usage after second-copy setup. Secondary copy is placed with actual source trapify helper; spare eligible Deck resource and open SZONE confirmed natively. Other effects, negated-activation/negated-effect permission boundaries, complete material recipes and live Omega remain separate/open."
+  },
+  "galaxixFieldRecovery": {
+    "report": "field-set-capacity-scan.json",
+    "fixed": 249454272,
+    "scenarios": [
+      {
+        "name": "Galaxix recovered Set capacity field-GY-full",
+        "status": "PASS"
+      },
+      {
+        "name": "Galaxix recovered Set capacity field-banished-full",
+        "status": "PASS"
+      },
+      {
+        "name": "Galaxix recovered Set capacity Trap-GY-full",
+        "status": "PASS"
+      },
+      {
+        "name": "Galaxix recovered Set capacity Trap-GY-room",
+        "status": "PASS"
+      },
+      {
+        "name": "Galaxix recovered Set capacity field-banished-facedown-full",
+        "status": "PASS"
+      },
+      {
+        "name": "Galaxix recovered Set capacity wrong-set-field-GY-full",
+        "status": "PASS"
+      },
+      {
+        "name": "Galaxix recovered card activates same turn field-GY-full",
+        "status": "PASS"
+      },
+      {
+        "name": "Galaxix recovered card activates same turn Trap-GY-room",
+        "status": "PASS"
+      }
+    ],
+    "scope": "Actual installed Galaxix trigger and Set operation after native Special Summon tagged SUMMON_TYPE_SYNCHRO, with procedure status seeded. This checks summon-trigger/resource/space behavior; it does not certify the actual Synchro recipe. Neutral recovery cards have actual activation effects; same-turn activation steps are executed."
+  }
+}

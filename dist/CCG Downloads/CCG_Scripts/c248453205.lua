@@ -60,31 +60,43 @@ function s.registerleave(c,tp)
 	c:RegisterEffect(e1,true)
 end
 function s.costfilter(c,tp,needzone)
-	if needzone and not (c:IsLocation(LOCATION_MZONE) and c:IsControler(tp)) then return false end
+	if needzone and not (c:IsLocation(LOCATION_MZONE) and c:IsControler(tp) and Duel.GetMZoneCount(tp,c)>0) then return false end
 	return c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and (c:IsLocation(LOCATION_HAND) and c:IsReleasable()
 		or c:IsLocation(LOCATION_MZONE) and c:IsFaceup() and c:IsReleasable()
 		or c:IsLocation(LOCATION_DECK) and c:IsFaceup() and c:IsReleasable())
 end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local needzone=Duel.GetLocationCount(tp,LOCATION_MZONE)<=0
-	local g=Duel.GetMatchingGroup(s.costfilter,tp,LOCATION_HAND+LOCATION_MZONE,LOCATION_DECK,nil,tp,needzone)
+	local g=Duel.GetMatchingGroup(s.validtribute,tp,LOCATION_HAND+LOCATION_MZONE,LOCATION_DECK,nil,e,tp,needzone)
 	if chk==0 then return #g>0 end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 	local tc=g:Select(tp,1,1,nil):GetFirst()
-	Duel.Release(tc,REASON_COST)
+	s.tribute(tc,REASON_COST)
+end
+function s.tribute(c,reason)
+	if c:IsLocation(LOCATION_DECK) then
+		Duel.SendtoGrave(c,reason+REASON_RELEASE)
+	else
+		Duel.Release(c,reason)
+	end
 end
 function s.spfilter(c,e,tp)
 	return c:IsSetCard(SET_STAIN) and c:IsLevelBelow(4) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
+function s.validtribute(c,e,tp,needzone)
+	if not s.costfilter(c,tp,needzone) then return false end
+	if Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_HAND+LOCATION_DECK,0,1,c,e,tp)
+		or Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE,0,1,nil,e,tp) then return true end
+	return c:GetOwner()==tp and c:IsLevelBelow(4) and c:IsAbleToGraveAsCost()
+		and not Duel.IsPlayerAffectedByEffect(tp,EFFECT_NECRO_VALLEY)
+		and Duel.IsPlayerCanSpecialSummonMonster(tp,c:GetCode(),0,c:GetType(),c:GetAttack(),c:GetDefense(),c:GetLevel(),c:GetRace(),c:GetAttribute())
+end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return (Duel.GetLocationCount(tp,LOCATION_MZONE)>0
-			or not e:IsCostChecked() and Duel.IsExistingMatchingCard(Card.IsReleasable,tp,LOCATION_MZONE,0,1,nil))
-		and (Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_HAND+LOCATION_DECK,0,1,nil,e,tp)
-			or Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE,0,1,nil,e,tp)) end
+	if chk==0 then return true end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE)
 end
 function s.relfilter(c)
-	return c:IsFaceup() and c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and c:IsReleasableByEffect()
+	return c:IsFaceup() and c:IsSetCard(SET_STAIN) and c:IsType(TYPE_MONSTER) and c:IsReleasable()
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
@@ -102,7 +114,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 			Duel.BreakEffect()
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_RELEASE)
 			local rel=rg:Select(tp,1,1,nil)
-			Duel.Release(rel,REASON_EFFECT)
+			s.tribute(rel:GetFirst(),REASON_EFFECT)
 		end
 	end
 end

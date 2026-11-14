@@ -80,7 +80,7 @@ function s.negop(e,tp,eg,ep,ev,re,r,rp)
 		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 		local xc=Duel.SelectMatchingCard(tp,s.xyzgray,tp,LOCATION_MZONE,0,1,1,nil):GetFirst()
-		if xc then
+		if xc and not xc:IsImmuneToEffect(e) then
 			local mg=Group.CreateGroup()
 			for tc in aux.Next(og) do mg:Merge(tc:GetOverlayGroup()) end
 			if #mg>0 then Duel.SendtoGrave(mg,REASON_RULE) end

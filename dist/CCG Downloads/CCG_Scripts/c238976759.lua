@@ -67,7 +67,7 @@ function s.xyzop(e,tp,eg,ep,ev,re,r,rp)
 		tc:CompleteProcedure()
 		-- Optionally attach materials from GY/banished
 		local matg=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.matfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,nil)
-		if #matg>0 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
+		if not tc:IsImmuneToEffect(e) and #matg>0 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 			Duel.BreakEffect()
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
 			local sg=matg:Select(tp,1,99,nil)

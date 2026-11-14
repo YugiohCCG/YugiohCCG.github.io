@@ -77,9 +77,13 @@ function s.gyop(e,tp,eg,ep,ev,re,r,rp)
 	if not (c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)) then return end
 	if Duel.SendtoHand(c,nil,REASON_EFFECT)==0 or not c:IsLocation(LOCATION_HAND) then return end
 	Duel.ConfirmCards(1-tp,c)
-	if Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil)
+	if Duel.IsExistingMatchingCard(s.effectdiscard,tp,LOCATION_HAND,0,1,nil)
 		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then
 		Duel.BreakEffect()
-		Duel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_EFFECT+REASON_DISCARD)
+		Duel.DiscardHand(tp,s.effectdiscard,1,1,REASON_EFFECT+REASON_DISCARD)
 	end
+end
+
+function s.effectdiscard(c)
+	return c:IsDiscardable(REASON_EFFECT)
 end

@@ -9,7 +9,11 @@ function s.initial_effect(c)
 	e1:SetCategory(CATEGORY_DISABLE_SUMMON+CATEGORY_DESTROY)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_SUMMON)
-	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	if Duel.GetReadyChain then
+		e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	else
+		e1:SetCountLimit(1,id,1) -- EFFECT_COUNT_CODE_OATH in modern cores
+	end
 	e1:SetCondition(s.sumcon)
 	e1:SetTarget(s.sumtg)
 	e1:SetOperation(s.sumop)
@@ -26,7 +30,11 @@ function s.initial_effect(c)
 	e4:SetCategory(CATEGORY_DESTROY)
 	e4:SetType(EFFECT_TYPE_ACTIVATE)
 	e4:SetCode(EVENT_ATTACK_ANNOUNCE)
-	e4:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	if Duel.GetReadyChain then
+		e4:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	else
+		e4:SetCountLimit(1,id,1) -- EFFECT_COUNT_CODE_OATH in modern cores
+	end
 	e4:SetCondition(s.atkcon)
 	e4:SetTarget(s.atktg)
 	e4:SetOperation(s.atkop)
@@ -63,7 +71,9 @@ function s.checkop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.sumcon(e,tp,eg,ep,ev,re,r,rp)
-	return tp~=ep and aux.NegateSummonCondition(e,tp,eg,ep,ev,re,r,rp)
+	if tp==ep then return false end
+	if Duel.GetReadyChain then return aux.NegateSummonCondition(e,tp,eg,ep,ev,re,r,rp) end
+	return Duel.GetCurrentChain()==0
 end
 function s.sumtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end

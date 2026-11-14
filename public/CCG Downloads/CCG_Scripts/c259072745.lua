@@ -75,6 +75,7 @@ function s.eqcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local tc=Duel.SelectMatchingCard(tp,s.costfilter,tp,LOCATION_MZONE,0,1,1,e:GetHandler()):GetFirst()
 	e:SetLabelObject(tc)
 	Duel.Release(tc,REASON_COST)
+	tc:CreateEffectRelation(e)
 end
 function s.eqtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 end
@@ -93,7 +94,7 @@ end
 function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=e:GetLabelObject()
-	if not c:IsRelateToEffect(e) or not tc
+	if not c:IsRelateToEffect(e) or not tc or not tc:IsRelateToEffect(e)
 		or not tc:IsLocation(LOCATION_GRAVE+LOCATION_REMOVED+LOCATION_EXTRA)
 		or (tc:IsLocation(LOCATION_REMOVED+LOCATION_EXTRA) and not tc:IsFaceup())
 		or (tc:IsLocation(LOCATION_GRAVE) and not aux.NecroValleyFilter()(tc))

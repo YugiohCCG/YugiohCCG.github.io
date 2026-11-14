@@ -1,0 +1,79 @@
+{
+  "existingRelations": [
+    211699737,
+    211964444,
+    230998543,
+    238274859,
+    246524183,
+    259072169,
+    259780273
+  ],
+  "fixedIdentityTracking": [
+    215142357,
+    244408495,
+    259072745,
+    259253032
+  ],
+  "storedCopiedEffects": [
+    224811863,
+    238276250,
+    259193076
+  ],
+  "cachedCodeWithCardSpecificFollowup": [
+    245970073
+  ],
+  "temporaryReturn": [
+    241504188
+  ],
+  "fixedCopiedEffectLocationDependency": [
+    259247807
+  ],
+  "scope": "Classification of 17 matched cost-label scripts; not full individual-card verification",
+  "officialCopyReference": "tmp/omega_scripts/c70369116.lua:64-80",
+  "scenarios": [
+    {
+      "name": "Glitchling Bitron copied effect baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Glitchling Bitron copied effect cost card banished",
+      "status": "PASS"
+    }
+  ],
+  "stainlessSearchScenarios": [
+    {
+      "name": "Stainless Story copied search baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Stainless Story copied search cost card banished",
+      "status": "PASS"
+    }
+  ],
+  "stainlessLimitations": "All five copied main-action branches tested with banished cost monster; no general GY-location gate. Later shuffle recipient/identity semantics, original summon-effect equivalence and other effect boundaries remain open.",
+  "stainlessOtherCopyMovementScenarios": [
+    {
+      "name": "Stainless copied bria cost monster banished",
+      "status": "PASS"
+    },
+    {
+      "name": "Stainless copied dante cost monster banished",
+      "status": "PASS"
+    },
+    {
+      "name": "Stainless copied feness cost monster banished",
+      "status": "PASS"
+    },
+    {
+      "name": "Stainless copied rollo cost monster banished",
+      "status": "PASS"
+    }
+  ],
+  "pendingSelfShuffle": {
+    "card": 245970073,
+    "probe": "stainless-self-shuffle-probe.json",
+    "command": "node scripts/fresh_new_floo_fiendsmith_effects.cjs --story-shuffle-probe",
+    "observed": "Activating Spell does not return to Deck; source functions explicitly shuffle the sent monster.",
+    "status": "Unresolved copied self-reference semantics. No production change or full correctness claim."
+  }
+}

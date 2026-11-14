@@ -10,7 +10,11 @@ function s.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_ACTIVATE)
 	e1:SetCode(EVENT_FREE_CHAIN)
 	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
-	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	if Duel.GetReadyChain then
+		e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	else
+		e1:SetCountLimit(1,id,1) -- EFFECT_COUNT_CODE_OATH in modern cores
+	end
 	e1:SetCost(s.cost)
 	e1:SetTarget(s.target)
 	e1:SetOperation(s.operation)

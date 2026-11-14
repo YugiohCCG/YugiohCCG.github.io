@@ -21,14 +21,17 @@ s.listed_series={SET_NEMLERIA}
 function s.exfilter(c)
 	return c:IsCode(CARD_DREAMING_NEMLERIA) and not c:IsForbidden() and c:IsAbleToExtra()
 end
-function s.setfilter(c,tp)
+function s.setfilter(c,tp,ft)
+	ft=ft or Duel.GetLocationCount(tp,LOCATION_SZONE)
 	return c:IsSetCard(SET_NEMLERIA)
-		and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)
+		and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or ft>0)
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then
+	local ft=Duel.GetLocationCount(tp,LOCATION_SZONE)
+ if e:IsHasType(EFFECT_TYPE_ACTIVATE) and not e:GetHandler():IsLocation(LOCATION_SZONE) then ft=ft-1 end
+ 	if chk==0 then
 		return Duel.IsExistingMatchingCard(s.exfilter,tp,LOCATION_HAND|LOCATION_DECK,0,1,nil)
-			and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_DECK|LOCATION_GRAVE,0,1,nil,tp)
+			and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_DECK|LOCATION_GRAVE,0,1,nil,tp,ft)
 	end
 	Duel.SetOperationInfo(0,CATEGORY_TOEXTRA,nil,1,tp,LOCATION_HAND|LOCATION_DECK)
 end

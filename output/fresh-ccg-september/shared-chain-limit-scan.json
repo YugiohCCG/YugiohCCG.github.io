@@ -1,0 +1,26 @@
+[
+  {
+    "code": 238273770,
+    "name": "Symphonic Warrior Disccs",
+    "text": "P\nYou can return 1 card you control to your hand; Special Summon this card from your Pendulum Zone. You can only use this effect of \"Symphonic Warrior Disccs\" once per turn.\nE\nIf this card is Normal or Special Summoned: You can add 1 \"Symphonic Warrior\" monster, or 1 card that mentions Symphonic Counter from your Deck to your hand, except \"Symphonic Warrior Disccs\". You cannot Special Summon from the Extra Deck face-down the turn you activate this effect except WIND Synchro Monsters. You can return this card from your field to your hand; Special Summon 1 \"Symphonic Warrior\" monster from your hand, GY or face-up Extra Deck. If this card is used as Synchro Material and added to your Extra Deck face-up: You can remove 3 Symphonic Counter from the field; Special Summon 1 \"Symphonic Warrior\" monster from your hand or GY. You can only use each effect of \"Symphonic Warrior Disccs\" once per turn, and cannot activate more than 1 in the same Chain.",
+    "review": "Explicit RESET_CHAIN flag implementation exists. Runtime coverage is recorded separately."
+  },
+  {
+    "code": 241056746,
+    "name": "Reactor Shocker",
+    "text": "Neither player can activate cards or effects in response to this card's activation. When your opponent activates an effect and you have a card effect in the same Chain: You can negate all other activated effects in this Chain, then, if the number of your effects in this Chain is equal to or greater than your opponent\u2019s, draw cards equal to that number, then, if one of your effects is Chain Link 1, place 1 card from your hand on the bottom of your Deck. You can only use this effect of \"Reactor Shocker\" once per turn.",
+    "review": "Not a shared activation-limit clause; refers to negating other effects in same Chain."
+  },
+  {
+    "code": 259179054,
+    "name": "Wyvernal Megalopyge",
+    "text": "3 WIND Insect monsters Cannot be destroyed by card effect. Cannot be targeted by your opponent's card effects. You can only use each of the following effects of \"Wyvernal Megalopyge\" once per turn, and cannot activate more than 1 in the same Chain. If this card is Fusion Summoned: You can add 1 \"Wyvernal\" card from your GY or banishment to your hand, then you can destroy 1 other card on the field. During the Main Phase (Quick Effect): You can destroy 1 WIND Insect monster you control, and if you do, destroy all monsters your opponent controls.",
+    "review": "Explicit RESET_CHAIN flag implementation exists. Runtime coverage is recorded separately."
+  },
+  {
+    "code": 284639726,
+    "name": "Terrarumian Venus Flytrap",
+    "text": "2+ Plant monsters, including a \u201cTerrarumian\u201d Pendulum Monster\nWhile this card points to a Defense Position \u201cTerrarumian\u201d Pendulum Monster, your opponent cannot target this card for attacks. You can only use each of the following effects of \u201cTerrarumian Venus Flytrap\u201d once per turn, and cannot activate more than 1 in the same Chain.\n\u25cf During the Main Phase (Quick Effect): You can target 1 \u201cTerrarumian\u201d card you control; destroy it, and if you do, draw 1 card.\n\u25cf You can target 1 \"Terrarumian\" monster this card points to and 1 card on the field; destroy them. ",
+    "review": "Confirmed cross-copy shared-Chain bug fixed with player/name RESET_CHAIN flag; old source and disabled-guard control both fail regression."
+  }
+]

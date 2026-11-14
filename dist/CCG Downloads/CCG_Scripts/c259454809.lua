@@ -18,5 +18,17 @@ function s.spgroup(tp,e) return Duel.GetMatchingGroup(s.spf,tp,LOCATION_HAND+LOC
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and #s.spgroup(tp,e)>0 end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_OVERLAY) end
 function s.spop(e,tp) if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end local g=s.spgroup(tp,e); if #g==0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON); local tc=g:Select(tp,1,1,nil):GetFirst(); Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP) end
 function s.xyz(c) return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:IsRank(6) and c:IsAttribute(ATTRIBUTE_WIND) end
-function s.ovtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and s.xyz(chkc) end if chk==0 then return Duel.IsExistingTarget(s.xyz,tp,LOCATION_MZONE,0,1,nil) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL); Duel.SelectTarget(tp,s.xyz,tp,LOCATION_MZONE,0,1,1,nil) end
-function s.ovop(e) local c=e:GetHandler(); local tc=Duel.GetFirstTarget(); if c:IsRelateToEffect(e) and tc:IsRelateToEffect(e) then Duel.Overlay(tc,Group.FromCards(c)) end end
+function s.ovtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+ if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and s.xyz(chkc) end
+ if chk==0 then return aux.NecroValleyFilter()(e:GetHandler()) and Duel.IsExistingTarget(s.xyz,tp,LOCATION_MZONE,0,1,nil) end
+ Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL)
+ Duel.SelectTarget(tp,s.xyz,tp,LOCATION_MZONE,0,1,1,nil)
+end
+function s.ovop(e,tp)
+ local c=e:GetHandler()
+ local tc=Duel.GetFirstTarget()
+ if c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c) and tc and tc:IsRelateToEffect(e)
+  and tc:IsControler(tp) and not tc:IsImmuneToEffect(e) then
+  Duel.Overlay(tc,Group.FromCards(c))
+ end
+end

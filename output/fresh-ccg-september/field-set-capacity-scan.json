@@ -1,0 +1,644 @@
+{
+  "scope": "717 scripts: SSet scripts with unconditional zero/nonzero SZONE checks. Candidate function review required for Field Spell eligibility.",
+  "candidates": [
+    {
+      "id": 211699737,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) end\nend\n"
+    },
+    {
+      "id": 211699737,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)\n\tlocal tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.setfilter),tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil):GetFirst()\n\tif tc then Duel.SSet(tp,tc) end\nend\n"
+    },
+    {
+      "id": 212837324,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp) return c:IsFaceup() and c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0) end\n"
+    },
+    {
+      "id": 214552846,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)\n\tif chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and s.tgfilter(chkc,e) end\n\tif chk==0 then return Duel.IsExistingTarget(s.tgfilter,tp,LOCATION_MZONE,0,1,nil,e) end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)\n\tlocal g=Duel.SelectTarget(tp,s.tgfilter,tp,LOCATION_MZONE,0,1,1,nil,e)\n\tlocal tc=g:GetFirst()\n\tlocal dg=Duel.GetMatchingGroup(s.dgfilter,tp,LOCATION_MZONE,0,tc,tc)\n\tDuel.SetOperationInfo(0,CATEGORY_DESTROY,dg,#dg,0,0)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.IsExistingMatchingCard(\n\t\t\taux.NecroValleyFilter(s.setfilter),tp,\n\t\t\tLOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil\n\t\t)\n\tthen\n\tend\n\tif Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil) then\n\t\tDuel.SetOperationInfo(0,CATEGORY_LEAVE_GRAVE,nil,1,tp,LOCATION_GRAVE)\n\tend\nend\n"
+    },
+    {
+      "id": 214552846,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal tc=Duel.GetFirstTarget()\n\tif not (tc and tc:IsRelateToEffect(e) and tc:IsType(TYPE_MONSTER)) then return end\n\tlocal dg=Duel.GetMatchingGroup(s.dgfilter,tp,LOCATION_MZONE,0,tc,tc)\n\tif #dg==0 or Duel.Destroy(dg,REASON_EFFECT)==0 then return end\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0\n\t\tor not Duel.IsExistingMatchingCard(\n\t\t\taux.NecroValleyFilter(s.setfilter),tp,\n\t\t\tLOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil\n\t\t)\n\tthen\n\t\treturn\n\tend\n\tif not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then return end\n\tDuel.BreakEffect()\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)\n\tlocal sc=Duel.SelectMatchingCard(\n\t\ttp,aux.NecroValleyFilter(s.setfilter),tp,\n\t\tLOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil\n\t):GetFirst()\n\tif sc and Duel.SSet(tp,sc)>0 then\n\t\tif sc:IsType(TYPE_QUICKPLAY) then\n\t\t\tlocal e1=Effect.CreateEffect(e:GetHandler())\n\t\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\t\te1:SetProperty(EFFECT_FLAG_SET_AVAILABLE)\n\t\t\te1:SetCode(EFFECT_QP_ACT_IN_SET_TURN)\n\t\t\te1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)\n\t\t\tsc:RegisterEffect(e1)\n\t\tend\n\tend\nend\n"
+    },
+    {
+      "id": 215768254,
+      "function": "s.pltg",
+      "body": "function s.pltg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 end end\n"
+    },
+    {
+      "id": 215768254,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp) return c:IsSetCard(SET_GRAVINITY) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0) end\n"
+    },
+    {
+      "id": 215768254,
+      "function": "s.mvcon",
+      "body": "function s.mvcon(e,tp) return e:GetHandler():IsType(TYPE_TRAP) and e:GetHandler():GetSequence()<5 and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 end\n"
+    },
+    {
+      "id": 215768254,
+      "function": "s.domove",
+      "body": "function s.domove(c,tp)\n\tif not c:IsLocation(LOCATION_SZONE) or not c:IsControler(tp) or Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOZONE)\n\tlocal fd=Duel.SelectDisableField(tp,1,LOCATION_SZONE,0,0)\n\tlocal seq=math.floor(math.log(fd,2)+0.5)-8\n\tif seq>=0 and seq<=4 and Duel.CheckLocation(tp,LOCATION_SZONE,seq) then Duel.MoveSequence(c,seq) end\nend\n"
+    },
+    {
+      "id": 217700538,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tlocal c=e:GetHandler()\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and aux.NecroValleyFilter(s.setfilter)(c) end\n\tDuel.SetOperationInfo(0,CATEGORY_LEAVE_GRAVE,c,1,0,0)\nend\n"
+    },
+    {
+      "id": 217700538,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and aux.NecroValleyFilter(s.setfilter)(c) then\n\t\tDuel.SSet(tp,c)\n\tend\nend\n"
+    },
+    {
+      "id": 225358630,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and e:GetHandler():IsSSetable() end\nend\n"
+    },
+    {
+      "id": 225358630,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.SSet(tp,c)>0 then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_TRAP_ACT_IN_SET_TURN)\n\t\te1:SetProperty(EFFECT_FLAG_SET_AVAILABLE)\n\t\te1:SetReset(RESET_EVENT+RESETS_STANDARD)\n\t\tc:RegisterEffect(e1)\n\t\tlocal e2=Effect.CreateEffect(c)\n\t\te2:SetType(EFFECT_TYPE_SINGLE)\n\t\te2:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te2:SetValue(LOCATION_DECKSHF)\n\t\te2:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\tc:RegisterEffect(e2,true)\n\tend\nend\n"
+    },
+    {
+      "id": 230812008,
+      "function": "s.mattg",
+      "body": "function s.mattg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) end\nend\n"
+    },
+    {
+      "id": 230812008,
+      "function": "s.matop",
+      "body": "function s.matop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)\n\tlocal g=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil)\n\tif #g>0 then\n\t\tlocal tc=g:GetFirst()\n\t\tDuel.SSet(tp,tc)\n\t\tlocal e1=Effect.CreateEffect(e:GetHandler())\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetProperty(EFFECT_FLAG_SET_AVAILABLE)\n\t\te1:SetCode(EFFECT_TRAP_ACT_IN_SET_TURN)\n\t\te1:SetReset(RESET_EVENT+RESETS_STANDARD)\n\t\ttc:RegisterEffect(e1)\n\tend\nend\n"
+    },
+    {
+      "id": 235789995,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil) end\nend\n"
+    },
+    {
+      "id": 235789995,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tif not Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil) then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)\n\tlocal tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()\n\tif tc then\n\t\tDuel.SSet(tp,tc)\n\tend\nend\n"
+    },
+    {
+      "id": 236179696,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp)\n\treturn c:IsSetCard(SET_FRUTE) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\n\t\tand (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup())\nend\n"
+    },
+    {
+      "id": 238711686,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp)\n\treturn c:IsSetCard(SET_NAUTICA) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    },
+    {
+      "id": 239934744,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK+LOCATION_REMOVED,0,1,nil) end\nend\n"
+    },
+    {
+      "id": 239934744,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)\n\tlocal g=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK+LOCATION_REMOVED,0,1,1,nil)\n\tif #g>0 then Duel.SSet(tp,g) end\nend\n"
+    },
+    {
+      "id": 239935094,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp)\n --These are the Dark Swamp Spell/Traps in the pinned website roster.\n return (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup()) and c:IsCode(239935099,239935100,239935101,239935102) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()\n  and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    },
+    {
+      "id": 240511702,
+      "function": "s.thstfilter",
+      "body": "function s.thstfilter(c,tp)\n\treturn c:IsSetCard(0x6F4) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    },
+    {
+      "id": 240575550,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK+LOCATION_REMOVED,0,1,nil) end\nend\n"
+    },
+    {
+      "id": 240575550,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)\n\tlocal tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK+LOCATION_REMOVED,0,1,1,nil):GetFirst()\n\tif tc and Duel.SSet(tp,tc)>0 and Duel.GetFlagEffect(tp,id)>0 then\n\t\tlocal e1=Effect.CreateEffect(e:GetHandler())\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_TRAP_ACT_IN_SET_TURN)\n\t\te1:SetProperty(EFFECT_FLAG_SET_AVAILABLE)\n\t\te1:SetReset(RESET_EVENT+RESETS_STANDARD)\n\t\ttc:RegisterEffect(e1)\n\tend\nend\n"
+    },
+    {
+      "id": 244163199,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil) end\nend\n"
+    },
+    {
+      "id": 244163199,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp)\n if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)\n local g=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK,0,1,1,nil)\n if #g>0 then Duel.SSet(tp,g) end\nend\n"
+    },
+    {
+      "id": 244163509,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n  and Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil) end\nend\n"
+    },
+    {
+      "id": 244163509,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp)\n if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)\n local g=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK,0,1,1,nil)\n if #g==0 or Duel.SSet(tp,g)==0 then return end\n if Duel.IsExistingMatchingCard(aux.TRUE,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil)\n  and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then\n  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)\n  local dg=Duel.SelectMatchingCard(tp,aux.TRUE,tp,LOCATION_MZONE,LOCATION_MZONE,1,1,nil)\n  if #dg>0 then Duel.Destroy(dg,REASON_EFFECT) end\n end\nend\n"
+    },
+    {
+      "id": 245378354,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp)\n\treturn c:IsSetCard(SET_URSARCTIC) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    },
+    {
+      "id": 245970073,
+      "function": "s.silasfilter",
+      "body": "function s.silasfilter(c,tp)\n\treturn c:IsSetCard(SET_STAIN) and (c:IsAbleToHand()\n\t\tor (c:IsSSetable() and Duel.GetLocationCount(tp,LOCATION_SZONE)>0))\nend\n"
+    },
+    {
+      "id": 245970073,
+      "function": "s.silasop",
+      "body": "function s.silasop(e,tp)\n\tif not Duel.IsExistingMatchingCard(s.silasfilter,tp,LOCATION_DECK,0,1,nil,tp) then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_OPERATECARD)\n\tlocal tc=Duel.SelectMatchingCard(tp,s.silasfilter,tp,LOCATION_DECK,0,1,1,nil,tp):GetFirst()\n\tif not tc then return end\n\tif tc:IsAbleToHand() and (not (tc:IsSSetable() and Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\n\t\tor Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,4))==0) then\n\t\tif Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then\n\t\t\tDuel.ConfirmCards(1-tp,tc)\n\t\tend\n\telseif tc:IsSSetable() and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 then\n\t\tDuel.SSet(tp,tc)\n\tend\nend\n"
+    },
+    {
+      "id": 246216813,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp)\n\treturn c:IsSetCard(SET_FRUTE) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    },
+    {
+      "id": 247755867,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp)\n return s.desfilter(c) and (Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n  or c:IsLocation(LOCATION_SZONE) and c:GetSequence()<5)\nend\n"
+    },
+    {
+      "id": 247755867,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp)\n local c=e:GetHandler()\n local tc=Duel.GetFirstTarget()\n if not tc or not tc:IsRelateToEffect(e) or Duel.Destroy(tc,REASON_EFFECT)==0 then return end\n if not c:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 or not c:IsSSetable() then return end\n if Duel.SSet(tp,c)>0 then\n  local e1=Effect.CreateEffect(c)\n  e1:SetType(EFFECT_TYPE_SINGLE)\n  e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n  e1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n  e1:SetValue(LOCATION_REMOVED)\n  e1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n  c:RegisterEffect(e1,true)\n end\nend\n"
+    },
+    {
+      "id": 248290754,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp)\n\treturn c:IsSetCard(SET_FRUTE) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    },
+    {
+      "id": 249454272,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) end\nend\n"
+    },
+    {
+      "id": 249454272,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)\n\tlocal tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil):GetFirst()\n\tif tc and Duel.SSet(tp,tc)>0 and (tc:IsType(TYPE_TRAP) or tc:IsType(TYPE_QUICKPLAY)) then\n\t\tlocal e1=Effect.CreateEffect(e:GetHandler())\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetProperty(EFFECT_FLAG_SET_AVAILABLE)\n\t\te1:SetCode(tc:IsType(TYPE_TRAP) and EFFECT_TRAP_ACT_IN_SET_TURN or EFFECT_QP_ACT_IN_SET_TURN)\n\t\te1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)\n\t\ttc:RegisterEffect(e1)\n\tend\nend\n"
+    },
+    {
+      "id": 251699681,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tlocal c=e:GetHandler()\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and c:IsSSetable()\n\t\tand aux.NecroValleyFilter()(c) end\n\tDuel.SetOperationInfo(0,CATEGORY_LEAVE_GRAVE,c,1,0,0)\nend\n"
+    },
+    {
+      "id": 251699681,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c) and c:IsSSetable()\n\t\tand Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.SSet(tp,c)~=0 then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\te1:SetValue(LOCATION_REMOVED)\n\t\tc:RegisterEffect(e1)\n\tend\nend\n\n--An activation that was negated does not count as an activated card.\n"
+    },
+    {
+      "id": 254215159,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and e:GetHandler():IsSSetable() end\nend\n"
+    },
+    {
+      "id": 254215159,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.SSet(tp,c)>0 then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te1:SetValue(LOCATION_DECKSHF)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\tc:RegisterEffect(e1,true)\n\tend\nend\n"
+    },
+    {
+      "id": 256005703,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp) return c:IsFaceup() and c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0) end\n"
+    },
+    {
+      "id": 259058125,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_HAND,0,1,nil) end\nend\n"
+    },
+    {
+      "id": 259058125,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)\n\tlocal tc=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_HAND,0,1,1,nil):GetFirst()\n\tif tc and Duel.SSet(tp,tc)>0 then\n\t\tlocal e1=Effect.CreateEffect(e:GetHandler())\n\t\te1:SetDescription(aux.Stringid(STRING_ID,0))\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetProperty(EFFECT_FLAG_SET_AVAILABLE)\n\t\te1:SetCode(EFFECT_QP_ACT_IN_SET_TURN)\n\t\te1:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)\n\t\ttc:RegisterEffect(e1)\n\tend\nend\n"
+    },
+    {
+      "id": 259121126,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp)\n\treturn c:IsSetCard(SET_AIP) and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    },
+    {
+      "id": 259203522,
+      "function": "s.effcost",
+      "body": "function s.effcost(e,tp,eg,ep,ev,re,r,rp,chk)\n\tlocal can1=Duel.IsPlayerCanDraw(tp,1)\n\t\tand Duel.IsExistingMatchingCard(s.graycostfilter,tp,LOCATION_HAND,0,1,nil)\n\tlocal can2=Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.IsExistingTarget(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil)\n\t\tand Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil)\n\tif chk==0 then return can1 or can2 end\n\tlocal opt=0\n\tif can1 and can2 then\n\t\topt=Duel.SelectOption(tp,aux.Stringid(STRING_ID,0),aux.Stringid(STRING_ID,1))\n\telseif can2 then\n\t\topt=1\n\tend\n\te:SetLabel(opt)\n\tif opt==0 then\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD)\n\t\tDuel.DiscardHand(tp,s.graycostfilter,1,1,REASON_COST+REASON_DISCARD)\n\telse\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_DISCARD)\n\t\tDuel.DiscardHand(tp,Card.IsDiscardable,1,1,REASON_COST+REASON_DISCARD)\n\tend\nend\n"
+    },
+    {
+      "id": 259203522,
+      "function": "s.efftg",
+      "body": "function s.efftg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)\n\tlocal opt=e:GetLabel()\n\tif chkc then return opt==1 and chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE)\n\t\tand aux.NecroValleyFilter(s.setfilter)(chkc) end\n\tif chk==0 then\n\t\tlocal can1=Duel.IsPlayerCanDraw(tp,1) and Duel.IsExistingMatchingCard(s.graycostfilter,tp,LOCATION_HAND,0,1,nil)\n\t\tlocal can2=Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingTarget(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,nil) and Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil)\n\t\treturn can1 or can2\n\tend\n\tif opt==0 then\n\t\tDuel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)\n\telse\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)\n\t\tlocal g=Duel.SelectTarget(tp,aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,1,1,nil)\n\t\tDuel.SetOperationInfo(0,CATEGORY_LEAVE_GRAVE,g,1,tp,LOCATION_GRAVE)\n\tend\nend\n"
+    },
+    {
+      "id": 259203522,
+      "function": "s.effop",
+      "body": "function s.effop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal opt=e:GetLabel()\n\tif opt==0 then\n\t\tif Duel.IsPlayerCanDraw(tp,1) then\n\t\t\tDuel.Draw(tp,1,REASON_EFFECT)\n\t\tend\n\telse\n\t\tlocal tc=Duel.GetFirstTarget()\n\t\tif tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter()(tc)\n\t\t\tand Duel.GetLocationCount(tp,LOCATION_SZONE)>0 then\n\t\t\tDuel.SSet(tp,tc)\n\t\tend\n\tend\nend\n"
+    },
+    {
+      "id": 259366281,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tlocal c=e:GetHandler()\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and c:IsSSetable()\n\t\tand aux.NecroValleyFilter(aux.TRUE)(c) end\nend\n"
+    },
+    {
+      "id": 259366281,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 or not c:IsRelateToEffect(e)\n\t\tor not aux.NecroValleyFilter(aux.TRUE)(c) then return end\n\tif Duel.SSet(tp,c)>0 then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n\t\te1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n\t\te1:SetReset(RESET_EVENT+RESETS_REDIRECT)\n\t\te1:SetValue(LOCATION_REMOVED)\n\t\tc:RegisterEffect(e1,true)\n\tend\nend\n"
+    },
+    {
+      "id": 259410628,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return e:GetHandler():IsSSetable() and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 end\nend\n"
+    },
+    {
+      "id": 259410628,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.SSet(tp,c)>0 then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetCode(EFFECT_TRAP_ACT_IN_SET_TURN)\n\t\te1:SetProperty(EFFECT_FLAG_SET_AVAILABLE)\n\t\te1:SetReset(RESET_EVENT+RESETS_STANDARD)\n\t\tc:RegisterEffect(e1)\n\tend\nend\n"
+    },
+    {
+      "id": 259487387,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil) end\nend\n"
+    },
+    {
+      "id": 259487387,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)\n\tlocal tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.setfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil):GetFirst()\n\tif tc then\n\t\tDuel.SSet(tp,tc)\n\tend\nend\n"
+    },
+    {
+      "id": 259522807,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil) end\nend\n"
+    },
+    {
+      "id": 259522807,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)\n\tlocal g=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK,0,1,1,nil)\n\tif #g>0 then\n\t\tDuel.SSet(tp,g)\n\tend\nend\n"
+    },
+    {
+      "id": 259533644,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp)\n\treturn c:IsSetCard(SET_WYVERNAL) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    },
+    {
+      "id": 259578863,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp)\n\treturn c:IsSetCard(SET_GRAND_BLUE) and c:IsType(TYPE_SPELL) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    },
+    {
+      "id": 259668626,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return e:GetHandler():IsSSetable() and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 end\nend\n"
+    },
+    {
+      "id": 259668626,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tlocal c=e:GetHandler()\n\tif c:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.SSet(tp,c)>0 then\n\t\tlocal e1=Effect.CreateEffect(c)\n\t\te1:SetType(EFFECT_TYPE_SINGLE)\n\t\te1:SetProperty(EFFECT_FLAG_SET_AVAILABLE)\n\t\te1:SetCode(EFFECT_INDESTRUCTABLE_EFFECT)\n\t\te1:SetCondition(s.indcon)\n\t\te1:SetValue(1)\n\t\te1:SetReset(RESET_EVENT+RESETS_STANDARD)\n\t\tc:RegisterEffect(e1)\n\tend\nend\n"
+    },
+    {
+      "id": 259724129,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n\t\tand Duel.IsExistingMatchingCard(s.setfilter,tp,LOCATION_DECK,0,1,nil) end\nend\n"
+    },
+    {
+      "id": 259724129,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp,eg,ep,ev,re,r,rp)\n\tif Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)\n\tlocal g=Duel.SelectMatchingCard(tp,s.setfilter,tp,LOCATION_DECK,0,1,1,nil)\n\tif #g>0 then\n\t\tDuel.SSet(tp,g)\n\tend\nend\n"
+    },
+    {
+      "id": 259774818,
+      "function": "s.pltg",
+      "body": "function s.pltg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingMatchingCard(s.wlf,tp,LOCATION_HAND+LOCATION_DECK,0,1,nil,tp) end end\n"
+    },
+    {
+      "id": 259774818,
+      "function": "s.plop",
+      "body": "function s.plop(e,tp) if Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD); local tc=Duel.SelectMatchingCard(tp,s.wlf,tp,LOCATION_HAND+LOCATION_DECK,0,1,1,nil,tp):GetFirst(); if not tc then return end local face=s.face(tc,tp); local set=tc:IsSSetable(); if face and set then if Duel.SelectOption(tp,aux.Stringid(MSG_ID,3),aux.Stringid(MSG_ID,4))==0 then Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) else Duel.SSet(tp,tc) end elseif face then Duel.MoveToField(tc,tp,tp,LOCATION_SZONE,POS_FACEUP,true) else Duel.SSet(tp,tc) end end\n"
+    },
+    {
+      "id": 259794136,
+      "function": "s.gysetfilter",
+      "body": "function s.gysetfilter(c,tp)\n\treturn c:IsType(TYPE_SPELL+TYPE_TRAP) and aux.IsCodeListed(c,CARD_HARPIE_LADY) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    },
+    {
+      "id": 259851064,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.IsExistingMatchingCard(s.deckfilter,tp,LOCATION_DECK,0,1,nil)\n\t\tand (Duel.GetLocationCount(tp,LOCATION_MZONE)>0 or Duel.GetLocationCount(tp,LOCATION_SZONE)>0) end\nend\n"
+    },
+    {
+      "id": 284636587,
+      "function": "s.settg",
+      "body": "function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)\n if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0\n  and e:GetHandler():IsSSetable() end\n Duel.SetOperationInfo(0,CATEGORY_SSET,e:GetHandler(),1,tp,LOCATION_GRAVE)\nend\n"
+    },
+    {
+      "id": 284636587,
+      "function": "s.setop",
+      "body": "function s.setop(e,tp)\n local c=e:GetHandler()\n if not c:IsRelateToEffect(e) or Duel.GetLocationCount(tp,LOCATION_SZONE)<=0 then return end\n if Duel.SSet(tp,c)==0 then return end\n local redirect=Effect.CreateEffect(c)\n redirect:SetType(EFFECT_TYPE_SINGLE)\n redirect:SetCode(EFFECT_LEAVE_FIELD_REDIRECT)\n redirect:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n redirect:SetReset(RESET_EVENT+RESETS_REDIRECT)\n redirect:SetValue(LOCATION_REMOVED)\n c:RegisterEffect(redirect)\nend\n"
+    },
+    {
+      "id": 284636589,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp)\n return c:IsSetCard(SET_TERRARUMIAN) and c:IsType(TYPE_SPELL+TYPE_TRAP)\n  and not c:IsCode(id) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    },
+    {
+      "id": 284636663,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp)\n return c:IsSetCard(SET_AQUAMARINE) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    },
+    {
+      "id": 284639719,
+      "function": "s.stfilter",
+      "body": "function s.stfilter(c,tp)\n return c:IsSetCard(SET_TERRARUMIAN) and c:IsType(TYPE_SPELL+TYPE_TRAP)\n  and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    },
+    {
+      "id": 284639720,
+      "function": "s.setfilter",
+      "body": "function s.setfilter(c,tp)\n return c:IsSetCard(SET_TERRARUMIAN) and c:IsType(TYPE_SPELL+TYPE_TRAP)\n  and c:IsSSetable() and (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0)\nend\n"
+    }
+  ],
+  "directSetTargetTriage": [
+    {
+      "id": 211699737,
+      "name": "Myutant Amalgamate",
+      "filter": "s.setfilter",
+      "filterBody": "function s.setfilter(c)\n\treturn c:IsFaceupEx() and c:IsSetCard(SET_MYUTANT) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()\nend\n",
+      "classification": "Field eligibility requires source/printed text review."
+    },
+    {
+      "id": 214552846,
+      "name": "Eldora, the Intergalactic Empire",
+      "filter": "s.tgfilter",
+      "filterBody": "function s.tgfilter(c,e)\n\treturn c:IsType(TYPE_MONSTER) and c:IsCanBeEffectTarget(e)\nend\n",
+      "classification": "The extracted target filter addresses monsters; candidate needs separate Set branch inspection, not evidence of Field eligibility."
+    },
+    {
+      "id": 217700538,
+      "name": "Aldrez Blitz",
+      "filter": null,
+      "filterBody": "",
+      "classification": "Field eligibility requires source/printed text review."
+    },
+    {
+      "id": 225358630,
+      "name": "Rai-Bau",
+      "filter": null,
+      "filterBody": "",
+      "classification": "Field eligibility requires source/printed text review."
+    },
+    {
+      "id": 230812008,
+      "name": "Shining Brigade - Loving Division",
+      "filter": "s.setfilter",
+      "filterBody": "function s.setfilter(c)\n\treturn c:IsSetCard(0x7a34) and c:IsType(TYPE_TRAP) and c:IsFaceupEx() and c:IsSSetable()\n\t\tand (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))\nend\n",
+      "classification": "Trap-only filter; Field Spell capacity not applicable."
+    },
+    {
+      "id": 235789995,
+      "name": "NiuHao - Hikam",
+      "filter": "s.setfilter",
+      "filterBody": "function s.setfilter(c)\n\treturn c:IsSetCard(SET_SACRED_TREASURE) and c:IsType(TYPE_SPELL) and c:IsSSetable()\nend\n",
+      "classification": "Field eligibility requires source/printed text review."
+    },
+    {
+      "id": 239934744,
+      "name": "Fiendsmith's Offertorium",
+      "filter": "s.setfilter",
+      "filterBody": "function s.setfilter(c)\n\treturn c:IsSetCard(SET_FIENDSMITH) and c:IsType(TYPE_TRAP) and c:IsSSetable()\n\t\tand (not c:IsLocation(LOCATION_REMOVED) or c:IsFaceup())\nend\n",
+      "classification": "Trap-only filter; Field Spell capacity not applicable."
+    },
+    {
+      "id": 240575550,
+      "name": "Ghoti from a Deeper Depth Than the Deepest Deep",
+      "filter": "s.setfilter",
+      "filterBody": "function s.setfilter(c)\n\treturn c:IsSetCard(SET_GHOTI) and c:IsType(TYPE_TRAP) and (c:IsLocation(LOCATION_DECK) or c:IsFaceup()) and c:IsSSetable()\nend\n",
+      "classification": "Trap-only filter; Field Spell capacity not applicable."
+    },
+    {
+      "id": 244163199,
+      "name": "Killamity Goldenrod",
+      "filter": "s.setfilter",
+      "filterBody": "function s.setfilter(c)\n return c:IsSetCard(SET_KILLAMITY) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()\nend\n",
+      "classification": "Field eligibility requires source/printed text review."
+    },
+    {
+      "id": 244163509,
+      "name": "Machina Trailblazer",
+      "filter": "s.setfilter",
+      "filterBody": "function s.setfilter(c)\n return c:IsSetCard(0x36) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()\nend\n",
+      "classification": "Field eligibility requires source/printed text review."
+    },
+    {
+      "id": 249454272,
+      "name": "Gravinity Galaxix",
+      "filter": "s.setfilter",
+      "filterBody": "function s.setfilter(c,tp) return c:IsFaceupEx() and c:IsSetCard(SET_GRAVINITY) and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()\n\tand (c:IsType(TYPE_FIELD) or Duel.GetLocationCount(tp,LOCATION_SZONE)>0) end\n",
+      "classification": "Confirmed and fixed; eight current installed runtime scenarios."
+    },
+    {
+      "id": 251699681,
+      "name": "Bear Trap",
+      "filter": null,
+      "filterBody": "",
+      "classification": "Field eligibility requires source/printed text review."
+    },
+    {
+      "id": 254215159,
+      "name": "Bauy Spellcasting",
+      "filter": null,
+      "filterBody": "",
+      "classification": "Field eligibility requires source/printed text review."
+    },
+    {
+      "id": 259058125,
+      "name": "Eclipse Observer Maya",
+      "filter": "s.setfilter",
+      "filterBody": "function s.setfilter(c)\n\treturn (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE))\n\t\tand c:IsType(TYPE_QUICKPLAY) and c:IsSSetable()\nend\n",
+      "classification": "Quick-Play Spell-only resource filter excludes Field Spells; this Field Zone issue does not apply."
+    },
+    {
+      "id": 259366281,
+      "name": "Phlogiston's Roar!",
+      "filter": null,
+      "filterBody": "",
+      "classification": "Field eligibility requires source/printed text review."
+    },
+    {
+      "id": 259410628,
+      "name": "Domestica in the Wild",
+      "filter": null,
+      "filterBody": "",
+      "classification": "Field eligibility requires source/printed text review."
+    },
+    {
+      "id": 259487387,
+      "name": "Eclipse Observer Ella",
+      "filter": "s.setfilter",
+      "filterBody": "function s.setfilter(c)\n\treturn (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE))\n\t\tand c:IsType(TYPE_QUICKPLAY) and c:IsSSetable()\nend\n",
+      "classification": "Quick-Play Spell-only resource filter excludes Field Spells; this Field Zone issue does not apply."
+    },
+    {
+      "id": 259522807,
+      "name": "A.I.P Ex Maw",
+      "filter": "s.setfilter",
+      "filterBody": "function s.setfilter(c)\n\treturn c:IsSetCard(SET_AIP) and c:IsType(TYPE_TRAP) and c:IsSSetable()\nend\n",
+      "classification": "Trap-only filter; Field Spell capacity not applicable."
+    },
+    {
+      "id": 259668626,
+      "name": "Domestica in the Underworld",
+      "filter": null,
+      "filterBody": "",
+      "classification": "Field eligibility requires source/printed text review."
+    },
+    {
+      "id": 259724129,
+      "name": "Graylock the Sorcerer of Grayscale",
+      "filter": "s.setfilter",
+      "filterBody": "function s.setfilter(c)\n\treturn c:IsSetCard(SET_GRAYSCALE) and (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) and c:IsSSetable()\nend\n",
+      "classification": "Field eligibility requires source/printed text review."
+    },
+    {
+      "id": 259851064,
+      "name": "Ghostrick Pastrygeist",
+      "filter": "s.deckfilter",
+      "filterBody": "function s.deckfilter(c) return c:IsSetCard(SET_GHOSTRICK) and (c:IsType(TYPE_MONSTER) or c:IsType(TYPE_SPELL+TYPE_TRAP)) end\n",
+      "classification": "Field eligibility requires source/printed text review."
+    },
+    {
+      "id": 284636587,
+      "name": "Terrarumian Spores",
+      "filter": null,
+      "filterBody": "",
+      "classification": "Field eligibility requires source/printed text review."
+    }
+  ],
+  "fixed": [
+    249454272
+  ],
+  "backup": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Backup\\ccg-galaxix-field-set-20261109-050939",
+  "beforeFix": "galaxix-recovery-before.json",
+  "status": "Galaxix reproduced and fixed; related candidate review ongoing. Scan matches are not automatically bugs.",
+  "scenarios": [
+    {
+      "name": "Galaxix recovered Set capacity field-GY-full",
+      "status": "PASS"
+    },
+    {
+      "name": "Galaxix recovered Set capacity field-banished-full",
+      "status": "PASS"
+    },
+    {
+      "name": "Galaxix recovered Set capacity Trap-GY-full",
+      "status": "PASS"
+    },
+    {
+      "name": "Galaxix recovered Set capacity Trap-GY-room",
+      "status": "PASS"
+    },
+    {
+      "name": "Galaxix recovered Set capacity field-banished-facedown-full",
+      "status": "PASS"
+    },
+    {
+      "name": "Galaxix recovered Set capacity wrong-set-field-GY-full",
+      "status": "PASS"
+    },
+    {
+      "name": "Galaxix recovered card activates same turn field-GY-full",
+      "status": "PASS"
+    },
+    {
+      "name": "Galaxix recovered card activates same turn Trap-GY-room",
+      "status": "PASS"
+    }
+  ],
+  "runtimeScope": "Actual installed Galaxix trigger and Set operation after native Special Summon tagged SUMMON_TYPE_SYNCHRO, with procedure status seeded. This checks summon-trigger/resource/space behavior; it does not certify the actual Synchro recipe. Neutral recovery cards have actual activation effects; same-turn activation steps are executed.",
+  "nextReviewPriority": [
+    211699737,
+    225358630,
+    254215159,
+    259724129
+  ],
+  "latestInstalledRegression": {
+    "report": "current-installed-effects-regression.json",
+    "passed": 610,
+    "failed": 0
+  },
+  "currentRecoveryBatch": {
+    "status": "INSTALLED_AND_OCGCORE_VERIFIED",
+    "scriptsScanned": 717,
+    "directSetScripts": 75,
+    "scope": "Library sweep for main Spell/Trap Zone capacity checks that can block legal Field Spell Sets, with single-card and group selection reviewed separately.",
+    "fixed": {
+      "211699737": "Myutant Amalgamate can Set Evolution Lab from Deck, GY or face-up banishment through a full main back row.",
+      "259851064": "Ghostrick Pastrygeist checks the chosen destination for Deck and GY effects and permits Mansion in the Field Zone.",
+      "259072169": "Mirage Formation Dragon accepts Harpies' Hunting Ground and counts its Field Zone separately when choosing a group."
+    },
+    "installedHashes": {
+      "211699737": "6148394faa3e3c553581bcc1e24cebdd96b48c6c9d935521c287c29a047f11a2",
+      "259851064": "d1df1f28c43dd270faeb80d9d7e787243fe70684d6992246a5bb3facc5d82faf",
+      "259072169": "e0903fcded05ebfbe651ed678033b0048b6e559bbe420dfebb428524173aebad"
+    },
+    "backup": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Backup\\ccg-field-recovery-20261110-041219",
+    "focused": {
+      "PASS": 30
+    },
+    "broader": {
+      "PASS": 632
+    },
+    "before": [
+      "field-recovery-family-before.json",
+      "mirage-field-recovery-before.json"
+    ],
+    "after": [
+      "field-recovery-family-installed.json",
+      "current-installed-effects-regression.json"
+    ],
+    "officialReference": [
+      "tmp/omega_scripts/c34572613.lua",
+      "tmp/omega_scripts/c99795159.lua",
+      "tmp/omega_scripts/c75782277.lua"
+    ],
+    "open": [
+      "The downloadable archive diverges from the current source tree and requires separate packaging verification.",
+      "Live Omega duels remain unverified."
+    ]
+  },
+  "solemnRebirthFollowup": {
+    "status": "INSTALLED_AND_OCGCORE_VERIFIED",
+    "card": 224049334,
+    "interpretation": "Printed text explicitly names the Spell & Trap Zone. Field Spells use the separate Field Zone under the official rulebook.",
+    "rulebook": "https://www.yugioh-card.com/en/downloads/rulebook/YS17_BG_EN.pdf",
+    "changes": [
+      "Exclude Field Spells from the eligible group.",
+      "Count capacity after the activation cost frees the source zone.",
+      "Exclude the activation cost card from the eligible GY group."
+    ],
+    "sourceAndInstalledSha256": "4018e3f47c4706fad4f56625d43c7231f7362a93a7c1a77b956b62083ce66006",
+    "backup": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Backup\\ccg-solemn-rebirth-20261110-041819",
+    "baseline": "solemn-rebirth-before.json",
+    "focused": {
+      "PASS": 39
+    },
+    "broader": {
+      "PASS": 641
+    },
+    "chainControls": [
+      "Galataxian Battle Preparation",
+      "Windborne Divine Whirlwind"
+    ],
+    "chainResult": "The targeted Field Spell sets in the Field Zone after a chained effect fills the final main back-row slot. The ordinary Spell remains in its original location.",
+    "verificationScope": "Native OCGCore effect resolution, with neutral fixture cards. Live Omega and downloadable installer verification remain open."
+  }
+}

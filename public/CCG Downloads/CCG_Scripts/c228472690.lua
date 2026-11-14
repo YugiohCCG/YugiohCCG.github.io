@@ -36,9 +36,15 @@ function s.setcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end
 	e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST)
 end
+function s.setlocation(c)
+	if c:IsType(TYPE_FIELD) then return LOCATION_FZONE end
+	return (c:GetOriginalType()&TYPE_MONSTER)~=0 and LOCATION_MZONE or LOCATION_SZONE
+end
 function s.setfilter(c,tp)
-	return c:IsFacedown() and not c:IsForbidden()
-		and Duel.GetLocationCount(tp,(c:GetOriginalType()&TYPE_MONSTER)~=0 and LOCATION_MZONE or LOCATION_SZONE)>0
+	if not c:IsFacedown() or c:IsForbidden() then return false end
+	local loc=s.setlocation(c)
+	if loc==LOCATION_MZONE and c:IsLocation(LOCATION_MZONE) and not c:IsAbleToChangeControler() then return false end
+	return loc==LOCATION_FZONE or Duel.GetLocationCount(tp,loc)>0
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(1-tp) and chkc:IsOnField() and s.setfilter(chkc,tp) end
@@ -48,12 +54,19 @@ function s.settg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.setop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
-	if not tc or not tc:IsRelateToEffect(e) or not tc:IsFacedown() then return end
-	local ismonster=(tc:GetOriginalType()&TYPE_MONSTER)~=0
-	local loc=ismonster and LOCATION_MZONE or LOCATION_SZONE
-	if Duel.GetLocationCount(tp,loc)<=0 then return end
+	if not tc or not tc:IsRelateToEffect(e) or not s.setfilter(tc,tp) then return end
+	local loc=s.setlocation(tc)
+	local ismonster=loc==LOCATION_MZONE
 	local pos=ismonster and POS_FACEDOWN_DEFENSE or POS_FACEDOWN
-	if Duel.MoveToField(tc,tp,tp,loc,pos,true) and ismonster then tc:SetStatus(STATUS_SET_TURN,false) end
+	local moved
+	if ismonster and tc:IsLocation(LOCATION_MZONE) then
+		moved=Duel.GetControl(tc,tp)>0
+	else
+		moved=Duel.MoveToField(tc,tp,tp,loc,pos,true)
+	end
+	if moved and ismonster then
+		tc:SetStatus(STATUS_SET_TURN|STATUS_SUMMON_TURN|STATUS_FLIP_SUMMON_TURN|STATUS_SPSUMMON_TURN|STATUS_CANNOT_CHANGE_FORM,false)
+	end
 end
 function s.attachfilter(c,xc)
 	return c~=xc and c:IsFaceup() and c:IsSetCard(SET_GHOSTRICK) and c:IsType(TYPE_XYZ)

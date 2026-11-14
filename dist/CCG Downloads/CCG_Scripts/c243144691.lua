@@ -60,7 +60,7 @@ function s.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local rc=c:GetReasonCard()
 	return (c:IsLocation(LOCATION_GRAVE) or c:IsLocation(LOCATION_REMOVED))
-		and r==REASON_LINK and rc and rc:IsSetCard(SET_VIR_PEDICAE_MORTIS) and rc:IsType(TYPE_LINK)
+		and r&REASON_LINK~=0 and rc and rc:IsSetCard(SET_VIR_PEDICAE_MORTIS) and rc:IsType(TYPE_LINK)
 end
 function s.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.CheckReleaseGroup(tp,s.sprelfilter,1,nil,tp) end

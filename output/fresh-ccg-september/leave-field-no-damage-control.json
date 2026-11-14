@@ -1,0 +1,131 @@
+{
+  "scope": "Listed OCGCore scenarios with installed scripts and installed card data. Neutral fixture resources and API adapters are used. Full-card and live Omega verification remain open.",
+  "compatibility": "Legacy Link and fixture Xyz argument translation and procedures, selected chain target mapping, basic Level 12 Xyz material eligibility/selection bridge for ordinary fixture monsters, ordinary fixture overlay eligibility. Graydeux alternate Xyz cases isolate that procedure from the unsupported ordinary Xyz API.",
+  "pendingCases": [
+    "A Stainless Story: --story-shuffle-probe tests whether copied self-shuffle must move the activating Spell instead of the sent monster; current source moves the sent monster. Ruling/intent unresolved.",
+    "Ghostrick 239335848: conversion of recipient effects to Quick Effects is currently unimplemented.",
+    "Sarifiel: hypothetical effect immunity of a GY material. The --grave-immune-probe reproduces attachment; expected ruling needs confirmation before a production change."
+  ],
+  "installedScripts": {
+    "215105971": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c215105971.lua",
+      "sha256": "7a53634c414f7c2dd142262c64de58a70557e683f40650d6efc77561cb6eebab"
+    },
+    "218142234": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c218142234.lua",
+      "sha256": "06358feb315c8f12880eba8a64ff738183a50ec8ef43bd919c217c8b8c5f068b"
+    },
+    "224751741": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c224751741.lua",
+      "sha256": "2b7e4a98172c1eb60696fc0fb9fe1fa2a10515e4a687032165896d5c1f706fef"
+    },
+    "236616849": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c236616849.lua",
+      "sha256": "e4c93b19ec73dbaf9c8427755e1c0bae8be6f13339d37d6df77c512acce344ae"
+    },
+    "238273772": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c238273772.lua",
+      "sha256": "bda94620f7463105455abf93456c066af71bc5715f725730cf3d840940a32161"
+    },
+    "239245471": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239245471.lua",
+      "sha256": "3fe3a15f4ebba1b86bc599ab9f4b87292ea531f12a40ef0500c5fd3732bf1cb2"
+    },
+    "239932270": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932270.lua",
+      "sha256": "23f103f1f12b741e3bd998447f55ef18fafc2c1daae7332fbedfe4ac58a68d7d"
+    },
+    "239932271": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932271.lua",
+      "sha256": "c4b1cda43b88b195c3c0c7f4e309388f524d68a1ab8b41a6eb14acfadaf3dbd6"
+    },
+    "239932272": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932272.lua",
+      "sha256": "e107250638c5e514f7918a2b36e92da5596f8dbfa881cc2ecbb4cd841d3994d9"
+    },
+    "239934743": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934743.lua",
+      "sha256": "f245ec3b9c813950718073f7917b946d99f6a6464b2d0f3efaaa4c90d2f4cffa"
+    },
+    "239934744": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934744.lua",
+      "sha256": "39cdb3edb81a79a5b36ddc921cefa54b4b1fbad2b5664771e46e392e446bcd91"
+    },
+    "259669838": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259669838.lua",
+      "sha256": "4c51489338a05e068cbf2ecd89d16cc959bcd0251922b06d6365ec49b0cb6fef"
+    },
+    "259883230": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259883230.lua",
+      "sha256": "31f30300d9ac93aced17e889fb7b7b484e56e5173c31d417250e0830ecb2664f"
+    }
+  },
+  "results": [
+    {
+      "name": "Revenge revival after battle",
+      "status": "FAIL",
+      "error": "Battle revival trigger count\n\n0 !== 1\n"
+    },
+    {
+      "name": "Revenge revival after battle-wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge revival after battle-facedown",
+      "status": "FAIL",
+      "error": "Battle revival trigger count\n\n0 !== 1\n"
+    },
+    {
+      "name": "Azrynior GY recovery after battle 224751741",
+      "status": "FAIL",
+      "error": "Named revival limit\n\n0 !== 1\n"
+    },
+    {
+      "name": "Azrynior GY recovery after battle 239245471",
+      "status": "FAIL",
+      "error": "Named revival limit\n\n0 !== 1\n"
+    },
+    {
+      "name": "Opponent-card leave trigger battle 259669838 matching true",
+      "status": "FAIL",
+      "error": "Named revival limit\n\n0 !== 1\n"
+    },
+    {
+      "name": "Opponent-card leave trigger battle 259669838 matching false",
+      "status": "PASS"
+    },
+    {
+      "name": "Opponent-card leave trigger battle 259883230 matching true",
+      "status": "FAIL",
+      "error": "Draw count\n\n0 !== 1\n"
+    },
+    {
+      "name": "Opponent-card leave trigger battle 259883230 matching false",
+      "status": "PASS"
+    },
+    {
+      "name": "Leave-field Pendulum battle 218142234 full false",
+      "status": "PASS"
+    },
+    {
+      "name": "Leave-field Pendulum battle 218142234 full true",
+      "status": "PASS"
+    },
+    {
+      "name": "Leave-field Pendulum battle 238273772 full false",
+      "status": "PASS"
+    },
+    {
+      "name": "Leave-field Pendulum battle 238273772 full true",
+      "status": "PASS"
+    },
+    {
+      "name": "Urphiel battle leave revival proper Xyz true",
+      "status": "PASS"
+    },
+    {
+      "name": "Urphiel battle leave revival proper Xyz false",
+      "status": "PASS"
+    }
+  ]
+}

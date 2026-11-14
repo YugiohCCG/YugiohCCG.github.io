@@ -42,12 +42,14 @@ function s.setcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.Remove(c,POS_FACEUP,REASON_COST)
 end
 function s.setfilter(c,tp)
-	return c:GetFlagEffect(id+1-tp)>0 and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsSSetable()
+	return c:GetFlagEffect(id+1-tp)>0 and c:IsType(TYPE_SPELL+TYPE_TRAP)
+		and not c:IsType(TYPE_FIELD) and c:IsSSetable(true)
 end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
+	local c=e:GetHandler()
 	local ft=Duel.GetLocationCount(tp,LOCATION_SZONE)
-	if e:GetHandler():IsLocation(LOCATION_SZONE) then ft=ft+1 end
-	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,nil,tp)
+	if c:IsLocation(LOCATION_SZONE) then ft=ft+1 end
+	local g=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.setfilter),tp,LOCATION_GRAVE,0,c,tp)
 	if chk==0 then return ft>0 and #g>0 and #g<=ft end
 	Duel.SetOperationInfo(0,CATEGORY_LEAVE_GRAVE,g,#g,tp,0)
 end

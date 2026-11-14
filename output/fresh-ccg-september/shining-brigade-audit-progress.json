@@ -1,0 +1,1292 @@
+{
+  "archetype": "Shining Brigade",
+  "status": "in progress; full effect coverage not established",
+  "sourceFiles": [
+    "c215142357.lua",
+    "c220124524.lua",
+    "c223750159.lua",
+    "c230812008.lua",
+    "c232038002.lua",
+    "c232100722.lua",
+    "c232824319.lua",
+    "c236616849.lua",
+    "c238841732.lua",
+    "c238976759.lua",
+    "c241504188.lua",
+    "c243194249.lua",
+    "c243420199.lua",
+    "c244986323.lua",
+    "c249629457.lua",
+    "c255668557.lua"
+  ],
+  "verifiedScenarios": [
+    {
+      "name": "Attachment family 215142357 baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Attachment family 215142357 recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade summon-then-attach baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade summon-then-attach recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together draw field",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together draw wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together draw grave",
+      "status": "PASS"
+    },
+    {
+      "name": "Heartbeat attached by effect grants banish response",
+      "status": "PASS"
+    },
+    {
+      "name": "Heartbeat material requires Brigade recipient",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous attached by effect grants grave banish",
+      "status": "PASS"
+    },
+    {
+      "name": "Heartbeat detached material no longer grants response",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous material wrong-host",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous material detached",
+      "status": "PASS"
+    },
+    {
+      "name": "Heartbeat native Xyz material grants response",
+      "status": "PASS"
+    },
+    {
+      "name": "Armada destroyed revives up to opponent card count 0",
+      "status": "PASS"
+    },
+    {
+      "name": "Armada destroyed revives up to opponent card count 1",
+      "status": "PASS"
+    },
+    {
+      "name": "Armada destroyed revives up to opponent card count 2",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge Division doubles stats normal",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge Division doubles stats immune",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge Division doubles stats expiry",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope Division two-monster summon normal",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope Division two-monster summon one-target",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope Division two-monster summon wrong-level",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope Division two-monster summon prior-non-brigade",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope Division needs two legal monsters at resolution",
+      "status": "PASS"
+    },
+    {
+      "name": "Last Stand recycling Brigade count 0",
+      "status": "PASS"
+    },
+    {
+      "name": "Last Stand recycling Brigade count 1",
+      "status": "PASS"
+    },
+    {
+      "name": "Last Stand recycling Brigade count 2",
+      "status": "PASS"
+    },
+    {
+      "name": "Last Stand negate spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Last Stand negate field-monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Last Stand negate grave-monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together protection faceup",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together protection facedown",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together protection wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together banish protection faceup",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together banish protection facedown",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together banish protection wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Loving Division self summon hand",
+      "status": "PASS"
+    },
+    {
+      "name": "Loving Division self summon grave",
+      "status": "PASS"
+    },
+    {
+      "name": "Loving Division self summon wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Loving Division self summon self-only",
+      "status": "PASS"
+    },
+    {
+      "name": "Loving material sets activatable Trap from 1",
+      "status": "PASS"
+    },
+    {
+      "name": "Loving material sets activatable Trap from 16",
+      "status": "PASS"
+    },
+    {
+      "name": "Loving material sets activatable Trap from 32",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering inherited recovery grave",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering inherited recovery banished",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering inherited recovery facedown",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering inherited recovery wrong-host",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering native hand summon cost 16",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering native hand summon cost 32",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering summon rejects facedown banished cost",
+      "status": "PASS"
+    },
+    {
+      "name": "Forward inherited first Spell negation attached",
+      "status": "PASS"
+    },
+    {
+      "name": "Forward inherited first Spell negation wrong-host",
+      "status": "PASS"
+    },
+    {
+      "name": "Forward inherited first Spell negation detached",
+      "status": "PASS"
+    },
+    {
+      "name": "Forward inherited first Spell negation monster-first",
+      "status": "PASS"
+    },
+    {
+      "name": "Lets Go Brigade summon",
+      "status": "PASS"
+    },
+    {
+      "name": "Lets Go Brigade controlled-monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Lets Go Brigade grave-search",
+      "status": "PASS"
+    },
+    {
+      "name": "Lets Go prior summon LIGHT restriction false",
+      "status": "PASS"
+    },
+    {
+      "name": "Lets Go prior summon LIGHT restriction true",
+      "status": "PASS"
+    },
+    {
+      "name": "Lets Go applies LIGHT summon lock",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody extra Normal Summon one-copy",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody extra Normal Summon two-copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody extra Normal Summon wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody shared summon-set allowance false",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody shared summon-set allowance true",
+      "status": "PASS"
+    },
+    {
+      "name": "Companion Team targeting protection faceup",
+      "status": "PASS"
+    },
+    {
+      "name": "Companion Team targeting protection facedown",
+      "status": "PASS"
+    },
+    {
+      "name": "Companion Team targeting protection wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Companion Team summons on opponent attack",
+      "status": "PASS"
+    },
+    {
+      "name": "Absolute Supremacy negate spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Absolute Supremacy negate monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Absolute Supremacy negate return",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins destroy then banish normal",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins destroy then banish indestructible",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins destroy then banish one-material",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins Pendulum placement destroyed",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins Pendulum placement Tribute",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins attachment trigger opponent-grave",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins attachment trigger own-grave",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins attachment trigger immune",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins attachment trigger summoned",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins attachment trigger spell-target",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade summon trigger 220124524 prior outsider false",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade summon trigger 220124524 prior outsider true",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade summon trigger 232038002 prior outsider false",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade summon trigger 232038002 prior outsider true",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Special Summon trigger 220124524 prior outsider false",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Special Summon trigger 220124524 prior outsider true",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Special Summon trigger 232038002 prior outsider false",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Special Summon trigger 232038002 prior outsider true",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous revival trigger grave",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous revival trigger banished",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous revival trigger facedown",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous revival trigger wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous revival trigger opponent",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous revival trigger missed-timing",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge revival and highest ATK damage opponent",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge revival and highest ATK damage own",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge revival and highest ATK damage wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge revival and highest ATK damage empty-field",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge Standby attachment monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge Standby attachment spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge Standby attachment wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge Standby attachment own-only",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 223750159 legal",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 223750159 wrong-level",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 223750159 wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 236616849 legal",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 236616849 wrong-level",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 236616849 wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 244986323 legal",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 244986323 wrong-level",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 244986323 wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Link recipe 232824319 legal",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Link recipe 232824319 wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Link recipe 232824319 link-material",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Link recipe 241504188 legal",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Link recipe 241504188 wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Link recipe 241504188 link-material",
+      "status": "PASS"
+    },
+    {
+      "name": "Armada draw detach cost 0",
+      "status": "PASS"
+    },
+    {
+      "name": "Armada draw detach cost 1",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope own summon location 2 opponent false",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope own summon location 2 opponent true",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope own summon location 16 opponent false",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope own summon location 16 opponent true",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Field Spell activation search false",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Field Spell activation search true",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together rejects recipient that left and returned",
+      "status": "PASS"
+    },
+    {
+      "name": "Supremacy battle protection own",
+      "status": "PASS"
+    },
+    {
+      "name": "Supremacy battle protection opponent",
+      "status": "PASS"
+    },
+    {
+      "name": "Supremacy battle protection wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins Pendulum targeting protection spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins Pendulum targeting protection trap",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins Pendulum targeting protection monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins Pendulum targeting protection wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together cost resource boundary no-material",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together cost resource boundary no-attach-card",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope both summon restrictions expire after End Phase",
+      "status": "PASS"
+    },
+    {
+      "name": "Companion attack targeting without Brigade support",
+      "status": "PASS"
+    },
+    {
+      "name": "Companion Team unique control restriction",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins cannot occupy full Pendulum Zones",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope summon limit shared with copy in 2",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope summon limit shared with copy in 16",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering summon limit shared across copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Field Spell both effects same turn",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Field Spell needs two discard cards",
+      "status": "PASS"
+    },
+    {
+      "name": "Armada draw limit shared across loaded copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Heartbeat summon lock survives effect negation",
+      "status": "PASS"
+    },
+    {
+      "name": "Forward summon lock survives effect negation",
+      "status": "PASS"
+    },
+    {
+      "name": "Supremacy negates banish-protected monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Supremacy banishes activated card without GY copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Heartbeat use lock survives activation negation",
+      "status": "PASS"
+    },
+    {
+      "name": "Forward use lock survives activation negation",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous native die banish cap seed 1",
+      "status": "PASS",
+      "roll": 4
+    },
+    {
+      "name": "Joyous native die banish cap seed 2",
+      "status": "PASS",
+      "roll": 5
+    },
+    {
+      "name": "Joyous native die banish cap seed 3",
+      "status": "PASS",
+      "roll": 3
+    },
+    {
+      "name": "Joyous native die banish cap seed 5",
+      "status": "PASS",
+      "roll": 2
+    },
+    {
+      "name": "Joyous native die banish cap seed 7",
+      "status": "PASS",
+      "roll": 1
+    },
+    {
+      "name": "Joyous native die banish cap seed 8",
+      "status": "PASS",
+      "roll": 6
+    },
+    {
+      "name": "Brigade GY restriction under official Necrovalley 230812008",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade GY restriction under official Necrovalley 232100722",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade GY restriction under official Necrovalley 243420199",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering banished cost remains legal under Necrovalley",
+      "status": "PASS"
+    },
+    {
+      "name": "Chained official Necrovalley blocks Brigade GY movement 230812008",
+      "status": "PASS"
+    },
+    {
+      "name": "Chained official Necrovalley blocks Brigade GY movement 243420199",
+      "status": "PASS"
+    },
+    {
+      "name": "Companion Team summons from hand on attack",
+      "status": "PASS"
+    }
+  ],
+  "attachmentFamily": {
+    "sourceFilesContainingOverlay": 43,
+    "files": [
+      "c214226989.lua",
+      "c215142357.lua",
+      "c218905439.lua",
+      "c227531376.lua",
+      "c228472690.lua",
+      "c228635967.lua",
+      "c228860650.lua",
+      "c231088629.lua",
+      "c231089172.lua",
+      "c231129918.lua",
+      "c234599395.lua",
+      "c235687149.lua",
+      "c236616849.lua",
+      "c238272439.lua",
+      "c238282350.lua",
+      "c238976759.lua",
+      "c239335848.lua",
+      "c243420199.lua",
+      "c244163199.lua",
+      "c244163205.lua",
+      "c244163206.lua",
+      "c244986323.lua",
+      "c247755871.lua",
+      "c256207361.lua",
+      "c256831125.lua",
+      "c259072169.lua",
+      "c259095349.lua",
+      "c259097228.lua",
+      "c259113182.lua",
+      "c259137697.lua",
+      "c259219942.lua",
+      "c259229055.lua",
+      "c259264449.lua",
+      "c259269688.lua",
+      "c259365935.lua",
+      "c259454809.lua",
+      "c259548744.lua",
+      "c259615843.lua",
+      "c259624110.lua",
+      "c259626409.lua",
+      "c259748623.lua",
+      "c259767503.lua",
+      "c259883029.lua"
+    ],
+    "note": "Search inventory, not proof of full effect coverage. Summon-material procedures and EFFECT_FLAG_IGNORE_IMMUNE require separate treatment.",
+    "officialRecipientGuardReference": "tmp/omega_scripts/c101202087.lua:67"
+  },
+  "regression": {
+    "scenarios": 488,
+    "failures": 0,
+    "report": "current-installed-effects-regression.json"
+  },
+  "limitations": [
+    "No live Omega duel verification",
+    "Stand Together draw scenarios adapt legacy Omega ChainInfo player/parameter constants to modern OCGCore",
+    "Source scripts defining the archetype are listed; unlisted effects have no coverage claim",
+    "Armada scenarios exercise effect destruction and effect negation of neutral revived monsters; battle destruction, real card combinations and summon locks remain open. Revenge Division scenarios cover normal doubling, recipient immunity and End Phase expiry.",
+    "Last Stand tests cover recycling 0/1/2 Brigade cards among three returns, Spell/field monster negation and GY monster exclusion. Trigger-location ChainInfo is adapted for modern OCGCore. Redirected returns, Trap effects, activation cost failure and repeated-use limits remain open.",
+    "Loving Division: hand/GY self-summons, wrong-set/self-only exclusions and same-turn Trap activation from Deck/GY/face-up banishment verified. Native material fixture and FaceupEx compatibility adapter used. Target removal in response, Necrovalley and facedown banishment remain open.",
+    "Flowering Division: native hand summons using GY/face-up banished costs, rejection of facedown banished costs, inherited GY/banished recovery and wrong-host exclusion verified. Necrovalley, cost prohibition and shared summon-count boundaries remain open.",
+    "Forward Division: first/second Spell resolution, monster activation preceding first Spell, wrong host and detachment verified. Turn-reset, multiple hosts, unnegatable effects and search/summon restriction boundaries remain open.",
+    "Lets Go: Deck summon, control-no-monsters boundary, GY search, shared use limit, prior LIGHT/DARK summon checks and subsequent LIGHT lock verified. Negated activation and chained Deck-resource removal remain open.",
+    "Melody: native extra Normal Summon/Set allowance, multiple-copy non-stacking and wrong-archetype exclusion verified. Tribute summons, disabled source and source removal after allowance use remain open.",
+    "Companion Team: actual opponent effect target selection across faceup/facedown/wrong-set support and opponent attack-triggered Deck summon verified. Once-per-turn repeated attacks, hand summon branch, battle-target selection assertions, unique control and native Link recipe remain open.",
+    "Absolute Supremacy: Spell/monster activation negation, activated card plus two same-code GY copies banished, temporary cost and actual End Phase return verified. Activated card leaving before resolution, immunity, unnegatable activation, occupied return zones, battle protection and Link recipe remain open.",
+    "Origins: destroy/then-banish normal and failed destruction, detach-two cost boundary, and actual destruction/Tribute Pendulum placement verified. Occupied Pendulum Zones, recipient protection, attach triggers, Necrovalley and native Xyz recipe remain open.",
+    "Origins attachment: opponent/own GY event, immune monster, Special Summon and faceup Spell target covered. Modern-core IsCanOverlay adapter is field-only/non-token for the Spell fixture; revive-limit status seeded for Special Summon. Native Xyz/Flip Summon, Trap target and Damage Step remain open.",
+    "Heartbeat/Forward: Normal and Special Summon triggers, prior outsider rejection and Brigade-only post-use eligibility verified. Negated effect/activation, full zones and shared repeated-summon use limits remain open.",
+    "Joyous Division: GY/faceup banished revival, facedown banishment and wrong-archetype exclusion, opponent-controlled Brigade summon and optional-when timing boundary verified with BreakEffect separating the subsequent draw. Repeated revival count, Necrovalley, occupied zones and chained source movement remain open.",
+    "Revenge Division: opponent-removal GY revival, highest opposing faceup ATK damage, own-removal and wrong-archetype exclusions, and revival with zero opponent monsters verified. Proper summon status seeded; battle-caused loss, Necrovalley, highest ATK changing in chain and Standby attachment remain open.",
+    "Revenge Standby attachment: Brigade monster and Spell, wrong-archetype exclusion and own-only Standby Phase verified with a second eligible card left in Deck. Multiple source copies, second own turn and chained movement remain open.",
+    "Five Brigade Extra Deck recipes: 15 native OCGCore selection scenarios verify legal materials, wrong Level/archetype and Link-material eligibility. Legacy Omega Xyz/Link procedure-signature and field IsFaceupEx adapters used. Xyz material modifiers, higher material counts, field-zone restrictions and live Omega remain open.",
+    "Armada draw detach boundary, Hope hand/GY native summon with/without opponent monster and Brigade Field Spell activation-search eligibility verified. Draw ChainInfo adapter used. Shared repeated-use, cost prohibitions and negated activation remain open.",
+    "Origins Pendulum protection: native opponent Spell/Trap target selections exclude Brigade monsters; monster effects and wrong-archetype targets remain permitted. Trap fixture has explicit hand-activation permission. Immunity/disabled source and alternate Pendulum Zone remain open.",
+    "Stand Together missing material and missing attach-card activation boundaries verified. No hypothetical material-removal lock was introduced; local Omega constants contain no explicit such prohibition.",
+    "Both Hope-summoned monsters carry attack/activation restrictions, and both restrictions expire by the next Draw Phase; observer executes native effect queries and returns a marker card after assertions. Companion actual battle target choices now assert supported/unprotected eligibility.",
+    "Companion unique-control native permission verified with Link signature adapter. Origins rejects Pendulum placement with both actual Pendulum occupants preserved; helper Spell moved to middle zone to avoid temporarily blocking an outer zone. No unresolved activation discrepancy remains in this test.",
+    "Hope native summon count shared between hand copies and hand/GY copies. Flowering count shared between hand copies with another eligible shuffle-cost card still in GY. Negated summons and next-turn reset remain open.",
+    "Brigade Field Spell: activation search followed by discard/Xyz effect in same turn, repeat-use rejection and insufficient one-card discard resource verified. Neutral Xyz recipient and FaceupEx adapter used.",
+    "Armada named draw limit shared across two field copies, each with a detach resource. Second copy retains one payable material but cannot activate after first copy draws.",
+    "Supremacy negation succeeds under a card-specific banishment prohibition, and banishment works with zero matching GY copies. Activated card leaving before resolution with matching GY copies remains unresolved. Official conjunction guide reviewed: https://www.yugioh-card.com/eu/play/understanding-card-text/part-7-conjunction-functions/",
+    "Joyous native dice: deterministic seeds cover all six actual OCGCore die results. Choosing maximum verifies ceil(roll/2) banishments and retained GY remainder. No die-result override used; optional lower-count choices and chained GY movement remain open.",
+    "Official local Omega c47355498 Necrovalley loaded with neutral Field Spell metadata: Loving GY banish target, Flowering GY shuffle cost and Melody GY banish cost blocked; actual Flowering summon using banished cost remains legal. Full printed Necrovalley immunity exceptions and chained activation remain open.",
+    "Official Necrovalley entering by chained fixture effect blocks Loving GY banishment/self-summon and Melody GY attachment after activation. Melody remains banished as its paid cost. Full legal Necrovalley activation-chain construction and immunity exceptions remain open."
+  ],
+  "inheritedMaterialFamily": {
+    "fixedCards": [
+      220124524,
+      255668557
+    ],
+    "scanReport": "inherited-material-family-scan.json",
+    "scope": "26 text candidates searched for inherited material effects; no remaining EVENT_BE_MATERIAL implementation among those candidates. Full individual effect audits remain open.",
+    "reference": "Official Omega native EFFECT_TYPE_XMATERIAL + EFFECT_TYPE_QUICK_O pattern",
+    "limitations": "Native Xyz fixture adapts legacy procedure signatures; no live Omega duel verification"
+  },
+  "exactTwoSummonFamily": {
+    "fixed": [
+      243194249
+    ],
+    "regressionControls": [
+      259664027
+    ],
+    "sourceReviewed": [
+      238276252
+    ],
+    "officialReference": "tmp/omega_scripts/c85138716.lua:40 (Rescue Rabbit checks legal pair at resolution)",
+    "scope": "Fixed-quantity SelectMatchingCard/Group.Select sites scanned. Three exact-two non-targeting effect summon candidates identified; costs and selected activation targets require separate analysis."
+  },
+  "faceupArchetypeConditions": {
+    "fixed": [
+      215142357,
+      238035167,
+      238273769,
+      256831125,
+      259748623
+    ],
+    "remainingCandidates": [],
+    "status": "All five confirmed candidates from current matching/count-condition scan fixed and regression tested; this is not full individual-card coverage.",
+    "reference": "tmp/omega_scripts/c52277807.lua:56 (official Spinny face-up archetype support filter)",
+    "regressions": [
+      {
+        "name": "Argalia support condition faceup",
+        "status": "PASS"
+      },
+      {
+        "name": "Argalia support condition facedown",
+        "status": "PASS"
+      },
+      {
+        "name": "Argalia support condition wrong-set",
+        "status": "PASS"
+      },
+      {
+        "name": "Argalia support condition grave",
+        "status": "PASS"
+      },
+      {
+        "name": "DDJ hand summon condition faceup",
+        "status": "PASS"
+      },
+      {
+        "name": "Axis column condition faceup",
+        "status": "PASS"
+      },
+      {
+        "name": "DDJ hand summon condition facedown",
+        "status": "PASS"
+      },
+      {
+        "name": "Axis column condition facedown",
+        "status": "PASS"
+      },
+      {
+        "name": "DDJ hand summon condition wrong-set",
+        "status": "PASS"
+      },
+      {
+        "name": "Axis column condition wrong-set",
+        "status": "PASS"
+      }
+    ]
+  },
+  "storedCostCardIdentityFamily": {
+    "fixed": [
+      215142357,
+      259253032,
+      244408495,
+      259072745
+    ],
+    "officialPatternReferences": [
+      "tmp/omega_scripts/c27331568.lua",
+      "tmp/omega_scripts/c39064822.lua"
+    ],
+    "candidateCostScripts": 17,
+    "nextCandidates": [],
+    "status": "Four confirmed stored-card identity bugs fixed. Selected-card cost family scan found 17 scripts; copied effects, temporary returns and existing effect relations require distinct handling. Broader library audit remains ongoing.",
+    "hexatronScenarios": [
+      {
+        "name": "Hexatron stored counter monster baseline",
+        "status": "PASS"
+      },
+      {
+        "name": "Hexatron stored counter monster left-returned",
+        "status": "PASS"
+      }
+    ],
+    "siliaScenarios": [
+      {
+        "name": "Silia stored GY recovery baseline",
+        "status": "PASS"
+      },
+      {
+        "name": "Silia stored GY recovery left-returned",
+        "status": "PASS"
+      },
+      {
+        "name": "Silia recovery requires discard",
+        "status": "PASS"
+      },
+      {
+        "name": "Silia recovery requires deck-card",
+        "status": "PASS"
+      }
+    ],
+    "bhodiScenarios": [
+      {
+        "name": "Bhodi stored Tribute equip baseline",
+        "status": "PASS"
+      },
+      {
+        "name": "Bhodi stored Tribute equip left-returned",
+        "status": "PASS"
+      },
+      {
+        "name": "Bhodi equips Tribute redirected to banishment",
+        "status": "PASS"
+      }
+    ],
+    "classification": "stored-cost-card-family-classification.json"
+  },
+  "prematureCostReferenceCheck": {
+    "fixed": [
+      244408495
+    ],
+    "scan": "cost-label-activation-scan.json",
+    "scope": "Single-line chk==0/GetLabelObject search: remaining two matches return true before accessing cost references; not analogous."
+  },
+  "battleProtectionScopeFamily": {
+    "fixed": [
+      241504188
+    ],
+    "scan": "battle-protection-scope-scan.json",
+    "scanCandidates": 19,
+    "sourceReviewedGlobalRanges": [
+      213990492,
+      253152295,
+      259479044
+    ],
+    "regressionControls": [
+      {
+        "name": "Yummy global battle protection own",
+        "status": "PASS"
+      },
+      {
+        "name": "Yummy global battle protection opponent",
+        "status": "PASS"
+      },
+      {
+        "name": "Yummy global battle protection wrong-set",
+        "status": "PASS"
+      }
+    ],
+    "scope": "Battle protection field-effect scripts scanned; distinguish controller-qualified, global, co-linked and self protection. Full card audits remain open."
+  },
+  "copiedCostCardLocationDependency": {
+    "fixed": [
+      259247807
+    ],
+    "reference": "tmp/omega_scripts/c70369116.lua:64-80",
+    "scenarios": [
+      {
+        "name": "Glitchling Bitron copied effect baseline",
+        "status": "PASS"
+      },
+      {
+        "name": "Glitchling Bitron copied effect cost card banished",
+        "status": "PASS"
+      }
+    ],
+    "limitations": "Corruption search branch with banished cost card tested. Ritual-copy branch, negated activation and different off-field moves remain open.",
+    "stainlessSearchControls": [
+      {
+        "name": "Stainless Story copied search baseline",
+        "status": "PASS"
+      },
+      {
+        "name": "Stainless Story copied search cost card banished",
+        "status": "PASS"
+      }
+    ],
+    "stainlessOtherBranches": [
+      {
+        "name": "Stainless copied bria cost monster banished",
+        "status": "PASS"
+      },
+      {
+        "name": "Stainless copied dante cost monster banished",
+        "status": "PASS"
+      },
+      {
+        "name": "Stainless copied feness cost monster banished",
+        "status": "PASS"
+      },
+      {
+        "name": "Stainless copied rollo cost monster banished",
+        "status": "PASS"
+      }
+    ],
+    "pendingSelfShuffle": "stainless-self-shuffle-probe.json"
+  },
+  "turnWideSummonRestrictionFamily": {
+    "fixed": [
+      220124524
+    ],
+    "scan": "turn-summon-lock-family-scan.json",
+    "candidateCount": 28,
+    "status": "28 source placement candidates reviewed, including helper callers; Heartbeat was the sole confirmed resolution-only registration and is fixed. Heartbeat and Forward effect-negation scenarios pass. Other candidates not individually duel-tested for this boundary."
+  },
+  "useWordingOathFamily": {
+    "fixed": [
+      220124524,
+      232038002,
+      247298564,
+      259998396,
+      215885404,
+      248946297,
+      259780273,
+      227035644,
+      239934744
+    ],
+    "scan": "use-wording-oath-scan.json",
+    "pendingRuntimeCandidates": [],
+    "status": "All nine confirmed use-wording/oath-flag cards found by current scan fixed and activation-negation cases pass, including both Offertorium effects. This closes this scanned mismatch, not all effects on those cards.",
+    "runtimeScenarios": [
+      {
+        "name": "Use lock activation negation 247298564",
+        "status": "PASS"
+      },
+      {
+        "name": "Use lock activation negation 259998396",
+        "status": "PASS"
+      },
+      {
+        "name": "Use lock activation negation 248946297",
+        "status": "PASS"
+      },
+      {
+        "name": "Use lock activation negation 259780273",
+        "status": "PASS"
+      }
+    ],
+    "potScenarios": [
+      {
+        "name": "Pot Fortune use lock normal",
+        "status": "PASS"
+      },
+      {
+        "name": "Pot Fortune use lock effect-negated",
+        "status": "PASS"
+      },
+      {
+        "name": "Pot Fortune use lock activation-negated",
+        "status": "PASS"
+      }
+    ],
+    "finalScenarios": [
+      {
+        "name": "Aqua Fusion use lock activation negation",
+        "status": "PASS"
+      },
+      {
+        "name": "Offertorium hand use lock activation negation",
+        "status": "PASS"
+      },
+      {
+        "name": "Offertorium grave use lock activation negation",
+        "status": "PASS"
+      }
+    ],
+    "limitations": "Aqua Fusion uses neutral two-material Fusion fixture and mandatory-material API adapter with no external mandatory-material effects.",
+    "expandedScan": "use-wording-expanded-scan.json",
+    "expandedCandidateCount": 31,
+    "activationWordingControl": [
+      {
+        "name": "Activation-worded Bitron lock lifts on negated activation",
+        "status": "PASS"
+      }
+    ]
+  },
+  "effectCoverageMap": "shining-brigade-effect-coverage.json",
+  "installedLibraryParity": "current-ccg-script-install-parity.json",
+  "primaryEffectCoverage": {
+    "cards": 16,
+    "effectGroups": 43,
+    "unmatchedGroups": 0,
+    "scope": "Named bounded scenarios exist for every mapped primary group; exhaustive edge coverage and live Omega verification remain open."
+  },
+  "libraryMissingLimitReview": {
+    "report": "missing-use-limit-scan.json",
+    "candidateCount": 3,
+    "confirmedMissingLimits": 0,
+    "scope": "Library-wide absence-of-limit-token scan. All three candidates use native summon-once or event-registered Link locks. Source review, not individual runtime validation."
+  },
+  "supremacyReferenceReview": {
+    "reviewed": [
+      "tmp/omega_scripts/c1248895.lua",
+      "tmp/omega_scripts/c57139487.lua",
+      "tmp/omega_scripts/c30350202.lua",
+      "tmp/omega_scripts/fixed-scripts/beta/c101208048.lua"
+    ],
+    "conclusion": "No exact negate-plus-same-name-GY reference found. Different dependency wording means these references do not settle the unresolved custom boundary."
+  },
+  "sharedChainLimitFamily": {
+    "scan": "shared-chain-limit-scan.json",
+    "printedMatches": 4,
+    "actualLimitCards": [
+      238273770,
+      259179054,
+      284639726
+    ],
+    "scenarios": [
+      {
+        "name": "Venus Flytrap shared Chain limit across copies",
+        "status": "PASS"
+      }
+    ],
+    "scope": "Corrected test starts destruction ignition from EMZ, verifies second-copy draw legality beforehand, and checks actual own response window before resolution. Old installed source and disabled-guard mutation fail; fixed installed source passes. Legacy target-card ChainInfo adapter used.",
+    "fixed": [
+      284639726
+    ],
+    "negativeControl": "shared-chain-no-flag-control.json",
+    "beforeFix": "venus-shared-chain-before-fix.json",
+    "correction": "Earlier pass was invalid: generic responder selected Quick Effect during helper Chain. Fixture now respects description/sequence and inspects only the active Chain.",
+    "megalopygeScenarios": [
+      {
+        "name": "Megalopyge shared Chain limit across copies",
+        "status": "PASS"
+      }
+    ],
+    "megalopygeNegativeControl": "megal-chain-no-flag-control.json",
+    "megalopygeScope": "Actual Fusion-type Special Summon fixture triggers search while second copy has legal Quick Effect; own response window excludes it under guard. Disabled guard fails. Proper summon status seeded and legacy FaceupEx API adapted.",
+    "disccsScenarios": [
+      {
+        "name": "Disccs shared Chain guard and reset callbacks",
+        "status": "PASS"
+      }
+    ],
+    "disccsNegativeControl": "disccs-chain-no-flag-control.json",
+    "disccsScope": "Focused OCGCore callback test on two real installed copies: search and recruit costs are legal before marking; search cost marks the shared player flag; search/recruit and shared material guard reject the other copy; next Chain restores eligibility. Disabling guard fails. Not a full Synchro-material event scenario.",
+    "familyStatus": "Three actual printed shared Chain-limit cards reviewed; Venus fixed and runtime response window tested; Megalopyge runtime response window tested; Disccs focused guard/reset callback test. Full card coverage remains separate."
+  },
+  "latestInstalledRegression": {
+    "report": "current-installed-effects-regression.json",
+    "passed": 524,
+    "failed": 0
+  },
+  "damageStepTriggerFamily": {
+    "report": "damage-step-trigger-scan.json",
+    "additionalBattleConditionFixes": 2,
+    "runtimeScenarios": [
+      {
+        "name": "Revenge revival after battle",
+        "status": "PASS"
+      },
+      {
+        "name": "Revenge revival after battle-wrong-set",
+        "status": "PASS"
+      },
+      {
+        "name": "Revenge revival after battle-facedown",
+        "status": "PASS"
+      },
+      {
+        "name": "Azrynior GY recovery after battle 224751741",
+        "status": "PASS"
+      },
+      {
+        "name": "Azrynior GY recovery after battle 239245471",
+        "status": "PASS"
+      },
+      {
+        "name": "Opponent-card leave trigger battle 259669838 matching true",
+        "status": "PASS"
+      },
+      {
+        "name": "Opponent-card leave trigger battle 259669838 matching false",
+        "status": "PASS"
+      },
+      {
+        "name": "Opponent-card leave trigger battle 259883230 matching true",
+        "status": "PASS"
+      },
+      {
+        "name": "Opponent-card leave trigger battle 259883230 matching false",
+        "status": "PASS"
+      },
+      {
+        "name": "Leave-field Pendulum battle 218142234 full false",
+        "status": "PASS"
+      },
+      {
+        "name": "Leave-field Pendulum battle 218142234 full true",
+        "status": "PASS"
+      },
+      {
+        "name": "Leave-field Pendulum battle 238273772 full false",
+        "status": "PASS"
+      },
+      {
+        "name": "Leave-field Pendulum battle 238273772 full true",
+        "status": "PASS"
+      },
+      {
+        "name": "Urphiel battle leave revival proper Xyz true",
+        "status": "PASS"
+      },
+      {
+        "name": "Urphiel battle leave revival proper Xyz false",
+        "status": "PASS"
+      }
+    ],
+    "remaining": "Individual complete-effect tests for other cards remain open. The broad missing-flag scan does not prove full-card correctness; only the five reproduced flag fixes are retained.",
+    "runtimeConfirmedFlagFixes": 5,
+    "flagNotRequiredInCurrentCoreControls": [
+      218142234,
+      238273772,
+      215105971
+    ],
+    "correction": "Initial batch added flags to 17 scripts. Follow-up native controls prove five flag-dependent FIELD trigger bugs. Three SINGLE triggers worked without the added flag; general other-card banishment triggers are not permitted during Damage Step per official Metaphys Dimension ruling. The twelve unproven flag additions were rolled back; only the five reproduced flag fixes remain. Two additional battle-condition fixes remain on Plexus/Release.",
+    "negativeControl": "leave-field-no-damage-control.json",
+    "remainingFieldCandidates": 0,
+    "initialFlagUpdateBatch": 17,
+    "restoredUnprovenFlagUpdates": 12,
+    "retainedVerifiedFlagFixes": 5,
+    "banishmentBoundaryScenarios": [
+      {
+        "name": "Banishment field trigger phase main 212413422",
+        "status": "PASS"
+      },
+      {
+        "name": "Banishment field trigger phase damage 212413422",
+        "status": "PASS"
+      },
+      {
+        "name": "Banishment field trigger phase main 216620496",
+        "status": "PASS"
+      },
+      {
+        "name": "Banishment field trigger phase damage 216620496",
+        "status": "PASS"
+      },
+      {
+        "name": "Banishment field trigger phase main 253128790",
+        "status": "PASS"
+      },
+      {
+        "name": "Banishment field trigger phase damage 253128790",
+        "status": "PASS"
+      },
+      {
+        "name": "Banishment field trigger phase main 259542408",
+        "status": "PASS"
+      },
+      {
+        "name": "Banishment field trigger phase damage 259542408",
+        "status": "PASS"
+      },
+      {
+        "name": "Banishment field trigger phase main 259605536",
+        "status": "PASS"
+      },
+      {
+        "name": "Banishment field trigger phase damage 259605536",
+        "status": "PASS"
+      }
+    ]
+  },
+  "fixtureVisibilityCorrection": {
+    "change": "All Deck cards now seeded face-down. FaceupEx adapter accepts hidden non-field locations, matching official Omega examples using it for Deck and Hand searches/materials. Face-down field/banished/Extra remain excluded.",
+    "officialReference": "tmp/omega_scripts/c100240201.lua (hand/field/Deck) and c100211003.lua (Deck/banishment)",
+    "officialSource": "https://gitlab.com/duelists-unite/omega_scripts/-/blob/master/c100240201.lua",
+    "productionChange": false,
+    "scenario": [
+      {
+        "name": "Loving material sets activatable Trap from 1",
+        "status": "PASS"
+      },
+      {
+        "name": "Loving material sets activatable Trap from 16",
+        "status": "PASS"
+      },
+      {
+        "name": "Loving material sets activatable Trap from 32",
+        "status": "PASS"
+      },
+      {
+        "name": "Loving material excludes face-down banished Trap",
+        "status": "PASS"
+      }
+    ]
+  }
+}

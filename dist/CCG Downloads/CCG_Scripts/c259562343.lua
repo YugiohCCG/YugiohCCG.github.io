@@ -39,8 +39,10 @@ function s.eqtarget(c,e)
 end
 function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return e:GetLabel()==2 and chkc:IsLocation(LOCATION_MZONE) and s.eqtarget(chkc,e) end
+	local ft=Duel.GetLocationCount(tp,LOCATION_SZONE)
+	if e:IsHasType(EFFECT_TYPE_ACTIVATE) and not e:GetHandler():IsLocation(LOCATION_SZONE) then ft=ft-1 end
 	local b1=Duel.GetFlagEffect(tp,id)==0 and Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil)
-	local b2=Duel.GetFlagEffect(tp,id+100)==0 and Duel.GetLocationCount(tp,LOCATION_SZONE)>0
+	local b2=Duel.GetFlagEffect(tp,id+100)==0 and ft>0
 		and Duel.IsExistingTarget(s.eqtarget,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil,e)
 		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.eqfilter),tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE,0,1,nil)
 	if chk==0 then return b1 or b2 end

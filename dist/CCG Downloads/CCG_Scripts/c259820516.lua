@@ -8,8 +8,12 @@ function s.initial_effect(c)
 end
 function s.cf(c) return c:IsRace(RACE_PYRO) and c:IsAbleToGraveAsCost() end
 function s.cost(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(s.cf,tp,LOCATION_MZONE,0,1,nil) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE); local g=Duel.SelectMatchingCard(tp,s.cf,tp,LOCATION_MZONE,0,1,1,nil); Duel.SendtoGrave(g,REASON_COST) end
-function s.sf(c) return c:IsSetCard(SET_PYRE) and c:IsType(TYPE_SPELL) and c:IsSSetable() end
-function s.settg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.sf),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil) end end
+function s.sf(c,ft) ft=ft or Duel.GetLocationCount(c:GetControler(),LOCATION_SZONE); return c:IsSetCard(SET_PYRE) and c:IsType(TYPE_SPELL) and c:IsSSetable() and (c:IsType(TYPE_FIELD) or ft>0) end
+function s.settg(e,tp,eg,ep,ev,re,r,rp,chk)
+ local ft=Duel.GetLocationCount(tp,LOCATION_SZONE)
+ if e:IsHasType(EFFECT_TYPE_ACTIVATE) and not e:GetHandler():IsLocation(LOCATION_SZONE) then ft=ft-1 end
+ if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.sf),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil,ft) end
+end
 function s.setop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET); local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.sf),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil); if #g>0 then Duel.SSet(tp,g) end end
 function s.rdf(c) return c:IsFaceup() and not c:IsCode(id) and (c:IsSetCard(SET_PYRE) and c:IsType(TYPE_SPELL) or c:IsRace(RACE_PYRO)) and c:IsAbleToDeck() end
 function s.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_REMOVED) and s.rdf(chkc) end if chk==0 then return Duel.IsExistingTarget(s.rdf,tp,LOCATION_REMOVED,0,3,nil) and Duel.IsPlayerCanDraw(tp,1) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK); local g=Duel.SelectTarget(tp,s.rdf,tp,LOCATION_REMOVED,0,3,3,nil); Duel.SetOperationInfo(0,CATEGORY_TODECK,g,3,0,0); Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1) end

@@ -9,10 +9,19 @@ function s.initial_effect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,1)) e2:SetCategory(CATEGORY_REMOVE+CATEGORY_TOHAND+CATEGORY_SEARCH+CATEGORY_TOGRAVE) e2:SetType(EFFECT_TYPE_IGNITION) e2:SetRange(LOCATION_GRAVE) e2:SetCountLimit(1,id) e2:SetCost(s.cost) e2:SetTarget(s.dectg) e2:SetOperation(s.decop) c:RegisterEffect(e2)
 end
 function s.setfilter(c) return c:IsFaceup() and c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_SPELL+TYPE_TRAP) and not c:IsCode(id) and c:IsSSetable() end
+function s.setgroup(g,ft)
+	local fields=g:FilterCount(Card.IsType,nil,TYPE_FIELD)
+	return fields<=1 and #g-fields<=math.max(0,ft)
+end
 function s.settg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_REMOVED) and s.setfilter(chkc) end
-	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and Duel.IsExistingTarget(s.setfilter,tp,LOCATION_REMOVED,0,1,nil) end
-	local ft=Duel.GetLocationCount(tp,LOCATION_SZONE) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET) Duel.SelectTarget(tp,s.setfilter,tp,LOCATION_REMOVED,0,1,math.min(3,ft),nil)
+	local ft=Duel.GetLocationCount(tp,LOCATION_SZONE)
+	if e:IsHasType(EFFECT_TYPE_ACTIVATE) and not e:GetHandler():IsLocation(LOCATION_SZONE) then ft=ft-1 end
+	local g=Duel.GetMatchingGroup(function(c,te) return s.setfilter(c) and c:IsCanBeEffectTarget(te) end,tp,LOCATION_REMOVED,0,nil,e)
+	if chk==0 then return g:CheckSubGroup(s.setgroup,1,3,ft) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SET)
+	local sg=g:SelectSubGroup(tp,s.setgroup,false,1,3,ft)
+	Duel.SetTargetCard(sg)
 end
 function s.setop(e,tp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(function(c,te) return c:IsRelateToEffect(te) and c:IsSSetable() end,nil,e)

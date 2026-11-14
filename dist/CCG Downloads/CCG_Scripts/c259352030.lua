@@ -99,19 +99,18 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.DiscardHand(tp,aux.TRUE,1,1,REASON_EFFECT+REASON_DISCARD)
 	end
 end
-function s.repfilter(c)
-	return c:IsRace(RACE_THUNDER) and c:IsAbleToRemove() and aux.NecroValleyFilter()(c)
+function s.repfilter(c,e)
+	return c:IsRace(RACE_THUNDER) and c:IsAbleToRemove() and not c:IsImmuneToEffect(e) and aux.NecroValleyFilter()(c)
 end
 function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return e:GetHandler():IsReason(REASON_BATTLE+REASON_EFFECT)
 		and not e:GetHandler():IsReason(REASON_REPLACE)
-		and Duel.IsExistingMatchingCard(s.repfilter,tp,LOCATION_GRAVE,0,1,nil) end
+		and Duel.IsExistingMatchingCard(s.repfilter,tp,LOCATION_GRAVE,0,1,nil,e) end
 	if Duel.SelectEffectYesNo(tp,e:GetHandler(),aux.Stringid(STRING_ID,2)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-		local g=Duel.SelectMatchingCard(tp,s.repfilter,tp,LOCATION_GRAVE,0,1,1,nil)
+		local g=Duel.SelectMatchingCard(tp,s.repfilter,tp,LOCATION_GRAVE,0,1,1,nil,e)
 		if #g>0 then
-			Duel.Remove(g,POS_FACEUP,REASON_EFFECT+REASON_REPLACE)
-			return true
+			return Duel.Remove(g,POS_FACEUP,REASON_EFFECT+REASON_REPLACE)>0
 		end
 	end
 	return false

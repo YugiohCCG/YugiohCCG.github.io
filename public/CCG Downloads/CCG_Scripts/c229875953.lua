@@ -1,4 +1,4 @@
---Teleum Mortis
+--Telemum Mortis
 local s,id=GetID()
 local SET_VIR_PEDICAE_MORTIS=0x39e2
 local CARD_BEAR_TRAP=251699681

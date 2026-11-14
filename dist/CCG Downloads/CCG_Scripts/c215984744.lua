@@ -54,7 +54,7 @@ function s.isrecollection(c)
 	return c:IsSetCard(SET_RECOLLECTION)
 end
 function s.reccontrol(c)
-	return s.isrecollection(c) and c:IsAbleToGraveAsCost()
+	return c:IsFaceup() and s.isrecollection(c) and c:IsAbleToGraveAsCost()
 end
 function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local b1=Duel.IsExistingMatchingCard(Card.IsDiscardable,tp,LOCATION_HAND,0,1,nil)

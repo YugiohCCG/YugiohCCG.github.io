@@ -53,7 +53,7 @@ end
 function s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return c:CheckRemoveOverlayCard(tp,1,REASON_COST)
-		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.cfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil) end
+		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.cfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil,e) end
 	c:RemoveOverlayCard(tp,1,1,REASON_COST)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
 	local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.cfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,1,nil)
@@ -73,18 +73,17 @@ function s.negop(e,tp,eg,ep,ev,re,r,rp)
 end
 
 -- Destruction replace
-function s.repfilter(c)
-	return c:IsSetCard(0x4ac0) and c:IsAbleToRemove()
+function s.repfilter(c,e)
+	return c:IsSetCard(0x4ac0) and c:IsAbleToRemove() and not c:IsImmuneToEffect(e)
 end
 function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return not c:IsReason(REASON_REPLACE) and c:IsReason(REASON_BATTLE+REASON_EFFECT)
-		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.repfilter),tp,LOCATION_GRAVE,0,1,nil) end
+		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.repfilter),tp,LOCATION_GRAVE,0,1,nil,e) end
 	if Duel.SelectEffectYesNo(tp,c,aux.Stringid(STRING_ID,2)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
-		local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.repfilter),tp,LOCATION_GRAVE,0,1,1,nil)
-		Duel.Remove(g,POS_FACEUP,REASON_EFFECT+REASON_REPLACE)
-		return true
+		local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.repfilter),tp,LOCATION_GRAVE,0,1,1,nil,e)
+		return Duel.Remove(g,POS_FACEUP,REASON_EFFECT+REASON_REPLACE)>0
 	end
 	return false
 end

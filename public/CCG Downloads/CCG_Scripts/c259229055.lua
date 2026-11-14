@@ -135,7 +135,7 @@ function s.repop(e,tp,eg,ep,ev,re,r,rp)
 	if not xc then return end
 	Duel.Hint(HINT_SELECTMSG,p,HINTMSG_XMATERIAL)
 	local mg=Duel.SelectMatchingCard(p,s.fieldmat,p,LOCATION_MZONE,LOCATION_MZONE,1,1,nil,xc,e)
-	if xc and #mg>0 then
+	if xc and not xc:IsImmuneToEffect(e) and #mg>0 then
 		local og=mg:GetFirst():GetOverlayGroup()
 		if #og>0 then Duel.SendtoGrave(og,REASON_RULE) end
 		Duel.Overlay(xc,mg)

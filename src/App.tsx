@@ -17,7 +17,7 @@ const PRIMARY_NAV_ITEMS: NavItem[] = [
   { to: "/deck-builder", label: "Deck Builder" },
   { to: "/downloads", label: "Downloads" },
   { to: "/draft", label: "Draft" },
-  { href: "https://yu-gi-oh-custom-card-game.github.io/ccg-interspace/", label: "Interspace" },
+  { href: "https://review-system-production.up.railway.app/", label: "Interspace" },
 ];
 
 type ThemeMode = "day" | "night";

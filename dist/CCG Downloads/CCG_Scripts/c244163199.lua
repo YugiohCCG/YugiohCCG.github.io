@@ -58,14 +58,15 @@ function s.xyzfilter(c)
 end
 function s.attachtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
  if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and s.xyzfilter(chkc) end
- if chk==0 then return Duel.IsExistingTarget(s.xyzfilter,tp,LOCATION_MZONE,0,1,nil) end
+ if chk==0 then return aux.NecroValleyFilter()(e:GetHandler()) and Duel.IsExistingTarget(s.xyzfilter,tp,LOCATION_MZONE,0,1,nil) end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
  Duel.SelectTarget(tp,s.xyzfilter,tp,LOCATION_MZONE,0,1,1,nil)
 end
 function s.attachop(e,tp)
  local c=e:GetHandler()
  local tc=Duel.GetFirstTarget()
- if not c:IsRelateToEffect(e) or not tc or not tc:IsRelateToEffect(e) or not tc:IsControler(tp) or not s.xyzfilter(tc) or tc:IsImmuneToEffect(e) then return end
+ if not c:IsRelateToEffect(e) or not aux.NecroValleyFilter()(c) or not tc or not tc:IsRelateToEffect(e)
+  or not tc:IsControler(tp) or tc:IsImmuneToEffect(e) then return end
  Duel.Overlay(tc,Group.FromCards(c))
  if not c:IsLocation(LOCATION_OVERLAY) or not Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,3)) then return end
  local grant=Effect.CreateEffect(c)

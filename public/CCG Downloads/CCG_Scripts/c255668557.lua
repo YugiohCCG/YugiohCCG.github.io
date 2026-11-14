@@ -14,12 +14,17 @@ function s.initial_effect(c)
 	e1:SetTarget(s.sptg)
 	e1:SetOperation(s.spop)
 	c:RegisterEffect(e1)
-	--Xyz material effect
+	--The host gains this effect while this card is attached as material.
 	local e3=Effect.CreateEffect(c)
-	e3:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
-	e3:SetCode(EVENT_BE_MATERIAL)
-	e3:SetCondition(s.efcon)
-	e3:SetOperation(s.efop)
+	e3:SetDescription(aux.Stringid(STRING_ID,1))
+	e3:SetCategory(CATEGORY_DICE+CATEGORY_REMOVE)
+	e3:SetType(EFFECT_TYPE_XMATERIAL+EFFECT_TYPE_QUICK_O)
+	e3:SetCode(EVENT_FREE_CHAIN)
+	e3:SetCountLimit(1)
+	e3:SetHintTiming(0,TIMINGS_CHECK_MONSTER+TIMING_MAIN_END)
+	e3:SetCondition(s.rmcon)
+	e3:SetTarget(s.rmtg)
+	e3:SetOperation(s.rmop)
 	c:RegisterEffect(e3)
 end
 s.listed_series={0x7a34}
@@ -41,37 +46,8 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)
 	end
 end
-function s.efcon(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	return r==REASON_XYZ and c:GetReasonCard():IsSetCard(0x7a34)
-end
-function s.efop(e,tp,eg,ep,ev,re,r,rp)
-	local c=e:GetHandler()
-	local rc=c:GetReasonCard()
-	local e1=Effect.CreateEffect(rc)
-	e1:SetDescription(aux.Stringid(STRING_ID,1))
-	e1:SetCategory(CATEGORY_DICE+CATEGORY_REMOVE)
-	e1:SetType(EFFECT_TYPE_QUICK_O)
-	e1:SetCode(EVENT_FREE_CHAIN)
-	e1:SetRange(LOCATION_MZONE)
-	e1:SetCountLimit(1)
-	e1:SetHintTiming(0,TIMINGS_CHECK_MONSTER+TIMING_MAIN_END)
-	e1:SetCondition(s.rmcon)
-	e1:SetTarget(s.rmtg)
-	e1:SetOperation(s.rmop)
-	e1:SetReset(RESET_EVENT+RESETS_STANDARD)
-	rc:RegisterEffect(e1,true)
-	if not rc:IsType(TYPE_EFFECT) then
-		local e2=Effect.CreateEffect(c)
-		e2:SetType(EFFECT_TYPE_SINGLE)
-		e2:SetCode(EFFECT_ADD_TYPE)
-		e2:SetValue(TYPE_EFFECT)
-		e2:SetReset(RESET_EVENT+RESETS_STANDARD)
-		rc:RegisterEffect(e2,true)
-	end
-end
 function s.rmcon(e,tp,eg,ep,ev,re,r,rp)
-	return Duel.IsMainPhase()
+	return e:GetHandler():IsSetCard(0x7a34) and Duel.IsMainPhase()
 end
 function s.rmtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(Card.IsAbleToRemove),tp,0,LOCATION_GRAVE,1,nil) end

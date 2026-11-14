@@ -13,7 +13,7 @@ function s.thf(c) return c:IsSetCard(SET_ASHENED) and c:IsAbleToHand() end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetCustomActivityCount(id,tp,ACTIVITY_SPSUMMON)==0 and Duel.IsExistingMatchingCard(s.thf,tp,LOCATION_DECK,0,1,nil) end s.splock(e,tp); Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK) end
 function s.thop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); local g=Duel.SelectMatchingCard(tp,s.thf,tp,LOCATION_DECK,0,1,1,nil); if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT); Duel.ConfirmCards(1-tp,g) end end
 function s.rf(c,tp) return c:IsFaceup() and c:IsControler(tp) and c:IsLocation(LOCATION_MZONE) and c:IsSetCard(SET_ASHENED) and c:IsReason(REASON_BATTLE+REASON_EFFECT) and not c:IsReason(REASON_REPLACE) end
-function s.costf(c) return c:IsRace(RACE_PYRO) and c:IsAttribute(ATTRIBUTE_DARK) and c:IsAbleToRemove() end
-function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return eg:IsExists(s.rf,1,nil,tp) and Duel.IsExistingMatchingCard(s.costf,tp,LOCATION_GRAVE,0,1,nil) end if not Duel.SelectYesNo(tp,96) then return false end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE); local g=Duel.SelectMatchingCard(tp,s.costf,tp,LOCATION_GRAVE,0,1,1,nil); Duel.Remove(g,POS_FACEUP,REASON_EFFECT+REASON_REPLACE); return true end
+function s.costf(c,e) return c:IsRace(RACE_PYRO) and c:IsAttribute(ATTRIBUTE_DARK) and c:IsAbleToRemove() and not c:IsImmuneToEffect(e) and aux.NecroValleyFilter()(c) end
+function s.reptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return eg:IsExists(s.rf,1,nil,tp) and Duel.IsExistingMatchingCard(s.costf,tp,LOCATION_GRAVE,0,1,nil,e) end if not Duel.SelectYesNo(tp,96) then return false end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE); local g=Duel.SelectMatchingCard(tp,s.costf,tp,LOCATION_GRAVE,0,1,1,nil,e); return Duel.Remove(g,POS_FACEUP,REASON_EFFECT+REASON_REPLACE)>0 end
 function s.repval(e,c) return s.rf(c,e:GetHandlerPlayer()) end
 function s.repop() end

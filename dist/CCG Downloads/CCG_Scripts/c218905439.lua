@@ -135,7 +135,7 @@ function s.matop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
 	if not (c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c) and c:IsCanOverlay()
-		and tc and tc:IsRelateToEffect(e) and tc:IsFaceup() and not tc:IsImmuneToEffect(e)) then return end
+		and tc and tc:IsRelateToEffect(e) and tc:IsControler(tp) and not tc:IsImmuneToEffect(e)) then return end
 	Duel.Overlay(tc,Group.FromCards(c))
 	local e1=Effect.CreateEffect(tc)
 	e1:SetType(EFFECT_TYPE_FIELD)

@@ -54,13 +54,28 @@ function s.ovop(e,tp,eg,ep,ev,re,r,rp)
 	if not mc:IsLocation(LOCATION_OVERLAY) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TARGET)
 	local xc=Duel.SelectMatchingCard(tp,s.nextfilter,tp,LOCATION_MZONE,0,1,1,c,c):GetFirst()
-	if not xc then return end
+	if not xc or xc:IsImmuneToEffect(e) then return end
 	local og=c:GetOverlayGroup()
 	if #og>0 then Duel.Overlay(xc,og) end
 	Duel.Overlay(xc,c)
-	-- The source text asks to make all of the selected Xyz Monster's effects Quick Effects.
-	-- Omega has no generic API to convert arbitrary ignition/trigger effects at runtime.
-	Duel.RegisterFlagEffect(tp,id+200,RESET_PHASE+PHASE_END,0,1,xc:GetFieldID())
+	if c:IsLocation(LOCATION_OVERLAY) then s.grantquick(xc) end
+end
+function s.grantquick(c)
+	if c:GetFlagEffect(id)>0 then return end
+	local reset=RESET_EVENT+RESETS_STANDARD+RESET_OVERLAY+RESET_PHASE+PHASE_END
+	c:RegisterFlagEffect(id,reset,0,1)
+	-- Ignition effects gain Quick timing. Event-triggered and continuous effects keep their own timing.
+	for _,te in ipairs({c:GetCardEffect()}) do
+		if te:IsHasType(EFFECT_TYPE_IGNITION) then
+			local qe=te:Clone()
+			qe:SetType(EFFECT_TYPE_QUICK_O)
+			qe:SetCode(EVENT_FREE_CHAIN)
+			qe:SetHintTiming(0,TIMING_END_PHASE)
+			qe:SetReset(reset)
+			if aux.CCGSetEffects and aux.CCGSetEffects[te] then aux.CCGSetEffects[qe]=true end
+			c:RegisterEffect(qe)
+		end
+	end
 end
 function s.atkfilter(c) return c:IsSetCard(SET_GHOSTRICK) and c:IsType(TYPE_MONSTER) and c:GetTextAttack()>=0 end
 function s.atktg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)

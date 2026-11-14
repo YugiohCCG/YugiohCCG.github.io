@@ -1,0 +1,2375 @@
+{
+  "scope": "Listed OCGCore scenarios with installed scripts and installed card data. Neutral fixture resources and API adapters are used. Full-card and live Omega verification remain open.",
+  "compatibility": "Legacy Link and fixture Xyz argument translation and procedures, selected chain target mapping, basic Level 12 Xyz material eligibility/selection bridge for ordinary fixture monsters, ordinary fixture overlay eligibility. Graydeux alternate Xyz cases isolate that procedure from the unsupported ordinary Xyz API.",
+  "pendingCases": [
+    "A Stainless Story: --story-shuffle-probe tests whether copied self-shuffle must move the activating Spell instead of the sent monster; current source moves the sent monster. Ruling/intent unresolved.",
+    "Ghostrick 239335848: conversion of recipient effects to Quick Effects is currently unimplemented.",
+    "Sarifiel: hypothetical effect immunity of a GY material. The --grave-immune-probe reproduces attachment; expected ruling needs confirmation before a production change."
+  ],
+  "installedScripts": {
+    "211086520": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c211086520.lua",
+      "sha256": "2a794dc8997a06a50870ccd3655872f52167e504fff10796db5ad81cf7b461ba"
+    },
+    "214511076": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c214511076.lua",
+      "sha256": "c2531dee368bc58c86c96a26f1b94e789cc31a920f1509fceeb24865aed8b0d9"
+    },
+    "215105971": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c215105971.lua",
+      "sha256": "01173b70123b22ee818d117bb3c7052e48677537fdfbaeda784fca48ba76ebf3"
+    },
+    "215142357": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c215142357.lua",
+      "sha256": "15ab3accc2c2d257389251274288337945283ba5145f336e332071cd18835172"
+    },
+    "215885404": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c215885404.lua",
+      "sha256": "c84116a1931583a061fac212b4606130348687d7af6c21452bcbbfaf03e01df1"
+    },
+    "220124524": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c220124524.lua",
+      "sha256": "80204ae3ad61d09812c8eca5823f222eac0459994d2790b2d04c4d048442eb0f"
+    },
+    "223750159": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c223750159.lua",
+      "sha256": "8a555286c1a8ad0faab23589252e45958642df23c9e6e5c9a89058a80d3f96e8"
+    },
+    "224751741": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c224751741.lua",
+      "sha256": "8fb3b581d0cc16176d86c19c32666ef21e0149afbb932b7176be6f99711907ee"
+    },
+    "227035644": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c227035644.lua",
+      "sha256": "07cc114b2dd89f99b00762fb0eaff05e16913192e7f019e1da003958d13f60a3"
+    },
+    "227531376": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c227531376.lua",
+      "sha256": "2356ffb29fad97f0adff25a97e6d8fd0ba9513d25e7dda3b031aeac94c7707d6"
+    },
+    "228386117": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c228386117.lua",
+      "sha256": "38d383de292ea5b09fa7264b1f76f90debacf10c02cf38274f5497ff367b455b"
+    },
+    "228860650": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c228860650.lua",
+      "sha256": "ef49a3794595676cd28360d526f80e1708623766e6df77590ab68a39a330a943"
+    },
+    "230812008": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c230812008.lua",
+      "sha256": "9f2a13a351d28c0394201de95ae95aebb3eb6c793e8e90308764e02e60821f6d"
+    },
+    "231089172": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c231089172.lua",
+      "sha256": "954e2742054b1c9b33bd611daad1f4a08c1137b41d66be30b8c4d4769af54bd9"
+    },
+    "231129918": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c231129918.lua",
+      "sha256": "ebeea871cebe1e994dae9f78cdee5a9ac2e20740c70a9fbd618599df62d583b2"
+    },
+    "232038002": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c232038002.lua",
+      "sha256": "404cea89bfd0016d0fd8fc4872736da4a4cc53d4b9fe1963d6373350c6fa69bb"
+    },
+    "232100722": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c232100722.lua",
+      "sha256": "6f57e9b09653f33fd4a7e0755c3b5998484ac860f2dccf36beef4a091a8dba5a"
+    },
+    "232824319": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c232824319.lua",
+      "sha256": "6fc79ce9fd591227a7fb19db25f4fe12b5cbefccaefe7604919ac6c76ff3c209"
+    },
+    "235051716": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c235051716.lua",
+      "sha256": "300ff6d2b8d9aa75d9425e938d66224c695f0c47322c4364d1288d52d5d41e5a"
+    },
+    "235687149": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c235687149.lua",
+      "sha256": "47022c8e25e6f150ab52af1cb3a0869612f60f6ad66448fc30b70bb4d5465b73"
+    },
+    "236616849": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c236616849.lua",
+      "sha256": "cacdcda60a6129c0c28f9c24f1723c817a94cbd2284dcf9113de72fee53b53cb"
+    },
+    "237089049": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c237089049.lua",
+      "sha256": "6c1c92fa737a23c243e5a213b7774a4ac02e631edd8a8feb4bd34bffad143ccd"
+    },
+    "238035167": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c238035167.lua",
+      "sha256": "940069b744419228f9b0dfee8f4456a27476a8471a7ec770ffdbba2530d25943"
+    },
+    "238273769": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c238273769.lua",
+      "sha256": "e8cef3330dac5e973158d641b43197fbf673eebe91130a4e14f76aa8e823f5c4"
+    },
+    "238273770": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c238273770.lua",
+      "sha256": "a269f9dcbb1a5afc99299b8b6a41ff2bb44d25d0698d82b7cc414d9dfc30ab7e"
+    },
+    "238282350": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c238282350.lua",
+      "sha256": "cd721e9a27bfd0951df94dc1f18a15339cc5af8fb45adb9026d48c400633f3b3"
+    },
+    "238841732": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c238841732.lua",
+      "sha256": "82395c874661800bde4084dd9ad16cea3d06ae5e5c201db995c5ce3faf12199e"
+    },
+    "238976759": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c238976759.lua",
+      "sha256": "8700479608fa3a6bcfaae926e4cb8fbb3d323ccf9dd2fa2d10c3f1c15f077cd3"
+    },
+    "239127930": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239127930.lua",
+      "sha256": "6b965dbfdc9106eb258486fa3be2332d563ff482025880e24a561d97272149a5"
+    },
+    "239235967": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239235967.lua",
+      "sha256": "763bf8c2c616539331490dd951a8f3358fbfd10c3433c0b39228fd38f503c050"
+    },
+    "239245471": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239245471.lua",
+      "sha256": "4cc17955ed2e61f6b9f9d4493a26a1d3645011c7b6ff509186f35ba18d4a634b"
+    },
+    "239335848": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239335848.lua",
+      "sha256": "f40c649e4e4037aed58a8aa481eae974aa7a93006c22e6c0f7518513fe7c4bdc"
+    },
+    "239932270": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932270.lua",
+      "sha256": "23f103f1f12b741e3bd998447f55ef18fafc2c1daae7332fbedfe4ac58a68d7d"
+    },
+    "239932271": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932271.lua",
+      "sha256": "c4b1cda43b88b195c3c0c7f4e309388f524d68a1ab8b41a6eb14acfadaf3dbd6"
+    },
+    "239932272": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932272.lua",
+      "sha256": "e107250638c5e514f7918a2b36e92da5596f8dbfa881cc2ecbb4cd841d3994d9"
+    },
+    "239934743": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934743.lua",
+      "sha256": "f245ec3b9c813950718073f7917b946d99f6a6464b2d0f3efaaa4c90d2f4cffa"
+    },
+    "239934744": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934744.lua",
+      "sha256": "39cdb3edb81a79a5b36ddc921cefa54b4b1fbad2b5664771e46e392e446bcd91"
+    },
+    "241440521": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c241440521.lua",
+      "sha256": "0223d3c031855f59dead784a79c7ac62bbf7839918a23e92fbf51eb2dbccaae8"
+    },
+    "241504188": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c241504188.lua",
+      "sha256": "c011c778637426413e2970ba6512a00d50a7a7f5be703d9f087df120d5cada78"
+    },
+    "241957394": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c241957394.lua",
+      "sha256": "a8869eb2f44bd87a86b826e74adc43f635b6a2bc72307c53c9d68568f3e7bae1"
+    },
+    "243194249": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c243194249.lua",
+      "sha256": "88435b9cc967af424277451cbe8ca1e2eef222ba0349a74a5ff83bc2c39e8b84"
+    },
+    "243420199": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c243420199.lua",
+      "sha256": "b4ccdcce55e3239a6b5292d1a5d2685c2e037d84bacd66412ca22541804e6fd9"
+    },
+    "244163205": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c244163205.lua",
+      "sha256": "ff995fc84d0ed6c5f9888db12e1c899ea42a690bdfabb546748b111fa84bae54"
+    },
+    "244408495": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c244408495.lua",
+      "sha256": "3163da9f614af00fd48379fb8f3e937abfa00fcfea125e62a453e022a7e88746"
+    },
+    "244986323": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c244986323.lua",
+      "sha256": "3b1094086e91fea8ed4ed1af288663536e36591bf20be7df0df1181fb1325898"
+    },
+    "245354354": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c245354354.lua",
+      "sha256": "6fe86e4648459896142ee7fae1ee8ddbb8279f84695c546b187cd9c656af0a85"
+    },
+    "245970073": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c245970073.lua",
+      "sha256": "5fbaeb0b542fff9526615b1238ea3091b33b5abc020e1f0a523105c7b886a4f9"
+    },
+    "247298564": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c247298564.lua",
+      "sha256": "3c22f5b0cff7f460579c61b68aa223ac2cfb2648cff5158a979f88b33d34e6da"
+    },
+    "247755870": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c247755870.lua",
+      "sha256": "92c58f8c75c83bf84a80f51eafcd2408521738bbcd7a28c08cd3afeb2a8dfc70"
+    },
+    "248946297": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c248946297.lua",
+      "sha256": "d9d6eebaee278746906abcc88ee3440ff3ad6da63bb3705422c55feb29e73f66"
+    },
+    "249629457": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c249629457.lua",
+      "sha256": "ed8bd16b945c068671e4659f7d904962c5929bd7aa31100812cfc325d30c87bc"
+    },
+    "251710981": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c251710981.lua",
+      "sha256": "313696881c8193ca34faeae10ad9de571c4adc77c450282c20e8081b0e2a7b5a"
+    },
+    "253152295": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c253152295.lua",
+      "sha256": "581b60deab99746a111cac8d9cca6c69e846fc1251a7cd759c20afc1badf5ea4"
+    },
+    "254215159": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c254215159.lua",
+      "sha256": "4b3bdc8f3f96d5858aa59e1c6b7aed3ea55f7913715193d677d30895444a39fe"
+    },
+    "255668557": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c255668557.lua",
+      "sha256": "261d446369526c74d54f12b0faba8b1da51a14fecd36e8295e3741f4c5ee42ea"
+    },
+    "256831125": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c256831125.lua",
+      "sha256": "19228e5f6c00ee1fc0d78b5b975118451370486b4e6fde5d9668428dbde7a83f"
+    },
+    "257176166": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c257176166.lua",
+      "sha256": "95701e27b1fe513aa4bd3d876e2bcbf31feb7b10e07863a6c1508b6365a10568"
+    },
+    "258328859": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c258328859.lua",
+      "sha256": "86459670530518057dc3edb181cdd3aa64f38effa303100f4239ff5392816e87"
+    },
+    "258590942": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c258590942.lua",
+      "sha256": "223c077a0e1c3cf3c9ee2a69a5f9a7567748bd48aa7917ac6a100f4b4515817c"
+    },
+    "259072745": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259072745.lua",
+      "sha256": "02540dcc17c8a66931a1c0499b4904cde3d5c6f2525e52fffc352dc1538893b1"
+    },
+    "259095349": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259095349.lua",
+      "sha256": "40da901c21639763b0b16f4315e066abbaf12add37330dac302802bea94cdbee"
+    },
+    "259137697": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259137697.lua",
+      "sha256": "6692d43069b7c9ad2e60a233f95e9c6ed2c79d1f70e8f32dee2441a01beca157"
+    },
+    "259179054": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259179054.lua",
+      "sha256": "6a7b21ed6dbe11cb809e0143712a68a365010dba9e405d74dabbe3282e6d1181"
+    },
+    "259229055": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259229055.lua",
+      "sha256": "971bc3cec13fc28ec6a480daddd70f3ceef47ae40a9e125a251325da6a62a2f4"
+    },
+    "259245496": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259245496.lua",
+      "sha256": "7890c025d76c3d342df25639e4b7ec080406a56950e009f40b15a0f31d44e0af"
+    },
+    "259247807": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259247807.lua",
+      "sha256": "7629f1a0859b6e8771a6eca30e04e84488ab6b0d2d73fd7b49ac8829233cc5c6"
+    },
+    "259253032": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259253032.lua",
+      "sha256": "385b612b153aef657cb754534890ef33bc6d8d1d751be64d0ad4461ccc59cc13"
+    },
+    "259269688": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259269688.lua",
+      "sha256": "5929c1224919fccc85a0a3553b85ec05920ebd972fab394526c6d6bf8b5cbeae"
+    },
+    "259341133": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259341133.lua",
+      "sha256": "cb02251de9aacc3516e0d9eff6fc33d4c1bf81e1ade1aaff3e340b4da54aa921"
+    },
+    "259352030": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259352030.lua",
+      "sha256": "b041605eddf656b25922d689a5e1a3e0bd8b30781fa62e038209780d3209d2a3"
+    },
+    "259366591": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259366591.lua",
+      "sha256": "dc291b0d17eedca2f4519903ef58db261ca9666a31a9d33c3ae3c2545b713ddb"
+    },
+    "259417461": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259417461.lua",
+      "sha256": "5db3d512a23e4977d5f8c2729d791fd80d940db7d01ee972aaf5883f59550597"
+    },
+    "259454809": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259454809.lua",
+      "sha256": "9b65acb262914a4809d64648f5fae203d8079ea119cc9ac4b765f26bc130d0f5"
+    },
+    "259615843": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259615843.lua",
+      "sha256": "8601e11901293408198b9dfe1b951b84853fd0689534555a2f5b9d93eb533f60"
+    },
+    "259624110": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259624110.lua",
+      "sha256": "9a67e067a8adc1632254129af12fc1da2a68b5af41265b9dbcef28017b2f0c9e"
+    },
+    "259626409": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259626409.lua",
+      "sha256": "ae836cd2e329d5d57f7b8c921d74ac386897cc62c6ab6c95c843b08144eac18c"
+    },
+    "259628203": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259628203.lua",
+      "sha256": "28253a4c92079868528b2e04b495fcd082541a947796eafdd48d567b86e7b54d"
+    },
+    "259632020": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259632020.lua",
+      "sha256": "607c42922f00158865599df5d7b8a97f8cc714d7886b492d8ee014690da8a149"
+    },
+    "259664027": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259664027.lua",
+      "sha256": "f4020a5d7a9ebfbd806bf70e693ce69900dbdc535267d9c682de1724b6b2bded"
+    },
+    "259688514": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259688514.lua",
+      "sha256": "f3ce32c456fbc8a4811c3cec9b23ab6da477e298d1808695fe0153432aeae78d"
+    },
+    "259724129": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259724129.lua",
+      "sha256": "609b1ac0a3b55d2fef91f40123217d7721510ca9db45cdadf469746d4417a891"
+    },
+    "259748623": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259748623.lua",
+      "sha256": "c7bac6cba8636c629802a1ab2ee695267288a759417daa60d0c365ebb7562fe1"
+    },
+    "259758294": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259758294.lua",
+      "sha256": "1c3b32b7f37690597df96f8135877153cfcb896abcc091874e0bb1e109d48c21"
+    },
+    "259767503": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259767503.lua",
+      "sha256": "b05f5d0897748b2d8adf87be952a26e0aae639a759f8dd54fb02b7a96022c267"
+    },
+    "259780273": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259780273.lua",
+      "sha256": "572f8db4c726a33c17ea434310ed22a228c3a07cc37c10ed6412bcada78f8cb7"
+    },
+    "259883029": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259883029.lua",
+      "sha256": "589856181a0d6ebffe918859636ecd801892d1fa75eb99721dc1bf971652f1c8"
+    },
+    "259923860": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259923860.lua",
+      "sha256": "2fb76940e57ffa36f12e7c3c3c8c0483e16d0a85669f98808f3ac8474755edc9"
+    },
+    "259934043": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259934043.lua",
+      "sha256": "54c5faa18967f6da0d39f3f159740db19daf92c92e2a27103d905010e9af8553"
+    },
+    "259937399": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259937399.lua",
+      "sha256": "cb62b16f1661ba2d49ffae45852cf2b2c0115dc19011492650d603f32901e921"
+    },
+    "259998396": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259998396.lua",
+      "sha256": "34109a3ed38933902dd19b5a3e0516e0f2c853eb802f3ff26dcfe2db6f4319bb"
+    },
+    "284636663": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c284636663.lua",
+      "sha256": "d78ae9d80b7e52e97767da3e9eba56ee17455cc4773d371407f786293eb47249"
+    },
+    "284636665": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c284636665.lua",
+      "sha256": "4ce5aed80463febdd6824fbb68d3062e87213a6f5bf00ae4001aa2898e91d475"
+    },
+    "284639722": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c284639722.lua",
+      "sha256": "cb9dd985bdf53a33d1676972b0bf5471842d856d4d60b000524ed99e297f1d4d"
+    },
+    "284639726": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c284639726.lua",
+      "sha256": "a92673be9ff65fd6c00957a9ade803d92109bedd87b177f8f8495f6ac78706ef"
+    }
+  },
+  "results": [
+    {
+      "name": "Hot Winds places a Field Spell from GY",
+      "status": "PASS"
+    },
+    {
+      "name": "Hot Winds banishes both monsters",
+      "status": "PASS"
+    },
+    {
+      "name": "Hot Winds returns from banishment",
+      "status": "PASS"
+    },
+    {
+      "name": "Hot Winds offers both options after a Tribute Summon",
+      "status": "PASS"
+    },
+    {
+      "name": "Hot Winds cannot apply both without a Tribute Summon",
+      "status": "PASS"
+    },
+    {
+      "name": "Magnificent Sky cannot replace a regular Normal Summon",
+      "status": "PASS"
+    },
+    {
+      "name": "Magnificent Sky can banish a monster from the field",
+      "status": "PASS"
+    },
+    {
+      "name": "Soprana is unavailable during its controller turn",
+      "status": "PASS"
+    },
+    {
+      "name": "Soprana bounces from field on Normal Summon",
+      "status": "PASS"
+    },
+    {
+      "name": "Soprana bounces from GY on Special Summon",
+      "status": "PASS"
+    },
+    {
+      "name": "Soprana summons equipped monster from hand",
+      "status": "PASS"
+    },
+    {
+      "name": "Soprana summons equipped monster from GY",
+      "status": "PASS"
+    },
+    {
+      "name": "Offertorium sets trap from Deck",
+      "status": "PASS"
+    },
+    {
+      "name": "Offertorium sets trap from banishment",
+      "status": "PASS"
+    },
+    {
+      "name": "Offertorium GY effect blocks later non-LIGHT Fiend summons",
+      "status": "PASS"
+    },
+    {
+      "name": "Offertorium GY effect rejects an earlier non-LIGHT Fiend summon",
+      "status": "PASS"
+    },
+    {
+      "name": "Offertorium GY effect requires a LIGHT Fiend to leave",
+      "status": "PASS"
+    },
+    {
+      "name": "Offertorium Link Summons with Engraver from hand",
+      "status": "PASS"
+    },
+    {
+      "name": "Offertorium cannot use an opponent monster to Link Summon",
+      "status": "PASS"
+    },
+    {
+      "name": "Offertorium blocks a non-LIGHT Fiend summon after activation",
+      "status": "PASS"
+    },
+    {
+      "name": "Offertorium unavailable after an earlier non-LIGHT Fiend summon",
+      "status": "PASS"
+    },
+    {
+      "name": "Mythic Journey copies 17827173",
+      "status": "PASS"
+    },
+    {
+      "name": "Mythic Journey copies 18940725",
+      "status": "PASS"
+    },
+    {
+      "name": "Mythic Journey copies 54334420",
+      "status": "PASS"
+    },
+    {
+      "name": "Mythic Journey copies 80433039",
+      "status": "PASS"
+    },
+    {
+      "name": "Mythic Journey copies 80611581",
+      "status": "PASS"
+    },
+    {
+      "name": "Mythic Journey grants the copied extra Normal Summon",
+      "status": "PASS"
+    },
+    {
+      "name": "Mythic Journey protects a Winged Beast in battle",
+      "status": "PASS"
+    },
+    {
+      "name": "Mythic Journey protects a Floo Spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Mythic Journey protects a high-Level Winged Beast",
+      "status": "PASS"
+    },
+    {
+      "name": "Link material family: Formation uses your field",
+      "status": "PASS"
+    },
+    {
+      "name": "Link material family: Formation excludes otherwise available opposing material",
+      "status": "PASS"
+    },
+    {
+      "name": "Link material family: Grayrover uses your hand",
+      "status": "PASS"
+    },
+    {
+      "name": "Link material family: Grayrover uses your field",
+      "status": "PASS"
+    },
+    {
+      "name": "Link material family: Grayrover cannot use an opposing monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayseer discards before summoning from Deck",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayseer cannot activate when discarding is prohibited",
+      "status": "PASS"
+    },
+    {
+      "name": "Mayavada cannot activate with only a prohibited discard available",
+      "status": "PASS"
+    },
+    {
+      "name": "Mayavada can destroy and discard",
+      "status": "PASS"
+    },
+    {
+      "name": "Nullbind rejects a Normal Monster as its only target",
+      "status": "PASS"
+    },
+    {
+      "name": "Nullbind negates and attaches a non-LIGHT Effect Monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Booster Dragon rejects a Normal Monster as its only target",
+      "status": "PASS"
+    },
+    {
+      "name": "Booster Dragon pays its Equip cost to negate an Effect Monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Ivy rejects a Special Summoned Normal Monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Ivy negates a Special Summoned Effect Monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Bau Spell banishes the monster it just negated",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayshade replacement attaches its selected Spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayshade replacement rejects a target that left and returned",
+      "status": "PASS"
+    },
+    {
+      "name": "Chapter II replacement applies the selected monster properties",
+      "status": "PASS"
+    },
+    {
+      "name": "Chapter II replacement rejects a chosen monster that left and returned",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayhex takes a Deck card to hand",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayhex takes a Deck card to the GY",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayhex cannot summon alongside a non-Grayscale monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Graylock summons and Sets its Deck Spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Graylock cannot summon without an opponent monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayling sends another Grayscale monster from Deck",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayling cannot send another copy of itself",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayling GY trigger discards and searches Level 8",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayling can discard by effect under a discard-cost restriction",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale effect discard remains legal for 259688514",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale effect discard remains legal for 259724129",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale effect discard remains legal for 259937399",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale effect discard remains legal for 259341133",
+      "status": "PASS"
+    },
+    {
+      "name": "Discard family permits effect discard for 228386117",
+      "status": "PASS"
+    },
+    {
+      "name": "Discard family permits effect discard for 231089172",
+      "status": "PASS"
+    },
+    {
+      "name": "Discard family permits effect discard for 245354354",
+      "status": "PASS"
+    },
+    {
+      "name": "Aquasanctuary searches then discards despite a cost-only restriction",
+      "status": "PASS"
+    },
+    {
+      "name": "Gorgonia searches then discards despite a cost-only restriction",
+      "status": "PASS"
+    },
+    {
+      "name": "Brilliance optionally discards despite a cost-only restriction",
+      "status": "PASS"
+    },
+    {
+      "name": "Recollection searches and discards under a cost-only restriction",
+      "status": "PASS"
+    },
+    {
+      "name": "Revelation searches a different name then discards",
+      "status": "PASS"
+    },
+    {
+      "name": "Revelation cannot search only the revealed name",
+      "status": "PASS"
+    },
+    {
+      "name": "Revelation summons its token and shares the effect limit",
+      "status": "PASS"
+    },
+    {
+      "name": "Revelation token effect needs a Grayscale monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Revelation restricts Special Summons after the token effect",
+      "status": "PASS"
+    },
+    {
+      "name": "Revelation token allows only Grayscale Link Material use",
+      "status": "PASS"
+    },
+    {
+      "name": "Graydimm rewrites an opponent GY effect into your linked-zone revival",
+      "status": "PASS"
+    },
+    {
+      "name": "Graydimm rejects resources controlled only by the opponent",
+      "status": "PASS"
+    },
+    {
+      "name": "Graydimm rejects an occupied linked zone",
+      "status": "PASS"
+    },
+    {
+      "name": "Graydeux rewrites into attaching a monster from player 0",
+      "status": "PASS"
+    },
+    {
+      "name": "Graydeux rewrites into attaching a monster from player 1",
+      "status": "PASS"
+    },
+    {
+      "name": "Graydeux Xyz Summon trigger attaches up to your Grayscale count",
+      "status": "PASS"
+    },
+    {
+      "name": "Graydeux alternative Xyz Summon transfers Rank 8 materials",
+      "status": "PASS"
+    },
+    {
+      "name": "Graydeux alternative procedure rejects two Rank 8 monsters",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayshade End Phase recovery with 1 materials",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayshade End Phase recovery with 2 materials",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayshade recovery requires a legal Grayscale target",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayseer protects its linked monster from opponent effects",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayseer permits your effects on its linked monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayseer protection ends when its source is negated",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayseer protection ends when its source is removed",
+      "status": "PASS"
+    },
+    {
+      "name": "Nullbind revives a Grayscale monster with effects negated",
+      "status": "PASS"
+    },
+    {
+      "name": "Nullbind cannot revive a non-Grayscale monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Nullbind shares its effect limit across copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Nullbind revival prevents activating its field effect that turn",
+      "status": "PASS"
+    },
+    {
+      "name": "Graysentry performs an immediate Xyz Summon with a Grayscale material",
+      "status": "PASS"
+    },
+    {
+      "name": "Graysentry rejects a material with the wrong Level",
+      "status": "PASS"
+    },
+    {
+      "name": "Graysentry cannot use an opposing material",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale hand summon limit is shared across copies of 259688514",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale hand summon limit is shared across copies of 259724129",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale hand summon limit is shared across copies of 259937399",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale hand summon limit is shared across copies of 259341133",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayling Deck-send limit is shared across copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale GY revival limit is shared across copies of 259688514",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale GY revival limit is shared across copies of 259724129",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale GY revival limit is shared across copies of 259937399",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale GY revival limit is shared across copies of 259341133",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259934043",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259934043 while negated",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259688514",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259688514 while negated",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259724129",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259724129 while negated",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259937399",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259937399 while negated",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259341133",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259341133 while negated",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259632020",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259632020 while negated",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259624110",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259624110 while negated",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259245496",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259245496 while negated",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259626409",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale material restriction 259626409 while negated",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale native Link recipe 259632020 valid",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale native Link recipe 259632020 race",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale native Link recipe 259632020 attribute",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale native Link recipe 259632020 archetype",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale native Link recipe 259624110 valid",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale native Link recipe 259624110 race",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale native Link recipe 259624110 attribute",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale native Link recipe 259624110 archetype",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayterror Link Summon can use a Link 3 and one other monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale ordinary Xyz recipe 259245496 valid",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale ordinary Xyz recipe 259245496 level",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale ordinary Xyz recipe 259245496 lightfiend",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale ordinary Xyz recipe 259626409 valid",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale ordinary Xyz recipe 259626409 level",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayscale ordinary Xyz recipe 259626409 lightfiend",
+      "status": "PASS"
+    },
+    {
+      "name": "Graydeux ordinary Level 12 recipe valid",
+      "status": "PASS"
+    },
+    {
+      "name": "Graydeux ordinary Level 12 recipe level",
+      "status": "PASS"
+    },
+    {
+      "name": "Graydeux ordinary Level 12 recipe lightfiend",
+      "status": "PASS"
+    },
+    {
+      "name": "Graydeux ordinary Level 12 recipe race",
+      "status": "PASS"
+    },
+    {
+      "name": "Graydimm detaches one material to revive a Grayscale monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayterror grants 800 ATK only to your Grayscale monsters",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayling rejects an earlier non-LIGHT Fiend Special Summon",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayling blocks later non-LIGHT Fiend Special Summons",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial Descend rejects a Spell as its only Deck candidate",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial Descend takes a monster to hand",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial Descend takes a monster to GY",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial Orb cannot pay a prohibited discard cost",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial Orb discards another Arckcestial card to summon",
+      "status": "PASS"
+    },
+    {
+      "name": "Orb attaches itself from GY to an Arckcestial Xyz",
+      "status": "PASS"
+    },
+    {
+      "name": "Orb cannot attach to an unrelated Xyz",
+      "status": "PASS"
+    },
+    {
+      "name": "Descend revives in Defense Position",
+      "status": "PASS"
+    },
+    {
+      "name": "Descend requires your own Arckcestial Extra Deck monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Descend revival limit is shared across copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Pillar returns 1 banished Arckcestial cards",
+      "status": "PASS"
+    },
+    {
+      "name": "Pillar returns 2 banished Arckcestial cards",
+      "status": "PASS"
+    },
+    {
+      "name": "Pillar self-Set trigger for effect",
+      "status": "PASS"
+    },
+    {
+      "name": "Pillar self-Set trigger for cost",
+      "status": "PASS"
+    },
+    {
+      "name": "Pillar self-Set trigger for unrelated",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial GY trigger 258328859 effect-discard",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial GY trigger 258328859 cost-discard",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial GY trigger 258328859 send",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial GY trigger 239235967 effect-discard",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial GY trigger 239235967 cost-discard",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial GY trigger 239235967 send",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial GY trigger 245354354 effect-discard",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial GY trigger 245354354 cost-discard",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial GY trigger 245354354 send",
+      "status": "PASS"
+    },
+    {
+      "name": "Feather search adds a monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Feather search rejects a Spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Meadow activation search adds a monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Meadow activation search rejects a Spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Urphiel destruction replacement banishes a GY card",
+      "status": "PASS"
+    },
+    {
+      "name": "Urphiel destruction replacement requires a successful banish",
+      "status": "PASS"
+    },
+    {
+      "name": "Banish replacement 259352030 protects after banish",
+      "status": "PASS"
+    },
+    {
+      "name": "Banish replacement 259352030 rejects immune substitute",
+      "status": "PASS"
+    },
+    {
+      "name": "Banish replacement 259758294 protects after banish",
+      "status": "PASS"
+    },
+    {
+      "name": "Banish replacement 259758294 rejects immune substitute",
+      "status": "PASS"
+    },
+    {
+      "name": "Urphiel negate and banish hand-cost",
+      "status": "PASS"
+    },
+    {
+      "name": "Urphiel negate and banish grave-cost",
+      "status": "PASS"
+    },
+    {
+      "name": "Urphiel negate and banish no-companion",
+      "status": "PASS"
+    },
+    {
+      "name": "Urphiel negate and banish no-material",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial detach trigger 257176166 cost",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial detach trigger 257176166 effect",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial detach trigger 257176166 unrelated",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial detach trigger 228386117 cost",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial detach trigger 228386117 effect",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial detach trigger 228386117 unrelated",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial detach trigger 237089049 cost",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial detach trigger 237089049 effect",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial detach trigger 237089049 unrelated",
+      "status": "PASS"
+    },
+    {
+      "name": "Ophiel GY response tributes and revives",
+      "status": "PASS"
+    },
+    {
+      "name": "Ophiel GY response rejects a non-Arckcestial target",
+      "status": "PASS"
+    },
+    {
+      "name": "Ophiel search requires an Xyz Summon true",
+      "status": "PASS"
+    },
+    {
+      "name": "Ophiel search requires an Xyz Summon false",
+      "status": "PASS"
+    },
+    {
+      "name": "Ophiel detach trigger recovers a Spell then discards",
+      "status": "PASS"
+    },
+    {
+      "name": "Azeriel Xyz Summon sends only an Arckcestial monster true",
+      "status": "PASS"
+    },
+    {
+      "name": "Azeriel Xyz Summon sends only an Arckcestial monster false",
+      "status": "PASS"
+    },
+    {
+      "name": "Azeriel detach search requires a Rank-Up-Magic Spell true",
+      "status": "PASS"
+    },
+    {
+      "name": "Azeriel detach search requires a Rank-Up-Magic Spell false",
+      "status": "PASS"
+    },
+    {
+      "name": "Azeriel GY revival recover",
+      "status": "PASS"
+    },
+    {
+      "name": "Azeriel GY revival decline",
+      "status": "PASS"
+    },
+    {
+      "name": "Azeriel GY revival wrong-type",
+      "status": "PASS"
+    },
+    {
+      "name": "Azeriel GY revival wrong-archetype",
+      "status": "PASS"
+    },
+    {
+      "name": "Crystal Shards discards and summons from Deck in Defense Position",
+      "status": "PASS"
+    },
+    {
+      "name": "Crystal Shards rejects a Level 5 Deck monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Crystal Shards respects a discard-cost prohibition",
+      "status": "PASS"
+    },
+    {
+      "name": "Crystal Shards restricts later Special Summons",
+      "status": "PASS"
+    },
+    {
+      "name": "Crystal Shards native Synchro recovery baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Crystal Shards native Synchro recovery under a cost-only discard restriction",
+      "status": "PASS"
+    },
+    {
+      "name": "Crystal Shards recovery requires a LIGHT Synchro Monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Crystal Shards recovers a banished Main Deck card",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial native Synchro recovery 241440521 valid",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial native Synchro recovery 241440521 dark-synchro",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial native Synchro recovery 241440521 invalid-target",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial native Synchro recovery 245354354 valid",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial native Synchro recovery 245354354 dark-synchro",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial native Synchro recovery 245354354 invalid-target",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial temporary Level 257176166 synchro",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial temporary Level 257176166 ordinary-special",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial temporary Level 257176166 expiry",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial temporary Level 228386117 synchro",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial temporary Level 228386117 ordinary-special",
+      "status": "PASS"
+    },
+    {
+      "name": "Arckcestial temporary Level 228386117 expiry",
+      "status": "PASS"
+    },
+    {
+      "name": "Malphiel protects other LIGHT monsters from opposing targeting",
+      "status": "PASS"
+    },
+    {
+      "name": "Burning resolution normal",
+      "status": "PASS"
+    },
+    {
+      "name": "Burning resolution blocked",
+      "status": "PASS"
+    },
+    {
+      "name": "Burning resolution left-field",
+      "status": "PASS"
+    },
+    {
+      "name": "Prism native Synchro Material revival valid",
+      "status": "PASS"
+    },
+    {
+      "name": "Prism native Synchro Material revival dark-synchro",
+      "status": "PASS"
+    },
+    {
+      "name": "Prism native Synchro Material revival high-level",
+      "status": "PASS"
+    },
+    {
+      "name": "Urphiel leave-field revival opponent",
+      "status": "PASS"
+    },
+    {
+      "name": "Urphiel leave-field revival own",
+      "status": "PASS"
+    },
+    {
+      "name": "Urphiel leave-field revival not-xyz",
+      "status": "PASS"
+    },
+    {
+      "name": "Urphiel leave-field revival two-copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Sarifiel on-summon attachment grave",
+      "status": "PASS"
+    },
+    {
+      "name": "Sarifiel on-summon attachment banished",
+      "status": "PASS"
+    },
+    {
+      "name": "Sarifiel on-summon attachment spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Orb cannot attach itself to an effect-immune recipient",
+      "status": "PASS"
+    },
+    {
+      "name": "Graydeux rewrites into attaching a monster from player 1 respects recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayshade replacement attaches its selected Spell respects recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Nullbind respects recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Grayterror rewrite respects recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Aerocat attachment 259454809 baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Aerocat attachment 259454809 respects recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Aerocat attachment 259767503 baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Aerocat attachment 259767503 respects recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Recipient immunity family 243420199 baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Recipient immunity family 243420199 immune",
+      "status": "PASS"
+    },
+    {
+      "name": "Recipient immunity family 259883029 baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Recipient immunity family 259883029 immune",
+      "status": "PASS"
+    },
+    {
+      "name": "Attachment family 235687149 baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Attachment family 235687149 respects recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Attachment family 259095349 baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Attachment family 259095349 respects recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Attachment family 259615843 baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Attachment family 259615843 immune recipient",
+      "status": "PASS"
+    },
+    {
+      "name": "Attachment family 239335848 baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Attachment family 239335848 immune recipient",
+      "status": "PASS"
+    },
+    {
+      "name": "Claw revive-then-attach baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Claw revive-then-attach recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Aldrez revive-then-attach 231129918 baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Aldrez revive-then-attach 231129918 recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Aldrez revive-then-attach 238282350 baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Aldrez revive-then-attach 238282350 recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Attachment family 215142357 baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Attachment family 215142357 recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Attachment family 244163205 baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Attachment family 244163205 recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Ghostrick response recipient baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Ghostrick response recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade summon-then-attach baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade summon-then-attach recipient immunity",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together draw field",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together draw wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together draw grave",
+      "status": "PASS"
+    },
+    {
+      "name": "Heartbeat attached by effect grants banish response",
+      "status": "PASS"
+    },
+    {
+      "name": "Heartbeat material requires Brigade recipient",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous attached by effect grants grave banish",
+      "status": "PASS"
+    },
+    {
+      "name": "Heartbeat detached material no longer grants response",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous material wrong-host",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous material detached",
+      "status": "PASS"
+    },
+    {
+      "name": "Heartbeat native Xyz material grants response",
+      "status": "PASS"
+    },
+    {
+      "name": "Armada destroyed revives up to opponent card count 0",
+      "status": "PASS"
+    },
+    {
+      "name": "Armada destroyed revives up to opponent card count 1",
+      "status": "PASS"
+    },
+    {
+      "name": "Armada destroyed revives up to opponent card count 2",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge Division doubles stats normal",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge Division doubles stats immune",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge Division doubles stats expiry",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope Division two-monster summon normal",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope Division two-monster summon one-target",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope Division two-monster summon wrong-level",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope Division two-monster summon prior-non-brigade",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope Division needs two legal monsters at resolution",
+      "status": "PASS"
+    },
+    {
+      "name": "Shrieker exact-two summon baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Shrieker exact-two summon lost target",
+      "status": "PASS"
+    },
+    {
+      "name": "Last Stand recycling Brigade count 0",
+      "status": "PASS"
+    },
+    {
+      "name": "Last Stand recycling Brigade count 1",
+      "status": "PASS"
+    },
+    {
+      "name": "Last Stand recycling Brigade count 2",
+      "status": "PASS"
+    },
+    {
+      "name": "Last Stand negate spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Last Stand negate field-monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Last Stand negate grave-monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together protection faceup",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together protection facedown",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together protection wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Aurelia summon requires faceup archetype faceup",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together banish protection faceup",
+      "status": "PASS"
+    },
+    {
+      "name": "Aurelia summon requires faceup archetype facedown",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together banish protection facedown",
+      "status": "PASS"
+    },
+    {
+      "name": "Aurelia summon requires faceup archetype wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together banish protection wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Argalia support condition faceup",
+      "status": "PASS"
+    },
+    {
+      "name": "Argalia support condition facedown",
+      "status": "PASS"
+    },
+    {
+      "name": "Argalia support condition wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Argalia support condition grave",
+      "status": "PASS"
+    },
+    {
+      "name": "DDJ hand summon condition faceup",
+      "status": "PASS"
+    },
+    {
+      "name": "Axis column condition faceup",
+      "status": "PASS"
+    },
+    {
+      "name": "DDJ hand summon condition facedown",
+      "status": "PASS"
+    },
+    {
+      "name": "Axis column condition facedown",
+      "status": "PASS"
+    },
+    {
+      "name": "DDJ hand summon condition wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Axis column condition wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Loving Division self summon hand",
+      "status": "PASS"
+    },
+    {
+      "name": "Loving Division self summon grave",
+      "status": "PASS"
+    },
+    {
+      "name": "Loving Division self summon wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Loving Division self summon self-only",
+      "status": "PASS"
+    },
+    {
+      "name": "Loving material sets activatable Trap from 1",
+      "status": "PASS"
+    },
+    {
+      "name": "Loving material sets activatable Trap from 16",
+      "status": "PASS"
+    },
+    {
+      "name": "Loving material sets activatable Trap from 32",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering inherited recovery grave",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering inherited recovery banished",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering inherited recovery facedown",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering inherited recovery wrong-host",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering native hand summon cost 16",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering native hand summon cost 32",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering summon rejects facedown banished cost",
+      "status": "PASS"
+    },
+    {
+      "name": "Forward inherited first Spell negation attached",
+      "status": "PASS"
+    },
+    {
+      "name": "Forward inherited first Spell negation wrong-host",
+      "status": "PASS"
+    },
+    {
+      "name": "Forward inherited first Spell negation detached",
+      "status": "PASS"
+    },
+    {
+      "name": "Forward inherited first Spell negation monster-first",
+      "status": "PASS"
+    },
+    {
+      "name": "Lets Go Brigade summon",
+      "status": "PASS"
+    },
+    {
+      "name": "Lets Go Brigade controlled-monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Lets Go Brigade grave-search",
+      "status": "PASS"
+    },
+    {
+      "name": "Lets Go prior summon LIGHT restriction false",
+      "status": "PASS"
+    },
+    {
+      "name": "Lets Go prior summon LIGHT restriction true",
+      "status": "PASS"
+    },
+    {
+      "name": "Lets Go applies LIGHT summon lock",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody extra Normal Summon one-copy",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody extra Normal Summon two-copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody extra Normal Summon wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody shared summon-set allowance false",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody shared summon-set allowance true",
+      "status": "PASS"
+    },
+    {
+      "name": "Companion Team targeting protection faceup",
+      "status": "PASS"
+    },
+    {
+      "name": "Companion Team targeting protection facedown",
+      "status": "PASS"
+    },
+    {
+      "name": "Companion Team targeting protection wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Companion Team summons on opponent attack",
+      "status": "PASS"
+    },
+    {
+      "name": "Absolute Supremacy negate spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Absolute Supremacy negate monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Absolute Supremacy negate return",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins destroy then banish normal",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins destroy then banish indestructible",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins destroy then banish one-material",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins Pendulum placement destroyed",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins Pendulum placement Tribute",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins attachment trigger opponent-grave",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins attachment trigger own-grave",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins attachment trigger immune",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins attachment trigger summoned",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins attachment trigger spell-target",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade summon trigger 220124524 prior outsider false",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade summon trigger 220124524 prior outsider true",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade summon trigger 232038002 prior outsider false",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade summon trigger 232038002 prior outsider true",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Special Summon trigger 220124524 prior outsider false",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Special Summon trigger 220124524 prior outsider true",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Special Summon trigger 232038002 prior outsider false",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Special Summon trigger 232038002 prior outsider true",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous revival trigger grave",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous revival trigger banished",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous revival trigger facedown",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous revival trigger wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous revival trigger opponent",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous revival trigger missed-timing",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge revival and highest ATK damage opponent",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge revival and highest ATK damage own",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge revival and highest ATK damage wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge revival and highest ATK damage empty-field",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge revival after battle",
+      "status": "FAIL",
+      "error": "Battle revival trigger count\n\n0 !== 1\n"
+    },
+    {
+      "name": "Revenge revival after battle-wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge revival after battle-facedown",
+      "status": "FAIL",
+      "error": "Battle revival trigger count\n\n0 !== 1\n"
+    },
+    {
+      "name": "Revenge Standby attachment monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge Standby attachment spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge Standby attachment wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Revenge Standby attachment own-only",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 223750159 legal",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 223750159 wrong-level",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 223750159 wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 236616849 legal",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 236616849 wrong-level",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 236616849 wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 244986323 legal",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 244986323 wrong-level",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Xyz recipe 244986323 wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Link recipe 232824319 legal",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Link recipe 232824319 wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Link recipe 232824319 link-material",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Link recipe 241504188 legal",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Link recipe 241504188 wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade native Link recipe 241504188 link-material",
+      "status": "PASS"
+    },
+    {
+      "name": "Armada draw detach cost 0",
+      "status": "PASS"
+    },
+    {
+      "name": "Armada draw detach cost 1",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope own summon location 2 opponent false",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope own summon location 2 opponent true",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope own summon location 16 opponent false",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope own summon location 16 opponent true",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Field Spell activation search false",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Field Spell activation search true",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together rejects recipient that left and returned",
+      "status": "PASS"
+    },
+    {
+      "name": "Hexatron stored counter monster baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Hexatron stored counter monster left-returned",
+      "status": "PASS"
+    },
+    {
+      "name": "Silia stored GY recovery baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Silia stored GY recovery left-returned",
+      "status": "PASS"
+    },
+    {
+      "name": "Silia recovery requires discard",
+      "status": "PASS"
+    },
+    {
+      "name": "Silia recovery requires deck-card",
+      "status": "PASS"
+    },
+    {
+      "name": "Bhodi stored Tribute equip baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Bhodi stored Tribute equip left-returned",
+      "status": "PASS"
+    },
+    {
+      "name": "Bhodi equips Tribute redirected to banishment",
+      "status": "PASS"
+    },
+    {
+      "name": "Supremacy battle protection own",
+      "status": "PASS"
+    },
+    {
+      "name": "Supremacy battle protection opponent",
+      "status": "PASS"
+    },
+    {
+      "name": "Supremacy battle protection wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Yummy global battle protection own",
+      "status": "PASS"
+    },
+    {
+      "name": "Yummy global battle protection opponent",
+      "status": "PASS"
+    },
+    {
+      "name": "Yummy global battle protection wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins Pendulum targeting protection spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins Pendulum targeting protection trap",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins Pendulum targeting protection monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins Pendulum targeting protection wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together cost resource boundary no-material",
+      "status": "PASS"
+    },
+    {
+      "name": "Stand Together cost resource boundary no-attach-card",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope both summon restrictions expire after End Phase",
+      "status": "PASS"
+    },
+    {
+      "name": "Companion attack targeting without Brigade support",
+      "status": "PASS"
+    },
+    {
+      "name": "Companion Team unique control restriction",
+      "status": "PASS"
+    },
+    {
+      "name": "Origins cannot occupy full Pendulum Zones",
+      "status": "PASS"
+    },
+    {
+      "name": "Glitchling Bitron copied effect baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Glitchling Bitron copied effect cost card banished",
+      "status": "PASS"
+    },
+    {
+      "name": "Stainless Story copied search baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "Stainless Story copied search cost card banished",
+      "status": "PASS"
+    },
+    {
+      "name": "Stainless copied bria cost monster banished",
+      "status": "PASS"
+    },
+    {
+      "name": "Stainless copied dante cost monster banished",
+      "status": "PASS"
+    },
+    {
+      "name": "Stainless copied feness cost monster banished",
+      "status": "PASS"
+    },
+    {
+      "name": "Stainless copied rollo cost monster banished",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope summon limit shared with copy in 2",
+      "status": "PASS"
+    },
+    {
+      "name": "Hope summon limit shared with copy in 16",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering summon limit shared across copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Field Spell both effects same turn",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade Field Spell needs two discard cards",
+      "status": "PASS"
+    },
+    {
+      "name": "Armada draw limit shared across loaded copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Heartbeat summon lock survives effect negation",
+      "status": "PASS"
+    },
+    {
+      "name": "Forward summon lock survives effect negation",
+      "status": "PASS"
+    },
+    {
+      "name": "Supremacy negates banish-protected monster",
+      "status": "PASS"
+    },
+    {
+      "name": "Supremacy banishes activated card without GY copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Heartbeat use lock survives activation negation",
+      "status": "PASS"
+    },
+    {
+      "name": "Forward use lock survives activation negation",
+      "status": "PASS"
+    },
+    {
+      "name": "Use lock activation negation 247298564",
+      "status": "PASS"
+    },
+    {
+      "name": "Use lock activation negation 259998396",
+      "status": "PASS"
+    },
+    {
+      "name": "Pot Fortune use lock normal",
+      "status": "PASS"
+    },
+    {
+      "name": "Pot Fortune use lock effect-negated",
+      "status": "PASS"
+    },
+    {
+      "name": "Pot Fortune use lock activation-negated",
+      "status": "PASS"
+    },
+    {
+      "name": "Use lock activation negation 248946297",
+      "status": "PASS"
+    },
+    {
+      "name": "Use lock activation negation 259780273",
+      "status": "PASS"
+    },
+    {
+      "name": "Aqua Fusion use lock activation negation",
+      "status": "PASS"
+    },
+    {
+      "name": "Offertorium hand use lock activation negation",
+      "status": "PASS"
+    },
+    {
+      "name": "Offertorium grave use lock activation negation",
+      "status": "PASS"
+    },
+    {
+      "name": "Activation-worded Bitron lock lifts on negated activation",
+      "status": "PASS"
+    },
+    {
+      "name": "Joyous native die banish cap seed 1",
+      "status": "PASS",
+      "roll": 4
+    },
+    {
+      "name": "Joyous native die banish cap seed 2",
+      "status": "PASS",
+      "roll": 5
+    },
+    {
+      "name": "Joyous native die banish cap seed 3",
+      "status": "PASS",
+      "roll": 3
+    },
+    {
+      "name": "Joyous native die banish cap seed 5",
+      "status": "PASS",
+      "roll": 2
+    },
+    {
+      "name": "Joyous native die banish cap seed 7",
+      "status": "PASS",
+      "roll": 1
+    },
+    {
+      "name": "Joyous native die banish cap seed 8",
+      "status": "PASS",
+      "roll": 6
+    },
+    {
+      "name": "Brigade GY restriction under official Necrovalley 230812008",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade GY restriction under official Necrovalley 232100722",
+      "status": "PASS"
+    },
+    {
+      "name": "Brigade GY restriction under official Necrovalley 243420199",
+      "status": "PASS"
+    },
+    {
+      "name": "Flowering banished cost remains legal under Necrovalley",
+      "status": "PASS"
+    },
+    {
+      "name": "Chained official Necrovalley blocks Brigade GY movement 230812008",
+      "status": "PASS"
+    },
+    {
+      "name": "Chained official Necrovalley blocks Brigade GY movement 243420199",
+      "status": "PASS"
+    },
+    {
+      "name": "Companion Team summons from hand on attack",
+      "status": "PASS"
+    },
+    {
+      "name": "Venus Flytrap shared Chain limit across copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Megalopyge shared Chain limit across copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Disccs shared Chain guard and reset callbacks",
+      "status": "PASS"
+    },
+    {
+      "name": "Azrynior GY recovery after battle 224751741",
+      "status": "FAIL",
+      "error": "Named revival limit\n\n0 !== 1\n"
+    },
+    {
+      "name": "Azrynior GY recovery after battle 239245471",
+      "status": "FAIL",
+      "error": "Named revival limit\n\n0 !== 1\n"
+    }
+  ]
+}

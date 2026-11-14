@@ -80,9 +80,14 @@ function s.spfilter(c,e,tp)
 end
 function s.gysptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	local can_self=c:IsLocation(LOCATION_MZONE) and s.spfilter(c,e,tp)
-	if chk==0 then return Duel.GetMZoneCount(tp,c)>0
-		and (can_self or Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE,0,1,nil,e,tp)) end
+	if chk==0 then
+		-- Claw is still on the field during the cost check and becomes a GY candidate after the Tribute.
+		local can_self=c:IsLocation(LOCATION_MZONE) and s.isaip_ex(c) and c:IsAbleToGraveAsCost()
+			and not Duel.IsPlayerAffectedByEffect(tp,EFFECT_NECRO_VALLEY)
+			and Duel.IsPlayerCanSpecialSummonMonster(tp,c:GetCode(),0,c:GetType(),c:GetAttack(),c:GetDefense(),c:GetLevel(),c:GetRace(),c:GetAttribute())
+		return Duel.GetMZoneCount(tp,c)>0
+			and (can_self or Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE,0,1,nil,e,tp))
+	end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_GRAVE)
 end
 function s.gyspop(e,tp,eg,ep,ev,re,r,rp)
@@ -91,7 +96,7 @@ function s.gyspop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 	local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE,0,1,1,nil,e,tp)
 	local tc=g:GetFirst()
-	if tc and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0
+	if tc and Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)>0 and not tc:IsImmuneToEffect(e)
 		and tc:IsType(TYPE_XYZ) and c:IsLocation(LOCATION_GRAVE)
 		and aux.NecroValleyFilter(Card.IsCanOverlay)(c)
 		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then

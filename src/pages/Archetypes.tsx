@@ -101,9 +101,7 @@ function ArchetypeDirectory() {
             {families.map((family) => {
               const hasSample = sampleArchetypes.has(family.family);
               const defaultArtwork = `${family.group.iconCardId}.webp`;
-              const artwork = family.family === "Ohmen"
-                ? artworkSelection.find(item => item.family === family.family)?.asset ?? defaultArtwork
-                : defaultArtwork;
+              const artwork = artworkSelection.find(item => item.family === family.family)?.asset ?? defaultArtwork;
               return (
                 <Link key={family.family} to={`/archetypes/${encodeURIComponent(family.family)}`} className="library-box-link relative">
                   {hasSample && <span className="sample-deck-marker absolute right-3 top-3" role="img" aria-label="Sample deck available" />}

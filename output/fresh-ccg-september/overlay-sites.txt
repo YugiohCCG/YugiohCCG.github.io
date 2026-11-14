@@ -1,0 +1,55 @@
+public/CCG Downloads/CCG_Scripts\c214226989.lua:64:		Duel.Overlay(c,og)
+public/CCG Downloads/CCG_Scripts\c214226989.lua:66:	Duel.Overlay(c,Group.FromCards(tc))
+public/CCG Downloads/CCG_Scripts\c215142357.lua:95:		Duel.Overlay(xyz,g2)
+public/CCG Downloads/CCG_Scripts\c218905439.lua:139:	Duel.Overlay(tc,Group.FromCards(c))
+public/CCG Downloads/CCG_Scripts\c227531376.lua:101:	Duel.Overlay(xc,rc)
+public/CCG Downloads/CCG_Scripts\c228860650.lua:86:		Duel.Overlay(tc,Group.FromCards(c))
+public/CCG Downloads/CCG_Scripts\c228472690.lua:74:	if #og>0 then Duel.Overlay(tc,og) end
+public/CCG Downloads/CCG_Scripts\c228472690.lua:75:	Duel.Overlay(tc,c)
+public/CCG Downloads/CCG_Scripts\c228635967.lua:60:			Duel.Overlay(sc,mg)
+public/CCG Downloads/CCG_Scripts\c228635967.lua:63:		Duel.Overlay(sc,Group.FromCards(tc))
+public/CCG Downloads/CCG_Scripts\c231089172.lua:55:		Duel.Overlay(c,g)
+public/CCG Downloads/CCG_Scripts\c231088629.lua:84:		Duel.Overlay(c,g:Select(tp,2,2,nil))
+public/CCG Downloads/CCG_Scripts\c231129918.lua:118:			Duel.Overlay(tc,g)
+public/CCG Downloads/CCG_Scripts\c234599395.lua:55:	Duel.Overlay(c,Group.FromCards(tc))
+public/CCG Downloads/CCG_Scripts\c235687149.lua:65:	Duel.Overlay(xc,g)
+public/CCG Downloads/CCG_Scripts\c236616849.lua:88:		Duel.Overlay(c,g)
+public/CCG Downloads/CCG_Scripts\c238272439.lua:111: Duel.Overlay(c,Group.FromCards(fc))
+public/CCG Downloads/CCG_Scripts\c238976759.lua:75:				Duel.Overlay(tc,sg)
+public/CCG Downloads/CCG_Scripts\c238282350.lua:123:			Duel.Overlay(tc,g)
+public/CCG Downloads/CCG_Scripts\c239335848.lua:53:	Duel.Overlay(c,mc)
+public/CCG Downloads/CCG_Scripts\c239335848.lua:59:	if #og>0 then Duel.Overlay(xc,og) end
+public/CCG Downloads/CCG_Scripts\c239335848.lua:60:	Duel.Overlay(xc,c)
+public/CCG Downloads/CCG_Scripts\c243420199.lua:47:			Duel.Overlay(tc,mc)
+public/CCG Downloads/CCG_Scripts\c244163199.lua:69: Duel.Overlay(tc,Group.FromCards(c))
+public/CCG Downloads/CCG_Scripts\c244163206.lua:106: Duel.Overlay(c,sg)
+public/CCG Downloads/CCG_Scripts\c244163206.lua:111:  if os and #os>0 then Duel.Overlay(c,os) end
+public/CCG Downloads/CCG_Scripts\c244163205.lua:53: if xc and not xc:IsImmuneToEffect(e) then Duel.Overlay(xc,Group.FromCards(tc)) end
+public/CCG Downloads/CCG_Scripts\c244986323.lua:94:		Duel.Overlay(c,tc)
+public/CCG Downloads/CCG_Scripts\c247755871.lua:84:  if #og>0 then Duel.Overlay(c,og) end
+public/CCG Downloads/CCG_Scripts\c256207361.lua:85:			Duel.Overlay(c,mg)
+public/CCG Downloads/CCG_Scripts\c256207361.lua:89:	Duel.Overlay(c,sg)
+public/CCG Downloads/CCG_Scripts\c256831125.lua:167:		Duel.Overlay(c,g:Select(tp,2,2,nil))
+public/CCG Downloads/CCG_Scripts\c259072169.lua:98:		Duel.Overlay(c,Group.FromCards(ec))
+public/CCG Downloads/CCG_Scripts\c259095349.lua:13:function s.op(e,tp) local c=e:GetHandler(); local ct=c:GetOverlayCount(); if ct>0 and c:RemoveOverlayCard(tp,ct,ct,REASON_EFFECT)~=ct then return end if Duel.IsExistingMatchingCard(s.af,tp,LOCATION_DECK,0,1,nil) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,1)) then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); local sg=Duel.SelectMatchingCard(tp,s.af,tp,LOCATION_DECK,0,1,1,nil); local tc=sg:GetFirst(); local kind=tc:GetType()&(TYPE_MONSTER+TYPE_SPELL+TYPE_TRAP); local df=function(c,k) return s.af(c) and c:GetType()&(TYPE_MONSTER+TYPE_SPELL+TYPE_TRAP)~=k end; if Duel.IsExistingMatchingCard(df,tp,LOCATION_DECK,0,1,nil,kind) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); sg:Merge(Duel.SelectMatchingCard(tp,df,tp,LOCATION_DECK,0,1,1,nil,kind)) end Duel.SendtoHand(sg,nil,REASON_EFFECT); Duel.ConfirmCards(1-tp,sg) end if Duel.IsExistingMatchingCard(s.xyz,tp,LOCATION_MZONE,0,1,nil) and Duel.IsExistingMatchingCard(s.ovf,tp,LOCATION_GRAVE,0,1,nil) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL); local x=Duel.SelectMatchingCard(tp,s.xyz,tp,LOCATION_MZONE,0,1,1,nil):GetFirst(); local g=Duel.SelectMatchingCard(tp,s.ovf,tp,LOCATION_GRAVE,0,1,1,nil); if not x:IsImmuneToEffect(e) then Duel.Overlay(x,g) end end end
+public/CCG Downloads/CCG_Scripts\c259097228.lua:88:		Duel.Overlay(c,sg)
+public/CCG Downloads/CCG_Scripts\c259113182.lua:17:function s.ovop(e) local c=e:GetHandler(); local tc=Duel.GetFirstTarget(); if c:IsRelateToEffect(e) and tc:IsRelateToEffect(e) and not tc:IsImmuneToEffect(e) then Duel.Overlay(tc,Group.FromCards(c)) end end
+public/CCG Downloads/CCG_Scripts\c259137697.lua:98:		Duel.Overlay(tc,Group.FromCards(c))
+public/CCG Downloads/CCG_Scripts\c259219942.lua:79:	Duel.Overlay(tc,c)
+public/CCG Downloads/CCG_Scripts\c259229055.lua:71:	if #mg>0 then Duel.Overlay(c,mg) end
+public/CCG Downloads/CCG_Scripts\c259229055.lua:73:	Duel.Overlay(c,g)
+public/CCG Downloads/CCG_Scripts\c259229055.lua:103:		Duel.Overlay(c,sg)
+public/CCG Downloads/CCG_Scripts\c259229055.lua:141:		Duel.Overlay(xc,mg)
+public/CCG Downloads/CCG_Scripts\c259264449.lua:109:	Duel.Overlay(sc,Group.FromCards(tc))
+public/CCG Downloads/CCG_Scripts\c259264449.lua:114:			Duel.Overlay(sc,c)
+public/CCG Downloads/CCG_Scripts\c259269688.lua:87:			Duel.Overlay(xc,og)
+public/CCG Downloads/CCG_Scripts\c259365935.lua:122:		Duel.Overlay(c,Group.FromCards(tc))
+public/CCG Downloads/CCG_Scripts\c259454809.lua:22:function s.ovop(e) local c=e:GetHandler(); local tc=Duel.GetFirstTarget(); if c:IsRelateToEffect(e) and tc:IsRelateToEffect(e) and not tc:IsImmuneToEffect(e) then Duel.Overlay(tc,Group.FromCards(c)) end end
+public/CCG Downloads/CCG_Scripts\c259548744.lua:11:function s.xyzop(e,tp) local c=e:GetHandler(); local max=math.min(c:GetOverlayCount(),Duel.GetMatchingGroupCount(aux.NecroValleyFilter(s.tdf),tp,LOCATION_GRAVE,LOCATION_GRAVE,nil)); if max>0 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then local opts={}; for i=1,max do opts[#opts+1]=i end local n=Duel.AnnounceNumber(tp,table.unpack(opts)); if c:RemoveOverlayCard(tp,n,n,REASON_EFFECT)==n then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK); local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.tdf),tp,LOCATION_GRAVE,LOCATION_GRAVE,n,n,nil); Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT) end end if c:IsRelateToEffect(e) and Duel.IsExistingMatchingCard(s.ovf,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL); local g=Duel.SelectMatchingCard(tp,s.ovf,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil); Duel.Overlay(c,g) end end
+public/CCG Downloads/CCG_Scripts\c259624110.lua:112:			Duel.Overlay(xc,mg)
+public/CCG Downloads/CCG_Scripts\c259615843.lua:16:function s.ovop(e,tp) local c=e:GetHandler(); local tc=Duel.GetFirstTarget(); if not tc or not tc:IsRelateToEffect(e) or tc:IsImmuneToEffect(e) or not tc:IsCanOverlay() or (not tc:IsControler(tp) and not tc:IsAbleToChangeControler()) then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL); local g=Duel.SelectMatchingCard(tp,s.aero,tp,LOCATION_MZONE,0,1,1,tc); local x=g:GetFirst(); if x and not x:IsImmuneToEffect(e) then Duel.Overlay(x,Group.FromCards(tc)); if tc:GetOverlayTarget()==x and c:IsFaceup() and c:IsRelateToEffect(e) then c:RegisterFlagEffect(id+500,RESET_EVENT+RESETS_STANDARD,0,1) end end end
+public/CCG Downloads/CCG_Scripts\c259626409.lua:98:		Duel.Overlay(xc,Group.FromCards(tc))
+public/CCG Downloads/CCG_Scripts\c259748623.lua:14:function s.desop(e,tp) local tc=Duel.GetFirstTarget(); if tc and tc:IsRelateToEffect(e) and Duel.Destroy(tc,REASON_EFFECT)>0 and Duel.IsExistingMatchingCard(s.xyz,tp,LOCATION_MZONE,0,1,nil) and Duel.IsExistingMatchingCard(s.oppgy,tp,0,LOCATION_GRAVE,1,nil) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL); local og=Duel.SelectMatchingCard(tp,s.oppgy,tp,0,LOCATION_GRAVE,1,1,nil); local x=Duel.SelectMatchingCard(tp,s.xyz,tp,LOCATION_MZONE,0,1,1,nil):GetFirst(); if not x:IsImmuneToEffect(e) then Duel.Overlay(x,og) end end end
+public/CCG Downloads/CCG_Scripts\c259748623.lua:17:function s.ovop(e) local c=e:GetHandler(); local tc=Duel.GetFirstTarget(); if c:IsRelateToEffect(e) and tc:IsRelateToEffect(e) and not tc:IsImmuneToEffect(e) then Duel.Overlay(tc,Group.FromCards(c)) end end
+public/CCG Downloads/CCG_Scripts\c259767503.lua:18:function s.ovop(e) local c=e:GetHandler(); local tc=Duel.GetFirstTarget(); if c:IsRelateToEffect(e) and tc:IsRelateToEffect(e) and not tc:IsImmuneToEffect(e) then Duel.Overlay(tc,Group.FromCards(c)) end end
+public/CCG Downloads/CCG_Scripts\c259883029.lua:60:		Duel.Overlay(xc,Group.FromCards(tc))
