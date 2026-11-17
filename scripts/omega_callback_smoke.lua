@@ -130,6 +130,8 @@ Duel=lazy_namespace(function(key)
 			return table.unpack(out)
 		end
 	end
+	-- The engine returns availability, card group, count, player and location.
+	if key=="GetOperationInfo" then return function() return true,group,1,0,LOCATION_HAND end end
 	if key=="GetActivityCount" then return function() return 1,1,1 end end
 	if key:find("Count") or key=="GetLocationCount" or key=="GetLocationCountFromEx"
 		or key=="GetUsableMZoneCount" or key=="GetCounter" then return function() return 1 end end
