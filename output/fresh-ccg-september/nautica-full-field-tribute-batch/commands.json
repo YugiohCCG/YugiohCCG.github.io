@@ -1,0 +1,97 @@
+[
+  {
+    "name": "oceanica-focused",
+    "command": [
+      "node",
+      "--no-warnings",
+      "scripts/fresh_current_oceanica_summon_followup.cjs",
+      "--full-field-tribute"
+    ],
+    "status": 0,
+    "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\oceanica-focused.log",
+    "log_sha256": "a8b268720a8e8f23969c0fdd63ad871485b7ecf091d624b655e777179e38f14a"
+  },
+  {
+    "name": "return-focused",
+    "command": [
+      "node",
+      "--no-warnings",
+      "scripts/test_nautica_full_field_tribute.cjs"
+    ],
+    "status": 0,
+    "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\return-focused.log",
+    "log_sha256": "29839edb3c73ced49deb2752a7e3eed16c5b2c44d3d16dadc79afedc89273d4b"
+  },
+  {
+    "name": "engine-regression",
+    "command": [
+      "python",
+      "scripts/run_ohmen_engine_regressions.py",
+      "nautica-tribute-20261115"
+    ],
+    "status": 0,
+    "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\engine-regression.log",
+    "log_sha256": "92be9214e79a86c57663cef97f98fa1aafd04c9ae00f8dfc63e20ce135c07760"
+  },
+  {
+    "name": "additional-engine-probes",
+    "command": [
+      "node",
+      "--no-warnings",
+      "scripts/test_ohmen_engine_probes.cjs"
+    ],
+    "status": 0,
+    "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\additional-engine-probes.log",
+    "log_sha256": "f6927ceca93b08a46e3af08d887b4a6bb1f906f0d04791e6d22180ce7d7b9707"
+  },
+  {
+    "name": "roster-syntax",
+    "command": [
+      "node",
+      "scripts/fresh_roster_syntax.cjs"
+    ],
+    "status": 1,
+    "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\roster-syntax.log",
+    "log_sha256": "c7e5fcec9185a2e1681c41d78689b28b4be4374557b1e1ef47a3d2845a89893f"
+  },
+  {
+    "name": "installed-init",
+    "command": [
+      "python",
+      "scripts/fresh_current_installed_init_batch.py"
+    ],
+    "status": 1,
+    "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\installed-init.log",
+    "log_sha256": "3964c09b92fd71314ea3db33ae49a0f6fa4f9d248c8158db6c0215968aea2f19"
+  },
+  {
+    "name": "ohmen-gate",
+    "command": [
+      "python",
+      "scripts/fresh_current_ohmen_batch.py"
+    ],
+    "status": 0,
+    "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\ohmen-gate.log",
+    "log_sha256": "e7ed769a858ea20eaaf97a4ca5cd93c90b7d2a196bcf98886fd3c0a6438a28a6"
+  },
+  {
+    "name": "repair-ledger",
+    "command": [
+      "python",
+      "scripts/fresh_repair_ledger.py"
+    ],
+    "status": 1,
+    "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\repair-ledger.log",
+    "log_sha256": "246bc81e8127fce60e29429cdd6f51fd4a68fd089fb6cfcf7337b460118c824c"
+  },
+  {
+    "name": "specification-drift",
+    "command": [
+      "python",
+      "scripts/fresh_current_spec_drift.py"
+    ],
+    "status": 1,
+    "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\specification-drift.log",
+    "log_sha256": "64fe2fa834d7099bb2195aa214b5ad773329d1f361e83bac3195d23474ee46ad"
+  }
+]

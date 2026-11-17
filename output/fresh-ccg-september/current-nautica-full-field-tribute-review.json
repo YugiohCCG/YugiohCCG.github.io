@@ -1,0 +1,293 @@
+{
+  "status": "THREE_BOUNDED_REPAIRS_VERIFIED_AND_INSTALLED_BROAD_GATES_OPEN",
+  "files": [
+    {
+      "passcode": 259941091,
+      "source_sha256": "5fb830da1158ca40fd55fe9187d5244cdc53f6a417a0787cf331248504022eae",
+      "installed_sha256": "5fb830da1158ca40fd55fe9187d5244cdc53f6a417a0787cf331248504022eae",
+      "before_source_sha256": "025d7057dcc17847d42a67b403da8a062409d24e8f0cfb83f55a9845fa6aebab",
+      "before_installed_sha256": "6b9c8c60490953df42f865c59a475479568f969981b9ec719f8fd912133b3a46"
+    },
+    {
+      "passcode": 225109525,
+      "source_sha256": "f7d7918bdfdca88006713b468cf7c39a9912a39a32b5bff5b9f1b3a305bf11b7",
+      "installed_sha256": "f7d7918bdfdca88006713b468cf7c39a9912a39a32b5bff5b9f1b3a305bf11b7",
+      "before_source_sha256": "e33a04f538c1725d947992cb0477fb13e42c9f1775d5b702b1c398f6c43ea248",
+      "before_installed_sha256": "ff188daef4afc247a7c7deb5c70efe5a134976b99e3170c6b57b278b5e235116"
+    },
+    {
+      "passcode": 218905439,
+      "source_sha256": "3cfe7fc5b065282f2054f5a35029827c276393a962e485938bf9d12a24e50aa9",
+      "installed_sha256": "3cfe7fc5b065282f2054f5a35029827c276393a962e485938bf9d12a24e50aa9",
+      "before_source_sha256": "eaf0489d70dd37984d71555b5467be02e6f36dcdd96e154948175cd07c9dd550",
+      "before_installed_sha256": "185ec0f2aa2641dfb7e56c26a361c0d52cd96154500244ca09d7cea68053b5f9"
+    }
+  ],
+  "cases": 9,
+  "original_failures": 3,
+  "regression_cases": 131,
+  "additional_probes": 17,
+  "legacy_ohmen_gate_cases": 38,
+  "counts_note": "Suite counts reported separately; no assertion that they are disjoint or total716.",
+  "artifacts_sha256": {
+    "current-oceanica-summon-followup-tribute-source.json": "a5e62bf16f24e33d00c946994e7ed3c880e2160d33193756513cf8e4f3af4c69",
+    "nautica-full-field-tribute-source.json": "6564dd2eeaaff48a63faddd4fc208dcfdeca1f0e749a115c130aa58149afb7c5",
+    "nautica-before-full-field-tribute-repair/current-oceanica-summon-followup-tribute-source.json": "518248931d7d46aac7c268cf231ad289d756c5772df685208b39cf5137db7a84",
+    "nautica-before-full-field-tribute-repair/nautica-full-field-tribute-source.json": "28525b6bf9f82038a75b1d036a08428200db6715d57b19e5045e9798a72ffb95"
+  },
+  "scan": {
+    "scripts": 704,
+    "current_spec_cards": 703,
+    "normal_summon_callers": [
+      {
+        "passcode": 214371067,
+        "name": "Enra",
+        "printed_text": "Cannot be Special Summoned. When your Spirit monster is Normal Summoned: You can, immediately after this effect resolves, Normal Summon this card from your hand, then you can Normal Summon 1 Spirit monster. If this card is Tributed: You can target 1 other Spirit monster you control; it cannot be destroyed by battle until the end of this turn. You can only use the previous effects of \"Enra\" once per turn. During the End Phase, if this card was Normal Summoned or flipped face-up this turn: Return this card to the hand.",
+        "source_sha256": "864314abc464259345c559bd4b33c8afc7cd23749d2126891682422413d15fd1",
+        "verdict": "NO_SAME_BLANKET_NORMAL_SUMMON_CAPACITY_GATE",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      },
+      {
+        "passcode": 217713649,
+        "name": "Onibi",
+        "printed_text": "Cannot be Special Summoned. During the Main Phase (Quick Effect): You can also Tribute this card in your hand to activate this effect; immediately after this effect resolves, Normal Summon 1 Spirit monster, then, if you Normal Summoned \"Onibi\", you can add 1 Spirit monster from your Deck to your hand except \"Onibi\". If this card is not Tributed to activate this effect, you can only Normal Summon \"Onibi\" this way. You can only use the previous effect of \"Onibi\" once per turn. During the End Phase, if this card was Normal Summoned or flipped face-up this turn: Return this card to the hand. You can only use this effect of \"Onibi\" once per turn.",
+        "source_sha256": "c252c171e96739970dafeb824cdfeb70b6de924b2c06a83916c9173e51e8af20",
+        "verdict": "NO_SAME_BLANKET_NORMAL_SUMMON_CAPACITY_GATE",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      },
+      {
+        "passcode": 218905439,
+        "name": "Nautical Adventures & Torrential Seas",
+        "printed_text": "Target 1 \"Nautica\" monster you control and 1 monster your opponent controls; return those targets to the hand, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK is becomes 0. If your WATER Monster is Xyz Summoned while this card is in the GY: You can attach this card to it as Xyz material, but banish this card when detached. You can only use each effect of \"Nautical Adventures & Torrential Seas\" once per turn.",
+        "source_sha256": "3cfe7fc5b065282f2054f5a35029827c276393a962e485938bf9d12a24e50aa9",
+        "verdict": "CONFIRMED_AND_FIXED",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      },
+      {
+        "passcode": 219826457,
+        "name": "Ro-Bau",
+        "printed_text": "This card's original ATK becomes 250 times the number of \"Bau\" cards you control. You can only use each of the following effects of \"Ro-Bau\" once per turn. If you control \"Bauy World\": You can Special Summon this card from your banishment. During the Main Phase (Quick Effect): You can target 1 \"Bau\" you control; equip this card to it as an Equip Spell that gives it 2500 ATK, from your face-up field or GY. If a monster this card is equipped to destroys a monster by battle: You can add 1 monster from your banishment to your hand, then, immediately after this effect resolves, you can Normal Summon 1 monster.",
+        "source_sha256": "5b20969f8e52197c8d022e54f8d68f8b82fab4d4fa0eca85ed892348fe849232",
+        "verdict": "NO_SAME_BLANKET_NORMAL_SUMMON_CAPACITY_GATE",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      },
+      {
+        "passcode": 220749574,
+        "name": "Scarlet Seareef & the Nautical Creatures",
+        "printed_text": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by placing 2 Aqua Monsters from your GY on the bottom of your Deck in any order. You can treat this card as a Level 1 monster when you Xyz Summon an Aqua monster. You can discard 1 card; shuffle this card from your hand into the Deck, then add 1 \"Exploring the Nautical Waters\" from your Deck to your hand. If this card is Special Summoned: You can draw 1 card, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0.",
+        "source_sha256": "e6ec0a440aa2c8c41a95919b1a5898a6d3e5bae94d5d1dbdc656b0f31008e288",
+        "verdict": "NO_SAME_BLANKET_NORMAL_SUMMON_CAPACITY_GATE",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      },
+      {
+        "passcode": 223158720,
+        "name": "Nautical Backwashing & Oceanic Waves",
+        "printed_text": "Target 1 \"Nautica\" monster in your GY; return that target to the hand, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0. You can banish this card from your GY; place 3 Aqua monsters from your GY on the bottom of your Deck in any order, then draw 1 card. You can only use 1 effect of \"Nautical Backwashing & Oceanic Waves\" per turn and only once that turn.",
+        "source_sha256": "1096f9ab0a1ce2fdfdd96b6b8d73b4cc89fe9ba1b547d3fce904f82717912f4c",
+        "verdict": "NO_SAME_BLANKET_NORMAL_SUMMON_CAPACITY_GATE",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      },
+      {
+        "passcode": 225109525,
+        "name": "Evander Coldwater & the Nautical Abyss",
+        "printed_text": "2+ Level 1 Aqua monsters\nGains 500 ATK for each \"Nautica\" card attached to it as Xyz Material. Once per turn (Quick Effect): You can detach 1 material from this card, then target 1 monster your opponent controls; return it to the hand, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0.",
+        "source_sha256": "f7d7918bdfdca88006713b468cf7c39a9912a39a32b5bff5b9f1b3a305bf11b7",
+        "verdict": "CONFIRMED_AND_FIXED",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      },
+      {
+        "passcode": 229399508,
+        "name": "Kokeshisa",
+        "printed_text": "Cannot be Special Summoned. If you control a Spirit monster (Quick Effect): You can Tribute 1 Spirit monster you control; immediately after this effect resolves, Normal Summon this card from your hand, then you can return 1 monster on the field or in either GY to the hand. If this card is Tributed: You can target 1 Spirit monster you control; it cannot be targeted by your opponent's card effects until the end of this turn. You can only use the previous effects of \"Kokeshisa\" once per turn. During the End Phase, if this card was Normal Summoned or flipped face-up this turn: Return this card to the hand.",
+        "source_sha256": "e2a7065750ee9567227498ec650cf9769bc012058888d7e66e4ec08b9a41dc78",
+        "verdict": "NO_SAME_BLANKET_NORMAL_SUMMON_CAPACITY_GATE",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      },
+      {
+        "passcode": 248946297,
+        "name": "Exploring the Nautical Waters",
+        "printed_text": "Add 1 \"Nautica\" monster from your Deck to your hand, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand or Deck in Attack Position, but its ATK becomes 0, then, if that monster was Special Summoned from the Deck this way, negate its effects. You cannot Special Summon monsters the turn you use this effect, except WATER Monsters. You can only activate 1 \"Exploring the Nautical Waters\" per turn.",
+        "source_sha256": "d9d6eebaee278746906abcc88ee3440ff3ad6da63bb3705422c55feb29e73f66",
+        "verdict": "NO_SAME_BLANKET_NORMAL_SUMMON_CAPACITY_GATE",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      },
+      {
+        "passcode": 249805098,
+        "name": "Starry Knight Arc-En-Ciel",
+        "printed_text": "When a DARK monster's effect is activated (Quick Effect): You can send this card from your hand to the GY; negate that effect, and if you do, destroy that card. If you control a Level 7 LIGHT Dragon monster (Quick Effect): You can return this card from your field or GY to your hand; immediately after this effect resolves, Normal Summon 1 \"Starry Knight\" monster. You can only use each effect of \"Starry Knight Arc-En-Ciel\" once per turn.",
+        "source_sha256": "aa9931f60caacba3d194802aaae5b25724429d4db0cd32062cfa7850a595a8f1",
+        "verdict": "NO_SAME_BLANKET_NORMAL_SUMMON_CAPACITY_GATE",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      },
+      {
+        "passcode": 259114562,
+        "name": "Bobbie Bluefin & the Nautical Nocturnes",
+        "printed_text": "Cannot be Normal Summoned/Set. If your opponent Normal or Special Summons a monster: You can Special Summon this card from your hand, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0, and if you do, if all monsters you control are \"Nautica\" monsters, negate its effects. You can only use this effect of \"Bobbie Bluefin & the Nautical Nocturnes\" once per turn.",
+        "source_sha256": "4062561d50daf041b2053c2aa3dfe0d54550f77f3fdf92d6d84a5010a86b9ed7",
+        "verdict": "NO_SAME_BLANKET_NORMAL_SUMMON_CAPACITY_GATE",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      },
+      {
+        "passcode": 259560506,
+        "name": "Hannya",
+        "printed_text": "Cannot be Special Summoned. If 2 or more monsters have been Normal Summoned this turn (Quick Effect): You can Tribute this card from your hand; immediately after this effect resolves, Normal Summon 1 Spirit monster. If a Spirit monster is Tributed while this card is in your GY: You can banish this card from your GY; add 2 Spirit monsters with different Levels and Attributes from your GY to your hand. You can only use each of the previous effects of \"Hannya\" once per turn. Once per turn, during the End Phase, if this card was Normal Summoned or flipped face-up this turn: Return this card to the hand.",
+        "source_sha256": "bfd16425f92b68faad82cedbaa72fcb2e0037e7a03cbf79a662188d146218bb0",
+        "verdict": "NO_SAME_BLANKET_NORMAL_SUMMON_CAPACITY_GATE",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      },
+      {
+        "passcode": 259794136,
+        "name": "Harpie Cyber Dancer",
+        "printed_text": "This card's name is treated as \"Harpie Lady\" while on the field or in the GY. You can Special Summon this card (from your hand or GY) by returning 1 \"Harpie Lady\" monster you control to the hand. You can send 1 \"Harpie\" monster from your Deck to the GY; Immediately after this effect resolves, Normal Summon 1 Winged Beast monster. If this card is sent from the field to the GY: You can Set 1 Spell/Trap that mentions \"Harpie Lady\" from your GY or 1 \"Harpies' Hunting Grounds\" from your Deck. You can only use each effect of \"Harpie Cyber Dancer\" once per turn.",
+        "source_sha256": "5eb8fd487f8c1c01992403e61179ff38ca67298d4975c4d432e326bfefed6220",
+        "verdict": "NO_SAME_BLANKET_NORMAL_SUMMON_CAPACITY_GATE",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      },
+      {
+        "passcode": 259844716,
+        "name": "Yurei",
+        "printed_text": "Cannot be Special Summoned. When your opponent activates a card or effect that would destroy a card on the field (Quick Effect): You can reveal this card in your hand; Tribute 1 Spirit monster from your hand or field, and if you do, negate that effect. When an attack is declared involving your Spirit monster (Quick Effect): Immediately after this effect resolves, Normal Summon this card, and if you do, that Spirit monster's ATK is doubled until the end of this turn. You can only use 1 of the previous effects of \"Yurei\" per turn, and only once that turn. Once per turn, during the End Phase, if this card was Tributed, Normal Summoned, or flipped face-up this turn: Return it to the hand.",
+        "source_sha256": "082cec2f0711116e99d4302e7e7a564d878636c897ecbbba26bf0b90e312442c",
+        "verdict": "NO_SAME_BLANKET_NORMAL_SUMMON_CAPACITY_GATE",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      },
+      {
+        "passcode": 259941091,
+        "name": "Nautica Oceanica",
+        "printed_text": "Monsters Normal or Special Summoned from the hand in Attack Position cannot activate their effects. If you activate a \"Nautica\" card effect that would Summon a monster, you can add 1 of these additional effects to that card's effect at resolution depending on where it would be Summoned from. ● Your hand: Then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, also it is unaffected by \"Nautica Oceanica\", but its ATK becomes 0. ● Your opponent's hand: Add 1 \"Nautica\" monster from your Deck or GY to the hand, then place 1 card from your hand on the bottom of your Deck.",
+        "source_sha256": "5fb830da1158ca40fd55fe9187d5244cdc53f6a417a0787cf331248504022eae",
+        "verdict": "CONFIRMED_AND_FIXED",
+        "rationale": "Native IsSummonable handles Tribute space; Special Summon capacity checks remain valid. Own source self-Special-Summon capacity checks are separate prerequisites."
+      }
+    ]
+  },
+  "rule_source": "https://img.yugioh-card.com/en/downloads/rulebook/SD_RuleBook_EN_10.pdf",
+  "rule_inference": "A Tribute Summon removes its Tributes before placement. IsSummonable permits legal Tribute Summons with occupied Main Monster Zones.",
+  "qualifications": [
+    "Oceanica test-only IsChainDisabled query mapping retained.",
+    "Adventures test-only CHAININFO_TARGET_CARDS=8 mapping retained.",
+    "Evander initially seeded Xyz source; neutral paid Overlay setup, not proof of original Xyz recipe.",
+    "Full-field Level2 return tests verify Extra Zone target exclusion before resolution; four Level5 cases verify actual return, Tribute payment, summon and ATK0.",
+    "No live Omega duel verification; no full-card or archetype completion."
+  ],
+  "broad_gate_results": [
+    {
+      "name": "oceanica-focused",
+      "command": [
+        "node",
+        "--no-warnings",
+        "scripts/fresh_current_oceanica_summon_followup.cjs",
+        "--full-field-tribute"
+      ],
+      "status": 0,
+      "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\oceanica-focused.log",
+      "log_sha256": "a8b268720a8e8f23969c0fdd63ad871485b7ecf091d624b655e777179e38f14a"
+    },
+    {
+      "name": "return-focused",
+      "command": [
+        "node",
+        "--no-warnings",
+        "scripts/test_nautica_full_field_tribute.cjs"
+      ],
+      "status": 0,
+      "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\return-focused.log",
+      "log_sha256": "29839edb3c73ced49deb2752a7e3eed16c5b2c44d3d16dadc79afedc89273d4b"
+    },
+    {
+      "name": "engine-regression",
+      "command": [
+        "python",
+        "scripts/run_ohmen_engine_regressions.py",
+        "nautica-tribute-20261115"
+      ],
+      "status": 0,
+      "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\engine-regression.log",
+      "log_sha256": "92be9214e79a86c57663cef97f98fa1aafd04c9ae00f8dfc63e20ce135c07760"
+    },
+    {
+      "name": "additional-engine-probes",
+      "command": [
+        "node",
+        "--no-warnings",
+        "scripts/test_ohmen_engine_probes.cjs"
+      ],
+      "status": 0,
+      "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\additional-engine-probes.log",
+      "log_sha256": "f6927ceca93b08a46e3af08d887b4a6bb1f906f0d04791e6d22180ce7d7b9707"
+    },
+    {
+      "name": "roster-syntax",
+      "command": [
+        "node",
+        "scripts/fresh_roster_syntax.cjs"
+      ],
+      "status": 1,
+      "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\roster-syntax.log",
+      "log_sha256": "c7e5fcec9185a2e1681c41d78689b28b4be4374557b1e1ef47a3d2845a89893f"
+    },
+    {
+      "name": "installed-init",
+      "command": [
+        "python",
+        "scripts/fresh_current_installed_init_batch.py"
+      ],
+      "status": 1,
+      "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\installed-init.log",
+      "log_sha256": "3964c09b92fd71314ea3db33ae49a0f6fa4f9d248c8158db6c0215968aea2f19"
+    },
+    {
+      "name": "ohmen-gate",
+      "command": [
+        "python",
+        "scripts/fresh_current_ohmen_batch.py"
+      ],
+      "status": 0,
+      "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\ohmen-gate.log",
+      "log_sha256": "e7ed769a858ea20eaaf97a4ca5cd93c90b7d2a196bcf98886fd3c0a6438a28a6"
+    },
+    {
+      "name": "repair-ledger",
+      "command": [
+        "python",
+        "scripts/fresh_repair_ledger.py"
+      ],
+      "status": 1,
+      "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\repair-ledger.log",
+      "log_sha256": "246bc81e8127fce60e29429cdd6f51fd4a68fd089fb6cfcf7337b460118c824c"
+    },
+    {
+      "name": "specification-drift",
+      "command": [
+        "python",
+        "scripts/fresh_current_spec_drift.py"
+      ],
+      "status": 1,
+      "log": "output\\fresh-ccg-september\\nautica-full-field-tribute-batch\\specification-drift.log",
+      "log_sha256": "64fe2fa834d7099bb2195aa214b5ad773329d1f361e83bac3195d23474ee46ad"
+    }
+  ],
+  "remaining": [
+    "Historical711 syntax/init roster requires reconciliation to current703 specification.",
+    "Historical strict repair composition rejects existing source changes; do not weaken assertions.",
+    "Historical installed initialization artifact/hash relationship is inconsistent.",
+    "Oceanica both-player Hand mode selection and original-runtime query verification remain open."
+  ],
+  "clause_coverage": {
+    "259941091": {
+      "full_card": "OPEN",
+      "tested": "Normal Summon followup permits legal full-field Tribute Summon and preserves ATK0; Level2 capacity boundary",
+      "other_effects": "Existing scoped evidence retained; unresolved clauses remain open"
+    },
+    "225109525": {
+      "full_card": "OPEN",
+      "tested": "Normal Summon followup permits legal full-field Tribute Summon and preserves ATK0; Level2 capacity boundary",
+      "other_effects": "Existing scoped evidence retained; unresolved clauses remain open"
+    },
+    "218905439": {
+      "full_card": "OPEN",
+      "tested": "Normal Summon followup permits legal full-field Tribute Summon and preserves ATK0; Level2 capacity boundary",
+      "other_effects": "Existing scoped evidence retained; unresolved clauses remain open"
+    }
+  }
+}

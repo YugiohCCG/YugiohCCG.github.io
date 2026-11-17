@@ -32,4 +32,9 @@ function s.selfcostfilter(c) return c:IsAbleToRemoveAsCost() end
 function s.cost(e,tp,eg,ep,ev,re,r,rp,chk) local c=e:GetHandler() if chk==0 then return aux.NecroValleyFilter(s.selfcostfilter)(c) and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.costfilter),tp,LOCATION_GRAVE,0,1,c,c) end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE) local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.costfilter),tp,LOCATION_GRAVE,0,1,1,c,c):GetFirst() Duel.Remove(Group.FromCards(c,tc),POS_FACEUP,REASON_COST) end
 function s.decfilter(c) return c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_SPELL+TYPE_TRAP) and not c:IsCode(id) and (c:IsAbleToHand() or c:IsAbleToGrave()) end
 function s.dectg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(s.decfilter,tp,LOCATION_DECK,0,1,nil) end end
-function s.decop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_OPERATECARD) local tc=Duel.SelectMatchingCard(tp,s.decfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst() if not tc then return end local b1=tc:IsAbleToHand() local b2=tc:IsAbleToGrave() local op=b1 and b2 and Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3)) or (b1 and 0 or 1) if op==0 and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,tc) else Duel.SendtoGrave(tc,REASON_EFFECT) end end
+function s.decop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_OPERATECARD) local tc=Duel.SelectMatchingCard(tp,s.decfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst() if not tc then return end local b1=tc:IsAbleToHand() local b2=tc:IsAbleToGrave() local op=b1 and b2 and Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3)) or (b1 and 0 or 1) if op==0 then
+  if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then Duel.ConfirmCards(1-tp,tc) end
+ else
+  Duel.SendtoGrave(tc,REASON_EFFECT)
+ end
+end

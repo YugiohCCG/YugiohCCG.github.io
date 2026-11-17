@@ -48,7 +48,7 @@ function s.activate(e,tp)
  local option=canhand and candestroy and Duel.SelectOption(tp,aux.Stringid(MSG_ID,1),aux.Stringid(MSG_ID,2))
   or (canhand and 0 or 1)
  if option==0 then
-  if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,g) end
+  if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then Duel.ConfirmCards(1-tp,tc) end
  else
   Duel.Destroy(tc,REASON_EFFECT)
  end

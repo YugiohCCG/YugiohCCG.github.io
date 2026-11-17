@@ -1,28 +1,28 @@
 [
   {
     "script": "c221759221.lua",
-    "script_sha256": "258e2125946d9d80599b3eb78ae8ca379923829460e5b142980b0f2edf27ec20",
+    "script_sha256": "6368df7d6092be8bd703c34578cdbe215a5cb954c187775a43b7ef128351cf7d",
     "kind": "target-operation-search-mismatch",
     "line": 88,
     "reason": "The activation guard requires a hand card able to return to the Deck. The operation's revflagfilter identifies the separately revealed mandatory subset before selecting any additional able cards."
   },
   {
     "script": "c222654570.lua",
-    "script_sha256": "589db8a7afbb0064b02a27630a9847d9551ffe7bba3515fdcc72e6f755c2ce04",
+    "script_sha256": "6f5dba3432c5cdfa4b8cb2c74678c88b84e0beeaf425f333728ec07f050c95fb",
     "kind": "target-operation-search-mismatch",
     "line": 71,
     "reason": "The SZONE monster search is an optional follow-up after placing the first card and is independently guarded inside the operation."
   },
   {
     "script": "c224751741.lua",
-    "script_sha256": "8fb3b581d0cc16176d86c19c32666ef21e0149afbb932b7176be6f99711907ee",
+    "script_sha256": "985deb8e51fa693ec2c6252b31db5b44203bfe381d407d65f82c4ab33c5fb57f",
     "kind": "target-operation-search-mismatch",
     "line": 88,
     "reason": "Fusion materials are collected after the mandatory Token is created; the activation guard separately proves a Dragon material and a summonable named Fusion."
   },
   {
     "script": "c224751741.lua",
-    "script_sha256": "8fb3b581d0cc16176d86c19c32666ef21e0149afbb932b7176be6f99711907ee",
+    "script_sha256": "985deb8e51fa693ec2c6252b31db5b44203bfe381d407d65f82c4ab33c5fb57f",
     "kind": "target-operation-search-mismatch",
     "line": 95,
     "reason": "The second material-group read applies the selected Fusion Monster to the same post-Token material pool; activation legality is established by dragonmat and fusfilter."
@@ -36,14 +36,14 @@
   },
   {
     "script": "c239245471.lua",
-    "script_sha256": "4cc17955ed2e61f6b9f9d4493a26a1d3645011c7b6ff509186f35ba18d4a634b",
+    "script_sha256": "8adca2bd5a1ab358b7ced6133cdf8fa8c0805aedb3fbaf69c82639b214000d45",
     "kind": "target-operation-search-mismatch",
     "line": 84,
     "reason": "Fusion materials are collected after the mandatory Token is created; the activation guard separately proves a Dragon material and a summonable named Fusion."
   },
   {
     "script": "c239245471.lua",
-    "script_sha256": "4cc17955ed2e61f6b9f9d4493a26a1d3645011c7b6ff509186f35ba18d4a634b",
+    "script_sha256": "8adca2bd5a1ab358b7ced6133cdf8fa8c0805aedb3fbaf69c82639b214000d45",
     "kind": "target-operation-search-mismatch",
     "line": 91,
     "reason": "The second material-group read applies the selected Fusion Monster to the same post-Token material pool; activation legality is established by dragonmat and fusfilter."
@@ -71,7 +71,7 @@
   },
   {
     "script": "c259679619.lua",
-    "script_sha256": "49df75a3b346cc05e4af57e70bba003d56c87eefad178548d9821b97925a22f1",
+    "script_sha256": "197d7c75aa62698f63c35c007453ef3941fd9c2852b0e634f4354861e23df722",
     "kind": "target-operation-search-mismatch",
     "line": 51,
     "reason": "The activation search is optional, so the card may be activated with no target. Resolution correctly applies Necrovalley legality before offering and selecting the search."
@@ -85,7 +85,7 @@
   },
   {
     "script": "c238273770.lua",
-    "script_sha256": "a269f9dcbb1a5afc99299b8b6a41ff2bb44d25d0698d82b7cc414d9dfc30ab7e",
+    "script_sha256": "d5371633f4de56b8ce83991bb5486132470d0eda0437a1b5aa9f42ce07da39e1",
     "kind": "target-operation-search-mismatch",
     "line": 148,
     "reason": "The cost returns this monster to hand and frees its Main Monster Zone. recruittg uses precruitfilter with the pre-cost released monster and a prospective self-Summon check; recruitop uses spfilter on the post-cost state. Both filters enforce the same archetype, monster, face-up Extra Deck and Summonability constraints; the zone predicates intentionally differ across payment."
@@ -99,14 +99,14 @@
   },
   {
     "script": "c238276251.lua",
-    "script_sha256": "b8182f05ee5c90319e289a1b69293e90e8ba42a844144310db66de3fb3cd56e2",
+    "script_sha256": "8527f97b747e1cf9d8a580cec26268428ef50c90071e8d0e74b0377aa783c00d",
     "kind": "target-operation-search-mismatch",
     "line": 59,
     "reason": "This optional activation follow-up is chosen in acttg only if activationvictim exists; that predicate requires a destructible card and both retrieval destinations (including a victim that will reach GY). actop checks its activation label and card relation, selects a destructible victim, then separately rechecks both retrieval pools after destruction. The broad resolution selection is intentional, not an unguarded mandatory activation."
   },
   {
     "script": "c238276252.lua",
-    "script_sha256": "a32a0e883be8291675331b52f227b04e0f68695558291dd854d6dfab2aee66fc",
+    "script_sha256": "aa295a55600332d38f4438e6c41c9333277a986e4f9d9bd820be54806aa0fa68",
     "kind": "target-operation-search-mismatch",
     "line": 51,
     "reason": "The activation requires deslegal, which combines the same desfilter with prospective zone availability after destruction. Resolution selects with desfilter, destroys it, then independently rechecks the two-monster Summon legality and two free zones before Summoning. Different predicates account for the prospective and actual post-destruction states."
@@ -127,14 +127,14 @@
   },
   {
     "script": "c239932270.lua",
-    "script_sha256": "b1d27a4598c05f176172a1aeef171baf4f7c453775ce23c7783baa8db3178fa9",
+    "script_sha256": "b55bf43bb1ddeb3306dde8f6c60c49499ccd9bc932ed592088ad3b96bf5a6191",
     "kind": "target-operation-search-mismatch",
-    "line": 76,
+    "line": 79,
     "reason": "Activation uses s.options to validate selectable mode. The own-monster search occurs only in a banish-selected mode and both own and opposing removable monster groups are explicitly rechecked immediately before selection."
   },
   {
     "script": "c247755865.lua",
-    "script_sha256": "de672bc9869379b37d627762d7c875fa616e26a71d0c644fd9450da99b3bded9",
+    "script_sha256": "8b43e163719bf83efaa43f264ab1c66a4b0f5470eb2743d11b70aa0daba7c447",
     "kind": "target-operation-search-mismatch",
     "line": 59,
     "reason": "The target uses spacefilter, which includes desfilter and proves a zone exists or can be opened by the victim. Resolution selects the MZONE subset when needed, otherwise desfilter, then checks actual destruction and free zone before summoning."

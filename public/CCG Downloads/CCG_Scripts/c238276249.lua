@@ -86,7 +86,7 @@ function s.handop(e,tp)
   and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,3)) then
   Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
   local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spellfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil)
-  if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT) Duel.ConfirmCards(1-tp,g) end
+  if #g>0 then if Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil) if #received>0 then Duel.ConfirmCards(1-tp,received) end end end
  end
 end
 function s.enemyfilter(c)

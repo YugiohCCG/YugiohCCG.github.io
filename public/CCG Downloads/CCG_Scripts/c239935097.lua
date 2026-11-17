@@ -73,7 +73,7 @@ function s.placeop(e,tp)
  if not tc or not s.place(tc,e,tp,tc:GetOwner()) then return end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
  local ag=Duel.SelectMatchingCard(tp,s.addfilter,tp,LOCATION_DECK,0,1,1,nil)
- if #ag>0 and Duel.SendtoHand(ag,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,ag) end
+ if #ag>0 and Duel.SendtoHand(ag,nil,REASON_EFFECT)>0 then local received=ag:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil) if #received>0 then Duel.ConfirmCards(1-tp,received) end end
 end
 function s.fusioncon(e)
  local c=e:GetHandler()
@@ -103,6 +103,6 @@ function s.retop(e,tp)
  if hand and place then option=Duel.SelectOption(tp,aux.Stringid(MSG_ID,2),aux.Stringid(MSG_ID,3))
  elseif place then option=1 end
  if option==0 then
-  if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,tc) end
+  if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then Duel.ConfirmCards(1-tp,tc) end
  else s.place(tc,e,tp,tp) end
 end

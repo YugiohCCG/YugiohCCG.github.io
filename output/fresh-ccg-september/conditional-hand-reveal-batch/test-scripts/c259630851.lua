@@ -1,0 +1,104 @@
+--A.I.P Ex Assimilation
+local s,id=GetID()
+local SET_AIP=0xa979
+local SET_AIP_EX=0x715b
+local STRING_ID=133630851
+function s.initial_effect(c)
+	--Take control of 1 opponent's monster
+	local e1=Effect.CreateEffect(c)
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
+	e1:SetCategory(CATEGORY_CONTROL+CATEGORY_DISABLE)
+	e1:SetType(EFFECT_TYPE_ACTIVATE)
+	e1:SetProperty(EFFECT_FLAG_CARD_TARGET)
+	e1:SetCode(EVENT_FREE_CHAIN)
+	e1:SetCountLimit(1,id)
+	e1:SetCondition(s.actcon)
+	e1:SetTarget(s.cttg)
+	e1:SetOperation(s.ctop)
+	c:RegisterEffect(e1)
+	--Banish this card; shuffle another "A.I.P" Trap into the Deck, then draw 1
+	local e2=Effect.CreateEffect(c)
+	e2:SetDescription(aux.Stringid(STRING_ID,1))
+	e2:SetCategory(CATEGORY_TODECK+CATEGORY_DRAW)
+	e2:SetType(EFFECT_TYPE_IGNITION)
+	e2:SetRange(LOCATION_GRAVE)
+	e2:SetCountLimit(1,id)
+	e2:SetCost(s.gycost)
+	e2:SetTarget(s.gytg)
+	e2:SetOperation(s.gyop)
+	c:RegisterEffect(e2)
+end
+s.listed_series={SET_AIP,SET_AIP_EX}
+function s.xyzfilter(c)
+	return c:IsFaceup() and c:IsSetCard(SET_AIP_EX) and c:IsType(TYPE_XYZ)
+end
+function s.actcon(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.IsExistingMatchingCard(s.xyzfilter,tp,LOCATION_MZONE,0,1,nil)
+end
+function s.ctfilter(c,e)
+	return c:IsControlerCanBeChanged() and c:IsType(TYPE_MONSTER)
+		and c:IsCanBeEffectTarget(e)
+end
+function s.cttg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+	if chkc then return chkc:IsControler(1-tp) and chkc:IsLocation(LOCATION_MZONE) and s.ctfilter(chkc,e) end
+	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+		and Duel.IsExistingTarget(s.ctfilter,tp,0,LOCATION_MZONE,1,nil,e) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONTROL)
+	local g=Duel.SelectTarget(tp,s.ctfilter,tp,0,LOCATION_MZONE,1,1,nil,e)
+	Duel.SetOperationInfo(0,CATEGORY_CONTROL,g,1,0,0)
+	Duel.SetOperationInfo(0,CATEGORY_DISABLE,g,1,0,0)
+end
+function s.ctop(e,tp,eg,ep,ev,re,r,rp)
+	local tc=Duel.GetFirstTarget()
+	if not (tc and tc:IsRelateToEffect(e) and tc:IsControler(1-tp)
+		and tc:IsLocation(LOCATION_MZONE) and tc:IsControlerCanBeChanged()
+		and Duel.GetLocationCount(tp,LOCATION_MZONE)>0) then return end
+	if Duel.GetControl(tc,tp)>0 then
+		local e1=Effect.CreateEffect(e:GetHandler())
+		e1:SetType(EFFECT_TYPE_SINGLE)
+		e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+		e1:SetCode(EFFECT_DISABLE)
+		e1:SetReset(RESET_EVENT+RESETS_STANDARD)
+		tc:RegisterEffect(e1)
+		local e2=e1:Clone()
+		e2:SetCode(EFFECT_DISABLE_EFFECT)
+		tc:RegisterEffect(e2)
+		if EFFECT_DISABLE_TRAPMONSTER and tc:IsType(TYPE_TRAPMONSTER) then
+			local e3=e1:Clone()
+			e3:SetCode(EFFECT_DISABLE_TRAPMONSTER)
+			tc:RegisterEffect(e3)
+		end
+		if EFFECT_ADD_SETCODE then
+			local e4=e1:Clone()
+			e4:SetCode(EFFECT_ADD_SETCODE)
+			e4:SetValue(SET_AIP)
+			tc:RegisterEffect(e4)
+			local e5=e4:Clone()
+			e5:SetValue(SET_AIP_EX)
+			tc:RegisterEffect(e5)
+		end
+	end
+end
+function s.gycost(e,tp,eg,ep,ev,re,r,rp,chk)
+	local c=e:GetHandler()
+	if chk==0 then return c:IsAbleToRemoveAsCost() end
+	Duel.Remove(c,POS_FACEUP,REASON_COST)
+end
+function s.tdfilter(c)
+	return c:IsSetCard(SET_AIP) and c:IsType(TYPE_TRAP) and not c:IsCode(id) and c:IsAbleToDeck()
+end
+function s.gytg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsPlayerCanDraw(tp,1)
+		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.tdfilter),tp,LOCATION_GRAVE,0,1,nil) end
+	Duel.SetOperationInfo(0,CATEGORY_TODECK,nil,1,tp,LOCATION_GRAVE)
+	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
+end
+function s.gyop(e,tp,eg,ep,ev,re,r,rp)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
+	local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.tdfilter),tp,LOCATION_GRAVE,0,1,1,nil):GetFirst()
+	if tc and Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0
+		and tc:IsLocation(LOCATION_DECK) then
+		Duel.BreakEffect()
+		Duel.Draw(tp,1,REASON_EFFECT)
+	end
+end

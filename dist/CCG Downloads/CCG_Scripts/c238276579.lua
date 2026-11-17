@@ -23,7 +23,8 @@ function CCGSylvan.Excavate(e,tp,ct,addmax)
    Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
    local adds=choices:Select(tp,1,math.min(addmax,#choices),nil)
    Duel.SendtoHand(adds,nil,REASON_EFFECT)
-   Duel.ConfirmCards(1-tp,adds)
+   local added=adds:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+   if #added>0 then Duel.ConfirmCards(1-tp,added) end
    rest:Sub(adds)
   end
  end
@@ -76,7 +77,7 @@ end
 function s.thop(e,tp)
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
  local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)
- if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 then return end
+ if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 or not g:GetFirst():IsLocation(LOCATION_HAND) or not g:GetFirst():IsControler(tp) then return end
  Duel.ConfirmCards(1-tp,g)
  Duel.ShuffleDeck(tp)
  if Duel.IsPlayerCanDiscardDeck(tp,1) then CCGSylvan.Excavate(e,tp,1) end

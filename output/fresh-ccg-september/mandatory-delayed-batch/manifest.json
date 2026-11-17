@@ -1,0 +1,28 @@
+{
+  "phase": "installed; full regression passed",
+  "items": [
+    {
+      "file": "c239127930.lua",
+      "source_before_sha256": "cd7f5e91b6cb2fae6705b98b867c7d2184a0b13ed8081d32007ed50b549e213b",
+      "installed_before_sha256": "cd7f5e91b6cb2fae6705b98b867c7d2184a0b13ed8081d32007ed50b549e213b",
+      "candidate_sha256": "f15d071813c30bb3f53aa6d8be199552f5d158fadafd8e1acc7ec9f3f225b2b8"
+    },
+    {
+      "file": "c221827483.lua",
+      "source_before_sha256": "c6d90489a6733cb1c0633c945a4a2954b95ab4121f9958d04c3fd12b1dcca1b5",
+      "installed_before_sha256": "c6d90489a6733cb1c0633c945a4a2954b95ab4121f9958d04c3fd12b1dcca1b5",
+      "candidate_sha256": "ce785093151334f7b7dacc420ded9fffb71bbc860f5cfe0f1ddded9ed7065888"
+    }
+  ],
+  "regression": {
+    "command": "node scripts/fresh_new_floo_fiendsmith_effects.cjs --sort-transport --chaininfo-compat --negation-window --installed-window --evander-receipt --target-compat",
+    "pass": 1314,
+    "fail": 0,
+    "log": "installed-full.log",
+    "scope": "installed script/database; corrected transport and test adapters; not live Omega"
+  },
+  "ruling_basis": {
+    "stock_script": "tmp/omega_scripts/c82946847.lua",
+    "note": "Comparable mandatory summon target always permits activation, operation checks zone; prompted removal of Formation legality gate. Custom-card timing is an inference."
+  }
+}

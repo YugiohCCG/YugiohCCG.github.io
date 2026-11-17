@@ -14,7 +14,14 @@ function s.hcost(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistin
 function s.selftg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and e:GetHandler():IsCanBeSpecialSummoned(e,0,tp,false,false) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0) end
 function s.selfop(e,tp) local c=e:GetHandler(); if c:IsRelateToEffect(e) then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP) end local ex=Effect.CreateEffect(c); ex:SetType(EFFECT_TYPE_FIELD); ex:SetCode(EFFECT_CANNOT_SPECIAL_SUMMON); ex:SetProperty(EFFECT_FLAG_PLAYER_TARGET); ex:SetTargetRange(1,0); ex:SetTarget(function(e,c) return c:IsLocation(LOCATION_EXTRA) and not c:IsType(TYPE_XYZ) end); ex:SetReset(RESET_PHASE+PHASE_END); Duel.RegisterEffect(ex,tp) end
 function s.spf(c,e,tp) return c:IsSetCard(SET_AEROCAT) and c:IsType(TYPE_MONSTER) and c:IsCanBeSpecialSummoned(e,0,tp,false,false) end
-function s.spgroup(tp,e) return Duel.GetMatchingGroup(s.spf,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_OVERLAY,0,nil,e,tp) end
+function s.spgroup(tp,e)
+ local g=Duel.GetMatchingGroup(s.spf,tp,LOCATION_HAND+LOCATION_GRAVE,0,nil,e,tp)
+ local hosts=Duel.GetMatchingGroup(Card.IsType,tp,LOCATION_MZONE,0,nil,TYPE_XYZ)
+ for xc in aux.Next(hosts) do
+  g:Merge(xc:GetOverlayGroup():Filter(s.spf,nil,e,tp))
+ end
+ return g
+end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and #s.spgroup(tp,e)>0 end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_OVERLAY) end
 function s.spop(e,tp) if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end local g=s.spgroup(tp,e); if #g==0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON); local tc=g:Select(tp,1,1,nil):GetFirst(); Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP) end
 function s.xyz(c) return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:IsRank(6) and c:IsAttribute(ATTRIBUTE_WIND) end

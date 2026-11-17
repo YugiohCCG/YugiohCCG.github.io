@@ -79,8 +79,10 @@ function s.tgop2(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local g2=Duel.SelectMatchingCard(tp,s.addfilter,tp,LOCATION_DECK,0,1,1,nil)
 		if #g2>0 then
-			Duel.SendtoHand(g2,nil,REASON_EFFECT)
-			Duel.ConfirmCards(1-tp,g2)
+			if Duel.SendtoHand(g2,nil,REASON_EFFECT)>0 then
+				local received=g2:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+				if #received>0 then Duel.ConfirmCards(1-tp,received) end
+			end
 		end
 	end
 end

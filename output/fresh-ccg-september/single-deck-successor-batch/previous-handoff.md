@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Installed full OCGCore regression 816 PASS / 0 FAIL.
+- Installed c212837324 Jet Drifter, c236473882 R2-D30, c253520299 G2-X38 and c256005703 Jet Dasher. All match source SHA-256.
+- Battle follow-ups now require the destination chosen at resolution. A redirected Extra Deck return skips the successor.
+- Scanned printed alternate-destination clauses and Lua shuffle-or-banish branches. All four matching scripts reproduced the issue and were fixed together.
+- Original 8 PASS / 4 FAIL. Candidate and installed focused runs passed 12 for ordinary return, voluntary banish and redirected return.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --galactica-leave-only. Full: same command without the flag.
+- Set CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Stock c100256025 and c17032740 check actual Extra Deck destination before their follow-up.
+- Fixtures use direct battle damage and isolate unsupported Link procedure calls. Battle destruction and live Omega remain open.
+- Logs, exact backups, hashes and effect review: output/fresh-ccg-september/galactica-leave-batch/.
+- Next: single-destination follow-ups starting with Talismandrake Heat, Blossom Skull, Grand Blue Princess and Prince, Starry Queen, and Myutant Evolution.
+- Oceanica Hand selection and Janna/Melville reveal remain open. No archetype is certified by this batch.

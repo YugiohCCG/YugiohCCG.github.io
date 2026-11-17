@@ -1,0 +1,83 @@
+--Stardrake of Gravitic Coils
+local s,id=GetID()
+local STRING_ID=133265629
+function s.initial_effect(c)
+	c:EnableReviveLimit()
+	--Xyz Summon by using the monster you control with the lowest ATK or DEF
+	local e1=Effect.CreateEffect(c)
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
+	e1:SetType(EFFECT_TYPE_FIELD)
+	e1:SetCode(EFFECT_SPSUMMON_PROC)
+	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
+	e1:SetRange(LOCATION_EXTRA)
+	e1:SetCountLimit(1,id)
+	e1:SetCondition(aux.XyzLevelFreeCondition(s.matfilter,s.xyzcheck,1,1))
+	e1:SetTarget(aux.XyzLevelFreeTarget(s.matfilter,s.xyzcheck,1,1))
+	e1:SetOperation(aux.XyzLevelFreeOperation(s.matfilter,s.xyzcheck,1,1))
+	e1:SetValue(SUMMON_TYPE_XYZ)
+	c:RegisterEffect(e1)
+	--Cannot be used as Xyz or Link Material
+	local e2=Effect.CreateEffect(c)
+	e2:SetType(EFFECT_TYPE_SINGLE)
+	e2:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
+	e2:SetCode(EFFECT_CANNOT_BE_XYZ_MATERIAL)
+	e2:SetValue(1)
+	c:RegisterEffect(e2)
+	local e3=e2:Clone()
+	e3:SetCode(EFFECT_CANNOT_BE_LINK_MATERIAL)
+	c:RegisterEffect(e3)
+	--Your opponent cannot target other monsters for attacks
+	local e4=Effect.CreateEffect(c)
+	e4:SetType(EFFECT_TYPE_FIELD)
+	e4:SetCode(EFFECT_CANNOT_SELECT_BATTLE_TARGET)
+	e4:SetRange(LOCATION_MZONE)
+	e4:SetTargetRange(0,LOCATION_MZONE)
+	e4:SetCondition(s.atkcon)
+	e4:SetValue(s.atlimit)
+	c:RegisterEffect(e4)
+	--ATK becomes the opponent's battling monster's ATK +100
+	local e5=Effect.CreateEffect(c)
+	e5:SetType(EFFECT_TYPE_SINGLE)
+	e5:SetCode(EFFECT_SET_ATTACK_FINAL)
+	e5:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
+	e5:SetRange(LOCATION_MZONE)
+	e5:SetCondition(s.atkvalcon)
+	e5:SetValue(s.atkval)
+	c:RegisterEffect(e5)
+end
+function s.highatkfilter(c,tp)
+	if not (c:IsFaceup() and c:IsControler(1-tp) and c:GetAttack()>=3000) then return false end
+	local g=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_MZONE,LOCATION_MZONE,nil)
+	local atk=c:GetAttack()
+	return not g:IsExists(function(tc) return tc:GetAttack()>atk end,1,c)
+end
+function s.matfilter(c,sc)
+	if not (c:IsFaceup() and c:IsLocation(LOCATION_MZONE)) then return false end
+	local tp=c:GetControler()
+	local g=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_MZONE,0,nil)
+	local ag=g:GetMinGroup(Card.GetAttack)
+	if ag and ag:IsContains(c) then return true end
+	local dg=g:Filter(function(tc) return not tc:IsType(TYPE_LINK) end,nil)
+	if #dg==0 then return false end
+	dg=dg:GetMinGroup(Card.GetDefense)
+	return dg and dg:IsContains(c)
+end
+function s.xyzcheck(g,sc,tp)
+	return Duel.IsExistingMatchingCard(s.highatkfilter,tp,0,LOCATION_MZONE,1,nil,tp)
+end
+function s.atkcon(e)
+	local c=e:GetHandler()
+	return c:IsSummonType(SUMMON_TYPE_XYZ)
+end
+function s.atlimit(e,c)
+	return c~=e:GetHandler()
+end
+function s.atkvalcon(e)
+	local c=e:GetHandler()
+	return Duel.GetCurrentPhase()==PHASE_DAMAGE_CAL and c:GetBattleTarget()~=nil
+end
+function s.atkval(e,c)
+	local bc=c:GetBattleTarget()
+	if not bc then return c:GetAttack() end
+	return math.max(bc:GetAttack(),0)+100
+end

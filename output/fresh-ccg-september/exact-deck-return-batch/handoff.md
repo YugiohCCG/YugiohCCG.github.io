@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Library has 703 specification cards and one compatibility alias.
+- Installed OCGCore regression 783 PASS / 0 FAIL, up from 765.
+- Installed c223158720, c227035644, c238276576, c245395343, c248940511, c259160760, c259273394, c259669838 and c259820516. All match source bytes.
+- Require exact successful Deck destination counts before draws, stat bonuses and Summons. Top and bottom placement count Main Deck arrivals; shuffle materials can reach either Deck.
+- Scanned exact comparisons across the library. Nine effect scripts fixed; Scarlet Seareef and two summon procedure payment paths require a separate cost check.
+- Compared destination accounting with stock Omega c101203057. Moonflare uses a fixture Synchro Summon and the Fusion tests use neutral recipient recipes.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --exact-deck-return-only. Original 9 PASS / 9 FAIL; candidate and installed 18 PASS.
+- Full: node scripts/fresh_new_floo_fiendsmith_effects.cjs. Set CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Logs, pre-edit snapshots, backups and SHA-256: output/fresh-ccg-september/exact-deck-return-batch/.
+- Printed clauses and comparison sites: output/fresh-ccg-september/exact-deck-return-batch/effect-review.json.
+- Next: test the three remaining cost comparisons using native payment eligibility and redirect fixtures, then revisit single-card destination follow-ups.
+- Janna recovery, Melville reveal, Oceanica both-player Hand selection and Crystal Shards target eligibility remain open. Live Omega duels remain open.

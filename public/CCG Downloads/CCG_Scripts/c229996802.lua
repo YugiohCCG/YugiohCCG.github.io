@@ -55,9 +55,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.BreakEffect()
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local sg=g:SelectSubGroup(tp,s.lvcheck,false,1,2)
-	if sg and #sg>0 and Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then
-		Duel.ConfirmCards(1-tp,sg)
-	end
+	if sg and #sg>0 and Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then local received=sg:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil) if #received>0 then Duel.ConfirmCards(1-tp,received) end end
 end
 function s.retfilter(c)
 	return c:IsFaceup() and c:IsType(TYPE_SPIRIT)

@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Installed full OCGCore regression 883 PASS / 0 FAIL.
+- Installed c210696007, c212684822, c227362839, c247755865, c254065048, c258328859, c259177849, c259187643 and c259688514. All match source SHA-256.
+- Add-or-send effects reveal only actual hand arrivals. Galataxian Battle Preparation keeps the chosen branch if the add fails.
+- Original focused 18 PASS / 9 FAIL. Candidate and installed focused runs passed 27.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --add-or-send-only. Full: same command without the flag.
+- Set CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Compared stock c45354718 for hand arrival before reveal. Used fixture Summons to drive the six summon-triggered effects.
+- Library scan paired SendtoHand, SendtoGrave, ConfirmCards and SelectOption and reviewed the printed clauses.
+- Logs, exact backups, hashes and effect review: output/fresh-ccg-september/add-or-send-batch/.
+- Next: Aquila and Spires of Zephorion Prime resource choices, then standalone immediate reveals and Oceanica both-player Hand selection.
+- Talismandrake Pyre's DARK Pyro branch shares the destination guard. Its dedicated fixture remains open.
+- Coverage is limited to the exercised effects. Live Omega duels remain open.

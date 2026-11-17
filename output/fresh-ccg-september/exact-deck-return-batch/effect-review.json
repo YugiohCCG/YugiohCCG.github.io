@@ -1,0 +1,133 @@
+[
+  {
+    "passcode": 220749574,
+    "card": "Scarlet Seareef & the Nautical Creatures",
+    "printed_text": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by placing 2 Aqua Monsters from your GY on the bottom of your Deck in any order. You can treat this card as a Level 1 monster when you Xyz Summon an Aqua monster. You can discard 1 card; shuffle this card from your hand into the Deck, then add 1 \"Exploring the Nautical Waters\" from your Deck to your hand. If this card is Special Summoned: You can draw 1 card, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0.",
+    "gates": [
+      "if Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_COST)==#g then"
+    ],
+    "disposition": "Summon or cost payment uses REASON_COST; separate cost eligibility and replacement review pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 221924008,
+    "card": "Chamroshes' Aegis",
+    "printed_text": "3 Level 3 or lower Tuners with different names\nMust first be Special Summoned (from your Extra Deck) by shuffling the above cards from your GY or banishment into the Deck. (You do not use \"Polymerization\".) If Summoned this way, you cannot Special Summon monsters from the Extra Deck for the rest of this turn, except Synchro Monsters. You can only use each of the following effects of \"Chamroses' Aegis\" once per turn. When this card is Special Summoned: You can Special Summon 1 Level 2 Tuner Synchro Monster from your Extra Deck (but banish it when it leaves the field), also, if that monster would be used as Synchro Material, you can treat it as a non-Tuner. If this card is sent to the GY: You can change the battle position of up to 3 monsters on the field.",
+    "gates": [
+      "if Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_COST+REASON_MATERIAL)~=#sg then e:SetLabel(1) end"
+    ],
+    "disposition": "Summon or cost payment uses REASON_COST; separate cost eligibility and replacement review pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 223158720,
+    "card": "Nautical Backwashing & Oceanic Waves",
+    "printed_text": "Target 1 \"Nautica\" monster in your GY; return that target to the hand, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0. You can banish this card from your GY; place 3 Aqua monsters from your GY on the bottom of your Deck in any order, then draw 1 card. You can only use 1 effect of \"Nautical Backwashing & Oceanic Waves\" per turn and only once that turn.",
+    "gates": [
+      "if #g==3 and Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_EFFECT)==3 then"
+    ],
+    "disposition": "Confirmed effect-resolution false positive; fixed and tested",
+    "fully_audited": false
+  },
+  {
+    "passcode": 227035644,
+    "card": "Aqua Fusion",
+    "printed_text": "(This card is always treated as an \"Aquamarine\" card.)\nFusion Summon 1 \"Aquamarine\" Fusion Monster from your Extra Deck, using 2 monsters from your hand, Deck, or field as Fusion Material. You cannot Special Summon monsters from the Extra Deck, except WATER Fusion Monsters, the turn you use this effect. During your Main Phase, except the turn this card was sent to the GY: You can banish this card from your GY; Fusion Summon 1 \"Aquamarine\" Fusion Monster from your Extra Deck, by shuffling Fusion Materials into the Deck, from among your cards on the field, in your GY, and/or your face-up banished cards. You can only use each effect of \"Aqua Fusion\" once per turn.",
+    "gates": [
+      "if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end"
+    ],
+    "disposition": "Confirmed effect-resolution false positive; fixed and tested",
+    "fully_audited": false
+  },
+  {
+    "passcode": 238276576,
+    "card": "Sylvan Intervention",
+    "printed_text": "Send this card to the GY, then target 3 \"Sylvan\" monsters in your GY; Place 2 of them on top of your Deck in any order, then Special Summon the other one. You can only use this effect of \"Sylvan Intervention\" once per turn. If this card is excavated by the effect of a \"Sylvan\" card, send it to the GY. If a Plant monster(s) you control would be destroyed by a card effect, you can banish this card from your GY instead.",
+    "gates": [
+      "and Duel.SendtoDeck(g,nil,SEQ_DECKTOP,REASON_EFFECT)==2 then",
+      "if Duel.SendtoDeck(g,nil,SEQ_DECKTOP,REASON_EFFECT)~=2 then return end"
+    ],
+    "disposition": "Confirmed effect-resolution false positive; fixed and tested",
+    "fully_audited": false
+  },
+  {
+    "passcode": 245395343,
+    "card": "Fusion Intergalactica",
+    "printed_text": "Once per turn, when you activate \"Fusion Intergalactica\", you can also banish 1 \"Galactica\" monster you control. Fusion Summon 1 \"Galactica\" monster from your Extra Deck in Attack Position by shuffling the Fusion Materials from your banishment into the Deck. You can only use the following effect of \"Fusion Intergalactica\" once per turn. During the Main Phase, or if this card is banished during the Battle Phase, you can add this banished card to your hand.",
+    "gates": [
+      "fc:SetMaterial(mat) if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==#mat and Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP_ATTACK)>0 then fc:CompleteProcedure() end"
+    ],
+    "disposition": "Confirmed effect-resolution false positive; fixed and tested",
+    "fully_audited": false
+  },
+  {
+    "passcode": 248940511,
+    "card": "Flower Cardian Moonflare",
+    "printed_text": "1 Tuner + 3 non-Tuner monsters\nIf this card is Synchro Summoned: You can target 5 Spell Cards or \"Flower Cardian\" monsters in your GY; shuffle them into the Deck, then draw 1 card. When your opponent activates a monster effect (Quick Effect): You can negate the activation, and if you do, destroy that card. You can only use this effect of \"Flower Cardian Moonflare\" once per turn. When this card is used as Synchro Material for the Synchro Summon of a \"Flower Cardian\" monster, you can treat it as 3 non-Tuner monsters.",
+    "gates": [
+      "if #g==5 and Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==5 then Duel.Draw(tp,1,REASON_EFFECT) end"
+    ],
+    "disposition": "Confirmed effect-resolution false positive; fixed and tested",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259160760,
+    "card": "Wyvernal Sanctuary",
+    "printed_text": "During your Main Phase: You can send 1 \"Wyvernal\" or Insect monster you control to the GY; Special Summon 1 \"Wyvernal\" monster from your Deck. If a \"Wyvernal\" or Insect monster is Special Summoned, except by this card's effect: You can Fusion Summon 1 Fusion Monster from your Extra Deck by shuffling \"Wyvernal\" or Insect monsters from your hand, GY or banishment into the Deck as Fusion Material. You can only use each effect of \"Wyvernal Sanctuary\" once per turn.",
+    "gates": [
+      "if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end"
+    ],
+    "disposition": "Confirmed effect-resolution false positive; fixed and tested",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259273394,
+    "card": "Jelly Miss of the Grand Blue",
+    "printed_text": "If you control a \"Grand Blue\" monster: You can Special Summon this card from your hand, then if you control \"Umi\", you can negate the effects of 1 face-up card your opponent controls, also, this card gains 800 ATK/DEF. If this card is in your GY: You can Fusion Summon 1 \"Grand Blue\" Fusion Monster from your Extra Deck by shuffling the Fusion Materials listed on it into the Deck, including this card. You can only use each effect of \"Jelly Miss of the Grand Blue\" once per turn.",
+    "gates": [
+      "if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=2 then return end"
+    ],
+    "disposition": "Confirmed effect-resolution false positive; fixed and tested",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259363148,
+    "card": "Gladiator Beast Satyrius",
+    "printed_text": "2 \"Gladiator Beast\" and/or \"Test\" monsters\nMust first be Special Summoned (from your Extra Deck) by shuffling the above cards from your hand and/or field into the Deck or Extra Deck. If this card is Special Summoned: You can Special Summon 1 Level 4 or lower \"Gladiator Beast\" monster from your Deck. You can only use this effect of \"Gladiator Beast Satyrius\" once per turn. \"Gladiator Beast\" monsters you control gain 300 ATK. At the end of the Battle Phase, if this card battled: You can return this card to the Extra Deck; Special Summon 1 \"Gladiator Beast\" monster from your Deck.",
+    "gates": [
+      "if Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_COST|REASON_MATERIAL)~=#g then e:SetLabel(1) end"
+    ],
+    "disposition": "Summon or cost payment uses REASON_COST; separate cost eligibility and replacement review pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259635008,
+    "card": "Abe no Seimei",
+    "printed_text": "1 Spirit Tuner + 1+ non-Tuners If this card is Special Summoned: Your hand size limit becomes 7 until the end of your opponent's next turn. Once per turn: You can increase or decrease the Level of 1 other Spirit monster you control by 1, and if you do, this card gains ATK equal to that monster's original ATK. During the End Phase, if this card was Special Summoned this turn: Return it to the Extra Deck, and if you do, Special Summon 2 Spirit monsters from your GY (1 Tuner and 1 non-Tuner) whose total Levels equal 6, ignoring their Summoning conditions.",
+    "gates": [
+      "function s.retop(e,tp) local c=e:GetHandler(); if Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==0 then return end if Duel.IsPlayerAffectedByEffect(tp,59822133) then return end local tun=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.sf),tp,LOCATION_GRAVE,0,nil,e,tp,true); local non=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.sf),tp,LOCATION_GRAVE,0,nil,e,tp,false); local pairs=Group.CreateGroup(); local a=tun:GetFirst(); while a do local b=non:GetFirst(); while b do if a:GetLevel()+b:GetLevel()==6 then pairs:AddCard(a); pairs:AddCard(b) end b=non:GetNext() end a=tun:GetNext() end if #pairs<2 or Duel.GetLocationCount(tp,LOCATION_MZONE)<2 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON); local t=tun:Filter(function(x,n) return n:IsExists(function(y,x) return x:GetLevel()+y:GetLevel()==6 end,1,nil,x) end,nil,non):Select(tp,1,1,nil):GetFirst(); local n=non:Filter(function(x,t) return x:GetLevel()+t:GetLevel()==6 end,nil,t):Select(tp,1,1,nil):GetFirst(); Duel.SpecialSummon(Group.FromCards(t,n),0,tp,tp,true,true,POS_FACEUP) end"
+    ],
+    "disposition": "Summon or cost payment uses REASON_COST; separate cost eligibility and replacement review pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259669838,
+    "card": "Krawler Plexus",
+    "printed_text": "1 \"Krawler\" monster If this card is Special Summoned: When you activate this effect, you can also discard 1 card; You can Special Summon 1 \"Krawler\" monster from your banishment or GY in face-down Defense Position, then, if you discarded a card when you activated this effect, you can change 1 face-down Defense Position monster you control to face-up Defense Position. If a \"Krawler\" monster leaves the field because of an opponent's card or effect: You can shuffle this card and 2 other \"Krawler\" monsters from your GY into your Deck; this turn all \"Krawler\" monsters gain 300 ATK/DEF. You can only Special Summon \"Krawler Plexus\" once per turn.",
+    "gates": [
+      "function s.tdop(e,tp) local c=e:GetHandler(); if not c:IsRelateToEffect(e) or not c:IsAbleToDeck() then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK); local g=Duel.SelectMatchingCard(tp,s.tdf,tp,LOCATION_GRAVE,0,2,2,c); g:AddCard(c); if Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==3 then local ex=Effect.CreateEffect(c); ex:SetType(EFFECT_TYPE_FIELD); ex:SetCode(EFFECT_UPDATE_ATTACK); ex:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE); ex:SetTarget(function(e,c) return c:IsSetCard(SET_KRAWLER) end); ex:SetValue(300); ex:SetReset(RESET_PHASE+PHASE_END); Duel.RegisterEffect(ex,tp); local ex2=ex:Clone(); ex2:SetCode(EFFECT_UPDATE_DEFENSE); Duel.RegisterEffect(ex2,tp) end end"
+    ],
+    "disposition": "Confirmed effect-resolution false positive; fixed and tested",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259820516,
+    "card": "Expulsion of the Pyre",
+    "printed_text": "Send 1 Pyro monster you control to the GY; Set 1 \"Pyre\" Spell from your Deck or GY. You can banish this card from your GY, then target 3 \"Pyre\" Spells or Pyro monsters in your banishment (except \"Expulsion of the Pyre\"); shuffle them into your Deck, then draw 1 card. You can only use each of the previous effects of \"Expulsion of the Pyre\" once per turn. If a Pyro monster(s) you control would be destroyed by battle or card effect, you can banish this card from your GY instead.",
+    "gates": [
+      "function s.tdop(e,tp) local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e); if #g==3 and Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==3 then Duel.BreakEffect(); Duel.Draw(tp,1,REASON_EFFECT) end end"
+    ],
+    "disposition": "Confirmed effect-resolution false positive; fixed and tested",
+    "fully_audited": false
+  }
+]

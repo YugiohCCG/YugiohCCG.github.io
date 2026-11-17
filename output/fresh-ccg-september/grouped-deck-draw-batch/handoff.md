@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Installed full OCGCore regression 804 PASS / 0 FAIL.
+- Installed Gravinity Nebulix c212429024, Ursarctic Hextanius c244921711, Rei-Tachi Ga Kita Hi c246393365 and Aerocat Recon c259391738. All match source SHA-256.
+- Grouped draws require one or more actual Deck or Extra Deck arrivals. Existing Aerocat one-material Xyz requirement remains in the callback.
+- Original 8 PASS / 4 FAIL. Candidate and installed focused runs each passed 12 across legal, partial and complete redirects.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --grouped-deck-draw-only. Full: same command without the flag.
+- Set CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Reviewed the library's SendtoDeck/Draw callbacks against printed thresholds. The five other grouped candidates already checked destinations.
+- Stock Omega c101203057 provides a comparable destination-based draw. Nebulix uses a fixture Synchro and public-core API compatibility.
+- Logs, exact backups, installed hashes and effect review: output/fresh-ccg-september/grouped-deck-draw-batch/.
+- Coverage applies to grouped return-and-draw resolution. Other printed effects and live Omega duels remain open.
+- Next: non-draw single-card Deck return follow-ups from the Shards scan, including alternate-destination Galactica effects.
+- Oceanica both-player Hand selection and Janna and Melville reveal checks remain open.

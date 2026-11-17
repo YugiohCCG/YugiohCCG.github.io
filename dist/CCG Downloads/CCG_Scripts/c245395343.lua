@@ -36,9 +36,11 @@ end
 function s.fusop(e,tp)
 	local mg=Duel.GetMatchingGroup(s.matfilter,tp,LOCATION_REMOVED,0,nil) local fg=Duel.GetMatchingGroup(s.fusfilter,tp,LOCATION_EXTRA,0,nil,e,tp,mg) if #fg==0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON) local fc=fg:Select(tp,1,1,nil):GetFirst() local mat=Duel.SelectFusionMaterial(tp,fc,mg,nil,tp) if not mat or #mat==0 then return end
-	fc:SetMaterial(mat) if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)==#mat and Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP_ATTACK)>0 then fc:CompleteProcedure() end
+	fc:SetMaterial(mat)
+	Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
+	if mat:FilterCount(Card.IsLocation,nil,LOCATION_DECK+LOCATION_EXTRA)==#mat and Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP_ATTACK)>0 then fc:CompleteProcedure() end
 end
 function s.thcon(e) return Duel.IsMainPhase() end
 function s.rmcon(e) return Duel.IsBattlePhase() end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return aux.NecroValleyFilter(Card.IsAbleToHand)(e:GetHandler()) end Duel.SetOperationInfo(0,CATEGORY_TOHAND,e:GetHandler(),1,tp,LOCATION_REMOVED) end
-function s.thop(e,tp) local c=e:GetHandler() if c:IsRelateToEffect(e) and Duel.SendtoHand(c,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,c) end end
+function s.thop(e,tp) local c=e:GetHandler() if c:IsRelateToEffect(e) and Duel.SendtoHand(c,nil,REASON_EFFECT)>0 and c:IsLocation(LOCATION_HAND) and c:IsControler(tp) then Duel.ConfirmCards(1-tp,c) end end

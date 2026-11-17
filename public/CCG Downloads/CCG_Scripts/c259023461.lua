@@ -74,8 +74,10 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)
 	if #g>0 then
-		Duel.SendtoHand(g,nil,REASON_EFFECT)
-		Duel.ConfirmCards(1-tp,g)
+		if Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
+			local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+			if #received>0 then Duel.ConfirmCards(1-tp,received) end
+		end
 	end
 end
 function s.paycon(e,tp,eg,ep,ev,re,r,rp)
@@ -120,8 +122,10 @@ function s.payop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.firefilter),tp,LOCATION_GRAVE,0,1,1,nil)
 		if #g>0 then
-			Duel.SendtoHand(g,nil,REASON_EFFECT)
-			Duel.ConfirmCards(1-tp,g)
+			if Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
+				local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+				if #received>0 then Duel.ConfirmCards(1-tp,received) end
+			end
 		end
 	else
 		if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 or not c:IsRelateToEffect(e)

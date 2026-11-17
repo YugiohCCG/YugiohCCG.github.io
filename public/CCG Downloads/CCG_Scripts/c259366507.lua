@@ -102,16 +102,18 @@ function s.desop(e,tp,eg,ep,ev,re,r,rp)
 	if op==0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.listfilter),tp,LOCATION_GRAVE,0,1,1,nil)
-		if #g>0 then
-			Duel.SendtoHand(g,nil,REASON_EFFECT)
-			Duel.ConfirmCards(1-tp,g)
+		local tc=g:GetFirst()
+		if tc and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0
+			and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then
+			Duel.ConfirmCards(1-tp,tc)
 		end
 	else
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local g=Duel.SelectMatchingCard(tp,s.fieldfilter,tp,LOCATION_DECK,0,1,1,nil)
-		if #g>0 then
-			Duel.SendtoHand(g,nil,REASON_EFFECT)
-			Duel.ConfirmCards(1-tp,g)
+		local tc=g:GetFirst()
+		if tc and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0
+			and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then
+			Duel.ConfirmCards(1-tp,tc)
 		end
 	end
 end

@@ -73,9 +73,7 @@ function s.eqop(e,tp,eg,ep,ev,re,r,rp)
 	local canhand=tc:IsAbleToHand()
 	local canequip=Duel.GetLocationCount(tp,LOCATION_SZONE)>0 and not tc:IsForbidden()
 	if canhand and (not canequip or Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))==0) then
-		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
-			Duel.ConfirmCards(1-tp,tc)
-		end
+		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then Duel.ConfirmCards(1-tp,tc) end
 	elseif canequip and Duel.Equip(tp,tc,c) then
 		local e1=Effect.CreateEffect(c)
 		e1:SetType(EFFECT_TYPE_SINGLE)

@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Installed OCGCore regression 833 PASS / 0 FAIL.
+- Installed c237684285 Janna and c215006791. Both match source SHA-256.
+- Delayed Windborne recoveries now reveal only cards received in the controller's hand.
+- Janna Deck search and both End Phase scheduled GY recoveries reproduced false reveals after redirection.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --windborne-reveal-only. Original 4 PASS / 3 FAIL. Installed 7 PASS.
+- Full: same command without the flag. Set CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Stock c45354718 supplies a comparable hand-arrival reveal check. Janna search uses the existing Synchro fixture.
+- Logs, exact backups, hashes and printed callback inventory: output/fresh-ccg-september/janna-reveal-audit/.
+- The delayed callback scan identified related search-then-Set effects in c215068354, c217029078, c221759221, c247779405 and c257794541.
+- Next: test those related reveals and dependent Sets, including partial hand receipt. Expand the scan to immediate reveals and Melville excavation.
+- Oceanica both-player Hand selection, remaining unchecked Deck moves, and live Omega duels remain open.
+- Coverage remains scoped to the exercised effects. No full archetype certification.

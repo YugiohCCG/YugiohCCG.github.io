@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Installed full OCGCore regression 889 PASS / 0 FAIL.
+- Installed c244972185 The Spires of Zephorion Prime and c259366507 Aquila. Both match source SHA-256.
+- Reveal requires actual hand receipt for Spires' search and both Aquila recovery choices.
+- Original focused 3 PASS / 3 FAIL. Candidate and installed focused runs passed 6.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --zephorion-receipt-only. Full: same command without the flag.
+- Set CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Aquila trigger uses a fixture effect on the Eldora card. Both Deck and GY moves and reveal messages were checked.
+- Compared stock c45354718. Search and recovery callback scan recorded 29 hits in effect-review.json.
+- Logs, original and installed snapshots, hashes and exact backups: output/fresh-ccg-september/zephorion-receipt-batch/.
+- Next: standalone immediate reveals and the remaining alternative search callbacks in the inventory.
+- Oceanica both-player Hand selection, Spires Field Spell activation, other Aquila effects, and live Omega remain open.
+- Coverage remains scoped to exercised effects.

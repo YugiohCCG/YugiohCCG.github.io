@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Full installed OCGCore regression 783 PASS / 0 FAIL.
+- Installed Chamroshes' Aegis c221924008. Installed and source SHA-256 match.
+- The contact procedure now checks Deck-or-Extra sacrifice eligibility before offering the Summon and verifies all three arrivals at payment.
+- Original Aegis could Summon after a Tuner was redirected. Installed case rejects the offer and leaves the material in the GY.
+- Scarlet Seareef and Gladiator Beast Satyrius already rejected redirected materials. All three passed legal payment, send replacement, and direct redirect fixtures.
+- Focused: node scripts/fresh_current_{scarlet_procedure,aegis_procedure,gladiator_contact}_payment.cjs --expect-cost-filter, each script separately.
+- Full: node scripts/fresh_new_floo_fiendsmith_effects.cjs. Point CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Scanned 20 cost sites in 19 scripts. Aegis was the matching procedure using general Deck movement eligibility. Other activation costs remain scoped in the review.
+- Stock contact eligibility reference: tmp/omega_scripts/c11502550.lua. Aegis uses an existing public-core IsFaceupEx fixture.
+- Logs, original and installed snapshots, backups, hashes and printed-effect review: output/fresh-ccg-september/deck-cost-batch/.
+- Next: single-card Deck-destination follow-ups. Separately verify Janna recovery, Melville reveal, Oceanica both-player Hand selection and Crystal Shards target eligibility.
+- Card and archetype coverage remains open. Live Omega duels remain unverified.

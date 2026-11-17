@@ -56,8 +56,10 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local gg=sg:Clone()
 	gg:Sub(hg)
 	if #hg>0 then
-		Duel.SendtoHand(hg,nil,REASON_EFFECT)
-		Duel.ConfirmCards(1-tp,hg)
+		if Duel.SendtoHand(hg,nil,REASON_EFFECT)>0 then
+			local received=hg:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+			if #received>0 then Duel.ConfirmCards(1-tp,received) end
+		end
 	end
 	if #gg>0 then Duel.SendtoGrave(gg,REASON_EFFECT) end
 end

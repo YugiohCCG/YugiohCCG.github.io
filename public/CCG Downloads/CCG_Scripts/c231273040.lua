@@ -50,7 +50,7 @@ function s.spfilter(c,e,tp)
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e)
-	if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
+	if #g==2 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 and g:FilterCount(function(c) return c:IsControler(c:GetOwner()) and (c:IsLocation(LOCATION_HAND) or (c:IsLocation(LOCATION_EXTRA) and c:IsType(TYPE_FUSION+TYPE_SYNCHRO+TYPE_XYZ+TYPE_LINK+TYPE_PENDULUM))) end,nil)==2 then
 		if Duel.GetFlagEffect(tp,231273040)>=3 and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 
 			and Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_HAND,0,1,nil,e,tp) 
 			and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then

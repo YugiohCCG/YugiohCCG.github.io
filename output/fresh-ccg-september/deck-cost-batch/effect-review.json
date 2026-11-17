@@ -1,0 +1,193 @@
+[
+  {
+    "passcode": 211964444,
+    "name": "Priestess of Nephthys",
+    "printed_text": "You can Ritual Summon this card with any \"Nephthys\" Ritual Spell. If this card is Special Summoned: You can reveal 1 \"Nephthys\" monster in your Deck; destroy it, then apply that card's effect that activates during the Standby Phase. You can shuffle this card from your hand into the Deck; add 1 \"Nephthys\" Spell/Trap Card from your Deck or GY to your hand. You can only use each effect of \"Priestess of Nephthys\" once per turn.",
+    "sites": [
+      "Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 212413422,
+    "name": "Gaia, the Iron Clad Knight",
+    "printed_text": "(This card is always treated as a \"Gaia The Fierce Knight\" monster.) If there is a face-up Dragon monster on the field: You can Special Summon this card from your hand. If this card is Special Summoned: You can target 1 Dragon monster on the field or in either GY; banish this card and that target, and if you do, Special Summon 1 Fusion Monster from your Extra Deck that specifically lists a \"Gaia The Fierce Knight\" monster as Fusion Material, and if you do that, it gains 2600 ATK until the End Phase. If another \"Gaia The Fierce Knight\" monster(s) is banished while this card is banished: You can shuffle this card into the Deck; return that banished monster(s) to the GY. You can only use each effect of \"Gaia, The Iron Clad Knight\" once per turn.",
+    "sites": [
+      "Duel.SendtoDeck(c,tp,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 218142234,
+    "name": "Maiden of Talismandrakes Seraphina",
+    "printed_text": "Pendulum Effect: You can shuffle 3 \"Talismandrake\" monsters with different names from your face-up Extra Deck, field, and/or GY into the Deck; Special Summon this card from your Pendulum Zone, then you can equip 1 \"Talismandrake Arms\" Spell/Trap from your GY to this card as if it was equipped by that Spell/Trap's effect.\nMonster Effect: 2 \"Talismandrake\" monsters + 1 Pyro Pendulum Monster\nIf this card is Fusion Summoned, or if your opponent activates a card or effect: You can target 1 \"Talismandrake Arms\" Spell/Trap in your GY; add it to your hand or equip it to this card as if it were equipped by that Spell/Trap's effect. If this card in the Monster Zone leaves the field: You can place it in your Pendulum Zone. You can only use the previous effects of “Maiden of Talismandrakes, Seraphina” once per turn. If a \"Right Talismandrake Arms\" and \"Left Talismandrake Arms\" Spell/Trap is equipped to this card (Quick Effect): You can pay 1000 LP; destroy all cards your opponent controls, also, you cannot use this effect of \"Maiden of Talismandrakes, Seraphina\" until the end of the next turn.",
+    "sites": [
+      "Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 220305422,
+    "name": "Natir, the Swords Master of Crying Chaos",
+    "printed_text": "1 Zombie Tuner monster + 1 non-Tuner monster\nIf this card is Synchro Summoned: You can Special Summon 1 Level 3 Zombie Tuner monster from your Deck or GY. When your opponent activates a monster effect that targets a card you control or in your GY (Quick Effect): You can shuffle 1 Zombie monster from your banishment into the Deck; negate that effect. You can only use each effect of \"Natir, The Swords Master of Crying Chaos\" once per turn.",
+    "sites": [
+      "Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 220749574,
+    "name": "Scarlet Seareef & the Nautical Creatures",
+    "printed_text": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by placing 2 Aqua Monsters from your GY on the bottom of your Deck in any order. You can treat this card as a Level 1 monster when you Xyz Summon an Aqua monster. You can discard 1 card; shuffle this card from your hand into the Deck, then add 1 \"Exploring the Nautical Waters\" from your Deck to your hand. If this card is Special Summoned: You can draw 1 card, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0.",
+    "sites": [
+      "if Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_COST)==#g then"
+    ],
+    "coverage": "Legal payment, runtime replacement and ineligible redirect verified for summon procedure.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 221924008,
+    "name": "Chamroshes' Aegis",
+    "printed_text": "3 Level 3 or lower Tuners with different names\nMust first be Special Summoned (from your Extra Deck) by shuffling the above cards from your GY or banishment into the Deck. (You do not use \"Polymerization\".) If Summoned this way, you cannot Special Summon monsters from the Extra Deck for the rest of this turn, except Synchro Monsters. You can only use each of the following effects of \"Chamroses' Aegis\" once per turn. When this card is Special Summoned: You can Special Summon 1 Level 2 Tuner Synchro Monster from your Extra Deck (but banish it when it leaves the field), also, if that monster would be used as Synchro Material, you can treat it as a non-Tuner. If this card is sent to the GY: You can change the battle position of up to 3 monsters on the field.",
+    "sites": [
+      "Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_COST+REASON_MATERIAL)"
+    ],
+    "coverage": "Confirmed failure before fixing eligibility. Legal payment, runtime replacement and ineligible redirect verified.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 224751741,
+    "name": "Fall of Azrynior",
+    "printed_text": "(This card is also treated as a \"Taxis\" card.)\nSpecial Summon 1 \"Protogenic Essence Token\" (Galaxy/DARK/Level 1/ATK 0/DEF 0), but that Token cannot be used as Link Material, then Fusion Summon 1 \"Dysmandr, the Depraevity of Worlds\" from your Extra Deck by using monsters in your hand and/or field as Fusion Material. If \"Dysmandr, the Depraevity of Worlds\" leaves the field because of your opponent's card: You can also shuffle 1 LIGHT or DARK Dragon Monster from your GY or banishment into the Deck to activate this effect; add this card from your GY to your hand. You can only use the previous effect of \"Fall of Azrynior\" once per turn.",
+    "sites": [
+      "Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 227335484,
+    "name": "Galacticassiopeia",
+    "printed_text": "All monsters your opponent controls must attack this card, if able. At the start of the Battle Phase: You can Special Summon this card from your hand in Attack Position. If this card destroys a monster by battle, or inflicts battle damage to your opponent: You can shuffle 1 \"Galactica\" Spell/Trap from your banishment into the Deck; banish this card, then Special Summon 1 Level 2 \"Galactica\" monster from your Deck or banishment in Attack Position, except \"Galacticassiopeia\".",
+    "sites": [
+      "Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 232100722,
+    "name": "Shining Brigade - Flowering Division",
+    "printed_text": "You can Special Summon this card (from your hand) by shuffling 1 \"Shining Brigade\" card from your banishment or GY into the Deck. You can only Special Summon \"Shining Brigade - Flowering Division\" once per turn this way. A \"Shining Brigade\" monster that has this card as material gains the following effect.\n● Once per turn: You can add 1 \"Shining Brigade\" card from your GY or banishment to your hand.",
+    "sites": [
+      "Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 234179728,
+    "name": "Galacticarina",
+    "printed_text": "All monsters your opponent controls must attack this card, if able. At the start of the Battle Phase: You can Special Summon this card from your hand in Attack Position. If this card destroys a monster by battle, or inflicts battle damage to your opponent: You can shuffle 1 \"Galactica\" Spell/Trap from your banishment into the Deck; banish this card, then Special Summon 1 Level 2 \"Galactica\" monster from your Deck or banishment in Attack Position, except \"Galacticarina\".",
+    "sites": [
+      "Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 239245471,
+    "name": "Birth of Azrynior",
+    "printed_text": "(This card is also treated as a \"Ataxia\" card.)\nSpecial Summon 1 \"Protogenic Essence Token\" (Galaxy/LIGHT/Level 1/ATK 0/DEF 0), but that Token cannot be used as Link Material, and if you do, Fusion Summon 1 \"Azrynior, the Abundaence of Purity\" from your Extra Deck by using monsters in your hand and/or field as Fusion Material. If \"Azrynior, the Abundaence of Purity\" leaves the field because of your opponent's card: You can also shuffle 1 LIGHT or DARK Dragon Monster from your GY or banishment into the Deck; add this card from your GY to your hand. You can only use the previous effect of \"Birth of Azrynior\" once per turn.",
+    "sites": [
+      "Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 240976976,
+    "name": "Witch of Crying Chaos",
+    "printed_text": "If this card is Normal or Special Summoned: You can send 1 Zombie monster from your hand to the GY; add 1 \"Crying Chaos\" Spell/Trap from your Deck to your hand. If this card is sent to the GY as Link or Synchro Material: You can place this card on the bottom of your Deck; draw 1 card. You can only use 1 effect of \"Witch of Crying Chaos\" per turn and only once that turn.",
+    "sites": [
+      "Duel.SendtoDeck(c,nil,SEQ_DECKBOTTOM,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 256287781,
+    "name": "Rage of Nephthys",
+    "printed_text": "During your opponent's Main Phase: You can make all monsters your opponent currently controls lose ATK equal to the ATK of the \"Nephthys\" monster you control with the highest ATK, then if their ATK becomes 0 by this effect, destroy them. During your Main Phase: When your opponent activates a card or effect: You can shuffle 4 \"Nephthys\" cards from your GY into the Deck; the activated effect becomes \"Your opponent destroys 1 \"Nephthys\" monster in their hand, Deck, or field\". You can only use each effect of \"Rage of Nephthys\" once per turn.",
+    "sites": [
+      "Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 256462992,
+    "name": "Starfury Bauy Dragon",
+    "printed_text": "1 Tuner Synchro Monster + \"Winged Bauy Fenrir\"\nMust first be Synchro Summoned. Your opponent cannot target other \"Bau\" cards on the field with card effects. If this card is Special Summoned: You can banish 3 cards from your GY; return 1 card on the field to the hand. You can return this card from your GY or banishment to the Extra Deck; add 1 \"Bau\" card from your GY or banishment to your hand.",
+    "sites": [
+      "Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 257239133,
+    "name": "Phlogistic Uprising!",
+    "printed_text": "Fusion Summon 1 FIRE Dragon monster from your GY or Extra Deck, using monsters from your hand or field as Fusion Material and/or by shuffling the required Fusion Materials into the Deck, from your monsters in the GY, then pay any number of LP in multiples of 300. You can only use the following effect of \"Phlogistic Uprising!\" once per turn. You can shuffle 1 \"Phlogiston Dragon\" from your GY into the Deck; Set this card from your GY to your field, but banish it when it leaves the field.",
+    "sites": [
+      "Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259360287,
+    "name": "Sorceress of Fire",
+    "printed_text": "If this card is in your hand or GY: You can shuffle up to 2 \"Phlogist\" Spell/ Trap Cards from your GY or banishment into the Deck; Special Summon this card. (Quick Effect): You can discard this card, then pay any amount of LP in multiples of 300; send 1 monster that lists \"Phlogiston Dragon\" in its text from your Deck to the GY. For the rest of this turn, you cannot Special Summon monsters, except FIRE monsters. You can only use this effect of \"Sorceress of Fire\" once per turn.",
+    "sites": [
+      "Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259363148,
+    "name": "Gladiator Beast Satyrius",
+    "printed_text": "2 \"Gladiator Beast\" and/or \"Test\" monsters\nMust first be Special Summoned (from your Extra Deck) by shuffling the above cards from your hand and/or field into the Deck or Extra Deck. If this card is Special Summoned: You can Special Summon 1 Level 4 or lower \"Gladiator Beast\" monster from your Deck. You can only use this effect of \"Gladiator Beast Satyrius\" once per turn. \"Gladiator Beast\" monsters you control gain 300 ATK. At the end of the Battle Phase, if this card battled: You can return this card to the Extra Deck; Special Summon 1 \"Gladiator Beast\" monster from your Deck.",
+    "sites": [
+      "if Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_COST|REASON_MATERIAL)~=#g then e:SetLabel(1) end",
+      "Duel.SendtoDeck(c,nil,SEQ_DECKTOP,REASON_COST)"
+    ],
+    "coverage": "Legal payment, runtime replacement and ineligible redirect verified for summon procedure.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259395418,
+    "name": "Gladiator Beast Attrocitar",
+    "printed_text": "If this card is Special Summoned by the effect of a \"Gladiator Beast\" monster: You can target any number of face-up monsters you control; shuffle them into the Deck, then Special Summon that many \"Gladiator Beast\" monsters from your Deck, except \"Gladiator Beast Attrocitar\". You can only use the previous effect of \"Gladiator Beast Attrocitar\" once per turn. At the end of the Battle Phase, if this card battled: You can shuffle this card into the Deck; Special Summon 1 \"Gladiator Beast\" monster from your Deck, except \"Gladiator Beast Attrocitar\".",
+    "sites": [
+      "Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259607933,
+    "name": "Gladiator Beast Sabearius",
+    "printed_text": "If this card is Normal Summoned or Special Summoned by the effect of a \"Gladiator Beast\" monster: You can Special Summon 1 Beast \"Test\" monster from your Deck. You can only use this effect of \"Gladiator Beast Sabearius\" once per turn. At the end of the Battle Phase, if this card battled: You can shuffle this card into the Deck; Special Summon 1 \"Gladiator Beast\" monster from your Deck, except \"Gladiator Beast Sabearius\".",
+    "sites": [
+      "Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_COST)"
+    ],
+    "coverage": "Separate activation cost coverage open",
+    "fully_audited": false
+  }
+]

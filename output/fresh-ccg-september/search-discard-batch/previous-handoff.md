@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- 15 November 2026. HEAD 837fc633. Current library has 703 specification cards and one compatibility alias.
+- Recovered the previously missing harness. Full regression with installed scripts: 723 PASS / 0 FAIL.
+- Installed Musicale c259797813, Exploring c248946297 and Oceanica c259941091. All three match source SHA-256.
+- Require receipt in the intended hand before reveal or dependent effects. Musicale retains independent LP recovery.
+- Original Oceanica: 2 PASS and 2 redirect FAIL. Candidate and installed Oceanica: 4 PASS each.
+- Musicale trigger and opponent search: 6 candidate cases pass. Musicale and Exploring activation search: 4 candidate cases pass.
+- Full: node scripts/fresh_new_floo_fiendsmith_effects.cjs with CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB pointing to Omega.
+- Focused: node scripts/fresh_current_oceanica_recovery.cjs --redirect-check. Existing test-only chain-disable adapter.
+- Logs and exact backups: C:/Users/hclar/Documents/Codex/2026-11-09/whe/work/ccg-resume/.
+- Prior Tribute Summon repair retained. Evidence: output/fresh-ccg-september/nautica-full-field-tribute-batch/.
+- Effect evidence: output/fresh-ccg-september/nautica-effect-coverage.json. Full clause coverage and live Omega duels remain open.
+- Next: reproduce search-then-discard on Recollection, compare 11 printed candidates and partial multi-card receipt. Other dependent callbacks and Oceanica both-player Hand selection remain open.

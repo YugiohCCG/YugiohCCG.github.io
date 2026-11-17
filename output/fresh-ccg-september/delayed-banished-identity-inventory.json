@@ -1,0 +1,139 @@
+{
+  "scope": "Broad file-level candidates: delayed phase, label object, banishment; flags and relations can belong to other effects. Review each printed effect and identity before repair.",
+  "rows": [
+    {
+      "id": 221511784,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c221511784.lua",
+      "has_flag": false,
+      "has_relation": true,
+      "review": "Label object holds summon-procedure material, unrelated to delayed End Phase summon."
+    },
+    {
+      "id": 221827483,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c221827483.lua",
+      "has_flag": true,
+      "has_relation": false,
+      "review": "Confirmed installed delayed revival follows card after removal to GY and rebanishment. Test-only per-instance flag candidate passes original and rebanished cases; both seeded and real Fusion history with API adapters."
+    },
+    {
+      "id": 232449539,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c232449539.lua",
+      "has_flag": true,
+      "has_relation": false,
+      "review": "Confirmed installed group return sends later rebanished opponent material to GY; test-only per-instance flags candidate leaves it banished and returns unchanged material."
+    },
+    {
+      "id": 235352857,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c235352857.lua",
+      "has_flag": true,
+      "has_relation": true,
+      "review": "Banish-history flag used in delayed trigger; label object refers to history effect, not delayed card group."
+    },
+    {
+      "id": 238276252,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c238276252.lua",
+      "has_flag": true,
+      "has_relation": false,
+      "review": "Delayed destruction group uses resettable per-instance flag labels; not the banished-card return pattern."
+    },
+    {
+      "id": 241504188,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c241504188.lua",
+      "has_flag": false,
+      "has_relation": true,
+      "review": "Uses native temporary ReturnToField; existing current-supremacy-return-identity-original.json covers original and later temporary banishment; neutral procedure completion adapter."
+    },
+    {
+      "id": 244165675,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c244165675.lua",
+      "has_flag": false,
+      "has_relation": true,
+      "review": "Label object stores activation targets; End Phase destruction is separate, no delayed banishment return."
+    },
+    {
+      "id": 247789143,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c247789143.lua",
+      "has_flag": false,
+      "has_relation": true,
+      "review": "Uses native temporary ReturnToField for group; existing current-silphia-return-identity.json covers original and later temporary banishment."
+    },
+    {
+      "id": 256110263,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c256110263.lua",
+      "has_flag": true,
+      "has_relation": true,
+      "review": "Temporary return uses resettable identity flag and native ReturnToField."
+    },
+    {
+      "id": 259303191,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c259303191.lua",
+      "has_flag": true,
+      "has_relation": false,
+      "review": "Delayed GY return filters original banished group by resettable flag label."
+    },
+    {
+      "id": 284639718,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c284639718.lua",
+      "has_flag": true,
+      "has_relation": true,
+      "review": "Delayed hand return uses resettable flag and removed-location check."
+    }
+  ],
+  "broader_candidates": [
+    {
+      "id": 215629896,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c215629896.lua",
+      "review": "Banish listener sets resettable turn flag and next-turn revival checks current flag; later banishment registers its own timing. Not retained old-card delayed callback."
+    },
+    {
+      "id": 218600459,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c218600459.lua",
+      "review": "Banish listener sets resettable turn flag and next-turn revival checks current flag; later banishment registers its own timing. Not retained old-card delayed callback."
+    },
+    {
+      "id": 227043533,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c227043533.lua",
+      "review": "Banish listener sets resettable turn flag and next-turn revival checks current flag; later banishment registers its own timing. Not retained old-card delayed callback."
+    },
+    {
+      "id": 227335484,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c227335484.lua",
+      "review": "Battle Phase hand summon and banishment-on-battle effects are independent; no later saved banished-card callback."
+    },
+    {
+      "id": 228169392,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c228169392.lua",
+      "review": "Battle Phase boost and banished-monster summon on leave-field are independent; no delayed saved-card return."
+    },
+    {
+      "id": 232232676,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c232232676.lua",
+      "review": "Banish listener sets resettable turn flag and next-turn revival checks current flag; later banishment registers its own timing. Not retained old-card delayed callback."
+    },
+    {
+      "id": 234179728,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c234179728.lua",
+      "review": "Battle Phase hand summon and banishment-on-battle effects are independent; no later saved banished-card callback."
+    },
+    {
+      "id": 235789995,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c235789995.lua",
+      "review": "Banish listener sets resettable turn flag and next-turn revival checks current flag; later banishment registers its own timing. Not retained old-card delayed callback."
+    },
+    {
+      "id": 239127930,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c239127930.lua",
+      "review": "Delayed Battle Phase effect chooses an eligible card from current Hand/banishment; it does not retain an earlier banished monster."
+    },
+    {
+      "id": 247755870,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c247755870.lua",
+      "review": "End Phase ignition trigger places itself from GY; prior banishment reference is an independent cost, not saved-card delayed return."
+    },
+    {
+      "id": 259273851,
+      "file": "public\\CCG Downloads\\CCG_Scripts\\c259273851.lua",
+      "review": "Printed End Phase clause returns all opponent banished monsters, not only earlier targets; current fresh-zone selection matches this distinction."
+    }
+  ]
+}

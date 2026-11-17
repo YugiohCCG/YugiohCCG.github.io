@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Installed full OCGCore regression 856 PASS / 0 FAIL.
+- Installed c221822671, c238711686, c240511702, c245970073, c246216813, c259578863 and c221759221. All seven match source SHA-256.
+- Immediate Add-or-Set effects reveal only cards that reach the intended hand, including Stainless Story copying Silas.
+- Original focused 7 PASS / 7 FAIL. Candidate and installed focused runs passed 14.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --alternative-receipt-only. Full: same command without the flag.
+- Set CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Reviewed SendtoHand, ConfirmCards and SSet combinations against printed effects. See effect-review.json.
+- Tests exercise actual hand arrival and redirect. Cartographer uses the native fixed-material fixture; Melissa and Oracle isolate unsupported procedure APIs.
+- Logs, original and installed snapshots, hashes and exact backups: output/fresh-ccg-september/alternative-receipt-batch/.
+- Next: related Add-or-send-to-GY choices beginning with Descend, Galataxian Battle Preparation and World Legacy Calamities; also Aquila's two resource choices.
+- Oceanica both-player Hand selection and live Omega duels remain open.
+- Coverage is limited to these printed effects. Other branches and archetype completion remain open.

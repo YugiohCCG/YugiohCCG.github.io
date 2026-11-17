@@ -64,7 +64,7 @@ function s.actop(e,tp)
  local low=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.low),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil)
  local high=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.high),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil)
  low:Merge(high)
- if #low==2 then Duel.SendtoHand(low,nil,REASON_EFFECT) Duel.ConfirmCards(1-tp,low) end
+ if #low==2 then if Duel.SendtoHand(low,nil,REASON_EFFECT)>0 then local received=low:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil) if #received>0 then Duel.ConfirmCards(1-tp,received) end end end
 end
 function s.descon(e,tp,eg)
  return eg:IsExists(function(c) return c:IsSetCard(SET_NEPHTHYS) and (not c:IsPreviousLocation(LOCATION_ONFIELD) or c:IsPreviousPosition(POS_FACEUP)) end,1,nil)

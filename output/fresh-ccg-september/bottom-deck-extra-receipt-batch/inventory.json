@@ -1,0 +1,364 @@
+{
+  "scope": "All library SEQ_DECKBOTTOM and SortDeckbottom statements plus literal sequence 1 SendtoDeck candidates",
+  "official_analogues": [
+    "https://www.db.yugioh-card.com/yugiohdb/faq_search.action?fid=23089&ope=5&request_locale=ja",
+    "https://www.db.yugioh-card.com/yugiohdb/faq_search.action?cid=19512&ope=4&request_locale=ja"
+  ],
+  "existing_inventory": "../exact-deck-return-batch/effect-review.json",
+  "scripts": [
+    {
+      "script": "c220749574.lua",
+      "sha256": "85edd2c3fe7add5c549965d2b922c27577e21ecef740f54658952e671ea1bb23",
+      "statements": [
+        {
+          "line": 82,
+          "statement": "if Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_COST)==#g then"
+        },
+        {
+          "line": 83,
+          "statement": "Duel.SortDeckbottom(tp,tp,2)"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c223158720.lua",
+      "sha256": "b92aa30244036dc91c27c954bc79b0ba3922fcdeee62750567723cebc12e0646",
+      "statements": [
+        {
+          "line": 118,
+          "statement": "Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_EFFECT)"
+        },
+        {
+          "line": 120,
+          "statement": "if ct>1 then Duel.SortDeckbottom(tp,tp,ct) end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c225091736.lua",
+      "sha256": "d28a260d0a886fe125fc0d22e55ad509e818d0a3ff667b8131f0d972258587a8",
+      "statements": [
+        {
+          "line": 106,
+          "statement": "if Duel.SendtoDeck(tc,nil,SEQ_DECKBOTTOM,REASON_EFFECT)>0"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c234599395.lua",
+      "sha256": "0dea5fae412520d4df762a4cf8f8fd698ef2262d13625ef65358429d0d386085",
+      "statements": [
+        {
+          "line": 110,
+          "statement": "if #g>0 then Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_EFFECT) end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c236473882.lua",
+      "sha256": "3cc8b3a3f0d30dcbb775009478d164c32e643217ec924d6a0cee6a5e816d13f8",
+      "statements": [
+        {
+          "line": 31,
+          "statement": "function s.spop(e,tp) local c=e:GetHandler() if not c:IsRelateToEffect(e) then return end local op=s.leavechoice(c,tp) if op<0 then return end local ok if op==0 then ok=Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and c:IsLocation(LOCATION_EXTRA) else ok=Duel.Remove(c,POS_FACEUP,REASON_EFFECT)>0 and c:IsLocation(LOCATION_REMOVED) end if ok then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON) local sc=Duel.SelectMatchingCard(tp,s.spfilter,tp,LOCATION_EXTRA,0,1,1,nil,e,tp):GetFirst() if sc then Duel.SpecialSummon(sc,0,tp,tp,false,false,POS_FACEUP) end end end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c238276572.lua",
+      "sha256": "c83fec718ce47f3601931a4af66cc3940c8d2215319983bbd1a71341715c345b",
+      "statements": [
+        {
+          "line": 35,
+          "statement": "for i=1,#remaining do Duel.MoveSequence(Duel.GetDecktopGroup(tp,1):GetFirst(),SEQ_DECKBOTTOM) end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c238276573.lua",
+      "sha256": "91de2a3b8fc9084b81bc43cded3d1c41b575e9e5337229209ec6b0dc17397ff7",
+      "statements": [
+        {
+          "line": 35,
+          "statement": "for i=1,#remaining do Duel.MoveSequence(Duel.GetDecktopGroup(tp,1):GetFirst(),SEQ_DECKBOTTOM) end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c238276574.lua",
+      "sha256": "bb14717b5384fb5290f96b826d15e2f0d446b2a348363c5e157bef9ca6193b8c",
+      "statements": [
+        {
+          "line": 35,
+          "statement": "for i=1,#remaining do Duel.MoveSequence(Duel.GetDecktopGroup(tp,1):GetFirst(),SEQ_DECKBOTTOM) end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c238276575.lua",
+      "sha256": "c6da7f76525e6fa793215478e631f95ad191494ce02532e8b6fce3f725f240b6",
+      "statements": [
+        {
+          "line": 35,
+          "statement": "for i=1,#remaining do Duel.MoveSequence(Duel.GetDecktopGroup(tp,1):GetFirst(),SEQ_DECKBOTTOM) end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c238276576.lua",
+      "sha256": "e16f33ed518db40145b89fe84493922f2b787972cf95c01fc6dd5d3f8abed2f5",
+      "statements": [
+        {
+          "line": 35,
+          "statement": "for i=1,#remaining do Duel.MoveSequence(Duel.GetDecktopGroup(tp,1):GetFirst(),SEQ_DECKBOTTOM) end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c238276577.lua",
+      "sha256": "3affaac59288787a3f559752c113e5f8ba7de67e7cb994f604790a7bd80c5994",
+      "statements": [
+        {
+          "line": 35,
+          "statement": "for i=1,#remaining do Duel.MoveSequence(Duel.GetDecktopGroup(tp,1):GetFirst(),SEQ_DECKBOTTOM) end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c238276578.lua",
+      "sha256": "97e43bd40c6716bd6b774f7f2521e89499e90852a10f3602e274553660701e96",
+      "statements": [
+        {
+          "line": 35,
+          "statement": "for i=1,#remaining do Duel.MoveSequence(Duel.GetDecktopGroup(tp,1):GetFirst(),SEQ_DECKBOTTOM) end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c238276579.lua",
+      "sha256": "6ea17e46bed0b2ff60e0bcecf2ce868e700e6e8dd92b1c062fc728ae16b86476",
+      "statements": [
+        {
+          "line": 35,
+          "statement": "for i=1,#remaining do Duel.MoveSequence(Duel.GetDecktopGroup(tp,1):GetFirst(),SEQ_DECKBOTTOM) end"
+        },
+        {
+          "line": 116,
+          "statement": "for i=1,#rest do Duel.MoveSequence(Duel.GetDecktopGroup(tp,1):GetFirst(),SEQ_DECKBOTTOM) end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c238276580.lua",
+      "sha256": "370d108cd09406e5c950aac82797ef85befe82bf64cf011d31822baff1591e40",
+      "statements": [
+        {
+          "line": 110,
+          "statement": "Duel.MoveSequence(tc,SEQ_DECKBOTTOM)"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c240976976.lua",
+      "sha256": "eed87abafbc4414779ab9efb3e06753c4dfe65086545efdc40bb767976ae9f28",
+      "statements": [
+        {
+          "line": 64,
+          "statement": "Duel.SendtoDeck(c,nil,SEQ_DECKBOTTOM,REASON_COST)"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c241056746.lua",
+      "sha256": "6cf5df2a1b8caed32165e1fb672d9e45fe8a27bfb193db8006f6c1c7d4396be9",
+      "statements": [
+        {
+          "line": 56,
+          "statement": "Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_EFFECT)"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c244161941.lua",
+      "sha256": "a094d478cab2619fd63bb182c026b7aee57e4e27c6c939b7d20aee18d41f8159",
+      "statements": [
+        {
+          "line": 110,
+          "statement": "Duel.SendtoDeck(tc,nil,SEQ_DECKBOTTOM,REASON_EFFECT)"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c244816828.lua",
+      "sha256": "a9f116b07c42c19fd39ae6f49afab6b4ab7d5fa7b5af33922074c0f26facd49b",
+      "statements": [
+        {
+          "line": 44,
+          "statement": "if dc and Duel.SendtoDeck(dc,nil,SEQ_DECKBOTTOM,REASON_EFFECT)>0 and dc:IsLocation(LOCATION_DECK) then"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c245970073.lua",
+      "sha256": "d0f96e9f3ae5244029756f237ae59df7ed589adc37cbee72921fb83ecad70a50",
+      "statements": [
+        {
+          "line": 105,
+          "statement": "done=Duel.SendtoDeck(tc,nil,SEQ_DECKBOTTOM,REASON_EFFECT)>0"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c251571153.lua",
+      "sha256": "122dba7248454023c1cbb55e8c38622eaeb9195415b735ea98b88be214fcf963",
+      "statements": [
+        {
+          "line": 78,
+          "statement": "Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_EFFECT)"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c253520299.lua",
+      "sha256": "c767e68f251f247629b3f2d3c91e566af4edad4c7184acf55298b81103729f7e",
+      "statements": [
+        {
+          "line": 28,
+          "statement": "function s.rmop(e,tp) local c=e:GetHandler() if not c:IsRelateToEffect(e) then return end local op=s.leavechoice(c,tp) if op<0 then return end local ok if op==0 then ok=Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and c:IsLocation(LOCATION_EXTRA) else ok=Duel.Remove(c,POS_FACEUP,REASON_EFFECT)>0 and c:IsLocation(LOCATION_REMOVED) end if ok then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE) local tc=Duel.SelectMatchingCard(tp,s.rmfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst() if tc then Duel.Remove(tc,POS_FACEUP,REASON_EFFECT) end end end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c257081514.lua",
+      "sha256": "772e71f3039036647727ea685ed82a8dbccd94b321f870654e1754fd693012fd",
+      "statements": [
+        {
+          "line": 71,
+          "statement": "Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_EFFECT)"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c258241424.lua",
+      "sha256": "49d176050b18c8ba43879dc1e9605d8af22de4dc0e3ef5212101d0f289afb6d1",
+      "statements": [
+        {
+          "line": 53,
+          "statement": "Duel.SendtoDeck(tc,nil,SEQ_DECKBOTTOM,REASON_EFFECT)"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c259288669.lua",
+      "sha256": "97efe7d451f5421517b46706da5f1112fae0bbb50cb74dd70480e2c045cc23b9",
+      "statements": [
+        {
+          "line": 130,
+          "statement": "if Duel.SendtoDeck(c,nil,SEQ_DECKBOTTOM,REASON_EFFECT)==0 or not c:IsLocation(LOCATION_DECK) then return end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c259373017.lua",
+      "sha256": "4b01bf1c4d8a1c1ff7755b01561be5229e1851714f4ff25b1d4d27e6906d6978",
+      "statements": [
+        {
+          "line": 80,
+          "statement": "Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_EFFECT)"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c259548744.lua",
+      "sha256": "4a8f61763f9429bc7f87521bf4877ec8a51a81123f7491f63382949a6bb2a9ea",
+      "statements": [
+        {
+          "line": 13,
+          "statement": "function s.xyzop(e,tp) local c=e:GetHandler(); local max=math.min(c:GetOverlayCount(),Duel.GetMatchingGroupCount(aux.NecroValleyFilter(s.tdf),tp,LOCATION_GRAVE,LOCATION_GRAVE,nil)); if max>0 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then local opts={}; for i=1,max do opts[#opts+1]=i end local n=Duel.AnnounceNumber(tp,table.unpack(opts)); if c:RemoveOverlayCard(tp,n,n,REASON_EFFECT)==n then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK); local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.tdf),tp,LOCATION_GRAVE,LOCATION_GRAVE,n,n,nil); Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT) end end if c:IsRelateToEffect(e) and Duel.IsExistingMatchingCard(s.ovf,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_XMATERIAL); local g=Duel.SelectMatchingCard(tp,s.ovf,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil); Duel.Overlay(c,g) end end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c259635008.lua",
+      "sha256": "495c79c0d925454dd340f56700855397a17d1b74c7a5c65a35d28a113c4e3b41",
+      "statements": [
+        {
+          "line": 17,
+          "statement": "function s.retop(e,tp) local c=e:GetHandler(); if Duel.SendtoDeck(c,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==0 or not c:IsLocation(LOCATION_EXTRA) then return end if Duel.IsPlayerAffectedByEffect(tp,59822133) then return end local tun=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.sf),tp,LOCATION_GRAVE,0,nil,e,tp,true); local non=Duel.GetMatchingGroup(aux.NecroValleyFilter(s.sf),tp,LOCATION_GRAVE,0,nil,e,tp,false); local pairs=Group.CreateGroup(); local a=tun:GetFirst(); while a do local b=non:GetFirst(); while b do if a:GetLevel()+b:GetLevel()==6 then pairs:AddCard(a); pairs:AddCard(b) end b=non:GetNext() end a=tun:GetNext() end if #pairs<2 or Duel.GetLocationCount(tp,LOCATION_MZONE)<2 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON); local t=tun:Filter(function(x,n) return n:IsExists(function(y,x) return x:GetLevel()+y:GetLevel()==6 end,1,nil,x) end,nil,non):Select(tp,1,1,nil):GetFirst(); local n=non:Filter(function(x,t) return x:GetLevel()+t:GetLevel()==6 end,nil,t):Select(tp,1,1,nil):GetFirst(); Duel.SpecialSummon(Group.FromCards(t,n),0,tp,tp,true,true,POS_FACEUP) end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c259652372.lua",
+      "sha256": "f843de663f116a6e23097ba836d1ecd70b16980d776e31c57e0f6d7ce7a68f14",
+      "statements": [
+        {
+          "line": 95,
+          "statement": "Duel.SendtoDeck(tc,nil,SEQ_DECKBOTTOM,REASON_EFFECT)"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c259797813.lua",
+      "sha256": "38d9dc5e7f658650716040bdf5ffa5f02c4c6c51b52c28d755354795880c6c54",
+      "statements": [
+        {
+          "line": 87,
+          "statement": "Duel.SendtoDeck(bg,nil,SEQ_DECKBOTTOM,REASON_EFFECT)"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c259928966.lua",
+      "sha256": "9a0d9bd20f8cb86da46e8e5c04fded29ddfc40e845246b58638794905cfc43cd",
+      "statements": [
+        {
+          "line": 16,
+          "statement": "if Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,0)>Duel.GetFieldGroupCount(tp,0,LOCATION_ONFIELD) and Duel.GetFieldGroupCount(tp,LOCATION_HAND,0)>0 then Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK); local g=Duel.SelectMatchingCard(tp,Card.IsAbleToDeck,tp,LOCATION_HAND,0,1,1,nil); Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_EFFECT) end"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    },
+    {
+      "script": "c259941091.lua",
+      "sha256": "cd11d5397481f643a765eb740f6edc018e9c70040f3fa32cb61ec917c862dec3",
+      "statements": [
+        {
+          "line": 78,
+          "statement": "Duel.SendtoDeck(bg,nil,SEQ_DECKBOTTOM,REASON_EFFECT)"
+        }
+      ],
+      "disposition": "No dependent resolution gate that excludes Extra Deck receipt. Existing Deck ordering or independent movement."
+    }
+  ],
+  "stock_analogue": "tmp/omega_scripts/c99266988.lua line 74 gates Chaos Space draw on Deck or Extra Deck receipt."
+}

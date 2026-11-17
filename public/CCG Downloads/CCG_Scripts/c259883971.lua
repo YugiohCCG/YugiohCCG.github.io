@@ -41,8 +41,8 @@ end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.GetMatchingGroup(s.tdfilter,tp,LOCATION_REMOVED,LOCATION_REMOVED,nil)
 	if #g==0 then return end
-	local ct=Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
-	ct=ct or #g
+	Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
+	local ct=g:FilterCount(Card.IsLocation,nil,LOCATION_DECK+LOCATION_EXTRA)
 	local spct=math.floor(ct/10)
 	if spct<=0 or Duel.GetLocationCount(tp,LOCATION_MZONE)<spct
 		or (spct>1 and Duel.IsPlayerAffectedByEffect(tp,59822133)) then return end

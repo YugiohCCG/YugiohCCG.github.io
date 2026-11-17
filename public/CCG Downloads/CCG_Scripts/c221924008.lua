@@ -44,7 +44,7 @@ function s.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function s.sprfilter(c)
-	return c:IsFaceupEx() and c:IsType(TYPE_TUNER) and c:IsLevelBelow(3) and c:IsAbleToDeck()
+	return c:IsFaceupEx() and c:IsType(TYPE_TUNER) and c:IsLevelBelow(3) and c:IsAbleToDeckOrExtraAsCost()
 end
 function s.sprcon(e,c)
 	e:SetLabel(0)
@@ -67,7 +67,8 @@ end
 function s.sprop(e,tp,eg,ep,ev,re,r,rp,c,og,min,max)
 	local sg=e:GetLabelObject()
 	if not sg then return end
-	if Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_COST+REASON_MATERIAL)~=#sg then e:SetLabel(1) end
+	Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_COST+REASON_MATERIAL)
+	if sg:FilterCount(Card.IsLocation,nil,LOCATION_DECK+LOCATION_EXTRA)~=#sg then e:SetLabel(1) end
 	sg:DeleteGroup()
 
 end

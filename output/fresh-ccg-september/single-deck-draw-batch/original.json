@@ -1,0 +1,85 @@
+{
+  "scope": "Listed OCGCore scenarios with installed scripts and installed card data. Neutral fixture resources and API adapters are used. Full-card and live Omega verification remain open.",
+  "compatibility": "Legacy Link and fixture Xyz argument translation and procedures, selected chain target mapping, basic Level 12 Xyz material eligibility/selection bridge for ordinary fixture monsters, ordinary fixture overlay eligibility. Graydeux alternate Xyz cases isolate that procedure from the unsupported ordinary Xyz API.",
+  "pendingCases": [
+    "A Stainless Story: --story-shuffle-probe tests whether copied self-shuffle must move the activating Spell instead of the sent monster; current source moves the sent monster. Ruling/intent unresolved.",
+    "Ghostrick Oni: the printed Xyz Summon wording and the existing field-to-material implementation still need reconciliation.",
+    "Sarifiel: hypothetical effect immunity of a GY material. The --grave-immune-probe reproduces attachment; expected ruling needs confirmation before a production change."
+  ],
+  "installedScripts": {
+    "212737555": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c212737555.lua",
+      "sha256": "52d1068783559f92cb3b94bbc9500766cd5646934841d819593c70e40dfa29ab"
+    },
+    "239932270": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932270.lua",
+      "sha256": "9acb2ba13f982aa2bc78ec6c6b57169da8bee7342a5ddb4c9d0227c6690cde83"
+    },
+    "239932271": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932271.lua",
+      "sha256": "c4b1cda43b88b195c3c0c7f4e309388f524d68a1ab8b41a6eb14acfadaf3dbd6"
+    },
+    "239932272": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932272.lua",
+      "sha256": "e107250638c5e514f7918a2b36e92da5596f8dbfa881cc2ecbb4cd841d3994d9"
+    },
+    "239934743": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934743.lua",
+      "sha256": "f245ec3b9c813950718073f7917b946d99f6a6464b2d0f3efaaa4c90d2f4cffa"
+    },
+    "239934744": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934744.lua",
+      "sha256": "39cdb3edb81a79a5b36ddc921cefa54b4b1fbad2b5664771e46e392e446bcd91"
+    },
+    "259499577": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259499577.lua",
+      "sha256": "26bc2bfe5e51ea91f43ac541b6e3cc53f5f517022a363030ed1dfb84cc849d68"
+    },
+    "259630851": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259630851.lua",
+      "sha256": "c92ef637d4ab477216a990420d9c2885f56cfdc38ded80728089bcc140632dab"
+    },
+    "259883029": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259883029.lua",
+      "sha256": "589856181a0d6ebffe918859636ecd801892d1fa75eb99721dc1bf971652f1c8"
+    }
+  },
+  "results": [
+    {
+      "name": "Single Deck return and draw 212737555 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Single Deck return and draw 212737555 redirect",
+      "status": "FAIL",
+      "error": "Draw count\n\n1 !== 0\n"
+    },
+    {
+      "name": "Single Deck return and draw 259499577 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Single Deck return and draw 259499577 redirect",
+      "status": "FAIL",
+      "error": "Draw count\n\n1 !== 0\n"
+    },
+    {
+      "name": "Single Deck return and draw 259630851 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Single Deck return and draw 259630851 redirect",
+      "status": "FAIL",
+      "error": "Draw count\n\n1 !== 0\n"
+    },
+    {
+      "name": "Single Deck return and draw 259883029 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Single Deck return and draw 259883029 redirect",
+      "status": "FAIL",
+      "error": "Draw count\n\n1 !== 0\n"
+    }
+  ]
+}

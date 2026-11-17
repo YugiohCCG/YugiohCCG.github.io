@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Library has 703 specification cards and one compatibility alias.
+- Installed OCGCore regression now 765 PASS / 0 FAIL, up from 759.
+- Installed c237684285 Janna, c259395418 Gladiator Beast Attrocitar and c259883971 Nemleria Big Eepy. Source and installed SHA-256 match.
+- Downstream counts now use the cards that reached the Deck or Extra Deck. Stock Omega c101203057 provides a comparable destination count.
+- Scanned the library for count-based Deck returns and reviewed the variable-count callbacks. Separate fixed-count gates remain open.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --janna-search-only. Original 3 PASS / 3 FAIL. Candidate and installed 6 PASS.
+- Full: node scripts/fresh_new_floo_fiendsmith_effects.cjs. Set CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Janna fixture supplies Synchro materials and isolates the unsupported public-core procedure API. Attrocitar fixture isolates the summon-source check.
+- Logs, exact backups, hashes, and original and installed results: output/fresh-ccg-september/janna-search-batch/.
+- Printed effect review: output/fresh-ccg-september/janna-search-batch/effect-review.json. Live Omega duels remain open.
+- Next: review fixed-count Deck return gates beginning with c223158720, c238276576, c248940511, c259273394, c259669838 and c259820516.
+- Other open: Janna delayed reveal and End Phase recovery, Melville's reveal, Oceanica both-player Hand selection, and Crystal Shards Extra Deck targeting.

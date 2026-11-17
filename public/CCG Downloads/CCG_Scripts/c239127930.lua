@@ -13,7 +13,7 @@ function s.initial_effect(c)
 end
 function s.thfilter(c) return c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand() end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.thfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,nil) end Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK+LOCATION_GRAVE) end
-function s.thop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND) local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.thfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil):GetFirst() if tc and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,tc) end end
+function s.thop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND) local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.thfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil):GetFirst() if tc and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then Duel.ConfirmCards(1-tp,tc) end end
 function s.evfilter(c,tp) return c:IsSummonPlayer(tp) and c:IsSetCard(SET_GALACTICA) end
 function s.lkcon(e,tp,eg) return eg:IsExists(s.evfilter,1,nil,tp) end
 function s.lkfilter(c,mg)
@@ -40,7 +40,7 @@ function s.dcost(e,tp,eg,ep,ev,re,r,rp,chk)
 end
 function s.delspfilter(c,e,tp) return c:IsFaceupEx() and c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_MONSTER) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_ATTACK) end
 function s.delop(e,tp)
-	local ge=Effect.CreateEffect(e:GetHandler()) ge:SetDescription(aux.Stringid(STRING_ID,3)) ge:SetCategory(CATEGORY_SPECIAL_SUMMON) ge:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O) ge:SetCode(EVENT_PHASE+PHASE_BATTLE_START) ge:SetCountLimit(1) ge:SetTarget(s.delspgt) ge:SetOperation(s.delspop) ge:SetReset(RESET_PHASE+PHASE_BATTLE_START) Duel.RegisterEffect(ge,tp)
+	local ge=Effect.CreateEffect(e:GetHandler()) ge:SetDescription(aux.Stringid(STRING_ID,3)) ge:SetCategory(CATEGORY_SPECIAL_SUMMON) ge:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F) ge:SetCode(EVENT_PHASE+PHASE_BATTLE_START) ge:SetCountLimit(1) ge:SetTarget(s.delspgt) ge:SetOperation(s.delspop) ge:SetReset(RESET_PHASE+PHASE_BATTLE_START) Duel.RegisterEffect(ge,tp)
 end
-function s.delspgt(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(s.delspfilter,tp,LOCATION_HAND+LOCATION_REMOVED,0,1,nil,e,tp) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_REMOVED) end
+function s.delspgt(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return true end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_REMOVED) end
 function s.delspop(e,tp) if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON) local tc=Duel.SelectMatchingCard(tp,s.delspfilter,tp,LOCATION_HAND+LOCATION_REMOVED,0,1,1,nil,e,tp):GetFirst() if tc then Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP_ATTACK) end end

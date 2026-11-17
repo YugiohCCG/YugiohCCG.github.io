@@ -123,7 +123,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		op=1
 	end
 	if op==0 then
-		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
+		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then
 			Duel.ConfirmCards(1-tp,tc)
 		end
 	else

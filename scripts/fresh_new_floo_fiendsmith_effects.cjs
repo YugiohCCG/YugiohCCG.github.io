@@ -4,7 +4,7 @@ process.env.CCG_INSTALLED_CARD_DB ||= require('node:path').resolve(__dirname,'..
 const {candidateCard}=require('./fresh_installed_card.cjs');
 const {loadCorrectedTransport}=require('./fresh_corrected_card_data_transport.cjs');
 const installed=process.env.CCG_OMEGA_SCRIPTS||path.resolve(__dirname,'../public/CCG Downloads/CCG_Scripts');
-const omega=path.resolve(__dirname,'../tmp/omega_scripts');
+const omega=process.env.CCG_STOCK_SCRIPTS||path.resolve(__dirname,'../tmp/omega_scripts');
 const [hot,sky,journey,soprana,offer]=[239932270,239932271,239932272,239934743,239934744];
 const fixtures=Array.from({length:8},(_,i)=>900009001+i);
 const [helper,body,wing,spell,trap,fusion,link,dark]=fixtures;
@@ -45,6 +45,15 @@ async function main(){
  add('Mythic Journey protects a Winged Beast in battle',[[journey,G],[wing,F],[dark,F,1]],[],[[journey,B],[wing,F]],{boss:true,battle:true,yes:true});
  for(const code of [spell,wing])add('Mythic Journey protects '+(code===spell?'a Floo Spell':'a high-Level Winged Beast'),[[journey,G],[helper,H],[code,code===spell?T:F]],[helper],[[journey,B],[code,code===spell?T:F]],{boss:true,yes:true,op:'Duel.Destroy(find('+code+',LOCATION_ONFIELD),REASON_EFFECT)'});
  add('Link material family: Formation uses your field',[[formation,G],[wing,H],[body,F],[link,E]],[-wing],[[formation,B],[link,F],[body,G]],{family:formation});
+ add('Formation responds to a Galactica Special Summon',[[formation,G],[helper,H],[wing,G],[body,F],[link,E]],[helper],[[formation,B],[link,F],[body,G]],{family:formation,op:'Duel.SpecialSummon(find('+wing+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP)'});
+ add('Formation Link resolution timing trace',[[formation,G],[helper,H],[wing,G],[body,F],[link,E]],[helper],[[formation,B],[link,F],[body,G]],{family:formation,formationTiming:true,op:'Duel.SpecialSummon(find('+wing+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP)'});
+ add('Formation Link with lower unresolved trigger',[[formation,G],[helper,H],[wing,G],[body,F],[link,E]],[helper],[[formation,B],[link,F],[body,G]],{family:formation,formationMultiChain:true,op:'Duel.SpecialSummon(find('+wing+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP)'});
+ add('Formation Link interrupted after activation',[[formation,G],[helper,H],[wing,G],[body,F],[dark,F,1],[link,E]],[helper],[[formation,B],[link,E],[body,G],[wing,F]],{family:formation,formationInterrupt:true,expectedFamilyUses:1,op:'Duel.SpecialSummon(find('+wing+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP)'});
+ add('Formation Link trigger shared limit across copies',[[formation,G],[formation,G],[helper,H],[helper,H],[wing,G],[body,F],[link,E],[link,E]],[helper,helper],[[formation,B],[formation,G],[link,F],[link,E],[wing,F]],{family:formation,formationLinkLimit:true,expectedFamilyUses:1,op:'Duel.SpecialSummon(find('+wing+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP)'});
+ add('Formation Link trigger resets next turn',[[formation,G],[formation,G],[helper,H],[helper,H],[wing,G],[body,F],[link,E],[link,E]],[helper,helper],[[formation,B],[link,F],[wing,G]],{family:formation,formationLinkReset:true,expectedFamilyUses:2,op:'Duel.SpecialSummon(find('+wing+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP)'});
+ add('Formation Link use limit after activation negation',[[formation,G],[formation,G],[helper,H],[helper,H],[wing,G],[wing,G],[body,F],[dark,F,1],[link,E]],[helper,helper],[[formation,B],[formation,G],[link,E],[body,F],[wing,F]],{family:formation,formationInterrupt:true,formationNegate:true,formationLinkLimit:true,expectedFamilyUses:1,op:'Duel.SpecialSummon(find('+wing+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP)'});
+ add('Formation ignores non-Galactica Special Summon',[[formation,G],[helper,H],[body,G],[wing,F],[link,E]],[helper],[[formation,G],[body,F],[wing,F],[link,E]],{family:formation,noTrigger:true,op:'Duel.SpecialSummon(find('+body+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP)'});
+ add('Formation ignores opponent Galactica Special Summon',[[formation,G],[helper,H],[wing,G],[body,F],[link,E]],[helper],[[formation,G],[wing,F,1],[body,F],[link,E]],{family:formation,noTrigger:true,op:'Duel.SpecialSummon(find('+wing+',LOCATION_GRAVE),0,1-tp,1-tp,false,false,POS_FACEUP)'});
  add('Link material family: Formation excludes otherwise available opposing material',[[formation,G],[wing,H],[body,F,1],[link,E]],[-wing],[[formation,G],[wing,F],[body,F,1],[link,E]],{family:formation,opposingMaterial:true,noTrigger:true});
  add('Link material family: Grayrover uses your hand',[[grayrover,H],[body,H],[wing,F,1],[link,E]],[grayrover],[[grayrover,G],[body,G],[link,F],[wing,F,1]],{family:grayrover});
  add('Link material family: Grayrover uses your field',[[grayrover,H],[body,F],[wing,F,1],[link,E]],[grayrover],[[grayrover,G],[body,G],[link,F],[wing,F,1]],{family:grayrover});
@@ -167,7 +176,10 @@ async function main(){
  add('Crystal Shards rejects a Level 5 Deck monster',[[shards,F],[wing,H],[body,D]],[],[[body,D]],{family:shards,shardsProbe:true,highLevel:true,forbidden:shards});
  add('Crystal Shards respects a discard-cost prohibition',[[shards,F],[wing,H],[body,D],[helper,H]],[helper],[[wing,H],[body,D]],{family:shards,shardsProbe:true,forbidden:shards,op:discardCostLock});
  add('Crystal Shards restricts later Special Summons',[[shards,F],[wing,H],[body,D],[helper,H],[dark,G]],[shards,helper],[[body,F],[dark,G]],{family:shards,shardsProbe:true,pick:wing,op:'Duel.SpecialSummon(find('+dark+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP)'});
- for(const locked of [false,true])add('Crystal Shards native Synchro recovery '+(locked?'under a cost-only discard restriction':'baseline'),[[shards,F],[body,F],[fusion,E],[link,B],[wing,H],[helper,H]],locked?[helper,fusion]:[fusion],[[link,E],[wing,G]],{family:shards,materialSynchro:true,costLockRecovery:locked,pick:wing,expectedFamilyUses:1,op:discardCostLock});
+ for(const locked of [false,true])add('Crystal Shards returns the Extra Deck card without discarding '+(locked?'under a cost-only discard restriction':'baseline'),[[shards,F],[body,F],[fusion,E],[link,B],[wing,H],[helper,H]],locked?[helper,fusion]:[fusion],[[link,E],[wing,H]],{family:shards,materialSynchro:true,costLockRecovery:locked,pick:wing,expectedFamilyUses:1,op:discardCostLock});
+ add('Crystal Shards can return a banished Extra Deck card with an empty hand',
+  [[shards,F],[body,F],[fusion,E],[link,B]],[fusion],[[link,E]],
+  {family:shards,materialSynchro:true,shardsEmptyHand:true,expectedFamilyUses:1,expectedHandCount:0});
  add('Crystal Shards recovery requires a LIGHT Synchro Monster',[[shards,F],[body,F],[fusion,E],[link,B],[wing,H]],[fusion],[[link,B],[wing,H]],{family:shards,materialSynchro:true,darkSynchro:true,expectedFamilyUses:0});
  add('Crystal Shards recovers a banished Main Deck card',[[shards,F],[body,F],[fusion,E],[link,B],[wing,H]],[fusion],[[link,H],[wing,G]],{family:shards,materialSynchro:true,mainDeckRecovery:true,pick:wing,expectedFamilyUses:1});
  for(const code of [feather,fireball])for(const mode of ['valid','dark-synchro','invalid-target']){
@@ -345,6 +357,657 @@ async function main(){
  add('Companion attack targeting without Brigade support',[[232824319,F],[body,F],[dark,F,1]],[],[[232824319,F],[body,G]],{family:232824319,companionUnprotectedBattle:true,battle:true,pick:body});
  add('Companion Team unique control restriction',[[232824319,F],[232824319,E],[helper,H]],[helper],[[232824319,F],[232824319,E]],{family:232824319,linkApiOnly:true,specialAvailability:false,expectedFamilyUses:0,op:'local c=find(232824319,LOCATION_EXTRA) c:CompleteProcedure() assert(not c:IsCanBeSpecialSummoned(e,0,tp,false,false),"Second Companion cannot be summoned")'});
  add('Origins cannot occupy full Pendulum Zones',[[244986323,F],[body,H],[wing,H],[helper,H]],[helper],[[244986323,E],[body,T],[wing,T]],{family:244986323,originsFullPendulum:true,expectedFamilyUses:0,op:'Duel.MoveSequence(e:GetHandler(),2) Duel.MoveToField(find('+body+',LOCATION_HAND),tp,tp,LOCATION_PZONE,POS_FACEUP,true) Duel.MoveToField(find('+wing+',LOCATION_HAND),tp,tp,LOCATION_PZONE,POS_FACEUP,true) assert(not Duel.CheckLocation(tp,LOCATION_PZONE,0),"Left occupied") assert(not Duel.CheckLocation(tp,LOCATION_PZONE,1),"Right occupied") Duel.Destroy(find(244986323,LOCATION_MZONE),REASON_EFFECT)'});
+ for(const battle of [false,true])for(const material of ['nautica','control','detached']){
+  const family=238711686;
+  const melissa='find('+family+',LOCATION_MZONE)';
+  const attach='local xyz='+melissa+' local mc=find('+body+',LOCATION_GRAVE) Duel.Overlay(xyz,Group.FromCards(mc)) assert(xyz:GetOverlayCount()==1)';
+  const detach=material==='detached'?' xyz:RemoveOverlayCard(tp,1,1,REASON_COST) assert(xyz:GetOverlayCount()==0)':'';
+  const destruction=battle?'':' Duel.Destroy('+melissa+',REASON_EFFECT)';
+  add('Melissa '+(battle?'battle':'effect')+' destruction with '+material+' material',
+   [[family,F],[body,G],[helper,H],...(battle?[[dark,F,1]]:[])],[helper],[[family,material==='nautica'?F:G]],
+   {family,melissaProtection:material,battle,op:attach+detach+destruction});
+ }
+ for(const mode of ['two','three','one','wrong-level','wrong-race']){
+  const family=238711686;
+  const materials=mode==='three'?[body,wing,dark]:mode==='one'?[body]:[body,wing];
+  const legal=mode==='two'||mode==='three';
+  add('Melissa Xyz recipe '+mode,[[family,E],...materials.map(code=>[code,F])],legal?[family]:[],
+   [[family,legal?F:E]],{family,levelOneXyzRecipe:mode,standardXyz:true,recipeMaterials:materials,
+    selectMax:mode==='three',specialAvailability:legal?undefined:false});
+ }
+ for(const mode of ['set-spell','set-trap','choose-set','choose-add','one-material','wrong-set']){
+  const family=238711686;
+  const materials=mode==='one-material'?[wing]:[wing,link,dark];
+  const both=mode.startsWith('choose');
+  const addMonster=mode==='choose-add';
+  const legal=!['one-material','wrong-set'].includes(mode);
+  const setCard=mode==='set-trap'?trap:spell;
+  const candidates=both?[setCard,body]:[setCard];
+  const op='Duel.Overlay(find('+family+',LOCATION_MZONE),Group.FromCards('+
+   materials.map(code=>'find('+code+',LOCATION_GRAVE)').join(',')+'))';
+  add('Melissa Quick Effect '+mode,[[family,F],[helper,H],...materials.map(code=>[code,G]),...candidates.map(code=>[code,D])],
+   legal?[helper,family]:[helper],candidates.map(code=>[code,legal&&code===(addMonster?body:setCard)?(addMonster?H:T):D]),
+   {family,melissaQuick:mode,op,option:Number(addMonster),options:both?2:undefined,forbidden:legal?undefined:family,
+    pick:addMonster?body:setCard,expectedFamilyUses:Number(legal),melissaRemaining:materials.length-2*Number(legal)});
+ }
+ for(const mode of ['full-normal','full-field','full-add']){
+  const family=238711686;
+  const legal=mode!=='full-normal';
+  const setCard=mode==='full-field'?trap:spell;
+  const candidates=mode==='full-add'?[setCard,body]:[setCard];
+  const op='Duel.Overlay(find('+family+',LOCATION_MZONE),Group.FromCards(find('+wing+',LOCATION_GRAVE),find('+dark+',LOCATION_GRAVE))) '+
+   'Duel.SendtoGrave(e:GetHandler(),REASON_EFFECT) assert(Duel.MoveToField(find('+fusion+',LOCATION_GRAVE),tp,tp,LOCATION_SZONE,POS_FACEDOWN,true))';
+  add('Melissa Quick Effect '+mode,[[family,F],[helper,H],[wing,G],[dark,G],[fusion,G],
+   ...Array.from({length:4},()=>[link,T]),...candidates.map(code=>[code,D])],
+   legal?[helper,family]:[helper],mode==='full-field'?[[setCard,L.FZONE]]:mode==='full-add'?[[setCard,D],[body,H]]:[[setCard,D]],
+   {family,melissaQuick:mode,op,pick:mode==='full-add'?body:setCard,
+    forbidden:legal?undefined:family,expectedFamilyUses:Number(legal),melissaRemaining:legal?0:2});
+ }
+ {
+  const family=238711686;
+  const materials=[wing,link,trap,fusion];
+  const op='Duel.Overlay(find('+family+',LOCATION_MZONE),Group.FromCards('+
+   materials.map(code=>'find('+code+',LOCATION_GRAVE)').join(',')+'))';
+  add('Melissa Quick Effect is limited on its turn and resets on the opponent turn',
+   [[family,F],[helper,H],[dark,H,1],[body,D],[body,D],...materials.map(code=>[code,G])],
+   [helper,family],[[body,H]],{family,melissaQuick:'turn-limit',melissaTurn:true,rewrite:true,noRewrite:true,
+    op,pick:body,opponentOp:'Duel.Recover(tp,100,REASON_EFFECT)',expectedFamilyUses:2,melissaRemaining:0});
+ }
+ for(const mode of ['prior-water','prior-nonwater','after','expiry','count']){
+  const family=248946297;
+  const prior=mode.startsWith('prior');
+  const count=mode==='count';
+  const legal=mode!=='prior-nonwater';
+  const expiry=mode==='expiry';
+  const water='Duel.SpecialSummon(find('+trap+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP_ATTACK)';
+  const nonwater='Duel.SpecialSummon(find('+dark+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP_ATTACK)';
+  const op=prior?'assert('+(legal?water:nonwater)+'==1)':mode==='after'?'assert('+water+'==1) assert('+nonwater+'==0)':expiry?'assert('+nonwater+'==1)':'';
+  add('Exploring WATER restriction and activation '+mode,
+   [[family,H],[body,D],[wing,D,1],...(count?[[family,H],[body,D],[wing,D,1]]:[[helper,H],[trap,G],[dark,G]])],
+   count?[family,family]:prior?(legal?[helper,family]:[helper]):[family,helper],
+   count?[[body,H],[wing,F,1]]:[[body,legal?H:D],[wing,legal?F:D,1],[trap,legal&&!expiry?F:G],[dark,legal&&!expiry?G:F]],
+   {family,exploringBoundary:mode,op,forbidden:legal?undefined:family,expectedFamilyUses:count?2:Number(legal),option:0,pick:wing});
+ }
+ for(const mode of ['two-aqua','wrong-race','cannot-draw','trap-first','grave-first']){
+  const family=223158720;
+  const shared=mode.endsWith('first');
+  const aquas=mode==='two-aqua'?[wing,spell]:[wing,spell,trap];
+  const drawBlocked=mode==='cannot-draw';
+  const extraCopies=mode==='trap-first'?[[family,T]]:mode==='grave-first'?[[family,G]]:[];
+  const op=drawBlocked?'local ex=Effect.CreateEffect(e:GetHandler()) ex:SetType(EFFECT_TYPE_FIELD) ex:SetCode(EFFECT_CANNOT_DRAW) ex:SetProperty(EFFECT_FLAG_PLAYER_TARGET) ex:SetTargetRange(1,0) Duel.RegisterEffect(ex,tp)':'';
+  add('Backwashing recycle '+mode,
+   [[family,G],...aquas.map(code=>[code,G]),...(shared?[[family,T],[body,G],[dark,H,1],[fusion,G],...extraCopies]:[]),...(drawBlocked?[[helper,H]]:[])],
+   shared?[family,family]:drawBlocked?[helper]:[],shared?[[family,B],[body,H],[dark,F,1]]:[[family,G],...aquas.map(code=>[code,G])],
+   {family,backwashingBoundary:mode,backwashingShared:shared,setSourceSpell:true,
+    forbidden:shared?undefined:family,pick:body,sequentialActions:true,op});
+ }
+ for(const mode of ['wrong-target','opponent-grave','no-opponent-hand']){
+  const family=223158720;
+  const owner=Number(mode==='opponent-grave');
+  add('Backwashing return '+mode,
+   [[family,T],[body,G,owner],...(mode==='no-opponent-hand'?[]:[[dark,H,1]])],
+   [],[[family,T],[body,G,owner]],{family,backwashingBoundary:mode,setSourceSpell:true,forbidden:family});
+ }
+ for(const mode of ['normal','special','counter','upper','wrong-level','wrong-race','wrong-rank','wrong-set','opponent-material']){
+  const family=227043533,recipient=231825514;
+  const counter=mode==='counter';
+  const upper=mode==='upper';
+  const legal=mode==='normal'||mode==='special'||counter||upper;
+  const special=mode==='special';
+  add('Lokaeo instructed Xyz Summon '+mode,
+   [[family,special?G:H],[recipient,E],[body,F,Number(mode==='opponent-material')],...(special?[[helper,H]]:[]),...(counter||upper?[[spell,T,1]]:[]),...(upper?[[dark,F,1]]:[])],
+   special?[helper]:[-family],
+   [[recipient,counter?G:legal?F:E],...(legal?[]:[[family,F],[body,F,Number(mode==='opponent-material')]])],
+   {family,lokaeoXyz:mode,standardXyz:true,pick:recipient,expectedFamilyUses:Number(legal),
+    op:special?'assert(Duel.SpecialSummon(find('+family+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP_ATTACK)==1)':undefined});
+ }
+ for(const mode of ['grave','banished','redirect','wrong-set','wrong-type','facedown','revive','decline-revive']){
+  const family=227043533;
+  const legal=!['wrong-set','wrong-type','facedown'].includes(mode);
+  const standby=mode==='revive'||mode==='decline-revive';
+  const origin=['banished','facedown'].includes(mode)?B:G;
+  const target=mode==='facedown'?trap:body;
+  const start=mode==='banished'?F:H;
+  add('Lokaeo recycle '+mode,[[family,start],[target,origin],[dark,H,1]],[],
+   [[family,mode==='revive'?F:legal?B:start],...(!legal||mode==='redirect'?[[target,legal?B:origin]]:[])],
+   {family,lokaeoRecycle:mode,lokaeoStandby:standby,rewrite:true,noRewrite:!legal,pick:target,
+    banishedTrapFacedown:mode==='facedown',expectedFamilyUses:Number(legal)+Number(mode==='revive')});
+ }
+ for(const [mode,origin,faceDown] of [['external-grave',G,false],['external-field',F,false],['external-facedown',G,true]]){
+  const family=227043533;
+  add('Lokaeo revive '+mode,[[family,origin],[helper,H]],[helper],[[family,faceDown?B:F]],
+   {family,lokaeoRecycle:mode,lokaeoExternal:true,lokaeoRevivalTurn:2,lokaeoExpectedOffers:Number(!faceDown),
+    lokaeoAcceptRevival:!faceDown,noRewrite:true,expectedFamilyUses:Number(!faceDown),
+    op:'assert(Duel.Remove(find('+family+','+(origin===G?'LOCATION_GRAVE':'LOCATION_MZONE')+'),'+
+     (faceDown?'POS_FACEDOWN':'POS_FACEUP')+',REASON_EFFECT)==1)'});
+ }
+ {
+  const family=227043533,recipient=231825514;
+  const reviveBoth='assert(Duel.Remove(Duel.GetMatchingGroup(Card.IsCode,tp,LOCATION_GRAVE,0,nil,'+family+'),POS_FACEUP,REASON_EFFECT)==2)';
+  add('Lokaeo revival limit across copies',[[family,G],[family,G],[helper,H]],[helper],[[family,F],[family,B]],
+   {family,lokaeoRecycle:'revival-limit',lokaeoExternal:true,lokaeoRevivalTurn:2,lokaeoExpectedOffers:1,
+    lokaeoAcceptRevival:true,noRewrite:true,expectedFamilyUses:1,op:reviveBoth});
+  add('Lokaeo recycle limit across two opponent activations',
+   [[family,H],[family,H],[body,G],[body,G],[dark,H,1],[dark,H,1]],[],[[family,B],[family,H],[body,G]],
+   {family,lokaeoRecycle:'recycle-limit',rewrite:true,expectedFamilyUses:1,pick:body});
+  add('Lokaeo Xyz trigger limit across Normal and Special Summon',
+   [[family,H],[family,G],[body,F],[body,G],[recipient,E],[recipient,E],[helper,H]],
+   [-family,helper],[[family,F],[body,F],[recipient,F],[recipient,E]],
+   {family,lokaeoXyz:'xyz-limit',standardXyz:true,pick:recipient,expectedFamilyUses:1,
+    op:'assert(Duel.SpecialSummon(find('+body+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP_ATTACK)==1) assert(Duel.SpecialSummon(find('+family+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP_ATTACK)==1)'});
+  add('Lokaeo can Xyz Summon during the same Standby as its revival',
+   [[family,G],[body,F],[recipient,E],[helper,H]],[helper],[[recipient,F]],
+   {family,lokaeoRecycle:'revival-xyz',lokaeoXyz:'revival',lokaeoExternal:true,lokaeoRevivalTurn:2,
+    lokaeoExpectedOffers:1,lokaeoAcceptRevival:true,noRewrite:true,standardXyz:true,pick:recipient,
+    expectedFamilyUses:2,op:'assert(Duel.Remove(find('+family+',LOCATION_GRAVE),POS_FACEUP,REASON_EFFECT)==1)'});
+ }
+ for(const [family,name] of [[231825514,'Koai'],[250556612,'Zao']])for(const mode of ['two','three','one','wrong-level','wrong-race']){
+  const materials=mode==='three'?[body,wing,dark]:mode==='one'?[body]:[body,wing];
+  const legal=mode==='two'||mode==='three';
+  add(name+' Xyz recipe '+mode,[[family,E],...materials.map(code=>[code,F])],legal?[family]:[],
+   [[family,legal?F:E]],{family,koai:family===231825514,zao:family===250556612,levelOneXyzRecipe:mode,standardXyz:true,recipeMaterials:materials,
+    selectMax:mode==='three',specialAvailability:legal?undefined:false});
+ }
+ for(const [family,name] of [[231825514,'Koai'],[250556612,'Zao']])for(const mode of ['cost','effect','host-leaves']){
+  const detach=mode==='cost'?'assert(xyz:RemoveOverlayCard(tp,1,1,REASON_COST))':
+   mode==='effect'?'assert(Duel.SendtoGrave(mc,REASON_EFFECT)==1)':'assert(Duel.SendtoGrave(xyz,REASON_EFFECT)==1)';
+  add(name+' material destination '+mode,[[family,F],[body,G],[helper,H]],[helper],
+   [[body,mode==='host-leaves'?G:B],[family,mode==='host-leaves'?G:F]],
+   {family,koai:family===231825514,zao:family===250556612,isolateXyzRecipe:true,op:'local xyz=find('+family+',LOCATION_MZONE) local mc=find('+body+
+    ',LOCATION_GRAVE) Duel.Overlay(xyz,Group.FromCards(mc)) assert(xyz:GetOverlayCount()==1) '+detach});
+ }
+ for(const mode of ['protected','detached','own-effect']){
+  const family=231825514,own=mode==='own-effect';
+  const op='local xyz=find('+family+',LOCATION_MZONE) Duel.Overlay(xyz,Group.FromCards(find('+body+
+   ',LOCATION_GRAVE))) '+(mode==='detached'?'assert(xyz:RemoveOverlayCard(tp,1,1,REASON_COST)) assert(xyz:GetOverlayCount()==0)':'');
+  add('Koai targeting protection '+mode,[[family,F],[body,G],[wing,F],[helper,H],[dark,H,Number(!own)]],
+   own?[helper,dark]:[helper],[[family,F],[wing,F]],{family,koai:true,isolateXyzRecipe:true,koaiProtect:mode,
+    rewrite:!own,noRewrite:true,op});
+ }
+ for(const mode of ['one','two','extra','redirect','partial-redirect','decline']){
+  const family=231825514;
+  const two=['two','extra','partial-redirect'].includes(mode);
+  add('Koai Quick Effect '+mode,[[family,F],[helper,H],[body,G],[wing,B],...(two?[[fusion,B]]:[]),[spell,D],[trap,D]],
+   [helper,family],[[family,F],[body,B],[wing,['redirect','partial-redirect'].includes(mode)?G:D],...(two?[[fusion,mode==='extra'?E:D]]:[])],
+   {family,koai:true,isolateXyzRecipe:true,koaiQuick:mode,selectMax:true,sequentialActions:true,yes:mode!=='decline',
+    expectedFamilyUses:1,op:'Duel.Overlay(find('+family+',LOCATION_MZONE),Group.FromCards(find('+body+',LOCATION_GRAVE)))'});
+ }
+ for(const mode of ['opponent','cost-only','cost-target','copy-limit']){
+  const family=231825514;
+  const opponent=mode==='opponent',costOnly=mode==='cost-only',limit=mode==='copy-limit';
+  const op=limit?'local host=Duel.GetMatchingGroup(Card.IsCode,tp,LOCATION_MZONE,0,nil,'+family+') for xyz in aux.Next(host) do Duel.Overlay(xyz,Group.FromCards(find('+body+',LOCATION_GRAVE))) end':
+   'Duel.Overlay(find('+family+',LOCATION_MZONE),Group.FromCards(find('+body+',LOCATION_GRAVE)))';
+  add('Koai Quick Effect '+mode,
+   [[family,F],[helper,H],[body,G],...(costOnly?[]:[[wing,B]]),[spell,D],[trap,D],
+    ...(opponent?[[dark,H,1]]:[]),...(limit?[[family,F],[body,G],[fusion,B]]:[])],
+   opponent||costOnly?[helper]:[helper,family],
+   [[family,F],...(costOnly?[]:[[body,mode==='cost-target'?D:B],[wing,D]]),...(limit?[[fusion,B]]:[])],
+   {family,koai:true,isolateXyzRecipe:true,koaiQuick:mode,sequentialActions:true,selectMax:!limit,yes:true,
+    forbidden:limit||costOnly?family:undefined,expectedFamilyUses:Number(!costOnly),pick:limit?wing:undefined,
+    rewrite:opponent,op});
+ }
+ for(const opponent of [false,true])for(const material of [false,true]){
+  const family=250556612;
+  const attach=material?'local xyz=find('+family+',LOCATION_MZONE) Duel.Overlay(xyz,Group.FromCards(find('+body+
+   ',LOCATION_GRAVE))) assert(xyz:GetOverlayCount()==1) ':'';
+  const destroy=opponent?'local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_MZONE,nil,'+family+') Duel.Destroy(tc,REASON_EFFECT)':
+   'Duel.Destroy(find('+family+',LOCATION_MZONE),REASON_EFFECT)';
+  add('Zao effect destruction '+(opponent?'opponent':'own')+' '+(material?'with material':'without material'),
+   [[family,F],[body,G],[helper,H],...(opponent?[[dark,H,1]]:[])],[helper],[[family,material?F:G]],
+   {family,zao:true,isolateXyzRecipe:true,rewrite:opponent,noRewrite:true,
+    opponentOp:opponent?destroy:undefined,op:attach+(opponent?'':destroy)});
+ }
+ for(const mode of ['forward','reverse','upper','real','copy-limit','interrupted','one-spell','wrong-set','unusable-spell']){
+  const family=250556612;
+  const real=mode==='real',upper=mode==='upper',limit=mode==='copy-limit',interrupted=mode==='interrupted';
+  const first=real?236542835:spell,second=real?246421842:trap;
+  const legal=!['one-spell','wrong-set','unusable-spell'].includes(mode);
+  add('Zao Sacred Treasure sequence '+mode,
+   [[family,F],[helper,H],[body,G],[first,H],...(mode==='one-spell'?[]:[[second,G]]),...(real?[[wing,F,1],[dark,T,1]]:upper?[[dark,H,1]]:interrupted?[[dark,F,1]]:[]),
+    ...(limit?[[family,F],[body,G],[first,H],[second,G]]:[])],
+   legal&&!upper?[helper,family]:[helper],[[family,F],...(legal?[[body,B],...(interrupted?[[first,H],[second,D]]:[[first,B],[second,B]])]:[]),...(real?[[wing,G,1],[dark,G,1]]:[])],
+   {family,zao:true,zaoSequence:mode,isolateXyzRecipe:true,sequentialActions:true,expectedFamilyUses:Number(legal),
+    rewrite:upper,opponentOp:upper?'Duel.Recover(tp,300,REASON_EFFECT)':undefined,
+    pick:mode==='reverse'?second:first,forbidden:!legal||limit?family:undefined,
+    op:(limit?'for xyz in aux.Next(Duel.GetMatchingGroup(Card.IsCode,tp,LOCATION_MZONE,0,nil,'+family+')) do Duel.Overlay(xyz,Group.FromCards(find('+body+',LOCATION_GRAVE))) end':'Duel.Overlay(find('+family+',LOCATION_MZONE),Group.FromCards(find('+body+',LOCATION_GRAVE)))')+' local observer=Effect.CreateEffect(e:GetHandler()) observer:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS) observer:SetCode(EVENT_CHAIN_SOLVED) observer:SetOperation(function(_,p,eg,ep,ev,re) if re:GetHandler():IsCode(250556612) then Duel.RegisterFlagEffect(tp,900009001,RESET_CHAIN,0,1) end end) Duel.RegisterEffect(observer,tp)'});
+ }
+ for(const [family,name] of [[236542835,'Bojin'],[229499914,'Chunyin'],[246421842,'Huangjin']]){
+  for(const mode of ['together','alone','wrong-set','separate']){
+   const pair=mode==='together';
+   const ownHand=family===236542835;
+   const remove=code=>'Duel.Remove(find('+code+',LOCATION_GRAVE),POS_FACEUP,REASON_EFFECT)';
+   const op=mode==='separate'?remove(family)+' '+remove(body):mode==='alone'?remove(family):
+    'assert(Duel.Remove(Group.FromCards(find('+family+',LOCATION_GRAVE),find('+body+',LOCATION_GRAVE)),POS_FACEUP,REASON_EFFECT)==2)';
+   add(name+' simultaneous banish '+mode,
+    [[family,G],[helper,H],...(mode==='alone'?[]:[[body,G]]),...(ownHand?[[wing,H],[dark,H,1]]:[])],
+    [helper],[[family,B],...(ownHand?[[wing,pair?G:H],[dark,pair?G:H,1]]:[]),
+     ...(mode==='alone'?[]:[[body,pair&&family===229499914?H:B]])],
+    {family,zao:true,treasureBanish:mode,expectedFamilyUses:Number(pair),
+     expectedHandCount:family===246421842?Number(pair):undefined,pick:body,op});
+  }
+ }
+ for(const mode of ['destroy-opponent','destroy-own','choose-destroy','choose-summon','opponent-only','facedown','full-field','copy-limit']){
+  const family=236542835;
+  const legal=!['opponent-only','facedown'].includes(mode);
+  const otherSide=Number(mode==='opponent-only');
+  const choice=mode.startsWith('choose');
+  const summon=mode==='choose-summon';
+  const own=mode==='destroy-own';
+  const limit=mode==='copy-limit';
+  add('Bojin activation '+mode,
+   [[family,H],[body,F,otherSide],...(own?[]:[[wing,F,1]]),...(choice||mode==='full-field'?[[trap,H]]:[]),
+    ...(limit?[[family,H],[wing,F,1]]:[]),...(mode==='full-field'?Array.from({length:4},()=>[spell,F]):[])],
+   legal?[family]:[],
+   legal?(summon?[[trap,F],[wing,F,1]]:own?[[body,G]]:[[wing,G,1],...(limit?[[wing,F,1],[family,H]]:[])]):[[family,H],[body,F,otherSide]],
+   {family,bojin:mode,pick:summon?trap:own?body:wing,option:Number(summon),options:choice?2:undefined,
+    forbidden:!legal||limit?family:undefined,expectedFamilyUses:Number(legal)});
+ }
+ for(const mode of ['position','deck','deck-only','same-name','no-branch','opponent-only','copy-limit','source-leaves']){
+  const family=229499914,deck=['deck','deck-only','source-leaves'].includes(mode),legal=!['opponent-only','no-branch'].includes(mode);
+  const duplicate=['same-name','no-branch'].includes(mode),limit=mode==='copy-limit';
+  add('Chunyin activation '+mode,
+   [[family,H],[body,F,Number(mode==='opponent-only')],[dark,F,1],[wing,D],[wing,D],
+    ...(duplicate?[]:[[trap,D]]),...(limit?[[family,H]]:[])],
+   legal?[family]:[],
+   deck?[[wing,B],[trap,B],[wing,D]]:legal?[[dark,F,1],[wing,D],...(limit?[[family,H]]:[])]:[[family,H],[wing,D],...(duplicate?[]:[[trap,D]])],
+   {family,chunyin:mode,treasureSourceLeaves:mode==='source-leaves',pick:dark,option:Number(deck),forbidden:!legal||limit?family:undefined,
+    expectedFamilyUses:Number(legal)});
+ }
+ for(const mode of ['destroy-own','destroy-opponent','banish-own','banish-opponent','opponent-only','copy-limit','source-leaves']){
+  const family=246421842;
+  const legal=mode!=='opponent-only',banish=mode.startsWith('banish')||mode==='source-leaves';
+  const owner=Number(mode.endsWith('opponent')),limit=mode==='copy-limit',leaves=mode==='source-leaves';
+  const target=banish?wing:spell;
+  add('Huangjin activation '+mode,
+   [[family,H],[body,F,Number(!legal)],[target,banish?G:T,owner],...(limit?[[family,H],[trap,G]]:[]),
+    ...(leaves?[[dark,F,1]]:[])],
+   legal?[family]:[],
+   legal?[[target,banish?B:G,owner],...(limit?[[family,H],[trap,G]]:[])]:[[family,H],[target,T,owner]],
+   {family,huangjin:mode,treasureSourceLeaves:leaves,pick:target,option:Number(banish),
+    options:banish||limit?2:undefined,forbidden:!legal||limit?family:undefined,expectedFamilyUses:Number(legal)});
+ }
+ for(const sourceLeaves of [false,true]){
+  const family=237917359,umi=22702055;
+  add('Shrine places Umi '+(sourceLeaves?'after source destruction':'normally'),[[family,H],[umi,D],...(sourceLeaves?[[dark,F,1]]:[])],
+   [family],[[umi,L.FZONE]],{family,shrinePlacement:true,treasureSourceLeaves:sourceLeaves,expectedFamilyUses:1});
+ }
+ for(const mode of ['hand','grave','banished','special-trigger','wrong-set','facedown','full','necrovalley']){
+  const family=218600459;
+  const special=mode==='special-trigger';
+  const legal=['hand','grave','banished','special-trigger'].includes(mode);
+  const target=mode==='facedown'?trap:body;
+  const origin=mode==='hand'?H:['banished','facedown'].includes(mode)?B:G;
+  add('Bauba summon '+mode,
+   [[family,special?G:H],[target,origin],...(special?[[helper,H]]:[]),
+    ...(mode==='full'?Array.from({length:4},()=>[wing,F]):[]),...(mode==='necrovalley'?[[47355498,L.FZONE]]:[])],
+   special?[helper]:[-family],[[family,F],[target,legal?F:origin]],
+   {family,baubaSummon:mode,pick:target,expectedFamilyUses:Number(legal),banishedTrapFacedown:mode==='facedown',
+    op:special?'assert(Duel.SpecialSummon(find('+family+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP_ATTACK)==1)':undefined});
+ }
+ for(const redirect of [false,true]){
+  const family=218600459;
+  add('Bauba Spell receipt '+(redirect?'redirect':'success'),
+   [[family,H],[body,D],[dark,G,1]],[],[[family,B],[body,redirect?B:H]],
+   {family,baubaReceipt:true,redirect,rewrite:true,graveActivation:true,
+    expectedFamilyUses:1,pick:body});
+ }
+ for(const [family,name] of [[232232676,'Oro'],[212055290,'Advent']])for(const redirect of [false,true]){
+  const monster=family===232232676;
+  add(name+' search reveal '+(redirect?'redirect':'success'),[[family,H],[body,D]],
+   monster?[-family]:[family],[[family,monster?F:G],[body,redirect?B:H]],
+   {family,baubaReceipt:true,handRevealProbe:monster?'oro':'advent',redirect,expectedFamilyUses:1,pick:body});
+ }
+ for(const mode of ['success','redirect','wrong set','wrong type']){
+  const family=232232676;
+  const redirect=mode==='redirect';
+  const legal=mode==='success'||redirect;
+  add('Oro Special Summon search '+mode,[[family,G],[helper,H],[body,D]],
+   [helper],[[family,F],[body,legal?(redirect?B:H):D]],
+   {family,baubaReceipt:true,oroSearch:mode,redirect,baubaExpectedReceipt:legal&&!redirect,
+    expectedFamilyUses:Number(legal),pick:body,
+    op:'assert(Duel.SpecialSummon(find('+family+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP_ATTACK)==1)'});
+ }
+ for(const [trigger,mode] of [['Normal','legal'],['Special','legal'],['Special','wrong set'],['Special','wrong type']]){
+  const family=235789995,special=trigger==='Special',legal=mode==='legal';
+  add('Hikam '+trigger+' Summon Deck banish '+mode,
+   [[family,special?G:H],[body,D],...(special?[[helper,H]]:[])],
+   special?[helper]:[-family],[[family,F],[body,legal?B:D]],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,hikamSummon:mode,expectedFamilyUses:Number(legal),pick:body,
+    op:special?'assert(Duel.SpecialSummon(find('+family+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP_ATTACK)==1)':undefined});
+ }
+ for(const [mode,origin,special,legal] of [
+  ['NiuHao GY',G,false,true],['Sacred Treasure banishment',B,true,true],
+  ['wrong set',G,false,false],['face-down banishment',B,true,false],['Necrovalley',G,false,false]
+ ]){
+  const family=215629896;
+  add('Zaoka summon recovery '+mode,
+   [[family,special?G:H],[body,origin],...(special?[[helper,H]]:[]),...(mode==='Necrovalley'?[[47355498,L.FZONE]]:[])],
+   special?[helper]:[-family],[[family,F],[body,legal?H:origin]],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,zaokaRecovery:mode,expectedFamilyUses:Number(legal),pick:body,
+    op:special?'assert(Duel.SpecialSummon(find('+family+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP_ATTACK)==1)':undefined});
+ }
+ for(const [mode,source,origin,legal] of [
+  ['field from Hand',H,F,true],['banishment from field',F,B,true],
+  ['opponent GY',H,G,false],['short Deck',H,F,false],['all match',H,F,true]
+ ]){
+  const family=215629896,short=mode==='short Deck';
+  add('Zaoka excavation '+mode,
+   [[family,source],[body,D],[wing,D],...(short?[]:[[trap,D]]),[dark,origin,1]],[],
+   [[family,legal?B:source],[body,legal?G:D],[wing,legal?G:D],...(short?[]:[[trap,mode==='all match'?G:D]])],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,zaokaExcavation:mode,rewrite:true,noRewrite:!legal,
+    graveActivation:origin===G,banishedActivation:origin===B,monsterActivation:origin===F,expectedFamilyUses:Number(legal)});
+ }
+ {
+  const family=215629896;
+  add('Zaoka recovery limit across Normal and Special Summon',
+   [[family,H],[family,G],[body,G],[body,G],[helper,H]],[-family,helper],
+   [[family,F],[body,H],[body,G]],{family,baubaReceipt:true,baubaExpectedReceipt:false,
+    zaokaRecovery:'NiuHao GY',expectedFamilyUses:1,pick:body,
+    op:'assert(Duel.SpecialSummon(find('+family+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP_ATTACK)==1)'});
+  add('Zaoka excavation limit with three non-matches left',
+   [[family,H],[family,H],[trap,D],[trap,D],[trap,D],[dark,B,1],[dark,B,1]],[],
+   [[family,B],[family,H],[trap,D]],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,zaokaExcavation:'copy-limit',
+    baubaSource:'copy-limit',rewrite:true,banishedActivation:true,expectedFamilyUses:1});
+ }
+ for(const mode of ['success','redirect','decline','wrong set','both effects']){
+  const family=247831166,redirect=mode==='redirect',both=mode==='both effects';
+  const receipt=['success','both effects'].includes(mode);
+  add('Leoship activation search '+mode,[[family,H],[body,D]],
+   both?[family,family]:[family],[[family,T],[body,both?F:receipt?H:redirect?B:D]],
+   {family,baubaReceipt:true,leoship:mode,redirect,yes:mode!=='decline',noYes:mode==='wrong set',
+    baubaExpectedReceipt:receipt,expectedFamilyUses:both?2:1,pick:body});
+ }
+ for(const mode of ['wrong monster set','Spell in Hand','full field','summon limit','activation limit']){
+  const family=247831166,activation=mode==='activation limit',legal=mode==='summon limit';
+  const zone=activation?H:T;
+  add('Leoship '+mode,[[family,zone],[body,activation?D:H],
+    ...(activation||legal?[[family,zone],[body,activation?D:H]]:[]),
+    ...(mode==='full field'?Array.from({length:5},()=>[wing,F]):[])],
+   activation||legal?[family]:[],[[body,legal?F:H],...(legal?[[body,H]]:activation?[[body,D]]:[])],
+   {family,baubaReceipt:true,leoship:mode,yes:activation,baubaExpectedReceipt:activation,
+    expectedFamilyUses:Number(activation||legal),forbidden:activation?undefined:family,pick:body});
+ }
+ for(const mode of ['Hand Tribute','field Tribute','Leoship','wrong Tribute Level','wrong Synchro Level']){
+  const family=235051048,replace=mode==='Leoship';
+  const cost=replace?G:mode==='field Tribute'?F:H;
+  const legal=!mode.startsWith('wrong');
+  add('Octantis upgrade '+mode,[[family,F],[body,cost],[wing,E],...(replace?[[247831166,T]]:[])],
+   legal?[family]:[],[[family,legal&&!replace?G:F],[body,legal?(replace?B:G):cost],[wing,legal?F:E]],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,octantisUpgrade:mode,
+    expectedFamilyUses:Number(legal),forbidden:legal?undefined:family,pick:body});
+ }
+ for(const mode of ['GY recruit','wrong set','opposing card','sent without destruction','copy limit','Necrovalley']){
+  const family=235051048,repeat=mode==='copy limit',legal=mode==='GY recruit'||repeat;
+  const opposing=mode==='opposing card';
+  const target=opposing?'Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_MZONE,nil,'+wing+')':
+   'find('+wing+',LOCATION_MZONE)';
+  const action=mode==='sent without destruction'?'SendtoGrave':'Destroy';
+  add('Octantis destruction '+mode,
+   [[family,G],[body,G],[wing,F,Number(opposing)],[helper,H],
+    ...(repeat?[[family,G],[body,G],[wing,F],[helper,H]]:[]),
+    ...(mode==='Necrovalley'?[[47355498,L.FZONE]]:[])],
+   repeat?[helper,helper]:[helper],
+   [[family,legal?B:G],[body,legal?F:G],[wing,G,Number(opposing)],...(repeat?[[family,G],[body,G]]:[])],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,octantisRecruit:mode,
+    expectedFamilyUses:Number(legal),pick:body,op:'assert(Duel.'+action+'('+target+',REASON_EFFECT)==1)'});
+ }
+ for(const [family,name] of [[235051048,'Octantis'],[244921711,'Hextanius'],[249093610,'Nordbar']]){
+  add(name+' rejects the Synchro Summon type',[[family,E],[wing,E],[helper,H]],[helper],
+   [[family,E],[wing,F]],{family,baubaReceipt:true,baubaExpectedReceipt:false,octantisSynchroCheck:true,
+    expectedFamilyUses:0,
+    op:'local source=find('+family+',LOCATION_EXTRA) local control=find('+wing+',LOCATION_EXTRA) '+
+     'assert(not source:IsCanBeSpecialSummoned(e,SUMMON_TYPE_SYNCHRO,tp,false,false),"Restricted card cannot be Synchro Summoned") '+
+     'assert(control:IsCanBeSpecialSummoned(e,SUMMON_TYPE_SYNCHRO,tp,false,false),"Unrestricted Synchro is legal") '+
+     'assert(Duel.SpecialSummon(control,SUMMON_TYPE_SYNCHRO,tp,tp,false,false,POS_FACEUP_ATTACK)==1)'});
+ }
+ for(const mode of ['700 ATK','700 DEF','wrong attribute','wrong stats','copy limit']){
+  const family=244921711,repeat=mode==='copy limit';
+  const legal=!mode.startsWith('wrong');
+  add('Hextanius Deck summon '+mode,
+   [[family,E],[body,D],[helper,H],...(repeat?[[family,E],[body,D],[helper,H]]:[])],
+   repeat?[helper,helper]:[helper],[[family,F],[body,legal?F:D],...(repeat?[[body,D]]:[])],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,hextaniusRecruit:mode,expectedFamilyUses:Number(legal),pick:body,
+    op:'assert(Duel.SpecialSummon(find('+family+',LOCATION_EXTRA),0,tp,tp,true,false,POS_FACEUP_ATTACK)==1)'});
+ }
+ for(const mode of ['legal','wrong set','Necrovalley','full field','copy limit']){
+  const family=249093610,repeat=mode==='copy limit',legal=mode==='legal'||repeat;
+  add('Nordbar GY summon '+mode,[[family,E],[body,G],[helper,H],
+   ...(repeat?[[family,E],[body,G],[helper,H]]:[]),
+   ...(mode==='full field'?Array.from({length:4},()=>[wing,F]):[]),
+   ...(mode==='Necrovalley'?[[47355498,L.FZONE]]:[])],
+   repeat?[helper,helper]:[helper],[[family,F],[body,legal?F:G],...(repeat?[[body,G]]:[])],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,nordbarRevive:mode,
+    expectedFamilyUses:Number(legal),pick:body,
+    op:'assert(Duel.SpecialSummon(find('+family+',LOCATION_EXTRA),0,tp,tp,true,false,POS_FACEUP_ATTACK)==1)'});
+ }
+ for(const mode of ['legal','redirect','wrong set','wrong type','copy limit']){
+  const family=249093610,repeat=mode==='copy limit',redirect=mode==='redirect';
+  const legal=!mode.startsWith('wrong');
+  add('Nordbar opponent Standby search '+mode,[[family,F],[body,D],...(repeat?[[family,F],[body,D]]:[])],[],
+   [[body,legal?(redirect?B:H):D],...(repeat?[[body,D]]:[])],
+   {family,baubaReceipt:true,baubaExpectedReceipt:legal&&!redirect,nordbarSearch:mode,redirect,
+    expectedFamilyUses:Number(legal),pick:body});
+ }
+ for(const mode of ['Spell','monster','destruction protected','copy limit',...(process.argv.includes('--nordbar-negation-protection-probe')?['cannot negate']:[])]){
+  const family=249093610,repeat=mode==='copy limit',protectedCard=mode==='destruction protected';
+  const cannotNegate=mode==='cannot negate',monster=mode!=='Spell';
+  add('Nordbar activation negation '+mode,
+   [[family,F],[dark,monster?F:H,1],...(repeat?[[family,F],[dark,F,1]]:[]),...(protectedCard?[[helper,H]]:[])],
+   protectedCard?[helper]:[],[[dark,protectedCard||cannotNegate?F:G,1],...(repeat?[[dark,F,1]]:[])],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,nordbarNegate:mode,rewrite:true,monsterActivation:monster,
+    baubaSource:repeat?'copy-limit':undefined,noRewrite:cannotNegate,expectedFamilyUses:Number(!cannotNegate),
+    opponentOp:'Duel.Recover(tp,500,REASON_EFFECT)',
+    op:protectedCard?'local c=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_MZONE,nil,'+dark+') local ex=Effect.CreateEffect(e:GetHandler()) ex:SetType(EFFECT_TYPE_SINGLE) ex:SetCode(EFFECT_INDESTRUCTABLE_EFFECT) ex:SetValue(1) c:RegisterEffect(ex)':undefined});
+ }
+ if(process.argv.includes('--nordbar-negation-protection-probe')){
+  for(const protectedSpell of [false,true]){
+   const family=84815190;
+   add('Stock Baronne negation '+(protectedSpell?'protected':'ordinary'),[[family,F],[dark,protectedSpell?F:H,1]],[],
+    [[dark,protectedSpell?F:G,1]],{family,stockNegationControl:true,baubaReceipt:true,baubaExpectedReceipt:false,
+     nordbarNegate:protectedSpell?'cannot negate':'Spell',rewrite:true,noRewrite:protectedSpell,monsterActivation:protectedSpell,
+     expectedFamilyUses:Number(!protectedSpell),opponentOp:'Duel.Recover(tp,500,REASON_EFFECT)'});
+  }
+ }
+ for(const mode of ['legal','wrong attribute','face-down','same turn','copy limit']){
+  const family=255277197,repeat=mode==='copy limit',sameTurn=mode==='same turn';
+  const legal=mode==='legal'||repeat;
+  add('Chaos Fusion GY return '+mode,
+   [[family,sameTurn?H:G],[body,B],[wing,B],
+    ...(repeat?[[family,G],[body,B],[wing,B]]:[]),...(sameTurn?[[helper,H]]:[])],
+   legal?[family]:sameTurn?[helper]:[],[[family,legal?B:G],[body,legal?G:B],[wing,legal?G:B],
+    ...(repeat?[[family,G],[body,B],[wing,B]]:[])],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,chaosReturn:mode,activationLocation:G,
+    expectedFamilyUses:Number(legal),forbidden:family,
+    op:sameTurn?'assert(Duel.SendtoGrave(find('+family+',LOCATION_HAND),REASON_EFFECT)==1)':undefined});
+ }
+ {
+  const family=255277197;
+  add('Chaos Fusion GY return target leaves at Chain Link 2',
+   [[family,G],[body,B],[wing,B],[dark,F,1]],[family],[[family,B],[body,H],[wing,B]],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,chaosReturn:'target leaves',activationLocation:G,
+    expectedFamilyUses:1,pick:body});
+ }
+ for(const [family,name] of [[234179728,'Galacticarina'],[227335484,'Galacticassiopeia']])
+ for(const mode of ['Hand start','forced attack','damage','destruction','both triggers','no cost',
+  'wrong recruit Level','banished recruit','face-down recruit','same name','wrong cost type']){
+  const fromHand=mode==='Hand start',forced=mode==='forced attack';
+  const own=!fromHand&&!forced;
+  const recruit=own&&!['no cost','wrong recruit Level','face-down recruit','same name','wrong cost type'].includes(mode);
+  const destroys=['destruction','both triggers'].includes(mode);
+  const origin=['banished recruit','face-down recruit'].includes(mode)?B:D;
+  const recipient=mode==='same name'?family:body;
+  add(name+' battle '+mode,[[family,fromHand?H:F],
+    ...(fromHand||forced||destroys?[[dark,F,1]]:[]),
+    ...(forced?[[wing,F]]:[]),...(own?[[recipient,origin]]:[]),...(own&&mode!=='no cost'?[[trap,B]]:[])],
+   [],[[family,recruit?B:F],...(own?[[recipient,recruit?F:origin]]:[]),
+    ...(own&&mode!=='no cost'?[[trap,recruit?D:B]]:[]),...(destroys?[[dark,G,1]]:[])],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,galacticaBattle:mode,
+    galacticaOwnBattle:own&&mode!=='both triggers',battle:true,expectedFamilyUses:Number(fromHand||recruit),pick:body});
+ }
+ for(const mode of ['Normal','Special Attack','Special Defense','full zones','shared limit']){
+  const family=229021849,token=229021850;
+  const special=mode.startsWith('Special'),repeat=mode==='shared limit';
+  const legal=mode!=='Special Defense'&&mode!=='full zones';
+  add('Venatici token '+mode,[[family,special?G:H],...(special||repeat?[[helper,H]]:[]),
+    ...(repeat?[[family,G]]:[]),...(mode==='full zones'?Array.from({length:4},()=>[wing,F]):[])],
+   special?[helper]:repeat?[-family,helper]:[-family],[[family,F],...(legal?[[token,F]]:[])],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,venaticiToken:mode,expectedFamilyUses:Number(legal),
+    op:special||repeat?'assert(Duel.SpecialSummon(find('+family+',LOCATION_GRAVE),0,tp,tp,false,false,'+
+     (mode==='Special Defense'?'POS_FACEUP_DEFENSE':'POS_FACEUP_ATTACK')+')==1)':undefined});
+ }
+ for(const mode of ['damage','destruction','both triggers','wrong set']){
+  const family=229021849,destroys=['destruction','both triggers'].includes(mode),legal=mode!=='wrong set';
+  add('Venatici Deck banish '+mode,
+   [[family,F],[body,D],...(destroys?[[dark,F,1]]:[]),...(mode==='both triggers'?[[wing,D]]:[])],[],
+   [[family,F],[body,legal?B:D],...(destroys?[[dark,G,1]]:[]),...(mode==='both triggers'?[[wing,D]]:[])],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,venaticiBattle:mode,
+    galacticaOwnBattle:true,battle:true,expectedFamilyUses:Number(legal),pick:body});
+ }
+ {
+  const family=229021849;
+  add('Venatici Deck banish in two separate battles',
+   [[family,F],[body,D],[wing,D],[helper,H],[dark,F,1],[dark,F,1]],[helper],
+   [[family,F],[body,B],[wing,B],[dark,G,1]],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,venaticiBattle:'two battles',galacticaOwnBattle:true,
+    battle:true,expectedFamilyUses:2,pick:body,
+    op:'local extra=Effect.CreateEffect(e:GetHandler()) extra:SetType(EFFECT_TYPE_SINGLE) '+
+     'extra:SetCode(EFFECT_EXTRA_ATTACK) extra:SetValue(1) find('+family+',LOCATION_MZONE):RegisterEffect(extra)'});
+ }
+ for(const mode of ['halve to zero','double','decline','wrong cost type','same-name cost','copy limit','expires']){
+  const family=226902471,repeat=mode==='copy limit';
+  const resource=mode==='same-name cost'?family:body;
+  const pay=!['decline','wrong cost type','same-name cost'].includes(mode);
+  add('Battle Tactics activation '+mode,[[family,H],[resource,D],[dark,F,1],[wing,F,1],[trap,F],
+    ...(repeat?[[family,H],[body,D]]:[])],[family],
+   [[family,G],[resource,pay?G:D],...(repeat?[[family,H],[body,D]]:[])],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,battleTactics:mode,yes:mode!=='decline',
+    noYes:['wrong cost type','same-name cost'].includes(mode),option:mode==='halve to zero'?0:1,
+    forbidden:repeat?family:undefined,expectedFamilyUses:1,pick:body});
+ }
+ {
+  const family=226902471;
+  add('Battle Tactics applies to the field at resolution',
+   [[family,H],[body,D],[dark,F,1],[wing,F,1],[trap,F]],[family],[[family,G],[body,G],[dark,G,1]],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,battleTactics:'opponent leaves',
+    yes:true,option:1,expectedFamilyUses:1,pick:body});
+  add('Battle Tactics cannot activate on opponent turn',
+   [[family,T],[dark,F,1],[wing,F,1],[trap,F]],[],[[family,T]],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,battleTactics:'opponent turn',
+    rewrite:true,noRewrite:true,monsterActivation:true,setSourceSpell:true,expectedFamilyUses:0});
+ }
+ for(const mode of ['two names','duplicate names','wrong type','same name']){
+  const family=226902471,legal=!mode.startsWith('wrong')&&mode!=='same name';
+  const resources=mode==='same name'?[family]:mode==='duplicate names'?[body,body]:mode==='two names'?[body,wing]:[body];
+  add('Battle Tactics banished trigger '+mode,[[family,G],[helper,H],...resources.map(code=>[code,D])],
+   [helper],[[family,B],...(legal?[[body,B]]:[]),...(mode==='two names'?[[wing,B]]:[]),
+    ...(mode==='duplicate names'?[[body,D]]:[]),...(!legal?[[resources[0],D]]:[])],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,tacticsBanish:mode,
+    expectedFamilyUses:Number(legal),pick:body,
+    op:'assert(Duel.Remove(find('+family+',LOCATION_GRAVE),POS_FACEUP,REASON_EFFECT)==1)'});
+ }
+ for(const [mode,origin,redirect] of [['Deck',D,false],['GY',G,false],['redirected Deck',D,true],['redirected GY',G,true]]){
+  add('Battle Formation search '+mode,[[formation,H],[body,origin]],[formation],
+   [[formation,G],[body,redirect?B:H]],{family:formation,baubaReceipt:true,formationSearch:true,redirect,
+    expectedFamilyUses:1,pick:body});
+ }
+ for(const mode of ['success','partial redirect','all redirected']){
+  const family=259758604,redirect=mode!=='success',redirectAll=mode==='all redirected';
+  add('Charmelia Deal group reveal '+mode,[[family,H],[body,D],[wing,D]],
+   [family],[[family,T],[body,redirect?B:H],[wing,redirectAll?B:H]],
+   {family,baubaReceipt:true,revealGroup:true,redirect,redirectAll,selectMax:true,expectedFamilyUses:1,pick:body});
+ }
+ for(const [mode,origin,source] of [['hand',H,H],['grave-from-field',G,F],['field',F,H],['own-grave',G,H]]){
+  const family=218600459,own=mode==='own-grave';
+  const legal=mode==='hand'||mode==='grave-from-field';
+  add('Bauba response origin '+mode,
+   [[family,source],[body,D],[dark,origin,Number(!own)]],own?[dark]:[],
+   [[family,legal?B:source],[body,legal?H:D]],
+   {family,baubaReceipt:true,baubaSource:mode,baubaExpectedReceipt:legal,rewrite:!own,noRewrite:!legal,
+    monsterActivation:origin===F,graveActivation:origin===G,expectedFamilyUses:Number(legal),pick:body});
+ }
+ for(const [mode,source,origin,owner,legal] of [
+  ['opponent GY from Hand',H,G,1,true],['opponent banishment from field',F,B,1,true],
+  ['opponent field',H,F,1,false],['own GY',H,G,0,false]
+ ]){
+  const family=232232676;
+  add('Oro Quick Effect response '+mode,[[family,source],[body,D],[dark,origin,owner]],
+   owner?[]:[dark],[[family,legal?B:source],[body,legal?G:D]],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,rewrite:Boolean(owner),noRewrite:!legal,
+    baubaSource:owner?undefined:'own-grave',graveActivation:origin===G,banishedActivation:origin===B,
+    monsterActivation:origin===F,expectedFamilyUses:Number(legal),pick:body});
+ }
+ for(const mode of ['wrong set','wrong type','facedown','banish blocked']){
+  const family=232232676,source=mode==='facedown'?F:H;
+  const blocked=mode==='banish blocked';
+  add('Oro Quick Effect restriction '+mode,
+   [[family,source],[body,D],[dark,G,1],...(blocked?[[helper,H]]:[])],
+   blocked?[helper]:[],[[family,source],[body,D]],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,oroSearch:mode,rewrite:true,noRewrite:true,
+    graveActivation:true,expectedFamilyUses:0,
+    op:blocked?'local ex=Effect.CreateEffect(e:GetHandler()) ex:SetType(EFFECT_TYPE_FIELD) ex:SetCode(EFFECT_CANNOT_REMOVE) ex:SetProperty(EFFECT_FLAG_PLAYER_TARGET) ex:SetTargetRange(1,0) Duel.RegisterEffect(ex,tp)':undefined});
+ }
+ {
+  const family=232232676;
+  add('Oro search limit across Normal and Special Summon',
+   [[family,H],[family,G],[body,D],[body,D],[helper,H]],[-family,helper],
+   [[family,F],[body,H],[body,D]],{family,baubaReceipt:true,expectedFamilyUses:1,pick:body,
+    op:'assert(Duel.SpecialSummon(find('+family+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP_ATTACK)==1)'});
+ }
+ for(const [mode,source,origin,legal] of [
+  ['field from Hand',H,F,true],['GY from field',F,G,true],['banishment',H,B,false],
+  ['own GY',H,G,false],['wrong set',H,G,false],['wrong type',H,G,false],
+  ['facedown',F,G,false],['full Spell Trap Zones',H,G,false],['banish blocked',H,G,false]
+ ]){
+  const family=235789995,own=mode==='own GY',blocked=mode==='banish blocked';
+  const filled=mode==='full Spell Trap Zones'?Array.from({length:5},()=>[trap,T]):[];
+  add('Hikam Quick Effect Set '+mode,
+   [[family,source],[body,D],[dark,origin,Number(!own)],...filled,...(blocked?[[helper,H]]:[])],
+   own?[dark]:blocked?[helper]:[],[[family,legal?B:source],[body,legal?T:D]],
+   {family,baubaReceipt:true,baubaExpectedReceipt:false,oroSearch:mode,rewrite:!own,noRewrite:!legal,
+    baubaSource:own?'own-grave':undefined,graveActivation:origin===G,banishedActivation:origin===B,
+    monsterActivation:origin===F,expectedFamilyUses:Number(legal),pick:body,checkHikamSet:legal,
+    op:blocked?'local ex=Effect.CreateEffect(e:GetHandler()) ex:SetType(EFFECT_TYPE_FIELD) ex:SetCode(EFFECT_CANNOT_REMOVE) ex:SetProperty(EFFECT_FLAG_PLAYER_TARGET) ex:SetTargetRange(1,0) Duel.RegisterEffect(ex,tp)':undefined});
+ }
+ {
+  const family=235789995;
+  add('Hikam Deck banish limit across Normal and Special Summon',
+   [[family,H],[family,G],[body,D],[body,D],[helper,H]],[-family,helper],
+   [[family,F],[body,B],[body,D]],{family,baubaReceipt:true,baubaExpectedReceipt:false,
+    hikamSummon:'legal',expectedFamilyUses:1,pick:body,
+    op:'assert(Duel.SpecialSummon(find('+family+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP_ATTACK)==1)'});
+ }
+ for(const [family,name] of [[218600459,'Bauba'],[232232676,'Oro'],[235789995,'Hikam'],[215629896,'Zaoka']])
+ for(const [mode,origin,faceDown] of [['grave',G,false],['field',F,false],['facedown',G,true]]){
+  add(name+' Standby revival '+mode,[[family,origin],[helper,H]],[helper],[[family,faceDown?B:F]],
+   {family,baubaRevival:true,lokaeoRecycle:'external-'+mode,lokaeoExternal:true,lokaeoRevivalTurn:2,
+    lokaeoExpectedOffers:Number(!faceDown),lokaeoAcceptRevival:!faceDown,noRewrite:true,expectedFamilyUses:Number(!faceDown),
+    op:'assert(Duel.Remove(find('+family+','+(origin===G?'LOCATION_GRAVE':'LOCATION_MZONE')+'),'+
+     (faceDown?'POS_FACEDOWN':'POS_FACEUP')+',REASON_EFFECT)==1)'});
+ }
+ {
+  const family=218600459;
+  add('Bauba summon limit across Normal and Special Summon',
+   [[family,H],[family,G],[body,G],[trap,G],[helper,H]],[-family,helper],
+   [[family,F],[body,F],[trap,G]],{family,baubaSummon:'copy-limit',expectedFamilyUses:1,pick:body,
+    op:'assert(Duel.SpecialSummon(find('+family+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP_ATTACK)==1)'});
+ }
+ for(const [family,name,destination] of [[218600459,'Bauba',H],[232232676,'Oro',G],[235789995,'Hikam',T]]){
+  add(name+' Quick Effect limit across two opponent activations',
+   [[family,H],[family,H],[body,D],[body,D],[dark,G,1],[dark,G,1]],[],[[family,B],[family,H],[body,destination],[body,D]],
+   {family,baubaReceipt:true,baubaExpectedReceipt:destination===H,baubaSource:'copy-limit',
+    rewrite:true,graveActivation:true,expectedFamilyUses:1,pick:body});
+ }
+ for(const [family,name] of [[218600459,'Bauba'],[232232676,'Oro'],[235789995,'Hikam'],[215629896,'Zaoka']]){
+  add(name+' revival limit across two eligible copies',[[family,G],[family,G],[helper,H]],[helper],[[family,F],[family,B]],
+   {family,baubaRevival:true,lokaeoRecycle:'external-limit',lokaeoExternal:true,lokaeoRevivalTurn:2,
+    lokaeoExpectedOffers:1,lokaeoAcceptRevival:true,noRewrite:true,expectedFamilyUses:1,
+    op:'assert(Duel.Remove(Duel.GetMatchingGroup(Card.IsCode,tp,LOCATION_GRAVE,0,nil,'+family+'),POS_FACEUP,REASON_EFFECT)==2)'});
+  add(name+' declined revival expires before the following Standby',[[family,G],[helper,H]],[helper],[[family,B]],
+   {family,baubaRevival:true,lokaeoRecycle:'external-decline',lokaeoExternal:true,lokaeoRevivalTurn:2,lokaeoObserveUntil:3,
+    lokaeoExpectedOffers:1,lokaeoAcceptRevival:false,noRewrite:true,expectedFamilyUses:0,
+    op:'assert(Duel.Remove(find('+family+',LOCATION_GRAVE),POS_FACEUP,REASON_EFFECT)==1)'});
+ }
  if(process.argv.includes('--full-pendulum-probe'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.originsFullPendulum));
  for(const removed of [false,true])add('Glitchling Bitron copied effect '+(removed?'cost card banished':'baseline'),[[259247807,F],[259546637,D],[body,D],[wing,H],...(removed?[[dark,F,1]]:[])],[259247807],[[body,H],[259546637,removed?B:G]],{family:259247807,bitronCopy:true,bitronCopyRemoved:removed,yes:true,expectedFamilyUses:1});
  for(const removed of [false,true])add('Stainless Story copied search '+(removed?'cost card banished':'baseline'),[[245970073,H],[221822671,D],[body,D],[dark,F,1],[wing,F,1]],[245970073],[[body,H],[221822671,removed?B:G]],{family:245970073,stainlessCopy:true,bitronCopyRemoved:removed,expectedFamilyUses:1});
@@ -539,6 +1202,38 @@ async function main(){
   {family:218905439,nauticaOverlay:true,materialNative:true,standardXyz:true,selfOverlayNecro:true,
    chainNecro:stolen||faceDownRecipient,overlayControlChanged:stolen,faceDownRecipient,expectedFamilyUses:1});
  }
+ for(const mode of ['detach-cost','detach-effect','host-leaves','wrong-attribute','two-copies']){
+  const family=218905439;
+  const removes=mode.startsWith('detach')||mode==='host-leaves';
+  const host='find('+body+',LOCATION_MZONE)';
+  const operations={
+   'detach-cost':'assert('+host+':RemoveOverlayCard(tp,1,1,REASON_COST))',
+   'detach-effect':'assert(Duel.SendtoGrave('+host+':GetOverlayGroup():Filter(Card.IsCode,nil,'+family+'),REASON_EFFECT)==1)',
+   'host-leaves':'assert(Duel.SendtoGrave('+host+',REASON_EFFECT)==1)'
+  };
+  const expected=mode.startsWith('detach')?[[family,B]]:mode==='host-leaves'?[[family,G],[body,G]]:
+   mode==='wrong-attribute'||mode==='two-copies'?[[family,G]]:[];
+  add('Nautical Adventures Xyz attachment '+mode,
+   [[family,G],[body,E],[wing,F],[fusion,F],...(removes?[[helper,H]]:[]),...(mode==='two-copies'?[[family,G]]:[])],
+   removes?[body,helper]:[body],expected,
+   {family,nauticaOverlay:true,adventuresOverlay:mode,materialNative:true,standardXyz:true,selfOverlayNecro:true,
+    expectedFamilyUses:Number(mode!=='wrong-attribute'),op:operations[mode],pick:removes?family:undefined});
+ }
+ {
+  const family=218905439;
+  add('Nautical Adventures Trap use permits a same-turn Xyz attachment',
+   [[family,T],[family,T],[family,G],[body,E],[wing,F],[fusion,F],[spell,F],[trap,F],[dark,F,1],[dark,H,1],[dark,H,1]],
+   [family,body,family],[[spell,H],[trap,H],[dark,F,1]],{family,nauticaOverlay:true,adventuresOverlay:'independent',
+    materialNative:true,standardXyz:true,selfOverlayNecro:true,expectedFamilyUses:3,setSourceSpell:true,
+    sequentialActions:true,pick:spell});
+ }
+ {
+  const family=218905439;
+  add('Nautical Adventures GY use resets for another WATER Xyz Summon',
+   [[family,G],[family,G],[body,E],[body,E],[wing,F],[fusion,F],[spell,F],[link,F]],
+   [body,body],[[body,F]],{family,nauticaOverlay:true,adventuresOverlay:'grave-reset',
+    materialNative:true,standardXyz:true,selfOverlayNecro:true,expectedFamilyUses:2});
+ }
  if(process.argv.includes('--self-overlay-necro-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.selfOverlayNecro));
  for(const locked of [false,true])add('Claw self-revival with Necrovalley '+locked,
   [[claw,F],[dark,F,1],...(locked?[[47355498,L.FZONE]]:[])],[],[[claw,F]],
@@ -594,15 +1289,475 @@ async function main(){
   [[body,F],[wing,D,1]],{family:259797813,musicaleSummon:true,musicaleFromGY:true,expectedFamilyUses:0});
  add('Musicale responds when a generic effect Summons Nautica from hand',[[259797813,T],[helper,H],[body,H],[wing,D,1]],[helper],
   [[body,F],[wing,H,1]],{family:259797813,musicaleSummon:true,musicaleGeneric:true,expectedFamilyUses:1,pick:wing});
- if(process.argv.includes('--musicale-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.musicaleSummon));
+ for(const report of ['group-only','mixed'])for(const fromGY of [false,true])add(
+  'Musicale '+report+' report from '+(fromGY?'GY':'hand'),
+  [[259797813,T],[helper,H],[body,fromGY?G:H],[wing,D,1]],[helper],
+  [[body,F],[wing,fromGY?D:H,1]],
+  {family:259797813,musicaleSummon:true,musicaleGeneric:true,musicaleReport:report,musicaleFromGY:fromGY,expectedFamilyUses:Number(!fromGY),pick:wing});
+ for(const fromGY of [false,true])add('Musicale after Yummy Kuriboh summons Harmony from '+(fromGY?'GY':'hand'),
+  [[259797813,T],[253152295,H],[226645052,fromGY?G:H],[dark,F,1],[wing,D,1]],[],
+  [[253152295,F],[226645052,F],[wing,fromGY?D:H,1]],
+  {family:259797813,musicaleYummy:true,battle:true,expectedFamilyUses:Number(!fromGY),pick:wing});
+ for(const nautica of [true,false]){
+  const waterHazard=49669730, summon=nautica?226645052:body;
+  add('Musicale after stock Water Hazard summons '+(nautica?'Harmony':'another WATER monster'),
+   [[259797813,T],[waterHazard,T],[summon,H],[wing,D,1]],[waterHazard],
+   [[summon,F],[wing,nautica?H:D,1]],
+   {family:259797813,musicaleStock:true,musicaleSummon:true,musicaleGeneric:true,expectedFamilyUses:Number(nautica),pick:wing});
+ }
+ add('Musicale ignores an earlier summon by the same effect instance',
+  [[259797813,T],[49669730,T],[226645052,H],[body,H],[wing,D,1],[wing,D,1]],[49669730,49669730],
+  [[226645052,F],[body,F],[wing,H,1],[wing,D,1]],
+  {family:259797813,musicaleStock:'repeat',musicaleSummon:true,musicaleGeneric:true,expectedFamilyUses:1,pick:wing});
+ for(const nautica of [true,false]){
+  const transcend=259225324, summon=nautica?226645052:body;
+  add('Transcend Pendulum Summon '+(nautica?'Nautica':'other monster')+' from hand',
+   [[259797813,T],[transcend,F],[helper,H],[spell,H],[trap,H],[summon,H],[wing,D,1]],
+   [helper,transcend],[[summon,F],[wing,D,1]],
+   {family:259797813,musicaleTranscend:summon,expectedFamilyUses:0,
+    op:'Duel.SendtoGrave(e:GetHandler(),REASON_EFFECT) assert(Duel.MoveToField(find('+spell+',LOCATION_HAND),tp,tp,LOCATION_PZONE,POS_FACEUP,true,1)) assert(Duel.MoveToField(find('+trap+',LOCATION_HAND),tp,tp,LOCATION_PZONE,POS_FACEUP,true,16)) local l,r=Duel.GetFieldCard(tp,LOCATION_PZONE,0),Duel.GetFieldCard(tp,LOCATION_PZONE,1) assert(l and r and l:GetLeftScale()+r:GetRightScale()==8,"Both fixture scales placed")'});
+ }
+ for(const mode of ['success','redirect','no-candidate','draw-blocked'])add('Musicale opponent search: '+mode,
+  [[259797813,T],[helper,H],[body,H],[wing,D,1],[wing,F,1],[wing,G,1],[wing,H,1],[wing,B,1],[dark,F,1]],[helper],
+  [[body,F],[wing,mode==='success'?H:mode==='redirect'?G:mode==='draw-blocked'?D:B,1]],
+  {family:259797813,musicaleSummon:true,musicaleSearch:mode,expectedFamilyUses:1,pick:wing,opponent:true});
+ for(const family of [259797813,248946297])for(const redirect of [false,true])
+  add('Nautica activation search '+family+' '+(redirect?'redirect':'success'),
+   [[family,family===259797813?T:H],[body,D],[wing,D,1],[dark,F,1]],[family],
+   [[body,redirect?G:H],[wing,family===248946297&&!redirect?F:D,1]],
+   {family,ownSearch:true,redirect,setSourceSpell:true,yes:true,pick:body});
+ add('Musicale activation recovers a Nautica monster from the GY',
+  [[259797813,T],[body,G],[dark,F,1]],[259797813],[[body,H]],
+  {family:259797813,ownSearch:true,redirect:false,setSourceSpell:true,yes:true,pick:body});
+ for(const hasCandidate of [true,false])add('Musicale activation '+(hasCandidate?'declines the optional search':'has no search candidate'),
+  [[259797813,T],...(hasCandidate?[[body,D]]:[])],[259797813],hasCandidate?[[body,D]]:[],
+  {family:259797813,musicaleActivation:true,setSourceSpell:true,yes:false,noYes:!hasCandidate,expectedFamilyUses:1});
+ add('Musicale cannot activate a second copy while controlling the first',
+  [[259797813,T],[259797813,H]],[],[[259797813,T],[259797813,H]],
+  {family:259797813,musicaleUnique:true,forbidden:259797813,expectedFamilyUses:0});
+ for(const family of [226645052,228040066])for(const mode of ['success','decline','redirect',...(family===228040066?['trap']:[])]){
+  const origin=family===226645052?D:G;
+  add((family===226645052?'Harmony Pearlwood':'Melody Merheart')+' search '+mode,
+  [[family,H],[helper,H],[body,origin],[dark,G,1]],[helper],
+  [[family,F],[dark,F,1],[body,['success','trap'].includes(mode)?H:mode==='decline'?origin:B]],
+  {family,harmonySearch:mode==='trap'?'success':mode,harmonyRecoveryTrap:mode==='trap',yes:mode!=='decline',expectedFamilyUses:1,pick:body,
+   op:'local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_GRAVE,nil,'+dark+') assert(Duel.SpecialSummon(tc,0,1-tp,1-tp,false,false,POS_FACEUP)>0)'});
+ }
+ for(const [family,origin,modes] of [[226645052,D,['self','level','race']],[228040066,G,['self','set']]]){
+  for(const mode of modes){
+   const target=mode==='self'?family:body;
+   add('Nautica Hand trigger rejects search candidate '+family+' '+mode,
+    [[family,H],[helper,H],[target,origin],[dark,G,1]],[helper],[[family,F],[target,origin],[dark,F,1]],
+    {family,harmonySearch:'decline',harmonyInvalidSearch:mode,noYes:true,expectedFamilyUses:1,
+     op:'local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_GRAVE,nil,'+dark+') assert(Duel.SpecialSummon(tc,0,1-tp,1-tp,false,false,POS_FACEUP)>0)'});
+  }
+ }
+ for(const family of [226645052,228040066]){
+  const origin=family===226645052?D:G;
+  add('Nautica Hand trigger requires a free monster zone '+family,
+   [[family,H],[helper,H],[body,origin],[dark,G,1],...Array.from({length:5},()=>[wing,F])],
+   [helper],[[family,H],[body,origin],[dark,F,1]],
+   {family,harmonySearch:'decline',noYes:true,expectedFamilyUses:0,
+    op:'local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_GRAVE,nil,'+dark+') assert(Duel.SpecialSummon(tc,0,1-tp,1-tp,false,false,POS_FACEUP)>0)'});
+ }
+ const nauticaHandTriggers=[[226645052,'Harmony'],[228040066,'Melody'],[259114562,'Bobbie']];
+ for(const [family,name] of nauticaHandTriggers)for(const normalFirst of [true,false])add(
+  name+' shares one activation across '+(normalFirst?'Normal then Special':'Special then Normal')+' Summons',
+  [[family,H],[family,H],[helper,H],[helper,H],[wing,H,1],[dark,G,1],...(family===259114562?[[body,H,1],[body,H,1]]:[])],
+  [helper,helper],[[family,F],[family,H],[wing,F,1],[dark,F,1]],
+  {family,harmonySearch:'decline',harmonyLimit:true,expectedFamilyUses:1,noYes:true,pick:body,option:1,
+   op:`local p=1-tp
+    local first=Duel.GetFlagEffect(tp,900009001)==0
+    Duel.RegisterFlagEffect(tp,900009001,RESET_PHASE+PHASE_END,0,1)
+    if first==${normalFirst} then
+     local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_HAND,nil,${wing})
+     Duel.Summon(p,tc,true,nil)
+    else
+     local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_GRAVE,nil,${dark})
+     assert(Duel.SpecialSummon(tc,0,p,p,false,false,POS_FACEUP)>0)
+    end`});
+ for(const [family,name] of nauticaHandTriggers)for(const scenario of ['reset','own-special','own-normal']){
+  const reset=scenario==='reset',normal=scenario==='own-normal';
+  add(name+' '+(reset?'can activate again on a new turn':'ignores your own '+(normal?'Normal':'Special')+' Summon'),
+   [...Array.from({length:reset?2:1},()=>[family,H]),[helper,H],[helper,H],[dark,G,1],[wing,normal?H:G,reset?1:0],...(family===259114562?[[body,H,1],[body,H,1]]:[])],
+   [helper,helper],[[family,F],[dark,F,1],[wing,F,reset?1:0]],
+   {family,harmonySearch:'decline',harmonyTurnReset:reset,harmonyOwnSummon:!reset,expectedFamilyUses:reset?2:1,noYes:true,pick:body,option:1,
+    op:`local first=Duel.GetFlagEffect(tp,900009002)==0
+     Duel.RegisterFlagEffect(tp,900009002,0,0,1)
+     local p=first and ${reset?'1-tp':'tp'} or 1-tp
+     local code=first and ${wing} or ${dark}
+     local tc=Duel.GetFirstMatchingCard(Card.IsCode,p,first and ${normal?'LOCATION_HAND':'LOCATION_GRAVE'} or LOCATION_GRAVE,0,nil,code)
+     if first and ${normal} then
+      assert(tc)
+      Duel.Summon(p,tc,true,nil)
+     else
+      assert(tc and Duel.SpecialSummon(tc,0,p,p,false,false,POS_FACEUP)>0)
+     end`});
+ }
+ add('Harmony received monster activation returns after the End Phase',
+  [[226645052,H],[helper,H],[body,D],[dark,G,1]],[helper],
+  [[226645052,F],[body,H],[dark,F,1]],
+  {family:226645052,harmonySearch:'success',harmonyLockExpiry:true,yes:true,expectedFamilyUses:1,pick:body,
+   op:`local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_GRAVE,nil,${dark})
+    assert(Duel.SpecialSummon(tc,0,1-tp,1-tp,false,false,POS_FACEUP)>0)`});
+ for(const redirect of [false,true])add('Scarlet search '+(redirect?'redirect':'success'),
+  [[220749574,H],[dark,H],[248946297,D]],[220749574],
+  [[220749574,D],[dark,G],[248946297,redirect?B:H]],
+  {family:220749574,scarletReceipt:true,redirect,expectedFamilyUses:1,pick:248946297});
+ add('Scarlet redirected self-shuffle does not search',
+  [[220749574,H],[dark,H],[248946297,D]],[220749574],[[220749574,B],[dark,G],[248946297,D]],
+  {family:220749574,scarletReceipt:true,scarletShuffleRedirect:true,expectedFamilyUses:1,pick:248946297});
+ add('Scarlet cannot revive before its proper first summon',
+  [[220749574,G],[helper,H]],[helper],[[220749574,G]],
+  {family:220749574,scarletRevival:true,expectedFamilyUses:0,
+   op:'local tc=find(220749574,LOCATION_GRAVE) assert(tc and not tc:IsCanBeSpecialSummoned(e,0,tp,false,false),"Improper Scarlet revival is unavailable")'});
+ for(const mode of ['summon','normal-trigger','decline','wrong-material','wrong-race','wrong-archetype','own-normal','own-special','counter','three-materials']){
+  const emma=214349717, evander=225109525;
+  const own=mode.startsWith('own-'),counter=mode==='counter';
+  const three=mode==='three-materials';
+  const normal=mode==='normal-trigger'||mode==='own-normal',take=mode==='summon'||mode==='normal-trigger'||counter||three,allowed=take||mode==='decline';
+  add('Emma’s optional Xyz Summon '+mode,
+   [[emma,H],[helper,H],[body,F],[evander,E],[dark,normal?H:G,own?0:1],...(counter?[[spell,T,1]]:[]),...(three?[[wing,F]]:[])],[helper],
+   [[evander,counter?G:take?F:E],[dark,F,own?0:1],...(counter?[[emma,G],[body,G]]:take?[]:[[emma,own?H:F],[body,F]])],
+   {family:emma,emma:mode,standardXyz:true,noYes:!allowed,yes:take,pick:evander,selectMax:three,expectedFamilyUses:Number(!own),
+    op:`local p=${own?'tp':'1-tp'}
+     local tc=Duel.GetFirstMatchingCard(Card.IsCode,p,${normal?'LOCATION_HAND':'LOCATION_GRAVE'},0,nil,${dark})
+     ${normal?'Duel.Summon(p,tc,true,nil)':'assert(Duel.SpecialSummon(tc,0,p,p,false,false,POS_FACEUP)>0)'}`});
+ }
+ const intensity=259479044,vylonTorus=238274860;
+ for(const [family,setcode] of [[recollection,0x39e2],[meadow,0x4ac0],[sanctuary,0xf3c],[revelation,0x575d],[intensity,0x8de0],[vylonTorus,0x30],[behemoth,0x11c]]){
+  const normal=family===vylonTorus,special=family===behemoth,counter=family===intensity;
+  const trigger=normal||special,two=trigger,source=trigger?G:counter?F:T;
+  for(const redirect of [false,true]){
+   const second=two?[[spell,D]]:[],setup=[[family,source],[body,D],[wing,H],...second];
+   if(family===revelation)setup.push([wing,H]);
+   if(redirect)setup.push([dark,F,1]);
+   if(counter||trigger)setup.push([helper,H]);
+   const steps=counter||trigger?[helper,family]:[family];
+   const discard=!redirect||special;
+   const expected=[[body,redirect?G:H],[wing,discard?G:H],...(two?[[spell,H]]:[])];
+   add('Search-discard receipt '+family+': '+(redirect?'redirect':'success'),setup,steps,expected,
+    {family,ownSearch:true,discardReceipt:true,redirect,setSourceSpell:true,pick:wing,setcode,yes:true,
+     selectMax:two,discardReveal:two&&redirect?[spell]:redirect?[]:two?[body,spell]:[body],
+     op:counter?'find('+family+',LOCATION_MZONE):EnableCounterPermit(0x18f0) find('+family+',LOCATION_MZONE):AddCounter(0x18f0,1)':trigger?'Duel.SpecialSummon(find('+family+',LOCATION_GRAVE),0,tp,tp,true,true,POS_FACEUP)':undefined});
+  }
+ }
+ add('Behemoth skips discard when both cards redirect',[[behemoth,G],[body,D],[spell,D],[wing,H],[dark,F,1],[helper,H]],
+  [helper,behemoth],[[body,G],[spell,G],[wing,H]],
+  {family:behemoth,ownSearch:true,discardReceipt:true,redirect:true,redirectBoth:true,yes:true,pick:wing,
+   setcode:0x11c,selectMax:true,discardReveal:[],op:'Duel.SpecialSummon(find('+behemoth+',LOCATION_GRAVE),0,tp,tp,true,true,POS_FACEUP)'});
+ for(const family of [fireball,shards,gorgonia])for(const redirect of [false,true]){
+  const synchro=family!==gorgonia,resource=synchro?link:sanctuary;
+  const origin=family===fireball||!synchro?D:B;
+  const setup=synchro?[[family,F],[body,F],[fusion,E],[resource,origin],[wing,H]]:[[gorgonia,G],[sanctuary,D],[body,F],[helper,H],[wing,H]];
+  if(redirect)setup.push([dark,F,1]);
+  add('Search-discard recovery '+family+': '+(redirect?'redirect':'success'),setup,synchro?[fusion,family]:[helper,family],
+   [[resource,redirect?G:H],[wing,redirect?H:G]],
+   {family,ownSearch:true,discardReceipt:true,redirect,yes:true,pick:wing,setcode:synchro?0x4ac0:0xf3c,
+    discardResource:resource,discardOrigin:origin,discardReveal:redirect?[]:[resource],
+    materialSynchro:synchro,materialRecovery:family===fireball,mainDeckRecovery:family===shards,
+    op:synchro?undefined:'Duel.Remove(find('+gorgonia+',LOCATION_GRAVE),POS_FACEUP,REASON_EFFECT)'});
+ }
+ const bria=225091736,charmeliaBeast=259226799,observatory=259721372;
+ for(const family of [bria,charmeliaBeast,observatory]){
+  for(const mode of family===bria?['success','redirect','equal']:['success','redirect']){
+   const redirect=mode==='redirect',beast=family===charmeliaBeast,eclipse=family===observatory;
+   const origin=beast?G:D,resource=beast?family:body,destination=beast?B:G;
+   const setup=beast?[[family,H],[helper,H],[body,F]]:eclipse?[[family,T],[body,D],[spell,D]]:[[family,H],[wing,H],[body,D]];
+   if(redirect||family===bria&&mode!=='equal')setup.push([dark,F,1]);
+   const expected=[[resource,redirect?destination:H],...(eclipse?[[spell,H]]:family===bria?[[wing,G],[family,D,1]]:[])];
+   add('Dependent draw '+family+': '+mode,setup,beast?[helper,family]:[family],expected,
+    {family,drawReceipt:true,ownSearch:true,redirect,setSourceSpell:eclipse,yes:true,pick:wing,
+     discardResource:resource,discardOrigin:origin,redirectDestination:destination,
+     expectedDraw:mode==='success'?(eclipse?2:1):0,drawPlayer:eclipse?1:0,
+     op:beast?'Duel.SendtoGrave(find('+family+',LOCATION_HAND),REASON_EFFECT)':undefined});
+  }
+ }
+ const stainlessStory=245970073;
+ for(const family of [bria,stainlessStory])for(const toHand of [true,false])for(const redirect of [false,true]){
+  const copy=family===stainlessStory,mode=toHand?'hand':'bottom';
+  const setup=[[family,H],[body,G],...(copy?[[bria,D],[wing,F,1],[dark,F,1]]:redirect?[[dark,F,1]]:[])];
+  const expected=[[body,redirect?B:toHand?H:D],[bria,redirect?(copy?G:F):D]];
+  add('Bria recycle '+family+' '+mode+' '+(redirect?'redirect':'success'),setup,copy?[family]:[-family,family],expected,
+   {family,briaRecycle:true,redirect,storyCopyKind:copy?'bria':undefined,storyCopiedCode:copy?bria:undefined,
+    pick:body,option:copy?Number(!toHand):Number(toHand),redirectDeck:!toHand});
+ }
+ for(const family of [bria,stainlessStory]){
+  const copy=family===stainlessStory;
+  const setup=[[family,H],[body,G],...(copy?[[bria,D],[wing,F,1],[dark,F,1]]:[])];
+  add('Bria recycle '+family+' Extra Deck receipt',setup,copy?[family]:[-family,family],[[body,E],[bria,D]],
+   {family,briaRecycle:true,briaExtraReceipt:true,storyCopyKind:copy?'bria':undefined,
+    storyCopiedCode:copy?bria:undefined,pick:body});
+ }
+ const janna=237684285;
+ for(const redirect of [false,true]){
+  add('Janna delayed search '+(redirect?'Deck redirect':'success'),
+   [[helper,H],[janna,E],[body,F],[wing,F],[spell,H],[link,D],[dark,F,1]],[helper,janna],
+   [[dark,H,1],[spell,redirect?B:D],[link,redirect?D:H]],
+   {family:janna,jannaSearch:true,redirect,statExpiry:true,pick:spell});
+ }
+ for(const family of [259395418,259883971])for(const redirect of [false,true]){
+  const gladiator=family===259395418;
+  const setup=gladiator?[[helper,H],[family,G],[body,F],[wing,D]]:[[family,T],[body,B],[wing,H],...Array.from({length:9},()=>[spell,B])];
+  add('Deck receipt count '+family+' '+(redirect?'redirect':'success'),setup,gladiator?[helper,family]:[family],
+   [[body,redirect?G:D],[wing,redirect?(gladiator?D:H):F]],
+   {family,deckReceiptCount:true,redirect,setSourceSpell:!gladiator,yes:true,pick:body,expectedFamilyUses:1});
+ }
+ for(const family of [223158720,259820516])for(const redirect of [false,true]){
+  const origin=family===223158720?G:B;
+  add('Exact Deck return '+family+' '+(redirect?'redirect':'success'),
+   [[family,G],[body,origin],[wing,origin],[spell,origin]],[family],
+   [[body,redirect?(origin===G?B:G):H],[wing,D],[spell,D]].filter(([code])=>code!==body||redirect),
+   {family,exactDeckReturn:true,redirect,activationLocation:G,expectedHandCount:redirect?0:1});
+ }
+ for(const family of [238276576,248940511,259273394,259669838])for(const redirect of [false,true]){
+  const sylvan=family===238276576,moon=family===248940511,jelly=family===259273394;
+  let setup,steps,expected,op;
+  if(sylvan){
+   setup=[[family,T],[body,G],[wing,G],[spell,G]];
+   steps=[family]; expected=[[body,redirect?B:D],[wing,D],[spell,redirect?G:F]];
+  }else if(moon){
+   setup=[[helper,H],[family,E],[body,G],[wing,G],[spell,G],[trap,G],[link,G]];
+   steps=[helper,family]; expected=redirect?[[body,B]]:[];
+   op='local c=find('+family+',LOCATION_EXTRA) assert(Duel.SpecialSummon(c,SUMMON_TYPE_SYNCHRO,tp,tp,true,true,POS_FACEUP)==1) c:CompleteProcedure()';
+  }else if(jelly){
+   setup=[[family,G],[body,G],[259177849,E]];
+   steps=[family]; expected=[[body,redirect?B:D],[259177849,redirect?E:F]];
+  }else{
+   setup=[[family,G],[body,G],[spell,G],[wing,F],[dark,F,1],[trap,F]];
+   steps=[]; expected=[[body,redirect?B:D],[family,E]];
+  }
+  add('Exact Deck return '+family+' '+(redirect?'redirect':'success'),setup,steps,expected,
+   {family,exactDeckReturn:true,redirect,setSourceSpell:sylvan,battle:family===259669838,
+    pick:sylvan?spell:body,op,expectedHandCount:moon?(redirect?0:1):undefined});
+ }
+ for(const family of [227035644,245395343,259160760])for(const redirect of [false,true]){
+  const galactica=family===245395343,wyvernal=family===259160760,origin=galactica?B:G;
+  add('Fusion Deck payment '+family+' '+(redirect?'redirect':'success'),
+   [[family,galactica?H:wyvernal?L.FZONE:G],[body,origin],[wing,origin],[fusion,E],...(wyvernal?[[helper,H],[link,H]]:[])],
+   wyvernal?[helper,family]:[family],[[body,redirect?(galactica?G:B):D],[wing,D],[fusion,redirect?E:F]],
+   {family,exactDeckReturn:true,fusionDeckPayment:true,redirect,
+    op:wyvernal?'Duel.SpecialSummon(find('+link+',LOCATION_HAND),0,tp,tp,false,false,POS_FACEUP)':undefined});
+ }
+ if(process.argv.includes('--shards-empty-hand-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.shardsEmptyHand));
+ for(const family of [212737555,259499577,259630851,259883029])for(const redirect of [false,true]){
+  const droplet=family===212737555,hive=family===259499577;
+  add('Single Deck return and draw '+family+' '+(redirect?'redirect':'success'),
+   [[family,hive?T:G],[body,G],...(droplet?[[helper,H]]:[])],droplet?[helper,family]:[family],
+   redirect?[[body,B]]:[],
+   {family,singleDeckDraw:true,redirect,expectedHandCount:redirect?0:1,pick:body,
+    op:droplet?'Duel.Remove(find('+family+',LOCATION_GRAVE),POS_FACEUP,REASON_EFFECT)':undefined});
+ }
+ for(const family of [212429024,244921711,246393365,259391738])for(const mode of ['success','partial','all']){
+  const nebulix=family===212429024,aero=family===259391738,rei=family===246393365;
+  const setup=[[family,nebulix?E:rei?T:G],[body,G],[wing,G]];
+  if(nebulix||aero)setup.push([helper,H]);
+  if(aero)setup.push([link,F],[spell,G]);
+  const op=nebulix?'local c=find('+family+',LOCATION_EXTRA) assert(Duel.SpecialSummon(c,SUMMON_TYPE_SYNCHRO,tp,tp,true,true,POS_FACEUP)==1) c:CompleteProcedure()':
+   aero?'Duel.Overlay(find('+link+',LOCATION_MZONE),Group.FromCards(find('+spell+',LOCATION_GRAVE)))':undefined;
+  add('Grouped Deck draw '+family+' '+mode,setup,nebulix||aero?[helper,family]:[family],
+   [[body,mode==='success'?D:B],[wing,mode==='all'?B:D],...(family===244921711?[[family,B]]:[])],
+   {family,groupedDeckDraw:mode,expectedHandCount:mode==='all'?0:1,selectMax:true,yes:true,op});
+ }
+ for(const mode of ['face-up banishment','face-down banishment','Extra Deck','four resources','copy limit','wrong set','self only']){
+  const family=244921711,legal=!['face-down banishment','wrong set','self only'].includes(mode);
+  const banished=mode.endsWith('banishment'),extra=mode==='Extra Deck',repeat=mode==='copy limit',four=mode==='four resources';
+  const origin=banished?B:G;
+  add('Hextanius recycle '+mode,[[family,G],...(mode==='self only'?[]:[[body,origin]]),
+    ...(repeat?[[family,G],[wing,G]]:[]),...(four?[[wing,G],[spell,G],[trap,G]]:[])],
+   legal?[family]:[],[[family,legal?B:G],
+    ...(four||mode==='self only'?[]:[[body,legal?(extra?E:D):origin]]),
+    ...(repeat?[[family,G],[wing,G]]:[])],
+   {family,hextaniusRecycle:mode,groupedDeckDraw:'success',expectedHandCount:Number(legal),
+    expectedFamilyUses:Number(legal),forbidden:family,selectMax:four,pick:repeat?body:undefined});
+ }
+ for(const family of [212837324,236473882,253520299,256005703])for(const mode of ['return','banish','redirect']){
+  const linkRecipient=[236473882,256005703].includes(family),remove=family===253520299;
+  const target=linkRecipient?fusion:body,origin=linkRecipient?E:D;
+  add('Galactica battle follow-up '+family+' '+mode,[[family,F],[target,origin]],[],
+   [[family,mode==='return'?E:B],[target,mode==='redirect'?origin:remove?B:F]],
+   {family,galacticaLeave:mode,battle:true,option:mode==='banish'?1:0,expectedFamilyUses:1});
+ }
+ for(const family of [210506870,238272435,259177849,259937946,248760718,259635008])for(const redirect of [false,true]){
+  const heat=family===210506870,blossom=family===238272435,princess=family===259177849;
+  const prince=family===259937946,queen=family===248760718,spirit=family===259635008;
+  const setup=heat?[[family,H],[helper,H],[body,G]]:
+   blossom?[[family,H],[body,F],[wing,E]]:
+   princess?[[family,F],[helper,H],[body,B],[wing,F]]:
+   prince?[[family,F],[body,G],[wing,D]]:
+   queen?[[family,H],[helper,H],[dark,F,1],[wing,H]]:
+   [[family,E],[helper,H],[body,G],[wing,G]];
+  const steps=queen||spirit?[helper]:heat||princess?[helper,family]:[family];
+  const expected=heat?[[body,redirect?B:E],[family,redirect?T:H]]:
+   blossom?[[body,redirect?B:E],[wing,redirect?E:F]]:
+   princess?[[body,redirect?G:D]]:
+   prince?[[body,redirect?B:D],[wing,redirect?D:G]]:
+   queen?[[wing,redirect?H:F],[family,redirect?B:D]]:
+   [[family,redirect?B:E],[body,redirect?G:F],[wing,redirect?G:F]];
+  const op=heat||queen?'assert(Duel.MoveToField(find('+family+',LOCATION_HAND),tp,tp,LOCATION_PZONE,POS_FACEUP,true))':
+   princess?'Duel.SendtoGrave(find('+family+',LOCATION_MZONE),REASON_EFFECT)':
+   spirit?'local c=find('+family+',LOCATION_EXTRA) assert(Duel.SpecialSummon(c,SUMMON_TYPE_SYNCHRO,tp,tp,true,true,POS_FACEUP)==1) c:CompleteProcedure()':undefined;
+  add('Single Deck successor '+family+' '+(redirect?'redirect':'success'),setup,steps,expected,
+   {family,singleDeckSuccessor:true,redirect,yes:true,pick:queen?wing:body,op,
+    rewrite:queen,monsterActivation:queen,opponentOp:queen?'Duel.Recover(tp,100,REASON_EFFECT)':undefined,
+    statExpiry:spirit,expectedFamilyUses:spirit?2:1});
+ }
+ if(process.argv.includes('--single-deck-successor-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.singleDeckSuccessor));
+ if(process.argv.includes('--galactica-leave-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.galacticaLeave));
+ if(process.argv.includes('--grouped-deck-draw-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.groupedDeckDraw));
+ if(process.argv.includes('--single-deck-draw-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.singleDeckDraw));
+ if(process.argv.includes('--exact-deck-return-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.exactDeckReturn));
+ add('Janna does not reveal a redirected delayed search',
+  [[helper,H],[janna,E],[body,F],[wing,F],[spell,H],[link,D],[dark,F,1]],[helper,janna],
+  [[dark,H,1],[spell,D],[link,B]],
+  {family:janna,jannaSearch:true,jannaRevealRedirect:true,statExpiry:true,pick:spell});
+ for(const family of [janna,215006791])for(const redirect of [false,true])
+  add('Windborne delayed GY reveal '+family+' '+(redirect?'redirect':'success'),
+   [[family,F],[link,G]],[],[[link,redirect?B:H]],
+   {family,windborneRecovery:true,jannaRevealRedirect:redirect,yes:true,expectedFamilyUses:2});
+ for(const mode of ['success','partial','all']){
+  const family=234599395;
+  add('Melville excavation receipt '+mode,
+   [[family,F],[helper,H],[body,D],[wing,D],[spell,D],[link,G],[trap,G],[fusion,G]],[helper,family],
+   [[family,T],[body,mode==='success'?H:B],[wing,mode==='all'?B:H],[spell,D]],
+   {family,melvilleReceipt:mode,yes:true,selectMax:true,op:'Duel.Overlay(find('+family+',LOCATION_MZONE),Group.FromCards(find('+link+',LOCATION_GRAVE),find('+trap+',LOCATION_GRAVE),find('+fusion+',LOCATION_GRAVE)))'});
+ }
+ for(const mode of ['success','partial','all'])
+  add('Sylvan Greetings excavation receipt '+mode,
+   [[238276575,H],[body,D],[wing,D],[spell,D],[trap,D],[fusion,D]],[238276575],
+   [[body,mode==='success'?H:B],[wing,mode==='all'?B:H],[spell,D]],
+   {family:238276575,melvilleReceipt:mode,yes:true,selectMax:true});
+ for(const mode of ['success','partial','all'])
+  add('Chandra excavation receipt '+mode,
+   [[259126370,F],[helper,H],[body,D],[wing,D],[link,G]],[helper,259126370],
+   [[body,mode==='success'?H:B],[wing,mode==='all'?B:H]],
+   {family:259126370,melvilleReceipt:mode,yes:true,selectMax:true,
+    op:'Duel.Overlay(find(259126370,LOCATION_MZONE),Group.FromCards(find('+link+',LOCATION_GRAVE))) Duel.Draw(1-tp,2,REASON_EFFECT)'});
+ for(const family of [221822671,238711686,240511702,245970073,246216813,259578863,221759221])for(const redirect of [false,true]){
+  const copy=family===245970073,oracle=family===259578863,cart=family===221759221;
+  const release=family===246216813,hunter=family===240511702,melissa=family===238711686;
+  const target=release?246830897:body;
+  const setup=[[family,copy?H:oracle?G:F],[target,D]];
+  if(copy)setup.push([221822671,D],[dark,F,1],[wing,F,1]);
+  else if(oracle)setup.push([dark,F,1]);
+  else if(cart)setup.push([wing,F],[fusion,E]);
+  else setup.push([helper,H]);
+  if(melissa)setup.push([wing,G],[spell,G]);
+  const op=release?'Duel.Release(find('+family+',LOCATION_MZONE),REASON_EFFECT)':
+   hunter?'Duel.SendtoGrave(find('+family+',LOCATION_MZONE),REASON_EFFECT)':
+   melissa?'Duel.Overlay(find('+family+',LOCATION_MZONE),Group.FromCards(find('+wing+',LOCATION_GRAVE),find('+spell+',LOCATION_GRAVE)))':
+   'Duel.SendtoGrave(find('+family+',LOCATION_MZONE),REASON_EFFECT) Duel.SpecialSummon(find('+family+',LOCATION_GRAVE),0,tp,tp,false,false,POS_FACEUP)';
+  add('Alternative search receipt '+family+' '+(redirect?'redirect':'success'),setup,
+   copy||oracle?[family]:cart?[fusion,family]:[helper,family],[[target,redirect?B:H]],
+   {family,alternativeReceipt:true,receiptTarget:target,redirect,op,pick:target,stainlessCopy:copy,
+    materialSynchro:cart,yes:true,option:oracle?1:0});
+ }
+ add('Preparation sets remaining target after interruption',[[210696007,T],[body,B],[wing,B],[dark,F,1]],[210696007],[[body,G],[wing,T]],{family:210696007,preparationTargetInterrupt:true,setSourceSpell:true,selectMax:true,expectedFamilyUses:1});
+ add('Preparation rejects stolen opponent-owned banished Spell',[[210696007,T],[body,T,1],[wing,B],[helper,H]],[helper,210696007],[[body,B,1],[wing,T]],{family:210696007,preparationOwnership:true,setSourceSpell:true,sequentialActions:true,expectedFamilyUses:1,op:'local c=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_SZONE,nil,'+body+') assert(c and c:GetOwner()==1-tp) assert(Duel.MoveToField(c,tp,tp,LOCATION_SZONE,POS_FACEUP,true)) assert(c:IsControler(tp) and c:GetOwner()==1-tp) assert(Duel.Remove(c,POS_FACEUP,REASON_EFFECT)>0)'});
+ add('Preparation excludes opponent, non-Galactica and monster targets',[[210696007,T],[body,B],[wing,B],[spell,B,1],[trap,B]],[210696007],[[body,T],[wing,B],[spell,B,1],[trap,B]],{family:210696007,preparationSetEligibility:true,setSourceSpell:true,expectedFamilyUses:1});
+ for(const mode of ['trap','quick-play'])add('Preparation set-turn permission expires '+mode,[[210696007,T],[body,B],[helper,H]],[210696007,helper,body],[[body,G]],{family:210696007,preparationImmediate:mode,preparationExpiry:true,setSourceSpell:true,sequentialActions:true,expectedFamilyUses:1,op:'local c=find('+body+',LOCATION_SZONE) assert(c and not c:IsHasEffect('+(mode==='trap'?'EFFECT_TRAP_ACT_IN_SET_TURN':'EFFECT_QP_ACT_IN_SET_TURN')+'),"Set-turn permission expired")'});
+ for(const mode of ['trap','quick-play'])add('Preparation enables same-turn '+mode,[[210696007,T],[body,B]],[210696007,body],[[body,G]],{family:210696007,preparationImmediate:mode,setSourceSpell:true,sequentialActions:true,expectedFamilyUses:1});
+ add('Preparation excludes face-down banished Galactica',[[210696007,T],[body,B],[trap,B]],[210696007],[[body,T],[trap,B]],{family:210696007,preparationFacedown:true,banishedTrapFacedown:true,setSourceSpell:true,expectedFamilyUses:1});
+ add('Preparation sets up to three of four banished cards',[[210696007,T],[body,B],[wing,B],[spell,B],[trap,B]],[210696007],[],{family:210696007,preparationSetThree:true,setSourceSpell:true,selectMax:true,expectedFamilyUses:1});
+ for(const locked of [false,true])add('Preparation GY cost under Necrovalley '+(locked?'locked':'open'),[[210696007,G],[body,D],[spell,G],...(locked?[[47355498,L.FZONE]]:[])],locked?[]:[210696007],locked?[[210696007,G],[spell,G],[body,D]]:[[210696007,B],[spell,B],[body,H]],{family:210696007,preparationNecro:true,preparationCost:'valid-spell',alternativeReceipt:true,sendChoice:true,receiptTarget:body,pick:body,option:0,revealExpected:Number(!locked),activationLocation:G,forbidden:locked?210696007:undefined});
+ for(const mode of ['valid-spell','valid-trap','missing','monster-only']){
+  const code=210696007,legal=mode.startsWith('valid');
+  add('Preparation GY cost '+mode,[[code,G],[body,D],...(mode==='missing'?[]:[[spell,G]])],legal?[code]:[],legal?[[code,B],[spell,B],[body,H]]:[[code,G],[body,D]],{family:code,preparationCost:mode,alternativeReceipt:true,sendChoice:true,receiptTarget:body,pick:body,option:0,revealExpected:Number(legal),activationLocation:G,forbidden:legal?undefined:code});
+ }
+ for(const mode of ['activation','effect'])add('Preparation shared limit after GY '+mode+' negation',[[210696007,T],[210696007,G],[body,B],[wing,D],[spell,G],[dark,F,1]],[210696007,210696007],[[body,T],[wing,D]],{family:210696007,preparationShared:'grave-first',preparationNegation:mode,setSourceSpell:true,sequentialActions:true,selectMax:true,option:0,expectedFamilyUses:2});
+ for(const mode of ['activation','effect'])add('Preparation shared limit after '+mode+' negation',[[210696007,T],[210696007,G],[body,B],[wing,D],[spell,G],[dark,F,1]],[210696007,210696007],[[body,B],[wing,H]],{family:210696007,preparationShared:'trap-first',preparationNegation:mode,setSourceSpell:true,sequentialActions:true,selectMax:true,option:0,expectedFamilyUses:2});
+ for(const mode of ['trap-first','grave-first']){
+  const code=210696007;
+  add('Preparation shared effect limit '+mode,[[code,T],[code,G],[body,B],[wing,D],[spell,G]], [code,code],[[body,T],[wing,H]],{family:code,preparationShared:mode,setSourceSpell:true,sequentialActions:true,selectMax:true,option:0,expectedFamilyUses:2});
+ }
+ for(const family of [210696007,259187643,258328859])for(const mode of ['add','redirect','send']){
+  const preparation=family===210696007;
+  add('Add or send receipt '+family+' '+mode,[[family,preparation?G:H],[body,D],...(preparation?[[spell,G]]:[])],
+   [family],[[body,mode==='redirect'?B:mode==='send'?G:H]],
+   {family,alternativeReceipt:true,sendChoice:true,receiptTarget:body,redirect:mode==='redirect',
+    revealExpected:mode==='add'?1:0,yes:true,option:mode==='send'?1:0,pick:body,activationLocation:preparation?G:undefined});
+ }
+ for(const family of [212684822,227362839,247755865,254065048,259177849,259688514])for(const mode of ['add','redirect','send']){
+  const origin=family===259688514?G:family===247755865?H:E;
+  add('Summon add or send receipt '+family+' '+mode,[[family,origin],[helper,H],[body,D]],
+   [helper,family],[[body,mode==='redirect'?B:mode==='send'?G:H]],
+   {family,alternativeReceipt:true,sendChoice:true,receiptTarget:body,redirect:mode==='redirect',
+    revealExpected:mode==='add'?1:0,yes:true,option:mode==='send'?1:0,pick:body,
+    op:'assert(Duel.SpecialSummon(find('+family+','+(origin===H?'LOCATION_HAND':origin===G?'LOCATION_GRAVE':'LOCATION_EXTRA')+'),0,tp,tp,true,true,POS_FACEUP)==1)'});
+ }
+ for(const route of ['spires','aquila-deck','aquila-grave'])for(const redirect of [false,true]){
+  const eldora=214552846,spires=route==='spires',grave=route==='aquila-grave';
+  const family=spires?244972185:259366507,target=route==='aquila-deck'?eldora:body;
+  const setup=spires?[[family,H],[eldora,L.FZONE],[body,D]]:
+   [[family,F],[eldora,L.FZONE],...(grave?[[body,G]]:[[eldora,D],[eldora,G]])];
+  add('Zephorion receipt '+route+' '+(redirect?'redirect':'success'),setup,spires?[family]:[eldora,family],
+   [[target,redirect?B:H]],{family,alternativeReceipt:true,zephorionReceipt:route,receiptTarget:target,redirect,option:route==="aquila-deck"?1:0,pick:target,expectedFamilyUses:1});
+ }
+ if(process.argv.includes('--zephorion-receipt-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.zephorionReceipt));
+ if(process.argv.includes('--add-or-send-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.sendChoice));
+ if(process.argv.includes('--alternative-receipt-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.alternativeReceipt));
+ if(process.argv.includes('--melville-receipt-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.melvilleReceipt));
+ if(process.argv.includes('--windborne-reveal-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.jannaSearch||t.windborneRecovery));
+ if(process.argv.includes('--janna-search-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.jannaSearch||t.deckReceiptCount));
+ if(process.argv.includes('--bria-recycle-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.briaRecycle));
+ if(process.argv.includes('--dependent-draw-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.drawReceipt));
+ if(process.argv.includes('--search-discard-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.discardReceipt));
+ if(process.argv.includes('--own-search-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.ownSearch&&!t.discardReceipt&&!t.drawReceipt));
+ if(process.argv.includes('--musicale-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.musicaleSummon||t.musicaleUnique||t.musicaleActivation||t.musicaleTranscend||t.musicaleYummy||t.ownSearch&&t.family===259797813));
+ if(process.argv.includes('--musicale-stock-probe'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.musicaleStock));
+ if(process.argv.includes('--harmony-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.harmonySearch||t.scarletReceipt||t.scarletRevival));
+ if(process.argv.includes('--melissa-protection-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.melissaProtection));
+ if(process.argv.includes('--melissa-recipe-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.levelOneXyzRecipe&&t.family===238711686));
+ if(process.argv.includes('--melissa-quick-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.melissaQuick||t.alternativeReceipt&&t.family===238711686));
+ if(process.argv.includes('--exploring-boundaries-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.exploringBoundary||t.extraUseLockProbe&&t.family===248946297));
+ if(process.argv.includes('--backwashing-boundaries-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.backwashingBoundary));
+ if(process.argv.includes('--adventures-overlay-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.nauticaOverlay));
+ if(process.argv.includes('--lokaeo-xyz-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.lokaeoXyz));
+ if(process.argv.includes('--lokaeo-recycle-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.lokaeoRecycle&&!t.baubaRevival));
+ if(process.argv.includes('--bauba-revival-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.baubaRevival));
+ if(process.argv.includes('--bauba-receipt-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.baubaReceipt));
+ if(process.argv.includes('--bauba-summon-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.baubaSummon));
+ if(process.argv.includes('--shrine-placement-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.shrinePlacement));
+ if(process.argv.includes('--huangjin-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.huangjin));
+ if(process.argv.includes('--chunyin-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.chunyin));
+ if(process.argv.includes('--bojin-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.bojin));
+ if(process.argv.includes('--zao-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.zao));
+ if(process.argv.includes('--koai-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.koai));
+ if(process.argv.includes('--emma-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.emma));
+ if(process.argv.includes('--nordbar-negation-protection-probe'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.nordbarNegate));
+ if(process.argv.includes('--formation-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.family===formation));
+ if(process.argv.includes('--preparation-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.family===210696007));
+ if(process.argv.includes('--battle-tactics-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.battleTactics||t.tacticsBanish));
+ if(process.argv.includes('--venatici-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.venaticiToken||t.venaticiBattle));
+ if(process.argv.includes('--galactica-battle-only'))testCases.splice(0,testCases.length,...testCases.filter(t=>t.galacticaBattle));
  for(const t of testCases){
   const data=new Map();
   for(const code of [hot,sky,journey,soprana,offer])data.set(code,candidateCard(code));
-  if(t.family)data.set(t.family,candidateCard(t.family));
+  if(t.family&&!t.stockNegationControl)data.set(t.family,candidateCard(t.family));
   const put=(code,over={})=>data.set(code,{...base,code,...over});
+  if(t.stockNegationControl)put(t.family,{type:0x2021,level:10});
   put(helper,{type:2});put(body);put(dark,{attribute:32,attack:t.battle?3000:100});put(wing,{type:t.effectWing?33:17,attribute:t.effectWing?32:16,race:512n,level:t.levelEight?8:t.boss?7:2,setcodes:t.family===formation?[0x9c9]:[grayseer,grayling].includes(t.family)?[0x575d]:floo});
   put(spell,{type:t.family===booster?0x40002:t.field?0x80002:0x20002,setcodes:[grayhex,graylock].includes(t.family)?[0x575d]:floo});put(trap,{type:4,setcodes:fiend});
   put(fusion,{type:0x61,setcodes:fiend});put(link,{type:t.family===nullbind?0x800021:0x4000021,level:2,link_marker:5,setcodes:t.family===formation?[0x9c9]:[grayrover,nullbind].includes(t.family)?[0x575d]:fiend});
+  if(t.backwashingBoundary){
+   put(body,{setcodes:t.backwashingBoundary==='wrong-target'?[]:[0x8f0]});
+   put(dark,{type:33});
+   for(const code of [wing,spell,trap,fusion])put(code,{race:code===trap&&t.backwashingBoundary==='wrong-race'?1n:64n});
+  }
+  if(t.exploringBoundary){
+   put(body,{type:33,setcodes:[0x8f0]});
+   put(wing,{type:33,attribute:32});
+   put(trap,{type:17,attribute:2});
+  }
+  if(t.melissaQuick){
+   const setcodes=t.melissaQuick==='wrong-set'?[]:[0x8f0];
+   put(body,{setcodes});
+   put(spell,{type:2,setcodes});
+   put(trap,{type:t.melissaQuick==='full-field'?0x80002:4,setcodes});
+   put(link,{type:t.melissaQuick.startsWith('full')?2:17});
+   if(t.melissaQuick.startsWith('full'))put(fusion,{type:2});
+  }
+  if(t.melissaProtection)put(body,{setcodes:t.melissaProtection==='control'?[]:[0x8f0]});
   if(t.family===bauSpell){put(bauWorld,{type:0x80002});put(bau);put(body,{type:0x1021,setcodes:[0xba8]});}
   if(t.discardFamily)put(body,{setcodes:[vazagiel,sarifiel,fireball].includes(t.family)?[0x4ac0]:t.family===brilliance?[0x67ee]:t.family===recollection?[0x39e2]:[0xf3c]});
   if(t.family===gorgonia)data.set(sanctuary,candidateCard(sanctuary));
@@ -627,6 +1782,110 @@ async function main(){
   if(t.linkThree)put(link,{type:0x4000021,level:3,link_marker:0x15,setcodes:[0x575d]});
   if(t.xyzRecipe){put(body,{level:8,attribute:t.invalidXyzMaterial==='lightfiend'?32:16});put(wing,{level:t.invalidXyzMaterial==='level'?7:8,attribute:32,race:512n});}
   if(t.standardXyz){put(body,{level:12});put(wing,{level:t.invalidXyzMaterial==='level'?11:12,attribute:t.invalidXyzMaterial==='lightfiend'?32:16,race:t.invalidXyzMaterial==='race'?512n:8n});}
+  if(t.levelOneXyzRecipe)for(const code of t.recipeMaterials){
+   put(code,{level:code===wing&&t.levelOneXyzRecipe==='wrong-level'?2:1,race:code===wing&&t.levelOneXyzRecipe==='wrong-race'?1n:(t.koai||t.zao)?512n:64n});
+  }
+  if(t.revealGroup){put(body,{type:0x91,setcodes:[0x12b1]});put(wing,{type:0x82,setcodes:[0x12b1]});}
+  else if(t.zaokaRecovery)put(body,{type:33,setcodes:t.zaokaRecovery==='wrong set'?[]:
+   [t.zaokaRecovery==='Sacred Treasure banishment'?0x8a20:0xb69]});
+  else if(t.zaokaExcavation){
+   put(body,{type:33,setcodes:[0xb69]});
+   put(wing,{type:2,setcodes:[0x8a20]});
+   put(trap,{type:33,setcodes:t.zaokaExcavation==='all match'?[0xb69]:[]});
+  }
+  else if(t.leoship)put(body,{type:t.leoship==='Spell in Hand'?2:33,
+   setcodes:['wrong set','wrong monster set'].includes(t.leoship)?[]:[0x163]});
+  else if(t.octantisRecruit){
+   put(body,{type:33,setcodes:[0x163]});
+   put(wing,{type:33,setcodes:t.octantisRecruit==='wrong set'?[]:[0x163]});
+   if(t.octantisRecruit==='Necrovalley')put(47355498,{type:0x80002});
+  }
+  else if(t.hextaniusRecruit)put(body,{type:33,attribute:t.hextaniusRecruit==='wrong attribute'?16:2,
+   attack:['700 DEF','wrong stats'].includes(t.hextaniusRecruit)?600:700,
+   defense:t.hextaniusRecruit==='700 DEF'?700:600});
+  else if(t.battleTactics||t.tacticsBanish){
+   put(body,{type:(t.battleTactics==='wrong cost type'||t.tacticsBanish==='wrong type')?33:2,setcodes:[0x9c9]});
+   put(dark,{type:33,attack:700,defense:300});
+   put(wing,t.tacticsBanish?{type:4,setcodes:[0x9c9]}:{type:33,attack:800,defense:400});
+   put(trap,{type:33,attack:600,defense:200});
+  }
+  else if(t.formationSearch)put(body,{type:33,setcodes:[0x9c9]});
+  else if(t.venaticiToken)data.set(229021850,candidateCard(229021850));
+  else if(t.venaticiBattle){
+   put(body,{type:2,setcodes:t.venaticiBattle==='wrong set'?[]:[0x9c9]});
+   put(wing,{type:33,setcodes:[0x9c9]});
+   put(dark,{type:33,attack:500,defense:500});
+  }
+  else if(t.galacticaBattle){
+   put(body,{type:33,level:t.galacticaBattle==='wrong recruit Level'?3:2,setcodes:[0x9c9]});
+   put(trap,{type:t.galacticaBattle==='wrong cost type'?33:4,setcodes:[0x9c9]});
+   put(dark,{type:33,attack:500,defense:500});
+  }
+  else if(t.chaosReturn){
+   put(body,{type:33,attribute:16});
+   put(wing,{type:33,attribute:t.chaosReturn==='wrong attribute'?16:32});
+  }
+  else if(t.nordbarRevive||t.nordbarSearch){
+   put(body,{type:t.nordbarSearch==='wrong type'?2:33,
+    setcodes:(t.nordbarRevive||t.nordbarSearch)==='wrong set'?[]:[0x163]});
+   if(t.nordbarRevive==='Necrovalley')put(47355498,{type:0x80002});
+  }
+  else if(t.octantisSynchroCheck)put(wing,{type:0x2021,level:1,setcodes:[0x163]});
+  else if(t.octantisUpgrade){
+   put(body,{type:33,level:t.octantisUpgrade==='wrong Tribute Level'||t.octantisUpgrade==='Leoship'?7:8,setcodes:[0x163]});
+   put(wing,{type:0x2021,level:t.octantisUpgrade==='wrong Synchro Level'?8:7,setcodes:[0x163]});
+  }
+  else if(t.hikamSummon)put(body,{type:t.hikamSummon==='wrong type'?2:33,setcodes:t.hikamSummon==='wrong set'?[]:[0xb69]});
+  else if(t.baubaReceipt)put(body,
+   t.handRevealProbe==='advent'?{type:17,race:0x80000000n}:{
+    type:t.oroSearch==='wrong type'?33:2,setcodes:t.oroSearch==='wrong set'?[]:[0x8a20]
+   });
+  if(t.baubaSummon){
+   put(body,{type:33,setcodes:t.baubaSummon==='wrong-set'?[]:[0xb69]});
+   put(trap,{type:33,setcodes:[0xb69]});
+   if(t.baubaSummon==='necrovalley')put(47355498,{type:0x80002});
+  }
+  if(t.shrinePlacement)put(22702055,{type:0x80002});
+  if(t.huangjin)put(body,{setcodes:[0xb69]});
+  if(t.chunyin){
+   for(const code of [body,wing,trap])put(code,{type:33,setcodes:[0xb69]});
+   if(['deck-only','no-branch'].includes(t.chunyin))for(const code of [body,dark])put(code,{type:0x4000021,level:1,link_marker:1,setcodes:[0xb69]});
+  }
+  if(t.bojin){put(body,{setcodes:[0xb69]});put(trap,{type:33,setcodes:[0xb69]});}
+  if(t.treasureBanish)put(body,{type:2,setcodes:t.treasureBanish==='wrong-set'?[]:[0x8a20]});
+  if(t.zaoSequence==='real'){
+   for(const code of [236542835,246421842])data.set(code,candidateCard(code));
+   put(dark,{type:2});
+  }
+  if(t.zaoSequence==='interrupted')put(dark,{type:33});
+  if(t.zaoSequence){
+   put(spell,{type:2,setcodes:[0x8a20]});
+   put(trap,{type:2,setcodes:t.zaoSequence==='wrong-set'?[]:[0x8a20]});
+  }
+  if(t.koaiProtect)put(dark,{type:2});
+  if(t.koaiQuick){
+   if(['cost-only','cost-target'].includes(t.koaiQuick))put(body,{setcodes:[0xb69]});
+   put(wing,{setcodes:[0xb69]});
+   put(fusion,{type:t.koaiQuick==='extra'?0x61:17,setcodes:[0xb69]});
+   for(const code of [spell,trap])put(code,{type:2,setcodes:[0x8a20]});
+  }
+  if(t.lokaeoRecycle){
+   put(body,{type:t.lokaeoRecycle==='wrong-type'?17:2,setcodes:t.lokaeoRecycle==='wrong-set'?[]:[0x8a20]});
+   put(trap,{type:2,setcodes:[0x8a20]});
+  }
+  if(t.lokaeoXyz){
+   if(['counter','upper'].includes(t.lokaeoXyz))put(spell,{type:0x100004});
+   const xyz=candidateCard(231825514);
+   data.set(xyz.code,{...xyz,level:t.lokaeoXyz==='wrong-rank'?2:xyz.level,setcodes:t.lokaeoXyz==='wrong-set'?[]:xyz.setcodes});
+   put(body,{level:t.lokaeoXyz==='wrong-level'?2:1,race:t.lokaeoXyz==='wrong-race'?1n:512n});
+  }
+  if(t.emma){
+   const evander=candidateCard(225109525);
+   data.set(evander.code,t.emma==='wrong-archetype'?{...evander,setcodes:[]}:evander);
+   put(body,{level:t.emma==='wrong-material'?2:1,race:t.emma==='wrong-race'?1n:64n});
+   if(t.emma==='counter')put(spell,{type:0x100004});
+   if(t.emma==='three-materials')put(wing,{level:1,race:64n,setcodes:[0x8f0]});
+  }
   if(t.atkAura)put(body,{setcodes:[0x575d]});
   if(t.descendType)put(body,{type:t.descendType,level:t.descendType===2?0:2,setcodes:[0x4ac0]});
   if(t.orbCost)put(body,{setcodes:[0x4ac0]});
@@ -678,7 +1937,75 @@ async function main(){
   if(t.stainBria){data.set(225091736,candidateCard(225091736));put(wing,{type:33,level:4,setcodes:[0xbc5]});}
   if(t.stainTwoPlacements)data.set(216958556,candidateCard(216958556));
   if(t.dragarAttack!==undefined)put(wing,{attack:t.dragarAttack});
+  if(t.musicaleActivation||t.ownSearch&&!t.discardReceipt&&!t.drawReceipt){put(body,{type:33,setcodes:[0x8f0]});put(wing,{type:33});put(dark,{type:33});}
+  if(t.exactDeckReturn){
+   const setcode=({238276576:0x90,248940511:0xe6,259273394:0x67ee,259669838:0x104})[t.family];
+   for(const code of [body,wing,spell])put(code,{type:17,race:t.family===223158720?64n:128n,setcodes:setcode?[setcode]:[]});
+   if(t.family===248940511)for(const code of [trap,link])put(code,{type:17,setcodes:[0xe6]});
+   if(t.family===259273394)put(259177849,{type:0x61,setcodes:[0x67ee]});
+   if(t.family===259669838){put(dark,{attack:3000});put(wing,{type:17,setcodes:[0x104],attack:50});put(trap,{type:17,setcodes:[0x104],attack:500});}
+  }
+  if(t.fusionDeckPayment){
+   const setcode=({227035644:0xf3c,245395343:0x9c9,259160760:0x4714})[t.family];
+   for(const code of [body,wing,link])put(code,{type:17,race:2048n,setcodes:[setcode]});
+   put(fusion,{type:0x61,attribute:2,setcodes:[setcode]});
+  }
+  if(t.singleDeckSuccessor){
+   if(t.family===210506870)put(body,{type:0x61,attribute:32,race:128n});
+   if(t.family===238272435){put(body,{type:0x61,level:4});put(wing,{type:0x61,level:4});}
+   if([259177849,259937946].includes(t.family))put(wing,{type:33,setcodes:[0x67ee]});
+   if(t.family===248760718){put(wing,{type:33,level:7,attribute:16,race:8192n});put(dark,{type:33,attribute:32});}
+   if(t.family===259635008){put(body,{type:0x1221,level:2});put(wing,{type:0x221,level:4});}
+  }
+  if(t.galacticaLeave){
+   data.set(t.family,{...data.get(t.family),attack:2500});
+   put(body,{type:33,level:2,setcodes:[0x9c9]});
+   put(fusion,{type:0x4000021,level:2,link_marker:5,setcodes:[0x9c9]});
+  }
+  if(t.groupedDeckDraw){
+   const sets={212429024:0x760,244921711:0x163,259391738:0x3de1};
+   for(const code of [body,wing])put(code,{type:t.family===246393365?0x221:33,setcodes:sets[t.family]?[sets[t.family]]:[]});
+   if(t.hextaniusRecycle==='Extra Deck')put(body,{type:0x2021,setcodes:[0x163]});
+   if(t.hextaniusRecycle==='wrong set')put(body,{setcodes:[]});
+   if(t.hextaniusRecycle==='four resources'){put(spell,{type:2,setcodes:[0x163]});put(trap,{type:4,setcodes:[0x163]});}
+   if(t.family===259391738)put(link,{type:0x800021,level:2});
+  }
+  if(t.singleDeckDraw)put(body,t.family===259499577?{type:17}:{type:4,setcodes:[t.family===212737555?0xf3c:0xa979]});
+  if(t.deckReceiptCount)put(wing,{type:33,setcodes:[t.family===259395418?0x1019:0x191]});
+  if(t.melvilleReceipt)for(const code of [body,wing])put(code,{type:t.family===238276575?2:33,setcodes:[t.family===238276575?0x90:0xe2f]});
+  if(t.windborneRecovery)put(link,{type:t.family===janna?2:33,setcodes:[0x21fc]});
+  if(t.jannaSearch){
+   put(body,{type:0x1011,level:2,setcodes:[0x21fc]});
+   put(wing,{type:17,level:data.get(janna).level-2,setcodes:[0x21fc]});
+   put(link,{type:17,setcodes:[0x21fc]});
+  }
+  if(t.briaRecycle)put(body,t.briaExtraReceipt?{type:0x61}:{type:33,setcodes:[0xbc5]});
+  if(t.drawReceipt){
+   if(t.family===bria)put(body,{type:33,setcodes:[0xbc5]});
+   if(t.family===observatory){put(body,{type:33,setcodes:[0xeb17]});put(spell,{type:0x10002,setcodes:[0xf2f4]});}
+   if(t.family===charmeliaBeast){put(body,{type:0xa1,setcodes:[0x12b1]});put(helper,{type:2,setcodes:[0x12b1]});}
+  }
+  if(t.discardReceipt){
+   if(!t.materialSynchro)put(body,{type:33,setcodes:[t.setcode]});
+   if(t.family===revelation)put(wing,{setcodes:[t.setcode]});
+   if([vylonTorus,behemoth].includes(t.family))put(spell,{type:t.family===vylonTorus?2:33,setcodes:[t.setcode]});
+  }
+  if(t.musicaleSearch){put(wing,{type:33});put(dark,{type:33});}
   if(t.musicaleSummon){put(helper,{type:2,setcodes:t.musicaleGeneric?[]:[0x8f0]});put(body,{type:33,setcodes:[0x8f0]});}
+  if(t.musicaleYummy)for(const code of [253152295,226645052])data.set(code,candidateCard(code));
+  if(t.musicaleStock){
+   data.set(226645052,candidateCard(226645052));
+   put(49669730,{type:0x20002});
+   put(body,{type:33,attribute:2,level:1,race:64n});
+  }
+  if(t.harmonySearch)put(body,{type:t.harmonyRecoveryTrap?4:33,attribute:2,level:t.harmonyInvalidSearch==='level'?2:1,race:t.harmonyInvalidSearch==='race'?1n:64n,setcodes:t.harmonyInvalidSearch==='set'?[]:[0x8f0]});
+  if(t.scarletReceipt)data.set(248946297,candidateCard(248946297));
+  if(t.musicaleTranscend){
+   for(const code of [259225324,226645052])data.set(code,candidateCard(code));
+   put(spell,{type:0x2000021,lscale:0,rscale:0});
+   put(trap,{type:0x2000021,lscale:8,rscale:8});
+   put(body,{type:0x2000021,level:1});
+  }
   if(t.aldrezRevive){put(body,{type:0x800021,level:4,setcodes:[0xc1c]});put(wing,{type:17});}
   if(t.heartbeatMaterial){put(body,{type:0x800021,level:2,setcodes:t.wrongBrigadeHost?[]:[0x7a34]});put(dark,{type:33});}
   if(t.standDraw)put(body,{type:33,setcodes:t.standDraw==='wrong-set'?[]:[0x7a34]});
@@ -701,7 +2028,7 @@ async function main(){
   if(t.melodySummons){put(body,{type:17,setcodes:[0x7a34]});put(wing,{type:17,setcodes:t.melodySummons==='wrong-set'?[]:[0x7a34]});put(fusion,{type:17,setcodes:[0x7a34]});}
   if(t.companionProtect){put(body,{type:17,setcodes:t.companionProtect==='wrong-set'?[]:[0x7a34]});put(wing,{type:17,setcodes:[]});}
   if(t.companionAttack){put(body,{type:17,attack:4000,setcodes:[0x7a34]});put(wing,{type:17,setcodes:[0x7a34]});}
-  if(t.supremacyNeg)put(dark,{type:t.monsterActivation?33:2});
+  if(t.supremacyNeg||t.nordbarNegate)put(dark,{type:t.monsterActivation?33:2});
   if(t.originsAttach==='spell-target')put(wing,{type:2});
   if(t.brigadeOnSummon){put(body,{type:17,setcodes:[0x7a34]});put(spell,{type:2,setcodes:[0x7a34]});put(wing,{type:17,setcodes:[]});put(fusion,{type:17,setcodes:[0x7a34]});}
   if(t.joyousRevive)put(body,{type:17,setcodes:t.joyousRevive==='wrong-set'?[]:[0x7a34]});
@@ -720,7 +2047,7 @@ async function main(){
   if(t.originsFullPendulum){put(body,{type:0x1000011,lscale:1,rscale:1});put(wing,{type:0x1000011,lscale:8,rscale:8});}
   if(t.bitronCopy){data.set(259546637,candidateCard(259546637));put(body,{type:17,setcodes:[0x9894]});put(dark,{type:33});}
   if(t.stainlessCopy){data.set(221822671,candidateCard(221822671));put(body,{type:17,setcodes:[0xbc5]});put(dark,{type:33});}
-  if(t.storyCopiedCode){data.set(t.storyCopiedCode,candidateCard(t.storyCopiedCode));put(body,{type:17,setcodes:[0xbc5]});put(dark,{type:33});put(wing,{type:t.storyCopyKind==='feness'?33:17});}
+  if(t.storyCopiedCode){data.set(t.storyCopiedCode,candidateCard(t.storyCopiedCode));put(body,t.briaExtraReceipt?{type:0x61}:{type:17,setcodes:[0xbc5]});put(dark,{type:33});put(wing,{type:t.storyCopyKind==='feness'?33:17});}
   if(t.floweringCount)put(body,{type:17,setcodes:[0x7a34]});
   if(t.brigadeFieldBoth){put(body,{type:0x800021,level:4,setcodes:[0x7a34]});put(wing,{type:17,setcodes:[0x7a34]});put(spell,{type:2,setcodes:[]});put(trap,{type:4,setcodes:[]});}
   if(t.heartbeatNegate)put(dark,{type:33});
@@ -732,7 +2059,13 @@ async function main(){
   if(t.necroValley){put(47355498,{type:0x80002});put(body,{type:0x800021,setcodes:[0x7a34]});put(wing,{type:17,setcodes:[0x7a34]});}
   if(t.aeroNecro){put(47355498,{type:0x80002});put(wing,{type:17,setcodes:[0x3de1]});}
   if(t.selfOverlayNecro){put(47355498,{type:0x80002});if(!t.arcGY)put(body,{type:0x800021,level:t.family===244163199?12:6,attribute:8});}
-  if(t.nauticaOverlay){put(body,{type:0x800021,level:2,attribute:2});put(fusion,{type:17,level:2});}
+  if(t.nauticaOverlay){put(body,{type:0x800021,level:2,attribute:t.adventuresOverlay==='wrong-attribute'?32:2});put(fusion,{type:17,level:2});}
+  if(t.adventuresOverlay==='grave-reset')for(const code of [spell,link])put(code,{type:17,level:2});
+  if(t.adventuresOverlay==='independent'){
+   put(spell,{type:33,setcodes:[0x8f0]});
+   put(trap,{type:33,setcodes:[0x8f0]});
+   put(dark,{type:33});
+  }
   if(t.chainNecro)put(dark,{type:33});
   if(t.chainLimitCopies){put(body,{type:17,setcodes:[0xa122]});put(wing,{type:17,setcodes:[0xa122]});}
   if(t.myutantRecovery){put(helper,{type:33});put(34572613,{type:0x80002,setcodes:[0x157]});put(body,{type:4,setcodes:[0x157]});put(spell,{type:2});}
@@ -747,6 +2080,15 @@ async function main(){
   if(t.roarEquipCapacity){put(body,{type:17});put(wing,{type:17,level:4,setcodes:[0x3b]});put(spell,{type:2});}
   if(t.capacityCostRelease){put(body,{type:17,race:16n,level:5});put(trap,{type:0x20004});put(spell,{type:2});}
   if(t.capacityFollowup){const sets={239932270:0x16d,259766646:0x191,259820516:0x3135,259826112:0x173};put(body,{type:t.family===239935100?65:t.capacityFollowup==='field-zone'?0x80002:t.family===239932270?0x20002:t.family===259826112?4:2,setcodes:[sets[t.family]||0],attribute:2,race:t.family===239935100?524288n:8n});put(spell,{type:2});if(t.family===259820516)put(wing,{type:17,race:128n});if(t.family===259766646)put(70155677,{type:0x1000021,level:1,race:4n,attribute:16,lscale:8,rscale:8});}
+  if(t.preparationImmediate)put(body,{type:t.preparationImmediate==='trap'?4:0x10002,setcodes:[0x9c9]});
+  if(t.preparationFacedown)for(const code of [body,trap])put(code,{type:2,setcodes:[0x9c9]});
+  if(t.preparationTargetInterrupt)for(const code of [body,wing])put(code,{type:2,setcodes:[0x9c9]});
+  if(t.preparationOwnership){put(body,{type:2,setcodes:[0x9c9]});put(wing,{type:2,setcodes:[0x9c9]});}
+  if(t.preparationSetEligibility){put(body,{type:2,setcodes:[0x9c9]});put(wing,{type:2,setcodes:[]});put(spell,{type:2,setcodes:[0x9c9]});put(trap,{type:33,setcodes:[0x9c9]});}
+  if(t.preparationSetThree)for(const code of [body,wing,spell,trap])put(code,{type:2,setcodes:[0x9c9]});
+  if(t.preparationNecro)put(47355498,{type:0x80002});
+  if(t.preparationCost)put(spell,{type:t.preparationCost==='monster-only'?33:t.preparationCost==='valid-trap'?4:2});
+  if(t.preparationShared){put(body,{type:2,setcodes:[0x9c9]});put(wing,{type:2,setcodes:[0x9c9]});put(spell,{type:2});}
   if(t.capacityField){const set=t.family===210696007?0x9c9:0x21fc;put(body,{type:t.capacityField==='field-plus-normal'?2:0x80002,setcodes:[set]});put(wing,{type:0x80002,setcodes:[set]});put(fusion,{type:0x80002});put(spell,{type:2});}
   if(t.galacticPlacementCapacity){put(body,{type:2,setcodes:[0x9c9]});put(spell,{type:2});}
   if(t.windborneCapacity||t.windborneOnlySet){put(body,{type:2,setcodes:[0x21fc]});put(wing,{type:2,setcodes:[0x21fc]});put(spell,{type:2});}
@@ -764,7 +2106,240 @@ async function main(){
   if(t.megalSharedChain){put(body,{type:17,attribute:8,race:2048n});put(wing,{type:17,setcodes:[0x4714]});}
   if(t.materialNative)put(wing,{type:17,level:2});
   if(t.forwardMaterial)put(dark,{type:t.forwardMaterial==='monster-first'?33:2});
+  if(t.alternativeReceipt){
+   const sets={212684822:0x27e9,227362839:0xb47,247755865:0xa121,254065048:0x7398,259177849:0x67ee,259688514:0x575d,210696007:0x9c9,259187643:0xfe,258328859:0x4ac0,221822671:0xbc5,238711686:0x8f0,240511702:0x6f4,245970073:0xbc5,246216813:0x813,259578863:0x67ee,221759221:0x21fc};
+   put(t.receiptTarget,{type:[212684822,227362839,254065048,210696007,259187643,246216813,259578863,221759221].includes(t.family)?2:33,setcodes:[sets[t.family]]});
+   if(t.family===227362839)put(body,{type:2,setcodes:[0xb47,0x452f]});
+   if(t.family===221759221)put(wing,{type:17,level:2});
+  }
+  if(t.zephorionReceipt)put(214552846,{type:0x80002});
   const reader=name=>{
+   if(t.preparationTargetInterrupt&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_QUICK_O) e:SetCode(EVENT_FREE_CHAIN) e:SetRange(LOCATION_MZONE) e:SetCountLimit(1) e:SetCondition(function() local ce=Duel.GetChainInfo(0,1) return ce and ce:GetHandler():IsCode(210696007) end) e:SetOperation(function(e,tp) local c=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_REMOVED,nil,'+body+') assert(c and Duel.SendtoGrave(c,REASON_EFFECT)>0) end) c:RegisterEffect(e) end';
+   if(t.preparationNegation&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_QUICK_O) e:SetCode(EVENT_FREE_CHAIN) e:SetRange(LOCATION_MZONE) e:SetCountLimit(1) e:SetCondition(function(e) local ce=Duel.GetChainInfo(0,1) return e:GetHandler():GetFlagEffect(id)==0 and ce and ce:GetHandler():IsCode(210696007) end) e:SetOperation(function(e) e:GetHandler():RegisterFlagEffect(id,0,0,1) '+(t.preparationNegation==='activation'?'assert(Duel.NegateActivation(1))':'assert(Duel.NegateEffect(1))')+' end) c:RegisterEffect(e) end';
+   if(t.preparationImmediate&&name==='c'+body+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_FREE_CHAIN) e:SetOperation(function() end) c:RegisterEffect(e) end';
+   if(t.formationMultiChain&&name==='c'+wing+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_F) e:SetCode(EVENT_SPSUMMON_SUCCESS) e:SetOperation(function() end) c:RegisterEffect(e) end';
+   if(t.lokaeoXyz==='upper'&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F) e:SetRange(LOCATION_MZONE) e:SetCode(EVENT_SUMMON_SUCCESS) e:SetOperation(function(e,tp) Duel.Recover(tp,100,REASON_EFFECT) end) c:RegisterEffect(e) end';
+   if((t.emma==='counter'||['counter','upper'].includes(t.lokaeoXyz))&&name==='c'+spell+'.lua')return `local s,id=GetID()
+    function s.initial_effect(c)
+     local a=Effect.CreateEffect(c)
+     a:SetType(EFFECT_TYPE_SINGLE)
+     a:SetCode(EFFECT_TRAP_ACT_IN_SET_TURN)
+     a:SetProperty(EFFECT_FLAG_SET_AVAILABLE)
+     c:RegisterEffect(a)
+     local e=Effect.CreateEffect(c)
+     e:SetType(EFFECT_TYPE_ACTIVATE)
+     e:SetCode(EVENT_SPSUMMON)
+     e:SetCondition(function(e,tp,eg) return eg:IsExists(Card.IsCode,1,nil,${t.lokaeoXyz?231825514:225109525}) end)
+     e:SetOperation(function(e,tp,eg) Duel.NegateSummon(eg) Duel.SendtoGrave(eg,REASON_EFFECT) end)
+     c:RegisterEffect(e)
+    end`;
+   if((t.harmonySearch&&name==='c'+body+'.lua')||(t.scarletReceipt&&name==='c248946297.lua'))return `local s,id=GetID()
+    function s.initial_effect(c)
+     local e=Effect.CreateEffect(c)
+     e:SetType(EFFECT_TYPE_IGNITION)
+     e:SetRange(LOCATION_HAND+LOCATION_REMOVED)
+     e:SetOperation(function() end)
+     c:RegisterEffect(e)
+     if ${t.harmonySearch==='redirect'||!!t.scarletReceipt&&t.redirect} then
+      local r=Effect.CreateEffect(c)
+      r:SetType(EFFECT_TYPE_SINGLE)
+      r:SetCode(EFFECT_TO_HAND_REDIRECT)
+      r:SetValue(LOCATION_REMOVED)
+      c:RegisterEffect(r)
+     end
+    end`;
+   if(t.musicaleTranscend&&[spell,trap].some(code=>name==='c'+code+'.lua'))return 'local s,id=GetID() function s.initial_effect(c) aux.EnablePendulumAttribute(c) end';
+   if(t.zephorionReceipt&&name==='c214552846.lua')return `local s,id=GetID()
+    function s.initial_effect(c)
+     ${t.zephorionReceipt==='spires'?'':`local e=Effect.CreateEffect(c)
+     e:SetType(EFFECT_TYPE_IGNITION)
+     e:SetRange(LOCATION_FZONE)
+     e:SetCountLimit(1)
+     e:SetOperation(function(e,tp)
+      local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,LOCATION_MZONE,0,nil,${t.family})
+      ${t.receiptTarget===214552846&&t.redirect?`local target=Duel.GetFirstMatchingCard(Card.IsCode,tp,LOCATION_DECK,0,nil,214552846)
+      local redirect=Effect.CreateEffect(e:GetHandler())
+      redirect:SetType(EFFECT_TYPE_SINGLE)
+      redirect:SetCode(EFFECT_TO_HAND_REDIRECT)
+      redirect:SetValue(LOCATION_REMOVED)
+      target:RegisterEffect(redirect)`:''}
+      assert(Duel.Destroy(tc,REASON_EFFECT)==1)
+     end)
+     c:RegisterEffect(e)`}
+    end`;
+
+   if(t.galacticaLeave&&name==='c'+fusion+'.lua')return neutral;
+   if(t.alternativeReceipt&&name==='c'+t.receiptTarget+'.lua')return `local s,id=GetID()
+    ${t.zephorionReceipt?'s.listed_names={214552846}':''}
+    function s.initial_effect(c)
+     ${t.zephorionReceipt?'aux.AddCodeList(c,214552846)':''}
+     ${t.redirect?`local e=Effect.CreateEffect(c)
+     e:SetType(EFFECT_TYPE_SINGLE)
+     e:SetCode(EFFECT_TO_HAND_REDIRECT)
+     e:SetValue(LOCATION_REMOVED)
+     c:RegisterEffect(e)`:''}
+    end`;
+   if(t.melvilleReceipt&&[body,wing].some(code=>name==='c'+code+'.lua')){
+    const redirected=t.melvilleReceipt==='all'||t.melvilleReceipt==='partial'&&name==='c'+body+'.lua';
+    return redirected?`local s,id=GetID()
+     function s.initial_effect(c)
+      local e=Effect.CreateEffect(c)
+      e:SetType(EFFECT_TYPE_SINGLE)
+      e:SetCode(EFFECT_TO_HAND_REDIRECT)
+      e:SetValue(LOCATION_REMOVED)
+      c:RegisterEffect(e)
+     end`:neutral;
+   }
+   if(t.melvilleReceipt&&[link,trap,fusion].some(code=>name==='c'+code+'.lua'))return neutral;
+   if(t.groupedDeckDraw&&[body,wing].some(code=>name==='c'+code+'.lua')){
+    const redirected=t.groupedDeckDraw==='all'||t.groupedDeckDraw==='partial'&&name==='c'+body+'.lua';
+    return redirected?`local s,id=GetID()
+     function s.initial_effect(c)
+      local e=Effect.CreateEffect(c)
+      e:SetType(EFFECT_TYPE_SINGLE)
+      e:SetCode(EFFECT_TO_DECK_REDIRECT)
+      e:SetValue(LOCATION_REMOVED)
+      c:RegisterEffect(e)
+     end`:neutral;
+   }
+   if(t.groupedDeckDraw&&name==='c'+link+'.lua')return neutral;
+   if((t.fusionDeckPayment||t.exactDeckReturn&&t.family===248940511)&&name==='c'+link+'.lua')return neutral;
+   if(t.fusionDeckPayment&&name==='c'+fusion+'.lua')return `local s,id=GetID()
+    function s.initial_effect(c)
+     c:EnableReviveLimit()
+     local e=Effect.CreateEffect(c)
+     e:SetType(EFFECT_TYPE_SINGLE)
+     e:SetCode(EFFECT_FUSION_MATERIAL)
+     e:SetCondition(function(e,g) return g and g:IsExists(Card.IsCode,1,nil,${body}) and g:IsExists(Card.IsCode,1,nil,${wing}) end)
+     e:SetOperation(function(e,tp,eg) Duel.SetFusionMaterial(eg:Filter(function(mc) return mc:IsCode(${body},${wing}) end,nil)) end)
+     c:RegisterEffect(e)
+    end`;
+   if(t.exactDeckReturn&&name==='c259177849.lua')return neutral;
+   if(t.octantisUpgrade&&name==='c'+wing+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_SINGLE) e:SetCode(EFFECT_SPSUMMON_CONDITION) c:RegisterEffect(e) end';
+   if(t.baubaReceipt&&t.redirect&&(name==='c'+body+'.lua'||t.revealGroup&&t.redirectAll&&name==='c'+wing+'.lua'))return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_SINGLE) e:SetCode(EFFECT_TO_HAND_REDIRECT) e:SetValue(LOCATION_REMOVED) c:RegisterEffect(e) end';
+   if(t.lokaeoRecycle==='redirect'&&name==='c'+body+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_SINGLE) e:SetCode(EFFECT_TO_DECK_REDIRECT) e:SetValue(LOCATION_REMOVED) c:RegisterEffect(e) end';
+   if((t.deckReceiptCount||t.exactDeckReturn||t.singleDeckDraw||t.singleDeckSuccessor&&![248760718,259635008].includes(t.family))&&name==='c'+body+'.lua')return t.redirect?`local s,id=GetID()
+    function s.initial_effect(c)
+     local e=Effect.CreateEffect(c)
+     e:SetType(EFFECT_TYPE_SINGLE)
+     e:SetCode(EFFECT_TO_DECK_REDIRECT)
+     e:SetValue(${(t.singleDeckDraw||t.singleDeckSuccessor&&t.family!==259177849||t.exactDeckReturn&&![259820516,245395343].includes(t.family))?"LOCATION_REMOVED":"LOCATION_GRAVE"})
+     c:RegisterEffect(e)
+    end`:neutral;
+   if(t.deckReceiptCount&&t.family===259395418&&name==='c'+helper+'.lua')return `local s,id=GetID()
+    function s.initial_effect(c)
+     local e=Effect.CreateEffect(c)
+     e:SetType(EFFECT_TYPE_ACTIVATE)
+     e:SetCode(EVENT_FREE_CHAIN)
+     e:SetOperation(function(e,tp)
+      local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,LOCATION_GRAVE,0,nil,259395418)
+      assert(Duel.SpecialSummon(tc,100,tp,tp,false,false,POS_FACEUP)==1)
+      tc:RegisterFlagEffect(259395418,RESET_EVENT+RESETS_STANDARD,0,1)
+     end)
+     c:RegisterEffect(e)
+    end`;
+   if(t.windborneRecovery&&!t.jannaRevealRedirect&&name==='c'+link+'.lua')return neutral;
+   if(t.jannaRevealRedirect&&name==='c'+link+'.lua')return `local s,id=GetID()
+    function s.initial_effect(c)
+     local e=Effect.CreateEffect(c)
+     e:SetType(EFFECT_TYPE_SINGLE)
+     e:SetCode(EFFECT_TO_HAND_REDIRECT)
+     e:SetValue(LOCATION_REMOVED)
+     c:RegisterEffect(e)
+    end`;
+   if(t.jannaSearch&&name==='c'+helper+'.lua')return `local s,id=GetID()
+    function s.initial_effect(c)
+     local e=Effect.CreateEffect(c)
+     e:SetType(EFFECT_TYPE_ACTIVATE)
+     e:SetCode(EVENT_FREE_CHAIN)
+     e:SetOperation(function(e,tp)
+      local j=Duel.GetFirstMatchingCard(Card.IsCode,tp,LOCATION_EXTRA,0,nil,${janna})
+      local g=Duel.GetMatchingGroup(function(mc) return mc:IsCode(${body},${wing}) end,tp,LOCATION_MZONE,0,nil)
+      assert(#g==2)
+      j:SetMaterial(g)
+      Duel.SendtoGrave(g,REASON_MATERIAL+REASON_SYNCHRO)
+      assert(Duel.SpecialSummon(j,SUMMON_TYPE_SYNCHRO,tp,tp,true,true,POS_FACEUP)==1)
+      j:CompleteProcedure()
+      ${t.redirect?`local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,LOCATION_HAND,0,nil,${spell})
+      local redirect=Effect.CreateEffect(c)
+      redirect:SetType(EFFECT_TYPE_SINGLE)
+      redirect:SetCode(EFFECT_TO_DECK_REDIRECT)
+      redirect:SetValue(LOCATION_REMOVED)
+      tc:RegisterEffect(redirect)`:''}
+     end)
+     c:RegisterEffect(e)
+    end`;
+   if(t.briaRecycle&&t.redirect&&name==='c'+dark+'.lua')return `local s,id=GetID()
+    function s.initial_effect(c)
+     local e=Effect.CreateEffect(c)
+     e:SetType(EFFECT_TYPE_QUICK_O)
+     e:SetCode(EVENT_CHAINING)
+     e:SetRange(LOCATION_MZONE)
+     e:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode(${t.family}) end)
+     e:SetOperation(function(e,tp)
+      local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_GRAVE,nil,${body})
+      local redirect=Effect.CreateEffect(c)
+      redirect:SetType(EFFECT_TYPE_SINGLE)
+      redirect:SetCode(${t.redirectDeck?'EFFECT_TO_DECK_REDIRECT':'EFFECT_TO_HAND_REDIRECT'})
+      redirect:SetValue(LOCATION_REMOVED)
+      tc:RegisterEffect(redirect)
+     end)
+     c:RegisterEffect(e)
+    end`;
+   if(t.ownSearch&&t.redirect&&name==='c'+dark+'.lua')return `local s,id=GetID()
+    function s.initial_effect(c)
+     local e=Effect.CreateEffect(c)
+     e:SetType(EFFECT_TYPE_QUICK_O)
+     e:SetCode(EVENT_CHAINING)
+     e:SetRange(LOCATION_MZONE)
+     e:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode(${t.family}) end)
+     e:SetOperation(function(e,tp)
+      local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,${t.discardOrigin??D},nil,${t.discardResource??body})
+      local redirect=Effect.CreateEffect(c)
+      redirect:SetType(EFFECT_TYPE_SINGLE)
+      redirect:SetCode(EFFECT_TO_HAND_REDIRECT)
+      redirect:SetValue(${t.redirectDestination??G})
+      tc:RegisterEffect(redirect)
+      ${t.redirectBoth?"Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_DECK,nil,"+spell+"):RegisterEffect(redirect:Clone())":""}
+     end)
+     c:RegisterEffect(e)
+    end`;
+   if(t.musicaleSearch&&name==='c'+wing+'.lua')return `local s,id=GetID()
+    function s.initial_effect(c)
+     local e=Effect.CreateEffect(c)
+     e:SetType(EFFECT_TYPE_IGNITION)
+     e:SetRange(LOCATION_MZONE+LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED)
+     e:SetOperation(function() end)
+     c:RegisterEffect(e)
+    end`;
+   if(t.musicaleSearch==='success'&&name==='c'+dark+'.lua')return `local s,id=GetID()
+    function s.initial_effect(c)
+     local e=Effect.CreateEffect(c)
+     e:SetType(EFFECT_TYPE_IGNITION)
+     e:SetRange(LOCATION_MZONE)
+     e:SetOperation(function() end)
+     c:RegisterEffect(e)
+    end`;
+   if(t.musicaleSearch&&t.musicaleSearch!=='success'&&name==='c'+dark+'.lua'){
+    const disrupt=t.musicaleSearch==='no-candidate'
+     ?'assert(Duel.Remove(tc,POS_FACEUP,REASON_EFFECT)>0)'
+     :t.musicaleSearch==='draw-blocked'
+     ?'local lock=Effect.CreateEffect(c) lock:SetType(EFFECT_TYPE_FIELD) lock:SetCode(EFFECT_CANNOT_DRAW) lock:SetProperty(EFFECT_FLAG_PLAYER_TARGET) lock:SetTargetRange(0,1) lock:SetReset(RESET_PHASE+PHASE_END) Duel.RegisterEffect(lock,tp)'
+     :'local redirect=Effect.CreateEffect(c) redirect:SetType(EFFECT_TYPE_SINGLE) redirect:SetCode(EFFECT_TO_HAND_REDIRECT) redirect:SetValue(LOCATION_GRAVE) tc:RegisterEffect(redirect)';
+    return `local s,id=GetID()
+     function s.initial_effect(c)
+      local e=Effect.CreateEffect(c)
+      e:SetType(EFFECT_TYPE_QUICK_O)
+      e:SetCode(EVENT_CHAINING)
+      e:SetRange(LOCATION_MZONE)
+      e:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode(259797813) end)
+      e:SetOperation(function(e,tp)
+       local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,LOCATION_DECK,0,nil,${wing})
+       ${disrupt}
+      end)
+      c:RegisterEffect(e)
+     end`;
+   }
    if(t.musicaleSummon&&name==='c'+helper+'.lua')return `local s,id=GetID()
     function s.initial_effect(c)
      local e=Effect.CreateEffect(c)
@@ -773,7 +2348,8 @@ async function main(){
      e:SetTarget(function(e,tp,eg,ep,ev,re,r,rp,chk)
       if chk==0 then return true end
       local loc=${t.musicaleFromGY?'LOCATION_GRAVE':'LOCATION_HAND'}
-      Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,Duel.GetFirstMatchingCard(Card.IsCode,tp,loc,0,nil,${body}),1,tp,loc)
+      local reportedLocation=${t.musicaleReport==='group-only'?'0':t.musicaleReport==='mixed'?'LOCATION_HAND+LOCATION_GRAVE':'loc'}
+      Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,Duel.GetFirstMatchingCard(Card.IsCode,tp,loc,0,nil,${body}),1,${t.musicaleReport==='group-only'?'0':'tp'},reportedLocation)
      end)
      e:SetOperation(function(e,tp)
       Duel.SpecialSummon(Duel.GetFirstMatchingCard(Card.IsCode,tp,${t.musicaleFromGY?'LOCATION_GRAVE':'LOCATION_HAND'},0,nil,${body}),0,tp,tp,false,false,POS_FACEUP)
@@ -796,6 +2372,43 @@ async function main(){
    if(t.heartbeatNegate&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local ex=Effect.CreateEffect(c) ex:SetType(EFFECT_TYPE_QUICK_O) ex:SetCode(EVENT_CHAINING) ex:SetRange(LOCATION_MZONE) ex:SetCountLimit(1) ex:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode('+t.family+') end) ex:SetOperation(function(e,tp,eg,ep,ev) Duel.'+(t.activationNegation?'NegateActivation':'NegateEffect')+'(ev) end) c:RegisterEffect(ex) end';
    if(t.storyCopyKind==='feness'&&name==='c'+wing+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_SINGLE) e:SetCode(EFFECT_UPDATE_ATTACK) e:SetValue(500) c:RegisterEffect(e) end';
    if(t.bitronCopyRemoved&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local ex=Effect.CreateEffect(c) ex:SetType(EFFECT_TYPE_QUICK_O) ex:SetCode(EVENT_CHAINING) ex:SetRange(LOCATION_MZONE) ex:SetCountLimit(1) ex:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode('+t.family+') end) ex:SetOperation(function(e,tp) local c=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_GRAVE,nil,'+(t.storyCopiedCode||(t.stainlessCopy?221822671:259546637))+') Duel.Remove(c,POS_FACEUP,REASON_EFFECT) end) c:RegisterEffect(ex) end';
+  if(t.shrinePlacement&&name==='c22702055.lua')return neutral;
+   if(t.battleTactics==='opponent leaves'&&name==='c'+dark+'.lua')return `
+local s,id=GetID()
+function s.initial_effect(c)
+ local e=Effect.CreateEffect(c)
+ e:SetType(EFFECT_TYPE_QUICK_O)
+ e:SetCode(EVENT_CHAINING)
+ e:SetRange(LOCATION_MZONE)
+ e:SetCountLimit(1)
+ e:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode(${t.family}) end)
+ e:SetOperation(function(e) assert(Duel.SendtoGrave(e:GetHandler(),REASON_EFFECT)==1) end)
+ c:RegisterEffect(e)
+end`;
+   if(t.chaosReturn==='target leaves'&&name==='c'+dark+'.lua')return `
+local s,id=GetID()
+function s.initial_effect(c)
+ local e=Effect.CreateEffect(c)
+ e:SetType(EFFECT_TYPE_QUICK_O)
+ e:SetCode(EVENT_CHAINING)
+ e:SetRange(LOCATION_MZONE)
+ e:SetCountLimit(1)
+ e:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode(${t.family}) end)
+ e:SetOperation(function(e,tp)
+  local target=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_REMOVED,nil,${body})
+  assert(target and Duel.SendtoHand(target,1-tp,REASON_EFFECT)==1)
+ end)
+ c:RegisterEffect(e)
+end`;
+   if(t.treasureSourceLeaves&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_QUICK_O) e:SetCode(EVENT_CHAINING) e:SetRange(LOCATION_MZONE) e:SetCountLimit(1) e:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode('+t.family+') end) e:SetOperation(function(e,tp,eg,ep,ev,re) assert(Duel.Destroy(re:GetHandler(),REASON_EFFECT)==1) end) c:RegisterEffect(e) end';
+   if(t.zaoSequence==='interrupted'&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_QUICK_O) e:SetCode(EVENT_CHAINING) e:SetRange(LOCATION_MZONE) e:SetCountLimit(1) e:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode(250556612) end) e:SetOperation(function(e,tp) local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_GRAVE,nil,'+trap+') assert(Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==1) end) c:RegisterEffect(e) end';
+   if(t.zaoSequence&&[spell,trap].some(code=>name==='c'+code+'.lua')){
+    const amount=name==='c'+spell+'.lua'?100:200;
+    const condition=t.zaoSequence==='unusable-spell'&&amount===200?' e:SetCondition(function() return false end)':'';
+    return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_FREE_CHAIN)'+condition+' e:SetOperation(function(e,tp) Duel.Recover(tp,'+amount+'+(Duel.GetFlagEffect(tp,900009001)>0 and 0 or 1000),REASON_EFFECT) end) c:RegisterEffect(e) end';
+   }
+   if(t.koaiProtect&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_FREE_CHAIN) e:SetProperty(EFFECT_FLAG_CARD_TARGET) e:SetTarget(function(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return true end Duel.SelectTarget(tp,Card.IsFaceup,'+(t.koaiProtect==='own-effect'?'tp,LOCATION_MZONE,0':'tp,0,LOCATION_MZONE')+',1,1,nil) end) c:RegisterEffect(e) end';
+   if(['redirect','partial-redirect'].includes(t.koaiQuick)&&name==='c'+wing+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_SINGLE) e:SetCode(EFFECT_TO_DECK_REDIRECT) e:SetValue(LOCATION_GRAVE) c:RegisterEffect(e) end';
    if(t.originsProtect&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType('+(t.originsProtect==='monster'?'EFFECT_TYPE_IGNITION':'EFFECT_TYPE_ACTIVATE')+') '+(t.originsProtect==='monster'?'e:SetRange(LOCATION_MZONE) e:SetCountLimit(1)':'')+' e:SetCode(EVENT_FREE_CHAIN) e:SetProperty(EFFECT_FLAG_CARD_TARGET) e:SetTarget(function(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return true end Duel.SelectTarget(tp,Card.IsFaceup,tp,0,LOCATION_MZONE,1,1,nil) end) c:RegisterEffect(e) '+(t.originsProtect==='trap'?'local permit=Effect.CreateEffect(c) permit:SetType(EFFECT_TYPE_SINGLE) permit:SetCode(EFFECT_TRAP_ACT_IN_HAND) c:RegisterEffect(permit)':'')+' end';
    if(t.bhodiReset&&name==='c'+trap+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local ex=Effect.CreateEffect(c) ex:SetType(EFFECT_TYPE_QUICK_O) ex:SetCode(EVENT_CHAINING) ex:SetRange(LOCATION_MZONE) ex:SetCountLimit(1) ex:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode(259072745) end) ex:SetOperation(function(e,tp) local c=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_GRAVE,nil,'+wing+') Duel.SendtoHand(c,nil,REASON_EFFECT) Duel.SendtoGrave(c,REASON_EFFECT) end) c:RegisterEffect(ex) end';
    if(t.siliaIdentity&&t.standReset&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local ex=Effect.CreateEffect(c) ex:SetType(EFFECT_TYPE_QUICK_O) ex:SetCode(EVENT_CHAINING) ex:SetRange(LOCATION_MZONE) ex:SetCountLimit(1) ex:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode(244408495) end) ex:SetOperation(function(e,tp) local c=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_GRAVE,nil,'+body+') Duel.SendtoHand(c,nil,REASON_EFFECT) Duel.SendtoGrave(c,REASON_EFFECT) end) c:RegisterEffect(ex) end';
@@ -838,10 +2451,30 @@ async function main(){
    if(t.burnResolution&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_QUICK_O) e:SetCode(EVENT_CHAINING) e:SetRange(LOCATION_MZONE) e:SetCountLimit(1) e:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode('+burning+') end) e:SetOperation(function(e,tp) local c=Duel.GetFirstMatchingCard(Card.IsCode,tp,LOCATION_MZONE,0,nil,'+wing+') '+(t.burnResolution==='left-field'?'Duel.SendtoHand(c,nil,REASON_EFFECT)':'local lock=Effect.CreateEffect(e:GetHandler()) lock:SetType(EFFECT_TYPE_SINGLE) lock:SetCode(EFFECT_CANNOT_TO_HAND) c:RegisterEffect(lock)')+' end) c:RegisterEffect(e) end';
    if((t.protectionProbe||t.companionProtect)&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_FREE_CHAIN) e:SetProperty(EFFECT_FLAG_CARD_TARGET) e:SetTarget(function(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return true end Duel.SelectTarget(tp,Card.IsFaceup,tp,0,LOCATION_MZONE,1,1,nil) end) c:RegisterEffect(e) end';
    if(t.gravinitySynchro&&name==='c'+fusion+'.lua')return require('./fresh_native_two_material_synchro.cjs').recipe(body,wing);
+   if(t.alternativeReceipt&&t.family===221759221&&name==='c'+fusion+'.lua')return require('./fresh_native_two_material_synchro.cjs').recipe(t.family,wing);
    if(t.materialSynchro&&name==='c'+fusion+'.lua')return require('./fresh_native_two_material_synchro.cjs').recipe(data.get(t.family).type&0x1000?t.family:body,data.get(t.family).type&0x1000?body:t.family);
    if(t.detachProbe&&name==='c'+body+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_IGNITION) e:SetRange(LOCATION_MZONE) e:SetCountLimit(1) '+(t.detachMode==='effect'?'e:SetOperation(function(e,tp) e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_EFFECT) end)':'e:SetCost(function(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return e:GetHandler():CheckRemoveOverlayCard(tp,1,REASON_COST) end e:GetHandler():RemoveOverlayCard(tp,1,1,REASON_COST) end)')+' c:RegisterEffect(e) end';
    if(t.immuneReplace&&name==='c'+body+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_SINGLE) e:SetCode(EFFECT_IMMUNE_EFFECT) e:SetProperty(EFFECT_FLAG_SINGLE_RANGE) e:SetRange(LOCATION_GRAVE) e:SetValue(function() return true end) c:RegisterEffect(e) end';
-   if(t.rewrite&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType('+(t.graveActivation||t.monsterActivation?'EFFECT_TYPE_IGNITION':'EFFECT_TYPE_ACTIVATE')+') e:SetCode(EVENT_FREE_CHAIN) '+(t.graveActivation||t.monsterActivation?'e:SetRange('+(t.monsterActivation?'LOCATION_MZONE':'LOCATION_GRAVE')+') e:SetCountLimit(1)':'')+' '+(t.ophielResponse?'e:SetProperty(EFFECT_FLAG_CARD_TARGET) e:SetTarget(function(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return true end Duel.SelectTarget(tp,Card.IsCode,tp,LOCATION_MZONE,0,1,1,nil,'+wing+') end)':'')+' '+(t.opponentOp?'e:SetOperation(function(e,tp) '+t.opponentOp+' end)':'')+' c:RegisterEffect(e) end';
+   if(['hand','own-grave'].includes(t.baubaSource)&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_IGNITION) e:SetRange('+(t.baubaSource==='hand'?'LOCATION_HAND':'LOCATION_GRAVE')+') e:SetCountLimit(1) e:SetOperation(function() end) c:RegisterEffect(e) end';
+   if(t.nordbarNegate==='cannot negate'&&name==='c'+dark+'.lua')return `
+local s,id=GetID()
+function s.initial_effect(c)
+ local e=Effect.CreateEffect(c)
+ e:SetType(EFFECT_TYPE_IGNITION)
+ e:SetRange(LOCATION_MZONE)
+ e:SetCountLimit(1)
+ e:SetProperty(EFFECT_FLAG_CANNOT_INACTIVATE)
+ e:SetOperation(function(e,tp) Duel.Recover(tp,500,REASON_EFFECT) end)
+ c:RegisterEffect(e)
+ local protection=Effect.CreateEffect(c)
+ protection:SetType(EFFECT_TYPE_FIELD)
+ protection:SetCode(EFFECT_CANNOT_INACTIVATE)
+ protection:SetRange(LOCATION_MZONE)
+ protection:SetValue(1)
+ c:RegisterEffect(protection)
+end`;
+   if(t.rewrite&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType('+(t.graveActivation||t.monsterActivation||t.banishedActivation?'EFFECT_TYPE_IGNITION':'EFFECT_TYPE_ACTIVATE')+') e:SetCode(EVENT_FREE_CHAIN) '+(t.graveActivation||t.monsterActivation||t.banishedActivation?'e:SetRange('+(t.monsterActivation?'LOCATION_MZONE':t.banishedActivation?'LOCATION_REMOVED':'LOCATION_GRAVE')+') e:SetCountLimit(1)':'')+' '+(t.ophielResponse?'e:SetProperty(EFFECT_FLAG_CARD_TARGET) e:SetTarget(function(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return true end Duel.SelectTarget(tp,Card.IsCode,tp,LOCATION_MZONE,0,1,1,nil,'+wing+') end)':'')+' '+(t.opponentOp?'e:SetOperation(function(e,tp) '+t.opponentOp+' end)':'')+' c:RegisterEffect(e) end';
+   if(t.formationInterrupt&&name==='c'+dark+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_QUICK_O) e:SetCode(EVENT_FREE_CHAIN) e:SetRange(LOCATION_MZONE) e:SetCountLimit(1) e:SetCondition(function(e,tp) local ce=Duel.GetChainInfo(0,1) return ce and ce:GetHandler():IsCode('+formation+') end) e:SetOperation(function(e,tp,eg,ep,ev) '+(t.formationNegate?(process.argv.includes('--formation-negate-effect')?'assert(Duel.NegateEffect(1))':'assert(Duel.NegateActivation(1))'):'local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,0,LOCATION_MZONE,nil,'+body+') if tc then Duel.Destroy(tc,REASON_EFFECT) end')+' end) c:RegisterEffect(e) end';
    if(name==='c0.lua')return '';
    if(t.xyzFixture&&name==='c'+fusion+'.lua')return 'local s,id=GetID() local check,summon=Card.IsXyzSummonable,Duel.XyzSummon function Card.IsXyzSummonable(c,pool,min,max) return check(c,nil,pool,min,max) end function Duel.XyzSummon(tp,c,pool,min,max) return summon(tp,c,nil,pool,min,max) end if not Duel.GetMustMaterial then Duel.GetMustMaterial=function() return Group.CreateGroup() end end function s.filter(c,xc) return c:IsFaceup() and c:IsLevel(8) end function s.check(g) return g:IsExists(function(c) return c:IsAttribute(ATTRIBUTE_LIGHT) and c:IsRace(RACE_FIEND) end,1,nil) end function s.initial_effect(c) c:EnableReviveLimit() local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_FIELD) e:SetCode(EFFECT_SPSUMMON_PROC) e:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE) e:SetRange(LOCATION_EXTRA) e:SetCondition(aux.XyzLevelFreeCondition(s.filter,s.check,2,2)) e:SetTarget(aux.XyzLevelFreeTarget(s.filter,s.check,2,2)) e:SetOperation(aux.XyzLevelFreeOperation(s.filter,s.check,2,2)) e:SetValue(SUMMON_TYPE_XYZ) local con,tg,op=e:GetCondition(),e:GetTarget(),e:GetOperation() e:SetCondition(function(e,c,must,pool,min,max) return con(e,c,pool,min,max) end) e:SetTarget(function(e,tp,eg,ep,ev,re,r,rp,chk,c,must,pool,min,max) return tg(e,tp,eg,ep,ev,re,r,rp,chk,c,pool,min,max) end) e:SetOperation(function(e,tp,eg,ep,ev,re,r,rp,c,must,pool,min,max) return op(e,tp,eg,ep,ev,re,r,rp,c,pool,min,max) end) c:RegisterEffect(e) end';
    if(name==='c'+helper+'.lua')return 'local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_FREE_CHAIN) e:SetOperation(s.op) c:RegisterEffect(e) '+(t.reset?'local observer=Effect.CreateEffect(c) observer:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS) observer:SetCode(EVENT_CHAIN_SOLVED) observer:SetCondition(function(e,tp,eg,ep,ev,re) return re:GetHandler():IsCode('+t.family+') end) observer:SetOperation(function() local tc=Duel.GetFirstMatchingCard(Card.IsCode,0,'+(t.family===chapter?'LOCATION_MZONE':'LOCATION_GRAVE')+',0,nil,'+(t.family===chapter?body:spell)+') assert(tc) assert(Duel.SendtoHand(tc,nil,REASON_EFFECT)==1) '+(t.family===chapter?'assert(Duel.SpecialSummon(tc,0,0,0,false,false,POS_FACEUP)==1)':'assert(Duel.SendtoGrave(tc,REASON_EFFECT)==1)')+' end) Duel.RegisterEffect(observer,0)':'')+' end function s.op(e,tp) local function find(code,loc) return Duel.GetMatchingGroup(Card.IsCode,tp,loc,0,nil,code):GetFirst() end '+t.op+' end';
@@ -874,19 +2507,51 @@ function s.initial_effect(c)
   return operation(e,tp,eg,ep,ev,re,r,rp,c,pool,fixed(required),min,max)
  end)
 end`;
+   if(t.venaticiToken&&name==='c229021850.lua')return neutral;
    if([...fixtures,engraver,bauWorld,bau,dysmandr,extinction,token,grayToken].some(code=>name==='c'+code+'.lua'))return neutral;
    const source=path.resolve(__dirname,'../public/CCG Downloads/CCG_Scripts',name);
-   const file=[process.env.CCG_TEST_SOURCE&&t.family&&source,path.join(installed,name),path.resolve(__dirname,'../tmp/ohmen-reference',name),path.join(omega,name)].find(f=>f&&fs.existsSync(f));
-   assert(file,name);let lua=fs.readFileSync(file,'utf8');if(t.stainOptionalFixture&&name==='c248453205.lua')lua=lua.replace('local rg=','local fixture=Duel.GetFieldGroup(tp,0,LOCATION_DECK):Filter(Card.IsCode,nil,'+wing+'):GetFirst() fixture:ReverseInDeck() assert(fixture:IsFaceup()) local rg=');if(t.nauticaOverlay&&process.argv.includes('--nautica-control-before')&&name==='c218905439.lua')lua=lua.replace('tc:IsControler(tp) and not tc:IsImmuneToEffect(e)) then return end','not tc:IsImmuneToEffect(e)) then return end');if(t.chainLimitCopies&&process.argv.includes('--shared-chain-no-flag')&&name==='c284639726.lua')lua=lua.replace('return e:GetHandler():GetFlagEffect(id)==0','return true').replace('return Duel.GetFlagEffect(e:GetHandlerPlayer(),id)==0','return true');if(t.megalSharedChain&&process.argv.includes('--megal-chain-no-flag')&&name==='c259179054.lua')lua=lua.replaceAll('Duel.GetFlagEffect(tp,id)==0','true');if(t.disccsChainCallbacks&&process.argv.includes('--disccs-chain-no-flag')&&name==='c238273770.lua')lua=lua.replaceAll('Duel.GetFlagEffect(tp,id+400)==0','true');if((t.pendulumLeaveBattle&&process.argv.includes('--pendulum-leave-no-damage')||process.argv.includes('--leave-field-no-damage'))&&name==='c'+t.family+'.lua')lua=lua.replaceAll('EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DELAY','EFFECT_FLAG_DELAY');if(t.damageBanishEvent&&process.argv.includes('--damage-banish-permissive')&&name==='c'+t.family+'.lua'){const v=({212413422:'e3',216620496:'e2',253128790:'e1',259542408:'e6',259605536:'e4'})[t.family];lua=lua.replace(v+':SetProperty(',v+':SetProperty(EFFECT_FLAG_DAMAGE_STEP+');}return lua;
+   const revealCandidate=process.env.CCG_HAND_REVEAL_CANDIDATE;
+   const file=[revealCandidate&&path.join(revealCandidate,name),process.env.CCG_NAUTICA_CANDIDATE&&['c259797813.lua','c248946297.lua','c259941091.lua'].includes(name)&&source,process.env.CCG_TEST_SOURCE&&t.family&&source,path.join(installed,name),path.resolve(__dirname,'../tmp/ohmen-reference',name),path.join(omega,name)].find(f=>f&&fs.existsSync(f));
+   assert(file,name);let lua=fs.readFileSync(file,'utf8');if(t.preparationExpiry&&process.argv.includes('--preparation-no-expiry')&&name==='c210696007.lua')lua=lua.replace('te:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)','te:SetReset(RESET_EVENT+RESETS_STANDARD)');if(t.preparationTargetInterrupt&&process.argv.includes('--preparation-ignore-relation')&&name==='c210696007.lua')lua=lua.replace('return c:IsRelateToEffect(te) and c:IsSSetable()','return c:IsSSetable()');if(t.preparationNecro&&process.argv.includes('--preparation-ignore-necro')&&name==='c210696007.lua')lua=lua.replace('aux.NecroValleyFilter(s.selfcostfilter)(c)','s.selfcostfilter(c)').replaceAll('aux.NecroValleyFilter(s.costfilter)','s.costfilter');if(t.preparationImmediate&&process.argv.includes('--preparation-no-set-permission')&&name==='c210696007.lua')lua=lua.replace('and (tc:IsType(TYPE_TRAP) or tc:IsType(TYPE_QUICKPLAY))','and false');if(t.preparationFacedown&&process.argv.includes('--preparation-allow-facedown')&&name==='c210696007.lua')lua=lua.replace('return c:IsFaceup() and c:IsSetCard(SET_GALACTICA)','return c:IsSetCard(SET_GALACTICA)');if(t.preparationSetEligibility&&process.argv.includes('--preparation-any-target')&&name==='c210696007.lua')lua=lua.replace('c:IsSetCard(SET_GALACTICA) and c:IsType(TYPE_SPELL+TYPE_TRAP)','true');if(t.preparationSetThree&&process.argv.includes('--preparation-four-target-control')&&name==='c210696007.lua')lua=lua.replaceAll('1,3,ft','1,4,ft');if(t.preparationCost&&process.argv.includes('--preparation-any-cost')&&name==='c210696007.lua')lua=lua.replace('c~=ec and c:IsType(TYPE_SPELL+TYPE_TRAP) and c:IsAbleToRemoveAsCost()','c~=ec and c:IsAbleToRemoveAsCost()');if(t.preparationShared&&process.argv.includes('--preparation-separate-limit')&&name==='c210696007.lua')lua=lua.replace('e2:SetCountLimit(1,id)','e2:SetCountLimit(1,id+100)');if(t.formationLinkLimit&&process.argv.includes('--formation-link-per-copy')&&name==='c'+formation+'.lua')lua=lua.replace('e2:SetCountLimit(1,id+100)','e2:SetCountLimit(1)');if(t.formationLinkReset&&process.argv.includes('--formation-link-no-reset')&&name==='c'+formation+'.lua')lua=lua.replace('e2:SetCountLimit(1,id+100)','e2:SetCountLimit(1,id+100,2)');
+   if(t.musicaleStock==='repeat'&&name==='c49669730.lua'){
+    // Reuse the same effect object twice while leaving its first summon on the field.
+    lua=lua.replace('e1:SetCountLimit(1)','').replace('e1:SetCondition(c49669730.condition)','')
+     .replace('if Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)>0 then return end','');
+   }
+   if((t.scarletShuffleRedirect||t.galacticaLeave==='redirect'||t.singleDeckSuccessor&&t.redirect&&[248760718,259635008].includes(t.family))&&name==='c'+t.family+'.lua')lua+=`
+local initial=s.initial_effect
+function s.initial_effect(c)
+ initial(c)
+ local redirect=Effect.CreateEffect(c)
+ redirect:SetType(EFFECT_TYPE_SINGLE)
+ redirect:SetCode(EFFECT_TO_DECK_REDIRECT)
+ redirect:SetValue(LOCATION_REMOVED)
+ c:RegisterEffect(redirect)
+end`;
+if(t.stainOptionalFixture&&name==='c248453205.lua')lua=lua.replace('local rg=','local fixture=Duel.GetFieldGroup(tp,0,LOCATION_DECK):Filter(Card.IsCode,nil,'+wing+'):GetFirst() fixture:ReverseInDeck() assert(fixture:IsFaceup()) local rg=');if(t.nauticaOverlay&&process.argv.includes('--nautica-control-before')&&name==='c218905439.lua')lua=lua.replace('tc:IsControler(tp) and not tc:IsImmuneToEffect(e)) then return end','not tc:IsImmuneToEffect(e)) then return end');if(t.chainLimitCopies&&process.argv.includes('--shared-chain-no-flag')&&name==='c284639726.lua')lua=lua.replace('return e:GetHandler():GetFlagEffect(id)==0','return true').replace('return Duel.GetFlagEffect(e:GetHandlerPlayer(),id)==0','return true');if(t.megalSharedChain&&process.argv.includes('--megal-chain-no-flag')&&name==='c259179054.lua')lua=lua.replaceAll('Duel.GetFlagEffect(tp,id)==0','true');if(t.disccsChainCallbacks&&process.argv.includes('--disccs-chain-no-flag')&&name==='c238273770.lua')lua=lua.replaceAll('Duel.GetFlagEffect(tp,id+400)==0','true');if((t.pendulumLeaveBattle&&process.argv.includes('--pendulum-leave-no-damage')||process.argv.includes('--leave-field-no-damage'))&&name==='c'+t.family+'.lua')lua=lua.replaceAll('EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DELAY','EFFECT_FLAG_DELAY');if(t.damageBanishEvent&&process.argv.includes('--damage-banish-permissive')&&name==='c'+t.family+'.lua'){const v=({212413422:'e3',216620496:'e2',253128790:'e1',259542408:'e6',259605536:'e4'})[t.family];lua=lua.replace(v+':SetProperty(',v+':SetProperty(EFFECT_FLAG_DAMAGE_STEP+');}return lua;
   };
   const logs=[],team={startingLP:8000,startingDrawCount:0,drawCountPerTurn:0};
   const duel=core.createDuel({flags:mod.OcgDuelMode.MODE_MR5|mod.OcgDuelMode.PSEUDO_SHUFFLE,seed:t.diceSeed?Array.from({length:4},(_,i)=>(BigInt(t.diceSeed+i)*0x9e3779b97f4a7c15n)&0xffffffffffffffffn):[1n,2n,3n,4n],team1:team,team2:team,cardReader:code=>data.get(code),scriptReader:reader,errorHandler:(type,message)=>logs.push({type,message})});
   try{
    for(const file of ['constant.lua','utility.lua','procedure.lua'])assert(core.loadScript(duel,file,reader(file)));
-   if(t.nauticaOverlay||t.aeroNecro||t.cutiferSet||[nullbind,chapter,graysentry,vazagiel,graydeux,orb,ophiel,shards,burning,prism,failuresAip,ghostXyz,aeroXyz,shade,ghostTransfer,claw,rook,knight,227531376,244986323,215885404,284639726,210696007,233212369].includes(t.family))assert(core.loadScript(duel,'chain-target-compat.lua','CHAININFO_TARGET_CARDS=8 Card.IsCanOverlay=Card.IsCanOverlay or function(c) return c:IsType(TYPE_MONSTER) and not c:IsType(TYPE_TOKEN) end'));
+   if(t.deckReceiptCount&&t.family===259395418)assert(core.loadScript(duel,'gladiator-summon-source-fixture.lua','aux.gbspcon=function(e) return e:GetHandler():IsSummonType(SUMMON_TYPE_SPECIAL) end'));
+   if(t.singleDeckSuccessor)assert(core.loadScript(duel,'single-deck-fixture-api.lua','CHAININFO_TARGET_CARDS=8 CHAININFO_TRIGGERING_ATTRIBUTE=22 Card.IsAbleToExtra=Card.IsAbleToExtra or Card.IsAbleToDeck aux.AddSynchroProcedure=function() end'));
+   if(t.alternativeReceipt&&t.family===259578863)assert(core.loadScript(duel,"isolate-oracle-link.lua","aux.AddLinkProcedure=function() end"));
+   if(t.galacticaLeave)assert(core.loadScript(duel,'isolate-galactica-link-procedure.lua','aux.AddLinkProcedure=function() end'));
+   if(t.groupedDeckDraw){
+    assert(core.loadScript(duel,'grouped-deck-fixture-api.lua',[
+     'CHAININFO_TARGET_CARDS=8',
+     'Duel.GetTargetsRelateToChain=Duel.GetTargetsRelateToChain or function() return Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS) end',
+     'aux.NecroValleyNegateCheck=aux.NecroValleyNegateCheck or function() return false end'
+    ].join('\n')));
+    if(t.family===212429024)assert(core.loadScript(duel,'isolate-nebulix-synchro.lua','aux.AddSynchroProcedure=function() end'));
+   }
+   if(t.jannaSearch||t.windborneRecovery||t.exactDeckReturn&&t.family===248940511)assert(core.loadScript(duel,'isolate-janna-synchro-recipe.lua','aux.AddSynchroProcedure=function() end'));
+   if(t.preparationImmediate==='quick-play')assert(core.loadScript(duel,'preparation-quickplay-compat.lua','EFFECT_QP_ACT_IN_SET_TURN=19'));
+   if(t.koaiQuick||t.jannaSearch||t.windborneRecovery||t.deckReceiptCount||t.exactDeckReturn||t.singleDeckDraw||t.nauticaOverlay||t.aeroNecro||t.cutiferSet||[nullbind,chapter,graysentry,vazagiel,graydeux,orb,ophiel,shards,burning,prism,failuresAip,ghostXyz,aeroXyz,shade,ghostTransfer,claw,rook,knight,227531376,244986323,215885404,284639726,210696007,233212369].includes(t.family))assert(core.loadScript(duel,'chain-target-compat.lua','CHAININFO_TARGET_CARDS=8 Card.IsCanOverlay=Card.IsCanOverlay or function(c) return c:IsType(TYPE_MONSTER) and not c:IsType(TYPE_TOKEN) end'));
 // OCGCore lacks Omega's Duel.CheckXyzMaterial. Isolate the unchanged alternate
    // procedure here. The ordinary Level 12 Xyz recipe remains outside this case.
-   if(t.aeroNecro||t.nativeSpecial||t.pastrygeistSet||t.mirageSet||t.oniQuickRecipient||t.cutiferSet)assert(core.loadScript(duel,'isolate-xyz-recipe.lua','aux.AddXyzProcedure=function() end'));
+   if(t.isolateXyzRecipe||t.melissaQuick||t.melissaProtection||t.melvilleReceipt||t.alternativeReceipt&&t.family===238711686||t.aeroNecro||t.nativeSpecial||t.pastrygeistSet||t.mirageSet||t.oniQuickRecipient||t.cutiferSet)assert(core.loadScript(duel,'isolate-xyz-recipe.lua','aux.AddXyzProcedure=function() end'));
    if(t.linkRecipe||t.brigadeLink||t.linkApiOnly)assert(core.loadScript(duel,'omega-link-procedure-api.lua',[
     'Card.IsLinkType=Card.IsLinkType or Card.IsType',
     'Duel.GetMustMaterial=Duel.GetMustMaterial or function() return Group.CreateGroup() end',
@@ -908,7 +2573,7 @@ end`;
    ].join('\n')));
    if(t.standardXyz)assert(core.loadScript(duel,'omega-basic-xyz-material-api.lua',[
     '-- Adapter for ordinary fixture monsters only. Exotic Xyz material modifiers',
-    '-- and live Omega are outside these Level 12 recipe cases.',
+    '-- and live Omega are outside these recipe cases.',
     'local function pool(c,f,lv,og)',
     ' local g=og or Duel.GetFieldGroup(c:GetControler(),LOCATION_MZONE,0)',
     ' return g:Filter(function(mc) return aux.XyzLevelFreeFilter(mc,c) and mc:IsXyzLevel(c,lv) and (not f or f(mc,c)) end,nil)',
@@ -925,39 +2590,111 @@ end`;
     'function aux.XyzTarget(...) local f=target(...) return function(e,tp,eg,ep,ev,re,r,rp,chk,c,required,pool,min,max) return f(e,tp,eg,ep,ev,re,r,rp,chk,c,pool,min,max) end end',
     'function aux.XyzOperation(...) local f=operation(...) return function(e,tp,eg,ep,ev,re,r,rp,c,required,pool,min,max) return f(e,tp,eg,ep,ev,re,r,rp,c,pool,min,max) end end'
    ].join('\n')));
+   if(t.emma||t.lokaeoXyz)assert(core.loadScript(duel,'omega-xyz-call-arguments.lua',[
+    'local check,summon=Card.IsXyzSummonable,Duel.XyzSummon',
+    'function Card.IsXyzSummonable(c,pool,min,max) return check(c,nil,pool,min,max) end',
+    'function Duel.XyzSummon(tp,c,pool,min,max) return summon(tp,c,nil,pool,min,max) end'
+   ].join('\n')));
    if(t.pillarReturn||t.damageBanishEvent&&t.family===212413422)assert(core.loadScript(duel,'omega-related-targets-api.lua','Duel.GetTargetsRelateToChain=Duel.GetTargetsRelateToChain or function() local e=Duel.GetChainInfo(0,1) local g=Duel.GetChainInfo(0,8) return g:Filter(Card.IsRelateToEffect,nil,e) end'));
    if(t.family===ghostXyz||t.brigadeSummon||t.armadaRevive||t.lovingMaterial||t.brigadeXyz||t.brigadeFieldBoth||t.megalSharedChain||t.galaxixFieldRecovery||t.myutantRecovery)assert(core.loadScript(duel,'faceup-grave-fixture-api.lua','Card.IsFaceupEx=Card.IsFaceupEx or function(c) return not c:IsLocation(LOCATION_ONFIELD+LOCATION_REMOVED+LOCATION_EXTRA) or c:IsFaceup() end'));
    if(t.standDraw||t.armadaDraw)assert(core.loadScript(duel,'omega-draw-chaininfo-api.lua','CHAININFO_TARGET_PLAYER=9 CHAININFO_TARGET_PARAM=10'));
+   if(t.stockNegationControl)assert(core.loadScript(duel,'stock-negation-control-no-synchro-recipe.lua','aux.AddSynchroProcedure=function() end aux.NonTuner=function() return function() return true end end'));
+   if(t.chaosReturn)assert(core.loadScript(duel,'omega-chaos-target-chaininfo.lua','CHAININFO_TARGET_CARDS=8'));
+   if(t.galacticaBattle)assert(core.loadScript(duel,'omega-galacticarina-faceup-api.lua','Card.IsFaceupEx=Card.IsFaceupEx or function(c) return not c:IsLocation(LOCATION_ONFIELD+LOCATION_REMOVED+LOCATION_EXTRA) or c:IsFaceup() end'));
+   if(t.octantisUpgrade)assert(core.loadScript(duel,'omega-octantis-open-zone-cost-stage.lua','Effect.IsCostChecked=Effect.IsCostChecked or function() return false end'));
    if(t.roarEquipCapacity)assert(core.loadScript(duel,'omega-accepted-target-stage-api.lua','Effect.IsCostChecked=Effect.IsCostChecked or function() return true end'));
-   if(t.lastStandNeg)assert(core.loadScript(duel,'omega-trigger-location-api.lua','CHAININFO_TRIGGERING_LOCATION=4'));
+   if(t.lastStandNeg||t.baubaReceipt)assert(core.loadScript(duel,'omega-trigger-location-api.lua','CHAININFO_TRIGGERING_LOCATION=4'));
    if(t.originsAttach==='spell-target')assert(core.loadScript(duel,'omega-faceup-field-overlay-api.lua','Card.IsCanOverlay=function(c) return c:IsLocation(LOCATION_ONFIELD) and not c:IsType(TYPE_TOKEN) end'));
    if(t.nauticaOverlay)assert(core.loadScript(duel,'omega-grave-trap-overlay-api.lua','local old=Card.IsCanOverlay Card.IsCanOverlay=function(c) return old(c) or c:IsCode(218905439) and c:IsLocation(LOCATION_GRAVE) end'));
    if(t.aquaUseLock)assert(core.loadScript(duel,'omega-fusion-mandatory-api.lua','Duel.GetMustMaterial=function() return Group.CreateGroup() end Duel.CheckMustMaterial=function() return true end'));
    const next={};
    const place=(code,location,player=0)=>{
-    const key=player+':'+location,sequence=next[key]||0;next[key]=sequence+1;
-    core.duelNewCard(duel,{team:player,duelist:0,code,controller:player,location:location===L.FZONE?T:location,sequence:location===L.FZONE?5:location===T||location===F?sequence:0,position:t.cutiferSet&&code===wing||t.oniQuickRecipient===75367227&&code===dark&&location===T||location===E||location===D||t.myutantRecovery?.includes('facedown')&&location===B&&code===34572613||t.galaxixFieldRecovery?.includes('facedown')&&location===B&&code===body||t.setSourceSpell&&location===T&&code===t.family||t.banishedTrapFacedown&&location===B&&code===trap?P.FACEDOWN_DEFENSE:P.FACEUP_ATTACK});
+    const key=player+':'+location,sequence=t.musicaleTranscend&&code===259797813?2:next[key]||0;next[key]=sequence+1;
+    core.duelNewCard(duel,{team:player,duelist:0,code,controller:player,location:location===L.FZONE?T:location,sequence:location===L.FZONE?5:location===T||location===F?sequence:0,position:(t.galacticaBattle==='destruction'||['destruction','two battles'].includes(t.venaticiBattle))&&code===dark?P.FACEUP_DEFENSE:t.galacticaBattle==='face-down recruit'&&code===body||t.chaosReturn==='face-down'&&code===wing||t.hextaniusRecycle==='face-down banishment'&&code===body||t.zaokaRecovery==='face-down banishment'&&code===body||t.oroSearch==='facedown'&&code===t.family||t.bojin==='facedown'&&code===body||(t.emma==='counter'||['counter','upper'].includes(t.lokaeoXyz))&&code===spell||t.cutiferSet&&code===wing||t.oniQuickRecipient===75367227&&code===dark&&location===T||location===E||location===D||t.myutantRecovery?.includes('facedown')&&location===B&&code===34572613||t.galaxixFieldRecovery?.includes('facedown')&&location===B&&code===body||t.setSourceSpell&&location===T&&code===t.family||t.banishedTrapFacedown&&location===B&&code===trap?P.FACEDOWN_DEFENSE:P.FACEUP_ATTACK});
    };
-   for(const args of t.setup)place(...args);
-   for(const player of [0,1])for(let i=0;i<8;i++)place(dark,D,player);
+   for(const args of t.setup)if(!t.melvilleReceipt||args[1]!==D)place(...args);
+   for(const player of t.zaokaExcavation?[1]:[0,1])for(let i=0;i<8;i++)place(t.discardReceipt||t.drawReceipt?trap:t.backwashingShared?helper:t.musicaleSearch||t.ownSearch||t.exploringBoundary?spell:dark,D,player);
+   if(t.melvilleReceipt)for(const args of t.setup)if(args[1]===D)place(...args);
+   if(t.adventuresOverlay==='independent')assert(core.loadScript(duel,'adventures-chain-api.lua',
+    'CHAININFO_TARGET_CARDS=8 CHAININFO_TARGET_PLAYER=9 CHAININFO_TARGET_PARAM=10'));
+   if(t.backwashingBoundary)assert(core.loadScript(duel,'backwashing-chain-api.lua','CHAININFO_TARGET_CARDS=8 CHAININFO_TARGET_PLAYER=9 CHAININFO_TARGET_PARAM=10'));
+   if(t.exploringBoundary)assert(core.loadScript(duel,'exploring-chaininfo-api.lua','CHAININFO_TARGET_PLAYER=9 CHAININFO_TARGET_PARAM=10'));
    core.startDuel(duel);
-   let familyTriggers=0,step=0,done=false,opponentTurn=false,quickUsed=false,attacked=false,opponentActivated=false,secondSpell=false,recoveredAmount=0,recoverySeen=false,protectionChecked=false,burnDamage=0,revengeDamage=0,diceRoll=0,sharedChainActive=false,sharedChainChecked=false,placedResource=false;
+   let auditTurn=0,familyTriggers=0,step=0,done=false,opponentTurn=false,quickUsed=false,attacked=false,opponentActivated=false,secondSpell=false,recoveredAmount=0,recoverySeen=false,protectionChecked=false,burnDamage=0,revengeDamage=0,diceRoll=0,sharedChainActive=false,sharedChainChecked=false,placedResource=false;
+   const discardRevealed=new Set();
+   let musicaleDraw=0,musicaleReveal=0,musicaleBottom=0,musicaleResponse=0,musicaleSearchOffers=0;
+   const zaoRecovery=[],zaokaConfirmed=[];
+   let nordbarChain=false,nordbarNegated=0,venaticiAttacks=0;
+   let zaokaShuffles=0;
+   let treasureOptionPrompts=0,chunyinNameGuard=false;
+   let lokaeoUpperSolved=false,lokaeoSummonedBeforeLower=false,lokaeoLowerStarted=false;
+   let lokaeoDraws=0,lokaeoRevivalOffers=0,lokaeoDeckReturn=false,lokaeoPhase=0;
+   const lokaeoRevivalTurn=t.lokaeoRevivalTurn??3;
+   const lokaeoAcceptRevival=t.lokaeoAcceptRevival??(t.lokaeoRecycle==='revive');
+   const formationTimingTrace=[];
+   let harmonyNormalSeen=false,harmonySpecialSeen=false,bobbieRecipients=0;
+   let emmaChainEnded=false,emmaXyzAfterChain=false,emmaCounterChained=false;
    const respond=(type,rest)=>core.duelSetResponse(duel,{type,...rest});
    for(let i=0;i<200&&!done;i++){
     const state=core.duelProcess(duel),messages=core.duelGetMessage(duel);
     assert(!logs.some(x=>x.type===0),logs.map(x=>x.message).join('\n'));
     for(const m of messages){
+     if((t.formationTiming||t.formationMultiChain)&&[M.CHAINING,M.CHAIN_SOLVING,M.CHAIN_SOLVED,M.SPSUMMONING,M.SPSUMMONED].includes(m.type))formationTimingTrace.push(m);
+     if(t.zaokaExcavation&&m.type===M.CONFIRM_DECKTOP)zaokaConfirmed.push(m.cards.length);
+     if(t.zaokaExcavation&&m.type===M.SHUFFLE_DECK&&m.player===0)zaokaShuffles++;
+     if(t.melvilleReceipt&&m.type===M.CONFIRM_CARDS&&m.player===1)
+      for(const c of m.cards)if([body,wing].includes(c.code))discardRevealed.add(c.code);
+     if(t.revealGroup&&m.type===M.CONFIRM_CARDS&&m.player===1)for(const c of m.cards)if([body,wing].includes(c.code))discardRevealed.add(c.code);
+     if((t.alternativeReceipt||t.baubaReceipt)&&m.type===M.CONFIRM_CARDS&&m.player===1&&m.cards.some(c=>c.code===(t.baubaReceipt?body:t.receiptTarget)))musicaleReveal++;
+     if(t.discardReceipt&&m.type===M.CONFIRM_CARDS&&m.player===1)for(const c of m.cards)if([t.discardResource??body,spell].includes(c.code))discardRevealed.add(c.code);
+     if((t.jannaSearch||t.windborneRecovery)&&m.type===M.CONFIRM_CARDS&&m.player===1&&m.cards.some(c=>c.code===link))musicaleReveal++;
+     if(t.ownSearch&&m.type===M.CONFIRM_CARDS&&m.player===1&&m.cards.some(c=>c.code===body))musicaleReveal++;
+     if(t.harmonySearch&&m.type===M.CONFIRM_CARDS&&m.player===1&&m.cards.some(c=>c.code===body))musicaleReveal++;
+     if(t.scarletReceipt&&m.type===M.CONFIRM_CARDS&&m.player===1&&m.cards.some(c=>c.code===248946297))musicaleReveal++;
+     if(t.harmonyLimit&&m.type===M.SUMMONING&&m.code===wing)harmonyNormalSeen=true;
+     if(t.harmonyLimit&&m.type===M.SPSUMMONING&&m.code===dark)harmonySpecialSeen=true;
+     if(t.harmonySearch&&t.family===259114562&&m.type===M.SPSUMMONING&&m.code===body)bobbieRecipients++;
+     if(t.lokaeoXyz==='upper'){
+      if(m.type===M.CHAIN_SOLVED&&m.chain_size===2)lokaeoUpperSolved=true;
+      if(m.type===M.CHAIN_SOLVING&&m.chain_size===1)lokaeoLowerStarted=true;
+      if(m.type===M.SPSUMMONING&&m.code===231825514)lokaeoSummonedBeforeLower=lokaeoUpperSolved&&!lokaeoLowerStarted;
+     }
+     if((t.emma||t.lokaeoXyz)&&m.type===M.CHAIN_END&&familyTriggers)emmaChainEnded=true;
+     if(m.type===M.SPSUMMONING&&(t.emma&&m.code===225109525||t.lokaeoXyz&&m.code===231825514))emmaXyzAfterChain=emmaChainEnded;
+     if((t.emma==='counter'||['counter','upper'].includes(t.lokaeoXyz))&&m.type===M.CHAINING&&m.code===spell)emmaCounterChained=true;
+     if(t.ownSearch&&m.type===M.CHAINING&&m.code===dark)musicaleResponse++;
      if((t.chainLimitCopies||t.megalSharedChain)&&m.type===M.CHAINING&&m.code===t.family&&Number(m.description)===(t.chainStartDescription??t.actionDescription))sharedChainActive=true;
      if((t.chainLimitCopies||t.megalSharedChain)&&m.type===M.CHAIN_SOLVED)sharedChainActive=false;
+     if(t.musicaleSearch){
+      if(m.type===M.DRAW&&m.player===0)musicaleDraw++;
+      if(m.type===M.CONFIRM_CARDS&&m.player===0&&m.cards.some(c=>c.code===wing))musicaleReveal++;
+      if(m.type===M.MOVE&&m.from.location===H&&m.from.controller===0&&m.to.location===D)musicaleBottom++;
+      if(m.type===M.RECOVER&&m.player===0)recoveredAmount+=m.amount;
+      if(m.type===M.CHAINING&&m.code===dark)musicaleResponse++;
+     }
      if(t.joyousDice&&m.type===M.TOSS_DICE){assert.equal(diceRoll,0,'One native die roll');diceRoll=m.results[0];}
      if(t.revengeRevive&&m.type===M.DAMAGE&&m.player===1)revengeDamage+=m.amount;
      if(t.burnResolution&&m.type===M.DAMAGE&&m.player===1)burnDamage+=m.amount;
      if(t.forwardMaterial&&m.type===M.RECOVER&&m.player===1)recoveredAmount+=m.amount;
-     if((t.negateUrphiel||t.lastStandNeg||t.supremacyNeg||t.stainDragar)&&m.type===M.RECOVER)recoverySeen=true;
+     if(t.galacticaBattle==='forced attack'&&m.type===M.ATTACK)assert.equal(m.target?.sequence,0,'Must attack the Galactica source rather than the other monster');
+     if(t.nordbarNegate&&m.type===M.CHAIN_NEGATED)nordbarNegated++;
+     if((t.nordbarNegate||t.negateUrphiel||t.lastStandNeg||t.supremacyNeg||t.stainDragar)&&m.type===M.RECOVER)recoverySeen=true;
      if(t.stainDragar&&m.type===M.RECOVER&&m.player===0)recoveredAmount+=m.amount;
      if(t.capacityFollowup&&m.type===M.MOVE&&m.card===body&&m.to.location===T)placedResource=true;
-     if(m.type===M.NEW_TURN)opponentTurn=m.player===1;
-     if(m.type===M.CHAINING&&t.steps[step]===m.code)step++;
+     if(t.zaoSequence&&m.type===M.RECOVER)zaoRecovery.push(m.amount);
+     if(m.type===M.NEW_TURN){opponentTurn=m.player===1;auditTurn++;}
+     if(t.nordbarSearch&&m.type===M.CHAINING&&m.code===t.family)
+      assert.deepEqual([auditTurn,lokaeoPhase],[2,2],'Nordbar searches during opponent Standby');
+     if(m.type===M.CHAINING)nordbarChain=true;
+     if(m.type===M.CHAIN_END)nordbarChain=false;
+     if((t.lokaeoRecycle||t.nordbarSearch||t.galacticaBattle)&&m.type===M.NEW_PHASE)lokaeoPhase=m.phase;
+     if(t.galacticaBattle==='Hand start'&&m.type===M.CHAINING&&m.code===t.family)assert.equal(lokaeoPhase,8,'Hand trigger occurs at Battle Phase start');
+     if(t.lokaeoRecycle&&m.type===M.MOVE&&m.card===t.pick&&m.to.location===D)lokaeoDeckReturn=true;
+     if(t.lokaeoRecycle&&m.type===M.DRAW&&m.player===0&&auditTurn===2)lokaeoDraws+=m.drawn.length;
+     if(t.lokaeoRecycle&&m.type===M.CHAINING&&m.code===t.family&&m.triggering_location===B)
+      assert.deepEqual([auditTurn,lokaeoPhase],[lokaeoRevivalTurn,2],'Revival activates in the following turn Standby');
+     if(m.type===M.CHAINING&&t.steps[step]===m.code
+      &&!(t.adventuresOverlay==='independent'&&Number(m.description)===132905439*16+1))step++;
      if(m.type===M.CHAINING&&t.family===m.code&&(!t.clawSelfRevive||Number(m.description)===133137697*16+2))familyTriggers++;
      if(m.type===M.CHAINING&&m.code===soprana&&t.opponent)quickUsed=true;
     }
@@ -966,20 +2703,79 @@ end`;
     switch(p.type){
     case M.SELECT_IDLECMD:{
      const code=t.steps[step];
+     if(t.windborneRecovery&&auditTurn<3){respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});continue;}
+     const adventuresResetStep=t.adventuresOverlay==='independent'?2:t.adventuresOverlay==='grave-reset'?1:0;
+     if(adventuresResetStep&&step===adventuresResetStep&&auditTurn<3){
+      assert.equal(familyTriggers,adventuresResetStep,'The first turn effects resolved');
+      respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});
+      continue;
+     }
+     if(t.adventuresOverlay==='independent'&&step===1){
+      assert.equal(familyTriggers,1,'The Trap has resolved this turn');
+      assert(!p.activates.some(c=>c.code===t.family&&c.location===T),'The second Trap copy is unavailable');
+     }
+     if(t.preparationExpiry&&step===1&&auditTurn<3){respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});continue;}
+     if(t.preparationShared&&step===1&&auditTurn<3){if(auditTurn===1)assert(!p.activates.some(c=>c.code===t.family),'Other effect must be locked this turn');respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});continue;}
+     if(t.backwashingShared&&step===1&&auditTurn<3){
+      if(auditTurn===1)assert(!p.activates.some(c=>c.code===t.family),'Both effects share the same use limit');
+      respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});
+      continue;
+     }
+     if(['count','expiry'].includes(t.exploringBoundary)&&step===1&&auditTurn<3){
+      if(t.exploringBoundary==='count'&&auditTurn===1)assert(!p.activates.some(c=>c.code===t.family),'A second copy cannot activate this turn');
+      respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});
+      continue;
+     }
+     if(t.melissaTurn&&step===t.steps.length&&!opponentTurn){
+      assert.equal(familyTriggers,1,'Melissa activated on its controller turn');
+      assert(!p.activates.some(c=>c.code===t.family),'A second use is unavailable with two materials and another search target');
+      respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});
+      continue;
+     }
+     if(t.formationLinkReset&&step===1&&auditTurn<3){assert.equal(familyTriggers,1,'First Link trigger must have resolved');respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});continue;}
+     if(t.harmonyTurnReset&&step===1&&auditTurn<3){
+      assert.equal(familyTriggers,1,'First-turn use occurred');
+      respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});
+      continue;
+     }
+     if(t.harmonyOwnSummon&&step===1)assert.equal(familyTriggers,0,'Your own summon leaves the Hand effect inactive');
+     if(t.harmonyLockExpiry&&step===1&&auditTurn<3){
+      if(auditTurn===1)assert(!p.activates.some(c=>c.code===body),'Actual receipt is locked on the search turn');
+      respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});
+      continue;
+     }
      if(code){
+      if(t.fusionDeckPayment&&t.family===227035644&&auditTurn<3){respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});continue;}
       if(t.ghostTransferFamily&&code===ghostTransfer&&!opponentTurn){respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});continue;}
       if(t.oniExpiry&&code===helper&&opponentTurn){respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});continue;}
-      const special=(t.brigadeXyz||t.brigadeLink)&&code===t.family||t.procedureSource&&code===t.family||t.materialNative&&code===body||t.nativeSpecial&&code===graydeux||(t.linkRecipe||t.xyzRecipe)&&code===t.family||t.materialSynchro&&code===fusion;
+      const special=(t.brigadeXyz||t.brigadeLink||t.levelOneXyzRecipe)&&code===t.family||t.procedureSource&&code===t.family||t.materialNative&&code===body||t.nativeSpecial&&code===graydeux||(t.linkRecipe||t.xyzRecipe)&&code===t.family||t.materialSynchro&&code===fusion;
       if(t.chainLimitCopies&&code===t.family)assert(p.activates.some(c=>c.code===t.family&&c.sequence===1&&Number(c.description)===132639726*16),'Second copy draw effect is legal before the Chain');
       if(t.megalSharedChain&&code===helper)assert(p.activates.some(c=>c.code===t.family&&Number(c.description)===133179054*16+1),'Other copy Quick Effect legal before Chain');
       const setting=code<0&&t.setMonsterCodes?.includes(-code);
-      const list=special?p.special_summons:setting?p.monster_sets:code<0?p.summons:p.activates,index=list.findIndex(x=>x.code===Math.abs(code)&&(!t.actionDescription||x.code===helper||Number(x.description)===t.actionDescription)&&(!t.activationSequence||x.code===helper||x.sequence===t.activationSequence)&&(!t.activationLocation||x.code===helper||x.location===t.activationLocation));
-      assert(index>=0,'Action unavailable '+code+(t.materialNative?' '+JSON.stringify(p.special_summons)+' fields '+JSON.stringify(core.duelQueryLocation(duel,{flags:Q.CODE|Q.LEVEL,controller:0,location:F})) :''));
+      const activationLocation=t.preparationShared?((t.preparationShared==='trap-first')===(step===0)?T:G):t.backwashingShared?((t.backwashingBoundary==='trap-first')===(step===0)?T:G):t.activationLocation;
+      const list=special?p.special_summons:setting?p.monster_sets:code<0?p.summons:p.activates,index=list.findIndex(x=>x.code===Math.abs(code)&&(!t.actionDescription||x.code===helper||Number(x.description)===t.actionDescription)&&(!t.activationSequence||x.code===helper||x.sequence===t.activationSequence)&&(!activationLocation||x.code===helper||x.location===activationLocation));
+      if(t.harmonySearch||t.emma)assert(![...p.summons,...p.monster_sets].some(c=>c.code===t.family),'Nautica Hand trigger cannot be Normal Summoned or Set');
+      assert(index>=0,'Action unavailable '+code+(t.backwashingBoundary?' '+JSON.stringify({auditTurn,step,activationLocation,options:p.activates.map(c=>[c.code,c.location])}):'')+(t.materialNative?' '+JSON.stringify(p.special_summons)+' fields '+JSON.stringify(core.duelQueryLocation(duel,{flags:Q.CODE|Q.LEVEL,controller:0,location:F})) :''));
       respond(R.SELECT_IDLECMD,{action:special?A.SELECT_SPECIAL_SUMMON:setting?A.SELECT_MONSTER_SET:code<0?A.SELECT_SUMMON:A.SELECT_ACTIVATE,index});if(code<0||special)step++;
-     }else if(t.battle&&!attacked)respond(R.SELECT_IDLECMD,{action:opponentTurn?A.TO_BP:A.TO_EP,index:0});
-     else if((t.opponent||t.rewrite||t.endRecovery||t.tempLevel==='expiry'||t.statExpiry)&&!opponentTurn&&!(t.supremacyReturn&&opponentActivated))respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});
+     }else if(t.battleTactics==='expires'&&auditTurn<2)respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});
+     else if(t.nordbarSearch&&auditTurn<3)respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});
+     else if(t.lokaeoExternal&&auditTurn<(t.lokaeoObserveUntil??lokaeoRevivalTurn)||t.lokaeoRecycle==='decline-revive'&&opponentActivated&&auditTurn<4)respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});
+     else if(t.lokaeoStandby&&opponentActivated&&auditTurn<3)respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});
+     else if(t.battle&&!attacked)respond(R.SELECT_IDLECMD,{action:(t.galacticaLeave||t.galacticaOwnBattle?auditTurn>=3:opponentTurn)?A.TO_BP:A.TO_EP,index:0});
+     else if((t.musicaleSearch||t.opponent||t.rewrite||t.endRecovery||t.tempLevel==='expiry'||t.statExpiry)&&!opponentTurn&&!(t.supremacyReturn&&opponentActivated)&&!(t.lokaeoStandby&&auditTurn>=3))respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});
+     else if(t.musicaleSearch==='success'&&auditTurn===2){
+      assert(!p.activates.some(x=>x.code===wing),'Same-name activation is forbidden during the next turn');
+      assert(p.activates.some(x=>x.code===dark),'Different-name activation remains available during the lock');
+      respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});
+     }
      else if(t.supremacyReturn&&opponentTurn&&opponentActivated)respond(R.SELECT_IDLECMD,{action:A.TO_EP,index:0});
      else if(t.forwardMaterial&&opponentActivated&&!secondSpell){const index=p.activates.findIndex(c=>c.code===spell);assert(index>=0,'Second Spell activation available');secondSpell=true;respond(R.SELECT_IDLECMD,{action:A.SELECT_ACTIVATE,index});}
+     else if((t.lokaeoRecycle==='recycle-limit'||t.baubaSource==='copy-limit')&&opponentActivated&&!secondSpell){
+      const index=p.activates.findIndex(c=>c.code===dark);
+      assert(index>=0,'A second opponent activation is available');
+      secondSpell=true;
+      respond(R.SELECT_IDLECMD,{action:A.SELECT_ACTIVATE,index});
+     }
      else if(t.rewrite&&!opponentActivated){
       const index=p.activates.findIndex(x=>x.code===dark);
       assert(index>=0,'Opponent Spell unavailable');opponentActivated=true;
@@ -990,7 +2786,7 @@ end`;
        const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(Boolean).find(x=>x.code===urphiel);
        assert.equal(c.overlayCards.length,t.negateMode==='no-companion'?1:0,'Detach cost and illegal-activation boundaries');
       }
-      if(t.rewrite)assert.equal(familyTriggers,t.noRewrite?0:1,'Effect rewrite activation matches available resources');
+      if(t.rewrite&&!t.melissaTurn&&!t.lokaeoRecycle)assert.equal(familyTriggers,t.noRewrite?0:1,'Effect rewrite activation matches available resources');
       if(t.rewrite&&t.family===grayshade&&!t.reset&&!t.blockedRecipient)assert(!core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:G}).filter(Boolean).some(x=>x.code===spell),'Target Spell did not leave the GY');
       if(t.endRecovery){assert.equal(familyTriggers,t.materials===2&&!t.noRecoveryTarget?1:0,'End Phase activation legality');const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(Boolean).find(x=>x.code===grayshade);assert.equal(c.overlayCards.length,t.materials===2&&!t.noRecoveryTarget?0:t.materials,'Two material cost');}
       if(t.xyzFixture&&!t.wrongXyzLevel&&!t.opposingXyzMaterial){const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(Boolean).find(x=>x.code===fusion);assert.deepEqual(c.overlayCards.slice().sort(),[body,graysentry].sort(),'Actual material selection includes Grayscale');}
@@ -1004,9 +2800,17 @@ end`;
       }
       if(t.shardsProbe&&!t.forbidden){const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.POSITION,controller:0,location:F}).filter(Boolean).find(x=>x.code===body);assert.equal(c.position,P.FACEUP_DEFENSE);}
       if(t.checkOrb){const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(Boolean).find(x=>x.code===body);assert.deepEqual(c.overlayCards,[orb],'Orb actually attached');}
+      if(t.zaokaExcavation){
+       assert.deepEqual(zaokaConfirmed,t.noRewrite?[]:[3],'Exactly the top three cards are excavated');
+       assert.equal(zaokaShuffles,Number(!t.noRewrite&&t.zaokaExcavation!=='all match'),'Unsent cards are shuffled into the Deck');
+      }
+      if(t.checkHikamSet){
+       const set=core.duelQueryLocation(duel,{flags:Q.CODE|Q.POSITION,controller:0,location:T}).find(c=>c?.code===body);
+       assert(set&&set.position&P.FACEDOWN,'Sacred Treasure Spell was Set face-down');
+      }
       if(t.checkDefense){const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.POSITION,controller:0,location:F}).filter(Boolean).find(x=>x.code===wing);assert.equal(c.position,P.FACEUP_DEFENSE);}
       if(t.tempLevel){const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.LEVEL,controller:0,location:F}).filter(Boolean).find(x=>x.code===t.family);assert.equal(c.level,t.tempLevel==='synchro'?4:8,'Temporary Level and expiration');}
-      if(t.protectionProbe||t.companionProtect||t.originsProtect)assert(protectionChecked,'Actual opponent target options checked');
+      if(t.koaiProtect||t.protectionProbe||t.companionProtect||t.originsProtect)assert(protectionChecked,'Actual opponent target options checked');
       if(t.burnResolution)assert.equal(burnDamage,t.burnResolution==='normal'?500:0,'Damage requires a successful return at resolution');
       if(t.sarifielAttach&&['grave','banished'].includes(t.attachMode)){const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(Boolean).find(x=>x.code===sarifiel);assert.deepEqual(c.overlayCards,[body],'Actually attached selected monster');}
       if(t.blockedRecipient){const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(Boolean).find(x=>x.code===t.blockedRecipient);assert.deepEqual(c.overlayCards,[],'Recipient immunity blocks attachment');}
@@ -1024,16 +2828,45 @@ end`;
       if(t.specialAvailability!==undefined)assert.equal(p.special_summons.some(c=>c.code===t.family),t.specialAvailability,'Archetype summon condition');
       if(t.forwardMaterial)assert.equal(recoveredAmount,t.forwardMaterial==='attached'?1000:t.forwardMaterial==='monster-first'?500:1500,'First Spell negated, second resolves; host eligibility');
       if(t.forbiddenSummon)assert(![...p.summons,...p.monster_sets].some(c=>c.code===t.forbiddenSummon),'No extra Normal Summon/Set available');
+      if(t.nordbarNegate){
+       assert.equal(nordbarNegated,Number(!t.noRewrite),'Only a negatable activation is negated');
+       assert.equal(recoverySeen,!!t.noRewrite||t.nordbarNegate==='copy limit','Unnegated activations resolve');
+      }
       if(t.supremacyNeg){assert(!recoverySeen,'Opponent activation negated');assert.equal(core.duelQueryCount(duel,1,B),t.supremacyBanishCount??3,'Activated card and same-name GY copies banished');}
       if(t.originsDes){const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(Boolean).find(c=>c.code===244986323);assert.equal(c.overlayCards.length,t.originsDes==='one-material'?1:0,'Detach two materials as cost');}
       if(t.revengeRevive&&t.battle)assert.equal(familyTriggers,t.expectedFamilyUses,'Battle revival trigger count');
       if(t.revengeRevive)assert.equal(revengeDamage,t.revengeRevive==='opponent'?1400:['battle','battle-facedown'].includes(t.revengeRevive)?3000:0,'Highest opponent ATK damage and trigger boundaries');
+      if(t.backwashingShared)assert.equal(familyTriggers,2,'Both effects activate on different turns');
+      if(t.exploringBoundary){
+       assert.equal(familyTriggers,t.expectedFamilyUses,'Actual spell activations');
+       if(t.exploringBoundary==='count'){
+        const hand=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:H}).filter(Boolean);
+        assert.equal(hand.filter(c=>c.code===body).length,2,'Both activations resolve a search');
+       }
+      }
+      if(t.melissaQuick){
+       const xyz=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(Boolean).find(c=>c.code===t.family);
+       assert.equal(familyTriggers,t.expectedFamilyUses,'Quick Effect activation requires cost and a legal Deck card');
+       assert.equal(xyz?.overlayCards.length,t.melissaRemaining,'Exactly two materials detach on activation');
+       if(t.melissaTurn){
+        const hand=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:H}).filter(Boolean);
+        assert.equal(hand.filter(c=>c.code===body).length,2,'Each turn resolves a separate search');
+       }
+       if(['set-spell','set-trap','choose-set'].includes(t.melissaQuick)){
+        const set=core.duelQueryLocation(duel,{flags:Q.CODE|Q.POSITION,controller:0,location:T}).filter(Boolean).find(c=>c.code===t.pick);
+        assert(set&&set.position&P.FACEDOWN,'The selected card is set face-down');
+       }
+      }
+      if(t.levelOneXyzRecipe==='two'||t.levelOneXyzRecipe==='three'){
+       const xyz=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(Boolean).find(c=>c.code===t.family);
+       assert.deepEqual(xyz?.overlayCards.slice().sort(),t.recipeMaterials.slice().sort(),'Selected Level 1 monsters become material');
+      }
       if(t.brigadeXyz==='legal'){const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(Boolean).find(c=>c.code===t.family);assert.deepEqual(c.overlayCards.slice().sort(),t.recipeMaterials.slice().sort(),'Actual Brigade Xyz materials');}
       if(t.brigadeLink&&t.recipeLegal)assert.equal(core.duelQueryCount(duel,0,G),t.recipeMaterials.length,'Actual Link materials sent to GY');
       if(t.armadaDraw){const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(Boolean).find(c=>c.code===223750159);assert.equal(c.overlayCards.length,0,'Material detached for draw');}
       if(t.hexatronIdentity){const own=core.duelQueryLocation(duel,{flags:Q.CODE|Q.ATTACK,controller:0,location:F}).filter(Boolean).find(c=>c.code===t.family);const opp=core.duelQueryLocation(duel,{flags:Q.CODE|Q.ATTACK,controller:1,location:F}).filter(Boolean).find(c=>c.code===body);assert.equal(opp.attack,t.standReset?600:100,'Stored monster identity and effect negation');assert.equal(own.attack,data.get(t.family).attack+(t.standReset?0:400),'ATK gain requires successful negation');}
       if(t.storyCopyKind==='feness'){const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.ATTACK,controller:1,location:F}).filter(Boolean).find(c=>c.code===wing);assert.equal(c.attack,100,'Copied negation still resolves');}
-      if(t.storyCopiedCode&&!t.storyShuffleProbe)assert(core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:B}).filter(Boolean).some(c=>c.code===t.storyCopiedCode),'Sent monster stays banished');
+      if(t.storyCopiedCode&&t.bitronCopyRemoved)assert(core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:B}).filter(Boolean).some(c=>c.code===t.storyCopiedCode),'Sent monster stays banished');
       if(t.floweringCount)assert.equal(core.duelQueryCount(duel,0,G),1,'Unused legal shuffle cost remains for second copy');
       if(t.armadaCountCopies){const cards=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(Boolean).filter(c=>c.code===223750159);assert.equal(cards.reduce((sum,c)=>sum+c.overlayCards.length,0),1,'Second copy retains a payable draw cost');}
       if(t.joyousDice){assert(diceRoll>=1&&diceRoll<=6,'Native die result');assert.equal(core.duelQueryCount(duel,1,B),Math.ceil(diceRoll/2),'Half-roll banish cap rounded up');assert.equal(core.duelQueryCount(duel,1,G),4-Math.ceil(diceRoll/2),'Unselected GY cards retained');}
@@ -1041,10 +2874,157 @@ end`;
       if(t.expectedHandCount!==undefined)assert.equal(core.duelQueryCount(duel,0,H),t.expectedHandCount,'Draw count');
       if(t.selfEquipCapacity){const c=core.duelQueryLocation(duel,{flags:Q.CODE|Q.EQUIP_CARD,controller:0,location:T}).filter(Boolean).find(c=>c.code===t.family);assert.equal(c.equipCard?.controller,0,'Equip target controller');assert.equal(c.equipCard?.location,F,'Actual equip target location');assert.equal(c.equipCard?.sequence,0,'Equipped to seeded monster');}
       if(t.expectedPlacement!==undefined)assert.equal(placedResource,t.expectedPlacement,'Actual SZONE placement before destruction');
+      if(t.formationLinkReset){const banished=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:B}).filter(Boolean);assert.equal(banished.filter(c=>c.code===formation).length,2,'Both copies paid Link trigger cost on separate turns');}
+      if(t.preparationSetThree){const a=core.duelQueryLocation(duel,{flags:Q.CODE|Q.POSITION,controller:0,location:T}).filter(Boolean);assert.equal(a.filter(c=>[body,wing,spell,trap].includes(c.code)).length,3,'Exactly three banished cards were Set');const b=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:B}).filter(Boolean);assert.equal(b.filter(c=>[body,wing,spell,trap].includes(c.code)).length,1,'Fourth card remains banished');}
       if(t.expectedFamilyUses!==undefined)assert.equal(familyTriggers,t.expectedFamilyUses,'Named revival limit');
       if(t.expectTrigger!==undefined)assert.equal(familyTriggers,t.expectTrigger?1:0,'Unexpected Ivy trigger result');
       if(t.noTrigger)assert.equal(familyTriggers,t.family===grayrover?1:0,'An illegal Link Summon triggered');
-      if(t.opponent)assert(quickUsed,'Opponent-turn Quick Effect did not activate');
+      if(t.exactDeckReturn&&t.family===259669838){
+       const witness=core.duelQueryLocation(duel,{flags:Q.CODE|Q.ATTACK,controller:0,location:F}).filter(Boolean).find(c=>c.code===trap);
+       assert.equal(witness?.attack,t.redirect?500:800,'ATK bonus requires all three Deck returns');
+      }
+      if(t.battleTactics){
+       const stats=(code,controller)=>core.duelQueryLocation(duel,{flags:Q.CODE|Q.ATTACK|Q.DEFENSE,controller,location:F})
+        .flatMap(c=>c?.code===code?[c.attack,c.defense]:[]);
+       const factor=['expires','opponent turn'].includes(t.battleTactics)?1:t.option===0?0:2;
+       assert.deepEqual(stats(dark,1),t.battleTactics==='opponent leaves'?[]:[700*factor,300*factor]);
+       assert.deepEqual(stats(wing,1),[800*factor,400*factor]);
+       assert.deepEqual(stats(trap,0),[600,200],'Own monster stats are unchanged');
+      }
+      if(t.venaticiToken){
+       const tokens=core.duelQueryLocation(duel,{flags:Q.CODE|Q.POSITION|Q.LEVEL|Q.RACE|Q.ATTRIBUTE|Q.ATTACK|Q.DEFENSE,
+        controller:0,location:F}).filter(c=>c?.code===229021850);
+       assert.equal(tokens.length,t.expectedFamilyUses,'Exactly one token for a legal activation');
+       if(tokens.length){
+        const [token]=tokens;
+        assert.deepEqual([token.position,token.level,Number(token.race),token.attribute,token.attack,token.defense],
+         [P.FACEUP_ATTACK,4,32,16,1000,0],'Machinator Token has printed properties');
+       }
+      }
+      if(t.galacticaBattle&&t.galacticaBattle!=='Hand start'&&t.expectedFamilyUses){
+       const card=core.duelQueryLocation(duel,{flags:Q.CODE|Q.POSITION,controller:0,location:F}).find(c=>c?.code===body);
+       assert.equal(card?.position,P.FACEUP_ATTACK,'Replacement enters Attack Position');
+      }
+      if(t.galacticaBattle==='Hand start'){
+       const card=core.duelQueryLocation(duel,{flags:Q.CODE|Q.POSITION,controller:0,location:F}).find(c=>c?.code===t.family);
+       assert.equal(card?.position,P.FACEUP_ATTACK,'Hand summon enters Attack Position');
+      }
+      if(t.hextaniusRecycle==='four resources'){
+       const remaining=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:G}).filter(c=>c&&[body,wing,spell,trap].includes(c.code));
+       assert.equal(remaining.length,1,'At most three of four eligible cards are returned');
+      }
+      if(t.groupedDeckDraw){
+       const returned=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:D}).concat(core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:H})).filter(Boolean).map(c=>c.code);
+       for(const [code,loc] of t.expected)if(loc===D)assert(returned.includes(code),'Selected card reached Deck or was subsequently drawn');
+      }
+      if(t.singleDeckSuccessor&&t.family===259177849){
+       const witness=core.duelQueryLocation(duel,{flags:Q.CODE|Q.DEFENSE,controller:0,location:F}).filter(Boolean).find(c=>c.code===wing);
+       assert.equal(witness?.defense,t.redirect?200:500,'DEF bonus requires a successful Deck return');
+      }
+      if(t.jannaSearch||t.windborneRecovery)assert.equal(musicaleReveal,t.redirect||t.jannaRevealRedirect?0:1,'Reveal only an actual hand arrival');
+      if(t.melvilleReceipt){
+       const expected=t.melvilleReceipt==='all'?[]:t.melvilleReceipt==='partial'?[wing]:[body,wing];
+       assert.deepEqual([...discardRevealed].sort(),expected,'Only hand arrivals receive the search reveal');
+       if(t.family===234599395){
+        const deck=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:D}).filter(Boolean);
+        assert.equal(deck.at(-1)?.code,spell,'Unselected excavation card went to the bottom');
+       }
+      }
+      if(t.revealGroup)assert.deepEqual([...discardRevealed].sort(),t.redirectAll?[]:t.redirect?[wing]:[body,wing],'Reveal precisely the group members that reached the Hand');
+      if(t.baubaSummon==='copy-limit'){
+       const hosts=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:F}).filter(c=>c?.code===t.family);
+       assert.equal(hosts.length,2,'Both copies were actually summoned');
+      }
+      if(t.baubaReceipt)assert.equal(musicaleReveal,Number(t.baubaExpectedReceipt??!t.redirect),'Only actual Hand receipt is revealed');
+      if(t.alternativeReceipt)assert.equal(musicaleReveal,t.revealExpected??Number(!t.redirect),'Reveal only actual hand receipt');
+      if(t.drawReceipt){
+       assert.equal(musicaleResponse,Number(t.redirect),'Redirect response resolved');
+       const hand=core.duelQueryLocation(duel,{flags:Q.CODE,controller:t.drawPlayer,location:H}).filter(Boolean); assert.equal(hand.filter(c=>c.code===trap).length,t.expectedDraw,'Draw count after hand receipt');
+      }else if(t.discardReceipt){
+       assert.equal(musicaleResponse,Number(t.redirect),'Redirect response resolved');
+       assert.deepEqual([...discardRevealed].sort(),t.discardReveal.slice().sort(),'Only received cards were revealed');
+      }else if(t.ownSearch){
+       const summoned=core.duelQueryLocation(duel,{flags:Q.CODE|Q.ATTACK,controller:1,location:F}).filter(Boolean).find(c=>c.code===wing);
+       assert.deepEqual([musicaleResponse,musicaleReveal,!!summoned,summoned?.attack],
+        [Number(t.redirect),Number(!t.redirect),t.family===248946297&&!t.redirect,t.family===248946297&&!t.redirect?0:undefined],
+        'response, reveal, opponent Summon, ATK');
+      }
+      if(t.musicaleSearch){
+       const success=t.musicaleSearch==='success';
+       const outcome=[musicaleResponse,musicaleDraw,musicaleReveal,musicaleBottom,recoveredAmount,p.activates.some(x=>x.code===wing)];
+       assert.deepEqual(outcome,[success?0:1,['no-candidate','draw-blocked'].includes(t.musicaleSearch)?0:1,success?1:0,success?1:0,200,true],'response, draw, reveal, bottom, LP, same-name activation after expiry or failed receipt');
+       assert.deepEqual(new Set(p.activates.filter(x=>x.code===wing).map(x=>x.location)),new Set([F,H,G,B]),'Same-name activations are available from field, hand, GY and banishment after expiry or failed receipt');
+      }
+      if(t.musicaleActivation)assert.equal(musicaleSearchOffers,Number(!t.noYes),'Optional search is offered only when a candidate exists');
+      if(t.harmonySearch){
+       if(t.harmonyLimit)assert(harmonyNormalSeen&&harmonySpecialSeen,'Both opponent summon windows occurred');
+       if(t.family===259114562)assert.equal(bobbieRecipients,t.expectedFamilyUses,'Each Bobbie use summons an actual opponent Hand resource');
+       assert.equal(musicaleReveal,Number(t.harmonySearch==='success'),'Only an actual Hand receipt is revealed');
+       if(!t.harmonyRecoveryTrap)assert.equal(p.activates.some(c=>c.code===body),!!t.harmonyLockExpiry||t.harmonySearch==='redirect'||t.family===228040066&&t.harmonySearch==='success','Harmony locks its received card for the search turn');
+      }
+      if(t.scarletReceipt)assert.equal(musicaleReveal,Number(!t.redirect&&!t.scarletShuffleRedirect),'Only an actual Scarlet Hand receipt is revealed');
+      if(t.chunyin){
+       assert.equal(treasureOptionPrompts,Number(['position','deck','copy-limit','source-leaves'].includes(t.chunyin)),'Only distinct names enable the Deck branch');
+       const target=core.duelQueryLocation(duel,{flags:Q.CODE|Q.POSITION,controller:1,location:F}).find(c=>c?.code===dark);
+       assert.equal(target?.position,['deck','deck-only','no-branch','opponent-only','source-leaves'].includes(t.chunyin)?P.FACEUP_ATTACK:P.FACEDOWN_DEFENSE,'Only the position branch turns the selected monster face-down');
+       if(['deck','deck-only','source-leaves'].includes(t.chunyin))assert(chunyinNameGuard,'The duplicate name was excluded after selecting the first copy');
+      }
+      if(t.bojin)assert.equal(treasureOptionPrompts,Number(t.bojin.startsWith('choose')),'Offer a choice only when both branches are legal');
+      if(t.zaoSequence){
+       const expected=['forward','copy-limit'].includes(t.zaoSequence)?[100,200]:t.zaoSequence==='reverse'?[200,100]:t.zaoSequence==='upper'?[100,200,300]:[];
+       assert.deepEqual(zaoRecovery,expected,'Spell operations follow the selected order after the native chain-solved event');
+       const xyz=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).find(c=>c?.code===t.family);
+       assert.equal(xyz?.overlayCards.length,Number(!t.expectedFamilyUses),'Only legal activation detaches material');
+       if(t.zaoSequence==='copy-limit'){
+        const hosts=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(c=>c?.code===t.family);
+        assert.deepEqual(hosts.map(c=>c.overlayCards.length).sort(),[0,1],'The unused copy keeps its material');
+       }
+      }
+      if(t.koaiQuick){
+       const moved=core.duelQueryLocation(duel,{flags:Q.CODE,controller:0,location:B}).filter(c=>c&&[spell,trap].includes(c.code));
+       const count=['redirect','decline','cost-only'].includes(t.koaiQuick)?0:['two','extra','cost-target'].includes(t.koaiQuick)?2:1;
+       assert.equal(moved.length,count,'Treasure count follows actual Deck and Extra Deck receipts');
+       if(['cost-only','copy-limit'].includes(t.koaiQuick)){
+        const hosts=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(c=>c?.code===t.family);
+        assert.equal(hosts.filter(c=>c.overlayCards.length===1).length,1,'One material remains available on the unused Koai');
+       }
+      }
+      if(t.lokaeoRecycle){
+       assert.equal(lokaeoDeckReturn,!t.noRewrite&&t.lokaeoRecycle!=='redirect','Actual Deck receipt before draw');
+       assert.equal(lokaeoDraws,Number(!t.noRewrite&&t.lokaeoRecycle!=='redirect'),'Draw requires a real Deck return');
+       assert.equal(lokaeoRevivalOffers,t.lokaeoExpectedOffers??Number(!!t.lokaeoStandby),'Optional revival offer');
+      }
+      if(t.lokaeoXyz&&t.expectedFamilyUses){
+       if(t.lokaeoXyz==='upper')assert(lokaeoSummonedBeforeLower&&!emmaCounterChained,'Native Xyz follows Link 2 without a summon-negation response');
+       else assert(emmaXyzAfterChain,'Lokaeo Xyz Summon follows the resolving chain');
+       if(t.lokaeoXyz==='counter')assert(emmaCounterChained,'Summon-negating Trap activates in Lokaeo’s native Xyz window');
+       else{
+        const xyz=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).find(x=>x?.code===231825514);
+        assert.deepEqual(xyz?.overlayCards.slice().sort(),[body,t.family].sort(),'Lokaeo itself must be attached');
+       }
+      }
+      if(t.emma){
+       assert.equal(musicaleSearchOffers,Number(!t.noYes),'Optional Xyz prompt requires a legal Nautica recipient');
+       if(t.yes){
+        assert(emmaXyzAfterChain,'Instructed Xyz Summon follows the trigger chain');
+        if(t.emma==='counter')assert(emmaCounterChained,'Summon-negating Trap activates in the native Xyz window');
+        else{
+         const xyz=core.duelQueryLocation(duel,{flags:Q.CODE|Q.ATTACK|Q.OVERLAY_CARD,controller:0,location:F}).filter(Boolean).find(c=>c.code===225109525);
+         const three=t.emma==='three-materials';
+         assert.deepEqual(xyz?.overlayCards.slice().sort(),[t.family,body,...(three?[wing]:[])].sort(),'The selected Aqua monsters become material');
+         assert.equal(xyz.attack,data.get(225109525).attack+(three?1000:500),'Evander counts only Nautica materials');
+        }
+       }
+      }
+      if(t.musicaleTranscend){
+       const summoned=core.duelQueryLocation(duel,{flags:Q.CODE|Q.POSITION,controller:0,location:F}).filter(Boolean).find(c=>c.code===t.musicaleTranscend);
+       assert.equal(summoned?.position,P.FACEUP_DEFENSE,'Transcend puts the selected Pendulum Monster in Defense Position');
+      }
+      if(t.opponent&&!t.musicaleSearch)assert(quickUsed,'Opponent-turn Quick Effect did not activate');
+      if(t.leoship==='activation limit'){
+       assert(!p.activates.some(x=>x.code===t.family&&x.location===H),'Second Hand activation is blocked');
+       assert(p.activates.some(x=>x.code===t.family&&x.location===T),'Face-up summon effect has a separate limit');
+      }
       if(t.forbidden)assert(!p.activates.some(x=>x.code===t.forbidden),'Restricted activation available');
       if(t.dragarTargetLeaves||t.dragarAttack!==undefined){
        const other=core.duelQueryLocation(duel,{flags:Q.CODE|Q.POSITION,controller:1,location:F}).filter(Boolean).find(c=>c.code===dark);
@@ -1053,12 +3033,18 @@ end`;
       }
       if(t.stainTwoPlacements){
        const remaining=core.duelQueryLocation(duel,{flags:Q.CODE|Q.POSITION,controller:1,location:D}).filter(Boolean).find(c=>c.code===216958556);
-       assert.equal(remaining?.position,P.FACEUP_DEFENSE,'The remaining Stain stays face-up in the opponent’s Deck');
+       assert.equal(remaining?.position,P.FACEUP_DEFENSE,"The remaining Stain stays face-up in the opponent's Deck");
       }
-      if(t.nauticaOverlay){
+      if(t.adventuresOverlay==='grave-reset'){
+       const hosts=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller:0,location:F}).filter(c=>c?.code===body);
+       assert.equal(hosts.length,2,'Both WATER Xyz Monsters were summoned');
+       assert(hosts.every(c=>c.overlayCards.length===3&&c.overlayCards.includes(t.family)),'Each turn attaches one copy');
+      }
+      if(t.nauticaOverlay&&!['host-leaves','grave-reset'].includes(t.adventuresOverlay)){
        const controller=t.overlayControlChanged?1:0;
        const host=core.duelQueryLocation(duel,{flags:Q.CODE|Q.OVERLAY_CARD,controller,location:F}).filter(Boolean).find(x=>x.code===body);
-       assert.deepEqual(host?.overlayCards.slice().sort(),[wing,fusion,...(controller?[]:[t.family])].sort(),'Nautical Adventures follows current Xyz control');
+       const attached=!controller&&!['wrong-attribute','detach-cost','detach-effect'].includes(t.adventuresOverlay);
+       assert.deepEqual(host?.overlayCards.slice().sort(),[wing,fusion,...(attached?[t.family]:[])].sort(),'Nautical Adventures follows current Xyz control and detaches independently');
       }
       if(t.faceDownRecipient){
        const host=core.duelQueryLocation(duel,{flags:Q.CODE|Q.POSITION,controller:0,location:F}).filter(Boolean).find(x=>x.code===body);
@@ -1080,6 +3066,7 @@ end`;
       if(t.attached)assert.equal(core.duelQueryCount(duel,1,F),0,'Monster was not attached');
       if(t.noBanish)assert.equal(core.duelQueryCount(duel,0,B),0,'Unexpected banished material');
       for(const [id,loc,player=0] of t.expected){
+       if(t.groupedDeckDraw&&loc===D)continue;
        const queryLoc=loc===L.FZONE?T:loc;
        assert(core.duelQueryLocation(duel,{flags:Q.CODE,controller:player,location:queryLoc}).filter(Boolean).some(x=>x.code===id),'Missing '+id+' in '+loc+' for player '+player);
       }
@@ -1088,12 +3075,87 @@ end`;
      break;
     }
     case M.SELECT_BATTLECMD:{
-     const index=p.attacks.findIndex(x=>x.code===dark);
-     if(!attacked){assert(index>=0,'Attacker unavailable');attacked=true;}
+     const index=p.attacks.findIndex(x=>x.code===(t.galacticaLeave||t.galacticaOwnBattle?t.family:dark));
+     if(t.venaticiBattle==='two battles'&&venaticiAttacks<2){
+      assert(index>=0,'Both attacks are available');venaticiAttacks++;attacked=true;
+     }else if(!attacked){assert(index>=0,'Attacker unavailable');if(t.galacticaBattle==='forced attack')assert(!p.to_m2&&!p.to_ep,'A legal attacker cannot skip the attack');attacked=true;}
      else {respond(R.SELECT_BATTLECMD,{action:Battle.TO_M2,index:0});break;}
      respond(R.SELECT_BATTLECMD,{action:Battle.SELECT_BATTLE,index});break;
     }
     case M.SELECT_CHAIN:{
+     if(t.preparationTargetInterrupt&&p.player===1){const i=p.selects.findIndex(c=>c.code===dark);if(i>=0){respond(R.SELECT_CHAIN,{index:i});break;}}
+     if(t.preparationNegation&&p.player===1){const i=p.selects.findIndex(c=>c.code===dark);if(i>=0){respond(R.SELECT_CHAIN,{index:i});break;}}
+     if(t.formationInterrupt&&p.player===1){const i=p.selects.findIndex(c=>c.code===dark);if(i>=0){respond(R.SELECT_CHAIN,{index:i});break;}}
+     if(t.melissaTurn&&opponentTurn&&opponentActivated&&p.player===0&&familyTriggers===1){
+      const index=p.selects.findIndex(c=>c.code===t.family);
+      if(index>=0){respond(R.SELECT_CHAIN,{index});break;}
+     }
+     if((t.nordbarNegate||t.battleTactics==='opponent turn')&&!opponentActivated){
+      respond(R.SELECT_CHAIN,{index:p.forced?0:null});
+      break;
+     }
+     if(t.nordbarRevive||t.nordbarSearch){
+      const index=nordbarChain?-1:p.selects.findIndex(c=>c.code===t.family);
+      respond(R.SELECT_CHAIN,{index:index>=0?index:p.forced?0:null});
+      break;
+     }
+     if(t.chaosReturn==='target leaves'||t.battleTactics==='opponent leaves'){
+      const index=p.selects.findIndex(c=>c.code===dark);
+      respond(R.SELECT_CHAIN,{index:index>=0?index:p.forced?0:null});
+      break;
+     }
+     if(t.baubaSummon||t.baubaReceipt){
+      const index=p.selects.findIndex(c=>c.code===t.family);
+      respond(R.SELECT_CHAIN,{index:index>=0?index:p.forced?0:null});
+      break;
+     }
+     if(t.treasureSourceLeaves){
+      const index=p.selects.findIndex(c=>c.code===dark);
+      respond(R.SELECT_CHAIN,{index:index>=0?index:null});
+      break;
+     }
+     if(t.treasureBanish){
+      const index=p.selects.findIndex(c=>c.code===t.family);
+      respond(R.SELECT_CHAIN,{index:index>=0?index:p.forced?0:null});
+      break;
+     }
+     if(t.zaoSequence==='interrupted'){
+      const index=p.selects.findIndex(c=>c.code===dark);
+      respond(R.SELECT_CHAIN,{index:index>=0?index:null});
+      break;
+     }
+     if(t.zaoSequence==='upper'&&opponentTurn&&opponentActivated&&familyTriggers===0){
+      const index=p.selects.findIndex(c=>c.code===t.family);
+      if(index>=0){respond(R.SELECT_CHAIN,{index});break;}
+     }
+     if(t.koaiQuick==='opponent'&&opponentTurn&&opponentActivated&&familyTriggers===0){
+      const index=p.selects.findIndex(c=>c.code===t.family);
+      if(index>=0){respond(R.SELECT_CHAIN,{index});break;}
+     }
+     if(t.lokaeoRecycle){
+      const index=p.selects.findIndex(c=>c.code===t.family&&(!t.baubaRevival||c.location===B));
+      if(index>=0&&p.selects[index].location===B){
+       assert.deepEqual([auditTurn,lokaeoPhase],[lokaeoRevivalTurn,2],'Revival only offered in next Standby');
+       lokaeoRevivalOffers++;
+       respond(R.SELECT_CHAIN,{index:lokaeoAcceptRevival?index:null});
+      }else respond(R.SELECT_CHAIN,{index:index>=0?index:null});
+      break;
+     }
+     if(t.emma||t.lokaeoXyz){
+      const index=p.selects.findIndex(c=>c.code===t.family||(t.emma==='counter'||['counter','upper'].includes(t.lokaeoXyz))&&c.code===spell);
+      respond(R.SELECT_CHAIN,{index:index>=0?index:p.forced?0:null});
+      break;
+     }
+     if(t.harmonySearch){
+      const index=p.selects.findIndex(c=>c.code===t.family);
+      respond(R.SELECT_CHAIN,{index:index>=0?index:null});
+      break;
+     }
+     if(t.musicaleYummy){
+      const index=p.selects.findIndex(c=>[253152295,259797813].includes(c.code));
+      respond(R.SELECT_CHAIN,{index:index>=0?index:null});
+      break;
+     }
      if(t.oniTwoGrants&&t.steps[step]===ghostTransfer&&p.player===0){
       const index=p.selects.findIndex(x=>x.code===ghostTransfer&&x.sequence===step*2);
       if(index>=0){respond(R.SELECT_CHAIN,{index});break;}
@@ -1104,12 +3166,28 @@ end`;
       if(step>=t.steps.length)assert.equal(recipientEffects.length,0,'Grant preserves once-per-turn limit');
      }
      if((t.chainLimitCopies||t.megalSharedChain)&&sharedChainActive){if(p.player===0)sharedChainChecked=true;assert(!p.selects.some(c=>c.code===t.family),'Second copy cannot activate another effect in same Chain');}
-     const index=p.selects.findIndex(x=>t.musicaleSummon&&x.code===t.family||t.stainDragar&&x.code===t.family||t.nauticaOverlay&&x.code===t.family||t.aeroNecro&&x.code===t.family||t.slimeTarget&&x.code===t.family||t.setCapacityChain&&x.code===dark||t.solemnSet&&x.code===t.family&&Number(x.description)===132049334*16||t.mirageSet&&x.code===t.family&&Number(x.description)===133072169*16+1||t.pastrygeistSet&&x.code===t.family&&Number(x.description)===133851064*16+2||t.myutantRecovery&&x.code===t.family||t.galaxixFieldRecovery&&x.code===t.family||t.gravinityInterrupt&&x.code===dark||t.megalSharedChain&&x.code===t.family&&Number(x.description)===t.chainStartDescription||(t.heartbeatNegate||t.chainNecro)&&x.code===dark||t.bitronCopyRemoved&&x.code===dark||t.bhodiReset&&x.code===trap||(t.hopeDeckRemoval||t.standReset)&&x.code===dark||t.heartbeatMaterial&&x.code===body||x.code===dark&&!!t.burnResolution||(!t.immuneOrbHost||t.ghostTransferFamily&&opponentTurn)&&x.code===t.steps[step]&&!t.sequentialActions&&(!t.actionDescription||x.code===helper||Number(x.description)===t.actionDescription)&&(!t.activationSequence||x.code===helper||x.sequence===t.activationSequence)&&(!t.activationLocation||x.code===helper||x.location===t.activationLocation)||x.code===soprana&&(!t.opponent||opponentTurn)&&!quickUsed||x.code===hot&&x.location===B||x.code===t.family&&[formation,grayrover,ivy,grayshade,chapter,grayhex,graylock,grayling,graysentry,gorgonia,brilliance,graydimm,graydeux,pillar,descend,burning,fireball,urphiel,malphiel,vazagiel,azeriel,ophiel,shards,feather,prism,sarifiel,grayterror,ghostXyz,aeroXyz,claw,rook,knight,227531376,standTogether,249629457,241504188,244986323,220124524,232038002,255668557,236616849,212413422,216620496,253128790,259542408,259605536,218142234,238273772,224751741,239245471,259669838,259883230,244408495,259072745,247298564].includes(t.family)&&(x.location!==H||t.family===chapter||t.ghostResponse||t.damageBanishEvent&&t.family===253128790));
+     const index=p.selects.findIndex(x=>(t.singleDeckSuccessor||t.windborneRecovery)&&x.code===t.family||t.musicaleSummon&&x.code===t.family||(t.musicaleSearch||t.ownSearch||t.briaRecycle)&&x.code===dark||t.stainDragar&&x.code===t.family||(t.discardReceipt||t.drawReceipt)&&x.code===t.family&&x.code===t.steps[step]||t.nauticaOverlay&&x.code===t.family&&x.location===G||t.aeroNecro&&x.code===t.family||t.slimeTarget&&x.code===t.family||t.setCapacityChain&&x.code===dark||t.solemnSet&&x.code===t.family&&Number(x.description)===132049334*16||t.mirageSet&&x.code===t.family&&Number(x.description)===133072169*16+1||t.pastrygeistSet&&x.code===t.family&&Number(x.description)===133851064*16+2||t.myutantRecovery&&x.code===t.family||t.galaxixFieldRecovery&&x.code===t.family||t.gravinityInterrupt&&x.code===dark||t.megalSharedChain&&x.code===t.family&&Number(x.description)===t.chainStartDescription||(t.heartbeatNegate||t.chainNecro)&&x.code===dark||t.bitronCopyRemoved&&x.code===dark||t.bhodiReset&&x.code===trap||(t.hopeDeckRemoval||t.standReset)&&x.code===dark||t.heartbeatMaterial&&x.code===body||x.code===dark&&!!t.burnResolution||(!t.immuneOrbHost||t.ghostTransferFamily&&opponentTurn)&&!(t.exploringBoundary==='expiry'&&auditTurn<3&&x.code===helper)&&x.code===t.steps[step]&&!t.sequentialActions&&(!t.actionDescription||x.code===helper||Number(x.description)===t.actionDescription)&&(!t.activationSequence||x.code===helper||x.sequence===t.activationSequence)&&(!t.activationLocation||x.code===helper||x.location===t.activationLocation)||x.code===soprana&&(!t.opponent||opponentTurn)&&!quickUsed||x.code===hot&&x.location===B||x.code===t.family&&[formation,grayrover,ivy,grayshade,chapter,grayhex,graylock,grayling,graysentry,gorgonia,brilliance,graydimm,graydeux,pillar,descend,burning,fireball,urphiel,malphiel,vazagiel,azeriel,ophiel,shards,feather,prism,sarifiel,grayterror,ghostXyz,aeroXyz,claw,rook,knight,227531376,standTogether,249629457,241504188,244986323,220124524,232038002,255668557,236616849,212413422,216620496,253128790,259542408,259605536,218142234,238273772,224751741,239245471,259669838,259883230,244408495,259072745,247298564].includes(t.family)&&(x.location!==H||t.family===chapter||t.ghostResponse||t.damageBanishEvent&&t.family===253128790));
      respond(R.SELECT_CHAIN,{index:index>=0?index:p.forced?0:null});break;
     }
-    case M.SELECT_EFFECTYN:respond(R.SELECT_EFFECTYN,{yes:[hot,soprana,t.family].includes(p.code)&&!(t.urphielBattleLeave&&Number(p.description)===133105971*16+2)});break;
-    case M.SELECT_YESNO:assert(!t.noYes,'An unavailable optional effect was offered');respond(R.SELECT_YESNO,{yes:!!t.yes});break;
-    case M.SELECT_OPTION:if(t.options)assert.equal(p.options.length,t.options);respond(R.SELECT_OPTION,{index:t.option||0});break;
+    case M.SELECT_EFFECTYN:
+     if(t.baubaRevival&&p.code===t.family&&p.location!==B){
+      respond(R.SELECT_EFFECTYN,{yes:false});
+      break;
+     }
+     if(t.lokaeoRecycle&&p.code===t.family&&(t.lokaeoRecycle!=='revival-xyz'||!lokaeoRevivalOffers)){
+      assert.deepEqual([auditTurn,lokaeoPhase],[lokaeoRevivalTurn,2],'Revival only offered in next Standby');
+      lokaeoRevivalOffers++;
+      respond(R.SELECT_EFFECTYN,{yes:lokaeoAcceptRevival});
+      break;
+     }
+     respond(R.SELECT_EFFECTYN,{yes:[hot,soprana,t.family].includes(p.code)&&!(t.urphielBattleLeave&&Number(p.description)===133105971*16+2)});break;
+    case M.SELECT_YESNO:assert(!t.noYes,'An unavailable optional effect was offered');if(t.musicaleActivation||t.emma)musicaleSearchOffers++;respond(R.SELECT_YESNO,{yes:!!t.yes});break;
+    case M.SORT_CARD:{
+     const order=p.cards.map((_,i)=>i);
+     respond(R.SORT_CARD,{order:{length:order[0],*[Symbol.iterator](){yield*order.slice(1);}}});
+     break;
+    }
+    case M.SELECT_OPTION:if(t.bojin||t.chunyin)treasureOptionPrompts++;if(t.options)assert.equal(p.options.length,t.options);respond(R.SELECT_OPTION,{index:t.option||0});break;
     case M.SELECT_CARD:
      if(t.stainDiscardHelper&&p.selects.some(c=>c.code===helper&&c.location===H)){
       respond(R.SELECT_CARD,{indicies:[p.selects.findIndex(c=>c.code===helper)]});break;
@@ -1119,6 +3197,10 @@ end`;
      if(t.gravinityColumn&&p.selects.some(c=>c.code===dark||c.code===spell||c.code===trap)){assert(!p.selects.some(c=>c.code===fusion),'Off-column opponent card excluded');}
 {
      if(t.companionUnprotectedBattle&&p.player===1&&p.selects.some(c=>c.code===body))assert(p.selects.some(c=>c.code===232824319),'Unsupported Companion remains an attack target');
+     if(t.koaiProtect&&p.selects.some(c=>c.code===wing)){
+      assert.equal(p.selects.some(c=>c.code===t.family),t.koaiProtect!=='protected','Only opposing targeting is blocked while Koai has material');
+      protectionChecked=true;
+     }
      if(t.originsProtect&&p.player===1){assert.equal(p.selects.some(c=>c.code===body),!['spell','trap'].includes(t.originsProtect),'Origins protects Brigade from Spell targeting only');assert(p.selects.some(c=>c.code===wing),'Unprotected control selectable');protectionChecked=true;}
      if(t.companionAttack&&p.player===1&&p.selects.some(c=>c.code===body)){assert(!p.selects.some(c=>c.code===232824319),'Supported Companion cannot be selected for attack');respond(R.SELECT_CARD,{indicies:[p.selects.findIndex(c=>c.code===body)]});break;}
      if(t.companionProtect&&p.player===1){assert.equal(p.selects.some(c=>c.code===232824319),t.companionProtect!=='faceup','Companion target eligibility');assert(p.selects.some(c=>c.code===wing),'Unprotected control target');protectionChecked=true;}
@@ -1129,12 +3211,61 @@ end`;
       assert(!p.selects.some(c=>c.code===body),'Other LIGHT monster is protected');
       protectionChecked=true;
      }
+     if(t.exactDeckReturn&&t.family===248940511&&p.min===5){
+      const indices=[body,wing,spell,trap,link].map(code=>p.selects.findIndex(c=>c.code===code));
+      assert(indices.every(i=>i>=0));
+      respond(R.SELECT_CARD,{indicies:indices});
+      break;
+     }
+     if(t.exactDeckReturn&&t.family===259669838&&p.min===2){
+      const indices=[body,spell].map(code=>p.selects.findIndex(c=>c.code===code));
+      assert(indices.every(i=>i>=0));
+      respond(R.SELECT_CARD,{indicies:indices});
+      break;
+     }
+     if(t.groupedDeckDraw&&t.family===212429024&&p.max>1){
+      const indices=[body,wing].map(code=>p.selects.findIndex(c=>c.code===code));
+      assert(indices.every(i=>i>=0));
+      respond(R.SELECT_CARD,{indicies:indices});
+      break;
+     }
      const oniRecipientSelection=t.oniQuickRecipient&&p.selects.some(x=>x.code===ghostTransfer);
-     const preferred=p.selects.findIndex(x=>x.code===(oniRecipientSelection?t.oniQuickRecipient:t.pick));
+     let preferredCode=oniRecipientSelection?t.oniQuickRecipient:t.pick;
+     if(t.zaoSequence==='real'&&p.selects.some(c=>c.code===wing))preferredCode=wing;
+     if(t.musicaleStock==='repeat'&&p.player===0&&step===1){
+      preferredCode=p.selects.some(x=>x.code===226645052)?226645052:dark;
+     }
+     if(t.zaoSequence==='copy-limit'&&p.min===2){
+      const indices=[spell,trap].map(code=>p.selects.findIndex(c=>c.code===code));
+      assert(indices.every(i=>i>=0),'Both spell names are legal candidates');
+      respond(R.SELECT_CARD,{indicies:indices});
+      break;
+     }
+     const preferred=p.selects.findIndex(x=>x.code===preferredCode);
      const indicies=p.min===1&&preferred>=0?[preferred]:p.selects.map((_,i)=>i).slice(0,t.selectMax?p.max:p.min);
      respond(R.SELECT_CARD,{indicies});break;
     }
-    case M.SELECT_UNSELECT_CARD:if(t.windborneCapacity===1&&p.unselect_cards.some(c=>c.code===body))assert(!p.select_cards.some(c=>c.code===wing),'No second ordinary Set target without room');respond(R.SELECT_UNSELECT_CARD,{index:t.selectMax&&p.select_cards.length?Math.max(0,p.select_cards.findIndex(c=>c.code===body)):p.can_finish?null:0});break;
+    case M.SELECT_UNSELECT_CARD:
+     if(t.preparationOwnership){assert(p.select_cards.every(c=>c.code===wing),'Opponent-owned banished card must not be selected');respond(R.SELECT_UNSELECT_CARD,{index:p.can_finish?null:0});break;}
+     if(t.preparationFacedown){assert(p.select_cards.every(c=>c.code===body),'Face-down banished card is not selectable');respond(R.SELECT_UNSELECT_CARD,{index:p.can_finish?null:0});break;}
+     if(t.preparationSetEligibility){assert(p.select_cards.every(c=>c.code===body),'Only own Galactica Spell/Trap may be targeted');respond(R.SELECT_UNSELECT_CARD,{index:p.can_finish?null:0});break;}
+     if(t.preparationSetThree){if(p.unselect_cards.length>=3){assert(!p.select_cards.length,'Fourth target should not be available');respond(R.SELECT_UNSELECT_CARD,{index:null});}else respond(R.SELECT_UNSELECT_CARD,{index:0});break;}
+     if(t.tacticsBanish){
+      const max=t.tacticsBanish==='two names'?2:1;
+      respond(R.SELECT_UNSELECT_CARD,{index:p.can_finish&&p.unselect_cards.length>=max?null:0});
+      break;
+     }
+
+     if(['deck','deck-only','source-leaves'].includes(t.chunyin)){
+      if(p.unselect_cards.some(c=>c.code===wing)){
+       assert(!p.select_cards.some(c=>c.code===wing),'A second copy of the selected name is unavailable');
+       chunyinNameGuard=true;
+      }
+      const index=p.can_finish?null:Math.max(0,p.select_cards.findIndex(c=>c.code===wing));
+      respond(R.SELECT_UNSELECT_CARD,{index});
+      break;
+     }
+     if(t.windborneCapacity===1&&p.unselect_cards.some(c=>c.code===body))assert(!p.select_cards.some(c=>c.code===wing),'No second ordinary Set target without room');respond(R.SELECT_UNSELECT_CARD,{index:t.selectMax&&p.select_cards.length?Math.max(0,p.select_cards.findIndex(c=>c.code===body)):p.can_finish?null:0});break;
     case M.SELECT_POSITION:respond(R.SELECT_POSITION,{position:p.positions&P.FACEUP_ATTACK?P.FACEUP_ATTACK:P.FACEUP_DEFENSE});break;
     case M.SELECT_PLACE:{
      let mask=p.field_mask;const places=[];
@@ -1144,17 +3275,17 @@ end`;
     default:throw Error('Unhandled '+JSON.stringify(p));
     }
    }
-   assert(done,'Step limit');results.push({name:t.name,status:'PASS',...(t.joyousDice?{roll:diceRoll}:{})});console.log('PASS',t.name);
+   assert(done,'Step limit');if(t.formationMultiChain){const begin=formationTimingTrace.findIndex(m=>m.type===M.CHAINING&&m.code===formation&&m.chain_size===2),solved=formationTimingTrace.findIndex((m,i)=>i>begin&&m.type===M.CHAIN_SOLVED&&m.chain_size===2),summon=formationTimingTrace.findIndex((m,i)=>i>solved&&m.type===M.SPSUMMONING&&m.code===link),lower=formationTimingTrace.findIndex((m,i)=>i>solved&&m.type===M.CHAIN_SOLVING&&m.chain_size===1);assert(begin>=0&&solved>begin&&summon>solved&&lower>summon,'Link Summon should follow Formation before lower chain resolves');fs.writeFileSync(path.resolve(__dirname,'../output/fresh-ccg-september/formation-link-multichain.json'),JSON.stringify(formationTimingTrace,(_,v)=>typeof v==='bigint'?String(v):v,2)+'\n');}if(t.formationTiming){const begin=formationTimingTrace.findIndex(m=>m.type===M.CHAINING&&m.code===formation),solved=formationTimingTrace.findIndex((m,i)=>i>begin&&m.type===M.CHAIN_SOLVED),summon=formationTimingTrace.findIndex((m,i)=>i>begin&&m.type===M.SPSUMMONING&&m.code===link);assert(begin>=0&&solved>begin&&summon>solved,'Link Summon must follow resolution of Formation');fs.writeFileSync(path.resolve(__dirname,'../output/fresh-ccg-september/formation-link-timing.json'),JSON.stringify(formationTimingTrace,(_,v)=>typeof v==='bigint'?String(v):v,2)+'\n');}results.push({name:t.name,status:'PASS',...(t.joyousDice?{roll:diceRoll}:{})});console.log('PASS',t.name);
   }catch(e){failures++;results.push({name:t.name,status:'FAIL',error:e.message});console.log('FAIL',t.name,e.message);}
   finally{core.destroyDuel(duel);}
  }
  const crypto=require('node:crypto');
  const files=new Map();
- for(const code of new Set(testCases.map(t=>t.family).filter(Boolean).concat([hot,sky,journey,soprana,offer]))){
-  const file=path.join(installed,'c'+code+'.lua');
+ for(const code of new Set(testCases.map(t=>t.family).filter(Boolean).concat([hot,sky,journey,soprana,offer],testCases.some(t=>t.zaoSequence==='real')?[236542835,246421842]:[]))){
+  const file=code===84815190&&testCases.some(t=>t.stockNegationControl)?path.join(omega,'c'+code+'.lua'):process.env.CCG_NAUTICA_CANDIDATE&&[259797813,248946297,259941091].includes(code)?path.resolve(__dirname,'../public/CCG Downloads/CCG_Scripts','c'+code+'.lua'):path.join(installed,'c'+code+'.lua');
   files.set(code,{file,sha256:crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')});
  }
- if(!process.env.CCG_TEST_SOURCE)fs.writeFileSync(path.resolve(__dirname,'../output/fresh-ccg-september',process.argv.includes('--musicale-only')?'musicale-installed.json':process.argv.includes('--stain-tribute-only')?'stain-tribute-installed.json':process.argv.includes('--claw-self-only')?'claw-self-installed.json':process.argv.includes('--self-overlay-necro-only')?'self-overlay-necro-installed.json':process.argv.includes('--aero-necro-only')?'aero-necro-installed.json':process.argv.includes('--ghostrick-destination-only')?'ghostrick-destination-installed.json':process.argv.includes('--oni-quick-only')?'oni-quick-installed.json':process.argv.includes('--field-recovery-family-only')?'field-recovery-family-installed.json':'current-installed-effects-regression.json'),JSON.stringify({
+ if(!process.env.CCG_TEST_SOURCE)fs.writeFileSync(path.resolve(__dirname,'../output/fresh-ccg-september',process.argv.includes('--bauba-revival-only')?'bauba-revival-installed.json':process.argv.includes('--nordbar-negation-protection-probe')?'nordbar-negation-protection-probe.json':process.argv.includes('--formation-only')?'formation-installed.json':process.argv.includes('--battle-tactics-only')?'battle-tactics-installed.json':process.argv.includes('--venatici-only')?'venatici-installed.json':process.argv.includes('--galactica-battle-only')?'galactica-battle-installed.json':process.argv.includes('--bauba-receipt-only')?'bauba-receipt-installed.json':process.argv.includes('--bauba-summon-only')?'bauba-summon-installed.json':process.argv.includes('--shrine-placement-only')?'shrine-placement-installed.json':process.argv.includes('--huangjin-only')?'huangjin-installed.json':process.argv.includes('--chunyin-only')?'chunyin-installed.json':process.argv.includes('--bojin-only')?'bojin-installed.json':process.argv.includes('--zao-only')?'zao-installed.json':process.argv.includes('--koai-only')?'koai-installed.json':process.argv.includes('--lokaeo-recycle-only')?'lokaeo-recycle-installed.json':process.argv.includes('--lokaeo-xyz-only')?'lokaeo-xyz-installed.json':process.argv.includes('--adventures-overlay-only')?'adventures-overlay-installed.json':process.argv.includes('--backwashing-boundaries-only')?'backwashing-boundaries-installed.json':process.argv.includes('--exploring-boundaries-only')?'exploring-boundaries-installed.json':process.argv.includes('--melissa-quick-only')?'melissa-quick-installed.json':process.argv.includes('--melissa-recipe-only')?'melissa-recipe-installed.json':process.argv.includes('--melissa-protection-only')?'melissa-protection-installed.json':process.argv.includes('--zephorion-receipt-only')?'zephorion-receipt.json':process.argv.includes('--add-or-send-only')?'add-or-send.json':process.argv.includes('--alternative-receipt-only')?'alternative-receipt.json':process.argv.includes('--melville-receipt-only')?'melville-receipt.json':process.argv.includes('--single-deck-successor-only')?'single-deck-successor.json':process.argv.includes('--galactica-leave-only')?'galactica-leave.json':process.argv.includes('--grouped-deck-draw-only')?'grouped-deck-draw.json':process.argv.includes('--single-deck-draw-only')?'single-deck-draw.json':process.argv.includes('--shards-empty-hand-only')?'shards-empty-hand.json':process.argv.includes('--exact-deck-return-only')?'exact-deck-return.json':process.argv.includes('--windborne-reveal-only')?'windborne-reveal.json':process.argv.includes('--janna-search-only')?'janna-search.json':process.argv.includes('--bria-recycle-only')?'bria-recycle.json':process.argv.includes('--dependent-draw-only')?'dependent-draw-receipt.json':process.argv.includes('--search-discard-only')?'search-discard-receipt.json':process.argv.includes('--own-search-only')?'nautica-own-search.json':process.argv.includes('--musicale-stock-probe')?'musicale-stock-probe.json':process.argv.includes('--emma-only')?'emma-installed.json':process.argv.includes('--harmony-only')?'harmony-installed.json':process.argv.includes('--musicale-only')?'musicale-installed.json':process.argv.includes('--stain-tribute-only')?'stain-tribute-installed.json':process.argv.includes('--claw-self-only')?'claw-self-installed.json':process.argv.includes('--self-overlay-necro-only')?'self-overlay-necro-installed.json':process.argv.includes('--aero-necro-only')?'aero-necro-installed.json':process.argv.includes('--ghostrick-destination-only')?'ghostrick-destination-installed.json':process.argv.includes('--oni-quick-only')?'oni-quick-installed.json':process.argv.includes('--field-recovery-family-only')?'field-recovery-family-installed.json':'current-installed-effects-regression.json'),JSON.stringify({
   scope:'Listed OCGCore scenarios with installed scripts and installed card data. Neutral fixture resources and API adapters are used. Full-card and live Omega verification remain open.',
   compatibility:'Legacy Link and fixture Xyz argument translation and procedures, selected chain target mapping, basic Level 12 Xyz material eligibility/selection bridge for ordinary fixture monsters, ordinary fixture overlay eligibility. Graydeux alternate Xyz cases isolate that procedure from the unsupported ordinary Xyz API.',
   pendingCases:['A Stainless Story: --story-shuffle-probe tests whether copied self-shuffle must move the activating Spell instead of the sent monster; current source moves the sent monster. Ruling/intent unresolved.','Ghostrick Oni: the printed Xyz Summon wording and the existing field-to-material implementation still need reconciliation.', 'Sarifiel: hypothetical effect immunity of a GY material. The --grave-immune-probe reproduces attachment; expected ruling needs confirmation before a production change.'],

@@ -1,12 +1,13 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto'),{pathToFileURL}=require('node:url'),{candidateCard}=require('./fresh_candidate_card.cjs');
-const ROOT=path.resolve(__dirname,'..'),boss=215068354,lab=900001210,filler=900001211,helper=900001212,helper2=process.argv.includes('--official')?Number(process.argv.find(a=>a.startsWith('--recipient='))?.split('=')[1]||15989522):900001213,helper3=900001214;
+const ROOT=path.resolve(__dirname,'..'),boss=Number(process.env.CCG_WINDBORNE_CARD||215068354),lab=900001210,filler=900001211,helper=900001212,helper2=process.argv.includes('--official')?Number(process.argv.find(a=>a.startsWith('--recipient='))?.split('=')[1]||15989522):900001213,helper3=900001214;
 async function main(){
  const mod=await import(pathToFileURL(process.argv.includes('--public-set-message-adapter')?path.join(ROOT,'output/fresh-ccg-september/public-core-set-message-adapter.mjs'):path.join(path.dirname(require.resolve('@n1xx1/ocgcore-wasm')),'dist/index.js')).href);
  const {OcgMessageType:M,OcgResponseType:R,OcgLocation:L,OcgPosition:P,OcgProcessResult:S,SelectIdleCMDAction:A,OcgQueryFlags:Q}=mod;
  const core=await mod.default({sync:true,print(){},printErr(){}}),results=[];
  const control=['no-set','no-same-turn'].find(c=>process.argv.includes('--'+c));
- for(const test of [{cards:1},{cards:2}]){
+ const receiptProbe=process.argv.includes('--receipt');
+ for(const test of receiptProbe?[{cards:2},{cards:2,redirect:1},{cards:2,redirect:2}]:[{cards:1},{cards:2}]){
  const logs=[],trace=[],base={alias:0,setcodes:[],type:17,level:2,attribute:1,race:1n,attack:100,defense:100,lscale:0,rscale:0,link_marker:0};
  const cards=new Map([[boss,candidateCard(boss)],[lab,{...base,code:lab,type:test.spell?2:33,attribute:test.wrongAttribute?1:2,setcodes:[]}],[filler,{...base,code:filler,type:2}],[helper,{...base,code:helper,type:2}],[helper2,{...base,code:helper2,type:65,attack:1000,setcodes:[]}],[helper3,{...base,code:helper3,type:2}]]);
  cards.set(lab,{...base,code:lab,setcodes:[0x21fc],type:33,attribute:test.wrongAttribute?1:2,attack:test.atkHigher?2300:1200,defense:1800});
@@ -19,9 +20,13 @@ async function main(){
  if(name==='c'+helper+'.lua')return `local s,id=GetID() function s.initial_effect(c) local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_ACTIVATE) e:SetCode(EVENT_FREE_CHAIN) e:SetOperation(function(e,tp) local tc=Duel.GetFirstMatchingCard(Card.IsCode,tp,${test.grave?'LOCATION_GRAVE':'LOCATION_HAND'},0,nil,${boss}) assert(tc,"Enra source") Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP) end) c:RegisterEffect(e) end`;
 
  if(name==='c'+helper2+'.lua'&&!process.argv.includes('--official'))return `local s,id=GetID() s.material_setcode=${test.wrongMaterial?'0x8d':'0xbd'} function s.initial_effect(c) end`;
- if(name==='c'+lab+'.lua')return 'local s,id=GetID() function s.initial_effect(c) end';
+ if(name==='c'+lab+'.lua')return `local s,id=GetID() function s.initial_effect(c)
+  ${test.redirect?`local e=Effect.CreateEffect(c) e:SetType(EFFECT_TYPE_SINGLE) e:SetCode(EFFECT_TO_HAND_REDIRECT)
+   e:SetValue(LOCATION_REMOVED) e:SetCondition(function() return true end)
+   ${test.redirect===1?'if not s.redirect_registered then s.redirect_registered=true c:RegisterEffect(e) end':'c:RegisterEffect(e)'}`:''}
+ end`;
  if([filler].some(c=>name==='c'+c+'.lua'))return 'local s,id=GetID() function s.initial_effect(c) end';if(name==='c0.lua')return '';
- const file=[path.join(ROOT,'public/CCG Downloads/CCG_Scripts',name),path.join(ROOT,'tmp/omega_scripts',name)].find(f=>fs.existsSync(f));assert(file,'Missing '+name);let lua=fs.readFileSync(file,'utf8');
+ const file=[process.env.CCG_OMEGA_SCRIPTS&&path.join(process.env.CCG_OMEGA_SCRIPTS,name),path.join(ROOT,'public/CCG Downloads/CCG_Scripts',name),path.join(ROOT,'tmp/omega_scripts',name)].find(f=>f&&fs.existsSync(f));assert(file,'Missing '+name);let lua=fs.readFileSync(file,'utf8');
  if(name==='c'+boss+'.lua'){if(control==='no-set')lua=lua.replace('Duel.SSet(tp,setg)','do end');if(control==='no-same-turn')lua=lua.replace('e1:SetCode(EFFECT_QP_ACT_IN_SET_TURN)','e1:SetCode(EFFECT_UPDATE_ATTACK)');
  }if(name==='constant.lua'&&process.argv.includes('--public-qp-adapter'))lua+='\nEFFECT_QP_ACT_IN_SET_TURN=19\n';return lua;
  };
@@ -38,7 +43,15 @@ async function main(){
  const state=core.duelProcess(duel),messages=core.duelGetMessage(duel);trace.push(...messages);for(const m of messages)if(m.type===M.NEW_TURN)turn++;if(logs.some(x=>x.type===0))throw Error(logs.map(x=>x.message).join('; '));assert(state!==S.END);if(state!==S.WAITING)continue;const p=messages.at(-1);
  if(p.type===M.SELECT_IDLECMD){
  if(!activated){const index=p.activates.findIndex(c=>c.code===boss);const eligible=test.cards>0&&!test.full;assert.equal(index>=0,eligible,'Janna hand activation field condition');if(!eligible){assert(query(L.HAND).some(c=>c.code===boss),'Blocked Janna remainsHand');done=true;continue;}activated=true;core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.SELECT_ACTIVATE,index});continue;}
- assert(trace.some(m=>m.type===M.CHAINING&&m.code===boss),'Actual Janna native activation');assert(query(L.MZONE).some(c=>c.code===boss),'Janna actually SpecialSummoned');assert(!query(L.HAND).some(c=>c.code===boss),'Janna leavesHand');assert.equal(query(L.DECK).filter(c=>c.code===helper2).length,test.cards,'Native shuffle count');if(turn===1){assert.equal(query(L.HAND).filter(c=>c.code===lab).length,0,'No early search');core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.TO_EP,index:0});continue;}assert.equal(turn,2,'Next opponent turn');assert(trace.some(m=>m.type===M.NEW_PHASE&&m.phase===2),'Actual Standby occurred');assert.equal(query(L.HAND).filter(c=>c.code===lab).length,test.cards,'Deferred search count');assert.equal(trace.filter(m=>m.type===M.CHAINING&&m.code===helper3).length,test.cards,'Actual same-turn Set QuickPlay activations');assert.equal(query(L.GRAVE).filter(c=>c.code===helper3).length,test.cards,'Activated QuickPlays resolve toGY');done=true;
+ assert(trace.some(m=>m.type===M.CHAINING&&m.code===boss),'Actual Janna native activation');assert(query(L.MZONE).some(c=>c.code===boss),'Janna actually SpecialSummoned');assert(!query(L.HAND).some(c=>c.code===boss),'Janna leavesHand');assert.equal(query(L.DECK).filter(c=>c.code===helper2).length,test.cards,'Native shuffle count');if(turn===1){assert.equal(query(L.HAND).filter(c=>c.code===lab).length,0,'No early search');core.duelSetResponse(duel,{type:R.SELECT_IDLECMD,action:A.TO_EP,index:0});continue;}assert.equal(turn,2,'Next opponent turn');assert(trace.some(m=>m.type===M.NEW_PHASE&&m.phase===2),'Actual Standby occurred');const received=test.cards-(test.redirect||0),setCount=test.redirect?0:test.cards;
+ assert.equal(query(L.HAND).filter(c=>c.code===lab).length,received,'Deferred search count');
+ if(receiptProbe){
+  assert.equal(query(L.REMOVED).filter(c=>c.code===lab).length,test.redirect||0,'Redirected searches reach banishment');
+  const reveals=trace.filter(m=>m.type===M.CONFIRM_CARDS&&m.player===1).flatMap(m=>m.cards).filter(c=>c.code===lab);
+  assert.equal(reveals.length,received,'Reveal only actual hand arrivals');
+ }
+ assert.equal(trace.filter(m=>m.type===M.CHAINING&&m.code===helper3).length,setCount,'Actual same-turn Set QuickPlay activations');
+ assert.equal(query(L.GRAVE).filter(c=>c.code===helper3).length,setCount,'Activated QuickPlays resolve to GY');done=true;
 
  }
 
@@ -53,7 +66,7 @@ async function main(){
  }assert(done,'Step limit');
  }catch(e){failure=e.message;}finally{core.destroyDuel(duel);}results.push({test,failure,trace,logs});console.log((failure?'FAIL':'PASS')+' '+JSON.stringify(test)+(failure?': '+failure:''));
  }
- fs.writeFileSync(path.join(ROOT,'output/fresh-ccg-september/janna-reveal'+(process.argv.includes('--public-set-message-adapter')?'-set-message-adapter':'')+(process.argv.includes('--public-qp-adapter')?'-public-qp-adapter':'')+(process.argv.includes('--official')?'-official-'+helper2:'')+(control?'-'+control:'')+'.json'),JSON.stringify({scope:'Janna fullsource reveals1/2 Windborne Spells, shuffles them, next Standby searches and Sets1/2QuickPlays, actual same-turn opponent-turn QuickPlay activations. Summontrigger declined; further edges/native Omega open',set_message_adapter_sha256:process.argv.includes('--public-set-message-adapter')?crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT,'output/fresh-ccg-september/public-core-set-message-adapter.mjs'))).digest('hex'):null,public_set_message_adapter:process.argv.includes('--public-set-message-adapter'),public_qp_adapter:process.argv.includes('--public-qp-adapter'),recipient:process.argv.includes('--official')?helper2:null,control,script_sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT,'public/CCG Downloads/CCG_Scripts/c'+boss+'.lua'))).digest('hex'),results},(_,v)=>typeof v==='bigint'?String(v):v,2)+'\n');if(results.some(r=>r.failure))process.exitCode=1;
+ fs.writeFileSync(path.join(ROOT,'output/fresh-ccg-september/'+(receiptProbe?'windborne-receipt-'+boss:'janna-reveal')+(process.argv.includes('--public-set-message-adapter')?'-set-message-adapter':'')+(process.argv.includes('--public-qp-adapter')?'-public-qp-adapter':'')+(process.argv.includes('--official')?'-official-'+helper2:'')+(control?'-'+control:'')+'.json'),JSON.stringify({scope:'Janna fullsource reveals1/2 Windborne Spells, shuffles them, next Standby searches and Sets1/2QuickPlays, actual same-turn opponent-turn QuickPlay activations. Summontrigger declined; further edges/native Omega open',set_message_adapter_sha256:process.argv.includes('--public-set-message-adapter')?crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT,'output/fresh-ccg-september/public-core-set-message-adapter.mjs'))).digest('hex'):null,public_set_message_adapter:process.argv.includes('--public-set-message-adapter'),public_qp_adapter:process.argv.includes('--public-qp-adapter'),recipient:process.argv.includes('--official')?helper2:null,control,script_sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT,'public/CCG Downloads/CCG_Scripts/c'+boss+'.lua'))).digest('hex'),results},(_,v)=>typeof v==='bigint'?String(v):v,2)+'\n');if(results.some(r=>r.failure))process.exitCode=1;
 }main().catch(e=>{console.error(e);process.exitCode=1;});
 
 

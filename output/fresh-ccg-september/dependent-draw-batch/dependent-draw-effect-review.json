@@ -1,0 +1,74 @@
+[
+  {
+    "passcode": 225091736,
+    "card": "Stained Bird Bria",
+    "printed_text": "If this card is in your hand: You can discard 1 card; shuffle this card face-up into your opponent's Deck, also, add 1 \"Stain\" card from your Deck to your hand, then, if your opponent controls more cards than you, draw 1 card. If this card is Normal or Special Summoned: You can target 1 card in either GY or banishment; place it on the bottom of the Deck, or, if it is your \"Stain\" card, add it to the hand instead, and if you do, shuffle this card into the Deck. You can only use each effect of \"Stained Bird Bria\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Search receipt gates draw. Opponent must still control more cards. Summon-effect recycle is a separate branch open for audit.",
+    "fixed": true,
+    "fully_audited": false
+  },
+  {
+    "passcode": 240299292,
+    "card": "To Proto Ousia",
+    "printed_text": "If this card is Normal or Special Summoned: You can Special Summon 1 \"Protogenic Essence Token\" (Galaxy/ LIGHT/ Level 1/ ATK 0/ DEF 0). If this card is in your GY, because it was used as material for the Link Summon of a \"To Proto\" monster: You can banish this card; add 1 of your face-up banished monsters to your hand, then, if you added a \"To Proto\" monster, you can draw 1 card. You can only use each effect of \"To Proto Ousia\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Receipt and archetype already checked before optional draw.",
+    "fixed": false,
+    "fully_audited": false
+  },
+  {
+    "passcode": 244816828,
+    "card": "Myutant Evolution",
+    "printed_text": "When this card is activated: You can add 1 \"Myutant\" card from your Deck to your hand, except \"Myutant Evolution\", then you can place 1 card from your hand on the bottom of your Deck, and if you do, draw 1 card. If this card is banished: You can target 1 Level 8 or higher \"Myutant\" monster you control; shuffle it into the Deck, then banish 1 \"Myutant\" card from your hand or Deck, and if you do, Special Summon 1 monster from your hand or Deck, based on the banished card. ● Monster: \"Myutant Beast\" ● Spell: \"Myutant Mist\" ● Trap: \"Myutant Arsenal\". You can only use each effect of \"Myutant Evolution\" once per turn.",
+    "callback": "function s.activate(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Receipt and subsequent bottom placement are already checked before draw.",
+    "fixed": false,
+    "fully_audited": false
+  },
+  {
+    "passcode": 250047045,
+    "card": "Dreaming Bau",
+    "printed_text": "You can banish 2 cards from your hand, including this card; add 1 \"Bauy World\" from your Deck to your hand, then you can draw 1 card. If you control \"Bauy World\" (Quick Effect): You can Special Summon this banished card, then you can apply this effect depending on whose turn it is.\n● Yours: Banish 1 \"Bau\" card from your GY.\n● Opponent's: Immediately after this effect resolves, Synchro Summon using monsters you control as material.\nYou can only use each effect of \"Dreaming Bau\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Receipt already checked before optional draw.",
+    "fixed": false,
+    "fully_audited": false
+  },
+  {
+    "passcode": 259226799,
+    "card": "Charmelia Beast",
+    "printed_text": "While you control a \"Charmelia\" Ritual Monster, your opponent cannot target \"Charmelia\" monsters you control with card effects. Once per turn, the first time a \"Charmelia\" monster you control would be destroyed by battle or card effect, it is not destroyed. If this card is sent to the GY by the effect of a \"Charmelia\" card: You can add this card to your hand, then draw cards equal to the number of \"Charmelia\" Ritual Monsters you control. You can only use this effect of \"Charmelia Beast\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Self recovery must reach hand before drawing for Charmelia Rituals.",
+    "fixed": true,
+    "fully_audited": false
+  },
+  {
+    "passcode": 259721372,
+    "card": "Eclipse Observatory",
+    "printed_text": "(This card is always treated as an \"Eclipse Observer\" card.) When this card is activated: You can add 1 \"Eclipse Observer\" monster and 1 \"Eclipse\" Quick-Play Spell from your Deck to your hand, and if you do, your opponent draws 2 cards. If your opponent Special Summons a monster(s): You can target 1 of those monsters; negate its effects, and if you do, banish that monster, then your opponent draws 2 cards. You can only use this effect of \"Eclipse Observatory\" once per turn. You can only activate 1 \"Eclipse Observatory\" per turn.",
+    "callback": "function s.actop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Both required distinct cards must reach hand before opponent draws. Only received cards are revealed.",
+    "fixed": true,
+    "fully_audited": false
+  },
+  {
+    "passcode": 259797813,
+    "card": "Nautica Musicale",
+    "printed_text": "When this card is activated: You can add 1 \"Nautica\" monster from your Deck or GY to your hand. If you activate an effect that would Special Summon a \"Nautica\" monster from your hand: You can draw 1 card and your opponent adds 1 monster from their Deck to their hand, then place 1 card from your hand on the bottom of your Deck, also gain 200 LP. Until the end of the next turn, your opponent cannot activate the effects of cards with the same name as that monster. You can only control 1 \"Nautica Musicale\".",
+    "callback": "function s.chop(e,tp)",
+    "review": "Printed draw and opponent search are joined by and. Covered by installed Musicale batch.",
+    "fixed": false,
+    "fully_audited": false
+  },
+  {
+    "passcode": 259926839,
+    "card": "Eclipse Observer Riley",
+    "printed_text": "During your Main Phase: You can take 1 \"Eclipse Observer\" card from your Deck and either add it to your hand or, if it is a Level 4 or lower monster, Special Summon it. If you Special Summon it, your opponent draws 2 cards. If your opponent draws 2 or more cards at the same time, except by the effect of \"Eclipse Observer Riley\": You can target 1 \"Eclipse\" Quick-Play Spell in your GY; add it to your hand. You can only use each effect of \"Eclipse Observer Riley\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Printed draw depends on Special Summoning, and that branch checks the summon.",
+    "fixed": false,
+    "fully_audited": false
+  }
+]

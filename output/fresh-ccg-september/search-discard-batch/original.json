@@ -1,0 +1,167 @@
+{
+  "scope": "Listed OCGCore scenarios with installed scripts and installed card data. Neutral fixture resources and API adapters are used. Full-card and live Omega verification remain open.",
+  "compatibility": "Legacy Link and fixture Xyz argument translation and procedures, selected chain target mapping, basic Level 12 Xyz material eligibility/selection bridge for ordinary fixture monsters, ordinary fixture overlay eligibility. Graydeux alternate Xyz cases isolate that procedure from the unsupported ordinary Xyz API.",
+  "pendingCases": [
+    "A Stainless Story: --story-shuffle-probe tests whether copied self-shuffle must move the activating Spell instead of the sent monster; current source moves the sent monster. Ruling/intent unresolved.",
+    "Ghostrick Oni: the printed Xyz Summon wording and the existing field-to-material implementation still need reconciliation.",
+    "Sarifiel: hypothetical effect immunity of a GY material. The --grave-immune-probe reproduces attachment; expected ruling needs confirmation before a production change."
+  ],
+  "installedScripts": {
+    "211086520": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c211086520.lua",
+      "sha256": "2a794dc8997a06a50870ccd3655872f52167e504fff10796db5ad81cf7b461ba"
+    },
+    "238274860": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c238274860.lua",
+      "sha256": "c7ddf568313b23734c02bf78c38ba44ce0eea46a5e0db043fb724dfb1d67812d"
+    },
+    "239932270": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932270.lua",
+      "sha256": "9acb2ba13f982aa2bc78ec6c6b57169da8bee7342a5ddb4c9d0227c6690cde83"
+    },
+    "239932271": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932271.lua",
+      "sha256": "c4b1cda43b88b195c3c0c7f4e309388f524d68a1ab8b41a6eb14acfadaf3dbd6"
+    },
+    "239932272": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932272.lua",
+      "sha256": "e107250638c5e514f7918a2b36e92da5596f8dbfa881cc2ecbb4cd841d3994d9"
+    },
+    "239934743": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934743.lua",
+      "sha256": "f245ec3b9c813950718073f7917b946d99f6a6464b2d0f3efaaa4c90d2f4cffa"
+    },
+    "239934744": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934744.lua",
+      "sha256": "39cdb3edb81a79a5b36ddc921cefa54b4b1fbad2b5664771e46e392e446bcd91"
+    },
+    "245354354": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c245354354.lua",
+      "sha256": "6fe86e4648459896142ee7fae1ee8ddbb8279f84695c546b187cd9c656af0a85"
+    },
+    "258590942": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c258590942.lua",
+      "sha256": "223c077a0e1c3cf3c9ee2a69a5f9a7567748bd48aa7917ac6a100f4b4515817c"
+    },
+    "259352030": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259352030.lua",
+      "sha256": "b041605eddf656b25922d689a5e1a3e0bd8b30781fa62e038209780d3209d2a3"
+    },
+    "259366591": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259366591.lua",
+      "sha256": "dc291b0d17eedca2f4519903ef58db261ca9666a31a9d33c3ae3c2545b713ddb"
+    },
+    "259479044": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259479044.lua",
+      "sha256": "53a9d40c1ec86dc32389b584cad7d15d725b0e1b109e7c4e84db09fe6ef75323"
+    },
+    "259923860": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259923860.lua",
+      "sha256": "2fb76940e57ffa36f12e7c3c3c8c0483e16d0a85669f98808f3ac8474755edc9"
+    },
+    "284636663": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c284636663.lua",
+      "sha256": "d78ae9d80b7e52e97767da3e9eba56ee17455cc4773d371407f786293eb47249"
+    },
+    "284636665": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c284636665.lua",
+      "sha256": "4ce5aed80463febdd6824fbb68d3062e87213a6f5bf00ae4001aa2898e91d475"
+    }
+  },
+  "results": [
+    {
+      "name": "Search-discard receipt 211086520: success",
+      "status": "PASS"
+    },
+    {
+      "name": "Search-discard receipt 211086520: redirect",
+      "status": "FAIL",
+      "error": "Only received cards were revealed\n+ actual - expected\n\n+ [\n+   900009002\n+ ]\n- []\n"
+    },
+    {
+      "name": "Search-discard receipt 258590942: success",
+      "status": "PASS"
+    },
+    {
+      "name": "Search-discard receipt 258590942: redirect",
+      "status": "FAIL",
+      "error": "Only received cards were revealed\n+ actual - expected\n\n+ [\n+   900009002\n+ ]\n- []\n"
+    },
+    {
+      "name": "Search-discard receipt 284636665: success",
+      "status": "PASS"
+    },
+    {
+      "name": "Search-discard receipt 284636665: redirect",
+      "status": "FAIL",
+      "error": "Only received cards were revealed\n+ actual - expected\n\n+ [\n+   900009002\n+ ]\n- []\n"
+    },
+    {
+      "name": "Search-discard receipt 259923860: success",
+      "status": "PASS"
+    },
+    {
+      "name": "Search-discard receipt 259923860: redirect",
+      "status": "FAIL",
+      "error": "Only received cards were revealed\n+ actual - expected\n\n+ [\n+   900009002\n+ ]\n- []\n"
+    },
+    {
+      "name": "Search-discard receipt 259479044: success",
+      "status": "PASS"
+    },
+    {
+      "name": "Search-discard receipt 259479044: redirect",
+      "status": "FAIL",
+      "error": "Only received cards were revealed\n+ actual - expected\n\n+ [\n+   900009002\n+ ]\n- []\n"
+    },
+    {
+      "name": "Search-discard receipt 238274860: success",
+      "status": "PASS"
+    },
+    {
+      "name": "Search-discard receipt 238274860: redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Search-discard receipt 259352030: success",
+      "status": "PASS"
+    },
+    {
+      "name": "Search-discard receipt 259352030: redirect",
+      "status": "FAIL",
+      "error": "Only received cards were revealed\n+ actual - expected\n\n  [\n+   900009002,\n    900009004\n  ]\n"
+    },
+    {
+      "name": "Behemoth skips discard when both cards redirect",
+      "status": "FAIL",
+      "error": "Only received cards were revealed\n+ actual - expected\n\n+ [\n+   900009002,\n+   900009004\n+ ]\n- []\n"
+    },
+    {
+      "name": "Search-discard recovery 245354354: success",
+      "status": "PASS"
+    },
+    {
+      "name": "Search-discard recovery 245354354: redirect",
+      "status": "FAIL",
+      "error": "Only received cards were revealed\n+ actual - expected\n\n+ [\n+   900009007\n+ ]\n- []\n"
+    },
+    {
+      "name": "Search-discard recovery 259366591: success",
+      "status": "PASS"
+    },
+    {
+      "name": "Search-discard recovery 259366591: redirect",
+      "status": "FAIL",
+      "error": "Only received cards were revealed\n+ actual - expected\n\n+ [\n+   900009007\n+ ]\n- []\n"
+    },
+    {
+      "name": "Search-discard recovery 284636663: success",
+      "status": "PASS"
+    },
+    {
+      "name": "Search-discard recovery 284636663: redirect",
+      "status": "FAIL",
+      "error": "Only received cards were revealed\n+ actual - expected\n\n+ [\n+   284636665\n+ ]\n- []\n"
+    }
+  ]
+}

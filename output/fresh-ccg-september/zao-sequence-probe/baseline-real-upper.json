@@ -1,0 +1,185 @@
+{
+  "scope": "Listed OCGCore scenarios with installed scripts and installed card data. Neutral fixture resources and API adapters are used. Full-card and live Omega verification remain open.",
+  "compatibility": "Legacy Link and fixture Xyz argument translation and procedures, selected chain target mapping, basic Level 12 Xyz material eligibility/selection bridge for ordinary fixture monsters, ordinary fixture overlay eligibility. Graydeux alternate Xyz cases isolate that procedure from the unsupported ordinary Xyz API.",
+  "pendingCases": [
+    "A Stainless Story: --story-shuffle-probe tests whether copied self-shuffle must move the activating Spell instead of the sent monster; current source moves the sent monster. Ruling/intent unresolved.",
+    "Ghostrick Oni: the printed Xyz Summon wording and the existing field-to-material implementation still need reconciliation.",
+    "Sarifiel: hypothetical effect immunity of a GY material. The --grave-immune-probe reproduces attachment; expected ruling needs confirmation before a production change."
+  ],
+  "installedScripts": {
+    "229499914": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c229499914.lua",
+      "sha256": "6220ec1b841d0d4b4c32359277fa444558f7a7e05d2ba4513cb3480488de7842"
+    },
+    "236542835": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c236542835.lua",
+      "sha256": "f74c4420c72822502c95e95bf022b45a6246823d7e33c5b00560fa40bd95fadc"
+    },
+    "239932270": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932270.lua",
+      "sha256": "9acb2ba13f982aa2bc78ec6c6b57169da8bee7342a5ddb4c9d0227c6690cde83"
+    },
+    "239932271": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932271.lua",
+      "sha256": "c4b1cda43b88b195c3c0c7f4e309388f524d68a1ab8b41a6eb14acfadaf3dbd6"
+    },
+    "239932272": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932272.lua",
+      "sha256": "e107250638c5e514f7918a2b36e92da5596f8dbfa881cc2ecbb4cd841d3994d9"
+    },
+    "239934743": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934743.lua",
+      "sha256": "f245ec3b9c813950718073f7917b946d99f6a6464b2d0f3efaaa4c90d2f4cffa"
+    },
+    "239934744": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934744.lua",
+      "sha256": "39cdb3edb81a79a5b36ddc921cefa54b4b1fbad2b5664771e46e392e446bcd91"
+    },
+    "246421842": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c246421842.lua",
+      "sha256": "267181b618fe15c09b29db56c3ae8dc7ef5b8ac940853c133de7ed9d933f3385"
+    },
+    "250556612": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c250556612.lua",
+      "sha256": "bda34e72a38fca25fc9eaa4558c1ee3c5a95fcc5f3bf857db811f67f034d0bca"
+    }
+  },
+  "results": [
+    {
+      "name": "Zao Xyz recipe two",
+      "status": "PASS"
+    },
+    {
+      "name": "Zao Xyz recipe three",
+      "status": "PASS"
+    },
+    {
+      "name": "Zao Xyz recipe one",
+      "status": "PASS"
+    },
+    {
+      "name": "Zao Xyz recipe wrong-level",
+      "status": "PASS"
+    },
+    {
+      "name": "Zao Xyz recipe wrong-race",
+      "status": "PASS"
+    },
+    {
+      "name": "Zao material destination cost",
+      "status": "PASS"
+    },
+    {
+      "name": "Zao material destination effect",
+      "status": "PASS"
+    },
+    {
+      "name": "Zao material destination host-leaves",
+      "status": "PASS"
+    },
+    {
+      "name": "Zao effect destruction own without material",
+      "status": "PASS"
+    },
+    {
+      "name": "Zao effect destruction own with material",
+      "status": "PASS"
+    },
+    {
+      "name": "Zao effect destruction opponent without material",
+      "status": "PASS"
+    },
+    {
+      "name": "Zao effect destruction opponent with material",
+      "status": "PASS"
+    },
+    {
+      "name": "Zao Sacred Treasure sequence forward",
+      "status": "FAIL",
+      "error": "Spell operations follow the selected order after the native chain-solved event\n+ actual - expected\n\n  [\n+   1100,\n+   1200\n-   100,\n-   200\n  ]\n"
+    },
+    {
+      "name": "Zao Sacred Treasure sequence reverse",
+      "status": "FAIL",
+      "error": "Spell operations follow the selected order after the native chain-solved event\n+ actual - expected\n\n  [\n+   1200,\n+   1100\n-   200,\n-   100\n  ]\n"
+    },
+    {
+      "name": "Zao Sacred Treasure sequence upper",
+      "status": "FAIL",
+      "error": "Spell operations follow the selected order after the native chain-solved event\n+ actual - expected\n\n  [\n+   1100,\n+   1200,\n-   100,\n-   200,\n    300\n  ]\n"
+    },
+    {
+      "name": "Zao Sacred Treasure sequence real",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c236542835.lua\"]:83: in function <[string \"c236542835.lua\"]:82>\n[string \"c236542835.lua\"]:83: attempt to index a nil value (local 'eg')\nstack traceback:\n\t[string \"c246421842.lua\"]:81: in function <[string \"c246421842.lua\"]:80>\n[string \"c246421842.lua\"]:81: attempt to index a nil value (local 'eg')"
+    },
+    {
+      "name": "Zao Sacred Treasure sequence one-spell",
+      "status": "PASS"
+    },
+    {
+      "name": "Zao Sacred Treasure sequence wrong-set",
+      "status": "PASS"
+    },
+    {
+      "name": "Bojin simultaneous banish together",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c236542835.lua\"]:83: in function <[string \"c236542835.lua\"]:82>\n[string \"c236542835.lua\"]:83: attempt to index a nil value (local 'eg')"
+    },
+    {
+      "name": "Bojin simultaneous banish alone",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c236542835.lua\"]:83: in function <[string \"c236542835.lua\"]:82>\n[string \"c236542835.lua\"]:83: attempt to index a nil value (local 'eg')"
+    },
+    {
+      "name": "Bojin simultaneous banish wrong-set",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c236542835.lua\"]:83: in function <[string \"c236542835.lua\"]:82>\n[string \"c236542835.lua\"]:83: attempt to index a nil value (local 'eg')"
+    },
+    {
+      "name": "Bojin simultaneous banish separate",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c236542835.lua\"]:83: in function <[string \"c236542835.lua\"]:82>\n[string \"c236542835.lua\"]:83: attempt to index a nil value (local 'eg')"
+    },
+    {
+      "name": "Chunyin simultaneous banish together",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c229499914.lua\"]:86: in function <[string \"c229499914.lua\"]:85>\n[string \"c229499914.lua\"]:86: attempt to index a nil value (local 'eg')"
+    },
+    {
+      "name": "Chunyin simultaneous banish alone",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c229499914.lua\"]:86: in function <[string \"c229499914.lua\"]:85>\n[string \"c229499914.lua\"]:86: attempt to index a nil value (local 'eg')"
+    },
+    {
+      "name": "Chunyin simultaneous banish wrong-set",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c229499914.lua\"]:86: in function <[string \"c229499914.lua\"]:85>\n[string \"c229499914.lua\"]:86: attempt to index a nil value (local 'eg')"
+    },
+    {
+      "name": "Chunyin simultaneous banish separate",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c229499914.lua\"]:86: in function <[string \"c229499914.lua\"]:85>\n[string \"c229499914.lua\"]:86: attempt to index a nil value (local 'eg')"
+    },
+    {
+      "name": "Huangjin simultaneous banish together",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c246421842.lua\"]:81: in function <[string \"c246421842.lua\"]:80>\n[string \"c246421842.lua\"]:81: attempt to index a nil value (local 'eg')"
+    },
+    {
+      "name": "Huangjin simultaneous banish alone",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c246421842.lua\"]:81: in function <[string \"c246421842.lua\"]:80>\n[string \"c246421842.lua\"]:81: attempt to index a nil value (local 'eg')"
+    },
+    {
+      "name": "Huangjin simultaneous banish wrong-set",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c246421842.lua\"]:81: in function <[string \"c246421842.lua\"]:80>\n[string \"c246421842.lua\"]:81: attempt to index a nil value (local 'eg')"
+    },
+    {
+      "name": "Huangjin simultaneous banish separate",
+      "status": "FAIL",
+      "error": "stack traceback:\n\t[string \"c246421842.lua\"]:81: in function <[string \"c246421842.lua\"]:80>\n[string \"c246421842.lua\"]:81: attempt to index a nil value (local 'eg')"
+    }
+  ]
+}

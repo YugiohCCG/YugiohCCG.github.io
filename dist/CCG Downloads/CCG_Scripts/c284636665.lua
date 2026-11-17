@@ -44,8 +44,10 @@ function s.actop(e,tp)
   or not Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then return end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
  local g=Duel.SelectMatchingCard(tp,s.searchfilter,tp,LOCATION_DECK,0,1,1,nil)
- if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 then return end
- Duel.ConfirmCards(1-tp,g)
+ local tc=g:GetFirst()
+ if not tc or Duel.SendtoHand(tc,nil,REASON_EFFECT)==0
+  or not tc:IsLocation(LOCATION_HAND) or not tc:IsControler(tp) then return end
+ Duel.ConfirmCards(1-tp,tc)
  if Duel.IsExistingMatchingCard(s.effectdiscard,tp,LOCATION_HAND,0,1,nil) then
   Duel.DiscardHand(tp,s.effectdiscard,1,1,REASON_EFFECT+REASON_DISCARD)
  end

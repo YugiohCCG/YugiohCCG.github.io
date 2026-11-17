@@ -83,6 +83,6 @@ function s.takeop(e,tp)
   option=Duel.SelectOption(tp,aux.Stringid(MSG_ID,3),aux.Stringid(MSG_ID,4))
  elseif tc:IsAbleToGrave() then option=1 end
  if option==0 then
-  if Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,g) end
+  if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then Duel.ConfirmCards(1-tp,tc) end
  else Duel.SendtoGrave(g,REASON_EFFECT) end
 end

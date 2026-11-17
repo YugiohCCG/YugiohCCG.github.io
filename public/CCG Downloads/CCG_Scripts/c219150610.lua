@@ -58,9 +58,7 @@ function s.actop(e,tp,eg,ep,ev,re,r,rp)
 		and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local g=Duel.SelectMatchingCard(tp,s.actfilter,tp,LOCATION_DECK,0,1,1,nil)
-		if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
-			Duel.ConfirmCards(1-tp,g)
-		end
+		if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil) if #received>0 then Duel.ConfirmCards(1-tp,received) end end
 	end
 end
 function s.ritfilter(c)
@@ -118,7 +116,5 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local g2=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)
 	if #g2==0 then return end
 	g1:Merge(g2)
-	if Duel.SendtoHand(g1,nil,REASON_EFFECT)>0 then
-		Duel.ConfirmCards(1-tp,g1)
-	end
+	if Duel.SendtoHand(g1,nil,REASON_EFFECT)>0 then local received=g1:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil) if #received>0 then Duel.ConfirmCards(1-tp,received) end end
 end

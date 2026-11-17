@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Installed full OCGCore regression 833 PASS / 0 FAIL.
+- Installed c215068354, c217029078, c221759221, c247779405 and c257794541. All five match source SHA-256.
+- Delayed Windborne search reveals actual hand arrivals. The Set follows receipt of the full required search.
+- Janna Temple keeps the required count distinct from the number available at resolution.
+- Five legal controls plus partial and complete redirects per card. Original 5 PASS / 10 FAIL. Installed 15 PASS.
+- Focused: node scripts/fresh_janna_reveal.cjs --receipt --public-set-message-adapter --public-qp-adapter with CCG_WINDBORNE_CARD set per ID.
+- Full: node scripts/fresh_new_floo_fiendsmith_effects.cjs. Point CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Compared stock c45354718 for actual hand reveal and Konami PSCT Part 7 for the dependent Set.
+- Scanned SendtoHand, ConfirmCards and SSet combinations. Five delayed effects fixed. Separate alternative choices recorded in effect-review.json.
+- Logs, original and installed snapshots, hashes and exact backups: output/fresh-ccg-september/windborne-search-set-batch/.
+- Fixtures use public-core Set-message and Quick-Play adapters. Live Omega and remaining printed effects remain open.
+- Next: immediate and excavation reveal checks including Melville, then Oceanica both-player Hand selection and remaining Deck moves.

@@ -65,6 +65,20 @@ function s.operation(e,tp,eg,ep,ev,re,r,rp)
 	local rg=Duel.SelectMatchingCard(tp,s.rmfilter,tp,LOCATION_HAND+LOCATION_GRAVE,0,2,2,nil)
 	if #rg<2 or Duel.Remove(rg,POS_FACEUP,REASON_EFFECT)<2 then return end
 	local og=Duel.GetOperatedGroup():Filter(Card.IsLocation,nil,LOCATION_REMOVED)
+	if #og~=2 then return end
+	og:KeepAlive()
+	local follow=Effect.CreateEffect(e:GetHandler())
+	follow:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+	follow:SetCode(EVENT_CHAIN_SOLVED)
+	follow:SetCondition(function(_,tp,eg,ep,ev,re) return re==e end)
+	follow:SetOperation(function(fe)
+		fe:Reset()
+		s.applysequence(e,tp,og)
+		og:DeleteGroup()
+	end)
+	Duel.RegisterEffect(follow,tp)
+end
+function s.applysequence(e,tp,og)
 	while #og>0 do
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_FACEUP)
 		local tc=og:Select(tp,1,1,nil):GetFirst()

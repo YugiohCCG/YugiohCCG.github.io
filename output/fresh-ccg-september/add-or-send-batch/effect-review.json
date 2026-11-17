@@ -1,0 +1,82 @@
+[
+  {
+    "passcode": 210696007,
+    "name": "Galataxian Battle Preparation",
+    "printed_text": "(This card is also treated as a \"Galactica\" card.) Target up to 3 of your banished \"Galactica\" Spell/Trap Cards except \"Galataxian Battle Preparation\"; Set them to your field. They can be activated this turn. You can banish this card and 1 other Spell/Trap from your GY; take 1 \"Galactica\" Spell/Trap from your Deck, except \"Galataxian Battle Preparation\", and either add it to your hand or send it to the GY. You can only use 1 effect of \"Galataxian Battle Preparation\" per turn and only once that turn.",
+    "callback": "function s.decop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_OPERATECARD) local tc=Duel.SelectMatchingCard(tp,s.decfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst() if not tc then return end local b1=tc:IsAbleToHand() local b2=tc:IsAbleToGrave() local op=b1 and b2 and Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3)) or (b1 and 0 or 1) if op==0 and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,tc) else Duel.SendtoGrave(tc,REASON_EFFECT) end end",
+    "review": "Add/send choice repaired",
+    "fully_audited": false
+  },
+  {
+    "passcode": 212684822,
+    "name": "Ektelestis gia Taxis",
+    "printed_text": "2 Level 1 or higher \"Protogenic Essence Tokens\"\nMust first be Special Summoned (from your Extra Deck) by Tributing the Required Materials you control while you control \"To Proto Taxis\" (You do not use \"Polymerization\"). Your opponent takes half the battle damage you would have taken from battles involving this card. If this card is Special Summoned from the Extra Deck: You can add to your hand or send to the GY 1 \"Taxis\" Spell/Trap from your Deck. You can only use this effect of \"Ektelestis gia Taxis\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Add/send choice repaired",
+    "fully_audited": false
+  },
+  {
+    "passcode": 227362839,
+    "name": "Talismandrake Pyre",
+    "printed_text": "1 DARK Pyro monster + 1 Pyro monster\nIf this card is Special Summoned: You can activate this effect; from your Deck, either add 1 “Talismandrake” card or 1 DARK Pyro monster to your hand, or send 1 \"Talismandrake Arms\" Spell/Trap to your GY. (Quick Effect): You can target 1 \"Talismandrake\" card in your Pendulum Zone; destroy it, then place 1 \"Talismandrake\" Pendulum Monster with a different name from your hand, Deck, or face-up Extra Deck in your Pendulum Zone. You can only use each effect of \"Talismandrake Pyre\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Add/send choice repaired",
+    "fully_audited": false
+  },
+  {
+    "passcode": 244972185,
+    "name": "The Spires of Zephorion Prime",
+    "printed_text": "(This card is always treated as an \"Eldora\" card.)\nThis card is also treated as \"Eldora, the Intergalactic Empire\" while it is face-up on the field or in your GY. When this card is activated: Activate 1 \"Eldora, the Intergalactic Empire\" from your Deck, or, if it is already face-up on your field, add 1 monster from your Deck to your hand that lists \"Eldora\" in its text. When your opponent's card effect that would destroy your monster resolves, you can destroy this card you control.",
+    "callback": "function s.activate(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Separate Field Spell activation or search, pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 247755865,
+    "name": "Kali Yuga - Angulimala",
+    "printed_text": "During your Main Phase, or at the start of the Battle Phase, if this card is in your hand or GY: You can destroy 1 other \"Kali Yuga\" card you control or in your hand, and if you do, Special Summon this card, and if you do that, you can destroy 1 Spell/Trap your opponent controls. If this card is Normal or Special Summoned: You can take 1 \"Kali Yuga\" card from your Deck, and either add it to your hand or send it to the GY. You can only use each effect of \"Kali Yuga - Angulimala\" once per turn.",
+    "callback": "function s.takeop(e,tp)",
+    "review": "Add/send choice repaired",
+    "fully_audited": false
+  },
+  {
+    "passcode": 254065048,
+    "name": "Polemistis gia Ataxia",
+    "printed_text": "2 Level 1 or higher \"Protogenic Essence Tokens\"\nMust first be Special Summoned (from your Extra Deck) by Tributing the Required Materials you control while you control \"To Proto Ataxia\" (You do not use \"Polymerization\"). If a monster(s) loses ATK/DEF, this card gains ATK/DEF equal to the amount lost. This card can attack all monsters your opponent controls, once each. If this card is Special Summoned from the Extra Deck: You can add to your hand or send to the GY 1 \"Ataxia\" Spell/Trap from your Deck. You can only use this effect of \"Polemistis gia Ataxia\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Add/send choice repaired",
+    "fully_audited": false
+  },
+  {
+    "passcode": 258328859,
+    "name": "Arckcestial Descend",
+    "printed_text": "Take 1 Level 4 or lower \"Arckcestial\" monster from your Deck and either add it to your hand or send it to the GY, also you cannot Special Summon for the rest of this turn, except LIGHT Spellcaster monsters. During your Main Phase, if you control a Synchro or Xyz \"Arckcestial\" monster: You can banish this card from your GY; Special Summon 1 \"Arckcestial\" monster from your GY in Defense Position. If this card is discarded to the GY: You can Set this card. You can only use each effect of \"Arckcestial Descend\" once per turn.",
+    "callback": "function s.activate(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Add/send choice repaired",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259177849,
+    "name": "Grand Blue Princess",
+    "printed_text": "2 \"Grand Blue\" monsters\nIf this card is Special Summoned: You can take 1 \"Grand Blue\" card from your Deck, and either add it to your hand or send it to the GY. You can target 1 monster you control; Special Summon 1 \"Grand Blue\" monster from your hand or GY, and if you do, send the targeted monster to the GY. If this card is sent to the GY by card effect: You can target 1 card in your banishment; shuffle it into the Deck, and if you do, \"Grand Blue\" monsters you control gain 300 DEF until the end of the next turn. You can only use each effect of \"Grand Blue Princess\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Add/send choice repaired",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259187643,
+    "name": "World Legacy Calamities",
+    "printed_text": "When this card is activated: You can take 1 \"World Legacy\" Spell/Trap from your Deck, except \"World Legacy Calamities\", and either add it to your hand or send it to the GY. You cannot activate Spell/Trap Cards the turn you activate this effect, except \"World Legacy\" Spell/Trap Cards. Once per turn, if a monster(s) is Special Summoned or Set: You can target 1 face-down monster you control; change it to face-up Defense Position, but its effects cannot be activated this turn unless it is a \"Krawler\" monster. You can only activate 1 \"World Legacy Calamities\" per turn.",
+    "callback": "function s.actop(e,tp) if e:GetLabel()~=1 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SELECT); local g=Duel.SelectMatchingCard(tp,s.wlf,tp,LOCATION_DECK,0,1,1,nil); local tc=g:GetFirst(); if not tc then return end local op=0; if tc:IsAbleToHand() and tc:IsAbleToGrave() then op=Duel.SelectOption(tp,1190,1191) elseif tc:IsAbleToGrave() then op=1 end if op==0 then Duel.SendtoHand(tc,nil,REASON_EFFECT); Duel.ConfirmCards(1-tp,tc) else Duel.SendtoGrave(tc,REASON_EFFECT) end end",
+    "review": "Add/send choice repaired",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259688514,
+    "name": "Grayhex the Chanter of Grayscale",
+    "printed_text": "Cannot be used as Xyz or Link Material, except the Xyz or Link Summon of a \"Grayscale\" monster. You can only use each of the following effects of \"Grayhex the Chanter of Grayscale\" once per turn. During the Main Phase, if you control no monsters or only \"Grayscale\" monsters (Quick Effect): You can Special Summon this card from your hand. If this card is Special Summoned: You can take 1 \"Grayscale\" card from your Deck, and either add it to your hand or send it to the GY. If a \"Grayscale\" monster is Normal or Special Summoned to your field while this card is in your GY: You can discard 1 card, and if you do, Special Summon this card.",
+    "callback": "function s.takeop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Add/send choice repaired",
+    "fully_audited": false
+  }
+]

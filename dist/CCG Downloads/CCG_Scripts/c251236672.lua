@@ -54,8 +54,10 @@ function s.op(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local sg=g:Select(tp,1,1,nil)
 		if #sg>0 then
-			Duel.SendtoHand(sg,nil,REASON_EFFECT)
-			Duel.ConfirmCards(1-tp,sg)
+			if Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then
+				local received=sg:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+				if #received>0 then Duel.ConfirmCards(1-tp,received) end
+			end
 		end
 	end
 	-- Lock

@@ -102,7 +102,9 @@ function s.exop(e,tp,eg,ep,ev,re,r,rp)
 	if #cg>0 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		sg=cg:Select(tp,1,#cg,nil)
-		if Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,sg) end
+		Duel.SendtoHand(sg,nil,REASON_EFFECT)
+		local added=sg:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+		if #added>0 then Duel.ConfirmCards(1-tp,added) end
 	end
 	g:Sub(sg)
 	if #g>0 then Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_EFFECT) end

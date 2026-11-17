@@ -1,0 +1,94 @@
+{
+  "scope": "Listed OCGCore scenarios with installed scripts and installed card data. Neutral fixture resources and API adapters are used. Full-card and live Omega verification remain open.",
+  "compatibility": "Legacy Link and fixture Xyz argument translation and procedures, selected chain target mapping, basic Level 12 Xyz material eligibility/selection bridge for ordinary fixture monsters, ordinary fixture overlay eligibility. Graydeux alternate Xyz cases isolate that procedure from the unsupported ordinary Xyz API.",
+  "pendingCases": [
+    "A Stainless Story: --story-shuffle-probe tests whether copied self-shuffle must move the activating Spell instead of the sent monster; current source moves the sent monster. Ruling/intent unresolved.",
+    "Ghostrick Oni: the printed Xyz Summon wording and the existing field-to-material implementation still need reconciliation.",
+    "Sarifiel: hypothetical effect immunity of a GY material. The --grave-immune-probe reproduces attachment; expected ruling needs confirmation before a production change."
+  ],
+  "installedScripts": {
+    "220749574": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c220749574.lua",
+      "sha256": "e81e4165a9908456ee1f21b4649d85e1e599f1545df9396ffac96c6c90cf31fd"
+    },
+    "226645052": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c226645052.lua",
+      "sha256": "859d5889552b0aeaa6fea9f8b035fc6348eab5f167c6c2ebf636b302909e8d3c"
+    },
+    "228040066": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c228040066.lua",
+      "sha256": "62e86795db1fa42cbcb50e8b57f502ac5e45b0539f41d814b1a4380f9b101af2"
+    },
+    "239932270": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932270.lua",
+      "sha256": "9acb2ba13f982aa2bc78ec6c6b57169da8bee7342a5ddb4c9d0227c6690cde83"
+    },
+    "239932271": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932271.lua",
+      "sha256": "c4b1cda43b88b195c3c0c7f4e309388f524d68a1ab8b41a6eb14acfadaf3dbd6"
+    },
+    "239932272": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932272.lua",
+      "sha256": "e107250638c5e514f7918a2b36e92da5596f8dbfa881cc2ecbb4cd841d3994d9"
+    },
+    "239934743": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934743.lua",
+      "sha256": "f245ec3b9c813950718073f7917b946d99f6a6464b2d0f3efaaa4c90d2f4cffa"
+    },
+    "239934744": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934744.lua",
+      "sha256": "39cdb3edb81a79a5b36ddc921cefa54b4b1fbad2b5664771e46e392e446bcd91"
+    }
+  },
+  "results": [
+    {
+      "name": "Harmony Pearlwood search success",
+      "status": "PASS"
+    },
+    {
+      "name": "Harmony Pearlwood search decline",
+      "status": "PASS"
+    },
+    {
+      "name": "Harmony Pearlwood search redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody Merheart search success",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody Merheart search decline",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody Merheart search redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Harmony shares one activation across Normal then Special Summons",
+      "status": "PASS"
+    },
+    {
+      "name": "Harmony shares one activation across Special then Normal Summons",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody shares one activation across Normal then Special Summons",
+      "status": "PASS"
+    },
+    {
+      "name": "Melody shares one activation across Special then Normal Summons",
+      "status": "PASS"
+    },
+    {
+      "name": "Scarlet search success",
+      "status": "PASS"
+    },
+    {
+      "name": "Scarlet search redirect",
+      "status": "FAIL",
+      "error": "Only an actual Scarlet Hand receipt is revealed\n\n1 !== 0\n"
+    }
+  ]
+}

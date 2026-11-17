@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Installed full OCGCore regression 842 PASS / 0 FAIL.
+- Installed Melville c234599395, Chandra c259126370, Pot of Gambling c224774049, and eight copies of the Sylvan helper c238276572 through c238276579. All eleven match source SHA-256.
+- Excavation reveals only actual hand arrivals. Melville still bottoms the unselected excavated card. Chandra's follow-up shuffle requires both selected cards to arrive.
+- Pot of Gambling applies the printed 2000 LP loss when the declared card fails to reach the hand.
+- Original focused 4 PASS / 7 FAIL. Installed 11 PASS. Sylvan Greetings exercises the shared helper; remaining card entry points are open.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --melville-receipt-only and node scripts/fresh_current_gambling_outcomes.cjs --redirect.
+- Full: node scripts/fresh_new_floo_fiendsmith_effects.cjs. Set CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Scanned GetDecktopGroup, SendtoHand and ConfirmCards combinations. Skewy already tested actual hand location.
+- Compared stock c45354718 receipt guard. Melville and Chandra use overlay fixtures; their Xyz procedures were isolated.
+- Logs, backups, hashes and printed callback review: output/fresh-ccg-september/melville-reveal-batch/.
+- Next: audit immediate search reveals from the And/Then and alternative-choice callbacks, plus Oceanica both-player Hand selection.
+- Live Omega and other printed effects remain open.

@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Library has 703 specification cards and one compatibility alias.
+- Installed OCGCore regression now 759 PASS / 0 FAIL, up from 751.
+- Reviewed 19 Lua callbacks combining SendtoHand and SendtoDeck against printed text and their dependency order.
+- Installed c225091736 Stained Bird Bria and c245970073 A Stainless Story. Source and installed SHA-256 match.
+- Bria's summon effect and its copied effect require the target to reach the chosen hand or Deck before the dependent shuffle.
+- Applied Konami PSCT Part 7 for the dependency. Existing copy self-reference identity remains open.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --bria-recycle-only. Original 4 PASS / 4 FAIL. Candidate and installed 8 PASS.
+- Full: node scripts/fresh_new_floo_fiendsmith_effects.cjs. Set CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Logs, original and installed results, SHA-256 and exact backups: output/fresh-ccg-september/bria-recycle-batch/.
+- Printed clause review: output/fresh-ccg-september/bria-recycle-batch/effect-review.json. Bria's separate hand effect is in dependent-draw-batch.
+- Coverage for individual effects only. Live Omega duels remain open.
+- Next: verify Janna's delayed search when a selected card fails to reach the Deck. Also open: Melville's reveal, Oceanica both-player Hand selection, Crystal Shards Extra Deck targeting.

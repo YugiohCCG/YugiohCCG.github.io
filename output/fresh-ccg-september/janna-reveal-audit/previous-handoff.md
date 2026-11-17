@@ -1,0 +1,12 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Installed full OCGCore regression 828 PASS / 0 FAIL.
+- Installed c210506870 Talismandrake Heat, c238272435 Blossom Skull, c259177849 Grand Blue Princess, c259937946 Grand Blue Prince, c248760718 Starry Queen and c259635008. All six match source SHA-256.
+- Single-card follow-ups now check the destination printed on the card. The Grand Blue shuffles accept either Deck.
+- Reproduced all six redirect failures against installed originals. Candidate and installed focused suites each passed 12 cases.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --single-deck-successor-only. Full: same command without the flag.
+- Set CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Compared stock c100256025 for successful Extra Deck arrival. Myutant Evolution already checked Deck/Extra Deck arrival.
+- Starry Queen uses the existing public-core chain attribute mapping. The Spirit Synchro case uses a fixture Summon.
+- Logs, original snapshots, exact backups, hashes and effect review: output/fresh-ccg-september/single-deck-successor-batch/.
+- Next: inspect remaining destination calls that do not use a return-value condition, then prioritize Oceanica both-player Hand selection and Janna/Melville reveals.
+- Coverage is effect-specific. Full archetype review and live Omega duels remain open.

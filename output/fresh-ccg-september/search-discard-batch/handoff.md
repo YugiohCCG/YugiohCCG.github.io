@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Current library has 703 specification cards and one compatibility alias.
+- Installed regression advanced from 723 to 744 PASS, 0 FAIL. The prior Nautica batch remains installed.
+- Add-to-hand then discard: scanned all Lua for both APIs and cross-checked printed clauses. 31 overlapping files, 13 same-callback hits, nine verified repairs.
+- Installed c211086520, c245354354, c258590942, c259352030, c259366591, c259479044, c259923860, c284636663 and c284636665. SHA-256 parity verified.
+- Require actual hand receipt before reveal and discard. Behemoth reveals the received subset and discards if at least one arrived.
+- Vylon Torus passed the legal and partial-redirect controls. Ophiel and Brilliance already check hand arrival in their dependent callbacks.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --search-discard-only. Original 11 PASS / 10 FAIL. Candidate and installed 21 PASS.
+- Full: node scripts/fresh_new_floo_fiendsmith_effects.cjs. Both commands use CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB pointed at local Omega.
+- Corrected two older Crystal Shards expectations after the first full run. Extra Deck return does not cause a discard. Rerun passed both.
+- Logs, snapshots, backups, hashes and printed-clause review: output/fresh-ccg-september/search-discard-batch/.
+- Effect coverage remains scoped. Nautica detail is in output/fresh-ccg-september/nautica-effect-coverage.json. No live Omega duel run.
+- Next: other dependent hand-receipt effects, beginning with Stained Bird Bria. Also check Crystal Shards' remaining Extra Deck target eligibility gate and Oceanica both-player Hand selection.

@@ -97,8 +97,9 @@ function s.takeop(e,tp,eg,ep,ev,re,r,rp)
 		opt=1
 	end
 	if opt==0 and canhand then
-		Duel.SendtoHand(tc,nil,REASON_EFFECT)
-		Duel.ConfirmCards(1-tp,Group.FromCards(tc))
+		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then
+			Duel.ConfirmCards(1-tp,tc)
+		end
 	elseif cangy then
 		Duel.SendtoGrave(tc,REASON_EFFECT)
 	end

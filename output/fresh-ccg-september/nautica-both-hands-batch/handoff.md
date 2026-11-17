@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Installed full OCGCore regression 889 PASS / 0 FAIL.
+- Installed Bobbie c259114562, Oceanica c259941091 and Musicale c259797813. All three match source bytes.
+- Bobbie reports both Hand origins. Oceanica combines Normal and Special Summon categories and offers either supplemental effect.
+- Musicale recognizes Bobbie as the Nautica entering from the controller's hand. Opponent Special Summon branch verified.
+- Oceanica options added to both card text rows in the canonical and installed databases and to the DB sync script.
+- Focused: node scripts/fresh_current_oceanica_recovery.cjs with --both-hands-check, --redirect-check and --bobbie-musicale-check. Installed 7 PASS.
+- Full: node scripts/fresh_new_floo_fiendsmith_effects.cjs. Set CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Focused Oceanica uses the existing chain-disabled query adapter. Stock c14283055 demonstrates a PLAYER_ALL report without a fixed group.
+- Logs, installed originals, DB backups and SHA-256: output/fresh-ccg-september/nautica-both-hands-batch/.
+- Printed-effect ledger and Nautica origin inventory updated in output/fresh-ccg-september/.
+- Next: reproduce and diagnose Musicale with Bobbie's opposing Normal Summon. The exploratory test did not see its trigger.
+- Live Omega and full archetype coverage remain open.

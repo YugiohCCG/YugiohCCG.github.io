@@ -185,8 +185,10 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		count = count - sc:GetLevel()
 	end
 	if #selected > 0 then
-		Duel.SendtoHand(selected, nil, REASON_EFFECT)
-		Duel.ConfirmCards(1-tp, selected)
+		if Duel.SendtoHand(selected,nil,REASON_EFFECT)>0 then
+			local received=selected:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+			if #received>0 then Duel.ConfirmCards(1-tp,received) end
+		end
 	end
 	
 	-- Lock

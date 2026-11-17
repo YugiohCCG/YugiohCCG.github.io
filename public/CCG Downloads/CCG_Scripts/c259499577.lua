@@ -56,7 +56,8 @@ function s.op(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if not (tc and tc:IsRelateToEffect(e) and aux.NecroValleyFilter()(tc) and tc:IsAbleToDeck()) then return end
 	local owner=s.owner(tc)
-	if Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==0 then return end
+	if Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==0
+		or not tc:IsLocation(LOCATION_DECK+LOCATION_EXTRA) then return end
 	if owner==tp then
 		if Duel.IsPlayerCanDraw(tp,1) then
 			Duel.Draw(tp,1,REASON_EFFECT)
