@@ -67,8 +67,8 @@ function s.massspop(e,tp,eg,ep,ev,re,r,rp)
 	if not g then return end
 	g=g:Filter(s.relfilter,nil,e)
 	if #g==0 then return end
-	local ct=Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
-	ct=ct or #g
+	Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
+	local ct=g:FilterCount(Card.IsLocation,nil,LOCATION_DECK+LOCATION_EXTRA)
 	local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
 	if Duel.IsPlayerAffectedByEffect(tp,59822133) then ct=math.min(ct,1) end
 	ct=math.min(ct,ft)

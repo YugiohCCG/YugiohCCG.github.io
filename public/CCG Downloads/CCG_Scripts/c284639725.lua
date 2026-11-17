@@ -48,7 +48,7 @@ end
 function s.thop(e,tp)
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
  local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)
- if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 then return end
+ if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 or not g:GetFirst():IsLocation(LOCATION_HAND) or not g:GetFirst():IsControler(tp) then return end
  Duel.ConfirmCards(1-tp,g)
  local choices=Duel.GetMatchingGroup(s.desfilter,tp,LOCATION_ONFIELD,0,nil)
  if #choices>0 and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,1)) then

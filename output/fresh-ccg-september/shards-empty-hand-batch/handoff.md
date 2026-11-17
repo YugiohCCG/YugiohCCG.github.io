@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Installed OCGCore regression 784 PASS / 0 FAIL.
+- Installed Arckcestial Crystal Shards c259366591. Source and installed SHA-256 match.
+- Removed the unrelated hand-discard eligibility gate on recovering a banished Extra Deck monster.
+- Original native Synchro case failed to offer the recovery with an empty hand. Candidate and installed cases return the target to the Extra Deck with zero discards.
+- Existing Main Deck recovery and redirect cases still pass. The recovery only discards after the target reaches the hand.
+- Reviewed library callbacks combining IsAbleToHand with explicit Extra Deck types or discard checks. Crystal Shards had the matching eligibility gate.
+- Compared stock Omega c45354718 for the hand-arrival guard already used during resolution.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --shards-empty-hand-only. Full: same command without the flag.
+- Set CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega. Logs, backups, printed review, and hashes: output/fresh-ccg-september/shards-empty-hand-batch/.
+- Prior Deck cost batch remains verified. Coverage here is limited to Crystal Shards recovery and existing focused cases.
+- Next: reproduce single-card Deck-destination follow-ups from next-deck-destination-scan.log, starting with c212737555 and the four alternate-destination callbacks.
+- Janna recovery, Melville reveal, Oceanica both-player Hand selection and live Omega duels remain open.

@@ -4,6 +4,11 @@ const file=path.join(__dirname,'fresh_current_terrarumian_ivy_participants.cjs')
 function rep(a,b){assert(s.includes(a),a);s=s.replace(a,b);}
 rep("const fs=require('node:fs')","const assert=require('node:assert/strict');const fs=require('node:fs')");
 rep('ivy=284639722','ivy=235051048');
+if(process.argv.includes('--installed')){
+ assert(process.env.CCG_OMEGA_SCRIPTS,'Installed script directory required');
+ rep("CUSTOM=path.join(ROOT,'public/CCG Downloads/CCG_Scripts')","CUSTOM=process.env.CCG_OMEGA_SCRIPTS");
+}
+
 rep("const control=process.argv.includes('--no-lock')?'no-lock':null;","const control=process.argv.includes('--no-recruit')?'no-recruit':null;");
 rep("['ownDefender','ownAttacker','opponentOnly','ownBystander']","['faceup','facedown','wrongSet','nonPendulum']");
 rep("terrarumian=scenario==='ownDefender'||scenario==='ownAttacker',ownAttack=scenario==='ownAttacker'","terrarumian=scenario!=='wrongSet',ownAttack=false");
@@ -20,7 +25,7 @@ const e=s.indexOf('const seq=[0,4,1,2,3,5]'),f=s.indexOf('else if(p.type===M.SEL
 s=s.slice(0,e)+"const seq=[0,1,2,3,4].find(i=>(p.field_mask&(1<<i))===0);assert.notEqual(seq,undefined);core.duelSetResponse(duel,{type:R.SELECT_PLACE,places:[{player:0,location:L.MZONE,sequence:seq}]});}\n    else if(p.type===M.SELECT_EFFECTYN){assert(terrarumian,'Unexpected Hand trigger');triggered=true;core.duelSetResponse(duel,{type:R.SELECT_EFFECTYN,yes:true});}\n    else if(p.type===M.SELECT_POSITION)core.duelSetResponse(duel,{type:R.SELECT_POSITION,position:P.FACEUP_ATTACK});\n    "+s.slice(f);
 rep('availableBefore,availableDuring,attacked,','availableBefore,availableDuring,triggered,attacked,');
 rep('current-terrarumian-ivy-participants','current-octantis-battle-trigger');
-rep("(control?'-'+control:'')+'.json'","(process.argv.includes('--old-source')?'-old-source':process.argv.includes('--candidate')?'-candidate':control?'-'+control:'')+'.json'");
+rep("(control?'-'+control:'')+'.json'","(process.argv.includes('--installed')?'-installed':process.argv.includes('--old-source')?'-old-source':process.argv.includes('--candidate')?'-candidate':control?'-'+control:'')+'.json'");
 rep("engine:'public OCGCore with Omega Lua; not native Omega'","scope:'Diagnostic full original Octantis/current installed metadata/corrected public transport/no Lua API adapter. Initial GY source, own neutral archetype Pendulum defender and natural opponent-turn battle. Native flip/destruction and actual source banishment and Hand recruitment; faceup baseline, wrong-set/nonPendulum exclusions, omitted Hand summon control. No original recipient recipe/full-card/live Omega claim.'");
 s=s.replaceAll('0xA122','0x163').replaceAll('0xa122','0x163');
 rep('add(ivy,L.HAND);','add(ivy,L.GRAVE);');

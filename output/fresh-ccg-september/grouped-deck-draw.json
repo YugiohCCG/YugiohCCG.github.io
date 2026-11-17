@@ -1,0 +1,461 @@
+{
+  "scope": "Listed OCGCore scenarios with installed scripts and installed card data. Neutral fixture resources and API adapters are used. Full-card and live Omega verification remain open.",
+  "compatibility": "Legacy Link and fixture Xyz argument translation and procedures, selected chain target mapping, basic Level 12 Xyz material eligibility/selection bridge for ordinary fixture monsters, ordinary fixture overlay eligibility. Graydeux alternate Xyz cases isolate that procedure from the unsupported ordinary Xyz API.",
+  "pendingCases": [
+    "A Stainless Story: --story-shuffle-probe tests whether copied self-shuffle must move the activating Spell instead of the sent monster; current source moves the sent monster. Ruling/intent unresolved.",
+    "Ghostrick Oni: the printed Xyz Summon wording and the existing field-to-material implementation still need reconciliation.",
+    "Sarifiel: hypothetical effect immunity of a GY material. The --grave-immune-probe reproduces attachment; expected ruling needs confirmation before a production change."
+  ],
+  "installedScripts": {
+    "210696007": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c210696007.lua",
+      "sha256": "e60056af0e5e5e1692c37721c08a3ef77b43b8df779e8da6cb418a7e6040d623"
+    },
+    "212429024": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c212429024.lua",
+      "sha256": "c91be0aac416f5acc8dc915688492c5877e51c8c2217c531620507773111e75d"
+    },
+    "212684822": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c212684822.lua",
+      "sha256": "6f6712f5483c0ee608dc31f0f7af7cb54d5177836eccac2efe21ed32cef73e8a"
+    },
+    "215006791": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c215006791.lua",
+      "sha256": "434af7f0157cb93d6eb6c0a91b812c88e3d00787e64375c92df3d1b5f7704d4f"
+    },
+    "221759221": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c221759221.lua",
+      "sha256": "6368df7d6092be8bd703c34578cdbe215a5cb954c187775a43b7ef128351cf7d"
+    },
+    "221822671": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c221822671.lua",
+      "sha256": "83b805896f232189cdadb979176d7e07bff2fd7798a036494fe444d31c0dae4e"
+    },
+    "227362839": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c227362839.lua",
+      "sha256": "6997d6db8d4e98cbc69b811c461349a2aceb71724672248d31f7ae47d58340c7"
+    },
+    "234599395": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c234599395.lua",
+      "sha256": "0dea5fae412520d4df762a4cf8f8fd698ef2262d13625ef65358429d0d386085"
+    },
+    "237684285": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c237684285.lua",
+      "sha256": "74c1f943662f34089b5e9d9a9a2ec3c235c62743b791c3711a7d9a79aaeccb5c"
+    },
+    "238276575": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c238276575.lua",
+      "sha256": "c6da7f76525e6fa793215478e631f95ad191494ce02532e8b6fce3f725f240b6"
+    },
+    "238711686": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c238711686.lua",
+      "sha256": "6c489f6c615dec4347e2c57f52bd0f607a62ef8f9e5f893ebd9d4d6f0f15406c"
+    },
+    "239932270": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932270.lua",
+      "sha256": "9acb2ba13f982aa2bc78ec6c6b57169da8bee7342a5ddb4c9d0227c6690cde83"
+    },
+    "239932271": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932271.lua",
+      "sha256": "c4b1cda43b88b195c3c0c7f4e309388f524d68a1ab8b41a6eb14acfadaf3dbd6"
+    },
+    "239932272": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932272.lua",
+      "sha256": "e107250638c5e514f7918a2b36e92da5596f8dbfa881cc2ecbb4cd841d3994d9"
+    },
+    "239934743": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934743.lua",
+      "sha256": "f245ec3b9c813950718073f7917b946d99f6a6464b2d0f3efaaa4c90d2f4cffa"
+    },
+    "239934744": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934744.lua",
+      "sha256": "39cdb3edb81a79a5b36ddc921cefa54b4b1fbad2b5664771e46e392e446bcd91"
+    },
+    "240511702": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c240511702.lua",
+      "sha256": "4967f4e14261c5a54b3168ca758bdbb6b2258140f965df0d850f8757a1f08bfb"
+    },
+    "244921711": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c244921711.lua",
+      "sha256": "03080ed1a5efe1faf1484a91763c9bfda1af22a77e0504b7c500344a4d75a1e2"
+    },
+    "244972185": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c244972185.lua",
+      "sha256": "48dcd2948eddd563d51a5f10aaad6ac2bb6d8ae58fc33d85fea6f59eb08de424"
+    },
+    "245970073": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c245970073.lua",
+      "sha256": "d0f96e9f3ae5244029756f237ae59df7ed589adc37cbee72921fb83ecad70a50"
+    },
+    "246216813": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c246216813.lua",
+      "sha256": "10382e5f319735dc5afac2629613998a7b8b8927c1fa6ed1579fd34bec284769"
+    },
+    "246393365": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c246393365.lua",
+      "sha256": "002fb61147d473ee09dc128e3e5e009034585d0449e5438444b99c696e94aa49"
+    },
+    "247755865": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c247755865.lua",
+      "sha256": "5b477b7f16a3a20bbbdb89a965c308e5b665d29549addc9275c09f3acbb67e8a"
+    },
+    "254065048": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c254065048.lua",
+      "sha256": "23744c558d3a22043d93657475cb46ed107a8d4115f2f44af2b83868d277fd78"
+    },
+    "258328859": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c258328859.lua",
+      "sha256": "2456e8fede16210c26d63a265fc385fe590658562606fc585248f8336b749972"
+    },
+    "259126370": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259126370.lua",
+      "sha256": "ccb7afdcbee656637ceb9a58cd8d962dd5f53e6936a219e9856cb8b7922a5f10"
+    },
+    "259177849": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259177849.lua",
+      "sha256": "0f90c25a166431719ba6edf1af23cedc36e1d98f0289188b2890b997dc4f4480"
+    },
+    "259187643": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259187643.lua",
+      "sha256": "00b850f49ef87cf81fc876242fa1485514eb315ced491c3ce1b0351f5c67c722"
+    },
+    "259366507": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259366507.lua",
+      "sha256": "97f17f2190967e1ba30a1e27e16a797d1c1ba2bd3ccef44239079975ca2af612"
+    },
+    "259391738": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259391738.lua",
+      "sha256": "3d1b30089bebda6d6e8fbf1a6a24e4b00c0eaebb874693fb58cdccee088a982a"
+    },
+    "259578863": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259578863.lua",
+      "sha256": "bff0ef6dd55125bed0ebaa001d531eef141b356a80860b491c063623a9a36207"
+    },
+    "259688514": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259688514.lua",
+      "sha256": "10061c70d9403829e1dfaa6b6a4627383017e1627f95147b31d028663774f219"
+    }
+  },
+  "results": [
+    {
+      "name": "Grouped Deck draw 212429024 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Grouped Deck draw 212429024 partial",
+      "status": "PASS"
+    },
+    {
+      "name": "Grouped Deck draw 212429024 all",
+      "status": "PASS"
+    },
+    {
+      "name": "Grouped Deck draw 244921711 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Grouped Deck draw 244921711 partial",
+      "status": "PASS"
+    },
+    {
+      "name": "Grouped Deck draw 244921711 all",
+      "status": "PASS"
+    },
+    {
+      "name": "Grouped Deck draw 246393365 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Grouped Deck draw 246393365 partial",
+      "status": "PASS"
+    },
+    {
+      "name": "Grouped Deck draw 246393365 all",
+      "status": "PASS"
+    },
+    {
+      "name": "Grouped Deck draw 259391738 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Grouped Deck draw 259391738 partial",
+      "status": "PASS"
+    },
+    {
+      "name": "Grouped Deck draw 259391738 all",
+      "status": "PASS"
+    },
+    {
+      "name": "Hextanius recycle face-up banishment",
+      "status": "PASS"
+    },
+    {
+      "name": "Hextanius recycle face-down banishment",
+      "status": "PASS"
+    },
+    {
+      "name": "Hextanius recycle Extra Deck",
+      "status": "PASS"
+    },
+    {
+      "name": "Hextanius recycle four resources",
+      "status": "PASS"
+    },
+    {
+      "name": "Hextanius recycle copy limit",
+      "status": "PASS"
+    },
+    {
+      "name": "Hextanius recycle wrong set",
+      "status": "PASS"
+    },
+    {
+      "name": "Hextanius recycle self only",
+      "status": "PASS"
+    },
+    {
+      "name": "Janna does not reveal a redirected delayed search",
+      "status": "PASS"
+    },
+    {
+      "name": "Windborne delayed GY reveal 237684285 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Windborne delayed GY reveal 237684285 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Windborne delayed GY reveal 215006791 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Windborne delayed GY reveal 215006791 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Melville excavation receipt success",
+      "status": "PASS"
+    },
+    {
+      "name": "Melville excavation receipt partial",
+      "status": "PASS"
+    },
+    {
+      "name": "Melville excavation receipt all",
+      "status": "PASS"
+    },
+    {
+      "name": "Sylvan Greetings excavation receipt success",
+      "status": "PASS"
+    },
+    {
+      "name": "Sylvan Greetings excavation receipt partial",
+      "status": "PASS"
+    },
+    {
+      "name": "Sylvan Greetings excavation receipt all",
+      "status": "PASS"
+    },
+    {
+      "name": "Chandra excavation receipt success",
+      "status": "PASS"
+    },
+    {
+      "name": "Chandra excavation receipt partial",
+      "status": "PASS"
+    },
+    {
+      "name": "Chandra excavation receipt all",
+      "status": "PASS"
+    },
+    {
+      "name": "Alternative search receipt 221822671 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Alternative search receipt 221822671 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Alternative search receipt 238711686 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Alternative search receipt 238711686 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Alternative search receipt 240511702 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Alternative search receipt 240511702 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Alternative search receipt 245970073 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Alternative search receipt 245970073 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Alternative search receipt 246216813 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Alternative search receipt 246216813 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Alternative search receipt 259578863 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Alternative search receipt 259578863 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Alternative search receipt 221759221 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Alternative search receipt 221759221 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Add or send receipt 210696007 add",
+      "status": "PASS"
+    },
+    {
+      "name": "Add or send receipt 210696007 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Add or send receipt 210696007 send",
+      "status": "PASS"
+    },
+    {
+      "name": "Add or send receipt 259187643 add",
+      "status": "PASS"
+    },
+    {
+      "name": "Add or send receipt 259187643 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Add or send receipt 259187643 send",
+      "status": "PASS"
+    },
+    {
+      "name": "Add or send receipt 258328859 add",
+      "status": "PASS"
+    },
+    {
+      "name": "Add or send receipt 258328859 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Add or send receipt 258328859 send",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 212684822 add",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 212684822 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 212684822 send",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 227362839 add",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 227362839 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 227362839 send",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 247755865 add",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 247755865 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 247755865 send",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 254065048 add",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 254065048 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 254065048 send",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 259177849 add",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 259177849 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 259177849 send",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 259688514 add",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 259688514 redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Summon add or send receipt 259688514 send",
+      "status": "PASS"
+    },
+    {
+      "name": "Zephorion receipt spires success",
+      "status": "PASS"
+    },
+    {
+      "name": "Zephorion receipt spires redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Zephorion receipt aquila-deck success",
+      "status": "PASS"
+    },
+    {
+      "name": "Zephorion receipt aquila-deck redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "Zephorion receipt aquila-grave success",
+      "status": "PASS"
+    },
+    {
+      "name": "Zephorion receipt aquila-grave redirect",
+      "status": "PASS"
+    }
+  ]
+}

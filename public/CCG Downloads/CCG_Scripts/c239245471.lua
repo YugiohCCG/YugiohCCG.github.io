@@ -129,7 +129,5 @@ end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if not (c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)) then return end
-	if c:IsRelateToEffect(e) and Duel.SendtoHand(c,nil,REASON_EFFECT)>0 then
-		Duel.ConfirmCards(1-tp,c)
-	end
+	if c:IsRelateToEffect(e) and Duel.SendtoHand(c,nil,REASON_EFFECT)>0 and c:IsLocation(LOCATION_HAND) and c:IsControler(tp) then Duel.ConfirmCards(1-tp,c) end
 end

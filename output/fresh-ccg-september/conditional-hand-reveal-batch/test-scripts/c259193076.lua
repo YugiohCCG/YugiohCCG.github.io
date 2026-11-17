@@ -1,0 +1,134 @@
+--Eclipse Observer Baleygr
+local s,id=GetID()
+local STRING_ID=133193076
+local SET_ECLIPSE=0xf2f4
+local SET_ECLIPSE_OBSERVER=0xeb17
+local CARD_BOOK_OF_ECLIPSE=35480699
+local CARD_BOOK_OF_LUNAR_ECLIPSE=31834488
+function s.initial_effect(c)
+	aux.AddCodeList(c,120222045,CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE)
+	c:EnableReviveLimit()
+	aux.AddFusionProcFun2(c,s.fusmat1,aux.FilterBoolFunction(Card.IsRace,RACE_SPELLCASTER),true)
+	--"Eclipse Observer" cards are unaffected by "Eclipse" Quick-Play Spells
+	local e1=Effect.CreateEffect(c)
+	e1:SetType(EFFECT_TYPE_FIELD)
+	e1:SetCode(EFFECT_IMMUNE_EFFECT)
+	e1:SetRange(LOCATION_MZONE)
+	e1:SetTargetRange(LOCATION_ONFIELD+LOCATION_GRAVE,0)
+	e1:SetTarget(s.immtg)
+	e1:SetValue(s.immval)
+	c:RegisterEffect(e1)
+	--Cannot be destroyed by card effects while your opponent has 3+ cards
+	local e2=Effect.CreateEffect(c)
+	e2:SetType(EFFECT_TYPE_SINGLE)
+	e2:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
+	e2:SetRange(LOCATION_MZONE)
+	e2:SetCode(EFFECT_INDESTRUCTABLE_EFFECT)
+	e2:SetCondition(s.hand3con)
+	e2:SetValue(1)
+	c:RegisterEffect(e2)
+	--Cannot be targeted by card effects while your opponent has 3+ cards
+	local e3=e2:Clone()
+	e3:SetCode(EFFECT_CANNOT_BE_EFFECT_TARGET)
+	c:RegisterEffect(e3)
+	--Opponent has no hand size limit while they have 6+ cards
+	local e4=Effect.CreateEffect(c)
+	e4:SetType(EFFECT_TYPE_FIELD)
+	e4:SetCode(EFFECT_HAND_LIMIT)
+	e4:SetRange(LOCATION_MZONE)
+	e4:SetProperty(EFFECT_FLAG_PLAYER_TARGET)
+	e4:SetTargetRange(0,1)
+	e4:SetCondition(s.hand6con)
+	e4:SetValue(100)
+	c:RegisterEffect(e4)
+	--Copy an "Eclipse" Quick-Play Spell's activation effect
+	local e5=Effect.CreateEffect(c)
+	e5:SetDescription(aux.Stringid(STRING_ID,0))
+	e5:SetType(EFFECT_TYPE_QUICK_O)
+	e5:SetCode(EVENT_FREE_CHAIN)
+	e5:SetRange(LOCATION_MZONE)
+	e5:SetCountLimit(1,id)
+	e5:SetCondition(s.cpcon)
+	e5:SetCost(s.cpcost)
+	e5:SetTarget(s.cptg)
+	e5:SetOperation(s.cpop)
+	c:RegisterEffect(e5)
+end
+s.listed_series={SET_ECLIPSE,SET_ECLIPSE_OBSERVER}
+s.listed_names={CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE}
+function s.isobservermonster(c)
+	return c:IsType(TYPE_MONSTER) and c:IsSetCard(SET_ECLIPSE_OBSERVER)
+end
+function s.isobservercard(c)
+	return s.isobservermonster(c) or c:IsSetCard(SET_ECLIPSE_OBSERVER)
+end
+function s.fusmat1(c)
+	return s.isobservermonster(c) and c:IsLevel(8)
+end
+function s.immtg(e,c)
+	return s.isobservercard(c)
+end
+function s.immval(e,te)
+	local tc=te:GetHandler()
+	return (tc:IsSetCard(SET_ECLIPSE) or tc:IsCode(CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE)) and tc:IsType(TYPE_QUICKPLAY)
+end
+function s.hand3con(e)
+	return Duel.GetFieldGroupCount(e:GetHandlerPlayer(),0,LOCATION_HAND)>=3
+end
+function s.hand6con(e)
+	return Duel.GetFieldGroupCount(e:GetHandlerPlayer(),0,LOCATION_HAND)>=6
+end
+function s.cpcon(e,tp,eg,ep,ev,re,r,rp)
+	return Duel.GetFieldGroupCount(tp,0,LOCATION_HAND)>=9
+end
+function s.getcopyeffect(c,tp,use_count)
+	local te,ceg,cep,cev,cre,cr,crp=c:CheckActivateEffect(true,true,use_count)
+	if te then return te,ceg,cep,cev,cre,cr,crp end
+	--Official Omega also exposes activation effects through GetActivateEffect.
+	--Use it as a generic fallback when CheckActivateEffect cannot snapshot an
+	--otherwise legal free-chain Quick-Play activation (such as Tome of Eclipse).
+	te=c:GetActivateEffect()
+	if not te then return nil end
+	local tg=te:GetTarget()
+	local test_group=Group.CreateGroup()
+	if tg and not tg(te,tp,test_group,tp,0,nil,0,tp,0) then return nil end
+	return te,test_group,tp,0,nil,0,tp
+end
+function s.cpfilter(c,tp)
+	return (c:IsSetCard(SET_ECLIPSE) or c:IsCode(CARD_BOOK_OF_ECLIPSE,CARD_BOOK_OF_LUNAR_ECLIPSE)) and c:IsType(TYPE_QUICKPLAY)
+		and c:IsAbleToRemoveAsCost() and aux.NecroValleyFilter()(c)
+		and s.getcopyeffect(c,tp,false)~=nil
+end
+function s.cpcost(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.cpfilter,tp,LOCATION_GRAVE,0,1,nil,tp) end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_REMOVE)
+	local tc=Duel.SelectMatchingCard(tp,s.cpfilter,tp,LOCATION_GRAVE,0,1,1,nil,tp):GetFirst()
+	if not tc then return end
+	local te,ceg,cep,cev,cre,cr,crp=s.getcopyeffect(tc,tp,true)
+	if not te or Duel.Remove(tc,POS_FACEUP,REASON_COST)==0 then return end
+	e:SetProperty(te:GetProperty())
+	s.copy_args=s.copy_args or {}
+	s.copy_args[e]={ceg,cep,cev,cre,cr,crp}
+	e:SetLabelObject(te)
+end
+function s.cptg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return true end
+	local te=e:GetLabelObject()
+	local args=s.copy_args and s.copy_args[e]
+	if not te or not args then return end
+	e:SetLabelObject(nil)
+	local tg=te:GetTarget()
+	if tg then tg(e,tp,args[1],args[2],args[3],args[4],args[5],args[6],1) end
+	te:SetLabelObject(e:GetLabelObject())
+	e:SetLabelObject(te)
+	Duel.ClearOperationInfo(0)
+end
+function s.cpop(e,tp,eg,ep,ev,re,r,rp)
+	local te=e:GetLabelObject()
+	if te then
+		e:SetLabelObject(te:GetLabelObject())
+		local op=te:GetOperation()
+		if op then op(e,tp,eg,ep,ev,re,r,rp) end
+	end
+	if s.copy_args then s.copy_args[e]=nil end
+end

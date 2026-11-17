@@ -48,6 +48,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spfilter),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,1,c,e,tp)
 	if #g>0 then
 		g:AddCard(c)
+		Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,g,#g,tp,LOCATION_HAND+LOCATION_GRAVE)
 		if Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)==2 then
 			Duel.NegateAttack()
 		end

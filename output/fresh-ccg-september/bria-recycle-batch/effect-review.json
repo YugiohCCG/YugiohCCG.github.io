@@ -1,0 +1,154 @@
+[
+  {
+    "passcode": 210506870,
+    "name": "Talismandrake Heat",
+    "printed_text": "Pendulum Effect: You cannot Pendulum Summon monsters, except Pyro Monsters. You can target 1 DARK Pyro Fusion Monster in your GY; return it to the Extra Deck, and if you do, return this card to the hand. You can only use this effect of “Talismandrake Heat” once per turn.\nMonster Effect: Gains 200 ATK for each “Talismandrake” Spell/Trap you control that is equipped to a monster. If you control a DARK Pyro monster: You can Special Summon this card from your hand. During the Main Phase: You can Fusion Summon 1 DARK Pyro Fusion Monster from your Extra Deck, using monsters from your hand or field as material. You can only use each effect of \"Talismandrake Heat\" once per turn.",
+    "callback": "function s.rtop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Deck return comes first; reverse order.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 220749574,
+    "name": "Scarlet Seareef & the Nautical Creatures",
+    "printed_text": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by placing 2 Aqua Monsters from your GY on the bottom of your Deck in any order. You can treat this card as a Level 1 monster when you Xyz Summon an Aqua monster. You can discard 1 card; shuffle this card from your hand into the Deck, then add 1 \"Exploring the Nautical Waters\" from your Deck to your hand. If this card is Special Summoned: You can draw 1 card, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Self shuffle comes first; reverse order.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 223558392,
+    "name": "Prophecy of Boulders",
+    "printed_text": "Target 1 EARTH monster you control that was Special Summoned from the Extra Deck; return that target to the Extra Deck, then Special Summon this card from your hand, and if you do, add 1 Spell/Trap from your Deck to your hand that lists \"EARTH\" in its text. You can only use this effect of \"Prophecy of Boulders\" once per turn.",
+    "callback": "function s.spop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Extra Deck return comes first; reverse order.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 223592011,
+    "name": "Prophecy of Storms",
+    "printed_text": "Target 1 WIND monster you control that was Special Summoned from the Extra Deck; return that target to the Extra Deck, then Special Summon this card from your hand, and if you do, add 1 Spell/Trap from your Deck to your hand that lists \"WIND\" in its text. You can only use this effect of \"Prophecy of Storms\" once per turn.",
+    "callback": "function s.spop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Extra Deck return comes first; reverse order.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 225091736,
+    "name": "Stained Bird Bria",
+    "printed_text": "If this card is in your hand: You can discard 1 card; shuffle this card face-up into your opponent's Deck, also, add 1 \"Stain\" card from your Deck to your hand, then, if your opponent controls more cards than you, draw 1 card. If this card is Normal or Special Summoned: You can target 1 card in either GY or banishment; place it on the bottom of the Deck, or, if it is your \"Stain\" card, add it to the hand instead, and if you do, shuffle this card into the Deck. You can only use each effect of \"Stained Bird Bria\" once per turn.",
+    "callback": "function s.botop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Both optional destinations gate self-shuffle. A redirect to banishment falsely allowed it.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 229327103,
+    "name": "Prophecy of Infernos",
+    "printed_text": "Target 1 FIRE monster you control that was Special Summoned from the Extra Deck; return that target to the Extra Deck, then Special Summon this card from your hand, and if you do, add 1 Spell/Trap from your Deck to your hand that lists \"FIRE\" in its text. You can only use this effect of \"Prophecy of Infernos\" once per turn.",
+    "callback": "function s.spop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Extra Deck return comes first; reverse order.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 234599395,
+    "name": "Melville the Crewal Vessel",
+    "printed_text": "2+ Level 4 Zombie monsters. If this card is Special Summoned while it has no material: You can target 1 card your opponent controls; attach it to this card as material. While this card has material (Quick Effect): You can detach all materials from this card, then place this card in your Spell & Trap Zone as a Continuous Trap; excavate that many cards from the top of your Deck, and if you do, you can add any excavated \"Crewal\" cards to your hand, then place the rest on the bottom of your Deck. You cannot Special Summon the turn you activate this effect, except Zombie monsters. You can only use each effect of \"Melville the Crewal Vessel\" once per turn. You can only control 1 \"Melville the Crewal Vessel\".",
+    "callback": "function s.exop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "The rest of the excavated group is placed on bottom. No self shuffle; exact reveal behavior open.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 237684285,
+    "name": "Janna, Windborne Goddess of Clement Winds",
+    "printed_text": "1 Tuner + 1+ non-Tuner monsters\nCannot be targeted by card effects, except your \"Windborne\" cards, the turn it is Synchro Summoned. If this card is Synchro Summoned using only \"Windborne\" monsters: You can target up to 2 cards your opponent controls; return them to the hand, then shuffle as many cards from your hand into the Deck and if you do, during the next Standby Phase, add 1 \"Windborne\" card from your Deck to your hand for each card you shuffled into the Deck by this effect. During the End Phase: you can target 1 \"Windborne\" Spell in your GY; add that target to your hand during your next Standby Phase. You can only use each effect of \"Janna, Windborne Goddess of Clement Winds\" once per turn.",
+    "callback": "function s.rtop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Hand return already counts received cards. Separate Deck destination count for delayed search remains open.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 243920845,
+    "name": "Prophecy of Shadows",
+    "printed_text": "Target 1 DARK monster you control that was Special Summoned from the Extra Deck; return that target to the Extra Deck, then Special Summon this card from your hand, and if you do, add 1 Spell/Trap from your Deck to your hand that lists \"DARK\" in its text. You can only use this effect of \"Prophecy of Shadows\" once per turn.",
+    "callback": "function s.spop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Extra Deck return comes first; reverse order.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 244816828,
+    "name": "Myutant Evolution",
+    "printed_text": "When this card is activated: You can add 1 \"Myutant\" card from your Deck to your hand, except \"Myutant Evolution\", then you can place 1 card from your hand on the bottom of your Deck, and if you do, draw 1 card. If this card is banished: You can target 1 Level 8 or higher \"Myutant\" monster you control; shuffle it into the Deck, then banish 1 \"Myutant\" card from your hand or Deck, and if you do, Special Summon 1 monster from your hand or Deck, based on the banished card. ● Monster: \"Myutant Beast\" ● Spell: \"Myutant Mist\" ● Trap: \"Myutant Arsenal\". You can only use each effect of \"Myutant Evolution\" once per turn.",
+    "callback": "function s.activate(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Existing hand and Deck destination guards. No self shuffle.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 244920555,
+    "name": "Prophecy of Rays",
+    "printed_text": "Target 1 LIGHT monster you control that was Special Summoned from the Extra Deck; return that target to the Extra Deck, then Special Summon this card from your hand, and if you do, add 1 Spell/Trap from your Deck to your hand that lists \"LIGHT\" in its text. You can only use this effect of \"Prophecy of Rays\" once per turn.",
+    "callback": "function s.spop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Extra Deck return comes first; reverse order.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 245970073,
+    "name": "A Stainless Story",
+    "printed_text": "If your opponent controls more cards than you: Send 1 \"Stain\" monster from your Deck or face-up in your opponent's Deck to the GY; this effect becomes the sent monster's effect if it is Normal or Special Summoned. You can banish this card from your GY; each player draws 1 card. You can only activate 1 \"A Stainless Story\" per turn.",
+    "callback": "function s.briaop(e,tp,sc)",
+    "review": "Copied Bria recycle reproduces both redirect failures. Copied self-reference identity remains open.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 251058567,
+    "name": "Prophecy of Waterfalls",
+    "printed_text": "Target 1 WATER monster you control that was Special Summoned from the Extra Deck; return that target to the Extra Deck, then Special Summon this card from your hand, and if you do, add 1 Spell/Trap from your Deck to your hand that lists \"WATER\" in its text. You can only use this effect of \"Prophecy of Waterfalls\" once per turn.",
+    "callback": "function s.spop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Extra Deck return comes first; reverse order.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 258241424,
+    "name": "Light Within the Crying Chaos",
+    "printed_text": "Add 1 Level 4 or lower \"Crying Chaos\" monster from your Deck to your hand. You can banish this card from your GY; take 1 Zombie Tuner monster from your GY or banishment and either add it to your hand or place it on the bottom of your Deck. You can only use each effect of \"Light Within the Crying Chaos\" once per turn.",
+    "callback": "function s.gyop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Alternative destinations, with no dependent shuffle.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259796760,
+    "name": "Nuwa in the Wild",
+    "printed_text": "\"Nuwa, The Domesticated\" + 1 \"Domestica\" Fairy Monster\nCannot be Summoned while you control a monster. During the Main Phase, if you control no other monster (Quick Effect): You can Tribute this card; negate the effects of all other face-up monsters on the field until the end of this turn, also, for the rest of this turn, their ATK becomes 0. You can only use the previous effect of \"Nuwa in the Wild\" once per turn. If this card is sent to the GY: Return this card to the Extra Deck, also, add 1 \"Nuwa, the Domesticated\" from your Deck to your hand, then, send it to the GY.",
+    "callback": "function s.retop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Self shuffle comes first; reverse order.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259797813,
+    "name": "Nautica Musicale",
+    "printed_text": "When this card is activated: You can add 1 \"Nautica\" monster from your Deck or GY to your hand. If you activate an effect that would Special Summon a \"Nautica\" monster from your hand: You can draw 1 card and your opponent adds 1 monster from their Deck to their hand, then place 1 card from your hand on the bottom of your Deck, also gain 200 LP. Until the end of the next turn, your opponent cannot activate the effects of cards with the same name as that monster. You can only control 1 \"Nautica Musicale\".",
+    "callback": "function s.chop(e,tp)",
+    "review": "Existing hand destination guard; follow-up bottoms a hand card.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259898110,
+    "name": "Nemleria Dream Creator - Veilleuse",
+    "printed_text": "(Quick Effect): You can discard 1 \"Nemleria\" card; add 1 \"Dreaming Nemleria\" from your Deck to your Extra Deck face-up, then Special Summon this card from your hand, then you can destroy 1 card your opponent controls. You can banish 3 cards from your Extra Deck face-down, except \"Dreaming Nemleria\"; add 1 \"Nemleria\" Spell from your Deck to your hand, also you cannot Special Summon monsters from your Extra Deck for the rest of this turn, except Pendulum Monsters. If you have 2 \"Dreaming Nemleria\" face-up in your Extra Deck: You can take 1 of them and either add it to your hand or shuffle it into your Deck. You can only use each effect of \"Nemleria Dream Creator - Veilleuse\" once per turn.",
+    "callback": "function s.rtop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Alternative destinations, with no dependent shuffle.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259911246,
+    "name": "Mylo in the Wild",
+    "printed_text": "\"Mylo, The Domesticated\" + 1 \"Domestica\" Fairy Monster\nCannot be Summoned while you control a monster. During the Main Phase, if you control no other monster (Quick Effect): You can Tribute this card; change all monsters on the field to face-down Defense Position until the end of this turn. You can only use the previous effect of \"Mylo in the Wild\" once per turn. If this card is sent to the GY: Return this card to the Extra Deck, also, add 1 \"Mylo, The Domesticated\" from your Deck to your hand, then send it to the GY.",
+    "callback": "function s.retop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Self shuffle comes first; reverse order.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259941091,
+    "name": "Nautica Oceanica",
+    "printed_text": "Monsters Normal or Special Summoned from the hand in Attack Position cannot activate their effects. If you activate a \"Nautica\" card effect that would Summon a monster, you can add 1 of these additional effects to that card's effect at resolution depending on where it would be Summoned from. ● Your hand: Then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, also it is unaffected by \"Nautica Oceanica\", but its ATK becomes 0. ● Your opponent's hand: Add 1 \"Nautica\" monster from your Deck or GY to the hand, then place 1 card from your hand on the bottom of your Deck.",
+    "callback": "function s.chop(e,tp)",
+    "review": "Existing hand destination guard; follow-up bottoms a hand card.",
+    "fully_audited": false
+  }
+]

@@ -588,6 +588,8 @@ CARD_STRING_OVERRIDES = {
     ],
     "nauticaoceanica": [
         'Add the appropriate "Nautica Oceanica" effect to the resolving effect',
+        "Add a Nautica monster, then place a hand card on the bottom of your Deck",
+        "Have your opponent Summon another monster from their hand",
     ],
     "raventhelightningiiaerocat": [
         'Reveal another "Aerocat" card; Special Summon this card',

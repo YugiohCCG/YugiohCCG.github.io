@@ -1,0 +1,111 @@
+{
+  "scope": "Listed OCGCore scenarios with installed scripts and installed card data. Neutral fixture resources and API adapters are used. Full-card and live Omega verification remain open.",
+  "compatibility": "Legacy Link and fixture Xyz argument translation and procedures, selected chain target mapping, basic Level 12 Xyz material eligibility/selection bridge for ordinary fixture monsters, ordinary fixture overlay eligibility. Graydeux alternate Xyz cases isolate that procedure from the unsupported ordinary Xyz API.",
+  "pendingCases": [
+    "A Stainless Story: --story-shuffle-probe tests whether copied self-shuffle must move the activating Spell instead of the sent monster; current source moves the sent monster. Ruling/intent unresolved.",
+    "Ghostrick Oni: the printed Xyz Summon wording and the existing field-to-material implementation still need reconciliation.",
+    "Sarifiel: hypothetical effect immunity of a GY material. The --grave-immune-probe reproduces attachment; expected ruling needs confirmation before a production change."
+  ],
+  "installedScripts": {
+    "210506870": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c210506870.lua",
+      "sha256": "3c96e3c4e3b5a3a72d23e42a62ced35575d777cfb5b09604e200c4ac833c6f82"
+    },
+    "238272435": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c238272435.lua",
+      "sha256": "52c723224d1f7da1214d1f146402e9fae4e12ad7948dc5b5a108acb8b4b9b7de"
+    },
+    "239932270": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932270.lua",
+      "sha256": "9acb2ba13f982aa2bc78ec6c6b57169da8bee7342a5ddb4c9d0227c6690cde83"
+    },
+    "239932271": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932271.lua",
+      "sha256": "c4b1cda43b88b195c3c0c7f4e309388f524d68a1ab8b41a6eb14acfadaf3dbd6"
+    },
+    "239932272": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239932272.lua",
+      "sha256": "e107250638c5e514f7918a2b36e92da5596f8dbfa881cc2ecbb4cd841d3994d9"
+    },
+    "239934743": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934743.lua",
+      "sha256": "f245ec3b9c813950718073f7917b946d99f6a6464b2d0f3efaaa4c90d2f4cffa"
+    },
+    "239934744": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c239934744.lua",
+      "sha256": "39cdb3edb81a79a5b36ddc921cefa54b4b1fbad2b5664771e46e392e446bcd91"
+    },
+    "248760718": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c248760718.lua",
+      "sha256": "5fc3396f32386bd3b547642db4476788e1da36ffd48d13e76cee183bb5e2faee"
+    },
+    "259177849": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259177849.lua",
+      "sha256": "e0069769b810f3a9f4851359186840a9e73123669ac53b1c00dcd74e9d547382"
+    },
+    "259635008": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259635008.lua",
+      "sha256": "d3eebdd01822d7d5143753719a067d171b0d4fabdab37eac921149998dcc19de"
+    },
+    "259937946": {
+      "file": "C:\\Program Files (x86)\\YGO Omega\\YGO Omega_Data\\Files\\Scripts\\c259937946.lua",
+      "sha256": "c7edf515e555ccfc56005e9735d7c1867899f6d163b0d7442eb0eb0560fd40a4"
+    }
+  },
+  "results": [
+    {
+      "name": "Single Deck successor 210506870 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Single Deck successor 210506870 redirect",
+      "status": "FAIL",
+      "error": "Missing 210506870 in 8 for player 0"
+    },
+    {
+      "name": "Single Deck successor 238272435 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Single Deck successor 238272435 redirect",
+      "status": "FAIL",
+      "error": "Missing 900009003 in 64 for player 0"
+    },
+    {
+      "name": "Single Deck successor 259177849 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Single Deck successor 259177849 redirect",
+      "status": "FAIL",
+      "error": "DEF bonus requires a successful Deck return\n\n500 !== 200\n"
+    },
+    {
+      "name": "Single Deck successor 259937946 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Single Deck successor 259937946 redirect",
+      "status": "FAIL",
+      "error": "Missing 900009003 in 1 for player 0"
+    },
+    {
+      "name": "Single Deck successor 248760718 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Single Deck successor 248760718 redirect",
+      "status": "FAIL",
+      "error": "Missing 900009003 in 2 for player 0"
+    },
+    {
+      "name": "Single Deck successor 259635008 success",
+      "status": "PASS"
+    },
+    {
+      "name": "Single Deck successor 259635008 redirect",
+      "status": "FAIL",
+      "error": "Missing 900009002 in 16 for player 0"
+    }
+  ]
+}

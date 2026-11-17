@@ -129,7 +129,8 @@ function s.fusop(e,tp,eg,ep,ev,re,r,rp)
 	if not mat or #mat~=2 then return end
 	fc:SetMaterial(mat)
 	Duel.HintSelection(mat)
-	if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=2 then return end
+	Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
+	if mat:FilterCount(Card.IsLocation,nil,LOCATION_DECK+LOCATION_EXTRA)~=2 then return end
 	Duel.BreakEffect()
 	if Duel.SpecialSummon(fc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then
 		fc:CompleteProcedure()

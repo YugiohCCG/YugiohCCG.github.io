@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Library has 703 specification cards and one compatibility alias.
+- Installed OCGCore regression now 751 PASS / 0 FAIL, up from 744.
+- Reviewed eight callbacks combining SendtoHand and Draw against printed text. Stock Omega c45354718 provides a destination-check comparison.
+- Installed c225091736 Stained Bird Bria, c259226799 Charmelia Beast and c259721372 Eclipse Observatory. Source and installed SHA-256 match.
+- Bria and Beast require actual hand receipt to draw. Observatory requires both cards and reveals only the received subset.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --dependent-draw-only. Original 4 PASS / 3 FAIL. Candidate and installed 7 PASS.
+- Full: node scripts/fresh_new_floo_fiendsmith_effects.cjs. Both commands point CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Logs, original and installed results, hashes and exact backups: output/fresh-ccg-september/dependent-draw-batch/.
+- Printed clause and review per callback: output/fresh-ccg-september/dependent-draw-batch/dependent-draw-effect-review.json.
+- Prior search-discard and Nautica evidence retained. Coverage is effect-specific and live Omega duels remain open.
+- Next: probe Bria's Normal/Special Summon recycle callback for redirects on both destination choices and for whether the printed self-shuffle applies to both. Scan matching follow-ups library-wide.
+- Other open work includes Oceanica both-player Hand selection, Crystal Shards Extra Deck target eligibility and broader effect audit.

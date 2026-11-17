@@ -71,7 +71,7 @@ function s.thop(e,tp)
 	if all then c:ResetFlagEffect(TRANSFER_CALL) all=Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local tc=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
-	if tc and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,tc) end
+	if tc and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then Duel.ConfirmCards(1-tp,tc) end
 	if all then s.domove(c,tp) end
 end
 function s.mvcon(e,tp)

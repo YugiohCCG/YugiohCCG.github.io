@@ -1,0 +1,146 @@
+[
+  {
+    "file": "c215445495.lua",
+    "line": 59,
+    "code": "Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then Duel.ConfirmCards(1-tp,tc) end",
+    "printed": "2 Level 9 Dragon monsters\nIf you control no Xyz Monsters, you can also Xyz Summon this card using 1 Level 9 \"Stellaer\" monster you control. Once per turn: You can detach 1 Xyz material from this card, then target 1 \"Stellaer\" Spell/Trap in your GY; add it to your hand. If this card has no Xyz materials: You can destroy it, then draw 1 card.",
+    "following": "\nend\nfunction s.drcon(e,tp,eg,ep,ev,re,r,rp)\n\treturn e:GetHandler():GetOverlayCount()==0\nend\nfunction s.drtg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tlocal c=e:GetHandler()\n\tif chk==0 then return c:IsDestructable(e) and Duel.IsPlayerCanDraw(tp,1) end\n\tDuel.SetOperationInfo(0,CATEGORY_DESTROY,c,1,0,0)\n\tDuel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)\nend\nfuncti",
+    "review": "Requires controller Hand; static check aligns with own-Hand add, subject to card-specific behavior test."
+  },
+  {
+    "file": "c216140411.lua",
+    "line": 72,
+    "code": "Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then",
+    "printed": "This card’s name becomes “Fruteonia” while face-up on the field. You can only use 1 of the following effects of “Fruteopia” per turn, and only once that turn. When this card is activated: You can add 1 “Frute” monster or 1 “Fruteification” from your Deck or banishment to your hand. If a WATER Ritual Monster(s) you control leaves the field by card effect: You can send this card to the GY, and if you do, Special Summon 1 of those monsters. You can banish this card from your GY; all WATER monsters you control gain 400 ATK this turn for each Defense Position monster your opponent controls.",
+    "following": "\n\t\t\tDuel.ConfirmCards(1-tp,tc)\n\t\tend\n\tend\nend\nfunction s.lffilter(c,e,tp)\n\treturn c:IsPreviousControler(tp) and c:IsPreviousLocation(LOCATION_MZONE)\n\t\tand c:IsReason(REASON_EFFECT) and c:IsPreviousPosition(POS_FACEUP)\n\t\tand (c:GetPreviousAttributeOnField()&ATTRIBUTE_WATER)>0 and c:IsType(TYPE_RITUAL)\n\t\tand c:IsCanBeSpecialSummoned(e,0,tp,false,fals",
+    "review": "Requires controller Hand; static check aligns with own-Hand add, subject to card-specific behavior test."
+  },
+  {
+    "file": "c219826457.lua",
+    "line": 134,
+    "code": "Duel.SendtoHand(g,nil,REASON_EFFECT)>0 and g:GetFirst():IsLocation(LOCATION_HAND) then",
+    "printed": "This card's original ATK becomes 250 times the number of \"Bau\" cards you control. You can only use each of the following effects of \"Ro-Bau\" once per turn. If you control \"Bauy World\": You can Special Summon this card from your banishment. During the Main Phase (Quick Effect): You can target 1 \"Bau\" you control; equip this card to it as an Equip Spell that gives it 2500 ATK, from your face-up field or GY. If a monster this card is equipped to destroys a monster by battle: You can add 1 monster from your banishment to your hand, then, immediately after this effect resolves, you can Normal Summon 1 monster.",
+    "following": "\n\t\tDuel.ConfirmCards(1-tp,g)\n\t\tlocal sg=Duel.GetMatchingGroup(Card.IsSummonable,tp,LOCATION_HAND+LOCATION_MZONE,0,nil,true,nil)\n\t\tif #sg>0 and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then\n\t\t\tDuel.BreakEffect()\n\t\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SUMMON)\n\t\t\tlocal sc=sg:Select(tp,1,1,nil):GetFirst()\n\t\t\tDuel.Summon(tp,sc,true,nil)\n\t\tend\n\tend",
+    "review": "Tests first selected card in Hand; verify single-card selection and owner semantics."
+  },
+  {
+    "file": "c223158720.lua",
+    "line": 99,
+    "code": "Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND+LOCATION_EXTRA) then",
+    "printed": "Target 1 \"Nautica\" monster in your GY; return that target to the hand, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0. You can banish this card from your GY; place 3 Aqua monsters from your GY on the bottom of your Deck in any order, then draw 1 card. You can only use 1 effect of \"Nautical Backwashing & Oceanic Waves\" per turn and only once that turn.",
+    "following": "\n\t\tDuel.BreakEffect()\n\t\ts.oppsummon(e,tp)\n\tend\nend\nfunction s.tdfilter(c)\n\treturn c:IsRace(RACE_AQUA) and aux.NecroValleyFilter(Card.IsAbleToDeck)(c)\nend\nfunction s.drtg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tif chk==0 then return Duel.IsPlayerCanDraw(tp,1)\n\t\tand Duel.IsExistingMatchingCard(s.tdfilter,tp,LOCATION_GRAVE,0,3,nil) end\n\tDuel.SetOperationInfo(0,CA",
+    "review": "Supports Hand/Extra return; inspect ownership and source/controller edge cases using existing Nautica boundary probes."
+  },
+  {
+    "file": "c225109525.lua",
+    "line": 111,
+    "code": "Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND+LOCATION_EXTRA) then",
+    "printed": "2+ Level 1 Aqua monsters\nGains 500 ATK for each \"Nautica\" card attached to it as Xyz Material. Once per turn (Quick Effect): You can detach 1 material from this card, then target 1 monster your opponent controls; return it to the hand, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0.",
+    "following": "\n\t\tDuel.BreakEffect()\n\t\ts.oppsummon(e,tp)\n\tend\nend\n\n--The Normal Summon is performed after the resolving effect finishes.\nfunction s.normalzero(e,tc,event)\n local e1=Effect.CreateEffect(e:GetHandler())\n e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)\n e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)\n e1:SetCode(event or EVENT_SUMMON_SUCCESS)\n e1:Se",
+    "review": "Supports Hand/Extra return; inspect ownership and source/controller edge cases using existing Nautica boundary probes."
+  },
+  {
+    "file": "c238276248.lua",
+    "line": 125,
+    "code": "Duel.SendtoHand(g,nil,REASON_EFFECT)==0 or not g:GetFirst():IsLocation(LOCATION_HAND) then return end",
+    "printed": "(Quick Effect): You can reveal this card from your hand; destroy 1 \"Nephthys\" monster from your hand or field, then Special Summon this card. If this card is Normal or Special Summoned: You can add 1 Ritual or Level 8 \"Nephthys\" monster from your Deck to your hand. During your next Standby Phase after this card was destroyed by card effect and sent to the GY: You can add 1 \"Nephthys\" card from your GY to your hand, then if \"Sacred Phoenix of Nephthys\" activated its effect this turn, you can Special Summon this card. You can only use each effect of \"Scion of Nephthys\" once per turn.",
+    "following": "\n Duel.ConfirmCards(1-tp,g)\n local c=e:GetHandler()\n if c:IsRelateToEffect(e) and c:IsLocation(LOCATION_GRAVE) and Duel.GetFlagEffect(tp,PHOENIX_FLAG)>0\n  and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsCanBeSpecialSummoned(e,0,tp,false,false)\n  and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,3)) then\n  Duel.SpecialSummon(c,0,tp,tp,false,false,P",
+    "review": "Tests first selected card in Hand; verify single-card selection and owner semantics."
+  },
+  {
+    "file": "c240299292.lua",
+    "line": 71,
+    "code": "Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) then",
+    "printed": "If this card is Normal or Special Summoned: You can Special Summon 1 \"Protogenic Essence Token\" (Galaxy/ LIGHT/ Level 1/ ATK 0/ DEF 0). If this card is in your GY, because it was used as material for the Link Summon of a \"To Proto\" monster: You can banish this card; add 1 of your face-up banished monsters to your hand, then, if you added a \"To Proto\" monster, you can draw 1 card. You can only use each effect of \"To Proto Ousia\" once per turn.",
+    "following": "\n\t\tDuel.ConfirmCards(1-tp,tc)\n\t\tif tc:IsSetCard(SET_TO_PROTO) and tc:IsType(TYPE_MONSTER) then\n\t\t\tDuel.BreakEffect()\n\t\t\tDuel.Draw(tp,1,REASON_EFFECT)\n\t\tend\n\tend\nend\n",
+    "review": "Tests Hand location but not destination controller; compare selection ownership and operation before treating as defect."
+  },
+  {
+    "file": "c244816828.lua",
+    "line": 37,
+    "code": "Duel.SendtoHand(tc,nil,REASON_EFFECT)==0 or not tc:IsLocation(LOCATION_HAND) then return end",
+    "printed": "When this card is activated: You can add 1 \"Myutant\" card from your Deck to your hand, except \"Myutant Evolution\", then you can place 1 card from your hand on the bottom of your Deck, and if you do, draw 1 card. If this card is banished: You can target 1 Level 8 or higher \"Myutant\" monster you control; shuffle it into the Deck, then banish 1 \"Myutant\" card from your hand or Deck, and if you do, Special Summon 1 monster from your hand or Deck, based on the banished card. ● Monster: \"Myutant Beast\" ● Spell: \"Myutant Mist\" ● Trap: \"Myutant Arsenal\". You can only use each effect of \"Myutant Evolution\" once per turn.",
+    "following": "\n\tDuel.ConfirmCards(1-tp,tc)\n\tif not Duel.IsExistingMatchingCard(s.tdfilter,tp,LOCATION_HAND,0,1,nil)\n\t\tor not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then return end\n\tDuel.BreakEffect()\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)\n\tlocal dc=Duel.SelectMatchingCard(tp,s.tdfilter,tp,LOCATION_HAND,0,1,1,nil):GetFirst()\n\tif dc and Duel.SendtoDe",
+    "review": "Tests Hand location but not destination controller; compare selection ownership and operation before treating as defect."
+  },
+  {
+    "file": "c250047045.lua",
+    "line": 55,
+    "code": "Duel.SendtoHand(g,nil,REASON_EFFECT)>0 and g:GetFirst():IsLocation(LOCATION_HAND) then",
+    "printed": "You can banish 2 cards from your hand, including this card; add 1 \"Bauy World\" from your Deck to your hand, then you can draw 1 card. If you control \"Bauy World\" (Quick Effect): You can Special Summon this banished card, then you can apply this effect depending on whose turn it is.\n● Yours: Banish 1 \"Bau\" card from your GY.\n● Opponent's: Immediately after this effect resolves, Synchro Summon using monsters you control as material.\nYou can only use each effect of \"Dreaming Bau\" once per turn.",
+    "following": "\n\t\tDuel.ConfirmCards(1-tp,g)\n\t\tif Duel.IsPlayerCanDraw(tp,1) and Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then\n\t\t\tDuel.BreakEffect()\n\t\t\tDuel.Draw(tp,1,REASON_EFFECT)\n\t\tend\n\tend\nend\n\n-- Quick Special Summon\nfunction s.spcon2(e,tp,eg,ep,ev,re,r,rp)\n\treturn Duel.IsExistingMatchingCard(aux.AND(Card.IsFaceup,Card.IsCode),tp,LOCATION_ONFIELD,0,1,ni",
+    "review": "Tests first selected card in Hand; verify single-card selection and owner semantics."
+  },
+  {
+    "file": "c251710981.lua",
+    "line": 116,
+    "code": "Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) then",
+    "printed": "2 Level 4 \"Arckcestial\" monsters\nIf this card is Xyz Summoned: You can add 1 \"Arckcestial\" Spell/Trap from your Deck or GY to your hand. If a card or effect is activated that targets an \"Arckcestial\" card(s) on the field, while this card is in your GY (Quick Effect): You can Tribute 1 \"Arckcestial\" monster; Special Summon this card. If this card is detached from an \"Arckcestial\" Xyz Monster to activate that monster's effect: You can target 1 \"Arckcestial\" Spell/Trap in your GY; add it to your hand, then discard 1 card. You can only use each effect of \"Ophiel, Arckcestial of Wisdom\" once per turn.",
+    "following": "\n\t\t\tDuel.ConfirmCards(1-tp,tc)\n\t\t\tDuel.BreakEffect()\n\t\t\tDuel.DiscardHand(tp,nil,1,1,REASON_EFFECT+REASON_DISCARD)\n\t\tend\n\tend\nend\n",
+    "review": "Tests Hand location but not destination controller; compare selection ownership and operation before treating as defect."
+  },
+  {
+    "file": "c252496004.lua",
+    "line": 53,
+    "code": "Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) then",
+    "printed": "If your opponent controls more monsters than you do, you can Special Summon this card (from your hand). If this card is Normal or Special Summoned: Reveal the top card of your Deck and if it is a \"Skewy!\" card, add it to your hand, then if it is a monster you can Special Summon it. Otherwise, send it to the GY. If this card is sent to the GY: You can place 1 Candy Counter on 1 face-up monster your opponent controls. You can only use each effect of \"Skewy! Pumpki-Pal\" once per turn.",
+    "following": "\n\t\t\tDuel.ConfirmCards(1-tp,tc)\n\t\t\tif tc:IsType(TYPE_MONSTER) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0\n\t\t\t\tand tc:IsCanBeSpecialSummoned(e,0,tp,false,false)\n\t\t\t\tand Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then\n\t\t\t\tDuel.BreakEffect()\n\t\t\t\tDuel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP)\n\t\t\tend\n\t\tend\n\telseif tc:IsAbleToGrave() then Du",
+    "review": "Tests Hand location but not destination controller; compare selection ownership and operation before treating as defect."
+  },
+  {
+    "file": "c259177849.lua",
+    "line": 69,
+    "code": "Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then",
+    "printed": "2 \"Grand Blue\" monsters\nIf this card is Special Summoned: You can take 1 \"Grand Blue\" card from your Deck, and either add it to your hand or send it to the GY. You can target 1 monster you control; Special Summon 1 \"Grand Blue\" monster from your hand or GY, and if you do, send the targeted monster to the GY. If this card is sent to the GY by card effect: You can target 1 card in your banishment; shuffle it into the Deck, and if you do, \"Grand Blue\" monsters you control gain 300 DEF until the end of the next turn. You can only use each effect of \"Grand Blue Princess\" once per turn.",
+    "following": "\n\t\t\tDuel.ConfirmCards(1-tp,tc)\n\t\tend\n\telse\n\t\tDuel.SendtoGrave(tc,REASON_EFFECT)\n\tend\nend\nfunction s.spfilter(c,e,tp)\n\treturn c:IsSetCard(SET_GRAND_BLUE) and c:IsType(TYPE_MONSTER)\n\t\tand c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP_DEFENSE)\nend\nfunction s.tgfilter(c)\n\treturn c:IsType(TYPE_MONSTER) and c:IsAbleToGrave()\nend\nfunction s.sptg(",
+    "review": "Requires controller Hand; static check aligns with own-Hand add, subject to card-specific behavior test."
+  },
+  {
+    "file": "c259417461.lua",
+    "line": 49,
+    "code": "Duel.SendtoHand(tc,nil,REASON_EFFECT)==0 or not tc:IsLocation(LOCATION_HAND) then return end",
+    "printed": "Add 1 \"Grand Blue\" card from your Deck to your hand, then, if you control \"Umi\", you can send 1 \"Grand Blue\" card from your hand or Deck to the GY. If a \"Grand Blue\" monster leaves your GY by an opponent's card effect, while this card is in the GY: You can add this card to your hand, then you can discard 1 card. You can only use each effect of \"Brilliance of the Grand Blue\" once per turn.",
+    "following": "\n\tDuel.ConfirmCards(1-tp,g)\n\tif Duel.IsExistingMatchingCard(s.umifilter,tp,LOCATION_ONFIELD,0,1,nil)\n\t\tand Duel.IsExistingMatchingCard(s.tgfilter,tp,LOCATION_HAND+LOCATION_DECK,0,1,nil)\n\t\tand Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,2)) then\n\t\tDuel.BreakEffect()\n\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)\n\t\tlocal sg=Duel.SelectMatchingCard(tp,",
+    "review": "Tests Hand location but not destination controller; compare selection ownership and operation before treating as defect."
+  },
+  {
+    "file": "c259417461.lua",
+    "line": 78,
+    "code": "Duel.SendtoHand(c,nil,REASON_EFFECT)==0 or not c:IsLocation(LOCATION_HAND) then return end",
+    "printed": "Add 1 \"Grand Blue\" card from your Deck to your hand, then, if you control \"Umi\", you can send 1 \"Grand Blue\" card from your hand or Deck to the GY. If a \"Grand Blue\" monster leaves your GY by an opponent's card effect, while this card is in the GY: You can add this card to your hand, then you can discard 1 card. You can only use each effect of \"Brilliance of the Grand Blue\" once per turn.",
+    "following": "\n\tDuel.ConfirmCards(1-tp,c)\n\tif Duel.IsExistingMatchingCard(s.effectdiscard,tp,LOCATION_HAND,0,1,nil)\n\t\tand Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,3)) then\n\t\tDuel.BreakEffect()\n\t\tDuel.DiscardHand(tp,s.effectdiscard,1,1,REASON_EFFECT+REASON_DISCARD)\n\tend\nend\n\nfunction s.effectdiscard(c)\n\treturn c:IsDiscardable(REASON_EFFECT)\nend\n",
+    "review": "Tests Hand location but not destination controller; compare selection ownership and operation before treating as defect."
+  },
+  {
+    "file": "c259429721.lua",
+    "line": 63,
+    "code": "Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) then",
+    "printed": "If this card is in your hand: You can target 1 \"Grand Blue\" card in your GY; add it to your hand, or if it is a monster, you can Special Summon it instead, then, if you added a card to your hand by this effect, Special Summon this card. If this card is in your GY (Quick Effect): You can target 1 \"Grand Blue\" monster you control; Special Summon this card, and if you do, equip that target to this card, also, after that, destroy 1 card in this card's column. You can only use each effect of \"Champion of the Grand Blue\" once per turn.",
+    "following": "\n\t\tDuel.ConfirmCards(1-tp,tc)\n\t\tif Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:IsRelateToEffect(e)\n\t\t\tand c:IsCanBeSpecialSummoned(e,0,tp,false,false) then\n\t\t\tDuel.BreakEffect()\n\t\t\tDuel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP)\n\t\tend\n\tend\nend\nfunction s.eqfilter(c)\n\treturn c:IsFaceup() and c:IsSetCard(SET_GRAND_BLUE) and c:IsType(TYPE_MO",
+    "review": "Tests Hand location but not destination controller; compare selection ownership and operation before treating as defect."
+  },
+  {
+    "file": "c259655976.lua",
+    "line": 72,
+    "code": "Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) then",
+    "printed": "2 Level 9 Dragon monsters\nIf you control no Xyz Monsters, you can also Xyz Summon this card using 1 Level 9 \"Stellaer\" monster you control. During the Main Phase, or, if this card is Xyz Summoned: You can detach 1 material from this card; add 1 \"Stellaer\" monster in your GY or banishment to your hand. If this card has no materials: You can destroy it, then draw 1 card.",
+    "following": "\n\t\tDuel.ConfirmCards(1-tp,tc)\n\tend\nend\nfunction s.drcon(e,tp,eg,ep,ev,re,r,rp)\n\treturn e:GetHandler():GetOverlayCount()==0\nend\nfunction s.drtg(e,tp,eg,ep,ev,re,r,rp,chk)\n\tlocal c=e:GetHandler()\n\tif chk==0 then return c:IsDestructable(e) and Duel.IsPlayerCanDraw(tp,1) end\n\tDuel.SetOperationInfo(0,CATEGORY_DESTROY,c,1,0,0)\n\tDuel.SetOperationInfo(0,CA",
+    "review": "Tests Hand location but not destination controller; compare selection ownership and operation before treating as defect."
+  },
+  {
+    "file": "c259796760.lua",
+    "line": 121,
+    "code": "Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) then",
+    "printed": "\"Nuwa, The Domesticated\" + 1 \"Domestica\" Fairy Monster\nCannot be Summoned while you control a monster. During the Main Phase, if you control no other monster (Quick Effect): You can Tribute this card; negate the effects of all other face-up monsters on the field until the end of this turn, also, for the rest of this turn, their ATK becomes 0. You can only use the previous effect of \"Nuwa in the Wild\" once per turn. If this card is sent to the GY: Return this card to the Extra Deck, also, add 1 \"Nuwa, the Domesticated\" from your Deck to your hand, then, send it to the GY.",
+    "following": "\n\t\tDuel.ConfirmCards(1-tp,tc)\n\t\tDuel.BreakEffect()\n\t\tif tc:IsAbleToGrave() then\n\t\t\tDuel.SendtoGrave(tc,REASON_EFFECT)\n\t\tend\n\tend\nend\n",
+    "review": "Tests Hand location but not destination controller; compare selection ownership and operation before treating as defect."
+  },
+  {
+    "file": "c259911246.lua",
+    "line": 134,
+    "code": "Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) then",
+    "printed": "\"Mylo, The Domesticated\" + 1 \"Domestica\" Fairy Monster\nCannot be Summoned while you control a monster. During the Main Phase, if you control no other monster (Quick Effect): You can Tribute this card; change all monsters on the field to face-down Defense Position until the end of this turn. You can only use the previous effect of \"Mylo in the Wild\" once per turn. If this card is sent to the GY: Return this card to the Extra Deck, also, add 1 \"Mylo, The Domesticated\" from your Deck to your hand, then send it to the GY.",
+    "following": "\n\t\tDuel.ConfirmCards(1-tp,tc)\n\t\tDuel.BreakEffect()\n\t\tif tc:IsAbleToGrave() then\n\t\t\tDuel.SendtoGrave(tc,REASON_EFFECT)\n\t\tend\n\tend\nend\n",
+    "review": "Tests Hand location but not destination controller; compare selection ownership and operation before treating as defect."
+  }
+]

@@ -62,10 +62,11 @@ function s.actop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local g2=Duel.SelectMatchingCard(tp,s.thfilter2,tp,LOCATION_DECK,0,1,1,nil)
 	g1:Merge(g2)
-	if #g1==2 and Duel.SendtoHand(g1,nil,REASON_EFFECT)==2 then
-		Duel.ConfirmCards(1-tp,g1)
-		Duel.Draw(1-tp,2,REASON_EFFECT)
-	end
+	if #g1~=2 then return end
+	Duel.SendtoHand(g1,nil,REASON_EFFECT)
+	local added=g1:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+	if #added>0 then Duel.ConfirmCards(1-tp,added) end
+	if #added==2 then Duel.Draw(1-tp,2,REASON_EFFECT) end
 end
 function s.negfilter(c,e,tp)
 	return c:IsSummonPlayer(1-tp) and c:IsLocation(LOCATION_MZONE) and c:IsCanBeEffectTarget(e)

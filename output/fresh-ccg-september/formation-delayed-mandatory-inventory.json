@@ -1,0 +1,355 @@
+{
+  "scope": "CCG scripts containing phase trigger and optional trigger anywhere; includes independent effects, excludes other code expressions and shared utility-generated triggers. Printed review required. All 49 file-level candidates inspected for optional-phase pattern; other semantic defects remain out of scope. Dynamic or differently expressed events in other files still require broader scan. Broader literal scan includes any file with EVENT_PHASE and EFFECT_TYPE_TRIGGER_O, regardless of expression form; new matches need review.",
+  "rows": [
+    {
+      "id": 210628767,
+      "name": "Morbydrip the Crewal Whale",
+      "printed_text": "If this card is Normal or Special Summoned: You can target 1 monster your opponent controls; place it and this card face-up in their owners' Spell & Trap Zones as Continuous Traps in their same columns. (If the Zones are occupied, destroy the occupying card.) While this card is a Continuous Trap, if an opponent monster is Special Summoned in this card's column: You can Special Summon this card, and if you do during the End Phase of this turn banish all Monster Cards in the Spell & Trap Zones, except \"Morbydrip The Crewal Whale\". You can only use this effect of \"Morbydrip The Crewal Whale\" once per turn. You can only control 1 \"Morbydrip The Crewal Whale\".",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c210628767.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 215006791,
+      "name": "Muntith, Windborne Skydragon of the Shining Sun",
+      "printed_text": "1 Tuner + 1+ non-Tuner monsters\nCannot be destroyed by battle or card effects the turn it is Synchro Summoned. If this card is Synchro Summoned using only \"Windborne\" monsters: You can banish all monsters your opponent controls until the End Phase. During the End Phase: You can target 1 \"Windborne\" monster in your GY; add that target to your hand during your next Standby Phase. You can only use each effect of \"Muntith, Windborne Skydragon of the Shining Sun\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c215006791.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 215068354,
+      "name": "Janna, Windborne Goddess of the Temple",
+      "printed_text": "You can also reveal up to 2 \"Windborne\" Spells in your hand to activate this effect; Special Summon this card from your hand by shuffling up to 2 cards from your hand into the Deck, including \"Windborne\" Spells you revealed to activate this effect (if any), and if you do, during the next Standby Phase, add a \"Windborne\" card from your Deck to your hand for each card you shuffled into the Deck by this effect, except \"Janna, Windborne Goddess of the Temple\", then Set \"Windborne\" Quick-Play Spells directly from your Deck for each card you revealed to activate this effect. The Set Quick-Play Spell(s) can be activated that turn. If this card is Normal or Special Summoned: You can send 1 \"Windborne\" card from your Deck to the GY, then you can shuffle 1 \"Windborne\" card with a different name from your GY into the Deck, or, if it is a Spell/Trap, you can Set it to your field. You can only use each effect of \"Janna, Windborne Goddess of the Temple\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c215068354.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 215629896,
+      "name": "NiuHao - Zaoka",
+      "printed_text": "If this card is Normal or Special Summoned: You can add 1 \"NiuHao\" or \"Sacred Treasure\" card from your GY or banishment to the hand. When your opponent activates a card effect on the field or banishment (Quick Effect): You can banish this card from your hand or face-up field; excavate the top 3 cards of your Deck, then send all \"NiuHao\" and \"Sacred Treasure\" cards excavated by this effect to the GY, also, shuffle the rest into your Deck. During the Standby Phase of the next turn after this card was banished: You can Special Summon this banished card. You can only use each effect of NiuHao - Zaoka once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c215629896.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 217713649,
+      "name": "Onibi",
+      "printed_text": "Cannot be Special Summoned. During the Main Phase (Quick Effect): You can also Tribute this card in your hand to activate this effect; immediately after this effect resolves, Normal Summon 1 Spirit monster, then, if you Normal Summoned \"Onibi\", you can add 1 Spirit monster from your Deck to your hand except \"Onibi\". If this card is not Tributed to activate this effect, you can only Normal Summon \"Onibi\" this way. You can only use the previous effect of \"Onibi\" once per turn. During the End Phase, if this card was Normal Summoned or flipped face-up this turn: Return this card to the hand. You can only use this effect of \"Onibi\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c217713649.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 218600459,
+      "name": "NiuHao - Bauba",
+      "printed_text": "If this card is Normal or Special Summoned: You can Special Summon 1 \"NiuHao\" monster from your hand, GY, or banishment. When your opponent activates a card effect in the hand or GY (Quick Effect): You can banish this card from your hand or face-up field; add 1 \"Sacred Treasure\" Spell from your Deck to your Hand. During the Standby Phase of the next turn after this card was banished: You can Special Summon this banished card. You can only use each effect of \"NiuHao - Bauba\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c218600459.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 221511784,
+      "name": "Bau",
+      "printed_text": "You can Special Summon this card (from your hand or banishment) by banishing 2 cards from your hand and/or field, including a \"Bau\" card, except this card. You can only use each of the following effects of \"Bau\" once per turn. During your Main Phase: You can add 1 \"Bau\" card from your Deck to your hand, except \"Bau\". If your opponent activates a monster effect: You can destroy 1 monster your opponent controls whose ATK is lower than this card's ATK. During the End Phase: You can banish 1 other monster from your GY; Special Summon this card from your GY.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c221511784.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 221759221,
+      "name": "Windborne Cartographer",
+      "printed_text": "If this card you control would be used for the Synchro Summon of a \"Windborne\" monster, you can treat this card as a non-Tuner and/or a Level 6 monster. You can also reveal up to 2 \"Windborne\" Spells in your hand to activate this effect; Special Summon this card from your hand by shuffling up to 2 cards from your hand into the Deck, including \"Windborne\" Spells you revealed to activate this effect (if any), and if you do, during the next Standby Phase, add 1 \"Windborne\" card from your Deck to your hand for each card you shuffled into the Deck by this effect, except \"Windborne Cartographer\", then Set 1 \"Windborne\" Quick-Play Spells directly from your Deck for each card you revealed to activate this effect. The Set Quick-Play Spell(s) can be activated that turn. If this card is sent to the GY as Synchro Material: You can take 1 \"Windborne\" Spell from your Deck and either add it to your hand or Set it directly to your field. You can only use each effect of \"Windborne Cartographer\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c221759221.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 221827483,
+      "name": "To Protogenis Intergalataxiakos",
+      "printed_text": "(This card is also treated as a \"Galactica\" card.) 1 Level 2 \"Galactica\" monster + 1 LIGHT Galaxy monster. Must be Fusion Summoned using \"Fusion Intergalactica\". Your opponent cannot declare an attack. If this card destroys a monster by battle or inflicts battle damage to your opponent: It becomes unaffected by your opponent's card effects until the start of your next Battle Phase. If this card is banished from the field: You can banish 1 card on the field, also Special Summon this card during your next Standby Phase.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c221827483.lua",
+      "review": "Reproduced optional delayed revival despite mandatory printed follow-up; test-only forced trigger revives and no-zone control passes. Test seeds CompleteProcedure; native Fusion history remains unverified. See intergalataxiakos-delayed-mandatory*.log."
+    },
+    {
+      "id": 221855414,
+      "name": "Otakemaru the Accuser",
+      "printed_text": "1 Spirit Tuner monster + 1+ non-Tuner monsters\nIf this card is Special Summoned: You can activate this effect; other Spirit monsters you control cannot return to the hand or Extra Deck by card effect during the End Phase of this turn. Your opponent cannot target Spirit monsters you control with card effects. If a Spirit monster is Normal Summoned: You can target 1 card your opponent controls; return it to the hand. During the End Phase, if this card was Special Summoned this turn: Return it to the Extra Deck, and if you do, Special Summon 2 Spirit monsters from your GY (1 Tuner and 1 non-Tuner) whose total Levels equal 9 ignoring their Summoning conditions.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c221855414.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 223512283,
+      "name": "Dysmandr, the Depraevity of Worlds",
+      "printed_text": "(This card is always treated as a \"Stellar\" card.)\n1 Rank/Level 9 LIGHT Dragon Monster + 1 \"Protogenic Essence Token\"\nCannot be destroyed by battle, also, this card gains 3000 ATK/DEF. During the Main Phase, or, if this card is Fusion Summoned: You can place 1 \"Dysmandr\" Continuous Spell/Trap from your hand, Deck, or GY, face-up in your Spell & Trap Zone. During the End Phase, if a monster was destroyed this turn: You can Special Summon 1 \"Protogenic Essence Token\" (Galaxy/DARK/Level 1/ATK 0/DEF 0), but that Token cannot be used as Link Material. You can only use each effect of \"Dysmandr, the Depraevity of Worlds\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c223512283.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 224274662,
+      "name": "Armored Nova Mecha-Scaled Xyrion",
+      "printed_text": "2+ Level 9 Monsters\nYou can also Xyz Summon this card by using 1 Rank 8 Dragon Xyz Monster you control as material. (Transfer its materials to this card.) You cannot Special Summon monsters the turn this card is Xyz Summoned, except LIGHT or DARK Dragon Monsters. Once per turn, when a card or effect is activated (Quick Effect): You can detach 1 material from this card; negate the activation. During the End Phase, if this Xyz Summoned card has no materials: You can destroy it, and if you do, Special Summon 1 Rank 8 Dragon Xyz Monster from your GY, but negate its effects, also its ATK/DEF become 0. You can only use each effect of \"Armored Nova Mecha-Scaled Xyrion\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c224274662.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 227043533,
+      "name": "NiuHao - Lokaeo",
+      "printed_text": "If this card is Normal or Special Summoned: You can, immediately after this effect resolves, Xyz Summon 1 Rank 1 \"NiuHao\" monster from your Extra Deck, using monsters you control as material, including this card. If your opponent activates a card or effect (Quick Effect): You can banish this card from your hand or face-up field; shuffle 1 \"Sacred Treasure\" Spell from your GY or banishment into the Deck, then draw 1 card. During the Standby Phase of the next turn after this card was banished: You can Special Summon this banished card. You can only use each effect of \"NiuHao - LokaEO\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c227043533.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 227335484,
+      "name": "Galacticassiopeia",
+      "printed_text": "All monsters your opponent controls must attack this card, if able. At the start of the Battle Phase: You can Special Summon this card from your hand in Attack Position. If this card destroys a monster by battle, or inflicts battle damage to your opponent: You can shuffle 1 \"Galactica\" Spell/Trap from your banishment into the Deck; banish this card, then Special Summon 1 Level 2 \"Galactica\" monster from your Deck or banishment in Attack Position, except \"Galacticassiopeia\".",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c227335484.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 228169392,
+      "name": "Bael, Demon Incarnate",
+      "printed_text": "3 Level 1 Tuners\nThis Xyz Summoned card cannot be targeted by card effects. Once per Battle Phase, at the start of the Battle Phase: You can banish 1 material from this card and the top 4 cards of your Deck; make this card's ATK become equal to the number of all banished cards times 200. If this Xyz Summoned card with material leaves the field: You can Special Summon 1 of your banished Level 4 or lower FIRE Fiend monsters, and if you do, it cannot be targeted by card effects.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c228169392.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 232232676,
+      "name": "NiuHao - Oro",
+      "printed_text": "If this card is Normal or Special Summoned: You can add 1 \"Sacred Treasure\" Spell from your Deck to your hand. If your opponent activates a card effect in the GY or banishment (Quick Effect): You can banish this card from your hand or face-up field; send 1 \"Sacred Treasure\" Spell from Deck to the GY. During the Standby Phase of the next turn after this card was banished: You can Special Summon this banished card. You can only use each effect of \"NiuHao - Oro\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c232232676.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 234179728,
+      "name": "Galacticarina",
+      "printed_text": "All monsters your opponent controls must attack this card, if able. At the start of the Battle Phase: You can Special Summon this card from your hand in Attack Position. If this card destroys a monster by battle, or inflicts battle damage to your opponent: You can shuffle 1 \"Galactica\" Spell/Trap from your banishment into the Deck; banish this card, then Special Summon 1 Level 2 \"Galactica\" monster from your Deck or banishment in Attack Position, except \"Galacticarina\".",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c234179728.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 235352857,
+      "name": "Shekup, Sting of the Ghoti",
+      "printed_text": "You can banish 1 Fish monster from your hand or field; Special Summon this card from your hand. If this card is Normal or Special Summoned: You can add to your hand or banish 1 Level 4 or lower \"Ghoti\" monster from your Deck. During the Standby Phase of the next turn after this card was banished: You can Special Summon this banished card. You can only use each effect of \"Shekup, Sting Of The Ghoti\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c235352857.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 235789995,
+      "name": "NiuHao - Hikam",
+      "printed_text": "If this card is Normal or Special Summoned: You can banish 1 \"NiuHao\" monster from your Deck. When your opponent activates a card effect on the field or in the GY (Quick Effect): You can banish this card from your hand or face-up field; Set 1 \"Sacred Treasure\" Spell from your Deck. During the Standby Phase of the next turn after this card was banished: You can Special Summon this banished card. You can only use each effect of \"NiuHao - Hikam\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c235789995.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 236616849,
+      "name": "Shining Brigade - Revenge Division",
+      "printed_text": "2+ Level 2 \"Shining Brigade\" monsters\nIf a \"Shining Brigade\" card you control leaves the field because of your opponent's card: You can Special Summon this card from your GY, then inflict damage to your opponent equal to the ATK of the monster your opponent controls with the highest ATK. Once per turn, during your Standby Phase: Attach 1 \"Shining Brigade\" card from your Deck to this card as material. You can detach 2 materials from this card: Double the ATK/DEF of all \"Shining Brigade\" monsters you control until the End Phase. You can only use each effect of \"Shining Brigade - Revenge Division\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c236616849.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 236898203,
+      "name": "Chrono-Saur Rex",
+      "printed_text": "During the Main Phase 1 or Battle Phase (Quick Effect): You can destroy 1 \"Chrono-Saur\" card or 1 Dinosaur monster you control, and if you do, Special Summon this card from hand. Destroy this card Summoned this way at the end of the Phase it was Summoned. When you declare an attack: You can Special Summon this card from your GY, but destroy this card at the end of the Battle Phase. You can only use each effect of \"Chrono-Saur Rex\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c236898203.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS, EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 237684285,
+      "name": "Janna, Windborne Goddess of Clement Winds",
+      "printed_text": "1 Tuner + 1+ non-Tuner monsters\nCannot be targeted by card effects, except your \"Windborne\" cards, the turn it is Synchro Summoned. If this card is Synchro Summoned using only \"Windborne\" monsters: You can target up to 2 cards your opponent controls; return them to the hand, then shuffle as many cards from your hand into the Deck and if you do, during the next Standby Phase, add 1 \"Windborne\" card from your Deck to your hand for each card you shuffled into the Deck by this effect. During the End Phase: you can target 1 \"Windborne\" Spell in your GY; add that target to your hand during your next Standby Phase. You can only use each effect of \"Janna, Windborne Goddess of Clement Winds\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c237684285.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 238276248,
+      "name": "Scion of Nephthys",
+      "printed_text": "(Quick Effect): You can reveal this card from your hand; destroy 1 \"Nephthys\" monster from your hand or field, then Special Summon this card. If this card is Normal or Special Summoned: You can add 1 Ritual or Level 8 \"Nephthys\" monster from your Deck to your hand. During your next Standby Phase after this card was destroyed by card effect and sent to the GY: You can add 1 \"Nephthys\" card from your GY to your hand, then if \"Sacred Phoenix of Nephthys\" activated its effect this turn, you can Special Summon this card. You can only use each effect of \"Scion of Nephthys\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c238276248.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 238276249,
+      "name": "Apostle of Nephthys",
+      "printed_text": "(Quick Effect): You can reveal this card from your hand; destroy 1 other card from your hand (but it cannot activate its effects this turn), and if you do, Special Summon this card, then, if the card you destroyed from your hand was a \"Nephthys\" Card, you can add 1 “Nephthys” Spell Card from your Deck or GY to your hand. If this card is Normal or Special Summoned: You can destroy 1 monster your opponent controls. During your next Standby Phase after this card was destroyed by card effect and sent to the GY: You can Special Summon this card from your GY. You can only use each effect of \"Apostle of Nephthys\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c238276249.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 238276250,
+      "name": "Incarnation of Nephthys",
+      "printed_text": "If a card is Tributed or destroyed: You can reveal this card and 1 \"Nephthys\" Ritual Monster from your hand, then send 1 \"Nephthys\" Ritual Spell from your hand or Deck to the GY; destroy this card, and if you do, apply the sent card's activation effect that Ritual Summons a monster. If a \"Nephthys\" Ritual Monster is Special Summoned while this card is in your GY: You can banish this card from your GY; destroy cards your opponent controls up to the number of monsters Tributed for the Ritual Summon of the Ritual Monster. During your next Standby Phase after this card was destroyed by card effect and sent to the GY: You can target 2 \"Nephthys\" monster in your GY; shuffle them into your Deck. You can only use each effect of \"Incarnation of Nephthys\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c238276250.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 238276252,
+      "name": "Prayer Of Nephthys",
+      "printed_text": "Destroy 1 Level 8 “Nephthys” monster from your hand or field, and if you do, Special Summon 2 Level 2 “Nephthys” monsters from your hand or GY, but negate their effects, also they are destroyed during the End Phase of this turn. If a “Nephthys” Ritual Monster is destroyed while this card is in your GY: You can banish this card from your GY; add 1 \"Nephthys\" Spell/Trap Card or 1 \"Phoenix Wing Wind Blast\" from your Deck, GY or banishment to your hand, except \"Prayer Of Nephthys\". You can only use each effect of \"Prayer Of Nephthys\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c238276252.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 239127930,
+      "name": "Galataxian Battle Formation",
+      "printed_text": "(This card is also treated as a \"Galactica\" card.) Add 1 \"Galactica\" monster from your Deck or GY to your hand. If you Summon a \"Galactica\" monster: You can banish this card from your GY; Immediately after this effect resolves, Link Summon 1 \"Galactica\" monster from your Extra Deck using monsters you control as material. You can banish this card and 1 other card from your GY; At the start of the next Battle Phase, Special Summon 1 \"Galactica\" monster from your hand or banishment in Attack Position. You can only use each effect of \"Galataxian Battle Formation\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c239127930.lua",
+      "review": "Confirmed installed optional delayed trigger contradicts mandatory follow-up; baseline fails decline test, test-only mandatory trigger passes legal and no-target cases."
+    },
+    {
+      "id": 239935101,
+      "name": "Terrifying Dark Swamp",
+      "printed_text": "When this card is activated: Place 1 WATER Reptile monster from your Deck face-up in your Spell & Trap Zone as a Continuous Spell. At the start of the Damage Step, if an \"Hydra\" monster is involved in a battle: You can destroy that monster, then if it was battling an opponent's monster, you can change that opponent monster's ATK/DEF to 0. During your opponent's End Phase: You can shuffle up to 2 WATER Reptile monsters from your banishment in the Deck. You can only use each effect of \"Terrifying Dark Swamp\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c239935101.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 244161941,
+      "name": "Vanquish Soul Brawl",
+      "printed_text": "Reveal 1 monster in your hand; Special Summon 1 \"Vanquish Soul\" monster with a different Attribute from your hand or GY, but return it to the hand during the End Phase. If a monster leaves your opponent's field by the effect of your \"Vanquish Soul\" card: You can place this card and 2 other \"Vanquish Soul\" cards from your GY on the bottom of the Deck in any order. You can only use each effect of \"Vanquish Soul Brawl\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c244161941.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 244162598,
+      "name": "Moltenzoic Tristegsaurus",
+      "printed_text": "1 Dinosaur Tuner + 1 non-Tuner\nIf this card is Special Summoned, or if a card(s) is destroyed during the Battle Phase: You can target 1 monster you control and 1 card your opponent controls; Destroy them, then Special Summon 1 monster from each GY, to their owner's field. If this card is destroyed: You can activate this effect; Special Summon this card from your GY at the start of the next Battle Phase. You can only use each effect of \"Moltenzoic Tristegasaurus\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c244162598.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 245099829,
+      "name": "Azrynior, the Abundaence of Purity",
+      "printed_text": "(This card is always treated as a \"Stellaer\" card.)\n1 Rank/Level 9 LIGHT Dragon Monster + 1 \"Protogenic Essence Token\"\nCannot be destroyed by card effects, also, this card gains 3000 ATK/DEF. During the Main Phase, or, if this card is Fusion Summoned: You can place 1 \"Azrynior\" Continuous Spell/Trap from your hand, Deck, or GY, face-up in your Spell & Trap Zone. During the End Phase, if a \"Protogenic Essence Token\" was Tributed this turn: You can Special Summon 1 \"Protogenic Essence Token\" (Galaxy/LIGHT/Level 1/ATK 0/DEF 0), but that Token cannot be used as Link Material. You can only use each effect of \"Azrynior, the Abundaence of Purity\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c245099829.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 247755865,
+      "name": "Kali Yuga - Angulimala",
+      "printed_text": "During your Main Phase, or at the start of the Battle Phase, if this card is in your hand or GY: You can destroy 1 other \"Kali Yuga\" card you control or in your hand, and if you do, Special Summon this card, and if you do that, you can destroy 1 Spell/Trap your opponent controls. If this card is Normal or Special Summoned: You can take 1 \"Kali Yuga\" card from your Deck, and either add it to your hand or send it to the GY. You can only use each effect of \"Kali Yuga - Angulimala\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c247755865.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 247755870,
+      "name": "Kali Yuga - Mayavada",
+      "printed_text": "You can target 1 face-up card your opponent controls; destroy it, then destroy 1 other \"Kali Yuga\" card you control or discard 1 card. During the End Phase, if this card is in the GY: You can banish 1 FIRE monster from your GY; place this card face-up on your field, but banish it when it leaves the field. You can only use each effect of \"Kali Yuga - Mayavada\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c247755870.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 247789143,
+      "name": "Stained Sorceress Silphia",
+      "printed_text": "2 \"Stain\" monsters with different names\nDuring your turn, \"Stain\" monsters you control gain 600 ATK. You can only control 1 \"Stained Sorceress Silphia\". If this card is Fusion Summoned: You can activate this effect; shuffle 1 \"Stain\" monster from your Deck face-up into your opponent's Deck during the Standby Phase of the next turn. Once per Chain, when your opponent activates a card or effect (Quick Effect): You can activate 1 of these effects.\n●This card gains 300 ATK.\n●This card loses exactly 2000 ATK, and if it does, banish 1 monster on the field and 1 \"Stain\" monster you control until the End Phase.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c247789143.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS, EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 248453205,
+      "name": "Shattering Sustained",
+      "printed_text": "Tribute 1 \"Stain\" monster from your hand, face-up field, or face-up in your opponent's Deck; Special Summon 1 Level 4 or lower \"Stain\" monster from your hand, Deck, or GY, but shuffle it face-up into your opponent's Deck when it leaves the field, then you can Tribute 1 face-up \"Stain\" monster in your opponent's Deck. During your End Phase, if this card is in your GY: You can banish 1 \"Stain\" monster from your GY; Set this card. You can only use each effect of \"Shattering Sustained\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c248453205.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 249093610,
+      "name": "Ursarctic Nordbar",
+      "printed_text": "Cannot be Synchro Summoned. Must be Special Summoned (from your Extra Deck) by sending 2 monsters you control with a Level difference of 7 to the GY (1 Level 8 or higher Tuner and 1 non-Tuner Synchro Monster). You can only use each of the following effects of \"Ursarctic Nordbar\" once per turn. If this card is Special Summoned: You can Special Summon 1 \"Ursarctic\" monster from your GY. During your opponent's Standby Phase: You can add 1 \"Ursarctic\" monster from your Deck to your hand. When a card or effect is activated (Quick Effect): You can negate the activation, and if you do, destroy that card.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c249093610.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 249629457,
+      "name": "Shining Brigade - Last Stand",
+      "printed_text": "When your opponent activates a Spell/Trap effect, or a monster effect on the field: You can return 1 \"Shining Brigade\" monster you control to the hand; negate that effect. During the End Phase: You can shuffle up to 3 cards from your GY or banishment into your Deck, then, if you shuffled at least 2 \"Shining Brigade\" cards with this effect, draw 1 card. You can only use each effect of \"Shining Brigade - Last Stand\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c249629457.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 256831125,
+      "name": "Gravinity Axis Matter",
+      "printed_text": "Your opponent cannot target \"Gravinity\" Synchro Monster Cards with card effects. Reduce the Level/Rank/Link Rating of your opponent's monsters in the same column as a \"Gravinity\" monster by 1. During the Standby Phase: You can reveal 1 Level 11 \"Gravinity\" Synchro Monster in your Extra Deck; for the rest of this turn, this card gains the non-activated effects of the revealed monster. You can only use this effect of \"Gravinity Axis Matter\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c256831125.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 257794541,
+      "name": "Maryam, Windborne Caretaker of the Temple",
+      "printed_text": "You can also reveal up to 2 \"Windborne\" Spells in your hand to activate this effect; Special Summon this card from your hand by shuffling up to 2 cards from your hand into the Deck, including \"Windborne\" Spells you revealed to activate this effect (if any), and if you do, during the next Standby Phase, add 1 \"Windborne\" card from your Deck to your hand for each card you shuffled into the Deck by this effect, except \"Maryam, Windborne Caretaker of the Temple\", then Set \"Windborne\" Quick-Play Spells directly from your Deck for each card you revealed to activate this effect. The Set Quick-Play Spell(s) can be activated that turn. If this card is Normal or Special Summoned: You can add 1 \"Windborne\" card from your GY to your hand. You can only use each effect of \"Maryam, Windborne Caretaker of the Temple\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c257794541.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 259269774,
+      "name": "Harpie Lady Sisters - Phoenix Formation",
+      "printed_text": "1 Tuner + non-tuner monsters For this card's Spchro Summon, you can treat 1 'Harpie\" monster you control as a Tuner. You can only activate 1 of the following effects of \"Harpie Lady Sisters - Phoenix Formation\" per turn, and only once that turn. If this card is Synchro Summoned: You can target any number of \"Harpie Lady\" monsters in your GYt then target that many face-up cards on the field; destroy those targets, and if you do, your opponent takes no damage from battles this turn. During the Main Phase (Quick Effect): You can target \"Harpie Lady\" monsters in your GY equal to the number of monsters used for this card's Synchro Summon, then Tribute this card; Special Summon those targets, then return cards from the field to the hand equal to the number of targets. During the End Phase, destroy cards you control equal to the number of \"Harpie Lady\" monsters you targeted to activate this effect.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c259269774.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 259363148,
+      "name": "Gladiator Beast Satyrius",
+      "printed_text": "2 \"Gladiator Beast\" and/or \"Test\" monsters\nMust first be Special Summoned (from your Extra Deck) by shuffling the above cards from your hand and/or field into the Deck or Extra Deck. If this card is Special Summoned: You can Special Summon 1 Level 4 or lower \"Gladiator Beast\" monster from your Deck. You can only use this effect of \"Gladiator Beast Satyrius\" once per turn. \"Gladiator Beast\" monsters you control gain 300 ATK. At the end of the Battle Phase, if this card battled: You can return this card to the Extra Deck; Special Summon 1 \"Gladiator Beast\" monster from your Deck.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c259363148.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 259365935,
+      "name": "Aetherstorm Zenith Wire-Tailed Sypharion",
+      "printed_text": "2+ Level 9 monsters\nYou can also Xyz Summon this card by using 1 Rank 8 Dragon Xyz Monster you control as material. (Transfer its materials to this card.) You cannot Special Summon monsters, except LIGHT or DARK Dragon monsters, the turn you Xyz Summon this card. This card cannot be targeted by card effects. When a card or effect is activated that targets a monster you control (Quick Effect): You can detach 1 material from this card, and target 1 card your opponent controls; destroy that target. During the End Phase: You can target 1 Dragon Monster you control; attach that target to this card as material. You can only use each effect of \"Aetherstorm Zenith Wire-Tailed Sypharion\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c259365935.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 259395418,
+      "name": "Gladiator Beast Attrocitar",
+      "printed_text": "If this card is Special Summoned by the effect of a \"Gladiator Beast\" monster: You can target any number of face-up monsters you control; shuffle them into the Deck, then Special Summon that many \"Gladiator Beast\" monsters from your Deck, except \"Gladiator Beast Attrocitar\". You can only use the previous effect of \"Gladiator Beast Attrocitar\" once per turn. At the end of the Battle Phase, if this card battled: You can shuffle this card into the Deck; Special Summon 1 \"Gladiator Beast\" monster from your Deck, except \"Gladiator Beast Attrocitar\".",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c259395418.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 259607933,
+      "name": "Gladiator Beast Sabearius",
+      "printed_text": "If this card is Normal Summoned or Special Summoned by the effect of a \"Gladiator Beast\" monster: You can Special Summon 1 Beast \"Test\" monster from your Deck. You can only use this effect of \"Gladiator Beast Sabearius\" once per turn. At the end of the Battle Phase, if this card battled: You can shuffle this card into the Deck; Special Summon 1 \"Gladiator Beast\" monster from your Deck, except \"Gladiator Beast Sabearius\".",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c259607933.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 259626409,
+      "name": "Grayshade the Phantom of Grayscale",
+      "printed_text": "2+ Level 8 monsters, including a LIGHT Fiend monster Cannot be used as Link Material, except the Link Summon of a \"Grayscale\" monster. You can only use each of the following effects of \"Grayshade the Phantom of Grayscale\" once per turn. When your opponent activates a Spell/Trap Card (Quick Effect): You can detach 1 material from this card, then target 1 Spell in either GY; the activated effect becomes \" your opponent attaches that target to 1 \"Grayscale\" Xyz Monster they control as material\". During the End Phase: You can detach 2 materials from this card, then target 1 \"Grayscale\" card in your GY; add it to your hand.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c259626409.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    },
+    {
+      "id": 259628203,
+      "name": "Red-Eyes Booster Dragon",
+      "printed_text": "2 \"Red-Eyes\" monsters If this card is Fusion Summoned: You can activate this effect; during the End Phase of this turn, add 1 \"Red-Eyes\" monster from your Deck or GY to your hand. During the Main Phase (Quick Effect): You can send 1 Equip Card you control to the GY, then target 1 monster your opponent controls; negate its effects. You can only use each effect of \"Red-Eyes Booster Dragon\" once per turn.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c259628203.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 259792415,
+      "name": "The Intergalataxian",
+      "printed_text": "(This card is also treated as a \"Galactica\" card.) You can only use each of the following effects of \"The Intergalataxian\" once per turn. During the Battle Phase (Quick Effect): You can send 1 \"Galactica\" Spell from your Deck to the GY; apply that card's activation effect, then you can Special Summon this card from your hand. During your opponent's Battle Phase, if a monster you control destroys a monster by battle or inflicts battle damage to your opponent: You can end the Battle Phase. During your opponent's End Phase: Return this card you control to the hand.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c259792415.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 284639718,
+      "name": "Terrarumian Coin Plant",
+      "printed_text": "Pendulum Effect: Monsters your opponent controls lose 300 ATK for each “Terrarumian” Pendulum Monster in Defense Position. If you control a “Terrarumian” monster: You can destroy 1 other “Terrarumian” card you control, and if you do, Special Summon this card, then place 1 “Terrarumian” Pendulum Monster from your Deck to your Pendulum Zone, except “Terrarumian Coin Plant”. You can only use this effect of “Terrarumian Coin Plant” once per turn.\nMonster Effect: If this card is destroyed by card effect: You can banish 1 card in your opponent’s GY, or if you control 2 or more “Terrarumian” monsters in Defense Position, you can banish 1 random card from their hand face-up, until the End Phase instead. You can only use this effect of “Terrarumian Coin Plant” once per turn. This card can attack while in face-up Defense Position. If it does, apply its ATK for damage calculation.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c284639718.lua",
+      "review": "Phase effect uses EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS; optional trigger in file belongs elsewhere. Scope limited to optional-phase pattern; full effect semantics not certified."
+    },
+    {
+      "id": 284639723,
+      "name": "Terrarumian Sundew",
+      "printed_text": "Pendulum Effect: If you control a “Terrarumian” monster: You can destroy up to 2 other “Terrarumian” cards you control, and if you do, Special Summon this card in Defense Position, then you can add 1 face-up “Terrarumian” Pendulum Monster from your Extra Deck to your hand, except “Terrarumian Sundew”. You can only use this effect of “Terrarumian Sundew” once per turn.\nMonster Effect: While you control this Pendulum Summoned card is in face-up Defense Position, when your opponent activates a card or effect (Quick Effect): You can Special Summon 1 \"Terrarumian\" Pendulum Monster from your Deck in Defense Position, then destroy 1 card you control. During the End Phase: You can shuffle monsters from your face-up Extra Deck into the Deck equal to the number of Pendulum Monsters destroyed by this card’s effect. This card can attack while in face-up Defense Position. If it does, apply its ATK for damage calculation.",
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c284639723.lua",
+      "review": "Printed phase effect expressly says player can activate/use it; optional phase trigger is consistent on this point. Other effects and timing still require audit."
+    }
+  ],
+  "broader_literal_inventory": [
+    {
+      "id": 211964444,
+      "script": "public\\CCG Downloads\\CCG_Scripts\\c211964444.lua",
+      "review": "EVENT_PHASE occurs only in comparison to an existing effect code, not registration; optional trigger is the separate Summon effect."
+    }
+  ]
+}

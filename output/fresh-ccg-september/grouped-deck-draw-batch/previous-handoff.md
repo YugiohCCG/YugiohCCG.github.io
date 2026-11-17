@@ -1,0 +1,13 @@
+# CCG archetype audit handoff
+- HEAD 837fc633. Installed full OCGCore regression 792 PASS / 0 FAIL.
+- Installed Aqua Droplet c212737555, A.I.P Ex Hive Mind c259499577, A.1.P Ex Assimilation c259630851, and Failures of the A.1.P c259883029. All four match source SHA-256.
+- The single-card shuffle must reach the required Deck before awarding a draw. Hive Mind accepts the Extra Deck for a returned Extra Deck monster.
+- Original 4 PASS / 4 redirect FAIL. Source candidate and installed focused runs each passed 8.
+- Focused: node scripts/fresh_new_floo_fiendsmith_effects.cjs --single-deck-draw-only. Full: same command without the flag.
+- Set CCG_OMEGA_SCRIPTS and CCG_INSTALLED_CARD_DB to local Omega.
+- Library callback review paired SendtoDeck and Draw against printed clauses. NiuHao and Myutant already guard single-card receipt.
+- Stock Omega c101203057 provides the destination-based draw comparison used in preceding batches.
+- Logs, exact backups, installed hashes and effect review: output/fresh-ccg-september/single-deck-draw-batch/.
+- Hive Mind opponent Xyz branch shares the destination guard. Its native recipe remains open.
+- Next: grouped return-and-draw effects in effect-review.json, then non-draw successors in next-deck-destination-scan.log in the Shards batch.
+- Alternate-destination Galactica callbacks, Oceanica both-player Hand selection, and live Omega duel verification remain open.

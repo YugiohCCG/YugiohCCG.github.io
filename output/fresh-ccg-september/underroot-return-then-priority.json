@@ -1,0 +1,66 @@
+[
+  {
+    "script": "c238272434.lua",
+    "line": 148,
+    "context": "  or Duel.SendtoHand(c,nil,REASON_EFFECT)==0 then return end\n Duel.ConfirmCards(1-tp,c)\n if Duel.IsExistingMatchingCard(s.otherfilter,tp,loc,0,1,nil,c)\n  and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,3)) then\n  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)\n  local g=Duel.SelectMatchingCard(tp,s.otherfilter,tp,loc,0,1,1,nil,c)\n  if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,g) end\n end\nend\nfunction s.otherfilter(c,handler)\n return c~=handler and (c:IsSetCard(SE",
+    "name": "Terror Skull from Underroot",
+    "printed": "If this card is Normal or Special Summoned: You can add 1 \"Underroot\" monster from your Deck to your hand. (Quick Effect): You can decrease this card Level by up to 2, then Fusion, Synchro or Xyz Summon 1 \"rroot\" monster from your Extra Deck using monsters you control as material (you can also use monsters from your hand if you Fusion Summon). If this card in your GY or banishment is banished or returned to the GY: Add this card to your hand, then you can add 1 other \"Underroot\" card from the same location (GY or banishment) to your hand. You can only use each effect of \"Terror Skull from Underroot\" once per turn.",
+    "disposition": "Reproduced redirect defect"
+  },
+  {
+    "script": "c238276579.lua",
+    "line": 80,
+    "context": " if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 then return end\n Duel.ConfirmCards(1-tp,g)\n Duel.ShuffleDeck(tp)\n if Duel.IsPlayerCanDiscardDeck(tp,1) then CCGSylvan.Excavate(e,tp,1) end\nend\nfunction s.negcon(e,tp,eg,ep,ev,re,r,rp)\n return rp~=tp and re:IsActiveType(TYPE_SPELL+TYPE_TRAP) and Duel.IsChainDisablable(ev)\nend\nfunction s.negcost(e,tp,eg,ep,ev,re,r,rp,chk)\n local c=e:GetHandler()\n if chk==0 then return c:CheckRemoveOverlayCard(tp,1,REASON_COST) and Duel.IsPlayerCanDiscardDeck(tp,1)",
+    "name": "Gink, the Sylvan High Champion",
+    "printed": "2+ Level 6 monsters\nOnce per turn: You can add 1 \"Sylvan\" monster from your Deck to your hand, then excavate the top card of your Deck, and if it is a Plant monster, send it to the GY. Otherwise, place it on the bottom of your Deck. When your opponent activates a Spell/Trap Card or effect (Quick Effect): You can detach any number of material from this card; excavate that many cards from the top of your Deck, then if you excavated a Plant monster, negate that effect and destroy that card, also send that Plant monster to the GY, otherwise, place the excavated cards on the bottom of your Deck in any order. You can only use each effect of \"Gink, the Sylvan High Champion\" once per turn.",
+    "disposition": "Confirmed: legal search passes; redirected search incorrectly excavates. See sylvan-gink-redirect-probe.log and test_sylvan_gink_redirect.cjs."
+  },
+  {
+    "script": "c244161756.lua",
+    "line": 55,
+    "context": " if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 then return end\n Duel.ConfirmCards(1-tp,g)\n if not Duel.IsExistingMatchingCard(s.dinofilter,tp,LOCATION_MZONE,0,1,nil)\n  or not s.tokenspossible(tp) or not Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then return end\n for player=0,1 do\n  local token=Duel.CreateToken(tp,TOKEN)\n  Duel.SpecialSummonStep(token,0,tp,player,false,false,POS_FACEUP_DEFENSE)\n end\n Duel.SpecialSummonComplete()\nend\nfunction s.desfilter(c)\n return c:IsFaceup() and c:IsType(T",
+    "name": "Lunalophosaur",
+    "printed": "You can discard this card; add 1 \"Lost World\" from your Deck or GY to your hand, then if you control a Dinosaur monster, you can Special Summon 1 \"Jurraegg Token\" (Dinosaur/EARTH/Level 1/ATK 0/DEF 0) to each field in Defense Position. You can banish this card from your GY; destroy 1 Level 3 or lower Dinosaur monster you control. You can only use each effect of \"Lunalophosaur\" once per turn.",
+    "disposition": "Confirmed legal search summons tokens; redirected Deck and GY searches incorrectly summon tokens. See lunalophosaur-redirect-probe.log."
+  },
+  {
+    "script": "c247755869.lua",
+    "line": 86,
+    "context": " if not c:IsRelateToEffect(e) or Duel.SendtoHand(c,nil,REASON_EFFECT)==0 then return end\n Duel.ConfirmCards(1-tp,c)\n local destroy=Duel.IsExistingMatchingCard(Card.IsDestructable,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,nil)\n local pay=Duel.CheckLPCost(tp,2000)\n if not destroy and not pay then return end\n local option=0\n if destroy and pay then option=Duel.SelectOption(tp,aux.Stringid(MSG_ID,2),aux.Stringid(MSG_ID,3))\n elseif pay then option=1 end\n if option==1 then Duel.PayLPCost(tp,2000)\n else\n  Duel.Hint(HINT_SELECTM",
+    "name": "Kali Yuga - Murugan",
+    "printed": "If this card is in your hand or face-up on the field: You can target 1 \"Kali Yuga\" monster in your GY; Special Summon it in Attack Position, but its effects are negated, also, Special Summon this card if it was in your hand. If a \"Kali Yuga\" monster(s) you control is destroyed by battle or card effect: You can add this card from your GY to your hand, and if you do, destroy 1 card you control or in your hand, or pay 2000 LP. You can only use 1 \"Kali Yuga - Murugan\" effect per turn, and only once that turn.",
+    "disposition": "Confirmed: normal recovery passes; redirected return incorrectly permits both destruction and LP-payment follow-up. See kali-murugan-redirect-probe.log."
+  },
+  {
+    "script": "c259179054.lua",
+    "line": 68,
+    "context": "\tif #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 then return end\n\tDuel.ConfirmCards(1-tp,g)\n\tlocal c=e:GetHandler()\n\tif not Duel.IsExistingMatchingCard(s.desfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,nil,c) then return end\n\tif not Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then return end\n\tDuel.BreakEffect()\n\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)\n\tlocal dg=Duel.SelectMatchingCard(tp,s.desfilter,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,1,1,nil,c)\n\tif #dg>0 then Duel.Destroy(dg,REASON_",
+    "name": "Wyvernal Megalopyge",
+    "printed": "3 WIND Insect monsters Cannot be destroyed by card effect. Cannot be targeted by your opponent's card effects. You can only use each of the following effects of \"Wyvernal Megalopyge\" once per turn, and cannot activate more than 1 in the same Chain. If this card is Fusion Summoned: You can add 1 \"Wyvernal\" card from your GY or banishment to your hand, then you can destroy 1 other card on the field. During the Main Phase (Quick Effect): You can destroy 1 WIND Insect monster you control, and if you do, destroy all monsters your opponent controls.",
+    "disposition": "Confirmed redirected GY search incorrectly permits destruction. Candidate passes normal and redirected returns from GY/banishment with ignition trigger and grave-faceup adapters; actual Fusion trigger remains untested."
+  },
+  {
+    "script": "c284639725.lua",
+    "line": 51,
+    "context": " if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 then return end\n Duel.ConfirmCards(1-tp,g)\n local choices=Duel.GetMatchingGroup(s.desfilter,tp,LOCATION_ONFIELD,0,nil)\n if #choices>0 and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,1)) then\n  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_DESTROY)\n  Duel.Destroy(choices:Select(tp,1,1,nil),REASON_EFFECT)\n end\nend\nfunction s.spcon(e)\n local c=e:GetHandler()\n return c:IsReason(REASON_DESTROY) and c:IsReason(REASON_EFFECT)\nend\nfunction s.sptg(e,tp,eg,ep,ev,re,r,r",
+    "name": "Terrarumian Tillandsia",
+    "printed": "2 “Terrarumian” Pendulum Monsters\nIf this card is Link Summoned: You can add 1 “Terrarumian” card from your Deck to your hand, then you can destroy 1 card you control, except “Terrarumian Tillandsia”. If this card is destroyed by card effect and sent to the GY: You can Special Summon this card. You can only use each effect of “Terrarumian Tillandsia” once per turn.",
+    "disposition": "Confirmed normal search destroys target and redirected search incorrectly permits destruction. Candidate passes both using ignition trigger adapter; original Link summon remains untested."
+  },
+  {
+    "script": "c231273040.lua",
+    "line": 53,
+    "context": "\tif #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then\n\t\tif Duel.GetFlagEffect(tp,231273040)>=3 and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 \n\t\t\tand Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_HAND,0,1,nil,e,tp) \n\t\t\tand Duel.SelectYesNo(tp,aux.Stringid(STRING_ID,0)) then\n\t\t\tDuel.BreakEffect()\n\t\t\tDuel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)\n\t\t\tlocal sg=Duel.SelectMatchingCard(tp,s.spfilter,tp,LOCATION_HAND,0,1,1,nil,e,tp)\n\t\t\tif #sg>0 and Duel.SpecialSummon(sg,0,tp,tp,false,false,POS_FA",
+    "name": "Windborne Howling Gale",
+    "printed": "Target 1 monster you control and 1 monster your opponent controls; return them to the hand, then, if you added 3 or more \"Windborne\" cards from your Deck to your hand this turn, you can Special Summon 1 \"Windborne\" monster from your hand. For the rest of this turn, you cannot Special Summon non-\"Windborne\" monsters with the same Level as that monster.",
+    "disposition": "Confirmed partial redirect incorrectly allows summon; legal two-target return passes. Test injects three history flags; Extra Deck and other ownership cases remain open. See howling-gale-redirect-probe.log."
+  },
+  {
+    "script": "c247756271.lua",
+    "line": 63,
+    "context": " if c:IsRelateToEffect(e) and c:IsLocation(LOCATION_GRAVE) and Duel.SendtoHand(c,nil,REASON_EFFECT)>0 then\n  Duel.ConfirmCards(1-tp,c)\n  Duel.Recover(tp,400,REASON_EFFECT)\n end\nend\n",
+    "name": "Kali Yuga - Bheki",
+    "printed": "If this card is Normal Summoned: You can destroy 1 \"Kali Yuga\" monster in your Deck, and if you do, inflict 400 damage to your opponent. If this card is destroyed by battle or card effect: You can destroy 1 \"Kali Yuga\" card in your hand or face-up field, and if you do, add this card from your GY to your hand, and if you do that, gain 400 LP. You can only use each effect of \"Kali Yuga - Bheki\" once per turn.",
+    "disposition": "Confirmed: normal return gains LP; redirected return incorrectly gains LP. See kali-bheki-redirect-probe.log."
+  }
+]

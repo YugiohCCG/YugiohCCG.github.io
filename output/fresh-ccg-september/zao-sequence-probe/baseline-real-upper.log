@@ -1,0 +1,89 @@
+(node:54584) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS Zao Xyz recipe two
+PASS Zao Xyz recipe three
+PASS Zao Xyz recipe one
+PASS Zao Xyz recipe wrong-level
+PASS Zao Xyz recipe wrong-race
+PASS Zao material destination cost
+PASS Zao material destination effect
+PASS Zao material destination host-leaves
+PASS Zao effect destruction own without material
+PASS Zao effect destruction own with material
+PASS Zao effect destruction opponent without material
+PASS Zao effect destruction opponent with material
+FAIL Zao Sacred Treasure sequence forward Spell operations follow the selected order after the native chain-solved event
++ actual - expected
+
+  [
++   1100,
++   1200
+-   100,
+-   200
+  ]
+
+FAIL Zao Sacred Treasure sequence reverse Spell operations follow the selected order after the native chain-solved event
++ actual - expected
+
+  [
++   1200,
++   1100
+-   200,
+-   100
+  ]
+
+FAIL Zao Sacred Treasure sequence upper Spell operations follow the selected order after the native chain-solved event
++ actual - expected
+
+  [
++   1100,
++   1200,
+-   100,
+-   200,
+    300
+  ]
+
+FAIL Zao Sacred Treasure sequence real stack traceback:
+	[string "c236542835.lua"]:83: in function <[string "c236542835.lua"]:82>
+[string "c236542835.lua"]:83: attempt to index a nil value (local 'eg')
+stack traceback:
+	[string "c246421842.lua"]:81: in function <[string "c246421842.lua"]:80>
+[string "c246421842.lua"]:81: attempt to index a nil value (local 'eg')
+PASS Zao Sacred Treasure sequence one-spell
+PASS Zao Sacred Treasure sequence wrong-set
+FAIL Bojin simultaneous banish together stack traceback:
+	[string "c236542835.lua"]:83: in function <[string "c236542835.lua"]:82>
+[string "c236542835.lua"]:83: attempt to index a nil value (local 'eg')
+FAIL Bojin simultaneous banish alone stack traceback:
+	[string "c236542835.lua"]:83: in function <[string "c236542835.lua"]:82>
+[string "c236542835.lua"]:83: attempt to index a nil value (local 'eg')
+FAIL Bojin simultaneous banish wrong-set stack traceback:
+	[string "c236542835.lua"]:83: in function <[string "c236542835.lua"]:82>
+[string "c236542835.lua"]:83: attempt to index a nil value (local 'eg')
+FAIL Bojin simultaneous banish separate stack traceback:
+	[string "c236542835.lua"]:83: in function <[string "c236542835.lua"]:82>
+[string "c236542835.lua"]:83: attempt to index a nil value (local 'eg')
+FAIL Chunyin simultaneous banish together stack traceback:
+	[string "c229499914.lua"]:86: in function <[string "c229499914.lua"]:85>
+[string "c229499914.lua"]:86: attempt to index a nil value (local 'eg')
+FAIL Chunyin simultaneous banish alone stack traceback:
+	[string "c229499914.lua"]:86: in function <[string "c229499914.lua"]:85>
+[string "c229499914.lua"]:86: attempt to index a nil value (local 'eg')
+FAIL Chunyin simultaneous banish wrong-set stack traceback:
+	[string "c229499914.lua"]:86: in function <[string "c229499914.lua"]:85>
+[string "c229499914.lua"]:86: attempt to index a nil value (local 'eg')
+FAIL Chunyin simultaneous banish separate stack traceback:
+	[string "c229499914.lua"]:86: in function <[string "c229499914.lua"]:85>
+[string "c229499914.lua"]:86: attempt to index a nil value (local 'eg')
+FAIL Huangjin simultaneous banish together stack traceback:
+	[string "c246421842.lua"]:81: in function <[string "c246421842.lua"]:80>
+[string "c246421842.lua"]:81: attempt to index a nil value (local 'eg')
+FAIL Huangjin simultaneous banish alone stack traceback:
+	[string "c246421842.lua"]:81: in function <[string "c246421842.lua"]:80>
+[string "c246421842.lua"]:81: attempt to index a nil value (local 'eg')
+FAIL Huangjin simultaneous banish wrong-set stack traceback:
+	[string "c246421842.lua"]:81: in function <[string "c246421842.lua"]:80>
+[string "c246421842.lua"]:81: attempt to index a nil value (local 'eg')
+FAIL Huangjin simultaneous banish separate stack traceback:
+	[string "c246421842.lua"]:81: in function <[string "c246421842.lua"]:80>
+[string "c246421842.lua"]:81: attempt to index a nil value (local 'eg')

@@ -123,8 +123,10 @@ function s.additional_op(e,tp)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local sg=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)
 		if #sg>0 then
-			Duel.SendtoHand(sg,nil,REASON_EFFECT)
-			Duel.ConfirmCards(1-tp,sg)
+			if Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then
+				local received=sg:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+				if #received>0 then Duel.ConfirmCards(1-tp,received) end
+			end
 		end
 	end
 end

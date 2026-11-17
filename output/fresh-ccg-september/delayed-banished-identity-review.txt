@@ -1,0 +1,72 @@
+
+221511784 Bau
+You can Special Summon this card (from your hand or banishment) by banishing 2 cards from your hand and/or field, including a "Bau" card, except this card. You can only use each of the following effects of "Bau" once per turn. During your Main Phase: You can add 1 "Bau" card from your Deck to your hand, except "Bau". If your opponent activates a monster effect: You can destroy 1 monster your opponent controls whose ATK is lower than this card's ATK. During the End Phase: You can banish 1 other monster from your GY; Special Summon this card from your GY.
+43 	e4:SetCode(EVENT_PHASE+PHASE_END)
+73 		e:SetLabelObject(sg)
+79 	local g=e:GetLabelObject()
+
+221827483 To Protogenis Intergalataxiakos
+(This card is also treated as a "Galactica" card.) 1 Level 2 "Galactica" monster + 1 LIGHT Galaxy monster. Must be Fusion Summoned using "Fusion Intergalactica". Your opponent cannot declare an attack. If this card destroys a monster by battle or inflicts battle damage to your opponent: It becomes unaffected by your opponent's card effects until the start of your next Battle Phase. If this card is banished from the field: You can banish 1 card on the field, also Special Summon this card during your next Standby Phase.
+22 function s.delop(e,tp) local c=e:GetLabelObject() if c and c:IsLocation(LOCATION_REMOVED) and aux.NecroValleyFilter(Card.IsCanBeSpecialSummoned)(c,e,0,tp,false,false) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0 then Duel.SpecialSummon(c,0,tp,tp,false,false,POS_FACEUP) end e:Reset() end
+25 	local c=e:GetHandler() if not c:IsLocation(LOCATION_REMOVED) then return end local ge=Effect.CreateEffect(c) ge:SetDescription(aux.Stringid(STRING_ID,2)) ge:SetCategory(CATEGORY_SPECIAL_SUMMON) ge:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_F) ge:SetCode(EVENT_PHASE+PHASE_STANDBY) ge:SetCountLimit(1) ge:SetLabelObject(c) ge:SetCondition(s.delcon) ge:SetOperation(s.delop) ge:SetReset(RESET_PHASE+PHASE_STANDBY,2) Duel.RegisterEffect(ge,tp)
+
+232449539 Abstain from Light
+Fusion Summon 1 "Stain" Fusion Monster from your Extra Deck using "Stain" monsters from your hand or field as material, also, for the rest of this turn after this card resolves, you cannot activate "Abstain from Light", or Special Summon monsters from the Extra Deck, except "Stain" monsters. If your "Stain" monster was shuffled into either Deck this turn, you can also banish "Stain" monsters from face-up in your opponent's Deck as material, but return them to the GY during the End Phase.
+70 	local g=e:GetLabelObject()
+82 	e1:SetCode(EVENT_PHASE+PHASE_END)
+84 	e1:SetLabelObject(g)
+
+235352857 Shekup, Sting of the Ghoti
+You can banish 1 Fish monster from your hand or field; Special Summon this card from your hand. If this card is Normal or Special Summoned: You can add to your hand or banish 1 Level 4 or lower "Ghoti" monster from your Deck. During the Standby Phase of the next turn after this card was banished: You can Special Summon this banished card. You can only use each effect of "Shekup, Sting Of The Ghoti" once per turn.
+38 	e5:SetCode(EVENT_PHASE+PHASE_STANDBY)
+43 	e5:SetLabelObject(e4)
+89 	return e:GetLabelObject():GetLabel()~=Duel.GetTurnCount() and e:GetHandler():GetFlagEffect(id)>0
+
+238276252 Prayer Of Nephthys
+Destroy 1 Level 8 “Nephthys” monster from your hand or field, and if you do, Special Summon 2 Level 2 “Nephthys” monsters from your hand or GY, but negate their effects, also they are destroyed during the End Phase of this turn. If a “Nephthys” Ritual Monster is destroyed while this card is in your GY: You can banish this card from your GY; add 1 "Nephthys" Spell/Trap Card or 1 "Phoenix Wing Wind Blast" from your Deck, GY or banishment to your hand, except "Prayer Of Nephthys". You can only use each effect of "Prayer Of Nephthys" once per turn.
+80  de:SetCode(EVENT_PHASE+PHASE_END)
+83  de:SetLabelObject(sg)
+89  local g=e:GetLabelObject()
+
+241504188 Shining Brigade - Absolute Supremacy
+2+ monsters, including a "Shining Brigade" monster
+"Shining Brigade" monsters cannot be destroyed by battle. When your opponent activates a monster effect or a Spell/Trap Card (Quick Effect): You can banish this card from your field until the End Phase; negate the activation, and if you do, banish it and all cards in your opponent's GY with the same name as that card. You can only use this effect of "Shining Brigade - Absolute Supremacy" once per turn.
+45 		e1:SetCode(EVENT_PHASE+PHASE_END)
+47 		e1:SetLabelObject(c)
+54 	Duel.ReturnToField(e:GetLabelObject())
+
+244165675 Mevalkagna, Eye of Zenith
+If this card is in your hand: You can target 3 monsters in either GY with different Types and/or Attributes; banish them, and if you do, Special Summon this card, also it gains the Types and Attributes of those banished monsters. During your Main or Battle Phase (Quick Effect): You can reduce this card's ATK by 1000, and if you do, take control of 1 monster your opponent controls with the same Type and/or Attribute with this card, also it must attack, if able. During the End Phase, destroy all monsters on the field that battled this turn. You can only use each effect of "Mevalkagna, Eye of Zenith" once per turn.
+31  e3:SetCode(EVENT_PHASE+PHASE_END)
+61  e:SetLabelObject(sg)
+67  local targets=e:GetLabelObject()
+
+247789143 Stained Sorceress Silphia
+2 "Stain" monsters with different names
+During your turn, "Stain" monsters you control gain 600 ATK. You can only control 1 "Stained Sorceress Silphia". If this card is Fusion Summoned: You can activate this effect; shuffle 1 "Stain" monster from your Deck face-up into your opponent's Deck during the Standby Phase of the next turn. Once per Chain, when your opponent activates a card or effect (Quick Effect): You can activate 1 of these effects.
+●This card gains 300 ATK.
+●This card loses exactly 2000 ATK, and if it does, banish 1 monster on the field and 1 "Stain" monster you control until the End Phase.
+68 	e1:SetCode(EVENT_PHASE+PHASE_STANDBY)
+118 	local g=e:GetLabelObject()
+130 	e1:SetCode(EVENT_PHASE+PHASE_END)
+132 	e1:SetLabelObject(g)
+
+256110263 Windborne Eye of the Storm
+Target 1 monster you control; banish it until the End Phase, then, if you added 3 or more "Windborne" cards from your Deck to your hand this turn, and you banished a WIND Synchro Monster by this effect, you can Special Summon 1 "Windborne" Synchro Monster with a different name from your Extra Deck (this is treated as a Synchro Summon using only "Windborne" monsters).
+56 			e1:SetCode(EVENT_PHASE+PHASE_END)
+58 			e1:SetLabelObject(oc)
+83 	return e:GetLabelObject():GetFlagEffect(id)~=0
+86 	Duel.ReturnToField(e:GetLabelObject())
+
+259303191 Tome of Eclipse
+Banish all other Spell/Trap Cards on the field, then your opponent draws cards equal to the number banished. During the End Phase of this turn, return all your opponent's cards banished by this effect to the GY. You can only activate 1 "Tome of Eclipse" per turn.
+47 		e1:SetCode(EVENT_PHASE+PHASE_END)
+51 		e1:SetLabelObject(og)
+58 	local g=e:GetLabelObject()
+
+284639718 Terrarumian Coin Plant
+Pendulum Effect: Monsters your opponent controls lose 300 ATK for each “Terrarumian” Pendulum Monster in Defense Position. If you control a “Terrarumian” monster: You can destroy 1 other “Terrarumian” card you control, and if you do, Special Summon this card, then place 1 “Terrarumian” Pendulum Monster from your Deck to your Pendulum Zone, except “Terrarumian Coin Plant”. You can only use this effect of “Terrarumian Coin Plant” once per turn.
+Monster Effect: If this card is destroyed by card effect: You can banish 1 card in your opponent’s GY, or if you control 2 or more “Terrarumian” monsters in Defense Position, you can banish 1 random card from their hand face-up, until the End Phase instead. You can only use this effect of “Terrarumian Coin Plant” once per turn. This card can attack while in face-up Defense Position. If it does, apply its ATK for damage calculation.
+128   e1:SetCode(EVENT_PHASE+PHASE_END)
+130   e1:SetLabelObject(tc)
+141  local tc=e:GetLabelObject()

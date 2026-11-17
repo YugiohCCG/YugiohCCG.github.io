@@ -1,0 +1,120 @@
+{
+  "pattern": "A mandatory hand summon follows a return that may supply the only eligible monster.",
+  "priorInventory": "nautica-bounce-receipt-batch/inventory.json",
+  "guidance": "https://www.yugioh-card.com/en/play/psct/psct-7/",
+  "candidates": [
+    {
+      "passcode": 225109525,
+      "file": "current-evander-summon-followup-chaininfo-compat-target-compat-prospective-resource.json",
+      "results": [
+        {
+          "test": {
+            "onlyReturn": true
+          },
+          "failure": "Original two-own-Aqua GY procedure eligibility\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "onlyReturn": true,
+            "special": true
+          },
+          "failure": "Original two-own-Aqua GY procedure eligibility\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "onlyReturn": true,
+            "extraReturn": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "onlyReturn": true,
+            "stolenReturn": true
+          },
+          "failure": null
+        }
+      ],
+      "disposition": "Installed activation excludes both prospective Normal and Special cases with an ordinary opponent-owned target. Extra Deck and stolen-target controls are correctly excluded."
+    },
+    {
+      "passcode": 218905439,
+      "file": "current-adventures-summon-followup-chaininfo-compat-target-compat-prospective-resource.json",
+      "results": [
+        {
+          "test": {
+            "onlyReturn": true
+          },
+          "failure": "Original two-own-Aqua GY procedure eligibility\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "onlyReturn": true,
+            "special": true
+          },
+          "failure": "Original two-own-Aqua GY procedure eligibility\n\nfalse !== true\n"
+        },
+        {
+          "test": {
+            "onlyReturn": true,
+            "extraReturn": true
+          },
+          "failure": null
+        },
+        {
+          "test": {
+            "onlyReturn": true,
+            "stolenReturn": true
+          },
+          "failure": null
+        }
+      ],
+      "disposition": "Installed activation excludes both prospective Normal and Special cases with an ordinary opponent-owned target. Extra Deck and stolen-target controls are correctly excluded."
+    },
+    {
+      "passcode": 223158720,
+      "disposition": "Backwashing returns a card from the acting player GY, so that card cannot supply the opposing Hand."
+    },
+    {
+      "passcode": 248946297,
+      "disposition": "Exploring adds to the acting player Hand. Opposing Hand or Deck supplies its own resource."
+    },
+    {
+      "passcode": 220749574,
+      "disposition": "Scarlet draws into the acting player Hand. Opponent needs an existing resource."
+    },
+    {
+      "passcode": 259114562,
+      "disposition": "Bobbie summons itself. Opponent needs an existing resource."
+    }
+  ],
+  "engine": "The reviewed core returns false from Card.IsCanBeSpecialSummoned while a card is in the Monster Zone. A direct reuse of the hand filter cannot model the prospective field-to-hand move. Keep resolution using actual hand eligibility.",
+  "activationApiReview": [
+    {
+      "api": "Card.IsCanBeSpecialSummoned",
+      "reference": "gemini-core-reference/card.cpp:3502",
+      "finding": "Rejects the selected card while in MZONE, before evaluating summon conditions."
+    },
+    {
+      "api": "Duel.IsPlayerCanSpecialSummon with card",
+      "reference": "gemini-core-reference/libduel.cpp:4397",
+      "finding": "Checks player restrictions against the card in its current state. It does not evaluate the target in a hypothetical Hand state."
+    },
+    {
+      "api": "Duel.IsPlayerCanSpecialSummonMonster",
+      "reference": "gemini-core-reference/libduel.cpp:4436",
+      "finding": "Uses a card data record, not the card’s post-return effects and location."
+    },
+    {
+      "api": "Duel.CreateToken",
+      "reference": "gemini-core-reference/libduel.cpp:539",
+      "finding": "Action-permission gated and creates a card outside any location, so it cannot model Hand legality as a read-only activation check."
+    },
+    {
+      "api": "Card.AssumeProperty",
+      "reference": "tmp/omega_scripts/constant.lua:197",
+      "finding": "The installed reference lists card properties but no location assumption."
+    }
+  ],
+  "apiReference": "https://projectignis.github.io/scrapi-book/api/functions/Card/IsCanBeSpecialSummoned.html"
+}

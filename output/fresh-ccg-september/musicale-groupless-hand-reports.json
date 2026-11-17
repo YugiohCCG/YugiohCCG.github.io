@@ -1,0 +1,741 @@
+{
+  "pattern": "Explicit operation-info reports with a nil group and Hand included. Producer inventory.",
+  "priorInventory": "musicale-activation-origin-batch/inventory.json",
+  "limitations": "Search covers inline canonical SetOperationInfo call sites with explicit LOCATION_HAND. Dynamic location masks and stock scripts require separate review.",
+  "candidates": [
+    {
+      "passcode": 213611313,
+      "name": "Scarstech Crawler",
+      "archetype": "Scarstech",
+      "line": 57,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Requires Galaxy race. Current Nautica are Aqua."
+    },
+    {
+      "passcode": 215621622,
+      "name": "A Night of Fright on Hallo-Ween!",
+      "archetype": "Hallo-Ween!",
+      "line": 37,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE+LOCATION_REMOVED)",
+      "disposition": "Restricted to Hallo the Hollow Trickster. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 216532402,
+      "name": "Sacred Feather of Nephthys",
+      "archetype": "Nephthys",
+      "line": 75,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to Nephthys Ritual. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 218600459,
+      "name": "NiuHao - Bauba",
+      "archetype": "NiuHao",
+      "line": 62,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED)",
+      "disposition": "Restricted to NiuHao. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 218905439,
+      "name": "Nautical Adventures & Torrential Seas",
+      "archetype": "Nautica",
+      "line": 103,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,1-tp,LOCATION_HAND)",
+      "disposition": "Opponent-only report. Musicale requires a summon from the activating player’s hand."
+    },
+    {
+      "passcode": 220124524,
+      "name": "Shining Brigade - Heartbeat Division",
+      "archetype": "Shining Brigade",
+      "line": 44,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to Shining Brigade. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 220749574,
+      "name": "Scarlet Seareef & the Nautical Creatures",
+      "archetype": "Nautica",
+      "line": 185,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,1-tp,LOCATION_HAND)",
+      "disposition": "Opponent-only report. Musicale requires a summon from the activating player’s hand."
+    },
+    {
+      "passcode": 220856437,
+      "name": "Bauy Magician",
+      "archetype": "Bau",
+      "line": 84,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK)",
+      "disposition": "Restricted to Bau. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 221047295,
+      "name": "Bookkeeper of Crying Chaos",
+      "archetype": "Crying Chaos",
+      "line": 67,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Level 3 Zombie. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 223158720,
+      "name": "Nautical Backwashing & Oceanic Waves",
+      "archetype": "Nautica",
+      "line": 95,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,1-tp,LOCATION_HAND)",
+      "disposition": "Opponent-only report. Musicale requires a summon from the activating player’s hand."
+    },
+    {
+      "passcode": 224943273,
+      "name": "Goat of Crying Chaos",
+      "archetype": "Crying Chaos",
+      "line": 66,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Level 4 or lower Zombie. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 225109525,
+      "name": "Evander Coldwater & the Nautical Abyss",
+      "archetype": "Nautica",
+      "line": 107,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,1-tp,LOCATION_HAND)",
+      "disposition": "Opponent-only report. Musicale requires a summon from the activating player’s hand."
+    },
+    {
+      "passcode": 230998543,
+      "name": "Stellaer of the Breeze",
+      "archetype": "Stellaer",
+      "line": 84,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,2,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED)",
+      "disposition": "Restricted to Stellaer. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 231331942,
+      "name": "Hallo, the Hollow Trickster",
+      "archetype": "Hallo-Ween!",
+      "line": 47,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Hallo the Spirit of Tricks. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 231273040,
+      "name": "Windborne Howling Gale",
+      "archetype": "Windborne",
+      "line": 45,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to Windborne. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 232706629,
+      "name": "Protogenic Astral Cycle",
+      "archetype": "To Proto",
+      "line": 88,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to To Proto. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 232824319,
+      "name": "Shining Brigade - Companion Team",
+      "archetype": "Shining Brigade",
+      "line": 51,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK)",
+      "disposition": "Restricted to Shining Brigade. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 233502817,
+      "name": "Scarstech Sniper",
+      "archetype": "Scarstech",
+      "line": 55,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Hand branch requires a Level 4 or lower DARK monster. Current Nautica are WATER."
+    },
+    {
+      "passcode": 234507067,
+      "name": "Chrono-Saur Brachio",
+      "archetype": "Chrono-Saur",
+      "line": 72,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Chrono-Saur. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 234592047,
+      "name": "Skewy! Twick-or-Tweat",
+      "archetype": "Skewy!",
+      "line": 40,
+      "report": "else Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK) end",
+      "disposition": "Restricted to Skewy. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 235051048,
+      "name": "Ursarctic Octantis",
+      "archetype": "Ursarctic",
+      "line": 176,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Ursarctic. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 235607781,
+      "name": "The Yellow Frute",
+      "archetype": "Frute",
+      "line": 43,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Frute. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 235637994,
+      "name": "Chrono-Saur Dactylus",
+      "archetype": "Chrono-Saur",
+      "line": 110,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Chrono-Saur. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 236542835,
+      "name": "Sacred Treasure - Bojin",
+      "archetype": "NiuHao",
+      "line": 58,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to NiuHao. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 236551669,
+      "name": "Pride of the Stellaers",
+      "archetype": "Stellaer",
+      "line": 66,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to Stellaer. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 238241974,
+      "name": "Starry Knight Nebriel",
+      "archetype": "Starry Knight",
+      "line": 68,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Requires Starry Knight or Level 7 LIGHT Dragon. Current Nautica are WATER Aqua."
+    },
+    {
+      "passcode": 238273768,
+      "name": "Symphonic Warrior Speeaker",
+      "archetype": "Symphonic Warrior",
+      "line": 113,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_EXTRA)",
+      "disposition": "Restricted to Symphonic Warrior. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 238273770,
+      "name": "Symphonic Warrior Disccs",
+      "archetype": "Symphonic Warrior",
+      "line": 137,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_EXTRA)",
+      "disposition": "Restricted to Symphonic Warrior. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 238273770,
+      "name": "Symphonic Warrior Disccs",
+      "archetype": "Symphonic Warrior",
+      "line": 163,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Symphonic Warrior. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 238274859,
+      "name": "Vylon Volt",
+      "archetype": "Vylon",
+      "line": 52,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,2,tp,LOCATION_HAND)",
+      "disposition": "Restricted to Vylon. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 238274860,
+      "name": "Vylon Torus",
+      "archetype": "Vylon",
+      "line": 108,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Vylon. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 238276250,
+      "name": "Incarnation of Nephthys",
+      "archetype": "Nephthys",
+      "line": 90,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to Nephthys Ritual. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 238276252,
+      "name": "Prayer Of Nephthys",
+      "archetype": "Nephthys",
+      "line": 47,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,2,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Nephthys. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 238276572,
+      "name": "Sylvan Flamushroomo",
+      "archetype": "Sylvan",
+      "line": 101,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Sylvan. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 238276575,
+      "name": "Sylvan Greetings",
+      "archetype": "Sylvan",
+      "line": 89,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Sylvan. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 239127930,
+      "name": "Galataxian Battle Formation",
+      "archetype": "Galactica",
+      "line": 45,
+      "report": "function s.delspgt(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(s.delspfilter,tp,LOCATION_HAND+LOCATION_REMOVED,0,1,nil,e,tp) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_REMOVED) end",
+      "disposition": "Restricted to Galactica. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 239934744,
+      "name": "Fiendsmith's Offertorium",
+      "archetype": "Fiendsmith",
+      "line": 60,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK)",
+      "disposition": "Restricted to Fiendsmith Engraver. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 241880822,
+      "name": "Chrono-Saur Raptor",
+      "archetype": "Chrono-Saur",
+      "line": 67,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Chrono-Saur. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 243306841,
+      "name": "Wicked Puppeteer Tragedy",
+      "archetype": "Wicked Puppeteer",
+      "line": 51,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Wicked Puppeteer Orchis. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 244161941,
+      "name": "Vanquish Soul Brawl",
+      "archetype": "Vanquish Soul",
+      "line": 50,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Vanquish Soul. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 244163203,
+      "name": "Killamity Ash",
+      "archetype": "Killamity",
+      "line": 64,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Killamity. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 244816828,
+      "name": "Myutant Evolution",
+      "archetype": "Myutant",
+      "line": 68,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK)",
+      "disposition": "Restricted to named Myutant. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 245354354,
+      "name": "Arckcestial Fireball",
+      "archetype": "Arckcestial",
+      "line": 63,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to Arckcestial. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 246496923,
+      "name": "Aldrez Grandmaster",
+      "archetype": "Aldrez",
+      "line": 77,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_REMOVED)",
+      "disposition": "Restricted to Aldrez. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 247755872,
+      "name": "Kali Yuga - Dukkha",
+      "archetype": "Kali Yuga",
+      "line": 62,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Kali Yuga. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 247831166,
+      "name": "Ursarctic Leoship",
+      "archetype": "Ursarctic",
+      "line": 59,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to Ursarctic. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 248453205,
+      "name": "Shattering Sustained",
+      "archetype": "Stain",
+      "line": 96,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE)",
+      "disposition": "Restricted to Stain. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 248760718,
+      "name": "Starry Knight Starry Queen",
+      "archetype": "Starry Knight",
+      "line": 69,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE)",
+      "disposition": "Restricted to Level 7 LIGHT Dragon. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 248946297,
+      "name": "Exploring the Nautical Waters",
+      "archetype": "Nautica",
+      "line": 124,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,1-tp,LOCATION_HAND+LOCATION_DECK)",
+      "disposition": "Opponent-only report. Musicale requires a summon from the activating player’s hand."
+    },
+    {
+      "passcode": 250262550,
+      "name": "Ween, Guidance to Treats",
+      "archetype": "Hallo-Ween!",
+      "line": 67,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to Hallo. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 252210718,
+      "name": "King of Aldrez",
+      "archetype": "Aldrez",
+      "line": 64,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Aldrez. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 253152295,
+      "name": "Yummy Kuriboh",
+      "archetype": "Kuriboh",
+      "line": 41,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,2,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Confirmed. Yummy Kuriboh can choose Level 1 Nautica Harmony. Installed script reports the selected pair at resolution. Hand positive and GY negative cases pass."
+    },
+    {
+      "passcode": 253934904,
+      "name": "Scarstech Stagger",
+      "archetype": "Scarstech",
+      "line": 36,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to Scarstech. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 255048812,
+      "name": "Chrono-Saur Stegian",
+      "archetype": "Chrono-Saur",
+      "line": 107,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Chrono-Saur. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 255283389,
+      "name": "Myutant EL-51",
+      "archetype": "Myutant",
+      "line": 63,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK)",
+      "disposition": "Restricted to named Myutant. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 255977900,
+      "name": "Happy Hallo-Ween!",
+      "archetype": "Hallo-Ween!",
+      "line": 58,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Hallo or Ween. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 256930605,
+      "name": "Fruteification",
+      "archetype": "Frute",
+      "line": 68,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Generic WATER branch requires a Ritual Monster. The Nautica card pool has no Ritual Monster."
+    },
+    {
+      "passcode": 257464336,
+      "name": "Guardian of Wicked Puppeteer",
+      "archetype": "Wicked Puppeteer",
+      "line": 74,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Wicked Puppeteer Orchis. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259057226,
+      "name": "Stellaer of the Cold",
+      "archetype": "Stellaer",
+      "line": 66,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to Stellaer. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259072906,
+      "name": "Glitchling Mage",
+      "archetype": "Glitchling",
+      "line": 228,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_EXTRA)",
+      "disposition": "Restricted to Cyberse Ritual. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259114562,
+      "name": "Bobbie Bluefin & the Nautical Nocturnes",
+      "archetype": "Nautica",
+      "line": 121,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,2,PLAYER_ALL,LOCATION_HAND)",
+      "disposition": "Both-player report. Existing installed Bobbie test and Musicale fallback cover it."
+    },
+    {
+      "passcode": 259156549,
+      "name": "Glitchling Protron",
+      "archetype": "Glitchling",
+      "line": 80,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE)",
+      "disposition": "Restricted to Protron or Glitchling Ritual. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259156549,
+      "name": "Glitchling Protron",
+      "archetype": "Glitchling",
+      "line": 126,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_EXTRA)",
+      "disposition": "Restricted to Protron or Glitchling Ritual. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259177849,
+      "name": "Grand Blue Princess",
+      "archetype": "Grand Blue",
+      "line": 90,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Grand Blue. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259225324,
+      "name": "Transcend the Pendulum",
+      "archetype": null,
+      "line": 107,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_EXTRA)",
+      "disposition": "Installed test confirms actual Hand-to-field Pendulum Summon in Defense Position and no Musicale trigger for Harmony or a non-Nautica control. By analogy with the official I:P/Pendulum Evolution ruling, the printed instructed post-resolution Pendulum Summon falls outside Musicale. The Lua summon window itself merits a separate audit."
+    },
+    {
+      "passcode": 259247807,
+      "name": "Glitchling Bitron",
+      "archetype": "Glitchling",
+      "line": 90,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE)",
+      "disposition": "Restricted to Bitron. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259241946,
+      "name": "Charmelia Pray",
+      "archetype": "Charmelia",
+      "line": 58,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Charmelia Ritual. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259288669,
+      "name": "Charmelia Elysia",
+      "archetype": "Charmelia",
+      "line": 80,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to Charmelia. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259288669,
+      "name": "Charmelia Elysia",
+      "archetype": "Charmelia",
+      "line": 125,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Charmelia. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259322868,
+      "name": "Krawler of the World Legacy",
+      "archetype": "Krawler",
+      "line": 14,
+      "report": "function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.kf),tp,LOCATION_HAND+LOCATION_GRAVE,0,1,nil,e,tp) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE) end",
+      "disposition": "Restricted to Krawler. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259402105,
+      "name": "Magical Girl Explosion!",
+      "archetype": "Charmelia",
+      "line": 109,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE)",
+      "disposition": "Restricted to Charmelia Ritual. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259429721,
+      "name": "Champion of the Grand Blue",
+      "archetype": "Grand Blue",
+      "line": 52,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Grand Blue. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259431066,
+      "name": "Wyvernal Myops",
+      "archetype": "Wyvernal",
+      "line": 75,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to WIND Insect. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259454809,
+      "name": "Raven the Lightning II Aerocat",
+      "archetype": "Aerocat",
+      "line": 25,
+      "report": "function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and #s.spgroup(tp,e)>0 end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_OVERLAY) end",
+      "disposition": "Restricted to Aerocat. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259465391,
+      "name": "Caller of the A.I.P Ex",
+      "archetype": "A.I.P",
+      "line": 64,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Requires Beast. Current Nautica are Aqua."
+    },
+    {
+      "passcode": 259494236,
+      "name": "Glitchling Digitron",
+      "archetype": "Glitchling",
+      "line": 82,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE)",
+      "disposition": "Restricted to Digitron. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259568843,
+      "name": "Charmelia Robin",
+      "archetype": "Charmelia",
+      "line": 56,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Restricted to Charmelia. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259650969,
+      "name": "Ohmen Beacon",
+      "archetype": "Ohmen",
+      "line": 53,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,0,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Hand branch requires a Thunder monster. GY branch requires Ohmen. Current Nautica are Aqua."
+    },
+    {
+      "passcode": 259726853,
+      "name": "Volt, the Green Ohmen",
+      "archetype": "Ohmen",
+      "line": 48,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to Thunder. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259774818,
+      "name": "Krawler Lamina",
+      "archetype": "Krawler",
+      "line": 15,
+      "report": "function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spf),tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,e,tp) end Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_REMOVED) end",
+      "disposition": "Restricted to Krawler. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259783008,
+      "name": "Wyvernal Caudina",
+      "archetype": "Wyvernal",
+      "line": 46,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK)",
+      "disposition": "Restricted to Wyvernal. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259780273,
+      "name": "Carcel, the Dark Ohmen",
+      "archetype": "Ohmen",
+      "line": 65,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,2,tp,LOCATION_HAND+LOCATION_DECK)",
+      "disposition": "Restricted to Ohmen. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259815138,
+      "name": "Vampire Avenger",
+      "archetype": "Vampire",
+      "line": 32,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)",
+      "disposition": "Restricted to Vampire. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259873115,
+      "name": "Glitchling Leotron",
+      "archetype": "Glitchling",
+      "line": 119,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE+LOCATION_EXTRA)",
+      "disposition": "Restricted to Glitchling Ritual or named Glitchling support. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259873115,
+      "name": "Glitchling Leotron",
+      "archetype": "Glitchling",
+      "line": 165,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_DECK+LOCATION_GRAVE)",
+      "disposition": "Restricted to Glitchling Ritual or named Glitchling support. No eligible card in the current printed Nautica pool."
+    },
+    {
+      "passcode": 259943152,
+      "name": "A.I.P Lab",
+      "archetype": "A.I.P",
+      "line": 53,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_GRAVE)",
+      "disposition": "Requires Beast. Current Nautica are Aqua."
+    },
+    {
+      "passcode": 259961648,
+      "name": "Glitchling Data-Transfert",
+      "archetype": "Glitchling",
+      "line": 158,
+      "report": "Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND+LOCATION_EXTRA)",
+      "disposition": "Printed effect Pendulum Summons a Cyberse monster. Current Nautica monsters have Aqua race. Post-resolution procedure independently merits comparison with the Transcend timing review."
+    }
+  ],
+  "stockPendulumComparison": "tmp/omega_scripts/c55795155.lua follows the same direct Lua SpecialSummon pattern. This is implementation evidence and does not establish the official summon-negation window.",
+  "officialPendulumRulings": [
+    "https://www.db.yugioh-card.com/yugiohdb/faq_search.action?fid=23173&keyword=&ope=5&request_locale=ja&tag=-1",
+    "https://www.db.yugioh-card.com/yugiohdb/faq_search.action?cid=19189&ope=4&request_locale=ja"
+  ],
+  "pendulumRuntimeEvidence": "musicale-transcend-installed.json",
+  "yummyBatch": "yummy-musicale-group-batch/installed.json",
+  "dynamicMaskCandidates": [
+    {
+      "passcode": 224800873,
+      "line": 57,
+      "disposition": "Hand branch only summons a Hallo monster, per s.spfilter."
+    },
+    {
+      "passcode": 247458749,
+      "line": 49,
+      "disposition": "All origin branches require a Frute monster, per s.spfilter."
+    },
+    {
+      "passcode": 259961648,
+      "line": 87,
+      "disposition": "Ritual filter only admits Cyberse Ritual monsters."
+    }
+  ],
+  "stockCases": [
+    {
+      "passcode": 49669730,
+      "source": "tmp/omega_scripts/c49669730.lua",
+      "sourceSha256": "da060a38ddbd3c135d41bf1cd766cf39d191152e0df6d807ef2530d382779382",
+      "disposition": "Confirmed and repaired in Musicale. It attributes the selected Hand summon to its resolving effect via a chain-scoped native summon record. Stock script is unchanged.",
+      "evidence": "musicale-water-hazard-before.json",
+      "installedEvidence": "musicale-groupless-stock-batch/installed.json"
+    }
+  ],
+  "consumerReview": {
+    "reference": "musicale-group-origin-batch/inventory.json",
+    "disposition": "Reuse the prior audit of all 11 operation-info readers. Musicale is the only reader with the resolved, stock-compatible Nautica Hand condition. Oceanica requires a Nautica source. Casino and other readers check different categories or inspect the link at activation."
+  }
+}

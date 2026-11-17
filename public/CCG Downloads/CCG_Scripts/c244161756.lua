@@ -52,7 +52,7 @@ end
 function s.searchop(e,tp)
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
  local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.searchfilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil)
- if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 then return end
+ if #g==0 or Duel.SendtoHand(g,nil,REASON_EFFECT)==0 or not g:GetFirst():IsLocation(LOCATION_HAND) or not g:GetFirst():IsControler(tp) then return end
  Duel.ConfirmCards(1-tp,g)
  if not Duel.IsExistingMatchingCard(s.dinofilter,tp,LOCATION_MZONE,0,1,nil)
   or not s.tokenspossible(tp) or not Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then return end

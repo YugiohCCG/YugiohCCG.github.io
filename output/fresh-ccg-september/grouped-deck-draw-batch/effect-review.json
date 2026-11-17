@@ -1,0 +1,210 @@
+[
+  {
+    "passcode": 210923192,
+    "name": "Aldrez Opening",
+    "printed_text": "\"Aldrez\" monsters you control gain 500 ATK/DEF. Your opponent cannot activate cards or effects when you Normal or Special Summon a \"Aldrez\" monster(s). You can target up to 3 \"Aldrez\" cards in your GY or banishment; shuffle them into the Deck, and if you do, you can draw 1 card. You can only use this effect of \"Aldrez Opening\" once per turn.",
+    "callback": "function s.tdop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Existing Deck or Extra Deck destination check meets the printed draw threshold.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 212429024,
+    "name": "Gravinity Nebulix",
+    "printed_text": "1 \"Gravinity\" Tuner + 1+ Cyberse Synchro Monsters\nThis card's Synchro Summon cannot be negated. If this card is Synchro Summoned, or Special Summoned from your Spell & Trap Zone: You can shuffle up to 3 \"Gravinity\" cards from your field or GY into the Deck, then draw 1 card. You can only use the previous effect of \"Gravinity Nebulix\" once per turn. When a \"Gravinity\" Spell/Trap effect resolves, you can also add this additional effect to that card's effect at resolution.\n● Also after that, take 1 \"Gravinity\" monster from your Deck or GY, and either Special Summon it or place it face-up in your Spell & Trap Zone as a Continuous Trap.",
+    "callback": "function s.tdop(e,tp)",
+    "review": "Verified grouped draw after one or more actual arrivals. All-redirect false positive fixed.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 212737555,
+    "name": "Aqua Droplet",
+    "printed_text": "(This card is always treated as an \"Aquamarine\" card.)\nIf you control a WATER monster, you can Special Summon this card (from your GY). You can only Special Summon \"Aqua Droplet\" once per turn this way. If this card is banished from your GY: You can target 1 \"Aquamarine\" Spell/Trap in your GY; shuffle it into the Deck, and if you do, draw 1 card. You can only use this effect of \"Aqua Droplet\" once per turn.",
+    "callback": "function s.drop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Single-card dependent draw false positive reproduced",
+    "fully_audited": false
+  },
+  {
+    "passcode": 215885404,
+    "name": "Pot of Fortune",
+    "printed_text": "Target 5 Spell/Trap Cards in your GY; shuffle all 5 into the Deck, then draw 2 cards. You cannot activate monster effects the turn you use this effect.",
+    "callback": "function s.activate(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Existing Deck or Extra Deck destination check meets the printed draw threshold.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 223158720,
+    "name": "Nautical Backwashing & Oceanic Waves",
+    "printed_text": "Target 1 \"Nautica\" monster in your GY; return that target to the hand, then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, but its ATK becomes 0. You can banish this card from your GY; place 3 Aqua monsters from your GY on the bottom of your Deck in any order, then draw 1 card. You can only use 1 effect of \"Nautical Backwashing & Oceanic Waves\" per turn and only once that turn.",
+    "callback": "function s.drop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Existing destination guard",
+    "fully_audited": false
+  },
+  {
+    "passcode": 227043533,
+    "name": "NiuHao - Lokaeo",
+    "printed_text": "If this card is Normal or Special Summoned: You can, immediately after this effect resolves, Xyz Summon 1 Rank 1 \"NiuHao\" monster from your Extra Deck, using monsters you control as material, including this card. If your opponent activates a card or effect (Quick Effect): You can banish this card from your hand or face-up field; shuffle 1 \"Sacred Treasure\" Spell from your GY or banishment into the Deck, then draw 1 card. During the Standby Phase of the next turn after this card was banished: You can Special Summon this banished card. You can only use each effect of \"NiuHao - LokaEO\" once per turn.",
+    "callback": "function s.tdop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Existing destination guard",
+    "fully_audited": false
+  },
+  {
+    "passcode": 237917359,
+    "name": "Phantasm Spiral Shrine",
+    "printed_text": "Place 1 \"Umi\" from your Deck or GY face-up on your field, it cannot be destroyed by your opponent's card effects while you control no Effect Monsters. You can banish this card from your GY, then target up to 5 \"Phantasm Spiral\" Spell/Trap Cards and/or Normal Monsters in your GY; shuffle them into the Deck, and if you do, draw 1 card. You can only activate 1 \"Phantasm Spiral Shrine\" effect per turn and only once that turn.",
+    "callback": "function s.tdop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Existing Deck or Extra Deck destination check meets the printed draw threshold.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 241056746,
+    "name": "Reactor Shocker",
+    "printed_text": "Neither player can activate cards or effects in response to this card's activation. When your opponent activates an effect and you have a card effect in the same Chain: You can negate all other activated effects in this Chain, then, if the number of your effects in this Chain is equal to or greater than your opponent’s, draw cards equal to that number, then, if one of your effects is Chain Link 1, place 1 card from your hand on the bottom of your Deck. You can only use this effect of \"Reactor Shocker\" once per turn.",
+    "callback": "function s.activate(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Draw precedes or accompanies Deck placement",
+    "fully_audited": false
+  },
+  {
+    "passcode": 244816828,
+    "name": "Myutant Evolution",
+    "printed_text": "When this card is activated: You can add 1 \"Myutant\" card from your Deck to your hand, except \"Myutant Evolution\", then you can place 1 card from your hand on the bottom of your Deck, and if you do, draw 1 card. If this card is banished: You can target 1 Level 8 or higher \"Myutant\" monster you control; shuffle it into the Deck, then banish 1 \"Myutant\" card from your hand or Deck, and if you do, Special Summon 1 monster from your hand or Deck, based on the banished card. ● Monster: \"Myutant Beast\" ● Spell: \"Myutant Mist\" ● Trap: \"Myutant Arsenal\". You can only use each effect of \"Myutant Evolution\" once per turn.",
+    "callback": "function s.activate(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Existing destination guard",
+    "fully_audited": false
+  },
+  {
+    "passcode": 244921711,
+    "name": "Ursarctic Hextanius",
+    "printed_text": "Cannot be Synchro Summoned. Must be Special Summoned (from your Extra Deck) by sending 2 \"Ursarctic\" monsters you control with a Level difference of 6 to the GY. For the Special Summon of an \"Ursarctic\" Synchro Monster, this card can be treated as level 7 or 8 and can also be treated as a Non-Tuner. You can only use each of the following effects of \"Ursarctic Hextanius\" once per turn. If this card is Special Summoned: You can Special Summon 1 WATER Monster with either 700 ATK or 700 DEF from your Deck. You can banish this card from your GY; shuffle up to 3 other \"Ursarctic\" cards from your GY or banishment into the deck, then draw 1 card.",
+    "callback": "function s.tdop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Verified grouped draw after one or more actual arrivals. All-redirect false positive fixed.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 246393365,
+    "name": "Rei-Tachi Ga Kita Hi",
+    "printed_text": "You can only control 1 \"Rei-Tachi Ga Kita Hi\". Once per turn: You can target up to 3 Spirit monsters in your GY; Shuffle them into the Deck, then draw 1 card. Tribute Summoned Spirit monsters you control can make 1 additional attack during the Battle Phase for each face-up Spirit monster you control.",
+    "callback": "function s.tdop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Verified grouped draw after one or more actual arrivals. All-redirect false positive fixed.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 248940511,
+    "name": "Flower Cardian Moonflare",
+    "printed_text": "1 Tuner + 3 non-Tuner monsters\nIf this card is Synchro Summoned: You can target 5 Spell Cards or \"Flower Cardian\" monsters in your GY; shuffle them into the Deck, then draw 1 card. When your opponent activates a monster effect (Quick Effect): You can negate the activation, and if you do, destroy that card. You can only use this effect of \"Flower Cardian Moonflare\" once per turn. When this card is used as Synchro Material for the Synchro Summon of a \"Flower Cardian\" monster, you can treat it as 3 non-Tuner monsters.",
+    "callback": "function s.tdop(e,tp)",
+    "review": "Existing destination guard",
+    "fully_audited": false
+  },
+  {
+    "passcode": 249629457,
+    "name": "Shining Brigade - Last Stand",
+    "printed_text": "When your opponent activates a Spell/Trap effect, or a monster effect on the field: You can return 1 \"Shining Brigade\" monster you control to the hand; negate that effect. During the End Phase: You can shuffle up to 3 cards from your GY or banishment into your Deck, then, if you shuffled at least 2 \"Shining Brigade\" cards with this effect, draw 1 card. You can only use each effect of \"Shining Brigade - Last Stand\" once per turn.",
+    "callback": "function s.tdop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Existing Deck or Extra Deck destination check meets the printed draw threshold.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 251571153,
+    "name": "Sunken Temple of the Windborne",
+    "printed_text": "Cannot be destroyed by your opponent's card effects while you control a \"Windborne\" monster. When this card is activated: You can add 1 \"Windborne\" card from your Deck to your hand, except \"Sunken Temple of the Windborne\". Once per turn, during the Standby Phase, if you add a \"Windborne\" card from your Deck to your hand, you can draw 1 card, and if you do, place 1 card from your hand on the bottom of your Deck. You can only activate 1 \"Sunken Temple of the Windborne\" per turn.",
+    "callback": "function s.drop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Draw precedes or accompanies Deck placement",
+    "fully_audited": false
+  },
+  {
+    "passcode": 255048812,
+    "name": "Chrono-Saur Stegian",
+    "printed_text": "You can discard this card; destroy 1 Dinosaur monster or 1 \"Chrono-Saur\" card you control, and if you do, draw 1 card, then shuffle 1 card from your hand into the Deck. If your opponent control 2 or more monsters: You can Special Summon this card from hand, then you can destroy 1 card in your hand or field. If this card is destroyed by card effect: You can Special Summon 1 \"Chrono-Saur\" monster from your hand or GY, except \"Chrono-Saur Stegian\". You can only use each effect of \"Chrono-Saur Stegian\" once per turn.",
+    "callback": "function s.dop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Draw precedes or accompanies Deck placement",
+    "fully_audited": false
+  },
+  {
+    "passcode": 257081514,
+    "name": "Auriga of the Eldoran Empire",
+    "printed_text": "If you control \"Eldora, the Intergalactic Empire\": you can Special Summon this card (from your hand). You can only Special Summon \"Auriga of the Eldoran Empire\" once per turn this way. If this card is Summoned: You can draw 1 card, then place 1 card from your hand on the bottom of your Deck. If this card is destroyed by \"Eldora, the Intergalactic Empire\" or your opponent's card effect: You can add 1 \"Eldora\" Spell/Trap from your GY to your hand, or if \"Eldora, the Intergalactic Empire\" is in your GY, you can add it from your Deck instead. You can only use each effect of \"Auriga of the Eldoran Empire\" once per turn.",
+    "callback": "function s.drop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Draw precedes or accompanies Deck placement",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259073666,
+    "name": "Wyvernal Gathering",
+    "printed_text": "Take 2 \"Wyvernal\" monsters from your Deck, then add 1 of them to your hand and send the other to the GY. You can banish this card from your GY and target up to 4 \"Wyvernal\" or Insect monsters in your GY; shuffle them into the Deck, then draw 1 card for every 2 cards shuffled this way. You can only use 1 \"Wyvernal Gathering\" per turn, and only once that turn.",
+    "callback": "function s.tdop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Existing destination guard",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259304399,
+    "name": "Scarstech Draco",
+    "printed_text": "When a card or effect is activated as Chain Link 2 or higher (Quick Effect): You can Special Summon this card from your hand. If this card is Normal or Special Summoned: You can target up to 5 \"Scarstech\" cards in your GY or banishment; shuffle them into the Deck, then draw 1 card. You can only use each effect of \"Scarstech Draco\" once per turn.",
+    "callback": "function s.tdop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Existing Deck or Extra Deck destination check meets the printed draw threshold.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259373017,
+    "name": "Lance — Luminar Justiciar",
+    "printed_text": "If your opponent Special Summons a monster: You can Special Summon this card from your hand, then, if you control no other monster, you can add 1 \"Aurelion — Divine Illumination\" from your Deck to your hand can only use the previous effect of \"Lance — Luminar Justiciar\" once per turn. Each time your opponent Special Summons a monster(s), immediately draw 1 card, then place 1 card from your hand on the bottom of your Deck.",
+    "callback": "function s.drop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Draw precedes or accompanies Deck placement",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259391738,
+    "name": "Aerocat Recon",
+    "printed_text": "Add 1 \"Aerocat\" monster from your Deck or GY to your hand. You can banish this card from your GY, then target up to 3 other \"Aerocat\" cards in your GY and/or banishment; shuffle them into the Deck, then if you control an Xyz Monster with only 1 material, you can draw 1 card. You can only use each effect of \"Aerocat Recon\" once per turn.",
+    "callback": "function s.tdop(e,tp) local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e):Filter(s.rdf,nil,e) if #g>0 and Duel.SendtoDeck(g,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 and Duel.IsExistingMatchingCard(s.one,tp,LOCATION_MZONE,0,1,nil) and Duel.IsPlayerCanDraw(tp,1) and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,2)) then Duel.BreakEffect(); Duel.Draw(tp,1,REASON_EFFECT) end end",
+    "review": "Verified grouped draw after one or more actual arrivals. All-redirect false positive fixed.",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259466138,
+    "name": "Red-Eyes Gearfried, the Iron Knight",
+    "printed_text": "If this card is Normal or Special Summoned: You can add 1 \"Red-Eyes\" Spell/Trap from your Deck to your hand, also you cannot Special Summon Link Monsters for the rest of this turn. A monster equipped with this card can attack all monsters your opponent controls, once each. If this card is in the GY, except the turn it was sent there: You can banish this card from your GY, then target 5 other \"Red-Eyes\" cards on your field, GY, or banishment; shuffle them into the Deck then, if you shuffled \"Red-Eyes Black Dragon\", you can draw 1 card. You can only use each effect of \"Red-Eyes Gearfried, the Iron Knight\" once per turn.",
+    "callback": "function s.tdop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Existing destination guard",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259499577,
+    "name": "A.I.P Ex Hive Mind",
+    "printed_text": "Once per turn: You can target 1 monster in either GY; then apply 1 of the following effects based on which player owns the target. O You: Shuffle it into the Deck, then draw 1 card. O Your opponent: Shuffle it into the Deck, then Xyz Summon 1 \"A.1.P Ex\" monster from your Extra Deck by using monsters you control as material. You can only use this effect of \"A.1.P Ex Hive Mind\" once per turn.",
+    "callback": "function s.op(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Single-card dependent draw false positive reproduced",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259630851,
+    "name": "A.I.P Ex Assimilation",
+    "printed_text": "If you control an \"A.1.P Ex\" Xyz Monster: Target 1 monster your opponent controls; take control of it, also it is treated as an \"A.1.P Ex\" monster, but negate its effect. You can banish this card from your GY; shuffle 1 other \"A.1.P\" Trap Card from your GY into the Deck, then draw 1 card. You can only use 1 \"A.1.P Ex Assimilation\" effect per turn and only once that turn.",
+    "callback": "function s.gyop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Single-card dependent draw false positive reproduced",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259797813,
+    "name": "Nautica Musicale",
+    "printed_text": "When this card is activated: You can add 1 \"Nautica\" monster from your Deck or GY to your hand. If you activate an effect that would Special Summon a \"Nautica\" monster from your hand: You can draw 1 card and your opponent adds 1 monster from their Deck to their hand, then place 1 card from your hand on the bottom of your Deck, also gain 200 LP. Until the end of the next turn, your opponent cannot activate the effects of cards with the same name as that monster. You can only control 1 \"Nautica Musicale\".",
+    "callback": "function s.chop(e,tp)",
+    "review": "Draw precedes or accompanies Deck placement",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259820516,
+    "name": "Expulsion of the Pyre",
+    "printed_text": "Send 1 Pyro monster you control to the GY; Set 1 \"Pyre\" Spell from your Deck or GY. You can banish this card from your GY, then target 3 \"Pyre\" Spells or Pyro monsters in your banishment (except \"Expulsion of the Pyre\"); shuffle them into your Deck, then draw 1 card. You can only use each of the previous effects of \"Expulsion of the Pyre\" once per turn. If a Pyro monster(s) you control would be destroyed by battle or card effect, you can banish this card from your GY instead.",
+    "callback": "function s.tdop(e,tp) local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e); if #g~=3 then return end",
+    "review": "Existing destination guard",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259883029,
+    "name": "Failures of the A.I.P",
+    "printed_text": "If you control an \"A.1.P Ex\" Xyz Monster: Target 1 monster your opponent controls; attach it to an \"A.1.P Ex\" Xyz Monster you control as Xyz Material. You can banish this card from your GY; shuffle 1 other \"A.1.P\" Trap Card from your GY into the Deck, then draw 1 card. You can only use 1 \"Failures of the A.1.P\" effect per turn and only once that turn.",
+    "callback": "function s.gyop(e,tp,eg,ep,ev,re,r,rp)",
+    "review": "Single-card dependent draw false positive reproduced",
+    "fully_audited": false
+  }
+]

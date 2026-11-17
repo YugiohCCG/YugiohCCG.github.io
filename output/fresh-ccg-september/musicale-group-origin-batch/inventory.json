@@ -1,0 +1,52 @@
+{
+  "pattern": "Resolved summon operation report omits location or includes multiple possible origins.",
+  "priorInventory": "musicale-activation-origin-batch/inventory.json",
+  "producers": "musicale-groupless-hand-reports.json",
+  "stock": "tmp/omega_scripts/c60303688.lua uses a group-only report for Ecclesia’s Hand effect.",
+  "candidates": [
+    {
+      "passcode": 214552846,
+      "disposition": "Destruction report only."
+    },
+    {
+      "passcode": 217174535,
+      "disposition": "Checks summon category while responding to activation. Does not read source location."
+    },
+    {
+      "passcode": 222676270,
+      "disposition": "Reads location for equip and other categories. No summon origin test."
+    },
+    {
+      "passcode": 222782750,
+      "disposition": "Checks banishment at activation with a card-group fallback. Does not read the resolved Hand origin."
+    },
+    {
+      "passcode": 234296128,
+      "disposition": "Reads movement and destruction categories. No summon origin test."
+    },
+    {
+      "passcode": 244972185,
+      "disposition": "Destruction report only."
+    },
+    {
+      "passcode": 258260221,
+      "disposition": "Checks summon category while responding to activation. Does not read source location."
+    },
+    {
+      "passcode": 258934904,
+      "disposition": "Checks Galactica membership while responding to activation. Does not read source location."
+    },
+    {
+      "passcode": 259797813,
+      "disposition": "Confirmed two failures. Missing location can be inferred from the group. Mixed location requires checking the actual card."
+    },
+    {
+      "passcode": 259844716,
+      "disposition": "Destruction report only."
+    },
+    {
+      "passcode": 259941091,
+      "disposition": "Related location-mask reader with different source restriction. Existing canonical Nautica self-summons explicitly report Hand and Bobbie reports both players. Revisit if an eligible Nautica producer is found using the ambiguous formats."
+    }
+  ]
+}

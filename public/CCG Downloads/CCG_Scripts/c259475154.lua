@@ -98,6 +98,8 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	if #g1==0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local g=g1:Select(tp,1,1,nil)
-	Duel.SendtoHand(g,nil,REASON_EFFECT)
-	Duel.ConfirmCards(1-tp,g)
+	if Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
+		local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+		if #received>0 then Duel.ConfirmCards(1-tp,received) end
+	end
 end

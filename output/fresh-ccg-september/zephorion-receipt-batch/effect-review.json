@@ -1,0 +1,234 @@
+[
+  {
+    "passcode": 210696007,
+    "name": "Galataxian Battle Preparation",
+    "text": "(This card is also treated as a \"Galactica\" card.) Target up to 3 of your banished \"Galactica\" Spell/Trap Cards except \"Galataxian Battle Preparation\"; Set them to your field. They can be activated this turn. You can banish this card and 1 other Spell/Trap from your GY; take 1 \"Galactica\" Spell/Trap from your Deck, except \"Galataxian Battle Preparation\", and either add it to your hand or send it to the GY. You can only use 1 effect of \"Galataxian Battle Preparation\" per turn and only once that turn.",
+    "callback": "function s.decop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_OPERATECARD) local tc=Duel.SelectMatchingCard(tp,s.decfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst() if not tc then return end local b1=tc:IsAbleToHand() local b2=tc:IsAbleToGrave() local op=b1 and b2 and Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3)) or (b1 and 0 or 1) if op==0 then",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 212684822,
+    "name": "Ektelestis gia Taxis",
+    "text": "2 Level 1 or higher \"Protogenic Essence Tokens\"\nMust first be Special Summoned (from your Extra Deck) by Tributing the Required Materials you control while you control \"To Proto Taxis\" (You do not use \"Polymerization\"). Your opponent takes half the battle damage you would have taken from battles involving this card. If this card is Special Summoned from the Extra Deck: You can add to your hand or send to the GY 1 \"Taxis\" Spell/Trap from your Deck. You can only use this effect of \"Ektelestis gia Taxis\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 221759221,
+    "name": "Windborne Cartographer",
+    "text": "If this card you control would be used for the Synchro Summon of a \"Windborne\" monster, you can treat this card as a non-Tuner and/or a Level 6 monster. You can also reveal up to 2 \"Windborne\" Spells in your hand to activate this effect; Special Summon this card from your hand by shuffling up to 2 cards from your hand into the Deck, including \"Windborne\" Spells you revealed to activate this effect (if any), and if you do, during the next Standby Phase, add 1 \"Windborne\" card from your Deck to your hand for each card you shuffled into the Deck by this effect, except \"Windborne Cartographer\", then Set 1 \"Windborne\" Quick-Play Spells directly from your Deck for each card you revealed to activate this effect. The Set Quick-Play Spell(s) can be activated that turn. If this card is sent to the GY as Synchro Material: You can take 1 \"Windborne\" Spell from your Deck and either add it to your hand or Set it directly to your field. You can only use each effect of \"Windborne Cartographer\" once per turn.",
+    "callback": "function s.syop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 221822671,
+    "name": "Stained Sovereign Silas",
+    "text": "If this card is Normal or Special Summoned: You can add to your hand or Set 1 \"Stain\" card from your Deck. (Quick Effect): You can target 1 face-up card your opponent controls; while it is face-up on the field, neither player can activate its effects. If your opponent activates a card or effect, and this card is in your GY: You can shuffle this card face-up into your opponent's Deck, also, Special Summon 1 Level 4 or lower \"Stain\" monster from your GY. You can only use each effect of \"Stained Sovereign Silas\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 226950506,
+    "name": "Bauy World",
+    "text": "All monsters your opponent controls lose ATK equal to the combined Link Ratings of all Link Monsters on the field times 250. The owner of this card cannot Special Summon Link Monsters the Duel this card was activated. During your Main Phase, if this card was activated this turn: You can take 1 Bau monster from your Deck, and either add it to your hand or banish it, then banish 1 card from your hand. You can only use this effect of Bauy World once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 227362839,
+    "name": "Talismandrake Pyre",
+    "text": "1 DARK Pyro monster + 1 Pyro monster\nIf this card is Special Summoned: You can activate this effect; from your Deck, either add 1 “Talismandrake” card or 1 DARK Pyro monster to your hand, or send 1 \"Talismandrake Arms\" Spell/Trap to your GY. (Quick Effect): You can target 1 \"Talismandrake\" card in your Pendulum Zone; destroy it, then place 1 \"Talismandrake\" Pendulum Monster with a different name from your hand, Deck, or face-up Extra Deck in your Pendulum Zone. You can only use each effect of \"Talismandrake Pyre\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 235352857,
+    "name": "Shekup, Sting of the Ghoti",
+    "text": "You can banish 1 Fish monster from your hand or field; Special Summon this card from your hand. If this card is Normal or Special Summoned: You can add to your hand or banish 1 Level 4 or lower \"Ghoti\" monster from your Deck. During the Standby Phase of the next turn after this card was banished: You can Special Summon this banished card. You can only use each effect of \"Shekup, Sting Of The Ghoti\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 238282350,
+    "name": "Knight of Aldrez",
+    "text": "2 monsters, including an \"Aldrez\" monster\nYou can treat this card as a Level 4 monster when you Xyz Summon a Rank 4 Xyz Monster. You can only use the following effects of \"Knight of Aldrez\" once per turn. During the Main Phase (Quick Effect): You can discard 1 card; take 1 \"Aldrez\" card from your Deck, and either add it to your hand, or if it is a monster, you can Special Summon it. If an \"Aldrez\" Xyz Monster is sent to the GY by an opponent's card: You can banish this card from your GY; Special Summon that monster, then you can attach 1 card from either GY to it.",
+    "callback": "function s.deckop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 238711686,
+    "name": "Melissa Oceanheart & the Nautical Seabed",
+    "text": "2+ Level 1 Aqua monsters\nCannot be destroyed by battle or card effects while it has a \"Nautica\" card as Xyz Material. Once per turn (Quick Effect): You can detach 2 materials from this card; Set 1 \"Nautica\" Spell/Trap directly from your Deck, or add 1 \"Nautica\" monster from your Deck to your hand.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 240511702,
+    "name": "Hunter of Crying Chaos",
+    "text": "Gains 400 ATK for each Zombie monster you control and in your GY. You can only use the following effect of \"Hunter of Crying Chaos\" once per turn. If this card is sent to the GY: You can banish this card; add 1 \"Crying Chaos\" monster from your Deck to your hand or set 1 \"Crying Chaos\" Spell/Trap from your Deck directly to your field.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 241706191,
+    "name": "Talismandrake Enkindle",
+    "text": "1 \"Talismandrake\" monster + 1 DARK Pyro monster\nIf this card is Special Summoned: You can add 1 \"Talismandrake Arms\" Spell/Trap from your Deck or GY to your hand, or equip it to a DARK Pyro monster you control as if it were equipped by that Spell/Trap's effect. When your opponent activates a card or effect while you control a monster equipped with a \"Talismandrake Arms\" card (Quick Effect): You can banish that card. You can only use each effect of \"Talismandrake Enkindle\" once per turn.",
+    "callback": "function s.armsop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 244972185,
+    "name": "The Spires of Zephorion Prime",
+    "text": "(This card is always treated as an \"Eldora\" card.)\nThis card is also treated as \"Eldora, the Intergalactic Empire\" while it is face-up on the field or in your GY. When this card is activated: Activate 1 \"Eldora, the Intergalactic Empire\" from your Deck, or, if it is already face-up on your field, add 1 monster from your Deck to your hand that lists \"Eldora\" in its text. When your opponent's card effect that would destroy your monster resolves, you can destroy this card you control.",
+    "callback": "function s.activate(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Fixed and tested in this batch",
+    "fully_audited": false
+  },
+  {
+    "passcode": 245970073,
+    "name": "A Stainless Story",
+    "text": "If your opponent controls more cards than you: Send 1 \"Stain\" monster from your Deck or face-up in your opponent's Deck to the GY; this effect becomes the sent monster's effect if it is Normal or Special Summoned. You can banish this card from your GY; each player draws 1 card. You can only activate 1 \"A Stainless Story\" per turn.",
+    "callback": "function s.briaop(e,tp,sc)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 245970073,
+    "name": "A Stainless Story",
+    "text": "If your opponent controls more cards than you: Send 1 \"Stain\" monster from your Deck or face-up in your opponent's Deck to the GY; this effect becomes the sent monster's effect if it is Normal or Special Summoned. You can banish this card from your GY; each player draws 1 card. You can only activate 1 \"A Stainless Story\" per turn.",
+    "callback": "function s.silasop(e,tp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 247378501,
+    "name": "Muramasa",
+    "text": "Cannot be Special Summoned. You can also Tribute 1 Special Summoned monster your opponent controls to Tribute Summon this card. If this card is Normal Summoned: You can add to your hand or equip to this card 1 Equip Spell from your Deck that can only be equipped to a Spirit monster. You can only use this effect of \"Muramasa\" once per turn. During the End Phase, if this card was Normal Summoned or flipped face-up this turn: Return this card to the hand.",
+    "callback": "function s.eqop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 247755865,
+    "name": "Kali Yuga - Angulimala",
+    "text": "During your Main Phase, or at the start of the Battle Phase, if this card is in your hand or GY: You can destroy 1 other \"Kali Yuga\" card you control or in your hand, and if you do, Special Summon this card, and if you do that, you can destroy 1 Spell/Trap your opponent controls. If this card is Normal or Special Summoned: You can take 1 \"Kali Yuga\" card from your Deck, and either add it to your hand or send it to the GY. You can only use each effect of \"Kali Yuga - Angulimala\" once per turn.",
+    "callback": "function s.takeop(e,tp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 253552927,
+    "name": "Talismandrake Cremation",
+    "text": "1 DARK Pyro monster + 1 Level 5 or higher DARK monster\nIf this card is Special Summoned: You can add 1 \"Talismandrake Arms\" Spell/Trap from your Deck or GY to your hand, or equip it to a DARK Pyro monster you control as if it were equipped by that Spell/Trap's effect. If you control a monster equipped with a \"Talismandrake Arms\" card (Quick Effect): You can shuffle up to 3 cards from either player's GY or banishment into the Deck. You can only use each effect of \"Talismandrake Cremation\" once per turn.",
+    "callback": "function s.armsop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 254065048,
+    "name": "Polemistis gia Ataxia",
+    "text": "2 Level 1 or higher \"Protogenic Essence Tokens\"\nMust first be Special Summoned (from your Extra Deck) by Tributing the Required Materials you control while you control \"To Proto Ataxia\" (You do not use \"Polymerization\"). If a monster(s) loses ATK/DEF, this card gains ATK/DEF equal to the amount lost. This card can attack all monsters your opponent controls, once each. If this card is Special Summoned from the Extra Deck: You can add to your hand or send to the GY 1 \"Ataxia\" Spell/Trap from your Deck. You can only use this effect of \"Polemistis gia Ataxia\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 257081514,
+    "name": "Auriga of the Eldoran Empire",
+    "text": "If you control \"Eldora, the Intergalactic Empire\": you can Special Summon this card (from your hand). You can only Special Summon \"Auriga of the Eldoran Empire\" once per turn this way. If this card is Summoned: You can draw 1 card, then place 1 card from your hand on the bottom of your Deck. If this card is destroyed by \"Eldora, the Intergalactic Empire\" or your opponent's card effect: You can add 1 \"Eldora\" Spell/Trap from your GY to your hand, or if \"Eldora, the Intergalactic Empire\" is in your GY, you can add it from your Deck instead. You can only use each effect of \"Auriga of the Eldoran Empire\" once per turn.",
+    "callback": "function s.desop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 258328859,
+    "name": "Arckcestial Descend",
+    "text": "Take 1 Level 4 or lower \"Arckcestial\" monster from your Deck and either add it to your hand or send it to the GY, also you cannot Special Summon for the rest of this turn, except LIGHT Spellcaster monsters. During your Main Phase, if you control a Synchro or Xyz \"Arckcestial\" monster: You can banish this card from your GY; Special Summon 1 \"Arckcestial\" monster from your GY in Defense Position. If this card is discarded to the GY: You can Set this card. You can only use each effect of \"Arckcestial Descend\" once per turn.",
+    "callback": "function s.activate(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259177849,
+    "name": "Grand Blue Princess",
+    "text": "2 \"Grand Blue\" monsters\nIf this card is Special Summoned: You can take 1 \"Grand Blue\" card from your Deck, and either add it to your hand or send it to the GY. You can target 1 monster you control; Special Summon 1 \"Grand Blue\" monster from your hand or GY, and if you do, send the targeted monster to the GY. If this card is sent to the GY by card effect: You can target 1 card in your banishment; shuffle it into the Deck, and if you do, \"Grand Blue\" monsters you control gain 300 DEF until the end of the next turn. You can only use each effect of \"Grand Blue Princess\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259187643,
+    "name": "World Legacy Calamities",
+    "text": "When this card is activated: You can take 1 \"World Legacy\" Spell/Trap from your Deck, except \"World Legacy Calamities\", and either add it to your hand or send it to the GY. You cannot activate Spell/Trap Cards the turn you activate this effect, except \"World Legacy\" Spell/Trap Cards. Once per turn, if a monster(s) is Special Summoned or Set: You can target 1 face-down monster you control; change it to face-up Defense Position, but its effects cannot be activated this turn unless it is a \"Krawler\" monster. You can only activate 1 \"World Legacy Calamities\" per turn.",
+    "callback": "function s.actop(e,tp) if e:GetLabel()~=1 then return end Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SELECT); local g=Duel.SelectMatchingCard(tp,s.wlf,tp,LOCATION_DECK,0,1,1,nil); local tc=g:GetFirst(); if not tc then return end local op=0; if tc:IsAbleToHand() and tc:IsAbleToGrave() then op=Duel.SelectOption(tp,1190,1191) elseif tc:IsAbleToGrave() then op=1 end if op==0 then if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then Duel.ConfirmCards(1-tp,tc) end else Duel.SendtoGrave(tc,REASON_EFFECT) end end",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259366507,
+    "name": "Aquila, Zephorion's Predictor",
+    "text": "If you control \"Eldora, the Intergalactic Empire\", you can Special Summon this card (from your hand). You can only Special Summon \"Aquila, Zephorion's Predictor\" once per turn this way. If this card is Summoned: You can Set 1 \"Eldora\" and/or \"Verse IX\" \"Chapter II\" Spell/Trap directly from your Deck or GY. If this card is destroyed by \"Eldora, the Intergalactic Empire\" or your opponent's card effect: You can add 1 monster that lists \"Eldora\" in its text from your GY to your hand, or, if \"Eldora, the Intergalactic Empire\" is in your GY, you can add it from your Deck instead. You can only use each effect of \"Aquila, Zephorion's Predictor\" once per turn.",
+    "callback": "function s.desop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Fixed and tested in this batch",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259578863,
+    "name": "Oracle of the Grand Blue",
+    "text": "2 \"Grand Blue\" monsters\nIf this card is Link Summoned: You can target 1 face-up monster your opponent controls; negate its effects, then, if this card is pointing to a \"Grand Blue\" monster, you can destroy 1 face-up card your opponent controls. \"Grand Blue\" monsters this card points to gain 500 DEF during the Battle Phase. You can banish this card from the GY; Set 1 \"Grand Blue\" Spell directly from your Deck, or, if your opponent controls a card, you can add it to your hand instead. You can only use each effect of \"Oracle of the Grand Blue\" once per turn.",
+    "callback": "function s.setop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259688514,
+    "name": "Grayhex the Chanter of Grayscale",
+    "text": "Cannot be used as Xyz or Link Material, except the Xyz or Link Summon of a \"Grayscale\" monster. You can only use each of the following effects of \"Grayhex the Chanter of Grayscale\" once per turn. During the Main Phase, if you control no monsters or only \"Grayscale\" monsters (Quick Effect): You can Special Summon this card from your hand. If this card is Special Summoned: You can take 1 \"Grayscale\" card from your Deck, and either add it to your hand or send it to the GY. If a \"Grayscale\" monster is Normal or Special Summoned to your field while this card is in your GY: You can discard 1 card, and if you do, Special Summon this card.",
+    "callback": "function s.takeop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259924331,
+    "name": "Pray for Your Life!",
+    "text": "Add 1 \"Bob\" and \"Umi\" or 1 card that lists \"Bob\" in its text from your Deck to your hand, then, if you activated this card in response to your opponent's monster effect, halve the ATK and DEF of all face-up monsters your opponent currently controls. You can only activate 1 \"Pray for your Life!\" per turn.",
+    "callback": "function s.activate(e,tp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259926839,
+    "name": "Eclipse Observer Riley",
+    "text": "During your Main Phase: You can take 1 \"Eclipse Observer\" card from your Deck and either add it to your hand or, if it is a Level 4 or lower monster, Special Summon it. If you Special Summon it, your opponent draws 2 cards. If your opponent draws 2 or more cards at the same time, except by the effect of \"Eclipse Observer Riley\": You can target 1 \"Eclipse\" Quick-Play Spell in your GY; add it to your hand. You can only use each effect of \"Eclipse Observer Riley\" once per turn.",
+    "callback": "function s.thop(e,tp,eg,ep,ev,re,r,rp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 259941091,
+    "name": "Nautica Oceanica",
+    "text": "Monsters Normal or Special Summoned from the hand in Attack Position cannot activate their effects. If you activate a \"Nautica\" card effect that would Summon a monster, you can add 1 of these additional effects to that card's effect at resolution depending on where it would be Summoned from. ● Your hand: Then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position, also it is unaffected by \"Nautica Oceanica\", but its ATK becomes 0. ● Your opponent's hand: Add 1 \"Nautica\" monster from your Deck or GY to the hand, then place 1 card from your hand on the bottom of your Deck.",
+    "callback": "function s.chop(e,tp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  },
+  {
+    "passcode": 284636586,
+    "name": "Terrarumian Terrarium",
+    "text": "When this card is activated: You can take 1 “Terrarumian” Pendulum Monster from your Deck, and either add it to your hand or destroy it. The first time each \"Terrarumian\" monster you control would be destroyed by battle each turn, it is not destroyed. “Terrarumian” Pendulum Monster you control gain 900 ATK during the damage calculation only. You can only activate 1 \"Terrarumian Terrarium\" per turn.",
+    "callback": "function s.activate(e,tp)",
+    "status": "Other choice callback, prior evidence or separate audit pending",
+    "fully_audited": false
+  }
+]

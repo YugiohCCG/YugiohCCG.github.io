@@ -1,0 +1,74 @@
+local s,id=GetID()
+local STRING_ID=132100722
+function s.initial_effect(c)
+	--spsummon
+	local e1=Effect.CreateEffect(c)
+	e1:SetType(EFFECT_TYPE_FIELD)
+	e1:SetCode(EFFECT_SPSUMMON_PROC)
+	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE)
+	e1:SetRange(LOCATION_HAND)
+	e1:SetCountLimit(1,id+EFFECT_COUNT_CODE_OATH)
+	e1:SetCondition(s.spcon)
+	e1:SetTarget(s.sptg)
+	e1:SetOperation(s.spop)
+	c:RegisterEffect(e1)
+	--material effect
+	local e2=Effect.CreateEffect(c)
+	e2:SetDescription(aux.Stringid(STRING_ID,0))
+	e2:SetCategory(CATEGORY_TOHAND)
+	e2:SetType(EFFECT_TYPE_XMATERIAL+EFFECT_TYPE_IGNITION)
+	e2:SetCountLimit(1)
+	e2:SetCondition(s.matcon)
+	e2:SetTarget(s.mattg)
+	e2:SetOperation(s.matop)
+	c:RegisterEffect(e2)
+end
+s.listed_series={0x7a34}
+function s.spfilter(c)
+	return c:IsSetCard(0x7a34) and c:IsAbleToDeckAsCost()
+		and (c:IsLocation(LOCATION_GRAVE) or c:IsFaceup())
+		and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
+end
+function s.spcon(e,c)
+	if c==nil then return true end
+	local tp=c:GetControler()
+	return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+		and Duel.IsExistingMatchingCard(s.spfilter,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil)
+end
+function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk,c)
+	local g=Duel.GetMatchingGroup(s.spfilter,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,nil)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
+	local tc=g:SelectUnselect(nil,tp,false,true,1,1)
+	if tc then
+		e:SetLabelObject(tc)
+		return true
+	end
+	return false
+end
+function s.spop(e,tp,eg,ep,ev,re,r,rp,c)
+	local tc=e:GetLabelObject()
+	if tc and s.spfilter(tc) then
+		Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_COST)
+	end
+end
+function s.matcon(e,tp,eg,ep,ev,re,r,rp)
+	return e:GetHandler():IsSetCard(0x7a34)
+end
+function s.thfilter(c)
+	return c:IsSetCard(0x7a34) and (c:IsLocation(LOCATION_GRAVE) or c:IsFaceup()) and c:IsAbleToHand()
+		and (not c:IsLocation(LOCATION_GRAVE) or aux.NecroValleyFilter()(c))
+end
+function s.mattg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) end
+	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_GRAVE+LOCATION_REMOVED)
+end
+function s.matop(e,tp,eg,ep,ev,re,r,rp)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
+	local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil)
+	if #g>0 then
+		if Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
+			local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+			if #received>0 then Duel.ConfirmCards(1-tp,received) end
+		end
+	end
+end

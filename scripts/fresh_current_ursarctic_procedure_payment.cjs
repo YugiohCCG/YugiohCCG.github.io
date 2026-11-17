@@ -15,15 +15,37 @@ replace("   if([heart,blocker,...mats]",String.raw`   if(name==='c'+blocker+'.lu
    if([heart,blocker,...mats]`);
 replace('if(test.blocked)add(blocker,L.MZONE,0,2);','if(test.replacement)add(blocker,L.MZONE,0,4);');
 const code=Number(process.argv[2]);
+const installed=process.argv.includes('--installed');
+if(installed){
+ assert(process.env.CCG_OMEGA_SCRIPTS,'Installed script directory required');
+ replace("path.join(ROOT,'public/CCG Downloads/CCG_Scripts',name)","path.join(process.env.CCG_OMEGA_SCRIPTS,name)");
+ replace("require('./fresh_current_card.cjs')","require('./fresh_installed_card.cjs')");
+}
+if(installed&&code===235051048){
+ replace('[{},{replacement:true}]','[{},{replacement:true},{sameLevel:true},{noTuner:true},{twoTuners:true},{faceDown:true},{hextaniusLevel:7},{hextaniusLevel:8},{nonHextanius:true}]');
+}else if(installed&&code===244921711){
+ replace('[{},{replacement:true}]','[{},{replacement:true},{wrongDifference:true},{wrongSet:true},{faceDown:true}]');
+}else if(installed&&code===249093610){
+ replace('[{},{replacement:true}]','[{},{replacement:true},{wrongDifference:true},{wrongMaterialType:true},{twoTuners:true},{hextaniusLevel:6}]');
+}
+
 assert([235051048,244921711,249093610].includes(code));
-replace("current-hydra-fusion'","current-ursarctic-procedure-payment-"+code+"'");
+replace("current-hydra-fusion'","current-ursarctic-procedure-payment-"+code+(installed?"-installed":"")+"'");
 
 replace('boss=239935098','boss='+code);
-replace('  const reader=name=>{', "  cards.set(mats[0],{...base,code:mats[0],setcodes:[0x163],type:0x1021,level:boss===235051048?3:boss===244921711?8:9});cards.set(mats[1],{...base,code:mats[1],setcodes:[0x163],type:boss===249093610?0x2021:33,level:2}); const reader=name=>{");
+if(installed&&[235051048,249093610].includes(code)){
+ replace('  const logs=[],trace=[]','  const mats=test.hextaniusLevel?[900001171,244921711,900001173,900001174]:[900001171,900001172,900001173,900001174];const logs=[],trace=[]');
+ replace('[heart,blocker,...mats].some','[heart,blocker,...mats].filter(c=>c!==244921711).some');
+}
+replace('  const reader=name=>{', "  cards.set(mats[0],{...base,code:mats[0],setcodes:[0x163],type:test.noTuner?33:0x1021,level:boss===235051048?(test.hextaniusLevel===7||test.nonHextanius?6:test.hextaniusLevel===8?9:test.sameLevel?2:3):boss===244921711?(test.wrongDifference?7:8):(test.hextaniusLevel?13:test.wrongDifference?8:9)});cards.set(mats[1],{...base,code:mats[1],setcodes:test.wrongSet?[]:[0x163],type:boss===249093610?(test.twoTuners?0x3021:test.wrongMaterialType?33:0x2021):test.twoTuners||test.hextaniusLevel||test.nonHextanius?0x1021:33,level:2});if(test.hextaniusLevel)cards.set(mats[1],candidateCard(mats[1])); const reader=name=>{");
+replace('sequence=0)=>core.duelNewCard','sequence=0,position=location===L.EXTRA?P.FACEDOWN_DEFENSE:P.FACEUP_ATTACK)=>core.duelNewCard');
+replace('position:location===L.EXTRA?P.FACEDOWN_DEFENSE:P.FACEUP_ATTACK','position');
 const setupStart=source.indexOf('   add(boss,L.EXTRA);');
 const setupEnd=source.indexOf('core.startDuel(duel);',setupStart);
 assert(setupStart>=0&&setupEnd>setupStart);
-source=source.slice(0,setupStart)+"   add(boss,L.EXTRA);add(mats[0],L.MZONE,0,2);add(mats[1],L.MZONE,0,3);if(test.replacement)add(blocker,L.MZONE,0,4);for(const p of [0,1])for(let i=0;i<8;i++)add(blocker,L.DECK,p);"+source.slice(setupEnd);
+source=source.slice(0,setupStart)+"   add(boss,L.EXTRA);add(mats[0],L.MZONE,0,2);add(mats[1],L.MZONE,0,3,test.faceDown?P.FACEDOWN_DEFENSE:P.FACEUP_ATTACK);if(test.replacement)add(blocker,L.MZONE,0,4);for(const p of [0,1])for(let i=0;i<8;i++)add(blocker,L.DECK,p);"+source.slice(setupEnd);
+replace('!test.duplicate&&!test.wrongRace&&!test.missingHeart&&!test.blocked',
+ '!test.sameLevel&&!test.noTuner&&!test.twoTuners&&!test.faceDown&&!test.wrongDifference&&!test.wrongSet&&!test.nonHextanius&&!test.wrongMaterialType');
 const resultStart=source.indexOf('const b=query(L.MZONE)');
 const resultEnd=source.indexOf('done=true;}',resultStart);
 assert(resultStart>=0&&resultEnd>resultStart);

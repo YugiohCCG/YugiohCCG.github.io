@@ -1,0 +1,36 @@
+PASS Galataxian Trap placement capacity set false occupied 3
+PASS Galataxian Trap placement capacity set false occupied 4
+PASS Galataxian Trap placement capacity set true occupied 3
+PASS Galataxian Trap placement capacity set true occupied 4
+PASS Set capacity independent Field Zone 210696007 field-only-full
+PASS Set capacity independent Field Zone 210696007 field-plus-normal
+PASS Set capacity independent Field Zone 210696007 two-fields
+PASS Set capacity after chain fills row 210696007
+PASS Preparation sets remaining target after interruption
+PASS Preparation rejects stolen opponent-owned banished Spell
+PASS Preparation excludes opponent, non-Galactica and monster targets
+FAIL Preparation set-turn permission expires trap stack traceback:
+	[string "c900009001.lua"]:1: in function <[string "c900009001.lua"]:1>
+[string "c900009001.lua"]:1: Set-turn permission expired
+FAIL Preparation set-turn permission expires quick-play stack traceback:
+	[string "c900009001.lua"]:1: in function <[string "c900009001.lua"]:1>
+[string "c900009001.lua"]:1: Set-turn permission expired
+PASS Preparation enables same-turn trap
+PASS Preparation enables same-turn quick-play
+PASS Preparation excludes face-down banished Galactica
+PASS Preparation sets up to three of four banished cards
+PASS Preparation GY cost under Necrovalley open
+PASS Preparation GY cost under Necrovalley locked
+PASS Preparation GY cost valid-spell
+PASS Preparation GY cost valid-trap
+PASS Preparation GY cost missing
+PASS Preparation GY cost monster-only
+PASS Preparation shared limit after GY activation negation
+PASS Preparation shared limit after GY effect negation
+PASS Preparation shared limit after activation negation
+PASS Preparation shared limit after effect negation
+PASS Preparation shared effect limit trap-first
+PASS Preparation shared effect limit grave-first
+PASS Add or send receipt 210696007 add
+PASS Add or send receipt 210696007 redirect
+PASS Add or send receipt 210696007 send

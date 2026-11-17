@@ -66,7 +66,8 @@ function s.rtop(e,tp,eg,ep,ev,re,r,rp)
 			Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 			local sg=Duel.SelectMatchingCard(tp,Card.IsAbleToDeck,tp,LOCATION_HAND,0,ct,ct,nil)
 			if #sg>0 then
-				local ct=Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
+				Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
+				local ct=sg:FilterCount(Card.IsLocation,nil,LOCATION_DECK+LOCATION_EXTRA)
 				if ct>0 then
 					local c=e:GetHandler()
 					local e1=Effect.CreateEffect(c)
@@ -96,7 +97,8 @@ function s.drawop(e,tp,eg,ep,ev,re,r,rp)
 	local g=Duel.SelectMatchingCard(tp,s.drfilter,tp,LOCATION_DECK,0,ct,ct,nil)
 	if #g>0 then
 		Duel.SendtoHand(g,nil,REASON_EFFECT)
-		Duel.ConfirmCards(1-tp,g)
+		local added=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+		if #added>0 then Duel.ConfirmCards(1-tp,added) end
 	end
 end
 function s.thfilter1(c)
@@ -138,8 +140,10 @@ end
 function s.delayop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=e:GetLabelObject()
 	if tc and aux.NecroValleyFilter()(tc) and tc:IsAbleToHand() then
-		Duel.SendtoHand(tc,nil,REASON_EFFECT)
-		Duel.ConfirmCards(1-tp,tc)
+		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0
+			and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then
+			Duel.ConfirmCards(1-tp,tc)
+		end
 	end
 end
 

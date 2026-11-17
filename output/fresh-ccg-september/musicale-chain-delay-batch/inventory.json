@@ -1,0 +1,47 @@
+{
+  "pattern": "Optional FIELD trigger on EVENT_CHAIN_SOLVED can lose its activation window when the engine processes a deferred Normal Summon.",
+  "search": "All canonical Lua EVENT_CHAIN_SOLVED listeners checked for effect type and timing.",
+  "stock": "tmp/omega_scripts/c10851853.lua registers EFFECT_FLAG_DELAY for an optional EVENT_CHAIN_SOLVED trigger.",
+  "candidates": [
+    {
+      "passcode": 213611313,
+      "disposition": "Continuous listener. This case concerns an optional trigger entering a subsequent chain."
+    },
+    {
+      "passcode": 242838495,
+      "disposition": "Continuous listener. This case concerns an optional trigger entering a subsequent chain."
+    },
+    {
+      "passcode": 254894701,
+      "disposition": "Continuous listener. This case concerns an optional trigger entering a subsequent chain."
+    },
+    {
+      "passcode": 256831125,
+      "disposition": "Continuous listener. This case concerns an optional trigger entering a subsequent chain."
+    },
+    {
+      "passcode": 259086544,
+      "disposition": "Continuous listener. This case concerns an optional trigger entering a subsequent chain."
+    },
+    {
+      "passcode": 259459462,
+      "disposition": "Continuous listener. This case concerns an optional trigger entering a subsequent chain."
+    },
+    {
+      "passcode": 259941091,
+      "disposition": "Continuous listener. This case concerns an optional trigger entering a subsequent chain."
+    },
+    {
+      "passcode": 244972185,
+      "disposition": "Optional trigger with printed When timing. Review timing separately on the Eldora pass. No If-trigger change applied."
+    },
+    {
+      "passcode": 259797813,
+      "disposition": "Confirmed. Bobbie Normal Summon branch missed the trigger. Both branches pass with EFFECT_FLAG_DELAY.",
+      "evidence": [
+        "before.json",
+        "installed.json"
+      ]
+    }
+  ]
+}

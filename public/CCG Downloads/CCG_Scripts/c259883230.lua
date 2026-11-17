@@ -11,7 +11,7 @@ end
 function s.pyro(c) return c:IsFaceup() and c:IsRace(RACE_PYRO) end
 function s.thf(c) return c:IsSetCard(SET_PYRE) and c:IsType(TYPE_SPELL) and c:IsAbleToHand() end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(s.thf,tp,LOCATION_DECK,0,1,nil) end Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK) end
-function s.thop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); local g=Duel.SelectMatchingCard(tp,s.thf,tp,LOCATION_DECK,0,1,1,nil); if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT); Duel.ConfirmCards(1-tp,g) end end
+function s.thop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); local g=Duel.SelectMatchingCard(tp,s.thf,tp,LOCATION_DECK,0,1,1,nil); if #g>0 then if Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil) if #received>0 then Duel.ConfirmCards(1-tp,received) end end end end
 function s.pointsempty(c,tp) local zone=c:GetLinkedZone(1-tp)&0x1f; for seq=0,4 do if zone&(1<<seq)~=0 and Duel.CheckLocation(1-tp,LOCATION_MZONE,seq) then return true end end return false end
 function s.lk(c,tp) return c:IsFaceup() and c:IsSetCard(SET_PYRE) and c:IsType(TYPE_LINK) and c:GetSequence()>4 and s.pointsempty(c,tp) end
 function s.lockcost(e,tp,eg,ep,ev,re,r,rp,chk)

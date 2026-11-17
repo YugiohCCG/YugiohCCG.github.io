@@ -47,7 +47,7 @@ end
 function s.operation(e,tp)
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
  local g=Duel.SelectMatchingCard(tp,s.addfilter,tp,LOCATION_DECK,0,1,1,nil,e:GetLabel())
- if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,g) end
+ if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil) if #received>0 then Duel.ConfirmCards(1-tp,received) end end
 end
 function s.xyzfilter(c,tp)
  return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:GetRank()==12 and c:CheckRemoveOverlayCard(tp,1,REASON_COST)

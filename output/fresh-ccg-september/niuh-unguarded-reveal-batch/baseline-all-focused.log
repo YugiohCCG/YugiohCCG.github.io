@@ -1,0 +1,35 @@
+(node:56708) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS Bauba Spell receipt success
+FAIL Bauba Spell receipt redirect Only actual Hand receipt is revealed
+
+1 !== 0
+
+PASS Oro search reveal success
+FAIL Oro search reveal redirect Only actual Hand receipt is revealed
+
+1 !== 0
+
+PASS Advent search reveal success
+FAIL Advent search reveal redirect Only actual Hand receipt is revealed
+
+1 !== 0
+
+PASS Charmelia Deal group reveal success
+FAIL Charmelia Deal group reveal partial redirect Reveal precisely the group members that reached the Hand
++ actual - expected
+
+  [
++   900009002,
+    900009003
+  ]
+
+FAIL Charmelia Deal group reveal all redirected Reveal precisely the group members that reached the Hand
++ actual - expected
+
++ [
++   900009002,
++   900009003
++ ]
+- []
+

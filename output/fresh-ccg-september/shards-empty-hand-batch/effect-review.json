@@ -1,0 +1,20 @@
+[
+  {
+    "passcode": 259366591,
+    "name": "Arckcestial Crystal Shards",
+    "printed_text": "During your Main Phase: You can discard 1 card; Special Summon 1 Level 4 or lower \"Arckcestial\" monster from your Deck in Defense Position, also you cannot Special Summon for the rest of this turn, except LIGHT Spellcaster monsters. If this card is sent to the GY as Synchro material for a LIGHT monster: You can target 1 of your banished \"Arckcestial\" cards; add it to your hand, then discard 1 card. You can only use each effect of \"Arckcestial Crystal Shards\" once per turn.",
+    "callbacks": [
+      "function s.thfilter(c,tp)\n\tlocal extra=c:IsType(TYPE_FUSION+TYPE_SYNCHRO+TYPE_XYZ+TYPE_LINK)\n\treturn c:IsFaceup() and c:IsSetCard(0x4ac0) and c:IsAbleToHand()\n\t\tand (not extra or Duel.IsExistingMatchingCard(s.effectdiscard,tp,LOCATION_HAND,0,1,nil))\nend"
+    ],
+    "disposition": "Extra Deck recovery coupled to hand discard eligibility"
+  },
+  {
+    "passcode": 259392825,
+    "name": "Nemleria Dream Creator - Pyjama",
+    "printed_text": "(Quick Effect) : You can discard 1 \"Nemleria\" card; add 1 \"Dreaming Nemleria\" from your Deck to your Extra Deck face-up and Special Summon this card from your hand, then you can return 1 card your opponent controls that began the Duel in the Main Deck to the hand. You can only use the previous effect of \"Nemleria Dream Creator - Pyjama\" once per turn. Up to thrice per turn, if you have \"Dreaming Nemleria\" face-up in your Extra Deck (Quick Effect) : You can banish 2 cards from your Extra Deck face-down (except \"Dreaming Nemleria\") and target 1 other \"Nemleria\" card you control; it is unaffected by the cards and effects activated before this effect in this Chain.",
+    "callbacks": [
+      "function s.bouncefilter(c,tp)\n\tif c:IsType(TYPE_TOKEN) then return false end\n\tlocal otype=c:GetOriginalType()\n\treturn c:IsControler(1-tp) and c:IsOnField()\n\t\tand (otype&(TYPE_FUSION+TYPE_SYNCHRO+TYPE_XYZ+TYPE_LINK))==0\n\t\tand c:IsAbleToHand()\nend"
+    ],
+    "disposition": "No Extra Deck recovery filtered on a separate hand discard in these callbacks"
+  }
+]

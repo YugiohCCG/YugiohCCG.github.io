@@ -23,7 +23,8 @@ function CCGSylvan.Excavate(e,tp,ct,addmax)
    Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
    local adds=choices:Select(tp,1,math.min(addmax,#choices),nil)
    Duel.SendtoHand(adds,nil,REASON_EFFECT)
-   Duel.ConfirmCards(1-tp,adds)
+   local added=adds:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+   if #added>0 then Duel.ConfirmCards(1-tp,added) end
    rest:Sub(adds)
   end
  end

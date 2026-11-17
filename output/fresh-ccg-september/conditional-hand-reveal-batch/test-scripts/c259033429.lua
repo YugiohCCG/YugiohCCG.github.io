@@ -1,0 +1,126 @@
+-- Carcel, the Ohmenchanic Light
+local s,id=GetID()
+local STRING_ID=133033429
+local COUNTER_CURRENT = 0x18f0
+local SET_OHMEN = 0x8de0
+local SET_OHMENCHANIC = 0x8de1
+function s.initial_effect(c)
+	-- Link Summon
+	c:EnableReviveLimit()
+	aux.AddLinkProcedure(c,nil,3,99,s.lcheck)
+	-- GY Special Summon
+	local e1=Effect.CreateEffect(c)
+	e1:SetDescription(aux.Stringid(STRING_ID,0))
+	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e1:SetCode(EVENT_SPSUMMON_SUCCESS)
+	e1:SetProperty(EFFECT_FLAG_DELAY)
+	e1:SetCountLimit(1,id)
+	e1:SetCondition(s.spcon)
+	e1:SetTarget(s.sptg)
+	e1:SetOperation(s.spop)
+	c:RegisterEffect(e1)
+	-- Double ATK
+	local e2=Effect.CreateEffect(c)
+	e2:SetType(EFFECT_TYPE_SINGLE)
+	e2:SetCode(EFFECT_SET_ATTACK_FINAL)
+	e2:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
+	e2:SetRange(LOCATION_MZONE)
+	e2:SetCondition(s.atkcon)
+	e2:SetValue(s.atkval)
+	c:RegisterEffect(e2)
+	-- Observe co-link transitions even while this card is disabled or off the field.
+	local state={}
+	local e3=Effect.CreateEffect(c)
+	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+	e3:SetCode(EVENT_ADJUST)
+	e3:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
+	e3:SetOperation(function(e) s.adjustop(e,c:GetControler(),state,c) end)
+	Duel.RegisterEffect(e3,0)
+	-- Destroy opponent's monsters
+	local e4=Effect.CreateEffect(c)
+	e4:SetDescription(aux.Stringid(STRING_ID,1))
+	e4:SetCategory(CATEGORY_DESTROY)
+	e4:SetType(EFFECT_TYPE_QUICK_O)
+	e4:SetCode(EVENT_CHAINING)
+	e4:SetRange(LOCATION_MZONE)
+	e4:SetCountLimit(1,id+200)
+	e4:SetCondition(s.descon)
+	e4:SetCost(s.descost)
+	e4:SetTarget(s.destg)
+	e4:SetOperation(s.desop)
+	c:RegisterEffect(e4)
+end
+s.listed_series={SET_OHMEN, SET_OHMENCHANIC}
+
+function s.lcheck(g)
+	return g:IsExists(Card.IsSetCard,1,nil,SET_OHMENCHANIC)
+end
+
+function s.spcon(e,tp,eg,ep,ev,re,r,rp)
+	return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK)
+end
+function s.spfilter(tc,e,tp)
+	return tc:IsSetCard(SET_OHMEN) and tc:IsCanBeSpecialSummoned(e,0,tp,false,false)
+end
+function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
+		and Duel.IsExistingMatchingCard(aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE,0,1,nil,e,tp) end
+	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_GRAVE)
+end
+function s.spop(e,tp,eg,ep,ev,re,r,rp)
+	if Duel.GetLocationCount(tp,LOCATION_MZONE)<=0 then return end
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
+	local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.spfilter),tp,LOCATION_GRAVE,0,1,1,nil,e,tp)
+	if #g>0 then
+		Duel.SpecialSummon(g,0,tp,tp,false,false,POS_FACEUP)
+	end
+end
+
+function s.atkcon(e)
+	return e:GetHandler():GetCounter(COUNTER_CURRENT) > 0
+end
+function s.atkval(e,c)
+	return c:GetAttack() * 2
+end
+
+function s.adjustop(e,tp,state,c)
+ local current=c:IsLocation(LOCATION_MZONE) and c:IsFaceup()
+  and c:GetMutualLinkedGroupCount()>0 and c:GetFieldID() or nil
+ local previous=state.previous
+ state.previous=current
+ if not current or current==previous or c:IsDisabled() or (tp~=0 and tp~=1) then return end
+ if Duel.GetFlagEffect(tp,id)>0 then return end
+ Duel.RegisterFlagEffect(tp,id,RESET_PHASE+PHASE_END,0,1)
+ local linked=c:GetMutualLinkedGroup()
+ local ratings=linked:GetSum(Card.GetLink)
+ c:AddCounter(COUNTER_CURRENT,ratings)
+ for tc in aux.Next(linked) do tc:AddCounter(COUNTER_CURRENT,ratings) end
+end
+
+function s.descon(e,tp,eg,ep,ev,re,r,rp)
+	return rp==1-tp
+end
+function s.descost(e,tp,eg,ep,ev,re,r,rp,chk)
+	local g=Duel.GetMatchingGroup(Card.IsFaceup,tp,LOCATION_ONFIELD,0,nil)
+	local total=0
+	for tc in aux.Next(g) do total=total+tc:GetCounter(COUNTER_CURRENT) end
+	if chk==0 then return total>=5 end
+	for tc in aux.Next(g) do
+		local ct=tc:GetCounter(COUNTER_CURRENT)
+		if ct>0 then tc:RemoveCounter(tp,COUNTER_CURRENT,ct,REASON_COST) end
+	end
+end
+function s.destg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then
+		return Duel.IsExistingMatchingCard(nil,tp,0,LOCATION_MZONE,1,nil)
+	end
+	local dg=Duel.GetMatchingGroup(nil,tp,0,LOCATION_MZONE,nil)
+	Duel.SetOperationInfo(0,CATEGORY_DESTROY,dg,#dg,0,0)
+end
+function s.desop(e,tp,eg,ep,ev,re,r,rp)
+	local dg=Duel.GetMatchingGroup(nil,tp,0,LOCATION_MZONE,nil)
+	if #dg>0 then
+		Duel.Destroy(dg,REASON_EFFECT)
+	end
+end

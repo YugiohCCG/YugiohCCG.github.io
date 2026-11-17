@@ -95,13 +95,15 @@ function s.briaop(e,tp,sc)
 	local done=false
 	if s.ownstain(tc,tp) and Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))==0 then
 		if tc:IsLocation(LOCATION_GRAVE) and not aux.NecroValleyFilter(Card.IsAbleToHand)(tc) then return end
-		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
+		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0
+			and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then
 			Duel.ConfirmCards(1-tp,tc)
 			done=true
 		end
 	else
 		if tc:IsLocation(LOCATION_GRAVE) and not aux.NecroValleyFilter(Card.IsAbleToDeck)(tc) then return end
 		done=Duel.SendtoDeck(tc,nil,SEQ_DECKBOTTOM,REASON_EFFECT)>0
+			and tc:IsLocation(LOCATION_DECK+LOCATION_EXTRA)
 	end
 	if done and sc:IsLocation(LOCATION_GRAVE) and aux.NecroValleyFilter(Card.IsAbleToDeck)(sc) then
 		Duel.SendtoDeck(sc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
@@ -166,7 +168,7 @@ function s.silasop(e,tp)
 	if not tc then return end
 	if tc:IsAbleToHand() and (not (tc:IsSSetable() and Duel.GetLocationCount(tp,LOCATION_SZONE)>0)
 		or Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,4))==0) then
-		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
+		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then
 			Duel.ConfirmCards(1-tp,tc)
 		end
 	elseif tc:IsSSetable() and Duel.GetLocationCount(tp,LOCATION_SZONE)>0 then
