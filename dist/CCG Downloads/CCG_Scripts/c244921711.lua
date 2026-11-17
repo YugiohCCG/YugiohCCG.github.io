@@ -131,7 +131,9 @@ function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	if #g==0 then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local sg=g:Select(tp,1,math.min(3,#g),nil)
-	if #sg>0 and not aux.NecroValleyNegateCheck(sg) and Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)>0 then
+	if #sg==0 or aux.NecroValleyNegateCheck(sg) then return end
+	Duel.SendtoDeck(sg,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)
+	if sg:IsExists(Card.IsLocation,1,nil,LOCATION_DECK+LOCATION_EXTRA) then
 		Duel.BreakEffect()
 		Duel.Draw(tp,1,REASON_EFFECT)
 	end

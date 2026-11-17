@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-06T18:17:54.794076+00:00",
+  "generated_at": "2026-11-17T17:43:52.844254+00:00",
   "summary": {
     "active_cards": 703,
     "verdicts": {
-      "FIXED": 125,
+      "FIXED": 124,
       "MANUAL_RULING": 9,
-      "PASS": 541,
-      "UNSUPPORTED": 28
+      "PASS": 538,
+      "UNSUPPORTED": 32
     },
-    "unresolved_cards": 37
+    "unresolved_cards": 41
   },
   "cards": [
     {
@@ -124,7 +124,7 @@
       "name": "Abstain from Light",
       "verdict": "MANUAL_RULING",
       "review_state": "current",
-      "issue_count": 2,
+      "issue_count": 3,
       "issues": [
         {
           "verdict": "MANUAL_RULING",
@@ -135,6 +135,11 @@
           "verdict": "MANUAL_RULING",
           "clause": "Current source delta; all printed effects reconciled with preceding review",
           "notes": "Deck-shuffle condition includes costs as well as effects; material payment must move the full selected groups."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "Delayed End Phase return now tracks the actual banished field instance with resettable flag, excluding cards moved out and rebanished in between."
         }
       ]
     },
@@ -309,12 +314,17 @@
       "name": "Talismandrake Cremation",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If this card is Special Summoned: You can add 1 \"Talismandrake Arms\" Spell/Trap from your Deck or GY to your hand, or equip it to a DARK Pyro monster you control as if it were equipped by that Spell/Trap's effect.",
           "notes": "The copied Blaze Shield behavior is incomplete for return-to-hand, return-to-Deck, and banish departures because Omega has no generic optional all-destination leave-field replacement hook. Resolution: narrow Blaze Shield's text, or add a generic optional leave-field replacement hook and use it in c253552927.lua's recreated Shield effects."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted."
         }
       ]
     },
@@ -323,12 +333,17 @@
       "name": "Talismandrake Enkindle",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "If this card is Special Summoned: You can add 1 \"Talismandrake Arms\" Spell/Trap from your Deck or GY to your hand, or equip it to a DARK Pyro monster you control as if it were equipped by that Spell/Trap's effect.",
           "notes": "The copied Blaze Shield behavior is incomplete for return-to-hand, return-to-Deck, and banish departures because Omega has no generic optional all-destination leave-field replacement hook. Resolution: narrow Blaze Shield's text, or add a generic optional leave-field replacement hook and use it in c241706191.lua's recreated Shield effects."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted."
         }
       ]
     },
@@ -337,7 +352,7 @@
       "name": "Maiden of Talismandrakes Seraphina",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 3,
+      "issue_count": 4,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
@@ -353,6 +368,11 @@
           "verdict": "UNSUPPORTED",
           "clause": "Current source delta; all printed effects reconciled with preceding review",
           "notes": "Pendulum cost checks available monster space after all three distinct-name returns; the unrestricted Pendulum effect has no invented once-per-turn limit, and destruction resolves independently of the handler."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted."
         }
       ]
     },
@@ -692,7 +712,7 @@
       "name": "Ursarctic Hextanius",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 2,
+      "issue_count": 3,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
@@ -703,6 +723,11 @@
           "verdict": "UNSUPPORTED",
           "clause": "Current source delta; all printed effects reconciled with preceding review",
           "notes": "Custom summon clears previous failure state and records incomplete two-material payment before the engine checks the permitted zone."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "GY/banishment shuffle follow-up draw requires at least one actual Deck/Extra receipt after resolving movement, while retaining Necrovalley check and up-to-three selection."
         }
       ]
     },
@@ -807,12 +832,17 @@
       "name": "A Stainless Story",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "This effect becomes that monster’s effect if it is Normal or Special Summoned.",
           "notes": "CheckActivateEffect can reproduce activatable Spell/Trap effects, but Omega has no generic API that selects and rebinds an arbitrary monster's Normal/Special Summon trigger, event group, targets, labels, and operation. The Lua manually mirrors only the currently listed Stain monsters. Resolution: enumerate the supported monster names in the printed text and maintain the manual map, or add a core trigger-copy API and replace the hard-coded branches in c245970073.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "Copied Stain-effect helpers require actual Hand or Deck/Extra receipt before their dependent self-shuffle; add-or-Set helper confirms only successful Hand additions. The copied-effect selection/cost and separate draw effect are unchanged."
         }
       ]
     },
@@ -901,12 +931,17 @@
       "name": "Takama No Hara",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "Banish this from GY, target a Spirit you control; it cannot return to hand by card effect until End Phase.",
           "notes": "EFFECT_CANNOT_TO_HAND is reason-agnostic, so the current Lua also blocks returning the target as a cost. Master Rule Omega has no EFFECT_CANNOT_TO_HAND_EFFECT equivalent that limits the prohibition to card effects. Resolution: remove 'by card effect' from the text, or add an effect-only hand-return prohibition to the engine and use it in c229996802.lua."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted."
         }
       ]
     },
@@ -1049,7 +1084,7 @@
       "name": "Priestess of Nephthys",
       "verdict": "MANUAL_RULING",
       "review_state": "current",
-      "issue_count": 2,
+      "issue_count": 3,
       "issues": [
         {
           "verdict": "MANUAL_RULING",
@@ -1060,6 +1095,11 @@
           "verdict": "MANUAL_RULING",
           "clause": "Current source delta; all printed effects reconciled with preceding review",
           "notes": "Standby effect is selected explicitly and invoked with its own handler and effect relation instead of an arbitrary activation effect."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted."
         }
       ]
     },
@@ -1132,7 +1172,7 @@
       "name": "To Proto Chrono",
       "verdict": "MANUAL_RULING",
       "review_state": "current",
-      "issue_count": 2,
+      "issue_count": 3,
       "issues": [
         {
           "verdict": "MANUAL_RULING",
@@ -1143,6 +1183,11 @@
           "verdict": "MANUAL_RULING",
           "clause": "Current source delta; all printed effects reconciled with preceding review",
           "notes": "Custom summon aborts its zone allocation if the required banish payment fails and clears the failure flag on the next attempt."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted."
         }
       ]
     },
@@ -1202,7 +1247,7 @@
       "name": "Polemistis gia Ataxia",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 2,
+      "issue_count": 3,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
@@ -1213,6 +1258,11 @@
           "verdict": "UNSUPPORTED",
           "clause": "Current source delta; all printed effects reconciled with preceding review",
           "notes": "The required Tokens must be controlled; incomplete Tribute payment prevents summoning, while a properly summoned copy can later be revived."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted."
         }
       ]
     },
@@ -1630,7 +1680,7 @@
     },
     {
       "passcode": 211086520,
-      "name": "Recollection: Static, Lead, and Nerve",
+      "name": "Recollection: Static, Lead and Nerve",
       "verdict": "PASS",
       "review_state": "current",
       "issue_count": 0,
@@ -1638,7 +1688,7 @@
     },
     {
       "passcode": 234984156,
-      "name": "Recollection: a Lesson in Iron",
+      "name": "Recollection: A Lesson in Iron",
       "verdict": "PASS",
       "review_state": "current",
       "issue_count": 0,
@@ -1646,7 +1696,7 @@
     },
     {
       "passcode": 231872299,
-      "name": "Recollection: the Mine",
+      "name": "Recollection: The Mine",
       "verdict": "FIXED",
       "review_state": "current",
       "issue_count": 0,
@@ -1662,7 +1712,7 @@
     },
     {
       "passcode": 229875953,
-      "name": "Teleum Mortis",
+      "name": "Telemum Mortis",
       "verdict": "PASS",
       "review_state": "current",
       "issue_count": 0,
@@ -1727,10 +1777,21 @@
     {
       "passcode": 225109525,
       "name": "Evander Coldwater & the Nautical Abyss",
-      "verdict": "PASS",
+      "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 0,
-      "issues": []
+      "issue_count": 2,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Once per turn Quick: detach 1, target opponent monster; return it, then opponent Normal/Special Summons from hand in Attack with ATK 0.",
+          "notes": "Activation excludes an ordinary opponent monster returned by this effect when that monster would be the only legal opponent Hand summon. Current canoppsummon inspects current Hand, not the prospective returned card."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Once per turn Quick return and opponent Hand summon",
+          "notes": "Existing limitation confirmed against current source and docs/CCG-ARCHETYPE-AUDIT-HANDOFF.md; scoped scripted fixtures do not prove native Omega support."
+        }
+      ]
     },
     {
       "passcode": 223158720,
@@ -1759,10 +1820,21 @@
     {
       "passcode": 218905439,
       "name": "Nautical Adventures & Torrential Seas",
-      "verdict": "FIXED",
+      "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 0,
-      "issues": []
+      "issue_count": 2,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Target your Nautica and an opponent monster; return both, then the opponent Normal or Special Summons a hand monster in Attack Position with ATK 0. HOPT.",
+          "notes": "Activation excludes an ordinary opponent monster returned by this effect when that monster would be the only legal opponent Hand summon. Current canoppsummon inspects current Hand, not the prospective returned card."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Return both targets, then opponent Hand summon",
+          "notes": "Existing limitation confirmed against current source and docs/CCG-ARCHETYPE-AUDIT-HANDOFF.md; scoped scripted fixtures do not prove native Omega support."
+        }
+      ]
     },
     {
       "passcode": 259722826,
@@ -2304,7 +2376,7 @@
       "name": "Aquila, Zephorion's Predictor",
       "verdict": "MANUAL_RULING",
       "review_state": "current",
-      "issue_count": 2,
+      "issue_count": 3,
       "issues": [
         {
           "verdict": "MANUAL_RULING",
@@ -2315,6 +2387,11 @@
           "verdict": "MANUAL_RULING",
           "clause": "Current source delta; all printed effects reconciled with preceding review",
           "notes": "Named field support must be face-up so hidden field cards do not satisfy a name condition."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "Both mutually exclusive recovery/search branches confirm only the selected card actually received in own Hand."
         }
       ]
     },
@@ -2347,12 +2424,17 @@
       "name": "Chapter II Verse IV",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "When your opponent activates a card effect: You can show 1 \"Dysmandr, the Depraevity of Worlds\" in your Extra Deck and choose 1 Effect Monster you control; Send 1 \"Extinction of Dysmandr\" from your Deck to the GY (but shuffle it into the Deck during the End Phase), and if you do, your opponent's activated card effect becomes the sent card's effect that Tributes a \"Protogenic Essence Token\" to activate.",
           "notes": "ChangeChainOperation can replace a resolving operation, but it cannot retroactively apply another card's activation condition or Tribute cost after the Chain Link was activated. The current Token release therefore occurs during resolution as REASON_EFFECT and cannot exactly become the copied activation procedure. Exact resolution requires revised text that copies only Extinction's resolving operation (and explicitly places any Token release at resolution), or a source effect whose activation legality/cost is checked before this Chain Link is created."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "Replacement chain operation stores the selected monster on the replaced effect and establishes its effect relation, avoiding an unrelated GetFirstTarget after chain target replacement."
         }
       ]
     },
@@ -3129,7 +3211,7 @@
       "name": "Myutant Amalgamate",
       "verdict": "MANUAL_RULING",
       "review_state": "current",
-      "issue_count": 2,
+      "issue_count": 3,
       "issues": [
         {
           "verdict": "MANUAL_RULING",
@@ -3140,6 +3222,11 @@
           "verdict": "MANUAL_RULING",
           "clause": "Current source delta; all printed effects reconciled with preceding review",
           "notes": "Reveal choice must have the corresponding monster available for banishment; copied destruction triggers survive the move into the graveyard."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "Set filtering allows Field Spells with full ordinary Spell/Trap zones while ordinary cards still require an available slot at activation and resolution."
         }
       ]
     },
@@ -3380,12 +3467,17 @@
       "name": "Ghostrick Cutifer",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
           "clause": "Once per turn: Target 1 other Ghostrick monster you control; attach this card to it as material. Transfer this card's materials to that monster.",
           "notes": "Only Xyz Monsters can legally hold Xyz Materials, while the printed target is any other Ghostrick monster. The current Xyz-only restriction is executable but narrower than the text. Exact resolution requires changing the target to 'Ghostrick Xyz Monster' or adding unsupported engine/card-rule semantics that allow non-Xyz monsters to hold materials."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "Set relocation distinguishes Field, monster and ordinary zones; checks control-change legality for existing monsters, uses GetControl to avoid resummoning them, and clears turn-status barriers for permitted same-turn Flip Summon."
         }
       ]
     },
@@ -3394,7 +3486,7 @@
       "name": "Ghostrick Oni",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 2,
+      "issue_count": 3,
       "issues": [
         {
           "verdict": "MANUAL_RULING",
@@ -3404,7 +3496,12 @@
         {
           "verdict": "UNSUPPORTED",
           "clause": "Also, it can activate its effects as Quick Effects this turn.",
-          "notes": "Omega has no generic runtime API that changes every arbitrary ignition/trigger effect registered on a selected monster into a Quick Effect for one turn; an inert flag cannot do so. Exact resolution requires engine support for temporary effect-type conversion, or revised text granting one specifically scripted Quick Effect."
+          "notes": "Ignition timing conversion is now implemented, but the broad printed conversion and the separate controlled-monster Xyz Summon ruling remain unresolved."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "Ignition timing conversion is now implemented, but the broad printed conversion and the separate controlled-monster Xyz Summon ruling remain unresolved."
         }
       ]
     },
@@ -3645,7 +3742,7 @@
       "name": "Gravinity Nebulix",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 2,
+      "issue_count": 3,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
@@ -3656,6 +3753,11 @@
           "verdict": "UNSUPPORTED",
           "clause": "Current source delta; all printed effects reconciled with preceding review",
           "notes": "The extra effect is appended inside the same chain operation, supports multiple owners and clears per-chain wrapping state at Chain end."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "Draw requires an actual Deck/Extra return; type conversion survives Set and negation."
         }
       ]
     },
@@ -3704,7 +3806,7 @@
       "name": "Gravinity Axis Matter",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 2,
+      "issue_count": 3,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
@@ -3715,6 +3817,11 @@
           "verdict": "MANUAL_RULING",
           "clause": "During the Standby Phase: You can reveal 1 Level 11 \"Gravinity\" Synchro Monster in your Extra Deck; for the rest of this turn, this card gains the non-activated effects of the revealed monster.",
           "notes": "The hard-coded branches cover both Level 11 Gravinity Synchro Monsters currently present and the copied Spherix counter test was corrected to exclude non-Monster Cards. The printed effect is still generic and cannot be implemented generically: Card.CopyEffect copies a card script wholesale, while Omega exposes no supported iterator/copier that selects only non-activated effects and safely rebinds arbitrary monster effects to a Field Spell. A future valid reveal requires a new explicit branch."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "Column reduction requires face-up archetype monster; copied conversion is nondisableable and persists through Set."
         }
       ]
     },
@@ -3723,7 +3830,7 @@
       "name": "Gravinity Sonic Scream",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 2,
+      "issue_count": 3,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
@@ -3734,6 +3841,11 @@
           "verdict": "UNSUPPORTED",
           "clause": "Current source delta; all printed effects reconciled with preceding review",
           "notes": "The optional Synchro activation If trigger is delayed."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "Monster-to-Continuous-Trap type conversion is nondisableable and persists through Set."
         }
       ]
     },
@@ -4534,7 +4646,7 @@
       "name": "Glitchling Corruption",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 2,
+      "issue_count": 3,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
@@ -4545,6 +4657,11 @@
           "verdict": "UNSUPPORTED",
           "clause": "Current source delta; all printed effects reconciled with preceding review",
           "notes": "Ritual selection incorporates post-material zones and requires all releasable selected materials to leave their prior locations."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted."
         }
       ]
     },
@@ -4553,12 +4670,17 @@
       "name": "Glitchling Hexatron",
       "verdict": "MANUAL_RULING",
       "review_state": "current",
-      "issue_count": 1,
+      "issue_count": 2,
       "issues": [
         {
           "verdict": "MANUAL_RULING",
           "clause": "Link Summoning procedure (no material line is present in the current printed text).",
           "notes": "Genuine source-text ambiguity: this Link-3 monster has no printed Link Material line. The current 2-3 Cyberse implementation is executable, but text, helpers, official scripts, and DB contain no evidence that distinguishes it from exactly 3 Cyberse, 2+ Effect Monsters, or an archetype requirement."
+        },
+        {
+          "verdict": "MANUAL_RULING",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "Recovery confirms actual own-Hand subset. Counter-cost monster gets effect relation; negation requires same related instance before subsequent ATK gain."
         }
       ]
     },
@@ -4915,18 +5037,45 @@
     {
       "passcode": 259797813,
       "name": "Nautica Musicale",
-      "verdict": "PASS",
+      "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 0,
-      "issues": []
+      "issue_count": 2,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "If you activate an effect that would Special Summon a \"Nautica\" monster from your hand",
+          "notes": "A groupless operation report needs actual summon tracking to identify the selected Nautica; when that summon is negated there is no success event, so the would-Summon trigger cannot be reliably identified."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Trigger for an activated effect that would Special Summon a Nautica from Hand",
+          "notes": "Existing limitation confirmed against current source and docs/CCG-ARCHETYPE-AUDIT-HANDOFF.md; scoped scripted fixtures do not prove native Omega support."
+        }
+      ]
     },
     {
       "passcode": 259941091,
       "name": "Nautica Oceanica",
-      "verdict": "PASS",
+      "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 0,
-      "issues": []
+      "issue_count": 3,
+      "issues": [
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "you can add 1 of these additional effects to that card's effect at resolution depending on where it would be Summoned from.",
+          "notes": "Current CHAIN_SOLVED listener cannot reliably insert this immediate-after follow-up at an intermediate Chain Link. The saved candidate was deliberately not installed because Link2 sequencing remained too late."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Your hand: Then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position",
+          "notes": "Current CHAIN_SOLVED listener cannot reliably insert this immediate-after follow-up at an intermediate Chain Link. The saved candidate was deliberately not installed because Link2 sequencing remained too late."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "Add an outcome at resolution, immediately after that effect resolves",
+          "notes": "Existing limitation confirmed against current source and docs/CCG-ARCHETYPE-AUDIT-HANDOFF.md; scoped scripted fixtures do not prove native Omega support."
+        }
+      ]
     },
     {
       "passcode": 259454809,
@@ -5466,7 +5615,7 @@
       "name": "Heart of the Hydra",
       "verdict": "UNSUPPORTED",
       "review_state": "current",
-      "issue_count": 4,
+      "issue_count": 5,
       "issues": [
         {
           "verdict": "UNSUPPORTED",
@@ -5487,6 +5636,11 @@
           "verdict": "UNSUPPORTED",
           "clause": "You can only control 1 face-up \"Heart of the Hydra\". If this card is in your hand, field or GY: You can send 1 WATER Reptile monster from your Deck to the GY, except \"Heart of the Hydra\", and if you do, place this card face-up in its owner's Spell & Trap Zone as a Continuous Spell, but if it was placed from the GY, banish it when it leaves the field. You can only use this effect of \"Heart of the Hydra\" once per turn, also you cannot Special Summon monsters the turn you activate this effect, except WATER Reptile monsters.\nWhile this card is a Continuous Spell, it gains these effects.\n• Cannot be destroyed by your opponent's card effects while you control \"Terrifying Dark Swamp\".\n• \"Hydra\" monsters you control cannot be shuffled into the Deck by card effects.\n• Once per turn: You can add 1 \"Dark Swamp\" Spell/Trap from your Deck to your hand.",
           "notes": "The current Deck-destination replacement also prevents fixed top/bottom effect returns. The printed protection only forbids shuffling Hydra monsters into the Deck; this narrower distinction is not implemented by the current replacement."
+        },
+        {
+          "verdict": "UNSUPPORTED",
+          "clause": "PR45 delta to the previously reviewed implementation (unchanged printed text)",
+          "notes": "AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted."
         }
       ]
     },

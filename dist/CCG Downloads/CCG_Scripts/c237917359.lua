@@ -43,7 +43,6 @@ function s.indval(e,re,rp)
 	return rp==1-tp and not Duel.IsExistingMatchingCard(s.effmonster,tp,LOCATION_MZONE,0,1,nil)
 end
 function s.actop(e,tp,eg,ep,ev,re,r,rp)
-	if not e:GetHandler():IsRelateToEffect(e) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOFIELD)
 	local tc=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.umifilter),tp,LOCATION_DECK+LOCATION_GRAVE,0,1,1,nil):GetFirst()
 	if not tc then return end

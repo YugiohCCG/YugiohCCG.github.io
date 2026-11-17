@@ -51,7 +51,7 @@ function s.thop(e,tp)
  if not Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_DECK,0,1,nil) then return end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
  local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)
- if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,g) end
+ if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil) if #received>0 then Duel.ConfirmCards(1-tp,received) end end
 end
 function s.matfilter(c,tp)
  return c:IsControler(tp) and c:IsLocation(LOCATION_HAND+LOCATION_MZONE)
@@ -145,13 +145,13 @@ function s.retop(e,tp)
  local c=e:GetHandler()
  local loc=e:GetLabel()
  if not c:IsRelateToEffect(e) or not c:IsLocation(loc)
-  or Duel.SendtoHand(c,nil,REASON_EFFECT)==0 then return end
+  or Duel.SendtoHand(c,nil,REASON_EFFECT)==0 or not c:IsLocation(LOCATION_HAND) or not c:IsControler(tp) then return end
  Duel.ConfirmCards(1-tp,c)
  if Duel.IsExistingMatchingCard(s.otherfilter,tp,loc,0,1,nil,c)
   and Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,3)) then
   Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
   local g=Duel.SelectMatchingCard(tp,s.otherfilter,tp,loc,0,1,1,nil,c)
-  if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,g) end
+  if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil) if #received>0 then Duel.ConfirmCards(1-tp,received) end end
  end
 end
 function s.otherfilter(c,handler)

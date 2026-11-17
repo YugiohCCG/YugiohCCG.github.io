@@ -57,8 +57,10 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local code=e:GetLabel()
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local sg=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil,code)
-	if #sg>0 and Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then
-		Duel.ConfirmCards(1-tp,sg)
+	local tc=sg:GetFirst()
+	if tc and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0
+		and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then
+		Duel.ConfirmCards(1-tp,tc)
 		if Duel.GetFieldGroupCount(tp,LOCATION_HAND,0)>0 then
 			Duel.BreakEffect()
 			Duel.DiscardHand(tp,aux.TRUE,1,1,REASON_EFFECT+REASON_DISCARD)

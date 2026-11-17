@@ -55,8 +55,9 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local tc=Duel.SelectMatchingCard(tp,s.addfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
 		if tc then
-			Duel.SendtoHand(tc,nil,REASON_EFFECT)
-			Duel.ConfirmCards(1-tp,tc)
+			if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then
+				Duel.ConfirmCards(1-tp,tc)
+			end
 		end
 	end
 end
@@ -103,8 +104,9 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		op=b2 and 1 or 2
 	end
 	if op==0 then
-		Duel.SendtoHand(tc,nil,REASON_EFFECT)
-		Duel.ConfirmCards(1-tp,tc)
+		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then
+			Duel.ConfirmCards(1-tp,tc)
+		end
 	elseif op==1 then
 		Duel.SpecialSummon(tc,0,tp,tp,false,false,POS_FACEUP_DEFENSE)
 	else

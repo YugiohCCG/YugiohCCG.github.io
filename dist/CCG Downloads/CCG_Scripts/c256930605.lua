@@ -69,7 +69,6 @@ function s.target(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	Duel.SetOperationInfo(0,CATEGORY_RELEASE,nil,1,tp,LOCATION_HAND+LOCATION_MZONE)
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
-	if not e:GetHandler():IsRelateToEffect(e) then return end
 	local mg=Duel.GetRitualMaterial(tp)
 	local tc=Duel.GetFirstTarget()
 	local needextra=tc and tc:IsRelateToEffect(e) and s.rvopfilter(tc,e,tp)

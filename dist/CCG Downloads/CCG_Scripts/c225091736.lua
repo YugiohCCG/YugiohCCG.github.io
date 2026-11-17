@@ -61,15 +61,14 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		s.faceupoppdeck(c,tp,REASON_EFFECT)
 	end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
-	local g=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil)
-	if #g>0 then
-		if Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
-			Duel.ConfirmCards(1-tp,g)
-			if Duel.GetFieldGroupCount(tp,0,LOCATION_ONFIELD)>Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,0)
-				and Duel.IsPlayerCanDraw(tp,1) then
-				Duel.Draw(tp,1,REASON_EFFECT)
-			end
-		end
+	local tc=Duel.SelectMatchingCard(tp,s.thfilter,tp,LOCATION_DECK,0,1,1,nil):GetFirst()
+	if not tc or Duel.SendtoHand(tc,nil,REASON_EFFECT)==0
+		or not tc:IsLocation(LOCATION_HAND) or not tc:IsControler(tp) then return end
+	Duel.ConfirmCards(1-tp,tc)
+	if Duel.GetFieldGroupCount(tp,0,LOCATION_ONFIELD)>Duel.GetFieldGroupCount(tp,LOCATION_ONFIELD,0)
+		and Duel.IsPlayerCanDraw(tp,1) then
+		Duel.BreakEffect()
+		Duel.Draw(tp,1,REASON_EFFECT)
 	end
 end
 function s.ownstain(c,tp)
@@ -97,13 +96,15 @@ function s.botop(e,tp,eg,ep,ev,re,r,rp)
 	local added=false
 	if s.ownstain(tc,tp) and Duel.SelectOption(tp,aux.Stringid(STRING_ID,2),aux.Stringid(STRING_ID,3))==1 then
 		if tc:IsLocation(LOCATION_GRAVE) and not aux.NecroValleyFilter(Card.IsAbleToHand)(tc) then return end
-		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
+		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0
+			and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then
 			Duel.ConfirmCards(1-tp,tc)
 			added=true
 		end
 	else
 		if tc:IsLocation(LOCATION_GRAVE) and not aux.NecroValleyFilter(Card.IsAbleToDeck)(tc) then return end
-		if Duel.SendtoDeck(tc,nil,SEQ_DECKBOTTOM,REASON_EFFECT)>0 then
+		if Duel.SendtoDeck(tc,nil,SEQ_DECKBOTTOM,REASON_EFFECT)>0
+			and tc:IsLocation(LOCATION_DECK+LOCATION_EXTRA) then
 			added=true
 		end
 	end

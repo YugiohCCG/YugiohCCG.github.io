@@ -56,9 +56,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	local tc=Duel.GetFirstTarget()
 	if not (tc and tc:IsRelateToEffect(e) and s.thfilter(tc)) then return end
-	if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
-		Duel.ConfirmCards(1-tp,tc)
-	end
+	if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then Duel.ConfirmCards(1-tp,tc) end
 end
 function s.drcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():GetOverlayCount()==0

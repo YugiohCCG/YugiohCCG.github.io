@@ -93,8 +93,11 @@ end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local g=Duel.SelectMatchingCard(tp,s.tdfilter,tp,LOCATION_DECK,0,1,2,nil)
-	if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
-		Duel.ConfirmCards(1-tp,g)
+	if #g==0 then return end
+	Duel.SendtoHand(g,nil,REASON_EFFECT)
+	local added=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+	if #added>0 then
+		Duel.ConfirmCards(1-tp,added)
 		Duel.BreakEffect()
 		Duel.DiscardHand(tp,aux.TRUE,1,1,REASON_EFFECT+REASON_DISCARD)
 	end

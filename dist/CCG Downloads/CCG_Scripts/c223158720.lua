@@ -66,9 +66,8 @@ function s.oppsummon(e,tp)
 	if op==1 then
 		Duel.Hint(HINT_SELECTMSG,p,HINTMSG_SPSUMMON)
 		tc=Duel.SelectMatchingCard(p,s.oppfilter,p,LOCATION_HAND,0,1,1,nil,e,p):GetFirst()
-		if not (tc and Duel.SpecialSummon(tc,0,p,p,false,false,POS_FACEUP_ATTACK)>0) then
-			tc=nil
-		end
+		if tc then s.specialprocedure(e,p,tc) end
+		return
 	elseif canns then
 		Duel.Hint(HINT_SELECTMSG,p,HINTMSG_SUMMON)
 		tc=Duel.SelectMatchingCard(p,s.oppnsfilter,p,LOCATION_HAND,0,1,1,nil):GetFirst()
@@ -97,7 +96,7 @@ end
 function s.rtop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if not (tc and tc:IsRelateToEffect(e) and s.rtfilter(tc)) then return end
-	if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
+	if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND+LOCATION_EXTRA) then
 		Duel.BreakEffect()
 		s.oppsummon(e,tp)
 	end
@@ -115,21 +114,50 @@ function s.drop(e,tp,eg,ep,ev,re,r,rp)
 	if not Duel.IsExistingMatchingCard(s.tdfilter,tp,LOCATION_GRAVE,0,3,nil) then return end
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TODECK)
 	local g=Duel.SelectMatchingCard(tp,s.tdfilter,tp,LOCATION_GRAVE,0,3,3,nil)
-	if #g==3 and Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_EFFECT)==3 then
-		local ct=g:FilterCount(Card.IsLocation,nil,LOCATION_DECK)
-		if ct>1 then Duel.SortDeckbottom(tp,tp,ct) end
+	if #g~=3 then return end
+	Duel.SendtoDeck(g,nil,SEQ_DECKBOTTOM,REASON_EFFECT)
+	local ct=g:FilterCount(Card.IsLocation,nil,LOCATION_DECK)
+	if ct>1 then Duel.SortDeckbottom(tp,tp,ct) end
+	if g:FilterCount(Card.IsLocation,nil,LOCATION_DECK+LOCATION_EXTRA)==3 then
 		Duel.BreakEffect()
 		Duel.Draw(tp,1,REASON_EFFECT)
 	end
 end
 
 --The Normal Summon is performed after the resolving effect finishes.
-function s.normalzero(e,tc)
+function s.normalzero(e,tc,event)
  local e1=Effect.CreateEffect(e:GetHandler())
  e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
  e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
- e1:SetCode(EVENT_SUMMON_SUCCESS)
+ e1:SetCode(event or EVENT_SUMMON_SUCCESS)
  e1:SetOperation(function(te) s.atkzero(e,te:GetHandler()) te:Reset() end)
  e1:SetReset(RESET_EVENT+RESETS_STANDARD-RESET_TOFIELD+RESET_PHASE+PHASE_END)
  tc:RegisterEffect(e1)
+ return e1
+end
+
+-- Reserve the specific procedure so the summon occurs after this link resolves.
+function s.specialprocedure(e,p,tc)
+ local procedureType=0x5740
+ local proc=Effect.CreateEffect(e:GetHandler())
+ proc:SetType(EFFECT_TYPE_FIELD)
+ proc:SetCode(EFFECT_SPSUMMON_PROC)
+ proc:SetProperty(EFFECT_FLAG_SPSUM_PARAM)
+ proc:SetRange(tc:GetLocation())
+ proc:SetTargetRange(POS_FACEUP_ATTACK,0)
+ proc:SetValue(procedureType)
+ proc:SetOperation(function(pe) pe:Reset() end)
+ proc:SetReset(RESET_EVENT+RESETS_STANDARD+RESET_PHASE+PHASE_END)
+ tc:RegisterEffect(proc)
+ local followup=s.normalzero(e,tc,EVENT_SPSUMMON_SUCCESS)
+ local cleanup=Effect.CreateEffect(e:GetHandler())
+ cleanup:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
+ cleanup:SetCode(EVENT_CHAIN_END)
+ cleanup:SetOperation(function(ce)
+  proc:Reset()
+  followup:Reset()
+  ce:Reset()
+ end)
+ Duel.RegisterEffect(cleanup,p)
+ Duel.SpecialSummonRule(p,tc,procedureType)
 end

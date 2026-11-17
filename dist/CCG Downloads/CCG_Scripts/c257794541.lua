@@ -121,8 +121,10 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	if #g>=ct1 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local sg=g:Select(tp,ct1,ct1,nil)
-		if Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then
-			Duel.ConfirmCards(1-tp,sg)
+		Duel.SendtoHand(sg,nil,REASON_EFFECT)
+		local added=sg:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+		if #added>0 then Duel.ConfirmCards(1-tp,added) end
+		if #added==ct1 then
 			if ct2>0 then
 				local sg2=Duel.GetMatchingGroup(s.setfilter,tp,LOCATION_DECK,0,nil)
 				if #sg2>=ct2 then
@@ -155,7 +157,9 @@ function s.thop2(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local g=Duel.SelectMatchingCard(tp,aux.NecroValleyFilter(s.thfilter2),tp,LOCATION_GRAVE,0,1,1,nil)
 	if #g>0 then
-		Duel.SendtoHand(g,nil,REASON_EFFECT)
-		Duel.ConfirmCards(1-tp,g)
+		if Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
+			local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+			if #received>0 then Duel.ConfirmCards(1-tp,received) end
+		end
 	end
 end

@@ -69,8 +69,10 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 	local sg=g:Select(tp,2,2,nil)
 	Duel.DisableShuffleCheck()
-	if Duel.SendtoHand(sg,nil,REASON_EFFECT)~=2 then return end
-	Duel.ConfirmCards(1-tp,sg)
+	Duel.SendtoHand(sg,nil,REASON_EFFECT)
+	local added=sg:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+	if #added>0 then Duel.ConfirmCards(1-tp,added) end
+	if #added~=2 then return end
 	if #g>#sg then Duel.ShuffleDeck(tp) end
 end
 function s.tdfilter(c,e)

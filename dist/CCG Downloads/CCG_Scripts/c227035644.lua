@@ -163,7 +163,8 @@ function s.cfop(e,tp,eg,ep,ev,re,r,rp)
 	if tc then
 		local mat=Duel.SelectFusionMaterial(tp,tc,m,nil,chkf)
 		tc:SetMaterial(mat)
-		if Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)~=#mat then return end
+		Duel.SendtoDeck(mat,nil,SEQ_DECKSHUFFLE,REASON_EFFECT+REASON_MATERIAL+REASON_FUSION)
+		if mat:FilterCount(Card.IsLocation,nil,LOCATION_DECK+LOCATION_EXTRA)~=#mat then return end
 		Duel.BreakEffect()
 		if Duel.SpecialSummon(tc,SUMMON_TYPE_FUSION,tp,tp,false,false,POS_FACEUP)>0 then tc:CompleteProcedure() end
 	end

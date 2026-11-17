@@ -78,7 +78,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local op
 	if b1 and b2 then op=Duel.SelectOption(tp,1190,aux.Stringid(STRING_ID,3)) elseif b1 then op=0 else op=1 end
 	if op==0 then
-		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,tc) end
+		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then Duel.ConfirmCards(1-tp,tc) end
 	else Duel.Remove(tc,POS_FACEUP,REASON_EFFECT) end
 end
 function s.spreg(e,tp,eg,ep,ev,re,r,rp)

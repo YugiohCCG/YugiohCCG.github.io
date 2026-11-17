@@ -115,5 +115,5 @@ function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 end
 function s.thop(e,tp)
 	local g=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(function(c,te) return c:IsRelateToEffect(te) and aux.NecroValleyFilter(s.thfilter)(c) end,nil,e)
-	if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,g) end
+	if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil) if #received>0 then Duel.ConfirmCards(1-tp,received) end end
 end

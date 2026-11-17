@@ -67,7 +67,7 @@ function s.swapop(e,tp)
  local types=tc:GetType()
  local lv,rk,ln=tc:GetLevel(),tc:GetRank(),tc:GetLink()
  local oldcode=tc:GetCode()
- if Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==0 then return end
+ if Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==0 or not tc:IsLocation(LOCATION_EXTRA) then return end
  if Duel.GetLocationCountFromEx(owner)<=0
   or not Duel.IsExistingMatchingCard(s.replfilter,owner,LOCATION_EXTRA,0,1,nil,e,owner,types,lv,rk,ln,oldcode)
   or not Duel.SelectYesNo(owner,aux.Stringid(MSG_ID,3)) then return end

@@ -11,7 +11,7 @@ function s.ntcon(e,c,minc) if c==nil then return true end return minc==0 and Due
 function s.ntop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_CONFIRM); local g=Duel.SelectMatchingCard(tp,s.exf,tp,LOCATION_EXTRA,0,1,1,nil); Duel.ConfirmCards(1-tp,g) end
 function s.thf(c) return c:IsSetCard(SET_AEROCAT) and c:IsType(TYPE_MONSTER) and c:IsAbleToHand() end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk) if chk==0 then return Duel.IsExistingMatchingCard(s.thf,tp,LOCATION_DECK,0,1,nil) end Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK) end
-function s.thop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); local g=Duel.SelectMatchingCard(tp,s.thf,tp,LOCATION_DECK,0,1,1,nil); if #g>0 then Duel.SendtoHand(g,nil,REASON_EFFECT); Duel.ConfirmCards(1-tp,g) end end
+function s.thop(e,tp) Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND); local g=Duel.SelectMatchingCard(tp,s.thf,tp,LOCATION_DECK,0,1,1,nil); if #g>0 then if Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil) if #received>0 then Duel.ConfirmCards(1-tp,received) end end end end
 function s.xyz(c) return c:IsFaceup() and c:IsType(TYPE_XYZ) and c:IsRank(6) and c:IsAttribute(ATTRIBUTE_WIND) end
 function s.ovtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
  if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_MZONE) and s.xyz(chkc) end

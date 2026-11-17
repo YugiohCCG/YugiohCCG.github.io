@@ -115,8 +115,10 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	if #g>=shuf_ct then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local sg=g:Select(tp,shuf_ct,shuf_ct,nil)
-		if Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then
-			Duel.ConfirmCards(1-tp,sg)
+		Duel.SendtoHand(sg,nil,REASON_EFFECT)
+		local added=sg:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+		if #added>0 then Duel.ConfirmCards(1-tp,added) end
+		if #added==shuf_ct then
 			if rev_ct>0 then
 				local setg=Duel.GetMatchingGroup(s.setfilter,tp,LOCATION_DECK,0,nil)
 				if #setg>=rev_ct then
