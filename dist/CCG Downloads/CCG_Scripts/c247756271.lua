@@ -60,7 +60,7 @@ function s.retop(e,tp)
  local g=Duel.SelectMatchingCard(tp,s.ownfilter,tp,LOCATION_HAND+LOCATION_ONFIELD,0,1,1,nil)
  if #g==0 or Duel.Destroy(g,REASON_EFFECT)==0 then return end
  local c=e:GetHandler()
- if c:IsRelateToEffect(e) and c:IsLocation(LOCATION_GRAVE) and Duel.SendtoHand(c,nil,REASON_EFFECT)>0 then
+ if c:IsRelateToEffect(e) and c:IsLocation(LOCATION_GRAVE) and Duel.SendtoHand(c,nil,REASON_EFFECT)>0 and c:IsLocation(LOCATION_HAND) and c:IsControler(tp) then
   Duel.ConfirmCards(1-tp,c)
   Duel.Recover(tp,400,REASON_EFFECT)
  end

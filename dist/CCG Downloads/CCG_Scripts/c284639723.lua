@@ -101,7 +101,7 @@ function s.pop(e,tp)
   or not Duel.SelectYesNo(tp,aux.Stringid(MSG_ID,4)) then return end
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
  local sg=Duel.SelectMatchingCard(tp,s.exfilter,tp,LOCATION_EXTRA,0,1,1,nil)
- if #sg>0 and Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then Duel.ConfirmCards(1-tp,sg) end
+ if #sg>0 and Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then local received=sg:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil) if #received>0 then Duel.ConfirmCards(1-tp,received) end end
 end
 function s.qcon(e,tp,eg,ep,ev,re,r,rp)
  local c=e:GetHandler()

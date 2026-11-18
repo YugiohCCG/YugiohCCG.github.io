@@ -5,12 +5,12 @@ This report implements the audit instruction to record any case requiring manual
 ## Outcome
 
 - Active CCG cards covered by the hash-pinned effect ledger: **703**
-- Current card reviews: **703**
+- Current card reviews: **381**
 - Objectively reviewed as pass/fixed: **666**
 - Skipped with a remaining ruling or engine limitation: **37**
 - Additional fixed-card regression scenarios retained: **70**
 - Total interactive/manual scenarios documented: **88**
-- Reconciliation errors: **0**
+- Reconciliation errors: **1**
 
 `Skipped` means no speculative text or Lua change was made. The current implementation remains pinned by text and script hashes, and the exact unresolved question stays in the queue below.
 

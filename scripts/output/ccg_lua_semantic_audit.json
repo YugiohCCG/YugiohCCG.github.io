@@ -4,18 +4,19 @@
     "active_cards": 703,
     "scripts": 704,
     "parsed_scripts": 704,
-    "effect_creations": 2452,
-    "callback_functions": 4431,
-    "search_calls": 3528,
+    "effect_creations": 2462,
+    "callback_functions": 4426,
+    "search_calls": 3530,
     "accepted_replacement_target_callbacks": 5,
     "errors": 0,
-    "review_candidates": 0,
-    "accepted_reviewed_findings": 21,
-    "stale_reviewed_findings": 0,
-    "findings_by_kind": {}
+    "review_candidates": 12,
+    "accepted_reviewed_findings": 9,
+    "stale_reviewed_findings": 12,
+    "findings_by_kind": {
+      "target-operation-search-mismatch": 12
+    }
   },
-  "findings": [],
-  "accepted_findings": [
+  "findings": [
     {
       "severity": "review",
       "kind": "target-operation-search-mismatch",
@@ -24,8 +25,7 @@
       "card_name": "Windborne Cartographer",
       "script": "c221759221.lua",
       "line": 88,
-      "detail": "e3: s.sptg does not visibly guard s.spop's Duel.GetMatchingGroup(s.revflagfilter|tp|LOCATION_HAND|0).",
-      "disposition": "The activation guard requires a hand card able to return to the Deck. The operation's revflagfilter identifies the separately revealed mandatory subset before selecting any additional able cards."
+      "detail": "e3: s.sptg does not visibly guard s.spop's Duel.GetMatchingGroup(s.revflagfilter|tp|LOCATION_HAND|0)."
     },
     {
       "severity": "review",
@@ -35,8 +35,7 @@
       "card_name": "Crewal Booty",
       "script": "c222654570.lua",
       "line": 71,
-      "detail": "e2: s.target does not visibly guard s.operation's Duel.SelectMatchingCard(s.szfilter|tp|LOCATION_SZONE|0).",
-      "disposition": "The SZONE monster search is an optional follow-up after placing the first card and is independently guarded inside the operation."
+      "detail": "e2: s.target does not visibly guard s.operation's Duel.SelectMatchingCard(s.szfilter|tp|LOCATION_SZONE|0)."
     },
     {
       "severity": "review",
@@ -46,8 +45,7 @@
       "card_name": "Fall of Azrynior",
       "script": "c224751741.lua",
       "line": 88,
-      "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
-      "disposition": "Fusion materials are collected after the mandatory Token is created; the activation guard separately proves a Dragon material and a summonable named Fusion."
+      "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0)."
     },
     {
       "severity": "review",
@@ -57,9 +55,90 @@
       "card_name": "Fall of Azrynior",
       "script": "c224751741.lua",
       "line": 95,
-      "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
-      "disposition": "The second material-group read applies the selected Fusion Monster to the same post-Token material pool; activation legality is established by dragonmat and fusfilter."
+      "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0)."
     },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 663,
+      "card_id": 238273770,
+      "card_name": "Symphonic Warrior Disccs",
+      "script": "c238273770.lua",
+      "line": 148,
+      "detail": "e4: s.recruittg does not visibly guard s.recruitop's Duel.SelectMatchingCard(s.spfilter|tp|LOCATION_HAND+LOCATION_GRAVE+LOCATION_EXTRA|0)."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 659,
+      "card_id": 238276251,
+      "card_name": "Brazier of Nephthys",
+      "script": "c238276251.lua",
+      "line": 59,
+      "detail": "e1: s.acttg does not visibly guard s.actop's Duel.SelectMatchingCard(s.destroyable|tp|LOCATION_HAND+LOCATION_ONFIELD|0)."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 660,
+      "card_id": 238276252,
+      "card_name": "Prayer Of Nephthys",
+      "script": "c238276252.lua",
+      "line": 51,
+      "detail": "e1: s.sptg does not visibly guard s.spop's Duel.SelectMatchingCard(s.desfilter|tp|LOCATION_HAND+LOCATION_MZONE|0)."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 147,
+      "card_id": 239245471,
+      "card_name": "Birth of Azrynior",
+      "script": "c239245471.lua",
+      "line": 84,
+      "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0)."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 147,
+      "card_id": 239245471,
+      "card_name": "Birth of Azrynior",
+      "script": "c239245471.lua",
+      "line": 91,
+      "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0)."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 701,
+      "card_id": 239932270,
+      "card_name": "Floowandereeze and the Hot Winds",
+      "script": "c239932270.lua",
+      "line": 79,
+      "detail": "e: s.target does not visibly guard s.operation's Duel.SelectMatchingCard(s.own|tp|LOCATION_MZONE|0)."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 674,
+      "card_id": 247755865,
+      "card_name": "Kali Yuga - Angulimala",
+      "script": "c247755865.lua",
+      "line": 59,
+      "detail": "e1: s.sstg does not visibly guard s.ssop's Duel.SelectMatchingCard(s.desfilter|tp|LOCATION_HAND+LOCATION_ONFIELD|0)."
+    },
+    {
+      "severity": "review",
+      "kind": "target-operation-search-mismatch",
+      "ordinal": 108,
+      "card_id": 259679619,
+      "card_name": "City Within the Grand Blue",
+      "script": "c259679619.lua",
+      "line": 51,
+      "detail": "e1: s.thtg does not visibly guard s.thop's Duel.SelectMatchingCard(aux.NecroValleyFilter(s.thfilter)|tp|LOCATION_DECK+LOCATION_GRAVE|0)."
+    }
+  ],
+  "accepted_findings": [
     {
       "severity": "review",
       "kind": "target-operation-search-mismatch",
@@ -74,17 +153,6 @@
     {
       "severity": "review",
       "kind": "target-operation-search-mismatch",
-      "ordinal": 663,
-      "card_id": 238273770,
-      "card_name": "Symphonic Warrior Disccs",
-      "script": "c238273770.lua",
-      "line": 148,
-      "detail": "e4: s.recruittg does not visibly guard s.recruitop's Duel.SelectMatchingCard(s.spfilter|tp|LOCATION_HAND+LOCATION_GRAVE+LOCATION_EXTRA|0).",
-      "disposition": "The cost returns this monster to hand and frees its Main Monster Zone. recruittg uses precruitfilter with the pre-cost released monster and a prospective self-Summon check; recruitop uses spfilter on the post-cost state. Both filters enforce the same archetype, monster, face-up Extra Deck and Summonability constraints; the zone predicates intentionally differ across payment."
-    },
-    {
-      "severity": "review",
-      "kind": "target-operation-search-mismatch",
       "ordinal": 621,
       "card_id": 238274862,
       "card_name": "Vylon Observatory",
@@ -92,61 +160,6 @@
       "line": 113,
       "detail": "e2: s.eqtg does not visibly guard s.eqop's Duel.SelectMatchingCard(s.canEquipTo|tp|LOCATION_MZONE|0).",
       "disposition": "eqtg targets a GY equip candidate through eqfilter. eqfilter itself requires an existing canEquipTo recipient. eqop refilters targeted cards through eqfilter before choosing that recipient, and rechecks Spell/Trap zone capacity per card. The recipient search is guarded transitively through the target filter."
-    },
-    {
-      "severity": "review",
-      "kind": "target-operation-search-mismatch",
-      "ordinal": 659,
-      "card_id": 238276251,
-      "card_name": "Brazier of Nephthys",
-      "script": "c238276251.lua",
-      "line": 59,
-      "detail": "e1: s.acttg does not visibly guard s.actop's Duel.SelectMatchingCard(s.destroyable|tp|LOCATION_HAND+LOCATION_ONFIELD|0).",
-      "disposition": "This optional activation follow-up is chosen in acttg only if activationvictim exists; that predicate requires a destructible card and both retrieval destinations (including a victim that will reach GY). actop checks its activation label and card relation, selects a destructible victim, then separately rechecks both retrieval pools after destruction. The broad resolution selection is intentional, not an unguarded mandatory activation."
-    },
-    {
-      "severity": "review",
-      "kind": "target-operation-search-mismatch",
-      "ordinal": 660,
-      "card_id": 238276252,
-      "card_name": "Prayer Of Nephthys",
-      "script": "c238276252.lua",
-      "line": 51,
-      "detail": "e1: s.sptg does not visibly guard s.spop's Duel.SelectMatchingCard(s.desfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
-      "disposition": "The activation requires deslegal, which combines the same desfilter with prospective zone availability after destruction. Resolution selects with desfilter, destroys it, then independently rechecks the two-monster Summon legality and two free zones before Summoning. Different predicates account for the prospective and actual post-destruction states."
-    },
-    {
-      "severity": "review",
-      "kind": "target-operation-search-mismatch",
-      "ordinal": 147,
-      "card_id": 239245471,
-      "card_name": "Birth of Azrynior",
-      "script": "c239245471.lua",
-      "line": 84,
-      "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
-      "disposition": "Fusion materials are collected after the mandatory Token is created; the activation guard separately proves a Dragon material and a summonable named Fusion."
-    },
-    {
-      "severity": "review",
-      "kind": "target-operation-search-mismatch",
-      "ordinal": 147,
-      "card_id": 239245471,
-      "card_name": "Birth of Azrynior",
-      "script": "c239245471.lua",
-      "line": 91,
-      "detail": "e1: s.fustg does not visibly guard s.fusop's Duel.GetMatchingGroup(s.matfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
-      "disposition": "The second material-group read applies the selected Fusion Monster to the same post-Token material pool; activation legality is established by dragonmat and fusfilter."
-    },
-    {
-      "severity": "review",
-      "kind": "target-operation-search-mismatch",
-      "ordinal": 701,
-      "card_id": 239932270,
-      "card_name": "Floowandereeze and the Hot Winds",
-      "script": "c239932270.lua",
-      "line": 76,
-      "detail": "e: s.target does not visibly guard s.operation's Duel.SelectMatchingCard(s.own|tp|LOCATION_MZONE|0).",
-      "disposition": "Activation uses s.options to validate selectable mode. The own-monster search occurs only in a banish-selected mode and both own and opposing removable monster groups are explicitly rechecked immediately before selection."
     },
     {
       "severity": "review",
@@ -169,17 +182,6 @@
       "line": 84,
       "detail": "e2: s.sptg does not visibly guard s.spop's Duel.SelectMatchingCard(s.spfilter|tp|LOCATION_HAND+LOCATION_DECK|0).",
       "disposition": "rmfilter validates that each banishable card has the corresponding named summon available; the later spfilter selection uses the code determined by the card actually banished."
-    },
-    {
-      "severity": "review",
-      "kind": "target-operation-search-mismatch",
-      "ordinal": 674,
-      "card_id": 247755865,
-      "card_name": "Kali Yuga - Angulimala",
-      "script": "c247755865.lua",
-      "line": 59,
-      "detail": "e1: s.sstg does not visibly guard s.ssop's Duel.SelectMatchingCard(s.desfilter|tp|LOCATION_HAND+LOCATION_ONFIELD|0).",
-      "disposition": "The target uses spacefilter, which includes desfilter and proves a zone exists or can be opened by the victim. Resolution selects the MZONE subset when needed, otherwise desfilter, then checks actual destruction and free zone before summoning."
     },
     {
       "severity": "review",
@@ -217,17 +219,6 @@
     {
       "severity": "review",
       "kind": "target-operation-search-mismatch",
-      "ordinal": 108,
-      "card_id": 259679619,
-      "card_name": "City Within the Grand Blue",
-      "script": "c259679619.lua",
-      "line": 51,
-      "detail": "e1: s.thtg does not visibly guard s.thop's Duel.SelectMatchingCard(aux.NecroValleyFilter(s.thfilter)|tp|LOCATION_DECK+LOCATION_GRAVE|0).",
-      "disposition": "The activation search is optional, so the card may be activated with no target. Resolution correctly applies Necrovalley legality before offering and selecting the search."
-    },
-    {
-      "severity": "review",
-      "kind": "target-operation-search-mismatch",
       "ordinal": 542,
       "card_id": 259783008,
       "card_name": "Wyvernal Caudina",
@@ -248,7 +239,92 @@
       "disposition": "Surge checks a free pointed zone and supporting Ohmenchanic at activation, then recomputes the surviving pointed zones at resolution. It correctly does nothing if the source or required graph is lost. Thirteen delayed-trigger engine cases verify interruptions and zone changes."
     }
   ],
-  "stale_reviewed_findings": [],
+  "stale_reviewed_findings": [
+    {
+      "script": "c221759221.lua",
+      "script_sha256": "258e2125946d9d80599b3eb78ae8ca379923829460e5b142980b0f2edf27ec20",
+      "kind": "target-operation-search-mismatch",
+      "line": 88,
+      "reason": "The activation guard requires a hand card able to return to the Deck. The operation's revflagfilter identifies the separately revealed mandatory subset before selecting any additional able cards."
+    },
+    {
+      "script": "c222654570.lua",
+      "script_sha256": "589db8a7afbb0064b02a27630a9847d9551ffe7bba3515fdcc72e6f755c2ce04",
+      "kind": "target-operation-search-mismatch",
+      "line": 71,
+      "reason": "The SZONE monster search is an optional follow-up after placing the first card and is independently guarded inside the operation."
+    },
+    {
+      "script": "c224751741.lua",
+      "script_sha256": "8fb3b581d0cc16176d86c19c32666ef21e0149afbb932b7176be6f99711907ee",
+      "kind": "target-operation-search-mismatch",
+      "line": 88,
+      "reason": "Fusion materials are collected after the mandatory Token is created; the activation guard separately proves a Dragon material and a summonable named Fusion."
+    },
+    {
+      "script": "c224751741.lua",
+      "script_sha256": "8fb3b581d0cc16176d86c19c32666ef21e0149afbb932b7176be6f99711907ee",
+      "kind": "target-operation-search-mismatch",
+      "line": 95,
+      "reason": "The second material-group read applies the selected Fusion Monster to the same post-Token material pool; activation legality is established by dragonmat and fusfilter."
+    },
+    {
+      "script": "c239245471.lua",
+      "script_sha256": "4cc17955ed2e61f6b9f9d4493a26a1d3645011c7b6ff509186f35ba18d4a634b",
+      "kind": "target-operation-search-mismatch",
+      "line": 84,
+      "reason": "Fusion materials are collected after the mandatory Token is created; the activation guard separately proves a Dragon material and a summonable named Fusion."
+    },
+    {
+      "script": "c239245471.lua",
+      "script_sha256": "4cc17955ed2e61f6b9f9d4493a26a1d3645011c7b6ff509186f35ba18d4a634b",
+      "kind": "target-operation-search-mismatch",
+      "line": 91,
+      "reason": "The second material-group read applies the selected Fusion Monster to the same post-Token material pool; activation legality is established by dragonmat and fusfilter."
+    },
+    {
+      "script": "c259679619.lua",
+      "script_sha256": "49df75a3b346cc05e4af57e70bba003d56c87eefad178548d9821b97925a22f1",
+      "kind": "target-operation-search-mismatch",
+      "line": 51,
+      "reason": "The activation search is optional, so the card may be activated with no target. Resolution correctly applies Necrovalley legality before offering and selecting the search."
+    },
+    {
+      "script": "c238273770.lua",
+      "script_sha256": "a269f9dcbb1a5afc99299b8b6a41ff2bb44d25d0698d82b7cc414d9dfc30ab7e",
+      "kind": "target-operation-search-mismatch",
+      "line": 148,
+      "reason": "The cost returns this monster to hand and frees its Main Monster Zone. recruittg uses precruitfilter with the pre-cost released monster and a prospective self-Summon check; recruitop uses spfilter on the post-cost state. Both filters enforce the same archetype, monster, face-up Extra Deck and Summonability constraints; the zone predicates intentionally differ across payment."
+    },
+    {
+      "script": "c238276251.lua",
+      "script_sha256": "b8182f05ee5c90319e289a1b69293e90e8ba42a844144310db66de3fb3cd56e2",
+      "kind": "target-operation-search-mismatch",
+      "line": 59,
+      "reason": "This optional activation follow-up is chosen in acttg only if activationvictim exists; that predicate requires a destructible card and both retrieval destinations (including a victim that will reach GY). actop checks its activation label and card relation, selects a destructible victim, then separately rechecks both retrieval pools after destruction. The broad resolution selection is intentional, not an unguarded mandatory activation."
+    },
+    {
+      "script": "c238276252.lua",
+      "script_sha256": "a32a0e883be8291675331b52f227b04e0f68695558291dd854d6dfab2aee66fc",
+      "kind": "target-operation-search-mismatch",
+      "line": 51,
+      "reason": "The activation requires deslegal, which combines the same desfilter with prospective zone availability after destruction. Resolution selects with desfilter, destroys it, then independently rechecks the two-monster Summon legality and two free zones before Summoning. Different predicates account for the prospective and actual post-destruction states."
+    },
+    {
+      "script": "c239932270.lua",
+      "script_sha256": "b1d27a4598c05f176172a1aeef171baf4f7c453775ce23c7783baa8db3178fa9",
+      "kind": "target-operation-search-mismatch",
+      "line": 76,
+      "reason": "Activation uses s.options to validate selectable mode. The own-monster search occurs only in a banish-selected mode and both own and opposing removable monster groups are explicitly rechecked immediately before selection."
+    },
+    {
+      "script": "c247755865.lua",
+      "script_sha256": "de672bc9869379b37d627762d7c875fa616e26a71d0c644fd9450da99b3bded9",
+      "kind": "target-operation-search-mismatch",
+      "line": 59,
+      "reason": "The target uses spacefilter, which includes desfilter and proves a zone exists or can be opened by the victim. Resolution selects the MZONE subset when needed, otherwise desfilter, then checks actual destruction and free zone before summoning."
+    }
+  ],
   "cards": [
     {
       "ordinal": 404,
@@ -308,7 +384,7 @@
       "parsed": true,
       "effects": 4,
       "callbacks": 5,
-      "searches": 6
+      "searches": 5
     },
     {
       "ordinal": 157,
@@ -333,7 +409,7 @@
     {
       "ordinal": 178,
       "card_id": 211086520,
-      "card_name": "Recollection: Static, Lead, and Nerve",
+      "card_name": "Recollection: Static, Lead and Nerve",
       "script": "c211086520.lua",
       "parsed": true,
       "effects": 1,
@@ -946,7 +1022,7 @@
       "card_name": "Nautical Adventures & Torrential Seas",
       "script": "c218905439.lua",
       "parsed": true,
-      "effects": 5,
+      "effects": 7,
       "callbacks": 6,
       "searches": 10
     },
@@ -1056,8 +1132,8 @@
       "card_name": "Shining Brigade - Heartbeat Division",
       "script": "c220124524.lua",
       "parsed": true,
-      "effects": 5,
-      "callbacks": 9,
+      "effects": 3,
+      "callbacks": 7,
       "searches": 2
     },
     {
@@ -1106,7 +1182,7 @@
       "card_name": "Scarlet Seareef & the Nautical Creatures",
       "script": "c220749574.lua",
       "parsed": true,
-      "effects": 7,
+      "effects": 9,
       "callbacks": 9,
       "searches": 12
     },
@@ -1296,7 +1372,7 @@
       "card_name": "Nautical Backwashing & Oceanic Waves",
       "script": "c223158720.lua",
       "parsed": true,
-      "effects": 4,
+      "effects": 6,
       "callbacks": 4,
       "searches": 11
     },
@@ -1506,7 +1582,7 @@
       "card_name": "Evander Coldwater & the Nautical Abyss",
       "script": "c225109525.lua",
       "parsed": true,
-      "effects": 4,
+      "effects": 6,
       "callbacks": 4,
       "searches": 8
     },
@@ -1823,7 +1899,7 @@
     {
       "ordinal": 182,
       "card_id": 229875953,
-      "card_name": "Teleum Mortis",
+      "card_name": "Telemum Mortis",
       "script": "c229875953.lua",
       "parsed": true,
       "effects": 4,
@@ -1983,7 +2059,7 @@
     {
       "ordinal": 180,
       "card_id": 231872299,
-      "card_name": "Recollection: the Mine",
+      "card_name": "Recollection: The Mine",
       "script": "c231872299.lua",
       "parsed": true,
       "effects": 3,
@@ -2078,7 +2154,7 @@
       "parsed": true,
       "effects": 3,
       "callbacks": 6,
-      "searches": 4
+      "searches": 5
     },
     {
       "ordinal": 226,
@@ -2243,7 +2319,7 @@
     {
       "ordinal": 179,
       "card_id": 234984156,
-      "card_name": "Recollection: a Lesson in Iron",
+      "card_name": "Recollection: A Lesson in Iron",
       "script": "c234984156.lua",
       "parsed": true,
       "effects": 4,
@@ -2988,7 +3064,7 @@
       "parsed": true,
       "effects": 5,
       "callbacks": 9,
-      "searches": 10
+      "searches": 9
     },
     {
       "ordinal": 406,
@@ -3418,7 +3494,7 @@
       "parsed": true,
       "effects": 5,
       "callbacks": 6,
-      "searches": 2
+      "searches": 3
     },
     {
       "ordinal": 168,
@@ -4128,7 +4204,7 @@
       "parsed": true,
       "effects": 3,
       "callbacks": 8,
-      "searches": 9
+      "searches": 8
     },
     {
       "ordinal": 417,
@@ -4206,7 +4282,7 @@
       "card_name": "Exploring the Nautical Waters",
       "script": "c248946297.lua",
       "parsed": true,
-      "effects": 5,
+      "effects": 7,
       "callbacks": 4,
       "searches": 9
     },
@@ -4326,7 +4402,7 @@
       "card_name": "NiuHao - Zao",
       "script": "c250556612.lua",
       "parsed": true,
-      "effects": 3,
+      "effects": 4,
       "callbacks": 5,
       "searches": 3
     },
@@ -4646,8 +4722,8 @@
       "card_name": "Shining Brigade - Joyous Division",
       "script": "c255668557.lua",
       "parsed": true,
-      "effects": 4,
-      "callbacks": 8,
+      "effects": 2,
+      "callbacks": 6,
       "searches": 2
     },
     {
@@ -5136,7 +5212,7 @@
       "card_name": "Bobbie Bluefin & the Nautical Nocturnes",
       "script": "c259114562.lua",
       "parsed": true,
-      "effects": 5,
+      "effects": 7,
       "callbacks": 3,
       "searches": 8
     },
@@ -5728,7 +5804,7 @@
       "parsed": true,
       "effects": 3,
       "callbacks": 7,
-      "searches": 6
+      "searches": 5
     },
     {
       "ordinal": 104,
@@ -5868,7 +5944,7 @@
       "parsed": true,
       "effects": 4,
       "callbacks": 7,
-      "searches": 5
+      "searches": 6
     },
     {
       "ordinal": 509,
@@ -6726,9 +6802,9 @@
       "card_name": "Nautica Musicale",
       "script": "c259797813.lua",
       "parsed": true,
-      "effects": 3,
-      "callbacks": 5,
-      "searches": 6
+      "effects": 4,
+      "callbacks": 4,
+      "searches": 8
     },
     {
       "ordinal": 393,
@@ -7028,7 +7104,7 @@
       "parsed": true,
       "effects": 7,
       "callbacks": 4,
-      "searches": 6
+      "searches": 7
     },
     {
       "ordinal": 486,

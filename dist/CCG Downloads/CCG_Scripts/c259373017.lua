@@ -57,9 +57,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.BreakEffect()
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
 		local g=Duel.SelectMatchingCard(tp,s.searchfilter,tp,LOCATION_DECK,0,1,1,nil)
-		if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
-			Duel.ConfirmCards(1-tp,g)
-		end
+		if #g>0 and Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil) if #received>0 then Duel.ConfirmCards(1-tp,received) end end
 	end
 end
 function s.drcon(e,tp,eg,ep,ev,re,r,rp)

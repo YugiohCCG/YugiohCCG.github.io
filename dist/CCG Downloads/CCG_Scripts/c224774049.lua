@@ -32,9 +32,10 @@ function s.activate(e,tp,eg,ep,ev,re,r,rp)
 	local added=false
 	if #tg>0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
-		local sg=tg:Select(tp,1,1,nil)
-		if Duel.SendtoHand(sg,nil,REASON_EFFECT)>0 then
-			Duel.ConfirmCards(1-tp,sg)
+		local tc=tg:Select(tp,1,1,nil):GetFirst()
+		if tc and Duel.SendtoHand(tc,nil,REASON_EFFECT)>0
+			and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then
+			Duel.ConfirmCards(1-tp,tc)
 			added=true
 		end
 	end

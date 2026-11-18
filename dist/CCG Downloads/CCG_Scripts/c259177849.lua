@@ -66,7 +66,7 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 		op=1
 	end
 	if op==0 then
-		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 then
+		if Duel.SendtoHand(tc,nil,REASON_EFFECT)>0 and tc:IsLocation(LOCATION_HAND) and tc:IsControler(tp) then
 			Duel.ConfirmCards(1-tp,tc)
 		end
 	else
@@ -126,7 +126,7 @@ end
 function s.tdop(e,tp,eg,ep,ev,re,r,rp)
 	local tc=Duel.GetFirstTarget()
 	if not (tc and tc:IsRelateToEffect(e) and s.tdfilter(tc)) then return end
-	if Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==0 then return end
+	if Duel.SendtoDeck(tc,nil,SEQ_DECKSHUFFLE,REASON_EFFECT)==0 or not tc:IsLocation(LOCATION_DECK+LOCATION_EXTRA) then return end
 	local g=Duel.GetMatchingGroup(s.deffilter,tp,LOCATION_MZONE,0,nil)
 	if #g==0 then return end
 	for gc in aux.Next(g) do

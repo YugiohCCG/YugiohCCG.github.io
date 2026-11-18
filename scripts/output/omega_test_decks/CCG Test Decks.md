@@ -3065,15 +3065,15 @@ File: `CCG Test - Vir Pedicae Mortis.ydk`
 
 - 3× Pedicae's Papa (`241868535`) — engine
 - 3× Vir Pedicae Mortis - Entity's Happy Servant (`215984744`) — engine
-- 3× Recollection: the Mine (`231872299`) — engine
+- 3× Recollection: The Mine (`231872299`) — engine
 - 3× Vir Pedicae Mortis - Fearless Hunter (`244778917`) — engine
 - 3× Vir Pedicae Mortis - the Unhallowed Warden (`243144691`) — engine
 - 3× Entity's Realm - Pedicae Estate (`236744343`) — engine
-- 2× Recollection: Static, Lead, and Nerve (`211086520`) — engine
+- 2× Recollection: Static, Lead and Nerve (`211086520`) — engine
 - 2× Bear Trap (`251699681`) — engine
+- 2× Recollection: A Lesson in Iron (`234984156`) — engine
 - 2× Recollection: Kaboom Papa (`241447408`) — engine
-- 2× Recollection: a Lesson in Iron (`234984156`) — engine
-- 2× Teleum Mortis (`229875953`) — engine
+- 2× Telemum Mortis (`229875953`) — engine
 - 1× Remembrance of the Melody (`216620496`) — custom side-deck test option
 - 1× Interwire Dimensquid (`253128790`) — custom side-deck test option
 - 1× Frozen Girl & Blood Moon (`222676270`) — custom side-deck test option

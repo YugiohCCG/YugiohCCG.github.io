@@ -19,8 +19,9 @@ function s.initial_effect(c)
 	local e2=Effect.CreateEffect(c)
 	e2:SetDescription(aux.Stringid(STRING_ID,3))
 	e2:SetCategory(CATEGORY_TOHAND)
-	e2:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_TRIGGER_O)
+	e2:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e2:SetCode(EVENT_REMOVE)
+	e2:SetRange(LOCATION_REMOVED)
 	e2:SetProperty(EFFECT_FLAG_DELAY)
 	e2:SetCondition(s.thcon)
 	e2:SetTarget(s.thtg)
@@ -59,7 +60,6 @@ function s.target(e,tp,eg,ep,ev,re,r,rp,chk)
 	end
 end
 function s.activate(e,tp,eg,ep,ev,re,r,rp)
-	if not e:GetHandler():IsRelateToEffect(e) then return end
 	if e:GetLabel()==0 then
 		if not Duel.IsExistingMatchingCard(s.posfilter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil) then return end
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_POSCHANGE)
@@ -83,7 +83,7 @@ function s.stfilter(c)
 	return c:IsFaceup() and c:IsSetCard(SET_SACRED_TREASURE)
 end
 function s.thcon(e,tp,eg,ep,ev,re,r,rp)
-	return eg:IsContains(e:GetHandler()) and eg:IsExists(s.stfilter,1,e:GetHandler())
+	return eg and eg:IsContains(e:GetHandler()) and eg:IsExists(s.stfilter,1,e:GetHandler())
 end
 function s.thfilter(c)
 	return c:IsFaceup() and c:IsAbleToHand()

@@ -23,7 +23,8 @@ function CCGSylvan.Excavate(e,tp,ct,addmax)
    Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
    local adds=choices:Select(tp,1,math.min(addmax,#choices),nil)
    Duel.SendtoHand(adds,nil,REASON_EFFECT)
-   Duel.ConfirmCards(1-tp,adds)
+   local added=adds:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+   if #added>0 then Duel.ConfirmCards(1-tp,added) end
    rest:Sub(adds)
   end
  end
@@ -90,9 +91,9 @@ function s.operation(e,tp)
  if #g<2 then return end
  --Two surviving targets can be returned even when the third has left the GY.
  if #g==2 then
-  if g:FilterCount(Card.IsAbleToDeck,nil)==2
-   and Duel.SendtoDeck(g,nil,SEQ_DECKTOP,REASON_EFFECT)==2 then
-   Duel.SortDecktop(tp,tp,2)
+  if g:FilterCount(Card.IsAbleToDeck,nil)==2 then
+   Duel.SendtoDeck(g,nil,SEQ_DECKTOP,REASON_EFFECT)
+   if g:FilterCount(Card.IsLocation,nil,LOCATION_DECK)==2 then Duel.SortDecktop(tp,tp,2) end
   end
   return
  end
@@ -102,7 +103,8 @@ function s.operation(e,tp)
  Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
  local sc=choices:Select(tp,1,1,nil):GetFirst()
  g:RemoveCard(sc)
- if Duel.SendtoDeck(g,nil,SEQ_DECKTOP,REASON_EFFECT)~=2 then return end
+ Duel.SendtoDeck(g,nil,SEQ_DECKTOP,REASON_EFFECT)
+ if g:FilterCount(Card.IsLocation,nil,LOCATION_DECK)~=2 then return end
  Duel.SortDecktop(tp,tp,2)
  Duel.BreakEffect()
  if sc:IsRelateToEffect(e) and Duel.GetLocationCount(tp,LOCATION_MZONE)>0

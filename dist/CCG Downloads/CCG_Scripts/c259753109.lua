@@ -115,7 +115,9 @@ function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	g=g:Filter(Card.IsRelateToEffect,nil,e)
 	g=g:Filter(aux.NecroValleyFilter(s.thfilter),nil,nil)
 	if #g>0 then
-		Duel.SendtoHand(g,nil,REASON_EFFECT)
-		Duel.ConfirmCards(1-tp,g)
+		if Duel.SendtoHand(g,nil,REASON_EFFECT)>0 then
+			local received=g:Filter(function(c) return c:IsLocation(LOCATION_HAND) and c:IsControler(tp) end,nil)
+			if #received>0 then Duel.ConfirmCards(1-tp,received) end
+		end
 	end
 end

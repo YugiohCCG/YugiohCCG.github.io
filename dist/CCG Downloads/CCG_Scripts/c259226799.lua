@@ -76,7 +76,8 @@ end
 function s.thop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
 	if c:IsRelateToEffect(e) and aux.NecroValleyFilter()(c)
-		and Duel.SendtoHand(c,nil,REASON_EFFECT)>0 then
+		and Duel.SendtoHand(c,nil,REASON_EFFECT)>0
+		and c:IsLocation(LOCATION_HAND) and c:IsControler(tp) then
 		local ct=s.drawcount(tp)
 		if ct>0 then
 			Duel.BreakEffect()

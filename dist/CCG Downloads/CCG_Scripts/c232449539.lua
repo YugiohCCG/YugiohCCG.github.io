@@ -69,19 +69,21 @@ end
 function s.retop(e,tp,eg,ep,ev,re,r,rp)
 	local g=e:GetLabelObject()
 	if g then
-		local rg=g:Filter(Card.IsLocation,nil,LOCATION_REMOVED)
+		local rg=g:Filter(function(c,fid) return c:IsLocation(LOCATION_REMOVED) and c:GetFlagEffectLabel(id+300)==fid end,nil,e:GetLabel())
 		if #rg>0 then Duel.SendtoGrave(rg,REASON_EFFECT+REASON_RETURN) end
 		g:DeleteGroup()
 	end
 end
 function s.registerreturn(e,tp,g)
 	if #g==0 then return end
+	local fid=e:GetHandler():GetFieldID() for tc in aux.Next(g) do tc:RegisterFlagEffect(id+300,RESET_EVENT+RESETS_STANDARD,0,1,fid) end
 	g:KeepAlive()
 	local e1=Effect.CreateEffect(e:GetHandler())
 	e1:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_CONTINUOUS)
 	e1:SetCode(EVENT_PHASE+PHASE_END)
 	e1:SetCountLimit(1)
 	e1:SetLabelObject(g)
+	e1:SetLabel(fid)
 	e1:SetOperation(s.retop)
 	e1:SetReset(RESET_PHASE+PHASE_END)
 	Duel.RegisterEffect(e1,tp)
