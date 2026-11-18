@@ -5,12 +5,12 @@ This report implements the audit instruction to record any case requiring manual
 ## Outcome
 
 - Active CCG cards covered by the hash-pinned effect ledger: **703**
-- Current card reviews: **381**
-- Objectively reviewed as pass/fixed: **666**
-- Skipped with a remaining ruling or engine limitation: **37**
-- Additional fixed-card regression scenarios retained: **70**
+- Current card reviews: **703**
+- Objectively reviewed as pass/fixed: **662**
+- Skipped with a remaining ruling or engine limitation: **41**
+- Additional fixed-card regression scenarios retained: **68**
 - Total interactive/manual scenarios documented: **88**
-- Reconciliation errors: **1**
+- Reconciliation errors: **0**
 
 `Skipped` means no speculative text or Lua change was made. The current implementation remains pinned by text and script hashes, and the exact unresolved question stays in the queue below.
 
@@ -40,6 +40,8 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
 | 139 | To Proto Psychi (`217332244`) | UNSUPPORTED | Damage and stat-layer behavior | 100-LP increment UI. |
 | 165 | Eldora, the Intergalactic Empire (`214552846`) | UNSUPPORTED | Copied, rewritten, and resolving effects | 12 source typo / operation-info inference. |
 | 167 | Frozen Girl & Blood Moon (`222676270`) | UNSUPPORTED | Copied, rewritten, and resolving effects | classifier false-positive/negative testing. |
+| 203 | Evander Coldwater & the Nautical Abyss (`225109525`) | UNSUPPORTED | Summon, material, and selection UI | Returned monster can become eligible for the subsequent forced summon; confirm that this matches intended sequencing. |
+| 207 | Nautical Adventures & Torrential Seas (`218905439`) | UNSUPPORTED | Summon, material, and selection UI | A returned monster may be eligible for the subsequent forced summon; confirm intended pool and branch choice. |
 | 210 | Revelation of Crying Chaos (`234296128`) | UNSUPPORTED | Fresh official-reference audit (static decision) | Omega can inspect declared operation-info categories and chain targets, but arbitrary Lua operations need not declare either, so the engine cannot determine every effect that would make a controlled card leave the field. Exact resolution requires an engine API exposing the resolving operation's affected cards/destinations, or card text restricted to declared targets and enumerated leave-field categories. |
 | 237 | Windborne Eye of the Storm (`256110263`) | UNSUPPORTED | Summon, material, and selection UI | The script uses a temporary synthetic Token material to emulate "treated as a Synchro Summon using only Windborne"; this bespoke engine workaround needs live validation. |
 | 245 | The One Called Forth (`226827770`) | UNSUPPORTED | Fresh official-reference audit (static decision) | Omega exposes effect categories, listed card codes, handlers, and current targets, but cannot introspect every future monster choice made inside an arbitrary Lua operation. Exact resolution requires engine operation introspection for possible Summoned codes, or wording limited to effects that target/list the declared monster or another mechanically enumerable pool. |
@@ -55,6 +57,8 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
 | 526 | Glitchling Corruption (`259546637`) | UNSUPPORTED | Fresh official-reference audit (static decision) | Genuine engine limitation: Omega has no card-local, generic hook that adds a counter-derived scalar to all Cyberse Ritual Summon material checks and atomically removes the chosen counters. Monkey-patching shared Ritual helpers would miss bespoke Ritual scripts and affect unrelated cards globally. |
 | 527 | Glitchling Hexatron (`259253032`) | MANUAL_RULING | Fresh official-reference audit (static decision) | Genuine source-text ambiguity: this Link-3 monster has no printed Link Material line. The current 2-3 Cyberse implementation is executable, but text, helpers, official scripts, and DB contain no evidence that distinguishes it from exactly 3 Cyberse, 2+ Effect Monsters, or an archetype requirement. |
 | 543 | Wyvernal Myops (`259431066`) | MANUAL_RULING | Fresh official-reference audit (static decision) | Ruling/text limitation: 'target 1 card your opponent controls' permits a face-down Monster or Set Spell/Trap by its written target criteria, but the text never states what 'negate its effects' must do while that card is face-down. Omega's official persistent-negation helpers and analogues only define face-up, disableable targets. Resolution needed: either errata the target to '1 face-up card your opponent controls' (the current safe behavior), or provide an authoritative ruling for face-down targets, after which distg/disop can be changed to that exact behavior. No unsupported face-down lingering negation was invented. |
+| 571 | Nautica Musicale (`259797813`) | UNSUPPORTED | Fresh official-reference audit (static decision) | Existing limitation confirmed against current source and docs/CCG-ARCHETYPE-AUDIT-HANDOFF.md; scoped scripted fixtures do not prove native Omega support. |
+| 572 | Nautica Oceanica (`259941091`) | UNSUPPORTED | Fresh official-reference audit (static decision) | Existing limitation confirmed against current source and docs/CCG-ARCHETYPE-AUDIT-HANDOFF.md; scoped scripted fixtures do not prove native Omega support. |
 | 623 | Heavy-Armoured Ballista Bahariasaurus (`244168521`) | MANUAL_RULING | Fresh official-reference audit (static decision) | The custom wording adjacent zones does not define whether it includes vertical Spell/Trap zones. Current Lua destroys only the two horizontally adjacent opponent Main Monster Zones; retain this explicit interpretation pending a designer ruling. |
 | 637 | Heart of the Hydra (`239935093`) | UNSUPPORTED | Fresh official-reference audit (static decision) | The current Deck-destination replacement also prevents fixed top/bottom effect returns. The printed protection only forbids shuffling Hydra monsters into the Deck; this narrower distinction is not implemented by the current replacement. |
 
@@ -76,6 +80,8 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
   - Why skipped: EVENT_MOVE does not identify whether movement into a Deck was a shuffle, and it cannot reliably cover cost-based or rule-based shuffles. The current REASON_EFFECT tracker is only an approximation. Resolution: rewrite the condition as 'If your Stain monster was moved into a Deck by a card effect this turn', or add a core shuffle event/reason and use it in c232449539.lua.
 - **MANUAL_RULING — Current source delta; all printed effects reconciled with preceding review**
   - Current implementation: Deck-shuffle condition includes costs as well as effects; material payment must move the full selected groups.
+- **MANUAL_RULING — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: Delayed End Phase return now tracks the actual banished field instance with resettable flag, excluding cards moved out and rebanished in between.
 
 ### Talismandrake Arms United (`215034223`)
 
@@ -98,12 +104,16 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
 - **UNSUPPORTED — If this card is Special Summoned: You can add 1 "Talismandrake Arms" Spell/Trap from your Deck or GY to your hand, or equip it to a DARK Pyro monster you control as if it were equipped by that Spell/Trap's effect.**
   - Current implementation: The add/equip branch recreates the selected Arms card's effects; copied Sabre/Shield values now count only Equip Spells attached to controlled monsters, while Shield uses the available destroy/send replacement hooks. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.
   - Why skipped: The copied Blaze Shield behavior is incomplete for return-to-hand, return-to-Deck, and banish departures because Omega has no generic optional all-destination leave-field replacement hook. Resolution: narrow Blaze Shield's text, or add a generic optional leave-field replacement hook and use it in c253552927.lua's recreated Shield effects.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted.
 
 ### Talismandrake Enkindle (`241706191`)
 
 - **UNSUPPORTED — If this card is Special Summoned: You can add 1 "Talismandrake Arms" Spell/Trap from your Deck or GY to your hand, or equip it to a DARK Pyro monster you control as if it were equipped by that Spell/Trap's effect.**
   - Current implementation: The add/equip branch recreates the selected Arms card's effects; copied Sabre/Shield values now count only Equip Spells attached to controlled monsters, while Shield uses available destroy/send replacement hooks. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.
   - Why skipped: The copied Blaze Shield behavior is incomplete for return-to-hand, return-to-Deck, and banish departures because Omega has no generic optional all-destination leave-field replacement hook. Resolution: narrow Blaze Shield's text, or add a generic optional leave-field replacement hook and use it in c241706191.lua's recreated Shield effects.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted.
 
 ### Maiden of Talismandrakes Seraphina (`218142234`)
 
@@ -115,6 +125,8 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
   - Why skipped: If this effect equips Blaze Shield, its recreated optional leave-field replacement cannot cover return-to-hand, return-to-Deck, or banish departures with current Omega hooks. Resolution: narrow Blaze Shield's text, or add a generic optional leave-field replacement hook and use it in c218142234.lua's recreated Shield effects.
 - **UNSUPPORTED — Current source delta; all printed effects reconciled with preceding review**
   - Current implementation: Pendulum cost checks available monster space after all three distinct-name returns; the unrestricted Pendulum effect has no invented once-per-turn limit, and destruction resolves independently of the handler.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted.
 
 ### The Hanging Frute (`213266433`)
 
@@ -131,18 +143,24 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
   - Why skipped: Official Ursarctic Extra Deck monsters use bespoke non-Synchro EFFECT_SPSUMMON_PROC scripts that read card Levels directly and expose no material-side hook for Hextanius to become Level 7/8 and a non-Tuner. Only the CCG procedures that explicitly call Hextanius-aware helpers can honor the text. Resolution: update every Ursarctic summon procedure that must recognize Hextanius (including official scripts), or revise the text to limit the substitution to named CCG Ursarctic monsters.
 - **UNSUPPORTED — Current source delta; all printed effects reconciled with preceding review**
   - Current implementation: Custom summon clears previous failure state and records incomplete two-material payment before the engine checks the permitted zone.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: GY/banishment shuffle follow-up draw requires at least one actual Deck/Extra receipt after resolving movement, while retaining Necrovalley check and up-to-three selection.
 
 ### Takama No Hara (`229996802`)
 
 - **UNSUPPORTED — Banish this from GY, target a Spirit you control; it cannot return to hand by card effect until End Phase.**
   - Current implementation: The selected face-up Spirit receives EFFECT_CANNOT_TO_HAND through the End Phase; this enforces the destination but the core prohibition is reason-agnostic. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.
   - Why skipped: EFFECT_CANNOT_TO_HAND is reason-agnostic, so the current Lua also blocks returning the target as a cost. Master Rule Omega has no EFFECT_CANNOT_TO_HAND_EFFECT equivalent that limits the prohibition to card effects. Resolution: remove 'by card effect' from the text, or add an effect-only hand-return prohibition to the engine and use it in c229996802.lua.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted.
 
 ### A Stainless Story (`245970073`)
 
 - **UNSUPPORTED — This effect becomes that monster’s effect if it is Normal or Special Summoned.**
   - Current implementation: The five currently eligible Main Deck Stain summon effects are manually mirrored; no dynamic monster-trigger object is invoked from the sent card. Adversarial re-review confirmed this remains non-exact. Adversarial re-review confirmed this remains non-exact.
   - Why skipped: CheckActivateEffect can reproduce activatable Spell/Trap effects, but Omega has no generic API that selects and rebinds an arbitrary monster's Normal/Special Summon trigger, event group, targets, labels, and operation. The Lua manually mirrors only the currently listed Stain monsters. Resolution: enumerate the supported monster names in the printed text and maintain the manual map, or add a core trigger-copy API and replace the hard-coded branches in c245970073.lua.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: Copied Stain-effect helpers require actual Hand or Deck/Extra receipt before their dependent self-shuffle; add-or-Set helper confirms only successful Hand additions. The copied-effect selection/cost and separate draw effect are unchanged.
 
 ### Otakemaru the Accuser (`221855414`)
 
@@ -167,6 +185,8 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
   - Why skipped: Omega stores some Card TurnCounter values but has no enumerable 'turn count' for every active effect or reset duration. The phrase 'all effects' turn count' also does not define which players, cards, locations, counters, or durations are included. Resolution: define the exact counters/effects and locations to advance, or replace the clause with a supported operation such as Pyro Clock of Destiny's global turn-count advance.
 - **MANUAL_RULING — Current source delta; all printed effects reconciled with preceding review**
   - Current implementation: Custom summon aborts its zone allocation if the required banish payment fails and clears the failure flag on the next attempt.
+- **MANUAL_RULING — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted.
 
 ### Priestess of Nephthys (`211964444`)
 
@@ -175,6 +195,8 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
   - Why skipped: 'That destroyed card's Standby Phase-activated effect' does not identify which effect to apply when the monster has multiple Standby Phase triggers. Omega also has no API for invoking one arbitrary trigger outside its event while preserving its event data and targeting semantics. Resolution: identify the intended effect by exact text/index or restrict the eligible monsters to an enumerated list, then script those operations; otherwise add a core trigger-invocation API.
 - **MANUAL_RULING — Current source delta; all printed effects reconciled with preceding review**
   - Current implementation: Standby effect is selected explicitly and invoked with its own handler and effect relation instead of an arbitrary activation effect.
+- **MANUAL_RULING — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted.
 
 ### Polemistis gia Ataxia (`254065048`)
 
@@ -183,6 +205,8 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
   - Why skipped: Omega has no event reporting historical ATK/DEF loss. The text also omits whether gains accumulate, disappear when the losing monster leaves, or continuously track current deficits; the Lua currently models live deficits from base values. Resolution: state the duration and whether the gain is event-based or continuously recalculated. Then implement that ruling, adding an ATK/DEF-loss event to the engine if historical loss must be tracked.
 - **UNSUPPORTED — Current source delta; all printed effects reconciled with preceding review**
   - Current implementation: The required Tokens must be controlled; incomplete Tribute payment prevents summoning, while a properly summoned copy can later be revived.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted.
 
 ### Stellaer of the Gems (`225106953`)
 
@@ -214,6 +238,22 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
 - **UNSUPPORTED — Current source delta; all printed effects reconciled with preceding review**
   - Current implementation: The negation condition recognizes registered face-up-placement effects in addition to Set and Equip categories.
 
+### Evander Coldwater & the Nautical Abyss (`225109525`)
+
+- **UNSUPPORTED — Once per turn Quick: detach 1, target opponent monster; return it, then opponent Normal/Special Summons from hand in Attack with ATK 0.**
+  - Current implementation: Activation excludes an ordinary opponent monster returned by this effect when that monster would be the only legal opponent Hand summon. Current canoppsummon inspects current Hand, not the prospective returned card.
+- **UNSUPPORTED — Once per turn Quick return and opponent Hand summon**
+  - Current implementation: Activation excludes an ordinary opponent monster returned by this effect when that monster would be the only legal opponent Hand summon. Current canoppsummon inspects current Hand, not the prospective returned card.
+  - Why skipped: Existing limitation confirmed against current source and docs/CCG-ARCHETYPE-AUDIT-HANDOFF.md; scoped scripted fixtures do not prove native Omega support.
+
+### Nautical Adventures & Torrential Seas (`218905439`)
+
+- **UNSUPPORTED — Target your Nautica and an opponent monster; return both, then the opponent Normal or Special Summons a hand monster in Attack Position with ATK 0. HOPT.**
+  - Current implementation: Activation excludes an ordinary opponent monster returned by this effect when that monster would be the only legal opponent Hand summon. Current canoppsummon inspects current Hand, not the prospective returned card.
+- **UNSUPPORTED — Return both targets, then opponent Hand summon**
+  - Current implementation: Activation excludes an ordinary opponent monster returned by this effect when that monster would be the only legal opponent Hand summon. Current canoppsummon inspects current Hand, not the prospective returned card.
+  - Why skipped: Existing limitation confirmed against current source and docs/CCG-ARCHETYPE-AUDIT-HANDOFF.md; scoped scripted fixtures do not prove native Omega support.
+
 ### Revelation of Crying Chaos (`234296128`)
 
 - **UNSUPPORTED — When your opponent activates a card or effect that would make a card you control leave the field (Quick Effect): You can Tribute 1 "Crying Chaos" monster you control; Negate that effect, and if you do, this card gains ATK equal to the Tributed monster's combined ATK and DEF until the end of this turn.**
@@ -241,12 +281,16 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
   - Why skipped: The quoted conjunction names no card in the current 577-card database: no Spell/Trap contains both 'Verse IX' and 'Chapter II'. Exact resolution requires adding/naming the intended card (for example Chapter II Verse IX) or correcting the printed quoted name; until then only the unambiguous Eldora branch can be implemented.
 - **MANUAL_RULING — Current source delta; all printed effects reconciled with preceding review**
   - Current implementation: Named field support must be face-up so hidden field cards do not satisfy a name condition.
+- **MANUAL_RULING — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: Both mutually exclusive recovery/search branches confirm only the selected card actually received in own Hand.
 
 ### Chapter Ii Verse Iv (`241957394`)
 
 - **UNSUPPORTED — When your opponent activates a card effect: You can show 1 "Dysmandr, the Depraevity of Worlds" in your Extra Deck and choose 1 Effect Monster you control; Send 1 "Extinction of Dysmandr" from your Deck to the GY (but shuffle it into the Deck during the End Phase), and if you do, your opponent's activated card effect becomes the sent card's effect that Tributes a "Protogenic Essence Token" to activate.**
   - Current implementation: After the send, ChangeTargetCard changes the original chain target and ChangeChainOperation installs repop. repop asks the original activating player to release a Token during resolution, snapshots the chosen monster, destroys other matching Effect Monsters, then the chosen one.
   - Why skipped: ChangeChainOperation can replace a resolving operation, but it cannot retroactively apply another card's activation condition or Tribute cost after the Chain Link was activated. The current Token release therefore occurs during resolution as REASON_EFFECT and cannot exactly become the copied activation procedure. Exact resolution requires revised text that copies only Extinction's resolving operation (and explicitly places any Token release at resolution), or a source effect whose activation legality/cost is checked before this Chain Link is created.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: Replacement chain operation stores the selected monster on the replaced effect and establishes its effect relation, avoiding an unrelated GetFirstTarget after chain target replacement.
 
 ### Myutant Amalgamate (`211699737`)
 
@@ -255,12 +299,16 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
   - Why skipped: The text does not identify which of an arbitrary monster's effects is meant or provide that effect's event, activation condition, cost, target, or parameters. CopyEffect grants the card's copyable effects for a duration; it cannot make this already-resolving effect become and execute an unspecified original effect. Exact resolution requires wording that grants copied effects for a stated duration, or selection of one specifically activatable effect with defined cost/target semantics.
 - **MANUAL_RULING — Current source delta; all printed effects reconciled with preceding review**
   - Current implementation: Reveal choice must have the corresponding monster available for banishment; copied destruction triggers survive the move into the graveyard.
+- **MANUAL_RULING — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: Set filtering allows Field Spells with full ordinary Spell/Trap zones while ordinary cards still require an available slot at activation and resolution.
 
 ### Ghostrick Cutifer (`228472690`)
 
 - **UNSUPPORTED — Once per turn: Target 1 other Ghostrick monster you control; attach this card to it as material. Transfer this card's materials to that monster.**
   - Current implementation: The implementation restricts the other controlled Ghostrick target to a face-up Xyz Monster, transfers this card's materials, then overlays this card onto it.
   - Why skipped: Only Xyz Monsters can legally hold Xyz Materials, while the printed target is any other Ghostrick monster. The current Xyz-only restriction is executable but narrower than the text. Exact resolution requires changing the target to 'Ghostrick Xyz Monster' or adding unsupported engine/card-rule semantics that allow non-Xyz monsters to hold materials.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: Set relocation distinguishes Field, monster and ordinary zones; checks control-change legality for existing monsters, uses GetControl to avoid resummoning them, and clears turn-status barriers for permitted same-turn Flip Summon.
 
 ### Ghostrick Oni (`239335848`)
 
@@ -268,8 +316,11 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
   - Current implementation: After attaching a Deck card, the implementation chooses an already-controlled Rank 3 or lower Ghostrick Xyz Monster, transfers Oni's materials, and overlays Oni onto it as the closest executable approximation.
   - Why skipped: An already-controlled monster cannot be Xyz Summoned, so 'Xyz Summon ... monster you control' is internally impossible. Exact resolution requires selecting the Xyz Monster from the Extra Deck and defining its legal materials, or replacing 'Xyz Summon' with an attach/transfer instruction matching the current controlled-monster approximation.
 - **UNSUPPORTED — Also, it can activate its effects as Quick Effects this turn.**
-  - Current implementation: The selected Xyz Monster is recorded for the turn, but the Lua cannot rewrite all of its arbitrary ignition and trigger registrations into Quick Effects.
-  - Why skipped: Omega has no generic runtime API that changes every arbitrary ignition/trigger effect registered on a selected monster into a Quick Effect for one turn; an inert flag cannot do so. Exact resolution requires engine support for temporary effect-type conversion, or revised text granting one specifically scripted Quick Effect.
+  - Current implementation: Current script temporarily clones ignition effects as Quick Effects after attachment. Event-triggered and continuous effects retain original timing; the printed all-effects conversion is only partially implemented.
+  - Why skipped: Ignition timing conversion is now implemented, but the broad printed conversion and the separate controlled-monster Xyz Summon ruling remain unresolved.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: Current script temporarily clones ignition effects as Quick Effects after attachment. Event-triggered and continuous effects retain original timing; the printed all-effects conversion is only partially implemented.
+  - Why skipped: Ignition timing conversion is now implemented, but the broad printed conversion and the separate controlled-monster Xyz Summon ruling remain unresolved.
 
 ### Gravinity Nebulix (`212429024`)
 
@@ -278,6 +329,8 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
   - Why skipped: The Lua waits for EVENT_CHAIN_SOLVED and performs a second operation after the original chain link has resolved. Omega exposes no general API for injecting arbitrary text into another resolving effect, so this is only an approximation of adding the bullet at resolution.
 - **UNSUPPORTED — Current source delta; all printed effects reconciled with preceding review**
   - Current implementation: The extra effect is appended inside the same chain operation, supports multiple owners and clears per-chain wrapping state at Chain end.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: Draw requires an actual Deck/Extra return; type conversion survives Set and negation.
 
 ### Gravinity Spherix (`231088629`)
 
@@ -298,6 +351,8 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
 - **MANUAL_RULING — During the Standby Phase: You can reveal 1 Level 11 "Gravinity" Synchro Monster in your Extra Deck; for the rest of this turn, this card gains the non-activated effects of the revealed monster.**
   - Current implementation: The Standby Phase cost reveals a Level 11 Gravinity Synchro and stores its original code. For the complete current pool, copyop explicitly recreates Nebulix's resolution-addition effect or Spherix's summon reaction and Monster-Card counter effect until the End Phase. The Spherix counter condition now requires original Monster Card type.
   - Why skipped: The hard-coded branches cover both Level 11 Gravinity Synchro Monsters currently present and the copied Spherix counter test was corrected to exclude non-Monster Cards. The printed effect is still generic and cannot be implemented generically: Card.CopyEffect copies a card script wholesale, while Omega exposes no supported iterator/copier that selects only non-activated effects and safely rebinds arbitrary monster effects to a Field Spell. A future valid reveal requires a new explicit branch.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: Column reduction requires face-up archetype monster; copied conversion is nondisableable and persists through Set.
 
 ### Gravinity Sonic Scream (`238184015`)
 
@@ -306,6 +361,8 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
   - Why skipped: The Lua directly invokes the prior Effect operation with mismatched effect/context arguments. Generic effect replacement/copying is engine-sensitive and this does not reproduce target, cost, label, category, or chain metadata for every possible Gravinity Synchro effect.
 - **UNSUPPORTED — Current source delta; all printed effects reconciled with preceding review**
   - Current implementation: The optional Synchro activation If trigger is delayed.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: Monster-to-Continuous-Trap type conversion is nondisableable and persists through Set.
 
 ### Glitchling Corruption (`259546637`)
 
@@ -314,18 +371,40 @@ These cards cannot be promoted to a fully proven effect-logic pass without the l
   - Why skipped: Genuine engine limitation: Omega has no card-local, generic hook that adds a counter-derived scalar to all Cyberse Ritual Summon material checks and atomically removes the chosen counters. Monkey-patching shared Ritual helpers would miss bespoke Ritual scripts and affect unrelated cards globally.
 - **UNSUPPORTED — Current source delta; all printed effects reconciled with preceding review**
   - Current implementation: Ritual selection incorporates post-material zones and requires all releasable selected materials to leave their prior locations.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted.
 
 ### Glitchling Hexatron (`259253032`)
 
 - **MANUAL_RULING — Link Summoning procedure (no material line is present in the current printed text).**
   - Current implementation: AddLinkProcedure requires 2 or 3 Cyberse monsters for this Link-3 monster, followed by EnableReviveLimit; the current printed text still supplies no material line against which that choice can be proven.
   - Why skipped: Genuine source-text ambiguity: this Link-3 monster has no printed Link Material line. The current 2-3 Cyberse implementation is executable, but text, helpers, official scripts, and DB contain no evidence that distinguishes it from exactly 3 Cyberse, 2+ Effect Monsters, or an archetype requirement.
+- **MANUAL_RULING — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: Recovery confirms actual own-Hand subset. Counter-cost monster gets effect relation; negation requires same related instance before subsequent ATK gain.
 
 ### Wyvernal Myops (`259431066`)
 
 - **MANUAL_RULING — If this card is in your GY, and you control a "Wyvernal" Fusion monster (Quick Effect): You can banish this card from your GY and target 1 card your opponent controls; Negate its effects. You can only use this effect of "Wyvernal Myops" once per turn.**
   - Current implementation: The executable implementation uses Omega's Auxiliary.NegateAnyFilter, whose utility.lua contract is specifically 'negate the effects of a face-up card', and applies EFFECT_DISABLE/EFFECT_DISABLE_EFFECT only while the target remains face-up, related, and disableable. This is the officially supported subset, but it narrows the printed target phrase.
   - Why skipped: Ruling/text limitation: 'target 1 card your opponent controls' permits a face-down Monster or Set Spell/Trap by its written target criteria, but the text never states what 'negate its effects' must do while that card is face-down. Omega's official persistent-negation helpers and analogues only define face-up, disableable targets. Resolution needed: either errata the target to '1 face-up card your opponent controls' (the current safe behavior), or provide an authoritative ruling for face-down targets, after which distg/disop can be changed to that exact behavior. No unsupported face-down lingering negation was invented.
+
+### Nautica Musicale (`259797813`)
+
+- **UNSUPPORTED — If you activate an effect that would Special Summon a "Nautica" monster from your hand**
+  - Current implementation: A groupless operation report needs actual summon tracking to identify the selected Nautica; when that summon is negated there is no success event, so the would-Summon trigger cannot be reliably identified.
+- **UNSUPPORTED — Trigger for an activated effect that would Special Summon a Nautica from Hand**
+  - Current implementation: A groupless operation report needs actual summon tracking to identify the selected Nautica; when that summon is negated there is no success event, so the would-Summon trigger cannot be reliably identified.
+  - Why skipped: Existing limitation confirmed against current source and docs/CCG-ARCHETYPE-AUDIT-HANDOFF.md; scoped scripted fixtures do not prove native Omega support.
+
+### Nautica Oceanica (`259941091`)
+
+- **UNSUPPORTED — you can add 1 of these additional effects to that card's effect at resolution depending on where it would be Summoned from.**
+  - Current implementation: Current CHAIN_SOLVED listener cannot reliably insert this immediate-after follow-up at an intermediate Chain Link. The saved candidate was deliberately not installed because Link2 sequencing remained too late.
+- **UNSUPPORTED — Your hand: Then, immediately after this effect resolves, your opponent Normal or Special Summons 1 monster from their hand in Attack Position**
+  - Current implementation: Current CHAIN_SOLVED listener cannot reliably insert this immediate-after follow-up at an intermediate Chain Link. The saved candidate was deliberately not installed because Link2 sequencing remained too late.
+- **UNSUPPORTED — Add an outcome at resolution, immediately after that effect resolves**
+  - Current implementation: Current CHAIN_SOLVED listener cannot reliably insert this immediate-after follow-up at an intermediate Chain Link. The saved candidate was deliberately not installed because Link2 sequencing remained too late.
+  - Why skipped: Existing limitation confirmed against current source and docs/CCG-ARCHETYPE-AUDIT-HANDOFF.md; scoped scripted fixtures do not prove native Omega support.
 
 ### Heavy-Armoured Ballista Bahariasaurus (`244168521`)
 
@@ -370,6 +449,8 @@ While this card is a Continuous Spell, it gains these effects.
 • Once per turn: You can add 1 "Dark Swamp" Spell/Trap from your Deck to your hand.**
   - Current implementation: The current Deck-destination replacement also prevents fixed top/bottom effect returns. The printed protection only forbids shuffling Hydra monsters into the Deck; this narrower distinction is not implemented by the current replacement.
   - Why skipped: The current Deck-destination replacement also prevents fixed top/bottom effect returns. The printed protection only forbids shuffling Hydra monsters into the Deck; this narrower distinction is not implemented by the current replacement.
+- **UNSUPPORTED — PR45 delta to the previously reviewed implementation (unchanged printed text)**
+  - Current implementation: AST identity after narrowly normalizing only own-Hand receipt/reveal guards; printed text unchanged. No other executable change accepted.
 
 ## Full skipped/manual scenario queue
 
@@ -471,10 +552,10 @@ The detailed setup, positive/negative checks, acceptance condition, script hash,
 | 65 | Vir Pedicae Mortis - Fearless Hunter (`244778917`) | REGRESSION_ONLY | PASS | Printed "treated as 2 materials" for a named Link Summon is not implemented; official generic Link helpers expose no source-monster effect that safely changes material weight. Requires destination-procedure/ruling work. | pending |
 | 66 | Bobbie Bluefin & the Nautical Nocturnes (`259114562`) | REGRESSION_ONLY | PASS | When both Normal and Special Summon are legal the script chooses Special Summon without an explicit player choice; confirm intended forced-summon choice semantics. | pending |
 | 67 | Scarlet Seareef & the Nautical Creatures (`220749574`) | REGRESSION_ONLY | PASS | Forced summon branch choice and bottom-of-Deck ordering need in-engine/ruling confirmation. | pending |
-| 68 | Evander Coldwater & the Nautical Abyss (`225109525`) | REGRESSION_ONLY | PASS | Returned monster can become eligible for the subsequent forced summon; confirm that this matches intended sequencing. | pending |
+| 68 | Evander Coldwater & the Nautical Abyss (`225109525`) | SKIPPED_MANUAL_INPUT | UNSUPPORTED | Returned monster can become eligible for the subsequent forced summon; confirm that this matches intended sequencing. | pending |
 | 69 | Nautical Backwashing & Oceanic Waves (`223158720`) | REGRESSION_ONLY | PASS | Forced Normal/Special Summon selection defaults to Special when both are legal; printed choice semantics need confirmation. | pending |
 | 70 | Exploring the Nautical Waters (`248946297`) | REGRESSION_ONLY | PASS | Forced summon branch and bottom-deck order need an engine/ruling test. | pending |
-| 71 | Nautical Adventures & Torrential Seas (`218905439`) | REGRESSION_ONLY | FIXED | A returned monster may be eligible for the subsequent forced summon; confirm intended pool and branch choice. | pending |
+| 71 | Nautical Adventures & Torrential Seas (`218905439`) | SKIPPED_MANUAL_INPUT | UNSUPPORTED | A returned monster may be eligible for the subsequent forced summon; confirm intended pool and branch choice. | pending |
 | 72 | Bob, but Stronger! (`259944943`) | REGRESSION_ONLY | FIXED | Fixed contact-Fusion material search from LOCATION_MZONE to official LOCATION_ONFIELD; live test still required to confirm Omega permits the "Umi" Spell to pass Fusion-material legality. | pending |
 | 73 | Windborne Eye of the Storm (`256110263`) | SKIPPED_MANUAL_INPUT | UNSUPPORTED | The script uses a temporary synthetic Token material to emulate "treated as a Synchro Summon using only Windborne"; this bespoke engine workaround needs live validation. | pending |
 | 74 | Ohmen Powerload (`259434499`) | REGRESSION_ONLY | PASS | Added the official retroactive Thunder-only Special Summon activity lock. Custom optional counter removal/destruction branch needs UI validation. | pending |

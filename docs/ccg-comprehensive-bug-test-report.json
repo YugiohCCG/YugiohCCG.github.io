@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-23T13:00:18+00:00",
-  "mode": "fast",
-  "status": "FAIL",
-  "checks_total": 18,
+  "generated_at": "2026-11-17T17:44:43+00:00",
+  "mode": "ci",
+  "status": "PASS",
+  "checks_total": 15,
   "checks_passed": 15,
   "live_certification_status": "INCOMPLETE",
   "checks": [
@@ -11,127 +11,106 @@
       "name": "Authoritative card manifest",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 2.063,
-      "output": "wrote C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\output\\ccg_qa_manifest.json\nactive_cards=620\nscripts=621\ncompatibility_scripts=[210678856]\ndatabase_rows=1249\nprimary_archetypes=95\ncards_without_primary_archetype=35\neffect_creations=2146\neffect_registrations=2437\nerrors=0"
+      "duration_seconds": 1.703,
+      "output": "wrote C:\\Users\\hclar\\AppData\\Local\\Temp\\ccg-pr45-release-checks\\scripts\\output\\ccg_qa_manifest.json\nactive_cards=703\nscripts=704\ncompatibility_scripts=[210678856]\ndatabase_rows=1416\nprimary_archetypes=90\ncards_without_primary_archetype=42\neffect_creations=2462\neffect_registrations=2810\nerrors=0"
     },
     {
       "name": "Lua compiler syntax",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 14.234,
-      "output": "scripts=621\nerrors=0"
+      "duration_seconds": 11.453,
+      "output": "scripts=704\nerrors=0"
     },
     {
       "name": "Generated printed-text search pools",
-      "status": "FAIL",
-      "returncode": 1,
-      "duration_seconds": 0.828,
-      "output": "Traceback (most recent call last):\n  File \"C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\sync_text_search_pools.py\", line 152, in <module>\n    raise SystemExit(main())\n  File \"C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\sync_text_search_pools.py\", line 105, in main\n    changed += replace(SCRIPTS / f\"c{card_id}.lua\", TABLE_RE, lua_table(\"search_codes\", ids), args.check)\n  File \"C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\sync_text_search_pools.py\", line 91, in replace\n    raise RuntimeError(f\"stale generated text-search pool: {path.name}\")\nRuntimeError: stale generated text-search pool: c229327103.lua"
+      "status": "PASS",
+      "returncode": 0,
+      "duration_seconds": 1.719,
+      "output": "FIRE: 164 searchable Spell/Trap cards\nWATER: 164 searchable Spell/Trap cards\nEARTH: 200 searchable Spell/Trap cards\nWIND: 143 searchable Spell/Trap cards\nLIGHT: 358 searchable Spell/Trap cards\nDARK: 486 searchable Spell/Trap cards\nTo Proto name/text: 3 searchable Spell/Trap cards\nMine-named Field Spells: 2 searchable cards\nMortis-named cards: 5 searchable cards\nHallo-named monsters: 3 searchable cards\nHallo/Ween-named monsters: 5 searchable cards\nverified generated pools; changed=0"
     },
     {
       "name": "Lua semantic and search-condition audit",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 1.672,
-      "output": "active_cards=620\nscripts=621\nparsed_scripts=621\neffect_creations=2146\ncallback_functions=3866\nsearch_calls=2986\naccepted_replacement_target_callbacks=4\nerrors=0\nreview_candidates=0\naccepted_reviewed_findings=14\nstale_reviewed_findings=0\nfindings_by_kind={}\nreport=C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\output\\ccg_lua_semantic_audit.json"
-    },
-    {
-      "name": "Omega runtime references",
-      "status": "PASS",
-      "returncode": 0,
-      "duration_seconds": 1.406,
-      "output": "active_cards=620\npublic_scripts=621\nmissing_active_scripts=0\nmissing_compatibility_scripts=0\npreserved_orphan_scripts=0\nloaded_card_scripts=1\nsynchro_procedure_calls=24\nlink_procedure_calls=39\nmodern_procedure_namespace_calls=0\nchain_material_select_calls=0\ndirect_link_custom_filters=8\nmodern_link_group_filter_signatures=0\nzero_argument_link_api_calls=0\ncurrent_chain_plus_one_calls=0\ngalaxy_race_scripts=17\ncannot_activate_callbacks=14\nraw_spsummon_proc_targets=21\nreferenced_setcodes=69\nreferenced_card_ids=84\nspell_trap_activation_scripts=192\nquick_effect_scripts=201\nopponent_summon_choice_scripts=7\ndelayed_optional_summon_triggers=120\nactivation_reveal_scripts=32\nactivation_choose_scripts=3\nactivation_target_scripts=194\nactivation_place_scripts=4\nactivation_roll_scripts=1\nactivation_declare_scripts=7\ncreate_token_calls=18\ncreate_token_targets=9\nsummon_code_checks=32\nsummon_code_targets=10\nstatic_copy_effect_targets=0\ndynamic_copy_effect_calls=3\nerrors=0"
-    },
-    {
-      "name": "Archetype interoperability",
-      "status": "PASS",
-      "returncode": 0,
-      "duration_seconds": 1.641,
-      "output": "Archetype verification passed: cards=620 scripts=621 archetypes=95 named_or_treated_series=12 shared_official=33 quoted_support_checks=914 warnings=0"
-    },
-    {
-      "name": "Named-card runtime relationships",
-      "status": "PASS",
-      "returncode": 0,
-      "duration_seconds": 0.64,
-      "output": "cards=620\nscripts=620\nknown_names=19588\nrelationships_checked=145\nruntime_list_codes_consumed=6\nerrors=0\nreview_candidates=0\nfindings_by_kind={}\nofficial_database_loaded=True\nreport=C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\output\\omega_named_card_relations.json"
-    },
-    {
-      "name": "Headless Omega registration",
-      "status": "PASS",
-      "returncode": 0,
-      "duration_seconds": 5.954,
-      "output": "engine_version=11.0\ncards_tested=620\npassed=620\nfailed=0\nreport=C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\output\\omega_headless_registration_audit.json\nomega_scripts_source=directory:C:\\Manual Files\\Applications\\YugiohCCG.github.io\\tmp\\omega_scripts"
+      "duration_seconds": 1.797,
+      "output": "active_cards=703\nscripts=704\nparsed_scripts=704\neffect_creations=2462\ncallback_functions=4426\nsearch_calls=3530\naccepted_replacement_target_callbacks=5\nerrors=0\nreview_candidates=0\naccepted_reviewed_findings=21\nstale_reviewed_findings=0\nfindings_by_kind={}\nreport=C:\\Users\\hclar\\AppData\\Local\\Temp\\ccg-pr45-release-checks\\scripts\\output\\ccg_lua_semantic_audit.json"
     },
     {
       "name": "Hash-pinned effect review ledger",
-      "status": "FAIL",
-      "returncode": 1,
-      "duration_seconds": 0.546,
-      "output": "{\n  \"active_cards\": 620,\n  \"current_reviews\": 609,\n  \"inherited_current_reviews\": 0,\n  \"fresh_current_reviews\": 609,\n  \"stale_reviews\": 11,\n  \"pending_reviews\": 0,\n  \"current_verdicts\": {\n    \"PASS\": 461,\n    \"UNSUPPORTED\": 27,\n    \"FIXED\": 113,\n    \"MANUAL_RULING\": 8\n  },\n  \"errors\": 0\n}"
+      "status": "PASS",
+      "returncode": 0,
+      "duration_seconds": 0.843,
+      "output": "{\n  \"active_cards\": 703,\n  \"current_reviews\": 703,\n  \"inherited_current_reviews\": 0,\n  \"fresh_current_reviews\": 703,\n  \"stale_reviews\": 0,\n  \"pending_reviews\": 0,\n  \"current_verdicts\": {\n    \"PASS\": 538,\n    \"UNSUPPORTED\": 32,\n    \"FIXED\": 124,\n    \"MANUAL_RULING\": 9\n  },\n  \"errors\": 0\n}"
     },
     {
       "name": "Omega callback smoke",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 11.922,
-      "output": "scripts=621\ncallbacks=5350\nerrors=0"
+      "duration_seconds": 13.344,
+      "output": "scripts=704\ncallbacks=6182\nerrors=0"
     },
     {
       "name": "Message routes",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 0.875,
-      "output": "active_cards=620\ncards_with_string_calls=593\nstring_call_occurrences=1505\nunique_carrier_slots=1430\nerrors=0"
+      "duration_seconds": 2.235,
+      "output": "active_cards=703\ncards_with_string_calls=675\nstring_call_occurrences=1792\nunique_carrier_slots=1686\nerrors=0"
     },
     {
       "name": "Script ZIP parity",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 0.344,
-      "output": "verified C:\\Manual Files\\Applications\\YugiohCCG.github.io\\public\\CCG Downloads\\CCG_Scripts\\CCG_Scripts.zip (621 standalone CCG card scripts)"
+      "duration_seconds": 0.406,
+      "output": "verified C:\\Users\\hclar\\AppData\\Local\\Temp\\ccg-pr45-release-checks\\public\\CCG Downloads\\CCG_Scripts\\CCG_Scripts.zip (704 standalone CCG card scripts)"
     },
     {
       "name": "Public card data parity",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 0.078,
+      "duration_seconds": 0.062,
       "output": "public cards.json is in sync"
     },
     {
       "name": "Omega test-deck coverage",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 1.172,
-      "output": "archetypes=64\ncustom_cards_covered=620\ndecks_generated=65\noutput=C:\\Manual Files\\Applications\\YugiohCCG.github.io\\scripts\\output\\omega_test_decks"
+      "duration_seconds": 1.203,
+      "output": "archetypes=75\ncustom_cards_covered=703\ndecks_generated=76\noutput=C:\\Users\\hclar\\AppData\\Local\\Temp\\ccg-pr45-release-checks\\scripts\\output\\omega_test_decks"
     },
     {
       "name": "Live-test ledger integrity",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 0.656,
-      "output": "manual_tests=97\nblocked=0\nfailed=0\npassed=0\npending=97\ncards_with_test_decks=97\nerrors=0"
+      "duration_seconds": 0.5,
+      "output": "manual_tests=88\nblocked=0\nfailed=0\npassed=0\npending=88\ncards_with_test_decks=88\nerrors=0"
     },
     {
       "name": "Manual-input skip report",
-      "status": "FAIL",
-      "returncode": 1,
-      "duration_seconds": 0.25,
-      "output": "active_cards=620\nobjectively_resolved=585\nunresolved_skips=35\nregression_only=79\nmanual_scenarios=97\nerrors=1\nERROR effect ledger contains stale or pending reviews"
+      "status": "PASS",
+      "returncode": 0,
+      "duration_seconds": 0.219,
+      "output": "active_cards=703\nobjectively_resolved=662\nunresolved_skips=41\nregression_only=68\nmanual_scenarios=88\nerrors=0"
     },
     {
       "name": "Website filter/search unit tests",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 4.141,
-      "output": "> test\n> vitest run\n\n\n RUN  v3.2.7 C:/Manual Files/Applications/YugiohCCG.github.io\n\n ✓ src/utils/filters.test.ts (8 tests) 13ms\n ✓ src/utils/banlistOrder.test.ts (2 tests) 40ms\n ✓ src/utils/search.test.ts (1 test) 9ms\n ✓ src/utils/catalog-data.test.ts (4 tests) 25ms\n ✓ src/utils/website-features.test.ts (4 tests) 23ms\n\n Test Files  5 passed (5)\n      Tests  19 passed (19)\n   Start at  22:59:43\n   Duration  1.41s (transform 347ms, setup 0ms, collect 821ms, tests 111ms, environment 2ms, prepare 1.57s)"
+      "duration_seconds": 4.578,
+      "output": "> test\n> vitest run\n\n\n RUN  v3.2.7 C:/Users/hclar/AppData/Local/Temp/ccg-pr45-release-checks\n\n ✓ src/utils/search.test.ts (2 tests) 14ms\n ✓ src/utils/banlistOrder.test.ts (2 tests) 49ms\n ✓ src/utils/filters.test.ts (9 tests) 16ms\n ✓ src/utils/archetype-library.test.ts (3 tests) 23ms\n ✓ src/utils/draft.test.ts (7 tests) 39ms\n ✓ src/utils/catalog-data.test.ts (6 tests) 191ms\n ✓ src/components/SiteLink.test.tsx (2 tests) 28ms\n ✓ src/utils/website-features.test.ts (5 tests) 29ms\n\n Test Files  8 passed (8)\n      Tests  36 passed (36)\n   Start at  04:44:12\n   Duration  2.74s (transform 1.15s, setup 0ms, collect 2.99s, tests 389ms, environment 3ms, prepare 2.63s)"
     },
     {
       "name": "TypeScript/React lint",
       "status": "PASS",
       "returncode": 0,
-      "duration_seconds": 31.953,
+      "duration_seconds": 6.328,
       "output": "> lint\n> eslint src --ext .ts,.tsx"
+    },
+    {
+      "name": "Production build",
+      "status": "PASS",
+      "returncode": 0,
+      "duration_seconds": 22.079,
+      "output": "> prebuild\n> python -B scripts/generate_archetype_catalog.py && python -B scripts/generate_website_metadata.py && node scripts/sync-public-cards.cjs\n\nwrote src\\data\\archetype-catalog.json (89 consolidated archetypes)\nwrote public\\data\\release-manifest.json\nwrote public\\data\\support-status.json\nwrote public\\data\\banlist-cards.json\nwrote public\\sitemap.xml (801 URLs)\npublic cards.json is already in sync\n\n> build\n> tsc --noEmit && vite build\n\nvite v7.1.5 building for production...\ntransforming...\n✓ 103 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                              1.60 kB │ gzip:  0.67 kB\ndist/assets/TokyoPrintLayout-C9o7kEiJ.css   58.65 kB │ gzip: 10.65 kB\ndist/assets/index-BiV-V6yv.css             102.79 kB │ gzip: 21.83 kB\ndist/assets/useRemoteJson-BeA2ZnyM.js        0.45 kB │ gzip:  0.32 kB\ndist/assets/NotFound-CMquVRIZ.js             0.53 kB │ gzip:  0.31 kB\ndist/assets/usePageMeta-BIqWOilz.js          0.64 kB │ gzip:  0.34 kB\ndist/assets/assets-Dg8aGU6Z.js               0.66 kB │ gzip:  0.38 kB\ndist/assets/banlist--mm8nsPh.js              1.05 kB │ gzip:  0.64 kB\ndist/assets/CardTile-CXptfXaM.js             1.33 kB │ gzip:  0.75 kB\ndist/assets/Releases-CYIHV8Op.js             1.86 kB │ gzip:  0.89 kB\ndist/assets/TokyoPrintDemo-BXURoteL.js       2.12 kB │ gzip:  0.89 kB\ndist/assets/sets-B42owccs.js                 2.18 kB │ gzip:  0.88 kB\ndist/assets/sample-decks-D-zghPcl.js         3.07 kB │ gzip:  1.01 kB\ndist/assets/TokyoPrintLayout-ByAh8fXp.js     3.50 kB │ gzip:  1.60 kB\ndist/assets/SupportStatus-00i4kLHY.js        3.68 kB │ gzip:  1.55 kB\ndist/assets/CardsToolbar-Dd9DwxQe.js         4.09 kB │ gzip:  1.42 kB\ndist/assets/CardDetail-DMS4cHGS.js           6.31 kB │ gzip:  2.27 kB\ndist/assets/DeckBuilder-CkZE6lze.js         11.75 kB │ gzip:  4.59 kB\ndist/assets/Home-COyJlG_O.js                11.76 kB │ gzip:  3.46 kB\ndist/assets/Downloads-9BqGuDgy.js           12.22 kB │ gzip:  4.05 kB\ndist/assets/FiltersPanel-edGZovIL.js        13.18 kB │ gzip:  4.27 kB\ndist/assets/Archetypes-DQNS7pqJ.js          13.92 kB │ gzip:  4.88 kB\ndist/assets/BanList-BUSWAGfY.js             16.86 kB │ gzip:  6.77 kB\ndist/assets/useCards-DOrQqGFs.js            31.00 kB │ gzip: 10.51 kB\ndist/assets/Cards-U_vM7qo_.js               35.58 kB │ gzip: 12.77 kB\ndist/assets/cards - test-BI7TkVmu.js        39.37 kB │ gzip:  4.86 kB\ndist/assets/Draft-CarXpnVd.js               41.38 kB │ gzip: 16.55 kB\ndist/assets/tcg-cards-CyppHh34.js          180.60 kB │ gzip: 18.48 kB\ndist/assets/index-K2g-whJs.js              278.50 kB │ gzip: 90.09 kB\ndist/assets/cards-DhKkyvqJ.js              738.62 kB │ gzip: 94.59 kB\n✓ built in 9.57s\n\n> postbuild\n> python -B scripts/prepare_pages_payload.py\n\nPages build: 902,067,135 bytes; 4 external or duplicate archives excluded\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit."
     }
   ],
   "artifacts": {
@@ -146,32 +125,32 @@
   },
   "manifest": {
     "summary": {
-      "active_cards": 620,
-      "scripts": 621,
+      "active_cards": 703,
+      "scripts": 704,
       "compatibility_scripts": [
         210678856
       ],
-      "database_rows": 1249,
-      "primary_archetypes": 95,
-      "cards_without_primary_archetype": 35,
-      "effect_creations": 2146,
-      "effect_registrations": 2437,
+      "database_rows": 1416,
+      "primary_archetypes": 90,
+      "cards_without_primary_archetype": 42,
+      "effect_creations": 2462,
+      "effect_registrations": 2810,
       "errors": 0
     },
     "errors": []
   },
   "semantic_audit": {
     "summary": {
-      "active_cards": 620,
-      "scripts": 621,
-      "parsed_scripts": 621,
-      "effect_creations": 2146,
-      "callback_functions": 3866,
-      "search_calls": 2986,
-      "accepted_replacement_target_callbacks": 4,
+      "active_cards": 703,
+      "scripts": 704,
+      "parsed_scripts": 704,
+      "effect_creations": 2462,
+      "callback_functions": 4426,
+      "search_calls": 3530,
+      "accepted_replacement_target_callbacks": 5,
       "errors": 0,
       "review_candidates": 0,
-      "accepted_reviewed_findings": 14,
+      "accepted_reviewed_findings": 21,
       "stale_reviewed_findings": 0,
       "findings_by_kind": {}
     },
@@ -181,7 +160,7 @@
       {
         "severity": "review",
         "kind": "target-operation-search-mismatch",
-        "ordinal": 231,
+        "ordinal": 218,
         "card_id": 221759221,
         "card_name": "Windborne Cartographer",
         "script": "c221759221.lua",
@@ -192,7 +171,7 @@
       {
         "severity": "review",
         "kind": "target-operation-search-mismatch",
-        "ordinal": 392,
+        "ordinal": 379,
         "card_id": 222654570,
         "card_name": "Crewal Booty",
         "script": "c222654570.lua",
@@ -203,7 +182,7 @@
       {
         "severity": "review",
         "kind": "target-operation-search-mismatch",
-        "ordinal": 160,
+        "ordinal": 148,
         "card_id": 224751741,
         "card_name": "Fall of Azrynior",
         "script": "c224751741.lua",
@@ -214,7 +193,7 @@
       {
         "severity": "review",
         "kind": "target-operation-search-mismatch",
-        "ordinal": 160,
+        "ordinal": 148,
         "card_id": 224751741,
         "card_name": "Fall of Azrynior",
         "script": "c224751741.lua",
@@ -236,7 +215,51 @@
       {
         "severity": "review",
         "kind": "target-operation-search-mismatch",
-        "ordinal": 159,
+        "ordinal": 663,
+        "card_id": 238273770,
+        "card_name": "Symphonic Warrior Disccs",
+        "script": "c238273770.lua",
+        "line": 148,
+        "detail": "e4: s.recruittg does not visibly guard s.recruitop's Duel.SelectMatchingCard(s.spfilter|tp|LOCATION_HAND+LOCATION_GRAVE+LOCATION_EXTRA|0).",
+        "disposition": "The cost returns this monster to hand and frees its Main Monster Zone. recruittg uses precruitfilter with the pre-cost released monster and a prospective self-Summon check; recruitop uses spfilter on the post-cost state. Both filters enforce the same archetype, monster, face-up Extra Deck and Summonability constraints; the zone predicates intentionally differ across payment."
+      },
+      {
+        "severity": "review",
+        "kind": "target-operation-search-mismatch",
+        "ordinal": 621,
+        "card_id": 238274862,
+        "card_name": "Vylon Observatory",
+        "script": "c238274862.lua",
+        "line": 113,
+        "detail": "e2: s.eqtg does not visibly guard s.eqop's Duel.SelectMatchingCard(s.canEquipTo|tp|LOCATION_MZONE|0).",
+        "disposition": "eqtg targets a GY equip candidate through eqfilter. eqfilter itself requires an existing canEquipTo recipient. eqop refilters targeted cards through eqfilter before choosing that recipient, and rechecks Spell/Trap zone capacity per card. The recipient search is guarded transitively through the target filter."
+      },
+      {
+        "severity": "review",
+        "kind": "target-operation-search-mismatch",
+        "ordinal": 659,
+        "card_id": 238276251,
+        "card_name": "Brazier of Nephthys",
+        "script": "c238276251.lua",
+        "line": 59,
+        "detail": "e1: s.acttg does not visibly guard s.actop's Duel.SelectMatchingCard(s.destroyable|tp|LOCATION_HAND+LOCATION_ONFIELD|0).",
+        "disposition": "This optional activation follow-up is chosen in acttg only if activationvictim exists; that predicate requires a destructible card and both retrieval destinations (including a victim that will reach GY). actop checks its activation label and card relation, selects a destructible victim, then separately rechecks both retrieval pools after destruction. The broad resolution selection is intentional, not an unguarded mandatory activation."
+      },
+      {
+        "severity": "review",
+        "kind": "target-operation-search-mismatch",
+        "ordinal": 660,
+        "card_id": 238276252,
+        "card_name": "Prayer Of Nephthys",
+        "script": "c238276252.lua",
+        "line": 51,
+        "detail": "e1: s.sptg does not visibly guard s.spop's Duel.SelectMatchingCard(s.desfilter|tp|LOCATION_HAND+LOCATION_MZONE|0).",
+        "disposition": "The activation requires deslegal, which combines the same desfilter with prospective zone availability after destruction. Resolution selects with desfilter, destroys it, then independently rechecks the two-monster Summon legality and two free zones before Summoning. Different predicates account for the prospective and actual post-destruction states."
+      },
+      {
+        "severity": "review",
+        "kind": "target-operation-search-mismatch",
+        "ordinal": 147,
         "card_id": 239245471,
         "card_name": "Birth of Azrynior",
         "script": "c239245471.lua",
@@ -247,7 +270,7 @@
       {
         "severity": "review",
         "kind": "target-operation-search-mismatch",
-        "ordinal": 159,
+        "ordinal": 147,
         "card_id": 239245471,
         "card_name": "Birth of Azrynior",
         "script": "c239245471.lua",
@@ -258,7 +281,18 @@
       {
         "severity": "review",
         "kind": "target-operation-search-mismatch",
-        "ordinal": 164,
+        "ordinal": 701,
+        "card_id": 239932270,
+        "card_name": "Floowandereeze and the Hot Winds",
+        "script": "c239932270.lua",
+        "line": 79,
+        "detail": "e: s.target does not visibly guard s.operation's Duel.SelectMatchingCard(s.own|tp|LOCATION_MZONE|0).",
+        "disposition": "Activation uses s.options to validate selectable mode. The own-monster search occurs only in a banish-selected mode and both own and opposing removable monster groups are explicitly rechecked immediately before selection."
+      },
+      {
+        "severity": "review",
+        "kind": "target-operation-search-mismatch",
+        "ordinal": 152,
         "card_id": 242009896,
         "card_name": "Extinction of Dysmandr",
         "script": "c242009896.lua",
@@ -269,7 +303,7 @@
       {
         "severity": "review",
         "kind": "target-operation-search-mismatch",
-        "ordinal": 372,
+        "ordinal": 359,
         "card_id": 244816828,
         "card_name": "Myutant Evolution",
         "script": "c244816828.lua",
@@ -280,18 +314,29 @@
       {
         "severity": "review",
         "kind": "target-operation-search-mismatch",
-        "ordinal": 16,
-        "card_id": 247789143,
-        "card_name": "Stained Sorceress Silphia",
-        "script": "c247789143.lua",
-        "line": 157,
-        "detail": "e3: s.chaintg does not visibly guard s.chainop's Duel.GetMatchingGroup(s.banfilter|tp|LOCATION_MZONE|LOCATION_MZONE).",
-        "disposition": "banpairfilter proves the two required groups exist. Resolution then materializes the generic monster group and the own Stain group separately."
+        "ordinal": 674,
+        "card_id": 247755865,
+        "card_name": "Kali Yuga - Angulimala",
+        "script": "c247755865.lua",
+        "line": 59,
+        "detail": "e1: s.sstg does not visibly guard s.ssop's Duel.SelectMatchingCard(s.desfilter|tp|LOCATION_HAND+LOCATION_ONFIELD|0).",
+        "disposition": "The target uses spacefilter, which includes desfilter and proves a zone exists or can be opened by the victim. Resolution selects the MZONE subset when needed, otherwise desfilter, then checks actual destruction and free zone before summoning."
       },
       {
         "severity": "review",
         "kind": "target-operation-search-mismatch",
-        "ordinal": 570,
+        "ordinal": 680,
+        "card_id": 247755871,
+        "card_name": "Kali Yuga - Jarita",
+        "script": "c247755871.lua",
+        "line": 68,
+        "detail": "e2: s.revtg does not visibly guard s.revop's Duel.SelectMatchingCard(s.destroyfilter|tp|LOCATION_ONFIELD|0).",
+        "disposition": "The target uses spacefilter including destroyfilter and prospective zone opening. Resolution narrows to an MZONE victim when full, checks actual destruction, related source and available zone before revival; the optional opponent overlay is independently guarded."
+      },
+      {
+        "severity": "review",
+        "kind": "target-operation-search-mismatch",
+        "ordinal": 557,
         "card_id": 259614765,
         "card_name": "Encyclopedia of Eclipse",
         "script": "c259614765.lua",
@@ -302,18 +347,18 @@
       {
         "severity": "review",
         "kind": "target-operation-search-mismatch",
-        "ordinal": 307,
+        "ordinal": 294,
         "card_id": 259650969,
         "card_name": "Ohmen Beacon",
         "script": "c259650969.lua",
         "line": 130,
         "detail": "e3: s.mvtg does not visibly guard s.mvop's Duel.GetMatchingGroup(function(mc)returnmc:IsFaceup()andmc:GetMutualLinkedGroupCount()>0end|tp|LOCATION_MZONE|0).",
-        "disposition": "The guarded mvfilter selection is performed earlier in the operation. This second group is the post-move set of co-linked monsters that receive counters."
+        "disposition": "Beacon may move a monster even when its new co-linked counter-recipient group is empty. Movement legality is checked at activation; the optional resulting recipients are computed after movement. Native engine movement and counter cases verify both empty and populated groups."
       },
       {
         "severity": "review",
         "kind": "target-operation-search-mismatch",
-        "ordinal": 120,
+        "ordinal": 108,
         "card_id": 259679619,
         "card_name": "City Within the Grand Blue",
         "script": "c259679619.lua",
@@ -324,28 +369,39 @@
       {
         "severity": "review",
         "kind": "target-operation-search-mismatch",
-        "ordinal": 555,
+        "ordinal": 542,
         "card_id": 259783008,
         "card_name": "Wyvernal Caudina",
         "script": "c259783008.lua",
         "line": 78,
         "detail": "e2: s.tgtg does not visibly guard s.tgop's Duel.SelectMatchingCard(s.samefilter|tp|LOCATION_DECK|0).",
         "disposition": "tgfilter only accepts a first Deck monster when another same-name copy is available. The operation then uses samefilter for the required second copy."
+      },
+      {
+        "severity": "review",
+        "kind": "target-operation-search-mismatch",
+        "ordinal": 286,
+        "card_id": 259869259,
+        "card_name": "Ohmen Surge",
+        "script": "c259869259.lua",
+        "line": 95,
+        "detail": "e2: s.control_tg does not visibly guard s.control_op's Duel.GetMatchingGroup(function(tc)returntc:IsFaceup()andtc:GetMutualLinkedGroupCount()>0end|tp|LOCATION_MZONE|0).",
+        "disposition": "Surge checks a free pointed zone and supporting Ohmenchanic at activation, then recomputes the surviving pointed zones at resolution. It correctly does nothing if the source or required graph is lost. Thirteen delayed-trigger engine cases verify interruptions and zone changes."
       }
     ],
     "stale_reviewed_findings": []
   },
   "test_deck_coverage": {
-    "archetypes": 64,
-    "custom_cards_covered": 620,
-    "decks_generated": 65
+    "archetypes": 75,
+    "custom_cards_covered": 703,
+    "decks_generated": 76
   },
   "live_test_ledger": {
     "summary": {
       "historical_guide_total": 123,
-      "resolved_exclusions": 26,
-      "total": 97,
-      "pending": 97,
+      "resolved_exclusions": 35,
+      "total": 88,
+      "pending": 88,
       "errors": 0
     },
     "errors": []
